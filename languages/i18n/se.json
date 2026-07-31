@@ -1316,8 +1316,6 @@
 	"lockmanager-fail-acquirelock": "Lohka ráhkadeapmi fiilabálgái \"$1\" ii lihkostuvvan.",
 	"lockmanager-fail-openlock": "Fiilla \"$1\" lohkkadanfiilla ii sáhttán rahpat. Dárkkis ahte viežžanmáhppa lea riekta heivehuvvon ja ahte du fierpmádatbálvvás leat vuoigatvuođat čállit dán máhppii. Geahča eanet dieđuid [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:wgUploadDirectory.",
 	"lockmanager-fail-releaselock": "Fiilabálgá \"$1\" lohka rahpan ii lihkostuvvan.",
-	"lockmanager-fail-db-bucket": "Ii ožžon oktavuođa doarvái lássa-diehtovuođuiguin $1 skálus.",
-	"lockmanager-fail-db-release": "Diehtovuođu \"$1\" lohkaid rahpan ii lihkostuvvan.",
 	"lockmanager-fail-svr-acquire": "Ii sáhttán viežžat lása $1 bálvvás.",
 	"lockmanager-fail-svr-release": "Servera $1 lohkaid rahpan ii lihkostuvvan.",
 	"lockmanager-fail-conflict": "Ii sáhttán lássejuvvot. Soames eará lea bargame fiillain.",

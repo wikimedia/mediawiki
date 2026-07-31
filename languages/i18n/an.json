@@ -745,8 +745,6 @@
 	"lockmanager-fail-acquirelock": "No s'ha puesto adquirir o bloqueyo de \"$1\".",
 	"lockmanager-fail-openlock": "No s'hapuesto ubrir o fichero de bloqueyo de \"$1\".",
 	"lockmanager-fail-releaselock": "No s'ha puesto liberra o bloqueyo de \"$1\".",
-	"lockmanager-fail-db-bucket": "No s'ha puesto contactar con suficients bases de datos d'o conchunto $1.",
-	"lockmanager-fail-db-release": "No s'han puesto liberar os bloqueyos rechistraus en a base de datos $1.",
 	"lockmanager-fail-svr-release": "No s'han puesto liberar os bloqueos rechistraus en o servidor $1.",
 	"zip-file-open-error": "S'ha trobato una error en ubrir o ficherto ta fer-ie comprebacions ZIP.",
 	"zip-wrong-format": "O fichero especificau no ye un fichero ZIP.",

@@ -1214,8 +1214,6 @@
 	"lockmanager-fail-acquirelock": "Nun se pudo adquirir el bloquéu pa \"$1\".",
 	"lockmanager-fail-openlock": "Nun se pudo abrir el ficheru de bloquéu pa \"$1\". Por favor comprueba que'l direutoriu de xubíes ta configuráu correutamente y que'l to sirvidor web tien permisos d'escritura nesi direutoriu. Ver https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgUploadDirectory pa más información.",
 	"lockmanager-fail-releaselock": "Nun se pudo lliberar el bloquéu pa \"$1\".",
-	"lockmanager-fail-db-bucket": "Nun se pudo contautar con bloqueos de bases de datos bastantes nel conxuntu $1.",
-	"lockmanager-fail-db-release": "Nun se pudieron lliberar los bloqueos na base de datos $1.",
 	"lockmanager-fail-svr-acquire": "Nun se pudieron afitar los bloqueos nel sirvidor $1.",
 	"lockmanager-fail-svr-release": "Nun se pudieron lliberar los bloqueos nel sirvidor $1.",
 	"zip-file-open-error": "S'alcontró un fallu al abrir el ficheru pa les comprobaciones del ZIP.",

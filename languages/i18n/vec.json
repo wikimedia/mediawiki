@@ -1000,8 +1000,6 @@
 	"lockmanager-fail-acquirelock": "Nó riusia acuixision bloco par \"$1\".",
 	"lockmanager-fail-openlock": "Nó riusia l'apertura del file de bloco par \"$1\".",
 	"lockmanager-fail-releaselock": "Nó riusio rełaso del bloco par \"$1\".",
-	"lockmanager-fail-db-bucket": "Inposibiłe contatar i necesari database de bloco inte'l bucket $1.",
-	"lockmanager-fail-db-release": "Inposibiłe revocar i blochi so'l database $1.",
 	"lockmanager-fail-svr-acquire": "Inposibiłe acuixir blochi so'l server $1.",
 	"lockmanager-fail-svr-release": "Inposibiłe revocar i blochi so'l server $1.",
 	"zip-file-open-error": "S'à verifegà un eror co se jera drio verxare el file pa' i controłi ZIP.",

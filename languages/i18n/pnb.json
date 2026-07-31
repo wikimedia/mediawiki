@@ -929,8 +929,6 @@
 	"lockmanager-fail-acquirelock": "\"$1\" لئی تالہ نئیں لیا جاسکیا۔",
 	"lockmanager-fail-openlock": "\"$1\" لئی تالہ لگی فائل نئیں کھولی جاسکی۔",
 	"lockmanager-fail-releaselock": "\"$1\" لئی تالہ ناں جاری ہوسکیا۔",
-	"lockmanager-fail-db-bucket": " چائیدی ڈیٹابیس ناں لب سکی بالثی لئی  $1",
-	"lockmanager-fail-db-release": "ڈیٹا بیس $1 دے تالے ناں مل سکے۔",
 	"lockmanager-fail-svr-release": "سرور  $1 لئی تالے ناں لبے جاسکے۔",
 	"zip-file-open-error": "اک غلطی لبی زپ چیک لئی فائل کھولدیاں",
 	"zip-wrong-format": "دسی گئی فائل زپ فائل نہیں سی۔",

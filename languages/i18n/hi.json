@@ -1487,8 +1487,6 @@
 	"lockmanager-fail-acquirelock": "\"$1\" की लॉक प्राप्त नहीं की जा सकी।",
 	"lockmanager-fail-openlock": "\"$1\" की लॉक फ़ाइल खोली नहीं जा सकी। सुनिश्चित करें कि आपकी अपलोड डायरेक्ट्री सही से कॉन्फ़िगर की हुई है तथा आपका वेब सर्वर को उस डायरेक्ट्री तक पहुँच है।\nअधिक जानकारी के लिए https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgUploadDirectory देखें।",
 	"lockmanager-fail-releaselock": "\"$1\" के लिए लॉक हटाया नहीं जा सका।",
-	"lockmanager-fail-db-bucket": "बकेट $1 में आवश्यक संख्या में लॉक डेटाबेसों से संपर्क नहीं हो पाया।",
-	"lockmanager-fail-db-release": "डेटाबेस $1 से लॉक्स खोले नहीं जा सके।",
 	"lockmanager-fail-svr-acquire": "सर्वर $1 में लॉक्स प्राप्त नहीं किए जा सके।",
 	"lockmanager-fail-svr-release": "सर्वर $1 से लॉक्स खोले नहीं जा सके।",
 	"lockmanager-fail-conflict": "लॉक प्राप्त नहीं किया जा सका। कोई और इस फ़ाइल पर कुछ कर रहा है।",

@@ -1187,7 +1187,6 @@
 	"lockmanager-fail-acquirelock": "נישט מעגלעך צו באקומען שלאס טעקע פאר \"$1\".",
 	"lockmanager-fail-openlock": "נישט מעגלעך עפֿענען שלאס טעקע פאר \"$1\". פֿארזיכערט אז אייער ארויפלאד רעפאיזטאריום איז קארעקט קאנפֿיגורירט און אייער וועב סארווער האט ערלויבניש  צו שרייבן צו יענעם רעפאזיטאריום. זעט https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgUploadDirectory פֿאר נאך אינפֿארמאציע.",
 	"lockmanager-fail-releaselock": "נישט מעגלעך באפֿרייען שלאס טעקע פאר \"$1\".",
-	"lockmanager-fail-db-release": "מ'קען נישט באפרייען די שלאסן אויף דאטנבאזע $1.",
 	"zip-file-open-error": "געטראפן א גרײַז ביים עפענען די טעקע פאר ZIP־קאנטראלירונג.",
 	"zip-wrong-format": "ספעציפירטע טעקע איז נישט קיין ZIP טעקע.",
 	"uploadstash": "אַרויפֿלאָד רעזערוו",

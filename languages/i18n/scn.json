@@ -1058,8 +1058,6 @@
 	"lockmanager-fail-acquirelock": "Nun fu pussìbbili pigghiari pussessu dû bloccu di \"$1\".",
 	"lockmanager-fail-openlock": "Nun fu pussìbbili gràpiri lu file di bloccu di \"$1\".",
 	"lockmanager-fail-releaselock": "Nun fu pussibbili arrènniri lu bloccu di \"$1\".",
-	"lockmanager-fail-db-bucket": "Nun fu pussìbbili cuntattari abbastanti basi di dati di bloccu ntô bucket $1.",
-	"lockmanager-fail-db-release": "Nun fu pussìbbili arrènniri li blocchi dâ basi di dati $1.",
 	"lockmanager-fail-svr-acquire": "Nun fu pussìbbili pigghiari pussessu dî blocchi dû server $1.",
 	"lockmanager-fail-svr-release": "Nun fu pussìbbili arrènniri li blocchi dû server $1.",
 	"zip-file-open-error": "Ammattìu n'erruri ntâ grapitura dû file pî cuntrolli di ZIP.",

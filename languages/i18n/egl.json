@@ -861,8 +861,6 @@
 	"lockmanager-fail-acquirelock": "Impusébil utgnîr blôch per \"$1\".",
 	"lockmanager-fail-openlock": "Impusébil arvîr al file 'd blôch per \"$1\".",
 	"lockmanager-fail-releaselock": "Impusébil liberêr al blôch per \"$1\".",
-	"lockmanager-fail-db-bucket": "Impusébil coleghêr i databes ed blôch necesâri int al recipiĵnt $1.",
-	"lockmanager-fail-db-release": "Impusébil tōr via i blôch al database $1.",
 	"lockmanager-fail-svr-acquire": "Impusébil avèir blôch dal servèint $1.",
 	"lockmanager-fail-svr-release": "Impusébil tōr via i blôch al servèint $1.",
 	"zip-file-open-error": "É sucès un erōr mèinter a s'arvîva al file per i cuntròl ZIP.",

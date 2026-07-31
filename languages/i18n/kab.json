@@ -1020,8 +1020,6 @@
 	"lockmanager-fail-acquirelock": "Ulamek an krez azekṛun i « $1 ».",
 	"lockmanager-fail-openlock": "Ulamek an ldi afaylu n uzekṛun i « $1 ».",
 	"lockmanager-fail-releaselock": "Ulamek an bru azekṛun i « $1 ».",
-	"lockmanager-fail-db-bucket": "Ulamek an siwel ddeqs taffa n isefka n usekkweṛ deg uqbuc $1.",
-	"lockmanager-fail-db-release": "Ulamek an bru izekṛunen ɣef taffa n isefka $1.",
 	"lockmanager-fail-svr-acquire": "Ulamek an krez izekṛunen ɣef uqeddac $1.",
 	"lockmanager-fail-svr-release": "Ulamek an bru izekṛunen ɣef uqeddac $1.",
 	"zip-file-open-error": "Yella agul mi d neldi afaylu i senqeden ifuyla zip.",

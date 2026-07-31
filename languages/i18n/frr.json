@@ -954,8 +954,6 @@
 	"lockmanager-fail-acquirelock": "Det sper för „$1“ küd ei ufrepen  wurd.",
 	"lockmanager-fail-openlock": "Det sperdatei för „$1“ küd ei eeben maaget wurd. Stel seeker, dat din fertiaknis för't huuchloosin rocht iinracht as, an dat dan webserver diar üüb tugrip mut. Luke diar: https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgUploadDirectory wan dü muar wed wel.",
 	"lockmanager-fail-releaselock": "Det sper för „$1“ küd ei apliaset wurd.",
-	"lockmanager-fail-db-bucket": "Mä $1 küd ei nooch ferbinjangen tu sperdootenbeenken iinracht wurd.",
-	"lockmanager-fail-db-release": "A speren uun't dootenbeenk $1 küd ei apliaset wurd.",
 	"lockmanager-fail-svr-acquire": "A speren üüb server $1 küd ei ufrepen wurd.",
 	"lockmanager-fail-svr-release": "A speren üüb server $1 küd ei apliaset wurd.",
 	"zip-file-open-error": "Diar as wat skiaf gingen bi't leesen faan det datei tu't ZIP-preew.",

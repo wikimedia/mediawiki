@@ -1334,8 +1334,6 @@
 	"lockmanager-fail-acquirelock": "Tsy afaka maka ilay rakitra fanidiana ho an'i \"$1\"",
 	"lockmanager-fail-openlock": "Tsy afaka nanokatra rakitra fanidiana \"$1\". Hamarino tsara raha voarindra araka ny tokony ho izy ny petra-drakitrao fandraisan-drakitra sary, sady hamarino ihany koa raha efa nahazo alalana manoratra ao anatiny ny lohamilina an-tranonkala. Jereo ny https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgUploadDirectory raha mila fanazavana fanampiny.",
 	"lockmanager-fail-releaselock": "Tsy afaka mamela ilay fanidiana ho an'i \"$1\"",
-	"lockmanager-fail-db-bucket": "Tsy ampy ny isan'ireo banky angona fanidiana voaantso anatin'ny baketra (godet) $1.",
-	"lockmanager-fail-db-release": "Tsy afaka mamela ny fanidiana eo amin'ny banky angona $1.",
 	"lockmanager-fail-svr-acquire": "Tsy afaka maka ny fanidiana eo amin'ny lohamilina $1.",
 	"lockmanager-fail-svr-release": "Tsy afaka mamela ny fanidiana eo amin'ny banky angona $1.",
 	"lockmanager-fail-conflict": "Tsy nahazo fanidiana. Efa misy olon-kafa mampiasa ity rakitra ity.",

@@ -1295,8 +1295,6 @@
 	"lockmanager-fail-acquirelock": "Wedi methu cael clo ar \"$1\".",
 	"lockmanager-fail-openlock": "Methwyd agor \"$1\". Ydy eich cyfeiriadur uchlwytho (''upload directory'') yn gywir ac y gellwch sgwennu i'r cyfeiriadur. Gweler:  https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgUploadDirectory am ragor o wybodaeth.",
 	"lockmanager-fail-releaselock": "Wedi methu agor y clo ar \"$1\".",
-	"lockmanager-fail-db-bucket": "Methwyd cysylltu â digon o gronfeydd data cloi yn y bwced $1.",
-	"lockmanager-fail-db-release": "Wedi methu agor y cloion ar y gronfa ddata $1.",
 	"lockmanager-fail-svr-acquire": "Wedi methu sicrhau cloion ar y gweinydd $1.",
 	"lockmanager-fail-svr-release": "Wedi methu agor y cloion ar y gweinydd $1.",
 	"zip-file-open-error": "Cafwyd gwall wrth agor y ffeil er mwyn gwneud gwiriadau ZIP.",

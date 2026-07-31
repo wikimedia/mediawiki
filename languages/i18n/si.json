@@ -951,8 +951,6 @@
 	"lockmanager-fail-acquirelock": "\"$1\" සඳහා වූ අගුලු දැමීම ලබා ගත නොහැක.",
 	"lockmanager-fail-openlock": "\"$1\" සඳහා වූ අගුලු ගතකර ඇති ගොනුව විවෘත කල නොහැක.",
 	"lockmanager-fail-releaselock": "\"$1\" සඳහා වූ අගුලු දැමීම නිදහස් කල නොහැක.",
-	"lockmanager-fail-db-bucket": "බාල්දිය $1 තරම් අගුල දත්ත හා සම්බන්ධ කිරීමට නොහැකි විය.",
-	"lockmanager-fail-db-release": "$1 දත්ත ගබඩාවෙහි අගුලු අත්හල නොහැක.",
 	"lockmanager-fail-svr-acquire": "සේවාදායක $1 මත අගුල් ලබාගැනීමට නොහැකි විය.",
 	"lockmanager-fail-svr-release": "$1 සර්වරයෙහි අගුලු අත්හල නොහැක.",
 	"zip-file-open-error": "ZIP පිරික්සුම් සඳහා ගොනුව විවෘත කරද්දී දෝෂයක් ඇති විය.",

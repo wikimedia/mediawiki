@@ -1212,8 +1212,6 @@
 	"lockmanager-fail-acquirelock": "Impossible d'obténer lo fichièr de verrolh per « $1 ».",
 	"lockmanager-fail-openlock": "Impossible de dobrir lo fichièr de verrolh per « $1 ».",
 	"lockmanager-fail-releaselock": "Impossible de daissar anar lo fichièr de verrolh per « $1 ».",
-	"lockmanager-fail-db-bucket": "Impossible de contactar pro de basas de donadas de verrolhatge dins lo godet $1.",
-	"lockmanager-fail-db-release": "Impossible de daissar anar los verrolhs sus la basa de donadas $1.",
 	"lockmanager-fail-svr-acquire": "Impossible d'aquerir de verrolhs sul servidor $1.",
 	"lockmanager-fail-svr-release": "Impossible de daissar anar los verrolhs sul servidor $1.",
 	"zip-file-open-error": "Una error s'es produita al moment de la dobertura del fichièr ZIP per contraròtle.",

@@ -815,8 +815,6 @@
 	"lockmanager-fail-acquirelock": "Impussibel d'obtegnair la datotoca da bloccar per \"$1\".",
 	"lockmanager-fail-openlock": "Impussibel dad avrir la datotoca da bloccar per \"$1\".",
 	"lockmanager-fail-releaselock": "Impussibel dad allontanar la bloccada per \"$1\".",
-	"lockmanager-fail-db-bucket": "Impussibel da contactar avunda bancas da datas da bloccar en il bucket $1.",
-	"lockmanager-fail-db-release": "Impussibel dad allontanar la bloccada sin la banca da datas $1.",
 	"lockmanager-fail-svr-acquire": "Impussibel dad obtegnair la bloccada sin il server $1.",
 	"lockmanager-fail-svr-release": "Impussibel dad allontanar la bloccada sin il server $1.",
 	"zip-file-open-error": "Ina errur è capitada durant avrir la datoteca per controllas da ZIP.",

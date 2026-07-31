@@ -977,8 +977,6 @@
 	"lockmanager-fail-acquirelock": "Не годен здобыти замок про „$1“.",
 	"lockmanager-fail-openlock": "Файл із замком про „$1“ не годен отворити.",
 	"lockmanager-fail-releaselock": "Не годен увольнити замок про „$1“.",
-	"lockmanager-fail-db-bucket": "Не годен навязати споїня з достаточнов кількостёв датабаз замків в сеґментї $1.",
-	"lockmanager-fail-db-release": "Замкнутя датабазы $1 не вдало ся увольнити.",
 	"lockmanager-fail-svr-acquire": "Не вдало ся здобыти замок сервера $1.",
 	"lockmanager-fail-svr-release": "Замкнутя сервера $1 не вдало ся увольнити.",
 	"zip-file-open-error": "При одкрытю ZIP-архіву про ёго перевірку выникла хыба.",

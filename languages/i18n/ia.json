@@ -1390,8 +1390,6 @@
 	"lockmanager-fail-acquirelock": "Non poteva acquirer un serratura pro “$1”.",
 	"lockmanager-fail-openlock": "Non poteva aperir le file de serratura pro “$1”. Assecura te que le directorio de incargamento es configurate correctemente e que tu servitor web ha le permission de scriber in ille directorio. Vide https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgUploadDirectory pro plus information.",
 	"lockmanager-fail-releaselock": "Non poteva liberar le file de serratura pro “$1”.",
-	"lockmanager-fail-db-bucket": "Non poteva contactar sufficiente bases de datos de serramento in situla $1.",
-	"lockmanager-fail-db-release": "Non poteva liberar le serraturas sur le base de datos $1.",
 	"lockmanager-fail-svr-acquire": "Non poteva acquirer le serraturas sur le servitor $1.",
 	"lockmanager-fail-svr-release": "Non poteva liberar le serraturas sur le servitor $1.",
 	"lockmanager-fail-conflict": "Non esseva possibile marcar le file pro uso exclusive perque un altere persona lo usa in iste momento.",

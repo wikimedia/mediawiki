@@ -1030,7 +1030,6 @@
 	"lockmanager-fail-deletelock": "ߊ߬ ߕߍ߫ ߣߊ߬ ߛߋ߫ ߟߊ߫ \"$1\" ߞߐߕߐ߯ ߛߐ߰ߣߍ߲ ߖߏ߰ߛߌ߬ ߟߊ߫.",
 	"lockmanager-fail-acquirelock": "ߌ ߕߍ߫ ߣߊ߬ ߛߋ߫ ߟߊ߫ ߛߐ߰ߟߌ ߛߐ߬ߘߐ߲߬ ߠߊ߫  \"$1\" ߞߊ߲߬.",
 	"lockmanager-fail-releaselock": "ߌ ߕߍ߫ ߣߊ߬ ߛߋ߫ ߟߊ߫ ߛߐ߰ߟߌ ߓߐ߫ ߟߊ߫  \"$1\" ߞߊ߲߬.",
-	"lockmanager-fail-db-release": "ߌ ߕߍ߫ ߣߊ߬ ߛߋ߫ ߟߊ߫ ߛߐ߰ߟߌ ߓߐ߫ ߟߊ߫ ߓߟߏߡߟߊߝߊ߲ $1 ߞߊ߲߬.",
 	"lockmanager-fail-svr-release": "ߌ ߕߍ߫ ߣߊ߬ ߛߋ߫ ߟߊ߫ ߛߐ߰ߟߌ ߓߐ߫ ߟߊ߫ ߡߊ߬ߛߐ߬ߟߊ $1 ߞߊ߲߬.",
 	"zip-file-open-error": "ߝߎ߬ߕߎ߲߬ߕߌ ߘߏ߫ ߕߎ߲߬ ߓߘߴߊ߬ ߞߎ߲߬ߓߐ߫ ߞߵߌ ߕߏ߫ ߞߐߕߐ߮ ߘߟߊߞߊ߭ ߟߊ߫ ZIP ߝߛߍ߬ߝߛߍ߬ߟߌ߬ ߞߊ߲ߡߊ߬.",
 	"zip-wrong-format": "ߞߐߕߐ߯ ߡߊߕߍ߰ߣߍ߲ ߕߎ߲߬ ߕߍ߫ ZIP ߞߐߕߐ߯ ߘߌ߫.",

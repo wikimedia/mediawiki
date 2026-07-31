@@ -822,7 +822,6 @@
 	"lockmanager-fail-acquirelock": "Kundi ikki fáa lás til \"$1\".",
 	"lockmanager-fail-openlock": "Kundi ikki læsa upp fíluna til: \"$1\".",
 	"lockmanager-fail-releaselock": "Kundi ikki læsa upp læsingina fyri: \"$1\".",
-	"lockmanager-fail-db-release": "Kundi ikki loysa lásini í dátagrunninum $1.",
 	"lockmanager-fail-svr-acquire": "Kundi ikki skaffa lás til dátagrunnin $1.",
 	"lockmanager-fail-svr-release": "Kundi ikki loysa lásini í ambætaranum $1.",
 	"uploadstash": "Legg út stash",

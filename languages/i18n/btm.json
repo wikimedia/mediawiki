@@ -1076,7 +1076,6 @@
 	"lockmanager-fail-deletelock": "Inda bisa mangalangkopi kunci borkas tu \"$1\".",
 	"lockmanager-fail-acquirelock": "Inda bisa mandapot panguncian ni \"$1\"",
 	"lockmanager-fail-releaselock": "Inda bisa mangalangkopi kunci borkas tu \"$1\".",
-	"lockmanager-fail-db-release": "Inda dapot paluaon panguncian ima i basis data $1",
 	"lockmanager-fail-svr-acquire": "Inda bisa mandapotkon kunci i server $1.",
 	"uploadstash": "Pamasuk simpanan",
 	"uploadstash-clear": "Apus borkas simpanan",

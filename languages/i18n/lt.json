@@ -1367,8 +1367,6 @@
 	"lockmanager-fail-acquirelock": "Negalima nustatyti rakinimo dėl \"$1\".",
 	"lockmanager-fail-openlock": "Nepavyko atidaryti „$1“ užrakto failo. Įsitikinkite, kad įkėlimo katalogas yra tinkamai sukonfigūruotas ir jūsų žiniatinklio serveris turi leidimą rašyti į tą katalogą. Daugiau informacijos rasite adresu https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgUploadDirectory.",
 	"lockmanager-fail-releaselock": "Negalima panaikinti rakinimo dėl \"$1\".",
-	"lockmanager-fail-db-bucket": "Nepavyko susisiekti su pakankamai užraktų duomenų bazių kibire $1.",
-	"lockmanager-fail-db-release": "Nepavyko atskleisti užraktų duomenų bazei $1.",
 	"lockmanager-fail-svr-acquire": "Nepavyko gauti užraktų serveryje $1.",
 	"lockmanager-fail-svr-release": "Nepavyko atskleisti užraktų serveryje $1.",
 	"lockmanager-fail-conflict": "Nepavyko gauti užrakto. Kažkas kitas kažką daro su šiuo failu.",

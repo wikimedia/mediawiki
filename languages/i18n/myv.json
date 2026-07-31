@@ -1283,8 +1283,6 @@
 	"lockmanager-fail-acquirelock": "Эзь лисе теемс «$1» кардамонть.",
 	"lockmanager-fail-openlock": "Эзь лисе панжомс кардамонь файланть «$1» туртов. Кемевть, тонгомань тонь пурнавксось аравтозь вадрясто, ды тонь веб-серверэнть ули те пурнавксонтень сёрмадомас мерема. Седе домкасто вант https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgUploadDirectory сайтсэ.",
 	"lockmanager-fail-releaselock": "Эзь лисе панжомс «$1».",
-	"lockmanager-fail-db-bucket": "Эзь лисе сюлмавомс кардамонь зярыя кирдематнень марто $1 коряс.",
-	"lockmanager-fail-db-release": "Эзь лисе каямс $1 содамочинь кирдемань кардамонть.",
 	"lockmanager-fail-svr-acquire": "$1 серверсэ эзь лисе саемс сёрмадома лангс содамочинь прават.",
 	"lockmanager-fail-svr-release": "$1 серверсэ эзь лисе каямс кардамотнень.",
 	"lockmanager-fail-conflict": "Эзь саемс сёрмадома лангс прават. Кие-бути лия мезе-бути теи те файланть марто.",

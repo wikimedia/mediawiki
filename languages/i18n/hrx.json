@@ -848,8 +848,6 @@
 	"lockmanager-fail-acquirelock": "Die Sperr für \"$1\" konnt net abgeruf sin.",
 	"lockmanager-fail-openlock": "Die Sperrdatei für \"$1\" konnt net geschloss sin.",
 	"lockmanager-fail-releaselock": "Die Sperr für \"$1\" konnt net freigemacht sin.",
-	"lockmanager-fail-db-bucket": "Es konnte mit Sammelabruf $1 ken ausreichend Oonzoohl an Verbinnunge zu Sperrdatebanke heargestellt sin.",
-	"lockmanager-fail-db-release": "Die Sperre uff Datebank $1 konnte net freigeb (gemach) sin.",
 	"lockmanager-fail-svr-acquire": "Die Sperre uff Server $1 konnte net abgeruf sin.",
 	"lockmanager-fail-svr-release": "Die Sperre uff Server $1 konnte net freigeb (gemach) sin.",
 	"zip-file-open-error": "Do ist en Fehler beim Öffne von der Datei zur ZIP-Üwerprüfung uffgetret (passiert).",

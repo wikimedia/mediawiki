@@ -1334,8 +1334,6 @@
 	"lockmanager-fail-acquirelock": "As peul pa oten-se la saradura për «$1».",
 	"lockmanager-fail-openlock": "As peul pa durbisse l'archivi ëd saradura për \"$1\". Ch'as sigura che sò dossié ëd cariament a l'é bin configurà e che sò servent an sl'aragnà a l'ha ij përmess dë scrive an col dossié. Ch'a varda https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgUploadDirectory për savèjne 'd pi.",
 	"lockmanager-fail-releaselock": "As peul pa gavé la saradura për «$1».",
-	"lockmanager-fail-db-bucket": "As peul pa contatesse a basta ëd base ëd dàit ëd saradura ant ël sëstin $1.",
-	"lockmanager-fail-db-release": "As peulo pa gavesse le saradure an sla base ëd dàit $1.",
 	"lockmanager-fail-svr-acquire": "As peul pa butesse le saradure an sël servent $1.",
 	"lockmanager-fail-svr-release": "As peulo pa arlassesse le saradure an sël servent $1.",
 	"zip-file-open-error": "N'eror a l'é capità an duvertand l'archivi për ij contròj ZIP.",

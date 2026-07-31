@@ -1383,8 +1383,6 @@
 	"lockmanager-fail-acquirelock": "Gat ekki nálgast lás vegna „$1“.",
 	"lockmanager-fail-openlock": "Gat ekki opnað lásaskrá vegna „$1“. Gakkt úr skugga um að innsendingamappan þín sé rétt uppsett, og að vefþjónninn þinn hafi heimildir til að skrifa í þá möppu. Skoðaðu https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgUploadDirectory til að sjá nánari upplýsingar.",
 	"lockmanager-fail-releaselock": "Gat ekki opnað lás vegna „$1“.",
-	"lockmanager-fail-db-bucket": "Náði ekki sambandi við nógu marga lása í fötunni $1.",
-	"lockmanager-fail-db-release": "Gat ekki opnað lása á gagnagrunninum $1.",
 	"lockmanager-fail-svr-acquire": "Gat ekki nálgast lása á þjóninum $1.",
 	"lockmanager-fail-svr-release": "Gat ekki opnað lása á þjóninum $1.",
 	"lockmanager-fail-conflict": "Gat ekki nálgast lás. Einhver annar er að gera eitthvað við þessa skrá.",

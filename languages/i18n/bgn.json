@@ -820,7 +820,6 @@
 	"lockmanager-fail-acquirelock": "نه توانیت «$1» ئی قُلپ ئا کسب کنیت.",
 	"lockmanager-fail-openlock": "\"$1\" ئی قُلپ بوته ئین فایلی پاچ کورتین امکان نه داریت.",
 	"lockmanager-fail-releaselock": "نه توانیت «$1» ئی قُلپ ئا پاچ کنیت.",
-	"lockmanager-fail-db-release": "$1 ئی مئلوماتی بانکی قُلپئ پاچ کورتین امکان نه داریت.",
 	"lockmanager-fail-svr-acquire": "$1 ئی سرور ئی قُلپانی گیپتین امکان نه داریت.",
 	"lockmanager-fail-svr-release": "$1 ئی سرور ئی قُلپانی پاچ کورتین ئی امکان نه اینت.",
 	"zip-file-open-error": "بئ زیپ ئی فایلی پاچ کورتینی وختا، په آیی محتوایی دیستینی خاتیرا، یک خطا ئی رخ دات.",

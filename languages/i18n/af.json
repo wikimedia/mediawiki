@@ -1088,8 +1088,6 @@
 	"lockmanager-fail-acquirelock": "Kon nie \"$1\" vergrendel nie.",
 	"lockmanager-fail-openlock": "Kon nie die slotlêer vir \"$1\" oopmaak nie.",
 	"lockmanager-fail-releaselock": "Kon nie \"$1\" ontgrendel nie.",
-	"lockmanager-fail-db-bucket": "Dit was nie moontlik om voldoende vergrendel-databasisse in die houer $1 te kontak nie.",
-	"lockmanager-fail-db-release": "Kon nie 'n vergrendeling op databasis $1 ophef nie.",
 	"lockmanager-fail-svr-acquire": "Kon nie 'n vergrendeling op bediener $1 verkry nie.",
 	"lockmanager-fail-svr-release": "Kon nie vergrandeling op bediener $1 ophef nie.",
 	"zip-file-open-error": "'n Fout het voorgekom met die opening van die lêer vir ZIP toetsing.",

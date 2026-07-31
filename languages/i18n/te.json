@@ -1381,8 +1381,6 @@
 	"lockmanager-fail-acquirelock": "\"$1\" కోసం లాక్ ను పొందలేకపోయాం.",
 	"lockmanager-fail-openlock": "\"$1\" కోసం లాక్ ఫైలును తెరవలేకపోయాం. మీ ఎక్కింపు డైరెక్టరీ సరిగ్గానే కాన్ఫిగరు చ్సి ఉందనీ, ఆ డైరెక్టరీలో రాసేందుకు వెబ్‌సర్వరుకు అనుమతులున్నాయనీ నిర్ధారించుకోండి. మరింత సమాచారం కోసం, https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgUploadDirectory చూడండి.",
 	"lockmanager-fail-releaselock": "\"$1\" యొక్క లాక్ ను విడుదల చెయ్యలేకపోయాం.",
-	"lockmanager-fail-db-bucket": "బకెట్ $1 లోని లాక్ డేటాబేసులు సరిపోయినన్నిటిని కాంటాక్టు చెయ్యలేకపోయాం.",
-	"lockmanager-fail-db-release": "డేటాబేసు $1 పై లాకులను విడుదల చెయ్యలేకపోయాం.",
 	"lockmanager-fail-svr-acquire": "సర్వరు $1 పై లాకులను పొందలేకపోయాం.",
 	"lockmanager-fail-svr-release": "సర్వరు $1 పై లాకులను విడుదల చెయ్యలేకపోయాం.",
 	"lockmanager-fail-conflict": "లాక్ పొందలేక పోయాం. వేరెవరో ఈ దస్త్రంతో ఏదో పని చేస్తున్నారు.",

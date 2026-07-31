@@ -1239,8 +1239,6 @@
 	"lockmanager-fail-acquirelock": "Kunne ikkje henta lås for «$1».",
 	"lockmanager-fail-openlock": "Kunne ikkje opna låsefila for «$1».",
 	"lockmanager-fail-releaselock": "Kunne ikkje løysa låsen for «$1».",
-	"lockmanager-fail-db-bucket": "Kunne ikkje kontakta nok låsedatabasar i bytta $1.",
-	"lockmanager-fail-db-release": "Kunne ikkje løysa låsane på databasen $1.",
 	"lockmanager-fail-svr-acquire": "Kunne ikkje henta låsane på tenaren $1.",
 	"lockmanager-fail-svr-release": "Kunne ikkje løysa låsane på tenaren $1.",
 	"zip-file-open-error": "Det oppstod ein feil under opninga av fila for ZIP-undersøking.",

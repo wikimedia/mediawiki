@@ -1461,8 +1461,6 @@
 	"lockmanager-fail-acquirelock": "Kunne ikke skaffe lås for «$1».",
 	"lockmanager-fail-openlock": "Kunne ikke åpne låsefilen for «$1». Sjekk at opplastingsmappa er konfigurert riktig og at nettjeneren din har tillatelse til å skrive til den mappa. Se https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgUploadDirectory for mer informasjon.",
 	"lockmanager-fail-releaselock": "Kunne ikke frigi låsen for «$1».",
-	"lockmanager-fail-db-bucket": "Kunne ikke kontakte nok låsedatabaser i bøtten $1.",
-	"lockmanager-fail-db-release": "Kunne ikke frigi låser på databasen $1.",
 	"lockmanager-fail-svr-acquire": "Klarte ikke å hente lås på tjeneren $1.",
 	"lockmanager-fail-svr-release": "Kunne ikke frigi låser på tjeneren $1.",
 	"lockmanager-fail-conflict": "Lot seg ikke låse. Noen andre arbeider med filen.",

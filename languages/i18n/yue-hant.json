@@ -1391,8 +1391,6 @@
 	"lockmanager-fail-acquirelock": "攞唔到「$1」嘅鎖。",
 	"lockmanager-fail-openlock": "打唔開鎖咗嘅檔案「$1」。請確保你嘅上傳目錄配置係啱，同埋你嘅網頁伺服器有寫入呢個目錄嘅權限。睇下https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgUploadDirectory 知多啲。",
 	"lockmanager-fail-releaselock": "釋放唔到「$1」嘅鎖。",
-	"lockmanager-fail-db-bucket": "喺$1桶入面聯絡唔到足夠嘅鎖定資料庫。",
-	"lockmanager-fail-db-release": "釋放唔到$1資料庫上嘅鎖。",
 	"lockmanager-fail-svr-acquire": "喺$1伺服器上面攞唔到鎖。",
 	"lockmanager-fail-svr-release": "釋放唔到$1伺服器嘅鎖。",
 	"lockmanager-fail-conflict": "攞唔到鎖。其他人對呢個檔案做緊啲嘢。",

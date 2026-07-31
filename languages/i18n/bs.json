@@ -1212,8 +1212,6 @@
 	"lockmanager-fail-acquirelock": "Ne mogu dobiti \"lock\"-datoteku za \"$1\".",
 	"lockmanager-fail-openlock": "Ne mogu otvoriti \"lock\"-datoteku za \"$1\".",
 	"lockmanager-fail-releaselock": "Ne mogu osloboditi katanac za „$1“.",
-	"lockmanager-fail-db-bucket": "Ne mogu da kontaktiram s dovoljno \"lock\"-baza u kanti $1.",
-	"lockmanager-fail-db-release": "Ne mogu osloboditi katance u bazi $1.",
 	"lockmanager-fail-svr-acquire": "Ne mogu dobiti katance na serveru $1.",
 	"lockmanager-fail-svr-release": "Ne mogu se otključati katanci na serveru file $1.",
 	"zip-file-open-error": "Desila se greška pri otvaranju datoteke za provjere ZIP-a.",

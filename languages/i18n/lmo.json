@@ -1284,8 +1284,6 @@
 	"lockmanager-fail-acquirelock": "Impossibil acquisì el bloch per \"$1\".",
 	"lockmanager-fail-openlock": "Impossibil dervì el fail de bloch per \"$1\". Sicuress che el diretori per i caregament el sia impostad sgiust e che 'l to server de la red el gh'abia i permess de scrivegh denter. Varda https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgUploadDirectory per savenn pussee.",
 	"lockmanager-fail-releaselock": "A l'è stad minga possibil toeu via el bloch per \"$1\".",
-	"lockmanager-fail-db-bucket": "Impossibil toeu contat cont i databeis de bloch che gh'è de besogn in del bachet ̯$1.",
-	"lockmanager-fail-db-release": "Impossibil toeu via i bloch in sul databeis $1.",
 	"lockmanager-fail-svr-acquire": "Impossibil acquisì i bloch in sul server $1.",
 	"lockmanager-fail-svr-release": "Impossibil toeu via i bloch in sul server $1.",
 	"lockmanager-fail-conflict": "A se po minga otegnì el bloch . On quaidun alter l'è 'dree a fà on quaicoss a quell file chì",

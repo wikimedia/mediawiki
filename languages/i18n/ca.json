@@ -1427,8 +1427,6 @@
 	"lockmanager-fail-acquirelock": "No s'ha pogut adquirir el blocatge de «$1».",
 	"lockmanager-fail-openlock": "No s'ha pogut obrir el fitxer de blocatge de «$1». Assegureu-vos que el directori de càrrega està configurat correctament i que el servidor web té permisos per escriure-hi. Vegeu https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgUploadDirectory per a més informació.",
 	"lockmanager-fail-releaselock": "No s'ha pogut alliberar el blocatge de «$1».",
-	"lockmanager-fail-db-bucket": "No s'han pogut contactar un nombre suficient de bases de blocatge en el cubell $1.",
-	"lockmanager-fail-db-release": "No s'han pogut alliberar els blocatges a la base de dades $1.",
 	"lockmanager-fail-svr-acquire": "No s'han pogut aconseguir els blocatges al servidor $1.",
 	"lockmanager-fail-svr-release": "No s'han pogut alliberar els blocatges al servidor $1.",
 	"lockmanager-fail-conflict": "No s'ha pogut obtenir el bloqueig. Algú altre està fent quelcom amb aquest fitxer.",

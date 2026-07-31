@@ -1015,8 +1015,6 @@
 	"lockmanager-fail-acquirelock": "\"$1\" ke khatir lock nai pawa gais hae.",
 	"lockmanager-fail-openlock": "\"$1\" ke khatir lock file ke nai khola jaae sake hae",
 	"lockmanager-fail-releaselock": "\"$1\" ke khatir lock file ke nai khole sakaa hae.",
-	"lockmanager-fail-db-bucket": "Bucket $1 me enough lock database ke contact nai kare sakaa hae",
-	"lockmanager-fail-db-release": "Database $1 me lock ke khole nai sakaa hae.",
 	"lockmanager-fail-svr-acquire": "Server $1 me lock ke nai paae sakaa hae.",
 	"lockmanager-fail-svr-release": "Server $1 me lock ke khole nai sakaa hae.",
 	"zip-file-open-error": "File ke ZIP check ke khatir khole ke time kuchh karrgarri hoe gais hae.",

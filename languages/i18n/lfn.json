@@ -1189,8 +1189,6 @@
 	"lockmanager-fail-acquirelock": "La semafor per \"$1\" no ia pote es otenida.",
 	"lockmanager-fail-openlock": "La fix de semafor per \"$1\" no ia pote es abrida. Serti ce tua arcivo de carga es bon ajustada e ce tua servador es permeteda a scrive en acel arcivo. Vide https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgUploadDirectory per plu informa.",
 	"lockmanager-fail-releaselock": "La semafor per \"$1\" no ia pote es relasada.",
-	"lockmanager-fail-db-bucket": "Tro poca bancos de semafor ia pote es contatada en balde $1.",
-	"lockmanager-fail-db-release": "Semafores per banco de datos $1 no ia pote es relasada.",
 	"lockmanager-fail-svr-acquire": "Semafores per banco de datos $1 no ia pote es otenida.",
 	"lockmanager-fail-svr-release": "Semafores per servador $1 no ia pote es relasada.",
 	"zip-file-open-error": "Un era ia aveni en abri la fix ZIP per esamina.",

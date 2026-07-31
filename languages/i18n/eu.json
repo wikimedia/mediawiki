@@ -1303,8 +1303,6 @@
 	"lockmanager-fail-acquirelock": "Ezin izan da \"$1\" blokeoa eskuratu.",
 	"lockmanager-fail-openlock": "Ezin izan da \"$1\"-rentzako blokeo fitxategia ireki. Ziurtatu igoera direktorioa behar bezala konfiguratuta dagoela eta zure web zerbitzariak baimena duela idazteko. Ikusi informazio gehiagorako https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgUploadDirectory.",
 	"lockmanager-fail-releaselock": "Ezin izan da \"$1\" blokeoa askatu.",
-	"lockmanager-fail-db-bucket": "Ezin izan dut $1 buketean datubase nahikoa ziurtatu.",
-	"lockmanager-fail-db-release": "Ezin izan da $1 datubasean giltzaraporik askatu.",
 	"lockmanager-fail-svr-acquire": "Ezin dituzu $1 zerbitzariko giltzarpoak eskuratu.",
 	"lockmanager-fail-svr-release": "Ezin izan da $1 zerbitzarian giltzaraporik askatu.",
 	"zip-file-open-error": "Errore bat gertatu da ZIP egiaztapenetarako fitxategia irekitzean.",

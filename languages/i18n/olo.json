@@ -1268,8 +1268,6 @@
 	"lockmanager-fail-acquirelock": "Ei voidu lukita $1.",
 	"lockmanager-fail-openlock": "Tiijoston $1 lukičustiijostuo ei voidu avata. Varmista, ku sinun tallenduskatalougu on azetettu oigieh da sinun serveral ollah oigevukset kirjuttua täh katalougah. Kačo ližäkse https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgUploadDirectory.",
 	"lockmanager-fail-releaselock": "Ei suannuh ottua lukičustu tiijostos $1.",
-	"lockmanager-fail-db-bucket": "Ei suannuh yhtistiä tarbehekse tiedokandoi kohtas $1.",
-	"lockmanager-fail-db-release": "Ei suannuh ottua lukičustu tiedokannas $1.",
 	"lockmanager-fail-svr-acquire": "Ei puuttunuh suaja lukičuksii serveralpäi $1.",
 	"lockmanager-fail-svr-release": "Ei suannuh ottua iäre lukičuksii serveral $1.",
 	"lockmanager-fail-conflict": "Lukičustu ei suadu. Kenlienne vie ruadau midägi tämän tiijostonke.",

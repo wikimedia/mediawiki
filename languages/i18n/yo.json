@@ -976,8 +976,6 @@
 	"lockmanager-fail-acquirelock": "Kò le gba àgádágodo fáìlì lò fún \"$1\".",
 	"lockmanager-fail-openlock": "Kò le ṣí àgádágodo fáìlì sílẹ̀ fún \"$1\". Ẹ rí dájú pé àpò fáìlì ìrùsókè jẹ́ títò dáadáa, kí ẹ sì ri pé ẹ̀rọ-ìwọ̀fà ibi-ìtàkùn yín ní ìyọ̀nda láti kọ ọ̀rọ̀ sínú àpò náà. Ẹ wo https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgUploadDirectory fún ẹ̀kúnrẹ́rẹ́.",
 	"lockmanager-fail-releaselock": "Kò le fi àgádágodo fáìlì sílẹ̀ fún \"$1\".",
-	"lockmanager-fail-db-bucket": "Kò le pàdé àgádágodo ibùdó dátà nínú garawa $1.",
-	"lockmanager-fail-db-release": "Kò le fi àwọn àgádágodo sílẹ̀ lórí ìbùdó dátà $1.",
 	"lockmanager-fail-svr-acquire": "Kò sí àgádágodo fún ẹ̀rọ-ìpèsè $1.",
 	"lockmanager-fail-svr-release": "Kò le fi àwọn àgádágodo sílẹ̀ lórí ẹ̀rọ-ìwọ̀fà $1.",
 	"zip-file-open-error": "Àsìṣe kan ṣẹlẹ̀ lásìkò ìsísílẹ̀ fáìlì náà fún ìyẹ̀wò ZIP.",

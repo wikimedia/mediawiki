@@ -1302,8 +1302,6 @@
 	"lockmanager-fail-acquirelock": "«$1» корнылан питӹрӹмӓшӹм нӓлӓш ӹш ли.",
 	"lockmanager-fail-openlock": "«$1» корнылан питӹрӹмӓшӹн файлжым пачаш ӹш ли. Тӹньӹн вӓрӓнгдӹмӓш каталогетӹм тӧр шагалтымы дӓ тӹньӹн веб-серверетӹн ти каталогыш сирӓш праважы улы манын, ӹнянӹ. Ситӓртӹш информацим https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgUploadDirectory анжы.",
 	"lockmanager-fail-releaselock": "«$1» корнылан питӹрӹмӓшӹм карангдаш ӹш ли.",
-	"lockmanager-fail-db-bucket": "$1 кӹдежӹштӹ ситӹшӹ чотан питӹрӹмӓшӹн данныйвлӓн базыжы доно кӹлдӓлтӓш ӹш ли.",
-	"lockmanager-fail-db-release": "$1 данныйвлӓн базы гӹц питӹрӹмӓшӹм карангдаш ӹш ли.",
 	"lockmanager-fail-svr-acquire": "$1 серверӹштӹ питӹрӹмӓшвлӓм нӓлӓш ӹш ли.",
 	"lockmanager-fail-svr-release": "$1 серверӹм питӹрӹмӓш гӹц лыкташ ӹш ли.",
 	"lockmanager-fail-conflict": "Питӹрӹмӓшӹм нӓлӓш ӹш ли. Тӓгӱ эче тамам-ӓнят ти файл доно ӹштӓ.",

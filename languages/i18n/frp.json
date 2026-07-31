@@ -1326,8 +1326,6 @@
 	"lockmanager-fail-acquirelock": "Y at pas moyen d’avêr lo vèrroly por « $1 ».",
 	"lockmanager-fail-openlock": "Y at pas moyen d’uvrir lo fichiér de vèrroly por « $1 ». Assurâd-vos que voutron rèpèrtouèro de chargement est configurâ corrèctament et pués que voutron sèrvior vouèbe at lo drêt d’y ècrire. Vêde https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgUploadDirectory por més d’enformacions.",
 	"lockmanager-fail-releaselock": "Y at pas moyen de relâchiér lo vèrroly por « $1 ».",
-	"lockmanager-fail-db-bucket": "Y at pas moyen de sè veriér vers prod de bâses de balyês de vèrroly dedens la sèlye $1.",
-	"lockmanager-fail-db-release": "Y at pas moyen de relâchiér los vèrrolys sus la bâsa de balyês $1.",
 	"lockmanager-fail-svr-acquire": "Y at pas moyen d’avêr de vèrrolys sus lo sèrvior $1.",
 	"lockmanager-fail-svr-release": "Y at pas moyen de relâchiér los vèrrolys sus lo sèrvior $1.",
 	"lockmanager-fail-conflict": "Y at pas moyen d’avêr lo vèrroly. Quârqu’un d’ôtro fât quârque-ren avouéc cél fichiér.",

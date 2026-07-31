@@ -1046,8 +1046,6 @@
 	"lockmanager-fail-acquirelock": "\"$1\" -ৰ বাবে প্ৰাপ্ত কৰিব পৰা নগল।",
 	"lockmanager-fail-openlock": "\"$1\" -ৰ বাবে লক নথিপত্ৰ খুলিব পৰা নগল।",
 	"lockmanager-fail-releaselock": "\"$1\" -ৰ বাবে লক মুক্ত কৰিব পৰা নগ'ল।",
-	"lockmanager-fail-db-bucket": "বাকেট $1 -ত পৰ্যাপ্ত লক ডাটাবেইচসমূহ যোগাযোগ কৰিব পৰা নগ'ল।",
-	"lockmanager-fail-db-release": "$1 তথ্যকোষত তলা মোকোলাই দিব পৰা নগ'ল",
 	"lockmanager-fail-svr-acquire": "$1 চাৰ্ভাৰত তলা মোকোলাই দিব পৰা নগ'ল",
 	"lockmanager-fail-svr-release": "$1 চাৰ্ভাৰত তলা মোকোলাই দিব পৰা নগ'ল",
 	"zip-file-open-error": "ফাইলটো ZIP পৰীক্ষাৰ বাবে মুকলি কৰোঁতে এটা সমস্যাই দেখা দিছে ।",

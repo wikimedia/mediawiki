@@ -1318,8 +1318,6 @@
 	"lockmanager-fail-acquirelock": "«$1» блоклама май килмерӗ.",
 	"lockmanager-fail-openlock": "«$1» валли блоклакан файла уҫма май килмерӗ. Тиемелли директорине тӗрӗс ӗнерленине, сирӗн веб-сервер ҫак директорине ҫырма пултарнине тӗрӗслӗр. Хушма информаципе кунта паллашӑр: https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgUploadDirectory.",
 	"lockmanager-fail-releaselock": "«$1» блокданинчен кӑларма май килмерӗ.",
-	"lockmanager-fail-db-bucket": "$1 сегментри блокланисен базин ҫителӗклӗ йышӗпе ҫыхӑнма май килмерӗ.",
-	"lockmanager-fail-db-release": "$1 даннӑйсен базине блокланине пӑрахӑҫлама май килмерӗ.",
 	"lockmanager-fail-svr-acquire": "$1 сервер ҫинче ҫырмашкӑн монополиллӗ права илме май килмерӗ.",
 	"lockmanager-fail-svr-release": "$1 серверта блокланине пӑрахӑҫлама май килмерӗ.",
 	"lockmanager-fail-conflict": "Ҫырмашкӑн монополиллӗ права илме май килмерӗ. Ку файлпа тата тахӑшӗ темскер тӑвать.",

@@ -1332,8 +1332,6 @@
 	"lockmanager-fail-acquirelock": "«$1» үшін құлпын алу мүмкін болмады.",
 	"lockmanager-fail-openlock": "«$1» үшін құлпын ашу мүмкін болмады.",
 	"lockmanager-fail-releaselock": "«$1» үшін құлпынан босату мүмкін болмады.",
-	"lockmanager-fail-db-bucket": "$1 сегмент жеткілікті бекітілген дерекқор құлыптарына байланысу мүмкін болмады.",
-	"lockmanager-fail-db-release": "$1 дерекқорындағы құлып босатылмайды.",
 	"lockmanager-fail-svr-acquire": "$1 серверіндегі құлыптар игерілмеді.",
 	"lockmanager-fail-svr-release": "$1 серверіндегі құлыптар босатылмады.",
 	"zip-file-open-error": "ZIP тексерулерді ашу барысында қате байқалды.",

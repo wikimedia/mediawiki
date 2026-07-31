@@ -1141,8 +1141,6 @@
 	"lockmanager-fail-acquirelock": "Kós \"$1\" neet vergrendele.",
 	"lockmanager-fail-openlock": "Kós 't vergrendelingsbesjtand veur \"$1\" neet äöpene. Verzeker dich d'rvan det de uploadmap good is ingestaldj en diene webserver toustumming haet veur nao die map te sjrieve. Zuuch https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgUploadDirectory veur mieër infermasie.",
 	"lockmanager-fail-releaselock": "Kós de vergrendeling veur \"$1\" neet opheffe.",
-	"lockmanager-fail-db-bucket": "Kós neet in kontak kómme mit genóg vergrendelingsdatabases in de bucket $1.",
-	"lockmanager-fail-db-release": "'t Waar neet meugelik ómme vergrendeling veure database $1 óp tö höffe.",
 	"lockmanager-fail-svr-acquire": "'t Waar neet meugelik ómme vergrendeling oppe server $1 tö kriege.",
 	"lockmanager-fail-svr-release": "'t Waar neet meugelik ómme vergrendeling veure server $1 óp tö höffe.",
 	"zip-file-open-error": "d'r Woor 'n fout bie 't äöpene van 't bestandj veur ZIP-controle.",

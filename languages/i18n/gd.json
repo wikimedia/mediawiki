@@ -966,8 +966,6 @@
 	"lockmanager-fail-acquirelock": "Cha deach leinn a' ghlas fhaighinn airson \"$1\".",
 	"lockmanager-fail-openlock": "Cha deach leinn am faidhle glasaidh airson \"$1\" fhosgladh.",
 	"lockmanager-fail-releaselock": "Cha deach leinn a' ghlas fhosgladh airson \"$1\".",
-	"lockmanager-fail-db-bucket": "Cha deach leinn conaltradh ris na dh'fhoghnadh de stòran-dàta glasaidh sa bhucaid $1.",
-	"lockmanager-fail-db-release": "Cha deach leinn na glasan fhosgladh air an stòr-dàta $1.",
 	"lockmanager-fail-svr-acquire": "Cha deach leinn na glasan fhaighinn air an fhrithealaiche \"$1\".",
 	"lockmanager-fail-svr-release": "Cha deach leinn na glasan fhosgladh air an fhrithealaiche \"$1\".",
 	"zip-file-open-error": "Thachair mearachd le fosgladh an fhaidhle airson dearbhadh ZIP.",

@@ -866,8 +866,6 @@
 	"lockmanager-fail-acquirelock": "Zastajenje za \"$1\" njedajo se wótwołaś.",
 	"lockmanager-fail-openlock": "Zastajańska dataja njedajo se za \"$1\" wócyniś.",
 	"lockmanager-fail-releaselock": "Zastajenje za \"$1\" njedajo se dopušćiś.",
-	"lockmanager-fail-db-bucket": "W zběrniku $1 njedajo se dosć zastajeńskich datowych bankow kontaktěrowaś",
-	"lockmanager-fail-db-release": "Zastajenja na datowu banku $1 njedaju se dopušćiś.",
 	"lockmanager-fail-svr-acquire": "Zastajenja na serwer $1 njedaju se wótwołaś.",
 	"lockmanager-fail-svr-release": "Zastajenja na serwer $1 njedaju se dopušćiś.",
 	"zip-file-open-error": "Pśi wocynjenju dataja za ZIP-pśekontrolěrowanje jo zmólka nastała.",

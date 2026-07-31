@@ -1327,8 +1327,6 @@
 	"lockmanager-fail-acquirelock": "Nemögos ad vobetön proibaneleti tefü el \"$1\".",
 	"lockmanager-fail-openlock": "Nemögos ad maifükön nünedi peproibaneletöl pö \"$1\". Süadikolöd, das diläd olik pro pelöpiokopiedölos veräto penömädükon e das mastanünöm bevüresodik ola labon däli ad dakipön bosi pö diläd et. Logolös: https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgUploadDirectory ad nün zuik.",
 	"lockmanager-fail-releaselock": "Nemögos ad sädunön proibaneleti tefü el \"$1\".",
-	"lockmanager-fail-db-bucket": "Nemögos ad reafön ad notetastoks saidik tefü proibanelets pö resodasit: 'bucket' nemü $1.",
-	"lockmanager-fail-db-release": "Nemögos ad sädunön proibaneleti tefü notetastok: $1.",
 	"lockmanager-fail-svr-acquire": "Nemögos ad reafön ad proibanelets pö räyun mastanünöma: $1.",
 	"lockmanager-fail-svr-release": "Nemögos ad sädunön proibaneletis pö räyun mastanünöma: $1.",
 	"lockmanager-fail-conflict": "Nemögos ad reafön ad proibanelets. Ek votik anu bejäfon nünedi ot.",

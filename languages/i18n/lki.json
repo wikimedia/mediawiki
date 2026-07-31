@@ -961,8 +961,6 @@
 	"lockmanager-fail-acquirelock": "نمی‌توان قفل «$1» را کسب کرد.",
 	"lockmanager-fail-openlock": "امکان باز کردن پرونده قفل شده \"$1\" وجود ندارد.",
 	"lockmanager-fail-releaselock": "نمی‌توان قفل «$1» را گشود.",
-	"lockmanager-fail-db-bucket": "امکان ارتباط با تعداد کافی پایگاه داده قفل‌ها در محفظه $1 وجود نداشت.",
-	"lockmanager-fail-db-release": "بازکردن قفل‌های پایگاه دادهٔ $1 ممکن نیست.",
 	"lockmanager-fail-svr-acquire": "امکان گرفتن قفل‌های سرور $1 وجود ندارد.",
 	"lockmanager-fail-svr-release": "امکان باز کردن قفل‌های سرور $1 وجود ندارد.",
 	"zip-file-open-error": "در هنگام باز کردن پرونده زیپ برای بررسی محتوای آن خطایی رخ داد.",

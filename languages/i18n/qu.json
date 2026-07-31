@@ -871,8 +871,6 @@
 	"lockmanager-fail-acquirelock": "Manam atinichu \"$1\" nisqapaq hark'anata aypayta.",
 	"lockmanager-fail-openlock": "Manam atinichu \"$1\" nisqapaq hark'ana willañiqita kichayta.",
 	"lockmanager-fail-releaselock": "Manam atinichu \"$1\" nisqapaq hark'anata paskayta.",
-	"lockmanager-fail-db-bucket": "Manam atinichu \"$1\" sutiyuq p'uruñapi aypalla hark'ana willañiqintinkunawan t'inkinakuyta.",
-	"lockmanager-fail-db-release": "Manam atinichu \"$1\" sutiyuq willañiqintinpi hark'anakunata paskayta.",
 	"lockmanager-fail-svr-acquire": "Manam atinichu \"$1\" sutiyuq sirwiqpi hark'anakunata chaskiyta.",
 	"lockmanager-fail-svr-release": "Manam atinichu \"$1\" sutiyuq sirwiqpi hallch'asqa hark'anakunata paskayta.",
 	"zip-file-open-error": "Willañiqita ZIP-kama llanchispa pantasqatam tarini.",

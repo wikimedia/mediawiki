@@ -1326,8 +1326,6 @@
 	"lockmanager-fail-acquirelock": "\"$1\" бикләтеп булманы.",
 	"lockmanager-fail-openlock": "\"$1\" өсөн бикләү файлын асып булманы. Тейәү каталогығыҙ дөрөҫ көйләнгәнме, ә веб-серверығыҙҙың был каталогҡа яҙыуға рөхсәте бармы икәнлеген тикшерегеҙ. Өҫтәмә мәғлүмәтте https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgUploadDirectory ҡарағыҙ.",
 	"lockmanager-fail-releaselock": "\"$1\" биген асып булманы.",
-	"lockmanager-fail-db-bucket": "$1 сегментында етәрлек күләмдә бикләү мәғлүмәттәре базаһы менән бәйләнешкә инеп булманы.",
-	"lockmanager-fail-db-release": "$1 мәғлүмәттәр базаһының биген асып булманы.",
 	"lockmanager-fail-svr-acquire": "$1 серверындағы биктәрҙе алып булманы.",
 	"lockmanager-fail-svr-release": "$1 серверы биктәрен асып булманы.",
 	"lockmanager-fail-conflict": "Бикте алып булманы. Кемдер был файл менән нимәлер эшләй.",

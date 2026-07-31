@@ -980,8 +980,6 @@
 	"lockmanager-fail-acquirelock": "Kon \"$1\" niet vergrendelen.",
 	"lockmanager-fail-openlock": "Kon t vergrendelingsbestaand veur \"$1\" niet openen.",
 	"lockmanager-fail-releaselock": "Kon vergrendeling van \"$1\" der niet aof haolen.",
-	"lockmanager-fail-db-bucket": "Kon niet in kontakt koemen mit genog vergrendelingsdatabanken in de nemmer $1.",
-	"lockmanager-fail-db-release": "Kon de vergrendeling veur de databanke $1 niet deraof haolen.",
 	"lockmanager-fail-svr-acquire": "Kon gien vergrendeling op server $1 zetten.",
 	"lockmanager-fail-svr-release": "Kon de vergrendeling veur de server $1 der niet aof haolen.",
 	"zip-file-open-error": "Der is wat fout egaon bie t los doon van t bestaand veur de ZIP-kontraole.",

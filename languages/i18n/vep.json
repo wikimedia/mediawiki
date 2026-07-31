@@ -1295,8 +1295,6 @@
 	"lockmanager-fail-acquirelock": "Ei sa sada kel'dändad \"$1\".",
 	"lockmanager-fail-openlock": "Ei sa avaita kel'tud failad \"$1\". Kacu tarkašti, miše sinun  samižen katalog radaiži oikti da sinun web-serveral om oiktusid kirjutusele neche katalogha. Kacu https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgUploadDirectory miše sada enamba tedoid.",
 	"lockmanager-fail-releaselock": "Ei sa heitta kel'dändad \"$1\".",
-	"lockmanager-fail-db-bucket": "Ei sa sada ühtenzoitust tedokaičusenke, miše kacta kel'tud failad  $1.",
-	"lockmanager-fail-db-release": "Ei sa heitta kel'dändad tedokaičusespäi $1.",
 	"lockmanager-fail-svr-acquire": "Ei sa sada kel'dändoid serveral $1.",
 	"lockmanager-fail-svr-release": "Ei sa heitta kel'dändoid serveral $1.",
 	"lockmanager-fail-conflict": "Ei sa sada kel'dändad. Ken-se toine midä-se tegeb necen failanke.",

@@ -918,8 +918,6 @@
 	"lockmanager-fail-acquirelock": "\"$1\" дээр түгжээ авч чадсангүй.",
 	"lockmanager-fail-openlock": "\"$1\" дээрх түгжээ файлыг нээж чадсангүй.",
 	"lockmanager-fail-releaselock": "\"$1\" дээрх түгжээ файлыг авч чадсангүй.",
-	"lockmanager-fail-db-bucket": "$1 блокоос хангалттай түгжээний мэдээлэл авч чадсангүй.",
-	"lockmanager-fail-db-release": "$1 сан дээрх түгжээг авч чадсангүй.",
 	"lockmanager-fail-svr-release": "$1 сервер дээрх түгжээг авч чадсангүй.",
 	"zip-file-open-error": "Файлыг зип шалгалт хийхэд алдаа гарлаа.",
 	"zip-wrong-format": "Өгсөн файл зип файл биш байна.",

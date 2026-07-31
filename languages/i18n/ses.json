@@ -892,8 +892,6 @@
 	"lockmanager-fail-acquirelock": "Mana hin ka duu kufal \"$1\" se.",
 	"lockmanager-fail-openlock": "Mana hin ka kufal tuku feeri \"$1\" se.",
 	"lockmanager-fail-releaselock": "Mana hin ka kufal kaataray \"$1\" se.",
-	"lockmanager-fail-db-bucket": "Mana hin ka duu kufal bayhayahugu $1 bokotu wasante ra.",
-	"lockmanager-fail-db-release": "Mana hin ka kufalyaŋ kaataray $1 bayhayahugu ra.",
 	"lockmanager-fail-svr-acquire": "Mana hin ka duu kufaley $1 feršikaa ga.",
 	"lockmanager-fail-svr-release": "Mana hin ka kufaley kaataray $1 feršikaa ga.",
 	"zip-file-open-error": "Firka foo kubandi waatoo kaŋ tukoo ga feerandi ZIP gunarey se.",

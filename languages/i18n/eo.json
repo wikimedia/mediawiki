@@ -1336,8 +1336,6 @@
 	"lockmanager-fail-acquirelock": "Ne povis akiri ŝlosadon por \"$1\".",
 	"lockmanager-fail-openlock": "Ne povis malfermi ŝlosadan dosieron por \"$1\". Konfirmu ke via alŝuta dosierujo estas konfigurita ĝuste kaj via retservilo havas permeson por skribi al tiu dosierujo. Vidu https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgUploadDirectory por plia informo.",
 	"lockmanager-fail-releaselock": "Ne povis liberigi ŝlosadon por \"$1\".",
-	"lockmanager-fail-db-bucket": "Ne povis kontakti sufiĉajn ŝlos-datumbazojn en ujo $1.",
-	"lockmanager-fail-db-release": "Ne povis liberigi ŝlosadojn de datumbazao $1.",
 	"lockmanager-fail-svr-acquire": "Ne povis akiri ŝlosadojn de servilo $1.",
 	"lockmanager-fail-svr-release": "Ne povis liberigi ŝlosadojn de servilo $1.",
 	"lockmanager-fail-conflict": "Ne eblis akiri seruron. Iu alia faras ion al ĉi tiu dosiero.",

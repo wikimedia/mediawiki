@@ -1051,8 +1051,6 @@
 	"lockmanager-fail-acquirelock": "Teu bisa meunang pangoncian pikeun \"$1\"",
 	"lockmanager-fail-openlock": "Teu bisa muka berkas konci pikeun \"$1\".",
 	"lockmanager-fail-releaselock": "Teu bisa ngaleupaskeun konci pikeun \"$1\".",
-	"lockmanager-fail-db-bucket": "Teu bisa ngagero konci basis data nu cukup dina karanjang $1.",
-	"lockmanager-fail-db-release": "Teu bisa ngaleupaskeun konci dina databés $1.",
 	"lockmanager-fail-svr-acquire": "Gagal nyokot konci di servér $1.",
 	"lockmanager-fail-svr-release": "Teu bisa ngaleupaskeun konci dina server $1.",
 	"zip-wrong-format": "Berkas anu dipilih lain berkas ZIP.",

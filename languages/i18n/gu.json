@@ -917,8 +917,6 @@
 	"lockmanager-fail-acquirelock": "\"$1\" માટે તાળું ન મેળવી શકાયું.",
 	"lockmanager-fail-openlock": "\"$1\" માટેની તાળાવાલી ફાઈલ ઉઘાડી ન શકાઈ",
 	"lockmanager-fail-releaselock": "\"$1\" માટે તાળું ન ખોલી શકાયું.",
-	"lockmanager-fail-db-bucket": "$1 પાત્રમાં જરૂરી માહિતી સંચનો સંપર્ક ન થેઈ શક્યો",
-	"lockmanager-fail-db-release": "$1 માહિતીસંચ પરના તાળા ઉઘાડી ન શકાયા.",
 	"lockmanager-fail-svr-release": "સર્વર $1 પરના તાળા ઉઘાડે ન શકાયા.",
 	"zip-file-open-error": "ZIP તપાસ કરતી વખતે ત્રુટિ નિર્માણ થઈ",
 	"zip-wrong-format": "જણાવેલી ફાઇલ ZIP ફાઇલ નથી.",

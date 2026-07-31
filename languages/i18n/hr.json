@@ -1291,8 +1291,6 @@
 	"lockmanager-fail-acquirelock": "Ne mogu stvoriti ''lock'' datoteku za \"$1\".",
 	"lockmanager-fail-openlock": "Ne mogu otvoriti zaključanu datoteku za \"$1\". Provjerite je li popis datoteka (direktorij) ispravno konfiguriran te ima li mrežni poslužitelj dopuštenje za pisanje u popis. Za više informacija vidjeti https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgUploadDirectory.",
 	"lockmanager-fail-releaselock": "Ne mogu obrisati ''lock'' datoteku  za \"$1\".",
-	"lockmanager-fail-db-bucket": "Ne mogu uspostaviti vezu s poslužiteljem zaključavanja za $1",
-	"lockmanager-fail-db-release": "Ne mogu otključati bazu podataka $1.",
 	"lockmanager-fail-svr-acquire": "Ne mogu ostvariti zaključavanje poslužitelja $1.",
 	"lockmanager-fail-svr-release": "Ne mogu otključati poslužitelj $1.",
 	"zip-file-open-error": "Došlo je do pogreške pri otvaranju datoteke za ZIP provjeru.",

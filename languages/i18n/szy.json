@@ -1019,8 +1019,6 @@
 	"lockmanager-fail-acquirelock": "la’cus miala \"$1\" a pamutek setyitase",
 	"lockmanager-fail-openlock": "la’cus miwawah \"$1\" a pamutek  tangan.",
 	"lockmanager-fail-releaselock": "la’cus mihulak \"$1\" a pamutek setyitase",
-	"lockmanager-fail-db-bucket": "la’cus masukazih i piazihan-tu-sulit $1 kataneng pamutek kalunasulitan-sulu",
-	"lockmanager-fail-db-release": "la’cus pahulak kalunasulitan-sulu $1 a pamutek setyitase.",
 	"lockmanager-fail-svr-acquire": "la’cus maala sefu-kikay $1 a pamutek setyitase",
 	"lockmanager-fail-svr-release": "la’cus pahulak sefu-kikay $1 a pamutek setyitase.",
 	"zip-file-open-error": "miwawah tangan miteka ZIP kinsa sa mungangaw.",

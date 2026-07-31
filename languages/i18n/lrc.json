@@ -909,8 +909,6 @@
 	"lockmanager-fail-acquirelock": "نبوئه سی «$1» قلف وه دس اورد.",
 	"lockmanager-fail-openlock": "نبوئه قلف جانیا سی \"$1\" وا بوئه.",
 	"lockmanager-fail-releaselock": "نبوئه قلف «$1» نه وا کرد .",
-	"lockmanager-fail-db-bucket": "امکان ارتواط خو وا رسینه گا قلفیا د اماییه دار $1 وجود ناشت.",
-	"lockmanager-fail-db-release": "نبوئه قلفیا سرور $1 نه وا بکیت.",
 	"lockmanager-fail-svr-acquire": "نبوئه سی «$1» قلف وه دس اورد.",
 	"lockmanager-fail-svr-release": "نبوئه قلفیا سرور $1 نه وا بکیت.",
 	"zip-file-open-error": "د گات واکردن جانیا زیپ سی وارسی مینونه ش یه گل خطا پیش اومائه.",

@@ -1083,8 +1083,6 @@
 	"lockmanager-fail-acquirelock": "Coudna acquire lock fer \"$1\".",
 	"lockmanager-fail-openlock": "Coudna apen lock file fer \"$1\".",
 	"lockmanager-fail-releaselock": "Coudna release lock fer \"$1\".",
-	"lockmanager-fail-db-bucket": "Coudna contact enoogh lock databases in bucket $1.",
-	"lockmanager-fail-db-release": "Coudna release locks oan database $1.",
 	"lockmanager-fail-svr-acquire": "Coudna acquire locks oan server $1.",
 	"lockmanager-fail-svr-release": "Coudna release locks oan server $1.",
 	"zip-file-open-error": "Ae mistak wis encoontered whan apenin the file fer ZIP checks.",

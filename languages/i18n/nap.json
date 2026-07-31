@@ -1128,8 +1128,6 @@
 	"lockmanager-fail-acquirelock": "Nun se può piglià 'o blocco pe' \"$1\".",
 	"lockmanager-fail-openlock": "Nun se può arapì 'o file 'e blocco pe' \"$1\".",
 	"lockmanager-fail-releaselock": "Nun se può lanzà 'o blocco pe' \"$1\".",
-	"lockmanager-fail-db-bucket": "Nun se ponno cuntattà 'e database 'e blocco necessarie int'a $1.",
-	"lockmanager-fail-db-release": "Nun se ponno lanzà 'e blocche ncopp' 'o database $1.",
 	"lockmanager-fail-svr-acquire": "Nun se ponno piglià 'e blocche ncopp' 'o server $1.",
 	"lockmanager-fail-svr-release": "Nun se ponno lanzà blocche ncopp' 'o server $1.",
 	"zip-file-open-error": "S'è truvato n'errore quanno se steva arapenno nu file pe' ne fà cuntrolle ZIP.",

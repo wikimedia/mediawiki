@@ -985,8 +985,6 @@
 	"lockmanager-fail-acquirelock": "\"$1\" ଚାବି ପାଇଁ ତାଲା ମିଳିଲା ନାହିଁ ।",
 	"lockmanager-fail-openlock": "\"$1\" ଫାଇଲଟି କିଳାଯାଇଥିବାରୁ ଖୋଲାଯାଇ ପାରିଲା ନାହିଁ ।",
 	"lockmanager-fail-releaselock": "\"$1\" ଚାବି ପାଇଁ ତାଲା ମିଳିଲା ନାହିଁ ।",
-	"lockmanager-fail-db-bucket": "$1 ଝୁଡ଼ିରେ ଥିବା ସବୁ କିଳାଯାଇଥିବା ଡାଟାବେସ ସହ ଯୋଗାଯୋଗ କରାଯାଇପାରିଲା ନାହିଁ ।",
-	"lockmanager-fail-db-release": "$1 ଡାଟାବେସରେ ଲାଗିଥିବା ତାଲା ଖୋଲାଯାଇପାରିଲା ନାହିଁ ।",
 	"lockmanager-fail-svr-acquire": "$1 ସର୍ଭରରେ ଲାଗିଥିବା ତାଲା ଖୋଲାଯାଇପାରିଲା ନାହିଁ ।",
 	"lockmanager-fail-svr-release": "$1 ସର୍ଭରରେ ଲାଗିଥିବା ତାଲା ଖୋଲାଯାଇପାରିଲା ନାହିଁ ।",
 	"zip-file-open-error": "ZIP ପରଖିବା ପାଇଁ ଫାଇଲଟି ଖୋଲିଲା ବେଳେ ଅସୁବିଧାଟିଏ ଘଟିଲା ।",

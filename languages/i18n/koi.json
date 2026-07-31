@@ -1275,8 +1275,6 @@
 	"lockmanager-fail-acquirelock": "Эз аркмы тасавны \"$1\".",
 	"lockmanager-fail-openlock": "Эз аркмы осьтны файл \"$1\" тасалӧм понда. Видзӧтӧ, медбы тіян кӧрталан каталогыс вӧлі лӧсьӧтӧма колӧмӧн, а веб-серверыслӧ позьӧ гижны эта каталогас. Содтӧт юӧр видзӧтӧ татісь: https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgUploadDirectory.",
 	"lockmanager-fail-releaselock": "Эз аркмы разьны \"$1\".",
-	"lockmanager-fail-db-bucket": "Эз аркмы йитсьыны $1 сегментын тасалан чукӧрлӧн тырмӧм лыдӧн.",
-	"lockmanager-fail-db-release": "Эз аркмы разьны $1 мыччӧт чукӧрсӧ.",
 	"lockmanager-fail-svr-acquire": "Эз аркмы босьтны  тасалӧмсӧ $1 серверын.",
 	"lockmanager-fail-svr-release": "Эз аркмы разьны $1 серверын..",
 	"lockmanager-fail-conflict": "Эз аркмы тасавны. Кинкӧ мӧд мыйкӧ керӧ эта файлӧн.",

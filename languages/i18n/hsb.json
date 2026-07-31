@@ -1202,8 +1202,6 @@
 	"lockmanager-fail-acquirelock": "Zawěra za \"$1\" njeda so dóstać.",
 	"lockmanager-fail-openlock": "Zawrjenska dataja njeda so za „$1“ wočinić. Zawěsćće, zo waš nahrawanski zapis je korektnje konfigurowany a waš webserwer ma prawo, do toho zapisa pisać. Hlejće https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgUploadDirectory za dalše informacije.",
 	"lockmanager-fail-releaselock": "Zawěra za \"$1\" njeda so dopušćić.",
-	"lockmanager-fail-db-bucket": "W zběrniku $1 njeda so dosć zawrjenskich datowych bankow kontaktować",
-	"lockmanager-fail-db-release": "Zawěry na datowu banku $1 njedadźa so dopušćić",
 	"lockmanager-fail-svr-acquire": "Zawěry na serwer $1 njehodźa so wotwołać.",
 	"lockmanager-fail-svr-release": "Zawěry na serwer $1 njedadźa so dopušćić",
 	"zip-file-open-error": "Při wočinjenju dataje za ZIP-přepruwowanje je zmylk wustupił.",

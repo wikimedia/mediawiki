@@ -1492,8 +1492,6 @@
 	"lockmanager-fail-acquirelock": "Kunde inte skaffa lås för ”$1”.",
 	"lockmanager-fail-openlock": "Kunde inte öppna låsfilen för ”$1”. Se till att din uppladdningskatalog är konfigurerad på rätt sätt och att din webbserver har behörighet att skriva till katalogen. Se https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgUploadDirectory för mer information.",
 	"lockmanager-fail-releaselock": "Kunde inte att frigöra lås för ”$1”.",
-	"lockmanager-fail-db-bucket": "Kunde inte kontakta tillräckligt många låsdatabaser i hinken $1.",
-	"lockmanager-fail-db-release": "Kunde inte frigöra låsen på databasen $1 .",
 	"lockmanager-fail-svr-acquire": "Kunde inte erhålla lås på servern $1 .",
 	"lockmanager-fail-svr-release": "Kunde inte frigöra lås på servern $1.",
 	"lockmanager-fail-conflict": "Kunde inte hantera låsningen. Någon annan gör någonting med denna fil.",

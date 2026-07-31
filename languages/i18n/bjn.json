@@ -1005,8 +1005,6 @@
 	"lockmanager-fail-acquirelock": "Kada kawa bakulihan sunduk gasan \"$1\".",
 	"lockmanager-fail-openlock": "Kada kawa maungkai sunduk barakas gasan \"$1\".",
 	"lockmanager-fail-releaselock": "Kada kawa malapas sunduk gasan \"$1\".",
-	"lockmanager-fail-db-bucket": "Kada kawa santuk cukup sunduk databasis dalam wadah $1.",
-	"lockmanager-fail-db-release": "Kada kawa malapas sunduk pintang databasis $1.",
 	"lockmanager-fail-svr-release": "Kada kawa malapas sunduk pintang sarvar $1.",
 	"zip-file-open-error": "Sabuah kasalahan tarikin wayah mambuka barakas gasan pariksa ZIP.",
 	"zip-wrong-format": "Barakas nang diajuakan lainan sabuah barakas ZIP.",

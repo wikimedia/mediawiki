@@ -1149,8 +1149,6 @@
 	"lockmanager-fail-acquirelock": "Non ge pozze pigghià blocche pe \"$1\".",
 	"lockmanager-fail-openlock": "Non ge pozze aprè 'u blocche d'u file pe \"$1\". Assecurate ca 'a cartelle pe le carecaminde ha state configurate bbuene e 'u web server tène le permesse pe scrivere sus. 'Ndruche  https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgUploadDirectory per cchiù 'mbormaziune.",
 	"lockmanager-fail-releaselock": "Non ge pozze relassà blocche pe \"$1\".",
-	"lockmanager-fail-db-bucket": "Non ge pozze condattà 'u database purcé stonne troppe blocche jndr'à $1.",
-	"lockmanager-fail-db-release": "Non ge pozze relassà le blocche sus a 'u database $1.",
 	"lockmanager-fail-svr-acquire": "Non ge pozze pigghià le blocche sus a 'u server $1.",
 	"lockmanager-fail-svr-release": "Non ge pozze relassà le blocche sus a 'u server $1.",
 	"zip-file-open-error": "'N'errore ha state acchiate quanne ste apreve 'u file pe le verifeche sus a 'u ZIP.",

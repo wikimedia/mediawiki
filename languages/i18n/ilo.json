@@ -1137,8 +1137,6 @@
 	"lockmanager-fail-acquirelock": "Saan a makaala ti kandado para iti \"$1\".",
 	"lockmanager-fail-openlock": "Saan a malukatan ti kandado ti papeles para iti \"$1\".",
 	"lockmanager-fail-releaselock": "Saan a maibbatan ti kandado para iti \"$1\".",
-	"lockmanager-fail-db-bucket": "Saan a makakontak ti umanay a kandado dagiti database iti timba ti $1.",
-	"lockmanager-fail-db-release": "Saan a maibbatan dagiti kandado iti database ti $1.",
 	"lockmanager-fail-svr-acquire": "Saan a makaala kadagiti kandado iti server ti $1.",
 	"lockmanager-fail-svr-release": "Saan a maibbatan dagiti kandado iti server ti $1.",
 	"zip-file-open-error": "Adda napasamak a biddut idi lukluktan ti papeles para kadagiti panagkita ti ZIP.",

@@ -1034,8 +1034,6 @@
 	"lockmanager-fail-acquirelock": "Dae makakakua nin kandado para sa \"$1\".",
 	"lockmanager-fail-openlock": "Dae makakabukas nin nakakandadong sagunson para sa \"$1\".",
 	"lockmanager-fail-releaselock": "Dae makakabuhi sa kandado para sa \"$1\".",
-	"lockmanager-fail-db-bucket": "Dae makakakontak awad-awad na kandado kan mga datos-sarayan na yaon sa tipunan na $1.",
-	"lockmanager-fail-db-release": "Dae makakabuhi nin mga kandado sa datos-sarayan na $1.",
 	"lockmanager-fail-svr-acquire": "Dae makakakua nin mga kandado sa serbidor na $1.",
 	"lockmanager-fail-svr-release": "Dae makakabuhi nin mga kandado sa serbidor na $1.",
 	"zip-file-open-error": "Sarong kasalaan an nanagboan kunsoarin binubuksan an sagunson para sa ZIP na binansayan.",

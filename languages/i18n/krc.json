@@ -1344,8 +1344,6 @@
 	"lockmanager-fail-acquirelock": "\"$1\" ючюн кирит алыналмайды.",
 	"lockmanager-fail-openlock": "\"$1\" ючюн кирит файл ачылалмайды. Джюклеу каталогну тюз халда этилелгенин эмда веб серверни бу каталогга джаздырыу эркинлигини болгъанына ишексиз болугъуз. Аслам информация ючюн https://www.mediawiki.org/wiki/Manual:$wgUploadDirectory джибериу бла къарагъыз.",
 	"lockmanager-fail-releaselock": "\"$1\" ючюн кирит кетерилалмайды.",
-	"lockmanager-fail-db-bucket": "$1 сегментде джетерли кирит билги база бла джалгъаналмадыкъ.",
-	"lockmanager-fail-db-release": "$1 билги базагъа кирит кетерилалмады.",
 	"lockmanager-fail-svr-acquire": "$1 серверде киритле алыналмайды.",
 	"lockmanager-fail-svr-release": "$1 серверде киритле кетерилалмайдыла.",
 	"lockmanager-fail-conflict": "Кирит алыналмады. Башха бири файлгъа бир затла эте турады.",

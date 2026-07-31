@@ -1058,8 +1058,6 @@
 	"lockmanager-fail-acquirelock": "Ora bisa njaluk gembok kanggo \"$1\".",
 	"lockmanager-fail-openlock": "Ora bisa mbukak barkas gembok tumrap \"$1\".",
 	"lockmanager-fail-releaselock": "Ora bisa ngetokaké gembok kanggo \"$1\".",
-	"lockmanager-fail-db-bucket": "Ora bisa ngubungi cukup basis dhatah gembok ing èmbèr $1.",
-	"lockmanager-fail-db-release": "Ora bisa nguculaké gembok ing basis dhatah $1.",
 	"lockmanager-fail-svr-acquire": "Ora bisa ngentokaké gembok ing sasana $1.",
 	"lockmanager-fail-svr-release": "Ora bisa nguculaké gembok ing paladèn $1.",
 	"zip-file-open-error": "Ana masalah nalika mbukak barkas kanggo pamriksan ZIP.",

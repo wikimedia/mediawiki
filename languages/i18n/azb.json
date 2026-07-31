@@ -1018,8 +1018,6 @@
 	"lockmanager-fail-acquirelock": "موحافیظه «$1» اوچون اولا بیلمز",
 	"lockmanager-fail-openlock": "موحافیظه اولونموش فایل \"$1\" اوچون آچمااولا بیلمز .",
 	"lockmanager-fail-releaselock": "موحافیظه «$1» اوچون آچیلا بیلمز",
-	"lockmanager-fail-db-bucket": "ارتباط ایمکانی داده پایگاهین تعداد کافی  کیلد لر $1 محفظه سینده یوخدور.",
-	"lockmanager-fail-db-release": "داده پایاگاهین $1 کیلید لرین آچماقی مومکین دییل.",
 	"lockmanager-fail-svr-acquire": "سئرور کیلید لرین $1 اچماق مومکین دییل.",
 	"lockmanager-fail-svr-release": "سئرور کیلید لرین $1 آچماق امکانی یوخدور.",
 	"zip-file-open-error": "فايل زیپ يوخلامالاری اوچون آچیلارکن بیر خطاایله قارشیلاشیلدی.",

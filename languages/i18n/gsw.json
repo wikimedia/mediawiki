@@ -964,8 +964,6 @@
 	"lockmanager-fail-acquirelock": "D Sperri fir „$1“ het nit chenne abgruefe wäre.",
 	"lockmanager-fail-openlock": "D Sperrdatei fir „$1“ het nit chenne ufgmacht wäre.",
 	"lockmanager-fail-releaselock": "D Sperri fir „$1“ het nit chenne frejgee wäre.",
-	"lockmanager-fail-db-bucket": "Mit em Sammelabruef $1 hän nit gnue Verbindige zue Sperrdatebanke chenne härgstellt wäre.",
-	"lockmanager-fail-db-release": "D Sperrine uf dr Datebank $1 hän nit chenne frejgee wäre.",
 	"lockmanager-fail-svr-acquire": "D Sperrine uf em Server $1 hän nit chenne abgruefe wäre.",
 	"lockmanager-fail-svr-release": "D Sperrine uf em Server $1 hän nit chenne frejgee wäre.",
 	"zip-file-open-error": "S het e Fähler gee bim Ufmache vu dr Datei fir d ZIP-Iberpriefig.",

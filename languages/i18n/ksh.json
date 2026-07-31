@@ -972,8 +972,6 @@
 	"lockmanager-fail-acquirelock": "Mer kunnte kein Schpärr för „$1“ krijje.",
 	"lockmanager-fail-openlock": "Mer kunnte di Schpärdatei för „$1“ nit opmaache.",
 	"lockmanager-fail-releaselock": "Mer kunnte di Schpärr för „$1“ nit ophävve.",
-	"lockmanager-fail-db-bucket": "Mer kunnte nit met jenooch Datebangke för Schpärre pä Sammeloproof „$1“ en Verbendong opnämme.",
-	"lockmanager-fail-db-release": "Mer kunnte di Schpärre för de Daatebangk „$1“ nit ophävve.",
 	"lockmanager-fail-svr-acquire": "Mer kunnte kein Schpärre op däm ẞööver „$1“ krijje.",
 	"lockmanager-fail-svr-release": "Mer kunnte di Schpärre för dä ẞööver „$1“ nit ophävve.",
 	"zip-file-open-error": "Ene Fähler es opjetrodde, wi me di ZIP-Sammel_Dattei ußpacke wullte för der Enhallt ze proofe.",

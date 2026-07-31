@@ -1030,8 +1030,6 @@
 	"lockmanager-fail-acquirelock": "Hindi makamtan ang kandado para sa \"$1\".",
 	"lockmanager-fail-openlock": "Hindi mabuksan ang talaksan ng kandado para sa \"$1\".",
 	"lockmanager-fail-releaselock": "Hindi mapakawalan ang kandado para sa \"$1\".",
-	"lockmanager-fail-db-bucket": "Hindi sapat na makaugnay sa mga kalipunang pandato ng kandado sa timba na $1.",
-	"lockmanager-fail-db-release": "Hindi mapakawalan ang mga kandado sa kalipunan ng dato na $1.",
 	"lockmanager-fail-svr-acquire": "Hindi magawang kunin ang mga kandado sa tagapaghain na $1.",
 	"lockmanager-fail-svr-release": "Hindi mapakawalan ang mga kandado sa tagapaghain na $1.",
 	"zip-file-open-error": "Nakaranas ng isang kamalian habang binubuksan ang talaksan para sa mga pagsusuri ng ZIP.",

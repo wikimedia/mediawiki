@@ -1284,8 +1284,6 @@
 	"lockmanager-fail-acquirelock": "«$1»-эз борӟаны ӧз луы.",
 	"lockmanager-fail-openlock": "«$1»-эз ворсэтысь мозмытыны ӧз луы.Тӥляд инъян каталогды шонер ладъямын, но веб-серверды со каталоге гожъяськыны быгатэ шуыса эскере.  Ватсам ивортодэтъёсты учке татысь:  https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgUploadDirectory for more information.",
 	"lockmanager-fail-releaselock": "«$1»-эз ворсэтысь мозмытыны  ӧз пӧрмы.",
-	"lockmanager-fail-db-bucket": "$1 люкетын ӧз пӧрмы герӟаськыны ворсэтлэн кулэ мында тодэтвозённиосыныз.",
-	"lockmanager-fail-db-release": "$1 тодэтвозённилэсь ворсэтсэ утялтыны ӧз луы.",
 	"lockmanager-fail-svr-acquire": "$1 серверысь ворсэтъёсты басьтыны  ӧз пӧрмы.",
 	"lockmanager-fail-svr-release": "$1 серверысь ворсэтъёсты утялтыны ӧз луы.",
 	"lockmanager-fail-conflict": "Ворсэтэз басьтыны ӧз луы. Кин ке мар ке но каре на та файлэн.",

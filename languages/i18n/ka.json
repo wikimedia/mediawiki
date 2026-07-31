@@ -1202,8 +1202,6 @@
 	"lockmanager-fail-acquirelock": "\"$1\"–ის ბლოკირება ვერ მოხერხდა.",
 	"lockmanager-fail-openlock": "ბლოკირების ფაილის გახსნა \"$1\"–თვის ვერ მოხერხდა.",
 	"lockmanager-fail-releaselock": "\"$1\"–ის განბლოკვა ვერ მოხერხდა.",
-	"lockmanager-fail-db-bucket": "$1 სეგმენტში ბლოკირებების ბაზების საკმარის რაოდენობასთან დაკავშირება ვერ მოხერხდა.",
-	"lockmanager-fail-db-release": "$1 მონაცემთა ბაზაზე ბლოკის მოხსნა ვერ მოხერხდა.",
 	"lockmanager-fail-svr-acquire": "ვერ მოხერხდა ბლოკირების მიღება სერვერზე $1.",
 	"lockmanager-fail-svr-release": "$1 სერვერზე ბლოკის მოხსნა ვერ მოხერხდა.",
 	"zip-file-open-error": "წარმოიქმნა შეცდომა ფაილის ZIP შემოწმებისათვის გახსნისას.",

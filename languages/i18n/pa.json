@@ -1387,8 +1387,6 @@
 	"lockmanager-fail-acquirelock": "\"$1\" ਲਈ ਤਾਲਾਬੰਦ ਹਾਸਲ ਨਹੀਂ ਕੀਤਾ ਜਾ ਸਕਿਆ।",
 	"lockmanager-fail-openlock": "\"$1\" ਲਈ ਤਾਲਾਬੰਦ ਫ਼ਾਈਲ ਖੋਲ੍ਹੀ ਨਹੀਂ ਜਾ ਸਕੀ। ਯਕੀਨੀ ਬਣਾਓ ਕਿ ਤੁਹਾਡੀ ਚੜ੍ਹਾਈ ਨਿਰਦੇਸ਼ਿਕਾ ਦੀ ਬਣਤਰ ਸਹੀ ਏ ਅਤੇ ਤੁਹਾਡੇ ਵੈੱਬ ਸਰਵਰ ਕੋਲ ਉਸ ਨਿਰਦੇਸ਼ਿਕਾ ਵਿੱਚ ਲਿਖਣ ਦੀ ਇਜਾਜ਼ਤ ਏ। ਵਧੇਰੇ ਜਾਣਕਾਰੀ ਲਈ https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgUploadDirectory ਵੇਖੋ।",
 	"lockmanager-fail-releaselock": "\"$1\" ਲਈ ਤਾਲਾਬੰਦ ਜਾਰੀ ਨਹੀਂ ਕੀਤਾ ਜਾ ਸਕਿਆ।",
-	"lockmanager-fail-db-bucket": "ਬਾਲਟੀ $1 ਵਿੱਚ ਲੋਡ਼ੀਂਦੇ ਤਾਲਾਬੰਦ ਤੱਥ-ਅਧਾਰ(database) ਨਾਲ ਰਾਬਤਾ ਨਹੀਂ ਕਾਇਮ ਕੀਤਾ ਜਾ ਸਕਿਆ।",
-	"lockmanager-fail-db-release": "ਤੱਥ-ਅਧਾਰ(database) $1 ਉੱਤੇ ਤਾਲੇ ਖੋਲ੍ਹੇ ਨਹੀਂ ਜਾ ਸਕੇ।",
 	"lockmanager-fail-svr-acquire": "ਸਰਵਰ $1 ਉੱਤੇ ਤਾਲੇ ਪ੍ਰਾਪਤ ਨਹੀਂ ਕੀਤੇ ਜਾ ਸਕੇ।",
 	"lockmanager-fail-svr-release": "ਸਰਵਰ $1 ਉੱਤੇ ਤਾਲੇ ਖੋਲ੍ਹੇ ਨਹੀਂ ਜਾ ਸਕੇ।",
 	"lockmanager-fail-conflict": "ਲਾਕ ਹਾਸਲ ਨਹੀਂ ਕੀਤਾ ਜਾ ਸਕਿਆ। ਕੋਈ ਹੋਰ ਇਸ ਫ਼ਾਈਲ ਲਈ ਕੁਝ ਕਰ ਰਿਹਾ ਹੈ।",

@@ -1243,8 +1243,6 @@
 	"lockmanager-fail-acquirelock": "Ka tõog n paam \"$1\" kʋɩlen-kãnga.",
 	"lockmanager-fail-openlock": "Pa tõog n kʋg \"$1\" logr faayã ye. Bao-y tɩ y uploadã sõorã yaa sõma, la y web servɛɛrã tara sor n na n gʋls sõorã. Ges-y https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgUploadDirectory n paam n bãng n paase.",
 	"lockmanager-fail-releaselock": "Pa tõog n yiis \"$1\" faayã ye.",
-	"lockmanager-fail-db-bucket": "D pa tõog n sõsd ne d sẽn tõe n maan bũmb ninsã ye$1.",
-	"lockmanager-fail-db-release": "Pa tõog n yiis kʋɩl-dãmb sẽn be b sẽn boond tɩ $ 1 wã pʋgẽ ye$1.",
 	"lockmanager-fail-svr-acquire": "D pa tõog n paam logtoɛɛmb sẽn be servɛɛrã pʋgẽ ye $1.",
 	"lockmanager-fail-svr-release": "Pa tõog n yiis logtoɛɛmb sẽn be servɛɛrã pʋgẽ $1 ye",
 	"lockmanager-fail-conflict": "A ra pa tõe n paam gãag ye. Ned a to n maand bũmb a woto.",

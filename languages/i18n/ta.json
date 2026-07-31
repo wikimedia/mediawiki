@@ -1152,8 +1152,6 @@
 	"lockmanager-fail-acquirelock": " \"$1\" க்கான பூட்டு பெற முடியவில்லை.",
 	"lockmanager-fail-openlock": "\"$1\" க்கான பூட்டு கோப்பை திறக்க முடியவில்லை.",
 	"lockmanager-fail-releaselock": " \"$1\" க்கான பூட்டை வெளியிட முடியவில்லை.",
-	"lockmanager-fail-db-bucket": "தொகுப்பு (bucket) $1 ல் போதுமான பூட்டு தரவுதளங்களை தொடர்பு கொள்ள இயலவில்லை",
-	"lockmanager-fail-db-release": "தரவுதளம் $1ஐ பூட்டியதை வெளியிட முடியவில்லை",
 	"lockmanager-fail-svr-acquire": "வழங்கி $1 இன் பூட்டுகளை பெற முடியவில்லை.",
 	"lockmanager-fail-svr-release": "சேவகன் $1ல் பூட்டியதை வெளியிட முடியவில்லை",
 	"zip-file-open-error": "இந்த கோப்பை zip சரிபார்க்க திறக்கும் போது பிழை எதிர்ப்பட்டுள்ளது.",

@@ -142,7 +142,7 @@
 	"badaccess-group0": "No puede tu man execute con el accion que ya manda tu.",
 	"badaccess-groups": "El accion que ya manda tu limitao lang na maga usuario na {{PLURAL:$2|grupo|uno del maga grupo}}: $1.",
 	"badaccess-groups-disabled": "Limitao el accion que ta pedi tu para na maga usador na {{PLURAL:$2|grupo|uno del maga grupo}}: $1. Maskin miembro tu de $3, cerrao el membresia de tuyo con {{PLURAL:$4|este grupo|este maga grupo}} este maga tiempo.",
-	"badaccess-reauthenticate": "Debe tu [{{fullurl:{{#Special:Userlogin}}|force=$1}} hace verifica con de tu indentidad] para hace con el accion.",
+	"badaccess-reauthenticate": "Debe tu [$2 hace verifica con de tu indentidad] para hace con el accion.",
 	"badaccess-cannotreauthenticate": "No puede hace con este accion, porque el identidad de tuyo no puede queda verificao junto con el metodo de acceso que ta usa tu.",
 	"versionrequired": "Ta requiri el version $1 de MediaWiki",
 	"versionrequiredtext": "Ta requiri el version $1 de MediaWiki para puede usa con este pagina. Mira [[Special:Version|pagina del version]].",

@@ -1275,8 +1275,6 @@
 	"lockmanager-fail-acquirelock": "\"$1\"-ин блокиг авч чадсн уга.",
 	"lockmanager-fail-openlock": "\"$1\" блокин файлыг нееҗ чадсн уга. Тана орулх саң зөв тохрулгдсн эс тохрулгдсиг шалһад, тана веб-сервер тер саңд бичх зөвшәрлтә эс зөвшәрлтәг шалһтн. Делгрңгү медәллиг https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgUploadDirectory-һәс үзтн.",
 	"lockmanager-fail-releaselock": "\"$1\" блокас һарһҗ чадсн уга.",
-	"lockmanager-fail-db-bucket": "$1 хүвин хаңһлтта блокин медәллин саңла холвгдҗ чадсн уга.",
-	"lockmanager-fail-db-release": "$1 медәллин саңгиг блокас һарһҗ чадсн уга.",
 	"lockmanager-fail-svr-acquire": "$1 сервер деер бичх онц эрк авч чадсн уга.",
 	"lockmanager-fail-svr-release": "$1 сервериг блокас һарһҗ чадсн уга.",
 	"lockmanager-fail-conflict": "Бичхд онц эрк авч чадсн уга. Оңдан кен негн эн файлд ямр нег юм кеҗәнә.",

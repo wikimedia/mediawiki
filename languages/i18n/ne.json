@@ -1269,8 +1269,6 @@
 	"lockmanager-fail-acquirelock": "\"$1\" को लागि बन्द फाइललाई प्राप्त गर्न सकिएन ।",
 	"lockmanager-fail-openlock": "\"$1\" को लागी बन्द फाइललाई खोल्न सकिएन ।",
 	"lockmanager-fail-releaselock": "\"$1\" को लागि बन्द खुल्ला गर्न सकिएन ।",
-	"lockmanager-fail-db-bucket": "बकेट $1 मा आवश्यक संख्यामा बन्द डेटाबेससँग सम्पर्क हुन सकेन।",
-	"lockmanager-fail-db-release": "डाटाबेस \"$1\" मा बन्दहरू खुल्ला गर्न सकिएन ।",
 	"lockmanager-fail-svr-acquire": "सर्भर \"$1\" मा बन्दहरू प्राप्त गर्न सकिएन ।",
 	"lockmanager-fail-svr-release": "सर्भर \"$1\" मा बन्दहरू खुल्ला गर्न सकिएन ।",
 	"zip-file-open-error": "ZIP परीक्षणको लागि फाइल खोल्दा एक त्रुटी भेटीयो ।",

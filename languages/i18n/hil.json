@@ -1413,8 +1413,6 @@
 	"lockmanager-fail-acquirelock": "Indi makakuha sang kandado para sa \" $1 \".",
 	"lockmanager-fail-openlock": "Indi mabuksan ang lock file para sa \" $1 \". Siguraduhon nga ang imo direktoryo sang pag-upload na-configure sing husto kag ang imo web server may pahanugot sa pagsulat sa sina nga direktoryo. Tan-awa ang https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgUploadDirectory para sa dugang nga impormasyon.",
 	"lockmanager-fail-releaselock": "Indi makapaguwa sang kandado para sa \" $1 \".",
-	"lockmanager-fail-db-bucket": "Indi makakontak sang bastante nga mga database sang kandado sa balde $1 .",
-	"lockmanager-fail-db-release": "Indi makapaguwa sang mga kandado sa database $1 .",
 	"lockmanager-fail-svr-acquire": "Indi makakuha sang mga kandado sa server $1 .",
 	"lockmanager-fail-svr-release": "Indi makapaguwa sang mga kandado sa server $1 .",
 	"lockmanager-fail-conflict": "Indi makakuha sang kandado. May iban pa nga nagahimo sang isa ka butang sa sini nga file.",

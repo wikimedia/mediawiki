@@ -1195,8 +1195,6 @@
 	"lockmanager-fail-acquirelock": "\"$1\" के लिए लॉक नाइ मिला।",
 	"lockmanager-fail-openlock": "\"$1\" खर्तिन लॉक फ़ाइल नाइ खुला।",
 	"lockmanager-fail-releaselock": "\"$1\" के लिए लॉक हटाया नहीं जा सका।",
-	"lockmanager-fail-db-bucket": "बकेट $1 में आवश्यक संख्या में लॉक डाटाबेसों से सम्पर्क नहीं हो पाया।",
-	"lockmanager-fail-db-release": "डाटाबेस $1 से ताला हटाया नहीं जा सका।",
 	"lockmanager-fail-svr-acquire": "सर्वर $1 पर तालों को प्राप्त नहीं किया जा सका।",
 	"lockmanager-fail-svr-release": "सर्वर $1 से टाला हटाया नहीं जा सका।",
 	"zip-file-open-error": "ज़िप जाँच के लिए फ़ाइल खोलते समय त्रुटि आई।",

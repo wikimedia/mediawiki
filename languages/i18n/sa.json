@@ -918,8 +918,6 @@
 	"lockmanager-fail-acquirelock": "\"$1\"कपाटितुं न शक्यते ।",
 	"lockmanager-fail-openlock": "\"$1\" निमित्तं सञ्चिकाम् उद्घाटयितुं न शक्यते ।",
 	"lockmanager-fail-releaselock": "\"$1\"कपाटितुं न शक्यते ।",
-	"lockmanager-fail-db-bucket": " $1 द्रेणपात्रे कपाटनीयमूलपाठाः अपर्याप्ताः सन्ति ।",
-	"lockmanager-fail-db-release": "$1 मूलपाठेषु कपाटिकाविमोचनं नैव शक्यते ।",
 	"lockmanager-fail-svr-acquire": "$1 वितारके कपाटिकायोजनं न शक्यते ।",
 	"lockmanager-fail-svr-release": "$1 मूलपाठेषु कपाटिकाविमोचनं नैव शक्यते ।",
 	"zip-file-open-error": "ZIP परिशीलनार्थम् उद्घाटनावसरे कश्चन दोषः सङ्गतः ।",

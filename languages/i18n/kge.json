@@ -1113,8 +1113,6 @@
 	"lockmanager-fail-deletelock": "Mak pandai ngahapus panguncian berkas untuk \"$1\".",
 	"lockmanager-fail-acquirelock": "Mak pandai ndapokko panguncian untuk \"$1\"",
 	"lockmanager-fail-releaselock": "Mak pandai ngacaiko panguncian untuk \"$1\"",
-	"lockmanager-fail-db-bucket": "Mak pandai ngahubungi database kunci sai nyukupi dilom imbir $1.",
-	"lockmanager-fail-db-release": "Mak pandai ngacaiko panguncian di basis data $1.",
 	"lockmanager-fail-svr-acquire": "Gagal ngakuk kunci di server $1.",
 	"lockmanager-fail-svr-release": "Mak pandai ngacaiko panguncian di server $1.",
 	"lockmanager-fail-conflict": "Mak pandai ndapokko kunci. Jolma barih harak nggawiko sasuatu rik berkas hasa.",

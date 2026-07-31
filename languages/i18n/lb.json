@@ -1293,7 +1293,6 @@
 	"lockmanager-fail-acquirelock": "\"$1\" konnt net gespaart ginn.",
 	"lockmanager-fail-openlock": "De Spärfichier fir \"$1\" konnt net opgemaach ginn. Vergewëssert Iech datt äre Repertoire fir eropzeluede richteg konfiguréiert ass an datt Äre Webserver d'Recht huet an dee Repertoire ze schreiwen. Kuckt https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgUploadDirectory fir méi Informatiounen.",
 	"lockmanager-fail-releaselock": "D'Spär fir \"$1\" konnt net opgehuewe ginn.",
-	"lockmanager-fail-db-release": "D'Spären op der Datebank $1 konnten net fräigeschalt ginn.",
 	"lockmanager-fail-svr-acquire": "D'Spären um Server $1 konnten net ofgefrot ginn.",
 	"lockmanager-fail-svr-release": "D'Spären um Server $1 konnten net fräigeschalt ginn.",
 	"zip-file-open-error": "Beim Opmaache vum ZIP-Fichier ass e Feeler geschitt.",

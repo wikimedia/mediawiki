@@ -1143,8 +1143,6 @@
 	"lockmanager-fail-acquirelock": "Ka foi pusívi dikiri blokeiu pa \"$1\".",
 	"lockmanager-fail-openlock": "Ka foi pusívi abri rafirénsa di blokeiu di \"$1\". Birifika ma bu diretóri di nviu sta kunfiguradu kuretamenti i ma bu sirbidor di internéti tene pirmison pa skrebi na kel diretóri. Pa más nfurmasons, udja: https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgUploadDirectory.",
 	"lockmanager-fail-releaselock": "Ka foi pusívi libera blokeiu di \"$1\".",
-	"lockmanager-fail-db-bucket": "Ka foi pusívi kuntata bazi di dadus di blokeiu sufisienti na kunpartimentu $1.",
-	"lockmanager-fail-db-release": "Ka foi pusívi libera blokeius na bazi di dadus $1.",
 	"lockmanager-fail-svr-acquire": "Ka foi pusívi obute blokeius na sirbidor $1.",
 	"lockmanager-fail-svr-release": "Ka foi pusívi libera blokeius na sirbidor $1.",
 	"lockmanager-fail-conflict": "Ka foi pusívi obute es blokeiu. Otu argen sa-ta fasi argun kusa ku tal fixeru.",

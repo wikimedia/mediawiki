@@ -1275,8 +1275,6 @@
 	"lockmanager-fail-acquirelock": "\"$1\" хааччахтыыр сатаммата.",
 	"lockmanager-fail-openlock": "\"$1\" хааччахтыыр билэтин арыйар табыллыбата. Хачайданыы каталога сөпкө туруоруллубутун бэрэбиэркэлээ, веб-сервер биэриллибит каталогка суруйар көҥүллээх. Сиһилии манна https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgUploadDirectory көр.",
 	"lockmanager-fail-releaselock": "\"$1\" хааччаҕын устар сатаммата.",
-	"lockmanager-fail-db-bucket": "$1 сегмеҥҥа хааччах олоҕун кытта ситими ситиһэр табыллыбата.",
-	"lockmanager-fail-db-release": "$1 билии олоҕун хааччахтааһынын устар табыллыбата.",
 	"lockmanager-fail-svr-acquire": "$1 сиэрбэр хааччахтааһынын ылар табыллыбата.",
 	"lockmanager-fail-svr-release": "$1 сиэрбэр хааччахтааһынын устар табыллыбата.",
 	"lockmanager-fail-conflict": "Монопольнай көҥүлү сатаан ылбатыҥ. Ким эрэ тугу эрэ бу билэни кытта гынар.",

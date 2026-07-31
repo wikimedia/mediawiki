@@ -1032,8 +1032,6 @@
 	"lockmanager-fail-deletelock": "\"$1\" के लॉक फ़ाइल नै हटाबु ।",
 	"lockmanager-fail-acquirelock": "\"$1\" के लॉक प्राप्त नै करल अछि।",
 	"lockmanager-fail-releaselock": "\"$1\" के लॉक फ़ाइल नै हटाबु ।",
-	"lockmanager-fail-db-bucket": "बकेट $1 में आवश्यक संख्या में लॉक डाटाबेसों से सम्पर्क नै भ्या रहल अछि ।",
-	"lockmanager-fail-db-release": "डाटाबेस $1 से ताला नै हटबु ।",
 	"lockmanager-fail-svr-acquire": "सर्वर $1 पे ताल प्राप्त नै अछि ।",
 	"lockmanager-fail-svr-release": "डाटाबेस $1 से ताला नै हटबु ।",
 	"zip-file-open-error": "संकुचित संचिका जाँचमे संचिका खोललापर एकटा भ्रम आएल।",

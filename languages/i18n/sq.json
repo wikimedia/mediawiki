@@ -1214,8 +1214,6 @@
 	"lockmanager-fail-acquirelock": "Nuk mund të sigurojë kyçjen për \"$1\".",
 	"lockmanager-fail-openlock": "Nuk mund të hapej dot skedari i kyçjes për \"$1\". Sigurohu që drejtoria jote e ngarkimeve është e konfiguruar saktë dhe se serveri yt i uebit ka leje të shkruajë në atë drejtori. Shih https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgUploadDirectory për më shumë informacion.",
 	"lockmanager-fail-releaselock": "Nuk mund të lëshojë kyçjen për \"$1\".",
-	"lockmanager-fail-db-bucket": "Nuk mund të kontaktojë mjaftueshëm baza të dhënash kyçjes në kovën $1.",
-	"lockmanager-fail-db-release": "Nuk mund të lëshojë kyçjet në bazën e të dhënave $1.",
 	"lockmanager-fail-svr-release": "Nuk mund të lëshojë kyçjet në serverin $1.",
 	"zip-file-open-error": "Një gabim është hasur gjatë hapjes së dokumentit për ZIP kontrollimin.",
 	"zip-wrong-format": "Dokumenti i specifikuar nuk ishte ZIP dokument.",

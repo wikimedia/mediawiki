@@ -1275,8 +1275,6 @@
 	"lockmanager-fail-acquirelock": "\"$1\" пиктелбедi.",
 	"lockmanager-fail-openlock": "\"$1\" пиктег файлын азарға килiспедi. Ызылчатхан файллар каталогы орта тоғынчатханын, веб-сервис пу каталогта пазар чарадығ алғанын сыныхтаңар. Хоза искiрiгнi https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgUpload кӧріңер.",
 	"lockmanager-fail-releaselock": "\"$1\" пиктегдең сығарылбады.",
-	"lockmanager-fail-db-bucket": "$1 сегментте пиктег базазының кирек санынаң палғалызарға киліспеді.",
-	"lockmanager-fail-db-release": "$1 искiрiг базазын пиктегдең сығарарға киліспеді.",
 	"lockmanager-fail-svr-acquire": "$1 серверде пазар монополия праволарын аларға киліспеді.",
 	"lockmanager-fail-svr-release": "$1 серверде пиктегнi суурарға киліспеді.",
 	"lockmanager-fail-conflict": "Пиктег  алылбады, кем-де пу файлда тоғынча.",

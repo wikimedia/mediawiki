@@ -1248,8 +1248,6 @@
 	"lockmanager-fail-acquirelock": "«$1» کا قفل حاصل نہیں کیا جا سکا۔",
 	"lockmanager-fail-openlock": "«$1» کا فائل لاک کھولا نہیں جا سکا۔",
 	"lockmanager-fail-releaselock": "«$1» کا قفل کھولا نہ جا سکا۔",
-	"lockmanager-fail-db-bucket": "$1 بالٹی میں کافی تالا ڈیٹا بیس سے رابطہ نہیں کیا جا سکا.",
-	"lockmanager-fail-db-release": "$1 ڈیٹابیس سے قفل نہیں ہٹائے جا سکے۔",
 	"lockmanager-fail-svr-acquire": "$1 سرور کے قفل حاصل نہیں کیے جا سکے۔",
 	"lockmanager-fail-svr-release": "$1 سرور کے قفل ہٹائے نہیں جا سکے۔",
 	"zip-file-open-error": "مواد کی جانچ کے لیے زپ فائل کھولنے کے دوران میں کوئی نقص واقع ہوا۔",

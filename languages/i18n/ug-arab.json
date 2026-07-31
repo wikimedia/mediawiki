@@ -1013,8 +1013,6 @@
 	"lockmanager-fail-acquirelock": "\"$1\" نىڭ قۇلۇپىغا ئېرىشەلمىدى.",
 	"lockmanager-fail-openlock": "\"$1\" نىڭ قۇلۇپ ھۆججەتنى ئاچالمىدى.",
 	"lockmanager-fail-releaselock": "\"$1\"نىڭ قۇلۇپنى بوشىتالمىدى.",
-	"lockmanager-fail-db-bucket": "$1 چېلەكتە يېتەرلىك قۇلۇپ ساندانى بىلەن ئالاقە قىلالمىدى.",
-	"lockmanager-fail-db-release": "$1 ساندان قۇلۇپىنى بوشىتالمىدى.",
 	"lockmanager-fail-svr-acquire": "$1 مۇلازىمېتىردىن قۇلۇپقا ئېرىشەلمىدى.",
 	"lockmanager-fail-svr-release": "$1 مۇلازىمېتىردا قۇلۇپنى بوشىتالمىدى.",
 	"zip-file-open-error": "ھۆججەت ئاچقاندا ZIP تەكشۈرۈشىدە بىر خاتالىققا يولۇقتى.",

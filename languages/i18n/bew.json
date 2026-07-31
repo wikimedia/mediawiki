@@ -1266,8 +1266,6 @@
 	"lockmanager-fail-acquirelock": "Kaga' bisa ndapetin pengoncian bakal \"$1\".",
 	"lockmanager-fail-openlock": "Kaga' bisa ngebuka berekas pengoncian bakal \"$1\". Pastiin lu punya dirèktori pengangkatan diamplas bener-bener èn lu punya pengladèn jala ada punya ijin nulis di tu dirèktori. Liat https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgUploadDirectory\nbakal pengabaran lebi lanjut.",
 	"lockmanager-fail-releaselock": "Kaga' bisa nglepasin konci bakal \"$1\".",
-	"lockmanager-fail-db-bucket": "Kaga' bisa ngubungin pendaringan data konci nyang cukup di èmbèr $1.",
-	"lockmanager-fail-db-release": "Kaga' bisa nglepasin konci di pendaringan data $1.",
 	"lockmanager-fail-svr-acquire": "Kaga' bisa ndapetin konci di pengladèn $1.",
 	"lockmanager-fail-svr-release": "Kaga' bisa nglepasin konci di pengladèn $1.",
 	"lockmanager-fail-conflict": "Kaga' bisa ndapetin konci. Ada orang lain lagi nglakonin sesuatu ama ni berekas.",

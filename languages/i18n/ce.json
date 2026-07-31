@@ -1384,8 +1384,6 @@
 	"lockmanager-fail-acquirelock": "«$1» блоктоха цатарло.",
 	"lockmanager-fail-openlock": "Блоктохаран «$1» файл схьайелла цайелира. Хьажа, хьан чуйахаран каталог нийса нисйина йуй, цул сов хьан веб-серверан оцу каталог чу дӀайаздарш дан бакъо йуй. Кхин сов информаци хьажа https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgUploadDirectory.",
 	"lockmanager-fail-releaselock": "\"$1\" блокдӀайаккха цайелира.",
-	"lockmanager-fail-db-bucket": "Тоъал блок тохаран базин барамца сегментехь $1 уьйра таса ца йелла.",
-	"lockmanager-fail-db-release": "Хаамийн базин блок дӀа ца йаккхайелла $1",
 	"lockmanager-fail-svr-acquire": "Монополин бакъонаш сервер тӀехь $1 дӀайаздан аьтту ца баьлла.",
 	"lockmanager-fail-svr-release": "Сервер тӀера блок дӀайаккха аьтту ца баьлла $1.",
 	"lockmanager-fail-conflict": "Монополин дӀайаздан бакъо йала аьтту ца баьлла. Цхьамма цхьаъ деш ду оцу файлаца.",

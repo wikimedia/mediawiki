@@ -1409,8 +1409,6 @@
 	"lockmanager-fail-acquirelock": "ไม่สามารถรับการล็อกสำหรับ \"$1\" ได้",
 	"lockmanager-fail-openlock": "ไม่สามารถเปิดล็อกไฟล์สำหรับ \"$1\" ได้ ให้แน่ใจว่าได้กำหนดค่าไดเรกทอรีอัปโหลดของคุณถูกต้องแล้วและเว็บเซิร์ฟเวอร์ของคุณมีสิทธิเขียนลงไดเรกทอรีนั้น โปรดดูที่ https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgUploadDirectory สำหรับข้อมูลเพิ่มเติม",
 	"lockmanager-fail-releaselock": "ไม่สามารถปล่อยการล็อกสำหรับ \"$1\" ได้",
-	"lockmanager-fail-db-bucket": "ไม่สามารถติดต่อฐานข้อมูลการล็อกในจำนวนที่เพียงพอในบักเก็ต $1 ได้",
-	"lockmanager-fail-db-release": "ไม่สามารถปล่อยการล็อกบนฐานข้อมูล $1 ได้",
 	"lockmanager-fail-svr-acquire": "ไม่สามารถรับการล็อกบนเซิร์ฟเวอร์ $1 ได้",
 	"lockmanager-fail-svr-release": "ไม่สามารถปล่อยการล็อกบนเซิร์ฟเวอร์ $1 ได้",
 	"lockmanager-fail-conflict": "ไม่สามารถรับการล็อกได้ มีผู้อื่นกำลังทำบางอย่างกับไฟล์นี้",

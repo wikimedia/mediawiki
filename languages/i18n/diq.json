@@ -1283,8 +1283,6 @@
 	"lockmanager-fail-acquirelock": "Kılitê cı nêgêriya \"$1\".",
 	"lockmanager-fail-openlock": "Seba \"$1\" ra dosyaya kıliti anêbena. Rêza barkerdışi awankerdışê raştvıratış ra û serverê webi rê mısadê nuştışi ra bawer bê. Tayêna zêde melumati rê https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgUploadDirectory bıvêne.",
 	"lockmanager-fail-releaselock": "Dosyay kıliti nêvıradeyê \"$1\".",
-	"lockmanager-fail-db-bucket": "Kılite malumat da sitıl de $1 irtibat kewtışi re bes nêkeno.",
-	"lockmanager-fail-db-release": "Malumatê kıliti nêvıradeyê $1.",
 	"lockmanager-fail-svr-acquire": "Kılitê teqdimkarê $1i nêvêniyenê.",
 	"lockmanager-fail-svr-release": "Wasterê kıliti nêvıradeyê $1.",
 	"zip-file-open-error": "Dosya ZIP kontrol kerdışi re akerdin de jew xırabin amê.",

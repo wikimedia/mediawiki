@@ -1304,8 +1304,6 @@
 	"lockmanager-fail-acquirelock": "«$1» корным петырен кертме огыл.",
 	"lockmanager-fail-openlock": "«$1» корнылан петырымаш файлым почын кертме огыл. Тыйын вераҥдымаш каталогет чын келыштаралтын, а тыйын веб-серверет тиде каталогыш возен кертеш манын, инане. Ешартыш информацийым https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgUploadDirectory сайтыште ончо.",
 	"lockmanager-fail-releaselock": "«$1» корным петырыме гыч луктын кертме огыл.",
-	"lockmanager-fail-db-bucket": "$1 ужашыште ситыше петырымаш данный базе дене кылдалтын кертме огыл.",
-	"lockmanager-fail-db-release": "$1 данный базым петырыме гыч луктын кертме огыл.",
 	"lockmanager-fail-svr-acquire": "$1 серверыш возашлан тичмаш правам налын кертме огыл.",
 	"lockmanager-fail-svr-release": "$1 серверыште петырымашым кораҥден кертме огыл.",
 	"lockmanager-fail-conflict": "Возашлан тичмаш правам налын кертме огыл. Тиде файл дене ала-кӧ ала-мом эше ышта.",

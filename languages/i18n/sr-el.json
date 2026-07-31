@@ -1327,8 +1327,6 @@
 	"lockmanager-fail-acquirelock": "Nije moguće steći katanac za „$1”.",
 	"lockmanager-fail-openlock": "Nije moguće otvoriti katanac za „$1”. Uverite se da je vaš direktorijum za otpremanje ispravno konfigurisan i da vaš veb-server ima dozvolu da upisuje u tom direktorijumu. Pogledajte https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgUploadDirectory za više informacija.",
 	"lockmanager-fail-releaselock": "Nije moguće osloboditi katanac za „$1”.",
-	"lockmanager-fail-db-bucket": "Ne mogu da kontaktiram s dovoljno katanaca u kanti $1.",
-	"lockmanager-fail-db-release": "Nije moguće osloboditi katance u bazi podataka $1.",
 	"lockmanager-fail-svr-acquire": "Nije moguće steći katance na serveru $1.",
 	"lockmanager-fail-svr-release": "Nije moguće osloboditi katance na serveru $1.",
 	"zip-file-open-error": "Došlo je do greške pri otvaranju datoteke za proveru ZIP arhive.",

@@ -1300,8 +1300,6 @@
 	"lockmanager-fail-acquirelock": "Добытје закључења за «$1» не удало се.",
 	"lockmanager-fail-openlock": "Отворјење фајла с закључењем за «$1» не удало се. Убєдите се, же конфигурација вашего каталога доданых фајлов јест правилна и ваш интернетны сервер имаје позвољење за писање в њим. За вече информациј, гледите https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgUploadDirectory.",
 	"lockmanager-fail-releaselock": "Закончење блокады за «$1» не удало се.",
-	"lockmanager-fail-db-bucket": "Не удало се контактовати достаточну коликост баз даных в сегменту $1.",
-	"lockmanager-fail-db-release": "Закончење блокад базы даных $1 не удало се.",
 	"lockmanager-fail-svr-acquire": "Добытје блокад на серверу $1 не удало се.",
 	"lockmanager-fail-svr-release": "Закончење блокад на серверу $1 не удало се.",
 	"lockmanager-fail-conflict": "Добытје блокады не удало се. Нєкто другы дєлаје нєчто с тутым фајлом.",

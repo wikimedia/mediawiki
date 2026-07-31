@@ -1276,8 +1276,6 @@
 	"lockmanager-fail-acquirelock": "Эз артмы блокируйтны \"$1\".",
 	"lockmanager-fail-openlock": "Эз артмы восьтыны файл \"$1\" блокируйтӧм могысь. Стӧчмӧдӧй, мый тіян пыртӧдана каталогыс ладмӧдӧма колана ногӧн, а веб-серверыслы позьӧ гижны тайӧ каталогас. Содтӧд юӧр видзӧдӧй татысь: https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgUploadDirectory.",
 	"lockmanager-fail-releaselock": "Эз артмы восьтыны \"$1\".",
-	"lockmanager-fail-db-bucket": "Эз артмы йитчыны блокируйтан мыччӧда база тырмана лыдӧн $1 юкӧнын.",
-	"lockmanager-fail-db-release": "Эз артмы восьтыны $1 мыччӧд база.",
 	"lockmanager-fail-svr-acquire": "Эз артмы босьтны $1 серверын гижӧд вылӧ монополия инӧд.",
 	"lockmanager-fail-svr-release": "Эз артмы бырӧдны блокируйтӧм $1 серверын.",
 	"lockmanager-fail-conflict": "Эз артмы босьтны гижӧд вылӧ монополия инӧд. Кодкӧ нӧшта мыйкӧ вӧчӧ тайӧ файлкӧд.",

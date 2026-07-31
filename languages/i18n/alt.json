@@ -1334,8 +1334,6 @@
 	"lockmanager-fail-acquirelock": "\"$1\" ресурсты туйукташка кийдирип болбоды.",
 	"lockmanager-fail-openlock": "\"$1\"-ҥ туйукташ файлы ачылбады. Слердиҥ файлдар салатан јер чын јазалталарлу ла веб-серверер ол каталогко бичиир аргаларлу деп бӱдӱмјиленип ийер. Артык информацияны кӧригер https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgUploadDirectory  бӱкте.",
 	"lockmanager-fail-releaselock": "\"$1\" ресурстаҥ туйукташты аларга келишпеди.",
-	"lockmanager-fail-db-bucket": "$1 сегментте јеткедий базалардыҥ тоозы ла колбу тудулбады.",
-	"lockmanager-fail-db-release": "$1 информационный базанаҥ туйукташты аларга келишпеди.",
 	"lockmanager-fail-svr-acquire": "$1 серверде туйукташты саларга келишпеди.",
 	"lockmanager-fail-svr-release": "$1 туйукташты аларга келишпеди.",
 	"lockmanager-fail-conflict": "Јаыс ла бойы алдынаҥ бичидер табын алып болбоды.Кем-де база бу файлла нени-де эдип јат.",
