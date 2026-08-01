@@ -57,6 +57,14 @@ class CategoryViewer extends ContextSource {
 	/** @var array<'page'|'subcat'|'file',bool> Sorting order for each type */
 	public array $flip = [];
 
+	/**
+	 * Whether category members should be ordered (and paginated) by cl_timestamp
+	 * -- i.e. when they were added to the category -- instead of the default
+	 * cl_sortkey collation ordering. Triggered via the 'cldsort=timestamp' request
+	 * parameter.
+	 */
+	public readonly bool $sortByTimestamp;
+
 	public readonly Collation $collation;
 	public ImageGalleryBase $gallery;
 
@@ -93,6 +101,7 @@ class CategoryViewer extends ContextSource {
 			'mediawiki.action.styles',
 		] );
 		$this->limit = $context->getConfig()->get( MainConfigNames::CategoryPagingLimit );
+		$this->sortByTimestamp = $context->getRequest()->getVal( 'cldsort' ) === 'timestamp';
 		$this->cat = Category::newFromTitle( $page );
 
 		$services = MediaWikiServices::getInstance();
@@ -180,8 +189,25 @@ class CategoryViewer extends ContextSource {
 			htmlspecialchars( str_replace( '_', ' ', $pageRecord->getDBkey() ) )
 		);
 
-		$this->children_start_char[] =
-			$this->languageConverter->convert( $this->collation->getFirstLetter( $sortkey ) );
+		$this->children_start_char[] = $this->getStartKey( $sortkey );
+	}
+
+	/**
+	 * Compute the group heading under which an entry should be listed.
+	 *
+	 * When ordering by cl_timestamp, $sortkey is already a display-ready
+	 * grouping label (e.g. a formatted date) produced in doCategoryQuery(),
+	 * so it's used as-is. Otherwise, fall back to the usual collation-based
+	 * first-letter grouping.
+	 *
+	 * @param string $sortkey
+	 * @return string
+	 */
+	private function getStartKey( string $sortkey ): string {
+		if ( $this->sortByTimestamp ) {
+			return $sortkey;
+		}
+		return $this->languageConverter->convert( $this->collation->getFirstLetter( $sortkey ) );
 	}
 
 	/**
@@ -249,8 +275,7 @@ class CategoryViewer extends ContextSource {
 		} else {
 			$this->imgsNoGallery[] = $this->generateLink( 'image', $page, $isRedirect );
 
-			$this->imgsNoGallery_start_char[] =
-				$this->languageConverter->convert( $this->collation->getFirstLetter( $sortkey ) );
+			$this->imgsNoGallery_start_char[] = $this->getStartKey( $sortkey );
 		}
 	}
 
@@ -269,8 +294,7 @@ class CategoryViewer extends ContextSource {
 	): void {
 		$this->articles[] = $this->generateLink( 'page', $page, $isRedirect );
 
-		$this->articles_start_char[] =
-			$this->languageConverter->convert( $this->collation->getFirstLetter( $sortkey ) );
+		$this->articles_start_char[] = $this->getStartKey( $sortkey );
 	}
 
 	protected function finaliseCategoryState() {
@@ -306,44 +330,56 @@ class CategoryViewer extends ContextSource {
 
 		$this->flip = [ 'page' => false, 'subcat' => false, 'file' => false ];
 
+		// The DB column driving ordering and pagination for this view: either the
+		// collation-based cl_sortkey (default), or cl_timestamp when the caller
+		// asked for members ordered by when they were added to the category.
+		$sortField = $this->sortByTimestamp ? 'cl_timestamp' : 'cl_sortkey';
+
 		foreach ( [ 'page', 'subcat', 'file' ] as $type ) {
-			# Get the sortkeys for start/end, if applicable.  Note that if
+			# Get the sort values for start/end, if applicable. Note that if
 			# the collation in the database differs from the one
 			# set in $wgCategoryCollation, pagination might go totally haywire.
 			$extraConds = [ 'cl_type' => $type ];
 			if ( isset( $this->from[$type] ) ) {
 				$extraConds[] = $categoryLinksDbr->expr(
-					'cl_sortkey',
+					$sortField,
 					'>=',
-					// @phan-suppress-next-line PhanTypeMismatchArgumentNullable
-					$this->collation->getSortKey( $this->from[$type] )
+					$this->sortByTimestamp
+						// @phan-suppress-next-line PhanTypeMismatchArgumentNullable
+						? $categoryLinksDbr->timestamp( $this->from[$type] )
+						// @phan-suppress-next-line PhanTypeMismatchArgumentNullable
+						: $this->collation->getSortKey( $this->from[$type] )
 				);
 			} elseif ( isset( $this->until[$type] ) ) {
 				$extraConds[] = $categoryLinksDbr->expr(
-					'cl_sortkey',
+					$sortField,
 					'<',
-					// @phan-suppress-next-line PhanTypeMismatchArgumentNullable
-					$this->collation->getSortKey( $this->until[$type] )
+					$this->sortByTimestamp
+						// @phan-suppress-next-line PhanTypeMismatchArgumentNullable
+						? $categoryLinksDbr->timestamp( $this->until[$type] )
+						// @phan-suppress-next-line PhanTypeMismatchArgumentNullable
+						: $this->collation->getSortKey( $this->until[$type] )
 				);
 				$this->flip[$type] = true;
 			}
 
 			$queryBuilder = $categoryLinksDbr->newSelectQueryBuilder();
 			$queryBuilder->select( array_merge(
-					LinkCache::getSelectFields(),
-					[
-						'cl_sortkey',
-						'cl_sortkey_prefix',
-						'collation_name',
-					]
-				) )
+				LinkCache::getSelectFields(),
+				[
+					'cl_sortkey',
+					'cl_sortkey_prefix',
+					'cl_timestamp',
+					'collation_name',
+				]
+			) )
 				->from( 'page' )
 				->andWhere( $extraConds );
 
 			if ( $this->flip[$type] ) {
-				$queryBuilder->orderBy( 'cl_sortkey', SelectQueryBuilder::SORT_DESC );
+				$queryBuilder->orderBy( $sortField, SelectQueryBuilder::SORT_DESC );
 			} else {
-				$queryBuilder->orderBy( 'cl_sortkey' );
+				$queryBuilder->orderBy( $sortField );
 			}
 
 			$queryBuilder
@@ -351,7 +387,7 @@ class CategoryViewer extends ContextSource {
 				->join( 'linktarget', null, 'cl_target_id = lt_id' )
 				->straightJoin( 'collation', null, 'cl_collation_id = collation_id' )
 				->where( [ 'lt_title' => $this->page->getDBkey(), 'lt_namespace' => NS_CATEGORY ] )
-				->useIndex( [ 'categorylinks' => 'cl_sortkey_id' ] )
+				->useIndex( [ 'categorylinks' => $this->sortByTimestamp ? 'cl_timestamp_id' : 'cl_sortkey_id' ] )
 				->limit( $this->limit + 1 );
 
 			$res = $queryBuilder->caller( __METHOD__ )->fetchResultSet();
@@ -400,25 +436,34 @@ class CategoryViewer extends ContextSource {
 			foreach ( $pageRows as $row ) {
 				$title = Title::newFromRow( $row );
 				$linkCache->addGoodLinkObjFromRow( $title, $row );
-				$humanSortkey = $title->getCategorySortkey( $row->cl_sortkey_prefix );
+
+				if ( $this->sortByTimestamp ) {
+					// Raw DB value, used verbatim for from/until pagination.
+					$pageCursor = $row->cl_timestamp;
+					// Group entries by the day they were added to the category.
+					$groupLabel = $this->getLanguage()->userDate( $row->cl_timestamp, $this->getUser() );
+				} else {
+					$pageCursor = $title->getCategorySortkey( $row->cl_sortkey_prefix );
+					$groupLabel = $pageCursor;
+				}
 
 				if ( ++$count > $this->limit ) {
 					# We've reached the one extra which shows that there
 					# are additional pages to be had. Stop here...
-					$this->nextPage[$type] = $humanSortkey;
+					$this->nextPage[$type] = $pageCursor;
 					break;
 				}
 				if ( $count == $this->limit ) {
-					$this->prevPage[$type] = $humanSortkey;
+					$this->prevPage[$type] = $pageCursor;
 				}
 
 				if ( $title->getNamespace() === NS_CATEGORY ) {
 					$cat = Category::newFromRow( $row, $title );
-					$this->addSubcategoryObject( $cat, $humanSortkey, $row->page_len );
+					$this->addSubcategoryObject( $cat, $groupLabel, $row->page_len );
 				} elseif ( $title->getNamespace() === NS_FILE ) {
-					$this->addImage( $title, $humanSortkey, $row->page_len, $row->page_is_redirect );
+					$this->addImage( $title, $groupLabel, $row->page_len, $row->page_is_redirect );
 				} else {
-					$this->addPage( $title, $humanSortkey, $row->page_len, $row->page_is_redirect );
+					$this->addPage( $title, $groupLabel, $row->page_len, $row->page_is_redirect );
 				}
 			}
 		}
