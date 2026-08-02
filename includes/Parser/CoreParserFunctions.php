@@ -1035,7 +1035,7 @@ class CoreParserFunctions {
 		if ( $t === null || !$t->canHaveTalkPage() ) {
 			return '';
 		}
-		return wfEscapeWikiText( $t->getTalkPageIfDefined()->getPrefixedText() ?? '' );
+		return wfEscapeWikiText( $t->getTalkPageIfDefined()->getPrefixedText() );
 	}
 
 	/**
