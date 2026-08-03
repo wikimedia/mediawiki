@@ -2831,9 +2831,6 @@ return [
 			'available-username',
 			'available-username-check-feedback',
 			'createacct-username-policy-popover-title',
-			'createacct-username-policy-popover-bullet1',
-			'createacct-username-policy-popover-bullet2',
-			'createacct-username-policy-popover-bullet3',
 			'createacct-username-policy-link',
 		],
 		'dependencies' => [

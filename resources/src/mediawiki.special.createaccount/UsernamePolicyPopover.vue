@@ -10,9 +10,11 @@
 		placement="bottom"
 	>
 		<ul>
-			<li v-i18n-html:createacct-username-policy-popover-bullet1></li>
-			<li v-i18n-html:createacct-username-policy-popover-bullet2></li>
-			<li v-i18n-html:createacct-username-policy-popover-bullet3></li>
+			<li
+				v-for="( itemHtml, index ) in bulletItemsHtml"
+				v-html="itemHtml"
+				:key="index"
+			></li>
 		</ul>
 		<a
 			v-if="policyPageUrl"
@@ -48,6 +50,7 @@ module.exports = defineComponent( {
 		const isPopoverOpen = ref( false );
 		const anchor = ref( props.triggerElement );
 		const policyPageUrl = mw.config.get( 'wgCreateAccountUsernamePolicyUrl' );
+		const bulletItemsHtml = mw.config.get( 'wgCreateAccountUsernamePolicyBulletsHtml' );
 
 		function onTriggerClick( ev ) {
 			ev.preventDefault();
@@ -66,7 +69,8 @@ module.exports = defineComponent( {
 		return {
 			anchor,
 			isPopoverOpen,
-			policyPageUrl
+			policyPageUrl,
+			bulletItemsHtml
 		};
 	}
 } );

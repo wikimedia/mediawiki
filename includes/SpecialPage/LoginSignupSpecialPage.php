@@ -624,6 +624,7 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 			}
 			$out->addJsConfigVars( [
 				'wgCreateAccountUsernamePolicyUrl' => $userPolicyTitleUrl,
+				'wgCreateAccountUsernamePolicyBulletsHtml' => $this->getCreateAccountUsernamePolicyBulletsHtml()
 			] );
 		} else {
 			// Additional styles for login form
@@ -946,6 +947,23 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 	protected function showExtraInformation() {
 		return $this->authAction !== $this->getContinueAction( $this->authAction )
 			&& ( !$this->securityLevel || !$this->getUser()->isNamed() );
+	}
+
+	/**
+	 * Parsed HTML for the username policy popover bullet list items.
+	 *
+	 * This is needed, because the community might override these messages with ones that inlcude local links.
+	 * But if those links are rendered in javascript, then they would point to pages on the auth-domain,
+	 * and that doesn't work.
+	 *
+	 * @return string[]
+	 */
+	private function getCreateAccountUsernamePolicyBulletsHtml(): array {
+		return [
+			$this->msg( 'createacct-username-policy-popover-bullet1' )->parse(),
+			$this->msg( 'createacct-username-policy-popover-bullet2' )->parse(),
+			$this->msg( 'createacct-username-policy-popover-bullet3' )->parse(),
+		];
 	}
 
 	/**
