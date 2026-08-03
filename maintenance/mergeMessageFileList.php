@@ -145,7 +145,7 @@ class MergeMessageFileList extends Maintenance {
 						"(PHP entry points are no longer supported by this script)" );
 				} elseif ( file_exists( $extension ) ) {
 					$files[] = $extension;
-				} else {
+				} elseif ( !$this->isQuiet() ) {
 					$this->error( "Extension {$extension} doesn't exist" );
 				}
 			}
@@ -156,7 +156,7 @@ class MergeMessageFileList extends Maintenance {
 
 	private function generateMessageFileList( array $setupFiles ): void {
 		$outputFile = $this->getOption( 'output' );
-		$quiet = $this->hasOption( 'quiet' );
+		$quiet = $this->isQuiet();
 
 		$queue = [];
 		foreach ( $setupFiles as $fileName ) {
