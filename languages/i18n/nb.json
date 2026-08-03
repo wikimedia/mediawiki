@@ -202,7 +202,7 @@
 	"badaccess-group0": "Du har ikke tilgang til å utføre handlingen du prøvde på.",
 	"badaccess-groups": "Handlingen du prøvde å utføre kan kun utføres av brukere i {{PLURAL:$2|gruppa|gruppene}} $1.",
 	"badaccess-groups-disabled": "Handlingen du ba om er begrenset til brukere i {{PLURAL:$2|gruppa|en av disse gruppene:}} $1. Selv om du er medlem av $3 er medlemskapet ditt i {{PLURAL:$4|denne gruppa|disse gruppene}} for tiden deaktivert.",
-	"badaccess-reauthenticate": "Du må [{{fullurl:{{#Special:Userlogin}}|force= $1 }} bekrefte identiteten din] for å utføre denne handlingen.",
+	"badaccess-reauthenticate": "Du må [$2 bekrefte identiteten din] for å utføre denne handlingen.",
 	"badaccess-cannotreauthenticate": "Denne handlingen er ikke tilgjengelig fordi identiteten din ikke kan bekreftes med tilgangsmetoden du bruker.",
 	"versionrequired": "Versjon $1 av MediaWiki er påkrevd",
 	"versionrequiredtext": "Versjon $1 av MediaWiki er nødvendig for å bruke denne siden.\nSe [[Special:Version|versjonssiden]]",
