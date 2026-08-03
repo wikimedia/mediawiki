@@ -45,6 +45,8 @@ use UnexpectedValueException;
  */
 class LegacyHandler extends AbstractProcessingHandler {
 
+	private static int $limit = 65507;
+
 	/**
 	 * Log sink descriptor
 	 * @var string
@@ -98,6 +100,11 @@ class LegacyHandler extends AbstractProcessingHandler {
 		parent::__construct( $level, $bubble );
 		$this->uri = $stream;
 		$this->useLegacyFilter = $useLegacyFilter;
+
+		// macOS enforces a strict UDP maximum datagram size of 9216 bytes.
+		if ( PHP_OS_FAMILY === 'Darwin' ) {
+			self::$limit = 9216;
+		}
 	}
 
 	/**
@@ -199,16 +206,16 @@ class LegacyHandler extends AbstractProcessingHandler {
 				$text = preg_replace( '/^/m', "{$leader} ", $text );
 
 				// Limit to 64 KiB
-				if ( strlen( $text ) > 65506 ) {
-					$text = substr( $text, 0, 65506 );
+				if ( strlen( $text ) > self::$limit - 1 ) {
+					$text = substr( $text, 0, self::$limit - 1 );
 				}
 
 				if ( !str_ends_with( $text, "\n" ) ) {
 					$text .= "\n";
 				}
 
-			} elseif ( strlen( $text ) > 65507 ) {
-				$text = substr( $text, 0, 65507 );
+			} elseif ( strlen( $text ) > self::$limit ) {
+				$text = substr( $text, 0, self::$limit );
 			}
 
 			socket_sendto(
