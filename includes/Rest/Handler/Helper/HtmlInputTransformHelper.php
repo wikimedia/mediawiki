@@ -644,7 +644,9 @@ class HtmlInputTransformHelper {
 
 			if ( is_int( $revision ) ) {
 				$revId = $revision;
-				$revision = $this->revisionLookup->getRevisionById( $revId, 0, $page );
+				// Don't pass $page here: on a page mismatch RevisionStore would assert
+				// and fail hard (500). Let the explicit check below return a clean 404. (T433351)
+				$revision = $this->revisionLookup->getRevisionById( $revId );
 
 				if ( !$revision ) {
 					throw new RevisionAccessException( 'Revision {revId} not found',
