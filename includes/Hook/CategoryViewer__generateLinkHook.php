@@ -18,6 +18,7 @@ interface CategoryViewer__generateLinkHook {
 	 * extensions opportunity to generate a more specific or relevant link.
 	 *
 	 * @since 1.35
+	 * @deprecated since 1.47 Use CategoryViewerGeneateLinkHook instead.
 	 *
 	 * @param string $type Category type, either 'page', 'file', or 'subcat'
 	 * @param Title $title Categorized page

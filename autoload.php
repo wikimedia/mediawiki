@@ -1130,6 +1130,7 @@ $wgAutoloadLocalClasses = [
 	'MediaWiki\\Category\\CategoriesRdf' => __DIR__ . '/includes/Category/CategoriesRdf.php',
 	'MediaWiki\\Category\\Category' => __DIR__ . '/includes/Category/Category.php',
 	'MediaWiki\\Category\\CategoryViewer' => __DIR__ . '/includes/Category/CategoryViewer.php',
+	'MediaWiki\\Category\\Hook\\CategoryViewerGenerateLinkHook' => __DIR__ . '/includes/Category/Hook/CategoryViewerGenerateLinkHook.php',
 	'MediaWiki\\Category\\TrackingCategories' => __DIR__ . '/includes/Category/TrackingCategories.php',
 	'MediaWiki\\ChangeTags\\ChangeTags' => __DIR__ . '/includes/ChangeTags/ChangeTags.php',
 	'MediaWiki\\ChangeTags\\ChangeTagsFormatter' => __DIR__ . '/includes/ChangeTags/ChangeTagsFormatter.php',

@@ -18,6 +18,7 @@ use MediaWiki\Message\Message;
 use MediaWiki\Output\OutputPage;
 use MediaWiki\Page\Article;
 use MediaWiki\Page\PageIdentity;
+use MediaWiki\Page\PageReference;
 use MediaWiki\Page\ProperPageIdentity;
 use MediaWiki\Page\WikiPage;
 use MediaWiki\Parser\Parser;
@@ -90,6 +91,7 @@ class HookRunner implements
 	\MediaWiki\Cache\Hook\HtmlCacheUpdaterAppendUrlsHook,
 	\MediaWiki\Cache\Hook\HtmlCacheUpdaterVaryUrlsHook,
 	\MediaWiki\Cache\Hook\HTMLFileCache__useFileCacheHook,
+	\MediaWiki\Category\Hook\CategoryViewerGenerateLinkHook,
 	\MediaWiki\ChangeTags\Hook\ChangeTagAfterDeleteHook,
 	\MediaWiki\ChangeTags\Hook\ChangeTagCanCreateHook,
 	\MediaWiki\ChangeTags\Hook\ChangeTagCanDeleteHook,
@@ -1159,6 +1161,20 @@ class HookRunner implements
 		return $this->container->run(
 			'CategoryPageView',
 			[ $catpage ]
+		);
+	}
+
+	/** @inheritDoc */
+	public function onCategoryViewerGenerateLink(
+		IContextSource $context,
+		string $type,
+		PageReference $page,
+		string $html,
+		?string &$link,
+	) {
+		$this->container->run(
+			'CategoryViewerGenerateLink',
+			[ $context, $type, $page, $html, &$link ]
 		);
 	}
 

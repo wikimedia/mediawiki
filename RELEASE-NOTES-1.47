@@ -153,6 +153,8 @@ For notes on 1.46.x and older releases, see HISTORY.
   allowSecuritySensitiveOperationIfCannotReauthenticate() to fail closed (or
   decide dynamically, based on the session's provider metadata and the current
   request) when reauthentication is not possible for the session type.
+* New hook CategoryViewerGenerateLinkHook as replacement for deprecated hook
+  CategoryViewer__generateLinkHook.
 * …
 
 === External library changes in 1.47 ===
@@ -578,6 +580,8 @@ because of Phabricator reports.
   1.37, now emits deprecation warnings.
 * (T433783) The SpecialCreateAccountBenefitsHook has been deprecated and will
   be removed in a future version. There will be no replacement.
+* The hook CategoryViewer__generateLinkHook has been deprecated. Use the hook
+  CategoryViewerGenerateLinkHook instead.
 * …
 
 === Other changes in 1.47 ===
