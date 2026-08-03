@@ -16,11 +16,11 @@
 	const pluses = /\+/g;
 	let config = null, cookie;
 
-	function raw( s ) {
-		return s;
-	}
+	function decode( s ) {
+		if ( config.raw ) {
+			return s;
+		}
 
-	function decoded( s ) {
 		try {
 			return decodeURIComponent( s.replace( pluses, ' ' ) );
 		} catch ( e ) {
@@ -29,13 +29,18 @@
 		}
 	}
 
-	function converted( s ) {
+	function decodeAndParse( s ) {
 		if ( s.startsWith( '"' ) ) {
 			// This is a quoted cookie as according to RFC2068, unescape
 			s = s.slice( 1, -1 ).replace( /\\"/g, '"' ).replace( /\\\\/g, '\\' );
 		}
 
-		return config.json ? JSON.parse( s ) : s;
+		s = decode( s );
+
+		try {
+			return config.json ? JSON.parse( s ) : s;
+		} catch ( e ) {
+		}
 	}
 
 	/**
@@ -52,7 +57,7 @@
 	 */
 	config = cookie = function ( key, value, options ) {
 
-		// write
+		// Write
 		if ( value !== undefined ) {
 			options = Object.assign( {}, config.defaults, options );
 
@@ -83,8 +88,7 @@
 			}
 		}
 
-		// read
-		const decode = config.raw ? raw : decoded;
+		// Read
 		let cookies;
 		try {
 			cookies = document.cookie.split( '; ' );
@@ -96,15 +100,15 @@
 		for ( let i = 0, l = cookies.length; i < l; i++ ) {
 			const parts = cookies[ i ].split( '=' );
 			const name = decode( parts.shift() );
-			const s = decode( parts.join( '=' ) );
+			const s = parts.join( '=' );
 
 			if ( key && key === name ) {
-				result = converted( s );
+				result = decodeAndParse( s );
 				break;
 			}
 
 			if ( !key ) {
-				result[ name ] = converted( s );
+				result[ name ] = decodeAndParse( s );
 			}
 		}
 

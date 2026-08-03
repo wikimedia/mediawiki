@@ -185,7 +185,9 @@
 		empty: [ 'foo', '' ],
 		equals: [ 'foo', 'aaa=bbb' ],
 		'quote in key': [ '"got', 'away from me' ],
-		'quote in value middle': [ 'foo', 'I did not touch the "yellow" pencil.' ]
+		'quote in value around': [ 'foo', '"bar"' ],
+		'quote in value middle': [ 'foo', 'I did not touch the "yellow" pencil.' ],
+		'quote in value begin T143304': [ 'foo', '"quux' ]
 	}, ( assert, [ name, value ] ) => {
 		jqcookie.restore();
 		mwCookie.jar.removeCookie( name );
@@ -217,6 +219,43 @@
 		assert.strictEqual( mwCookie.jar.cookie( 'foo' ), null, 'Return value' );
 
 		mwCookie.jar.removeCookie( 'foo' );
+	} );
+
+	QUnit.test( 'jar [JSON simple]', ( assert ) => {
+		jqcookie.restore();
+		mwCookie.jar.removeCookie( 'foo' );
+
+		mwCookie.jar.cookie.json = true;
+		mwCookie.jar.cookie( 'foo', { bar: 'quux' } );
+		assert.deepEqual( mwCookie.jar.cookie( 'foo' ), { bar: 'quux' }, 'Return value' );
+
+		mwCookie.jar.removeCookie( 'foo' );
+		delete mwCookie.jar.cookie.json;
+	} );
+
+	QUnit.test( 'jar [JSON default]', ( assert ) => {
+		jqcookie.restore();
+		mwCookie.jar.removeCookie( 'foo' );
+
+		mwCookie.jar.cookie.json = true;
+		assert.strictEqual( mwCookie.jar.cookie( 'foo' ), null, 'Return value' );
+
+		mwCookie.jar.removeCookie( 'foo' );
+		delete mwCookie.jar.cookie.json;
+	} );
+
+	// https://github.com/carhartl/jquery-cookie/issues/132
+	// https://github.com/carhartl/jquery-cookie/pull/145
+	QUnit.test( 'jar [JSON invalid]', ( assert ) => {
+		jqcookie.restore();
+		mwCookie.jar.removeCookie( 'foo' );
+
+		mwCookie.jar.cookie( 'foo', 'quux' );
+		mwCookie.jar.cookie.json = true;
+		assert.strictEqual( mwCookie.jar.cookie( 'foo' ), undefined, 'Return value' );
+
+		mwCookie.jar.removeCookie( 'foo' );
+		delete mwCookie.jar.cookie.json;
 	} );
 
 }() );
