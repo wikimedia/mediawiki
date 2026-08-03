@@ -2,6 +2,7 @@
 
 namespace MediaWiki\Page\File;
 
+use MediaWiki\FileRepo\File\File;
 use MediaWiki\FileRepo\RepoGroup;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
@@ -54,17 +55,23 @@ class BadFileLookup {
 	 *    * Any subsequent links on the same line are considered to be exceptions,
 	 *      i.e. articles where the file may occur inline.
 	 *
-	 * @param string $name The file name to check
+	 * @param File|string $file The file to check (filename can be used)
 	 * @param LinkTarget|null $contextTitle The page on which the file occurs, if known
 	 * @return bool
 	 */
-	public function isBadFile( $name, ?LinkTarget $contextTitle = null ) {
-		// Handle redirects; callers almost always hit RepoGroup::findFile() anyway,
-		// so just use that method because it has a fast process cache.
-		$file = $this->repoGroup->findFile( $name );
-		// XXX If we don't find the file we also don't replace spaces by underscores or otherwise
-		// validate or normalize the title, is this right?
-		if ( $file ) {
+	public function isBadFile( File|string $file, ?LinkTarget $contextTitle = null ) {
+		// If name was provided instead of File, get File object from repoGroup
+		if ( is_string( $file ) ) {
+			$name = $file;
+			// Handle redirects; callers almost always hit RepoGroup::findFile() anyway,
+			// so just use that method because it has a fast process cache.
+			$file = $this->repoGroup->findFile( $file );
+			// XXX If we don't find the file we also don't replace spaces by underscores or otherwise
+			// validate or normalize the title, is this right?
+			if ( $file ) {
+				$name = $file->getTitle()->getDBkey();
+			}
+		} else {
 			$name = $file->getTitle()->getDBkey();
 		}
 
