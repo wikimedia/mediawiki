@@ -1214,6 +1214,7 @@
 	"listusers": "အသုံးပြုသူစာရင်း",
 	"listusers-editsonly": "တည်းဖြတ်ထားဖူးသော အသုံးပြုသူများကိုသာ ဖော်ပြရန်",
 	"listusers-temporarygroupsonly": "ယာယီအသုံးပြုသူအုပ်စုများထဲရှိ အသုံးပြုသူများကိုသာ ပြရန်",
+	"listusers-temporaryaccountsonly": "ယာယီအကောင့်များကိုသာပြပါ",
 	"listusers-creationsort": "စတင်ရေးသားသည့်ရက်စွဲအလိုက် စီရန်",
 	"listusers-desc": "ကြီးစဉ်ငယ်လိုက် စီရန်",
 	"usereditcount": "တည်းဖြတ်မှု $1 {{PLURAL:$1|ခု|ခု}}",

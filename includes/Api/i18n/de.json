@@ -1508,7 +1508,7 @@
 	"apihelp-tag-param-remove": "Zu entfernende Tags. Nur Tags, die manuell definiert oder vollständig undefiniert sind, können entfernt werden.",
 	"apihelp-tag-param-reason": "Grund für die Änderung.",
 	"apihelp-tag-param-tags": "Auf den Logbucheintrag anzuwendende Markierungen, die als Ergebnis dieser Aktion erstellt wurden.",
-	"apihelp-tag-example-log": "Entferne das <kbd>Spam-</kbd> Tag aus dem Logeintrag mit der ID 123. Grund: <kbd>Falsch angewendet</kbd>",
+	"apihelp-tag-example-log": "Entferne das <kbd>spam</kbd>-Tag aus dem Logeintrag mit der ID 123. Grund: <kbd>Wrongly applied</kbd>",
 	"apihelp-languagesearch-summary": "Sucht nach Sprachnamen in einem beliebigen Skript.",
 	"apihelp-languagesearch-param-search": "Such-Zeichenfolge.",
 	"apihelp-languagesearch-param-typos": "Anzahl der erlaubten Rechtschreibfehler in der Sucheingabe.",
