@@ -3212,7 +3212,7 @@
 	"limitreport-title": "ਵਿਸ਼ਲੇਸ਼ਕ ਕਾਰਗੁਜ਼ਾਰੀ ਤੱਥ-ਪੜਚੋਲ",
 	"limitreport-cputime-value": "$1 {{PLURAL:$1|ਸਕਿੰਟ|ਸਕਿੰਟਾਂ}}",
 	"limitreport-walltime": "ਹਕੀਕੀ ਸਮੇਂ ਦੀ ਵਰਤੋਂ",
-	"limitreport-walltime-value": "$1 {{PLURAL:$1|ਸਕਿੰਟ|ਸਕਿੰਟਾਂ}}",
+	"limitreport-walltime-value": "$1 {{PLURAL:$1|ਸਕਿੰਟ}}",
 	"limitreport-postexpandincludesize-value": "$1/$2 {{PLURAL:$2|ਬਾਈਟ|ਬਾਈਟਾਂ}}",
 	"limitreport-templateargumentsize-value": "$1/$2 {{PLURAL:$2|ਬਾਈਟ|ਬਾਈਟਾਂ}}",
 	"limitreport-expansiondepth": "ਸਭ ਤੋਂ ਵੱਧ ਵਿਸਤਾਰ ਡੂੰਘਾਈ",
