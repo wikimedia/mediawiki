@@ -1262,7 +1262,7 @@ class WANObjectCacheTest extends MediaWikiUnitTestCase {
 	/**
 	 * @dataProvider provideCoalesceAndMcrouterSettings
 	 */
-	public function testLockTSE( array $params ) {
+	public function testLockTSE_tombstoneAndCheckKeys( array $params ) {
 		[ $cache, $bag ] = $this->newWanCache( $params );
 		$key = wfRandomString();
 		$value = wfRandomString();
@@ -1324,89 +1324,71 @@ class WANObjectCacheTest extends MediaWikiUnitTestCase {
 	/**
 	 * @dataProvider provideCoalesceAndMcrouterSettings
 	 */
-	public function testLockTSESlow( array $params ) {
+	public function testLockTSE_stale( array $params ) {
 		[ $cache, $bag ] = $this->newWanCache( $params );
-		$key = 'myfirstkey';
-		$key2 = 'mysecondkey';
-		$value = 'some_slow_value';
 
 		$mockWallClock = 1549343530.0;
 		$cache->setMockTime( $mockWallClock );
 
+		$key = 'example_key';
+		$value = 'foo';
 		$calls = 0;
 		$lastCallOldValue = null;
 		$func = static function ( $oldValue, &$ttl, &$setOpts ) use (
-			&$calls, $value, &$mockWallClock, &$lastCallOldValue
+			&$calls, &$value, &$mockWallClock, &$lastCallOldValue
 		) {
 			++$calls;
 			$lastCallOldValue = $oldValue;
-			// Value should be given a low logical TTL due to high snapshot lag
-			$setOpts['since'] = $mockWallClock;
-			$mockWallClock += 10;
 			return $value;
 		};
 
-		$curTTL = null;
-		$ret = $cache->getWithSetCallback( $key, 300, $func, [ 'lockTSE' => 5 ] );
-		$this->assertSame( $value, $ret );
-		$this->assertSame( $value, $cache->get( $key, $curTTL ), 'Value populated' );
-		$this->assertEqualsWithDelta( 30.0, $curTTL, 0.01, 'Value has reduced logical TTL' );
-		$this->assertSame( 1, $calls, 'Value was generated' );
-		$this->assertSame( false, $lastCallOldValue, 'No old value for callback' );
+		$ret = $cache->getWithSetCallback( $key, 300, $func, [ 'lockTSE' => 5, 'staleTTL' => 5 ] );
+		$this->assertSame( 'foo', $ret, 'Initial cache miss' );
+		$this->assertSame( 1, $calls );
+		$this->assertSame( false, $lastCallOldValue, 'No old value' );
 
-		// Just a few seconds after the (reduced) logical TTL expires
-		$mockWallClock += 32;
+		$mockWallClock += 100;
+		$value = 'bar';
 
-		$ret = $cache->getWithSetCallback( $key, 300, $func, [ 'lockTSE' => 5 ] );
-		$this->assertSame( $value, $ret );
-		$this->assertSame( 2, $calls, 'Callback used (stale, mutex acquired, regenerated)' );
-		$this->assertSame( $value, $lastCallOldValue, 'Old value for callback' );
+		$ret = $cache->getWithSetCallback( $key, 300, $func, [ 'lockTSE' => 5, 'staleTTL' => 5 ] );
+		$this->assertSame( 'foo', $ret, 'Cache hit value' );
+		$this->assertSame( 1, $calls );
 
-		$ret = $cache->getWithSetCallback( $key, 300, $func, [ 'lockTSE' => 5, 'lowTTL' => -1 ] );
-		$this->assertSame( $value, $ret );
-		$this->assertSame( 2, $calls, 'Callback not used (extremely new value reused)' );
+		// We are now after 300s expiry but within the 5s lockTSE - Mutex acquired
+		$mockWallClock += 201;
+		$ret = $cache->getWithSetCallback( $key, 300, $func, [ 'lockTSE' => 5, 'staleTTL' => 5 ] );
+		$this->assertSame( 'bar', $ret, 'New value generated (stale, mutex acquired)' );
+		$this->assertSame( 2, $calls );
+		$this->assertSame( 'foo', $lastCallOldValue, 'Old value for callback' );
 
-		// Just a few seconds after the (reduced) logical TTL expires
-		$mockWallClock += 32;
-		// Acquire a lock to verify that getWithSetCallback uses lockTSE properly
+		$mockWallClock += 100;
+		$value = 'baz';
+		$ret = $cache->getWithSetCallback( $key, 300, $func, [ 'lockTSE' => 5, 'staleTTL' => 5 ] );
+		$this->assertSame( 'bar', $ret, 'Cache hit value again' );
+		$this->assertSame( 2, $calls );
+
+		// We are now after 300s expiry but within the 5s lockTSE - Mutex lost
+		$mockWallClock += 201;
 		$this->setMutexKey( $bag, $key );
+		$ret = $cache->getWithSetCallback( $key, 300, $func, [ 'lockTSE' => 5, 'staleTTL' => 5 ] );
+		$this->assertSame( 'bar', $ret );
+		$this->assertSame( 2, $calls, 'Stale value used (mutex not acquired)' );
 
-		$ret = $cache->getWithSetCallback( $key, 300, $func, [ 'lockTSE' => 5 ] );
-		$this->assertSame( $value, $ret );
-		$this->assertSame( 2, $calls, 'Callback not used (mutex not acquired, stale value used)' );
-
-		$mockWallClock += 301; // physical TTL expired
-		// Acquire a lock to verify that getWithSetCallback uses lockTSE properly
-		$this->setMutexKey( $bag, $key );
-
-		$ret = $cache->getWithSetCallback( $key, 300, $func, [ 'lockTSE' => 5 ] );
-		$this->assertSame( $value, $ret );
-		$this->assertSame( 3, $calls, 'Callback was used (mutex not acquired, not in cache)' );
-
+		$mockWallClock += 900;
+		$key = 'another_key';
 		$calls = 0;
-		$func2 = static function ( $oldValue, &$ttl, &$setOpts ) use ( &$calls, $value ) {
-			++$calls;
-			$setOpts['lag'] = 15;
-			return $value;
-		};
+		$value = 'quux';
+		$ret = $cache->getWithSetCallback( $key, 300, $func, [ 'lockTSE' => 5, 'staleTTL' => 5 ] );
+		$this->assertSame( $value, $ret, 'Initial cache miss' );
+		$this->assertSame( 1, $calls );
 
-		// Value should be given a low logical TTL due to replication lag
-		$curTTL = null;
-		$ret = $cache->getWithSetCallback( $key2, 300, $func2, [ 'lockTSE' => 5 ] );
-		$this->assertSame( $value, $ret );
-		$this->assertSame( $value, $cache->get( $key2, $curTTL ), 'Value was populated' );
-		$this->assertSame( 30.0, $curTTL, 'Value has reduced logical TTL', 0.01 );
-		$this->assertSame( 1, $calls, 'Value was generated' );
-
-		$ret = $cache->getWithSetCallback( $key2, 300, $func2, [ 'lockTSE' => 5 ] );
-		$this->assertSame( $value, $ret );
-		$this->assertSame( 1, $calls, 'Callback was used (not expired)' );
-
-		$mockWallClock += 31;
-
-		$ret = $cache->getWithSetCallback( $key2, 300, $func2, [ 'lockTSE' => 5 ] );
-		$this->assertSame( $value, $ret );
-		$this->assertSame( 2, $calls, 'Callback was used (mutex acquired)' );
+		// We are now after the expiry *and* outside the lockTSE window
+		$this->setMutexKey( $bag, $key );
+		$mockWallClock += 307;
+		$value = 'quuuuux';
+		$ret = $cache->getWithSetCallback( $key, 300, $func, [ 'lockTSE' => 5, 'staleTTL' => 5 ] );
+		$this->assertSame( 'quuuuux', $ret, 'Cache miss (stale, TSE too high)' );
+		$this->assertSame( 2, $calls );
 	}
 
 	/**
