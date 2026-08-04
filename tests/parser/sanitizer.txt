@@ -1,0 +1,540 @@
+# The parsoid-compatible option below is only relevant when we are running
+# parser tests in integrated mode with Parsoid. This option is ignored
+# when this test file is run with Parsoid in standalone mode.
+!! options
+parsoid-compatible=wt2html,wt2wt
+version=2
+!! end
+
+# This is the standard article assumed to exist.
+!! article
+Main Page
+!! text
+blah blah
+!! endarticle
+
+!! article
+Template:test
+!! text
+This is a test template
+!! endarticle
+
+!! test
+Sanitizer: Closing of open tags
+!! wikitext
+<s></s><table></table>
+!! html/php
+<p><s></s></p><table></table>
+!! html/parsoid
+<p><s data-parsoid='{"stx":"html"}'></s></p><table data-parsoid='{"stx":"html"}'></table>
+!! end
+
+# Legacy parser adds an extra newline (seen as a space) which Parsoid does not
+!! test
+Sanitizer: Closing of open but not closed tags
+!! wikitext
+<s>foo
+!! html/php
+<p><s>foo
+</s></p>
+!! html/parsoid
+<p><s data-parsoid='{"stx":"html","autoInsertedEnd":true}'>foo</s></p>
+!! end
+
+!! test
+Sanitizer: Closing of closed but not open tags
+!! options
+parsoid=wt2html
+!! wikitext
+</s>
+!! html
+<p class="mw-empty-elt">
+</p>
+!! end
+
+!! test
+Sanitizer: Closing of closed but not open table tags
+!! options
+parsoid=wt2html
+!! wikitext
+Table not started</td></tr></table>
+!! html
+<p>Table not started</p>
+!! end
+
+!! test
+Sanitizer: Escaping of spaces, multibyte characters, colons & other stuff in id=""
+!! options
+title=[[Main Page]]
+!! config
+wgFragmentMode=[ "html5", "legacy" ]
+!! wikitext
+<span id="æ: v">byte</span>[[#æ: v|backlink]]
+!! html/php
+<p><span id="æ:&#95;v">byte</span><a href="#æ:_v">backlink</a>
+</p>
+!! html/parsoid
+<p><span id="æ:_v" data-parsoid='{"stx":"html","a":{"id":"æ:_v"},"sa":{"id":"æ: v"}}'>byte</span><a rel="mw:WikiLink" href="./Main_Page#æ:_v" class="mw-selflink-fragment" data-parsoid='{"stx":"piped","a":{"href":"./Main_Page#æ:_v"},"sa":{"href":"#æ: v"}}'>backlink</a></p>
+!! end
+
+!! test
+Sanitizer: Escaping of spaces, multibyte characters, colons & other stuff in id="" (legacy)
+!! config
+wgFragmentMode=[ "legacy" ]
+!! wikitext
+<span id="æ: v">byte</span>[[#æ: v|backlink]]
+!! html/php
+<p><span id=".C3.A6:&#95;v">byte</span><a href="#.C3.A6:_v">backlink</a>
+</p>
+!! end
+
+# In HTML5, the restrictions are that id must contain at least one character,
+# and must not contain any space characters.
+!! test
+Sanitizer: Validating the contents of the id attribute (T6515)
+!! options
+parsoid=wt2html,html2html
+!! wikitext
+<br id="" /><br id="a space" />
+!! html/php
+<p><br /><br id="a&#95;space" />
+</p>
+!! html/parsoid
+<p><br data-parsoid='{"stx":"html","selfClose":true,"a":{"id":null},"sa":{"id":""}}'/><br id="a_space" data-parsoid='{"stx":"html","selfClose":true,"a":{"id":"a_space"},"sa":{"id":"a space"}}'/></p>
+!! end
+
+!! test
+Sanitizer: Validating the contents of the id attribute, empty attribute syntax (T6515)
+!! wikitext
+<br id />
+!! html/php
+<p><br />
+</p>
+!! html/parsoid
+<p><br data-parsoid='{"stx":"html","selfClose":true,"a":{"id":null},"sa":{"id":""}}'/></p>
+!! end
+
+# In HTML5, id must be unique amongst all the ids in the element's home subtree.
+!! test
+Sanitizer: Validating id attribute uniqueness (T6515, T8301)
+!! options
+disabled
+!! wikitext
+<br id="foo" /><br id="foo" />
+!! html
+Something need to be done. foo-2 ? 
+!! end
+
+!! test
+Sanitizer: Validating that <meta> and <link> work, but only for Microdata
+!! wikitext
+<div itemscope>
+	<meta itemprop="hello" content="world">
+	<meta http-equiv="refresh" content="5">
+	<meta itemprop="hello" http-equiv="refresh" content="5">
+	<link itemprop="hello" href="{{SERVER}}">
+	<link rel="stylesheet" href="{{SERVER}}">
+	<link rel="stylesheet" itemprop="hello" href="{{SERVER}}">
+</div>
+!! html/php
+<div itemscope="">
+<p>	<meta itemprop="hello" content="world" />
+	&lt;meta http-equiv="refresh" content="5"&gt;
+	<meta itemprop="hello" content="5" />
+	<link itemprop="hello" href="http&#58;//example.org" />
+	&lt;link rel="stylesheet" href="<a rel="nofollow" class="external free" href="http://example.org">http://example.org</a>"&gt;
+	<link itemprop="hello" href="http&#58;//example.org" />
+</p>
+</div>
+!! html/parsoid+standalone
+<div itemscope="" data-parsoid='{"stx":"html"}'>
+	<p><meta itemprop="hello" content="world" data-parsoid='{"stx":"html","noClose":true}'/>
+	&lt;meta http-equiv="refresh" content="5">
+	<meta itemprop="hello" content="5" data-parsoid='{"stx":"html","noClose":true,"a":{"http-equiv":null},"sa":{"http-equiv":"refresh"}}'/>
+	<link itemprop="hello" href="http://example.org" about="#mwt2" typeof="mw:ExpandedAttrs" data-parsoid='{"stx":"html","noClose":true,"a":{"href":"http://example.org"},"sa":{"href":"{{SERVER}}"}}' data-mw='{"attribs":[[{"txt":"href"},{"html":"&lt;a rel=\"nofollow\" class=\"external free\" href=\"http://example.org\" typeof=\"mw:Transclusion mw:ExtLink/URL\" about=\"#mwt1\" data-parsoid=&apos;{\"pi\":[[]]}&apos; data-mw=&apos;{\"parts\":[{\"template\":{\"target\":{\"wt\":\"SERVER\",\"function\":\"server\"},\"params\":{},\"i\":0}}]}&apos;>http://example.org&lt;/a>"}]]}'/>
+	&lt;link rel="stylesheet" href="{{SERVER}}">
+	<link data-x-rel="stylesheet" itemprop="hello" href="http://example.org" about="#mwt6" typeof="mw:ExpandedAttrs" data-parsoid='{"stx":"html","noClose":true,"a":{"href":"http://example.org"},"sa":{"href":"{{SERVER}}"}}' data-mw='{"attribs":[[{"txt":"href"},{"html":"&lt;a rel=\"nofollow\" class=\"external free\" href=\"http://example.org\" typeof=\"mw:Transclusion mw:ExtLink/URL\" about=\"#mwt5\" data-parsoid=&apos;{\"pi\":[[]]}&apos; data-mw=&apos;{\"parts\":[{\"template\":{\"target\":{\"wt\":\"SERVER\",\"function\":\"server\"},\"params\":{},\"i\":0}}]}&apos;>http://example.org&lt;/a>"}]]}'/></p>
+</div>
+!! end
+
+!! test
+Sanitizer: Strip comments from CSS attributes
+!! options
+parsoid=wt2html,wt2wt
+!! wikitext
+<span style="margin:/*negate mbox-text padding */-0.125em -0.45em; /*rainbow*/rgba(255, 0, 0, 0.3)">2013</span>
+!! html/php
+<p><span style="margin: -0.125em -0.45em;  rgba(255, 0, 0, 0.3)">2013</span>
+</p>
+!! html/parsoid
+<p><span style="margin: -0.125em -0.45em;  rgba(255, 0, 0, 0.3)">2013</span></p>
+!! end
+
+!! test
+Sanitizer: Avoid unnecessary percent encoded characters in interwiki links
+!! wikitext
+[[meatball:Soft"Security]]
+!! html/php
+<p><a href="http://www.usemod.com/cgi-bin/mb.pl?Soft%22Security" class="extiw" title="meatball:Soft&quot;Security">meatball:Soft"Security</a>
+</p>
+!! html/parsoid
+<p><a rel="mw:WikiLink/Interwiki" href='http://www.usemod.com/cgi-bin/mb.pl?Soft"Security' title='meatball:Soft"Security' class="extiw">meatball:Soft"Security</a></p>
+!! end
+
+!! test
+Sanitizer: angle brackets are invalid, even in interwiki links (T182338)
+!! wikitext
+[[meatball:Foo<Bar]]
+[[meatball:Foo>Bar]]
+[[meatball:Foo&lt;bar]]
+[[meatball:Foo&gt;bar]]
+!! html/php
+<p>[[meatball:Foo&lt;Bar]]
+[[meatball:Foo&gt;Bar]]
+[[meatball:Foo&lt;bar]]
+[[meatball:Foo&gt;bar]]
+</p>
+!! html/parsoid
+<p>[[meatball:Foo&lt;Bar]]
+[[meatball:Foo>Bar]]
+[[meatball:Foo<span typeof="mw:Entity" data-parsoid='{"src":"&amp;lt;","srcContent":"&lt;"}'>&lt;</span>bar]]
+[[meatball:Foo<span typeof="mw:Entity" data-parsoid='{"src":"&amp;gt;","srcContent":">"}'>></span>bar]]</p>
+!! end
+
+!! article
+Template:Dangerous attribute
+!! text
+" onmouseover="alert(document.cookie)
+!! endarticle
+
+!! article
+Template:Dangerous style attribute
+!! text
+border-size: expression(alert(document.cookie))
+!! endarticle
+
+!! article
+Template:Div style
+!! text
+<div style="float: right; {{{1}}}">Magic div</div>
+!! endarticle
+
+!! test
+T4304: HTML attribute safety (safe template; regression T4309)
+!! wikitext
+<div title="{{test}}"></div>
+!! html/php
+<div title="This is a test template"></div>
+!! html/parsoid
+<div title="This is a test template" about="#mwt2" typeof="mw:ExpandedAttrs" data-parsoid='{"stx":"html","a":{"title":"This is a test template"},"sa":{"title":"{{test}}"}}' data-mw='{"attribs":[[{"txt":"title"},{"html":"&lt;span about=\"#mwt1\" typeof=\"mw:Transclusion\" data-parsoid=&#39;{\"pi\":[[]]}&#39; data-mw=&#39;{\"parts\":[{\"template\":{\"target\":{\"wt\":\"test\",\"href\":\"./Template:Test\"},\"params\":{},\"i\":0}}]}&#39;>This is a test template&lt;/span>"}]]}'></div>
+!! end
+
+# Parsoid has enough context to handle this case
+!! test
+T4304: HTML attribute safety (dangerous template; 2309)
+!! wikitext
+<div title="{{dangerous attribute}}"></div>
+!! html/php
+<div title=""></div>
+!! html/parsoid
+<div title='" onmouseover="alert(document.cookie)' about="#mwt2" typeof="mw:ExpandedAttrs" data-parsoid='{"stx":"html","a":{"title":"\" onmouseover=\"alert(document.cookie)"},"sa":{"title":"{{dangerous attribute}}"}}' data-mw='{"attribs":[[{"txt":"title"},{"html":"&lt;span about=\"#mwt1\" typeof=\"mw:Transclusion\" data-parsoid=&#39;{\"pi\":[[]]}&#39; data-mw=&#39;{\"parts\":[{\"template\":{\"target\":{\"wt\":\"dangerous attribute\",\"href\":\"./Template:Dangerous_attribute\"},\"params\":{},\"i\":0}}]}&#39;>\" onmouseover=\"alert(document.cookie)&lt;/span>"}]]}'></div>
+!! end
+
+!! test
+T4304: HTML attribute safety (dangerous style template; 2309)
+!! wikitext
+<div style="{{dangerous style attribute}}"></div>
+!! html/php
+<div style="/* insecure input */"></div>
+!! html/parsoid
+<div style="/* insecure input */" about="#mwt2" typeof="mw:ExpandedAttrs" data-parsoid='{"stx":"html","a":{"style":"/* insecure input */"},"sa":{"style":"{{dangerous style attribute}}"}}' data-mw='{"attribs":[[{"txt":"style"},{"html":"&lt;span about=\"#mwt1\" typeof=\"mw:Transclusion\" data-parsoid=&#39;{\"pi\":[[]]}&#39; data-mw=&#39;{\"parts\":[{\"template\":{\"target\":{\"wt\":\"dangerous style attribute\",\"href\":\"./Template:Dangerous_style_attribute\"},\"params\":{},\"i\":0}}]}&#39;>border-size: expression(alert(document.cookie))&lt;/span>"}]]}'></div>
+!! end
+
+!! test
+T4304: HTML attribute safety (safe parameter; 2309)
+!! wikitext
+{{div style|width: 200px}}
+!! html/php
+<div style="float: right; width: 200px">Magic div</div>
+!! html/parsoid
+<div style="float: right; width: 200px" about="#mwt1" typeof="mw:Transclusion" data-parsoid='{"stx":"html","a":{"style":"float: right; width: 200px"},"sa":{"style":"float: right; {{{1}}}"},"pi":[[{"k":"1"}]]}' data-mw='{"parts":[{"template":{"target":{"wt":"div style","href":"./Template:Div_style"},"params":{"1":{"wt":"width: 200px"}},"i":0}}]}'>Magic div</div>
+!! end
+
+!! test
+T4304: HTML attribute safety (unsafe parameter; 2309)
+!! wikitext
+{{div style|width: expression(alert(document.cookie))}}
+!! html/php
+<div style="/* insecure input */">Magic div</div>
+!! html/parsoid
+<div style="/* insecure input */" about="#mwt1" typeof="mw:Transclusion" data-parsoid='{"stx":"html","a":{"style":"/* insecure input */"},"sa":{"style":"float: right; {{{1}}}"},"pi":[[{"k":"1"}]]}' data-mw='{"parts":[{"template":{"target":{"wt":"div style","href":"./Template:Div_style"},"params":{"1":{"wt":"width: expression(alert(document.cookie))"}},"i":0}}]}'>Magic div</div>
+!! end
+
+!! test
+T4304: HTML attribute safety (unsafe breakout parameter; 2309)
+!! wikitext
+{{div style|"><script>alert(document.cookie)</script>}}
+!! html/php
+<div style="float: right;">&lt;script&gt;alert(document.cookie)&lt;/script&gt;"&gt;Magic div</div>
+!! html/parsoid+integrated
+<div style="float: right; " about="#mwt1" typeof="mw:Transclusion" data-parsoid='{"stx":"html","pi":[[{"k":"1"}]]}' data-mw='{"parts":[{"template":{"target":{"wt":"div style","href":"./Template:Div_style"},"params":{"1":{"wt":"\">&lt;script>alert(document.cookie)&lt;/script>"}},"i":0}}]}'>&lt;script>alert(document.cookie)&lt;/script>">Magic div</div>
+!! end
+
+!! test
+T4304: HTML attribute safety (unsafe breakout parameter 2; 2309)
+!! wikitext
+{{div style|" ><script>alert(document.cookie)</script>}}
+!! html/php
+<div style="float: right;">&lt;script&gt;alert(document.cookie)&lt;/script&gt;"&gt;Magic div</div>
+!! html/parsoid+integrated
+<div style="float: right; " about="#mwt1" typeof="mw:Transclusion" data-parsoid='{"stx":"html","pi":[[{"k":"1"}]]}' data-mw='{"parts":[{"template":{"target":{"wt":"div style","href":"./Template:Div_style"},"params":{"1":{"wt":"\" >&lt;script>alert(document.cookie)&lt;/script>"}},"i":0}}]}'>&lt;script>alert(document.cookie)&lt;/script>">Magic div</div>
+!! end
+
+!! test
+T4304: HTML attribute safety (link)
+!! wikitext
+<div title="[[Main Page]]"></div>
+!! html/php
+<div title="&#91;&#91;Main Page&#93;&#93;"></div>
+!! html/parsoid
+<div title="[[Main Page]]"></div>
+!! end
+
+!! test
+T4304: HTML attribute safety (italics)
+!! wikitext
+<div title="''foobar''"></div>
+!! html
+<div title="&#39;&#39;foobar&#39;&#39;"></div>
+!! end
+
+!! test
+T4304: HTML attribute safety (bold)
+!! wikitext
+<div title="'''foobar'''"></div>
+!! html
+<div title="&#39;&#39;&#39;foobar&#39;&#39;&#39;"></div>
+!! end
+
+!! test
+T4304: HTML attribute safety (web link)
+!! wikitext
+<div title="http://example.com/"></div>
+!! html
+<div title="http&#58;//example.com/"></div>
+!! end
+
+!! test
+T4304: HTML attribute safety (named web link)
+!! wikitext
+<div title="[http://example.com/ link]"></div>
+!! html/php
+<div title="&#91;http&#58;//example.com/ link&#93;"></div>
+!! html/parsoid
+<div title="[http://example.com/ link]"></div>
+!! end
+
+!! test
+T5244: HTML attribute safety (extension; safe)
+!! wikitext
+<div style="<nowiki>background:blue</nowiki>"></div>
+!! html/php
+<div style="background:blue"></div>
+!! html/parsoid
+<div style="background:blue" about="#mwt3" typeof="mw:ExpandedAttrs" data-parsoid='{"stx":"html","a":{"style":"background:blue"},"sa":{"style":"&lt;nowiki>background:blue&lt;/nowiki>"}}' data-mw='{"attribs":[[{"txt":"style"},{"html":"&lt;span typeof=\"mw:Nowiki\">background:blue&lt;/span>"}]]}'></div>
+!! end
+
+!! test
+T5244: HTML attribute safety (extension; unsafe)
+!! wikitext
+<div style="<nowiki>border-left:expression(alert(document.cookie))</nowiki>"></div>
+!! html/php
+<div style="/* insecure input */"></div>
+!! html/parsoid
+<div style="/* insecure input */" about="#mwt3" typeof="mw:ExpandedAttrs" data-parsoid='{"stx":"html","a":{"style":"/* insecure input */"},"sa":{"style":"&lt;nowiki>border-left:expression(alert(document.cookie))&lt;/nowiki>"}}' data-mw='{"attribs":[[{"txt":"style"},{"html":"&lt;span typeof=\"mw:Nowiki\">border-left:expression(alert(document.cookie))&lt;/span>"}]]}'></div>
+!! end
+
+# More MSIE fun discovered by Tom Gilder
+
+!! test
+MSIE CSS safety test: spurious slash
+!! wikitext
+<div style="background-image:u\rl(javascript:alert('boo'))">evil</div>
+!! html/php
+<div style="/* insecure input */">evil</div>
+!! html/parsoid
+<div style="/* insecure input */" data-parsoid='{"stx":"html","a":{"style":"/* insecure input */"},"sa":{"style":"background-image:u\\rl(javascript:alert(&#39;boo&#39;))"}}'>evil</div>
+!! end
+
+!! test
+MSIE CSS safety test: hex code
+!! wikitext
+<div style="background-image:u\72l(javascript:alert('boo'))">evil</div>
+!! html/php
+<div style="/* insecure input */">evil</div>
+!! html/parsoid
+<div style="/* insecure input */" data-parsoid='{"stx":"html","a":{"style":"/* insecure input */"},"sa":{"style":"background-image:u\\72l(javascript:alert(&#39;boo&#39;))"}}'>evil</div>
+!! end
+
+!! test
+MSIE CSS safety test: comment in url
+!! wikitext
+<div style="background-image:u/**/rl(javascript:alert('boo'))">evil</div>
+!! html/php
+<div style="background-image:u rl(javascript:alert(&#39;boo&#39;))">evil</div>
+!! html/parsoid
+<div style="background-image:u rl(javascript:alert('boo'))" data-parsoid='{"stx":"html","a":{"style":"background-image:u rl(javascript:alert(&#39;boo&#39;))"},"sa":{"style":"background-image:u/**/rl(javascript:alert(&#39;boo&#39;))"}}'>evil</div>
+!! end
+
+!! test
+MSIE CSS safety test: comment in expression
+!! wikitext
+<div style="background-image:expres/**/sion(alert('boo4'))">evil4</div>
+!! html/php
+<div style="background-image:expres sion(alert(&#39;boo4&#39;))">evil4</div>
+!! html/parsoid
+<div style="background-image:expres sion(alert('boo4'))" data-parsoid='{"stx":"html","a":{"style":"background-image:expres sion(alert(&#39;boo4&#39;))"},"sa":{"style":"background-image:expres/**/sion(alert(&#39;boo4&#39;))"}}'>evil4</div>
+!! end
+
+!! test
+CSS safety test (all browsers): vertical tab (T57332 / CVE-2013-4567)
+!! wikitext
+<p style="font-size: 100px; background-image:url\b(https://www.google.com/images/srpr/logo6w.png)">A</p>
+!! html/php
+<p style="/* invalid control char */">A</p>
+!! html/parsoid
+<p style="/* invalid control char */" data-parsoid='{"stx":"html","a":{"style":"/* invalid control char */"},"sa":{"style":"font-size: 100px; background-image:url\\b(https://www.google.com/images/srpr/logo6w.png)"}}'>A</p>
+!! end
+
+!! test
+Opera -o-link CSS
+!! options
+parsoid=wt2html,html2html
+!! wikitext
+<div
+title="&#100;&#97;&#116;&#97;&#58;&#116;&#101;&#120;&#116;&#47;&#104;&#116;&#109;&#108;&#44;&#60;&#105;&#109;&#103;&#32;&#115;&#114;&#99;&#61;&#49;&#32;&#111;&#110;&#101;&#114;&#114;&#111;&#114;&#61;&#97;&#108;&#101;&#114;&#116;&#40;&#49;&#41;&#62;"
+style="-o-link:attr(title);-o-link-source:current">X</div>
+!! html/php
+<div title="data:text/html,&lt;img src=1 onerror=alert(1)&gt;" style="/* insecure input */">X</div>
+!! html/parsoid
+<div title="data:text/html,&lt;img src=1 onerror=alert(1)>" style="/* insecure input */" data-parsoid='{"stx":"html","a":{"title":"data:text/html,&lt;img src=1 onerror=alert(1)>","style":"/* insecure input */"},"sa":{"title":"&amp;#100;&amp;#97;&amp;#116;&amp;#97;&amp;#58;&amp;#116;&amp;#101;&amp;#120;&amp;#116;&amp;#47;&amp;#104;&amp;#116;&amp;#109;&amp;#108;&amp;#44;&amp;#60;&amp;#105;&amp;#109;&amp;#103;&amp;#32;&amp;#115;&amp;#114;&amp;#99;&amp;#61;&amp;#49;&amp;#32;&amp;#111;&amp;#110;&amp;#101;&amp;#114;&amp;#114;&amp;#111;&amp;#114;&amp;#61;&amp;#97;&amp;#108;&amp;#101;&amp;#114;&amp;#116;&amp;#40;&amp;#49;&amp;#41;&amp;#62;","style":"-o-link:attr(title);-o-link-source:current"}}'>X</div>
+!! end
+
+!! test
+Table attribute legitimate extension
+!! wikitext
+{|
+!+ style="<nowiki>color:blue</nowiki>"|status
+|}
+!! html
+<table>
+<tbody><tr>
+<th style="color:blue">status
+</th></tr></tbody></table>
+!! end
+
+!! test
+Table attribute safety
+!! wikitext
+{|
+!+ style="<nowiki>border-width:expression(0+alert(document.cookie))</nowiki>"|status
+|}
+!! html
+<table>
+<tbody><tr>
+<th style="/* insecure input */">status
+</th></tr></tbody></table>
+!! end
+
+!! test
+CSS line continuation 1
+!! wikitext
+<div style="background-image: u\&#10;rl(test.jpg);"></div>
+!! html
+<div style="/* insecure input */"></div>
+!! end
+
+!! test
+CSS line continuation 2
+!! wikitext
+<div style="background-image: u\&#13;rl(test.jpg); "></div>
+!! html
+<div style="/* invalid control char */"></div>
+!! end
+
+!! test
+Allow aria attributes
+!! config
+wgFragmentMode=[ "legacy" ]
+!! wikitext
+<span aria-describedby="id1" aria-flowto="id2" aria-hidden="true" aria-label="id3" aria-labelledby="id4" aria-level="3" aria-owns="id5">foo</span>
+<span aria-bogus="stripped">bar</span>
+!! html/php
+<p><span aria-describedby="id1" aria-flowto="id2" aria-hidden="true" aria-label="id3" aria-labelledby="id4" aria-level="3" aria-owns="id5">foo</span>
+<span>bar</span>
+</p>
+!! html/parsoid
+<p><span aria-describedby="id1" aria-flowto="id2" aria-hidden="true" aria-label="id3" aria-labelledby="id4" aria-level="3" aria-owns="id5">foo</span>
+<span data-parsoid='{"stx":"html","a":{"aria-bogus":null},"sa":{"aria-bogus":"stripped"}}'>bar</span></p>
+!! end
+
+# The next two test different paths in the sanitizer.
+!! test
+Non-word characters don't terminate tag names (T19663, T42670, T54022)
+!! wikitext
+<blockquote|>a</blockquote>
+
+<b→> doesn't terminate </b→>
+
+<bä> doesn't terminate </bä>
+
+<boo> doesn't terminate </boo>
+
+<s.foo> doesn't terminate </s.foo>
+
+<sub-ID#1>
+!! html
+<p>&lt;blockquote|&gt;a
+</p><p>&lt;b→&gt; doesn't terminate &lt;/b→&gt;
+</p><p>&lt;bä&gt; doesn't terminate &lt;/bä&gt;
+</p><p>&lt;boo&gt; doesn't terminate &lt;/boo&gt;
+</p><p>&lt;s.foo&gt; doesn't terminate &lt;/s.foo&gt;
+</p><p>&lt;sub-ID#1&gt;
+</p>
+!! end
+
+###
+### See tests/parser/ParserTestParserHook.php for the <tåg> extension)
+### This checks that HTML5 tags (with non-word characters in the tag
+### name) make it safely through the parser -- the Sanitizer will
+### munge them later, as it should.
+###
+!! test
+Non-word characters are valid in extension tags (T19663)
+!! wikitext
+<tåg>tåg</tåg>
+!! html/php
+<pre>'tåg'
+array (
+)
+</pre>
+!! html/parsoid
+<pre typeof="mw:Extension/tåg" about="#mwt3" data-mw='{"name":"tåg","attrs":{},"body":{"extsrc":"tåg"}}'>'tåg'
+array (
+)
+</pre>
+!! end
+
+!! test
+Isolated close tags should be treated as literal text (T54760)
+!! options
+parsoid=wt2html
+!! wikitext
+</b>
+
+<s.foo>s</s>
+!! html
+<p class="mw-empty-elt">
+</p><p>&lt;s.foo&gt;s
+</p>
+!! end

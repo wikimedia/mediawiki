@@ -13,6 +13,275 @@ Template:1x
 !! endarticle
 
 !! test
+Blank input
+!! wikitext
+!! html
+!! end
+
+!! test
+Simple paragraph
+!! wikitext
+This is a simple paragraph.
+!! html
+<p>This is a simple paragraph.
+</p>
+!! end
+
+!! test
+Paragraphs with extra newline spacing
+!! wikitext
+a
+
+b (+2 nls)
+
+
+c (+3 nls)
+
+
+
+d (+4 nls)
+
+
+
+
+e (+5 nls)
+!! html
+<p>a
+</p><p>b (+2 nls)
+</p><p><br />
+c (+3 nls)
+</p><p><br />
+</p><p>d (+4 nls)
+</p><p><br />
+</p><p><br />
+e (+5 nls)
+</p>
+!! end
+
+!! test
+Paragraphs with newline spacing with comment lines in between
+!! wikitext
+----
+a
+<!--foo-->
+b
+----
+a
+<!--foo--><!--More than 1 comment, still stripped-->
+b
+----
+a
+ <!--foo--> <!----> <!-- bar --> 
+b
+----
+a
+<!--foo-->
+
+b
+----
+a
+
+<!--foo-->
+b
+----
+a
+<!--foo-->
+
+
+b
+----
+a
+
+
+<!--foo-->
+b
+----
+!! html
+<hr />
+<p>a
+b
+</p>
+<hr />
+<p>a
+b
+</p>
+<hr />
+<p>a
+b
+</p>
+<hr />
+<p>a
+</p><p>b
+</p>
+<hr />
+<p>a
+</p><p>b
+</p>
+<hr />
+<p>a
+</p><p><br />
+b
+</p>
+<hr />
+<p>a
+</p><p><br />
+b
+</p>
+<hr />
+!! end
+
+!! test
+Paragraphs with newline spacing with non-empty white-space lines in between
+!! wikitext
+----
+a
+ 
+b
+----
+a
+ 
+ 
+b
+----
+!! html
+<hr />
+<p>a
+</p><p>b
+</p>
+<hr />
+<p>a
+</p><p><br /> 
+b
+</p>
+<hr />
+!! end
+
+!! test
+Paragraphs with newline spacing with non-empty mixed comment and white-space lines in between
+!! wikitext
+----
+a
+ <!--foo-->
+b
+----
+a
+ <!--foo--><!--More than 1 comment doesn't disable stripping of this line!-->
+b
+----
+a
+ 
+<!--foo-->
+ <!--bar-->
+b
+----
+a
+ 
+ <!--foo-->
+ <!--bar-->
+ 
+b
+----
+!! html
+<hr />
+<p>a
+b
+</p>
+<hr />
+<p>a
+b
+</p>
+<hr />
+<p>a
+</p><p>b
+</p>
+<hr />
+<p>a
+</p><p><br /> 
+b
+</p>
+<hr />
+!! end
+
+!! test
+Extra newlines: More paragraphs with indented comment
+!! wikitext
+a
+
+   <!--boo-->
+
+b
+!! html
+<p>a
+</p><p><br />
+b
+</p>
+!!end
+
+!! test
+Extra new lines before and after lists are preserved
+!! wikitext
+a
+
+
+*b
+
+
+c
+!! html/php
+<p>a
+</p><p><br />
+</p>
+<ul><li>b</li></ul>
+<p><br />
+c
+</p>
+!! html/parsoid
+<p>a</p>
+<p>
+<br></p>
+<ul><li>b</li></ul>
+<p>
+<br>
+c</p>
+!! end
+
+# Parsoid regression test
+!!test
+Multiple newlines after tables are converted to p-br-p tags
+!!options
+parsoid=wt2html,wt2wt
+!!wikitext
+{|
+|x
+|}
+
+
+
+
+=b=
+!!html/php
+<table>
+<tbody><tr>
+<td>x
+</td></tr></tbody></table>
+<p><br />
+</p><p><br />
+</p>
+<div class="mw-heading mw-heading1"><h1 id="b">b</h1><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=1" title="Edit section: b">edit</a><span class="mw-editsection-bracket">]</span></span></div>
+!!html/parsoid
+<table>
+<tbody>
+<tr>
+<td>x</td>
+</tr>
+</tbody>
+</table>
+<p><br/></p>
+<p><br/></p>
+<h1 id="b">b</h1>
+!!end
+
+!! test
 No block tags
 !! wikitext
 a
@@ -476,4 +745,535 @@ bar
 <tbody><tr><td>foo
 <p>bar</p></td></tr>
 </tbody></table></dd></dl></dd></dl></dd></dl>
+!! end
+
+!! test
+T8200: blockquotes and paragraph formatting
+!! wikitext
+<blockquote>
+foo
+</blockquote>
+
+bar
+
+ baz
+!! html
+<blockquote>
+<p>foo
+</p>
+</blockquote>
+<p>bar
+</p>
+<pre>baz
+</pre>
+!! end
+
+!! test
+T53086: Double newlines in blockquotes should be turned into paragraphs
+!! wikitext
+<blockquote>
+Foo
+
+Bar
+</blockquote>
+!! html
+<blockquote>
+<p>Foo
+</p><p>Bar
+</p>
+</blockquote>
+!! end
+
+!! test
+T17491: <ins>/<del> in blockquote
+!! wikitext
+<blockquote>
+Foo <del>bar</del> <ins>baz</ins> quux
+</blockquote>
+!! html
+<blockquote>
+<p>Foo <del>bar</del> <ins>baz</ins> quux
+</p>
+</blockquote>
+!! end
+
+!! test
+T17491: <ins>/<del> in blockquote (2)
+!! wikitext
+<blockquote>Foo <del>bar</del> <ins>baz</ins> quux
+</blockquote>
+!! html
+<blockquote><p>Foo <del>bar</del> <ins>baz</ins> quux
+</p></blockquote>
+!! end
+
+!! test
+T10293: Use of center tag ruins paragraph formatting
+!! wikitext
+<center>
+foo
+</center>
+
+bar
+
+ baz
+!! html
+<center>
+<p>foo
+</p>
+</center>
+<p>bar
+</p>
+<pre>baz
+</pre>
+!! end
+
+!! test
+Paragraphs inside divs (no extra line breaks)
+!! wikitext
+<div>Line one
+
+Line two</div>
+!! html
+<div>Line one
+Line two</div>
+!! end
+
+!! test
+Paragraphs inside divs (extra line break on open)
+!! wikitext
+<div>
+Line one
+
+Line two</div>
+!! html
+<div>
+<p>Line one
+</p>
+Line two</div>
+!! end
+
+!! test
+Paragraphs inside divs (extra line break on close)
+!! wikitext
+<div>Line one
+
+Line two
+</div>
+!! html
+<div>Line one
+<p>Line two
+</p>
+</div>
+!! end
+
+!! test
+Paragraphs inside divs (extra line break on open and close)
+!! wikitext
+<div>
+Line one
+
+Line two
+</div>
+!! html
+<div>
+<p>Line one
+</p><p>Line two
+</p>
+</div>
+!! end
+
+# doBlockLevels screws up this output and Remex cleans up as much as it can.
+!! test
+Nesting tags, paragraphs on lines which begin with <div>
+!! wikitext
+<div></div><strong>A
+B</strong>
+!! html/php
+<div></div><p><strong>A
+</strong></p><strong></strong><p><strong>B</strong>
+</p>
+!! html/parsoid
+<div data-parsoid='{"stx":"html"}'></div><p><strong data-parsoid='{"stx":"html","autoInsertedEnd":true}'>A</strong></p>
+<p><strong data-parsoid='{"stx":"html","autoInsertedStart":true}'>B</strong></p>
+!! end
+
+# T8200: <blockquote> should behave like <div> with respect to line breaks
+!! test
+T8200: paragraphs inside blockquotes (no extra line breaks)
+!! wikitext
+<blockquote>Line one
+
+Line two</blockquote>
+!! html
+<blockquote><p>Line one
+Line two</p></blockquote>
+!! end
+
+!! test
+T8200: paragraphs inside blockquotes (extra line break on open)
+!! wikitext
+<blockquote>
+Line one
+
+Line two</blockquote>
+!! html
+<blockquote>
+<p>Line one
+</p><p>
+Line two</p></blockquote>
+!! end
+
+!! test
+T8200: paragraphs inside blockquotes (extra line break on close)
+!! wikitext
+<blockquote>Line one
+
+Line two
+</blockquote>
+!! html
+<blockquote><p>Line one
+</p><p>Line two
+</p>
+</blockquote>
+!! end
+
+!! test
+T8200: paragraphs inside blockquotes (extra line break on open and close)
+!! wikitext
+<blockquote>
+Line one
+
+Line two
+</blockquote>
+!! html
+<blockquote>
+<p>Line one
+</p><p>Line two
+</p>
+</blockquote>
+!! end
+
+## This is a corner case interaction between the paragraph wrapping in the
+## php parser's BlockLevelPass and Remex.  `doBlockLevels` has a notion of
+## some tags which close paragraphs (and thus prevent wrapping on their line),
+## of which "div" is one, but do p-wrapping inside them.  These are referred
+## to as "never suppressing".  Remex, for its part, doesn't traverse into
+## "div"s to p-wrap.  Hence, we only get this partial wrapping.
+!! test
+Paragraphs inside blockquotes/divs (no extra line breaks)
+!! wikitext
+<blockquote><div>Line one
+
+Line two</div></blockquote>
+!! html
+<blockquote><div>Line one
+Line two</div></blockquote>
+!! end
+
+!! test
+Paragraphs inside blockquotes/divs (extra line break on open)
+!! wikitext
+<blockquote><div>
+Line one
+
+Line two</div></blockquote>
+!! html
+<blockquote><div>
+<p>Line one
+</p>
+Line two</div></blockquote>
+!! end
+
+!! test
+Paragraphs inside blockquotes/divs (extra line break on close)
+!! wikitext
+<blockquote><div>Line one
+
+Line two
+</div></blockquote>
+!! html
+<blockquote><div>Line one
+<p>Line two
+</p>
+</div></blockquote>
+!! end
+
+!! test
+Paragraphs inside blockquotes/divs (extra line break on open and close)
+!! wikitext
+<blockquote><div>
+Line one
+
+Line two
+</div></blockquote>
+!! html
+<blockquote><div>
+<p>Line one
+</p><p>Line two
+</p>
+</div></blockquote>
+!! end
+
+# Regression test to prevent problematic simplifications of parser tests
+!! test
+Don't paragraph-wrap empty newlines between HTML list items
+!! options
+parsoid=wt2html
+!! wikitext
+<ol>
+<li>foo</li>
+
+
+
+<li>foo</li>
+</ol>
+!! html/php
+<ol>
+<li>foo</li>
+
+
+
+<li>foo</li>
+</ol>
+!! html/parsoid
+<ol data-parsoid='{"stx":"html"}'>
+<li data-parsoid='{"stx":"html"}'>foo</li>
+
+
+
+<li data-parsoid='{"stx":"html"}'>foo</li>
+</ol>
+!! end
+
+!! test
+Nowikis can be considered pwrap optional based on content
+!! wikitext
+{{1x|<nowiki />[[category:123]]<div>123</div>}}
+!! html/php
+<div>123</div>
+!! html/parsoid
+<span typeof="mw:Nowiki mw:Transclusion" about="#mwt1" data-mw='{"parts":[{"template":{"target":{"wt":"1x","href":"./Template:1x"},"params":{"1":{"wt":"&lt;nowiki />[[category:123]]&lt;div>123&lt;/div>"}},"i":0}}]}'></span><link rel="mw:PageProp/Category" href="./Category:123" about="#mwt1"/><div about="#mwt1" data-parsoid='{"stx":"html"}'>123</div>
+!! end
+
+!! test
+Multiple newlines in between HTML list items don't induce paragraph wrapping
+!! wikitext
+<ul>
+<li>hi</li>
+
+
+
+
+<li>ho</li>
+</ul>
+
+<dl>
+<dt>hi</dt>
+<dd>ho<div>123</div>
+</dd>
+
+
+</dl>
+!! html/php
+<ul>
+<li>hi</li>
+
+
+
+
+<li>ho</li>
+</ul>
+<dl>
+<dt>hi</dt>
+<dd>ho<div>123</div>
+</dd>
+
+
+</dl>
+!! end
+
+## Currently the p-wrapper is fragile in how it adds / removes transformations.
+## Having nested or stray pre tags results in the attempt to add duplicates,
+## causing an assertion fail. This test tries to prevent that situation.
+!! test
+Ensure ParagraphWrapper can deal with stray closing pre tags
+!! options
+parsoid=wt2html
+!! wikitext
+plain text</pre>
+!! html/parsoid
+<p>plain text</p>
+!! end
+
+## Right now, Parsoid doesn't de-duplicate style tags.
+## So, we shouldn't see link tags that need to bypass the sanitizer.
+## In a followup patch, when we de-duplicate style tags and
+## introduce link tags, we'll add a hook for link tags in
+## the parser test runner script.
+!! test
+Validating that <style> isn't wrapped in a paragraph (T186965)
+!! options
+styletag=1
+!! wikitext
+A style tag, by itself or with other style/link tags, shouldn't be wrapped in a paragraph
+
+<style>.foo::before { content: "<foo>"; }</style>
+
+<style>.foo::before { content: "<foo>"; }</style> <link rel="foo" href="bar"/><style>.foo::before { content: "<foo>"; }</style>
+
+But if it's on a line with other content, let it be wrapped.
+
+<style>.foo::before { content: "<foo>"; }</style> bar
+
+foo <style>.foo::before { content: "<foo>"; }</style>
+
+foo <style>.foo::before { content: "<foo>"; }</style> bar
+
+And the same if we have non-paragraph-breaking whitespace
+
+foo
+<style>.foo::before { content: "<foo>"; }</style>
+bar
+!! html/php
+<p>A style tag, by itself or with other style/link tags, shouldn't be wrapped in a paragraph
+</p>
+<style>.foo::before { content: "<foo>"; }</style>
+<style>.foo::before { content: "<foo>"; }</style> <link rel="foo" href="bar" /><style>.foo::before { content: "<foo>"; }</style>
+<p>But if it's on a line with other content, let it be wrapped.
+</p><p><style>.foo::before { content: "<foo>"; }</style> bar
+</p><p>foo <style>.foo::before { content: "<foo>"; }</style>
+</p><p>foo <style>.foo::before { content: "<foo>"; }</style> bar
+</p><p>And the same if we have non-paragraph-breaking whitespace
+</p><p>foo
+<style>.foo::before { content: "<foo>"; }</style>
+bar
+</p>
+!! html/parsoid
+<p>A style tag, by itself or with other style/link tags, shouldn't be wrapped in a paragraph</p>
+
+<style typeof="mw:Extension/style" data-mw='{"name":"style","attrs":{},"body":{"extsrc":".foo::before { content: \"&lt;foo>\"; }"}}'>.foo::before { content: "<foo>"; }</style>
+
+<p><style typeof="mw:Extension/style" data-mw='{"name":"style","attrs":{},"body":{"extsrc":".foo::before { content: \"&lt;foo>\"; }"}}'>.foo::before { content: "<foo>"; }</style> &lt;link rel="foo" href="bar"/><style typeof="mw:Extension/style" data-mw='{"name":"style","attrs":{},"body":{"extsrc":".foo::before { content: \"&lt;foo>\"; }"}}'>.foo::before { content: "<foo>"; }</style></p>
+
+<p>But if it's on a line with other content, let it be wrapped.</p>
+
+<p><style typeof="mw:Extension/style" data-mw='{"name":"style","attrs":{},"body":{"extsrc":".foo::before { content: \"&lt;foo>\"; }"}}'>.foo::before { content: "<foo>"; }</style> bar</p>
+
+<p>foo <style typeof="mw:Extension/style" data-mw='{"name":"style","attrs":{},"body":{"extsrc":".foo::before { content: \"&lt;foo>\"; }"}}'>.foo::before { content: "<foo>"; }</style></p>
+
+<p>foo <style typeof="mw:Extension/style" data-mw='{"name":"style","attrs":{},"body":{"extsrc":".foo::before { content: \"&lt;foo>\"; }"}}'>.foo::before { content: "<foo>"; }</style> bar</p>
+
+<p>And the same if we have non-paragraph-breaking whitespace</p>
+
+<p>foo
+<style typeof="mw:Extension/style" data-mw='{"name":"style","attrs":{},"body":{"extsrc":".foo::before { content: \"&lt;foo>\"; }"}}'>.foo::before { content: "<foo>"; }</style>
+bar</p>
+!! end
+
+!! test
+Validating that <link> isn't wrapped in a paragraph (T186965)
+!! options
+styletag=1
+!! wikitext
+A link tag, by itself or with other style/link tags, shouldn't be wrapped in a paragraph
+
+<link rel="foo" href="bar"/>
+
+<link rel="foo" href="bar"/> <style>.foo::before { content: "<foo>"; }</style><link rel="foo" href="bar"/>
+
+But if it's on a line with other content, let it be wrapped.
+
+<link rel="foo" href="bar"/> bar
+
+foo <link rel="foo" href="bar"/>
+
+foo <link rel="foo" href="bar"/> bar
+
+And the same if we have non-paragraph-breaking whitespace
+
+foo
+<link rel="foo" href="bar"/>
+bar
+!! html/php
+<p>A link tag, by itself or with other style/link tags, shouldn't be wrapped in a paragraph
+</p>
+<link rel="foo" href="bar" />
+<link rel="foo" href="bar" /> <style>.foo::before { content: "<foo>"; }</style><link rel="foo" href="bar" />
+<p>But if it's on a line with other content, let it be wrapped.
+</p><p><link rel="foo" href="bar" /> bar
+</p><p>foo <link rel="foo" href="bar" />
+</p><p>foo <link rel="foo" href="bar" /> bar
+</p><p>And the same if we have non-paragraph-breaking whitespace
+</p><p>foo
+<link rel="foo" href="bar" />
+bar
+</p>
+!! end
+
+!! test
+P-wrapping should not break after <td>s separated by newlines are converted back to pipes
+!! wikitext
+a
+|b
+
+|c
+d
+!! html/php
+<p>a
+|b
+</p><p>|c
+d
+</p>
+!! html/parsoid
+<p>a
+|b</p>
+
+<p>|c
+d</p>
+!! end
+
+# BlockLevelPass suppresses P-wrapping for tags whose names begin with
+# `mw:`.  We'll somewhat arbitrarily chose `mw:editsection` to
+# represent this class of tags for testing purposes.
+!! test
+Tags which are hidden from tidiers cannot pass through the Sanitizer
+!! options
+parsoid=wt2html,html2html
+!! wikitext
+<mw:editsection><script>alert();</script></mw:editsection>
+
+<meta property="mw:PageProp/toc" />
+!! html/php
+<p>&lt;mw:editsection&gt;&lt;script&gt;alert();&lt;/script&gt;&lt;/mw:editsection&gt;
+</p><p>&lt;meta property="mw:PageProp/toc" /&gt;
+</p>
+!! html/parsoid
+<p>&lt;mw:editsection>&lt;script>alert();&lt;/script>&lt;/mw:editsection></p>
+
+<p>&lt;meta property="mw:PageProp/toc" /></p>
+!! end
+
+!! test
+T386233: suppress <nowiki/> tags between extension tags
+!! wikitext
+Deliberately unclosed b tag triggers p-wrapping if a nowiki span is
+added between the divtags:
+
+<b>{{1x|<divtag>abc</divtag><divtag>xyz</divtag>}}
+!! html/php
+<p>Deliberately unclosed b tag triggers p-wrapping if a nowiki span is
+added between the divtags:
+</p>
+<b><div>abc</div><div>xyz</div></b>
+!! html/parsoid+integrated
+<p>Deliberately unclosed b tag triggers p-wrapping if a nowiki span is added between the divtags:</p>
+<b>
+<div typeof="mw:Extension/divtag mw:Transclusion" data-mw='{"name":"divtag","attrs":{},"body":{"extsrc":"abc"},"parts":[{"template":{"target":{"wt":"1x","href":"./Template:1x"},"params":{"1":{"wt":"&lt;divtag>abc&lt;/divtag>&lt;divtag>xyz&lt;/divtag>"}},"i":0}}]}'>
+<p>abc</p>
+</div>
+<div typeof="mw:Extension/divtag" data-mw='{"name":"divtag","attrs":{},"body":{"extsrc":"xyz"}}'>
+<p>xyz</p>
+</div>
+</b>
 !! end

@@ -1,0 +1,214 @@
+# Security and HTML correctness
+# From Nick Jenkins' fuzz testing
+
+# The parsoid-compatible option below is only relevant when we are moresrunning
+# parser tests in integrated mode with Parsoid. This option is ignored
+# when this test file is run with Parsoid in standalone mode.
+!! options
+parsoid-compatible=wt2html,wt2wt
+version=2
+!! end
+
+!! test
+Fuzz testing: Parser13
+!! wikitext
+{| 
+| http://a|
+!! html
+<table>
+<tbody><tr>
+<td>
+</td>
+</tr>
+</tbody></table>
+!! end
+
+# Known to produce bogus xml (extra </td>)
+# Don't add the html/php section since it generates broken HTML
+!! test
+Fuzz testing: Parser16
+!! wikitext
+{|
+!https://||||||
+!! html
+<table>
+<tbody><tr>
+<th>https://</th>
+<th></th>
+<th></th>
+<th>
+
+</th></tr>
+</tbody></table>
+!! end
+
+!! test
+Fuzz testing: Parser21
+!! wikitext
+{|
+!irc://{{ftp://a" onmouseover="alert('hello world');"
+|
+!! html
+<table>
+<tbody><tr>
+<th><a rel="nofollow" class="external free" href="irc://{{ftp://a">irc://{{ftp://a</a>" onmouseover="alert('hello world');"
+</th>
+<td>
+</td>
+</tr>
+</tbody></table>
+!! end
+
+!! test
+Fuzz testing: Parser22
+!! wikitext
+http://===r:::https://b
+
+{|
+!! html/php
+<p><a rel="nofollow" class="external free" href="http://===r:::https://b">http://===r:::https://b</a>
+</p>
+<table>
+<tbody><tr><td></td></tr>
+</tbody></table>
+!! html/parsoid
+<p><a rel="mw:ExtLink nofollow" href="http://===r:::https://b" class="external free" data-parsoid='{"stx":"url"}'>http://===r:::https://b</a></p>
+
+<table data-parsoid='{"autoInsertedEnd":true}'></table>
+!! end
+
+# The above 'Parser24' fuzz test exposed a tokenizer bug (T221384);
+# this is a minimized version of the above test to catch regressions.
+!! test
+Fuzz testing: Parser24 (minimized)
+!! options
+parsoid=wt2html
+!! wikitext
+{{<u {{{{[[Sx-->}}
+!! html/php
+<p>{{<u>}}
+</u></p>
+!! html/parsoid
+<p>{{<u data-parsoid='{"stx":"html","a":{"{{{{[[Sx--":null},"sa":{"{{{{[[Sx--":""},"autoInsertedEnd":true}'>}}</u></p>
+!! end
+
+## Remex doesn't account for fostered content.
+## Known to produce bad XML for now
+!! test
+Fuzz testing: Parser24
+!! options
+parsoid=wt2html
+!! wikitext
+{|
+{{{|
+<u CLASS=
+| {{{{SSSll!!!!!!!VVVV)]]][[Special:*xxxxxxx--><noinclude>}}}} >
+<br style="onmouseover='alert(document.cookie);' " />
+
+MOVE YOUR MOUSE CURSOR OVER THIS TEXT
+|
+!! html/php
+
+{{{|
+<u class="&#124;">}}}} &gt;
+<br style="onmouseover=&#39;alert(document.cookie);&#39;" />
+
+MOVE YOUR MOUSE CURSOR OVER THIS TEXT
+</u><table><tbody><tr>
+<td>
+</td>
+</tr>
+</tbody></table>
+!! html/parsoid
+<p data-parsoid='{"fostered":true,"autoInsertedEnd":true,"autoInsertedStart":true}'>
+{{{|
+<u class="|" data-parsoid='{"stx":"html","a":{"{{{{SSSll!!!!!!!VVVV)]]][[Special:*xxxxxxx--":null},"sa":{"{{{{SSSll!!!!!!!VVVV)]]][[Special:*xxxxxxx--":""},"autoInsertedEnd":true}'><meta typeof="mw:Includes/NoInclude" data-parsoid='{"src":"&lt;noinclude>"}'/>}}}} >
+<br style="onmouseover='alert(document.cookie);' " data-parsoid='{"stx":"html","selfClose":true}'/>
+
+MOVE YOUR MOUSE CURSOR OVER THIS TEXT</u></p>
+<table data-parsoid='{"autoInsertedEnd":true}'><tbody><tr data-parsoid='{"autoInsertedStart":true}'><td></td></tr></tbody></table>
+!! end
+
+# Note: the current result listed for this is not what the original one was,
+# but the original bug was JavaScript injection, which is fixed in any case.
+# It's not clear that the original result listed was any more correct than the
+# current one.  Original result:
+# <p>{{{| 
+# </p>
+# <li class="&#124;&#124;">
+# }}}blah" onmouseover="alert('hello world');" align="left"<b>MOVE MOUSE CURSOR OVER HERE</b>
+!!test
+Fuzz testing: Parser25 (T8055)
+!! wikitext
+{{{
+| 
+<LI CLASS=||
+ >
+}}}blah" onmouseover="alert('hello world');" align="left"'''MOVE MOUSE CURSOR OVER HERE
+!! html/php
+<p>&lt;LI CLASS=blah" onmouseover="alert('hello world');" align="left"<b>MOVE MOUSE CURSOR OVER HERE</b>
+</p>
+!! html/parsoid
+<span about="#mwt1" typeof="mw:Param" data-parsoid='{"pi":[[{"k":"1"},{"k":"2"},{"k":"3"}]]}' data-mw='{"parts":[{"templatearg":{"target":{"wt":""},"params":{"1":{"wt":" \n&lt;LI CLASS="},"2":{"wt":""},"3":{"wt":"\n >\n"}},"i":0}},"blah\" onmouseover=\"alert(&#39;hello world&#39;);\" align=\"left\"&#39;&#39;&#39;MOVE MOUSE CURSOR OVER HERE"]}'>
+</span><p about="#mwt1">&lt;LI CLASS=blah" onmouseover="alert('hello world');" align="left"<b>MOVE MOUSE CURSOR OVER HERE</b></p>
+!! end
+
+!!test
+Fuzz testing: URL adjacent extension (with space, clean)
+!! wikitext
+http://example.com <nowiki>junk</nowiki>
+!! html/php
+<p><a rel="nofollow" class="external free" href="http://example.com">http://example.com</a> junk
+</p>
+!! html/parsoid
+<p><a rel="mw:ExtLink nofollow" href="http://example.com" class="external free" data-parsoid='{"stx":"url"}'>http://example.com</a> <span typeof="mw:Nowiki">junk</span></p>
+!! end
+
+!!test
+Fuzz testing: URL adjacent extension (no space, dirty; nowiki)
+!! wikitext
+http://example.com<nowiki>junk</nowiki>
+!! html/php
+<p><a rel="nofollow" class="external free" href="http://example.com">http://example.com</a>junk
+</p>
+!! html/parsoid
+<p><a rel="mw:ExtLink nofollow" href="http://example.com" class="external free" data-parsoid='{"stx":"url"}'>http://example.com</a><span typeof="mw:Nowiki">junk</span></p>
+!! end
+
+!! test
+Fuzz testing: URL adjacent extension (no space, dirty; pre)
+!! wikitext
+http://example.com<pre>junk</pre>
+!! html/php
+<p><a rel="nofollow" class="external free" href="http://example.com">http://example.com</a></p><pre>junk</pre>
+!! html/parsoid
+<p><a rel="mw:ExtLink nofollow" href="http://example.com" class="external free" data-parsoid='{"stx":"url"}'>http://example.com</a></p><pre typeof="mw:Extension/pre" about="#mwt1" data-parsoid='{"stx":"html"}' data-mw='{"name":"pre","attrs":{},"body":{"extsrc":"junk"}}'>junk</pre>
+!! end
+
+# Parsoid will emit the newline literally in wt2wt; see next test case.
+!! test
+Fuzz testing: encoded newline in generated HTML replacements (T8577)
+!! options
+parsoid=wt2html
+!! wikitext
+<pre dir="&#10;"></pre>
+!! html/php
+<pre dir="&#10;"></pre>
+!! html/parsoid
+<pre dir="
+" typeof="mw:Extension/pre" about="#mwt2" data-mw='{"name":"pre","attrs":{"dir":""},"body":{"extsrc":""}}'></pre>
+!! end
+
+!! test
+Fuzz testing: encoded newline in generated HTML replacements, html2wt (T8577)
+!! options
+parsoid=html2wt
+!! html/parsoid
+<pre typeof="mw:Extension/pre" about="#mwt2" dir="
+" data-mw='{"name":"pre","attrs":{"dir":"\n"},"body":{"extsrc":""}}'></pre>
+!! wikitext
+<pre dir="
+"></pre>
+!! html/php
+<pre dir=""></pre>
+!! end

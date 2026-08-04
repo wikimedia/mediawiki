@@ -1,0 +1,715 @@
+### This file has tests for category links
+
+# The parsoid-compatible option below is only relevant when we are running
+# parser tests in integrated mode with Parsoid. This option is ignored
+# when this test file is run with Parsoid in standalone mode.
+!! options
+parsoid-compatible=wt2html,wt2wt
+version=2
+!! end
+
+!! article
+Template:1x
+!! text
+{{{1}}}
+!! endarticle
+
+!!article
+Foo
+!!text
+FOO
+!!endarticle
+
+###
+### Categories
+###
+!! article
+Category:MediaWiki User's Guide
+!! text
+blah
+!! endarticle
+
+!! test
+Link to category
+!! options
+cat
+!! wikitext
+[[:Category:MediaWiki User's Guide]]
+!! metadata
+!! html
+<p><a href="/wiki/Category:MediaWiki_User%27s_Guide" title="Category:MediaWiki User&#39;s Guide">Category:MediaWiki User's Guide</a>
+</p>
+!! end
+
+!! test
+Simple category
+!! options
+cat
+!! metadata
+cat=MediaWiki_User's_Guide sort=
+!! wikitext
+[[Category:MediaWiki User's Guide]]
+!! html/php
+!! html/parsoid
+<link rel="mw:PageProp/Category" href="./Category:MediaWiki_User's_Guide" data-parsoid='{"stx":"simple","a":{"href":"./Category:MediaWiki_User&#39;s_Guide"},"sa":{"href":"Category:MediaWiki User&#39;s Guide"}}'/>
+!! end
+
+!! test
+Simple category with whitespace as sort key
+!! options
+cat
+!! metadata
+cat=Foo sort= 
+!! wikitext
+[[Category:Foo| ]]
+!! html/php
+!! html/parsoid
+<link rel="mw:PageProp/Category" href="./Category:Foo#%20" data-parsoid='{"stx":"simple","a":{"href":"./Category:Foo#%20"},"sa":{"href":"Category:Foo#%20"}}'/>
+!! end
+
+!! test
+PAGESINCATEGORY invalid title fatal (r33546 fix)
+!! wikitext
+{{PAGESINCATEGORY:<bogus>}}
+!! html
+<p>0
+</p>
+!! end
+
+!! test
+Category with different sort key
+!! options
+cat
+!! metadata
+cat=MediaWiki_User's_Guide sort=Foo
+!! wikitext
+[[Category:MediaWiki User's Guide|Foo]]
+!! html/php
+!! html/parsoid
+<link rel="mw:PageProp/Category" href="./Category:MediaWiki_User's_Guide#Foo" data-parsoid='{"stx":"piped","a":{"href":"./Category:MediaWiki_User&#39;s_Guide"},"sa":{"href":"Category:MediaWiki User&#39;s Guide"}}'/>
+!! end
+
+!! test
+Category with identical sort key
+!! options
+cat
+!! metadata
+cat=MediaWiki_User's_Guide sort=MediaWiki User's Guide
+!! wikitext
+[[Category:MediaWiki User's Guide|MediaWiki User's Guide]]
+!! html/php
+!! html/parsoid
+<link rel="mw:PageProp/Category" href="./Category:MediaWiki_User's_Guide#MediaWiki%20User's%20Guide" data-parsoid='{"stx":"piped","a":{"href":"./Category:MediaWiki_User&#39;s_Guide"},"sa":{"href":"Category:MediaWiki User&#39;s Guide"}}'/>
+!! end
+
+!! test
+Category with identical sort key, except underscores
+!! options
+cat
+!! metadata
+cat=MediaWiki_User's_Guide sort=MediaWiki_User's_Guide
+!! wikitext
+[[Category:MediaWiki User's Guide|MediaWiki_User's_Guide]]
+!! html/php
+!! html/parsoid
+<link rel="mw:PageProp/Category" href="./Category:MediaWiki_User's_Guide#MediaWiki_User's_Guide" data-parsoid='{"stx":"piped","a":{"href":"./Category:MediaWiki_User&#39;s_Guide"},"sa":{"href":"Category:MediaWiki User&#39;s Guide"}}'/>
+!! end
+
+!! test
+Category with newline in sort key
+!! options
+cat
+parsoid=wt2html,html2html
+!! wikitext
+[[Category:Wikidata:Tools|
+*]]
+!! metadata
+cat=Wikidata:Tools sort=
+*
+!! html/php
+!! html/parsoid
+<link rel="mw:PageProp/Category" href="./Category:Wikidata:Tools#*"/>
+!! end
+
+!! test
+Category with template-generated sort key
+!! options
+cat
+!! metadata
+cat=MediaWiki_User's_Guide sort=MediaWiki Foo Guide
+!! wikitext
+[[Category:MediaWiki User's Guide|MediaWiki {{1x|Foo}} Guide]]
+!! html/php
+!! html/parsoid
+<link rel="mw:PageProp/Category" href="./Category:MediaWiki_User's_Guide#MediaWiki%20Foo%20Guide" typeof="mw:ExpandedAttrs" data-mw='{"attribs":[[{"txt":"mw:sortKey"},{"html":"MediaWiki &lt;span typeof=\"mw:Transclusion\" data-mw=&apos;{\"parts\":[{\"template\":{\"target\":{\"wt\":\"1x\",\"href\":\"./Template:1x\"},\"params\":{\"1\":{\"wt\":\"Foo\"}},\"i\":0}}]}&apos;>Foo&lt;/span> Guide"}]]}'/>
+!! end
+
+## We used to, but no longer wt2wt this test since the default serializer
+## will normalize all categories to serialize on their own line.
+## This wikitext usage is going to be fairly uncommon in production and
+## selser will take care of preserving formatting in those scenarios.
+!! test
+Category / paragraph interactions
+!! options
+parsoid=wt2html
+!! wikitext
+Foo [[Category:Baz]] Bar
+
+Foo [[Category:Baz]]
+Bar
+
+Foo
+[[Category:Baz]]
+Bar
+
+Foo
+[[Category:Baz]] Bar
+
+Foo
+[[Category:Baz]]
+ [[Category:Baz]]
+[[Category:Baz]]
+Bar
+
+[[Category:Baz]]
+ [[Category:Baz]]
+[[Category:Baz]]
+
+[[Category:Baz]]
+ {{1x|[[Category:Baz]]}}
+[[Category:Baz]]
+!! html/php
+<p>Foo  Bar
+</p><p>Foo 
+Bar
+</p><p>Foo
+Bar
+</p><p>Foo Bar
+</p><p>Foo
+Bar
+</p>
+!! html/parsoid
+<p>Foo <link rel="mw:PageProp/Category" href="./Category:Baz"/> Bar</p>
+<p>Foo <link rel="mw:PageProp/Category" href="./Category:Baz"/> Bar</p>
+<p>Foo <link rel="mw:PageProp/Category" href="./Category:Baz"/> Bar</p>
+<p>Foo <link rel="mw:PageProp/Category" href="./Category:Baz"/> Bar</p>
+<p>Foo <link rel="mw:PageProp/Category" href="./Category:Baz"/> <link rel="mw:PageProp/Category" href="./Category:Baz"/> <link rel="mw:PageProp/Category" href="./Category:Baz"/> Bar</p>
+<link rel="mw:PageProp/Category" href="./Category:Baz"/> <link rel="mw:PageProp/Category" href="./Category:Baz"/> <link rel="mw:PageProp/Category" href="./Category:Baz"/> <link rel="mw:PageProp/Category" href="./Category:Baz"/> <span class="mw-empty-elt" about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"1x","href":"./Template:1x"},"params":{"1":{"wt":"[[Category:Baz]]"}},"i":0}}]}'><link rel="mw:PageProp/Category" href="./Category:Baz"/></span>
+<link rel="mw:PageProp/Category" href="./Category:Baz"/>
+!! end
+
+## We used to, but no longer wt2wt this test since the default serializer
+## will normalize all categories to serialize on their own line.
+## This wikitext usage is going to be fairly uncommon in production and
+## selser will take care of preserving formatting in those scenarios.
+!! test
+Category / non-newline whitespace interactions (T359886)
+!! options
+parsoid=wt2html
+!! wikitext
+* Foo[[Category:Foo]]Bar
+* Foo[[Category:Foo]] Bar
+* Foo [[Category:Foo]]Bar
+* Foo [[Category:Foo]] Bar
+
+* Foo[[Category:Foo]][[Category:Bar]]Bar
+* Foo[[Category:Foo]][[Category:Bar]] Bar
+* Foo[[Category:Foo]] [[Category:Bar]]Bar
+* Foo[[Category:Foo]] [[Category:Bar]] Bar
+* Foo [[Category:Foo]][[Category:Bar]]Bar
+* Foo [[Category:Foo]][[Category:Bar]] Bar
+* Foo [[Category:Foo]] [[Category:Bar]]Bar
+* Foo [[Category:Foo]] [[Category:Bar]] Bar
+!! html/php
+<ul><li>FooBar</li>
+<li>Foo Bar</li>
+<li>Foo Bar</li>
+<li>Foo  Bar</li></ul>
+<ul><li>FooBar</li>
+<li>Foo Bar</li>
+<li>Foo Bar</li>
+<li>Foo  Bar</li>
+<li>Foo Bar</li>
+<li>Foo  Bar</li>
+<li>Foo  Bar</li>
+<li>Foo   Bar</li></ul>
+!! html/parsoid
+<ul>
+<li>Foo<link rel="mw:PageProp/Category" href="./Category:Foo"/>Bar</li>
+<li>Foo<link rel="mw:PageProp/Category" href="./Category:Foo"/> Bar</li>
+<li>Foo <link rel="mw:PageProp/Category" href="./Category:Foo"/>Bar</li>
+<li>Foo <link rel="mw:PageProp/Category" href="./Category:Foo"/> Bar</li>
+</ul>
+<ul>
+<li>Foo<link rel="mw:PageProp/Category" href="./Category:Foo"/><link rel="mw:PageProp/Category" href="./Category:Bar"/>Bar</li>
+<li>Foo<link rel="mw:PageProp/Category" href="./Category:Foo"/><link rel="mw:PageProp/Category" href="./Category:Bar"/> Bar</li>
+<li>Foo<link rel="mw:PageProp/Category" href="./Category:Foo"/> <link rel="mw:PageProp/Category" href="./Category:Bar"/>Bar</li>
+<li>Foo<link rel="mw:PageProp/Category" href="./Category:Foo"/> <link rel="mw:PageProp/Category" href="./Category:Bar"/> Bar</li>
+<li>Foo <link rel="mw:PageProp/Category" href="./Category:Foo"/><link rel="mw:PageProp/Category" href="./Category:Bar"/>Bar</li>
+<li>Foo <link rel="mw:PageProp/Category" href="./Category:Foo"/><link rel="mw:PageProp/Category" href="./Category:Bar"/> Bar</li>
+<li>Foo <link rel="mw:PageProp/Category" href="./Category:Foo"/> <link rel="mw:PageProp/Category" href="./Category:Bar"/>Bar</li>
+<li>Foo <link rel="mw:PageProp/Category" href="./Category:Foo"/> <link rel="mw:PageProp/Category" href="./Category:Bar"/> Bar</li>
+</ul>
+!! end
+
+## Same as the above test, but with equally-invisible interlanguage links
+!! test
+Language link / non-newline whitespace interactions (T359886)
+!! options
+parsoid=wt2html
+!! wikitext
+* Foo[[es:Foo]]Bar
+* Foo[[es:Foo]] Bar
+* Foo [[es:Foo]]Bar
+* Foo [[es:Foo]] Bar
+
+* Foo[[es:Foo]][[es:Bar]]Bar
+* Foo[[es:Foo]][[es:Bar]] Bar
+* Foo[[es:Foo]] [[es:Bar]]Bar
+* Foo[[es:Foo]] [[es:Bar]] Bar
+* Foo [[es:Foo]][[es:Bar]]Bar
+* Foo [[es:Foo]][[es:Bar]] Bar
+* Foo [[es:Foo]] [[es:Bar]]Bar
+* Foo [[es:Foo]] [[es:Bar]] Bar
+!! html/php
+<ul><li>FooBar</li>
+<li>Foo Bar</li>
+<li>Foo Bar</li>
+<li>Foo  Bar</li></ul>
+<ul><li>FooBar</li>
+<li>Foo Bar</li>
+<li>Foo Bar</li>
+<li>Foo  Bar</li>
+<li>Foo Bar</li>
+<li>Foo  Bar</li>
+<li>Foo  Bar</li>
+<li>Foo   Bar</li></ul>
+!! html/parsoid
+<ul>
+<li>Foo<link rel="mw:PageProp/Language" href="http://es.wikipedia.org/wiki/Foo"/>Bar</li>
+<li>Foo<link rel="mw:PageProp/Language" href="http://es.wikipedia.org/wiki/Foo"/> Bar</li>
+<li>Foo <link rel="mw:PageProp/Language" href="http://es.wikipedia.org/wiki/Foo"/>Bar</li>
+<li>Foo <link rel="mw:PageProp/Language" href="http://es.wikipedia.org/wiki/Foo"/> Bar</li>
+</ul>
+<ul>
+<li>Foo<link rel="mw:PageProp/Language" href="http://es.wikipedia.org/wiki/Foo"/><link rel="mw:PageProp/Language" href="http://es.wikipedia.org/wiki/Bar"/>Bar</li>
+<li>Foo<link rel="mw:PageProp/Language" href="http://es.wikipedia.org/wiki/Foo"/><link rel="mw:PageProp/Language" href="http://es.wikipedia.org/wiki/Bar"/> Bar</li>
+<li>Foo<link rel="mw:PageProp/Language" href="http://es.wikipedia.org/wiki/Foo"/> <link rel="mw:PageProp/Language" href="http://es.wikipedia.org/wiki/Bar"/>Bar</li>
+<li>Foo<link rel="mw:PageProp/Language" href="http://es.wikipedia.org/wiki/Foo"/> <link rel="mw:PageProp/Language" href="http://es.wikipedia.org/wiki/Bar"/> Bar</li>
+<li>Foo <link rel="mw:PageProp/Language" href="http://es.wikipedia.org/wiki/Foo"/><link rel="mw:PageProp/Language" href="http://es.wikipedia.org/wiki/Bar"/>Bar</li>
+<li>Foo <link rel="mw:PageProp/Language" href="http://es.wikipedia.org/wiki/Foo"/><link rel="mw:PageProp/Language" href="http://es.wikipedia.org/wiki/Bar"/> Bar</li>
+<li>Foo <link rel="mw:PageProp/Language" href="http://es.wikipedia.org/wiki/Foo"/> <link rel="mw:PageProp/Language" href="http://es.wikipedia.org/wiki/Bar"/>Bar</li>
+<li>Foo <link rel="mw:PageProp/Language" href="http://es.wikipedia.org/wiki/Foo"/> <link rel="mw:PageProp/Language" href="http://es.wikipedia.org/wiki/Bar"/> Bar</li>
+</ul>
+!! end
+
+## We used to, but no longer wt2wt this test since the default serializer
+## will normalize all categories to serialize on their own line.
+## This wikitext usage is going to be fairly uncommon in production and
+## selser will take care of preserving formatting in those scenarios.
+##
+## The whitespace on the empty line is part of the test. Please do not delete
+!! test
+1. cats/langlinks and newlines: All preceding newlines should be suppressed (courtesy T2087)
+!! options
+parsoid=wt2html
+!! wikitext
+This
+   
+[[Category:Foo]] and this
+[[es:Foo]] and this should be part of same paragraph (not an indent-pre)
+   
+{{1x|[[Category:Foo]] and so should this!}}
+{{1x|[[es:Foo]] and this!}}
+!! html/php
+<p>This and this and this should be part of same paragraph (not an indent-pre) and so should this! and this!
+</p>
+!! html/parsoid
+<p>This
+   
+<link rel="mw:PageProp/Category" href="./Category:Foo" /> and this
+<link rel="mw:PageProp/Language" href="http://es.wikipedia.org/wiki/Foo" /> and this should be part of same paragraph (not an indent-pre)
+   
+<link rel="mw:PageProp/Category" href="./Category:Foo" about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"1x","href":"./Template:1x"},"params":{"1":{"wt":"[[Category:Foo]] and so should this!"}},"i":0}}]}'/><span about="#mwt1"> and so should this!</span>
+<link rel="mw:PageProp/Language" href="http://es.wikipedia.org/wiki/Foo" about="#mwt2" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"1x","href":"./Template:1x"},"params":{"1":{"wt":"[[es:Foo]] and this!"}},"i":0}}]}'/><span about="#mwt2"> and this!</span></p>
+!! end
+
+## Parsoid will not try to wt2wt this while preserving newlines because
+## it suppresses excess newlines within list items -- and we don't want to
+## introduce a special case just for categories, which is, in reality somewhat
+## odd behavior -- categories are unlikely to be used in list items like this
+## in top-level pages and are only likely to show up in template-generated
+## list items where this RT-ing is a non-issue.
+##
+## The whitespace on the empty line is part of the test. Please do not delete
+!! test
+2. cats/langlinks and newlines: All preceding newlines should be suppressed (courtesy T2087)
+!! options
+parsoid=wt2html
+!! wikitext
+* This
+   
+[[Category:Foo]] and this
+[[es:Foo]] and this should be part of the same list item
+* So should this
+
+{{1x|[[Category:Foo]] and this}}
+{{1x|[[es:Foo]] and this should be part of the same list item}}
+!! html/php
+<ul><li>This and this and this should be part of the same list item</li>
+<li>So should this and this and this should be part of the same list item</li></ul>
+!! html/parsoid
+<ul><li>This
+   
+<link rel="mw:PageProp/Category" href="./Category:Foo" /> and this
+<link rel="mw:PageProp/Language" href="http://es.wikipedia.org/wiki/Foo" /> and this should be part of the same list item</li>
+<li>So should this
+
+<link rel="mw:PageProp/Category" href="./Category:Foo" about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"1x","href":"./Template:1x"},"params":{"1":{"wt":"[[Category:Foo]] and this"}},"i":0}}]}'/><span about="#mwt1"> and this</span>
+<link rel="mw:PageProp/Language" href="http://es.wikipedia.org/wiki/Foo" about="#mwt2" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"1x","href":"./Template:1x"},"params":{"1":{"wt":"[[es:Foo]] and this should be part of the same list item"}},"i":0}}]}'/><span about="#mwt2"> and this should be part of the same list item</span></li></ul>
+!! end
+
+## Newlines and categories that follow the last item of a list
+## are treated differently because this (list followed by categories)
+## is an extremely common pattern on wikis.
+!! test
+3. cats/langlinks and newlines: newline suppression for last list item should RT properly
+!! wikitext
+*a
+*b
+   
+[[Category:Foo]]
+   
+[[Category:Bar]]
+[[Category:Baz]]
+[[es:Foo]]
+
+:c
+
+[[Category:C]]
+
+;d
+
+[[Category:D]]
+[[es:Bar]]
+!! html/parsoid
+<ul><li>a</li>
+<li>b</li></ul>
+   
+<link rel="mw:PageProp/Category" href="./Category:Foo" />
+   
+<link rel="mw:PageProp/Category" href="./Category:Bar" />
+<link rel="mw:PageProp/Category" href="./Category:Baz" />
+<link rel="mw:PageProp/Language" href="http://es.wikipedia.org/wiki/Foo" />
+
+<dl><dd>c</dd></dl>
+
+<link rel="mw:PageProp/Category" href="./Category:C" />
+
+<dl><dt>d</dt></dl>
+
+<link rel="mw:PageProp/Category" href="./Category:D" />
+<link rel="mw:PageProp/Language" href="http://es.wikipedia.org/wiki/Bar" />
+!! end
+
+!! test
+4. cats/langlinks: newline suppression for last list item should RT properly
+!! wikitext
+*a
+****b
+
+[[Category:Foo]]
+[[es:Foo]]
+!! html/parsoid
+<ul><li>a
+<ul><li><ul><li><ul><li>b</li></ul></li></ul></li></ul></li></ul>
+
+<link rel="mw:PageProp/Category" href="./Category:Foo" />
+<link rel="mw:PageProp/Language" href="http://es.wikipedia.org/wiki/Foo" />
+!! end
+
+## only wt2html for this to make sure the algo only applies to the rightmost path
+!! test
+5. cats/langlinks: migrateTrailingSolTransparentLinks dom pass should only run on the rightmost path of nested lists
+!! options
+parsoid=wt2html
+!! wikitext
+*a
+**b
+[[Category:Foo]]
+*c
+**d
+[[Category:Foo]]
+[[es:Foo]]
+!! html/parsoid
+<ul><li>a
+<ul><li>b
+<link rel="mw:PageProp/Category" href="./Category:Foo" /></li></ul></li>
+<li>c
+<ul><li>d</li></ul></li></ul>
+<link rel="mw:PageProp/Category" href="./Category:Foo" />
+<link rel="mw:PageProp/Language" href="http://es.wikipedia.org/wiki/Foo" />
+!! end
+
+## We used to, but no longer wt2wt this test since the default serializer
+## will normalize all categories to serialize on their own line.
+## This wikitext usage is going to be fairly uncommon in production and
+## selser will take care of preserving formatting in those scenarios.
+!! test
+6. cats/langlinks: migrateTrailingSolTransparentLinks dom pass should not migrate them when not preceded by newlines
+!! options
+parsoid=wt2html
+!! wikitext
+*a [[Category:Foo]]
+*b [[es:Foo]]
+!! html/parsoid
+<ul><li>a<link rel="mw:PageProp/Category" href="./Category:Foo" /></li>
+<li>b<link rel="mw:PageProp/Language" href="http://es.wikipedia.org/wiki/Foo" /></li></ul>
+!! end
+
+# This test also demonstrates because of newline+category tunneling
+# through the list handler, template wrapping doesn't expand to the
+# containing list when the list item swallows the category.
+!! test
+7. cats/langlinks: migrateTrailingSolTransparentLinks dom pass should leave template content alone
+!! wikitext
+*{{1x|a
+[[Category:Foo]]
+[[es:Foo]]}}
+!! html/php
+<ul><li>a</li></ul>
+!! html/parsoid
+<ul><li><span about="#mwt1" typeof="mw:Transclusion" data-parsoid='{"pi":[[{"k":"1"}]]}' data-mw='{"parts":[{"template":{"target":{"wt":"1x","href":"./Template:1x"},"params":{"1":{"wt":"a\n[[Category:Foo]]\n[[es:Foo]]"}},"i":0}}]}'>a
+</span><link rel="mw:PageProp/Category" href="./Category:Foo" about="#mwt1" /><link rel="mw:PageProp/Language" href="http://es.wikipedia.org/wiki/Foo" about="#mwt1"/></li></ul>
+!! end
+
+!! test
+8. cats/langlinks: migrateTrailingSolTransparentLinks dom pass should not get tripped by intervening templates
+!! wikitext
+*a
+
+{{1x|[[Category:Foo]]
+[[Category:Bar]]}}
+[[Category:Baz]]
+[[es:Baz]]
+!! html/php
+<ul><li>a</li></ul>
+!! html/parsoid
+<ul><li>a</li></ul>
+
+<span class="mw-empty-elt" about="#mwt1" typeof="mw:Transclusion" data-parsoid='{"autoInsertedStart":true,"autoInsertedEnd":true,"pi":[[{"k":"1"}]]}' data-mw='{"parts":[{"template":{"target":{"wt":"1x","href":"./Template:1x"},"params":{"1":{"wt":"[[Category:Foo]]\n[[Category:Bar]]"}},"i":0}}]}'><link rel="mw:PageProp/Category" href="./Category:Foo"/><link rel="mw:PageProp/Category" href="./Category:Bar"/></span>
+<link rel="mw:PageProp/Category" href="./Category:Baz" data-parsoid='{"stx":"simple","a":{"href":"./Category:Baz"},"sa":{"href":"Category:Baz"}}'/>
+<link rel="mw:PageProp/Language" href="http://es.wikipedia.org/wiki/Baz" data-parsoid='{"stx":"simple","a":{"href":"http://es.wikipedia.org/wiki/Baz"},"sa":{"href":"es:Baz"}}'/>
+!! end
+
+!! test
+cats/langlinks: migrateTrailingSolTransparentLinks dom pass should not get tripped by comments and whitespace
+!! wikitext
+*a
+
+[[Category:Bar]]<!--boo1--> <!--boo2-->
+[[Category:Baz]]<!--boo3--> <!--boo4-->
+[[es:Foo]]<!--boo5--> <!--boo6-->
+!! html/parsoid
+<ul><li>a</li></ul>
+
+<link rel="mw:PageProp/Category" href="./Category:Bar" /><!--boo1--> <!--boo2-->
+<link rel="mw:PageProp/Category" href="./Category:Baz" /><!--boo3--> <!--boo4-->
+<link rel="mw:PageProp/Language" href="http://es.wikipedia.org/wiki/Foo" /><!--boo5--> <!--boo6-->
+!! end
+
+!! test
+Categories and newlines: should behave properly with linkprefix (T87753)
+!! options
+language=ar
+!! wikitext
+foo bar
+foo bar
+[[تصنيف:Foo]]
+[[تصنيف:Bar]]
+!! html/php
+<p>foo bar
+foo bar
+</p>
+!! html/parsoid
+<p>foo bar
+foo bar</p>
+<link rel="mw:PageProp/Category" href="./تصنيف:Foo"/>
+<link rel="mw:PageProp/Category" href="./تصنيف:Bar"/>
+!! end
+
+!! test
+No regressions on internal links following category (T174639)
+!! options
+parsoid=wt2html,html2html
+!! wikitext
+[[Category:Foo]]<div>a
+
+[[Foo]]</div>
+!! html/php
+<div>a
+<a href="/wiki/Foo" title="Foo">Foo</a></div>
+!! html/parsoid
+<link rel="mw:PageProp/Category" href="./Category:Foo"/><div>a
+
+<a rel="mw:WikiLink" href="./Foo" title="Foo">Foo</a></div>
+!! end
+
+# Note that Parsoid differs slightly from PHP due to T175421
+!! test
+11. Special case where only newlines separate links (T175416)
+!! options
+parsoid=wt2html,html2html
+!! wikitext
+[[Category:Foo]]
+
+[[Foo]][[es:Alimento]]
+
+[[Foo]]
+!! html/php
+<p><br />
+<a href="/wiki/Foo" title="Foo">Foo</a>
+</p><p><a href="/wiki/Foo" title="Foo">Foo</a>
+</p>
+!! html/parsoid
+<link rel="mw:PageProp/Category" href="./Category:Foo"/>
+
+<p><a rel="mw:WikiLink" href="./Foo" title="Foo">Foo</a></p><link rel="mw:PageProp/Language" href="http://es.wikipedia.org/wiki/Alimento"/>
+
+<p><a rel="mw:WikiLink" href="./Foo" title="Foo">Foo</a></p>
+!! end
+
+!! test
+Category links with multiple namespaces
+!! wikitext
+[[Category:Project:Foo]]
+!! html/parsoid
+<link rel="mw:PageProp/Category" href="./Category:Project:Foo" />
+!! end
+
+!! test
+Parsoid: Serialize link to category page with colon escape
+!! wikitext
+[[:Category:Foo]]
+[[:Category:Foo|Bar]]
+!! html/php
+<p><a href="/index.php?title=Category:Foo&amp;action=edit&amp;redlink=1" class="new" title="Category:Foo (page does not exist)">Category:Foo</a>
+<a href="/index.php?title=Category:Foo&amp;action=edit&amp;redlink=1" class="new" title="Category:Foo (page does not exist)">Bar</a>
+</p>
+!! html/parsoid
+<p><a rel="mw:WikiLink" href="./Category:Foo?action=edit&amp;redlink=1" title="Category:Foo" class="new" typeof="mw:LocalizedAttrs" data-parsoid='{"stx":"simple","a":{"href":"./Category:Foo"},"sa":{"href":":Category:Foo"}}' data-mw-i18n='{"title":{"lang":"x-page","key":"red-link-title","params":["Category:Foo"]}}'>Category:Foo</a>
+<a rel="mw:WikiLink" href="./Category:Foo?action=edit&amp;redlink=1" title="Category:Foo" class="new" typeof="mw:LocalizedAttrs" data-parsoid='{"stx":"piped","a":{"href":"./Category:Foo"},"sa":{"href":":Category:Foo"}}' data-mw-i18n='{"title":{"lang":"x-page","key":"red-link-title","params":["Category:Foo"]}}'>Bar</a></p>
+!! end
+
+# We used to, but no longer wt2wt this test since the default serializer
+# will normalize all categories to serialize on their own line.
+# This wikitext usage is going to be fairly uncommon in production and
+# selser will take care of preventing whitespace insertion if this
+# occurs in an article.
+#
+# html2html disabled for the same reason (whitespace insertion between
+# x and y).
+#
+# html2wt disabled because it localizes the "Category" namespace.
+!! test
+Link prefix/suffixes aren't applied to category links
+!! options
+parsoid=wt2html
+language=is
+!! wikitext
+x[[Category:Foo]]y
+!! html/php
+<p>xy
+</p>
+!! html/parsoid
+<p>x<link rel="mw:PageProp/Category" href="./Flokkur:Foo" data-parsoid=""/>y</p>
+!! end
+
+!! test
+Link prefix/suffixes aren't applied to language links
+!! options
+parsoid=wt2html
+language=is
+!! wikitext
+x[[es:Foo]]y
+!! html/php
+<p>xy
+</p>
+!! html/parsoid
+<p>x<link rel="mw:PageProp/Language" href="http://es.wikipedia.org/wiki/Foo" data-parsoid=""/>y</p>
+!! end
+
+# The conflicting category sort keys cause the
+# 'prevent-selective-update' flag to be set; see
+# [[mw:Parsoid/Internals/Handling_resource_limits]]
+!! test
+Parsoid: Serialize a genuine category link without colon escape
+!! options
+showflags
+!! wikitext
+[[Category:Foo]]
+[[Category:Foo|Bar]]
+!! metadata
+flags=prevent-selective-update
+!! html/php
+!! html/parsoid
+<link rel="mw:PageProp/Category" href="./Category:Foo">
+<link rel="mw:PageProp/Category" href="./Category:Foo#Bar">
+!! end
+
+!! test
+{{defaultsort}} should be location-independent (T353530)
+!! options
+cat
+!! wikitext
+[[Category:Foo]]
+{{DEFAULTSORT:Bar}}
+[[Category:Bat]]
+!! metadata
+cat=Foo sort=Bar
+cat=Bat sort=Bar
+!! end
+
+###
+### Inter-language links
+###
+!! test
+Interlanguage links
+!! options
+ill
+!! wikitext
+[[es:Alimento]]
+[[fr:Nourriture]]
+[[zh:食品]]
+!! metadata
+ill=es:Alimento
+ill=fr:Nourriture
+ill=zh:食品
+!! html/php
+!! html/parsoid
+<link rel="mw:PageProp/Language" href="http://es.wikipedia.org/wiki/Alimento"/>
+<link rel="mw:PageProp/Language" href="http://fr.wikipedia.org/wiki/Nourriture"/>
+<link rel="mw:PageProp/Language" href="http://zh.wikipedia.org/wiki/食品"/>
+!! end
+
+# Integrated-mode parsoid behavior will match other modes after
+# I82a05a51d94782ebb9fa87ff889ca0f633b3e15c is merged in core.
+!! test
+Duplicate interlanguage links (T26502)
+!! options
+ill
+!! wikitext
+[[es:1]]
+[[es:2]]
+[[fr:1]]
+[[fr:2]]
+!! metadata
+ill=es:1
+ill=fr:1
+!! html/php
+!! html/parsoid
+<link rel="mw:PageProp/Language" href="http://es.wikipedia.org/wiki/1"/>
+<link rel="mw:PageProp/Language" href="http://es.wikipedia.org/wiki/2"/>
+<link rel="mw:PageProp/Language" href="http://fr.wikipedia.org/wiki/1"/>
+<link rel="mw:PageProp/Language" href="http://fr.wikipedia.org/wiki/2"/>
+!! end

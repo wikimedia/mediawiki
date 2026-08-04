@@ -1,0 +1,155 @@
+### This file has tests for media links
+
+# The parsoid-compatible option below is only relevant when we are running
+# parser tests in integrated mode with Parsoid. This option is ignored
+# when this test file is run with Parsoid in standalone mode.
+!! options
+parsoid-compatible=wt2html,wt2wt
+version=2
+!! end
+
+!! article
+Test
+!! text
+Dummy article to suppress redlinks in tests
+!! end
+
+!! article
+File:Redirect to foobar.jpg
+!! text
+#REDIRECT[[File:Foobar.jpg]]
+!! endarticle
+
+!! test
+Media link
+!! wikitext
+[[Media:Foobar.jpg]]
+[[Media:Video.ogv]]
+[[:Media:Video.ogv]]
+!! html/php
+<p><a href="http://example.com/images/3/3a/Foobar.jpg" class="internal" title="Foobar.jpg">Media:Foobar.jpg</a>
+<a href="http://example.com/images/0/00/Video.ogv" class="internal" title="Video.ogv">Media:Video.ogv</a>
+<a href="http://example.com/images/0/00/Video.ogv" class="internal" title="Video.ogv">Media:Video.ogv</a>
+</p>
+!! html/parsoid
+<p><a rel="mw:MediaLink" href="http://example.com/images/3/3a/Foobar.jpg" resource="./Media:Foobar.jpg" title="Foobar.jpg">Media:Foobar.jpg</a>
+<a rel="mw:MediaLink" href="http://example.com/images/0/00/Video.ogv" resource="./Media:Video.ogv" title="Video.ogv">Media:Video.ogv</a>
+<a rel="mw:MediaLink" href="http://example.com/images/0/00/Video.ogv" resource="./Media:Video.ogv" title="Video.ogv" data-parsoid='{"a":{"resource":"./Media:Video.ogv"},"sa":{"resource":":Media:Video.ogv"}}'>Media:Video.ogv</a></p>
+!! end
+
+!! test
+Media link with text
+!! wikitext
+[[Media:Foobar.jpg|A neat file to look at]]
+!! html/php
+<p><a href="http://example.com/images/3/3a/Foobar.jpg" class="internal" title="Foobar.jpg">A neat file to look at</a>
+</p>
+!! html/parsoid
+<p><a rel="mw:MediaLink" href="http://example.com/images/3/3a/Foobar.jpg" resource="./Media:Foobar.jpg" title="Foobar.jpg">A neat file to look at</a></p>
+!! end
+
+# This won't pass in standalone mode because we don't have redirect handling in our mock data access.
+# Not sure if it is worth dealing with it.
+!! test
+Media link redirect
+!! wikitext
+[[Media:Redirect to foobar.jpg]]
+!! html/php
+<p><a href="http://example.com/images/3/3a/Foobar.jpg" class="internal" title="Foobar.jpg">Media:Redirect to foobar.jpg</a>
+</p>
+!! html/parsoid+integrated
+<p><a rel="mw:MediaLink" href="http://example.com/images/3/3a/Foobar.jpg" resource="./Media:Foobar.jpg" title="Foobar.jpg">Media:Redirect to foobar.jpg</a></p>
+!! end
+
+!! test
+Localized media link
+!! options
+language=is
+!! wikitext
+[[Miðill:Foobar.jpg]]
+
+[[Miðill:Foobar.jpg|Icelandic]]
+!! html/php
+<p><a href="http://example.com/images/3/3a/Foobar.jpg" class="internal" title="Foobar.jpg">Miðill:Foobar.jpg</a>
+</p><p><a href="http://example.com/images/3/3a/Foobar.jpg" class="internal" title="Foobar.jpg">Icelandic</a>
+</p>
+!! html/parsoid
+<p><a rel="mw:MediaLink" href="http://example.com/images/3/3a/Foobar.jpg" resource="./Miðill:Foobar.jpg" title="Foobar.jpg">Miðill:Foobar.jpg</a></p>
+<p><a rel="mw:MediaLink" href="http://example.com/images/3/3a/Foobar.jpg" resource="./Miðill:Foobar.jpg" title="Foobar.jpg">Icelandic</a></p>
+!! end
+
+# FIXME: this is still bad HTML tag nesting
+# FIXME: doBlockLevels won't wrap this in a paragraph because it contains a div
+# Parsoid & Remex fix the p-wrapping since they operate on the DOM.
+!! test
+Media link with nasty text
+!! options
+parsoid=wt2html,html2html
+!! wikitext
+[[Media:Foobar.jpg|Safe Link<div style=display:none>" onmouseover="alert(document.cookie)" onfoo="</div>]]
+!! html/php
+<p><a href="http://example.com/images/3/3a/Foobar.jpg" class="internal" title="Foobar.jpg">Safe Link</a></p><a href="http://example.com/images/3/3a/Foobar.jpg" class="internal" title="Foobar.jpg"><div style="display:none">" onmouseover="alert(document.cookie)" onfoo="</div></a>
+!! html/parsoid
+<p><a rel="mw:MediaLink" href="http://example.com/images/3/3a/Foobar.jpg" resource="./Media:Foobar.jpg" title="Foobar.jpg">Safe Link</a></p><a rel="mw:MediaLink" href="http://example.com/images/3/3a/Foobar.jpg" resource="./Media:Foobar.jpg" title="Foobar.jpg"><div style="display:none" data-parsoid='{"stx":"html"}'>" onmouseover="alert(document.cookie)" onfoo="</div></a>
+!! end
+
+!! test
+Media link from missing resource (parsoid-only)
+!! options
+parsoid=html2wt
+!! html/parsoid
+<a rel="mw:MediaLink" href="http://example.com/images/3/3a/Foobar.jpg">Bat!</a>
+!! wikitext
+[[Media:Foobar.jpg|Bat!]]
+!! end
+
+!! test
+Media link from missing resource, localized (parsoid-only)
+!! options
+parsoid=html2wt
+language=is
+!! html/parsoid
+<a rel="mw:MediaLink" href="http://example.com/images/3/3a/Foobar.jpg">Bat!</a>
+!! wikitext
+[[Miðill:Foobar.jpg|Bat!]]
+!! end
+
+!! test
+Media link to nonexistent file (T3702)
+!! wikitext
+[[Media:No such.jpg]]
+[[Media:No_such file.jpg]]
+!! html/php
+<p><a href="/index.php?title=Special:Upload&amp;wpDestFile=No_such.jpg" class="new" title="No such.jpg">Media:No such.jpg</a>
+<a href="/index.php?title=Special:Upload&amp;wpDestFile=No_such_file.jpg" class="new" title="No such file.jpg">Media:No_such file.jpg</a>
+</p>
+!! html/parsoid
+<p><a rel="mw:MediaLink" href="./Special:Upload?wpDestFile=No_such.jpg" resource="./Media:No_such.jpg" title="No such.jpg" typeof="mw:Error" data-mw='{"errors":[{"key":"apierror-filedoesnotexist","message":"This image does not exist."}]}' data-parsoid='{"a":{"resource":"./Media:No_such.jpg"},"sa":{"resource":"Media:No such.jpg"}}'>Media:No such.jpg</a>
+<a rel="mw:MediaLink" href="./Special:Upload?wpDestFile=No_such_file.jpg" resource="./Media:No_such_file.jpg" title="No such file.jpg" typeof="mw:Error" data-mw='{"errors":[{"key":"apierror-filedoesnotexist","message":"This image does not exist."}]}' data-parsoid='{"a":{"resource":"./Media:No_such_file.jpg"},"sa":{"resource":"Media:No_such file.jpg"}}'>Media:No_such file.jpg</a></p>
+!! end
+
+!! test
+Media link with nested wikilinks
+!! wikitext
+[[Media:Foobar.jpg|[[Test]]]]
+[[Media:Foobar.jpg|[[File:Foobar.jpg]]]]
+!! html/php
+<p>[[Media:Foobar.jpg|<a href="/wiki/Test" title="Test">Test</a>]]
+[[Media:Foobar.jpg|<span class="mw-default-size" typeof="mw:File"><a href="/wiki/File:Foobar.jpg" class="mw-file-description"><img src="http://example.com/images/3/3a/Foobar.jpg" decoding="async" width="1941" height="220" class="mw-file-element" /></a></span>]]
+</p>
+!! html/parsoid
+<p>[[Media:Foobar.jpg|<a rel="mw:WikiLink" href="./Test" title="Test" data-parsoid='{"stx":"simple","a":{"href":"./Test"},"sa":{"href":"Test"}}'>Test</a>]]
+[[Media:Foobar.jpg|<span class="mw-default-size" typeof="mw:File" data-parsoid='{"optList":[]}'><a href="./File:Foobar.jpg" class="mw-file-description"><img resource="./File:Foobar.jpg" src="http://example.com/images/3/3a/Foobar.jpg" decoding="async" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="220" width="1941" data-parsoid='{"a":{"resource":"./File:Foobar.jpg","height":"220","width":"1941"},"sa":{"resource":"File:Foobar.jpg"}}' class="mw-file-element"/></a></span>]]</p>
+!! end
+
+!! test
+Media link with multiple options
+!! wikitext
+[[Media:Foobar.jpg|123|345]]
+!! html/php
+<p><a href="http://example.com/images/3/3a/Foobar.jpg" class="internal" title="Foobar.jpg">123|345</a>
+</p>
+!! html/parsoid
+<p><a rel="mw:MediaLink" href="http://example.com/images/3/3a/Foobar.jpg" resource="./Media:Foobar.jpg" title="Foobar.jpg">123|345</a></p>
+!! end
+

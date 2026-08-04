@@ -193,7 +193,7 @@ Bad images - manualthumb
 !! html/php
 <figure typeof="mw:Error mw:File/Thumb"><a href="/wiki/File:Foobar.jpg" title="File:Foobar.jpg"><span class="mw-file-element mw-broken-media" data-width="180">File:Foobar.jpg</span></a><figcaption>Uh oh</figcaption></figure>
 !! html/parsoid
-<figure typeof="mw:Error mw:File/Thumb" data-mw='{"attribs":[["manualthumb",{"txt":"Bad.jpg"}]],"errors":[{"key":"apierror-badfile","message":"This image is on the bad file list."}]}'><a href="./File:Foobar.jpg" class="mw-file-description"><span class="mw-file-element mw-broken-media" resource="./File:Foobar.jpg">File:Foobar.jpg</span></a><figcaption>Uh oh</figcaption></figure>
+<figure typeof="mw:Error mw:File/Thumb" data-mw='{"attribs":[["manualthumb",{"txt":"Bad.jpg"}]],"errors":[{"key":"apierror-badfile","message":"This image is on the bad file list."}]}'><a href="./File:Foobar.jpg"><span class="mw-file-element mw-broken-media" resource="./File:Foobar.jpg">File:Foobar.jpg</span></a><figcaption>Uh oh</figcaption></figure>
 !! end
 
 !! test
@@ -652,7 +652,7 @@ thumbsize=220
 !! html/php
 <figure typeof="mw:File/Thumb"><a href="/wiki/File:Foobar.jpg" title="File:Foobar.jpg"><img resource="/wiki/File:Foobar.jpg" src="http://example.com/images/e/ea/Thumb.png" decoding="async" width="135" height="135" class="mw-file-element" /></a><figcaption>Title</figcaption></figure>
 !! html/parsoid
-<figure typeof="mw:File/Thumb" about="#mwt1" data-mw='{"attribs":[["manualthumb",{"txt":"Thumb.png"}]]}'><a href="./File:Foobar.jpg" class="mw-file-description"><img resource="./File:Foobar.jpg" src="http://example.com/images/e/ea/Thumb.png" decoding="async" data-file-width="135" data-file-height="135" data-file-type="bitmap" height="135" width="135" class="mw-file-element"/></a><figcaption>Title</figcaption></figure>
+<figure typeof="mw:File/Thumb" about="#mwt1" data-mw='{"attribs":[["manualthumb",{"txt":"Thumb.png"}]]}'><a href="./File:Foobar.jpg"><img resource="./File:Foobar.jpg" src="http://example.com/images/e/ea/Thumb.png" decoding="async" data-file-width="135" data-file-height="135" data-file-type="bitmap" height="135" width="135" class="mw-file-element"/></a><figcaption>Title</figcaption></figure>
 !! end
 
 !! test
@@ -1250,10 +1250,10 @@ parsoid=wt2html,wt2wt,html2html
 <figure typeof="mw:File/Thumb"><a href="/wiki/File:Foobar.jpg" title="File:Foobar.jpg"><img resource="/wiki/File:Foobar.jpg" src="http://example.com/images/e/ea/Thumb.png" decoding="async" width="135" height="135" class="mw-file-element" /></a><figcaption>caption</figcaption></figure>
 <figure typeof="mw:File/Thumb"><a href="/wiki/File:Foobar.jpg" title="File:Foobar.jpg"><img resource="/wiki/File:Foobar.jpg" src="http://example.com/images/e/ea/Thumb.png" decoding="async" width="135" height="135" class="mw-file-element" /></a><figcaption>caption</figcaption></figure>
 !! html/parsoid
-<figure typeof="mw:File/Thumb" data-mw='{"attribs":[["manualthumb",{"txt":"Thumb.png"}]]}'><a href="./File:Foobar.jpg" class="mw-file-description"><img resource="./File:Foobar.jpg" src="http://example.com/images/e/ea/Thumb.png" decoding="async" data-file-width="135" data-file-height="135" data-file-type="bitmap" height="135" width="135" class="mw-file-element"/></a><figcaption>caption</figcaption></figure>
-<figure typeof="mw:File/Thumb" data-mw='{"attribs":[["manualthumb",{"txt":"Thumb.png"}]]}'><a href="./File:Foobar.jpg" class="mw-file-description"><img resource="./File:Foobar.jpg" src="http://example.com/images/e/ea/Thumb.png" decoding="async" data-file-width="135" data-file-height="135" data-file-type="bitmap" height="135" width="135" class="mw-file-element"/></a><figcaption>caption</figcaption></figure>
-<figure typeof="mw:File/Thumb" data-mw='{"attribs":[["manualthumb",{"txt":"Thumb.png"}]]}'><a href="./File:Foobar.jpg" class="mw-file-description"><img resource="./File:Foobar.jpg" src="http://example.com/images/e/ea/Thumb.png" decoding="async" data-file-width="135" data-file-height="135" data-file-type="bitmap" height="135" width="135" class="mw-file-element"/></a><figcaption>caption</figcaption></figure>
-<figure typeof="mw:File/Thumb" data-mw='{"attribs":[["manualthumb",{"txt":"Thumb.png"}]]}'><a href="./File:Foobar.jpg" class="mw-file-description"><img resource="./File:Foobar.jpg" src="http://example.com/images/e/ea/Thumb.png" decoding="async" data-file-width="135" data-file-height="135" data-file-type="bitmap" height="135" width="135" class="mw-file-element"/></a><figcaption>caption</figcaption></figure>
+<figure typeof="mw:File/Thumb" data-mw='{"attribs":[["manualthumb",{"txt":"Thumb.png"}]]}'><a href="./File:Foobar.jpg"><img resource="./File:Foobar.jpg" src="http://example.com/images/e/ea/Thumb.png" decoding="async" data-file-width="135" data-file-height="135" data-file-type="bitmap" height="135" width="135" class="mw-file-element"/></a><figcaption>caption</figcaption></figure>
+<figure typeof="mw:File/Thumb" data-mw='{"attribs":[["manualthumb",{"txt":"Thumb.png"}]]}'><a href="./File:Foobar.jpg"><img resource="./File:Foobar.jpg" src="http://example.com/images/e/ea/Thumb.png" decoding="async" data-file-width="135" data-file-height="135" data-file-type="bitmap" height="135" width="135" class="mw-file-element"/></a><figcaption>caption</figcaption></figure>
+<figure typeof="mw:File/Thumb" data-mw='{"attribs":[["manualthumb",{"txt":"Thumb.png"}]]}'><a href="./File:Foobar.jpg"><img resource="./File:Foobar.jpg" src="http://example.com/images/e/ea/Thumb.png" decoding="async" data-file-width="135" data-file-height="135" data-file-type="bitmap" height="135" width="135" class="mw-file-element"/></a><figcaption>caption</figcaption></figure>
+<figure typeof="mw:File/Thumb" data-mw='{"attribs":[["manualthumb",{"txt":"Thumb.png"}]]}'><a href="./File:Foobar.jpg"><img resource="./File:Foobar.jpg" src="http://example.com/images/e/ea/Thumb.png" decoding="async" data-file-width="135" data-file-height="135" data-file-type="bitmap" height="135" width="135" class="mw-file-element"/></a><figcaption>caption</figcaption></figure>
 !! end
 
 ###################
@@ -1421,13 +1421,13 @@ parsoid=wt2html,html2html
 <figure typeof="mw:File/Thumb"><a href="/wiki/File:Foobar.jpg" title="File:Foobar.jpg"><img resource="/wiki/File:Foobar.jpg" src="http://example.com/images/e/ea/Thumb.png" decoding="async" width="135" height="135" class="mw-file-element" /></a><figcaption></figcaption></figure>
 <figure typeof="mw:File/Thumb"><a href="/wiki/File:Foobar.jpg" title="File:Foobar.jpg"><img resource="/wiki/File:Foobar.jpg" src="http://example.com/images/e/ea/Thumb.png" decoding="async" width="135" height="135" class="mw-file-element" /></a><figcaption></figcaption></figure>
 !! html/parsoid
-<figure typeof="mw:File/Thumb" data-mw='{"attribs":[["manualthumb",{"txt":"Thumb.png"}]]}'><a href="./File:Foobar.jpg" class="mw-file-description"><img resource="./File:Foobar.jpg" src="http://example.com/images/e/ea/Thumb.png" decoding="async" data-file-width="135" data-file-height="135" data-file-type="bitmap" height="135" width="135" class="mw-file-element"/></a><figcaption></figcaption></figure>
+<figure typeof="mw:File/Thumb" data-mw='{"attribs":[["manualthumb",{"txt":"Thumb.png"}]]}'><a href="./File:Foobar.jpg"><img resource="./File:Foobar.jpg" src="http://example.com/images/e/ea/Thumb.png" decoding="async" data-file-width="135" data-file-height="135" data-file-type="bitmap" height="135" width="135" class="mw-file-element"/></a><figcaption></figcaption></figure>
 
-<figure typeof="mw:File/Thumb" data-mw='{"attribs":[["manualthumb",{"txt":"Thumb.png"}]]}'><a href="./File:Foobar.jpg" class="mw-file-description"><img resource="./File:Foobar.jpg" src="http://example.com/images/e/ea/Thumb.png" decoding="async" data-file-width="135" data-file-height="135" data-file-type="bitmap" height="135" width="135" class="mw-file-element"/></a><figcaption></figcaption></figure>
+<figure typeof="mw:File/Thumb" data-mw='{"attribs":[["manualthumb",{"txt":"Thumb.png"}]]}'><a href="./File:Foobar.jpg"><img resource="./File:Foobar.jpg" src="http://example.com/images/e/ea/Thumb.png" decoding="async" data-file-width="135" data-file-height="135" data-file-type="bitmap" height="135" width="135" class="mw-file-element"/></a><figcaption></figcaption></figure>
 
-<figure typeof="mw:File/Thumb" data-mw='{"attribs":[["manualthumb",{"txt":"Thumb.png"}]]}'><a href="./File:Foobar.jpg" class="mw-file-description"><img resource="./File:Foobar.jpg" src="http://example.com/images/e/ea/Thumb.png" decoding="async" data-file-width="135" data-file-height="135" data-file-type="bitmap" height="135" width="135" class="mw-file-element"/></a><figcaption></figcaption></figure>
+<figure typeof="mw:File/Thumb" data-mw='{"attribs":[["manualthumb",{"txt":"Thumb.png"}]]}'><a href="./File:Foobar.jpg"><img resource="./File:Foobar.jpg" src="http://example.com/images/e/ea/Thumb.png" decoding="async" data-file-width="135" data-file-height="135" data-file-type="bitmap" height="135" width="135" class="mw-file-element"/></a><figcaption></figcaption></figure>
 
-<figure typeof="mw:File/Thumb" data-mw='{"attribs":[["manualthumb",{"txt":"Thumb.png"}]]}'><a href="./File:Foobar.jpg" class="mw-file-description"><img resource="./File:Foobar.jpg" src="http://example.com/images/e/ea/Thumb.png" decoding="async" data-file-width="135" data-file-height="135" data-file-type="bitmap" height="135" width="135" class="mw-file-element"/></a><figcaption></figcaption></figure>
+<figure typeof="mw:File/Thumb" data-mw='{"attribs":[["manualthumb",{"txt":"Thumb.png"}]]}'><a href="./File:Foobar.jpg"><img resource="./File:Foobar.jpg" src="http://example.com/images/e/ea/Thumb.png" decoding="async" data-file-width="135" data-file-height="135" data-file-type="bitmap" height="135" width="135" class="mw-file-element"/></a><figcaption></figcaption></figure>
 !! end
 
 !! test
@@ -1882,7 +1882,7 @@ File:Foobar.jpg|class=b|a
 </ul>
 !! html/parsoid
 <ul class="gallery mw-gallery-traditional" typeof="mw:Extension/gallery" about="#mwt1" data-mw='{"name":"gallery","attrs":{},"body":{}}'>
-<li class="gallerybox" style="width: 155px;"><div class="thumb" style="width: 150px; height: 150px;"><span typeof="mw:File" class="b"><a href="./File:Foobar.jpg" class="mw-file-description" title="a"><img alt="a" resource="./File:Foobar.jpg" src="http://example.com/images/thumb/3/3a/Foobar.jpg/120px-Foobar.jpg" decoding="async" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="14" width="120" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/240px-Foobar.jpg 2x" class="mw-file-element"/></a></span></div><div class="gallerytext">a</div></li>
+<li class="gallerybox" style="width: 155px;"><div class="thumb" style="width: 150px; height: 150px;"><span class="b" typeof="mw:File"><a href="./File:Foobar.jpg" class="mw-file-description" title="a"><img alt="a" resource="./File:Foobar.jpg" src="http://example.com/images/thumb/3/3a/Foobar.jpg/120px-Foobar.jpg" decoding="async" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="14" width="120" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/240px-Foobar.jpg 2x" class="mw-file-element"/></a></span></div><div class="gallerytext">a</div></li>
 </ul>
 !! end
 
@@ -3165,7 +3165,7 @@ djvu
 !! html/php
 <figure typeof="mw:File/Thumb"><a href="/index.php?title=File:LoremIpsum.djvu&amp;page=2" title="File:LoremIpsum.djvu"><img resource="/wiki/File:LoremIpsum.djvu?page=2" src="http://example.com/images/e/ea/Thumb.png" decoding="async" width="135" height="135" class="mw-file-element" /></a><figcaption></figcaption></figure>
 !! html/parsoid
-<figure typeof="mw:File/Thumb" data-mw='{"attribs":[["manualthumb",{"txt":"Thumb.png"}],["page",{"txt":"2"}]]}'><a href="./File:LoremIpsum.djvu?page=2" class="mw-file-description"><img resource="./File:LoremIpsum.djvu" src="http://example.com/images/e/ea/Thumb.png" decoding="async" data-file-width="135" data-file-height="135" data-file-type="bitmap" height="135" width="135" class="mw-file-element"/></a><figcaption></figcaption></figure>
+<figure typeof="mw:File/Thumb" data-mw='{"attribs":[["manualthumb",{"txt":"Thumb.png"}],["page",{"txt":"2"}]]}'><a href="./File:LoremIpsum.djvu?page=2"><img resource="./File:LoremIpsum.djvu" src="http://example.com/images/e/ea/Thumb.png" decoding="async" data-file-width="135" data-file-height="135" data-file-type="bitmap" height="135" width="135" class="mw-file-element"/></a><figcaption></figcaption></figure>
 !! end
 
 !! test
@@ -3593,7 +3593,7 @@ parsoid=wt2html
 !! html/parsoid+integrated
 <p><span class="mw-default-size" typeof="mw:File"><a class="mw-file-description" href="./File:Foobar.jpg"><img class="mw-file-element" data-file-height="220" data-file-type="bitmap" data-file-width="1941" decoding="async" height="220" resource="./File:Foobar.jpg" src="http://example.com/images/3/3a/Foobar.jpg" width="1941"/></a></span></p>
 <figure class="mw-default-size" typeof="mw:File/Thumb"><a class="mw-file-description" href="./File:Foobar.jpg"><img class="mw-file-element mw-file-upright" data-file-height="220" data-file-type="bitmap" data-file-width="1941" decoding="async" height="16" resource="./File:Foobar.jpg" src="http://example.com/images/thumb/3/3a/Foobar.jpg/140px-Foobar.jpg" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/280px-Foobar.jpg 2x" style="--mw-file-upright: 0.75" width="140"/></a><figcaption></figcaption></figure>
-<figure data-mw='{"attribs":[["manualthumb",{"txt":"Thumb.png"}]]}' typeof="mw:File/Thumb"><a class="mw-file-description" href="./File:Foobar.jpg"><img class="mw-file-element" data-file-height="135" data-file-type="bitmap" data-file-width="135" decoding="async" height="135" resource="./File:Foobar.jpg" src="http://example.com/images/e/ea/Thumb.png" width="135"/></a><figcaption></figcaption></figure>
+<figure data-mw='{"attribs":[["manualthumb",{"txt":"Thumb.png"}]]}' typeof="mw:File/Thumb"><a href="./File:Foobar.jpg"><img class="mw-file-element" data-file-height="135" data-file-type="bitmap" data-file-width="135" decoding="async" height="135" resource="./File:Foobar.jpg" src="http://example.com/images/e/ea/Thumb.png" width="135"/></a><figcaption></figcaption></figure>
 <figure typeof="mw:File/Frame"><a class="mw-file-description" href="./File:Foobar.jpg"><img class="mw-file-element" data-file-height="220" data-file-type="bitmap" data-file-width="1941" decoding="async" height="220" resource="./File:Foobar.jpg" src="http://example.com/images/3/3a/Foobar.jpg" width="1941"/></a><figcaption></figcaption></figure>
 <p><span class="mw-default-size" typeof="mw:File/Frameless"><a class="mw-file-description" href="./File:Foobar.jpg"><img class="mw-file-element mw-file-upright" data-file-height="220" data-file-type="bitmap" data-file-width="1941" decoding="async" height="16" resource="./File:Foobar.jpg" src="http://example.com/images/thumb/3/3a/Foobar.jpg/140px-Foobar.jpg" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/280px-Foobar.jpg 2x" style="--mw-file-upright: 0.75" width="140"/></a></span></p>
 !! end

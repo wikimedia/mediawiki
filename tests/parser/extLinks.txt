@@ -1469,3 +1469,19 @@ Templated extlink with an entity encoded invalid char
 
 <p><a typeof="mw:ExpandedAttrs" about="#mwt2" rel="mw:ExtLink nofollow" href="https://foo.bar?foo=bar%5D" class="external text" data-mw='{"attribs":[[{"txt":"href"},{"html":"&lt;a rel=\"mw:ExtLink nofollow\" href=\"https://foo.bar?foo=bar%5D\" about=\"#mwt3\" typeof=\"mw:Transclusion\" class=\"external free\" data-parsoid=&apos;{\"stx\":\"url\",\"a\":{\"href\":\"https://foo.bar?foo=bar%5D\"},\"sa\":{\"href\":\"https://foo.bar?foo=bar]\"},\"pi\":[[{\"k\":\"1\",\"named\":true}]],\"dsr\":[37,74,null,null]}&apos; data-mw=&apos;{\"parts\":[{\"template\":{\"target\":{\"wt\":\"1x\",\"href\":\"./Template:1x\"},\"params\":{\"1\":{\"wt\":\"https://foo.bar?foo=bar&amp;amp;#93;\"}},\"i\":0}}]}&apos;>https://foo.bar?foo=bar]&lt;/a>"}]]}'>bar</a></p>
 !! end
+
+!! test
+T51672: Test for brackets in attributes of elements in external link texts
+!! wikitext
+[http://example.com/ link <span title="title with [brackets]">span</span>]
+[http://example.com/ link <span title="title with &#91;brackets&#93;">span</span>]
+
+!! html/php
+<p><a rel="nofollow" class="external text" href="http://example.com/">link <span title="title with &#91;brackets&#93;">span</span></a>
+<a rel="nofollow" class="external text" href="http://example.com/">link <span title="title with &#91;brackets&#93;">span</span></a>
+</p>
+!! html/parsoid
+<p><a rel="mw:ExtLink nofollow" href="http://example.com/" class="external text">link <span title="title with [brackets]" data-parsoid='{"stx":"html"}'>span</span></a>
+<a rel="mw:ExtLink nofollow" href="http://example.com/" class="external text">link <span title="title with [brackets]" data-parsoid='{"stx":"html","a":{"title":"title with [brackets]"},"sa":{"title":"title with &amp;#91;brackets&amp;#93;"}}'>span</span></a></p>
+
+!! end
