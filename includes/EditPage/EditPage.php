@@ -608,6 +608,7 @@ class EditPage implements IEditObject {
 		}
 
 		$this->reauthRequired = $status->getReauthOperation();
+		$checkedReauthOps = $status->getCheckedReauthOperations();
 
 		$revRecord = $this->mArticle->fetchRevisionRecord();
 		// Disallow editing revisions with content models different from the current one
@@ -737,11 +738,17 @@ class EditPage implements IEditObject {
 			return;
 		}
 
-		// always attach AuthPopup to editform with the caveat that
-		// it will not fire if the user is recently re-authed and
-		// reauthRequired/getReauthOperation() are null
-		$reauthRight = $this->reauthRequired ?: '';
-		$this->enableReauthPopup( 'mediawiki.editPage.reauthPopup', $reauthRight );
+		// Attach AuthPopup whenever the edit action is reauth-gated on this
+		// wiki, even if the user's reauthentication is currently valid — it
+		// may expire while they sit on the form (T430197). The client uses
+		// wgReauthCurrentlyRequired to decide whether to open the popup
+		// immediately on submit or to verify with the server first.
+		$reauthOperation = $this->reauthRequired ?? ( $checkedReauthOps[0] ?? null );
+		$this->enableReauthPopup(
+			'mediawiki.editPage.reauthPopup',
+			$reauthOperation,
+			$this->reauthRequired !== null
+		);
 
 		$this->showEditForm();
 	}

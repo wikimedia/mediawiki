@@ -1589,6 +1589,11 @@ class PermissionManager {
 		// Deny actions that require reauthentication if the user hasn't recently reauthenticated
 		$operation = $this->options->get( MainConfigNames::ReauthenticateForActions )[ $right ] ?? false;
 		if ( $operation !== false ) {
+			// Record the operation regardless of whether the reauth requirement
+			// is currently satisfied, so callers can arm client-side reauth UX
+			// for the case where it expires mid-action (T430197).
+			$status->addCheckedReauthOperation( $operation );
+
 			// securitySensitiveOperationStatus() can only check for the currently logged-in user
 			// If $user is not that user, we can't check whether they've reauthenticated, so behave
 			// as if they haven't.

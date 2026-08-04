@@ -105,14 +105,19 @@ trait DataStashTrait {
 		$session->remove( $key );
 	}
 
-	protected function enableReauthPopup( string $jsPopupModule, ?string $operation ): void {
-		if ( $operation === null ) {
+	protected function enableReauthPopup(
+		string $jsPopupModule,
+		?string $operation,
+		bool $currentlyRequired = true
+	): void {
+		if ( $operation === null || $operation === '' ) {
 			return;
 		}
 		$out = $this->getContext()->getOutput();
 		$out->addModules( $jsPopupModule );
 		$out->addJsConfigVars( [
-			'wgReauthOperation' => $operation
+			'wgReauthOperation' => $operation,
+			'wgReauthCurrentlyRequired' => $currentlyRequired,
 		] );
 	}
 
