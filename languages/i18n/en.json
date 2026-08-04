@@ -4093,5 +4093,6 @@
 	"benefit-3-description": "Preferences that allow you to customize your experience.",
 	"temp-user-unable-to-acquire": "Unable to acquire a temporary account username. Please try again.",
 	"table-of-contents-show-button-aria-label": "Show the table of contents",
-	"table-of-contents-hide-button-aria-label": "Hide the table of contents"
+	"table-of-contents-hide-button-aria-label": "Hide the table of contents",
+	"mypage-disallowed-action": "For security reasons, action \"$1\" cannot be used on the page Special:MyPage."
 }
