@@ -4257,5 +4257,6 @@
 	"table-of-contents-hide-button-aria-label": "ARIA label for the table of contents hide toggle button",
 	"diff-usergroups": "The text for displaying user groups on diff view.\n\nParameters:\n* $1 - number of user groups",
 	"languageselector-no-results": "Error displayed when no results are found in the language selector.",
-	"languageselector-invalid-input": "Error displayed when the input in the language selector doesn't match any language, and the field is no longer focused.\n\nParameters:\n* $1 - the user input"
+	"languageselector-invalid-input": "Error displayed when the input in the language selector doesn't match any language, and the field is no longer focused.\n\nParameters:\n* $1 - the user input",
+	"mypage-disallowed-action": "Shown when you visit a URL such as w/index.php?title=Special:MyPage&action=raw. Parameters:\n* $1 - ?action= from the URL (e.g. delete, protect, etc.)"
 }

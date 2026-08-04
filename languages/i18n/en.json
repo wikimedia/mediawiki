@@ -3975,5 +3975,6 @@
 	"table-of-contents-hide-button-aria-label": "Hide the table of contents",
 	"diff-usergroups": "$1 {{PLURAL:$1|user group|user groups}}",
 	"languageselector-no-results": "No results found.",
-	"languageselector-invalid-input": "\"$1\" is not a valid language."
+	"languageselector-invalid-input": "\"$1\" is not a valid language.",
+	"mypage-disallowed-action": "For security reasons, action \"$1\" cannot be used on the page Special:MyPage."
 }

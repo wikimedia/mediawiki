@@ -19,6 +19,16 @@ use MediaWiki\User\TempUser\TempUserConfig;
 class SpecialMypage extends RedirectSpecialArticle {
 
 	public function __construct( private readonly TempUserConfig $tempUserConfig ) {
+		// T120386 - disallow raw action
+		$action = $this->getRequest()->getVal( 'action' );
+		$disallowedActions = [ 'raw' ];
+		if ( $action && in_array( $action, $disallowedActions, true ) ) {
+			$this->getOutput()->addHTML(
+				$this->msg( 'mypage-disallowed-action' )->params( $action )->escaped()
+			);
+			return;
+		}
+
 		parent::__construct( 'Mypage' );
 	}
 
