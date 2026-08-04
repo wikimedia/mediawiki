@@ -114,8 +114,10 @@ abstract class CentralIdLookup {
 
 	/**
 	 * Given central user IDs, return the (local) user names
-	 * @note There's no requirement that the user names actually exist locally,
-	 *  or if they do that they're actually attached to the central account.
+	 *
+	 * There's no requirement that the user names actually exist locally,
+	 * or if they do that they're actually attached to the central account.
+	 *
 	 * @param array $idToName Array with keys being central user IDs
 	 * @param int|Authority $audience One of the audience constants, or a specific authority
 	 * @param int $flags IDBAccessObject read flags
@@ -129,8 +131,10 @@ abstract class CentralIdLookup {
 
 	/**
 	 * Given (local) user names, return the central IDs
-	 * @note There's no requirement that the user names actually exist locally,
-	 *  or if they do that they're actually attached to the central account.
+	 *
+	 * There's no requirement that the user names actually exist locally,
+	 * or if they do that they're actually attached to the central account.
+	 *
 	 * @param array $nameToId Array with keys being canonicalized user names
 	 * @param int|Authority $audience One of the audience constants, or a specific authority
 	 * @param int $flags IDBAccessObject read flags
@@ -224,8 +228,10 @@ abstract class CentralIdLookup {
 
 	/**
 	 * Given a central user ID, return the (local) user name
-	 * @note There's no requirement that the user name actually exists locally,
-	 *  or if it does that it's actually attached to the central account.
+	 *
+	 * There's no requirement that the user name actually exists locally,
+	 * or if it does that it's actually attached to the central account.
+	 *
 	 * @param int $id Central user ID
 	 * @param int|Authority $audience One of the audience constants, or a specific authority
 	 * @param int $flags IDBAccessObject read flags
@@ -262,8 +268,10 @@ abstract class CentralIdLookup {
 
 	/**
 	 * Given a (local) user name, return the central ID
-	 * @note There's no requirement that the user name actually exists locally,
-	 *  or if it does that it's actually attached to the central account.
+	 *
+	 * There's no requirement that the user name actually exists locally,
+	 * or if it does that it's actually attached to the central account.
+	 *
 	 * @param string $name Canonicalized user name
 	 * @param int|Authority $audience One of the audience constants, or a specific authority
 	 * @param int $flags IDBAccessObject read flags
@@ -300,8 +308,10 @@ abstract class CentralIdLookup {
 
 	/**
 	 * Given a central user ID, return a local user object
-	 * @note Unlike nameFromCentralId(), this does guarantee that the local
-	 *  user exists and is attached to the central account.
+	 *
+	 * Unlike nameFromCentralId(), this does guarantee that the local
+	 * user exists and is attached to the central account.
+	 *
 	 * @stable to override
 	 * @param int $id Central user ID
 	 * @param int|Authority $audience One of the audience constants, or a specific authority
@@ -326,9 +336,11 @@ abstract class CentralIdLookup {
 
 	/**
 	 * Given a local UserIdentity object, return the central ID
+	 *
+	 * Unlike centralIdFromName(), this does guarantee that the local
+	 * user is attached to the central account.
+	 *
 	 * @stable to override
-	 * @note Unlike centralIdFromName(), this does guarantee that the local
-	 *  user is attached to the central account.
 	 * @param UserIdentity $user Local user
 	 * @param int|Authority $audience One of the audience constants, or a specific authority
 	 * @param int $flags IDBAccessObject read flags
