@@ -337,7 +337,10 @@ class BitmapHandler extends TransformationalImageHandler {
 				if ( $this->getImageArea( $image ) > $maxAnimatedGifArea ) {
 					// Extract initial frame only; we're so big it'll
 					// be a total drag. :P
-					$im->setImageScene( 0 );
+					$im->setIteratorIndex( 0 );
+					$firstFrame = $im->getImage();
+					$im->clear();
+					$im->addImage( $firstFrame );
 				} elseif ( $this->isAnimatedImage( $image ) ) {
 					// Coalesce is needed to scale animated GIFs properly (T3017).
 					$im = $im->coalesceImages();
@@ -376,9 +379,8 @@ class BitmapHandler extends TransformationalImageHandler {
 				}
 			}
 
-			if ( $this->isAnimatedImage( $image ) ) {
+			if ( $this->isAnimatedImage( $image ) && $im->getNumberImages() > 1 ) {
 				wfDebug( __METHOD__ . ": Writing animated thumbnail" );
-				// This is broken somehow... can't find out how to fix it
 				$result = $im->writeImages( $params['dstPath'], true );
 			} else {
 				$result = $im->writeImage( $params['dstPath'] );
