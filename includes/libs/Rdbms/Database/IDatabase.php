@@ -561,7 +561,7 @@ interface IDatabase extends IReadableDatabase {
 	 *
 	 * Callbacks will execute in the order they were enqueued.
 	 *
-	 * @param callable $callback
+	 * @param callable(int):void $callback
 	 * @param string $fname Caller name @phan-mandatory-param
 	 * @throws DBError If an error occurs, {@see query}
 	 * @throws Exception If the callback runs immediately and an error occurs in it
@@ -596,7 +596,7 @@ interface IDatabase extends IReadableDatabase {
 	 *
 	 * Callbacks will execute in the order they were enqueued.
 	 *
-	 * @param callable $callback
+	 * @param callable(int):void $callback
 	 * @param string $fname Caller name @phan-mandatory-param
 	 * @throws DBError If an error occurs, {@see query}
 	 * @throws Exception If the callback runs immediately and an error occurs in it
@@ -624,7 +624,7 @@ interface IDatabase extends IReadableDatabase {
 	 *
 	 * Callbacks will execute in the order they were enqueued.
 	 *
-	 * @param callable $callback
+	 * @param callable():void $callback
 	 * @param string $fname Caller name @phan-mandatory-param
 	 * @throws DBError If an error occurs, {@see query}
 	 * @throws Exception If the callback runs immediately and an error occurs in it
@@ -809,11 +809,12 @@ interface IDatabase extends IReadableDatabase {
 	 * @see Database::endAtomic
 	 * @see Database::cancelAtomic
 	 *
+	 * @template R
 	 * @param string $fname Caller name (usually __METHOD__) @phan-mandatory-param
-	 * @param callable $callback Callback that issues write queries
+	 * @param callable(IDatabase,string):R $callback Callback that issues write queries
 	 * @param string $cancelable Pass self::ATOMIC_CANCELABLE to use a
 	 *  savepoint and enable self::cancelAtomic() for this section.
-	 * @return mixed Result of the callback (since 1.28)
+	 * @return R Result of the callback (since 1.28)
 	 * @throws DBError If an error occurs, {@see query}
 	 * @throws Exception If an error occurs in the callback
 	 * @since 1.27; prior to 1.31 this did a rollback() instead of
