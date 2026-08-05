@@ -320,13 +320,13 @@ class XmlDumpWriter {
 	/**
 	 * Invokes the given callback, catching and logging any exceptions.
 	 *
-	 * @param callable $callback
+	 * @template V
+	 * @param callable():V $callback
 	 * @param string $warning The warning to output in case of a storage related exception.
 	 *
-	 * @return mixed Returns the method's return value, or null in case of an exception.
-	 * @throws \Exception
+	 * @return V|null Returns the method's return value, or null in case of an exception.
 	 */
-	private function invokeLenient( $callback, $warning ) {
+	private function invokeLenient( callable $callback, string $warning ) {
 		try {
 			return $callback();
 		} catch ( SuppressedDataException ) {
