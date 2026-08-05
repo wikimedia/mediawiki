@@ -3525,7 +3525,7 @@
 	"htmlform-multiselect-toomany": "Antallet af elementer, du har angivet, er over det maksimale på $1 .",
 	"htmlform-required": "Denne værdi skal angives",
 	"htmlform-optional-flag": "(valgfri)",
-	"htmlform-submit": "Gem",
+	"htmlform-submit": "Udfør",
 	"htmlform-reset": "Fortryd ændringer",
 	"htmlform-selectorother-other": "Anden",
 	"htmlform-no": "Nej",

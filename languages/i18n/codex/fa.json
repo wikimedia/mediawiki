@@ -3,7 +3,8 @@
 		"authors": [
 			"Ebrahim",
 			"Jeeputer",
-			"Mohammad ebz"
+			"Mohammad ebz",
+			"LordProfo"
 		]
 	},
 	"cdx-input-chip-aria-description": "Enter را برای ویرایش یا Delete را برای حذف بفشارید.",
@@ -27,5 +28,6 @@
 	"cdx-table-pagination-status-message-indeterminate-long": "نمایش نتایج $1–$2 از نتایج بسیار",
 	"cdx-table-pagination-status-message-indeterminate-short": "$1–$2 از بسیار",
 	"cdx-table-pagination-status-message-indeterminate-final": "نمایش {{PLURAL:$1|$1 نتیجهٔ}} اخیر",
-	"cdx-table-pagination-status-message-pending": "در حال بارگیری نتایج..."
+	"cdx-table-pagination-status-message-pending": "در حال بارگیری نتایج...",
+	"cdx-table-no-data-message": "هیچ داده‌ای در دسترس نیست."
 }

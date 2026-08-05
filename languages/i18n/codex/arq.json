@@ -1,0 +1,31 @@
+{
+	"@metadata": {
+		"authors": [
+			"Bachounda"
+		]
+	},
+	"cdx-chip-input-chip-added": "انزادت الشريحة $1.",
+	"cdx-chip-input-chip-removed": "تنحات الشريحة $1.",
+	"cdx-input-chip-aria-description": "دوس على Enter باش تعدّل ولا Delete باش تحذف.",
+	"cdx-dialog-close-button-label": "بلّع",
+	"cdx-label-optional-flag": "(اختياري)",
+	"cdx-message-dismiss-button-label": "بلّع",
+	"cdx-popover-close-button-label": "بلّع",
+	"cdx-search-input-search-button-label": "فتّش",
+	"cdx-table-select-all-label": "اختار كامل الصفوف",
+	"cdx-table-select-row-label": "خير الصف $1 من $2",
+	"cdx-table-sort-caption": "$1 (عناوين الأعمده اللي فيها بوطونات تنجم تترتب).",
+	"cdx-typeahead-search-search-results-label": "الناتج تاع التفتاش",
+	"cdx-table-pager-button-first-page": "الصفحة اللوله",
+	"cdx-table-pager-button-last-page": "الصفحه التاليه",
+	"cdx-table-pager-button-next-page": "صفحه جديده",
+	"cdx-table-pager-button-prev-page": "صفحه منقبل",
+	"cdx-table-pager-items-per-page-default": "النتائج لكل صفحه",
+	"cdx-table-pagination-status-message-determinate-long": "عرض النتائج $1–$2 من أصل $3.",
+	"cdx-table-pagination-status-message-determinate-short": "$1–$2 من $3",
+	"cdx-table-pagination-status-message-indeterminate-long": "باين النتايج $1–$2 من بزاف",
+	"cdx-table-pagination-status-message-indeterminate-short": "$1–$2 من بزاف",
+	"cdx-table-pagination-status-message-indeterminate-final": "باين آخر {{PLURAL:$1|$1 نتيجه|$1 نتايج}}",
+	"cdx-table-pagination-status-message-pending": "تحميل النتايج...",
+	"cdx-table-no-data-message": "ما كاش بيانات متوفره."
+}

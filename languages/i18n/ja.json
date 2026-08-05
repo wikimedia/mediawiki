@@ -4264,6 +4264,7 @@
 	"right-renameuser-global": "グローバル利用者名変更者",
 	"renameuser-renamed-notice": "この{{GENDER:$1|利用者}}は利用者名を変更しました。\n参考のため、利用者名変更記録を以下に示します。",
 	"log-unknown-action": "[[$1]]に未知の操作「$2」を実行しました",
+	"log-unsafe-logentry": "(この記録項目は、パラメータに安全でないシリアル化データが含まれているため、表示できませんでした。)",
 	"createacct-benefit-heading-temp-user": "{{SITENAME}}への投稿ありがとうございます。\nアカウントを作成すると、さらに多くの機能を利用できます。",
 	"createacct-benefit-subheading-temp-user": "{{SITENAME}}はあなたのような人々によって作られています。アカウントがあれば、永続的かつ安全な自己同一性を保証でき、以下のような機能を利用できます:",
 	"benefit-1-description": "興味のあるページを追跡できるウォッチリスト。",
