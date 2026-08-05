@@ -15,13 +15,13 @@ namespace MediaWiki\Export;
  * @ingroup Dump
  */
 class DumpMultiWriter {
-	/** @var array */
+	/** @var (DumpOutput|DumpFilter)[] */
 	private $sinks;
 	/** @var int */
 	private $count;
 
 	/**
-	 * @param array $sinks
+	 * @param (DumpOutput|DumpFilter)[] $sinks
 	 */
 	public function __construct( $sinks ) {
 		$this->sinks = $sinks;

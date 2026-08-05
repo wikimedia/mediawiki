@@ -7,6 +7,7 @@ namespace MediaWiki\Skin\Components;
 
 use MediaWiki\Output\OutputPage;
 use MediaWiki\Parser\ParserOutputFlags;
+use Wikimedia\Parsoid\Core\SectionMetadata;
 
 /**
  * @internal for use inside Skin and SkinTemplate classes only
@@ -23,7 +24,7 @@ class SkinComponentTableOfContents implements SkinComponent {
 	/**
 	 * Nests child sections within their parent sections.
 	 *
-	 * @param array $sections
+	 * @param SectionMetadata[] $sections
 	 * @param int $toclevel
 	 * @return array
 	 */

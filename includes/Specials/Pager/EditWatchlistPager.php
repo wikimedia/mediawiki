@@ -226,8 +226,8 @@ class EditWatchlistPager extends CodexTablePager {
 	/**
 	 * Run the onWatchlistEditorBeforeFormRender hook
 	 *
-	 * @param array $rows
-	 * @return array
+	 * @param \stdClass[] $rows
+	 * @return \stdClass[]
 	 */
 	private function beforeFormRender( array $rows ): array {
 		// Alas, this is very hacky - the format of the watchlist data passed by ref to the hook does not

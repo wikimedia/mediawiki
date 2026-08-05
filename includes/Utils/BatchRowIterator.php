@@ -28,7 +28,7 @@ class BatchRowIterator implements RecursiveIterator {
 	protected IReadableDatabase $db;
 
 	/**
-	 * @var array The name of the primary key(s)
+	 * @var string[] The name of the primary key(s)
 	 */
 	protected $primaryKey;
 
@@ -38,7 +38,7 @@ class BatchRowIterator implements RecursiveIterator {
 	protected $batchSize;
 
 	/**
-	 * @var array The current iterator value
+	 * @var \stdClass[] The current iterator value
 	 */
 	private $current = [];
 
@@ -57,7 +57,7 @@ class BatchRowIterator implements RecursiveIterator {
 	 *
 	 * @param IReadableDatabase $db
 	 * @param SelectQueryBuilder|string|array $sqb The query to split into batches (or table name/names)
-	 * @param string|array $primaryKey The name or names of the primary key columns
+	 * @param string|string[] $primaryKey The name or names of the primary key columns
 	 * @param int $batchSize The number of rows to fetch per iteration
 	 */
 	public function __construct( IReadableDatabase $db, $sqb, $primaryKey, $batchSize ) {
@@ -154,7 +154,7 @@ class BatchRowIterator implements RecursiveIterator {
 	}
 
 	/**
-	 * @return array The most recently fetched set of rows from the database
+	 * @return \stdClass[] The most recently fetched set of rows from the database
 	 */
 	public function current(): array {
 		return $this->current;

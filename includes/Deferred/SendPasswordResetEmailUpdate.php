@@ -9,6 +9,7 @@
 namespace MediaWiki\Deferred;
 
 use MediaWiki\Auth\AuthManager;
+use MediaWiki\Auth\TemporaryPasswordAuthenticationRequest;
 use MediaWiki\Logger\LoggerFactory;
 
 /**
@@ -19,7 +20,7 @@ class SendPasswordResetEmailUpdate implements DeferrableUpdate {
 	/** @var AuthManager */
 	private $authManager;
 
-	/** @var array */
+	/** @var TemporaryPasswordAuthenticationRequest[] */
 	private $reqs;
 
 	/** @var array */
@@ -27,7 +28,7 @@ class SendPasswordResetEmailUpdate implements DeferrableUpdate {
 
 	/**
 	 * @param AuthManager $authManager
-	 * @param array $reqs
+	 * @param TemporaryPasswordAuthenticationRequest[] $reqs
 	 * @param array $logContext
 	 */
 	public function __construct( AuthManager $authManager, array $reqs, array $logContext ) {
