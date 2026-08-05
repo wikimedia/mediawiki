@@ -35,6 +35,7 @@ use MediaWiki\Language\LanguageCode;
 use MediaWiki\Language\LanguageConverterFactory;
 use MediaWiki\Language\LanguageFactory;
 use MediaWiki\Language\LanguageNameUtils;
+use MediaWiki\Language\MessageLocalizer;
 use MediaWiki\Language\RawMessage;
 use MediaWiki\Linker\Linker;
 use MediaWiki\Linker\LinkRenderer;
@@ -78,8 +79,6 @@ use UnexpectedValueException;
 use Wikimedia\Bcp47Code\Bcp47CodeValue;
 use Wikimedia\HtmlArmor\HtmlArmor;
 use Wikimedia\IPUtils;
-use Wikimedia\Message\MessageParam;
-use Wikimedia\Message\MessageSpecifier;
 use Wikimedia\ObjectCache\MapCacheLRU;
 use Wikimedia\ObjectCache\WANObjectCache;
 use Wikimedia\Parsoid\Core\LinkTarget;
@@ -136,7 +135,7 @@ use Wikimedia\StringUtils\StringUtils;
  * @ingroup Parser
  */
 #[\AllowDynamicProperties]
-class Parser {
+class Parser implements MessageLocalizer {
 	use DeprecationHelper;
 
 	# Flags for Parser::setFunctionHook
@@ -4206,16 +4205,12 @@ class Parser {
 	 * of directly using `wfMessage`) to ensure that the cache is not
 	 * polluted.
 	 *
-	 * @param string $msg The localization message key
-	 * @phpcs:ignore Generic.Files.LineLength
-	 * @param MessageParam|MessageSpecifier|string|int|float|list<MessageParam|MessageSpecifier|string|int|float> ...$params
-	 *   See Message::params()
-	 * @return Message
+	 * @inheritDoc
 	 * @since 1.40
 	 * @see https://phabricator.wikimedia.org/T202481
 	 */
-	public function msg( string $msg, ...$params ): Message {
-		return wfMessage( $msg, ...$params )
+	public function msg( $key, ...$params ): Message {
+		return wfMessage( $key, ...$params )
 			->inLanguage( $this->getTargetLanguage() )
 			->page( $this->getPage() );
 	}
