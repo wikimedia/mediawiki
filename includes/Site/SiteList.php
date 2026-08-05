@@ -6,6 +6,7 @@
 
 namespace MediaWiki\Site;
 
+use ArrayIterator;
 use ArrayObject;
 use InvalidArgumentException;
 
@@ -19,6 +20,7 @@ use InvalidArgumentException;
  * @since 1.21
  * @ingroup Site
  * @author Jeroen De Dauw < jeroendedauw@gmail.com >
+ * @extends ArrayObject<Site>
  */
 class SiteList extends ArrayObject {
 	/**
@@ -61,9 +63,9 @@ class SiteList extends ArrayObject {
 	 * @since 1.20
 	 * @param null|array $input
 	 * @param int $flags
-	 * @param string $iterator_class
+	 * @param class-string<ArrayIterator> $iterator_class
 	 */
-	public function __construct( $input = null, $flags = 0, $iterator_class = 'ArrayIterator' ) {
+	public function __construct( $input = null, $flags = 0, $iterator_class = ArrayIterator::class ) {
 		parent::__construct( [], $flags, $iterator_class );
 
 		if ( $input !== null ) {
@@ -109,7 +111,7 @@ class SiteList extends ArrayObject {
 	 * The class or interface type that array elements must match.
 	 *
 	 * @since 1.21
-	 * @return string
+	 * @return class-string<Site>
 	 */
 	public function getObjectType() {
 		return Site::class;
