@@ -58,6 +58,7 @@
 	"rest-badtoken": "Predloženi žeton CSRF je neveljaven.",
 	"rest-badtoken-missing": "Potreben je parameter <var>token</var>, razen če uporabljate CSRF-varen način avtentikacije.",
 	"rest-badtoken-nosession": "Napaka CSRF – ni seje.",
+	"rest-csrf-token-description": "Žeton CSRF.\n**Potreben** pri avtentikaciji s piškotki MediaWiki-Session-CookieSessionProvider.\n**Ni potreben''' pri uporabi CSRF-varnega mehanizma, kot je OAuth2.0.",
 	"rest-mock-error": "Simulirana napaka.",
 	"rest-specified-revision-unavailable": "Navedena redakcija je izbrisana ali skrita.",
 	"rest-previous-revision-unavailable": "Prejšnje redakcije ni bilo mogoče najti. Ali je bila stran zaklenjena ali izbrisana?",

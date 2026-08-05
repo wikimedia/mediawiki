@@ -114,6 +114,7 @@
 	"rest-param-desc-create-title": "Seitentitel. Besuche die einzelnen Wikis, um Informationen zu Richtlinien bezüglich des Formats und der Zeichen von Seitentiteln zu erhalten.",
 	"rest-param-desc-update-source": "Seiteninhalt im durch die Eigenschaft content_model angegebenen Format",
 	"rest-param-desc-compare-from": "Version, die als Vergleichsgrundlage verwendet wird",
+	"rest-param-desc-compare-from-id": "Versions-ID",
 	"rest-param-desc-compare-from-sections": "Präprozessorabschnitte für die Version, ohne Template-Erweiterung",
 	"rest-param-desc-compare-from-section-level": "Überschriftenebene",
 	"rest-param-desc-compare-from-section-heading": "Inhalt der Überschriftenzeile im Quelltextformat",
