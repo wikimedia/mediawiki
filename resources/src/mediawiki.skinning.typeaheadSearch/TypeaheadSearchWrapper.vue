@@ -47,17 +47,34 @@ module.exports = exports = defineComponent( {
 	emits: [
 		'exit'
 	],
+	data() {
+		return {
+			handleVisualViewportResize: null
+		};
+	},
 	mounted() {
-		// Adjust the bottom position of the typeahead search menu on mobile devices
-		// to account for the virtual keyboard covering the bottom part of the viewport
-		if ( this.mobileExperience && window.visualViewport ) {
-			window.visualViewport.addEventListener( 'resize', () => {
+		// Set the bottom position of the typeahead search menu on mobile devices
+		// to account for the virtual keyboard covering part of the screen, so that the keyboard
+		// doesn't cover the search results
+		if ( window.visualViewport ) {
+			this.handleVisualViewportResize = () => {
 				const menu = document.querySelector( '.cdx-typeahead-search__menu' );
 				if ( menu ) {
-					const bottom = window.innerHeight - ( visualViewport.offsetTop + visualViewport.height );
-					menu.style.bottom = `${ Math.round( bottom ) }px`;
+					if ( this.mobileExperience ) {
+						const bottom = window.innerHeight - ( visualViewport.offsetTop + visualViewport.height );
+						menu.style.bottom = `${ Math.round( bottom ) }px`;
+					} else {
+						menu.style.bottom = 'initial';
+					}
 				}
-			} );
+			};
+			window.visualViewport.addEventListener( 'resize', this.handleVisualViewportResize );
+			this.handleVisualViewportResize();
+		}
+	},
+	unmounted() {
+		if ( window.visualViewport ) {
+			window.visualViewport.removeEventListener( 'resize', this.handleVisualViewportResize );
 		}
 	}
 } );
