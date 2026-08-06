@@ -644,6 +644,7 @@ class ApiMain extends ApiBase {
 			$derivativeContext->setLanguage( $code );
 			if ( !$this->mInternalMode ) {
 				// phpcs:disable MediaWiki.Usage.ExtendClassUsage.FunctionVarUsage
+				// phpcs:ignore MediaWiki.Usage.DeprecatedGlobalVariables.Deprecated$wgLang
 				global $wgLang;
 				$wgLang = $derivativeContext->getLanguage();
 				RequestContext::getMain()->setLanguage( $wgLang );

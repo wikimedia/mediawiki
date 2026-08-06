@@ -78,6 +78,7 @@ class UpdateMediaWiki extends Maintenance {
 	}
 
 	public function execute() {
+		// phpcs:ignore MediaWiki.Usage.DeprecatedGlobalVariables.Deprecated$wgLang
 		global $wgLang, $wgAllowSchemaUpdates;
 
 		if ( !$wgAllowSchemaUpdates

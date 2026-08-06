@@ -1098,7 +1098,7 @@ class AuthManager implements LoggerAwareInterface {
 
 		$context->setUser( $user );
 
-		// phpcs:ignore MediaWiki.Usage.ExtendClassUsage.FunctionVarUsage
+		// phpcs:ignore MediaWiki.Usage.ExtendClassUsage.FunctionVarUsage, MediaWiki.Usage.DeprecatedGlobalVariables.Deprecated$wgLang
 		global $wgLang;
 		// phpcs:ignore MediaWiki.Usage.ExtendClassUsage.FunctionVarUsage
 		$wgLang = $context->getLanguage();
