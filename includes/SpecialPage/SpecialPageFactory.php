@@ -1747,7 +1747,7 @@ class SpecialPageFactory {
 	public function capturePath(
 		PageReference $page, IContextSource $context, ?LinkRenderer $linkRenderer = null
 	) {
-		// phpcs:ignore MediaWiki.Usage.DeprecatedGlobalVariables.Deprecated$wgTitle
+		// phpcs:ignore MediaWiki.Usage.DeprecatedGlobalVariables.Deprecated$wgTitle, MediaWiki.Usage.DeprecatedGlobalVariables.Deprecated$wgLang
 		global $wgTitle, $wgOut, $wgRequest, $wgLang;
 		$main = RequestContext::getMain();
 
