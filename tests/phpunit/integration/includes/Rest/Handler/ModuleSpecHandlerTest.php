@@ -509,7 +509,7 @@ class ModuleSpecHandlerTest extends MediaWikiIntegrationTestCase {
 						'description' => '<message key="rest-sandbox-server-sandbox"></message>',
 					],
 				],
-				'Existing mock description.' . "\n\n" . '<message key="rest-sandbox-recommend-test-server"><text>test.wikimedia.org</text></message>',
+				'<message key="rest-sandbox-recommend-test-server-with-description"><text>Existing mock description.</text><text>test.wikimedia.org</text></message>',
 				'SpecTestModuleWithDescription.json'
 			],
 			'no test server' => [

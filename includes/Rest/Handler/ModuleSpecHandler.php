@@ -149,13 +149,17 @@ class ModuleSpecHandler extends SimpleHandler {
 		$sandboxUrl = $this->getLocalModuleSandboxUrl( $module );
 		if ( $sandboxUrl !== null ) {
 			$host = parse_url( $sandboxUrl, PHP_URL_HOST );
-			$recommendation = $this->getJsonLocalizer()->getFormattedMessage(
-				new MessageValue( 'rest-sandbox-recommend-test-server', [ $host ] )
-			);
 			if ( isset( $info['description'] ) && $info['description'] !== '' ) {
-				$info['description'] = $info['description'] . "\n\n" . $recommendation;
+				$info['description'] = $this->getJsonLocalizer()->getFormattedMessage(
+					new MessageValue(
+						'rest-sandbox-recommend-test-server-with-description',
+						[ $info['description'], $host ]
+					)
+				);
 			} else {
-				$info['description'] = $recommendation;
+				$info['description'] = $this->getJsonLocalizer()->getFormattedMessage(
+					new MessageValue( 'rest-sandbox-recommend-test-server', [ $host ] )
+				);
 			}
 		}
 
