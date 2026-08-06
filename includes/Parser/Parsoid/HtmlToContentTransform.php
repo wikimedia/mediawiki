@@ -237,7 +237,9 @@ class HtmlToContentTransform {
 					ParserOptions::newFromAnon(),
 					$this->page,
 					$revision,
-					$this->contentLanguage
+					$this->contentLanguage,
+					false,
+					is_int( $revision )
 				);
 			} catch ( RevisionAccessException ) {
 				// TODO: Throw a different exception, this class should not know

@@ -2390,4 +2390,47 @@ class ParsoidHandlerTest extends MediaWikiIntegrationTestCase {
 		}
 	}
 
+	public function testSelser_Forbidden() {
+		$page = $this->getNonexistingTestPage( __METHOD__ );
+		$firstRev = $this->editPage( $page, 'First' )->getNewRevision();
+		$secondRev = $this->editPage( $page, 'Second' )->getNewRevision();
+
+		$this->revisionDelete( $firstRev );
+		$pageConfig = $this->getPageConfig( $page, $firstRev );
+
+		$attribs = self::DEFAULT_ATTRIBS;
+		$attribs['opts'] += self::DEFAULT_ATTRIBS['opts'];
+		$attribs['opts']['from'] ??= 'html';
+		$attribs['envOptions'] += self::DEFAULT_ATTRIBS['envOptions'];
+
+		$profileVersion = Parsoid::AVAILABLE_VERSIONS[0];
+		$htmlProfileUri = 'https://www.mediawiki.org/wiki/Specs/HTML/' . $profileVersion;
+		$htmlContentType = "text/html; charset=utf-8; profile=\"$htmlProfileUri\"";
+
+		// HTML is the same as the original so that selser
+		// returns the original wikitext
+		$html = '<html lang="en"><body>123</body></html>';
+
+		$attribs['opts']['original'] = [
+			'revid' => $firstRev->getId(),
+			'html' => [
+				'body' => $html,
+				'headers' => [ 'content-type' => $htmlContentType ],
+			],
+		];
+
+		$handler = $this->newParsoidHandler();
+		try {
+			$response = $handler->html2wt( $pageConfig, $attribs, $html );
+			$body = $response->getBody();
+			$body->rewind();
+			$wikitext = $body->getContents();
+			$this->assertSame( 'First', $wikitext );
+			$this->fail( 'Should have thrown' );
+		} catch ( LocalizedHttpException $e ) {
+			$this->assertSame( 404, $e->getCode() );
+			$this->assertSame( 'rest-specified-revision-unavailable', $e->getErrorKey() );
+		}
+	}
+
 }
