@@ -1,0 +1,42 @@
+{
+	"@metadata": {
+		"authors": [
+			"AhmedG612"
+		]
+	},
+	"botpasswords": "Furayaasha sirta ah ee bot-ka",
+	"botpasswords-summary": "<em>Furayaasha sirta ah ee bot-ka</em> waxay oggolaanayaan in akoon isticmaale lagu galo iyada oo loo marayo API-ga iyadoo aan la isticmaalin aqoonsiyada gelitaanka ee ugu waaweyn ee akoonka. Xuquuqda isticmaalaha ee la heli karo marka lagu galo furaha sirta ah ee bot-ka waa la xaddidi karaa.\n\nHaddii aadan garanayn sababta aad tan u samayn lahayd, waa in aadan samayn. Qofna waligiis yuusan kaa codsan inaad samayso mid ka mid ah kuwan oo aad siiso.",
+	"botpasswords-disabled": "Furayaasha sirta ah ee bot-ka waa naafo.",
+	"botpasswords-no-central-id": "Si aad u isticmaasho furayaasha sirta ah ee bot-ka, waa inaad gashan tahay akoon dhexe.",
+	"botpasswords-existing": "Furayaasha sirta ah ee bot-ka ee jira",
+	"botpasswords-createnew": "Abuur furaha sirta ah ee bot-ka cusub",
+	"botpasswords-editexisting": "Wax ka beddel furaha sirta ah ee bot-ka jira",
+	"botpasswords-label-needsreset": "(waa in furaha sirta dib loo dejiyo)",
+	"botpasswords-label-appid": "Magaca bot:",
+	"botpasswords-label-create": "Abuur",
+	"botpasswords-label-update": "Cusboonaysii",
+	"botpasswords-label-cancel": "Jooji",
+	"botpasswords-label-delete": "Tirtir",
+	"botpasswords-label-resetpassword": "Dib u deji furaha sirta ah",
+	"botpasswords-label-grants": "Deeqaha lagu dabaqi karo:",
+	"botpasswords-help-grants": "Deequhu waxay oggolaanayaan helitaanka xuquuqda uu horey u haysto akoonkaaga isticmaalaha. Awoodsiinta deeq halkan kama siinayso helitaanka xuquuqo uusan akoonkaaga isticmaaluhu si kale u lahayn. Ka eeg [[Special:ListGrants|jadwalka deeqaha]] si aad u hesho macluumaad dheeraad ah.\n\nDeeqaha khatarta leh waa la calaamadeeyay. Deeqaha aan la calaamadin guud ahaan way adag tahay in si xun loo isticmaalo marka bot-ka ay la wareegto qof leh ujeeddo xaasidnimo ah. Deeqaha leh khatarta burburinta (<span class=\"mw-grantriskgroup-vandalism\">{{int:grantriskgroup-vandalism}}</span>) waxaa loo isticmaali karaa inay keenaan carqalad u baahan dadaal badan si loo nadiifiyo. Deeqaha leh khatarta amniga (<span class=\"mw-grantriskgroup-security\">{{int:grantriskgroup-security}}</span>) waxay sababi karaan waxyeello joogto ah (sida xatooyada xog gaar ah). Deeqaha gudaha (<span class=\"mw-grantriskgroup-internal\">{{int:grantriskgroup-internal}}</span>) badanaa waxaa isticmaala oo keliya maamulaha goobta. Fadlan ha codsan deeqo khatar leh haddii aadan runtii u baahnayn.",
+	"botpasswords-label-grants-column": "La siiyay",
+	"botpasswords-bad-appid": "Magaca bot-ka \"$1\" ma aha mid sax ah.",
+	"botpasswords-toolong-restrictions": "Waxaa la geliyay cinwaanno IP ama xadad aad u badan.",
+	"botpasswords-toolong-grants": "Waxaa la doortay deeqo aad u badan.",
+	"botpasswords-insert-failed": "Ku darista magaca bot-ka \"$1\" way fashilantay. Ma hore ayaa loo daray?",
+	"botpasswords-update-failed": "Cusboonaysiinta magaca bot-ka \"$1\" way fashilantay. Ma la tirtiray?",
+	"botpasswords-created-title": "Furaha sirta ah ee bot-ka waa la abuuray",
+	"botpasswords-created-body": "Furaha sirta ah ee bot-ka ee magaca bot-ka \"$1\" ee {{GENDER:$2|isticmaalaha}} \"$2\" waa la abuuray.",
+	"botpasswords-updated-title": "Furaha sirta ah ee bot-ka waa la cusboonaysiiyay",
+	"botpasswords-updated-body": "Furaha sirta ah ee bot-ka ee magaca bot-ka \"$1\" ee {{GENDER:$2|isticmaalaha}} \"$2\" waa la cusboonaysiiyay.",
+	"botpasswords-deleted-title": "Furaha sirta ah ee bot-ka waa la tirtiray",
+	"botpasswords-deleted-body": "Furaha sirta ah ee bot-ka ee magaca bot-ka \"$1\" ee {{GENDER:$2|isticmaalaha}} \"$2\" waa la tirtiray.",
+	"botpasswords-newpassword": "Furaha sirta ah ee cusub ee lagu geli karo <strong>$1</strong> waa <strong>$2</strong>. <em>Fadlan kaydi tan si aad mustaqbalka ugu tixraacdo.</em> <br> (Bot-kii hore ee u baahan magaca gelitaanka inuu la mid noqdo magaca isticmaalaha ugu dambeeya, waxaad sidoo kale isticmaali kartaa <strong>$3</strong> sida magaca isticmaalaha iyo <strong>$4</strong> sida furaha sirta ah.)",
+	"botpasswords-no-provider": "BotPasswordsSessionProvider lama heli karo.",
+	"botpasswords-restriction-failed": "Xannibaadaha furaha sirta ah ee bot-ka ayaa ka hor istaagaya gelitaankan.",
+	"botpasswords-invalid-name": "Magaca isticmaalaha la cayimay kuma jiro kala soocaha furaha sirta ah ee bot-ka (\"$1\").",
+	"botpasswords-not-exist": "Isticmaalaha \"$1\" ma laha furaha sirta ah ee bot-ka oo la yiraahdo \"$2\".",
+	"botpasswords-needs-reset": "Furaha sirta ah ee bot-ka ee magaca bot-ka \"$2\" ee {{GENDER:$1|isticmaalaha}} \"$1\" waa in dib loo dejiyaa.",
+	"botpasswords-locked": "Ma geli kartid adigoo isticmaalaya furaha sirta ah ee bot-ka maadaama akoonkaaga la qufulay."
+}

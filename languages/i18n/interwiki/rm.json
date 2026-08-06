@@ -1,0 +1,37 @@
+{
+	"@metadata": {
+		"authors": [
+			"Bild-Sprache",
+			"Terfili"
+		]
+	},
+	"interwiki": "Modifitgar datas da interwiki",
+	"interwiki-title-norights": "Consultar wikidata",
+	"interwiki-legend-label": "Legenda",
+	"interwiki_prefix": "Prefix",
+	"interwiki-prefix-label": "Prefix:",
+	"interwiki_local": "Spedir inavant",
+	"interwiki-local-label": "Spedir inavant",
+	"interwiki-trans-label": "includer",
+	"interwiki_1": "gea",
+	"interwiki_0": "na",
+	"interwiki_error": "Errur: La tabella interwiki è vida u igl è capità in auter sbagl.",
+	"interwiki-cached": "Las datas d'Interwiki èn arcunadas en il cache. Quel na po betg vegnir midà.",
+	"interwiki_edit": "Lavurar",
+	"interwiki_reasonfield": "Motiv:",
+	"interwiki-logtext": "Clamar il protocols da navigaziun",
+	"interwiki_addtext": "Agiunscher in interwiki u in prefix linguistic",
+	"interwiki-addtext-local": "Agiunscher in interwiki local u in prefix linguistic",
+	"interwiki-addtext-nolang": "Agiunscher in interwiki prefix",
+	"interwiki-addtext-local-nolang": "Agiunscher in interwiki prefix local",
+	"interwiki_addbutton": "Agiunscher",
+	"interwiki_added": "Il prefix \"$1\" è vegni agiuntà a la tabella dad interwiki.",
+	"interwiki_addfailed": "Il prefix \"$1\" n'ha betg pudi vegnir agiuntà a la tabella das interwiki. Pussaivel ch'el sa chatta gia en la tabella dad interwiki.",
+	"interwiki_edittext": "Modifitgar il prefix da interwiki",
+	"interwiki_edited": "Il prefix \"$1\" è vegni agiuntà a la tabella dad interwiki.",
+	"interwiki_editerror": "Il prefix \"$1\" n'ha betg pudì vegnir midà en la tabella dad interwiki. Pussaivel ch'el n'è betg avant maun.",
+	"interwiki-badprefix": "Il prefix fixà dad interwiki \"$1\" cuntegna segns nunvalaivels",
+	"interwiki-cannotaddlocallanguage": "Il prefix „$1“ correspunda ad in code da lingua enconuschenta. L'agiunta da prefixs interlinguistics locals è deactivada, sch'i vegn duvrada ina banca da datas interlinguistica globala.",
+	"interwiki-submit-empty": "Il spazi tar il prefix e l'URL na dastgan betg esser vids.",
+	"interwiki-submit-invalidurl": "Il protocol da l'URL è nunvalaivel."
+}

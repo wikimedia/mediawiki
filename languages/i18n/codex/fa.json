@@ -3,10 +3,15 @@
 		"authors": [
 			"Ebrahim",
 			"Jeeputer",
-			"Mohammad ebz"
+			"Mohammad ebz",
+			"Kamrani.exe",
+			"LordProfo"
 		]
 	},
+	"cdx-breadcrumb-navigation-label": "مسیر راهنما",
 	"cdx-breadcrumb-overflow-label": "گزینه‌های بیشتر ناوبری",
+	"cdx-chip-input-chip-added": "تراشهٔ $1 اضافه شد.",
+	"cdx-chip-input-chip-removed": "تراشهٔ $1 حذف شد.",
 	"cdx-input-chip-aria-description": "Enter را برای ویرایش یا Delete را برای حذف بفشارید.",
 	"cdx-dialog-close-button-label": "بستن",
 	"cdx-label-optional-flag": "(اختیاری)",
@@ -15,7 +20,7 @@
 	"cdx-search-input-search-button-label": "جستجو",
 	"cdx-table-select-all-label": "انتخاب همهٔ سطرها",
 	"cdx-table-select-row-label": "انتخاب سطر $1 از $2",
-	"cdx-table-sort-caption": "$1 (سرصفحهٔ ستون‌ها با دکمه‌های قابل مرتب‌سازی هستند).",
+	"cdx-table-sort-caption": "$1 (سرستون‌های دارای دکمه قابل مرتب‌سازی هستند).",
 	"cdx-typeahead-search-search-results-label": "جستجوی نتایج",
 	"cdx-table-pager-button-first-page": "صفحهٔ نخست",
 	"cdx-table-pager-button-last-page": "صفحهٔ آخر",
@@ -28,5 +33,6 @@
 	"cdx-table-pagination-status-message-indeterminate-long": "نمایش نتایج $1–$2 از نتایج بسیار",
 	"cdx-table-pagination-status-message-indeterminate-short": "$1–$2 از بسیار",
 	"cdx-table-pagination-status-message-indeterminate-final": "نمایش {{PLURAL:$1|$1 نتیجهٔ}} اخیر",
-	"cdx-table-pagination-status-message-pending": "در حال بارگیری نتایج..."
+	"cdx-table-pagination-status-message-pending": "در حال بارگیری نتایج...",
+	"cdx-table-no-data-message": "هیچ داده‌ای در دسترس نیست."
 }
