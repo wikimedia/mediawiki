@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Ar choler",
 			"Dishual",
 			"Fohanno",
 			"Fulup",
@@ -59,7 +60,7 @@
 	"grouppage-user": "{{ns:project}}:Implijerien",
 	"grouppage-temp": "{{ns:project}}:Implijerien berrbad",
 	"grouppage-autoconfirmed": "{{ns:project}}: Implijerien bet kadarnaet ent emgefre",
-	"grouppage-bot": "{{ns:project}}:Botoù",
+	"grouppage-bot": "{{ns:project}}:Robotoù",
 	"grouppage-sysop": "{{ns:project}}:Merourien",
 	"grouppage-interface-admin": "{{ns:project}}:Merourien etrefas",
 	"grouppage-bureaucrat": "{{ns:project}}: Burevidi",

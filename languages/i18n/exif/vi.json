@@ -6,6 +6,7 @@
 			"Nvdtn19",
 			"Prenn",
 			"Quenhitran",
+			"SussyRed2000",
 			"Ttra2607",
 			"Vinhtantran"
 		]
@@ -411,5 +412,11 @@
 	"exif-digitalsourcetype-digitalart": "Được tạo ra bởi con người bằng các công cụ kỹ thuật số",
 	"exif-digitalsourcetype-digitalcreation": "Nội dung đa phương tiện được tạo ra bởi con người bằng các công cụ không phải trí tuệ nhân tạo.",
 	"exif-digitalsourcetype-datadrivenmedia": "Biểu diễn dữ liệu trên phương tiện kỹ thuật số thông qua lập trình hoặc sự sáng tạo của con người.",
-	"exif-digitalsourcetype-trainedalgorithmicmedia": "Được tạo bằng AI"
+	"exif-digitalsourcetype-trainedalgorithmicmedia": "Được tạo bằng AI",
+	"exif-digitalsourcetype-algorithmicmedia": "Phương tiện được tạo ra hoàn toàn bởi thuật toán phi trí tuệ nhân tạo",
+	"exif-digitalsourcetype-screencapture": "Ảnh chụp màn hình",
+	"exif-digitalsourcetype-virtualrecording": "Bản ghi hình trực tiếp sự kiện ảo dựa trên trí tuệ nhân tạo tạo sinh và/hoặc các yếu tố được ghi lại",
+	"exif-digitalsourcetype-composite": "Sự kết hợp hoặc tổng hợp một số yếu tố mà bất kỳ yếu tố nào trong số đó có thể là hoặc không phải là trí tuệ nhân tạo tạo sinh",
+	"exif-digitalsourcetype-compositecapture": "Sự kết hợp hoặc tổng hợp một số yếu tố mà là tất cả ảnh chụp ngoài đời thực",
+	"exif-digitalsourcetype-compositesynthetic": "Sự kết hợp hoặc tổng hợp một số yếu tố mà một trong số đó là trí tuệ nhân tạo tạo sinh"
 }
