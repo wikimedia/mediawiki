@@ -17,6 +17,7 @@ use MediaWiki\Logging\LogEventsList;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Output\OutputPage;
+use MediaWiki\Parser\Parser;
 use MediaWiki\Parser\Sanitizer;
 use MediaWiki\Request\WebRequest;
 use MediaWiki\SpecialPage\SpecialPage;
@@ -223,10 +224,14 @@ class ImagePage extends Article {
 
 		// Build the unified TOC, merging the description's headings (collected by
 		// parent::view()) after the leading "File" entry. It feeds the sidebar for
-		// skins with a built-in TOC, and an inline TOC prepended for the rest.
+		// skins with a built-in TOC, and an inline TOC placed directly below the
+		// file display (#file) for the rest.
 		if ( $this->tocSections !== null ) {
 			$descriptionSections = $out->getTOCData()?->getSections() ?? [];
-			$out->addTOCPlaceholder( $this->buildTOCData( $this->tocSections, $descriptionSections ), true );
+			$out->addTOCPlaceholder(
+				$this->buildTOCData( $this->tocSections, $descriptionSections ),
+				Parser::TOC_PLACEHOLDER
+			);
 		}
 
 		// Add remote Filepage.css
@@ -712,6 +717,11 @@ class ImagePage extends Article {
 					Html::rawElement( 'div', [ 'class' => 'mediaWarning' ], $context->msg( 'mediawarning' )->parse() )
 				);
 			}
+
+			// Anchor the combined table of contents below the file display and
+			// the .fullMedia line describing it. ::view() replaces this marker
+			// once the TOC has been assembled.
+			$out->addHTML( Parser::TOC_PLACEHOLDER . "\n" );
 
 			$renderLangOptions = $this->displayImg->getAvailableLanguages();
 			if ( count( $renderLangOptions ) >= 1 ) {
