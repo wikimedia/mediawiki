@@ -406,7 +406,7 @@ class ApiComparePagesTest extends ApiTestCase {
 					]
 				],
 			],
-			'Basic diff, text with revision and PST' => [
+			'Basic diff, text with revision and PST as sysop' => [
 				[
 					'fromslots' => 'main',
 					'fromtext-main' => 'From text',
@@ -422,6 +422,7 @@ class ApiComparePagesTest extends ApiTestCase {
 							. '<tr><td class="diff-marker" data-marker="−"></td><td class="diff-deletedline diff-side-deleted"><div><del class="diffchange diffchange-inline">From </del>text</div></td><td class="diff-marker" data-marker="+"></td><td class="diff-addedline diff-side-added"><div><ins class="diffchange diffchange-inline">To </ins>text <ins class="diffchange diffchange-inline">ApiComparePagesTest B</ins></div></td></tr>' . "\n",
 					]
 				],
+				false, true
 			],
 			'Basic diff, text with deleted revision and PST' => [
 				[
@@ -772,7 +773,7 @@ class ApiComparePagesTest extends ApiTestCase {
 					]
 				],
 			],
-			'Basic diff, deprecated text with revision and PST' => [
+			'Basic diff, deprecated text with revision and PST as sysop' => [
 				[
 					'fromtext' => 'From text',
 					'torev' => '{{REPL:revB2}}',
@@ -787,6 +788,7 @@ class ApiComparePagesTest extends ApiTestCase {
 							. '<tr><td class="diff-marker" data-marker="−"></td><td class="diff-deletedline diff-side-deleted"><div><del class="diffchange diffchange-inline">From </del>text</div></td><td class="diff-marker" data-marker="+"></td><td class="diff-addedline diff-side-added"><div><ins class="diffchange diffchange-inline">To </ins>text <ins class="diffchange diffchange-inline">ApiComparePagesTest B</ins></div></td></tr>' . "\n",
 					]
 				],
+				false, true
 			],
 			'Basic diff, deprecated text with deleted revision and PST' => [
 				[
