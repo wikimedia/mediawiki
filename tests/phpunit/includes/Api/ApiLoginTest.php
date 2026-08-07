@@ -8,14 +8,11 @@ use MediaWiki\Auth\AuthenticationResponse;
 use MediaWiki\Auth\UsernameAuthenticationRequest;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\MainConfigNames;
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Session\BotPasswordSessionProvider;
-use MediaWiki\Session\PHPSessionHandler;
 use MediaWiki\Session\Token;
 use MediaWiki\User\BotPassword;
 use MediaWiki\User\User;
 use MediaWiki\Utils\MWRestrictions;
-use Wikimedia\TestingAccessWrapper;
 
 /**
  * @group API
@@ -28,11 +25,6 @@ class ApiLoginTest extends ApiTestCase {
 
 	protected function setUp(): void {
 		parent::setUp();
-
-		$this->overrideConfigValue( MainConfigNames::PHPSessionHandling, 'enable' );
-		$handler = TestingAccessWrapper::newFromClass( PHPSessionHandler::class );
-		$handler->instance = null;
-		PHPSessionHandler::install( MediaWikiServices::getInstance()->getSessionManager() );
 	}
 
 	public static function provideEnableBotPasswords() {
@@ -87,11 +79,12 @@ class ApiLoginTest extends ApiTestCase {
 		);
 
 		$user = $this->getTestUser();
+		$anonUser = $this->getServiceContainer()->getUserFactory()->newAnonymous();
 
 		$ret = $this->doApiRequest( [
 			'action' => 'login',
 			'lgname' => $user->getUser()->getName(),
-		] );
+		], [], performer: $anonUser );
 
 		$this->assertSame(
 			[ 'warnings' => ApiErrorFormatter::stripMarkup( wfMessage(
@@ -100,12 +93,15 @@ class ApiLoginTest extends ApiTestCase {
 		);
 		$this->assertSame( 'NeedToken', $ret[0]['login']['result'] );
 
+		// HACK: AuthManager shouldn't hold on to the request object
+		$this->getServiceContainer()->resetServiceForTesting( 'AuthManager' );
+
 		$ret = $this->doApiRequest( [
 			'action' => 'login',
 			'lgtoken' => $ret[0]['login']['token'],
 			'lgname' => $user->getUser()->getName(),
 			'lgpassword' => $user->getPassword(),
-		], $ret[2] );
+		], $ret[2], performer: $anonUser );
 
 		$this->assertSame(
 			[ 'warnings' => ApiErrorFormatter::stripMarkup( wfMessage(

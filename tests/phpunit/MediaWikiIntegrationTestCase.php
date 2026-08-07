@@ -550,10 +550,6 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 
 		// TODO: move global state into MediaWikiServices
 		RequestContext::resetMain();
-		if ( session_id() !== '' ) {
-			session_write_close();
-			session_id( '' );
-		}
 
 		$wgRequest = RequestContext::getMain()->getRequest();
 
@@ -791,10 +787,6 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 
 		// TODO: move global state into MediaWikiServices
 		RequestContext::resetMain();
-		if ( session_id() !== '' ) {
-			session_write_close();
-			session_id( '' );
-		}
 		$wgRequest = RequestContext::getMain()->getRequest();
 		ProfilingContext::destroySingleton();
 

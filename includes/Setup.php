@@ -240,6 +240,13 @@ $wgSettings->enterRegistrationStage();
  * available, and before MediaWikiServices is initialized.
  */
 
+// This constant used to control MediaWiki's integration with PHP sessions, and we allowed users
+// to define it in LocalSettings.php. That integration has been removed and this constant is now
+// always defined for compatibility with code that checked for it.
+if ( !defined( 'MW_NO_SESSION_HANDLER' ) ) {
+	define( 'MW_NO_SESSION_HANDLER', 1 );
+}
+
 if ( defined( 'MW_SETUP_CALLBACK' ) ) {
 	call_user_func( MW_SETUP_CALLBACK, $wgSettings );
 	// Make any additional settings available in globals for use here
@@ -488,23 +495,10 @@ if ( MW_ENTRY_POINT === 'index' ) {
 	RequestContext::getMain()->getRequest()->interpolateTitle();
 }
 
+// @phan-suppress-next-line PhanUndeclaredMethod shutdown() is not part of the public interface
+register_shutdown_function( MediaWikiServices::getInstance()->getSessionManager()->shutdown( ... ) );
+
 if ( !defined( 'MW_NO_SESSION' ) && MW_ENTRY_POINT !== 'cli' ) {
-	// If session.auto_start is there, we can't touch session name
-	if ( $wgPHPSessionHandling !== 'disable' && !wfIniGetBool( 'session.auto_start' ) ) {
-		HeaderCallback::warnIfHeadersSent();
-		session_name( $wgSessionName ?: $wgCookiePrefix . '_session' );
-	}
-
-	// Create the SessionManager singleton and set up our session handler,
-	// unless we're specifically asked not to.
-	if ( !defined( 'MW_NO_SESSION_HANDLER' ) ) {
-		MediaWiki\Session\PHPSessionHandler::install(
-			MediaWikiServices::getInstance()->getSessionManager()
-		);
-	}
-	// @phan-suppress-next-line PhanUndeclaredMethod shutdown() is not part of the public interface
-	register_shutdown_function( MediaWikiServices::getInstance()->getSessionManager()->shutdown( ... ) );
-
 	$contLang = MediaWikiServices::getInstance()->getContentLanguage();
 
 	// Initialize the session
@@ -526,33 +520,7 @@ if ( !defined( 'MW_NO_SESSION' ) && MW_ENTRY_POINT !== 'cli' ) {
 	unset( $contLang );
 
 	$session->renew();
-	if ( MediaWiki\Session\PHPSessionHandler::isEnabled() &&
-		( $session->isPersistent() || $session->shouldRememberUser() ) &&
-		session_id() !== $session->getId()
-	) {
-		// Start the PHP-session for backwards compatibility
-		if ( session_id() !== '' ) {
-			wfDebugLog( 'session', 'PHP session {old_id} was already started, changing to {new_id}', 'all', [
-				'old_id' => session_id(),
-				'new_id' => $session->getId(),
-			] );
-			session_write_close();
-		}
-		session_id( $session->getId() );
-		session_start();
-	}
-
 	unset( $session );
-} else {
-	// Even if we didn't set up a global Session, still install our session
-	// handler unless specifically requested not to.
-	if ( !defined( 'MW_NO_SESSION_HANDLER' ) ) {
-		MediaWiki\Session\PHPSessionHandler::install(
-			MediaWikiServices::getInstance()->getSessionManager()
-		);
-	}
-	// @phan-suppress-next-line PhanUndeclaredMethod shutdown() is not part of the public interface
-	register_shutdown_function( MediaWikiServices::getInstance()->getSessionManager()->shutdown( ... ) );
 }
 
 // Explicit globals, so this works with bootstrap.php

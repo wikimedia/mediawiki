@@ -865,18 +865,6 @@ class SetupDynamicConfigTest extends MediaWikiUnitTestCase {
 				$_SERVER['HTTP_X_FORWARDED_PROTO'] = 'https';
 			}
 		];
-		yield 'Bogus $wgPHPSessionHandling' => [
-			[ MainConfigNames::PHPSessionHandling => 'bogus' ],
-			[ MainConfigNames::PHPSessionHandling => 'warn' ],
-		];
-		yield 'Enable $wgPHPSessionHandling' => [
-			[ MainConfigNames::PHPSessionHandling => 'enable' ],
-			[ MainConfigNames::PHPSessionHandling => 'enable' ],
-		];
-		yield 'Disable $wgPHPSessionHandling' => [
-			[ MainConfigNames::PHPSessionHandling => 'disable' ],
-			[ MainConfigNames::PHPSessionHandling => 'disable' ],
-		];
 
 		// use old deprecated rate limit names
 		$rateLimits = [

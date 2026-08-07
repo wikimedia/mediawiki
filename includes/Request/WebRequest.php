@@ -11,7 +11,6 @@
 
 namespace MediaWiki\Request;
 
-use MediaWiki\Context\RequestContext;
 use MediaWiki\Exception\FatalError;
 use MediaWiki\Exception\MWException;
 use MediaWiki\Hook\GetSecurityLogContextHook;
@@ -19,7 +18,6 @@ use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Http\Telemetry;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
-use MediaWiki\Session\PHPSessionHandler;
 use MediaWiki\Session\Session;
 use MediaWiki\Session\SessionId;
 use MediaWiki\User\UserIdentity;
@@ -890,17 +888,6 @@ class WebRequest {
 	 * @return SessionId|null
 	 */
 	public function getSessionId() {
-		// If this is the main request, and we're using built-in PHP session handling,
-		// and the session ID wasn't overridden, return the PHP session's ID.
-		if ( PHPSessionHandler::isEnabled() && $this === RequestContext::getMain()->getRequest() ) {
-			$id = session_id();
-			if ( $id !== '' ) {
-				// Someone used session_id(), so we need to follow suit.
-				// We can't even cache this in $this->sessionId.
-				return new SessionId( $id );
-			}
-		}
-
 		return $this->sessionId;
 	}
 

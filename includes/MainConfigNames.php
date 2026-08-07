@@ -1572,14 +1572,6 @@ class MainConfigNames {
 	public const ObjectCacheSessionExpiry = 'ObjectCacheSessionExpiry';
 
 	/**
-	 * Name constant for the PHPSessionHandling setting, for use with Config::get()
-	 * @see MainConfigSchema::PHPSessionHandling
-	 * @deprecated since 1.45 Integration with PHP session handling will be removed in the
-	 *    future
-	 */
-	public const PHPSessionHandling = 'PHPSessionHandling';
-
-	/**
 	 * Name constant for the SuspiciousIpExpiry setting, for use with Config::get()
 	 * @see MainConfigSchema::SuspiciousIpExpiry
 	 */

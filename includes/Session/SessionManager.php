@@ -583,11 +583,6 @@ class SessionManager implements SessionManagerInterface {
 	public function shutdown() {
 		if ( $this->allSessionBackends ) {
 			$this->logger->debug( 'Saving all sessions on shutdown' );
-			if ( session_id() !== '' ) {
-				// @codeCoverageIgnoreStart
-				session_write_close();
-			}
-			// @codeCoverageIgnoreEnd
 			foreach ( $this->allSessionBackends as $backend ) {
 				$backend->shutdown();
 			}
@@ -1057,19 +1052,6 @@ class SessionManager implements SessionManagerInterface {
 		$info = new SessionInfo( SessionInfo::MIN_PRIORITY, [ 'id' => $id, 'idIsSafe' => true ] );
 		$this->sessionStore->set( $info, false, 0, BagOStuff::WRITE_CACHE_ONLY );
 		return $id;
-	}
-
-	/**
-	 * Call setters on a PHPSessionHandler
-	 *
-	 * @internal Use PhpSessionHandler::install() instead.
-	 * @param PHPSessionHandler $handler
-	 */
-	public function setupPHPSessionHandler( PHPSessionHandler $handler ) {
-		$handler->setManager(
-			$this,
-			$this->logger
-		);
 	}
 
 	private function logUnpersist( SessionInfo $info, WebRequest $request ) {

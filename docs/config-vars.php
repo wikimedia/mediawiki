@@ -1557,14 +1557,6 @@ $wgOldRevisionParserCacheExpireTime = null;
 $wgObjectCacheSessionExpiry = null;
 
 /**
- * Config variable stub for the PHPSessionHandling setting, for use by phpdoc and IDEs.
- * @see MediaWiki\MainConfigSchema::PHPSessionHandling
- * @deprecated since 1.45 Integration with PHP session handling will be removed in the
- *    future
- */
-$wgPHPSessionHandling = null;
-
-/**
  * Config variable stub for the SuspiciousIpExpiry setting, for use by phpdoc and IDEs.
  * @see MediaWiki\MainConfigSchema::SuspiciousIpExpiry
  */

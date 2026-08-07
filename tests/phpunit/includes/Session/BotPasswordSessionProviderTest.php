@@ -838,7 +838,6 @@ class BotPasswordSessionProviderTest extends MediaWikiIntegrationTestCase {
 			$hookContainer,
 			10
 		);
-		TestingAccessWrapper::newFromObject( $backend )->usePhpSessionHandling = false;
 
 		// Logged-in user, no remember
 		$backend->setRememberUser( false );

@@ -236,7 +236,6 @@ class ImmutableSessionProviderWithCookieTest extends MediaWikiIntegrationTestCas
 			$this->createHookContainer(),
 			10
 		);
-		TestingAccessWrapper::newFromObject( $backend )->usePhpSessionHandling = false;
 		$backend->setRememberUser( $remember );
 		$backend->setForceHTTPS( $secure );
 

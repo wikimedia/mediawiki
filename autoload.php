@@ -3119,7 +3119,6 @@ $wgAutoloadLocalClasses = [
 	'MediaWiki\\Session\\JwtSessionCookieHelper' => __DIR__ . '/includes/Session/JwtSessionCookieHelper.php',
 	'MediaWiki\\Session\\MetadataMergeException' => __DIR__ . '/includes/Session/MetadataMergeException.php',
 	'MediaWiki\\Session\\MultiBackendSessionStore' => __DIR__ . '/includes/Session/MultiBackendSessionStore.php',
-	'MediaWiki\\Session\\PHPSessionHandler' => __DIR__ . '/includes/Session/PHPSessionHandler.php',
 	'MediaWiki\\Session\\Session' => __DIR__ . '/includes/Session/Session.php',
 	'MediaWiki\\Session\\SessionBackend' => __DIR__ . '/includes/Session/SessionBackend.php',
 	'MediaWiki\\Session\\SessionId' => __DIR__ . '/includes/Session/SessionId.php',

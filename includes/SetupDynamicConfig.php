@@ -379,18 +379,6 @@ if ( $wgPageLanguageUseDB ) {
 	];
 }
 
-if ( $wgPHPSessionHandling !== 'enable' &&
-	$wgPHPSessionHandling !== 'warn' &&
-	$wgPHPSessionHandling !== 'disable'
-) {
-	$wgPHPSessionHandling = 'warn';
-}
-if ( defined( 'MW_NO_SESSION' ) ) {
-	// If the entry point wants no session, force 'disable' here unless they
-	// specifically set it to the (undocumented) 'warn'.
-	$wgPHPSessionHandling = MW_NO_SESSION === 'warn' ? 'warn' : 'disable';
-}
-
 // Backwards compatibility with old bot passwords storage configs
 if ( !$wgVirtualDomainsMapping ) {
 	$wgVirtualDomainsMapping = [];

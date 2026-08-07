@@ -803,7 +803,6 @@ class CookieSessionProviderTest extends MediaWikiIntegrationTestCase {
 			$hookContainer,
 			10
 		);
-		TestingAccessWrapper::newFromObject( $backend )->usePhpSessionHandling = false;
 
 		// Anonymous user
 		$backend->setUser( $anon );
@@ -966,7 +965,6 @@ class CookieSessionProviderTest extends MediaWikiIntegrationTestCase {
 			$hookContainer,
 			$sessionStoreExpiry
 		);
-		TestingAccessWrapper::newFromObject( $backend )->usePhpSessionHandling = false;
 		$backend->setUser( $user );
 		$backend->setRememberUser( $remember );
 		$backend->setForceHTTPS( $secure );

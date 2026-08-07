@@ -7,12 +7,10 @@
 namespace MediaWiki\Session;
 
 use InvalidArgumentException;
-use MediaWiki\Context\RequestContext;
 use MediaWiki\Deferred\DeferredUpdates;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Logger\LoggerFactory;
-use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Request\WebRequest;
 use MediaWiki\User\User;
@@ -110,11 +108,6 @@ final class SessionBackend {
 	private $delaySave = 0;
 	private bool $hasDelayedSave = false;
 
-	/** @var bool */
-	private $usePhpSessionHandling;
-	/** @var bool */
-	private $checkPHPSessionRecursionGuard = false;
-
 	private int $priority;
 
 	/**
@@ -133,10 +126,6 @@ final class SessionBackend {
 		HookContainer $hookContainer,
 		$lifetime
 	) {
-		$phpSessionHandling = MediaWikiServices::getInstance()->getMainConfig()
-			->get( MainConfigNames::PHPSessionHandling );
-		$this->usePhpSessionHandling = $phpSessionHandling !== 'disable';
-
 		if ( $info->getUserInfo() && !$info->getUserInfo()->isVerified() ) {
 			throw new InvalidArgumentException(
 				"Refusing to create session for unverified user {$info->getUserInfo()}"
@@ -253,7 +242,7 @@ final class SessionBackend {
 	 */
 	public function shutdown() {
 		$this->sessionWriteReason = 'shutdown';
-		$this->save( true );
+		$this->save();
 	}
 
 	/**
@@ -284,14 +273,6 @@ final class SessionBackend {
 		if ( $this->provider->persistsSessionId() ) {
 			$oldSessionInfo = $this->getSessionInfo();
 			$oldId = (string)$this->id;
-			$restart = $this->usePhpSessionHandling && $oldId === session_id() &&
-				PHPSessionHandler::isEnabled();
-
-			if ( $restart ) {
-				// If this session is the one behind PHP's $_SESSION, we need
-				// to close then reopen it.
-				session_write_close();
-			}
 
 			$this->provider->getManager()->changeBackendId( $this );
 			$this->provider->sessionIdWasReset( $this, $oldId );
@@ -303,12 +284,6 @@ final class SessionBackend {
 					'session' => $this->id->__toString(),
 					'oldId' => $oldId,
 				] );
-
-			if ( $restart ) {
-				session_id( (string)$this->id );
-				// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged
-				@session_start();
-			}
 
 			$this->autosave();
 
@@ -379,18 +354,6 @@ final class SessionBackend {
 	 */
 	public function unpersist() {
 		if ( $this->persist ) {
-			// Close the PHP session, if we're the one that's open
-			if ( $this->usePhpSessionHandling && PHPSessionHandler::isEnabled() &&
-				session_id() === (string)$this->id
-			) {
-				$this->logger->debug(
-					'SessionBackend "{session}" Closing PHP session for unpersist',
-					[ 'session' => $this->id->__toString() ]
-				);
-				session_write_close();
-				session_id( '' );
-			}
-
 			$this->persist = false;
 			$this->forcePersist = true;
 			$this->metaDirty = true;
@@ -739,10 +702,8 @@ final class SessionBackend {
 	 * Update both the backend data and the associated WebRequest(s) to
 	 * reflect the state of the SessionBackend. This might include
 	 * persisting or unpersisting the session.
-	 *
-	 * @param bool $closing Whether the session is being closed
 	 */
-	public function save( $closing = false ) {
+	public function save() {
 		$anon = $this->user->isAnon();
 
 		if ( !$anon && $this->provider->getManager()->isUserSessionPrevented( $this->user->getName() ) ) {
@@ -819,9 +780,6 @@ final class SessionBackend {
 					$request->setSessionId( $this->getSessionId() );
 					$this->provider->persistSession( $this, $request );
 				}
-				if ( !$closing ) {
-					$this->checkPHPSession();
-				}
 			} else {
 				foreach ( $this->requests as $request ) {
 					if ( $request->getSessionId() === $this->id ) {
@@ -891,32 +849,6 @@ final class SessionBackend {
 		$this->dataDirty = false;
 		$this->dataHash = md5( serialize( $this->data ) );
 		$this->expires = $metadata['expires'];
-	}
-
-	/**
-	 * For backwards compatibility, open the PHP session when the global
-	 * session is persisted
-	 */
-	private function checkPHPSession() {
-		if ( !$this->checkPHPSessionRecursionGuard ) {
-			$this->checkPHPSessionRecursionGuard = true;
-			$reset = new \Wikimedia\ScopedCallback( function () {
-				$this->checkPHPSessionRecursionGuard = false;
-			} );
-
-			if ( $this->usePhpSessionHandling && session_id() === '' && PHPSessionHandler::isEnabled() &&
-				RequestContext::getMain()->getRequest()->getSession()->getId() === (string)$this->id
-			) {
-				$this->logger->debug(
-					'SessionBackend "{session}" Taking over PHP session',
-					[
-						'session' => $this->id->__toString(),
-					] );
-				session_id( (string)$this->id );
-				// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged
-				@session_start();
-			}
-		}
 	}
 
 	/**

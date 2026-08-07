@@ -8,7 +8,6 @@ use InvalidArgumentException;
 use MediaWiki\Config\Config;
 use MediaWiki\Config\HashConfig;
 use MediaWiki\Request\FauxRequest;
-use MediaWiki\Session\PHPSessionHandler;
 use MediaWiki\Session\Session;
 use MediaWiki\Session\SessionBackend;
 use MediaWiki\Session\SessionId;
@@ -104,7 +103,6 @@ class SessionBackendTest extends MediaWikiIntegrationTestCase {
 		$priv->persist = false;
 		$priv->requests = [ 100 => new FauxRequest() ];
 		$priv->requests[100]->setSessionId( $id );
-		$priv->usePhpSessionHandling = false;
 
 		$manager = TestingAccessWrapper::newFromObject( $this->manager );
 		$manager->allSessionBackends = [ $backend->getId() => $backend ] + $manager->allSessionBackends;
@@ -293,8 +291,6 @@ class SessionBackendTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testResetId() {
-		$id = session_id();
-
 		$builder = $this->getMockBuilder( DummySessionProvider::class )
 			->onlyMethods( [ 'persistsSessionId', 'sessionIdWasReset' ] );
 
@@ -308,7 +304,6 @@ class SessionBackendTest extends MediaWikiIntegrationTestCase {
 		$backend->resetId();
 		$this->assertSame( self::SESSIONID, $backend->getId() );
 		$this->assertSame( $backend->getId(), $sessionId->getId() );
-		$this->assertSame( $id, session_id() );
 		$this->assertSame( $backend, $manager->allSessionBackends[self::SESSIONID] );
 
 		$this->provider = $builder->getMock();
@@ -325,7 +320,6 @@ class SessionBackendTest extends MediaWikiIntegrationTestCase {
 		$store = TestingAccessWrapper::newFromObject( $this->store )->store;
 		$this->assertIsArray( $store->get( $store->makeKey( 'MWSession', $backend->getId() ) ) );
 		$this->assertFalse( $this->getSession( self::SESSIONID ) );
-		$this->assertSame( $id, session_id() );
 		$this->assertArrayNotHasKey( self::SESSIONID, $manager->allSessionBackends );
 		$this->assertArrayHasKey( $backend->getId(), $manager->allSessionBackends );
 		$this->assertSame( $backend, $manager->allSessionBackends[$backend->getId()] );
@@ -975,88 +969,6 @@ class SessionBackendTest extends MediaWikiIntegrationTestCase {
 		$this->assertFalse( $sessionMetadataCalled );
 		$this->assertFalse( $this->getSession( self::SESSIONID ), 'making sure it didn\'t save' );
 		$this->assertEquals( $expires, $wrap->expires );
-	}
-
-	private function ensurePHPSessionHandlerEnabled(): ?ScopedCallback {
-		$scope = null;
-		if ( !PHPSessionHandler::isEnabled() ) {
-			$staticAccess = TestingAccessWrapper::newFromClass( PHPSessionHandler::class );
-			$handler = TestingAccessWrapper::newFromObject( $staticAccess->instance );
-			$scope = new ScopedCallback( static function () use ( $handler ) {
-				session_write_close();
-				$handler->enable = false;
-			} );
-			$handler->enable = true;
-		}
-		return $scope;
-	}
-
-	public function testTakeOverGlobalSession() {
-		$scope = $this->ensurePHPSessionHandlerEnabled();
-
-		$backend = $this->getBackend( static::getTestSysop()->getUser() );
-		TestingAccessWrapper::newFromObject( $backend )->usePhpSessionHandling = true;
-
-		$this->setService( 'SessionManager', $this->manager );
-		PHPSessionHandler::install( $this->manager );
-
-		session_id( '' );
-		TestingAccessWrapper::newFromObject( $backend )->checkPHPSession();
-		$this->assertSame( $backend->getId(), session_id() );
-		session_write_close();
-
-		$backend2 = $this->getBackend(
-			User::newFromName( 'TestTakeOverGlobalSession' ), 'bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb'
-		);
-		TestingAccessWrapper::newFromObject( $backend2 )->usePhpSessionHandling = true;
-
-		session_id( '' );
-		TestingAccessWrapper::newFromObject( $backend2 )->checkPHPSession();
-		$this->assertSame( '', session_id() );
-	}
-
-	public function testResetIdOfGlobalSession() {
-		$this->hideDeprecated( '$_SESSION' );
-		$scope = $this->ensurePHPSessionHandlerEnabled();
-
-		$backend = $this->getBackend( User::newFromName( 'TestResetIdOfGlobalSession' ) );
-		TestingAccessWrapper::newFromObject( $backend )->usePhpSessionHandling = true;
-
-		$this->setService( 'SessionManager', $this->manager );
-		PHPSessionHandler::install( $this->manager );
-
-		session_id( self::SESSIONID );
-		@session_start();
-		$_SESSION['foo'] = __METHOD__;
-		$backend->resetId();
-		$this->assertNotEquals( self::SESSIONID, $backend->getId() );
-		$this->assertSame( $backend->getId(), session_id() );
-		$this->assertArrayHasKey( 'foo', $_SESSION );
-		$this->assertSame( __METHOD__, $_SESSION['foo'] );
-		session_write_close();
-	}
-
-	public function testUnpersistOfGlobalSession() {
-		$scope = $this->ensurePHPSessionHandlerEnabled();
-
-		$backend = $this->getBackend( User::newFromName( 'TestUnpersistOfGlobalSession' ) );
-		$wrap = TestingAccessWrapper::newFromObject( $backend );
-		$wrap->usePhpSessionHandling = true;
-		$wrap->persist = true;
-
-		$this->setService( 'SessionManager', $this->manager );
-		PHPSessionHandler::install( $this->manager );
-
-		session_id( self::SESSIONID . 'x' );
-		@session_start();
-		$backend->unpersist();
-		$this->assertSame( self::SESSIONID . 'x', session_id() );
-		session_write_close();
-
-		session_id( self::SESSIONID );
-		$wrap->persist = true;
-		$backend->unpersist();
-		$this->assertSame( '', session_id() );
 	}
 
 	public function testGetAllowedUserRights() {

@@ -5,13 +5,11 @@ namespace MediaWiki\Tests\Session;
 use DummySessionProvider;
 use InvalidArgumentException;
 use MediaWiki\Config\HashConfig;
-use MediaWiki\Context\RequestContext;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Request\FauxRequest;
 use MediaWiki\Request\ProxyLookup;
 use MediaWiki\Session\CookieSessionProvider;
 use MediaWiki\Session\MetadataMergeException;
-use MediaWiki\Session\PHPSessionHandler;
 use MediaWiki\Session\Session;
 use MediaWiki\Session\SessionInfo;
 use MediaWiki\Session\SessionManager;
@@ -33,7 +31,6 @@ use stdClass;
 use TestLogger;
 use UnexpectedValueException;
 use Wikimedia\Rdbms\IDBAccessObject;
-use Wikimedia\ScopedCallback;
 use Wikimedia\Stats\StatsFactory;
 use Wikimedia\TestingAccessWrapper;
 
@@ -91,53 +88,6 @@ class SessionManagerTest extends MediaWikiIntegrationTestCase {
 		return [ 'factory' => static function () use ( $object ) {
 			return $object;
 		} ];
-	}
-
-	public function testPHPSessionHandler() {
-		$manager = $this->createManager();
-		$this->setService( 'SessionManager', $manager );
-		PHPSessionHandler::install( $manager );
-		$staticAccess = TestingAccessWrapper::newFromClass( PHPSessionHandler::class );
-		$handler = TestingAccessWrapper::newFromObject( $staticAccess->instance );
-
-		$oldEnable = $handler->enable;
-		$reset[] = new ScopedCallback( static function () use ( $handler, $oldEnable ) {
-			if ( $handler->enable ) {
-				session_write_close();
-			}
-			$handler->enable = $oldEnable;
-		} );
-
-		$handler->enable = true;
-		$context = RequestContext::getMain();
-		$request = new FauxRequest();
-		$context->setRequest( $request );
-		$id = $request->getSession()->getId();
-
-		session_write_close();
-		session_id( '' );
-		$session = $context->getRequest()->getSession();
-		$this->assertSame( $id, $session->getId() );
-
-		session_id( 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx' );
-		$session = $context->getRequest()->getSession();
-		$this->assertSame( 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx', $session->getId() );
-		$this->assertSame( 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx', $request->getSession()->getId() );
-
-		session_write_close();
-		$handler->enable = false;
-		$request = new FauxRequest();
-		$context->setRequest( $request );
-		$id = $request->getSession()->getId();
-
-		session_id( '' );
-		$session = $context->getRequest()->getSession();
-		$this->assertSame( $id, $session->getId() );
-
-		session_id( 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx' );
-		$session = $context->getRequest()->getSession();
-		$this->assertSame( $id, $session->getId() );
-		$this->assertSame( $id, $request->getSession()->getId() );
 	}
 
 	public function testConstructor() {

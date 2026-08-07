@@ -4344,25 +4344,6 @@ class MainConfigSchema {
 	];
 
 	/**
-	 * Whether to use PHP session handling ($_SESSION and session_*() functions)
-	 *
-	 * If the constant MW_NO_SESSION is defined, this is forced to 'disable'.
-	 *
-	 * If the constant MW_NO_SESSION_HANDLER is defined, this is ignored and PHP
-	 * session handling will function independently of SessionHandler.
-	 * SessionHandler and PHP's session handling may attempt to override each
-	 * others' cookies.
-	 *
-	 * @since 1.27
-	 * @deprecated since 1.45 Integration with PHP session handling will be removed in the future
-	 */
-	public const PHPSessionHandling = [
-		'default' => 'warn',
-		'type' => 'string',
-		'deprecated' => 'since 1.45 Integration with PHP session handling will be removed in the future',
-	];
-
-	/**
 	 * Time in seconds to remember IPs for, for the purposes of logging IP changes within the
 	 * same session. This is meant more for debugging errors in the authentication system than
 	 * for detecting abuse.

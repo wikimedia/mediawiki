@@ -30,7 +30,7 @@ use Wikimedia\Stats\StatsFactory;
  * 1) Usually, the SessionInfo object directly tells us whether the session is
  *    authenticated or anonymous.
  * 2) When $sessionInfo->getUserInfo() is null (meaning either we are loading a
- *    session from its ID, e.g., for compatibility with PHP's session_id(), or
+ *    session from its ID, or
  *    we tried to load an authenticated session, but for some reason it failed),
  *    we check which store has data for the given session ID and use that.
  * 3) If neither store has any data, it's an anonymous (empty) session.

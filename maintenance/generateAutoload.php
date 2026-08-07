@@ -5,15 +5,6 @@ use MediaWiki\Maintenance\Maintenance;
 
 // @codeCoverageIgnoreStart
 require_once __DIR__ . '/Maintenance.php';
-// This maintenance script is run after renaming class files,
-// and is ideally standalone, invoking only a handful of classes.
-// Otherwise, it will crash and defeat its purpose for being when
-// it calls a class impacted by the renamed file.
-// The below skips MediaWikiServices::getSessionManager() in Setup.php, which
-// indirectly loads thousands of classes across the codebase.
-define( 'MW_NO_SESSION_HANDLER', 1 );
-// If something still tries to call it, fail hard.
-define( 'MW_NO_SESSION', 1 );
 // @codeCoverageIgnoreEnd
 
 /**

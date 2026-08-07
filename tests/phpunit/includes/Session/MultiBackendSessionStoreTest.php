@@ -109,7 +109,6 @@ class MultiBackendSessionStoreTest extends MediaWikiIntegrationTestCase {
 		$priv->persist = false;
 		$priv->requests = [ 100 => new FauxRequest() ];
 		$priv->requests[100]->setSessionId( $id );
-		$priv->usePhpSessionHandling = false;
 
 		$manager = TestingAccessWrapper::newFromObject( $this->manager );
 		$manager->allSessionBackends = [ $backend->getId() => $backend ] + $manager->allSessionBackends;

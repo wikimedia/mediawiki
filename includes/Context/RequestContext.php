@@ -26,7 +26,6 @@ use MediaWiki\Permissions\Authority;
 use MediaWiki\Request\FauxRequest;
 use MediaWiki\Request\WebRequest;
 use MediaWiki\Session\CsrfTokenSet;
-use MediaWiki\Session\PHPSessionHandler;
 use MediaWiki\Skin\Skin;
 use MediaWiki\Title\Title;
 use MediaWiki\User\User;
@@ -711,13 +710,6 @@ class RequestContext implements IContextSource, MutableContext {
 
 			$context = self::getMain();
 
-			// Commit and close any current session
-			if ( PHPSessionHandler::isEnabled() ) {
-				session_write_close(); // persist
-				session_id( '' ); // detach
-				$_SESSION = []; // clear in-memory array
-			}
-
 			// Get new session, if applicable
 			$session = null;
 			if ( $params['sessionId'] !== '' ) { // don't make a new random ID
@@ -736,11 +728,6 @@ class RequestContext implements IContextSource, MutableContext {
 			// and caught (leaving the main context in a mixed state), there is no risk
 			// of the User object being attached to the wrong IP, headers, or session.
 			$context->setUser( $user );
-			if ( $session && PHPSessionHandler::isEnabled() ) {
-				session_id( $session->getId() );
-				// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged
-				@session_start();
-			}
 			$request = new FauxRequest( [], false, $session );
 			$request->setIP( $params['ip'] );
 			foreach ( $params['headers'] as $name => $value ) {

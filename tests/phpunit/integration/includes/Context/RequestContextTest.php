@@ -9,7 +9,6 @@ use MediaWiki\Context\RequestContext;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Permissions\UltimateAuthority;
 use MediaWiki\Request\FauxRequest;
-use MediaWiki\Session\PHPSessionHandler;
 use MediaWiki\Skin\Skin;
 use MediaWiki\Skin\SkinFallback;
 use MediaWiki\Title\Title;
@@ -95,14 +94,6 @@ class RequestContextTest extends MediaWikiIntegrationTestCase {
 	 * @covers \MediaWiki\Context\RequestContext::importScopedSession
 	 */
 	public function testImportScopedSession() {
-		// Make sure session handling is started
-		if ( !PHPSessionHandler::isInstalled() ) {
-			PHPSessionHandler::install(
-				$this->getServiceContainer()->getSessionManager()
-			);
-		}
-		$oldSessionId = session_id();
-
 		$context = RequestContext::getMain();
 
 		$oInfo = $context->exportSession();
@@ -149,11 +140,6 @@ class RequestContextTest extends MediaWikiIntegrationTestCase {
 			$context->getRequest()->getSession()->getId(),
 			"Correct context session ID."
 		);
-		if ( \MediaWiki\Session\PHPSessionHandler::isEnabled() ) {
-			$this->assertEquals( $sinfo['sessionId'], session_id(), "Correct context session ID." );
-		} else {
-			$this->assertEquals( $oldSessionId, session_id(), "Unchanged PHP session ID." );
-		}
 		$this->assertTrue( $context->getUser()->isRegistered(), "Correct context user." );
 		$this->assertEquals( $sinfo['userId'], $context->getUser()->getId(), "Correct context user ID." );
 		$this->assertEquals(

@@ -575,7 +575,6 @@ return [
 			'ParserCacheAsyncRefreshJobs' => true,
 			'OldRevisionParserCacheExpireTime' => 3600,
 			'ObjectCacheSessionExpiry' => 3600,
-			'PHPSessionHandling' => 'warn',
 			'SuspiciousIpExpiry' => false,
 			'SessionPbkdf2Iterations' => 10001,
 			'UseSessionCookieJwt' => false,
@@ -2992,7 +2991,6 @@ return [
 			'ParsoidSelectiveUpdateSampleRate' => 'integer',
 			'ParserCacheFilterConfig' => 'object',
 			'ChronologyProtectorSecret' => 'string',
-			'PHPSessionHandling' => 'string',
 			'SuspiciousIpExpiry' => [
 				'integer',
 				'boolean',
@@ -3577,9 +3575,6 @@ return [
 					],
 				],
 			],
-		],
-		'PHPSessionHandling' => [
-			'deprecated' => 'since 1.45 Integration with PHP session handling will be removed in the future',
 		],
 		'RawHtmlMessages' => [
 			'items' => [

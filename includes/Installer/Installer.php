@@ -1475,12 +1475,6 @@ abstract class Installer {
 	 * Override the necessary bits of the config to run an installation.
 	 */
 	public static function overrideConfig( SettingsBuilder $settings ) {
-		// Use PHP's built-in session handling, since MediaWiki's
-		// SessionHandler can't work before we have an object cache set up.
-		if ( !defined( 'MW_NO_SESSION_HANDLER' ) ) {
-			define( 'MW_NO_SESSION_HANDLER', 1 );
-		}
-
 		$settings->overrideConfigValues( [
 
 			// Don't access the database
