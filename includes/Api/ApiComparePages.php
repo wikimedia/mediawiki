@@ -129,6 +129,7 @@ class ApiComparePages extends ApiBase {
 						// (T203433) The web UI treats "next" as "cur" in this case.
 						// Avoid repeating metadata by making a MutableRevisionRecord with no changes.
 						$toRev = MutableRevisionRecord::newFromParentRevision( $fromRelRev );
+						$toRev->setVisibility( $fromRelRev->getVisibility() );
 					}
 					break;
 
@@ -431,6 +432,7 @@ class ApiComparePages extends ApiBase {
 				if ( isset( $params["{$prefix}section"] ) ) {
 					$section = $params["{$prefix}section"];
 					$newRev = MutableRevisionRecord::newFromParentRevision( $rev );
+					$newRev->setVisibility( $rev->getVisibility() );
 					$content = $rev->getContent( SlotRecord::MAIN, RevisionRecord::FOR_THIS_USER,
 						$this->getAuthority() );
 					if ( !$content ) {
@@ -458,6 +460,7 @@ class ApiComparePages extends ApiBase {
 		}
 		if ( $rev ) {
 			$newRev = MutableRevisionRecord::newFromParentRevision( $rev );
+			$newRev->setVisibility( $rev->getVisibility() );
 		} else {
 			$newRev = new MutableRevisionRecord( $title ?: Title::newMainPage() );
 		}
