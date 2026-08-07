@@ -82,7 +82,8 @@ class DatabaseBlockStoreTest extends MediaWikiIntegrationTestCase {
 			'tempUserConfig' => $services->getTempUserConfig(),
 			'blockTargetFactory' => $services->getBlockTargetFactory(),
 			'autoblockExemptionList' => $services->getAutoblockExemptionList(),
-			'sessionManager' => $services->getSessionManager()
+			'sessionManager' => $services->getSessionManager(),
+			'lockManager' => $services->getLockManager(),
 		];
 		$constructorArgs = array_merge( $defaultConstructorArgs, $overrideConstructorArgs );
 

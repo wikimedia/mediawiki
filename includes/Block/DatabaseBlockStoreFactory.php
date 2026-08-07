@@ -14,6 +14,7 @@ use MediaWiki\User\ActorStoreFactory;
 use MediaWiki\User\TempUser\TempUserConfig;
 use MediaWiki\User\UserFactory;
 use Psr\Log\LoggerInterface;
+use Wikimedia\LockManager\ILockManager;
 use Wikimedia\Rdbms\LBFactory;
 use Wikimedia\Rdbms\ReadOnlyMode;
 
@@ -44,6 +45,7 @@ class DatabaseBlockStoreFactory {
 
 	/** @var DatabaseBlockStore[] */
 	private array $storeCache = [];
+	private ILockManager $lockManager;
 
 	public function __construct(
 		ServiceOptions $options,
@@ -58,7 +60,8 @@ class DatabaseBlockStoreFactory {
 		TempUserConfig $tempUserConfig,
 		CrossWikiBlockTargetFactory $crossWikiBlockTargetFactory,
 		AutoblockExemptionList $autoblockExemptionList,
-		SessionManagerInterface $sessionManager
+		SessionManagerInterface $sessionManager,
+		ILockManager $lockManager
 	) {
 		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
 
@@ -75,6 +78,7 @@ class DatabaseBlockStoreFactory {
 		$this->crossWikiBlockTargetFactory = $crossWikiBlockTargetFactory;
 		$this->autoblockExemptionList = $autoblockExemptionList;
 		$this->sessionManager = $sessionManager;
+		$this->lockManager = $lockManager;
 	}
 
 	public function getDatabaseBlockStore( string|false $wikiId = DatabaseBlock::LOCAL ): DatabaseBlockStore {
@@ -98,6 +102,7 @@ class DatabaseBlockStoreFactory {
 				$this->crossWikiBlockTargetFactory->getFactory( $wikiId ),
 				$this->autoblockExemptionList,
 				$this->sessionManager,
+				$this->lockManager,
 				$wikiId
 			);
 		}

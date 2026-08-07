@@ -9,6 +9,8 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\Status\Status;
 use MediaWikiUnitTestCase;
 use Psr\Log\NullLogger;
+use Wikimedia\LockManager\ILockManager;
+use Wikimedia\LockManager\NullLockManager;
 use Wikimedia\ObjectCache\BagOStuff;
 use Wikimedia\ObjectCache\HashBagOStuff;
 use Wikimedia\Rdbms\IConnectionProvider;
@@ -50,7 +52,8 @@ class PingbackTest extends MediaWikiUnitTestCase {
 			$dbProvider,
 			$cache ?? new HashBagOStuff(),
 			$httpRequestFactory,
-			new NullLogger()
+			new NullLogger(),
+			new NullLockManager( [] )
 		);
 	}
 
@@ -99,15 +102,26 @@ class PingbackTest extends MediaWikiUnitTestCase {
 		// - table is empty
 		// - cache lock is available
 		// - db lock is unavailable
-		$database = $this->createNoOpMock( IDatabase::class, [ 'selectField', 'lock', 'newSelectQueryBuilder' ] );
+		$database = $this->createNoOpMock( IDatabase::class, [ 'selectField', 'newSelectQueryBuilder' ] );
 		$database->expects( $this->once() )->method( 'selectField' )->willReturn( false );
-		$database->expects( $this->once() )->method( 'lock' )->willReturn( false );
 		$database->method( 'newSelectQueryBuilder' )->willReturnCallback( static fn () => new SelectQueryBuilder( $database ) );
 
-		$pingback = $this->makePingback(
-			$database,
-			$this->createNoOpMock( HttpRequestFactory::class )
+		$dbProvider = $this->createNoOpMock( IConnectionProvider::class, [ 'getPrimaryDatabase', 'getReplicaDatabase' ] );
+		$dbProvider->method( 'getPrimaryDatabase' )->willReturn( $database );
+		$dbProvider->method( 'getReplicaDatabase' )->willReturn( $database );
+
+		$lockManager = $this->createMock( ILockManager::class );
+		$lockManager->expects( $this->once() )->method( 'lockKey' )->willReturn( false );
+
+		$pingback = new MockPingback(
+			new HashConfig( [ MainConfigNames::Pingback => true ] ),
+			$dbProvider,
+			new HashBagOStuff(),
+			$this->createNoOpMock( HttpRequestFactory::class ),
+			new NullLogger(),
+			$lockManager
 		);
+
 		// Expect:
 		// - no HTTP request
 		// - no db upsert for timestamp
@@ -132,7 +146,6 @@ class PingbackTest extends MediaWikiUnitTestCase {
 		$httpRequest = $this->createNoOpMock( MWHttpRequest::class, [ 'setHeader', 'execute' ] );
 
 		$database->expects( $this->once() )->method( 'selectField' )->willReturn( $priorPing );
-		$database->expects( $this->once() )->method( 'lock' )->willReturn( true );
 
 		$httpRequestFactory->expects( $this->once() )
 			->method( 'create' )

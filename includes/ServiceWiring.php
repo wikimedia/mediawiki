@@ -856,7 +856,8 @@ return [
 			$services->getTempUserConfig(),
 			$services->getCrossWikiBlockTargetFactory(),
 			$services->getAutoblockExemptionList(),
-			$services->getSessionManager()
+			$services->getSessionManager(),
+			$services->getLockManager()
 		);
 	},
 
@@ -2120,7 +2121,8 @@ return [
 			$services->getConnectionProvider(),
 			$services->getObjectCacheFactory()->getLocalClusterInstance(),
 			$services->getHttpRequestFactory(),
-			LoggerFactory::getInstance( 'Pingback' )
+			LoggerFactory::getInstance( 'Pingback' ),
+			$services->getLockManager()
 		);
 	},
 

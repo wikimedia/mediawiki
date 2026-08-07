@@ -25,6 +25,7 @@ use Psr\Log\LoggerInterface;
 use RuntimeException;
 use stdClass;
 use Wikimedia\IPUtils;
+use Wikimedia\LockManager\ILockManager;
 use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\IExpression;
@@ -77,6 +78,7 @@ class DatabaseBlockStore {
 	private BlockTargetFactory $blockTargetFactory;
 	private AutoblockExemptionList $autoblockExemptionList;
 	private SessionManagerInterface $sessionManager;
+	private ILockManager $lockManager;
 
 	public function __construct(
 		ServiceOptions $options,
@@ -92,6 +94,7 @@ class DatabaseBlockStore {
 		BlockTargetFactory $blockTargetFactory,
 		AutoblockExemptionList $autoblockExemptionList,
 		SessionManagerInterface $sessionManager,
+		ILockManager $lockManager,
 		string|false $wikiId = DatabaseBlock::LOCAL
 	) {
 		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
@@ -111,6 +114,7 @@ class DatabaseBlockStore {
 		$this->blockTargetFactory = $blockTargetFactory;
 		$this->autoblockExemptionList = $autoblockExemptionList;
 		$this->sessionManager = $sessionManager;
+		$this->lockManager = $lockManager;
 	}
 
 	/***************************************************************************/
@@ -1073,11 +1077,11 @@ class DatabaseBlockStore {
 			$condsWithCount['bt_count'] = $expectedTargetCount;
 		}
 
-		$dbw->lock( $targetLockKey, __METHOD__ );
-		$func = __METHOD__;
+		$lockManager = $this->lockManager;
+		$lockManager->lockKey( $targetLockKey );
 		$dbw->onTransactionCommitOrIdle(
-			static function () use ( $dbw, $targetLockKey, $func ) {
-				$dbw->unlock( $targetLockKey, "$func.closure" );
+			static function () use ( $lockManager, $targetLockKey ) {
+				$lockManager->unlockKey( $targetLockKey );
 			},
 			__METHOD__
 		);
@@ -1567,9 +1571,7 @@ class DatabaseBlockStore {
 		}
 
 		// Acquire a lock on the primary DB for the autoblock to prevent race conditions (T260838)
-		$dbw = $this->getPrimaryDB();
-		$autoblockTargetLockKey = $dbw->getDomainID() . ':autoblock:' . $target;
-		if ( !$dbw->lock( $autoblockTargetLockKey, __METHOD__, 0 ) ) {
+		if ( !$this->lockManager->lockKey( 'autoblock:' . $target ) ) {
 			return false;
 		}
 
@@ -1597,7 +1599,7 @@ class DatabaseBlockStore {
 
 		$status = $this->insertBlock( $autoblock );
 
-		$dbw->unlock( $autoblockTargetLockKey, __METHOD__ );
+		$this->lockManager->unlockKey( 'autoblock:' . $target );
 
 		return $status
 			? $status['id']

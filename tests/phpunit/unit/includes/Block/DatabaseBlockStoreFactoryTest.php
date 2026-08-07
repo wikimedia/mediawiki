@@ -21,6 +21,7 @@ use MediaWiki\User\TempUser\TempUserConfig;
 use MediaWiki\User\UserFactory;
 use MediaWikiUnitTestCase;
 use Psr\Log\NullLogger;
+use Wikimedia\LockManager\ILockManager;
 use Wikimedia\Rdbms\ReadOnlyMode;
 
 /**
@@ -69,7 +70,8 @@ class DatabaseBlockStoreFactoryTest extends MediaWikiUnitTestCase {
 			$this->createMock( TempUserConfig::class ),
 			$crossWikiBlockTargetFactory,
 			$this->createMock( AutoblockExemptionList::class ),
-			$this->createMock( SessionManager::class )
+			$this->createMock( SessionManager::class ),
+			$this->createMock( ILockManager::class )
 		);
 
 		$databaseBlockStore = $factory->getDatabaseBlockStore( $domain );

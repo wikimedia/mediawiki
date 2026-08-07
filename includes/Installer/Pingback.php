@@ -12,6 +12,7 @@ use MediaWiki\Json\FormatJson;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Utils\MWCryptRand;
 use Psr\Log\LoggerInterface;
+use Wikimedia\LockManager\ILockManager;
 use Wikimedia\ObjectCache\BagOStuff;
 use Wikimedia\Rdbms\DBError;
 use Wikimedia\Rdbms\IConnectionProvider;
@@ -76,6 +77,7 @@ class Pingback {
 	protected $key;
 	/** @var string */
 	protected $eventIntakeUri;
+	private ILockManager $lockManager;
 
 	/**
 	 * @param Config $config
@@ -90,6 +92,7 @@ class Pingback {
 		BagOStuff $cache,
 		HttpRequestFactory $http,
 		LoggerInterface $logger,
+		ILockManager $lockManager,
 		string $eventIntakeUrl = self::EVENT_PLATFORM_EVENT_INTAKE_SERVICE_URI
 	) {
 		$this->config = $config;
@@ -99,6 +102,7 @@ class Pingback {
 		$this->logger = $logger;
 		$this->key = 'Pingback-' . MW_VERSION;
 		$this->eventIntakeUri = $eventIntakeUrl;
+		$this->lockManager = $lockManager;
 	}
 
 	/**
@@ -175,8 +179,7 @@ class Pingback {
 			return false;
 		}
 
-		$dbw = $this->dbProvider->getPrimaryDatabase();
-		if ( !$dbw->lock( $this->key, __METHOD__, 0 ) ) {
+		if ( !$this->lockManager->lockKey( $this->key ) ) {
 			// already in progress
 			return false;
 		}
