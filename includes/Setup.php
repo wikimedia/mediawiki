@@ -492,9 +492,9 @@ if ( !defined( 'MW_NO_SESSION' ) && MW_ENTRY_POINT !== 'cli' ) {
 		MediaWiki\Session\PHPSessionHandler::install(
 			MediaWikiServices::getInstance()->getSessionManager()
 		);
-		// @phan-suppress-next-line PhanUndeclaredMethod shutdown() is not part of the public interface
-		register_shutdown_function( MediaWikiServices::getInstance()->getSessionManager()->shutdown( ... ) );
 	}
+	// @phan-suppress-next-line PhanUndeclaredMethod shutdown() is not part of the public interface
+	register_shutdown_function( MediaWikiServices::getInstance()->getSessionManager()->shutdown( ... ) );
 
 	$contLang = MediaWikiServices::getInstance()->getContentLanguage();
 
@@ -541,9 +541,9 @@ if ( !defined( 'MW_NO_SESSION' ) && MW_ENTRY_POINT !== 'cli' ) {
 		MediaWiki\Session\PHPSessionHandler::install(
 			MediaWikiServices::getInstance()->getSessionManager()
 		);
-		// @phan-suppress-next-line PhanUndeclaredMethod shutdown() is not part of the public interface
-		register_shutdown_function( MediaWikiServices::getInstance()->getSessionManager()->shutdown( ... ) );
 	}
+	// @phan-suppress-next-line PhanUndeclaredMethod shutdown() is not part of the public interface
+	register_shutdown_function( MediaWikiServices::getInstance()->getSessionManager()->shutdown( ... ) );
 }
 
 // Explicit globals, so this works with bootstrap.php

@@ -538,7 +538,7 @@ class SessionManager implements SessionManagerInterface {
 	/**
 	 * Save all active sessions on shutdown
 	 *
-	 * @internal For use by PHPSessionHandler::install
+	 * @internal For use by Setup.php
 	 */
 	public function shutdown() {
 		if ( $this->allSessionBackends ) {
