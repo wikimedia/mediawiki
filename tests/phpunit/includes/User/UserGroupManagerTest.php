@@ -19,7 +19,6 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\Permissions\SimpleAuthority;
 use MediaWiki\RecentChanges\RecentChange;
 use MediaWiki\Request\FauxRequest;
-use MediaWiki\Session\PHPSessionHandler;
 use MediaWiki\User\Registration\UserRegistrationLookup;
 use MediaWiki\User\TempUser\RealTempUserConfig;
 use MediaWiki\User\User;
@@ -980,37 +979,13 @@ class UserGroupManagerTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testGetUserAutopromoteBlockedDoesNotRecurse() {
-		// Make sure session handling is started
-		if ( !PHPSessionHandler::isInstalled() ) {
-			PHPSessionHandler::install(
-				$this->getServiceContainer()->getSessionManager()
-			);
-		}
-		$oldSessionId = session_id();
-
-		$context = RequestContext::getMain();
-		// Variables are unused but needed to reproduce the failure
-		$oInfo = $context->exportSession();
-
 		$user = User::newFromName( 'UnitTestContextUser' );
 		$user->addToDatabase();
 
-		$sessionInfo = [
-			'sessionId' => 'd612ee607c87e749ef14da4983a702cd',
-			'userId' => $user->getId(),
-			'ip' => '192.0.2.0',
-			'headers' => [
-				'USER-AGENT' => 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:18.0) Gecko/20100101 Firefox/18.0'
-			]
-		];
 		$this->overrideConfigValue(
 			MainConfigNames::Autopromote,
 			[ 'test_autoconfirmed' => [ '&', APCOND_BLOCKED ] ]
 		);
-		// Variables are unused but needed to reproduce the failure
-		// load new context
-		$sc = RequestContext::importScopedSession( $sessionInfo );
-		$info = $context->exportSession();
 
 		$this->assertNull( $user->getBlock() );
 	}
@@ -1021,59 +996,30 @@ class UserGroupManagerTest extends MediaWikiIntegrationTestCase {
 			[ 'test_autoconfirmed' => [ '&', APCOND_BLOCKED ] ]
 		);
 
-		// Make sure session handling is started
-		if ( !PHPSessionHandler::isInstalled() ) {
-			PHPSessionHandler::install(
-				$this->getServiceContainer()->getSessionManager()
-			);
-		}
 		$permissionManager = $this->getServiceContainer()->getPermissionManager();
 		$permissionManager->invalidateUsersRightsCache();
-
-		$oldSessionId = session_id();
-
-		$context = RequestContext::getMain();
-		// Variables are unused but needed to reproduce the failure
-		$oInfo = $context->exportSession();
 
 		$user = User::newFromName( 'UnitTestContextUser' );
 		$user->addToDatabase();
 
-		$sinfo = [
-			'sessionId' => 'd612ee607c87e749ef14da4983a702cd',
-			'userId' => $user->getId(),
-			'ip' => '192.0.2.0',
-			'headers' => [
-				'USER-AGENT' => 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:18.0) Gecko/20100101 Firefox/18.0'
-			]
-		];
-
 		$onGetUserBlockCalled = false;
 		$this->setTemporaryHook(
 			'GetUserBlock',
-			static function ( $user, $ip, &$block ) use ( $permissionManager, &$onGetUserBlockCalled ) {
+			function ( $user, $ip, &$block ) use ( $permissionManager, &$onGetUserBlockCalled ) {
 				$onGetUserBlockCalled = true;
 
+				// We expect an uncaught LogicException from UserGroupManager::checkCondition here
+				$exception = null;
 				try {
-					if ( $permissionManager->userHasAnyRight( $user, 'ipblock-exempt', 'globalblock-exempt' ) ) {
-						return true;
-					}
+					$permissionManager->userHasAnyRight( $user, 'ipblock-exempt', 'globalblock-exempt' );
 				} catch ( LogicException $e ) {
-					// We expect an uncaught LogicException from UserGroupManager::checkCondition here
-					// otherwise there's something else wrong!
-					if ( !str_starts_with( $e->getMessage(), "Unexpected recursion!" ) ) {
-						throw $e;
-					}
+					$exception = $e;
 				}
 
-				return true;
+				$this->assertNotNull( $exception );
+				$this->assertStringStartsWith( "Unexpected recursion!", $exception->getMessage() );
 			}
 		);
-
-		// Variables are unused but needed to reproduce the failure
-		// load new context
-		$sc = RequestContext::importScopedSession( $sinfo );
-		$info = $context->exportSession();
 
 		$this->assertNull( $user->getBlock() );
 
