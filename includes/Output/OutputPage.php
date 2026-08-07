@@ -4903,20 +4903,27 @@ class OutputPage extends ContextSource {
 	/**
 	 * Helper function to add a Table of Contents to the output.
 	 * @param TOCData $tocData Table of Contents data to add
-	 * @param bool $prepend Whether to render the Table of Contents at the very
-	 *   top of the page body instead of appending it at the current position
-	 *   (since 1.47).
+	 * @param string|null $marker A marker string previously added to the body
+	 *   HTML, typically Parser::TOC_PLACEHOLDER, whose first occurrence the
+	 *   Table of Contents replaces, so that it can be placed somewhere other
+	 *   than the current end of the body. If the marker is not found, the
+	 *   Table of Contents is prepended to the body. (since 1.47)
 	 * @since 1.44
 	 */
-	public function addTOCPlaceholder( TOCData $tocData, bool $prepend = false ): void {
+	public function addTOCPlaceholder( TOCData $tocData, ?string $marker = null ): void {
 		$pout = new ParserOutput;
 		$pout->setTOCData( $tocData );
 		$pout->setOutputFlag( ParserOutputFlags::SHOW_TOC );
 		$pout->setContentHolderText( Parser::TOC_PLACEHOLDER );
-		if ( $prepend ) {
+		if ( $marker !== null ) {
 			$text = $this->getParserOutputText( $pout, $this->internalParserOptions( false ), [] );
 			$this->addParserOutputMetadata( $pout );
-			$this->prependHTML( $text );
+			$pos = strpos( $this->mBodytext, $marker );
+			if ( $pos === false ) {
+				$this->prependHTML( $text );
+			} else {
+				$this->mBodytext = substr_replace( $this->mBodytext, $text, $pos, strlen( $marker ) );
+			}
 		} else {
 			$this->addParserOutput( $pout, $this->internalParserOptions( false ) );
 		}
