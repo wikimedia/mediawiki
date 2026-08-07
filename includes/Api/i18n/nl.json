@@ -916,7 +916,7 @@
 	"apihelp-query+imageinfo-param-extmetadatalanguage": "In welke taal de uitgebreide metagegevens (extmetadata) moeten worden opgehaald. Dit bepaalt welke vertaling wordt opgehaald als er meerdere beschikbaar zijn, en hoe zaken als getallen en verschillende waarden worden opgemaakt.",
 	"apihelp-query+imageinfo-param-extmetadatamultilang": "Als er vertalingen beschikbaar zijn voor de eigenschap ‘extmetadata’, haal ze dan allemaal op.",
 	"apihelp-query+imageinfo-param-extmetadatafilter": "Als dit is opgegeven en niet leeg is, worden alleen deze sleutels geretourneerd voor $1prop=extmetadata.",
-	"apihelp-query+imageinfo-param-urlparam": "Een parametertekenreeks die afhangt van hoe het object wordt afgehandeld. Een PDF-bestand zou bijvoorbeeld <kbd>page15-100px</kbd> kunnen gebruiken. <var>$1urlwidth</var> moet worden gebruikt en moet stroken met <var>$1urlparam</var>.",
+	"apihelp-query+imageinfo-param-urlparam": "Een parametertekenreeks die afhangt van hoe het object wordt afgehandeld. Een pdf-bestand zou bijvoorbeeld <kbd>page15-100px</kbd> kunnen gebruiken. <var>$1urlwidth</var> moet worden gebruikt en moet stroken met <var>$1urlparam</var>.",
 	"apihelp-query+imageinfo-param-badfilecontexttitle": "Als <kbd>$2prop=badfile</kbd> is ingesteld, is dit de paginatitel die wordt gebruikt bij het evalueren van de [[MediaWiki:Bad image list|lijst met foute afbeeldingen van MediaWiki]].",
 	"apihelp-query+imageinfo-param-localonly": "Zoek alleen naar bestanden in de lokale database.",
 	"apihelp-query+imageinfo-example-simple": "Haal informatie op over de huidige versie van [[:File:Albert Einstein Head.jpg]].",

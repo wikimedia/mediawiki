@@ -86,6 +86,7 @@
 	"navigation-heading": "पथप्रदर्शन विकल्प",
 	"errorpagetitle": "त्रुटि",
 	"returnto": "$1मा फर्कनुहोस्।",
+	"returnto-login": "लग इनमा फर्कनुहोस्",
 	"tagline": "{{SITENAME}}बाट",
 	"help": "सहयोग",
 	"help-mediawiki": "मिडियाविकिका बारेमा सहयोग",

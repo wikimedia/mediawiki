@@ -13,7 +13,8 @@
 			"Teslaton",
 			"Username1233219128",
 			"Vlad5250",
-			"Wizzard"
+			"Wizzard",
+			"KormiSK"
 		]
 	},
 	"userrights": "Používateľské práva",
@@ -38,7 +39,7 @@
 	"userrights-changeable-col": "Skupiny, ktoré môžete zmeniť",
 	"userrights-unchangeable-col": "Skupiny, ktoré nemôžete zmeniť",
 	"userrights-expiry-current": "Vyprší $1",
-	"userrights-expiry-none": "Bez expirácie",
+	"userrights-expiry-none": "Bez exspirácie",
 	"userrights-expiry-for": "Vypršanie pre „$1“:",
 	"userrights-expiry-existing": "Do $2, $3",
 	"userrights-expiry-othertime": "Iný čas vypršania",

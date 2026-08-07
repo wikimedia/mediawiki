@@ -71,6 +71,8 @@
 	"help-mediawiki": "Alîkariya di derbarê MedyaWîkiyê de",
 	"search": "Lêgerîn",
 	"searchbutton": "Lêgerîn",
+	"searchsuggest-containing-html": "Li rûpelan bigere yên ku ev tê de heye: <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>",
+	"search-loader": "Tewsiyeyên lêgerînê tên barkirin",
 	"go": "Here",
 	"searcharticle": "Here",
 	"skin-view-history": "Dîrokê bibîne",

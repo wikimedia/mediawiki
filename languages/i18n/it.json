@@ -160,7 +160,8 @@
 			"Yiyi",
 			"ZioNicco",
 			"לערי ריינהארט",
-			"아라"
+			"아라",
+			"Reedy"
 		]
 	},
 	"pagecategories": "{{PLURAL:$1|Categoria|Categorie}}",
@@ -3058,7 +3059,7 @@
 	"notificationemail_subject_changed": "La tua email è stata modificata",
 	"notificationemail_subject_removed": "La tua email è stata rimossa",
 	"notificationemail_body_changed": "Ciao $2,\n\nHai cambiato di recente la tua email su {{SITENAME}}. La nuova email è $3 .\n\nSe non eri tu, contatta immediatamente un amministratore del sito.",
-	"notificationemail_body_removed": "Ciao $2,\n\nHai recentemente rimosso la tua email da {{SITENAME}}.\n\nSe non eri tu, scrivi immediatamente a ca@wikimedia.org.",
+	"notificationemail_body_removed": "Ciao $2,\n\nHai recentemente rimosso la tua email da {{SITENAME}}.\n\nSe non sei tu, scrivi immediatamente un amministratore del sito.",
 	"notificationemail_html_par1": "Ciao $1,",
 	"scarytranscludedisabled": "[L'inclusione di pagine tra siti wiki non è attiva]",
 	"scarytranscludefailed": "[Errore: Impossibile ottenere il template $1]",

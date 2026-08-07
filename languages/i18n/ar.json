@@ -3064,6 +3064,8 @@
 	"scarytranscludetoolong": "[المسار طويل للغاية]",
 	"deletedwhileediting": "<strong>تحذير:</strong> هذه الصفحة حُذفت بعد أن بدأت أنت بتعديلها!",
 	"editedwhiledeleting": "الصفحة التي تود حذفها عُدلت. رجاءً أعد تأكيد الحذف.",
+	"edit-constraint-confirmrecreate": "المستخدم [[User:$1|$1]] ([[User talk:$1|talk]]) {{GENDER:$1|حذف}} هذه الصفحة بعد أن بدأت التحرير مع السبب: \n: <em>$2</em> \nيرجى تأكيد أنك تريد حقًا إعادة إنشاء هذه الصفحة بالنقر فوق \" $3 \" مرة أخرى.",
+	"edit-constraint-confirmrecreate-noreason": "قام المستخدم [[User:$1|$1]] ([[User talk:$1|talk]]) {{GENDER:$1| deleted}} بحذف هذه الصفحة بعد بدء التحرير. يُرجى تأكيد رغبتك في إعادة إنشاء هذه الصفحة بالنقر على \" $3 \" مرة أخرى.",
 	"unit-pixel": "بك",
 	"confirm-purge-title": "محو مختزن هذه الصفحة",
 	"confirm_purge_button": "موافق",

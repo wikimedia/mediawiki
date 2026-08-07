@@ -326,7 +326,7 @@
 	"listgrouprights-removegroup-self-all": "يمكنه إزالة كل المجموعات من حسابه الخاص",
 	"listgrouprights-restrictedgroups-header": "قيود عضوية المجموعة",
 	"listgrouprights-restrictedgroups-config": "تكوين القيود",
-	"listgrouprights-restrictedgroups-memberconditions": "الشروط للعضاء:",
+	"listgrouprights-restrictedgroups-memberconditions": "شروط العضوية:",
 	"listgrouprights-restrictedgroups-updaterconditions": "الشروط للمستخدمين الذين يمنحون هذه المجموعة:",
 	"listgrouprights-restrictedgroups-bypassable": "يمكن للمستخدمين الذين لديهم الحق في \"$1\" ($2) منح هذه المجموعة دون تجاوز الشروط المذكورة أعلاه.",
 	"listgrouprights-restrictedgroups-autodemotion": "المستخدمين الذين لم يعدوا يلبون الشروط المذكورة أعلاه سيتم إزالتهم تلقائيا من هذه المجموعة.",

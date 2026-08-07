@@ -29,7 +29,8 @@
 			"Peterxy",
 			"Zhoucantd",
 			"Gsdn",
-			"Vjfjng"
+			"Vjfjng",
+			"Wzl19371"
 		]
 	},
 	"rest-prefix-mismatch": "请求的路径（$1）不在REST API基本路径（$2）中",

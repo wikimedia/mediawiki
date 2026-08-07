@@ -1159,7 +1159,7 @@
 	"apihelp-query+recentchanges-param-title": "문서와 관련된 항목만 필터링합니다.",
 	"apihelp-query+recentchanges-param-generaterevisions": "생성기로 사용할 때는 제목 대신 판 ID를 생성하세요. 판 ID가 연결되지 않은 최근 변경 항목 (예: 대부분의 로그 항목) 은 아무것도 생성하지 않습니다.",
 	"apihelp-query+recentchanges-example-simple": "최근 변경사항을 나열합니다.",
-	"apihelp-query+recentchanges-example-generator": "최근에 검토되지 않은 문서 정보를 가져옵니다.",
+	"apihelp-query+recentchanges-example-generator": "최근에 점검되지 않은 문서 정보를 가져옵니다.",
 	"apihelp-query+redirects-summary": "제시된 문서의 모든 넘겨주기를 반환합니다.",
 	"apihelp-query+redirects-param-prop": "얻고자 하는 속성:",
 	"apihelp-query+redirects-paramvalue-prop-pageid": "각 넘겨주기의 문서 ID.",

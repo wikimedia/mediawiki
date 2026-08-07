@@ -43,7 +43,8 @@
 			"Zenith",
 			"Desvaters",
 			"TheRabbit22",
-			"VeryCreativeNameIKnow"
+			"VeryCreativeNameIKnow",
+			"Albinfo"
 		]
 	},
 	"apihelp-main-param-action": "Welche Aktion ausgeführt werden soll. Dieser Parameter sollte als Teil der Anfrage-URL (nicht im POST-Body) übermittelt werden, um die Fehlerbehebung, Analyse sowie die Weiterleitung oder Filterung von Anfragen zu vereinfachen.",
@@ -1348,6 +1349,7 @@
 	"apihelp-query+usercontribs-param-userids": "Die Benutzerkennungen, für die die Beiträge abgerufen werden sollen. Kann nicht zusammen mit <var>$1user</var>, <var>$1userprefix</var> oder <var>$1iprange</var> verwendet werden.",
 	"apihelp-query+usercontribs-param-iprange": "Der CIDR-Bereich, für den Beiträge abgerufen werden sollen. Kann nicht zusammen mit <var>$1user</var>, <var>$1userprefix</var> oder <var>$1userids</var> verwendet werden.",
 	"apihelp-query+usercontribs-param-namespace": "Nur Beiträge in diesen Namensräumen auflisten.",
+	"apihelp-query+usercontribs-param-prop": "Weitere Informationen hinzufügen:",
 	"apihelp-query+usercontribs-paramvalue-prop-ids": "Fügt die Seiten- und Versionskennung hinzu.",
 	"apihelp-query+usercontribs-paramvalue-prop-title": "Fügt die Titel- und Namensraum-ID der Seite hinzu.",
 	"apihelp-query+usercontribs-paramvalue-prop-timestamp": "Ergänzt den Zeitstempel der Bearbeitung.",
@@ -1496,6 +1498,7 @@
 	"apihelp-tag-param-remove": "Zu entfernende Tags. Nur Tags, die manuell definiert oder vollständig undefiniert sind, können entfernt werden.",
 	"apihelp-tag-param-reason": "Grund für die Änderung.",
 	"apihelp-tag-param-tags": "Auf den Logbucheintrag anzuwendende Markierungen, die als Ergebnis dieser Aktion erstellt wurden.",
+	"apihelp-tag-example-log": "Entferne das <kbd>spam</kbd>-Tag aus dem Logeintrag mit der ID 123. Grund: <kbd>Wrongly applied</kbd>",
 	"apihelp-languagesearch-summary": "Sucht nach Sprachnamen in einem beliebigen Skript.",
 	"apihelp-languagesearch-param-search": "Such-Zeichenfolge.",
 	"apihelp-languagesearch-param-typos": "Anzahl der erlaubten Rechtschreibfehler in der Sucheingabe.",

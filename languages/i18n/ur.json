@@ -1707,6 +1707,7 @@
 	"watchlist-options": "اختیارات برائے زیرِنظرفہرست",
 	"watching": "زیرنظر فہرست میں شامل کیا جا رہا ہے۔۔۔",
 	"unwatching": "زیرنظر فہرست سے خارج کیا جا رہا ہے۔۔۔",
+	"watchlistlabels-editpage-nolabels": "آپ کے پاس [[Special:WatchlistLabels|زیر نظر فہرست کا کوئی لیبل]] موجود نہیں ہے۔",
 	"enotif_reset": "جملہ صفحات کو بطور زیارت شدہ نشان زد کریں",
 	"enotif_impersonal_salutation": "{{SITENAME}} کا صارف",
 	"enotif_subject_deleted": "{{SITENAME}} میں صفحہ $1 صارف $2 نے {{GENDER:$2|حذف کیا}}",
