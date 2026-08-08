@@ -165,7 +165,7 @@ class LinksUpdate extends DataUpdate implements TransactionRoundAwareUpdate {
 		if ( $this->ticket ) {
 			// Make sure all links update threads see the changes of each other.
 			// This handles the case when updates have to batched into several COMMITs.
-			$scopedLock = self::acquirePageLock( $this->getDB(), $this->mId );
+			$scopedLock = self::acquirePageLock( $this->mId );
 			if ( !$scopedLock ) {
 				throw new RuntimeException( "Could not acquire lock for page ID '{$this->mId}'." );
 			}
@@ -189,14 +189,13 @@ class LinksUpdate extends DataUpdate implements TransactionRoundAwareUpdate {
 	/**
 	 * Acquire a session-level lock for performing link table updates for a page on a DB
 	 *
-	 * @param IDatabase $dbw
 	 * @param int $pageId
 	 * @param string $why One of (job, atomicity)
-	 * @since 1.27
+	 * @internal
 	 */
 	#[\NoDiscard]
-	public static function acquirePageLock( IDatabase $dbw, $pageId, $why = 'atomicity' ): ?ScopedCallback {
-		$key = "{$dbw->getDomainID()}:LinksUpdate:$why:pageid:$pageId"; // per-wiki
+	public static function acquirePageLock( $pageId, $why = 'atomicity' ): ?ScopedCallback {
+		$key = "LinksUpdate:$why:pageid:$pageId";
 		$lockManager = MediaWikiServices::getInstance()->getLockManager();
 		$unlocker = $lockManager->scopedLock( $key, 1 );
 		if ( !$unlocker ) {

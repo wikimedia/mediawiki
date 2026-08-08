@@ -78,7 +78,7 @@ class RecentChangesUpdateJob extends Job {
 			MainConfigNames::UpdateRowsPerQuery );
 		$dbProvider = $services->getConnectionProvider();
 		$dbw = $dbProvider->getPrimaryDatabase();
-		$lockKey = $dbw->getDomainID() . ':recentchanges-prune';
+		$lockKey = 'recentchanges-prune';
 		if ( !$services->getLockManager()->lockKey( $lockKey ) ) {
 			// already in progress
 			return;
@@ -155,7 +155,7 @@ class RecentChangesUpdateJob extends Job {
 		$dbw = $dbProvider->getPrimaryDatabase();
 		$ticket = $dbProvider->getEmptyTransactionTicket( __METHOD__ );
 
-		$lockKey = $dbw->getDomainID() . '-activeusers';
+		$lockKey = 'UpdateActiveUsers';
 		if ( !$services->getLockManager()->lockKey( $lockKey ) ) {
 			// Exclusive update (avoids duplicate entries)… it's usually fine to just
 			// drop out here, if the Job is already running.

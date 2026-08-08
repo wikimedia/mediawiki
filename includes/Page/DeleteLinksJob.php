@@ -36,8 +36,7 @@ class DeleteLinksJob extends Job {
 		$pageId = $this->params['pageId'];
 
 		// Serialize links updates by page ID so they see each others' changes
-		$dbw = MediaWikiServices::getInstance()->getConnectionProvider()->getPrimaryDatabase();
-		$scopedLock = LinksUpdate::acquirePageLock( $dbw, $pageId, 'job' );
+		$scopedLock = LinksUpdate::acquirePageLock( $pageId, 'job' );
 		if ( $scopedLock === null ) {
 			$this->setLastError( 'LinksUpdate already running for this page, try again later.' );
 			return false;

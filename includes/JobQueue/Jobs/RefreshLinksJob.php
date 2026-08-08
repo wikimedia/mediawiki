@@ -247,13 +247,11 @@ class RefreshLinksJob extends Job {
 			return false;
 		}
 
-		// Serialize link update job by page ID so they see each others' changes.
+		// Serialize link update jobs by page ID so they see each others' changes.
 		// The page ID and latest revision ID will be queried again after the lock
 		// is acquired to bail if they are changed from that of loadPageData() above.
-		// Serialize links updates by page ID so they see each others' changes
-		$dbw = $lbFactory->getPrimaryDatabase();
 		/** @noinspection PhpUnusedLocalVariableInspection */
-		$scopedLock = LinksUpdate::acquirePageLock( $dbw, $page->getId(), 'job' );
+		$scopedLock = LinksUpdate::acquirePageLock( $page->getId(), 'job' );
 		if ( $scopedLock === null ) {
 			// Another job is already updating the page, likely for a prior revision (T170596)
 			$this->setLastError( 'LinksUpdate already running for this page, try again later.' );
