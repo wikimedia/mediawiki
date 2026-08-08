@@ -1028,7 +1028,7 @@ config-schema:
             Core media handlers are listed in MediaHandlerFactory,
             and extensions should use extension.json.
     NativeImageLazyLoading:
-        default: false
+        default: true
         type: boolean
         description: |-
             Toggles native image lazy loading, via the "loading" attribute.

@@ -135,11 +135,11 @@ Media link with nested wikilinks
 [[Media:Foobar.jpg|[[File:Foobar.jpg]]]]
 !! html/php
 <p>[[Media:Foobar.jpg|<a href="/wiki/Test" title="Test">Test</a>]]
-[[Media:Foobar.jpg|<span class="mw-default-size" typeof="mw:File"><a href="/wiki/File:Foobar.jpg" class="mw-file-description"><img src="http://example.com/images/3/3a/Foobar.jpg" decoding="async" width="1941" height="220" class="mw-file-element" /></a></span>]]
+[[Media:Foobar.jpg|<span class="mw-default-size" typeof="mw:File"><a href="/wiki/File:Foobar.jpg" class="mw-file-description"><img src="http://example.com/images/3/3a/Foobar.jpg" decoding="async" loading="lazy" width="1941" height="220" class="mw-file-element" /></a></span>]]
 </p>
 !! html/parsoid
 <p>[[Media:Foobar.jpg|<a rel="mw:WikiLink" href="./Test" title="Test" data-parsoid='{"stx":"simple","a":{"href":"./Test"},"sa":{"href":"Test"}}'>Test</a>]]
-[[Media:Foobar.jpg|<span class="mw-default-size" typeof="mw:File" data-parsoid='{"optList":[]}'><a href="./File:Foobar.jpg" class="mw-file-description"><img resource="./File:Foobar.jpg" src="http://example.com/images/3/3a/Foobar.jpg" decoding="async" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="220" width="1941" data-parsoid='{"a":{"resource":"./File:Foobar.jpg","height":"220","width":"1941"},"sa":{"resource":"File:Foobar.jpg"}}' class="mw-file-element"/></a></span>]]</p>
+[[Media:Foobar.jpg|<span class="mw-default-size" typeof="mw:File" data-parsoid='{"optList":[]}'><a href="./File:Foobar.jpg" class="mw-file-description"><img resource="./File:Foobar.jpg" src="http://example.com/images/3/3a/Foobar.jpg" decoding="async" loading="lazy" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="220" width="1941" data-parsoid='{"a":{"resource":"./File:Foobar.jpg","height":"220","width":"1941"},"sa":{"resource":"File:Foobar.jpg"}}' class="mw-file-element"/></a></span>]]</p>
 !! end
 
 !! test

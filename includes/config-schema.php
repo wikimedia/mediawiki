@@ -201,7 +201,7 @@ return [
 			],
 			'MediaHandlers' => [
 			],
-			'NativeImageLazyLoading' => false,
+			'NativeImageLazyLoading' => true,
 			'ParserTestMediaHandlers' => [
 				'image/jpeg' => 'MockBitmapHandler',
 				'image/png' => 'MockBitmapHandler',

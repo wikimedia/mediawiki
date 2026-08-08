@@ -877,12 +877,12 @@ parsoid=wt2html,wt2wt
 ;[[File:Foobar.jpg|Test]]:123
 ;Test<br>12:3
 !! html/php
-<dl><dt><span class="mw-default-size" typeof="mw:File"><a href="/wiki/File:Foobar.jpg" class="mw-file-description" title="Test"><img alt="Test" src="http://example.com/images/3/3a/Foobar.jpg" decoding="async" width="1941" height="220" class="mw-file-element" /></a></span></dt>
+<dl><dt><span class="mw-default-size" typeof="mw:File"><a href="/wiki/File:Foobar.jpg" class="mw-file-description" title="Test"><img alt="Test" src="http://example.com/images/3/3a/Foobar.jpg" decoding="async" loading="lazy" width="1941" height="220" class="mw-file-element" /></a></span></dt>
 <dd>123</dd>
 <dt>Test<br />12</dt>
 <dd>3</dd></dl>
 !! html/parsoid
-<dl><dt><span class="mw-default-size" typeof="mw:File" data-mw='{"caption":"Test"}'><a href="./File:Foobar.jpg" class="mw-file-description" title="Test"><img alt="Test" resource="./File:Foobar.jpg" src="http://example.com/images/3/3a/Foobar.jpg" decoding="async" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="220" width="1941" class="mw-file-element"/></a></span></dt><dd data-parsoid='{"stx":"row"}'>123</dd>
+<dl><dt><span class="mw-default-size" typeof="mw:File" data-mw='{"caption":"Test"}'><a href="./File:Foobar.jpg" class="mw-file-description" title="Test"><img alt="Test" resource="./File:Foobar.jpg" src="http://example.com/images/3/3a/Foobar.jpg" decoding="async" loading="lazy" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="220" width="1941" class="mw-file-element"/></a></span></dt><dd data-parsoid='{"stx":"row"}'>123</dd>
 <dt>Test<br data-parsoid='{"stx":"html","noClose":true}'/>12</dt><dd data-parsoid='{"stx":"row"}'>3</dd></dl>
 !! end
 

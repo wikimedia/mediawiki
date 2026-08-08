@@ -1751,7 +1751,7 @@ class MainConfigSchema {
 	 * @since 1.34
 	 */
 	public const NativeImageLazyLoading = [
-		'default' => false,
+		'default' => true,
 		'type' => 'boolean',
 	];
 
