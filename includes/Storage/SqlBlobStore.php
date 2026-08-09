@@ -571,7 +571,7 @@ class SqlBlobStore implements BlobStore {
 
 		if ( $this->compressBlobs ) {
 			if ( function_exists( 'gzdeflate' ) ) {
-				$deflated = gzdeflate( $blob );
+				$deflated = gzdeflate( $blob, 9 );
 
 				if ( $deflated === false ) {
 					wfLogWarning( __METHOD__ . ': gzdeflate() failed' );
