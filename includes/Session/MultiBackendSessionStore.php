@@ -306,10 +306,4 @@ class MultiBackendSessionStore implements SessionStore {
 			->setLabel( 'type', $isAuthenticated ? self::STATS_LABEL_AUTH : self::STATS_LABEL_ANON )
 			->increment();
 	}
-
-	/**
-	 * @inheritDoc
-	 */
-	public function shutdown(): void {
-	}
 }

@@ -78,11 +78,4 @@ interface SessionStore extends LoggerAwareInterface {
 	 * @param SessionInfo $sessionInfo
 	 */
 	public function delete( SessionInfo $sessionInfo ): void;
-
-	/**
-	 * Will be called during shutdown.
-	 *
-	 * @return void
-	 */
-	public function shutdown(): void;
 }

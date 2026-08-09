@@ -100,12 +100,6 @@ class SingleBackendSessionStore implements SessionStore {
 	}
 
 	/**
-	 * @inheritDoc
-	 */
-	public function shutdown(): void {
-	}
-
-	/**
 	 * @param string $keygroup
 	 * @param string|int $components
 	 *

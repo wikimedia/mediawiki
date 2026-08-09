@@ -587,9 +587,6 @@ class SessionManager implements SessionManagerInterface {
 				$backend->shutdown();
 			}
 		}
-
-		// Do any garbage collection if we have expired entries
-		$this->sessionStore->shutdown();
 	}
 
 	/**
