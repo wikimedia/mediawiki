@@ -1487,7 +1487,7 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 		$serial = serialize( $value );
 		if ( $this->hasZlib ) {
 			// On typical message and page data, this can provide a 3X storage savings
-			$serial = gzdeflate( $serial );
+			$serial = gzdeflate( $serial, 9 );
 		}
 
 		return $serial;
