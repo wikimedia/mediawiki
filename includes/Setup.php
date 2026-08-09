@@ -495,10 +495,10 @@ if ( MW_ENTRY_POINT === 'index' ) {
 	RequestContext::getMain()->getRequest()->interpolateTitle();
 }
 
-// @phan-suppress-next-line PhanUndeclaredMethod shutdown() is not part of the public interface
-register_shutdown_function( MediaWikiServices::getInstance()->getSessionManager()->shutdown( ... ) );
-
 if ( !defined( 'MW_NO_SESSION' ) && MW_ENTRY_POINT !== 'cli' ) {
+	// @phan-suppress-next-line PhanUndeclaredMethod shutdown() is not part of the public interface
+	register_shutdown_function( MediaWikiServices::getInstance()->getSessionManager()->shutdown( ... ) );
+
 	$contLang = MediaWikiServices::getInstance()->getContentLanguage();
 
 	// Initialize the session

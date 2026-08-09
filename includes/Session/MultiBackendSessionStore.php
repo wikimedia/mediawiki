@@ -311,11 +311,5 @@ class MultiBackendSessionStore implements SessionStore {
 	 * @inheritDoc
 	 */
 	public function shutdown(): void {
-		if ( random_int( 1, 100 ) === 1 ) {
-			$this->logger->debug( 'Cleaning session store expired entries' );
-			$timeNow = wfTimestampNow();
-			$this->authenticatedSessionStore->deleteObjectsExpiringBefore( $timeNow );
-			$this->anonSessionStore->deleteObjectsExpiringBefore( $timeNow );
-		}
 	}
 }

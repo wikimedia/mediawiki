@@ -103,11 +103,6 @@ class SingleBackendSessionStore implements SessionStore {
 	 * @inheritDoc
 	 */
 	public function shutdown(): void {
-		// Match old PHP session handler behavior of garbage collection once per 100 requests.
-		// https://www.php.net/manual/en/session.configuration.php#ini.session.gc-divisor
-		if ( random_int( 1, 100 ) === 1 ) {
-			$this->store->deleteObjectsExpiringBefore( wfTimestampNow() );
-		}
 	}
 
 	/**
