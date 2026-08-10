@@ -24,7 +24,7 @@
 	"interwiki_0": "لا",
 	"interwiki_error": "غلط: جدول الوصلات بين الويكيات راهو فارغ، ولا صرا مشكل آخر.",
 	"interwiki-cached": "البيانات تاع الإنترويكي محفوظه في الكاش. ما ينجمش تتبدل هاذ الكاش.",
-	"interwiki_edit": "بدل",
+	"interwiki_edit": "بدّل",
 	"interwiki_reasonfield": "السبة:",
 	"interwiki_deleting": "راك تحذف البادئة \"$1\".",
 	"interwiki_deleted": "البادئة \"$1\" تنحات من جدول الوصلات بين الويكيات.",

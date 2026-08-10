@@ -63,7 +63,7 @@
 	"yourlanguage": "Interfață în limba:",
 	"yourgender": "Cum preferați să se facă referire la dumneavoastră?",
 	"gender-notknown": "Modifică pagini wiki",
-	"gender-unknown": "Când face referire la dumnevoastră, software-ul va utiliza cuvinte la genul neutru oricând va fi posibil",
+	"gender-unknown": "Când face referire la dumneavoastră, software-ul va utiliza cuvinte la genul neutru oricând va fi posibil",
 	"gender-female": "Ea modifică pagini wiki",
 	"gender-male": "El modifică pagini wiki",
 	"prefs-help-gender": "Stabilirea acestei preferințe este opțională.\nAcest software folosește datele pentru a vi se adresa și pentru a face referire la dumneavoastră utilizând genul gramatical corespunzător.\nAceastă informație va fi publică.",

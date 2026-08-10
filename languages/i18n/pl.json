@@ -3983,7 +3983,6 @@
 	"userlogout-submit": "Wyloguj",
 	"userlogout-continue": "Chcesz się wylogować?",
 	"userlogout-temp": "Jeżeli edytujesz z urządzenia, do którego mają dostęp inni, takiego jak komputer w szkole lub bibliotece, możesz opuścić sesję, aby inni nie mogli korzystać z tego konta tymczasowego.",
-	"userlogout-temp-moreinfo": "Zwróć uwagę, że edytowanie z wielu kont tymczasowych może łamać zasady tej wiki i może zostać nałożona na ciebie blokada, jeśli ma to miejsce często.",
 	"userlogout-temp-messagebox-title": "Czy na pewno chcesz opuścić sesję i się wylogować?",
 	"userlogout-temp-messagebox-body": "Po wylogowaniu nie będzie więcej możliwe skorzystanie z tego konta tymczasowego.",
 	"temp-user-logout-confirm-title": "Zakończ sesję",

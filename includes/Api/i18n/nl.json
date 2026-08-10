@@ -1907,7 +1907,7 @@
 	"apierror-nosuchuserid": "Er is geen gebruiker met ID $1.",
 	"apierror-notpatrollable": "De versie r$1 kan niet gemarkeerd worden omdat deze te oud is.",
 	"apierror-nouploadmodule": "Er is geen uploadmodule ingesteld.",
-	"apierror-opensearch-json-warnings": "Waarschuwingen kunnen niet worden getoond in het OpenSearch JSON formaat.",
+	"apierror-opensearch-json-warnings": "Waarschuwingen kunnen niet worden weergegeven in de OpenSearch JSON-opmaak.",
 	"apierror-pagecannotexist": "De naamruimte laat geen daadwerkelijke pagina's toe.",
 	"apierror-pagedeleted": "De pagina is verwijderd nadat u de tijdstempel hebt opgehaald.",
 	"apierror-pagelang-disabled": "Het wijzigen van de taal van een pagina is niet toegestaan op deze pagina.",

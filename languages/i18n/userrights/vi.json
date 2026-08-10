@@ -268,7 +268,7 @@
 	"action-bigdelete": "xóa trang có lịch sử lớn",
 	"action-blockemail": "cấm hoặc bỏ cấm thành viên gửi thư điện tử",
 	"action-bot": "được đối xử như tác vụ tự động",
-	"action-editalluserpages": "sửa đổi trang của thành viên khác",
+	"action-editalluserpages": "sửa đổi trang thành viên của người khác",
 	"action-editprotected": "sửa trang bị khóa ({{int:restriction-level-sysop}})",
 	"action-editsemiprotected": "sửa trang bị khóa ({{int:restriction-level-autoconfirmed}})",
 	"action-editinterface": "sửa giao diện người dùng",
