@@ -834,6 +834,8 @@ class SpecialPageFactory {
 				'RepoGroup',
 				'UserOptionsLookup',
 				'NamespaceInfo',
+				'WatchlistManager',
+				'WikiPageFactory',
 			]
 		],
 		'UploadStash' => [
