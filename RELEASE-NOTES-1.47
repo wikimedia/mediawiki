@@ -56,6 +56,11 @@ For notes on 1.46.x and older releases, see HISTORY.
   Whether security-sensitive operations are allowed when the session type does
   not support reauthentication is now decided per session type, via
   SessionProvider::allowSecuritySensitiveOperationIfCannotReauthenticate().
+* $wgPHPSessionHandling, deprecated since 1.45, has been removed (T431315).
+  This means `$_SESSION` is no longer supported in MediaWiki core and will no
+  longer read or write to the MediaWiki session store. If you access $_SESSION
+  this will call the PHP built-in session handler (e.g. local tmp files).
+  It is recommended to turn this off in php.ini to prevent misuse (T434399).
 * …
 
 === New user-facing features in 1.47 ===
@@ -182,6 +187,7 @@ For notes on 1.46.x and older releases, see HISTORY.
 * Removed pear/mail, pear/mail_mime and pear/net_smtp (and their abandoned
   transitive dependency pear/net_socket), replaced by symfony/mailer and
   symfony/mime.
+* Removed wikimedia/php-session-serializer, no longer used (T431315).
 * …
 
 === Bug fixes in 1.47 ===
