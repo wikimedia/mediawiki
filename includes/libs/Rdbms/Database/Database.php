@@ -2978,6 +2978,7 @@ abstract class Database implements Stringable, IDatabaseForOwner, IMaintainableD
 	/** @inheritDoc */
 	#[\NoDiscard]
 	public function getScopedLockAndFlush( $lockKey, $fname, $timeout ): ?ScopedCallback {
+		wfDeprecated( __METHOD__, '1.47' );
 		$this->transactionManager->onGetScopedLockAndFlush( $this, $fname );
 
 		if ( !$this->lock( $lockKey, $fname, $timeout ) ) {

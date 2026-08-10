@@ -2961,6 +2961,7 @@ return [
 			$services->getUserFactory(),
 			$services->getUserRequirementsConditionCheckerFactory(),
 			$services->getRestrictedUserGroupConfigReader(),
+			$services->getLockManager(),
 			[ static function ( UserIdentity $user ) use ( $services ) {
 				if ( $user->getWikiId() === UserIdentity::LOCAL ) {
 					$services->getPermissionManager()->invalidateUsersRightsCache( $user );

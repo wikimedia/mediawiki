@@ -11,6 +11,7 @@ use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\JobQueue\JobQueueGroupFactory;
 use MediaWiki\User\TempUser\TempUserConfig;
 use MediaWiki\WikiMap\WikiMap;
+use Wikimedia\LockManager\ILockManager;
 use Wikimedia\Rdbms\ILBFactory;
 use Wikimedia\Rdbms\ReadOnlyMode;
 
@@ -38,6 +39,7 @@ class UserGroupManagerFactory {
 	 * @param UserFactory $userFactory
 	 * @param UserRequirementsConditionCheckerFactory $userRequirementsConditionCheckerFactory
 	 * @param RestrictedUserGroupConfigReader $restrictedUserGroupConfigReader
+	 * @param ILockManager $lockManager
 	 * @param callable[] $clearCacheCallbacks
 	 */
 	public function __construct(
@@ -50,6 +52,7 @@ class UserGroupManagerFactory {
 		private readonly UserFactory $userFactory,
 		private readonly UserRequirementsConditionCheckerFactory $userRequirementsConditionCheckerFactory,
 		private readonly RestrictedUserGroupConfigReader $restrictedUserGroupConfigReader,
+		private readonly ILockManager $lockManager,
 		private readonly array $clearCacheCallbacks = [],
 	) {
 	}
@@ -80,6 +83,7 @@ class UserGroupManagerFactory {
 				$this->userFactory,
 				$this->userRequirementsConditionCheckerFactory,
 				$this->restrictedUserGroupConfigReader,
+				$this->lockManager,
 				$this->clearCacheCallbacks,
 				$wikiId
 			);

@@ -972,6 +972,7 @@ interface IDatabase extends IReadableDatabase {
 	 * @param string $fname Name of the calling method
 	 * @param int $timeout Acquisition timeout in seconds
 	 * @throws DBError If an error occurs, {@see query}
+	 * @deprecated since 1.47, use LockManager service instead.
 	 * @since 1.27
 	 */
 	#[\NoDiscard]

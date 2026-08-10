@@ -190,7 +190,7 @@ class DatabaseMysqlTest extends \MediaWikiIntegrationTestCase {
 		$this->assertSame( TransactionManager::STATUS_TRX_NONE, $this->conn->trxStatus() );
 
 		// Get a lock outside of any transaction
-		$unlocker = $this->conn->getScopedLockAndFlush( 'testing-key', __METHOD__, 0 );
+		$this->conn->lock( 'testing-key', __METHOD__, 0 );
 		// Start transaction after getting the lock
 		$this->conn->begin( __METHOD__, IDatabase::TRANSACTION_INTERNAL );
 
@@ -218,13 +218,13 @@ class DatabaseMysqlTest extends \MediaWikiIntegrationTestCase {
 		$adminConn->close( __METHOD__ );
 	}
 
-	public function testConnectionLossScopedLock() {
+	public function testConnectionLossLock() {
 		$row = $this->conn->query( 'SELECT connection_id() AS id', __METHOD__ )->fetchObject();
 		$encId = intval( $row->id );
 
 		try {
 			( function () use ( $encId ) {
-				$unlocker = $this->conn->getScopedLockAndFlush( 'x', 'fn', 1 );
+				$this->conn->lock( 'x', 'fn', 1 );
 
 				$adminConn = $this->newConnection();
 				$adminConn->query( "KILL $encId" );

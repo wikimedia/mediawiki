@@ -103,6 +103,7 @@ class UserGroupManagerTest extends MediaWikiIntegrationTestCase {
 			$services->getUserFactory(),
 			$userRequirementsConditionCheckerFactory,
 			$services->getRestrictedUserGroupConfigReader(),
+			$services->getLockManager(),
 			$callback ? [ $callback ] : []
 		);
 

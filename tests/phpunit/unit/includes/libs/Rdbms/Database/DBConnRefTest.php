@@ -226,7 +226,6 @@ class DBConnRefTest extends TestCase {
 			[ 'upsert', [ 'table', [ 'a' => 1 ], [ 'a' ], [ 'a = a + 1' ] ] ],
 			[ 'lock', [ 'k', 'method' ] ],
 			[ 'unlock', [ 'k', 'method' ] ],
-			[ 'getScopedLockAndFlush', [ 'k', 'method', 1 ] ]
 		];
 	}
 }

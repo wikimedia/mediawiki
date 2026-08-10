@@ -18,6 +18,7 @@ use MediaWiki\Permissions\Authority;
 use MediaWiki\User\TempUser\TempUserConfig;
 use MediaWiki\WikiMap\WikiMap;
 use Wikimedia\Assert\Assert;
+use Wikimedia\LockManager\ILockManager;
 use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\Rdbms\IDBAccessObject;
 use Wikimedia\Rdbms\IReadableDatabase;
@@ -119,6 +120,7 @@ class UserGroupManager {
 	 * @param UserFactory $userFactory
 	 * @param UserRequirementsConditionCheckerFactory $userRequirementsConditionCheckerFactory
 	 * @param RestrictedUserGroupConfigReader $restrictedUserGroupConfigReader
+	 * @param ILockManager $lockManager
 	 * @param callable[] $clearCacheCallbacks
 	 * @param string|false $wikiId
 	 */
@@ -132,6 +134,7 @@ class UserGroupManager {
 		private readonly UserFactory $userFactory,
 		private readonly UserRequirementsConditionCheckerFactory $userRequirementsConditionCheckerFactory,
 		private readonly RestrictedUserGroupConfigReader $restrictedUserGroupConfigReader,
+		private readonly ILockManager $lockManager,
 		private readonly array $clearCacheCallbacks = [],
 		private readonly string|false $wikiId = UserIdentity::LOCAL
 	) {
@@ -962,9 +965,7 @@ class UserGroupManager {
 		$ticket = $this->connectionProvider->getEmptyTransactionTicket( __METHOD__ );
 		$dbw = $this->connectionProvider->getPrimaryDatabase( $this->wikiId );
 
-		// per-wiki
-		$lockKey = "{$dbw->getDomainID()}:UserGroupManager:purge";
-		$scopedLock = $dbw->getScopedLockAndFlush( $lockKey, __METHOD__, 0 );
+		$scopedLock = $this->lockManager->scopedLock( "UserGroupManager:purge" );
 		if ( !$scopedLock ) {
 			// @codeCoverageIgnoreStart
 			// already running

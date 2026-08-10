@@ -622,9 +622,6 @@ class LoadBalancerTest extends MediaWikiIntegrationTestCase {
 			$res = $conn->query( $sql, __METHOD__, $conn::QUERY_REPLICA_ROLE );
 			$this->assertEquals( $v, $res->fetchRow() );
 		}
-
-		$unused = $wConn->getScopedLockAndFlush( 'key', __METHOD__, 1 );
-		$unused = $wConn2->getScopedLockAndFlush( 'key2', __METHOD__, 1 );
 	}
 
 	public function testDBConnRefWritesReplicaRole() {

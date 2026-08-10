@@ -712,6 +712,8 @@ because of Phabricator reports.
 * The hook CategoryViewer__generateLinkHook has been deprecated. Use the hook
   CategoryViewerGenerateLinkHook instead.
 * The SiteStore service has been deprecated in favor of SiteLookup.
+* The IDatabase::getScopedLockAndFlush() has been deprecated and will trigger
+  deprecation warnings. Use the lock manager service instead.
 * …
 
 === Other changes in 1.47 ===
