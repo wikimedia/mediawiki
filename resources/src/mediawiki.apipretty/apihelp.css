@@ -1,10 +1,5 @@
 /* stylelint-disable selector-class-pattern */
 
-.toc {
-	float: right;
-	margin: 0 0 1em 1em;
-}
-
 .apihelp-header {
 	margin-bottom: 0.1em;
 }
@@ -92,7 +87,13 @@ div.apihelp-linktrail {
 	content: ']';
 }
 
-@media ( min-width: 720px ) {
+@media ( min-width: 640px ) {
+	/* Avoid applying this style when transcluded (T434375) */
+	.skin-apioutput .toc {
+		float: right;
+		margin: 0 0 1em 1em;
+	}
+
 	.apihelp-flags {
 		float: right;
 		width: 20em;

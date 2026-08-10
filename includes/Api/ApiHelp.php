@@ -66,6 +66,12 @@ class ApiHelp extends ApiBase {
 		$out->reduceAllowedModules( RL\Module::TYPE_SCRIPTS, RL\Module::ORIGIN_NONE );
 		$context->setOutput( $out );
 
+		// If no parameters were passed (not even action=help), display the TOC.
+		// It's a special case for the landing page because it's much nicer with a TOC.
+		if ( !$context->getRequest()->getValues() ) {
+			$params['toc'] = true;
+		}
+
 		self::getHelp( $context, $modules, $params );
 
 		// Grab the output from the skin
@@ -164,11 +170,6 @@ class ApiHelp extends ApiBase {
 			$cacheKey = null;
 		}
 
-		// If no parameters were passed (not even action=help), display the TOC.
-		// It's a special case for the landing page because it's much nicer with a TOC.
-		if ( !$context->getRequest()->getValues() ) {
-			$options['toc'] = true;
-		}
 		$options['recursivesubmodules'] = !empty( $options['recursivesubmodules'] );
 		$options['submodules'] = $options['recursivesubmodules'] || !empty( $options['submodules'] );
 		$haveModules = [];

@@ -42,6 +42,7 @@ class SpecialApiHelp extends UnlistedSpecialPage {
 		$options = [
 			'action' => 'help',
 			'nolead' => true,
+			'toc' => false,
 			'submodules' => $request->getCheck( 'submodules' ),
 			'recursivesubmodules' => $request->getCheck( 'recursivesubmodules' ),
 			'title' => $request->getVal( 'title', $this->getPageTitle( '$1' )->getPrefixedText() ),
