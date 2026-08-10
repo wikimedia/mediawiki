@@ -4,7 +4,6 @@ use MediaWiki\FileRepo\File\File;
 use MediaWiki\FileRepo\FileRepo;
 use MediaWiki\FileRepo\RepoGroup;
 use MediaWiki\Linker\LinkTarget;
-use MediaWiki\Page\WikiFilePage;
 use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleValue;
 
@@ -60,7 +59,8 @@ class WikiFilePageTest extends MediaWikiLangTestCase {
 			$pageIdentity = $status->getNewRevision()->getPage();
 		}
 
-		$page = new WikiFilePage( Title::newFromPageIdentity( $pageIdentity ) );
+		$wikiPageFactory = $this->getServiceContainer()->getWikiPageFactory();
+		$page = $wikiPageFactory->newFromTitle( Title::newFromPageIdentity( $pageIdentity ) );
 		$target = $page->followRedirect();
 
 		if ( $expected instanceof LinkTarget ) {

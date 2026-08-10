@@ -26,7 +26,7 @@ use MediaWiki\Logging\LogEventsList;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Media\BitmapHandler;
 use MediaWiki\MediaWikiServices;
-use MediaWiki\Page\WikiFilePage;
+use MediaWiki\Page\WikiPageFactory;
 use MediaWiki\Request\FauxRequest;
 use MediaWiki\Request\WebRequest;
 use MediaWiki\SpecialPage\SpecialPage;
@@ -55,6 +55,7 @@ class SpecialUpload extends SpecialPage {
 	private readonly UserOptionsLookup $userOptionsLookup;
 	private readonly NamespaceInfo $nsInfo;
 	private readonly WatchlistManager $watchlistManager;
+	private readonly WikiPageFactory $wikiPageFactory;
 	private readonly JobQueueGroup $jobQueueGroup;
 	private readonly LoggerInterface $log;
 
@@ -63,6 +64,7 @@ class SpecialUpload extends SpecialPage {
 		?UserOptionsLookup $userOptionsLookup = null,
 		?NamespaceInfo $nsInfo = null,
 		?WatchlistManager $watchlistManager = null,
+		?WikiPageFactory $wikiPageFactory = null
 	) {
 		parent::__construct( 'Upload' );
 		// This class is extended and therefor fallback to global state - T265300
@@ -73,6 +75,7 @@ class SpecialUpload extends SpecialPage {
 		$this->userOptionsLookup = $userOptionsLookup ?? $services->getUserOptionsLookup();
 		$this->nsInfo = $nsInfo ?? $services->getNamespaceInfo();
 		$this->watchlistManager = $watchlistManager ?? $services->getWatchlistManager();
+		$this->wikiPageFactory = $wikiPageFactory ?? $services->getWikiPageFactory();
 		$this->log = LoggerFactory::getInstance( 'SpecialUpload' );
 	}
 
@@ -336,7 +339,7 @@ class SpecialUpload extends SpecialPage {
 						$title = Title::makeTitleSafe( NS_FILE, $this->mRequest->getText( 'wpDestFile' ) );
 						if ( $title ) {
 							$this->log->debug( 'Purging page', [ 'title' => $title->getText() ] );
-							$page = new WikiFilePage( $title );
+							$page = $this->wikiPageFactory->newFromTitle( $title );
 							$page->doPurge();
 						}
 						$this->getOutput()->redirect( $this->mRequest->getText( 'wpDestUrl' ) );
