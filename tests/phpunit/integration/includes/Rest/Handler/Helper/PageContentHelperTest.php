@@ -431,9 +431,10 @@ class PageContentHelperTest extends MediaWikiIntegrationTestCase {
 		$rev->setVisibility( RevisionRecord::DELETED_USER );
 
 		$expectedHiddenComment = [
-				'user_text' => null,
-				'restrictions' => [ 'userhidden' ],
-			] + $expected;
+			'user_id' => null,
+			'user_text' => null,
+			'restrictions' => [ 'userhidden' ],
+		] + $expected;
 
 		yield [
 			$pageName,
