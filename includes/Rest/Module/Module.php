@@ -19,6 +19,7 @@ use MediaWiki\Rest\ResponseFactory;
 use MediaWiki\Rest\ResponseInterface;
 use MediaWiki\Rest\Router;
 use MediaWiki\Rest\Validator\Validator;
+use PHPUnit\Exception as PHPUnitException;
 use Throwable;
 use Wikimedia\Message\MessageValue;
 use Wikimedia\ObjectFactory\ObjectFactory;
@@ -308,6 +309,9 @@ abstract class Module {
 			}
 			$response = $this->responseFactory->createFromException( $e, $extraData );
 		} catch ( Throwable $e ) {
+			if ( $e instanceof PHPUnitException ) {
+				throw $e;
+			}
 			// Note that $handler is allowed to be null here.
 			$this->errorReporter->reportError( $e, $handler, $request );
 			$response = $this->responseFactory->createFromException( $e );
