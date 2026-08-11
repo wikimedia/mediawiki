@@ -237,28 +237,40 @@ class LinkAlwaysKnownLookupTest extends MediaWikiUnitTestCase {
 		$this->hookRunner->expects( $this->once() )
 			->method( 'onLinkTargetIsAlwaysKnownBatch' )
 			->with( $this->countOf( 3 ) );
-		// Every non-external link consults the shadow loader once; NS_MAIN needs no
-		// file or special-page lookup.
-		$this->shadowPageLoader->expects( $this->exactly( 3 ) )
-			->method( 'existsForLink' )
-			->willReturn( false );
-		$this->repoGroup->expects( $this->never() )->method( 'findFile' );
-		$this->specialPageFactory->expects( $this->never() )->method( 'exists' );
+		// Preload only runs the batch hook; the legacy hook, Title materialization
+		// and the resolvers are deferred until isAlwaysKnown() asks for a link the
+		// batch hook left undecided.
+		$this->hookRunner->expects( $this->never() )->method( 'onTitleIsAlwaysKnown' );
+		$this->titleFactory->expects( $this->never() )->method( 'newFromLinkTarget' );
+		$this->expectNoResolvers();
 
 		$this->newLookup()->preload( $links );
 	}
 
-	public function testPreloadWarmsCacheSoIsAlwaysKnownDoesNotRecompute(): void {
+	public function testPreloadDefersResolutionToFirstIsAlwaysKnownCall(): void {
 		$link = $this->makeLink( NS_SPECIAL, 'Recentchanges' );
+		// The batch hook runs during preload() and is not fired again when the
+		// undecided link is resolved later.
 		$this->hookRunner->expects( $this->once() )
 			->method( 'onLinkTargetIsAlwaysKnownBatch' );
-		// Resolved during preload(); isAlwaysKnown() then reads the cache.
+		// The legacy hook and the resolvers run on the first isAlwaysKnown() call
+		// only; the second call is served from the process cache.
+		$this->hookRunner->expects( $this->once() )
+			->method( 'onTitleIsAlwaysKnown' );
+		$this->shadowPageLoader->expects( $this->once() )
+			->method( 'existsForLink' )
+			->willReturn( false );
 		$this->specialPageFactory->expects( $this->once() )
 			->method( 'exists' )
 			->willReturn( true );
+		// Resolving a preloaded link does not count towards the individual-lookup
+		// warning threshold.
+		$this->logger->expects( $this->never() )->method( 'warning' );
 
 		$lookup = $this->newLookup();
+		TestingAccessWrapper::newFromObject( $lookup )->individualLookupsInRequest = 49;
 		$lookup->preload( [ $link ] );
+		$this->assertTrue( $lookup->isAlwaysKnown( $link ) );
 		$this->assertTrue( $lookup->isAlwaysKnown( $link ) );
 	}
 
