@@ -2790,6 +2790,7 @@ return [
 			'ReturnExperimentalPFragmentTypes' => [
 			],
 			'UseParsoidLinksUpdate' => null,
+			'UseParsoidMessages' => null,
 		],
 		'type' => [
 			'ConfigRegistry' => 'object',
@@ -3325,6 +3326,10 @@ return [
 			'ParserOptionsLogUnsafeSampleRate' => 'integer',
 			'ReturnExperimentalPFragmentTypes' => 'array',
 			'UseParsoidLinksUpdate' => [
+				'boolean',
+				'null',
+			],
+			'UseParsoidMessages' => [
 				'boolean',
 				'null',
 			],

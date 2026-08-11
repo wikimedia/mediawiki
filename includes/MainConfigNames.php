@@ -4672,4 +4672,10 @@ class MainConfigNames {
 	 */
 	public const UseParsoidLinksUpdate = 'UseParsoidLinksUpdate';
 
+	/**
+	 * Name constant for the UseParsoidMessages setting, for use with Config::get()
+	 * @see MainConfigSchema::UseParsoidMessages
+	 */
+	public const UseParsoidMessages = 'UseParsoidMessages';
+
 }

@@ -4656,3 +4656,9 @@ $wgReturnExperimentalPFragmentTypes = null;
  * @see MediaWiki\MainConfigSchema::UseParsoidLinksUpdate
  */
 $wgUseParsoidLinksUpdate = null;
+
+/**
+ * Config variable stub for the UseParsoidMessages setting, for use by phpdoc and IDEs.
+ * @see MediaWiki\MainConfigSchema::UseParsoidMessages
+ */
+$wgUseParsoidMessages = null;

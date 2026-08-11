@@ -13752,5 +13752,24 @@ class MainConfigSchema {
 		'type' => '?boolean'
 	];
 
+	/**
+	 * Force Parsoid/legacy parser use for message wikitext
+	 *
+	 * When null, this follows the default canonical ParserOptions.
+	 * If set to true, will force Parsoid use for message wikitext, and
+	 * if set to false will force legacy parser use for message wikitext,
+	 * independent of the default canonical ParserOptions used elsewhere
+	 * in MediaWiki.
+	 *
+	 * A separate config will control Parsoid use for articles and link updates
+	 *
+	 * @unstable Temporary flag, likely to be replaced by a single config in ParserOptions
+	 * @since 1.47
+	 */
+	public const UseParsoidMessages = [
+		'default' => null,
+		'type' => '?boolean'
+	];
+
 	// endregion -- End Miscellaneous
 }

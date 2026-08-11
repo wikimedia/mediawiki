@@ -4,6 +4,8 @@ namespace MediaWiki\Language;
 
 use LogicException;
 use MediaWiki\Context\RequestContext;
+use MediaWiki\MainConfigNames;
+use MediaWiki\MediaWikiServices;
 use MediaWiki\OutputTransform\OutputTransformPipeline;
 use MediaWiki\Page\PageReference;
 use MediaWiki\Page\PageReferenceValue;
@@ -192,12 +194,18 @@ class MessageParser {
 	private function createOptions( $cacheIndex ): ParserOptions {
 		$context = RequestContext::getMain();
 		$user = $context->getUser();
+		$useParsoidMessages = MediaWikiServices::getInstance()->getMainConfig()->get(
+			MainConfigNames::UseParsoidMessages
+		);
 		if ( !$user->isSafeToLoad() ) {
 			// It isn't safe to use the context user yet, so don't try to get a
 			// ParserOptions for it. And don't cache this ParserOptions
 			// either.
 			$po = ParserOptions::newFromAnon();
 			$po->setAllowUnsafeRawHtml( false );
+			if ( $useParsoidMessages !== null ) {
+				$po->setUseParsoid( $useParsoidMessages );
+			}
 			return $po;
 		}
 
@@ -207,6 +215,9 @@ class MessageParser {
 		// from malicious sources. As a precaution, disable
 		// the <html> parser tag when parsing messages.
 		$po->setAllowUnsafeRawHtml( false );
+		if ( $useParsoidMessages !== null ) {
+			$po->setUseParsoid( $useParsoidMessages );
+		}
 		$this->parserOptions[$cacheIndex] = $po;
 		return $po;
 	}
