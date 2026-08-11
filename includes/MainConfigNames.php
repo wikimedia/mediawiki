@@ -4660,4 +4660,10 @@ class MainConfigNames {
 	 */
 	public const ReturnExperimentalPFragmentTypes = 'ReturnExperimentalPFragmentTypes';
 
+	/**
+	 * Name constant for the UseParsoidLinksUpdate setting, for use with Config::get()
+	 * @see MainConfigSchema::UseParsoidLinksUpdate
+	 */
+	public const UseParsoidLinksUpdate = 'UseParsoidLinksUpdate';
+
 }

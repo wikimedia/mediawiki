@@ -2787,6 +2787,7 @@ return [
 			'ParserOptionsLogUnsafeSampleRate' => 0,
 			'ReturnExperimentalPFragmentTypes' => [
 			],
+			'UseParsoidLinksUpdate' => null,
 		],
 		'type' => [
 			'ConfigRegistry' => 'object',
@@ -3320,6 +3321,10 @@ return [
 			'UsePostprocCacheParsoid' => 'boolean',
 			'ParserOptionsLogUnsafeSampleRate' => 'integer',
 			'ReturnExperimentalPFragmentTypes' => 'array',
+			'UseParsoidLinksUpdate' => [
+				'boolean',
+				'null',
+			],
 		],
 		'mergeStrategy' => [
 			'TiffThumbnailType' => 'replace',

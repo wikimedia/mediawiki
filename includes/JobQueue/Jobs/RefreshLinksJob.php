@@ -376,7 +376,12 @@ class RefreshLinksJob extends Job {
 			return null;
 		}
 
+		$mainConfig = MediaWikiServices::getInstance()->getMainConfig();
 		$parserOptions = $page->makeParserOptions( 'canonical' );
+		$useParsoidLinksUpdate = $mainConfig->get( MainConfigNames::UseParsoidLinksUpdate );
+		if ( $useParsoidLinksUpdate !== null ) {
+			$parserOptions->setUseParsoid( $useParsoidLinksUpdate );
+		}
 
 		// Parsoid can do selective updates, so it is always worth the I/O
 		// to check for a previous parse. For the legacy parser, we only
@@ -400,7 +405,7 @@ class RefreshLinksJob extends Job {
 
 		// T371713: Temporary statistics collection code to determine
 		// feasibility of Parsoid selective update
-		$sampleRate = MediaWikiServices::getInstance()->getMainConfig()->get(
+		$sampleRate = $mainConfig->get(
 			MainConfigNames::ParsoidSelectiveUpdateSampleRate
 		);
 		$doSample = $sampleRate && mt_rand( 1, $sampleRate ) === 1;

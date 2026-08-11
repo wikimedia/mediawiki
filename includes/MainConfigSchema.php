@@ -13706,5 +13706,25 @@ class MainConfigSchema {
 		'type' => 'list'
 	];
 
+	/**
+	 * Force Parsoid/legacy parser use in RefreshLinksJob
+	 *
+	 * When null, this follows the default canonical ParserOptions.
+	 * If set to true, will force Parsoid use for RefreshLinksJob, and
+	 * if set to false will force legacy parser use for RefreshLinksJob,
+	 * independent of the default canonical ParserOptions used elsewhere
+	 * in MediaWiki.
+	 *
+	 * A separate config will allow overriding the default parser for messages
+	 * and articles.
+	 *
+	 * @unstable Temporary flag, likely to be replaced by a single config in ParserOptions
+	 * @since 1.47
+	 */
+	public const UseParsoidLinksUpdate = [
+		'default' => null,
+		'type' => '?boolean'
+	];
+
 	// endregion -- End Miscellaneous
 }

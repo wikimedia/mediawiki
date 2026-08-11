@@ -4644,3 +4644,9 @@ $wgParserOptionsLogUnsafeSampleRate = null;
  * @see MediaWiki\MainConfigSchema::ReturnExperimentalPFragmentTypes
  */
 $wgReturnExperimentalPFragmentTypes = null;
+
+/**
+ * Config variable stub for the UseParsoidLinksUpdate setting, for use by phpdoc and IDEs.
+ * @see MediaWiki\MainConfigSchema::UseParsoidLinksUpdate
+ */
+$wgUseParsoidLinksUpdate = null;
