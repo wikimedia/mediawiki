@@ -23,12 +23,12 @@ class UserRegistrationLookupTest extends MediaWikiUnitTestCase {
 			new ServiceOptions( UserRegistrationLookup::CONSTRUCTOR_OPTIONS, [
 				MainConfigNames::UserRegistrationProviders => [
 					'local' => [
-						'class' => LocalUserRegistrationProvider::class
+						'class' => LocalUserRegistrationProvider::class,
 					],
 					'foo' => [
-						'class' => 'FooUserRegistrationLookup'
+						'class' => 'FooUserRegistrationLookup',
 					],
-				]
+				],
 			] ),
 			$this->createNoOpMock( ObjectFactory::class )
 		);
@@ -55,9 +55,9 @@ class UserRegistrationLookupTest extends MediaWikiUnitTestCase {
 			new ServiceOptions( UserRegistrationLookup::CONSTRUCTOR_OPTIONS, [
 				MainConfigNames::UserRegistrationProviders => [
 					'local' => [
-						'class' => LocalUserRegistrationProvider::class
+						'class' => LocalUserRegistrationProvider::class,
 					],
-				]
+				],
 			] ),
 			$objectFactoryMock
 		);
@@ -67,20 +67,16 @@ class UserRegistrationLookupTest extends MediaWikiUnitTestCase {
 
 	public function testGetRegistrationWithCachedValue() {
 		$userIdentity = new UserIdentityValue( 123, 'Admin' );
-		$objectFactoryMock = $this->createMock( ObjectFactory::class );
-		$objectFactoryMock->expects( $this->never() )
-			->method( 'createObject' )
-			->with( [ 'class' => LocalUserRegistrationProvider::class ] );
 
 		$lookup = new UserRegistrationLookup(
 			new ServiceOptions( UserRegistrationLookup::CONSTRUCTOR_OPTIONS, [
 				MainConfigNames::UserRegistrationProviders => [
 					'local' => [
-						'class' => LocalUserRegistrationProvider::class
+						'class' => LocalUserRegistrationProvider::class,
 					],
-				]
+				],
 			] ),
-			$objectFactoryMock
+			$this->createNoOpMock( ObjectFactory::class )
 		);
 		$lookup->setCachedRegistration( $userIdentity, '20200101000000' );
 
@@ -127,12 +123,12 @@ class UserRegistrationLookupTest extends MediaWikiUnitTestCase {
 			new ServiceOptions( UserRegistrationLookup::CONSTRUCTOR_OPTIONS, [
 				MainConfigNames::UserRegistrationProviders => [
 					'local' => [
-						'class' => LocalUserRegistrationProvider::class
+						'class' => LocalUserRegistrationProvider::class,
 					],
 					'foo' => [
-						'class' => 'FooUserRegistrationLookup'
+						'class' => 'FooUserRegistrationLookup',
 					],
-				]
+				],
 			] ),
 			$objectFactoryMock
 		);
@@ -177,7 +173,7 @@ class UserRegistrationLookupTest extends MediaWikiUnitTestCase {
 					'other' => [
 						'factory' => static fn () => $otherProvider,
 					],
-				]
+				],
 			] ),
 			new ObjectFactory( $this->createMock( ContainerInterface::class ) )
 		);
@@ -208,7 +204,7 @@ class UserRegistrationLookupTest extends MediaWikiUnitTestCase {
 					'other' => [
 						'factory' => static fn () => $otherProvider,
 					],
-				]
+				],
 			] ),
 			new ObjectFactory( $this->createMock( ContainerInterface::class ) )
 		);
@@ -235,9 +231,9 @@ class UserRegistrationLookupTest extends MediaWikiUnitTestCase {
 			new ServiceOptions( UserRegistrationLookup::CONSTRUCTOR_OPTIONS, [
 				MainConfigNames::UserRegistrationProviders => [
 					'local' => [
-						'class' => LocalUserRegistrationProvider::class
+						'class' => LocalUserRegistrationProvider::class,
 					],
-				]
+				],
 			] ),
 			$objectFactoryMock
 		);
@@ -256,14 +252,11 @@ class UserRegistrationLookupTest extends MediaWikiUnitTestCase {
 	}
 
 	public function testSeparateCacheForWikisAndProviders() {
-		$objectFactoryMock = $this->createMock( ObjectFactory::class );
-		$objectFactoryMock->expects( $this->never() )
-			->method( 'createObject' );
 		$lookup = new UserRegistrationLookup(
 			new ServiceOptions( UserRegistrationLookup::CONSTRUCTOR_OPTIONS, [
-				MainConfigNames::UserRegistrationProviders => []
+				MainConfigNames::UserRegistrationProviders => [],
 			] ),
-			$objectFactoryMock
+			$this->createNoOpMock( ObjectFactory::class )
 		);
 
 		$localUser = new UserIdentityValue( 1, 'LocalUser' );
@@ -278,14 +271,11 @@ class UserRegistrationLookupTest extends MediaWikiUnitTestCase {
 	}
 
 	public function testCantCacheUnregisteredUsers() {
-		$objectFactoryMock = $this->createMock( ObjectFactory::class );
-		$objectFactoryMock->expects( $this->never() )
-			->method( 'createObject' );
 		$lookup = new UserRegistrationLookup(
 			new ServiceOptions( UserRegistrationLookup::CONSTRUCTOR_OPTIONS, [
-				MainConfigNames::UserRegistrationProviders => []
+				MainConfigNames::UserRegistrationProviders => [],
 			] ),
-			$objectFactoryMock
+			$this->createNoOpMock( ObjectFactory::class )
 		);
 
 		$this->expectException( InvalidArgumentException::class );
