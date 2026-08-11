@@ -1340,6 +1340,8 @@
 	"spambot_username": "Spamdan temizlev",
 	"spam_reverting": "$1 saytına bağlantısı olmağan soñki versiyağa keri ketirüv",
 	"spam_blanking": "Bar olğan versiyalarda $1 saytına bağlantılar bar, temizlev",
+	"pageinfo-title": "\"$1\" saife malümatı",
+	"pageinfo-length": "Saife uzunlığı (bayt esabınen)",
 	"pageinfo-language": "Saife içindekisiniñ tili",
 	"pageinfo-toolboxlink": "Esas malümat",
 	"markaspatrolleddiff": "Teşkerilgen olaraq belgile",
