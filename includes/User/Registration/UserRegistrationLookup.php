@@ -81,7 +81,7 @@ class UserRegistrationLookup {
 	public function getRegistration(
 		UserIdentity $user,
 		string $type = LocalUserRegistrationProvider::TYPE
-	) {
+	): string|null|false {
 		$cacheKey = $this->getCacheKey( $user, $type );
 		if ( $this->registrationCache->has( $cacheKey ) ) {
 			return $this->registrationCache->get( $cacheKey );
@@ -99,6 +99,7 @@ class UserRegistrationLookup {
 	 * the date for registered users.
 	 * If the size of the cache exceeds CACHE_MAX_SIZE, the least recently used entry is evicted.
 	 * @see MapCacheLRU
+	 * @internal Only public for usage within the User class and tests
 	 */
 	public function setCachedRegistration(
 		UserIdentity $user,
@@ -118,7 +119,7 @@ class UserRegistrationLookup {
 	/**
 	 * Find the first registration timestamp for a given user
 	 *
-	 * Note this invokes _all_ registered providers.
+	 * Note this invokes _all_ registered providers (via cache). Overall result is not cached.
 	 *
 	 * @param UserIdentity $user
 	 * @return string|null Earliest registration timestamp (TS::MW), null if not available.
@@ -147,7 +148,8 @@ class UserRegistrationLookup {
 	 * This invokes all registered providers and doesn't use caching.
 	 *
 	 * @param iterable<UserIdentity> $users
-	 * @return string[]|null[] Map of registration timestamps in MediaWiki format keyed by user ID.
+	 * @return array<int, string|null> Map of registration timestamps in MediaWiki format keyed by
+	 * user ID.
 	 * The timestamp may be `null` for users without a stored registration timestamp and for anonymous users.
 	 */
 	public function getFirstRegistrationBatch( iterable $users ): array {

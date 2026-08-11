@@ -24,7 +24,7 @@ interface IUserRegistrationProvider {
 	 *
 	 * @since 1.44
 	 * @param iterable<UserIdentity> $users
-	 * @return string[]|null[] Map of registration timestamps in MediaWiki format
+	 * @return array<int, string|null> Map of registration timestamps in MediaWiki format
 	 * (or `null` if not available) keyed by user ID.
 	 */
 	public function fetchRegistrationBatch( iterable $users ): array;
