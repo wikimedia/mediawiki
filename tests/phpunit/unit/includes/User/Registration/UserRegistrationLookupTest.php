@@ -89,11 +89,42 @@ class UserRegistrationLookupTest extends MediaWikiUnitTestCase {
 		$userIdentity = new UserIdentityValue( 123, 'Admin' );
 		$lookup = new UserRegistrationLookup(
 			new ServiceOptions( UserRegistrationLookup::CONSTRUCTOR_OPTIONS, [
-				MainConfigNames::UserRegistrationProviders => []
+				MainConfigNames::UserRegistrationProviders => [],
 			] ),
 			$this->createNoOpMock( ObjectFactory::class )
 		);
 		$lookup->getRegistration( $userIdentity, 'invalid' );
+	}
+
+	public function testGetRegistrationBatch() {
+		$users = [
+			new UserIdentityValue( 1, 'User 1' ),
+			new UserIdentityValue( 2, 'User 2' )
+		];
+		$expectedResult = [ 2 => '20260203000000' ];
+
+		$providerMock = $this->createNoOpMock( IUserRegistrationProvider::class, [ 'fetchRegistrationBatch' ] );
+		$providerMock->expects( $this->once() )
+			->method( 'fetchRegistrationBatch' )
+			->with( $users )
+			->willReturn( $expectedResult );
+		$objectFactoryMock = $this->createNoOpMock( ObjectFactory::class, [ 'createObject' ] );
+		$objectFactoryMock->expects( $this->once() )
+			->method( 'createObject' )
+			->with( [ 'class' => LocalUserRegistrationProvider::class ] )
+			->willReturn( $providerMock );
+
+		$lookup = new UserRegistrationLookup(
+			new ServiceOptions( UserRegistrationLookup::CONSTRUCTOR_OPTIONS, [
+				MainConfigNames::UserRegistrationProviders => [
+					'local' => [
+						'class' => LocalUserRegistrationProvider::class,
+					],
+				],
+			] ),
+			$objectFactoryMock
+		);
+		$this->assertSame( $expectedResult, $lookup->getRegistrationBatch( $users ) );
 	}
 
 	/** @dataProvider provideGetFirstRegistration */

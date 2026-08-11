@@ -95,6 +95,26 @@ class UserRegistrationLookup {
 	}
 
 	/**
+	 * Get the registration timestamp for a batch of users
+	 *
+	 * This skips the in-process cache (the batched query takes approx. the same time for any
+	 * reasonable amount of users; cache would only give us a benefit if all $users were a cache
+	 * hit, which is extremely unlikely).
+	 *
+	 * @since 1.47
+	 * @param iterable<UserIdentity> $users
+	 * @param string $type Name of a registered registration provider
+	 * @return array<int, string|null> Registration timestamp (TS::MW); null if not
+	 * available or cannot be fetched (e.g. anonymous users); keyed by user ID.
+	 */
+	public function getRegistrationBatch(
+		iterable $users,
+		string $type = LocalUserRegistrationProvider::TYPE
+	): array {
+		return $this->getProvider( $type )->fetchRegistrationBatch( $users );
+	}
+
+	/**
 	 * Sets the cached registration timestamp for a given user. Can only be used to set
 	 * the date for registered users.
 	 * If the size of the cache exceeds CACHE_MAX_SIZE, the least recently used entry is evicted.
