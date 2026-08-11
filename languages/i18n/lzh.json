@@ -56,7 +56,8 @@
 			"Koolhaas",
 			"TripleCamera2022",
 			"Above mountain",
-			"XiaoAnIsMe"
+			"XiaoAnIsMe",
+			"TigerZhang"
 		]
 	},
 	"sunday": "週日",
@@ -1746,6 +1747,7 @@
 	"movelogpage": "誌遷",
 	"movelogpagetext": "頁遷如下：",
 	"movereason": "因",
+	"movepage-reason-dropdown": "* 常辭\n** 葉題訛字",
 	"revertmove": "還",
 	"delete_and_move_text": "==准刪==\n\n往遷\"[[:$1]]\"存，刪之以替乎？",
 	"delete_redirect_and_move_text": "標的頁「[[:$1]]」既為渡。君欲刪之以畢遷事乎？",
