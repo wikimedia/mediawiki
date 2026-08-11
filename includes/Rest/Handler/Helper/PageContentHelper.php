@@ -296,8 +296,8 @@ class PageContentHelper {
 			'tid' => 'DUMMY',
 
 			'namespace' => $page->getNamespace(),
-			'user_id' => $revision->getUser( RevisionRecord::RAW )->getId(),
-			'user_text' => $publicUser ? $publicUser->getName() : null,
+			'user_id' => $publicUser?->getId(),
+			'user_text' => $publicUser?->getName(),
 			'comment' => $publicComment ? $publicComment->text : null,
 			'timestamp' => wfTimestampOrNull( TS_ISO_8601, $revision->getTimestamp() ),
 			'tags' => $tags,
