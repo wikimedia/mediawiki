@@ -52,7 +52,7 @@ abstract class Module {
 
 	private StatsFactory $stats;
 	private ?CorsUtils $cors = null;
-	private ?HookRunner $hookRunner = null;
+	private HookRunner $hookRunner;
 
 	/**
 	 * @param Router $router
@@ -82,6 +82,7 @@ abstract class Module {
 		$this->errorReporter = $errorReporter;
 		$this->hookContainer = $hookContainer;
 
+		$this->hookRunner = new HookRunner( $this->hookContainer );
 		$this->stats = StatsFactory::newNull();
 	}
 
@@ -271,7 +272,6 @@ abstract class Module {
 		string $path,
 		RequestInterface $request
 	): void {
-		$this->hookRunner ??= new HookRunner( $this->hookContainer );
 		$error = null;
 		$canExecute = $this->hookRunner->onRestCheckCanExecute( $this, $handler, $path, $request, $error );
 		if ( $canExecute !== ( $error === null ) ) {
@@ -300,6 +300,7 @@ abstract class Module {
 			$handler = $this->getHandlerForPath( $path, $request, true );
 			$this->runRestCheckCanExecuteHook( $handler, $path, $request );
 			$response = $this->executeHandler( $handler );
+			$this->hookRunner->onRestAfterExecute( $this, $handler, $path, $request, $response );
 		} catch ( HttpException $e ) {
 			$extraData = [];
 			if ( $this->router->isRestbaseCompatEnabled( $request )
@@ -308,6 +309,7 @@ abstract class Module {
 				$extraData = $this->router->getRestbaseCompatErrorData( $request, $e );
 			}
 			$response = $this->responseFactory->createFromException( $e, $extraData );
+			$this->hookRunner->onRestAfterExecute( $this, $handler, $path, $request, $response );
 		} catch ( Throwable $e ) {
 			if ( $e instanceof PHPUnitException ) {
 				throw $e;

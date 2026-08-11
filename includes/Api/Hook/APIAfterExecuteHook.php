@@ -10,6 +10,7 @@ use MediaWiki\Api\ApiBase;
  *
  * @stable to implement
  * @ingroup Hooks
+ * @see MediaWiki\Rest\Hook\RestAfterExecuteHook
  */
 interface APIAfterExecuteHook {
 	/**

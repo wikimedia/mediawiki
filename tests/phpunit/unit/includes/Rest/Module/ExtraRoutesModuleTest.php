@@ -13,6 +13,7 @@ use MediaWiki\Rest\Reporter\ErrorReporter;
 use MediaWiki\Rest\RequestData;
 use MediaWiki\Rest\RequestInterface;
 use MediaWiki\Rest\ResponseFactory;
+use MediaWiki\Rest\ResponseInterface;
 use MediaWiki\Rest\Validator\Validator;
 use MediaWiki\Tests\Rest\Handler\HelloHandler;
 use MediaWiki\Tests\Rest\RestTestTrait;
@@ -344,6 +345,67 @@ class ExtraRoutesModuleTest extends \MediaWikiUnitTestCase {
 		$body->rewind();
 		$data = json_decode( $body->getContents(), true );
 		$this->assertSame( 'Denied by hook', $data['message'] );
+	}
+
+	public function testRestAfterExecuteHook() {
+		$request = new RequestData( [ 'uri' => new Uri( '/rest/ModuleTest/hello/foo' ) ] );
+		$module = $this->createRouteFileModule( $request, [
+			'hookContainer' => $this->createHookContainer( [
+				'RestAfterExecute' =>
+					function ( $module1, $handler, $path, $request1, $response ) use ( $request, &$module ) {
+						$this->assertSame( $module, $module1 );
+						$this->assertInstanceOf( HelloHandler::class, $handler );
+						$this->assertSame( '/ModuleTest/hello/foo', $path );
+						$this->assertSame( $request, $request1 );
+						$this->assertInstanceOf( ResponseInterface::class, $response );
+
+						$body = $response->getBody();
+						$body->rewind();
+						$data = json_decode( $body->getContents(), true );
+						$this->assertSame( 'hi!', $data['message'] );
+
+						$response->addHeader( 'X-Test-Hook', '1' );
+					},
+			] ),
+		] );
+
+		$response = $module->execute( '/ModuleTest/hello/foo', $request );
+		$this->assertSame( '1', $response->getHeaderLine( 'X-Test-Hook' ) );
+		$this->assertSame( 200, $response->getStatusCode() );
+		$body = $response->getBody();
+		$body->rewind();
+		$data = json_decode( $body->getContents(), true );
+		$this->assertSame( 'hi!', $data['message'] );
+	}
+
+	public function testRestAfterExecuteHook_error() {
+		$request = new RequestData( [ 'uri' => new Uri( '/rest/ModuleTest/throw' ) ] );
+		$module = $this->createRouteFileModule( $request, [
+			'hookContainer' => $this->createHookContainer( [
+				'RestAfterExecute' =>
+					function ( $module1, $handler, $path, $request1, $response ) use ( $request, &$module ) {
+						$this->assertSame( $module, $module1 );
+						$this->assertSame( '/ModuleTest/throw', $path );
+						$this->assertSame( $request, $request1 );
+						$this->assertInstanceOf( ResponseInterface::class, $response );
+
+						$body = $response->getBody();
+						$body->rewind();
+						$data = json_decode( $body->getContents(), true );
+						$this->assertSame( 'Mock error', $data['message'] );
+
+						$response->addHeader( 'X-Test-Hook', '1' );
+					},
+			] ),
+		] );
+
+		$response = $module->execute( '/ModuleTest/throw', $request );
+		$this->assertSame( '1', $response->getHeaderLine( 'X-Test-Hook' ) );
+		$this->assertSame( 555, $response->getStatusCode() );
+		$body = $response->getBody();
+		$body->rewind();
+		$data = json_decode( $body->getContents(), true );
+		$this->assertSame( 'Mock error', $data['message'] );
 	}
 
 	public function testOpenApiInfo() {

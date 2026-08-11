@@ -2955,6 +2955,7 @@ $wgAutoloadLocalClasses = [
 	'MediaWiki\\Rest\\HeaderParser\\IfNoneMatch' => __DIR__ . '/includes/Rest/HeaderParser/IfNoneMatch.php',
 	'MediaWiki\\Rest\\HeaderParser\\Origin' => __DIR__ . '/includes/Rest/HeaderParser/Origin.php',
 	'MediaWiki\\Rest\\Hook\\HookRunner' => __DIR__ . '/includes/Rest/Hook/HookRunner.php',
+	'MediaWiki\\Rest\\Hook\\RestAfterExecuteHook' => __DIR__ . '/includes/Rest/Hook/RestAfterExecuteHook.php',
 	'MediaWiki\\Rest\\Hook\\RestCheckCanExecuteHook' => __DIR__ . '/includes/Rest/Hook/RestCheckCanExecuteHook.php',
 	'MediaWiki\\Rest\\Hook\\SearchResultProvideDescriptionHook' => __DIR__ . '/includes/Rest/Hook/SearchResultProvideDescriptionHook.php',
 	'MediaWiki\\Rest\\HttpException' => __DIR__ . '/includes/Rest/HttpException.php',

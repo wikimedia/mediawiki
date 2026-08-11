@@ -7,8 +7,12 @@ use MediaWiki\Rest\Handler;
 use MediaWiki\Rest\HttpException;
 use MediaWiki\Rest\Module\Module;
 use MediaWiki\Rest\RequestInterface;
+use MediaWiki\Rest\ResponseInterface;
 
-class HookRunner implements RestCheckCanExecuteHook {
+class HookRunner implements
+	RestAfterExecuteHook,
+	RestCheckCanExecuteHook
+{
 
 	private HookContainer $container;
 
@@ -26,6 +30,20 @@ class HookRunner implements RestCheckCanExecuteHook {
 		return $this->container->run(
 			'RestCheckCanExecute',
 			[ $module, $handler, $path, $request, &$error ]
+		);
+	}
+
+	public function onRestAfterExecute(
+		Module $module,
+		?Handler $handler,
+		string $path,
+		RequestInterface $request,
+		ResponseInterface $response
+	): void {
+		$this->container->run(
+			'RestAfterExecute',
+			[ $module, $handler, $path, $request, $response ],
+			[ 'abortable' => false ]
 		);
 	}
 
