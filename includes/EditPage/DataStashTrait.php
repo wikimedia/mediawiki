@@ -7,6 +7,7 @@ use MediaWiki\Permissions\PermissionStatus;
 use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Title\Title;
 use MediaWiki\Utils\MWCryptRand;
+use OOUI\IconWidget;
 
 /**
  * Securely stash user-posted data in the session, modeled on
@@ -113,6 +114,35 @@ trait DataStashTrait {
 		$out->addJsConfigVars( [
 			'wgReauthOperation' => $operation
 		] );
+	}
+
+	/**
+	 * Return [ 'icon' => 'lock' ] to merge into a hand-built OOUI
+	 * ButtonInputWidget's attribs. Loads the icons-moderation styles module.
+	 * Guard the call with your own reauth-required state.
+	 *
+	 * For an HTMLForm submit button, see HTMLForm::setSubmitLockIcon().
+	 * For a standalone icon not on a button, see getReauthLockOOUIIcon().
+	 *
+	 * @return array
+	 */
+	protected function getReauthLockButtonAttribs(): array {
+		$this->getContext()->getOutput()->addModuleStyles( 'oojs-ui.styles.icons-moderation' );
+		return [ 'icon' => 'lock' ];
+	}
+
+	/**
+	 * Return a standalone OOUI lock IconWidget (not attached to a button).
+	 * Loads the icons-moderation styles module. Guard the call with your own
+	 * reauth-required state.
+	 *
+	 * To attach a lock icon to a button instead, see getReauthLockButtonAttribs()
+	 * (hand-built OOUI button) or HTMLForm::setSubmitLockIcon() (HTMLForm submit).
+	 *
+	 * @return IconWidget
+	 */
+	protected function getReauthLockOOUIIcon(): IconWidget {
+		return new IconWidget( $this->getReauthLockButtonAttribs() );
 	}
 
 	protected function doReauthRedirect( PermissionStatus $status, array $queryParams ): void {

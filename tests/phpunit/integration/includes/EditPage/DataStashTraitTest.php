@@ -11,6 +11,7 @@ use MediaWiki\Request\FauxRequest;
 use MediaWiki\Session\Session;
 use MediaWiki\Title\Title;
 use MediaWikiIntegrationTestCase;
+use OOUI\IconWidget;
 use Wikimedia\TestingAccessWrapper;
 
 /**
@@ -240,5 +241,34 @@ class DataStashTraitTest extends MediaWikiIntegrationTestCase {
 		$this->assertNotSame( '', $url, 'a redirect was issued' );
 		$this->assertStringContainsString( 'force=edit', $url );
 		$this->assertStringContainsString( 'requestUniqueId', $url );
+	}
+
+	public function testGetReauthLockButtonAttribsReturnsLockIconAndLoadsStyles() {
+		$context = $this->newContext( new FauxRequest( [], false, $this->newSession() ) );
+		[ , $wrapper ] = $this->newStasher( $context );
+
+		$this->assertSame(
+			[ 'icon' => 'lock' ],
+			$wrapper->getReauthLockButtonAttribs()
+		);
+		$this->assertContains(
+			'oojs-ui.styles.icons-moderation',
+			$context->getOutput()->getModuleStyles(),
+			'the moderation icons style module is loaded'
+		);
+	}
+
+	public function testGetReauthLockOOUIIconReturnsIconWidgetAndLoadsStyles() {
+		$context = $this->newContext( new FauxRequest( [], false, $this->newSession() ) );
+		[ , $wrapper ] = $this->newStasher( $context );
+
+		$icon = $wrapper->getReauthLockOOUIIcon();
+
+		$this->assertInstanceOf( IconWidget::class, $icon );
+		$this->assertContains(
+			'oojs-ui.styles.icons-moderation',
+			$context->getOutput()->getModuleStyles(),
+			'the moderation icons style module is loaded'
+		);
 	}
 }

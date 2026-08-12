@@ -319,6 +319,8 @@ class HTMLForm extends ContextSource {
 	protected $mSubmitText;
 	/** @var string|null */
 	protected $mSubmitTooltip;
+	/** @var bool Whether a lock icon should be attached to the submit button */
+	protected bool $mSubmitLockIcon = false;
 
 	/** @var string|null */
 	protected $mFormIdentifier;
@@ -1605,6 +1607,25 @@ class HTMLForm extends ContextSource {
 	 */
 	public function setSubmitID( $t ) {
 		$this->mSubmitID = $t;
+
+		return $this;
+	}
+
+	/**
+	 * Attach a "lock" OOUI icon to the submit button. OOUI display mode only.
+	 * Loads the icons-moderation styles module. Guard the call with your own
+	 * reauth-required state.
+	 *
+	 * For a hand-built OOUI button (not through HTMLForm), see
+	 * DataStashTrait::getReauthLockButtonAttribs(). For a standalone icon
+	 * not on a button, see DataStashTrait::getReauthLockOOUIIcon().
+	 *
+	 * @since 1.47
+	 * @return $this for chaining calls
+	 */
+	public function setSubmitLockIcon() {
+		$this->mSubmitLockIcon = true;
+		$this->getOutput()->addModuleStyles( 'oojs-ui.styles.icons-moderation' );
 
 		return $this;
 	}

@@ -78,6 +78,10 @@ class OOUIHTMLForm extends HTMLForm {
 				];
 			}
 
+			if ( $this->mSubmitLockIcon ) {
+				$attribs['icon'] = 'lock';
+			}
+
 			$buttons .= new \OOUI\ButtonInputWidget( $attribs );
 		}
 
