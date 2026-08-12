@@ -75,11 +75,9 @@ class ApiQueryCategories extends ApiQueryGeneratorBase {
 		$needFiltering = isset( $show['hidden'] ) || isset( $show['!hidden'] );
 
 		$continueFrom = null;
-		$isFirstBatch = true;
 		if ( $params['continue'] !== null ) {
 			$cont = $this->parseContinueParamOrDie( $params['continue'], [ 'int', 'string' ] );
 			$continueFrom = [ $cont[0], $cont[1] ];
-			$isFirstBatch = false;
 		}
 
 		$db = $this->getDB();
@@ -96,6 +94,7 @@ class ApiQueryCategories extends ApiQueryGeneratorBase {
 			$fields[] = 'cl_timestamp';
 		}
 
+		$isFirstBatch = true;
 		$loopCount = 0;
 		$maxLoops = 20;
 		while ( count( $filteredRows ) < $params['limit'] + 1 ) {
