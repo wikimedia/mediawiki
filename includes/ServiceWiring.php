@@ -922,7 +922,6 @@ return [
 	'DBLoadBalancerFactoryConfig' => static function ( MediaWikiServices $services ): MWLBConfig {
 		return new MWLBConfig(
 			new ServiceOptions( MWLBConfig::APPLY_DEFAULT_CONFIG_OPTIONS, $services->getMainConfig() ),
-			ExtensionRegistry::getInstance()->getAttribute( 'DatabaseVirtualDomains' ),
 			$services->getMainConfig()->get( MainConfigNames::LBFactoryConf )
 		);
 	},

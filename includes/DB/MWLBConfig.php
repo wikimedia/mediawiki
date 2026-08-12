@@ -10,7 +10,6 @@
 namespace MediaWiki\DB;
 
 use MediaWiki\Config\ServiceOptions;
-use MediaWiki\Deferred\LinksUpdate\LinksTable;
 use MediaWiki\Exception\MWExceptionRenderer;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Rest\EntryPoint;
@@ -27,13 +26,6 @@ use Wikimedia\Rdbms\LBFactorySimple;
  */
 class MWLBConfig {
 	private const array DB_TYPES_WITH_SCHEMAS = [ 'postgres' ];
-
-	public const CORE_VIRTUAL_DOMAINS = [
-		'virtual-botpasswords',
-		'virtual-interwiki',
-		'virtual-interwiki-interlanguage',
-		LinksTable::VIRTUAL_DOMAIN,
-	];
 
 	/**
 	 * @internal For use by ServiceWiring
@@ -61,23 +53,17 @@ class MWLBConfig {
 	];
 	private ServiceOptions $options;
 
-	/** @var string[] */
-	private array $virtualDomains;
-
 	private array $lbConf;
 
 	/**
 	 * @param ServiceOptions $options
-	 * @param string[] $virtualDomains
 	 * @param array $lbConf
 	 */
 	public function __construct(
 		ServiceOptions $options,
-		array $virtualDomains,
 		array $lbConf
 	) {
 		$this->options = $options;
-		$this->virtualDomains = $virtualDomains;
 		$this->lbConf = $this->applyConfig( $lbConf );
 	}
 
@@ -153,7 +139,6 @@ class MWLBConfig {
 			$this->options->get( MainConfigNames::DBprefix )
 		);
 
-		$lbConf['virtualDomains'] = array_merge( $this->virtualDomains, self::CORE_VIRTUAL_DOMAINS );
 		$lbConf['virtualDomainsMapping'] = $this->options->get( MainConfigNames::VirtualDomainsMapping );
 
 		return $lbConf;

@@ -589,6 +589,9 @@ because of Phabricator reports.
 * The UserModifyCreateAccountEmailHook has been added to allow modification of
   both the email subject and the email body sent to new accounts when another
   user creates an account on their behalf (such as using Special:CreateAccount).
+* Virtual domains in databases no longer require being registered via
+  "DatabaseVirtualDomains" option in extension.json. But they must all start
+  with 'virtual-' to be recognized as a virtual domain.
 * …
 
 == Compatibility ==

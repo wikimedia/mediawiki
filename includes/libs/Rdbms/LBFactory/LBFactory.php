@@ -65,8 +65,6 @@ abstract class LBFactory implements ILBFactory {
 	protected $domainAliases = [];
 	/** @var array[] Map of virtual domain to array of cluster and domain */
 	protected array $virtualDomainsMapping = [];
-	/** @var string[] List of registered virtual domains */
-	protected array $virtualDomains = [];
 	/** @var callable[] */
 	private $replicationWaitCallbacks = [];
 
@@ -140,7 +138,6 @@ abstract class LBFactory implements ILBFactory {
 		$this->agent = $conf['agent'] ?? '';
 		$this->replicationWaitTimeout = $this->cliMode ? 60 : 1;
 		$this->virtualDomainsMapping = $conf['virtualDomainsMapping'] ?? [];
-		$this->virtualDomains = $conf['virtualDomains'] ?? [];
 
 		$this->shuffleSharding = $conf['shuffleSharding'] ?? false;
 		$this->uniqueIdentifier = $conf['uniqueIdentifier'] ?? null;
@@ -569,7 +566,7 @@ abstract class LBFactory implements ILBFactory {
 
 	/** @inheritDoc */
 	public function getLoadBalancer( $domain = false ): ILoadBalancer {
-		if ( $domain !== false && in_array( $domain, $this->virtualDomains ) ) {
+		if ( $domain !== false && str_starts_with( $domain, 'virtual-' ) ) {
 			if ( isset( $this->virtualDomainsMapping[$domain] ) ) {
 				$config = $this->virtualDomainsMapping[$domain];
 				if ( isset( $config['cluster'] ) ) {
@@ -602,7 +599,7 @@ abstract class LBFactory implements ILBFactory {
 	 * @internal For installer and getMappedDatabase
 	 */
 	public function getMappedDomain( string|false $domain ): string|false {
-		if ( $domain !== false && in_array( $domain, $this->virtualDomains ) ) {
+		if ( $domain !== false && str_starts_with( $domain, 'virtual-' ) ) {
 			return $this->virtualDomainsMapping[$domain]['db'] ?? false;
 		} else {
 			return $domain;
@@ -618,7 +615,7 @@ abstract class LBFactory implements ILBFactory {
 	 * @return bool
 	 */
 	public function isLocalDomain( $domain ) {
-		if ( $domain !== false && in_array( $domain, $this->virtualDomains ) ) {
+		if ( $domain !== false && str_starts_with( $domain, 'virtual-' ) ) {
 			if ( isset( $this->virtualDomainsMapping[$domain] ) ) {
 				$config = $this->virtualDomainsMapping[$domain];
 				if ( isset( $config['cluster'] ) ) {
@@ -643,7 +640,7 @@ abstract class LBFactory implements ILBFactory {
 	 */
 	public function isSharedVirtualDomain( $domain ) {
 		if ( $domain !== false
-			&& in_array( $domain, $this->virtualDomains )
+			&& str_starts_with( $domain, 'virtual-' )
 			&& isset( $this->virtualDomainsMapping[$domain] )
 		) {
 			return $this->virtualDomainsMapping[$domain]['db'] !== false;

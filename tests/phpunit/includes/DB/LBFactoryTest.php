@@ -663,68 +663,67 @@ class LBFactoryTest extends MediaWikiIntegrationTestCase {
 					'test-db1' => 1,
 				],
 			],
-			'virtualDomains' => [ 'virtualdomain1', 'virtualdomain2', 'virtualdomain3', 'virtualdomain4' ],
 			'virtualDomainsMapping' => [
-				'virtualdomain1' => [ 'db' => 'extdomain', 'cluster' => 'extension1' ],
-				'virtualdomain2' => [ 'db' => false, 'cluster' => 'extension1' ],
-				'virtualdomain3' => [ 'db' => 'shareddb' ],
+				'virtual-domain1' => [ 'db' => 'extdomain', 'cluster' => 'extension1' ],
+				'virtual-domain2' => [ 'db' => false, 'cluster' => 'extension1' ],
+				'virtual-domain3' => [ 'db' => 'shareddb' ],
 			]
 		];
 		$factory = $this->newLBFactoryMulti( $baseOverrides );
-		$db1 = $factory->getPrimaryDatabase( 'virtualdomain1' );
+		$db1 = $factory->getPrimaryDatabase( 'virtual-domain1' );
 		$this->assertEquals(
 			'extdomain',
 			$db1->getDomainID()
 		);
 		$this->assertEquals(
 			'extdomain',
-			$factory->getAutoCommitPrimaryConnection( 'virtualdomain1' )->getDomainID()
+			$factory->getAutoCommitPrimaryConnection( 'virtual-domain1' )->getDomainID()
 		);
 		$this->assertEquals(
 			'extension1',
-			$factory->getLoadBalancer( 'virtualdomain1' )->getClusterName()
+			$factory->getLoadBalancer( 'virtual-domain1' )->getClusterName()
 		);
 
-		$db2 = $factory->getPrimaryDatabase( 'virtualdomain2' );
+		$db2 = $factory->getPrimaryDatabase( 'virtual-domain2' );
 		$this->assertEquals(
 			'localdomain',
 			$db2->getDomainID()
 		);
 		$this->assertEquals(
 			'localdomain',
-			$factory->getAutoCommitPrimaryConnection( 'virtualdomain2' )->getDomainID()
+			$factory->getAutoCommitPrimaryConnection( 'virtual-domain2' )->getDomainID()
 		);
 		$this->assertEquals(
 			'extension1',
-			$factory->getLoadBalancer( 'virtualdomain2' )->getClusterName()
+			$factory->getLoadBalancer( 'virtual-domain2' )->getClusterName()
 		);
 
-		$db3 = $factory->getPrimaryDatabase( 'virtualdomain3' );
+		$db3 = $factory->getPrimaryDatabase( 'virtual-domain3' );
 		$this->assertEquals(
 			'shareddb',
 			$db3->getDomainID()
 		);
 		$this->assertEquals(
 			'shareddb',
-			$factory->getAutoCommitPrimaryConnection( 'virtualdomain3' )->getDomainID()
+			$factory->getAutoCommitPrimaryConnection( 'virtual-domain3' )->getDomainID()
 		);
 		$this->assertEquals(
 			'DEFAULT',
-			$factory->getLoadBalancer( 'virtualdomain3' )->getClusterName()
+			$factory->getLoadBalancer( 'virtual-domain3' )->getClusterName()
 		);
 
-		$db4 = $factory->getPrimaryDatabase( 'virtualdomain4' );
+		$db4 = $factory->getPrimaryDatabase( 'virtual-domain4' );
 		$this->assertEquals(
 			'localdomain',
 			$db4->getDomainID()
 		);
 		$this->assertEquals(
 			'localdomain',
-			$factory->getAutoCommitPrimaryConnection( 'virtualdomain4' )->getDomainID()
+			$factory->getAutoCommitPrimaryConnection( 'virtual-domain4' )->getDomainID()
 		);
 		$this->assertEquals(
 			'DEFAULT',
-			$factory->getLoadBalancer( 'virtualdomain4' )->getClusterName()
+			$factory->getLoadBalancer( 'virtual-domain4' )->getClusterName()
 		);
 	}
 
