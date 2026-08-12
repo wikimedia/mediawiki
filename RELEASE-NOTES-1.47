@@ -555,6 +555,8 @@ because of Phabricator reports.
   - buildTagFilterSelector: use ChangeTagsFormatter::buildTagFilter instead
 * (T408666) The TitleIsAlwaysKnown hook has been deprecated. Use the
   LinkTargetIsAlwaysKnownBatch hook instead.
+* Overriding MediaHandler::getMetadata() and ::getImageSize(), deprecated since
+  1.37, now emits deprecation warnings.
 * …
 
 === Other changes in 1.47 ===

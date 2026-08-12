@@ -79,11 +79,14 @@ class MediaHandlerFactory {
 					[ 'class' => $class ]
 				);
 				$handler = false;
-			} elseif ( $lang !== null ) {
-				if ( !$lang instanceof Language ) {
-					$lang = $this->langFactory->getLanguage( $lang );
+			} else {
+				if ( $lang !== null ) {
+					if ( !$lang instanceof Language ) {
+						$lang = $this->langFactory->getLanguage( $lang );
+					}
+					$handler->setLanguage( $lang );
 				}
-				$handler->setLanguage( $lang );
+				$handler->emitSubclassDeprecations();
 			}
 		} else {
 			$this->logger->debug(

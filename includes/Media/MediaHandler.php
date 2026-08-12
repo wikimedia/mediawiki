@@ -215,6 +215,30 @@ abstract class MediaHandler {
 	}
 
 	/**
+	 * Emit warnings for overriding a deprecated method.
+	 *
+	 * Use getSizeAndMetadata().
+	 *
+	 * @internal
+	 */
+	public function emitSubclassDeprecations() {
+		if ( $this->hasMostDerivedMethod( 'getMetadata' ) ) {
+			wfDeprecatedMsg(
+				static::class . ' overrides MediaHandler::getMetadata, ' .
+				'this was deprecated in MediaWiki 1.37',
+				'1.37'
+			);
+		}
+		if ( $this->hasMostDerivedMethod( 'getImageSize' ) ) {
+			wfDeprecatedMsg(
+				static::class . ' overrides MediaHandler::getImageSize, ' .
+				'this was deprecated in MediaWiki 1.37',
+				'1.37'
+			);
+		}
+	}
+
+	/**
 	 * Get the metadata array and the image size, with b/c fallback.
 	 *
 	 * The legacy methods will be used if useLegacyMetadata() returns true or
