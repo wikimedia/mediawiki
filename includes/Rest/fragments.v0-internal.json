@@ -1,0 +1,25 @@
+{
+	"mwapi": "1.1.0",
+	"moduleId": "fragments/v0-internal",
+	"info": {
+		"title": "HTML Fragments API",
+		"version": "0.1.0"
+	},
+	"tags": [
+		{
+			"name": "HTML Fragments"
+		}
+	],
+	"paths": {
+		"/user_bar": {
+			"get": {
+				"tags": [
+					"HTML Fragments"
+				],
+				"handler": {
+					"class": "MediaWiki\\Rest\\Handler\\UserBarFragmentHandler"
+				}
+			}
+		}
+	}
+}

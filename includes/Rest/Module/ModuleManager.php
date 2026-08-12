@@ -22,6 +22,7 @@ class ModuleManager {
 		'includes/Rest/coreRoutes.json',
 		'includes/Rest/site.v1.json',
 		'includes/Rest/specs.v0.json',
+		'includes/Rest/fragments.v0-internal.json',
 	];
 
 	// These specs will be available in the Rest Sandbox. No config change is needed.
@@ -35,7 +36,10 @@ class ModuleManager {
 		],
 		'site.v1' => [
 			'file' => "./includes/Rest/site.v1.json",
-		]
+		],
+		'fragments.v0-internal' => [
+			'file' => "./includes/Rest/fragments.v0-internal.json",
+		],
 	];
 
 	/** Seconds to persist module definitions on cache */
