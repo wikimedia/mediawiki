@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Winston Sung"
+			"Winston Sung",
+			"SupaplexTW"
 		]
 	},
 	"january": "1 goe̍h",
@@ -55,5 +56,36 @@
 	"sat": "pài-la̍k",
 	"sun": "lé-pài",
 	"period-am": "AM",
-	"period-pm": "PM"
+	"period-pm": "PM",
+	"timezone-local": "chāi-chng",
+	"years": "{{PLURAL:$1|$1 nî}}",
+	"months": "{{PLURAL:$1|$1 kò goe̍h}}",
+	"weeks": "{{PLURAL:$1|$1 lé-pài}}",
+	"days": "{{PLURAL:$1|$1 kang}}",
+	"hours": "{{PLURAL:$1|$1 tiám-cheng}}",
+	"minutes": "{{PLURAL:$1|$1 hun-cheng}}",
+	"seconds": "{{PLURAL:$1|$1 bió}}",
+	"ago": "$1 chìn-chêng",
+	"duration-millennia": "$1{{PLURAL:$1|chhian-nî}}",
+	"duration-centuries": "$1{{PLURAL:$1|sè-kí}}",
+	"duration-decades": "$1{{PLURAL:$1|10-nî}}",
+	"duration-years": "$1{{PLURAL:$1|nî}}",
+	"duration-months": "$1{{PLURAL:$1|kò goe̍h}}",
+	"duration-weeks": "$1{{PLURAL:$1|lé-pài}}",
+	"duration-days": "$1 {{PLURAL:$1|kang}}",
+	"duration-hours": "$1{{PLURAL:$1|tiám-cheng}}",
+	"duration-minutes": "$1{{PLURAL:$1|hun-cheng}}",
+	"duration-seconds": "$1{{PLURAL:$1|bió}}",
+	"monday-at": "pài-it tī $1",
+	"tuesday-at": "pài-jī tī $1",
+	"wednesday-at": "pài-saⁿ tī $1",
+	"thursday-at": "pài-sì tī $1",
+	"friday-at": "pài-gō͘ tī $1",
+	"saturday-at": "pài-la̍k tī $1",
+	"sunday-at": "lé-pài tī $1",
+	"yesterday-at": "cha-hng tī $1",
+	"hours-ago": "$1{{PLURAL:$1|tiám-cheng}} chìn-chêng",
+	"minutes-ago": "$1{{PLURAL:$1|hun-cheng}} chìn-chêng",
+	"seconds-ago": "$1{{PLURAL:$1| bió}} chìn-chêng",
+	"just-now": "chit-má"
 }

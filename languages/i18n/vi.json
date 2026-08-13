@@ -83,7 +83,8 @@
 			"Duongvu",
 			"Trần Xuân",
 			"YeBoy371",
-			"Ttra2607"
+			"Ttra2607",
+			"SussyRed2000"
 		]
 	},
 	"pagecategories": "{{PLURAL:$1|Thể loại}}",
@@ -4107,7 +4108,8 @@
 	"action-renameuser-global": "đổi tên người dùng toàn cục",
 	"right-renameuser-global": "Đổi tên toàn cục người dùng",
 	"renameuser-renamed-notice": "{{GENDER:$1|Thành viên}} này đã được đổi tên.\nNhật trình đổi tên được ghi ở dưới để tiện theo dõi.",
-	"log-unknown-action": "đã thực hiện hành động không xác định \"$2\" tại [[$1]]",
+	"log-unknown-action": "đã thực hiện tác vụ không xác định \"$2\" tại [[$1]]",
+	"log-unsafe-logentry": "(Không thể hiển thị mục nhật trình này vì các tham số của nó chứa dữ liệu được tuần tự hóa không an toàn.)",
 	"createacct-benefit-heading-temp-user": "Cảm ơn bạn đã đóng góp cho {{SITENAME}}.\nTạo một tài khoản để truy cập nhiều tính năng hơn.",
 	"createacct-benefit-subheading-temp-user": "{{SITENAME}} được tạo bởi những người như bạn. Với tài khoản, bạn có thể có danh tính vĩnh viễn và an toàn với quyền truy cập vào các tính năng như:",
 	"benefit-1-description": "Danh sách theo dõi cho phép bạn theo dõi các trang mà bạn quan tâm.",

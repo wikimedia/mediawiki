@@ -2429,7 +2429,7 @@
 	"delete_and_move_text": "Odredišna stranica \"[[:$1]]\" već postoji. Želite li je obrisati da biste napravili mjesto za premještaj?",
 	"delete_redirect_and_move_text": "Odredišna stranica »[[:$1]]« već postoji kao preusmjeravanje.\nŽelite li je izbrisati kako biste stvorili mjesto za premještanje?",
 	"delete_and_move_confirm": "Da, izbriši stranicu „$1”",
-	"delete_and_move_reason": "obrisano kako bi se napravilo mjesto za premještaj, stari naziv \"[[$1]]\"",
+	"delete_and_move_reason": "obrisano kako bi se oslobodilo mjesto za premještaj sa starog naslova \"[[$1]]\"",
 	"selfmove": "Izvorni i odredišni naslov su isti; ne mogu premjestiti stranicu na nju samu.",
 	"immobile-source-namespace": "Ne mogu premjestiti stranice u imenski prostor \"$1\"",
 	"immobile-target-namespace": "Ne mogu premjestiti stranice u imenski prostor \"$1\"",

@@ -5,7 +5,8 @@
 			"Man77",
 			"Metalhead64",
 			"Wolfdietmann",
-			"XenonX3"
+			"XenonX3",
+			"IWL04"
 		]
 	},
 	"january": "Januar",
@@ -78,11 +79,11 @@
 	"minutes": "{{PLURAL:$1|$1 Minute|$1 Minuten}}",
 	"seconds": "{{PLURAL:$1|$1 Sekunde|$1 Sekunden}}",
 	"ago": "vor $1",
-	"duration-millennia": "$1 {{PLURAL:$1|Jahrtausend|Jahrtausende}}",
-	"duration-centuries": "$1 {{PLURAL:$1|Jahrhundert|Jahrhunderte}}",
-	"duration-decades": "$1 {{PLURAL:$1|Jahrzehnt|Jahrzehnte}}",
-	"duration-years": "$1 {{PLURAL:$1|Jahr|Jahre}}",
-	"duration-months": "{{PLURAL:$1|Ein Monat|$1 Monate}}",
+	"duration-millennia": "$1 {{PLURAL:$1|Jahrtausend|Jahrtausenden}}",
+	"duration-centuries": "$1 {{PLURAL:$1|Jahrhundert|Jahrhunderten}}",
+	"duration-decades": "$1 {{PLURAL:$1|Jahrzehnt|Jahrzehnten}}",
+	"duration-years": "$1 {{PLURAL:$1|Jahr|Jahren}}",
+	"duration-months": "$1 {{PLURAL:$1|Monat|Monaten}}",
 	"duration-weeks": "$1 {{PLURAL:$1|Woche|Wochen}}",
 	"duration-days": "$1 {{PLURAL:$1|Tag|Tagen}}",
 	"duration-hours": "$1 {{PLURAL:$1|Stunde|Stunden}}",

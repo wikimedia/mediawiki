@@ -7,7 +7,8 @@
 			"Vinhtantran",
 			"Duongvu",
 			"Nvdtn19",
-			"Ttra2607"
+			"Ttra2607",
+			"SussyRed2000"
 		]
 	},
 	"exif-imagewidth": "Chiều ngang",
@@ -411,5 +412,11 @@
 	"exif-digitalsourcetype-digitalart": "Được tạo ra bởi con người bằng các công cụ kỹ thuật số",
 	"exif-digitalsourcetype-digitalcreation": "Nội dung đa phương tiện được tạo ra bởi con người bằng các công cụ không phải trí tuệ nhân tạo.",
 	"exif-digitalsourcetype-datadrivenmedia": "Biểu diễn dữ liệu trên phương tiện kỹ thuật số thông qua lập trình hoặc sự sáng tạo của con người.",
-	"exif-digitalsourcetype-trainedalgorithmicmedia": "Được tạo bằng AI"
+	"exif-digitalsourcetype-trainedalgorithmicmedia": "Được tạo bằng AI",
+	"exif-digitalsourcetype-algorithmicmedia": "Phương tiện được tạo ra hoàn toàn bởi thuật toán phi trí tuệ nhân tạo",
+	"exif-digitalsourcetype-screencapture": "Ảnh chụp màn hình",
+	"exif-digitalsourcetype-virtualrecording": "Bản ghi hình trực tiếp sự kiện ảo dựa trên AI tạo sinh và/hoặc các yếu tố được ghi lại",
+	"exif-digitalsourcetype-composite": "Sự pha trộn hoặc kết hợp của nhiều yếu tố, bất kỳ yếu tố nào trong số đó đều có thể là hoặc không phải là AI tạo sinh",
+	"exif-digitalsourcetype-compositecapture": "Sự pha trộn hoặc kết hợp của nhiều yếu tố mà tất cả đều được ghi lại từ đời thực",
+	"exif-digitalsourcetype-compositesynthetic": "Sự kết hợp hoặc tổng hợp một số yếu tố mà một trong số đó là trí tuệ nhân tạo tạo sinh"
 }

@@ -2391,7 +2391,7 @@
 	"namespace": "Névtér:",
 	"invert": "Kijelölés megfordítása",
 	"tooltip-invert": "Pipáld ki a dobozt, ha el szeretnéd rejteni a kiválasztott névterekben történt változtatásokat (és a kapcsolódó névterekben, amennyiben úgy van beállítva)",
-	"tooltip-whatlinkshere-invert": "Pipáld ki a dobozt, ha el szeretnéd rejteni a kiválasztott névterekben található hivatkozásokat.",
+	"tooltip-whatlinkshere-invert": "Jelöld be ezt a négyzetet a kiválasztott névtérben lévő lapokon lévő hivatkozások elrejtéséhez.",
 	"namespace_association": "Kapcsolódó névtér",
 	"tooltip-namespace_association": "Pipáld ki ezt a dobozt, ha a kiválasztott névtérhez tartozó vita- vagy tartalmi névteret is bele szeretnéd venni.",
 	"blanknamespace": "(Fő)",

@@ -1804,6 +1804,8 @@
 	"block-success": "[[အထူး:Contributions/$1 | {{GENDER:$1| $1 }}]] ([[{{ns:user_talk}}: $1 |talk]]) ကို ပိတ်ဆို့ထားပါသည်။ ပိတ်ဆို့မှုများကို ပြန်လည်သုံးသပ်ရန် [[အထူး:BlockList|ပိတ်ဆို့စာရင်း]] ကို ကြည့်ပါ။",
 	"block-user-active-blocks": "သက်ဝင်နေသော ပိတ်ပင်မှုများ",
 	"block-user-no-active-blocks": "သက်ဝင်နေသော ပိတ်ပင်မှုများ မတွေ့ပါ",
+	"block-user-active-range-blocks": "သက်ဝင်နေဆဲ ပိတ်ပင်မှုများ",
+	"block-user-no-active-range-blocks": "သက်ဝင်နေဆဲ ပိတ်ပင်မှုများ မတွေ့ပါ",
 	"block-user-previous-blocks": "ပိတ်ပင်တားဆီးမှု မှတ်တမ်း",
 	"block-user-no-previous-blocks": "ယခင် ပိတ်ပင်မှုများ မတွေ့ပါ",
 	"block-target": "အသုံးပြုသူအမည်၊ အိုင်ပီလိပ်စာ သို့မဟုတ် အိုင်ပီအစုအတန်း -",
