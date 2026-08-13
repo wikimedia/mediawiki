@@ -289,7 +289,7 @@ class SkinModule extends FileModule {
 		$remoteBasePath = null
 	) {
 		$features = $options['features'] ?? self::DEFAULT_FEATURES_ABSENT;
-		$listMode = array_keys( $features ) === range( 0, count( $features ) - 1 );
+		$listMode = $features && array_is_list( $features );
 
 		$messages = '';
 		// NOTE: Compatibility is only applied when features are provided
