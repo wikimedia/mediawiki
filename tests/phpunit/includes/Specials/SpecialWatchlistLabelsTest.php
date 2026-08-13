@@ -96,7 +96,9 @@ class SpecialWatchlistLabelsTest extends SpecialPageTestBase {
 			null,
 			$this->getTestUser()->getUser()
 		);
-		$this->assertStringContainsString( 'There is no data available', $html );
+		// Codex localizes its own messages via MediaWiki since wikimedia/codex 0.8.0, so this
+		// renders as a message key under the qqx language used by executeSpecialPage().
+		$this->assertStringContainsString( '(cdx-table-no-data-message)', $html );
 
 		// New form with no text.
 		[ $html, ] = $this->executeSpecialPage(

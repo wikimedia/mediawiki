@@ -18,7 +18,8 @@ use MediaWiki\Watchlist\WatchlistLabel;
 use MediaWiki\Watchlist\WatchlistLabelStore;
 use MediaWiki\Watchlist\WatchlistSpecialPage;
 use StatusValue;
-use Wikimedia\Codex\Builder\TableBuilder;
+use Wikimedia\Codex\Component\HtmlSnippet;
+use Wikimedia\Codex\Component\Table;
 use Wikimedia\Codex\Localization\MediaWikiLocalization;
 use Wikimedia\Codex\Utility\Codex;
 
@@ -362,12 +363,14 @@ class SpecialWatchlistLabels extends UnlistedSpecialPage {
 			$labelVal = Html::element( 'bdi', [], $label->getName() );
 			// The sortable columns must have matching '*-sort' elements containing unformatted data for sorting.
 			$data[] = [
-				'select' => $this->getCheckbox( $checkboxId, (string)$id ),
-				'name' => Html::rawElement( 'label', [ 'for' => $checkboxId ], $labelVal ),
+				'select' => new HtmlSnippet( $this->getCheckbox( $checkboxId, (string)$id ) ),
+				'name' => new HtmlSnippet(
+					Html::rawElement( 'label', [ 'for' => $checkboxId ], $labelVal )
+				),
 				'name-sort' => mb_strtolower( $label->getName() ),
 				'count' => $this->getLanguage()->formatNum( $labelCounts[ $id ] ),
 				'count-sort' => $labelCounts[ $id ],
-				'edit' => Html::rawElement( 'a', $params, $editIcon ),
+				'edit' => new HtmlSnippet( Html::rawElement( 'a', $params, $editIcon ) ),
 			];
 		}
 
@@ -375,7 +378,7 @@ class SpecialWatchlistLabels extends UnlistedSpecialPage {
 		// We sort here rather than in the DB because we're combining multiple queries' data,
 		// and there's only ever one page of results to show (up to 100).
 		$sortCol = $this->getRequest()->getText( 'sort', 'count' );
-		$sortDir = $this->getRequest()->getBool( 'asc' ) ? TableBuilder::SORT_ASCENDING : TableBuilder::SORT_DESCENDING;
+		$sortDir = $this->getRequest()->getBool( 'asc' ) ? Table::SORT_ASCENDING : Table::SORT_DESCENDING;
 		$sortColName = $sortCol . '-sort';
 		usort(
 			$data,
@@ -386,7 +389,7 @@ class SpecialWatchlistLabels extends UnlistedSpecialPage {
 				) {
 					return 0;
 				}
-				return $sortDir === TableBuilder::SORT_ASCENDING
+				return $sortDir === Table::SORT_ASCENDING
 					? $a[$sortColName] <=> $b[$sortColName]
 					: $b[$sortColName] <=> $a[$sortColName];
 			}
@@ -398,7 +401,7 @@ class SpecialWatchlistLabels extends UnlistedSpecialPage {
 			->setCurrentSortDirection( $sortDir )
 			->setAttributes( [ 'class' => 'mw-specialwatchlistlabels-table' ] )
 			->setCaption( $this->msg( 'watchlistlabels-table-header' )->text() )
-			->setHeaderContent( "$createButton $deleteButton" )
+			->setHeaderContent( new HtmlSnippet( "$createButton $deleteButton" ) )
 			->setColumns( [
 				[
 					'id' => 'select',
@@ -406,17 +409,17 @@ class SpecialWatchlistLabels extends UnlistedSpecialPage {
 				],
 				[
 					'id' => 'name',
-					'label' => $this->msg( 'watchlistlabels-table-col-name' )->escaped(),
+					'label' => $this->msg( 'watchlistlabels-table-col-name' )->text(),
 					'sortable' => true,
 				],
 				[
 					'id' => 'count',
-					'label' => $this->msg( 'watchlistlabels-table-col-count' )->escaped(),
+					'label' => $this->msg( 'watchlistlabels-table-col-count' )->text(),
 					'sortable' => true,
 				],
 				[
 					'id' => 'edit',
-					'label' => $this->msg( 'watchlistlabels-table-col-actions' )->escaped(),
+					'label' => $this->msg( 'watchlistlabels-table-col-actions' )->text(),
 				],
 			] )
 			->setData( $data )
