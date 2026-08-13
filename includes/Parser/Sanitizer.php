@@ -790,7 +790,7 @@ class Sanitizer {
 		} elseif ( $matches[2] !== '' ) {
 			# hexdec could return a float if the match is too long, but the
 			# regexp in question limits the string length to 6.
-			$char = \UtfNormal\Utils::codepointToUtf8( hexdec( $matches[2] ) );
+			$char = self::decodeChar( hexdec( $matches[2] ) );
 		} elseif ( $matches[3] !== '' ) {
 			$char = $matches[3];
 		} else {
