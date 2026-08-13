@@ -1781,6 +1781,6 @@ function wfThumbIsStandard( File $file, array $params ) {
  * @deprecated since 1.46, hard-deprecated since 1.47, use ArrayUtils::arrayPlus2d
  */
 function wfArrayPlus2d( array $baseArray, array $newValues ) {
-	wfDeprecated( __FUNCTION__, '1,46' );
+	wfDeprecated( __FUNCTION__, '1.46' );
 	return ArrayUtils::arrayPlus2d( $baseArray, $newValues );
 }
