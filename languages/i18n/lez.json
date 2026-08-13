@@ -801,6 +801,7 @@
 	"feedback-message": "Чар:",
 	"feedback-subject": "Тема:",
 	"searchsuggest-search": "{{SITENAME}} жагъурун",
+	"searchsuggest-containing": "алай чинихъ къекъуьн",
 	"expand_templates_xml_output": "XML акъудун",
 	"expand_templates_ok": "ОК",
 	"expand_templates_remove_comments": "Баянар алудун",

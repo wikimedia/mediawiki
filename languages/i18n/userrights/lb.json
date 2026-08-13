@@ -59,7 +59,7 @@
 	"group-sysop-member": "{{GENDER:$1|Administrateur|Administratrice}}",
 	"group-interface-admin-member": "{{GENDER:$1|Interface-Administrateur}}",
 	"group-bureaucrat-member": "{{GENDER:$1|Bürokrat|Bürokratin}}",
-	"group-suppress-member": "{{GENDER:$1|Ënnerdrécker}}",
+	"group-suppress-member": "{{GENDER:$1|Ënnerdrécker|Ënnerdréckerin}}",
 	"grouppage-user": "{{ns:project}}:Benotzer",
 	"grouppage-temp": "{{ns:project}}:Temporär Benotzer",
 	"grouppage-autoconfirmed": "{{ns:project}}:Automatesch confirméiert Benotzer",
