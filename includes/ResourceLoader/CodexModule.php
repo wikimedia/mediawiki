@@ -126,6 +126,17 @@ class CodexModule extends FileModule {
 	}
 
 	/**
+	 * Names of the components requested via the 'codexComponents' option, or an empty array for a
+	 * module that does not use tree-shaking.
+	 *
+	 * @internal For use by CodexComponentUsageTest.
+	 * @return string[]
+	 */
+	public function getCodexComponents(): array {
+		return $this->codexComponents;
+	}
+
+	/**
 	 * Retrieve the specified icon definitions from codex-icons.json. Intended as a convenience
 	 * function to be used in packageFiles definitions.
 	 *
