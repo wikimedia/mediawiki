@@ -65,6 +65,8 @@ abstract class LBFactory implements ILBFactory {
 	protected $domainAliases = [];
 	/** @var array[] Map of virtual domain to array of cluster and domain */
 	protected array $virtualDomainsMapping = [];
+	/** @var array[] Map of (wiki ID => virtual domain mapping) for remote wikis */
+	protected array $remoteVirtualDomainsMapping = [];
 	/** @var callable[] */
 	private $replicationWaitCallbacks = [];
 
@@ -138,6 +140,7 @@ abstract class LBFactory implements ILBFactory {
 		$this->agent = $conf['agent'] ?? '';
 		$this->replicationWaitTimeout = $this->cliMode ? 60 : 1;
 		$this->virtualDomainsMapping = $conf['virtualDomainsMapping'] ?? [];
+		$this->remoteVirtualDomainsMapping = $conf['remoteVirtualDomainsMapping'] ?? [];
 
 		$this->shuffleSharding = $conf['shuffleSharding'] ?? false;
 		$this->uniqueIdentifier = $conf['uniqueIdentifier'] ?? null;
@@ -822,5 +825,57 @@ abstract class LBFactory implements ILBFactory {
 				"Transaction '$transactionName' round stage must be '$stage' (not '{$this->trxRoundStage}')"
 			);
 		}
+	}
+
+	/** @inheritDoc */
+	public function getRemotePrimaryDatabase( $wikiId, $virtualDomain ): IDatabase {
+		return $this->getRemoteDatabase( ILoadBalancer::DB_PRIMARY, $wikiId, $virtualDomain );
+	}
+
+	/** @inheritDoc */
+	public function getRemoteReplicaDatabase( $wikiId, $virtualDomain, $group = null ): IReadableDatabase {
+		return $this->getRemoteDatabase( ILoadBalancer::DB_REPLICA, $wikiId, $virtualDomain, $group );
+	}
+
+	/**
+	 * Helper method to get a remote database connection.
+	 *
+	 * @param int $index
+	 * @param string|false $wikiId
+	 * @param string|false $virtualDomain
+	 * @param mixed $group
+	 * @return IDatabase
+	 */
+	private function getRemoteDatabase( int $index, $wikiId, $virtualDomain, $group = null ): IDatabase {
+		$groups = $group !== null ? [ $group ] : [];
+
+		// Fall back to local wiki if wikiId is false
+		if ( $wikiId === false ) {
+			return $this->getMappedDatabase( $index, $groups, $virtualDomain );
+		}
+
+		// Fall back to external wiki if no remote mapping is configured
+		if ( !isset( $this->remoteVirtualDomainsMapping[$wikiId] ) ) {
+			return $this->getMappedDatabase( $index, $groups, $wikiId );
+		}
+
+		$wikiMapping = $this->remoteVirtualDomainsMapping[$wikiId];
+
+		// Fall back to external wiki if the specific virtual domain is not configured
+		if ( !isset( $wikiMapping[$virtualDomain] ) ) {
+			return $this->getMappedDatabase( $index, $groups, $wikiId );
+		}
+
+		$config = $wikiMapping[$virtualDomain];
+		$dbDomain = $config['db'] ?? false;
+		$cluster = $config['cluster'] ?? null;
+
+		if ( $cluster !== null ) {
+			$lb = $this->getExternalLB( $cluster );
+		} else {
+			$lb = $this->getMainLB( $dbDomain );
+		}
+
+		return $lb->getConnection( $index, $groups, $dbDomain );
 	}
 }

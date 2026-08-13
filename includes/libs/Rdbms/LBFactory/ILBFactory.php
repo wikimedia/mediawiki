@@ -54,6 +54,10 @@ interface ILBFactory extends IConnectionProvider {
 	 *     database domain is configured for use. The "cluster" key, if provided, specifies the
 	 *     name of the external cluster configured for use, otherwise, the main cluster for the
 	 *     actual database domain will be used.
+	 *  - remoteVirtualDomainsMapping: Map of (wiki ID => virtual domain mapping) [optional].
+	 *     Each wiki ID maps to a virtual domain mapping array with the same structure as
+	 *     virtualDomainsMapping. This is used by {@see ILBFactory::getRemoteDatabase()} to
+	 *     resolve virtual domains for remote wikis.
 	 *  - chronologyProtector: ChronologyProtector instance [optional]
 	 *  - readOnlyReason: Reason the primary server is read-only (false if not)
 	 *  - srvCache: BagOStuff instance for server cache [optional]
@@ -489,4 +493,37 @@ interface ILBFactory extends IConnectionProvider {
 	 * @return IDatabase
 	 */
 	public function getAutoCommitPrimaryConnection( $domain = false ): IDatabase;
+
+	/**
+	 * Get a primary database connection for a remote wiki's virtual domain.
+	 *
+	 * This method uses the RemoteVirtualDomainsMapping configuration to resolve
+	 * the virtual domain to an actual cluster and database domain for the specified wiki.
+	 * If no remote mapping is configured for the wiki or virtual domain, it falls back
+	 * to connecting to the external wiki directly using the wiki ID as the domain.
+	 * If $wikiId is false, it falls back to the local wiki's virtual domain mapping.
+	 *
+	 * @since 1.47
+	 * @param string|false $wikiId The wiki ID (e.g., 'enwiki', 'dewiki'), or false for the local wiki
+	 * @param string|false $virtualDomain The virtual domain ID
+	 * @return IDatabase
+	 */
+	public function getRemotePrimaryDatabase( $wikiId, $virtualDomain ): IDatabase;
+
+	/**
+	 * Get a replica database connection for a remote wiki's virtual domain.
+	 *
+	 * This method uses the RemoteVirtualDomainsMapping configuration to resolve
+	 * the virtual domain to an actual cluster and database domain for the specified wiki.
+	 * If no remote mapping is configured for the wiki or virtual domain, it falls back
+	 * to connecting to the external wiki directly using the wiki ID as the domain.
+	 * If $wikiId is false, it falls back to the local wiki's virtual domain mapping.
+	 *
+	 * @since 1.47
+	 * @param string|false $wikiId The wiki ID (e.g., 'enwiki', 'dewiki'), or false for the local wiki
+	 * @param string|false $virtualDomain The virtual domain ID
+	 * @param string|null $group Query group; null for the default group
+	 * @return IReadableDatabase
+	 */
+	public function getRemoteReplicaDatabase( $wikiId, $virtualDomain, $group = null ): IReadableDatabase;
 }

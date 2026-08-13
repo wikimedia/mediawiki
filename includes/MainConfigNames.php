@@ -1260,6 +1260,12 @@ class MainConfigNames {
 	public const VirtualDomainsMapping = 'VirtualDomainsMapping';
 
 	/**
+	 * Name constant for the RemoteVirtualDomainsMapping setting, for use with Config::get()
+	 * @see MainConfigSchema::RemoteVirtualDomainsMapping
+	 */
+	public const RemoteVirtualDomainsMapping = 'RemoteVirtualDomainsMapping';
+
+	/**
 	 * Name constant for the FileSchemaMigrationStage setting, for use with Config::get()
 	 * @see MainConfigSchema::FileSchemaMigrationStage
 	 */

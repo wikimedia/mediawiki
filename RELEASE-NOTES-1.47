@@ -47,6 +47,8 @@ For notes on 1.46.x and older releases, see HISTORY.
 * (T74768) Added $wgEnableChunkedUploads, which enables JavaScript chunked
   uploads on upload forms (at least Special:Upload), allowing uploads larger
   than the PHP request size limit up to $wgMaxUploadSize. Disabled by default.
+* (T422940) Added $wgRemoteVirtualDomainsMapping, which allows configuring
+  virtual domains for remote wikis.
 * …
 
 ==== Changed configuration ====

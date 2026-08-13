@@ -406,6 +406,8 @@ return [
 			'MaxExecutionTimeForExpensiveQueries' => 0,
 			'VirtualDomainsMapping' => [
 			],
+			'RemoteVirtualDomainsMapping' => [
+			],
 			'FileSchemaMigrationStage' => 3,
 			'ExternalLinksDomainGaps' => [
 			],
@@ -2943,6 +2945,7 @@ return [
 			'LBFactoryConf' => 'object',
 			'LocalDatabases' => 'array',
 			'VirtualDomainsMapping' => 'object',
+			'RemoteVirtualDomainsMapping' => 'object',
 			'FileSchemaMigrationStage' => 'integer',
 			'ExternalLinksDomainGaps' => 'object',
 			'ContentHandlers' => 'object',

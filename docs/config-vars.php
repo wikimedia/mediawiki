@@ -1245,6 +1245,12 @@ $wgMaxExecutionTimeForExpensiveQueries = null;
 $wgVirtualDomainsMapping = null;
 
 /**
+ * Config variable stub for the RemoteVirtualDomainsMapping setting, for use by phpdoc and IDEs.
+ * @see MediaWiki\MainConfigSchema::RemoteVirtualDomainsMapping
+ */
+$wgRemoteVirtualDomainsMapping = null;
+
+/**
  * Config variable stub for the FileSchemaMigrationStage setting, for use by phpdoc and IDEs.
  * @see MediaWiki\MainConfigSchema::FileSchemaMigrationStage
  */

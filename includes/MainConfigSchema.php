@@ -3348,6 +3348,28 @@ class MainConfigSchema {
 	];
 
 	/**
+	 * Mapping of other wikis' virtual domains to external cluster databases.
+	 *
+	 * The structure is similar to VirtualDomainsMapping, but organized by wiki ID.
+	 *
+	 * For example, to route queries for the 'virtual-example' virtual domain on 'dewiki'
+	 * to the 'wikishared' database in the 'extension1' cluster:
+	 * [
+	 *   'dewiki' => [
+	 *     'virtual-example' => [ 'cluster' => 'extension1', 'db' => 'wikishared' ]
+	 *   ]
+	 * ]
+	 *
+	 * @see self::VirtualDomainsMapping
+	 *
+	 * @since 1.47
+	 */
+	public const RemoteVirtualDomainsMapping = [
+		'default' => [],
+		'type' => 'map',
+	];
+
+	/**
 	 * Migration stage for file tables
 	 *
 	 * Use the SCHEMA_COMPAT_XXX flags. Supported values:

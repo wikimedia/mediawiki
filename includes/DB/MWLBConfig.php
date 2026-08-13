@@ -50,6 +50,7 @@ class MWLBConfig {
 		MainConfigNames::SQLiteDataDir,
 		MainConfigNames::SQLMode,
 		MainConfigNames::VirtualDomainsMapping,
+		MainConfigNames::RemoteVirtualDomainsMapping,
 	];
 	private ServiceOptions $options;
 
@@ -140,6 +141,7 @@ class MWLBConfig {
 		);
 
 		$lbConf['virtualDomainsMapping'] = $this->options->get( MainConfigNames::VirtualDomainsMapping );
+		$lbConf['remoteVirtualDomainsMapping'] = $this->options->get( MainConfigNames::RemoteVirtualDomainsMapping );
 
 		return $lbConf;
 	}
