@@ -65,7 +65,7 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 
 	public const WATCHLIST_LABEL_CSS_CLASS_PREFIX = 'mw-changeslist-label-';
 
-	private readonly array $watchlistLabelsForCurrentUser;
+	private array $watchlistLabelsForCurrentUser;
 
 	public function __construct(
 		private readonly WatchedItemStoreInterface $watchedItemStore,
@@ -75,7 +75,7 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 		TempUserConfig $tempUserConfig,
 		RecentChangeFactory $recentChangeFactory,
 		ChangesListQueryFactory $changesListQueryFactory,
-		WatchlistLabelStore $watchlistLabelStore,
+		private readonly WatchlistLabelStore $watchlistLabelStore,
 		private PermissionManager $permissionManager
 	) {
 		parent::__construct(
@@ -85,8 +85,6 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 			$recentChangeFactory,
 			$changesListQueryFactory,
 		);
-
-		$this->watchlistLabelsForCurrentUser = $watchlistLabelStore->loadAllForUser( $this->getUser() );
 	}
 
 	/** @inheritDoc */
@@ -142,6 +140,10 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 			$output->redirect( $this->getPageTitle()->getFullURL( $opts->getChangedValues() ) );
 
 			return;
+		}
+
+		if ( $config->get( MainConfigNames::EnableWatchlistLabels ) ) {
+			$this->watchlistLabelsForCurrentUser = $this->watchlistLabelStore->loadAllForUser( $user );
 		}
 
 		parent::execute( $subpage );
