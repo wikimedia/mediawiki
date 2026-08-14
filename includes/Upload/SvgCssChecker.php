@@ -11,16 +11,18 @@ use Wikimedia\CSS\Parser\Parser as CSSParser;
  *
  * Beyond that restriction, it aims to be relaxed in the CSS it allows.
  *
- * Data: urls are also banned except in @font-face. The rationale behind
+ * data: URLs are also banned except in @font-face. The rationale behind
  * this is unclear. The restriction was copied over from the predecessor to
  * this class.
+ *
+ * @internal Helper for UploadVerification
  */
-class SVGCSSChecker {
+class SvgCssChecker {
 
 	/**
 	 * List of \@rules banned.
 	 * \@import for obvious reasons.
-	 * \@charset just in case although i expect it does nothing inside an svg.
+	 * \@charset just in case although I expect it does nothing inside an SVG.
 	 */
 	private const BANNED_AT_RULE = [
 		'charset',
@@ -28,7 +30,7 @@ class SVGCSSChecker {
 	];
 
 	/**
-	 * image() and image-set() can use bare strings as url
+	 * image() and image-set() can use bare strings as URL
 	 * src() is not supported by real browsers but is an alias for url() in spec
 	 */
 	private const BANNED_FUNCS = [
@@ -38,7 +40,7 @@ class SVGCSSChecker {
 	];
 
 	/**
-	 * entrypoint to check style="..." attributes
+	 * Entry point to check style="..." attributes
 	 *
 	 * @param string $value
 	 * @return array|bool True if good or array containing error details
@@ -51,15 +53,14 @@ class SVGCSSChecker {
 		$decList = $cssParser->parseDeclarationList();
 		$errors = $cssParser->getParseErrors();
 		if ( $errors ) {
-			// For style attributes with syntax errors, as a fallback
-			// we see if MW's wikitext sanitizer would alter the
-			// style attribute in any way. If no, then we assume it
-			// is safe. There are enough files with errors in style
-			// attributes that don't use any risky features like
-			// css comments or url(), that this is worth it.
+			// For style attributes with syntax errors, as a fallback we see if
+			// MW's wikitext sanitizer would alter the style attribute in any
+			// way. If no, then we assume it is safe. There are enough files
+			// with errors in style attributes that don't use any risky features
+			// like CSS comments or url(), that this is worth it.
 			$alteredStyle = Sanitizer::checkCss( $value );
 			if ( $alteredStyle === $value ) {
-				// No sketchy CSS features used, its ok despite errors
+				// No sketchy CSS features used, it's OK despite errors
 				return true;
 			}
 			return [ $errors[0][0], $errors[0][1], $errors[0][2] ];
@@ -73,7 +74,7 @@ class SVGCSSChecker {
 	}
 
 	/**
-	 * entrypoint to check presentational attributes like fill
+	 * Entry point to check presentational attributes like fill
 	 *
 	 * Presentational attributes can contain CSS like values such as url()
 	 *
@@ -99,9 +100,9 @@ class SVGCSSChecker {
 	}
 
 	/**
-	 * Entrypoint to check <style> tags
+	 * Entry point to check <style> tags
 	 *
-	 * Note that data urls are allowed in @font-face
+	 * Note that data URLs are allowed in @font-face
 	 *
 	 * @param string $value
 	 * @return array|bool True if good or array containing error details
@@ -169,14 +170,13 @@ class SVGCSSChecker {
 	 * @return array|bool
 	 */
 	private function validateTokens( array $tokens, $allowDataFonts = false ) {
-		// Go through all the tokens, and make sure none of them
-		// are url(). Except we allow urls that reference the current
-		// document. data: urls are not allowed because the predecessor
-		// to this class banned them. It is unclear why, perhaps the worry
-		// is embedding an SVG inside the data url to bypass sanitizer.
-		// We also ban the image and image-set() functions because they
-		// allow setting a url without the url function inside.
-		// We also ban src() for forwards-compatibility.
+		// Go through all the tokens, and make sure none of them are url().
+		// Except we allow urls that reference the current document. data:
+		// URLs are not allowed because the predecessor to this class banned
+		// them. It is unclear why, perhaps the worry is embedding an SVG inside
+		// the data URL to bypass sanitizer. We also ban the image and
+		// image-set() functions because they allow setting a URL without the
+		// url() function inside. We also ban src() for forwards-compatibility.
 		for ( $i = 0; $i < count( $tokens ); $i++ ) {
 			$token = $tokens[$i];
 			// unquoted urls are a T_URL where quoted urls are T_FUNCTION.
@@ -185,24 +185,30 @@ class SVGCSSChecker {
 					!str_starts_with( $token->value(), '#' ) &&
 					!( $allowDataFonts &&
 						( str_starts_with( $token->value(), 'data:font/' )
-						|| str_starts_with( $token->value(), 'data:;base64,' ) ) /* T71008#717580 */
+						// T71008#717580
+						|| str_starts_with( $token->value(), 'data:;base64,' ) )
 					)
 				) {
 					return [ 'banned-url', $token->getPosition()[0], $token->getPosition()[1] ];
 				}
 			} elseif ( $token->type() === Token::T_BAD_URL ) {
-				// In theory browsers should ignore this, but
-				// better to err on the side of failing when something
-				// weird is going on.
+				// In theory browsers should ignore this, but better to err on
+				// the side of failing when something weird is going on.
 				return [ 'banned-url', $token->getPosition()[0], $token->getPosition()[1] ];
-			} elseif ( $token->type() === Token::T_FUNCTION && strtolower( $token->value() ) === 'url' ) {
-				for ( $j = $i + 1; $j < count( $tokens ) && $tokens[$j]->type() === Token::T_WHITESPACE; $j++ );
+			} elseif ( $token->type() === Token::T_FUNCTION
+				&& strtolower( $token->value() ) === 'url'
+			) {
+				for ( $j = $i + 1;
+					  $j < count( $tokens ) && $tokens[$j]->type() === Token::T_WHITESPACE;
+					  $j++
+				);
 				if ( $j < count( $tokens ) && $tokens[$j]->type() === Token::T_STRING ) {
 					if (
 						str_starts_with( $tokens[$j]->value(), '#' ) ||
 						( $allowDataFonts &&
 							( str_starts_with( $tokens[$j]->value(), 'data:font/' )
-							|| str_starts_with( $tokens[$j]->value(), 'data:;base64,' ) ) /* T71008#717580 */
+							// T71008#717580
+							|| str_starts_with( $tokens[$j]->value(), 'data:;base64,' ) )
 						)
 					) {
 						continue;
@@ -213,7 +219,11 @@ class SVGCSSChecker {
 				$token->type() === Token::T_FUNCTION &&
 				in_array( strtolower( $token->value() ), self::BANNED_FUNCS )
 			) {
-				return [ 'banned-function-' . $token->value(), $token->getPosition()[0], $token->getPosition()[1] ];
+				return [
+					'banned-function-' . $token->value(),
+					$token->getPosition()[0],
+					$token->getPosition()[1]
+				];
 			}
 		}
 		return true;

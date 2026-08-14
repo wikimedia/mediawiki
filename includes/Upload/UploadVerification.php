@@ -60,13 +60,15 @@ class UploadVerification {
 		MainConfigNames::AntivirusRequired
 	];
 
+	private SvgCssChecker $svgCssChecker;
+
 	public function __construct(
 		private ServiceOptions $config,
 		private MimeAnalyzer $mimeAnalyzer,
-		private SVGCSSChecker $SVGCSSChecker,
 		private LoggerInterface $logger,
 	) {
 		$config->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
+		$this->svgCssChecker = new SvgCssChecker;
 	}
 
 	/**
@@ -719,7 +721,7 @@ class UploadVerification {
 
 		// Check <style> css
 		if ( $strippedElement === 'style' ) {
-			$cssCheck = $this->SVGCSSChecker->checkStyleTag( $data );
+			$cssCheck = $this->svgCssChecker->checkStyleTag( $data );
 			if ( $cssCheck !== true ) {
 				$this->logger->debug(
 					"detectScriptInSvg: hostile CSS in style element. {tag}",
@@ -854,7 +856,7 @@ class UploadVerification {
 
 			// use CSS styles to bring in remote code.
 			if ( $stripped === 'style'
-				&& $this->SVGCSSChecker->checkStyleAttribute( $value ) !== true
+				&& $this->svgCssChecker->checkStyleAttribute( $value ) !== true
 			) {
 				$this->logger->debug(
 					'detectScriptInSvg: Found SVG setting a style with remote url ' .
@@ -866,7 +868,7 @@ class UploadVerification {
 
 			// Several attributes can include css, css character escaping isn't allowed.
 			if ( in_array( $stripped, $cssAttrs, true )
-				&& $this->SVGCSSChecker->checkPresentationalAttribute( $value ) !== true
+				&& $this->svgCssChecker->checkPresentationalAttribute( $value ) !== true
 			) {
 				$this->logger->debug(
 					'detectScriptInSvg: Found SVG setting a style with ' .

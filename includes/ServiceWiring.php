@@ -273,7 +273,6 @@ use MediaWiki\Title\NamespaceInfo;
 use MediaWiki\Title\TitleFactory;
 use MediaWiki\Title\TitleFormatter;
 use MediaWiki\Title\TitleParser;
-use MediaWiki\Upload\SVGCSSChecker;
 use MediaWiki\Upload\UploadVerification;
 use MediaWiki\User\ActorMigration;
 use MediaWiki\User\ActorNormalization;
@@ -2906,7 +2905,6 @@ return [
 				$services->getMainConfig()
 			),
 			$services->getMimeAnalyzer(),
-			new SVGCSSChecker,
 			LoggerFactory::getInstance( 'UploadVerification' )
 		);
 	},
