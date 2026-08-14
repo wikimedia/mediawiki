@@ -3,6 +3,7 @@
 use MediaWiki\Config\ConfigException;
 use MediaWiki\Config\HashConfig;
 use MediaWiki\Config\ServiceOptions;
+use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Upload\SVGCSSChecker;
 use MediaWiki\Upload\UploadVerification;
@@ -38,7 +39,8 @@ class UploadVerificationTest extends MediaWikiIntegrationTestCase {
 					] )
 				),
 				$sc->getMimeAnalyzer(),
-				new SVGCSSChecker
+				new SVGCSSChecker,
+				LoggerFactory::getInstance( 'UploadVerification' )
 			)
 		);
 
@@ -745,7 +747,8 @@ text {
 				] )
 			),
 			$sc->getMimeAnalyzer(),
-			new SVGCSSChecker
+			new SVGCSSChecker,
+			LoggerFactory::getInstance( 'UploadVerification' )
 		);
 		$this->expectException( ConfigException::class );
 		$uv->detectVirus( 'file.png' );
@@ -770,7 +773,8 @@ text {
 				] )
 			),
 			$sc->getMimeAnalyzer(),
-			new SVGCSSChecker
+			new SVGCSSChecker,
+			LoggerFactory::getInstance( 'UploadVerification' )
 		);
 		$this->assertSame( $expected, $uv->detectVirus( '$file.png' ) );
 	}

@@ -2906,7 +2906,8 @@ return [
 				$services->getMainConfig()
 			),
 			$services->getMimeAnalyzer(),
-			new SVGCSSChecker
+			new SVGCSSChecker,
+			LoggerFactory::getInstance( 'UploadVerification' )
 		);
 	},
 

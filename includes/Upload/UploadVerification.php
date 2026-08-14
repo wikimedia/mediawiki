@@ -15,6 +15,7 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\Media\MediaHandler;
 use MediaWiki\Parser\Sanitizer;
 use MediaWiki\Shell\Shell;
+use Psr\Log\LoggerInterface;
 use Wikimedia\Mime\MimeAnalyzer;
 use Wikimedia\Mime\XmlTypeCheck;
 
@@ -59,23 +60,13 @@ class UploadVerification {
 		MainConfigNames::AntivirusRequired
 	];
 
-	private ServiceOptions $config;
-	private MimeAnalyzer $mimeAnalyzer;
-	private SVGCSSChecker $SVGCSSChecker;
-
-	/**
-	 * @param ServiceOptions $config
-	 * @param MimeAnalyzer $mimeAnalyzer
-	 */
 	public function __construct(
-		ServiceOptions $config,
-		MimeAnalyzer $mimeAnalyzer,
-		SVGCSSChecker $SVGCSSChecker
+		private ServiceOptions $config,
+		private MimeAnalyzer $mimeAnalyzer,
+		private SVGCSSChecker $SVGCSSChecker,
+		private LoggerInterface $logger,
 	) {
 		$config->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
-		$this->config = $config;
-		$this->mimeAnalyzer = $mimeAnalyzer;
-		$this->SVGCSSChecker = $SVGCSSChecker;
 	}
 
 	/**
@@ -89,7 +80,6 @@ class UploadVerification {
 	private function verifyMimeType( $mime ) {
 		$verifyMimeType = $this->config->get( MainConfigNames::VerifyMimeType );
 		if ( $verifyMimeType ) {
-			wfDebug( "mime: <$mime>" );
 			$mimeTypeExclusions = $this->config
 				->get( MainConfigNames::MimeTypeExclusions );
 			if ( UploadBase::checkFileExtension( $mime, $mimeTypeExclusions ) ) {
@@ -159,7 +149,7 @@ class UploadVerification {
 		// except that it doesn't pass an UploadBase, and it would run
 		// even when someone is verifying a file not going through UploadBase.
 
-		wfDebug( __METHOD__ . ": all clear; passing." );
+		$this->logger->debug( 'verifyFile: all clear; passing.' );
 
 		return true;
 	}
@@ -186,6 +176,8 @@ class UploadVerification {
 		# check MIME type, if desired
 		$mime = $fileProps['file-mime'];
 		$status = $this->verifyMimeType( $mime );
+		$this->logger->debug( 'verifyMimeType: {mime} {status}',
+			[ 'mime' => $mime, 'status' => $status === true ? 'OK' : 'bad' ] );
 		if ( $status !== true ) {
 			return $status;
 		}
@@ -222,17 +214,24 @@ class UploadVerification {
 	 */
 	public function verifyExtension( $mime, $extension ) {
 		$magic = $this->mimeAnalyzer;
+		$logContext = [ 'mime' => $mime, 'extension' => $extension ];
 
 		if ( !$mime || $mime === 'unknown' || $mime === 'unknown/unknown' ) {
 			if ( !$magic->isRecognizableExtension( $extension ) ) {
-				wfDebug( __METHOD__ . ": passing file with unknown detected mime type; " .
-					"unrecognized extension '$extension', can't verify" );
+				$this->logger->debug(
+					'verifyExtension: passing file with unknown detected MIME type; ' .
+						"unrecognized extension '{extension}', can't verify",
+					$logContext
+				);
 
 				return true;
 			}
 
-			wfDebug( __METHOD__ . ": rejecting file with unknown detected mime type; " .
-				"recognized extension '$extension', so probably invalid file" );
+			$this->logger->debug(
+				'verifyExtension: rejecting file with unknown detected MIME type; ' .
+					'recognized extension "{extension}", so probably invalid file',
+				$logContext
+			);
 			return false;
 		}
 
@@ -240,24 +239,34 @@ class UploadVerification {
 
 		if ( $match === null ) {
 			if ( $magic->getMimeTypesFromExtension( $extension ) !== [] ) {
-				wfDebug( __METHOD__ . ": No extension known for $mime, but we know a mime for $extension" );
-
+				$this->logger->debug(
+					'verifyExtension: No extension known for {mime}, but we know a MIME for {extension}',
+					$logContext
+				);
 				return false;
 			}
 
-			wfDebug( __METHOD__ . ": no file extension known for mime type $mime, passing file" );
+			$this->logger->debug(
+				'verifyExtension: no file extension known for MIME type {mime}, passing file',
+				$logContext
+			);
 			return true;
 		}
 
 		if ( $match ) {
-			wfDebug( __METHOD__ . ": mime type $mime matches extension $extension, passing file" );
+			$this->logger->debug(
+				'verifyExtension: MIME type {mime} matches extension {extension}, passing file',
+				$logContext
+			);
 
 			/** @todo If it's a bitmap, make sure PHP or ImageMagick resp. can handle it! */
 			return true;
 		}
 
-		wfDebug( __METHOD__
-			. ": mime type $mime mismatches file extension $extension, rejecting file" );
+		$this->logger->debug(
+			'verifyExtension: MIME type {mime} mismatches file extension {extension}, rejecting file',
+			$logContext
+		);
 
 		return false;
 	}
@@ -315,10 +324,10 @@ class UploadVerification {
 		$chunk = trim( $chunk );
 
 		/** @todo FIXME: Convert from UTF-16 if necessary! */
-		wfDebug( __METHOD__ . ": checking for embedded scripts and HTML stuff" );
 
 		# check for HTML doctype
 		if ( preg_match( "/<!DOCTYPE *X?HTML/i", $chunk ) ) {
+			$this->logger->debug( 'detectScript: found doctype html' );
 			return true;
 		}
 
@@ -326,6 +335,7 @@ class UploadVerification {
 		// PHP/expat will interpret the given encoding in the xml declaration (T49304)
 		if ( $extension === 'svg' || str_starts_with( $mime ?? '', 'image/svg' ) ) {
 			if ( $this->checkXMLEncodingMismatch( $file ) ) {
+				$this->logger->debug( 'detectScript: found SVG encoding mismatch' );
 				return true;
 			}
 		}
@@ -345,8 +355,7 @@ class UploadVerification {
 
 		foreach ( $tags as $tag ) {
 			if ( str_contains( $chunk, $tag ) ) {
-				wfDebug( __METHOD__ . ": found something that may make it be mistaken for html: $tag" );
-
+				$this->logger->debug( 'detectScript: found HTML tag "{tag}"', [ 'tag' => $tag ] );
 				return true;
 			}
 		}
@@ -360,27 +369,23 @@ class UploadVerification {
 
 		# look for script-types
 		if ( preg_match( '!type\s*=\s*[\'"]?\s*(?:\w*/)?(?:ecma|java)!im', $chunk ) ) {
-			wfDebug( __METHOD__ . ": found script types" );
-
+			$this->logger->debug( 'detectScript: found script types' );
 			return true;
 		}
 
 		# look for html-style script-urls
 		if ( preg_match( '!(?:href|src|data)\s*=\s*[\'"]?\s*(?:ecma|java)script:!im', $chunk ) ) {
-			wfDebug( __METHOD__ . ": found html-style script urls" );
-
+			$this->logger->debug( 'detectScript: found HTML-style script URLs' );
 			return true;
 		}
 
 		# look for css-style script-urls
 		if ( preg_match( '!url\s*\(\s*[\'"]?\s*(?:ecma|java)script:!im', $chunk ) ) {
-			wfDebug( __METHOD__ . ": found css-style script urls" );
-
+			$this->logger->debug( 'detectScript: found CSS-style script URLs' );
 			return true;
 		}
 
-		wfDebug( __METHOD__ . ": no scripts found" );
-
+		$this->logger->debug( 'detectScript: no scripts found' );
 		return false;
 	}
 
@@ -403,20 +408,20 @@ class UploadVerification {
 			if ( preg_match( $encodingRegex, $matches[1], $encMatch )
 				&& !in_array( strtoupper( $encMatch[1] ), self::SAFE_XML_ENCODINGS )
 			) {
-				wfDebug( __METHOD__ . ": Found unsafe XML encoding '{$encMatch[1]}'" );
-
+				$this->logger->debug(
+					'checkXMLEncodingMismatch: Found unsafe XML encoding "{encoding}"',
+					[ 'encoding' => $encMatch[1] ]
+				);
 				return true;
 			}
 		} elseif ( preg_match( "!<\?xml\b!i", $contents ) ) {
 			// Start of XML declaration without an end in the first 4096 bytes
 			// bytes. There shouldn't be a legitimate reason for this to happen.
-			wfDebug( __METHOD__ . ": Unmatched XML declaration start" );
-
+			$this->logger->debug( 'checkXMLEncodingMismatch: Unmatched XML declaration start' );
 			return true;
 		} elseif ( str_starts_with( $contents, "\x4C\x6F\xA7\x94" ) ) {
 			// EBCDIC encoded XML
-			wfDebug( __METHOD__ . ": EBCDIC Encoded XML" );
-
+			$this->logger->debug( 'checkXMLEncodingMismatch: EBCDIC Encoded XML' );
 			return true;
 		}
 
@@ -430,14 +435,16 @@ class UploadVerification {
 				if ( preg_match( $encodingRegex, $matches[1], $encMatch )
 					&& !in_array( strtoupper( $encMatch[1] ), self::SAFE_XML_ENCODINGS )
 				) {
-					wfDebug( __METHOD__ . ": Found unsafe XML encoding '{$encMatch[1]}'" );
-
+					$this->logger->debug(
+						'checkXMLEncodingMismatch: Found unsafe XML encoding "{encoding}"',
+						[ 'encoding' => $encMatch[1] ]
+					);
 					return true;
 				}
 			} elseif ( $str != '' && preg_match( "!<\?xml\b!i", $str ) ) {
 				// Start of XML declaration without an end in the first 4096 bytes
 				// bytes. There shouldn't be a legitimate reason for this to happen.
-				wfDebug( __METHOD__ . ": Unmatched XML declaration start" );
+				$this->logger->debug( 'checkXMLEncodingMismatch: Unmatched XML declaration start' );
 
 				return true;
 			}
@@ -536,6 +543,12 @@ class UploadVerification {
 	 */
 	private function checkSvgScriptCallback( $element, $attribs, $data = null ) {
 		[ $namespace, $strippedElement ] = self::splitXmlNamespace( $element );
+
+		$logContext = [
+			'element' => $element,
+			'namespace' => $namespace,
+			'localPart' => $strippedElement
+		];
 
 		// We specifically don't include:
 		// http://www.w3.org/1999/xhtml (T62771)
@@ -663,36 +676,44 @@ class UploadVerification {
 		$isBuggyInkscape = preg_match( '/^&(#38;)*ns_[a-z_]+;$/', $namespace );
 
 		if ( !( $isBuggyInkscape || in_array( $namespace, $validNamespaces ) ) ) {
-			wfDebug( __METHOD__ . ": Non-svg namespace '$namespace' in uploaded file." );
+			$this->logger->debug(
+				'detectScriptInSvg: Non-SVG namespace "{namespace}" in uploaded file.',
+				$logContext
+			);
 			return [ 'uploadscriptednamespace', $namespace ];
 		}
 
 		// check for elements that can contain javascript
 		if ( $strippedElement === 'script' ) {
-			wfDebug( __METHOD__ . ": Found script element '$element' in uploaded file." );
-
+			$this->logger->debug(
+				'detectScriptInSvg: Found script element "{element}" in uploaded file.',
+				$logContext
+			);
 			return [ 'uploaded-script-svg', $strippedElement ];
 		}
 
 		// e.g., <svg xmlns="http://www.w3.org/2000/svg">
 		//  <handler xmlns:ev="http://www.w3.org/2001/xml-events" ev:event="load">alert(1)</handler> </svg>
 		if ( $strippedElement === 'handler' ) {
-			wfDebug( __METHOD__ . ": Found scriptable element '$element' in uploaded file." );
-
+			$this->logger->debug(
+				'detectScriptInSvg: Found scriptable element "{element}" in uploaded file.',
+				$logContext
+			);
 			return [ 'uploaded-script-svg', $strippedElement ];
 		}
 
 		// SVG reported in Feb '12 that used xml:stylesheet to generate javascript block
 		if ( $strippedElement === 'stylesheet' ) {
-			wfDebug( __METHOD__ . ": Found scriptable element '$element' in uploaded file." );
-
+			$this->logger->debug(
+				'detectScriptInSvg: Found scriptable element "{element}" in uploaded file.',
+				$logContext
+			);
 			return [ 'uploaded-script-svg', $strippedElement ];
 		}
 
 		// Block iframes, in case they pass the namespace check
 		if ( $strippedElement === 'iframe' ) {
-			wfDebug( __METHOD__ . ": iframe in uploaded file." );
-
+			$this->logger->debug( "detectScriptInSvg: iframe in uploaded file.", $logContext );
 			return [ 'uploaded-script-svg', $strippedElement ];
 		}
 
@@ -700,8 +721,10 @@ class UploadVerification {
 		if ( $strippedElement === 'style' ) {
 			$cssCheck = $this->SVGCSSChecker->checkStyleTag( $data );
 			if ( $cssCheck !== true ) {
-				wfDebug( __METHOD__ . ": hostile css in style element. " . $cssCheck[0] );
-
+				$this->logger->debug(
+					"detectScriptInSvg: hostile CSS in style element. {tag}",
+					[ 'tag' => $cssCheck[0] ]
+				);
 				return [ 'uploaded-hostile-svg', $cssCheck[0], $cssCheck[1], $cssCheck[2] ];
 			}
 		}
@@ -713,6 +736,7 @@ class UploadVerification {
 			// If attributeNamespace is '', it is relative to its element's namespace
 			[ $attributeNamespace, $stripped ] = self::splitXmlNamespace( $attrib );
 			$value = strtolower( $value );
+			$attribLogContext = [ 'attrib' => $attrib, 'value' => $value ] + $logContext;
 
 			if ( !(
 					// Inkscape element's have valid attribs that start with on and are safe, fail all others
@@ -723,9 +747,11 @@ class UploadVerification {
 					$attributeNamespace === ''
 				) && str_starts_with( $stripped, 'on' )
 			) {
-				wfDebug( __METHOD__
-					. ": Found event-handler attribute '$attrib'='$value' in uploaded file." );
-
+				$this->logger->debug(
+					'detectScriptInSvg: Found event-handler attribute ' .
+						'{attrib}="{value}" in uploaded file.',
+					$attribLogContext
+				);
 				return [ 'uploaded-event-handler-on-svg', $attrib, $value ];
 			}
 
@@ -740,9 +766,11 @@ class UploadVerification {
 				&& !str_starts_with( $value, '#' )
 				&& !( $strippedElement === 'a' && preg_match( '!^https?://!i', $value ) )
 			) {
-				wfDebug( __METHOD__ . ": Found href attribute <$strippedElement "
-					. "'$attrib'='$value' in uploaded file." );
-
+				$this->logger->debug(
+					'detectScriptInSvg: Found href attribute <{localPart} {attrib}="{value}"> ' .
+						'in uploaded file.',
+					$attribLogContext
+				);
 				return [ 'uploaded-href-attribute-svg', $strippedElement, $attrib, $value ];
 			}
 
@@ -755,8 +783,11 @@ class UploadVerification {
 				$parameters = '(?>;[a-zA-Z0-9\!#$&\'*+.^_`{|}~-]+=(?>[a-zA-Z0-9\!#$&\'*+.^_`{|}~-]+|"(?>[\0-\x0c\x0e-\x21\x23-\x5b\x5d-\x7f]+|\\\\[\0-\x7f])*"))*(?:;base64)?';
 
 				if ( !preg_match( "!^data:\s*image/(gif|jpeg|jpg|a?png|webp|avif)$parameters,!i", $value ) ) {
-					wfDebug( __METHOD__ . ": Found href with data URI with MIME type that is not allowed "
-						. "\"<$strippedElement '$attrib'='$value'...\" in uploaded file." );
+					$this->logger->debug(
+						'detectScriptInSvg: Found href with data URI with MIME type that is not ' .
+						'allowed: <{localPart} {attrib}="{value}"> in uploaded file.',
+						$attribLogContext
+					);
 					return [ 'uploaded-href-unsafe-target-svg', $strippedElement, $attrib, $value ];
 				}
 			}
@@ -766,9 +797,11 @@ class UploadVerification {
 				&& $strippedElement === 'animate'
 				&& $this->stripXmlNamespace( $value ) === 'href'
 			) {
-				wfDebug( __METHOD__ . ": Found animate that might be changing href using from "
-					. "\"<$strippedElement '$attrib'='$value'...\" in uploaded file." );
-
+				$this->logger->debug(
+					'detectScriptInSvg: Found animate that might be changing href using "from": ' .
+					'<{localPart} {attrib}="{value}"> in uploaded file.',
+					$attribLogContext
+				);
 				return [ 'uploaded-animate-svg', $strippedElement, $attrib, $value ];
 			}
 
@@ -777,9 +810,11 @@ class UploadVerification {
 				&& $stripped === 'attributename'
 				&& str_starts_with( $value, 'on' )
 			) {
-				wfDebug( __METHOD__ . ": Found svg setting event-handler attribute with "
-					. "\"<$strippedElement $stripped='$value'...\" in uploaded file." );
-
+				$this->logger->debug(
+					'detectScriptInSvg: Found SVG setting event-handler attribute with ' .
+					'<{localPart} {attrib}="{value}"> in uploaded file.',
+					$attribLogContext
+				);
 				return [ 'uploaded-setting-event-handler-svg', $strippedElement, $stripped, $value ];
 			}
 
@@ -788,8 +823,10 @@ class UploadVerification {
 				&& $stripped === 'attributename'
 				&& str_contains( $value, 'href' )
 			) {
-				wfDebug( __METHOD__ . ": Found svg setting href attribute '$value' in uploaded file." );
-
+				$this->logger->debug(
+					'detectScriptInSvg: Found SVG setting href attribute "{value}" in uploaded file.',
+					$attribLogContext
+				);
 				return [ 'uploaded-setting-href-svg' ];
 			}
 
@@ -798,16 +835,20 @@ class UploadVerification {
 				&& $stripped === 'to'
 				&& preg_match( '!(http|https|data|script):!im', $value )
 			) {
-				wfDebug( __METHOD__ . ": Found svg setting attribute to '$value' in uploaded file." );
-
+				$this->logger->debug(
+					'detectScriptInSvg: Found SVG setting attribute to "{value}" in uploaded file.',
+					$attribLogContext
+				);
 				return [ 'uploaded-wrong-setting-svg', $value ];
 			}
 
 			// use handler attribute with remote / data / script.
 			if ( $stripped === 'handler' && preg_match( '!(http|https|data|script):!im', $value ) ) {
-				wfDebug( __METHOD__ . ": Found svg setting handler with remote/data/script "
-					. "'$attrib'='$value' in uploaded file." );
-
+				$this->logger->debug(
+					'detectScriptInSvg: Found SVG setting handler with remote/data/script ' .
+						'{attrib}="value" in uploaded file.',
+					$attribLogContext
+				);
 				return [ 'uploaded-setting-handler-svg', $attrib, $value ];
 			}
 
@@ -815,8 +856,11 @@ class UploadVerification {
 			if ( $stripped === 'style'
 				&& $this->SVGCSSChecker->checkStyleAttribute( $value ) !== true
 			) {
-				wfDebug( __METHOD__ . ": Found svg setting a style with "
-					. "remote url '$attrib'='$value' in uploaded file." );
+				$this->logger->debug(
+					'detectScriptInSvg: Found SVG setting a style with remote url ' .
+						'{attrib}="{value}" in uploaded file.',
+					$attribLogContext
+				);
 				return [ 'uploaded-remote-url-svg', $attrib, $value ];
 			}
 
@@ -824,8 +868,11 @@ class UploadVerification {
 			if ( in_array( $stripped, $cssAttrs, true )
 				&& $this->SVGCSSChecker->checkPresentationalAttribute( $value ) !== true
 			) {
-				wfDebug( __METHOD__ . ": Found svg setting a style with "
-					. "remote url '$attrib'='$value' in uploaded file." );
+				$this->logger->debug(
+					'detectScriptInSvg: Found SVG setting a style with ' .
+						'{attrib}="{value}" in uploaded file.',
+					$attribLogContext
+				);
 				return [ 'uploaded-remote-url-svg', $attrib, $value ];
 			}
 
@@ -837,9 +884,11 @@ class UploadVerification {
 				&& $stripped === 'filter'
 				&& preg_match( '!url\s*\(\s*["\']?[^#]!im', $value )
 			) {
-				wfDebug( __METHOD__ . ": Found image filter with url: "
-					. "\"<$strippedElement $stripped='$value'...\" in uploaded file." );
-
+				$this->logger->debug(
+					'detectScriptInSvg: Found image filter with URL: ' .
+						'<{localPart} {attrib}="{value}"> in uploaded file.',
+					$attribLogContext
+				);
 				return [ 'uploaded-image-filter-svg', $strippedElement, $stripped, $value ];
 			}
 		}
@@ -889,8 +938,7 @@ class UploadVerification {
 		$antivirusSetup = $mainConfig->get( MainConfigNames::AntivirusSetup );
 		$antivirusRequired = $mainConfig->get( MainConfigNames::AntivirusRequired );
 		if ( !$antivirus ) {
-			wfDebug( __METHOD__ . ": virus scanner disabled" );
-
+			$this->logger->debug( 'detectVirus: virus scanner disabled' );
 			return null;
 		}
 
@@ -911,7 +959,8 @@ class UploadVerification {
 			$command = str_replace( "%f", Shell::escape( $file ), $command );
 		}
 
-		wfDebug( __METHOD__ . ": running virus scan: $command " );
+		$this->logger->debug( 'detectVirus: running virus scan: {command}',
+			[ 'command' => $command ] );
 
 		# execute virus scanner
 		$exitCode = false;
@@ -936,18 +985,20 @@ class UploadVerification {
 		# so we need the strict equalities === and thus can't use a switch here
 		if ( $mappedCode === AV_SCAN_FAILED ) {
 			# scan failed (code was mapped to false by $exitCodeMap)
-			wfDebug( __METHOD__ . ": failed to scan $file (code $exitCode)." );
+			$this->logger->debug( 'detectVirus: failed to scan {file} (code {exitCode}).',
+				[ 'file' => $file, 'exitCode' => $exitCode ] );
 
 			$output = $antivirusRequired
 				? wfMessage( 'virus-scanfailed', [ $exitCode ] )->text()
 				: null;
 		} elseif ( $mappedCode === AV_SCAN_ABORTED ) {
 			# scan failed because filetype is unknown (probably immune)
-			wfDebug( __METHOD__ . ": unsupported file type $file (code $exitCode)." );
+			$this->logger->debug( 'detectVirus: unsupported file type {file} (code {exitCode}).',
+				[ 'file' => $file, 'exitCode' => $exitCode ] );
 			$output = null;
 		} elseif ( $mappedCode === AV_NO_VIRUS ) {
 			# no virus found
-			wfDebug( __METHOD__ . ": file passed virus scan." );
+			$this->logger->debug( 'detectVirus: file passed virus scan.' );
 			$output = false;
 		} else {
 			$output = trim( $output->getStdout() );
@@ -961,7 +1012,8 @@ class UploadVerification {
 				}
 			}
 
-			wfDebug( __METHOD__ . ": FOUND VIRUS! scanner feedback: $output" );
+			$this->logger->debug( 'detectVirus: FOUND VIRUS! scanner feedback: {output}',
+				[ 'output' => $output ] );
 		}
 
 		return $output;
