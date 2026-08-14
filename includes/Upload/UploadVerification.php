@@ -84,7 +84,7 @@ class UploadVerification {
 		if ( $verifyMimeType ) {
 			$mimeTypeExclusions = $this->config
 				->get( MainConfigNames::MimeTypeExclusions );
-			if ( UploadBase::checkFileExtension( $mime, $mimeTypeExclusions ) ) {
+			if ( in_array( strtolower( $mime ), $mimeTypeExclusions, true ) ) {
 				return [ 'filetype-badmime', $mime ];
 			}
 		}
