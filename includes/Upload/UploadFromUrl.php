@@ -98,19 +98,13 @@ class UploadFromUrl extends UploadBase {
 					break;
 				}
 			}
-			/* Non-wildcard test
-			if ( $parsedUrl['host'] === $domain ) {
-				$valid = true;
-				break;
-			}
-			*/
 		}
 
 		return $valid;
 	}
 
 	/**
-	 * Provides a caching key for an upload from url set of parameters
+	 * Provides a caching key for an upload-from-URL set of parameters.
 	 * Used to set the status of an async job in UploadFromUrlJob
 	 * and retrieve it in frontend clients like ApiUpload. Will return the
 	 * empty string if not all parameters are present.
@@ -215,7 +209,7 @@ class UploadFromUrl extends UploadBase {
 
 		$tempPath = $initTempFile ? $this->makeTemporaryFile() : null;
 		$fileSize = $initTempFile ? 0 : null;
-		# File size and removeTempFile will be filled in later
+		// File size and removeTempFile will be filled in later
 		$this->initializePathInfo( $name, $tempPath, $fileSize, false );
 	}
 
@@ -257,10 +251,10 @@ class UploadFromUrl extends UploadBase {
 	}
 
 	/**
-	 * Download the file
+	 * Download the file if allowed
 	 *
 	 * @param array $httpOptions Array of options for MWHttpRequest.
-	 *   This could be used to override the timeout on the http request.
+	 *   This could be used to override the timeout on the HTTP request.
 	 * @return Status
 	 */
 	public function fetchFile( $httpOptions = [] ) {
@@ -272,7 +266,7 @@ class UploadFromUrl extends UploadBase {
 	}
 
 	/**
-	 * verify we can actually download the file
+	 * Verify we can actually download the file
 	 *
 	 * @return Status
 	 */
@@ -294,7 +288,7 @@ class UploadFromUrl extends UploadBase {
 	}
 
 	/**
-	 * Create a new temporary file in the URL subdirectory of wfTempDir().
+	 * Create a new temporary file
 	 *
 	 * @return string Path to the file
 	 */
@@ -334,14 +328,14 @@ class UploadFromUrl extends UploadBase {
 	}
 
 	/**
-	 * Download the file, save it to the temporary file and update the file
-	 * size and set $mRemoveTempFile to true.
+	 * Download the file with no domain name validation
 	 *
 	 * @param array $httpOptions Array of options for MWHttpRequest
 	 * @return Status
 	 */
 	protected function reallyFetchFile( $httpOptions = [] ) {
-		$copyUploadProxy = MediaWikiServices::getInstance()->getMainConfig()->get( MainConfigNames::CopyUploadProxy );
+		$copyUploadProxy = MediaWikiServices::getInstance()->getMainConfig()
+			->get( MainConfigNames::CopyUploadProxy );
 		$copyUploadTimeout = MediaWikiServices::getInstance()->getMainConfig()
 			->get( MainConfigNames::CopyUploadTimeout );
 
@@ -370,8 +364,9 @@ class UploadFromUrl extends UploadBase {
 			'<' . implode( ',', array_keys( array_filter( $options ) ) ) . '>'
 		);
 
-		// Manually follow any redirects up to the limit and reset the output file before each new request to prevent
-		// capturing the redirect response as part of the file.
+		// Manually follow any redirects up to the limit and reset the output
+		// file before each new request to prevent capturing the redirect
+		// response as part of the file.
 		$attemptsLeft = $options['maxRedirects'] ?? 5;
 		$targetUrl = $this->mUrl;
 		$requestFactory = MediaWikiServices::getInstance()->getHttpRequestFactory();
@@ -398,11 +393,11 @@ class UploadFromUrl extends UploadBase {
 		}
 
 		if ( $this->mTmpHandle ) {
-			// File got written ok...
+			// File got written OK
 			fclose( $this->mTmpHandle );
 			$this->mTmpHandle = null;
 		} else {
-			// We encountered a write error during the download...
+			// We encountered a write error during the download
 			return Status::newFatal( 'tmp-write-error' );
 		}
 

@@ -14,6 +14,7 @@ use MediaWiki\FileRepo\LocalRepo;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Request\WebRequest;
 use MediaWiki\Upload\Exception\UploadStashBadPathException;
+use MediaWiki\Upload\Exception\UploadStashException;
 use MediaWiki\User\UserIdentity;
 
 /**
@@ -37,9 +38,10 @@ class UploadFromStash extends UploadBase {
 	private $repo;
 
 	/**
-	 * @param UserIdentity|null $user Default: null Sometimes this won't exist, as when running from cron.
-	 * @param UploadStash|false $stash Default: false
-	 * @param LocalRepo|false $repo Default: false
+	 * @param UserIdentity|null $user This should always be non-null. It is
+	 *  nullable for historical reasons.
+	 * @param UploadStash|false $stash The UploadStash, or false to create one.
+	 * @param LocalRepo|false $repo The repo, or false to get one from services.
 	 */
 	public function __construct( ?UserIdentity $user = null, $stash = false, $repo = false ) {
 		if ( $repo ) {
@@ -67,7 +69,6 @@ class UploadFromStash extends UploadBase {
 	 * @return bool
 	 */
 	public static function isValidKey( $key ) {
-		// this is checked in more detail in UploadStash
 		return (bool)preg_match( UploadStash::KEY_FORMAT_REGEX, $key );
 	}
 
@@ -76,9 +77,7 @@ class UploadFromStash extends UploadBase {
 	 * @return bool
 	 */
 	public static function isValidRequest( $request ) {
-		// this passes wpSessionKey to getText() as a default when wpFileKey isn't set.
-		// wpSessionKey has no default which guarantees failure if both are missing
-		// (though that should have been caught earlier)
+		// Get the stash key from wpFileKey or wpSessionKey.
 		return self::isValidKey( $request->getText( 'wpFileKey', $request->getText( 'wpSessionKey' ) ) );
 	}
 
@@ -86,14 +85,12 @@ class UploadFromStash extends UploadBase {
 	 * @param string $key
 	 * @param string $name
 	 * @param bool $initTempFile
+	 * @throws UploadStashException
 	 */
 	public function initialize( $key, $name = 'upload_file', $initTempFile = true ) {
-		/**
-		 * Confirming a temporarily stashed upload.
-		 * We don't want path names to be forged, so we keep
-		 * them in the session on the server and just give
-		 * an opaque key to the user agent.
-		 */
+		// Confirm that the file key is valid.
+		// We don't want path names to be forged, so we keep them in the
+		// uploadstash table and just give an opaque key to the user agent.
 		$metadata = $this->stash->getMetadata( $key );
 		$tempPath = $initTempFile ? $this->getRealPath( $metadata['us_path'] ) : null;
 		if ( $tempPath === false ) {
@@ -116,10 +113,11 @@ class UploadFromStash extends UploadBase {
 	 * @param WebRequest &$request
 	 */
 	public function initializeFromRequest( &$request ) {
-		// sends wpSessionKey as a default when wpFileKey is missing
+		// Get the stash key from wpFileKey or wpSessionKey.
+		// All callers apparently use wpSessionKey.
 		$fileKey = $request->getText( 'wpFileKey', $request->getText( 'wpSessionKey' ) );
 
-		// chooses one of wpDestFile, wpUploadFile, filename in that order.
+		// Get the dest name from wpDestFile, wpUploadFile or filename in that order.
 		$desiredDestName = $request->getText(
 			'wpDestFile',
 			$request->getText( 'wpUploadFile', $request->getText( 'filename' ) )

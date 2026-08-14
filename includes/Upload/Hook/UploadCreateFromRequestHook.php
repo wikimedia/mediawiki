@@ -18,7 +18,8 @@ interface UploadCreateFromRequestHook {
 	 * @since 1.35
 	 *
 	 * @param string $type Requested upload type
-	 * @param class-string<UploadBase> &$className Class name of the Upload instance to be created
+	 * @param class-string<UploadBase>|null &$className Class name of the Upload
+	 *  instance to be created
 	 * @return bool|void True or no return value to continue or false to abort
 	 */
 	public function onUploadCreateFromRequest( $type, &$className );

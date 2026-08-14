@@ -24,9 +24,9 @@ use Wikimedia\Mime\XmlTypeCheck;
  *
  * Service to verify file uploads are safe.
  *
- * This is responsible for checks on the file contents themselves. It
- * is not responsible for on wiki checks like if the user has permission
- * or if the upload target is protected.
+ * This is responsible for checks on the file contents themselves. It is not
+ * responsible for on wiki checks like if the user has permission or if the
+ * upload target is protected.
  *
  * @author Brian Wolff
  * @since 1.45
@@ -95,16 +95,14 @@ class UploadVerification {
 	/**
 	 * Verifies that the upload file is safe
 	 *
-	 * @note This verifies the contents of the file. It is not
-	 *  responsible for verifying if the file has a valid name, is
-	 *  too big, meets on wiki permission checks, etc. If you are
-	 *  implementing your own upload support, see
-	 *  UploadBase::verifyUpload for other necessary checks.
+	 * @note This verifies the contents of the file. It is not responsible for
+	 *  verifying if the file has a valid name, is too big, meets on wiki
+	 *  permission checks, etc. If you are implementing your own upload support,
+	 *  see UploadBase::verifyUpload for other necessary checks.
 	 *
 	 * @param string $path Path to the (temporary) file to check
 	 * @param string $ext Final extension of file (UploadBase->mFinalExtension)
 	 * @param array $fileProps Result of $mwProps->getPropsFromPath.
-	 * FIXME final ext can sometimes be null, but should we require casting to string?
 	 * @return array|true True of the file is verified, array otherwise.
 	 */
 	public function verifyFile( string $path, string $ext, array $fileProps ) {
@@ -119,7 +117,7 @@ class UploadVerification {
 		$mime = $fileProps['mime'];
 
 		if ( $verifyMimeType ) {
-			# XXX: Missing extension will be caught by validateName() via getTitle()
+			// XXX: Missing extension will be caught by validateName() via getTitle()
 			if ( $ext !== '' &&
 				!$this->verifyExtension( $mime, $ext )
 			) {
@@ -127,7 +125,7 @@ class UploadVerification {
 			}
 		}
 
-		# check for htmlish code and javascript
+		// Check for htmlish code and JavaScript
 		if ( !$disableUploadScriptChecks ) {
 			if ( $ext === 'svg' || $mime === 'image/svg+xml' ) {
 				$svgStatus = $this->detectScriptInSvg( $path, false );
@@ -175,7 +173,7 @@ class UploadVerification {
 		$config = $this->config;
 		$disableUploadScriptChecks = $config->get( MainConfigNames::DisableUploadScriptChecks );
 
-		# check MIME type, if desired
+		// Check MIME type, if desired
 		$mime = $fileProps['file-mime'];
 		$status = $this->verifyMimeType( $mime );
 		$this->logger->debug( 'verifyMimeType: {mime} {status}',
@@ -184,7 +182,7 @@ class UploadVerification {
 			return $status;
 		}
 
-		# check for htmlish code and javascript
+		// Check for htmlish code and JavaScript
 		if ( !$disableUploadScriptChecks ) {
 			if ( $this->detectScript( $path, $mime, $ext ) ) {
 				return [ 'uploadscripted' ];
@@ -197,7 +195,7 @@ class UploadVerification {
 			}
 		}
 
-		# Scan the uploaded file for viruses
+		// Scan the uploaded file for viruses
 		$virus = $this->detectVirus( $path );
 		if ( $virus ) {
 			return [ 'uploadvirus', $virus ];
@@ -242,7 +240,8 @@ class UploadVerification {
 		if ( $match === null ) {
 			if ( $magic->getMimeTypesFromExtension( $extension ) !== [] ) {
 				$this->logger->debug(
-					'verifyExtension: No extension known for {mime}, but we know a MIME for {extension}',
+					'verifyExtension: No extension known for {mime}, but we ' .
+						'know a MIME for {extension}',
 					$logContext
 				);
 				return false;
@@ -260,13 +259,12 @@ class UploadVerification {
 				'verifyExtension: MIME type {mime} matches extension {extension}, passing file',
 				$logContext
 			);
-
-			/** @todo If it's a bitmap, make sure PHP or ImageMagick resp. can handle it! */
 			return true;
 		}
 
 		$this->logger->debug(
-			'verifyExtension: MIME type {mime} mismatches file extension {extension}, rejecting file',
+			'verifyExtension: MIME type {mime} mismatches file extension {extension}, ' .
+				'rejecting file',
 			$logContext
 		);
 
@@ -289,8 +287,8 @@ class UploadVerification {
 	 * @return bool True if the file contains something looking like embedded scripts
 	 */
 	public function detectScript( $file, $mime, $extension ) {
-		# ugly hack: for text files, always look at the entire file.
-		# For binary field, just check the first K.
+		// Ugly hack: for text files, always look at the entire file.
+		// For binary field, just check the first K.
 
 		if ( str_starts_with( $mime ?? '', 'text/' ) ) {
 			$chunk = file_get_contents( $file );
@@ -309,7 +307,7 @@ class UploadVerification {
 			return false;
 		}
 
-		# decode from UTF-16 if needed (could be used for obfuscation).
+		// Decode from UTF-16 if needed (could be used for obfuscation).
 		if ( str_starts_with( $chunk, "\xfe\xff" ) ) {
 			$enc = 'UTF-16BE';
 		} elseif ( str_starts_with( $chunk, "\xff\xfe" ) ) {
@@ -325,9 +323,7 @@ class UploadVerification {
 
 		$chunk = trim( $chunk );
 
-		/** @todo FIXME: Convert from UTF-16 if necessary! */
-
-		# check for HTML doctype
+		// Check for HTML doctype
 		if ( preg_match( "/<!DOCTYPE *X?HTML/i", $chunk ) ) {
 			$this->logger->debug( 'detectScript: found doctype html' );
 			return true;
@@ -344,15 +340,12 @@ class UploadVerification {
 
 		// Quick check for HTML heuristics in old IE and Safari.
 		//
-		// The exact heuristics IE uses are checked separately via verifyMimeType(), so we
-		// don't need them all here as it can cause many false positives.
-		//
 		// Check for `<script` and such still to forbid script tags and embedded HTML in SVG:
 		$tags = [
 			'<body',
 			'<head',
-			'<html', # also in safari
-			'<script', # also in safari
+			'<html', // also in safari
+			'<script', // also in safari
 		];
 
 		foreach ( $tags as $tag ) {
@@ -362,26 +355,24 @@ class UploadVerification {
 			}
 		}
 
-		/*
-		 * look for JavaScript
-		 */
+		// Look for JavaScript
 
-		# resolve entity-refs to look at attributes. may be harsh on big files... cache result?
+		// Resolve entity-refs to look at attributes.
 		$chunk = Sanitizer::decodeCharReferences( $chunk );
 
-		# look for script-types
+		// Look for script-types
 		if ( preg_match( '!type\s*=\s*[\'"]?\s*(?:\w*/)?(?:ecma|java)!im', $chunk ) ) {
 			$this->logger->debug( 'detectScript: found script types' );
 			return true;
 		}
 
-		# look for html-style script-urls
+		// Look for HTML-style script-URLs
 		if ( preg_match( '!(?:href|src|data)\s*=\s*[\'"]?\s*(?:ecma|java)script:!im', $chunk ) ) {
 			$this->logger->debug( 'detectScript: found HTML-style script URLs' );
 			return true;
 		}
 
-		# look for css-style script-urls
+		// Look for CSS-style script-URLs
 		if ( preg_match( '!url\s*\(\s*[\'"]?\s*(?:ecma|java)script:!im', $chunk ) ) {
 			$this->logger->debug( 'detectScript: found CSS-style script URLs' );
 			return true;
@@ -392,8 +383,8 @@ class UploadVerification {
 	}
 
 	/**
-	 * Check an allowed list of xml encodings that are known not to be interpreted differently
-	 * by the server's xml parser (expat) and some common browsers.
+	 * Check an allowed list of XML encodings that are known not to be interpreted differently
+	 * by PHP's XML parser and some common browsers.
 	 *
 	 * @param string $file Pathname to the temporary upload file
 	 * @return bool True if the file contains an encoding that could be misinterpreted
@@ -428,7 +419,8 @@ class UploadVerification {
 		}
 
 		// It's possible the file is encoded with multibyte encoding, so re-encode attempt to
-		// detect the encoding in case it specifies an encoding not allowed in self::SAFE_XML_ENCODINGS
+		// detect the encoding in case it specifies an encoding not allowed in
+		// self::SAFE_XML_ENCODINGS
 		$attemptEncodings = [ 'UTF-16', 'UTF-16BE', 'UTF-32', 'UTF-32BE' ];
 		foreach ( $attemptEncodings as $encoding ) {
 			// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged
@@ -456,7 +448,7 @@ class UploadVerification {
 	}
 
 	/**
-	 * Looks for bad SVG files
+	 * Look for bad SVG files
 	 *
 	 * @warning This function is only safe for the XML serialization of SVGs.
 	 * @param string $filename
@@ -474,7 +466,7 @@ class UploadVerification {
 			]
 		);
 		if ( $check->wellFormed !== true ) {
-			// Invalid xml (T60553)
+			// Invalid XML (T60553)
 			// But only when non-partial (T67724)
 			return $partial ? false : [ 'uploadinvalidxml' ];
 		}
@@ -537,7 +529,6 @@ class UploadVerification {
 	 * Callback to XML parsing checking individual tags for evilness
 	 * @warning This assumes that the SVG is using the XML serialization.
 	 *  It is not safe if the SVG is directly embedded in HTML.
-	 * @todo Replace this with a allow list filter!
 	 * @param string $element
 	 * @param array $attribs
 	 * @param string|null $data
@@ -685,7 +676,7 @@ class UploadVerification {
 			return [ 'uploadscriptednamespace', $namespace ];
 		}
 
-		// check for elements that can contain javascript
+		// Check for elements that can contain JavaScript
 		if ( $strippedElement === 'script' ) {
 			$this->logger->debug(
 				'detectScriptInSvg: Found script element "{element}" in uploaded file.',
@@ -694,8 +685,8 @@ class UploadVerification {
 			return [ 'uploaded-script-svg', $strippedElement ];
 		}
 
-		// e.g., <svg xmlns="http://www.w3.org/2000/svg">
-		//  <handler xmlns:ev="http://www.w3.org/2001/xml-events" ev:event="load">alert(1)</handler> </svg>
+		// e.g. <handler xmlns:ev="http://www.w3.org/2001/xml-events" ev:event="load"
+		//  >alert(1)</handler>
 		if ( $strippedElement === 'handler' ) {
 			$this->logger->debug(
 				'detectScriptInSvg: Found scriptable element "{element}" in uploaded file.',
@@ -704,7 +695,7 @@ class UploadVerification {
 			return [ 'uploaded-script-svg', $strippedElement ];
 		}
 
-		// SVG reported in Feb '12 that used xml:stylesheet to generate javascript block
+		// SVG reported in Feb '12 that used xml:stylesheet to generate JavaScript block
 		if ( $strippedElement === 'stylesheet' ) {
 			$this->logger->debug(
 				'detectScriptInSvg: Found scriptable element "{element}" in uploaded file.',
@@ -719,7 +710,7 @@ class UploadVerification {
 			return [ 'uploaded-script-svg', $strippedElement ];
 		}
 
-		// Check <style> css
+		// Check <style> CSS
 		if ( $strippedElement === 'style' ) {
 			$cssCheck = $this->svgCssChecker->checkStyleTag( $data );
 			if ( $cssCheck !== true ) {
@@ -741,10 +732,10 @@ class UploadVerification {
 			$attribLogContext = [ 'attrib' => $attrib, 'value' => $value ] + $logContext;
 
 			if ( !(
-					// Inkscape element's have valid attribs that start with on and are safe, fail all others
-					// We are assuming here that the SVG will be interpreted
-					// under XML serialization. This is not safe for SVGs
-					// embedded directly in HTML.
+					// Inkscape element's have valid attribs that start with on
+					// and are safe. Fail all others. We are assuming here that
+					// the SVG will be interpreted under XML serialization. This
+					// is not safe for SVGs embedded directly in HTML.
 					$namespace === 'http://www.inkscape.org/namespaces/inkscape' &&
 					$attributeNamespace === ''
 				) && str_starts_with( $stripped, 'on' )
@@ -777,7 +768,8 @@ class UploadVerification {
 			}
 
 			// Only allow 'data:\' targets that should be safe.
-			// This prevents vectors like image/svg, text/xml, application/xml, and text/html, which can contain scripts
+			// This prevents vectors like image/svg, text/xml, application/xml,
+			// and text/html, which can contain scripts
 			if ( $stripped === 'href' && strncasecmp( 'data:', $value, 5 ) === 0 ) {
 				// RFC2397 parameters.
 				// This is only slightly slower than (;[\w;]+)*.
@@ -814,25 +806,27 @@ class UploadVerification {
 			) {
 				$this->logger->debug(
 					'detectScriptInSvg: Found SVG setting event-handler attribute with ' .
-					'<{localPart} {attrib}="{value}"> in uploaded file.',
+						'<{localPart} {attrib}="{value}"> in uploaded file.',
 					$attribLogContext
 				);
-				return [ 'uploaded-setting-event-handler-svg', $strippedElement, $stripped, $value ];
+				return [ 'uploaded-setting-event-handler-svg',
+					$strippedElement, $stripped, $value ];
 			}
 
-			// use set to add href attribute to parent element.
+			// Use set to add href attribute to parent element.
 			if ( $strippedElement === 'set'
 				&& $stripped === 'attributename'
 				&& str_contains( $value, 'href' )
 			) {
 				$this->logger->debug(
-					'detectScriptInSvg: Found SVG setting href attribute "{value}" in uploaded file.',
+					'detectScriptInSvg: Found SVG setting href attribute "{value}" ' .
+						'in uploaded file.',
 					$attribLogContext
 				);
 				return [ 'uploaded-setting-href-svg' ];
 			}
 
-			// use set to add a remote / data / script target to an element.
+			// Use set to add a remote / data / script target to an element.
 			if ( $strippedElement === 'set'
 				&& $stripped === 'to'
 				&& preg_match( '!(http|https|data|script):!im', $value )
@@ -844,8 +838,10 @@ class UploadVerification {
 				return [ 'uploaded-wrong-setting-svg', $value ];
 			}
 
-			// use handler attribute with remote / data / script.
-			if ( $stripped === 'handler' && preg_match( '!(http|https|data|script):!im', $value ) ) {
+			// Use handler attribute with remote / data / script.
+			if ( $stripped === 'handler'
+				&& preg_match( '!(http|https|data|script):!im', $value )
+			) {
 				$this->logger->debug(
 					'detectScriptInSvg: Found SVG setting handler with remote/data/script ' .
 						'{attrib}="value" in uploaded file.',
@@ -866,7 +862,7 @@ class UploadVerification {
 				return [ 'uploaded-remote-url-svg', $attrib, $value ];
 			}
 
-			// Several attributes can include css, css character escaping isn't allowed.
+			// Several attributes can include CSS. CSS character escaping isn't allowed.
 			if ( in_array( $stripped, $cssAttrs, true )
 				&& $this->svgCssChecker->checkPresentationalAttribute( $value ) !== true
 			) {
@@ -878,7 +874,7 @@ class UploadVerification {
 				return [ 'uploaded-remote-url-svg', $attrib, $value ];
 			}
 
-			// image filters can pull in url, which could be svg that executes scripts.
+			// Image filters can pull in URL, which could be SVG that executes scripts.
 			// Only allow url( "#foo" ).
 			// Do not allow url( http://example.com )
 			// TODO: It seems like the line above already does this check.
@@ -948,32 +944,28 @@ class UploadVerification {
 			throw new ConfigException( "Unknown virus scanner: $antivirus" );
 		}
 
-		# look up scanner configuration
+		// Look up scanner configuration
 		$command = $antivirusSetup[$antivirus]['command'];
 		$exitCodeMap = $antivirusSetup[$antivirus]['codemap'];
 		$msgPattern = $antivirusSetup[$antivirus]['messagepattern'] ?? null;
 
 		if ( !str_contains( $command, "%f" ) ) {
-			# simple pattern: append file to scan
+			// Simple pattern: append file to scan
 			$command .= " " . Shell::escape( $file );
 		} else {
-			# complex pattern: replace "%f" with file to scan
+			// Complex pattern: replace "%f" with file to scan
 			$command = str_replace( "%f", Shell::escape( $file ), $command );
 		}
 
 		$this->logger->debug( 'detectVirus: running virus scan: {command}',
 			[ 'command' => $command ] );
 
-		# execute virus scanner
-		$exitCode = false;
+		// Execute virus scanner
 
-		# NOTE: there's a 50-line workaround to make stderr redirection work on windows, too.
-		#  that does not seem to be worth the pain.
-		#  Ask me (Duesentrieb) about it if it's ever needed.
 		$output = Shell::command()->unsafeCommand( $command )->includeStderr()->execute();
 		$exitCode = $output->getExitCode();
 
-		# map exit code to AV_xxx constants.
+		// map exit code to AV_xxx constants.
 		$mappedCode = $exitCode;
 		if ( $exitCodeMap ) {
 			if ( isset( $exitCodeMap[$exitCode] ) ) {
@@ -983,10 +975,10 @@ class UploadVerification {
 			}
 		}
 
-		# NB: AV_NO_VIRUS is 0, but AV_SCAN_FAILED is false,
-		# so we need the strict equalities === and thus can't use a switch here
+		// NB: AV_NO_VIRUS is 0, but AV_SCAN_FAILED is false,
+		// so we need the strict equalities === and thus can't use a switch here
 		if ( $mappedCode === AV_SCAN_FAILED ) {
-			# scan failed (code was mapped to false by $exitCodeMap)
+			// Scan failed (code was mapped to false by $exitCodeMap)
 			$this->logger->debug( 'detectVirus: failed to scan {file} (code {exitCode}).',
 				[ 'file' => $file, 'exitCode' => $exitCode ] );
 
@@ -994,19 +986,19 @@ class UploadVerification {
 				? wfMessage( 'virus-scanfailed', [ $exitCode ] )->text()
 				: null;
 		} elseif ( $mappedCode === AV_SCAN_ABORTED ) {
-			# scan failed because filetype is unknown (probably immune)
+			// Scan failed because file type is unknown (probably immune)
 			$this->logger->debug( 'detectVirus: unsupported file type {file} (code {exitCode}).',
 				[ 'file' => $file, 'exitCode' => $exitCode ] );
 			$output = null;
 		} elseif ( $mappedCode === AV_NO_VIRUS ) {
-			# no virus found
+			// No virus found
 			$this->logger->debug( 'detectVirus: file passed virus scan.' );
 			$output = false;
 		} else {
 			$output = trim( $output->getStdout() );
 
 			if ( !$output ) {
-				$output = true; # if there's no output, return true
+				$output = true; // If there's no output, return true
 			} elseif ( $msgPattern ) {
 				$groups = [];
 				if ( preg_match( $msgPattern, $output, $groups ) && $groups[1] ) {

@@ -39,7 +39,6 @@ class UploadFromFile extends UploadBase {
 	}
 
 	/**
-	 * Initialize from a filename and a MediaWiki\Request\WebRequestUpload
 	 * @param string $name
 	 * @param WebRequestUpload $webRequestUpload
 	 */
@@ -54,8 +53,9 @@ class UploadFromFile extends UploadBase {
 	 * @return bool
 	 */
 	public static function isValidRequest( $request ) {
-		# Allow all requests, even if no file is present, so that an error
-		# because a post_max_size or upload_max_filesize overflow
+		// Allow all requests, even if no file is present, so that an error
+		// due to a post_max_size or upload_max_filesize overflow will be
+		// shown.
 		return true;
 	}
 
@@ -78,8 +78,8 @@ class UploadFromFile extends UploadBase {
 	 * @return array
 	 */
 	public function verifyUpload() {
-		# Check for a post_max_size or upload_max_size overflow, so that a
-		# proper error can be shown to the user
+		// Check for a post_max_size or upload_max_size overflow, so that a
+		// proper error can be shown to the user
 		if ( $this->mTempPath === null || $this->isEmptyFile() ) {
 			if ( $this->mUpload->isIniSizeOverflow() ) {
 				return [

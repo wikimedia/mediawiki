@@ -15,6 +15,7 @@ use MediaWiki\Upload\Exception\UploadStashBadPathException;
 use MediaWiki\Upload\Exception\UploadStashException;
 use MediaWiki\User\User;
 use Psr\Log\LoggerInterface;
+use StatusValue;
 use Wikimedia\FileBackend\FileBackend;
 
 /**
@@ -50,11 +51,7 @@ class UploadFromChunks extends UploadFromFile {
 
 	private LoggerInterface $logger;
 
-	/** @noinspection PhpMissingParentConstructorInspection */
-
 	/**
-	 * Setup local pointers to stash, repo and user (similar to UploadFromStash)
-	 *
 	 * @param User $user
 	 * @param UploadStash|false $stash Default: false
 	 * @param LocalRepo|false $repo Default: false
@@ -93,27 +90,22 @@ class UploadFromChunks extends UploadFromFile {
 	}
 
 	/**
-	 * Calls the parent doStashFile and updates the uploadsession table to handle "chunks"
+	 * Call the parent doStashFile and update the uploadstash table
 	 *
 	 * @param User|null $user
 	 * @return UploadStashFile Stashed file
 	 */
 	protected function doStashFile( ?User $user = null ) {
-		// Stash file is the called on creating a new chunk session:
+		// Start a new chunk session
 		$this->mChunkIndex = 0;
 		$this->mOffset = 0;
-
-		// Create a local stash target
 		$this->mStashFile = parent::doStashFile( $user );
-		// Update the initial file offset (based on file size)
+		// The initial offset is at the end of the file
 		$this->mOffset = $this->mStashFile->getSize();
 		$this->mFileKey = $this->mStashFile->getFileKey();
 		$this->mVirtualTempPath = $this->mStashFile->getPath();
 
-		// Output a copy of this first to chunk 0 location:
 		$this->outputChunk( $this->mStashFile->getPath() );
-
-		// Update db table to reflect initial "chunk" state
 		$this->updateChunkStatus();
 
 		return $this->mStashFile;
@@ -133,6 +125,7 @@ class UploadFromChunks extends UploadFromFile {
 		$this->getChunkStatus();
 
 		$metadata = $this->stash->getMetadata( $key );
+		// FIXME unnecessarily fetch/copy the first chunk and set the temp path to the copy
 		$tempPath = $this->getRealPath( $metadata['us_path'] );
 		if ( $tempPath === false ) {
 			throw new UploadStashBadPathException( wfMessage( 'uploadstash-bad-path' ) );
@@ -146,7 +139,7 @@ class UploadFromChunks extends UploadFromFile {
 
 	/**
 	 * Append the final chunk and ready file for parent::performUpload()
-	 * @return Status
+	 * @return StatusValue
 	 */
 	public function concatenateChunks() {
 		$oldFileKey = $this->mFileKey;
@@ -195,12 +188,10 @@ class UploadFromChunks extends UploadFromFile {
 			);
 			return $status;
 		} else {
-			// Delete old chunks in deferred job. Put in deferred job because deleting
-			// lots of chunks can take a long time, sometimes to the point of causing
-			// a timeout, and we do not want that to tank the operation. Note that chunks
-			// are also automatically deleted after a set time by cleanupUploadStash.php
-			// Additionally, using AutoCommitUpdate ensures that we do not delete files
-			// if the main transaction is rolled back for some reason.
+			// Defer deletion of chunks so that the user doesn't need to wait for that.
+			// If the main transaction is rolled back, AutoCommitUpdate will cancel the
+			// task. The user should run cleanupUploadStash.php periodically in case
+			// any deletions were missed.
 			DeferredUpdates::addUpdate( new AutoCommitUpdate(
 				$this->repo->getPrimaryDB(),
 				__METHOD__,
@@ -233,15 +224,12 @@ class UploadFromChunks extends UploadFromFile {
 					'filekey' => $oldFileKey
 				]
 			);
-			// @phan-suppress-next-line PhanTypeMismatchReturnProbablyReal
 			return $this->convertVerifyErrorToStatus( $ret );
 		}
 
-		// Update the mTempPath and mStashFile
-		// (for FileUpload or normal Stash to take over)
 		$tStart = microtime( true );
-		// This is a re-implementation of UploadBase::tryStashFile(), we can't call it because we
-		// override doStashFile() with completely different functionality in this class...
+		// This is a re-implementation of UploadBase::tryStashFile(). We can't call it because we
+		// override doStashFile() with completely different functionality in this class.
 		$error = $this->runUploadStashFileHook( $this->user );
 		if ( $error ) {
 			$status->fatal( ...$error );
@@ -289,7 +277,7 @@ class UploadFromChunks extends UploadFromFile {
 	}
 
 	/**
-	 * Returns the virtual chunk location:
+	 * Get the virtual URL of a chunk
 	 * @param int $index
 	 * @return string
 	 */
@@ -322,7 +310,8 @@ class UploadFromChunks extends UploadFromFile {
 				// Update local chunk index for the current chunk
 				$this->mChunkIndex++;
 				try {
-					# For some reason mTempPath is set to first part
+					// FIXME continueChunks() erroneously sets mTempPath to a local
+					//  copy of the first chunk
 					$oldTemp = $this->mTempPath;
 					$this->mTempPath = $chunkPath;
 					$this->verifyChunk();
@@ -345,9 +334,7 @@ class UploadFromChunks extends UploadFromFile {
 					$status = Status::newFatal( $uploadChunkFileException->getMessage() );
 				}
 				if ( $status->isGood() ) {
-					// Update local offset:
 					$this->mOffset = $preAppendOffset + $chunkSize;
-					// Update chunk table status db
 					$this->updateChunkStatus();
 				}
 			} else {
@@ -359,7 +346,7 @@ class UploadFromChunks extends UploadFromFile {
 	}
 
 	/**
-	 * Update the chunk db table with the current status:
+	 * Update the uploadstash DB table with the current status
 	 */
 	private function updateChunkStatus() {
 		$this->logger->info( "update chunk status for {filekey} offset: {offset} inx: {inx}",
@@ -384,7 +371,7 @@ class UploadFromChunks extends UploadFromFile {
 	}
 
 	/**
-	 * Get the chunk db state and populate update relevant local values
+	 * Get the chunk state from the DB and populate the relevant properties
 	 */
 	private function getChunkStatus() {
 		// get primary db to avoid race conditions.
@@ -404,7 +391,7 @@ class UploadFromChunks extends UploadFromFile {
 	}
 
 	/**
-	 * Get the current Chunk index
+	 * Get the current chunk index
 	 * @return int Index of the current chunk
 	 */
 	private function getChunkIndex() {
@@ -412,15 +399,15 @@ class UploadFromChunks extends UploadFromFile {
 	}
 
 	/**
-	 * Get the offset at which the next uploaded chunk will be appended to
-	 * @return int Current byte offset of the chunk file set
+	 * Get the offset at which the next uploaded chunk will be appended
+	 * @return int Current byte offset
 	 */
 	public function getOffset() {
 		return $this->mOffset ?? 0;
 	}
 
 	/**
-	 * Output the chunk to disk
+	 * Store the chunk
 	 *
 	 * @param string $chunkPath
 	 * @throws UploadChunkFileException
@@ -435,7 +422,6 @@ class UploadFromChunks extends UploadFromFile {
 		$storeStatus = $this->repo->quickImport( $chunkPath,
 			$this->repo->getZonePath( 'temp' ) . "/{$hashPath}{$fileKey}" );
 
-		// Check for error in stashing the chunk:
 		if ( !$storeStatus->isOK() ) {
 			$error = $this->logFileBackendStatus(
 				$storeStatus,
@@ -454,12 +440,15 @@ class UploadFromChunks extends UploadFromFile {
 	}
 
 	/**
-	 * Verify that the chunk isn't really an evil html file
+	 * Verify that the chunk isn't really an evil HTML file
 	 *
 	 * @throws UploadChunkVerificationException
 	 */
 	private function verifyChunk() {
-		// Rest mDesiredDestName here so we verify the name as if it were mFileKey
+		// Set mDesiredDestName and clear mTitle so that getTitle() will set
+		// mFinalExtension to the extension from the stash key. The stash key
+		// extension came from running MIME type detection on the first chunk.
+		// FIXME: make it make sense
 		$oldDesiredDestName = $this->mDesiredDestName;
 		$this->mDesiredDestName = $this->mFileKey;
 		$this->mTitle = false;
@@ -472,7 +461,9 @@ class UploadFromChunks extends UploadFromFile {
 	}
 
 	/**
-	 * Log a status object from FileBackend functions (via FileRepo functions) to the upload log channel.
+	 * Log a status object from FileBackend functions (via FileRepo functions)
+	 * to the upload log channel.
+	 *
 	 * Return a array with the first error to build up a exception message
 	 *
 	 * @param Status $status
@@ -480,18 +471,21 @@ class UploadFromChunks extends UploadFromFile {
 	 * @param array $context
 	 * @return array
 	 */
-	private function logFileBackendStatus( Status $status, string $logMessage, array $context = [] ): array {
+	private function logFileBackendStatus(
+		Status $status, string $logMessage, array $context = []
+	): array {
 		$logger = $this->logger;
 		$errorToThrow = null;
 		$warningToThrow = null;
 
 		foreach ( $status->getErrors() as $errorItem ) {
-			// The message key stands for distinct error situation from the file backend,
-			// each error situation should be shown up in aggregated stats as own point, replace in message
+			// Replace {type} with the actual type in the message, so that each
+			// error situation in the file backend is shown separately in
+			// aggregated stats.
 			$logMessageType = str_replace( '{type}', $errorItem['message'], $logMessage );
 
-			// The message arguments often contains the name of the failing datacenter or file names
-			// and should not show up in aggregated stats, add to context
+			// Add the message params to the context. These do not distinguish
+			// error situations but may contain useful details.
 			$context['details'] = implode( '; ', $errorItem['params'] );
 			$context['user'] = $this->user->getName();
 

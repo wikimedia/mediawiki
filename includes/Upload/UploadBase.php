@@ -139,7 +139,8 @@ abstract class UploadBase {
 	 * @return bool
 	 */
 	public static function isEnabled() {
-		$enableUploads = MediaWikiServices::getInstance()->getMainConfig()->get( MainConfigNames::EnableUploads );
+		$enableUploads = MediaWikiServices::getInstance()->getMainConfig()
+			->get( MainConfigNames::EnableUploads );
 
 		return $enableUploads && wfIniGetBool( 'file_uploads' );
 	}
@@ -197,7 +198,6 @@ abstract class UploadBase {
 		/** @var class-string<self>|null $className */
 		$className = null;
 		( new HookRunner( MediaWikiServices::getInstance()->getHookContainer() ) )
-			// @phan-suppress-next-line PhanTypeMismatchArgument Type mismatch on pass-by-ref args
 			->onUploadCreateFromRequest( $type, $className );
 		if ( $className === null ) {
 			if ( !isset( self::CORE_UPLOAD_HANDLERS[$type] ) ) {
@@ -376,8 +376,8 @@ abstract class UploadBase {
 	 * - 'details': set to error details if the file type is valid but contents are corrupt
 	 * - 'filtered': set to the sanitized file name if the requested file name is invalid
 	 * - 'finalExt': set to the file's file extension if it is not an allowed file extension
-	 * - 'blacklistedExt': set to the list of disallowed file extensions if the current file extension
-	 *    is not allowed for uploads and the list is not empty
+	 * - 'blacklistedExt': set to the list of disallowed file extensions if the current file
+	 *    extension is not allowed for uploads and the list is not empty
 	 *
 	 * @stable to override
 	 * @return mixed[] array representing the result of the verification
@@ -461,7 +461,8 @@ abstract class UploadBase {
 	 * @return array|bool True if the file is verified, an array otherwise
 	 */
 	protected function verifyMimeType( $mime ) {
-		$verifyMimeType = MediaWikiServices::getInstance()->getMainConfig()->get( MainConfigNames::VerifyMimeType );
+		$verifyMimeType = MediaWikiServices::getInstance()->getMainConfig()
+			->get( MainConfigNames::VerifyMimeType );
 		if ( $verifyMimeType ) {
 			wfDebug( "mime: <$mime> extension: <{$this->mFinalExtension}>" );
 			$mimeTypeExclusions = MediaWikiServices::getInstance()->getMainConfig()
@@ -475,7 +476,7 @@ abstract class UploadBase {
 	}
 
 	/**
-	 * Verifies that it's ok to include the uploaded file
+	 * Verifies that it's OK to include the uploaded file
 	 *
 	 * @return array|true True of the file is verified, array otherwise.
 	 */
@@ -508,7 +509,7 @@ abstract class UploadBase {
 	}
 
 	/**
-	 * File props is very expensive on large files (due to sha1 calc)
+	 * File props is very expensive on large files (due to SHA-1 calc)
 	 * so it is important we save the result to reuse
 	 *
 	 * @return array List of file properties
@@ -594,9 +595,9 @@ abstract class UploadBase {
 			$warnings['badfilename'] = $badFileName;
 		}
 
-		$unwantedFileExtensionDetails = $this->checkUnwantedFileExtensions( (string)$this->mFinalExtension );
-		if ( $unwantedFileExtensionDetails !== null ) {
-			$warnings['filetype-unwanted-type'] = $unwantedFileExtensionDetails;
+		$unwantedDetails = $this->checkUnwantedFileExtensions( (string)$this->mFinalExtension );
+		if ( $unwantedDetails !== null ) {
+			$warnings['filetype-unwanted-type'] = $unwantedDetails;
 		}
 
 		$fileSizeWarnings = $this->checkFileSize( $this->mFileSize );
@@ -713,7 +714,8 @@ abstract class UploadBase {
 	private function checkUnwantedFileExtensions( $fileExtension ) {
 		$checkFileExtensions = MediaWikiServices::getInstance()->getMainConfig()
 			->get( MainConfigNames::CheckFileExtensions );
-		$fileExtensions = MediaWikiServices::getInstance()->getMainConfig()->get( MainConfigNames::FileExtensions );
+		$fileExtensions = MediaWikiServices::getInstance()->getMainConfig()
+			->get( MainConfigNames::FileExtensions );
 		if ( $checkFileExtensions ) {
 			$extensions = array_unique( $fileExtensions );
 			if ( !self::checkFileExtension( $fileExtension, $extensions ) ) {
@@ -755,7 +757,7 @@ abstract class UploadBase {
 
 	/**
 	 * @param LocalFile $localFile
-	 * @param string|false $hash sha1 hash of the file to check
+	 * @param string|false $hash SHA-1 hash of the file to check
 	 *
 	 * @return array warnings
 	 */
@@ -766,12 +768,12 @@ abstract class UploadBase {
 		if ( $exists !== false ) {
 			$warnings['exists'] = $exists;
 
-			// check if file is an exact duplicate of current file version
+			// Check if the uploaded file is an exact duplicate of the existing file
 			if ( $hash !== false && $hash === $localFile->getSha1() ) {
 				$warnings['no-change'] = $localFile;
 			}
 
-			// check if file is an exact duplicate of older versions of this file
+			// Check if file is an exact duplicate of older versions of this file
 			$history = $localFile->getHistory();
 			foreach ( $history as $oldFile ) {
 				if ( $hash === $oldFile->getSha1() ) {
@@ -788,7 +790,7 @@ abstract class UploadBase {
 	}
 
 	/**
-	 * @param string|false $hash sha1 hash of the file to check
+	 * @param string|false $hash SHA-1 hash of the file to check
 	 * @param bool $ignoreLocalDupes True to ignore local duplicates
 	 *
 	 * @return File[] Duplicate files, if found.
@@ -813,7 +815,7 @@ abstract class UploadBase {
 	}
 
 	/**
-	 * @param string|false $hash sha1 hash of the file to check
+	 * @param string|false $hash SHA-1 hash of the file to check
 	 * @param Authority $performer
 	 *
 	 * @return string|null Name of the dupe or empty string if discovered (depending on visibility)
@@ -858,7 +860,8 @@ abstract class UploadBase {
 		$props = $this->mFileProps;
 
 		$error = null;
-		$this->getHookRunner()->onUploadVerifyUpload( $this, $user, $props, $comment, $pageText, $error );
+		$this->getHookRunner()->onUploadVerifyUpload(
+			$this, $user, $props, $comment, $pageText, $error );
 		if ( $error ) {
 			if ( !is_array( $error ) ) {
 				$error = [ $error ];
@@ -928,8 +931,8 @@ abstract class UploadBase {
 			$this->mFilteredName = $this->mDesiredDestName;
 		}
 
-		# oi_archive_name is max 255 bytes, which include a timestamp and an
-		# exclamation mark, so restrict file name to 240 bytes.
+		// oi_archive_name is max 255 bytes, which include a timestamp and an
+		// exclamation mark, so restrict file name to 240 bytes.
 		if ( strlen( $this->mFilteredName ) > 240 ) {
 			$this->mTitleError = self::FILENAME_TOO_LONG;
 			$this->mTitle = null;
@@ -971,13 +974,13 @@ abstract class UploadBase {
 				$magic = MediaWikiServices::getInstance()->getMimeAnalyzer();
 				$mime = $magic->guessMimeType( $this->mTempPath );
 				if ( $mime !== 'unknown/unknown' ) {
-					# Get a space separated list of extensions
+					// Get a space separated list of extensions
 					$mimeExt = $magic->getExtensionFromMimeTypeOrNull( $mime );
 					if ( $mimeExt !== null ) {
-						# Set the extension to the canonical extension
+						// Set the extension to the canonical extension
 						$this->mFinalExtension = $mimeExt;
 
-						# Fix up the other variables
+						// Fix up the other variables
 						$this->mFilteredName .= ".{$this->mFinalExtension}";
 						$nt = Title::makeTitleSafe( NS_FILE, $this->mFilteredName );
 						$ext = [ $this->mFinalExtension ];
@@ -986,7 +989,7 @@ abstract class UploadBase {
 			}
 		}
 
-		// Don't allow users to override the list of prohibited file extensions (check file extension)
+		// Don't allow users to override the list of prohibited file extensions
 		$config = MediaWikiServices::getInstance()->getMainConfig();
 		$checkFileExtensions = $config->get( MainConfigNames::CheckFileExtensions );
 		$strictFileExtensions = $config->get( MainConfigNames::StrictFileExtensions );
@@ -1024,8 +1027,8 @@ abstract class UploadBase {
 			return $this->mTitle;
 		}
 
-		# If there was more than one file "extension", reassemble the base
-		# filename to prevent bogus complaints about length
+		// If there was more than one file "extension", reassemble the base
+		// filename to prevent bogus complaints about length
 		if ( count( $ext ) > 1 ) {
 			$iterations = count( $ext ) - 1;
 			for ( $i = 0; $i < $iterations; $i++ ) {
@@ -1070,16 +1073,18 @@ abstract class UploadBase {
 	}
 
 	/**
-	 * Like stashFile(), but respects extensions' wishes to prevent the stashing. verifyUpload() must
-	 * be called before calling this method (unless $isPartial is true).
+	 * Attempt to temporarily stash the uploaded file for later resumption of the upload.
+	 *
+	 * verifyUpload() must be called before calling this method (unless $isPartial is true).
 	 *
 	 * Upload stash exceptions are also caught and converted to an error status.
 	 *
 	 * @since 1.28
 	 * @stable to override
 	 * @param User $user
-	 * @param bool $isPartial Pass `true` if this is a part of a chunked upload (not a complete file).
-	 * @return Status If successful, value is an UploadStashFile instance
+	 * @param bool $isPartial Pass `true` if this is a part of a chunked upload
+	 *  (not a complete file).
+	 * @return Status<UploadStashFile>
 	 */
 	public function tryStashFile( User $user, $isPartial = false ) {
 		if ( !$isPartial ) {
@@ -1097,8 +1102,8 @@ abstract class UploadBase {
 	}
 
 	/**
-	 * Check, if stash file attempt should be skipped,
-	 * for example when the file is already known to stash.
+	 * Check, if stash file attempt should be skipped, for example when the file
+	 * is already known to stash.
 	 *
 	 * @since 1.46
 	 * @stable to override
@@ -1122,7 +1127,7 @@ abstract class UploadBase {
 	}
 
 	/**
-	 * Implementation for stashFile() and tryStashFile().
+	 * Implementation for tryStashFile().
 	 *
 	 * @stable to override
 	 * @param User|null $user
@@ -1551,7 +1556,8 @@ abstract class UploadBase {
 	 * @return int
 	 */
 	public static function getMaxUploadSize( $forType = null ) {
-		$maxUploadSize = MediaWikiServices::getInstance()->getMainConfig()->get( MainConfigNames::MaxUploadSize );
+		$maxUploadSize = MediaWikiServices::getInstance()->getMainConfig()
+			->get( MainConfigNames::MaxUploadSize );
 
 		if ( is_array( $maxUploadSize ) ) {
 			if ( $forType !== null && isset( $maxUploadSize[$forType] ) ) {

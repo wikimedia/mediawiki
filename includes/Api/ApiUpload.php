@@ -675,7 +675,7 @@ class ApiUpload extends ApiBase {
 	 * Like dieStatus(), but always uses $overrideCode for the error code, unless the code comes from
 	 * IApiMessage.
 	 *
-	 * @param Status $status
+	 * @param StatusValue $status
 	 * @param string $overrideCode Error code to use if there isn't one from IApiMessage
 	 * @param array|null $moreExtraData
 	 * @throws ApiUsageException
