@@ -15,7 +15,8 @@
 			"Withoutaname",
 			"Trần Xuân",
 			"Ttra2607",
-			"Bapham123"
+			"Bapham123",
+			"SussyRed2000"
 		]
 	},
 	"userrights": "Quyền thành viên",
@@ -118,6 +119,7 @@
 	"right-blockemail": "Cấm hoặc bỏ cấm người dùng gửi thư điện tử",
 	"right-hideuser": "Cấm hoặc bỏ cấm thành viên, đồng thời ẩn hoặc bỏ ẩn tên người dùng đó",
 	"right-ipblock-exempt": "Bỏ qua lệnh cấm IP, cấm tự động và cấm dải",
+	"right-logentryimport": "Nhập mục nhật trình",
 	"right-unblockself": "Bỏ cấm chính mình",
 	"right-protect": "Thay đổi thiết lập khóa và sửa trang bị khóa theo tầng",
 	"right-editprotected": "Sửa trang bị khóa ({{int:restriction-level-sysop}})",
@@ -277,6 +279,7 @@
 	"action-viewsuppressed": "xem các phiên bản bị ẩn khỏi mọi người dùng",
 	"action-hideuser": "cấm hoặc bỏ cấm tên người dùng, rồi ẩn hoặc hiện tên người dùng đó đi",
 	"action-ipblock-exempt": "bỏ qua tác vụ cấm, tự động cấm, và cấm dải địa chỉ IP",
+	"action-logentryimport": "nhập mục nhật trình",
 	"action-unblockself": "tự bỏ cấm",
 	"action-noratelimit": "không bị ảnh hưởng bởi mức giới hạn tần suất sử dụng",
 	"action-reupload-own": "tải đè tập tin cũ do chính mình tải lên",

@@ -24,7 +24,8 @@
 			"Warudo",
 			"ZaDiak",
 			"Αντιγόνη",
-			"Jimkats"
+			"Jimkats",
+			"Dimitrys AF"
 		]
 	},
 	"preferences": "Προτιμήσεις",
@@ -46,6 +47,7 @@
 	"prefs-memberingroups": "{{GENDER:$2|Μέλος}} {{PLURAL:$1|της ομάδας|των ομάδων}}:",
 	"group-membership-link-with-expiry": "$1 (μέχρι τις $2)",
 	"prefs-memberingroupsdisabled": "{{GENDER:$2|Απενεργοποιημένος|Απενεργοποιημένη}} {{PLURAL:$1|ομάδα|ομάδες}}:",
+	"prefs-memberingroupsdisabled-help": "{{GENDER:$2|Δεν πληροίτε}} πλέον τις [[$3|προϋποθέσεις]] για να είστε μέλος {{PLURAL:$1|αυτής της ομάδας|αυτών των ομάδων}} και επομένως δεν μπορείτε να χρησιμοποιήσετε τα δικαιώματα που παραχωρούνται από {{PLURAL:$1|αυτήν|αυτές}}.",
 	"prefs-edits": "Αριθμός επεξεργασιών:",
 	"prefs-registration": "Χρόνος εγγραφής:",
 	"yourrealname": "Πραγματικό όνομα:",
@@ -204,6 +206,8 @@
 	"prefs-description-watchlist": "Διαχειριστείτε και εξατομικεύστε τη λίστα των σελίδων που παρακολουθείτε.",
 	"prefs-editwatchlist": "Επεξεργασία λίστας παρακολούθησης",
 	"prefs-editwatchlist-label": "Επεξεργασία καταχωρίσεων στη λίστα παρακολούθησής σας:",
+	"prefs-editwatchlistlabels-label": "Επεξεργασία ετικετών λίστας παρακολούθησης:",
+	"prefs-managewatchlistlabels": "Προβολή και διαχείριση ετικετών λίστας παρακολούθησης",
 	"prefs-editwatchlist-edit": "Προβολή και κατάργηση τίτλων στη λίστα παρακολούθησής σας",
 	"prefs-editwatchlist-raw": "Επεξεργασία πηγαίας λίστας παρακολούθησης",
 	"prefs-editwatchlist-clear": "Εκκαθάριση της λίστας παρακολούθησής σας",

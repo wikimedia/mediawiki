@@ -20,7 +20,7 @@
 	"cdx-typeahead-search-search-results-label": "الناتج تاع التفتاش",
 	"cdx-table-pager-button-first-page": "الصفحة اللوله",
 	"cdx-table-pager-button-last-page": "الصفحه التاليه",
-	"cdx-table-pager-button-next-page": "صفحه جديده",
+	"cdx-table-pager-button-next-page": "الصفحه التاليه",
 	"cdx-table-pager-button-prev-page": "صفحه منقبل",
 	"cdx-table-pager-items-per-page-current": "{{PLURAL:$1|$1 عنصر|$1 عناصر}}",
 	"cdx-table-pager-items-per-page-default": "النتائج لكل صفحه",

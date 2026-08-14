@@ -83,7 +83,8 @@
 			"아라",
 			"Trần Xuân",
 			"YeBoy371",
-			"Ttra2607"
+			"Ttra2607",
+			"SussyRed2000"
 		]
 	},
 	"pagecategories": "{{PLURAL:$1|Thể loại}}",
@@ -446,6 +447,7 @@
 	"createacct-error": "Lỗi tạo tài khoản",
 	"createaccounterror": "Không thể mở tài khoản: $1",
 	"createacct-popup-redirect-notice": "Bạn sẽ được chuyển hướng sau khi tạo tài khoản...",
+	"createacct-username-policy-popover-title": "Quy định tên người dùng",
 	"createacct-username-policy-popover-trigger-link": "Hãy lựa chọn cẩn thận",
 	"nocookieslogin": "{{SITENAME}} sử dụng cookie để đăng nhập thành viên. Bạn đã tắt cookie. Xin hãy kích hoạt rồi thử lại.",
 	"nocookiesfornew": "Không thể mở tài khoản vì chúng tôi không thể xác định nguồn của tài khoản.\nHãy đảm bảo bạn đã bật cookie, rồi làm mới trang này và thử lại.",
@@ -3986,7 +3988,8 @@
 	"logentry-renameuser-renameuser-legacier": "$1 {{GENDER:$2|đã đổi tên}} thành viên $4 thành {{GENDER:$7|$5}}",
 	"renameuser-move-log": "Đã tự động di chuyển trang khi đổi tên thành viên “[[User:$1|$1]]” thành “[[User:$2|$2]]”",
 	"renameuser-renamed-notice": "{{GENDER:$1|Thành viên}} này đã được đổi tên.\nNhật trình đổi tên được ghi ở dưới để tiện theo dõi.",
-	"log-unknown-action": "đã thực hiện hành động không xác định \"$2\" tại [[$1]]",
+	"log-unknown-action": "đã thực hiện tác vụ không xác định \"$2\" tại [[$1]]",
+	"log-unsafe-logentry": "(Không thể hiển thị mục nhật trình này vì các tham số của nó chứa dữ liệu được tuần tự hóa không an toàn.)",
 	"createacct-benefit-heading-temp-user": "Cảm ơn bạn đã đóng góp cho {{SITENAME}}.\nTạo một tài khoản để truy cập nhiều tính năng hơn.",
 	"createacct-benefit-subheading-temp-user": "{{SITENAME}} được tạo bởi những người như bạn. Với tài khoản, bạn có thể có danh tính vĩnh viễn và an toàn với quyền truy cập vào các tính năng như:",
 	"benefit-1-description": "Danh sách theo dõi cho phép bạn theo dõi các trang mà bạn quan tâm.",

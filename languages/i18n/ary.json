@@ -1114,6 +1114,7 @@
 	"editcomment": "ملخص التعديل كان:<em>$1</em>.",
 	"revertpage": "{{PLURAL:$7|تبديلات}} ديال [[Special:Contributions/$2|$2]] ([[User talk:$2|talk]]) ترجّعو ل آخر مراجعة ديال [[User:$1|$1]]",
 	"sessionfailure-title": "السيسيون فشلات",
+	"sessionfailure": "كايبان بلي السيسيون د الدخول ديالك فيها ش موشكيل؛ هاد لاكسيون تلغات ف حالة يلا كانت السيسيون تهاكات.\nعافاك عاود صيفط لفورم.",
 	"protectlogpage": "لوحة د لحماية",
 	"prot_1movedto2": "[[$1]] تحوّلات ل [[$2]]",
 	"protect-legend": "أكّد لحماية",
