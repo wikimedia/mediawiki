@@ -98,6 +98,7 @@
 	"rest-module-default": "Standardmodul",
 	"rest-module-extra-routes-title": "MediaWiki REST API",
 	"rest-module-extra-routes-desc": "REST-Endpunkte, die keinem Modul zugeordnet sind",
+	"rest-sandbox-recommend-test-server-with-description": "$1 \n\nAchtung: Die REST-Sandbox führt standardmäßig Anfragen an die Produktionsdatenbank aus. Um unbeabsichtigte Änderungen an Live-Inhalten zu vermeiden, wähle vor dem Senden von POST-, PUT-, PATCH- oder DELETE-Anfragen den Sandbox-Server ($2) aus der Server-Auswahlliste aus.",
 	"rest-module-specs.v0-title": "API-Spezifikationen",
 	"rest-module-specs.v0-desc": "Selbstdokumentationsmodul, das Entdeckung, Spezifikationen und Schemata für alle verfügbaren Module bereitstellt.",
 	"rest-module-content.v1-title": "Inhalts-API",

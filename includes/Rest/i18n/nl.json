@@ -100,6 +100,7 @@
 	"rest-module-extra-routes-title": "MediaWiki REST-API",
 	"rest-module-extra-routes-desc": "REST-eindpunten die niet met een module in verband staan",
 	"rest-sandbox-recommend-test-server": "Let op: De REST Sandbox voert standaard aanroepen uit naar de productiedatabase. Om onbedoelde wijzigingen in live inhoud te voorkomen, selecteert u de kladblokserver ($1) in het server-dropdownmenu voordat u POST-, PUT-, PATCH- of DELETE-verzoeken uitvoert.",
+	"rest-sandbox-recommend-test-server-with-description": "$1\n\nLet op: De REST Sandbox voert standaard aanroepen uit naar de productiedatabase. Om onbedoelde wijzigingen in live inhoud te voorkomen, selecteert u de kladblokserver ($2) in het server-dropdownmenu voordat u POST-, PUT-, PATCH- of DELETE-verzoeken uitvoert.",
 	"rest-sandbox-server-production": "(Productie)",
 	"rest-sandbox-server-sandbox": "(Kladblok)",
 	"rest-module-specs.v0-title": "Specs-API",

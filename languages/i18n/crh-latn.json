@@ -1032,6 +1032,7 @@
 	"watchlist-options": "Közetüv cedveli sazlamaları",
 	"watching": "Közetüv cedveline kirsetilmekte...",
 	"unwatching": "Közetüv cedvelinden çıqarılmaqta...",
+	"watchlistlabels-editpage-nolabels": "[[Special:WatchlistLabels|Közetüv cedveli belgileriñiz]] yoq.",
 	"enotif_reset": "Saifelerniñ episini baqılğan olaraq belgile",
 	"enotif_impersonal_salutation": "{{SITENAME}} qullanıcısı",
 	"enotif_subject_created": "{{SITENAME}} $1 saifesi $2 tarafından {{GENDER:$2|yaratıldı}}.",

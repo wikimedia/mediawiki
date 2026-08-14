@@ -96,6 +96,7 @@
 	"rest-module-extra-routes-title": "API REST de MediaWiki",
 	"rest-module-extra-routes-desc": "Extremos REST non asociados a ningún módulo",
 	"rest-sandbox-recommend-test-server": "Precaución: O servidor de probas REST executa chamadas contra a base de datos de produción por defecto. Para evitar edicións non desexadas no contido real, selecciona o servidor de probas ($1) no menú despregable de servidores antes de realizar solicitudes POST, PUT, PATCH ou DELETE.",
+	"rest-sandbox-recommend-test-server-with-description": "$1\n\nPrecaución: O servidor de probas REST executa chamadas contra a base de datos de produción por defecto. Para evitar edicións non desexadas no contido real, selecciona o servidor de probas ($2) no menú despregable de servidores antes de realizar solicitudes POST, PUT, PATCH ou DELETE.",
 	"rest-sandbox-server-production": "(Produción)",
 	"rest-sandbox-server-sandbox": "(Zona de probas)",
 	"rest-module-specs.v0-title": "API de especificacións",

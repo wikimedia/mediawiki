@@ -408,6 +408,8 @@
 	"recentchangeslinked-summary": "И чиниз ракъурзавай тахьайтӀа и чинлай ракъурзавай чинрал хьанвай дегишвилер аквадайвал и чинин тӀвар кхьихь. (Категориядин уртархар акун патал {{ns:category}}:Категориядин тӀвар кхьихь). [[Special:Watchlist|Куь вилив хуьнин сиягьдин]] чинал хьанвай дегишвилер <strong>къалин шрифтдалди</strong> къалурнава.",
 	"recentchangeslinked-page": "Ччинин тlвар:",
 	"recentchangeslinked-to": "Аксина, къалурай ччиниз элячlзавай ччинра масакIавилер къалура",
+	"recentchanges-page-added-to-category": "[[:$1]] категориядиз кутунва",
+	"recentchanges-page-removed-from-category": "[[:$1]] категориядикай хкуднава",
 	"upload": "Файл ацӀурун",
 	"uploadbtn": "Файл ппарун",
 	"uploaderror": "Ппарунин гъалатI",
