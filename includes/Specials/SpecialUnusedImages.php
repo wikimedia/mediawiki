@@ -17,12 +17,9 @@ use Wikimedia\Rdbms\IConnectionProvider;
  */
 class SpecialUnusedImages extends ImageQueryPage {
 
-	private readonly int $fileMigrationStage;
-
 	public function __construct( IConnectionProvider $dbProvider ) {
 		parent::__construct( 'Unusedimages' );
 		$this->setDatabaseProvider( $dbProvider );
-		$this->fileMigrationStage = $this->getConfig()->get( MainConfigNames::FileSchemaMigrationStage );
 	}
 
 	/** @inheritDoc */
@@ -42,7 +39,8 @@ class SpecialUnusedImages extends ImageQueryPage {
 
 	/** @inheritDoc */
 	public function getQueryInfo() {
-		if ( $this->fileMigrationStage & SCHEMA_COMPAT_READ_OLD ) {
+		$config = $this->getConfig();
+		if ( $config->get( MainConfigNames::FileSchemaMigrationStage ) & SCHEMA_COMPAT_READ_OLD ) {
 			$imageTables = [ 'image' ];
 			$nameField = 'img_name';
 			$timestampField = 'img_timestamp';
@@ -74,7 +72,7 @@ class SpecialUnusedImages extends ImageQueryPage {
 			],
 		];
 
-		if ( $this->getConfig()->get( MainConfigNames::CountCategorizedImagesAsUsed ) ) {
+		if ( $config->get( MainConfigNames::CountCategorizedImagesAsUsed ) ) {
 			// Order is significant
 			$retval['tables'] = [ ...$imageTables, 'page', 'categorylinks', 'linktarget', 'imagelinks' ];
 			$retval['conds']['page_namespace'] = NS_FILE;
