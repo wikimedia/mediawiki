@@ -55,11 +55,11 @@ class SpecialShortPages extends QueryPage {
 		$joinConds = [];
 		$excludedPageProperty = $this->getExcludedPageProperty();
 		if ( $excludedPageProperty !== null ) {
-			$tables[] = 'page_props';
-			$conds['page_props.pp_page'] = null;
-			$joinConds['page_props'] = [ 'LEFT JOIN', [
-				'page.page_id = page_props.pp_page',
-				'page_props.pp_propname' => $excludedPageProperty,
+			$tables['exclude'] = 'page_props';
+			$conds['exclude.pp_page'] = null;
+			$joinConds['exclude'] = [ 'LEFT JOIN', [
+				'page_id = exclude.pp_page',
+				'exclude.pp_propname' => $excludedPageProperty,
 			] ];
 		}
 		$options = [ 'USE INDEX' => [ 'page' => 'page_redirect_namespace_len' ] ];

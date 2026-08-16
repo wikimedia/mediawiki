@@ -49,17 +49,17 @@ class SpecialShortPagesTest extends MediaWikiIntegrationTestCase {
 		$queryInfo = $page->getQueryInfo();
 
 		$this->assertContains( 'page_props', $queryInfo[ 'tables' ] );
-		$this->assertArrayHasKey( 'page_props.pp_page', $queryInfo[ 'conds' ] );
-		$this->assertNull( $queryInfo[ 'conds' ][ 'page_props.pp_page' ] );
+		$this->assertArrayHasKey( 'exclude.pp_page', $queryInfo[ 'conds' ] );
+		$this->assertNull( $queryInfo[ 'conds' ][ 'exclude.pp_page' ] );
 		$this->assertSame(
 			[
 				'LEFT JOIN',
 				[
-					'page.page_id = page_props.pp_page',
-					'page_props.pp_propname' => 'expectshortpage',
+					'page_id = exclude.pp_page',
+					'exclude.pp_propname' => 'expectshortpage',
 				],
 			],
-			$queryInfo[ 'join_conds' ][ 'page_props' ]
+			$queryInfo[ 'join_conds' ][ 'exclude' ]
 		);
 	}
 
