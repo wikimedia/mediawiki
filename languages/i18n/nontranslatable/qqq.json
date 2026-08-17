@@ -275,7 +275,6 @@
 	"statistics-files-desc": "Tooltip shown over ''Uploaded file'' (or as a note below it) in [[Special:Statistics]]",
 	"statistics-footer": "{{notranslate}}",
 	"statistics-summary": "{{doc-specialpagesummary|statistics}}",
-	"subjectpageheader": "{{notranslate}}",
 	"tags-edit-logentry-explanation": "Leave blank.\n\nSee also:\n* {{msg-mw|tags-edit-revision-explanation}}",
 	"tags-edit-revision-explanation": "Leave blank.\n\nSee also:\n* {{msg-mw|tags-edit-logentry-explanation}}",
 	"tags-summary": "{{doc-specialpagesummary|tags}}",
