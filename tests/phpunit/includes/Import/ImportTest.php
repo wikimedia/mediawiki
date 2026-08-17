@@ -322,30 +322,58 @@ EOF
 
 	<logitem>
 		<id>1</id>
-		<timestamp>2008-10-23T00:00:02Z</timestamp>
-		<contributor>
-			<username>Wikimedian</username>
-			<id>12345</id>
-		</contributor>
-		<comment>content was: 'I think this was a silly edit'</comment>
-		<type>test</type>
-		<action>test</action>
-		<logtitle>Silly page name</logtitle>
-		<params>a:1:{s:3:"foo";s:3:"bar";}</params>
-	</logitem>
-
-	<logitem>
-		<id>2</id>
 		<timestamp>2008-10-23T00:00:01Z</timestamp>
 		<contributor>
 			<username>Wikimedian</username>
 			<id>12345</id>
 		</contributor>
-		<comment>content was: 'I think this was a silly edit'</comment>
+		<comment>Safe</comment>
 		<type>test</type>
 		<action>test</action>
-		<logtitle>Silly page name</logtitle>
+		<logtitle>Page name</logtitle>
+		<params>a:1:{s:3:"foo";s:3:"bar";}</params>
+	</logitem>
+
+	<logitem>
+		<id>2</id>
+		<timestamp>2008-10-23T00:00:02Z</timestamp>
+		<contributor>
+			<username>Wikimedian</username>
+			<id>12345</id>
+		</contributor>
+		<comment>Unsafe</comment>
+		<type>test</type>
+		<action>test</action>
+		<logtitle>Page name</logtitle>
 		<params>a:1:{s:3:"foo";O:8:"stdClass":0:{}}</params>
+	</logitem>
+
+	<logitem>
+		<id>3</id>
+		<timestamp>2008-10-23T00:00:03Z</timestamp>
+		<contributor>
+			<username>Wikimedian</username>
+			<id>12345</id>
+		</contributor>
+		<comment>Legacy</comment>
+		<type>test</type>
+		<action>test</action>
+		<logtitle>Page name</logtitle>
+		<params>blah</params>
+	</logitem>
+
+	<logitem>
+		<id>4</id>
+		<timestamp>2008-10-23T00:00:04Z</timestamp>
+		<contributor>
+			<username>Wikimedian</username>
+			<id>12345</id>
+		</contributor>
+		<comment>Invalid</comment>
+		<type>test</type>
+		<action>test</action>
+		<logtitle>Page name</logtitle>
+		<params>s:6:"scalar";</params>
 	</logitem>
 
 </mediawiki>
@@ -362,14 +390,18 @@ EOF
 		$importer = $this->prepareImportLogEntries( new UltimateAuthority( $this->getTestUser()->getUserIdentity() ) );
 		$importer->doImport();
 
-		$result = $this->getDb()->newSelectQueryBuilder()
-			->from( 'logging' )
+		$result = DatabaseLogEntry::newSelectQueryBuilder( $this->getDb() )
 			->where( [
 				'log_type' => 'test',
 				'log_action' => 'test',
 			] )
-			->fetchRowCount();
-		$this->assertSame( 1, $result, "Only one, safe log entry imported" );
+			->orderBy( 'log_timestamp' )
+			->fetchResultSet();
+		$this->assertEquals(
+			[ 'Safe', 'Legacy', 'Invalid' ],
+			array_map( static fn ( $row ) => $row->log_comment_text, iterator_to_array( $result ) ),
+			"Only safe log entries imported"
+		);
 	}
 
 	public function testLogEntryImportNoRightsChecksSafe() {
@@ -380,14 +412,18 @@ EOF
 		$importer = $this->prepareImportLogEntries( new UltimateAuthority( $this->getTestUser()->getUserIdentity() ) );
 		$importer->doImport();
 
-		$result = $this->getDb()->newSelectQueryBuilder()
-			->from( 'logging' )
+		$result = DatabaseLogEntry::newSelectQueryBuilder( $this->getDb() )
 			->where( [
 				'log_type' => 'test',
 				'log_action' => 'test',
 			] )
-			->fetchRowCount();
-		$this->assertSame( 2, $result, "Both log entries imported" );
+			->orderBy( 'log_timestamp' )
+			->fetchResultSet();
+		$this->assertEquals(
+			[ 'Safe', 'Unsafe', 'Legacy', 'Invalid' ],
+			array_map( static fn ( $row ) => $row->log_comment_text, iterator_to_array( $result ) ),
+			"All log entries imported"
+		);
 	}
 
 	public function testLogEntryImportUserNotAllowed() {
@@ -396,14 +432,14 @@ EOF
 		$importer = $this->prepareImportLogEntries( $this->getTestSysop()->getAuthority() );
 		$importer->doImport();
 
-		$result = $this->getDb()->newSelectQueryBuilder()
-			->from( 'logging' )
+		$result = DatabaseLogEntry::newSelectQueryBuilder( $this->getDb() )
 			->where( [
 				'log_type' => 'test',
 				'log_action' => 'test',
 			] )
-			->fetchRowCount();
-		$this->assertSame( 0, $result, "No log entries imported" );
+			->orderBy( 'log_timestamp' )
+			->fetchResultSet();
+		$this->assertCount( 0, $result, "No log entries imported" );
 	}
 
 	public function testLogEntryImportUserAllowed() {
@@ -418,14 +454,18 @@ EOF
 		$importer = $this->prepareImportLogEntries( $performer->getAuthority() );
 		$importer->doImport();
 
-		$result = $this->getDb()->newSelectQueryBuilder()
-			->from( 'logging' )
+		$result = DatabaseLogEntry::newSelectQueryBuilder( $this->getDb() )
 			->where( [
 				'log_type' => 'test',
 				'log_action' => 'test',
 			] )
-			->fetchRowCount();
-		$this->assertSame( 1, $result, "Only one, safe log entry imported" );
+			->orderBy( 'log_timestamp' )
+			->fetchResultSet();
+		$this->assertEquals(
+			[ 'Safe', 'Legacy', 'Invalid' ],
+			array_map( static fn ( $row ) => $row->log_comment_text, iterator_to_array( $result ) ),
+			"Only safe log entries imported"
+		);
 	}
 
 }

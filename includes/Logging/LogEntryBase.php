@@ -54,7 +54,7 @@ abstract class LogEntryBase implements LogEntry {
 	 * @param ?string $logType Full log type of the corresponding log entry (see LogEntryBase::getFullType())
 	 * @return array|false Array on success, false if the blob is not serialized data
 	 */
-	public static function extractParams( $blob, ?string $logType = null ) {
+	public static function extractParams( $blob, ?string $logType = null ): array|false {
 		// Don't allow serialized class instances, because log entries can be imported from user input (T422244).
 		// However, extensions currently may store arbitrary data in log params, so we need a way to allow
 		// such log entries to be handled. This is discouraged and the option may be removed in the future.

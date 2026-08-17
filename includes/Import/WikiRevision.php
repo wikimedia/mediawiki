@@ -640,13 +640,15 @@ class WikiRevision implements ImportableUploadRevision, ImportableOldRevision {
 
 		// Check for unsafe log_params, in case other code elsewhere uses unserialize() directly
 		// instead of safely calling LogEntryBase::extractParams(). (T422244)
-		if ( LogEntryBase::containsUnsafeParams(
-			LogEntryBase::extractParams( $this->params, "{$this->type}/{$this->action}" ),
-		) ) {
+		$params = LogEntryBase::extractParams( $this->params, "{$this->type}/{$this->action}" );
+		if ( $params !== false && LogEntryBase::containsUnsafeParams( $params ) ) {
 			wfDebug( __METHOD__
 				. ": skipping {$this->type}/{$this->action} with unsafe params" );
 			return false;
 		}
+		// TODO: Consider transforming legacy log entry params (which don't use unserialize())
+		// to the current storage format, like in T179080, and rejecting invalid serialized data.
+		// This will need to happen before we can remove support for the old format (T72999).
 
 		$userName = $this->getUser();
 		if ( ExternalUserNames::isExternal( $userName ) ) {
