@@ -1353,28 +1353,53 @@ class Article implements Page {
 	}
 
 	/**
-	 * Show a header specific to the namespace currently being viewed, such as
-	 * [[MediaWiki:Subjectpageheader]] on subject pages or
-	 * [[MediaWiki:Talkpageheader]] on talk pages.
+	 * Show a header specific to the page currently being viewed
+	 *
+	 * The header varies by content model, with a special case for
+	 * wikitext talk pages which has its own header message.
+	 *
+	 * - Subject page (since MediaWiki 1.47, T151682, T432882)
+	 *   [[MediaWiki:Subjectpageheader-json]]
+	 *   ...
+	 *
+	 * - Talk page  (since MediaWiki 1.16, T19163)
+	 *   [[MediaWiki:Talkpageheader]]
+	 *
+	 * This is disabled for wikitext pages, because:
+	 * - performance, due to bypassing the ParserCache (T432882).
+	 * - metadata like categories and link tables don't work,
+	 *   and no change propagation from templates contained within
+	 *   which is surprising (T408264, T432882#12209205).
+	 * - portability, this header appears in the skin exactly as if
+	 *   it is was part of the editable page content but is excluded
+	 *   when the page is rendered elsewhere (API, dumps, apps, etc.).
 	 *
 	 * This function is used in Article::view().
-	 *
-	 * For the addition of subject page headers, see T151682.
 	 */
 	public function showNamespaceHeader() {
+		$title = $this->getTitle();
 		if (
-			!$this->getTitle()->isTalkPage() &&
-			$this->getTitle()->exists() &&
-			!$this->getContext()->msg( 'subjectpageheader' )->isDisabled()
+			!$title->isTalkPage() &&
+			!$title->isContentPage() &&
+			!$title->isWikitextPage() &&
+			$title->exists()
 		) {
-			$this->getContext()->getOutput()->wrapWikiMsg(
-				"<div class=\"mw-subjectpageheader\">\n$1\n</div>",
-				[ 'subjectpageheader' ]
-			);
-		}
-
-		if (
-			$this->getTitle()->isTalkPage() &&
+			// The following messages are used here:
+			// * subjectpageheader-css
+			// * subjectpageheader-javascript
+			// * subjectpageheader-json
+			// * subjectpageheader-text
+			// * subjectpageheader-vue
+			// * subjectpageheader-...
+			$msgKey = 'subjectpageheader-' . $title->getContentModel();
+			if ( !$this->getContext()->msg( $msgKey )->isDisabled() ) {
+				$this->getContext()->getOutput()->wrapWikiMsg(
+					"<div class=\"mw-subjectpageheader\">\n$1\n</div>",
+					[ $msgKey ]
+				);
+			}
+		} elseif (
+			$title->isTalkPage() &&
 			!$this->getContext()->msg( 'talkpageheader' )->isDisabled()
 		) {
 			$this->getContext()->getOutput()->wrapWikiMsg(

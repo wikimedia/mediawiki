@@ -87,6 +87,11 @@ For notes on 1.46.x and older releases, see HISTORY.
   progresses. Falls back to the old non-chunked behavior if JS is disabled.
   This is enabled with $wgEnableChunkedUploads, or per-request with a
   '?usechunked=1' GET parameter.
+* (T151682, T432882) MediaWiki now supports adding a page header above any
+  non-wikitext page via interface messages such as "subjectpageheader-json".
+  This is similar to the "clearyourcache" message but more broadly for any
+  non-wikitext content, including for extension-provided content models such
+  as "Scribunto" module pages, and TemplateStyles "sanitized-css" pages.
 * …
 
 === New features for sysadmins in 1.47 ===
