@@ -241,8 +241,6 @@
 	"userlogin-helplink2": "Hüelp bii 't anmellen",
 	"createacct-email-ph": "Dau diin emailadräes ingeeven",
 	"createacct-submit": "Diin benütserkunto inrichten",
-	"createacct-benefit-heading": "{{SITENAME}} word't fan minsken as dii móókt.",
-	"createacct-benefit-text2": "$1 $2 {{PLURAL:$1|siid|siiden}}",
 	"loginlanguagelabel": "Tóól: $1",
 	"pt-login": "Anmellen",
 	"pt-login-button": "Anmellen",

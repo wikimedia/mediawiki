@@ -346,10 +346,6 @@
 	"createacct-another-submit": "Tege lehtpol'",
 	"createacct-continue-submit": "Jätkta tehta lehtpol'",
 	"createacct-another-continue-submit": "Jätkta tehta lehtpol'",
-	"createacct-benefit-heading": "{{SITENAME}} om tehtud mugoižil ristituil kut sinä.",
-	"createacct-benefit-text1": "$2 {{PLURAL:$1|vajehtuz|vajehtused}}",
-	"createacct-benefit-text2": "$2 {{PLURAL:$1|lehtpol’|lehtpoled}}",
-	"createacct-benefit-text3": "$2 {{PLURAL:$1|jäl’gmäine kävutai|jäl’gmäižed kävutajad}}",
 	"badretype": "Kirjutadud peitsanad ei olgoi ühtejiččed.",
 	"usernameinprogress": "Lehtpolen tegemine necen kävutajan täht om jo rados.\nVarasta, ole hüvä.",
 	"userexists": "Kirjutadud kävutajan nimi jo kävutadas.\nOle hüvä, valiče toine kävutajan nimi.",
@@ -3475,10 +3471,5 @@
 	"renameuser-move-log": "Avtomatižesti sirttud lehtpol' anttes uden nimen {{GENDER:$2|kävutajale}} \"[[User:$1|$1]]\" \"[[User:$2|$2]]\"",
 	"renameuser-renamed-notice": "Nece kävutajale om anttud uz' nimi.\nNimenvajehtusen aigkirj om anttud alemba tedon täht.",
 	"log-unknown-action": "om tehtud tundmatoi tego \"$2\" [[$1]]",
-	"createacct-benefit-heading-temp-user": "Spasib sinei tehtud rados {{SITENAME}}.\nTege lehtpol', miše päzuda ližafunkcijoihe.",
-	"createacct-benefit-subheading-temp-user": "{{SITENAME}} om tehtud mugoižil ristituil kut sinä. Lehtpolen abul sinä void sada kaikenaigaližen da kaitud vahvištoituztedoid päzumaha mugoižihe funkcijoihe kut:",
-	"benefit-1-description": "Kacundlugetišed abutaba sinei kacta da tarkištada melentartuižid lehtpolid.",
-	"benefit-2-description": "Kaikenaigaine tehtud radon lugetiž, miččen sinä panid projektaha.",
-	"benefit-3-description": "Valičused, miččed abutaba ladida sinun tehtud radod.",
 	"temp-user-unable-to-acquire": "Ei sa sada nimed keskaigaižen kävutajan täht. Ole hüvä, tege völ kerdan."
 }

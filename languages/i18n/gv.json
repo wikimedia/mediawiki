@@ -274,8 +274,6 @@
 	"createacct-reason": "Oyr (recortyssit dy theayagh)",
 	"createacct-submit": "Croo dty choontys",
 	"createacct-another-submit": "Croo coontys",
-	"createacct-benefit-heading": "Ta {{SITENAME}} jeant lesh sleih jeh dty lhieds.",
-	"createacct-benefit-text2": "$2 {{PLURAL:$1|duillag|duillagyn}}",
 	"loginerror": "Marranys loggal stiagh",
 	"createaccounterror": "Cha nod shin croo coontys: $1",
 	"noname": "Cha row ennym ymmydeyr breeoil sonrit ayd.",

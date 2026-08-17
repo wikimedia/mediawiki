@@ -295,8 +295,6 @@
 	"createacct-another-submit": "ສ້າງບັນຊີ",
 	"createacct-continue-submit": "ສ້າງບັນຊີຕໍ່ໄປ",
 	"createacct-another-continue-submit": "ສ້າງບັນຊີຕໍ່ໄປ",
-	"createacct-benefit-heading": "{{SITENAME}} ແມ່ນຖືກສ້າງໂດຍຄົນທົ່ວໄປເຊັ່ນທ່ານ.",
-	"createacct-benefit-text1": "$2 {{PLURAL:$1|ດັດແກ້}}",
 	"badretype": "ລະຫັດຜ່ານທີ່ທ່ານໄດ້ພິມຄືນບໍ່ກົງກັບທີ່ພິມກ່ອນ.",
 	"userexists": "ຊື່ຜູ້ໃຊ້ທີ່ໃສ່ຖືກໃຊ້ໄປແລ້ວ.\nກະລຸນາເລືອກຊື່ອື່ນ.",
 	"loginerror": "ຂໍ້ຜິດພາດໃນການເຂົ້າສູ່ລະບົບ",

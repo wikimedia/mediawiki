@@ -66,7 +66,6 @@
 	"createacct-reason-ph": "Waarom je een ander account aanmaakt",
 	"createacct-reason-confirm": "De opgegeven reden is een e-mailadres. Klik nog een keer op \"account aanmaken\" als je dit echt zo bedoelde.",
 	"createacct-submit": "Je account aanmaken",
-	"createacct-benefit-heading": "{{SITENAME}} wordt gemaakt door mensen zoals jij.",
 	"badretype": "De wachtwoorden die je hebt ingevoerd verschillen van elkaar.",
 	"createacct-normalization": "Je gebruikersnaam wordt bijgesteld naar \"$2\" om technische beperkingen.",
 	"nocookieslogin": "{{SITENAME}} gebruikt cookies voor het aanmelden van gebruikers.\nCookies zijn uitgeschakeld in jouw browser.\nZet deze optie aan en probeer het dan nog eens.",

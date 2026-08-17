@@ -315,10 +315,6 @@
 	"createacct-another-submit": "Ngawek akun",
 	"createacct-continue-submit": "Lanjakke ngawek rekening",
 	"createacct-another-continue-submit": "Lanjakke ngawek rekening",
-	"createacct-benefit-heading": "{{SITENAME}} ni digawé' wong-wong peca' Dûlûr inila.",
-	"createacct-benefit-text1": "$2 {{PLURAL:$1|dandanan}}",
-	"createacct-benefit-text2": "$2 {{PLURAL:$1|laman}}",
-	"createacct-benefit-text3": "$2 {{PLURAL:$1|pengéjo}} bûncîtan",
 	"badretype": "Kato pengonci yang diisike da'do setulu'an.",
 	"loginerror": "Ngarut pangko cup maso'",
 	"createacct-error": "Ngarut pangko ngawek rekening",
@@ -1033,6 +1029,5 @@
 	"blockedtext-intended-blockee": "Pecian penyadangan: $1",
 	"blockedtext-contact-blocker-admin": "Dûlûr paca' ngari $1 apo [[{{MediaWiki:Grouppage-sysop}}|pengingon]] amen na' ngomongke pekaro penyadangan tu.",
 	"blockedtext-block-ip": "Ma'ini aderés IP Dulur yola $1.",
-	"blockedtext-include-details-queries": "Tûlûng maso'ke galo-galo pekaro di pûcû' ke jerû saben takonan yang na' Dulur enju'ke.",
-	"createacct-benefit-heading-temp-user": "Mokasî la mélo' beréjo di {{SITENAME}}. Gawé'la akun amen na' ngaksés kepaca'an laénnyo."
+	"blockedtext-include-details-queries": "Tûlûng maso'ke galo-galo pekaro di pûcû' ke jerû saben takonan yang na' Dulur enju'ke."
 }

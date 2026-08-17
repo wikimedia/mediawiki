@@ -245,7 +245,6 @@
 	"createaccountmail": "por correu electronico",
 	"createacct-submit": "Creya a tuya cuenta",
 	"createacct-another-submit": "Creya unatra cuenta",
-	"createacct-benefit-text3": "$2 {{PLURAL:$1|colaborador recient|colaboradors recients}}",
 	"badretype": "As claus que ha escrito no son iguals.",
 	"userexists": "O nombre d'usuario que ha escrito ya ye en uso.\nPor favor, trigue-ne uno de diferent.",
 	"loginerror": "Error en encetar a sesión",

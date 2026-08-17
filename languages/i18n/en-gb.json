@@ -117,6 +117,5 @@
 	"logentry-suppress-block": "$1 {{GENDER:$2|blocked}} {{GENDER:$4|$3}} with an expiry time of $5 $6",
 	"logentry-suppress-reblock": "$1 {{GENDER:$2|changed}} block settings for {{GENDER:$4|$3}} with an expiry time of $5 $6",
 	"feedback-error1": "Error: Unrecognised result from API",
-	"session-page-restricted": "{{GENDER:|You}} are not authorised to edit this page using the current grant",
-	"benefit-3-description": "Preferences that allow you to customise your experience."
+	"session-page-restricted": "{{GENDER:|You}} are not authorised to edit this page using the current grant"
 }

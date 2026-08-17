@@ -375,10 +375,6 @@
 	"createacct-another-submit": "Otvori nalog",
 	"createacct-continue-submit": "Nastavite otvaranje naloga",
 	"createacct-another-continue-submit": "Nastavite otvaranje naloga",
-	"createacct-benefit-heading": "{{SITENAME}} je projekat koji stvaraju ljudi poput Vas.",
-	"createacct-benefit-text1": "$2 {{PLURAL:$1|izmena|izmene|izmena}}",
-	"createacct-benefit-text2": "$2 {{PLURAL:$1|stranica|stranice|stranica}}",
-	"createacct-benefit-text3": "$2 {{PLURAL:$1|aktivna urednika|aktivnih urednika}}",
 	"badretype": "Lozinke koje ste uneli se ne poklapaju.",
 	"usernameinprogress": "Već se otvara nalog za ovo korisničko ime.\nSačekajte.",
 	"userexists": "Uneseno korisničko ime je zauzeto.\nIzaberite drugo.",
@@ -3651,11 +3647,6 @@
 	"renameuser-move-log": "Automatsko premeštanje stranice zbog preimenovanja {{GENDER:$2|korisnika|korisnice}} [[User:$1|$1]] u [[User:$2|$2]]",
 	"renameuser-renamed-notice": "{{GENDER:$1|Ovom korisniku|Ovoj korisnici}} je promenjeno ime.\nDnevnik preimenovanja je priložen ispod, kao informacija.",
 	"log-unknown-action": "izvršio je nepoznatu radnju „$2” na [[$1]]",
-	"createacct-benefit-heading-temp-user": "Hvala na Vašem doprinosu {{SITENAME}}.\nOtvorite nalog da pristupite drugim benefitima.",
-	"createacct-benefit-subheading-temp-user": "{{SITENAME}} je projekat koji stvaraju ljudi poput Vas. Sa nalogom imate trajan i bezbedan identitet sa pristupom sledećim benefitima:",
-	"benefit-1-description": "Spisak nadgledanja koji Vam omogućava da pratite stranice za koje ste zainteresovani.",
-	"benefit-2-description": "Trajni spisak svih Vaših doprinosa na projektu.",
-	"benefit-3-description": "Prilagođavanje Vašeg doživljaja u podešavanjima.",
 	"table-of-contents-show-button-aria-label": "Prikaži tabelu sa sadržajem",
 	"table-of-contents-hide-button-aria-label": "Sakrij tabelu sa sadržajem"
 }

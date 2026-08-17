@@ -267,10 +267,6 @@
 	"createacct-another-submit": "Qullanıcı esabını yarat",
 	"createacct-continue-submit": "Qullanıcı esabını yaratmağa devam et",
 	"createacct-another-continue-submit": "Qullanıcı esabını yaratmağa devam et",
-	"createacct-benefit-heading": "{{SITENAME}}nı siziñ kibi adamlar yaza.",
-	"createacct-benefit-text1": "$2 {{PLURAL:$1|deñiştirme|deñiştirme}}",
-	"createacct-benefit-text2": "$2 {{PLURAL:$1|saife|saife}}",
-	"createacct-benefit-text3": "$2 soñki vaqıtlarda {{PLURAL:$1|issesini qoşqan qullanıcı|issesini qoşqan qullanıcı}}",
 	"badretype": "Kirsetken parolleriñiz aynı degil.",
 	"userexists": "Kirsetken qullanıcı adıñız endi qullanıla.\nLütfen, başqa bir qullanıcı adı saylañız.",
 	"createacct-normalization": "Qullanıcı adıñız tehnikiy sıñırlamalardan sebep \"$2\" olaraq deñiştirilecek.",
@@ -1636,7 +1632,5 @@
 	"log-name-renameuser": "Qullanıcı adı deñiştirüv jurnalı",
 	"logentry-renameuser-renameuser": "$1, $4 ({{PLURAL:$6|$6 deñiştirme}}) qullanıcısınıñ adını {{GENDER:$7|$5}} olaraq {{GENDER:$2|deñiştirdi}}",
 	"logentry-renameuser-renameuser-legacier": "$1, $4 qullanıcısınıñ adını {{GENDER:$7|$5}} olaraq {{GENDER:$2|deñiştirdi}}",
-	"renameuser-renamed-notice": "Bu {{GENDER:$1|qullanıcınıñ}} adını deñiştirildi.\nAd deñiştirüv kündeligi menba olaraq aşağıda kösterilgen.",
-	"createacct-benefit-heading-temp-user": "{{SITENAME}} saytına isse qoşqanıñız içün sağ oluñız.\nDaa ziyade funktsiyağa irişmek içün qullanıcı esabını yaratıñız.",
-	"createacct-benefit-subheading-temp-user": "{{SITENAME}}nı siziñ kibi adamlar yaza. Bir qullanıcı esabınen, aşağıdaki kibi funktsiyalarğa irişim bergen daimiy ve telükesiz bir kimlikke saip ola bilesiñiz:"
+	"renameuser-renamed-notice": "Bu {{GENDER:$1|qullanıcınıñ}} adını deñiştirildi.\nAd deñiştirüv kündeligi menba olaraq aşağıda kösterilgen."
 }

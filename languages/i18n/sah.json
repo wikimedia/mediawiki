@@ -347,10 +347,6 @@
 	"createacct-another-submit": "Бэлиэтэн",
 	"createacct-continue-submit": "Бэлиэ-ааты салгыы оҥоруу",
 	"createacct-another-continue-submit": "Салгыы бэлиэтэнии",
-	"createacct-benefit-heading": "{{SITENAME}} ситим-сири эн курдук дьон оҥороллор.",
-	"createacct-benefit-text1": "$2 {{PLURAL:$1|уларытыы|уларытыы}}",
-	"createacct-benefit-text2": "$2 {{PLURAL:$1|сирэй|сирэй}}",
-	"createacct-benefit-text3": "$2 кэнники {{PLURAL:$1|кыттааччы|кыттааччы}}",
 	"badretype": "Аһарыктарыҥ сөп түбэспэтилэр.",
 	"usernameinprogress": "Бу аатынан бэлиэтэнии бара турар.\nБука диэн кэтэһэ түс.",
 	"userexists": "Суруйбут аатыҥ бэлиэр баар.\nБука диэн, атын аатта тал.",
@@ -3437,6 +3433,5 @@
 	"logentry-renameuser-renameuser-legacier": "$1 $4 аатын {{GENDER:$7|$5}} диэн {{GENDER:$2|аакка уларытта}}",
 	"renameuser-move-log": "«[[User:$1|$1]]» аата «[[User:$2|$2]]» буолбутунан аптамаатынан",
 	"renameuser-renamed-notice": "Бу кыттааччы аата уларыйбыт.\nАллара аат уларыйыытын сурунаала көстөр.",
-	"log-unknown-action": "манна [[$1]] биллибэт «$2» дьайыы оҥоһолунна",
-	"benefit-1-description": "Эйиэхэ интэриэһинэй сирэйдэри кэтииргэ көҥүллүүр, кэтэбил тиһиликтэрэ."
+	"log-unknown-action": "манна [[$1]] биллибэт «$2» дьайыы оҥоһолунна"
 }

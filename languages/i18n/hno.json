@@ -123,8 +123,6 @@
 	"createacct-email-ph": "آپڑا ای‌میل دا پتہ دیو",
 	"createacct-submit": "تساں دا کھاتہ بنڑاؤ",
 	"createacct-another-submit": "کھاتہ بنڑاؤ",
-	"createacct-benefit-text1": "$2 {{PLURAL:$1|تبدیل|تبدیلیاں}}",
-	"createacct-benefit-text2": "$2 {{PLURAL:$1|ورقہ|ورقے}}",
 	"loginsuccesstitle": "لاگ ان کیتا",
 	"accountcreated": "کھاتہ بنڑ گیا",
 	"loginlanguagelabel": "زبان – $1",

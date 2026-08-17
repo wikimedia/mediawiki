@@ -187,8 +187,6 @@
 	"createaccount": "Аккаунт туькӀуьрун",
 	"createaccountmail": "Э-чар галаз",
 	"createacct-submit": "Аккаунт туькӀуьрун",
-	"createacct-benefit-text1": "$2 {{PLURAL:$1|дуьзар хъувун}}",
-	"createacct-benefit-text2": "$2 {{PLURAL:$1|макъала}}",
 	"loginerror": "Гьахьунин гъалатӀ",
 	"createaccounterror": "И аккаунт туькӀуьриз мумкин ттуш: $1",
 	"loginsuccesstitle": "Агалкьунралди гьахьун",

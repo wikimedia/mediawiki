@@ -288,7 +288,6 @@
 	"createacct-reason": "Cúis",
 	"createacct-submit": "Cruthaigh do chuntas",
 	"createacct-another-submit": "Cruthaigh cuntas eile",
-	"createacct-benefit-heading": "Daoine cosúil leatsa a dhéanann {{SITENAME}}.",
 	"badretype": "D'iontráil tú dhá fhocal faire difriúla.",
 	"userexists": "Tá an ainm úsáideora sin in úsáid cheana féin.<br />\nRoghnaigh ainm eile agus bain triail eile as.",
 	"loginerror": "Earráid leis an logáil isteach",

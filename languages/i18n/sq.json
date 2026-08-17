@@ -389,10 +389,6 @@
 	"createacct-another-submit": "Krijoje llogarinë",
 	"createacct-continue-submit": "Vazhdo krijimin e llogarisë",
 	"createacct-another-continue-submit": "Vazhdo krijimin e llogarisë",
-	"createacct-benefit-heading": "{{SITENAME}} shkruhet nga njerëz si ti.",
-	"createacct-benefit-text1": "$2 {{PLURAL:$1|redaktim|redaktime}}",
-	"createacct-benefit-text2": "$2 {{PLURAL:$1|faqe}}",
-	"createacct-benefit-text3": "$2 {{PLURAL:$1|kontribuesi i|kontribuesit e}} fundit",
 	"badretype": "Fjalëkalimet nuk janë njësoj.",
 	"usernameinprogress": "Një krijim i llogarisë me këtë emër përdoruesi tashmë është në progres.\nJu lutemi prisni.",
 	"userexists": "Emri i përdoruesit që kërkuat është në përdorim. \nZgjidhni një emër tjetër.",
@@ -2944,8 +2940,5 @@
 	"log-name-renameuser": "Regjistri i riemërtimeve",
 	"logentry-renameuser-renameuser-legacier": "$1 riemëroi përdoruesin $4 në $5",
 	"renameuser-move-log": "Lëvizi faqen automatikisht kur riemëroi përdoruesin \"[[User:$1|$1]]\" në \"[[User:$2|$2]]\"",
-	"renameuser-renamed-notice": "Ky përdorues është riemëruar. Regjistri i riemërimit është poshtë për referencë.",
-	"createacct-benefit-heading-temp-user": "Faleminderit që kontribove në {{SITENAME}}.\nKrijo një llogari për t'u qasur në më shumë cilësi.",
-	"createacct-benefit-subheading-temp-user": "{{SITENAME}} është krijuar nga njerëz si ti. Me një llogari mund të kesh një identitet të përhershëm dhe të sigurtë me qasje në cilësi të tilla si:",
-	"benefit-1-description": "Listat e vëzhgimit që të lejojnë të ndjekësh faqet që të interesojnë."
+	"renameuser-renamed-notice": "Ky përdorues është riemëruar. Regjistri i riemërimit është poshtë për referencë."
 }

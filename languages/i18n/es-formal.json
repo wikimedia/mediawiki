@@ -177,7 +177,6 @@
 	"createacct-reason-ph": "Por qué está creando otra cuenta",
 	"createacct-reason-confirm": "El motivo introducido es una dirección de correo electrónico. Si es eso lo que pretendía, pulse de nuevo en «Crear cuenta»",
 	"createacct-submit": "Cree su cuenta",
-	"createacct-benefit-heading": "Personas como usted son las que construyen {{SITENAME}}.",
 	"usernameinprogress": "Ya está en marcha la creación de una cuenta para este nombre de usuario.\nPor favor, espere.",
 	"userexists": "El nombre de usuario indicado ya está en uso.\nPor favor elija un nombre diferente.",
 	"createacct-normalization": "Su nombre de usuario será \"$2\" debido a restricciones técnicas.",

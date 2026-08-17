@@ -379,10 +379,6 @@
 	"createacct-another-submit": "Gumawa ng account",
 	"createacct-continue-submit": "Ituloy ang paggawa ng account",
 	"createacct-another-continue-submit": "Ituloy ang paggawa ng account",
-	"createacct-benefit-heading": "Ginawa ng mga taong tulad mo ang {{SITENAME}}.",
-	"createacct-benefit-text1": "$2 {{PLURAL:$1|binago|(na) binago}}",
-	"createacct-benefit-text2": "$2 {{PLURAL:$1|pahina|(na) pahina}}",
-	"createacct-benefit-text3": "$2 kamakailang {{PLURAL:$1|nag-ambag}}",
 	"badretype": "Hindi magkatugma ang ipinasok mong mga password.",
 	"usernameinprogress": "Ginagawa na ang account ng tagagamit na ito. Maghintay.",
 	"userexists": "Ginagamit na ang pangalang ito. Magbigay ng iba.",
@@ -2368,6 +2364,5 @@
 	"renameuser-page-unmoved": "Hindi mailipat ang pahinang $1 patungo sa $2.",
 	"log-name-renameuser": "Talaan ng muling pagpapangalan ng tagagamit",
 	"renameuser-move-log": "Kusang inilipat ang pahina habang muling pinapangalanan ang tagagamit na si \"[[User:$1|$1]]\" patungo sa \"[[User:$2|$2]]\"",
-	"renameuser-renamed-notice": "Napangalanan nang muli ang tagagamit na ito.\nIbinigay sa ibaba ang talaan ng pagpapangalang muli para masangguni.",
-	"benefit-1-description": "Mga talabantayan na nagpapasunod sa iyo sa mga pahinang interestado ka."
+	"renameuser-renamed-notice": "Napangalanan nang muli ang tagagamit na ito.\nIbinigay sa ibaba ang talaan ng pagpapangalang muli para masangguni."
 }

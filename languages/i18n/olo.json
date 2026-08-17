@@ -334,10 +334,6 @@
 	"createacct-another-submit": "Luaji käyttäjäntunnus",
 	"createacct-continue-submit": "Jatka käyttäjäntunnuksen luajindua",
 	"createacct-another-continue-submit": "Jatka käyttäjäntunnuksen luajindua",
-	"createacct-benefit-heading": "{{SITENAME}} on sinunjyttymien ristittyzien luajittu.",
-	"createacct-benefit-text1": "$2 {{PLURAL:$1|kohendus|kohendustu}}",
-	"createacct-benefit-text2": "$2 {{PLURAL:$1|sivu|sivuu}}",
-	"createacct-benefit-text3": "$2 {{PLURAL:$1|jälgimäine kohendai|jälgimästy kohendajua}}",
 	"badretype": "Sinun kirjutetut peittosanat ei oldu yhtenjyttymät.",
 	"usernameinprogress": "Käyttäjäntunnustu tälle käyttäjännimele ollah jo luadimas. Ole hyvä, vuota.",
 	"userexists": "Kirjutettu käyttäjännimi on jo käytös. Ole hyvä, valliče toine käyttäjännimi.",
@@ -3435,10 +3431,5 @@
 	"logentry-renameuser-renameuser-legacier": "$1 {{GENDER:$2|muutti nimen}} käyttäjäl $4 nimekse {{GENDER:$7|$5}}",
 	"renameuser-move-log": "Sivul on avtomuattizesti muutettu nimi, konzu muutettih {{GENDER:$2|käyttäjän}} käyttäjäntunnuksen nimi ”[[User:$1|$1]]” nimekse ”[[User:$2|$2]]”",
 	"renameuser-renamed-notice": "Täl käyttäjäl muutettih nimi. \nAlemba on nimen muuttamizien žurnualu.",
-	"log-unknown-action": "on luajittu tundematoi toimindu \"$2\" sivul [[$1]]",
-	"createacct-benefit-heading-temp-user": "Kiitämmö sinuu {{SITENAME}} -projektan kehittämizes. \nLuaji käyttäjäntunnus, ku suazit käyttiä toizii funksieloi.",
-	"createacct-benefit-subheading-temp-user": "Verkosivusto {{SITENAME}} on sinunmoizien ristittyzien luajittu. Olemas olijan käyttäjäntunnuksen hyvyös sinul voi olla pyzyi da turvalline identifikuattoru da mahto käyttiä moizii funksieloi kui:",
-	"benefit-1-description": "Tarkailulistat, kudamien hyvyös voit tarkailla sinuu kiinnostuttajii sivuloi.",
-	"benefit-2-description": "Alalline luvettelu kohenduksis, kudamii olet luadinuh projektan hyväkse.",
-	"benefit-3-description": "Azetukset, kudamat avvutetah lajitella sinun ruadoloi."
+	"log-unknown-action": "on luajittu tundematoi toimindu \"$2\" sivul [[$1]]"
 }

@@ -395,10 +395,6 @@
 	"createacct-another-submit": "Krei konton",
 	"createacct-continue-submit": "Daŭrigi la kreadon de konto",
 	"createacct-another-continue-submit": "Daŭrigi la kreadon de konto",
-	"createacct-benefit-heading": "{{SITENAME}} estas kreata de homoj kiel vi.",
-	"createacct-benefit-text1": "$2 {{PLURAL:$1|redakto|redaktoj}}",
-	"createacct-benefit-text2": "$2 {{PLURAL:$1|paĝo|paĝoj}}",
-	"createacct-benefit-text3": "$2 {{PLURAL:$1|lasta kontribuanto|lastaj kontribuantoj}}",
 	"badretype": "La pasvortoj kiujn vi entajpis, ne kongruas.",
 	"usernameinprogress": "Kontokreado por ĉi tiu uzantnomo jam estas prilaborata. Bonvolu atendi.",
 	"userexists": "La enigita uzantnomo jam estas uzata.\nBonvolu elekti alian nomon.",
@@ -3530,10 +3526,5 @@
 	"logentry-renameuser-renameuser-legacier": "$1 {{GENDER:$2|alinomigis}} uzanton $4 al {{GENDER:$7|$5}}",
 	"renameuser-move-log": "Aŭtomate movis paĝon dum alinomigo de la {{GENDER:$2|uzanto}} \"[[User:$1|$1]]\" al \"[[User:$2|$2]]\"",
 	"renameuser-renamed-notice": "Ĉi tiu uzanto estis renomigita.\nJen la protokolo pri renomigado por via referenco.",
-	"log-unknown-action": "faris nekonatan agon \"$2\" sur [[$1]]",
-	"createacct-benefit-heading-temp-user": "Dankon pro kontribuo al {{SITENAME}}.\nKreu konton por aliri pliajn funkciojn.",
-	"createacct-benefit-subheading-temp-user": "{{SITENAME}} estas farita de homoj kiel vi. Kun konto vi povas havi permanentan kaj sekuran identecon kun aliro al funkcioj kiel:",
-	"benefit-1-description": "Atentaroj kiuj permesas al vi kontroladi paĝojn pri kiuj vi interesiĝas.",
-	"benefit-2-description": "Konstanta listo de kontribuoj kiujn vi faris al la projekto.",
-	"benefit-3-description": "Preferoj kiuj permesas al vi personecigi vian sperton."
+	"log-unknown-action": "faris nekonatan agon \"$2\" sur [[$1]]"
 }
