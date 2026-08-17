@@ -124,14 +124,6 @@ class UploadStash {
 			}
 		}
 
-		if ( !$this->files[$key]->exists() ) {
-			wfDebug( __METHOD__ . " tried to get file at $key, but it doesn't exist" );
-			// @todo Is this not an UploadStashFileNotFoundException case?
-			throw new UploadStashBadPathException(
-				wfMessage( 'uploadstash-bad-path' )
-			);
-		}
-
 		if ( !$noAuth && $this->fileMetadata[$key]['us_user'] != $this->user->getId() ) {
 			throw new UploadStashWrongOwnerException(
 				wfMessage( 'uploadstash-wrong-owner', $key )
@@ -175,9 +167,16 @@ class UploadStash {
 	 * @throws UploadStashFileException
 	 * @throws UploadStashNotLoggedInException
 	 * @throws UploadStashBadPathException
+	 * @throws UploadStashZeroLengthFileException
 	 * @return UploadStashFile|null File, or null on failure
 	 */
 	public function stashFile( $path, $sourceType = null, $fileProps = null ) {
+		if ( !$this->user->isRegistered() ) {
+			throw new UploadStashNotLoggedInException(
+				wfMessage( 'uploadstash-not-logged-in' )
+			);
+		}
+
 		if ( !is_file( $path ) ) {
 			wfDebug( __METHOD__ . " tried to stash file at '$path', but it doesn't exist" );
 			throw new UploadStashBadPathException(
@@ -190,6 +189,13 @@ class UploadStash {
 			$mwProps = new MWFileProps( MediaWikiServices::getInstance()->getMimeAnalyzer() );
 			$fileProps = $mwProps->getPropsFromPath( $path, true );
 		}
+
+		if ( !$fileProps['size'] ) {
+			throw new UploadStashZeroLengthFileException(
+				wfMessage( 'uploadstash-zero-length' )
+			);
+		}
+
 		wfDebug( __METHOD__ . " stashing file at '$path'" );
 
 		// We will be initializing from some tmpnam files that don't have extensions.
@@ -236,12 +242,6 @@ class UploadStash {
 			throw new UploadStashFileException( [ 'unknown', 'no error recorded' ] );
 		}
 		$stashPath = $storeStatus->value;
-
-		if ( !$this->user->isRegistered() ) {
-			throw new UploadStashNotLoggedInException(
-				wfMessage( 'uploadstash-not-logged-in' )
-			);
-		}
 
 		// Insert the file metadata into the DB.
 		wfDebug( __METHOD__ . " inserting $stashPath under $key" );
@@ -373,15 +373,12 @@ class UploadStash {
 			->where( [ 'us_key' => $key ] )
 			->caller( __METHOD__ )->execute();
 
-		/** @todo Look into UnregisteredLocalFile and find out why the return value here is
-		 *  sometimes wrong (false when file was removed). For now, ignore.
-		 */
-		$this->files[$key]->remove();
+		$success = $this->files[$key]->remove();
 
 		unset( $this->files[$key] );
 		unset( $this->fileMetadata[$key] );
 
-		return true;
+		return $success;
 	}
 
 	/**
@@ -493,11 +490,6 @@ class UploadStash {
 			$this->fileMetadata[$key]['us_sha1'],
 			$this->fileMetadata[$key]['us_mime'] ?? false
 		);
-		if ( $file->getSize() === 0 ) {
-			throw new UploadStashZeroLengthFileException(
-				wfMessage( 'uploadstash-zero-length' )
-			);
-		}
 		$this->files[$key] = $file;
 
 		return true;

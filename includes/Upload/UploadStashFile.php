@@ -23,6 +23,7 @@ class UploadStashFile extends UnregisteredLocalFile {
 	protected $url;
 	/** @var string|null */
 	private $sha1;
+	private string $repoPath;
 
 	/**
 	 * A LocalFile wrapper around a file that has been temporarily stashed,
@@ -42,12 +43,13 @@ class UploadStashFile extends UnregisteredLocalFile {
 
 		// Resolve mwrepo:// URLs
 		if ( FileRepo::isVirtualUrl( $path ) ) {
-			$path = $repo->resolveVirtualUrl( $path );
+			$this->repoPath = $path;
+			$storePath = $repo->resolveVirtualUrl( $path );
 		} else {
 			// Check if the path appears to be correct, no parent traversals,
 			// and is in this repo's temp zone.
 			$repoTempPath = $repo->getZonePath( 'temp' );
-			if ( ( !$repo->validateFilename( $path ) ) ||
+			if ( !$repo->validateFilename( $path ) ||
 				!str_starts_with( $path, $repoTempPath )
 			) {
 				wfDebug( "UploadStash: tried to construct an UploadStashFile "
@@ -57,6 +59,9 @@ class UploadStashFile extends UnregisteredLocalFile {
 				);
 			}
 
+			wfDeprecatedMsg( 'Creating an UploadStashFile with an mwstore:// path ' .
+				'is deprecated since MediaWiki 1.47', '1.47' );
+
 			// Check if path exists and is a plain file.
 			if ( !$repo->fileExists( $path ) ) {
 				wfDebug( "UploadStash: tried to construct an UploadStashFile from "
@@ -65,9 +70,17 @@ class UploadStashFile extends UnregisteredLocalFile {
 					wfMessage( 'uploadstash-file-not-found-not-exists' )
 				);
 			}
+
+			$storePath = $path;
+			$parts = explode( '/', $path );
+			$n = count( $parts );
+			$this->repoPath = $repo->getVirtualUrl( 'temp' ) . '/' .
+				$parts[$n - 3] . '/' .
+				$parts[$n - 2] . '/' .
+				$parts[$n - 1];
 		}
 
-		parent::__construct( false, $repo, $path, $mime );
+		parent::__construct( false, $repo, $storePath, $mime );
 
 		$this->name = basename( $this->path );
 	}
@@ -81,18 +94,11 @@ class UploadStashFile extends UnregisteredLocalFile {
 	}
 
 	/**
-	 * A method needed by the file transforming and scaling routines in File.php.
-	 * We do not necessarily care about doing the description at this point.
-	 * However, we also can't return the empty string, as the rest of MediaWiki
-	 * demands this (and calls to ImageMagick convert require it to be there).
-	 *
-	 * FIXME: The comment above refers to a bug which was fixed in 2010.
-	 *  It should return false per the base class doc comment.
-	 *
-	 * @return string Dummy value
+	 * There is no description URL. Don't put a comment in thumbnail EXIF.
+	 * @return false
 	 */
 	public function getDescriptionUrl() {
-		return $this->getUrl();
+		return false;
 	}
 
 	/** @inheritDoc */
@@ -165,19 +171,6 @@ class UploadStashFile extends UnregisteredLocalFile {
 	}
 
 	/**
-	 * Parent classes use this method, for no obvious reason, to return the path
-	 * (relative to wiki root, I assume). But with this class, the URL is
-	 * unrelated to the path.
-	 *
-	 * FIXME: incorrect assumption -- should not override
-	 *
-	 * @return string URL
-	 */
-	public function getFullUrl() {
-		return $this->getUrl();
-	}
-
-	/**
 	 * Get the file key
 	 *
 	 * @return string File key
@@ -191,17 +184,12 @@ class UploadStashFile extends UnregisteredLocalFile {
 	 * @return bool Success
 	 */
 	public function remove() {
-		if ( !$this->repo->fileExists( $this->path ) ) {
-			// Maybe the file's already been removed? This could totally happen in UploadBase.
-			return true;
-		}
-
-		return $this->repo->freeTemp( $this->path );
+		return $this->repo->freeTemp( $this->repoPath );
 	}
 
 	/** @inheritDoc */
 	public function exists() {
-		return $this->repo->fileExists( $this->path );
+		return $this->repo->fileExists( $this->repoPath );
 	}
 }
 
