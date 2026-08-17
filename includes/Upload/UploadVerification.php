@@ -771,12 +771,33 @@ class UploadVerification {
 			// This prevents vectors like image/svg, text/xml, application/xml,
 			// and text/html, which can contain scripts
 			if ( $stripped === 'href' && strncasecmp( 'data:', $value, 5 ) === 0 ) {
-				// RFC2397 parameters.
-				// This is only slightly slower than (;[\w;]+)*.
-				// phpcs:ignore Generic.Files.LineLength
-				$parameters = '(?>;[a-zA-Z0-9\!#$&\'*+.^_`{|}~-]+=(?>[a-zA-Z0-9\!#$&\'*+.^_`{|}~-]+|"(?>[\0-\x0c\x0e-\x21\x23-\x5b\x5d-\x7f]+|\\\\[\0-\x7f])*"))*(?:;base64)?';
+				// See RFC 2397 section 3
+				$dataUriRegex = <<<'REGEX'
+!^data: \s*
+image / (gif|jpeg|jpg|a?png|webp|avif)
+# mediatype parameters (once-only subpattern)
+(?>
+  ;
+  # Parameter name
+  [a-zA-Z0-9\!#$&'*+.^_`{|}~-]+
+  =
+  # Value
+  (?>
+    # token
+    [a-zA-Z0-9\!#$&'*+.^_`{|}~-]+ |
+    # quoted-string (discouraged by RFC 2045)
+    "(?>
+      [\0-\x0c\x0e-\x21\x23-\x5b\x5d-\x7f]+ |
+      \\[\0-\x7f]
+    )*"
+  )
+)*
+# data URI parameter (non-capturing)
+(?: ; base64 )?
+!ix
+REGEX;
 
-				if ( !preg_match( "!^data:\s*image/(gif|jpeg|jpg|a?png|webp|avif)$parameters,!i", $value ) ) {
+				if ( !preg_match( $dataUriRegex, $value ) ) {
 					$this->logger->debug(
 						'detectScriptInSvg: Found href with data URI with MIME type that is not ' .
 						'allowed: <{localPart} {attrib}="{value}"> in uploaded file.',
