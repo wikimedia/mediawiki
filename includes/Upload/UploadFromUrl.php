@@ -370,7 +370,7 @@ class UploadFromUrl extends UploadBase {
 		$attemptsLeft = $options['maxRedirects'] ?? 5;
 		$targetUrl = $this->mUrl;
 		$requestFactory = MediaWikiServices::getInstance()->getHttpRequestFactory();
-		while ( $attemptsLeft > 0 ) {
+		do {
 			$req = $requestFactory->create( $targetUrl, $options, __METHOD__ );
 			$req->setCallback( $this->saveTempFileChunk( ... ) );
 			$status = $req->execute();
@@ -386,7 +386,7 @@ class UploadFromUrl extends UploadBase {
 			ftruncate( $this->mTmpHandle, 0 );
 			rewind( $this->mTmpHandle );
 			$attemptsLeft--;
-		}
+		} while ( $attemptsLeft > 0 );
 
 		if ( $attemptsLeft == 0 ) {
 			return Status::newFatal( 'upload-too-many-redirects' );
@@ -401,20 +401,16 @@ class UploadFromUrl extends UploadBase {
 			return Status::newFatal( 'tmp-write-error' );
 		}
 
-		// @phan-suppress-next-line PhanPossiblyUndeclaredVariable Always set after loop
 		if ( $status->isOK() ) {
 			wfDebugLog( 'fileupload', 'Download by URL completed successfully.' );
 		} else {
-			// @phan-suppress-next-line PhanPossiblyUndeclaredVariable Always set after loop
 			wfDebugLog( 'fileupload', $status->getWikiText( false, false, 'en' ) );
 			wfDebugLog(
 				'fileupload',
-				// @phan-suppress-next-line PhanPossiblyUndeclaredVariable Always set after loop
 				'Download by URL completed with HTTP status ' . $req->getStatus()
 			);
 		}
 
-		// @phan-suppress-next-line PhanPossiblyUndeclaredVariable Always set after loop
 		return $status;
 	}
 }
