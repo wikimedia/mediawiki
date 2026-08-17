@@ -16,8 +16,9 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageAssertionException;
 use MediaWiki\Page\PageIdentity;
+use MediaWiki\Page\ParserOutputAccess;
 use MediaWiki\Page\WikiPage;
-use MediaWiki\Parser\ParserCache;
+use MediaWiki\Parser\ParserOptions;
 use MediaWiki\Parser\ParserOutput;
 use MediaWiki\Parser\ParserOutputFlags;
 use MediaWiki\Revision\RevisionRecord;
@@ -222,7 +223,7 @@ class RefreshLinksJob extends Job {
 		$services = MediaWikiServices::getInstance();
 		$stats = $services->getStatsFactory();
 		$renderer = $services->getRevisionRenderer();
-		$parserCache = $services->getParserCache();
+		$parserOutputAccess = $services->getParserOutputAccess();
 		$lbFactory = $services->getDBLoadBalancerFactory();
 		$ticket = $lbFactory->getEmptyTransactionTicket( __METHOD__ );
 
@@ -272,7 +273,7 @@ class RefreshLinksJob extends Job {
 
 		// Parse during a fresh transaction round for better read consistency
 		$lbFactory->beginPrimaryChanges( __METHOD__ );
-		$output = $this->getParserOutput( $renderer, $parserCache, $page, $stats );
+		$output = $this->getParserOutput( $renderer, $parserOutputAccess, $page, $stats );
 		$options = $this->getDataUpdateOptions();
 		$lbFactory->commitPrimaryChanges( __METHOD__ );
 
@@ -358,14 +359,14 @@ class RefreshLinksJob extends Job {
 	 * Get the parser output if the page is unchanged from what was loaded in $page
 	 *
 	 * @param RevisionRenderer $renderer
-	 * @param ParserCache $parserCache
+	 * @param ParserOutputAccess $parserOutputAccess
 	 * @param WikiPage $page Page already loaded with READ_LATEST
 	 * @param StatsFactory $stats
 	 * @return ParserOutput|null Combined output for all slots; might only contain metadata
 	 */
 	private function getParserOutput(
 		RevisionRenderer $renderer,
-		ParserCache $parserCache,
+		ParserOutputAccess $parserOutputAccess,
 		WikiPage $page,
 		StatsFactory $stats
 	) {
@@ -375,7 +376,15 @@ class RefreshLinksJob extends Job {
 			return null;
 		}
 
-		$cachedOutput = $this->getParserOutputFromCache( $parserCache, $page );
+		$parserOptions = $page->makeParserOptions( 'canonical' );
+
+		// Parsoid can do selective updates, so it is always worth the I/O
+		// to check for a previous parse. For the legacy parser, we only
+		// check the cache if we think it is likely to be up-to-date.
+		$force = $parserOptions->getUseParsoid();
+		$cachedOutput = $this->maybeGetParserOutputFromCache(
+			$parserOptions, $parserOutputAccess, $page, $force
+		);
 		$statsCounter = $stats->getCounter( 'refreshlinks_parsercache_operations_total' );
 
 		if ( $cachedOutput && $this->canUseParserOutputFromCache( $cachedOutput, $revision ) ) {
@@ -388,7 +397,6 @@ class RefreshLinksJob extends Job {
 		}
 
 		$causeAction = $this->params['causeAction'] ?? 'RefreshLinksJob';
-		$parserOptions = $page->makeParserOptions( 'canonical' );
 
 		// T371713: Temporary statistics collection code to determine
 		// feasibility of Parsoid selective update
@@ -396,11 +404,13 @@ class RefreshLinksJob extends Job {
 			MainConfigNames::ParsoidSelectiveUpdateSampleRate
 		);
 		$doSample = $sampleRate && mt_rand( 1, $sampleRate ) === 1;
-		if ( $doSample && $cachedOutput === null ) {
+		if ( $doSample && !$force && $cachedOutput === null ) {
 			// In order to collect accurate statistics, check for
 			// a dirty copy in the cache even if we wouldn't have
 			// to otherwise.
-			$cachedOutput = $parserCache->getDirty( $page, $parserOptions ) ?: null;
+			$cachedOutput = $this->maybeGetParserOutputFromCache(
+				$parserOptions, $parserOutputAccess, $page, force: true
+			);
 		}
 
 		$renderedRevision = $renderer->getRenderedRevision(
@@ -527,31 +537,39 @@ class RefreshLinksJob extends Job {
 	/**
 	 * Get the parser output from cache if it reflects the change that triggered this job
 	 *
-	 * @param ParserCache $parserCache
+	 * @param ParserOptions $parserOptions
+	 * @param ParserOutputAccess $parserOutputAccess
 	 * @param WikiPage $page
+	 * @param bool $force
 	 * @return ParserOutput|null
 	 */
-	private function getParserOutputFromCache(
-		ParserCache $parserCache,
-		WikiPage $page
+	private function maybeGetParserOutputFromCache(
+		ParserOptions $parserOptions,
+		ParserOutputAccess $parserOutputAccess,
+		WikiPage $page,
+		bool $force = false
 	): ?ParserOutput {
-		// Parsoid can do selective updates, so it is always worth the I/O
-		// to check for a previous parse.
-		$parserOptions = $page->makeParserOptions( 'canonical' );
-		if ( $parserOptions->getUseParsoid() ) {
-			return $parserCache->getDirty( $page, $parserOptions ) ?: null;
-		}
-		// If page_touched changed after this root job, then it is likely that
-		// any views of the pages already resulted in re-parses which are now in
-		// cache. The cache can be reused to avoid expensive parsing in some cases.
-		$rootTimestamp = $this->params['rootJobTimestamp'] ?? null;
-		if ( $rootTimestamp !== null ) {
-			$opportunistic = !empty( $this->params['isOpportunistic'] );
-			if ( $page->getTouched() >= $rootTimestamp || $opportunistic ) {
-				// Cache is suspected to be up-to-date so it's worth the I/O of checking.
-				// We call canUseParserOutputFromCache() later to check if it's usable.
-				return $parserCache->getDirty( $page, $parserOptions ) ?: null;
+		$getFromCache = $force;
+
+		if ( !$force ) {
+			// If page_touched changed after this root job, then it is likely that
+			// any views of the pages already resulted in re-parses which are now in
+			// cache. The cache can be reused to avoid expensive parsing in some cases.
+			$rootTimestamp = $this->params['rootJobTimestamp'] ?? null;
+			if ( $rootTimestamp !== null ) {
+				$opportunistic = !empty( $this->params['isOpportunistic'] );
+				if ( $page->getTouched() >= $rootTimestamp || $opportunistic ) {
+					// Cache is suspected to be up-to-date so it's worth the I/O of checking.
+					// We call canUseParserOutputFromCache() later to check if it's usable.
+					$getFromCache = true;
+				}
 			}
+		}
+
+		if ( $getFromCache ) {
+			return $parserOutputAccess->getCachedParserOutput(
+				$page, $parserOptions, null, [ ParserOutputAccess::OPT_ALLOW_STALE => true ]
+			);
 		}
 
 		return null;

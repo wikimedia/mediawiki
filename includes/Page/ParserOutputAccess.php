@@ -115,6 +115,12 @@ class ParserOutputAccess implements LoggerAwareInterface {
 	public const OPT_NO_POSTPROC_CACHE = 256;
 
 	/**
+	 * @var int Retrieve the ParserOutput from the primary cache, even if it's outdated
+	 * @since 1.47
+	 */
+	public const OPT_ALLOW_STALE = 512;
+
+	/**
 	 * Whether to fall back to using stale content when failing to
 	 * get a poolcounter lock.
 	 */
@@ -237,7 +243,7 @@ class ParserOutputAccess implements LoggerAwareInterface {
 		}
 
 		// From the (numerically) smallest to the largest option that can possibly exist
-		for ( $b = self::OPT_NO_CHECK_CACHE; $b <= self::OPT_NO_POSTPROC_CACHE; $b <<= 1 ) {
+		for ( $b = self::OPT_NO_CHECK_CACHE; $b <= self::OPT_ALLOW_STALE; $b <<= 1 ) {
 			$options[$b] = (bool)( $bits & $b );
 		}
 
@@ -320,7 +326,9 @@ class ParserOutputAccess implements LoggerAwareInterface {
 			if ( !$isOld && $this->localCache->hasField( $classCacheKey, $page->getLatest() ) ) {
 				return $this->localCache->getField( $classCacheKey, $page->getLatest() );
 			}
-			$output = $primaryCache->get( $page, $parserOptions );
+			$output = $primaryCache->get(
+				$page, $parserOptions, useOutdated: $options[ self::OPT_ALLOW_STALE ]
+			);
 		} elseif ( $useCache === self::CACHE_SECONDARY && $revision ) {
 			$secondaryCache = $this->getSecondaryCache( $parserOptions );
 			$output = $secondaryCache->get( $revision, $parserOptions );
