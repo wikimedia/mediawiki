@@ -145,14 +145,14 @@ abstract class BundleSizeTestBase extends MediaWikiIntegrationTestCase {
 			$contentTransferSize -= array_sum( self::CORE_SIZE_ADJUSTMENTS );
 			$kilobytes = round( $contentTransferSize / 1024, 1, PHP_ROUND_HALF_UP );
 			if ( $maxSize < $contentTransferSize ) {
-				return "$moduleName should be less than $maxSize bytes (compressed), but is $kilobytes kB";
+				return "$moduleName should be less than $maxSize bytes (compressed), but is $kilobytes kB ($contentTransferSize bytes)";
 			}
 		}
 		if ( $maxSizeUncompressed !== null ) {
 			$contentTransferSizeUncompressed = strlen( $content );
 			$kilobytes = round( $contentTransferSizeUncompressed / 1024, 1, PHP_ROUND_HALF_UP );
 			if ( $maxSizeUncompressed < $contentTransferSizeUncompressed ) {
-				return "$moduleName should be less than $maxSizeUncompressed (uncompressed) bytes, but is $kilobytes kB";
+				return "$moduleName should be less than $maxSizeUncompressed (uncompressed) bytes, but is $kilobytes kB ($contentTransferSizeUncompressed bytes)";
 			}
 		}
 		return null;
