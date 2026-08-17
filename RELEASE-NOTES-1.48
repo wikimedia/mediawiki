@@ -135,6 +135,8 @@ For notes on 1.47.x and older releases, see HISTORY.
   - getOtherPage (deprecated since 1.34)
   - estimateRevisionCount (deprecated since 1.47)
   - isAlwaysKnown (deprecated since 1.47)
+* The hook CategoryViewer__generateLinkHook, deprecated in 1.47, has been
+  removed. Use the hook CategoryViewerGenerateLinkHook instead.
 * …
 
 === Deprecations in 1.48 ===

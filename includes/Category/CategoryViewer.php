@@ -268,8 +268,6 @@ class CategoryViewer extends ContextSource {
 		$link = null;
 		$legacyTitle = MediaWikiServices::getInstance()->getTitleFactory()
 			->newFromPageReference( $page );
-		// @phan-suppress-next-line PhanTypeMismatchArgument Type mismatch on pass-by-ref args
-		$this->getHookRunner()->onCategoryViewer__generateLink( $type, $legacyTitle, $html, $link );
 		$this->getHookRunner()->onCategoryViewerGenerateLink(
 			$this->getContext(), $type, $page, $html, $link
 		);

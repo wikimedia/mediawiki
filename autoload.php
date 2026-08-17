@@ -1596,7 +1596,6 @@ $wgAutoloadLocalClasses = [
 	'MediaWiki\\Hook\\BookInformationHook' => __DIR__ . '/includes/Specials/Hook/BookInformationHook.php',
 	'MediaWiki\\Hook\\CanonicalNamespacesHook' => __DIR__ . '/includes/Title/Hook/CanonicalNamespacesHook.php',
 	'MediaWiki\\Hook\\CategoryViewer__doCategoryQueryHook' => __DIR__ . '/includes/Hook/CategoryViewer__doCategoryQueryHook.php',
-	'MediaWiki\\Hook\\CategoryViewer__generateLinkHook' => __DIR__ . '/includes/Hook/CategoryViewer__generateLinkHook.php',
 	'MediaWiki\\Hook\\ChangeUserGroupsHook' => __DIR__ . '/includes/Specials/Hook/ChangeUserGroupsHook.php',
 	'MediaWiki\\Hook\\ChangesListInitRowsHook' => __DIR__ . '/includes/RecentChanges/Hook/ChangesListInitRowsHook.php',
 	'MediaWiki\\Hook\\ChangesListInsertArticleLinkHook' => __DIR__ . '/includes/RecentChanges/Hook/ChangesListInsertArticleLinkHook.php',

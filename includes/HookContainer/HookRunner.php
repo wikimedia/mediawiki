@@ -156,7 +156,6 @@ class HookRunner implements
 	\MediaWiki\Hook\BadImageHook,
 	\MediaWiki\Hook\BeforeInitializeHook,
 	\MediaWiki\Hook\CategoryViewer__doCategoryQueryHook,
-	\MediaWiki\Hook\CategoryViewer__generateLinkHook,
 	\MediaWiki\Hook\ContentSecurityPolicyDefaultSourceHook,
 	\MediaWiki\Hook\ContentSecurityPolicyDirectivesHook,
 	\MediaWiki\Hook\ContentSecurityPolicyScriptSourceHook,
@@ -1182,14 +1181,6 @@ class HookRunner implements
 		return $this->container->run(
 			'CategoryViewer::doCategoryQuery',
 			[ $type, $res ]
-		);
-	}
-
-	/** @inheritDoc */
-	public function onCategoryViewer__generateLink( $type, $title, $html, &$link ) {
-		return $this->container->run(
-			'CategoryViewer::generateLink',
-			[ $type, $title, $html, &$link ]
 		);
 	}
 
