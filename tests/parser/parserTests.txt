@@ -10589,3 +10589,14 @@ wgReturnExperimentalPFragmentTypes=[ "ExtTagPFragment" ]
 !! html/parsoid+integrated
 <p><span data-mw='{"name":"spantag","attrs":{},"body":{"extsrc":"outer {{#parsoid\u0000fragment}}"},"parts":[{"template":{"target":{"wt":"#tag:spantag","function":"tag"},"params":{"1":{"wt":"outer &lt;spantag>inner&lt;/spantag>"}},"i":0}}]}' typeof="mw:Extension/spantag mw:Transclusion">outer <span data-mw='{"name":"spantag","attrs":{},"body":{"extsrc":"inner"}}' typeof="mw:Extension/spantag">inner</span></span></p>
 !! end
+
+!! test
+Nested nowiki tag using the #tag parser function
+!! wikitext
+{{#tag:nowiki|<nowiki>hi</nowiki>}}
+!! html/php
+<p>hi
+</p>
+!! html/parsoid+integrated
+<p><span data-mw='{"parts":[{"template":{"target":{"wt":"#tag:nowiki","function":"tag"},"params":{"1":{"wt":"&lt;nowiki>hi&lt;/nowiki>"}},"i":0}}]}' typeof="mw:Nowiki mw:Transclusion">hi</span></p>
+!! end

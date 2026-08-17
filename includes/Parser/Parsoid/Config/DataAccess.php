@@ -568,7 +568,7 @@ class DataAccess extends IDataAccess {
 					if ( $extra !== null ) {
 						$content = Html::rawElement( 'span', [
 							'typeof' => 'mw:Nowiki',
-						], $content );
+						], $parser->getStripState()->unstripNoWiki( $content ) );
 					}
 					$pieces[$i] = $content ? HtmlPFragment::newFromHtmlString( $content, null ) : '';
 				} elseif ( $type === 'exttag' && $useExtTagPFragments ) {
