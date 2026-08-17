@@ -55,7 +55,6 @@ class MessageParserTest extends MediaWikiIntegrationTestCase {
 			],
 			'expectCalls' => 1,
 			'expectPagemap' => [ [ 'Foo', 'Bar' ] ],
-			'expectColours' => [ [ 'Foo', 'Bar' ] ],
 			'expectHtml' => '/class="test-class-Foo".*class="test-class-Bar"/',
 		];
 		yield 'links with language variant' => [
@@ -67,7 +66,6 @@ class MessageParserTest extends MediaWikiIntegrationTestCase {
 			],
 			'expectCalls' => 2,
 			'expectPagemap' => [ [ 'Foo', 'Bar' ], [ 'Uxquay' ] ],
-			'expectColours' => [ [ 'Foo', 'Bar' ], [ 'Foo', 'Bar', 'Uxquay' ] ],
 			'expectHtml' => '/class="test-class-Foo".*class="test-class-Uxquay"/',
 		];
 	}
@@ -79,7 +77,6 @@ class MessageParserTest extends MediaWikiIntegrationTestCase {
 		array $config,
 		int $expectCalls,
 		array $expectPagemap,
-		array $expectColours,
 		string $expectHtml
 	) {
 		$this->overrideConfigValues( $config );
@@ -90,13 +87,11 @@ class MessageParserTest extends MediaWikiIntegrationTestCase {
 
 		$hookCalls = 0;
 		$pagemapArg = [];
-		$coloursArg = [];
 		$this->setTemporaryHook(
 			'GetLinkColours',
-			static function ( $pagemap, &$colours ) use ( &$hookCalls, &$pagemapArg, &$coloursArg ) {
+			static function ( $pagemap, &$colours ) use ( &$hookCalls, &$pagemapArg ) {
 				$hookCalls++;
 				$pagemapArg[] = array_values( $pagemap );
-				$coloursArg[] = array_keys( $colours );
 				foreach ( $pagemap as $id => $pdbk ) {
 					$colours[$pdbk] = 'test-class-' . $pdbk;
 				}
@@ -109,7 +104,6 @@ class MessageParserTest extends MediaWikiIntegrationTestCase {
 			->getContentHolderText();
 
 		$this->assertSame( $expectPagemap, $pagemapArg, 'Pagemap arg' );
-		$this->assertSame( $expectColours, $coloursArg, 'Colours arg' );
 		$this->assertSame( $expectCalls, $hookCalls );
 		$this->assertMatchesRegularExpression( $expectHtml, $result );
 	}
