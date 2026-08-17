@@ -116,18 +116,21 @@ class ApiMain extends ApiBase {
 			'class' => ApiRemoveAuthenticationData::class,
 			'services' => [
 				'AuthManager',
+				'SessionManager',
 			],
 		],
 		'changeauthenticationdata' => [
 			'class' => ApiChangeAuthenticationData::class,
 			'services' => [
 				'AuthManager',
+				'SessionManager',
 			],
 		],
 		'removeauthenticationdata' => [
 			'class' => ApiRemoveAuthenticationData::class,
 			'services' => [
 				'AuthManager',
+				'SessionManager',
 			],
 		],
 		'resetpassword' => [

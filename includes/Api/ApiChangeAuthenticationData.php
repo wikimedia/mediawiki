@@ -10,6 +10,7 @@ namespace MediaWiki\Api;
 
 use MediaWiki\Auth\AuthManager;
 use MediaWiki\MainConfigNames;
+use MediaWiki\Session\SessionManager;
 
 /**
  * Change authentication data with AuthManager
@@ -22,6 +23,7 @@ class ApiChangeAuthenticationData extends ApiBase {
 		ApiMain $main,
 		string $action,
 		private readonly AuthManager $authManager,
+		private readonly SessionManager $sessionManager,
 	) {
 		parent::__construct( $main, $action, 'changeauth' );
 	}
@@ -55,6 +57,13 @@ class ApiChangeAuthenticationData extends ApiBase {
 			$this->dieStatus( $status );
 		}
 		$this->authManager->changeAuthenticationData( $req );
+
+		// change user token and update the session
+		$session = $this->getRequest()->getSession();
+		$user = $this->getUser();
+		$this->sessionManager->invalidateSessionsForUser( $user );
+		$session->setUser( $user );
+		$session->resetId();
 
 		$this->getResult()->addValue( null, 'changeauthenticationdata', [ 'status' => 'success' ] );
 	}

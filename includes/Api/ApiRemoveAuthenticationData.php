@@ -11,6 +11,7 @@ namespace MediaWiki\Api;
 use MediaWiki\Auth\AuthenticationRequest;
 use MediaWiki\Auth\AuthManager;
 use MediaWiki\MainConfigNames;
+use MediaWiki\Session\SessionManager;
 
 /**
  * Remove authentication data from AuthManager
@@ -27,7 +28,8 @@ class ApiRemoveAuthenticationData extends ApiBase {
 	public function __construct(
 		ApiMain $main,
 		string $action,
-		private readonly AuthManager $authManager
+		private readonly AuthManager $authManager,
+		private readonly SessionManager $sessionManager,
 	) {
 		parent::__construct( $main, $action );
 
@@ -77,6 +79,14 @@ class ApiRemoveAuthenticationData extends ApiBase {
 			$this->dieStatus( $status );
 		}
 		$this->authManager->changeAuthenticationData( $req );
+
+		// Reset sessions - if the user removed a credential or unlinked an account
+		// because it was compromised, log attackers out from sessions obtained that way.
+		$session = $this->getRequest()->getSession();
+		$user = $this->getUser();
+		$this->sessionManager->invalidateSessionsForUser( $user );
+		$session->setUser( $user );
+		$session->resetId();
 
 		$this->getResult()->addValue( null, $this->getModuleName(), [ 'status' => 'success' ] );
 	}
