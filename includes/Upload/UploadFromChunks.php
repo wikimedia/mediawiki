@@ -105,7 +105,7 @@ class UploadFromChunks extends UploadFromFile {
 		$this->mFileKey = $this->mStashFile->getFileKey();
 		$this->mVirtualTempPath = $this->mStashFile->getPath();
 
-		$this->outputChunk( $this->mStashFile->getPath() );
+		$this->storeChunk( $this->mStashFile->getPath() );
 		$this->updateChunkStatus();
 
 		return $this->mStashFile;
@@ -329,7 +329,7 @@ class UploadFromChunks extends UploadFromFile {
 					return Status::newFatal( $e->msg );
 				}
 				try {
-					$status = $this->outputChunk( $chunkPath );
+					$status = $this->storeChunk( $chunkPath );
 				} catch ( UploadChunkFileException $uploadChunkFileException ) {
 					$status = Status::newFatal( $uploadChunkFileException->getMessage() );
 				}
@@ -407,13 +407,11 @@ class UploadFromChunks extends UploadFromFile {
 	}
 
 	/**
-	 * Store the chunk
-	 *
 	 * @param string $chunkPath
 	 * @throws UploadChunkFileException
 	 * @return Status
 	 */
-	private function outputChunk( $chunkPath ) {
+	private function storeChunk( $chunkPath ) {
 		// Key is fileKey + chunk index
 		$fileKey = $this->getChunkFileKey();
 
