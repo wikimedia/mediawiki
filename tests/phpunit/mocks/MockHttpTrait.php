@@ -184,7 +184,12 @@ trait MockHttpTrait {
 		$mockHttpRequest->method( 'getResponseHeaders' )->willReturn( $headers );
 		$mockHttpRequest->method( 'getResponseHeader' )->willReturnCallback(
 			static function ( $name ) use ( $headers ) {
-				return $headers[$name] ?? null;
+				foreach ( $headers as $headerName => $value ) {
+					if ( strtolower( $headerName ) === $name ) {
+						return $value;
+					}
+				}
+				return null;
 			}
 		);
 

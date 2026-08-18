@@ -1645,6 +1645,17 @@ abstract class FileBackend implements LoggerAwareInterface {
 	}
 
 	/**
+	 * Get the file name from a storage path
+	 *
+	 * @since 1.47
+	 */
+	final public static function fileNameFromPath( string $path ): string {
+		$slashPos = strrpos( $path, '/' );
+		$fileName = $slashPos === false ? $path : substr( $path, $slashPos + 1 );
+		return rawurldecode( $fileName );
+	}
+
+	/**
 	 * Check if a relative path has no directory traversals
 	 *
 	 * @param string $path
