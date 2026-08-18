@@ -51,7 +51,7 @@ class ApiEmailUser extends ApiBase {
 		}
 
 		// Check permissions and errors
-		$error = $emailUser->canSend();
+		$error = $emailUser->authorizeSend();
 
 		if ( !$error->isGood() ) {
 			$this->dieStatus( $error );
