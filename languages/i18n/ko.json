@@ -1342,6 +1342,8 @@
 	"upload-progress-queued": "다운로드가 시작되기를 기다리고 있습니다. 다시 확인하려면 새로 고침 버튼을 눌러 주십시오.",
 	"upload-progress-downloading": "파일을 다운로드하는 중입니다. 다시 확인하시려면 새로 고침 버튼을 눌러 주십시오.",
 	"upload-progress-processing": "파일을 처리하는 중입니다. 다시 확인하시려면 새로 고침 버튼을 눌러 주십시오.",
+	"upload-progress-publishing": "파일 게시 중…",
+	"upload-progressbar-label": "업로드 진척도",
 	"upload-tryagain": "수정된 파일 설명을 저장",
 	"upload-tryagain-nostash": "다시 업로드된 파일과 수정된 내용 제출",
 	"upload-stash-error": "저장장치 오류 보고하기: $1",

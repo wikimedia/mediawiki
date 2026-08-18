@@ -20,7 +20,7 @@
 	"interwiki-trans-label": "إدراج",
 	"interwiki_trans_1_intro": "إلا تستعملات صيغة الويكي تكست <code>{<nowiki />{prefix:<em>pagename</em>}}</code>، يسمح بجلب القالب/الصفحة من الويكي البراني إلا كانت الترانسكلوجن الإنترويكي مفعّله بصفه عامّه ([https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgEnableScaryTranscluding scary transclusion]).",
 	"interwiki_trans_0_intro": "ما تسمحش لـ <code>{<nowiki />{prefix:<em>pagename</em>}}</code> يجلب قوالب/صفحات برانيه، بلاصتها قلّب على صفحه محليه في نيمسبايس القوالب.",
-	"interwiki_1": "واه",
+	"interwiki_1": "إيه",
 	"interwiki_0": "لا",
 	"interwiki_error": "غلط: جدول الوصلات بين الويكيات راهو فارغ، ولا صرا مشكل آخر.",
 	"interwiki-cached": "البيانات تاع الإنترويكي محفوظه في الكاش. ما ينجمش تتبدل هاذ الكاش.",

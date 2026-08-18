@@ -1314,6 +1314,8 @@
 	"upload-progress-queued": "Odotetaan latauksen alkamista. Paina päivitysnappia tarkistaaksesi tilanteen uudelleen.",
 	"upload-progress-downloading": "Ladataan tiedostoa. Paina päivitysnappia tarkistaaksesi tilanteen uudelleen.",
 	"upload-progress-processing": "Käsitellään tiedostoa. Paina päivitysnappia tarkistaaksesi tilanteen uudelleen.",
+	"upload-progress-publishing": "Julkaistaan tiedostoa…",
+	"upload-progressbar-label": "Tallennuksen edistyminen",
 	"upload-tryagain": "Lähetä muutettu tiedostokuvaus",
 	"upload-tryagain-nostash": "Lähetä uudelleenlähetetty tiedosto ja muokattu kuvaus",
 	"upload-stash-error": "Latausmuistivirhe: $1",
