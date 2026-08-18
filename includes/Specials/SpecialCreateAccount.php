@@ -8,9 +8,11 @@ namespace MediaWiki\Specials;
 
 use MediaWiki\Auth\AuthManager;
 use MediaWiki\Exception\ErrorPageError;
+use MediaWiki\Html\Html;
 use MediaWiki\Language\FormatterFactory;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\SpecialPage\LoginSignupSpecialPage;
+use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Title\Title;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityUtils;
@@ -101,6 +103,64 @@ class SpecialCreateAccount extends LoginSignupSpecialPage {
 	/** @inheritDoc */
 	protected function isSignup() {
 		return true;
+	}
+
+	/**
+	 * Whether the create account form should display a link to the login form
+	 * (in addition to whatever the skin provides).
+	 *
+	 * Hidden by default; revealed by passing the showlogin=1 query parameter.
+	 *
+	 * @return bool
+	 */
+	private function showLoginLink() {
+		return $this->getRequest()->getBool( 'showlogin' );
+	}
+
+	/** @inheritDoc */
+	protected function getFieldDefinitions( array $fieldInfo, array $requests ) {
+		$fieldDefinitions = parent::getFieldDefinitions( $fieldInfo, $requests );
+
+		// Mirror the login form's "create account" link with a link back to the
+		// login form. Gated on showExtraInformation() like the reverse link, so it
+		// is suppressed during continue/redirect steps.
+		if ( $this->showExtraInformation() && $this->showLoginLink() ) {
+			$linkq = wfArrayToCgi( $this->getPreservedParams( [ 'reset' => true ] ) );
+			$fieldDefinitions['login'] = [
+				'type' => 'info',
+				'raw' => true,
+				'cssclass' => 'mw-form-related-link-container',
+				'linkQuery' => $linkq,
+				'default' => function ( $params ) {
+					// Progressive Codex button (normal weight) rendered as a link.
+					$buttonClasses = 'cdx-button cdx-button--weight-normal '
+						. 'cdx-button--action-progressive '
+						. 'cdx-button--fake-button cdx-button--fake-button--enabled';
+					return Html::rawElement( 'div',
+						[ 'id' => 'mw-createaccount-login' ],
+						Html::element( 'h3',
+							[ 'id' => 'mw-createaccount-login-heading' ],
+							$this->msg( 'userlogin-haveaccount' )->text()
+						)
+						. Html::element( 'a',
+							[
+								'id' => 'mw-createaccount-login-join',
+								'href' => SpecialPage::getTitleFor( 'Userlogin' )
+									->getLocalURL( $params['linkQuery'] ),
+								'class' => 'mw-authentication-popup-link ' . $buttonClasses,
+								'target' => '_self',
+								'tabindex' => 100,
+							],
+							$this->msg( 'login' )->text()
+						)
+					);
+				},
+				// Should appear at end.
+				'weight' => 1000,
+			];
+		}
+
+		return $fieldDefinitions;
 	}
 
 	/**

@@ -341,6 +341,7 @@
 	"notloggedin": "Not logged in",
 	"userlogin-noaccount": "Don't have an account?",
 	"userlogin-joinproject": "Join {{SITENAME}}",
+	"userlogin-haveaccount": "Already have an account?",
 	"createaccount": "Create account",
 	"userlogin-resetpassword-link": "Forgot your password?",
 	"userlogin-helplink2": "Help with logging in",
