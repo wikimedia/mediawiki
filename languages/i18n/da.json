@@ -3716,7 +3716,7 @@
 	"limitreport-unstrip-size-value": "$1/$2 {{PLURAL:$2|byte|bytes}}",
 	"expandtemplates": "Udfold skabeloner",
 	"expand_templates_intro": "Denne specialside tager en wikitekst og udfolder alle benyttede skabeloner rekursivt.\nDen udfolder også understøttede parserfunktioner så som\n<code><nowiki>{{</nowiki>#language:…}}</code> og variabler så som \n<code><nowiki>{{</nowiki>CURRENTDAY}}</code>\nFaktisk udfolder den stort set alt i dobbelte tuborgklammer.",
-	"expand_templates_title": "Sammenhængstitel, for {{FULLPAGENAME}} osv.:",
+	"expand_templates_title": "Konteksttitel, for {{FULLPAGENAME}} osv.:",
 	"expand_templates_input": "Indtast wikitekst:",
 	"expand_templates_output": "Resultat",
 	"expand_templates_xml_output": "XML-resultat",
