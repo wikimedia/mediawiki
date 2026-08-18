@@ -1169,7 +1169,7 @@ class HookRunner implements
 		IContextSource $context,
 		string $type,
 		PageReference $page,
-		string $html,
+		?string $html,
 		?string &$link,
 	) {
 		$this->container->run(
