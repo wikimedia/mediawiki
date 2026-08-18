@@ -844,12 +844,4 @@ class SiteConfig extends ISiteConfig {
 		MWDebug::clearDeprecationFilters();
 	}
 
-	/** @inheritDoc */
-	public function tagNeedsNowikiStrippedInTagPF( string $lowerTagName ): bool {
-		// FIXME: Temporarily call until the parent does it
-		$this->getExtConfig();
-
-		return parent::tagNeedsNowikiStrippedInTagPF( $lowerTagName );
-	}
-
 }
