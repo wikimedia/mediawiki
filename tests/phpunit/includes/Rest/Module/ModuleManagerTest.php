@@ -147,7 +147,7 @@ class ModuleManagerTest extends MediaWikiIntegrationTestCase {
 		yield 'mw-extra' => [
 			'mw-extra',
 			[
-				'group' => '',
+				'groups' => [],
 				'url' => '/rest/specs/v0/module/-',
 				'name' => 'MediaWiki REST API (routes not in modules)',
 			]
@@ -156,7 +156,7 @@ class ModuleManagerTest extends MediaWikiIntegrationTestCase {
 		yield 'mockExternal/v1' => [
 			'mockExternal/v1',
 			[
-				'group' => '',
+				'groups' => [],
 				'url' => 'https://example.com/mockExternal/v1/spec.json',
 				'name' => 'Mock External Module',
 			]
@@ -166,7 +166,7 @@ class ModuleManagerTest extends MediaWikiIntegrationTestCase {
 		yield 'mock.v1-invalid.json' => [
 			'mock.v1-invalid.json',
 			[
-				'group' => '',
+				'groups' => [],
 				'url' => '/rest/specs/v0/module/mock/v1-invalid',
 				'name' => 'Mock Module (Invalid)',
 			]

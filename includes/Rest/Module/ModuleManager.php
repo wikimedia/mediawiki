@@ -287,7 +287,7 @@ class ModuleManager {
 		$specs = array_merge( $coreSpecs, $extensionSpecs, $externalModules, $rssSpecs );
 		foreach ( $specs as $key => &$spec ) {
 			unset( $spec['mode'] );
-			$spec['group'] = $spec['params']['group'] ?? '';
+			$spec['groups'] = $spec['params']['groups'] ?? [];
 			unset( $spec['params'] );
 		}
 		unset( $spec );

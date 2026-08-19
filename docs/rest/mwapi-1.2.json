@@ -29,14 +29,32 @@
 	},
 	"definitions": {
 		"Info": {
-			"allOf": [
-				{ "$ref": "https://spec.openapis.org/oas/3.0/schema/2021-09-28#/definitions/Info" },
-				{ "$ref": "#/definitions/ExtraInfo" }
-			]
-		},
-		"ExtraInfo": {
 			"type": "object",
+			"required": [ "title", "version" ],
 			"properties": {
+				"title": {
+					"description": "The title of the application.",
+					"type": "string"
+				},
+				"description": {
+					"description": "A short description of the application.",
+					"type": "string"
+				},
+				"termsOfService": {
+					"description": "A URL to the Terms of Service for the API.",
+					"type": "string",
+					"format": "uri-reference"
+				},
+				"contact": {
+					"$ref": "https://spec.openapis.org/oas/3.0/schema/2021-09-28#/definitions/Contact"
+				},
+				"license": {
+					"$ref": "https://spec.openapis.org/oas/3.0/schema/2021-09-28#/definitions/License"
+				},
+				"version": {
+					"description": "The version of the OpenAPI document.",
+					"type": "string"
+				},
 				"deprecationSettings": {
 					"$ref": "#/definitions/DeprecationSettings"
 				},
@@ -47,7 +65,8 @@
 					},
 					"description": "The audience designation groups of this module."
 				}
-			}
+			},
+			"additionalProperties": true
 		},
 		"Path": {
 			"title": "REST API Path",
