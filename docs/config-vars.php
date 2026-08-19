@@ -4360,6 +4360,12 @@ $wgHTTPMaxConnectTimeout = null;
 $wgHTTPImportTimeout = null;
 
 /**
+ * Config variable stub for the HTTPUserAgentContact setting, for use by phpdoc and IDEs.
+ * @see MediaWiki\MainConfigSchema::HTTPUserAgentContact
+ */
+$wgHTTPUserAgentContact = null;
+
+/**
  * Config variable stub for the AsyncHTTPTimeout setting, for use by phpdoc and IDEs.
  * @see MediaWiki\MainConfigSchema::AsyncHTTPTimeout
  */
