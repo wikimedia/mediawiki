@@ -175,6 +175,7 @@ $magicWords = [
 	'displaytitle'              => [ '1', 'عرض_العنوان', 'DISPLAYTITLE' ],
 	'displaytitle_noerror'      => [ '0', 'لا_خطأ', 'noerror' ],
 	'displaytitle_noreplace'    => [ '0', 'لااستبدال', 'noreplace' ],
+	'expectshortpage'           => [ '1', '__توقع_صفحة_قصيرة__', '__EXPECTSHORTPAGE__', ],
 	'expectunusedcategory'      => [ '1', '__توقع_تصنيف_غير_مستخدم__', '__EXPECTUNUSEDCATEGORY__', ],
 	'expectunusedtemplate'      => [ '1', '__توقع_قالب_غير_مستخدم__', '__EXPECTUNUSEDTEMPLATE__', ],
 	'filepath'                  => [ '0', 'مسار_الملف:', 'FILEPATH:' ],
