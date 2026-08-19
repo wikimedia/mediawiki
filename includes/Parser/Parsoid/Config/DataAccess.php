@@ -435,17 +435,6 @@ class DataAccess extends IDataAccess {
 	}
 
 	/** @inheritDoc */
-	public function parseWikitext(
-		IPageConfig $pageConfig,
-		ContentMetadataCollector $metadata,
-		string $wikitext,
-	): string {
-		return $this->parseWikitextWithTitle(
-			$pageConfig, $metadata, $wikitext, null
-		);
-	}
-
-	/** @inheritDoc */
 	public function parseWikitextWithTitle(
 		IPageConfig $pageConfig,
 		ContentMetadataCollector $metadata,
