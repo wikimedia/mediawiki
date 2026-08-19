@@ -41,6 +41,12 @@ For notes on 1.46.x and older releases, see HISTORY.
 * (T410654) Added $wgRestrictUserPageEditing, which prevents users from editing
   other users' pages and is disabled by default. Users with the new
   'editalluserpages' right are exempt. By default, no group has the right.
+* (T422686) Added $wgHTTPUserAgentContact, which is enabled by default and adds
+  $wgCanonicalServer as contact URL in the default user agent string. You may
+  want to change this on intranet wikis or large wiki farms to a fixed public
+  homepage or email address.
+  If you currently set the 'userAgent' option in ForeignAPIRepo for
+  $wgForeignFileRepos, you may want to set $wgHTTPUserAgentContact instead.
 * $wgRestModuleOverrides - (T422756) Defaults to `[]`, allows overriding the
   default behavior mode of REST modules. See MediaWiki\Rest\Module\ModuleMode
   for details on available modes.

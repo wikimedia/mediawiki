@@ -25,6 +25,7 @@ class NullHttpRequestFactory extends HttpRequestFactory {
 			MainConfigNames::HTTPConnectTimeout => 1,
 			MainConfigNames::HTTPMaxTimeout => 2,
 			MainConfigNames::HTTPMaxConnectTimeout => 2,
+			MainConfigNames::HTTPUserAgentContact => 'https://contact.test',
 			MainConfigNames::LocalVirtualHosts => [],
 			MainConfigNames::LocalHTTPProxy => false,
 			]

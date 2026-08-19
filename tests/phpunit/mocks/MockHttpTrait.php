@@ -77,6 +77,7 @@ trait MockHttpTrait {
 			MainConfigNames::HTTPConnectTimeout => 1,
 			MainConfigNames::HTTPMaxTimeout => 1,
 			MainConfigNames::HTTPMaxConnectTimeout => 1,
+			MainConfigNames::HTTPUserAgentContact => 'https://contact.test',
 			MainConfigNames::LocalVirtualHosts => [],
 			MainConfigNames::LocalHTTPProxy => false,
 		] );

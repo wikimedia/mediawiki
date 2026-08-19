@@ -4475,6 +4475,12 @@ class MainConfigNames {
 	public const HTTPImportTimeout = 'HTTPImportTimeout';
 
 	/**
+	 * Name constant for the HTTPUserAgentContact setting, for use with Config::get()
+	 * @see MainConfigSchema::HTTPUserAgentContact
+	 */
+	public const HTTPUserAgentContact = 'HTTPUserAgentContact';
+
+	/**
 	 * Name constant for the AsyncHTTPTimeout setting, for use with Config::get()
 	 * @see MainConfigSchema::AsyncHTTPTimeout
 	 */

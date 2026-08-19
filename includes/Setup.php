@@ -385,6 +385,9 @@ if ( $wgServer === false ) {
 if ( $wgCanonicalServer === false ) {
 	$wgCanonicalServer = MediaWikiServices::getInstance()->getUrlUtils()->getCanonicalServer();
 }
+if ( $wgHTTPUserAgentContact === false ) {
+	$wgHTTPUserAgentContact = $wgCanonicalServer;
+}
 
 if ( $wgServerName !== false ) {
 	wfWarn( '$wgServerName should be derived from $wgCanonicalServer, '

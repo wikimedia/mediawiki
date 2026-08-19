@@ -28,6 +28,7 @@ class HttpRequestFactory {
 		MainConfigNames::HTTPConnectTimeout,
 		MainConfigNames::HTTPMaxTimeout,
 		MainConfigNames::HTTPMaxConnectTimeout,
+		MainConfigNames::HTTPUserAgentContact,
 		MainConfigNames::LocalVirtualHosts,
 		MainConfigNames::LocalHTTPProxy,
 	];
@@ -62,7 +63,7 @@ class HttpRequestFactory {
 	 *                         Note: this should only be used when the target URL is trusted,
 	 *                         to avoid attacks on intranet services accessible by HTTP.
 	 *   - userAgent           A user agent, if you want to override the default
-	 *                         "MediaWiki/{MW_VERSION}".
+	 *                         "MediaWiki/{MW_VERSION} ({CONTACT_URL})".
 	 *   - logger              A \Psr\Logger\LoggerInterface instance for debug logging
 	 *   - username            Username for HTTP Basic Authentication
 	 *   - password            Password for HTTP Basic Authentication
@@ -191,10 +192,14 @@ class HttpRequestFactory {
 	}
 
 	/**
+	 * @see $wgHTTPUserAgentContact
 	 * @return string
 	 */
 	public function getUserAgent() {
-		return 'MediaWiki/' . MW_VERSION;
+		// T245170: Also applied to MultiHttpClient.
+		// T400881, T422686: Also applied to ForeignAPIRepo, and others.
+		$contact = $this->options->get( MainConfigNames::HTTPUserAgentContact );
+		return 'MediaWiki/' . MW_VERSION . " ($contact)";
 	}
 
 	/**

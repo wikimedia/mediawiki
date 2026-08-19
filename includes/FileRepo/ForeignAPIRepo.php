@@ -485,11 +485,10 @@ class ForeignAPIRepo extends FileRepo implements IForeignRepoWithMWApi {
 	 * @return string
 	 */
 	public function getUserAgent() {
-		$mediaWikiVersion = MediaWikiServices::getInstance()->getHttpRequestFactory()->getUserAgent();
+		$mediaWikiUA = MediaWikiServices::getInstance()->getHttpRequestFactory()->getUserAgent();
 		$classVersion = self::VERSION;
-		$contactUrl = MediaWikiServices::getInstance()->getUrlUtils()->getCanonicalServer();
 		$extra = $this->userAgent !== null ? ' ' . $this->userAgent : '';
-		return "$mediaWikiVersion ($contactUrl) ForeignAPIRepo/$classVersion" . $extra;
+		return "$mediaWikiUA ForeignAPIRepo/$classVersion" . $extra;
 	}
 
 	/**
