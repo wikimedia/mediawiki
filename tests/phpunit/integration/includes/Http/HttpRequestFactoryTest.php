@@ -28,6 +28,7 @@ class HttpRequestFactoryTest extends MediaWikiIntegrationTestCase {
 			];
 		}
 		$options += [
+			MainConfigNames::HTTPUserAgentContact => 'https://contact.test',
 			MainConfigNames::LocalVirtualHosts => [],
 			MainConfigNames::LocalHTTPProxy => false,
 		];
@@ -285,6 +286,7 @@ class HttpRequestFactoryTest extends MediaWikiIntegrationTestCase {
 				MainConfigNames::HTTPConnectTimeout => 1,
 				MainConfigNames::HTTPMaxTimeout => INF,
 				MainConfigNames::HTTPMaxConnectTimeout => INF,
+				MainConfigNames::HTTPUserAgentContact => 'https://contact.test',
 				MainConfigNames::LocalVirtualHosts => [],
 				MainConfigNames::LocalHTTPProxy => false,
 			] ),

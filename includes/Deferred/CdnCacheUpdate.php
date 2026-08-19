@@ -276,6 +276,7 @@ class CdnCacheUpdate implements DeferrableUpdate, MergeableUpdate {
 	private static function naivePurge( array $urls ) {
 		$cdnServers = MediaWikiServices::getInstance()->getMainConfig()->get( MainConfigNames::CdnServers );
 		$urlUtils = MediaWikiServices::getInstance()->getUrlUtils();
+		$httpFactory = MediaWikiServices::getInstance()->getHttpRequestFactory();
 
 		$reqs = [];
 		foreach ( $urls as $url ) {
@@ -291,7 +292,7 @@ class CdnCacheUpdate implements DeferrableUpdate, MergeableUpdate {
 					'Host' => $urlHost,
 					'Connection' => 'Keep-Alive',
 					'Proxy-Connection' => 'Keep-Alive',
-					'User-Agent' => 'MediaWiki/' . MW_VERSION . ' ' . __CLASS__
+					'User-Agent' => $httpFactory->getUserAgent() . ' CdnCacheUpdate'
 				]
 			];
 			foreach ( $cdnServers as $server ) {
@@ -299,8 +300,7 @@ class CdnCacheUpdate implements DeferrableUpdate, MergeableUpdate {
 			}
 		}
 
-		$http = MediaWikiServices::getInstance()->getHttpRequestFactory()
-			->createMultiClient( [ 'maxConnsPerHost' => 8, 'usePipelining' => true ] );
+		$http = $httpFactory->createMultiClient( [ 'maxConnsPerHost' => 8, 'usePipelining' => true ] );
 		$http->runMulti( $reqs );
 	}
 
