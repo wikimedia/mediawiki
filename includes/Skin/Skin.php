@@ -577,16 +577,6 @@ abstract class Skin extends ContextSource {
 			}
 		}
 
-		// Preload for self::getCategoryLinks
-		$allCats = $this->getOutput()->getCategoryLinks();
-		if ( isset( $allCats['normal'] ) && $allCats['normal'] !== [] ) {
-			$catLink = Title::newFromText( $this->msg( 'pagecategorieslink' )->inContentLanguage()->text() );
-			if ( $catLink ) {
-				// If this is a special page, the LinkBatch would skip it
-				$titles[] = $catLink;
-			}
-		}
-
 		$this->getHookRunner()->onSkinPreloadExistence( $titles, $this );
 
 		if ( $titles ) {
@@ -779,10 +769,11 @@ abstract class Skin extends ContextSource {
 			$t = $embed . implode( $pop . $embed, $allCats['normal'] ) . $pop;
 
 			$msg = $this->msg( 'pagecategories' )->numParams( count( $allCats['normal'] ) );
-			$linkPage = $this->msg( 'pagecategorieslink' )->inContentLanguage()->text();
+			$linkPage = $this->msg( 'pagecategorieslink' )->inContentLanguage()->plain();
 			$pageCategoriesLinkTitle = Title::newFromText( $linkPage );
 			if ( $pageCategoriesLinkTitle ) {
-				$link = $linkRenderer->makeLink( $pageCategoriesLinkTitle, $msg->text() );
+				// Optimization: No DB lookup for pagecategorieslink (T347123)
+				$link = $linkRenderer->makePreloadedLink( $pageCategoriesLinkTitle, $msg->text() );
 			} else {
 				$link = $msg->escaped();
 			}
