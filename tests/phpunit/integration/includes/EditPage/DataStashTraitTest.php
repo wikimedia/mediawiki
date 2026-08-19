@@ -241,6 +241,20 @@ class DataStashTraitTest extends MediaWikiIntegrationTestCase {
 		$this->assertNotSame( '', $url, 'a redirect was issued' );
 		$this->assertStringContainsString( 'force=edit', $url );
 		$this->assertStringContainsString( 'requestUniqueId', $url );
+		$this->assertStringNotContainsString( 'reauthSubaction', $url );
+	}
+
+	public function testDoReauthRedirectIncludesSubactionWhenPassed() {
+		$context = $this->newContext( new FauxRequest( [], false, $this->newSession() ) );
+		[ , $wrapper ] = $this->newStasher( $context );
+
+		$status = $this->createMock( PermissionStatus::class );
+		$status->method( 'getReauthOperation' )->willReturn( 'editsitejscss' );
+
+		$wrapper->doReauthRedirect( $status, [ 'title' => self::TITLE ], 'undelete' );
+
+		$url = $context->getOutput()->getRedirect();
+		$this->assertStringContainsString( 'reauthSubaction=undelete', $url );
 	}
 
 	public function testGetReauthLockButtonAttribsReturnsLockIconAndLoadsStyles() {

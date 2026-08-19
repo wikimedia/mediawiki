@@ -655,7 +655,13 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 		if ( $this->getUser()->isNamed() && !$this->isContinued() ) {
 			if ( !$this->isSignup() && $this->securityLevel ) {
 				$securityLevelLower = strtolower( $this->securityLevel );
-				if ( $this->msg( "userlogin-reauth-banner-$securityLevelLower" )->exists() ) {
+				$reauthSubaction = $this->getRequest()->getRawVal( 'reauthSubaction' );
+				if (
+					$reauthSubaction !== null &&
+					$this->msg( "userlogin-reauth-banner-$securityLevelLower-$reauthSubaction" )->exists()
+				) {
+					$submitStatus->warning( "userlogin-reauth-banner-$securityLevelLower-$reauthSubaction" );
+				} elseif ( $this->msg( "userlogin-reauth-banner-$securityLevelLower" )->exists() ) {
 					$submitStatus->warning( "userlogin-reauth-banner-$securityLevelLower" );
 				} else {
 					$submitStatus->warning( 'userlogin-reauth-banner-generic', $this->securityLevel );

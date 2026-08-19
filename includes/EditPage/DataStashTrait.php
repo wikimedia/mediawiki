@@ -145,15 +145,30 @@ trait DataStashTrait {
 		return new IconWidget( $this->getReauthLockButtonAttribs() );
 	}
 
-	protected function doReauthRedirect( PermissionStatus $status, array $queryParams ): void {
+	/**
+	 * Redirect to the reauth flow on Special:UserLogin. Pass an optional
+	 * $subaction so the reauth banner can pick an action-specific message
+	 * (userlogin-reauth-banner-<operation>-<subaction>).
+	 */
+	protected function doReauthRedirect(
+		PermissionStatus $status,
+		array $queryParams,
+		?string $subaction = null
+	): void {
 		$context = $this->getContext();
-		$context->getOutput()->redirect( SpecialPage::getTitleFor( 'Userlogin' )->getFullURL( [
+		$loginQuery = [
 			'force' => $status->getReauthOperation(),
 			'returnto' => $this->getTitle()->getPrefixedDBkey(),
 			'returntoquery' => wfArrayToCgi( array_diff_key(
 				$queryParams,
 				[ 'title' => true, 'returnto' => true, 'returntoquery' => true ]
 			) ),
-		], false, PROTO_HTTPS ) );
+		];
+		if ( $subaction !== null ) {
+			$loginQuery['reauthSubaction'] = $subaction;
+		}
+		$context->getOutput()->redirect(
+			SpecialPage::getTitleFor( 'Userlogin' )->getFullURL( $loginQuery, false, PROTO_HTTPS )
+		);
 	}
 }
