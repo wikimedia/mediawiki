@@ -4819,8 +4819,6 @@ class Parser implements MessageLocalizer {
 		$nickname = self::cleanSigInSig( $nickname );
 
 		# If we're still here, make it a link to the user page
-		$userText = wfEscapeWikiText( $username );
-		$nickText = wfEscapeWikiText( $nickname );
 		if ( $this->userNameUtils->isTemp( $username ) ) {
 			$msgName = 'signature-temp';
 		} elseif ( $user->isRegistered() ) {
@@ -4828,9 +4826,22 @@ class Parser implements MessageLocalizer {
 		} else {
 			$msgName = 'signature-anon';
 		}
+		$message = wfMessage( $msgName )->inContentLanguage()->page( $this->getPage() );
 
-		return wfMessage( $msgName, $userText, $nickText )->inContentLanguage()
-			->page( $this->getPage() )->text();
+		$userText = wfEscapeWikiText( $username );
+		$nickText = wfEscapeWikiText( $nickname );
+		// If the signature message doesn't contain any tildes, we can safely un-escape the leading
+		// tildes in the username/nickname, in order to make temporary account names more readable.
+		if ( !str_contains( $message->plain(), '~' ) && !str_starts_with( $message->plain(), '$' ) ) {
+			if ( $userText !== '&#126;' ) {
+				$userText = preg_replace( '/^&#126;/', '~', $userText );
+			}
+			if ( $nickText !== '&#126;' ) {
+				$nickText = preg_replace( '/^&#126;/', '~', $nickText );
+			}
+		}
+
+		return $message->params( $userText, $nickText )->text();
 	}
 
 	/**
