@@ -45,10 +45,6 @@ class ModuleManagerTest extends MediaWikiIntegrationTestCase {
 				'spec' => 'https://example.com/mockExternal/v1/spec.json',
 			],
 		] );
-
-		$rss = $conf->get( MainConfigNames::RestSandboxSpecs );
-		$rss['mock.v1-invalid.json'] = [ 'file' => __DIR__ . '/mock.v1-invalid.json' ];
-		$this->overrideConfigValue( MainConfigNames::RestSandboxSpecs, $rss );
 	}
 
 	/**
@@ -162,16 +158,6 @@ class ModuleManagerTest extends MediaWikiIntegrationTestCase {
 				'name' => 'Mock External Module',
 			]
 		];
-
-		// This comes from RestSandboxSpecs, which should override audience designations.
-		yield 'mock.v1-invalid.json' => [
-			'mock.v1-invalid.json',
-			[
-				'groups' => [],
-				'url' => '/rest/specs/v0/module/mock/v1-invalid',
-				'name' => 'Mock Module (Invalid)',
-			]
-		];
 	}
 
 	/**
@@ -235,14 +221,36 @@ class ModuleManagerTest extends MediaWikiIntegrationTestCase {
 
 	public function testGetApiSpecsSortOrder(): void {
 		$conf = $this->getServiceContainer()->getMainConfig();
-		$rss = $conf->get( MainConfigNames::RestSandboxSpecs );
+		$rem = $conf->get( MainConfigNames::RestExternalModules );
 
 		$unsorted = [
-			'c.json' => [ 'name' => 'C Spec', 'url' => '/c' ],
-			'a.json' => [ 'name' => 'A Spec', 'url' => '/a' ],
-			'b.json' => [ 'name' => 'b Spec', 'url' => '/b' ],
+			'C/v1' => [
+				'info' => [
+					'title' => 'C Spec',
+					'version' => '1.0.0',
+				],
+				'base' => '/api/rest_v1/c',
+				'spec' => '/api/rest_v1/c/openapi.json',
+			],
+			'A/v1' => [
+				'info' => [
+					'title' => 'A Spec',
+					'version' => '1.0.0',
+				],
+				'base' => '/api/rest_v1/a',
+				'spec' => '/api/rest_v1/a/openapi.json',
+			],
+			'b/v1' => [
+				'info' => [
+					'title' => 'b Spec',
+					'version' => '1.0.0',
+				],
+				'base' => '/api/rest_v1/b',
+				'spec' => '/api/rest_v1/b/openapi.json',
+			]
 		];
-		$this->overrideConfigValue( MainConfigNames::RestSandboxSpecs, $unsorted );
+
+		$this->overrideConfigValue( MainConfigNames::RestExternalModules, $unsorted );
 
 		$moduleManager = $this->getModuleManager();
 		$specs = $moduleManager->getApiSpecs();
@@ -257,7 +265,7 @@ class ModuleManagerTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( 'b Spec', $names[2] );
 		$this->assertSame( 'C Spec', $names[3] );
 
-		$this->overrideConfigValue( MainConfigNames::RestSandboxSpecs, $rss );
+		$this->overrideConfigValue( MainConfigNames::RestExternalModules, $rem );
 	}
 
 	public static function provideGetModuleGroupsCases() {

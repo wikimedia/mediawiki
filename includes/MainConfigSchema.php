@@ -13009,36 +13009,6 @@ class MainConfigSchema {
 	];
 
 	/**
-	 * A list of OpenAPI specs to be made available for exploration on the REST sandbox.
-	 *
-	 * This is an associative array, arbitrary spec IDs to spec descriptions.
-	 * Each spec description is an array with the following keys:
-	 * - url: the URL that will return the OpenAPI spec.
-	 * - name: the name of the API, to be shown on the REST sandbox.
-	 *   Ignored if msg is given.
-	 * - msg: a message key for the name of the API, to be shown on the REST sandbox.
-	 * - file: optional module definition file name. If supplied, information therein is used for
-	 *   name and/or url. Info supplied directly in config (via url/name/msg) takes precedence.
-	 *
-	 * @unstable Introduced in 1.43. We may want to rename or change this to
-	 * accommodate the need to list external APIs in a central discovery
-	 * document.
-	 */
-	public const RestSandboxSpecs = [
-		'default' => [],
-		'type' => 'map',
-		'additionalProperties' => [
-			'type' => 'object',
-			'properties' => [
-				'url' => [ 'type' => 'string', 'format' => 'url' ],
-				'name' => [ 'type' => 'string' ],
-				'file' => [ 'type' => 'string' ],
-				'msg' => [ 'type' => 'string', 'description' => 'a message key' ]
-			],
-		]
-	];
-
-	/**
 	 * The absolute base URL of the local REST API entry point on the test server.
 	 *
 	 * When set (e.g., 'https://test.wikimedia.org/w/rest.php'), the REST Sandbox

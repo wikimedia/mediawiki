@@ -2712,8 +2712,6 @@ return [
 			],
 			'RestAPIAdditionalRouteFiles' => [
 			],
-			'RestSandboxSpecs' => [
-			],
 			'RestLocalModuleTestBaseUrl' => null,
 			'RestModuleOverrides' => [
 			],
@@ -3277,7 +3275,6 @@ return [
 			'CrossSiteAJAXdomainExceptions' => 'object',
 			'AllowedCorsHeaders' => 'array',
 			'RestAPIAdditionalRouteFiles' => 'array',
-			'RestSandboxSpecs' => 'object',
 			'RestLocalModuleTestBaseUrl' => [
 				'string',
 				'null',
@@ -3747,27 +3744,6 @@ return [
 		'RangeContributionsCIDRLimit' => [
 			'additionalProperties' => [
 				'type' => 'integer',
-			],
-		],
-		'RestSandboxSpecs' => [
-			'additionalProperties' => [
-				'type' => 'object',
-				'properties' => [
-					'url' => [
-						'type' => 'string',
-						'format' => 'url',
-					],
-					'name' => [
-						'type' => 'string',
-					],
-					'file' => [
-						'type' => 'string',
-					],
-					'msg' => [
-						'type' => 'string',
-						'description' => 'a message key',
-					],
-				],
 			],
 		],
 		'RestModuleOverrides' => [

@@ -53,7 +53,6 @@ class ModuleManager {
 
 	private array $extensionModuleFiles;
 	private array $restApiAdditionalRouteFiles;
-	private array $restSandboxSpecs;
 	private array $restExternalModules;
 	private array $restModuleOverrides;
 
@@ -70,7 +69,6 @@ class ModuleManager {
 	public const CONSTRUCTOR_OPTIONS = [
 		MainConfigNames::ExtensionDirectory,
 		MainConfigNames::RestAPIAdditionalRouteFiles,
-		MainConfigNames::RestSandboxSpecs,
 		MainConfigNames::RestExternalModules,
 		MainConfigNames::RestModuleOverrides,
 		MainConfigNames::RestPath
@@ -91,7 +89,6 @@ class ModuleManager {
 
 		$this->extensionDirectory = $options->get( MainConfigNames::ExtensionDirectory );
 		$this->restApiAdditionalRouteFiles = $options->get( MainConfigNames::RestAPIAdditionalRouteFiles );
-		$this->restSandboxSpecs = $options->get( MainConfigNames::RestSandboxSpecs );
 		$this->restExternalModules = $options->get( MainConfigNames::RestExternalModules );
 		$this->restModuleOverrides = $options->get( MainConfigNames::RestModuleOverrides );
 		$this->rootPath = $options->get( MainConfigNames::RestPath );
@@ -275,16 +272,7 @@ class ModuleManager {
 			];
 		}
 
-		// RestSandboxSpecs overrides everything else. If RestSandboxSpecs includes a module,
-		// it will be published to the REST Sandbox, regardless of its audience designation or
-		// any RestModuleOverrides configuration. This is for backwards compatibility.
-		$rssSpecs = $this->restSandboxSpecs;
-		foreach ( $rssSpecs as $key => &$spec ) {
-			$spec = $this->normalizeSpec( $key, $spec );
-		}
-		unset( $spec );
-
-		$specs = array_merge( $coreSpecs, $extensionSpecs, $externalModules, $rssSpecs );
+		$specs = array_merge( $coreSpecs, $extensionSpecs, $externalModules );
 		foreach ( $specs as $key => &$spec ) {
 			unset( $spec['mode'] );
 			$spec['groups'] = $spec['params']['groups'] ?? [];
