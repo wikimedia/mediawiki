@@ -307,6 +307,10 @@ abstract class FileBackend implements LoggerAwareInterface {
 	/**
 	 * Get an explanatory message if this backend is read-only
 	 *
+	 * You can temporarily disable uploads and other file writes via
+	 * `$wgFileBackends[]['readOnly']`, `$wgReadOnly`, or `$wgReadOnlyFile`.
+	 *
+	 * @see FileBackendGroup::register
 	 * @return string|bool Returns false if the backend is not read-only
 	 */
 	final public function getReadOnlyReason() {

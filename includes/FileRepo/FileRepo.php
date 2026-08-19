@@ -220,8 +220,7 @@ class FileRepo {
 		}
 
 		$this->url = $info['url'] ?? false; // a subclass may set the URL (e.g. ForeignAPIRepo)
-		$defaultThumbUrl = $this->url ? $this->url . '/thumb' : false;
-		$this->thumbUrl = $info['thumbUrl'] ?? $defaultThumbUrl;
+		$this->thumbUrl = $info['thumbUrl'] ?? ( $this->url ? $this->url . '/thumb' : false );
 		$this->hashLevels = $info['hashLevels'] ?? 2;
 		$this->deletedHashLevels = $info['deletedHashLevels'] ?? $this->hashLevels;
 		$this->transformVia404 = !empty( $info['transformVia404'] );
@@ -258,8 +257,8 @@ class FileRepo {
 	/**
 	 * FileRepo is responsible for locking since there can be both file objects and metadata
 	 *
-	 * @return array<string,mixed> Options for {@link FileBackend::doOperations()}
 	 * @since 1.47
+	 * @return array<string,mixed> Options for {@link FileBackend::doOperations()}
 	 */
 	protected function getBackendOperationOptions(): array {
 		return [];
@@ -267,8 +266,8 @@ class FileRepo {
 
 	/**
 	 * Get an explanatory message if this repo is read-only.
-	 * This checks if an administrator disabled writes to the backend.
 	 *
+	 * @see FileBackend::getReadOnlyReason
 	 * @return string|false Returns false if the repo is not read-only
 	 */
 	public function getReadOnlyReason() {
