@@ -329,6 +329,7 @@
 	"userlogin-yourname-reauth": "אריינגעלאגט אַלס <strong>$1</strong>",
 	"userlogin-yourname-ph": "גיט אריין אייער באניצער נאמען",
 	"createacct-another-username-ph": "אריינגעבן באניצער נאמען",
+	"userlogin-yourname-desc": "בעסער נישט ניצן אײער עכטן נאָמען.",
 	"userlogin-yourname-desc-button-a11y-label": "באַניצער נאָמען פּאָליטיק",
 	"createacct-username-policy-popover-title": "באַניצער נאָמען פּאליטיק",
 	"userlogin-yourpassword": "פאַסווארט",

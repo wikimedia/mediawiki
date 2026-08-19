@@ -215,7 +215,7 @@
 	"nstab-category": "Kategorie",
 	"mainpage-nstab": "Haaptsäit",
 	"nosuchaction": "Dës Aktioun gëtt et net",
-	"nosuchactiontext": "Déi Aktioun, déi an der URL ugi war, ass net valabel.\nMéiglecherweis hutt dir Iech bei der URL vertippt, oder Dir hutt op en net korrekte Link geklickt.\nEt kann awer och sinn datt et e Bug a(n) der Software op {{SITENAME}} gëtt.",
+	"nosuchactiontext": "D'Aktioun, déi an der URL ugi gouf, ass ongülteg.\nMéiglecherweis hutt Dir Iech bei der URL vertippt oder Dir hutt op en inkorrekte Link geklickt.\nEt kann awer och sinn, datt et e Bug an der Software op {{SITENAME}} ass.",
 	"nosuchspecialpage": "Spezialsäit gëtt et net",
 	"nospecialpagetext": "<strong>Dir hutt eng Spezialsäit ofgefrot, déi et net gëtt.</strong>\n\nAll Spezialsäiten, déi et gëtt, sinn op de [[Special:SpecialPages|{{int:specialpages}}]] ze fannen.",
 	"error": "Feeler",

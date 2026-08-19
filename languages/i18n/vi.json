@@ -1376,6 +1376,8 @@
 	"uploadwarning-text": "Xin hãy chỉnh sửa miêu tả tập tin ở dưới và thử lại.",
 	"uploadwarning-exists": "Một tập tin có tên này đã tồn tại. Vui lòng kiểm tra <strong>[[:$1]]</strong> xem {{GENDER:|bạn}} chưa chắc chắn có muốn ghi đè lên nó hay không.",
 	"uploadwarning-page-exists": "Trang miêu tả tập tin này đã được tạo tại <strong>[[:$1]]</strong>, nhưng hiện chưa có tập tin nào có tên này. Phần tóm lược bạn nhập sẽ không xuất hiện trên trang miêu tả. Để làm cho phần tóm lược của bạn xuất hiện tại đó, bạn sẽ cần sửa đổi nó thủ công.",
+	"uploadwarning-exists-normalized": "Hiện có một tập tin trùng tên:\n* Tên tập tin đang tải lên: <strong>[[:$1]]</strong>\n* Tên tập tin có từ trước: <strong>[[:$2]]</strong>\nGợi ý bạn chọn một tên rõ hơn.",
+	"uploadwarning-thumbnail-yes": "Tập tin này có vẻ là hình có kích thước thủ gọn <em>(hình thu nhỏ)</em>. Nếu tập tin được kiểm tra trùng với hình có kích cỡ gốc thì không cần thiết tải lên một hình thu nhỏ khác.",
 	"uploadwarning-text-nostash": "Xin hãy tải lại tập tin lên, sửa đổi nội dung mô tả và thử lại.",
 	"savefile": "Lưu tập tin",
 	"uploaddisabled": "Chức năng tải lên đã bị khóa.",
