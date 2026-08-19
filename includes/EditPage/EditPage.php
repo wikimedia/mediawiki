@@ -1811,25 +1811,6 @@ class EditPage implements IEditObject {
 		switch ( $statusValue ) {
 			// For status codes that provide their own error/warning messages, we display the errors and warnings in
 			// message boxes.
-			case self::AS_ARTICLE_WAS_DELETED:
-			case self::AS_BLANK_ARTICLE:
-			case self::AS_BROKEN_REDIRECT:
-			case self::AS_CONTENT_TOO_BIG:
-			case self::AS_DOUBLE_REDIRECT:
-			case self::AS_DOUBLE_REDIRECT_LOOP:
-			case self::AS_END:
-			case self::AS_HOOK_ERROR_EXPECTED:
-			case self::AS_INVALID_REDIRECT_TARGET:
-			case self::AS_MAX_ARTICLE_SIZE_EXCEEDED:
-			case self::AS_PARSE_ERROR:
-			case self::AS_RATE_LIMITED:
-			case self::AS_REVISION_MISSING:
-			case self::AS_REVISION_WAS_DELETED:
-			case self::AS_SELF_REDIRECT:
-			case self::AS_SUMMARY_NEEDED:
-			case self::AS_TEXTBOX_EMPTY:
-			case self::AS_UNABLE_TO_ACQUIRE_TEMP_ACCOUNT:
-			case self::AS_UNICODE_NOT_SUPPORTED:
 			default:
 				$out->addHTML( $this->formatConstraintStatus( $status ) );
 				return true;
@@ -1886,7 +1867,6 @@ class EditPage implements IEditObject {
 			case self::AS_READ_ONLY_PAGE_ANON:
 			case self::AS_READ_ONLY_PAGE_LOGGED:
 				$status->throwError();
-				// No break statement here as throwError() will always throw an exception
 		}
 	}
 
