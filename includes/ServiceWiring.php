@@ -1453,7 +1453,7 @@ return [
 	'LockManager' => static function ( MediaWikiServices $services ): LockManager {
 		// TODO: This probably should move to a dedicated factory but the current state
 		// of lock manager factories needs refactoring first.
-		if ( defined( 'MW_PHPUNIT_TEST' ) ) {
+		if ( defined( 'MW_PHPUNIT_TEST' ) || defined( 'MW_QUIBBLE_CI' ) ) {
 			return new NullLockManager( [] );
 		}
 		$lockManager = $services->getMainConfig()->get( MainConfigNames::DefaultLockManager );
