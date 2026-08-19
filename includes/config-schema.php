@@ -3760,12 +3760,12 @@ return [
 			'additionalProperties' => [
 				'type' => 'object',
 				'properties' => [
-					'mode' => [
+					'availability' => [
 						'type' => 'string',
 					],
 				],
 				'required' => [
-					'mode',
+					'availability',
 				],
 			],
 		],

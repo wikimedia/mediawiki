@@ -108,8 +108,8 @@ class ModuleManager {
 	public function getModuleMode( string $moduleId ): ModuleMode {
 		// If an override is attempted, but the mode is unrecognized, disable the module. This
 		// helps guard against undesired module activation/publishing due to configuration typos.
-		if ( isset( $this->restModuleOverrides[$moduleId]['mode'] ) ) {
-			$mm = ModuleMode::tryFrom( $this->restModuleOverrides[$moduleId]['mode'] );
+		if ( isset( $this->restModuleOverrides[$moduleId]['availability'] ) ) {
+			$mm = ModuleMode::tryFrom( $this->restModuleOverrides[$moduleId]['availability'] );
 			$mm ??= ModuleMode::DISABLED;
 		}
 
@@ -138,7 +138,7 @@ class ModuleManager {
 	private function getModeParams( string $moduleId ): array {
 		$adParams = ModuleMode::getModeParams( AudienceDesignation::fromModuleId( $moduleId ) );
 		$overrideParams = $this->restModuleOverrides[$moduleId] ?? [];
-		unset( $overrideParams['mode'] );
+		unset( $overrideParams['availability'] );
 
 		// Config overrides audience designation
 		return $overrideParams + $adParams;
