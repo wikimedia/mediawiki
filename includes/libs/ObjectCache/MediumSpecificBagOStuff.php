@@ -922,7 +922,7 @@ abstract class MediumSpecificBagOStuff extends BagOStuff {
 	}
 
 	/**
-	 * Convert an optionally relative timestamp to an absolute time
+	 * Convert a potentially relative timestamp to an absolute timestamp
 	 *
 	 * The input value will be cast to an integer and interpreted as follows:
 	 *   - zero: no expiry; return zero (e.g. TTL_INDEFINITE)
@@ -930,18 +930,21 @@ abstract class MediumSpecificBagOStuff extends BagOStuff {
 	 *   - positive (< 10 years): relative TTL; return UNIX timestamp offset by this value
 	 *   - positive (>= 10 years): absolute UNIX timestamp; return this value
 	 *
-	 * @param int $exptime
+	 * @param int $exptime Expiration
+	 * @param int|float|null $mtime Last-modification time [optional]
 	 *
 	 * @return int Expiration timestamp or TTL_INDEFINITE for indefinite
 	 * @since 1.34
 	 */
-	final protected function getExpirationAsTimestamp( $exptime ) {
+	final protected function getExpirationAsTimestamp( $exptime, $mtime = null ) {
 		if ( $exptime == self::TTL_INDEFINITE ) {
 			return $exptime;
 		}
 
+		$mtime ??= $this->getCurrentTime();
+
 		return $this->isRelativeExpiration( $exptime )
-			? intval( $this->getCurrentTime() + $exptime )
+			? intval( $mtime + $exptime )
 			: $exptime;
 	}
 

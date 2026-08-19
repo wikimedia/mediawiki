@@ -86,14 +86,8 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 	/** @var int Number of redundant read and writes for better consistency */
 	private $dataRedundancy;
 
-	/** A number of seconds well above any expected clock skew */
-	private const SAFE_CLOCK_BOUND_SEC = 15;
-	/** A number of seconds well above any expected clock skew and replication lag */
-	private const SAFE_PURGE_DELAY_SEC = 3600;
 	/** Distinct string for tombstones stored in the "serialized" value column */
 	private const TOMB_SERIAL = '';
-	/** Relative seconds-to-live to use for tombstones */
-	private const TOMB_EXPTIME = -self::SAFE_CLOCK_BOUND_SEC;
 	/** How many seconds must pass before triggering a garbage collection */
 	private const GC_DELAY_SEC = 1;
 
@@ -632,7 +626,7 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 
 		$rows = [];
 		foreach ( $argsByKey as $key => [ $value, $exptime ] ) {
-			$expiry = $this->makeNewKeyExpiry( $exptime, (int)$mtime );
+			$expiry = $this->getExpirationAsTimestamp( $exptime, $mtime );
 			$serialValue = $this->getSerialized( $value, $key );
 			$rows[] = $this->buildUpsertRow( $db, $key, $serialValue, $expiry );
 
@@ -725,7 +719,7 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 			}
 
 			$serialValue = $this->getSerialized( $value, $key );
-			$expiry = $this->makeNewKeyExpiry( $exptime, (int)$mtime );
+			$expiry = $this->getExpirationAsTimestamp( $exptime, $mtime );
 			$valueSizesByKey[$key] = [ strlen( $serialValue ), 0 ];
 			$rows[] = $this->buildUpsertRow( $db, $key, $serialValue, $expiry );
 		}
@@ -801,7 +795,7 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 			}
 
 			$serialValue = $this->getSerialized( $value, $key );
-			$expiry = $this->makeNewKeyExpiry( $exptime, (int)$mtime );
+			$expiry = $this->getExpirationAsTimestamp( $exptime, $mtime );
 			$valueSizesByKey[$key] = [ strlen( $serialValue ), 0 ];
 
 			$rows[] = $this->buildUpsertRow( $db, $key, $serialValue, $expiry );
@@ -852,7 +846,7 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 	) {
 		$keysBatchesByExpiry = [];
 		foreach ( $argsByKey as $key => [ $exptime ] ) {
-			$expiry = $this->makeNewKeyExpiry( $exptime, (int)$mtime );
+			$expiry = $this->getExpirationAsTimestamp( $exptime, $mtime );
 			$keysBatchesByExpiry[$expiry][] = $key;
 		}
 
@@ -901,7 +895,7 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 		array &$resByKey
 	) {
 		foreach ( $argsByKey as $key => [ $step, $init, $exptime ] ) {
-			$expiry = $this->makeNewKeyExpiry( $exptime, (int)$mtime );
+			$expiry = $this->getExpirationAsTimestamp( $exptime, $mtime );
 
 			// Use a transaction so that changes from other threads are not visible due to
 			// "consistent reads". This way, the exact post-increment value can be returned.
@@ -965,7 +959,7 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 		array &$resByKey
 	) {
 		foreach ( $argsByKey as $key => [ $step, $init, $exptime ] ) {
-			$expiry = $this->makeNewKeyExpiry( $exptime, (int)$mtime );
+			$expiry = $this->getExpirationAsTimestamp( $exptime, $mtime );
 			$db->newInsertQueryBuilder()
 				->insertInto( $ptable )
 				->rows( $this->buildUpsertRow( $db, $key, $init, $expiry ) )
@@ -979,23 +973,6 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 				$resByKey[$key] = true;
 			}
 		}
-	}
-
-	/**
-	 * @param int $exptime Relative or absolute expiration
-	 * @param int $nowTsUnix Current UNIX timestamp
-	 * @return int UNIX timestamp or TTL_INDEFINITE
-	 */
-	private function makeNewKeyExpiry( $exptime, int $nowTsUnix ) {
-		$expiry = $this->getExpirationAsTimestamp( $exptime );
-		// Eventual consistency requires the preservation of recently modified keys.
-		// Do not create rows with `exptime` fields so low that they might get garbage
-		// collected before being replicated.
-		if ( $expiry !== self::TTL_INDEFINITE ) {
-			$expiry = max( $expiry, $nowTsUnix - self::SAFE_CLOCK_BOUND_SEC );
-		}
-
-		return $expiry;
 	}
 
 	/**
@@ -1331,13 +1308,14 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 		?array $progress = null
 	) {
 		$cutoffUnix = (int)ConvertibleTimestamp::convert( TS::UNIX, $timestamp );
+
 		$tableIndexes = range( 0, $this->numTableShards - 1 );
 		shuffle( $tableIndexes );
 
 		$batchSize = min( $this->writeBatchSize, $limit );
 
 		foreach ( $tableIndexes as $numShardsDone => $tableIndex ) {
-			// don't do more than 10% of tables. To avoid overwhelming
+			// Don't do more than 10% of tables. To avoid overwhelming
 			// when there are too many of them. Add one to make sure small number
 			// of tables have been taken care of.
 			if (
