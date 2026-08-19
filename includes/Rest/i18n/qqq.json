@@ -276,6 +276,7 @@
 	"rest-endpoint-desc-post-page": "{{Experimental}} REST API endpoint description, for the endpoint to create a page",
 	"rest-endpoint-desc-post-move": "{{Experimental}} REST API endpoint description, for the endpoint to move (rename) a page",
 	"rest-endpoint-desc-post-move-title": "{{Experimental}} REST API endpoint description, for the endpoint to move (rename) a page by name",
+	"rest-endpoint-desc-get-page-title-backlinks": "{{Experimental}} REST API endpoint description, for the endpoint listing the pages that link to a page",
 	"rest-endpoint-desc-get-page-title": "{{Experimental}} REST API endpoint description, for the endpoint to get page information",
 	"rest-endpoint-desc-put-page-title": "{{Experimental}} REST API endpoint description, for the endpoint to create or edit a page",
 	"rest-endpoint-desc-get-page-title-html": "{{Experimental}} REST API endpoint description, for the endpoint to get page html",

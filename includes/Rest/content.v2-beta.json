@@ -80,6 +80,18 @@
 					}
 				}
 			}
+		},
+		"/page/{title}/backlinks": {
+			"get": {
+				"x-i18n-description": "rest-endpoint-desc-get-page-title-backlinks",
+				"handler": {
+					"adapter": {
+						"type": "list",
+						"list": "backlinks",
+						"suppressedParams": [ "pageid" ]
+					}
+				}
+			}
 		}
 
 	}

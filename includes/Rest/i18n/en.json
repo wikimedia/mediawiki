@@ -271,6 +271,7 @@
 	"rest-endpoint-desc-post-page": "Creates a page.",
 	"rest-endpoint-desc-post-move": "Moves (renames) a page.",
 	"rest-endpoint-desc-post-move-title": "Moves (renames) a page by title.",
+	"rest-endpoint-desc-get-page-title-backlinks": "Lists the pages that link to a page.",
 	"rest-endpoint-desc-get-page-title": "Returns information about a page, including the page source, usually in wikitext.",
 	"rest-endpoint-desc-put-page-title": "Edits a page based on the page's latest revision identifier, or creates a page if no revision identifier is given. If there is a merge conflict, the API attempts to resolve the conflict automatically. If the edit conflict cannot be resolved, the API returns a 409 error.",
 	"rest-endpoint-desc-get-page-title-html": "Returns the content of a page in HTML.",

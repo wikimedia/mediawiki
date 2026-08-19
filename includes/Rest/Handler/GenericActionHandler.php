@@ -6,6 +6,7 @@ use MediaWiki\Api\ApiMain;
 use MediaWiki\Api\ApiRestHelper;
 use MediaWiki\Api\ApiRestHybrid;
 use MediaWiki\Api\IApiMessage;
+use MediaWiki\Api\Validator\SubmoduleDef;
 use MediaWiki\Rest\RequestInterface;
 use MediaWiki\Rest\Validator\Validator;
 use MediaWiki\User\LoggedOutEditToken;
@@ -58,6 +59,34 @@ class GenericActionHandler extends ActionModuleBasedHandler {
 		// We allow uselang and variant, but they should arguably be
 		// per-endpoint params, since their exact interpretation and impact
 		// depends a lot on what's actually being done.
+	];
+
+	/**
+	 * Parameter types of the action API that the REST framework doesn't know,
+	 * mapped to the closest REST type. They are only used for the OpenAPI
+	 * spec, since parameters are validated by the action module. "limit" also
+	 * accepts "max", which an integer type can't express.
+	 */
+	private const ACTION_PARAM_TYPES = [
+		'limit' => 'integer',
+		'raw' => 'string',
+		'text' => 'string',
+		'submodule' => 'string',
+	];
+
+	/**
+	 * Parameter settings that only the action API understands. The REST
+	 * framework rejects unknown settings, so they are removed.
+	 */
+	private const ACTION_PARAM_SETTINGS = [
+		ApiBase::PARAM_RANGE_ENFORCE,
+		ApiBase::PARAM_HELP_MSG_APPEND,
+		ApiBase::PARAM_HELP_MSG_INFO,
+		ApiBase::PARAM_HELP_MSG_PER_VALUE,
+		ApiBase::PARAM_VALUE_LINKS,
+		ApiBase::PARAM_TEMPLATE_VARS,
+		SubmoduleDef::PARAM_SUBMODULE_MAP,
+		SubmoduleDef::PARAM_SUBMODULE_PARAM_PREFIX,
 	];
 
 	/**
@@ -226,19 +255,46 @@ class GenericActionHandler extends ActionModuleBasedHandler {
 	 * @return array[]
 	 */
 	protected function getActionModuleParamSpecs(): array {
-		$paramSpecs = $this->getApiActionModule()->getFinalParams()
-			+ $this->getApiMain()->getFinalParams();
+		return $this->filterSupportedParams(
+			$this->getApiActionModule()->getFinalParams()
+				+ $this->getMainParamSpecs()
+		);
+	}
 
+	/**
+	 * The parameter specs of ApiMain, each with a help message, since
+	 * makeParamSettings() would otherwise derive one from the action name.
+	 *
+	 * @return array[]
+	 */
+	protected function getMainParamSpecs(): array {
+		$specs = [];
+		foreach ( $this->getApiMain()->getFinalParams() as $name => $spec ) {
+			// Specs may be in scalar shorthand form, just a default value.
+			if ( !is_array( $spec ) ) {
+				$spec = [ ParamValidator::PARAM_DEFAULT => $spec ];
+			}
+			$spec[ApiBase::PARAM_HELP_MSG] ??= "apihelp-main-param-$name";
+			$specs[$name] = $spec;
+		}
+		return $specs;
+	}
+
+	/**
+	 * Remove the parameters that do not apply to the REST API: those in
+	 * SUPPRESSED_ACTION_PARAMS, and those the route suppresses.
+	 *
+	 * @param array[] $paramSpecs Parameter specs by name
+	 * @return array[]
+	 */
+	protected function filterSupportedParams( array $paramSpecs ): array {
 		$suppressedParams = $this->adapterConfig[ self::SUPPRESSED_PARAMS_KEY ] ?? [];
 
-		// Suppress parameters that do not apply to the REST API
-		$paramSpecs = array_diff_key(
+		return array_diff_key(
 			$paramSpecs,
 			array_flip( self::SUPPRESSED_ACTION_PARAMS ),
 			array_flip( $suppressedParams )
 		);
-
-		return $paramSpecs;
 	}
 
 	/**
@@ -284,6 +340,10 @@ class GenericActionHandler extends ActionModuleBasedHandler {
 				// Compare ParamValidator::normalizeSettingsInternal()
 				$spec[ParamValidator::PARAM_TYPE] = gettype( $spec[ParamValidator::PARAM_DEFAULT] ?? null );
 			}
+			$type = $spec[ParamValidator::PARAM_TYPE];
+			if ( is_string( $type ) && isset( self::ACTION_PARAM_TYPES[$type] ) ) {
+				$spec[ParamValidator::PARAM_TYPE] = self::ACTION_PARAM_TYPES[$type];
+			}
 
 			$spec[self::PARAM_SOURCE] = $source;
 
@@ -298,6 +358,7 @@ class GenericActionHandler extends ActionModuleBasedHandler {
 				$msg = "apihelp-{$this->actionName}-param-{$param}";
 				$spec[self::PARAM_DESCRIPTION] = new MessageValue( $msg );
 			}
+			$spec = array_diff_key( $spec, array_flip( self::ACTION_PARAM_SETTINGS ) );
 
 			$settings[$param] = $spec;
 		}

@@ -9,6 +9,7 @@ use MediaWiki\Rest\BasicAccess\BasicAuthorizerInterface;
 use MediaWiki\Rest\CorsUtils;
 use MediaWiki\Rest\Handler;
 use MediaWiki\Rest\Handler\GenericActionHandler;
+use MediaWiki\Rest\Handler\GenericListHandler;
 use MediaWiki\Rest\Hook\HookRunner;
 use MediaWiki\Rest\HttpException;
 use MediaWiki\Rest\JsonFileLoaderTrait;
@@ -485,6 +486,8 @@ abstract class Module {
 		switch ( $require( 'type' ) ) {
 			case 'action':
 				return new GenericActionHandler( $require( 'action' ), $adapterSpec );
+			case 'list':
+				return new GenericListHandler( $require( 'list' ), $adapterSpec );
 			default:
 				throw new ModuleConfigurationException(
 					"unknown adapter type '{$adapterSpec['type']}'"
