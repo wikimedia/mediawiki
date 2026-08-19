@@ -9380,7 +9380,7 @@ class MainConfigSchema {
 				'sendemail'           => 'email',
 
 				'viewmywatchlist'     => 'watchlist-interaction',
-				'editviewmywatchlist' => 'watchlist-interaction',
+				'editmywatchlist'     => 'watchlist-interaction',
 
 				'editmycssjs'         => 'customization',
 				'editmyoptions'       => 'customization',
@@ -9428,7 +9428,7 @@ class MainConfigSchema {
 			'uploadeditmovefile'  => GrantsInfo::RISK_LOW,
 			'sendemail'           => GrantsInfo::RISK_SECURITY,
 			'viewmywatchlist'     => GrantsInfo::RISK_LOW,
-			'editviewmywatchlist' => GrantsInfo::RISK_LOW,
+			'editmywatchlist'     => GrantsInfo::RISK_LOW,
 			'editmycssjs'         => GrantsInfo::RISK_SECURITY,
 			'editmyoptions'       => GrantsInfo::RISK_SECURITY,
 			'editinterface'       => GrantsInfo::RISK_VANDALISM,
