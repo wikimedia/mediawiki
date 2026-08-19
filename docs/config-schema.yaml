@@ -5893,6 +5893,7 @@ config-schema:
             import: security
             highvolume: low
             privateinfo: low
+            managesessions: low
         type: object
         description: |-
             Group grants by risk level. Keys are grant names (i.e. keys from GrantPermissions),

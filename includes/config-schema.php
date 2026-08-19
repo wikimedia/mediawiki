@@ -1892,6 +1892,7 @@ return [
 				'import' => 'security',
 				'highvolume' => 'low',
 				'privateinfo' => 'low',
+				'managesessions' => 'low',
 			],
 			'EnableBotPasswords' => true,
 			'BotPasswordsCluster' => false,

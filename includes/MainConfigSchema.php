@@ -9445,6 +9445,7 @@ class MainConfigSchema {
 			'import'              => GrantsInfo::RISK_SECURITY,
 			'highvolume'          => GrantsInfo::RISK_LOW,
 			'privateinfo'         => GrantsInfo::RISK_LOW,
+			'managesessions'      => GrantsInfo::RISK_LOW,
 		],
 		'type' => 'map',
 	];
