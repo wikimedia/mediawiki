@@ -3,6 +3,8 @@
 namespace MediaWiki\Tests\Integration\Specials;
 
 use MediaWiki\Tests\Specials\SpecialPageTestBase;
+use Wikimedia\Parsoid\DOM\Document;
+use Wikimedia\Parsoid\Ext\DOMUtils;
 use Wikimedia\Timestamp\ConvertibleTimestamp;
 
 /**
@@ -17,13 +19,17 @@ class SpecialAutoblockListTest extends SpecialPageTestBase {
 
 		[ $html ] = $this->executeSpecialPage();
 
-		$this->verifyAutoblockListForm( $html );
+		$this->verifyAutoblockListForm( DOMUtils::parseHTML( $html ) );
 		$this->assertStringContainsString( '(autoblocklist-empty)', $html );
 		$this->assertStringNotContainsString( 'mw-autoblocklist-otherblocks', $html );
 	}
 
-	private function verifyAutoblockListForm( string $html ): void {
-		$autoblockListForm = $this->assertSelectorMatchesOneElement( $html, '#mw-autoblock-list-form' );
+	private function verifyAutoblockListForm( Document $doc ): void {
+		$autoblockListForm = $this->assertSelectorMatchesOneElementInNode(
+			$doc,
+			'#mw-autoblock-list-form',
+			true
+		);
 		$this->assertStringContainsString( '(autoblocklist-legend)', $autoblockListForm );
 		$this->assertStringContainsString( '(table_pager_limit_label)', $autoblockListForm );
 		$this->assertStringContainsString( '(autoblocklist-submit)', $autoblockListForm );
@@ -52,13 +58,15 @@ class SpecialAutoblockListTest extends SpecialPageTestBase {
 		$this->assertNotFalse( $autoblockId );
 
 		[ $html ] = $this->executeSpecialPage();
+		$doc = DOMUtils::parseHTML( $html );
 
-		$this->verifyAutoblockListForm( $html );
+		$this->verifyAutoblockListForm( $doc );
 		$this->assertStringContainsString( '(autoblocklist-localblocks: 1)', $html );
 
-		$autoblockBlockListHtml = $this->assertSelectorMatchesOneElement(
-			$html,
-			'.mw-blocklist'
+		$autoblockBlockListHtml = $this->assertSelectorMatchesOneElementInNode(
+			$doc,
+			'.mw-blocklist',
+			true
 		);
 
 		$expectedHeaders = [
@@ -73,27 +81,31 @@ class SpecialAutoblockListTest extends SpecialPageTestBase {
 			$this->assertStringContainsString( $header, $autoblockBlockListHtml );
 		}
 
-		$timestampCell = $this->assertSelectorMatchesOneElement( $html, '.TablePager_col_bl_timestamp' );
+		$timestampCell = $this->assertSelectorMatchesOneElementInNode( $doc, '.TablePager_col_bl_timestamp', true );
 		$this->assertStringContainsString( '03:02, 4 (may_long) 2026', $timestampCell );
 
-		$targetCell = $this->assertSelectorMatchesOneElement( $html, '.TablePager_col_target' );
+		$targetCell = $this->assertSelectorMatchesOneElementInNode( $doc, '.TablePager_col_target', true );
 		$this->assertStringContainsString( "(autoblockid: $autoblockId)", $targetCell );
 
-		$expiryCell = $this->assertSelectorMatchesOneElement( $html, '.TablePager_col_bl_expiry' );
+		$expiryCell = $this->assertSelectorMatchesOneElementInNode( $doc, '.TablePager_col_bl_expiry', true );
 		$this->assertStringContainsString( '03:02, 5 (may_long) 2026', $expiryCell );
 		$this->assertStringContainsString( '(duration-days: 1)', $expiryCell );
 
-		$performerCell = $this->assertSelectorMatchesOneElement( $html, '.TablePager_col_bl_by' );
+		$performerCell = $this->assertSelectorMatchesOneElementInNode( $doc, '.TablePager_col_bl_by', true );
 		$this->assertStringContainsString( $performer->getName(), $performerCell );
 
-		$paramsCell = $this->assertSelectorMatchesOneElement( $html, '.TablePager_col_params' );
+		$paramsCell = $this->assertSelectorMatchesOneElementInNode( $doc, '.TablePager_col_params', true );
 		$this->assertStringContainsString( '(blocklist-editing-sitewide)', $paramsCell );
 
-		$reasonCell = $this->assertSelectorMatchesOneElement( $html, '.TablePager_col_bl_reason' );
+		$reasonCell = $this->assertSelectorMatchesOneElementInNode( $doc, '.TablePager_col_bl_reason', true );
 		$this->assertStringContainsString( 'Autoblocked because your IP address', $reasonCell );
 
 		$this->assertStringContainsString( '(autoblocklist-otherblocks: 1)', $html );
-		$otherAutoblocksHtml = $this->assertSelectorMatchesOneElement( $html, '.mw-autoblocklist-otherblocks' );
+		$otherAutoblocksHtml = $this->assertSelectorMatchesOneElementInNode(
+			$doc,
+			'.mw-autoblocklist-otherblocks',
+			true
+		);
 		$this->assertStringContainsString( 'Test autoblock other link', $otherAutoblocksHtml );
 	}
 
