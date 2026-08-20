@@ -455,6 +455,26 @@ abstract class ContributionsSpecialPage extends IncludableSpecialPage {
 				if ( $blockLogBox !== null ) {
 					$out->addHTML( $blockLogBox );
 				}
+
+				$softBlockRange = $this->getSystemSoftBlockTarget( $userObj );
+				if ( $softBlockRange ) {
+					$warningText = $this
+						->msg( 'sp-contributions-blocked-config' )
+						->rawParams(
+							$this->getLinkRenderer()->makeKnownLink(
+								$this->getPageTitle( $softBlockRange ),
+								$softBlockRange
+							),
+						)
+						->escaped();
+					$warning = Html::warningBox(
+						Html::rawElement( 'p', [], $warningText ),
+						'mw-contributions-softblock',
+					);
+
+					$out->addModuleStyles( 'mediawiki.codex.messagebox.styles' );
+					$out->addHTML( $warning );
+				}
 			}
 		}
 
@@ -1090,5 +1110,44 @@ abstract class ContributionsSpecialPage extends IncludableSpecialPage {
 	 */
 	public function shouldShowBlockLogExtract( UserIdentity $target ): bool {
 		return !$this->including();
+	}
+
+	/**
+	 * Search system soft blocks ({@link MainConfigSchema::SoftBlockRanges}) affecting the given
+	 * target IP address or range, and return the blocked range if there is one.
+	 *
+	 * @param UserIdentity $target Target to search blocks for.
+	 * @return string|null IP range blocked, or null if the target is not affected by system soft blocks.
+	 */
+	protected function getSystemSoftBlockTarget( UserIdentity $target ): ?string {
+		if ( $target->isRegistered() ) {
+			// Registered users cannot be targeted by $wgSoftBlockRanges
+			return null;
+		}
+
+		$ip = $target->getName();
+
+		if ( IPUtils::isValidRange( $ip ) ) {
+			[ $startHex, $endHex ] = IPUtils::parseRange( $ip );
+			$startIp = IPUtils::formatHex( $startHex );
+			$endIp = IPUtils::formatHex( $endHex );
+
+			// Look for entries covering the entire provided range
+			foreach ( $this->getConfig()->get( MainConfigNames::SoftBlockRanges ) as $range ) {
+				if ( IPUtils::isInRange( $startIp, $range ) && IPUtils::isInRange( $endIp, $range ) ) {
+					return $range;
+				}
+			}
+
+			return null;
+		}
+
+		foreach ( $this->getConfig()->get( MainConfigNames::SoftBlockRanges ) as $range ) {
+			if ( IPUtils::isInRange( $ip, $range ) ) {
+				return $range;
+			}
+		}
+
+		return null;
 	}
 }

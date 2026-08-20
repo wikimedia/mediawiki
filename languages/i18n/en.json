@@ -2255,6 +2255,7 @@
 	"sp-contributions-concurrency-user": "Sorry, too many requests are being made from your user account. Please try again later.",
 	"sp-contributions-concurrency-ip": "Sorry, too many requests are being made from your IP address. Please try again later.",
 	"sp-contributions-newcontribution": "New contribution",
+	"sp-contributions-blocked-config": "Anonymous contributions from the network $1 have been blocked.",
 	"whatlinkshere": "What links here",
 	"whatlinkshere-count": "Displaying $1 {{PLURAL:$1|item|items}}.",
 	"whatlinkshere-title": "Pages that link to \"$1\"",

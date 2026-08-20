@@ -92,6 +92,8 @@ For notes on 1.46.x and older releases, see HISTORY.
   This is similar to the "clearyourcache" message but more broadly for any
   non-wikitext content, including for extension-provided content models such
   as "Scribunto" module pages, and TemplateStyles "sanitized-css" pages.
+* (T253844) Special:Contributions now shows a note if the target IP address or
+  range is affected by a $wgSoftBlockRanges block.
 * …
 
 === New features for sysadmins in 1.47 ===

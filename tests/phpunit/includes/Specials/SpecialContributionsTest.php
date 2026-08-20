@@ -13,6 +13,7 @@ use MediaWiki\Tests\User\TempUser\TempUserTestTrait;
 use MediaWiki\User\User;
 use MediaWiki\User\UserFactory;
 use TestUser;
+use Wikimedia\IPUtils;
 use Wikimedia\Parsoid\Utils\DOMCompat;
 use Wikimedia\Parsoid\Utils\DOMUtils;
 
@@ -527,6 +528,56 @@ class SpecialContributionsTest extends SpecialPageTestBase {
 			$html,
 			'Unblock log incorrectly shown'
 		);
+	}
+
+	/**
+	 * @dataProvider provideSoftBlockRangeNotice
+	 */
+	public function testSoftBlockRangeNotice( string $target, bool $expect ): void {
+		$this->overrideConfigValue(
+			MainConfigNames::SoftBlockRanges,
+			[ '192.0.2.0/25', '2001:db8:1::/64' ],
+		);
+
+		$expectedRange = IPUtils::isIPv4( $target ) ? '192.0.2.0/25' : '2001:db8:1::/64';
+		$needle = "sp-contributions-blocked-config: "
+			. $this->getServiceContainer()
+				->getLinkRendererFactory()
+				->create()
+				->makeKnownLink(
+					$this->newSpecialPage()->getPageTitle( $expectedRange ),
+					$expectedRange
+				);
+
+		[ $html ] = $this->executeSpecialPage( $target );
+		if ( $expect ) {
+			$this->assertStringContainsString(
+				$needle,
+				$html,
+				'System block notice expected to be shown',
+			);
+		} else {
+			$this->assertStringNotContainsString(
+				$needle,
+				$html,
+				'System block notice incorrectly not shown',
+			);
+		}
+	}
+
+	public static function provideSoftBlockRangeNotice() {
+		return [
+			'Blocked IPv4 address' => [ '192.0.2.10', true ],
+			'Blocked IPv4 range subset' => [ '192.0.2.32/27', true ],
+			'Blocked IPv4 range exact' => [ '192.0.2.0/25', true ],
+			'Blocked IPv4 range superset' => [ '192.0.2.0/24', false ],
+			'Unrelated IPv4 address' => [ '192.0.2.255', false ],
+			'Blocked IPv6 address' => [ '2001:db8:1::123', true ],
+			'Blocked IPv6 range subset' => [ '2001:db8:1:0:123::/96', true ],
+			'Blocked IPv6 range exact' => [ '2001:db8:1::/64', true ],
+			'Blocked IPv6 range superset' => [ '2001:db8::/48', false ],
+			'Unrelated IPv6 address' => [ '2001:db8:2::4', false ],
+		];
 	}
 
 	protected function newSpecialPage(): SpecialContributions {
