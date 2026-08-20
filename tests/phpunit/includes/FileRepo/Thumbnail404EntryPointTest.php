@@ -72,6 +72,8 @@ class Thumbnail404EntryPointTest extends MediaWikiIntegrationTestCase {
 			$request = $req;
 		}
 
+		$this->setTestRepoHeaderFunc( $request->response()->header( ... ) );
+
 		return new MockEnvironment( $request );
 	}
 
@@ -138,6 +140,7 @@ class Thumbnail404EntryPointTest extends MediaWikiIntegrationTestCase {
 			'text/html; charset=utf-8',
 			'Content-Type'
 		);
+		$env->assertHeaderValue( null, 'Status' );
 
 		$this->assertStringContainsString(
 			'<title>Error generating thumbnail</title>',
@@ -157,6 +160,7 @@ class Thumbnail404EntryPointTest extends MediaWikiIntegrationTestCase {
 		$output = $entryPoint->getCapturedOutput();
 
 		$env->assertStatusCode( 200 );
+		$env->assertHeaderValue( '200 OK', 'Status' );
 
 		$this->assertThumbnail(
 			[ 'magic' => self::PNG_MAGIC, 'width' => 13, ],
@@ -179,6 +183,7 @@ class Thumbnail404EntryPointTest extends MediaWikiIntegrationTestCase {
 		$output = $entryPoint->getCapturedOutput();
 
 		$env->assertStatusCode( 200 );
+		$env->assertHeaderValue( '200 OK', 'Status' );
 
 		$this->assertThumbnail(
 			[ 'magic' => self::PNG_MAGIC, 'width' => 13, ],
@@ -202,6 +207,7 @@ class Thumbnail404EntryPointTest extends MediaWikiIntegrationTestCase {
 		$output = $entryPoint->getCapturedOutput();
 
 		$env->assertStatusCode( 200, $output );
+		$env->assertHeaderValue( '200 OK', 'Status' );
 		$env->assertHeaderValue( null, 'Vary' );
 
 		// use long name
@@ -285,6 +291,7 @@ class Thumbnail404EntryPointTest extends MediaWikiIntegrationTestCase {
 		$output = $entryPoint->getCapturedOutput();
 
 		$env->assertStatusCode( 200 );
+		$env->assertHeaderValue( '200 OK', 'Status' );
 		$this->assertThumbnail(
 			[ 'magic' => self::JPEG_MAGIC, 'width' => 13, ],
 			$output

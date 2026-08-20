@@ -18,6 +18,9 @@ trait TestRepoTrait {
 
 	private static ?string $mockRepoTraitDir = null;
 
+	/** @var callable|null */
+	private $testRepoHeaderFunc = null;
+
 	/**
 	 * Initializes a mock repository in a temporary directory.
 	 * Must only be called in addDBDataOnce().
@@ -261,8 +264,19 @@ trait TestRepoTrait {
 		}
 	}
 
+	/**
+	 * Set a callback which will be called with header lines
+	 *
+	 * @param callable|null $func
+	 */
+	private function setTestRepoHeaderFunc( ?callable $func ) {
+		$this->testRepoHeaderFunc = $func;
+	}
+
 	private function recordHeader( string $header ) {
-		// no-op
+		if ( $this->testRepoHeaderFunc ) {
+			( $this->testRepoHeaderFunc )( $header );
+		}
 	}
 
 }

@@ -996,8 +996,11 @@ class MainConfigSchema {
 	 *   - thumbScriptUrl   The URL for thumb.php (optional, not recommended)
 	 *   - transformVia404  Whether to skip media file transformation on parse and rely on a 404
 	 *                      handler instead.
-	 *   - thumbProxyUrl    Optional. URL of where to proxy thumb.php requests to. This is
-	 *                      also used internally for remote thumbnailing of upload stash files.
+	 *   - thumbProxyUrl    Optional. The URL of a server which we will proxy thumbnailing requests
+	 *                      to. It should end with a slash. This endpoint can be served by a file
+	 *                      server with MediaWiki's thumb_handler.php as its 404 handler, but that
+	 *                      MediaWiki would need thumbProxyUrl to be null to avoid a loop. WMF uses
+	 *                      Thumbor with a custom plugin.
 	 *                      Example: http://127.0.0.1:8888/wiki/dev/thumb/
 	 *   - thumbProxySecret Optional value of the X-Swift-Secret header to use in requests to
 	 *                      thumbProxyUrl

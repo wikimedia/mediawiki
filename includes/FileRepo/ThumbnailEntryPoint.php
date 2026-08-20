@@ -250,6 +250,13 @@ class ThumbnailEntryPoint extends MediaWikiEntryPoint {
 
 				return;
 			}
+
+			// If Apache receives a Status response header while handling an
+			// ErrorDocument directive, it will override the default 404 status
+			// code.
+			$headers[] = 'Status: 200 OK';
+			// This is apparently sufficient in mod_php
+			$this->status( 200 );
 		}
 
 		$cspHeader = ContentSecurityPolicy::getMediaHeader( $thumbName );
