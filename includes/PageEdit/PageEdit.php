@@ -156,7 +156,6 @@ class PageEdit implements IEditObject {
 
 		$preliminaryChecksRunner = $this->getPreliminaryChecksRunner(
 			$new,
-			$textbox_content,
 			$requestUser,
 			$page->getTitle(),
 		);
@@ -188,7 +187,7 @@ class PageEdit implements IEditObject {
 
 			$pageUpdater = $page->newPageUpdater( $pstUser )
 				->setContent( SlotRecord::MAIN, $content );
-			$pageUpdater->prepareUpdate( $flags );
+			$preparedUpdate = $pageUpdater->prepareUpdate( $flags );
 
 			$newPageChecksRunner = $this->getNewPageChecksRunner( $content, $pstUser, $markAsMinor );
 			$status = $newPageChecksRunner->checkConstraints();
@@ -272,7 +271,7 @@ class PageEdit implements IEditObject {
 
 			$pageUpdater = $page->newPageUpdater( $pstUser )
 				->setContent( SlotRecord::MAIN, $content );
-			$pageUpdater->prepareUpdate( $flags );
+			$preparedUpdate = $pageUpdater->prepareUpdate( $flags );
 
 			$existingPageChecksRunner = $this->getExistingPageChecksRunner( $content, $pstUser, $page, $markAsMinor );
 			$status = $existingPageChecksRunner->checkConstraints();
@@ -311,7 +310,10 @@ class PageEdit implements IEditObject {
 			$content, $this->inputs->getContentFormat(), $this->inputs->shouldEnableApiEditOverride()
 		) ?? '' );
 
-		$postMergeChecksRunner = $this->getPostMergeChecksRunner( $content, $page );
+		$postMergeChecksRunner = $this->getPostMergeChecksRunner(
+			$preparedUpdate->getRawContent( SlotRecord::MAIN ),
+			$page
+		);
 		$status = $postMergeChecksRunner->checkConstraints();
 		if ( !$status->isOK() ) {
 			return $status;
@@ -447,13 +449,11 @@ class PageEdit implements IEditObject {
 
 	/**
 	 * @param bool $new
-	 * @param Content $newContent
 	 * @param User $requestUser
 	 * @param Title $title
 	 */
 	private function getPreliminaryChecksRunner(
 		bool $new,
-		Content $newContent,
 		User $requestUser,
 		$title,
 	): EditConstraintRunner {
@@ -465,12 +465,6 @@ class PageEdit implements IEditObject {
 				$this->textbox1,
 				$this->inputs->getContext()->getRequest()->getIP(),
 				$this->inputs->getPage(),
-			),
-
-			new ImageRedirectConstraint(
-				$newContent,
-				$this->inputs->getPage(),
-				$this->inputs->getAuthority()
 			),
 
 			$this->constraintFactory->newReadOnlyConstraint(),
@@ -598,19 +592,25 @@ class PageEdit implements IEditObject {
 	}
 
 	/**
-	 * @param Content $content
+	 * @param Content $postPstContent
 	 * @param WikiPage $page
 	 */
 	private function getPostMergeChecksRunner(
-		Content $content,
+		Content $postPstContent,
 		$page,
 	): EditConstraintRunner {
-		$constraintRunner = new EditConstraintRunner();
+		$constraintRunner = new EditConstraintRunner(
+			new ImageRedirectConstraint(
+				$postPstContent,
+				$this->inputs->getPage(),
+				$this->inputs->getAuthority()
+			),
+		);
 		if ( !$this->inputs->shouldIgnoreProblematicRedirects() ) {
 			$constraintRunner->addConstraint(
 				$this->constraintFactory->newRedirectConstraint(
 					$this->inputs->getAllowedProblematicRedirectTarget(),
-					$content,
+					$postPstContent,
 					$this->pageEditingHelper->getCurrentContent(
 						$this->inputs->getContentModel(), $page,
 					),
