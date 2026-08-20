@@ -164,7 +164,8 @@
 			"YUMANEKO",
 			"Tensama0415",
 			"Cookie4782",
-			"Kanato Hinokuma"
+			"Kanato Hinokuma",
+			"Ska101~translate"
 		]
 	},
 	"pagecategories": "{{PLURAL:$1|カテゴリ}}",
@@ -3253,6 +3254,7 @@
 	"semicolon-separator": "；",
 	"comma-separator": "、",
 	"colon-separator": ":&#32;",
+	"word-separator": "​",
 	"ellipsis": "…",
 	"percent": "$1%",
 	"brackets": "[$1]",

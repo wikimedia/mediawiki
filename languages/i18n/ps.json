@@ -2958,6 +2958,7 @@
 	"tags-create-already-exists": "د \"$1\" نښلن له پخوا څخه شته.",
 	"tags-delete-title": "نښلن ړنگول",
 	"tags-delete-reason": "لامل:",
+	"tags-delete-not-found": "\"$1\" نښلن شتون نلري.",
 	"tags-activate-title": "نښلن فعالول",
 	"tags-activate-question": "تاسې د \"$1\" نښلن په فعالولو کې ياست.",
 	"tags-activate-reason": "لامل:",

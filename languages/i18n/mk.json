@@ -2138,7 +2138,7 @@
 	"addedwatchexpirytext-talk": "„[[:$1]]“ и нејзината поврзана страница се додадени во вашите [[Special:Watchlist|набљудувања]] за $2.",
 	"addedwatchindefinitelytext": "„[[:$1]]“ и нејзината разговорна страница се трајно додадени во вашите [[Special:Watchlist|набљудувања]].",
 	"addedwatchindefinitelytext-talk": "„[[:$1]]“ и нејзината поврзана страница се трајно додадени во вашите [[Special:Watchlist|набљудувања]].",
-	"removewatch": "Отстрани набљудуваните",
+	"removewatch": "Отстрани од набљудуваните",
 	"removedwatchtext": "„[[:$1]]“ и нејзината разговорна страница се отстранети од вашите [[Special:Watchlist|набљудувања]].",
 	"removedwatchtext-talk": "„[[:$1]]“ и нејзината поврзана страница се отстранети од вашите [[Special:Watchlist|набљудувања]].",
 	"removedwatchtext-short": "Страницата „$1“ е отстранета од вашите набљудувања.",

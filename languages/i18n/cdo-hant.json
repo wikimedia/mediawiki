@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Winston Sung"
+			"Winston Sung",
+			"Davidzdh"
 		]
 	},
 	"pagecategories": "{{PLURAL:$1|分類}}",
@@ -75,6 +76,7 @@
 	"pool-queuefull": "隊列池已經滿了",
 	"pool-errorunknown": "𣍐曉什乇綻咯",
 	"copyright-footer": "內容會使敆$1下底會使獲得遘，若無會乞其他提示。",
+	"disclaimers": "免責聲明",
 	"edithelp": "修改保護",
 	"helppage-top-gethelp": "幫助",
 	"mainpage": "頭頁",

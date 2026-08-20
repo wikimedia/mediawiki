@@ -2892,7 +2892,7 @@
 	"tooltip-upload": "Započni postavljanje",
 	"tooltip-rollback": "Jednim klikom vraća izmjene posljednjeg urednika/urednice ove stranice",
 	"tooltip-undo": "Vraća ovu izmjenu i otvara formu uređivanja u režimu pretpregleda.\nDopušta unošenje razloga za to u sažetku.",
-	"tooltip-summary": "Unesite kratki sažetak",
+	"tooltip-summary": "Unesite kratak sažetak",
 	"interlanguage-link-title": "$1 – $2",
 	"interlanguage-link-title-nonlang": "$1 – $2",
 	"anonymous": "{{PLURAL:$1|Anonimni korisnik|$1 anonimna korisnika|$1 anonimnih korisnika}} projekta {{SITENAME}}",

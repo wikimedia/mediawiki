@@ -629,7 +629,7 @@
 	"titleprotectedwarning": "<strong>Atencez: Ca pagino protektesis, do nur uzeri kun [[Special:ListGroupRights|specifika yuri]] povas krear ol.</strong>\nLa lasta protokolo (log entry) montresas adinfre, por refero:",
 	"templatesused": "{{PLURAL:$1|Pagino|Pagini}} inkluzita en ca pagino:",
 	"templatesusedpreview": "{{PLURAL:$1|Pagino|Pagini}} inkluzita en ca previdado:",
-	"templatesusedsection": "{{PLURAL:$1|Shablono|Shabloni}} uzata en ica seciono:",
+	"templatesusedsection": "{{PLURAL:$1|Pagino|Pagini}} inkluzita en ica seciono:",
 	"template-protected": "(protektita)",
 	"template-semiprotected": "(miprotektita)",
 	"hiddencategories": "Ca pagino esas membro di {{PLURAL:$1|1 celita kategorio|$1 celita kategorii}}:",

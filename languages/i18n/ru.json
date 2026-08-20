@@ -206,7 +206,8 @@
 			"Shabe",
 			"LuckyBlock13fa",
 			"Маринад",
-			"Ouclie"
+			"Ouclie",
+			"Well very well"
 		]
 	},
 	"pagecategories": "{{PLURAL:$1|1=Категория|Категории}}",
@@ -3726,10 +3727,10 @@
 	"logentry-block-block-multi": "$1 {{GENDER:$2|добавил|добавила}} блокировку для {{GENDER:$4|$3}} на период $5 $6",
 	"logentry-block-unblock": "$1 разблокировал{{GENDER:$2||а}} {{GENDER:$4|$3}}",
 	"logentry-block-reblock": "$1 изменил{{GENDER:$2||а}} настройки блокировки для {{GENDER:$4|$3}} на период $5 $6",
-	"logentry-partialblock-block-page": "на {{PLURAL:$1|страницу|страницы}} $2",
-	"logentry-partialblock-block-ns": "на {{PLURAL:$1|пространство имён|пространства имён}} $2",
-	"logentry-partialblock-block-action": "{{PLURAL:$1|действия|действий}} «$2»",
-	"logentry-partialblock-block": "$1 {{GENDER:$2|заблокировал|заблокировала}} {{GENDER:$4|$3}} с запретом $7 на период $5 $6",
+	"logentry-partialblock-block-page": "правку {{PLURAL:$1|страницы|страниц}} $2",
+	"logentry-partialblock-block-ns": "{{PLURAL:$1|пространство имён|пространства имён}} $2",
+	"logentry-partialblock-block-action": "{{PLURAL:$1|действие|действия}} «$2»",
+	"logentry-partialblock-block": "$1 {{GENDER:$2|заблокировал|заблокировала}} {{GENDER:$4|$3}} $7 на период $5 $6",
 	"logentry-partialblock-block-multi": "$1 {{GENDER:$2|добавил|добавила}} блокировку для {{GENDER:$4|$3}} $7 на период $5 $6",
 	"logentry-partialblock-reblock": "$1 изменил{{GENDER:$2||а}} настройки блокировки для {{GENDER:$4|$3}}, заблокировав $7 на период $5 $6",
 	"logentry-non-editing-block-block": "$1 {{GENDER:$2|заблокировал|заблокировала}} {{GENDER:$4|$3}} от определённых действий, не связанных с редактированием, на период $5 $6",
@@ -4236,6 +4237,7 @@
 	"right-renameuser-global": "Глобальное переименование участников",
 	"renameuser-renamed-notice": "{{GENDER:$1|Этот участник был переименован|Эта участница была переименована}}.\nНиже для справки приведён журнал переименований.",
 	"log-unknown-action": "выполнено неизвестное действие «$2» на [[$1]]",
+	"log-unsafe-logentry": "(Эту запись в журнале не удалось отобразить, поскольку ее параметры содержат небезопасные сериализованные данные.)",
 	"createacct-benefit-heading-temp-user": "Благодарим вас за вклад в развитие проекта {{SITENAME}}.\nСоздайте учётную запись, чтобы получить доступ к дополнительным функциям.",
 	"createacct-benefit-subheading-temp-user": "Сайт {{SITENAME}} создан такими же людьми, как и вы. Имея учётную запись, вы можете иметь постоянный и безопасный  идентификатор с доступом к таким функциям, как:",
 	"benefit-1-description": "Списки наблюдения, которые позволяют отслеживать интересующие вас страницы.",
