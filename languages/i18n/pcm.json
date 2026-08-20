@@ -2,6 +2,7 @@
 	"@metadata": {
 		"authors": [
 			"Egiebizzy",
+			"Jessephu",
 			"Kambai Akau",
 			"Pingponging",
 			"Samatics"
@@ -22,10 +23,13 @@
 	"about": "Abaut",
 	"newwindow": "(e go opun for anoda windo)",
 	"cancel": "Kansu-am",
+	"mypage": "pej",
 	"mytalk": "Tok",
+	"mytalk-appeal": "Beg mek dem komot di IP blok",
 	"anontalk": "Tok",
 	"navigation": "Dareshon",
 	"and": "&#32;an",
+	"faq": "Tins wey dem dey ask wel-wel",
 	"namespaces": "Nemspes-dem",
 	"navigation-heading": "Dareshon for wetin dey",
 	"returnto": "Riton-am go $1.",
