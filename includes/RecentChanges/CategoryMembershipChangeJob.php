@@ -11,10 +11,11 @@ use MediaWiki\JobQueue\JobSpecification;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageIdentity;
+use MediaWiki\Page\ParserOutputAccess;
 use MediaWiki\Page\WikiPage;
 use MediaWiki\Revision\RevisionRecord;
-use MediaWiki\Revision\RevisionStoreRecord;
 use MediaWiki\Title\Title;
+use Wikimedia\Assert\Assert;
 use Wikimedia\Rdbms\IDBAccessObject;
 use Wikimedia\Rdbms\LBFactory;
 use Wikimedia\Rdbms\RawSQLExpression;
@@ -275,14 +276,13 @@ class CategoryMembershipChangeJob extends Job {
 		$options->setTimestamp( $parseTimestamp );
 		$options->setRenderReason( 'CategoryMembershipChangeJob' );
 
-		$output = $rev instanceof RevisionStoreRecord && $rev->isCurrent()
-			? $services->getParserCache()->get( $page, $options )
-			: null;
-
-		if ( !$output || $output->getCacheRevisionId() !== $rev->getId() ) {
-			$output = $services->getRevisionRenderer()->getRenderedRevision( $rev, $options )
-				->getRevisionParserOutput();
-		}
+		$status = $services->getParserOutputAccess()->getParserOutput(
+			$page, $options, $rev, [ ParserOutputAccess::OPT_NO_UPDATE_CACHE => true ]
+		);
+		Assert::invariant(
+			$status->isOK(), 'Did not return rendered output for the given page.'
+		);
+		$output = $status->getValue();
 
 		// array keys will cast numeric category names to ints;
 		// ::getCategoryNames() is careful to cast them back to strings
