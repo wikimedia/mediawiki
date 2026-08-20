@@ -73,6 +73,36 @@ class PagePropsTest extends MediaWikiLangTestCase {
 		$pageProps->getProperties( $this->title2, 'numberNine' );
 	}
 
+	public function testGetProperties_multiplePropsMixed() {
+		$pageProps = $this->getServiceContainer()->getPageProps();
+		$page1ID = $this->title1->getArticleID();
+		// Include one absent prop (T297300)
+		$result = $pageProps->getProperties( $this->title1, [ 'property2', 'property4', 'numberNine' ] );
+		$this->assertSame( $result, [
+			$page1ID => [ 'property2' => 'value2', 'property4' => 'value4' ]
+		], 'Fresh result' );
+
+		// Support caching absence (T297300), disable database to confirm no repeat queries
+		TestingAccessWrapper::newFromObject( $pageProps )->dbProvider = LBFactorySingle::newDisabled();
+		$result = $pageProps->getProperties( $this->title1, [ 'property2', 'property4', 'numberNine' ] );
+		$this->assertSame( $result, [
+			$page1ID => [ 'property2' => 'value2', 'property4' => 'value4' ]
+		], 'Cached result' );
+	}
+
+	public function testGetProperties_multiplePropsAbsent() {
+		$pageProps = $this->getServiceContainer()->getPageProps();
+		$page1ID = $this->title1->getArticleID();
+		// All absent props (T297300)
+		$result = $pageProps->getProperties( $this->title1, [ 'numberNine', 'Revolution_9' ] );
+		$this->assertEquals( [], $result, 'Fresh result' );
+
+		// Support caching absence (T297300), disable database to confirm no repeat queries
+		TestingAccessWrapper::newFromObject( $pageProps )->dbProvider = LBFactorySingle::newDisabled();
+		$result = $pageProps->getProperties( $this->title1, [ 'numberNine', 'Revolution_9' ] );
+		$this->assertEquals( [], $result, 'Cached result' );
+	}
+
 	public function testGetProperties_singlePropForMultipleTitleObjects() {
 		$pageProps = $this->getServiceContainer()->getPageProps();
 		$page1ID = $this->title1->getArticleID();
