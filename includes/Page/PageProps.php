@@ -74,10 +74,11 @@ class PageProps {
 			foreach ( $propertyNames as $propertyName ) {
 				$propertyValue = $this->getCachedProperty( $pageID, $propertyName );
 				if ( $propertyValue === null ) {
-					// Store absence, and overwrite below if present (T297300).
+					// Unknown, fetch from database
+					$queryIDs[$pageID] = true;
+					// Optimization: Cache absence of results (T297300)
+					// Assume and remember absence, then replace it below if found
 					$this->cache->setField( $pageID, $propertyName, false );
-					$queryIDs[] = $pageID;
-					break;
 				} elseif ( $propertyValue !== false ) {
 					if ( $gotArray ) {
 						$values[$pageID][$propertyName] = $propertyValue;
@@ -92,7 +93,7 @@ class PageProps {
 			$queryBuilder = $this->dbProvider->getReplicaDatabase()->newSelectQueryBuilder();
 			$queryBuilder->select( [ 'pp_page', 'pp_propname', 'pp_value' ] )
 				->from( 'page_props' )
-				->where( [ 'pp_page' => $queryIDs, 'pp_propname' => $propertyNames ] )
+				->where( [ 'pp_page' => array_keys( $queryIDs ), 'pp_propname' => $propertyNames ] )
 				->caller( __METHOD__ );
 			$result = $queryBuilder->fetchResultSet();
 
