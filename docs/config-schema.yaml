@@ -5658,7 +5658,7 @@ config-schema:
         description: |-
             IP ranges that should be considered soft-blocked (anon-only, account
             creation allowed). The intent is to use this to prevent anonymous edits from
-            shared resources such as Wikimedia Labs.
+            shared resources such as Wikimedia Cloud Services.
             @since 1.29
     ApplyIpBlocksToXff:
         default: false
