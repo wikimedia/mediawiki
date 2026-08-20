@@ -996,9 +996,14 @@ function wfHttpError( $code, $label, $desc ) {
  * Note that some PHP configuration options may add output buffer
  * layers which cannot be removed; these are left in place.
  *
+ * Does nothing during unit tests.
+ *
  * @param bool $resetGzipEncoding
  */
 function wfResetOutputBuffers( $resetGzipEncoding = true ) {
+	if ( defined( 'MW_PHPUNIT_TEST' ) ) {
+		return;
+	}
 	// phpcs:ignore Generic.CodeAnalysis.AssignmentInCondition.FoundInWhileCondition
 	while ( $status = ob_get_status() ) {
 		if ( isset( $status['flags'] ) ) {
@@ -1013,10 +1018,6 @@ function wfResetOutputBuffers( $resetGzipEncoding = true ) {
 		if ( !$deletable ) {
 			// Give up, and hope the result doesn't break
 			// output behavior.
-			break;
-		}
-		if ( $status['name'] === 'MediaWikiIntegrationTestCase::wfResetOutputBuffersBarrier' ) {
-			// Unit testing barrier to prevent this function from breaking PHPUnit.
 			break;
 		}
 		if ( !ob_end_clean() ) {
