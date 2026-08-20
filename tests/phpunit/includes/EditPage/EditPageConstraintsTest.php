@@ -450,7 +450,7 @@ class EditPageConstraintsTest extends MediaWikiLangTestCase {
 		}
 
 		$permissionManager = $this->getServiceContainer()->getPermissionManager();
-		$permissionManager->overrideUserRightsForTesting( $user, [ 'edit' ] );
+		$permissionManager->overrideUserRightsForTesting( $user, [ 'edit', 'createpage' ] );
 
 		$edit = [
 			'wpTextbox1' => '#REDIRECT [[File:Example other file.jpg]]',

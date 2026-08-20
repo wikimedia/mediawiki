@@ -2077,7 +2077,6 @@ class EditPage implements IEditObject {
 		$preliminaryChecksRunner = $this->getPreliminaryChecksRunner(
 			$authority,
 			$new,
-			$textbox_content,
 			$requestUser,
 			$submitButtonLabel,
 		);
@@ -2113,7 +2112,7 @@ class EditPage implements IEditObject {
 
 			$pageUpdater = $this->page->newPageUpdater( $pstUser )
 				->setContent( SlotRecord::MAIN, $content );
-			$pageUpdater->prepareUpdate( $flags );
+			$preparedUpdate = $pageUpdater->prepareUpdate( $flags );
 
 			$newPageChecksRunner = $this->getNewPageChecksRunner(
 				$content,
@@ -2242,7 +2241,7 @@ class EditPage implements IEditObject {
 
 			$pageUpdater = $this->page->newPageUpdater( $pstUser )
 				->setContent( SlotRecord::MAIN, $content );
-			$pageUpdater->prepareUpdate( $flags );
+			$preparedUpdate = $pageUpdater->prepareUpdate( $flags );
 
 			$existingPageChecksRunner = $this->getExistingPageChecksRunner(
 				$authority,
@@ -2290,8 +2289,9 @@ class EditPage implements IEditObject {
 		) ?? '' );
 
 		$postMergeChecksRunner = $this->getPostMergeChecksRunner(
-			$content,
+			$preparedUpdate->getRawContent( SlotRecord::MAIN ),
 			$submitButtonLabel,
+			$authority
 		);
 		$status = $postMergeChecksRunner->checkConstraints();
 		if ( !$status->isOK() ) {
@@ -2373,7 +2373,6 @@ class EditPage implements IEditObject {
 	private function getPreliminaryChecksRunner(
 		Authority $authority,
 		bool $new,
-		Content $newContent,
 		User $requestUser,
 		string $submitButtonLabel,
 	): EditConstraintRunner {
@@ -2396,12 +2395,6 @@ class EditPage implements IEditObject {
 				$this->textbox1,
 				$this->context->getRequest()->getIP(),
 				$this->getTitle()
-			),
-
-			new ImageRedirectConstraint(
-				$newContent,
-				$this->getTitle(),
-				$authority
 			),
 
 			$this->constraintFactory->newReadOnlyConstraint(),
@@ -2520,15 +2513,22 @@ class EditPage implements IEditObject {
 	}
 
 	private function getPostMergeChecksRunner(
-		Content $content,
+		Content $postPstContent,
 		string $submitButtonLabel,
+		Authority $authority
 	): EditConstraintRunner {
-		$constraintRunner = new EditConstraintRunner();
+		$constraintRunner = new EditConstraintRunner(
+			new ImageRedirectConstraint(
+				$postPstContent,
+				$this->getTitle(),
+				$authority
+			),
+		);
 		if ( !$this->ignoreProblematicRedirects ) {
 			$constraintRunner->addConstraint(
 				$this->constraintFactory->newRedirectConstraint(
 					$this->allowedProblematicRedirectTarget,
-					$content,
+					$postPstContent,
 					$this->getCurrentContent(),
 					$this->getTitle(),
 					MessageValue::new(
