@@ -39,44 +39,41 @@ class PagePropsTest extends MediaWikiLangTestCase {
 		}
 	}
 
-	/**
-	 * Test getting a single property from a single page. The property was
-	 * set in setUp().
-	 */
-	public function testGetSingleProperty() {
+	public function testGetProperties_singlePropForSinglePage() {
 		$pageProps = $this->getServiceContainer()->getPageProps();
 		$page1ID = $this->title1->getArticleID();
 		$result = $pageProps->getProperties( $this->title1, "property1" );
-		$this->assertArrayHasKey( $page1ID, $result, "Found property" );
-		$this->assertSame( "value1", $result[$page1ID], "Get property" );
+		$this->assertSame( $result, [ $page1ID => 'value1' ], 'Fresh value' );
+
+		// Test caching when retrieving single properties by getting a property,
+		// saving a new value for the property, then getting the property
+		// again. The cached value for the property rather than the new value
+		// of the property should be returned.
+
+		$this->setProperty( $page1ID, 'property1', 'ANewHopeee' );
+		$result = $pageProps->getProperties( $this->title1, 'property1' );
+		$this->assertSame( $result, [ $page1ID => 'value1' ], 'Cached value' );
 	}
 
-	/**
-	 * Test handling of absent single property.
-	 */
-	public function testGetSinglePropertyAbsent() {
+	public function testGetProperties_singlePropAbsent() {
 		$pageProps = $this->getServiceContainer()->getPageProps();
 		$page1ID = $this->title1->getArticleID();
-		$result = $pageProps->getProperties( $this->title1, 'property9' );
-		$this->assertNull( $result[$page1ID]['property9'] ?? null, 'Property' );
-		$this->assertSame( [], $result, 'Result' );
+		$result = $pageProps->getProperties( $this->title1, 'numberNine' );
+		$this->assertSame( [], $result, 'Fresh result' );
 
-		// Support caching absence (T347123), disable database to assert no repeat queries
+		// Support caching absence (T297300), disable database to confirm no repeat queries
 		TestingAccessWrapper::newFromObject( $pageProps )->dbProvider = LBFactorySingle::newDisabled();
-		$result = $pageProps->getProperties( $this->title1, 'property9' );
+		$result = $pageProps->getProperties( $this->title1, 'numberNine' );
 		$this->assertSame( [], $result, 'Cached result' );
 
-		// Make sure we can still read other data, e.g. a different page
+		// Confirm database disabling actually worked,
+		// and confirm that we still try to read data for other pages
 		$this->expectException( RuntimeException::class );
 		$this->expectExceptionMessage( 'Database backend disabled' );
-		$pageProps->getProperties( $this->title2, 'property9' );
+		$pageProps->getProperties( $this->title2, 'numberNine' );
 	}
 
-	/**
-	 * Test getting a single property from multiple pages. The property was
-	 * set in setUp(). Using Title[].
-	 */
-	public function testGetSinglePropertyMultiplePages() {
+	public function testGetProperties_singlePropForMultipleTitleObjects() {
 		$pageProps = $this->getServiceContainer()->getPageProps();
 		$page1ID = $this->title1->getArticleID();
 		$page2ID = $this->title2->getArticleID();
@@ -85,17 +82,13 @@ class PagePropsTest extends MediaWikiLangTestCase {
 			$this->title2
 		];
 		$result = $pageProps->getProperties( $titles, "property1" );
-		$this->assertArrayHasKey( $page1ID, $result, "Found page 1 property" );
-		$this->assertArrayHasKey( $page2ID, $result, "Found page 2 property" );
-		$this->assertSame( "value1", $result[$page1ID], "Get property page 1" );
-		$this->assertSame( "value1", $result[$page2ID], "Get property page 2" );
+		$this->assertSame( $result, [
+			$page1ID => 'value1',
+			$page2ID => 'value1'
+		] );
 	}
 
-	/**
-	 * Test getting a single property from multiple pages. The property was
-	 * set in setUp(). Using TitleArray.
-	 */
-	public function testGetSinglePropertyMultiplePagesTitleArray() {
+	public function testGetProperties_singlePropForTitleArrayFromResult() {
 		$services = $this->getServiceContainer();
 		$pageProps = $services->getPageProps();
 		$page1ID = $this->title1->getArticleID();
@@ -107,17 +100,13 @@ class PagePropsTest extends MediaWikiLangTestCase {
 		$resultWrapper = new FakeResultWrapper( $rows );
 		$titles = $services->getTitleFactory()->newTitleArrayFromResult( $resultWrapper );
 		$result = $pageProps->getProperties( $titles, "property1" );
-		$this->assertArrayHasKey( $page1ID, $result, "Found page 1 property" );
-		$this->assertArrayHasKey( $page2ID, $result, "Found page 2 property" );
-		$this->assertSame( "value1", $result[$page1ID], "Get property page 1" );
-		$this->assertSame( "value1", $result[$page2ID], "Get property page 2" );
+		$this->assertSame( $result, [
+			$page1ID => 'value1',
+			$page2ID => 'value1'
+		] );
 	}
 
-	/**
-	 * Test getting multiple properties from multiple pages. The properties
-	 * were set in setUp().
-	 */
-	public function testGetMultiplePropertiesMultiplePages() {
+	public function testGetProperties_singlePropForMultiplePages() {
 		$pageProps = $this->getServiceContainer()->getPageProps();
 		$page1ID = $this->title1->getArticleID();
 		$page2ID = $this->title2->getArticleID();
@@ -125,47 +114,35 @@ class PagePropsTest extends MediaWikiLangTestCase {
 			$this->title1->toPageIdentity(),
 			$this->title2->toPageIdentity()
 		];
-		$properties = [
-			"property1",
-			"property2"
-		];
-		$result = $pageProps->getProperties( $titles, $properties );
-		$this->assertArrayHasKey( $page1ID, $result, "Found page 1 property" );
-		$this->assertArrayHasKey( "property1", $result[$page1ID], "Found page 1 property 1" );
-		$this->assertArrayHasKey( "property2", $result[$page1ID], "Found page 1 property 2" );
-		$this->assertArrayHasKey( $page2ID, $result, "Found page 2 property" );
-		$this->assertArrayHasKey( "property1", $result[$page2ID], "Found page 2 property 1" );
-		$this->assertArrayHasKey( "property2", $result[$page2ID], "Found page 2 property 2" );
-		$this->assertSame( "value1", $result[$page1ID]["property1"], "Get page 1 property 1" );
-		$this->assertSame( "value2", $result[$page1ID]["property2"], "Get page 1 property 2" );
-		$this->assertSame( "value1", $result[$page2ID]["property1"], "Get page 2 property 1" );
-		$this->assertSame( "value2", $result[$page2ID]["property2"], "Get page 2 property 2" );
+		$result = $pageProps->getProperties( $titles, [ 'property1', 'property2' ] );
+		$this->assertSame( $result, [
+			$page1ID => [ 'property1' => 'value1', 'property2' => 'value2' ],
+			$page2ID => [ 'property1' => 'value1', 'property2' => 'value2' ],
+		] );
 	}
 
-	/**
-	 * Test getting all properties from a single page. The properties were
-	 * set in setUp(). The properties retrieved from the page may include
-	 * additional properties not set in the test case that are added by
-	 * other extensions. Therefore, rather than checking to see if the
-	 * properties that were set in the test case exactly match the
-	 * retrieved properties, we need to check to see if they are a
-	 * subset of the retrieved properties.
-	 */
-	public function testGetAllProperties() {
+	public function testGetAllProperties_singleTitle() {
 		$pageProps = $this->getServiceContainer()->getPageProps();
 		$page1ID = $this->title1->getArticleID();
 		$result = $pageProps->getAllProperties( $this->title1 );
-		$this->assertArrayHasKey( $page1ID, $result, "Found properties" );
+		$this->assertSame( $result, [
+			$page1ID => [
+				'property1' => 'value1',
+				'property2' => 'value2',
+				'property3' => 'value3',
+				'property4' => 'value4',
+			]
+		], 'Fresh values' );
 
-		$properties = $result[$page1ID];
-		$this->assertEquals( $this->expectedProperties, $properties, "Get all properties" );
+		// Save a new value for a property, then get all properties again.
+		// The cached value for the properties rather than the new value of
+		// the properties should be returned.
+		$this->setProperty( $page1ID, 'property1', 'different value' );
+		$result2 = $pageProps->getAllProperties( $this->title1 );
+		$this->assertSame( $result, $result2, 'Cached values unchanged' );
 	}
 
-	/**
-	 * Test getting all properties from multiple pages. The properties were
-	 * set in setUp(). See getAllProperties() above for more information.
-	 */
-	public function testGetAllPropertiesMultiplePages() {
+	public function testGetAllProperties_multiplePages() {
 		$pageProps = $this->getServiceContainer()->getPageProps();
 		$page1ID = $this->title1->getArticleID();
 		$page2ID = $this->title2->getArticleID();
@@ -186,65 +163,30 @@ class PagePropsTest extends MediaWikiLangTestCase {
 		$this->assertEquals( $this->expectedProperties, $subset, "Properties of page 2" );
 	}
 
-	/**
-	 * Test caching when retrieving single properties by getting a property,
-	 * saving a new value for the property, then getting the property
-	 * again. The cached value for the property rather than the new value
-	 * of the property should be returned.
-	 */
-	public function testSingleCache() {
-		$pageProps = $this->getServiceContainer()->getPageProps();
-		$page1ID = $this->title1->getArticleID();
-		$value1 = $pageProps->getProperties( $this->title1, "property1" );
-		$this->setProperty( $page1ID, "property1", "another value" );
-		$value2 = $pageProps->getProperties( $this->title1, "property1" );
-
-		$this->assertEquals( $value1, $value2, "Single cache" );
-	}
-
-	/**
-	 * Test caching when retrieving all properties by getting all
-	 * properties, saving a new value for a property, then getting all
-	 * properties again. The cached value for the properties rather than the
-	 * new value of the properties should be returned.
-	 */
-	public function testMultiCache() {
+	public function testGetAllProperties_ignoreAndReplaceSinglePropCache() {
 		$pageProps = $this->getServiceContainer()->getPageProps();
 		$page1ID = $this->title1->getArticleID();
 
-		$properties1 = $pageProps->getAllProperties( $this->title1 );
-		$this->assertSame( $properties1, [
+		// Warm up cache for a single property
+		$pageProps->getProperties( $this->title1, 'property1' );
+
+		// Save a new value for this property
+		$this->setProperty( $page1ID, 'property1', 'ANewHopeee' );
+
+		// This should ignore the above cache
+		$result = $pageProps->getAllProperties( $this->title1 );
+		$this->assertSame( $result, [
 			$page1ID => [
-				'property1' => 'value1',
+				'property1' => 'ANewHopeee',
 				'property2' => 'value2',
 				'property3' => 'value3',
 				'property4' => 'value4',
 			]
-		], 'Before' );
+		], 'Fresh values' );
 
-		$this->setProperty( $page1ID, "property1", "different value" );
-		$properties2 = $pageProps->getAllProperties( $this->title1 );
-		$this->assertEquals( $properties1, $properties2, 'After is unchanged from cache' );
-	}
-
-	/**
-	 * Test that getting all properties clears the single properties
-	 * that have been cached by getting a property, saving a new value for
-	 * the property, getting all properties (which clears the cached single
-	 * properties), then getting the property again. The new value for the
-	 * property rather than the cached value of the property should be
-	 * returned.
-	 */
-	public function testClearCache() {
-		$pageProps = $this->getServiceContainer()->getPageProps();
-		$page1ID = $this->title1->getArticleID();
-		$pageProps->getProperties( $this->title1, "property1" );
-		$new_value = "another value";
-		$this->setProperty( $page1ID, "property1", $new_value );
-		$pageProps->getAllProperties( $this->title1 );
-		$result = $pageProps->getProperties( $this->title1, "property1" );
-		$this->assertArrayHasKey( $page1ID, $result, "Found property" );
-		$this->assertSame( "another value", $result[$page1ID], "Clear cache" );
+		// .. and have replaced the single prop cache
+		$result = $pageProps->getProperties( $this->title1, 'property1' );
+		$this->assertSame( $result, [ $page1ID => 'ANewHopeee' ], 'Updated cache' );
 	}
 
 	protected function setProperties( $pageID, array $properties ) {

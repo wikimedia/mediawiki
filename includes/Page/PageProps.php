@@ -74,7 +74,7 @@ class PageProps {
 			foreach ( $propertyNames as $propertyName ) {
 				$propertyValue = $this->getCachedProperty( $pageID, $propertyName );
 				if ( $propertyValue === null ) {
-					// Store absence, and overwrite below if present (T347123).
+					// Store absence, and overwrite below if present (T297300).
 					$this->cache->setField( $pageID, $propertyName, false );
 					$queryIDs[] = $pageID;
 					break;
