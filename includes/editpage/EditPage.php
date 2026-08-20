@@ -2182,13 +2182,6 @@ class EditPage implements IEditObject {
 			)
 		);
 		$constraintRunner->addConstraint(
-			new ImageRedirectConstraint(
-				$textbox_content,
-				$this->mTitle,
-				$authority
-			)
-		);
-		$constraintRunner->addConstraint(
 			$constraintFactory->newReadOnlyConstraint()
 		);
 
@@ -2273,7 +2266,7 @@ class EditPage implements IEditObject {
 			$pageUpdater = $this->page->newPageUpdater( $pstUser )
 				// @phan-suppress-next-line PhanTypeMismatchArgumentNullable False positive
 				->setContent( SlotRecord::MAIN, $content );
-			$pageUpdater->prepareUpdate( $flags );
+			$preparedUpdate = $pageUpdater->prepareUpdate( $flags );
 
 			// BEGINNING OF MIGRATION TO EDITCONSTRAINT SYSTEM (see T157658)
 			// Create a new runner to avoid rechecking the prior constraints, use the same factory
@@ -2424,7 +2417,7 @@ class EditPage implements IEditObject {
 
 			$pageUpdater = $this->page->newPageUpdater( $pstUser )
 				->setContent( SlotRecord::MAIN, $content );
-			$pageUpdater->prepareUpdate( $flags );
+			$preparedUpdate = $pageUpdater->prepareUpdate( $flags );
 
 			// BEGINNING OF MIGRATION TO EDITCONSTRAINT SYSTEM (see T157658)
 			// Create a new runner to avoid rechecking the prior constraints, use the same factory
@@ -2497,13 +2490,24 @@ class EditPage implements IEditObject {
 		$this->contentLength = strlen( $this->toEditText( $content ) );
 
 		// BEGINNING OF MIGRATION TO EDITCONSTRAINT SYSTEM (see T157658)
+
+		$postPstContent = $preparedUpdate->getRawContent( SlotRecord::MAIN );
+
 		// Create a new runner to avoid rechecking the prior constraints, use the same factory
 		$constraintRunner = new EditConstraintRunner();
+
+		$constraintRunner->addConstraint(
+			new ImageRedirectConstraint(
+				$postPstContent,
+				$this->mTitle,
+				$authority
+			)
+		);
 		if ( !$this->ignoreProblematicRedirects ) {
 			$constraintRunner->addConstraint(
 				new RedirectConstraint(
 					$this->allowedProblematicRedirectTarget,
-					$content,
+					$postPstContent,
 					$this->getCurrentContent(),
 					$this->getTitle(),
 					$submitButtonLabel,
