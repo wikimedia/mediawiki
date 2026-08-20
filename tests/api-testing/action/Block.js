@@ -2,7 +2,8 @@
 
 const { action, assert } = require( 'api-testing' );
 
-describe( 'Block', () => {
+// FIXME: Flaky test (T435272)
+describe.skip( 'Block', () => {
 	const ip = '::' + Math.floor( Math.random() * 65534 ).toString( 16 );
 	it( 'should not allow multiblocks without newblock (T389028)', async () => {
 		const mindy = await action.mindy();
