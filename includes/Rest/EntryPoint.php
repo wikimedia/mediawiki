@@ -142,7 +142,18 @@ class EntryPoint extends MediaWikiEntryPoint {
 		$services = $this->getServiceContainer();
 
 		$code = $services->getContentLanguageCode()->toString();
-		$langs = array_unique( [ $code, 'en' ] );
+		$langs = [ $code ];
+
+		$queryParams = $this->request->getQueryParams();
+		$requestedLang = $queryParams['lang'] ?? null;
+		if ( is_string( $requestedLang ) && $requestedLang !== '' ) {
+			$internalCode = \MediaWiki\Language\LanguageCode::bcp47ToInternal( $requestedLang );
+			if ( $services->getLanguageNameUtils()->isSupportedLanguage( $internalCode ) ) {
+				$langs = [ $internalCode ];
+			}
+		}
+
+		$langs = array_unique( array_merge( $langs, [ $code, 'en' ] ) );
 		$textFormatters = [];
 		$factory = $services->getMessageFormatterFactory();
 

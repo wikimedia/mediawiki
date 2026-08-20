@@ -110,4 +110,34 @@ class EntryPointTest extends MediaWikiIntegrationTestCase {
 		$this->assertStringContainsString( 'hello', $entryPoint->getCapturedOutput() );
 	}
 
+	public function testGetTextFormatters() {
+		$services = $this->getServiceContainer();
+		$env = new MockEnvironment();
+		$context = $env->makeFauxContext();
+
+		// Case 1: No lang parameter
+		$request = new RequestData( [] );
+		$entryPoint = new EntryPoint( $request, $context, $env, $services );
+		$wrapper = \Wikimedia\TestingAccessWrapper::newFromObject( $entryPoint );
+		$formatters = $wrapper->getTextFormatters();
+		$this->assertNotEmpty( $formatters );
+		$this->assertSame( $services->getContentLanguageCode()->toString(), $formatters[0]->getLangCode() );
+
+		// Case 2: Valid requested language (e.g. 'fr' or 'es')
+		$request = new RequestData( [ 'queryParams' => [ 'lang' => 'fr' ] ] );
+		$entryPoint = new EntryPoint( $request, $context, $env, $services );
+		$wrapper = \Wikimedia\TestingAccessWrapper::newFromObject( $entryPoint );
+		$formatters = $wrapper->getTextFormatters();
+		$this->assertNotEmpty( $formatters );
+		$this->assertSame( 'fr', $formatters[0]->getLangCode() );
+
+		// Case 3: Invalid requested language code (falls back)
+		$request = new RequestData( [ 'queryParams' => [ 'lang' => 'invalid-lang-code' ] ] );
+		$entryPoint = new EntryPoint( $request, $context, $env, $services );
+		$wrapper = \Wikimedia\TestingAccessWrapper::newFromObject( $entryPoint );
+		$formatters = $wrapper->getTextFormatters();
+		$this->assertNotEmpty( $formatters );
+		$this->assertSame( $services->getContentLanguageCode()->toString(), $formatters[0]->getLangCode() );
+	}
+
 }
