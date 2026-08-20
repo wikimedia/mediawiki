@@ -766,7 +766,10 @@ class ParserOutputAccess implements LoggerAwareInterface {
 	}
 
 	private function getPrimaryCache( ParserOptions $pOpts ): ParserCache {
-		$name = $pOpts->getUseParsoid() ? self::PARSOID_PCACHE_NAME : ParserCacheFactory::DEFAULT_NAME;
+		$split = $this->config->get(
+			MainConfigNames::SplitParsoidParserCache
+		);
+		$name = $split && $pOpts->getUseParsoid() ? self::PARSOID_PCACHE_NAME : ParserCacheFactory::DEFAULT_NAME;
 		if ( $pOpts->getPostproc() ) {
 			$name = self::POSTPROC_CACHE_PREFIX . $name;
 		}
@@ -774,7 +777,10 @@ class ParserOutputAccess implements LoggerAwareInterface {
 	}
 
 	private function getSecondaryCache( ParserOptions $pOpts ): RevisionOutputCache {
-		$name = $pOpts->getUseParsoid() ? self::PARSOID_RCACHE_NAME : ParserCacheFactory::DEFAULT_RCACHE_NAME;
+		$split = $this->config->get(
+			MainConfigNames::SplitParsoidParserCache
+		);
+		$name = $split && $pOpts->getUseParsoid() ? self::PARSOID_RCACHE_NAME : ParserCacheFactory::DEFAULT_RCACHE_NAME;
 		if ( $pOpts->getPostproc() ) {
 			$name = self::POSTPROC_CACHE_PREFIX . $name;
 		}

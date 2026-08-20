@@ -1527,6 +1527,12 @@ $wgParsoidCacheConfig = null;
 $wgParsoidSelectiveUpdateSampleRate = null;
 
 /**
+ * Config variable stub for the SplitParsoidParserCache setting, for use by phpdoc and IDEs.
+ * @see MediaWiki\MainConfigSchema::SplitParsoidParserCache
+ */
+$wgSplitParsoidParserCache = null;
+
+/**
  * Config variable stub for the ParserCacheFilterConfig setting, for use by phpdoc and IDEs.
  * @see MediaWiki\MainConfigSchema::ParserCacheFilterConfig
  */

@@ -1542,6 +1542,12 @@ class MainConfigNames {
 	public const ParsoidSelectiveUpdateSampleRate = 'ParsoidSelectiveUpdateSampleRate';
 
 	/**
+	 * Name constant for the SplitParsoidParserCache setting, for use with Config::get()
+	 * @see MainConfigSchema::SplitParsoidParserCache
+	 */
+	public const SplitParsoidParserCache = 'SplitParsoidParserCache';
+
+	/**
 	 * Name constant for the ParserCacheFilterConfig setting, for use with Config::get()
 	 * @see MainConfigSchema::ParserCacheFilterConfig
 	 */

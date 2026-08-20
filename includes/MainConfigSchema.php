@@ -4262,6 +4262,17 @@ class MainConfigSchema {
 	];
 
 	/**
+	 * Split the parser cache between Parsoid and the legacy parser.
+	 *
+	 * @warning This is TEMPORARY to mitigate cache risk during
+	 * migration to Parsoid.
+	 */
+	public const SplitParsoidParserCache = [
+		'type' => 'boolean',
+		'default' => true,
+	];
+
+	/**
 	 * Per-namespace configuration for the ParserCache filter.
 	 *
 	 * There is one top level key for each cache name supported in ParserCacheFactory.

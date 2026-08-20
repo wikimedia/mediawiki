@@ -550,6 +550,7 @@ return [
 				'WarmParsoidParserCache' => false,
 			],
 			'ParsoidSelectiveUpdateSampleRate' => 0,
+			'SplitParsoidParserCache' => true,
 			'ParserCacheFilterConfig' => [
 				'pcache' => [
 					'default' => [
@@ -2996,6 +2997,7 @@ return [
 			],
 			'ParsoidCacheConfig' => 'object',
 			'ParsoidSelectiveUpdateSampleRate' => 'integer',
+			'SplitParsoidParserCache' => 'boolean',
 			'ParserCacheFilterConfig' => 'object',
 			'ChronologyProtectorSecret' => 'string',
 			'SuspiciousIpExpiry' => [

@@ -2658,6 +2658,13 @@ config-schema:
             be sampled".
             @warning This is EXPERIMENTAL and will disappear once analysis is
             complete.
+    SplitParsoidParserCache:
+        type: boolean
+        default: true
+        description: |-
+            Split the parser cache between Parsoid and the legacy parser.
+            @warning This is TEMPORARY to mitigate cache risk during
+            migration to Parsoid.
     ParserCacheFilterConfig:
         type: object
         default:
