@@ -2,6 +2,7 @@
 
 namespace MediaWiki\Tests\Api\Query;
 
+use MediaWiki\MainConfigNames;
 use MediaWiki\Permissions\UltimateAuthority;
 use MediaWiki\Tests\Api\ApiTestCase;
 use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
@@ -235,6 +236,52 @@ class ApiQueryAllUsersTest extends ApiTestCase {
 			] ],
 			$result[0]['query']['allusers']
 		);
+	}
+
+	public function testHiddenAndVisibleBlocks(): void {
+		$this->overrideConfigValue( MainConfigNames::EnableMultiBlocks, true );
+		$blockStore = $this->getServiceContainer()->getDatabaseBlockStore();
+		$a = self::$usersAdded[0];
+		$b = self::$usersAdded[1];
+		$blockStore->insertBlockWithParams( [
+			'targetUser' => $b,
+			'by' => $a,
+			'reason' => 'Visible',
+		] );
+		$blockStore->insertBlockWithParams( [
+			'targetUser' => $b,
+			'by' => $a,
+			'reason' => 'Hidden',
+			'hideBlock' => true,
+		] );
+
+		$apiParams = [
+			'action' => 'query',
+			'list' => 'allusers',
+			'auprefix' => self::USER_PREFIX . 'B',
+			'auprop' => 'blockinfo',
+		];
+
+		// Without the right, only the visible block is reported.
+		$result = $this->doApiRequest(
+			$apiParams, null, null,
+			$this->mockRegisteredAuthorityWithPermissions( [] )
+		);
+		$userInfo = $result[0]['query']['allusers'][0];
+		$this->assertSame( 'Visible', $userInfo['blockreason'] );
+		$this->assertArrayNotHasKey( 'blockhidden', $userInfo );
+		$this->assertArrayNotHasKey( 'blockcomponents', $userInfo );
+
+		$result = $this->doApiRequest(
+			$apiParams, null, null,
+			$this->mockRegisteredAuthorityWithPermissions( [ 'hideuser' ] )
+		);
+		$userInfo = $result[0]['query']['allusers'][0];
+		$this->assertTrue( $userInfo['blockhidden'] );
+		$this->assertCount( 2, $userInfo['blockcomponents'] );
+		$componentsByReason = array_column( $userInfo['blockcomponents'], null, 'blockreason' );
+		$this->assertArrayNotHasKey( 'blockhidden', $componentsByReason['Visible'] );
+		$this->assertTrue( $componentsByReason['Hidden']['blockhidden'] );
 	}
 
 	public function testBlockInfo() {

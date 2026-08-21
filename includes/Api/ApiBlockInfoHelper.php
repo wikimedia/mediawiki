@@ -28,6 +28,11 @@ class ApiBlockInfoHelper {
 	/**
 	 * Get basic info about a given block
 	 *
+	 * @param Block $block
+	 * @param Language $language
+	 * @param UserIdentity $user
+	 * @param bool $canSeeHiddenBlocks Whether the viewer has the hideuser right (since 1.47).
+	 *   Set this only after you check the right.
 	 * @return array Array containing several keys:
 	 *  - blockid - ID of the block
 	 *  - blockedby - username of the blocker
@@ -40,14 +45,16 @@ class ApiBlockInfoHelper {
 	 *  - blockexpiryrelative - relative time to blockexpiry (e.g. 'in 5 days'), omitted if infinite
 	 *  - blockpartial - block only applies to certain pages, namespaces and/or actions
 	 *  - systemblocktype - system block type, if any
-	 *  - blockhidden - true if the block is hidden from users without the hideuser right, omitted if false
+	 *  - blockhidden - true if the block is hidden, omitted if the block is not hidden or
+	 *    the viewer may not see hidden blocks
 	 *  - blockcomponents - If the block is a composite block, this will be an array of block
 	 *    info arrays
 	 */
 	public function getBlockDetails(
 		Block $block,
 		Language $language,
-		UserIdentity $user
+		UserIdentity $user,
+		bool $canSeeHiddenBlocks = false
 	) {
 		$blocker = $block->getBlocker();
 		$expiry = ApiResult::formatExpiry( $block->getExpiry(), 'infinite' );
@@ -67,7 +74,7 @@ class ApiBlockInfoHelper {
 		if ( $block instanceof AbstractBlock ) {
 			$vals['blockemail'] = $block->isEmailBlocked();
 			$vals['blockowntalk'] = !$block->isUsertalkEditAllowed();
-			if ( $block->getHideBlock() ) {
+			if ( $canSeeHiddenBlocks && $block->getHideBlock() ) {
 				$vals['blockhidden'] = true;
 			}
 		}
@@ -95,7 +102,9 @@ class ApiBlockInfoHelper {
 		if ( $block instanceof CompositeBlock ) {
 			$components = [];
 			foreach ( $block->getOriginalBlocks() as $singleBlock ) {
-				$components[] = $this->getBlockDetails( $singleBlock, $language, $user );
+				$components[] = $this->getBlockDetails(
+					$singleBlock, $language, $user, $canSeeHiddenBlocks
+				);
 			}
 			$vals['blockcomponents'] = $components;
 		}

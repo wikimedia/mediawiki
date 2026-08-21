@@ -2,6 +2,7 @@
 
 namespace MediaWiki\Tests\Block;
 
+use MediaWiki\Api\ApiMessage;
 use MediaWiki\Block\BlockErrorFormatter;
 use MediaWiki\Block\CompositeBlock;
 use MediaWiki\Block\DatabaseBlock;
@@ -460,6 +461,28 @@ class BlockErrorFormatterTest extends MediaWikiIntegrationTestCase {
 				[ 'blockedtext', 'systemblockedtext' ],
 			],
 		];
+	}
+
+	/**
+	 * A block error reaches every user the block applies to, including collateral
+	 * targets of an autoblock or of a hidden IP block.
+	 */
+	public function testGetMessageOmitsBlockHidden(): void {
+		$block = new DatabaseBlock( [
+			'target' => new UserBlockTarget( new UserIdentityValue( 0, 'Test' ) ),
+			'hideBlock' => true,
+		] );
+		$context = $this->getContext();
+
+		$message = $this->getBlockErrorFormatter( $context )->getMessage(
+			$block,
+			$context->getUser(),
+			$context->getLanguage(),
+			'1.2.3.4'
+		);
+
+		$this->assertInstanceOf( ApiMessage::class, $message );
+		$this->assertArrayNotHasKey( 'blockhidden', $message->getApiData()['blockinfo'] );
 	}
 
 	/**
