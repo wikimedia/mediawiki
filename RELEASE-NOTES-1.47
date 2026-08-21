@@ -432,6 +432,8 @@ because of Phabricator reports.
   - purgeTagCacheAll
   - tagUsageStatistics
   - addTags
+* Less mixin 'mediawiki.mixins.rotation.less', deprecated in 1.46, was removed.
+  Use standard CSS transform and @keyframes instead.
 * …
 
 === Deprecations in 1.47 ===
