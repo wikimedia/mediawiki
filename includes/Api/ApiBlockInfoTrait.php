@@ -19,6 +19,8 @@ trait ApiBlockInfoTrait {
 	 * Get basic info about a given block
 	 * @param Block $block
 	 * @param Language|null $language
+	 * @param bool $canSeeHiddenBlocks Whether the viewer has the hideuser right (since 1.47).
+	 *   Set this only after you check the right.
 	 * @return array Array containing several keys:
 	 *  - blockid - ID of the block
 	 *  - blockedby - username of the blocker
@@ -30,17 +32,19 @@ trait ApiBlockInfoTrait {
 	 *  - blockexpiryformatted - blockexpiry formatted for the current locale, omitted if infinite
 	 *  - blockexpiryrelative - relative time to blockexpiry (e.g. 'in 5 days'), omitted if infinite
 	 *  - blockpartial - block only applies to certain pages, namespaces and/or actions
-	 *  - blockhidden - true if the block is hidden from users without the hideuser right, omitted if false
 	 *  - systemblocktype - system block type, if any
+	 *  - blockhidden - true if the block is hidden, omitted if the block is not hidden or
+	 *    the viewer may not see hidden blocks
 	 *  - blockcomponents - If the block is a composite block, this will be an array of block
 	 *    info arrays
 	 */
 	private function getBlockDetails(
 		Block $block,
-		$language = null
+		$language = null,
+		bool $canSeeHiddenBlocks = false
 	) {
 		return ( new ApiBlockInfoHelper )->getBlockDetails(
-			$block, $language ?? $this->getLanguage(), $this->getUser() );
+			$block, $language ?? $this->getLanguage(), $this->getUser(), $canSeeHiddenBlocks );
 	}
 
 	/**

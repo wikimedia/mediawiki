@@ -335,6 +335,9 @@ For notes on 1.46.x and older releases, see HISTORY.
 
 === Action API changes in 1.47 ===
 * php response format has been removed.
+* list=users and list=allusers have a new blockhidden field in the blockinfo
+  property, which is true when the block is hidden. Only these two modules
+  output the field, and only to users with the hideuser right.
 * When encountering a 'reauthenticate' error, clients must start a new
   authentication process by passing the "operation" value included in the
   error into meta=authmanagerinfo&amirequestsfor=login as 'amireauthenticate',

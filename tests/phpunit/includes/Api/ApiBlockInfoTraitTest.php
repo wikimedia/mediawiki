@@ -28,12 +28,21 @@ class ApiBlockInfoTraitTest extends MediaWikiIntegrationTestCase {
 	/**
 	 * @dataProvider provideGetBlockDetails
 	 */
-	public function testGetBlockDetails( $block, $expectedInfo ) {
+	public function testGetBlockDetails( $block, $expectedInfo, $canSeeHiddenBlocks = false ) {
 		$language = $this->getServiceContainer()->getLanguageFactory()->getLanguage( 'en' );
 		$mock = $this->getMockForTrait( ApiBlockInfoTrait::class );
 		$mock->method( 'getLanguage' )->willReturn( $language );
 		$mock->method( 'getUser' )->willReturn( new UserIdentityValue( 0, 'Test' ) );
-		$info = TestingAccessWrapper::newFromObject( $mock )->getBlockDetails( $block );
+		$info = TestingAccessWrapper::newFromObject( $mock )->getBlockDetails( $block, null, $canSeeHiddenBlocks );
+		if ( !$canSeeHiddenBlocks ) {
+			$this->assertArrayNotHasKey( 'blockhidden', $info );
+		}
+		$expectedComponents = $expectedInfo['blockcomponents'] ?? [];
+		foreach ( $info['blockcomponents'] ?? [] as $index => $component ) {
+			if ( !isset( $expectedComponents[$index]['blockhidden'] ) ) {
+				$this->assertArrayNotHasKey( 'blockhidden', $component );
+			}
+		}
 		$subset = array_merge( [
 			'blockid' => null,
 			'blockedby' => '',
@@ -72,10 +81,44 @@ class ApiBlockInfoTraitTest extends MediaWikiIntegrationTestCase {
 			'Database block that is hidden' => [
 				new DatabaseBlock( [ 'hideBlock' => true ] ),
 				[ 'blockhidden' => true ],
+				true,
 			],
-			'Database block that that hides the target' => [
+			'Database block that hides the target' => [
 				new DatabaseBlock( [ 'hideName' => true ] ),
 				[ 'blockhidden' => true ],
+				true,
+			],
+			'Hidden database block, viewer may not see hidden blocks' => [
+				new DatabaseBlock( [ 'hideBlock' => true ] ),
+				[ 'blockpartial' => false ],
+			],
+			'Composite block with one hidden component, viewer may not see hidden blocks' => [
+				CompositeBlock::createFromBlocks(
+					new DatabaseBlock(),
+					new DatabaseBlock( [ 'hideBlock' => true ] )
+				),
+				[
+					'blockreason' => 'There are multiple blocks against your account and/or IP address',
+					'blockcomponents' => [
+						[ 'blockpartial' => false ],
+						[ 'blockpartial' => false ],
+					],
+				],
+			],
+			'Composite block with one hidden component' => [
+				CompositeBlock::createFromBlocks(
+					new DatabaseBlock(),
+					new DatabaseBlock( [ 'hideBlock' => true ] )
+				),
+				[
+					'blockhidden' => true,
+					'blockreason' => 'There are multiple blocks against your account and/or IP address',
+					'blockcomponents' => [
+						[ 'blockpartial' => false ],
+						[ 'blockhidden' => true ],
+					],
+				],
+				true,
 			],
 			'Composite block' => [
 				CompositeBlock::createFromBlocks(

@@ -66,8 +66,9 @@ trait ApiQueryBlockInfoTrait {
 			return [];
 		}
 
+		$canSeeHiddenBlocks = $this->getAuthority()->isAllowed( 'hideuser' );
 		$blockConds = [ 'bt_user' => $ids ];
-		if ( !$this->getAuthority()->isAllowed( 'hideuser' ) ) {
+		if ( !$canSeeHiddenBlocks ) {
 			$blockConds['bl_deleted'] = 0;
 		}
 
@@ -83,7 +84,7 @@ trait ApiQueryBlockInfoTrait {
 			} else {
 				$maybeCompositeBlock = $userBlocks[0];
 			}
-			$infoByUser[$id] = $this->getBlockDetails( $maybeCompositeBlock );
+			$infoByUser[$id] = $this->getBlockDetails( $maybeCompositeBlock, null, $canSeeHiddenBlocks );
 		}
 		return $infoByUser;
 	}
