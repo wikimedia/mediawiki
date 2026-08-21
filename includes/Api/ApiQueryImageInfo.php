@@ -617,6 +617,7 @@ class ApiQueryImageInfo extends ApiQueryBase {
 						/** @var MediaTransformError $mto */
 						'@phan-var MediaTransformError $mto';
 						$vals['thumberror'] = $mto->toText();
+						wfDebugLog( 'AdHocDebug', 'ApiQueryImageInfo returns thumberror: ' . $mto->toText() );
 					}
 				}
 				$vals['url'] = (string)$urlUtils->expand( $file->appendRequestProvenance( $file->getFullUrl(), [
