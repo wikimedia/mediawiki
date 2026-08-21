@@ -7,10 +7,10 @@
 namespace MediaWiki\EditPage\Constraint;
 
 use MediaWiki\Content\Content;
-use MediaWiki\Exception\PermissionsError;
 use MediaWiki\Page\PageReference;
 use MediaWiki\PageEdit\PageEditStatus;
 use MediaWiki\Permissions\Authority;
+use MediaWiki\Permissions\PermissionStatus;
 
 /**
  * Verify user permissions:
@@ -30,17 +30,18 @@ class ImageRedirectConstraint extends EditConstraint {
 	}
 
 	public function checkConstraint(): PageEditStatus {
+		$status = PermissionStatus::newGood();
 		// Check isn't simple enough to just repeat when getting the status
 		if ( $this->page->getNamespace() === NS_FILE &&
 			$this->newContent->isRedirect() &&
-			!$this->performer->isAllowed( 'upload' )
+			!$this->performer->isAllowed( 'upload', $status )
 		) {
 			$errorCode = $this->performer->getUser()->isRegistered() ?
 				self::AS_IMAGE_REDIRECT_LOGGED :
 				self::AS_IMAGE_REDIRECT_ANON;
 			return PageEditStatus::newGood( $errorCode )
 				->setOK( false )
-				->setErrorFunction( static fn () => throw new PermissionsError( 'upload' ) );
+				->setErrorFunction( $status->throwErrorPageError( ... ) );
 		}
 
 		return PageEditStatus::newGood();
