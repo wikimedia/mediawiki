@@ -18,7 +18,8 @@
 			"Verdy p",
 			"Wladek92",
 			"PralineCoffee",
-			"NClara"
+			"NClara",
+			"Alkmen-Alesia"
 		]
 	},
 	"rest-prefix-mismatch": "Le chemin demandé ($1) n’était pas dans le chemin de base de l’API REST ($2)",
@@ -314,5 +315,8 @@
 	"rest-param-desc-sitemap-index-id": "L'index du plan du site commence à 0. D'autres index disponibles sont spécifiés dans le fichier robots.txt.",
 	"rest-param-desc-sitemap-page-id": "La page d'articles souhaitée.",
 	"rest-param-desc-sitemap-include-namespace": "Identifiants des espaces de noms à inclure dans le plan du site. Si non spécifiés, les identifiants par défaut du site seront utilisés.",
-	"rest-responseheader-desc-contentlanguage": "Informe le client de la ou des langues naturelles du public cible pour le contenu renvoyé."
+	"rest-responseheader-desc-cachecontrol": "Définit le comportement de la mise en cache du navigateur, en lui indiquant la fréquence de rafraîchissement des ressources stockées localement.",
+	"rest-responseheader-desc-deprecation": "Définit le comportement de mise en cache du navigateur, en lui indiquant la fréquence à laquelle actualiser les ressources stockées localement.",
+	"rest-responseheader-desc-contentlanguage": "Informe le client de la ou des langues naturelles du public cible pour le contenu renvoyé.",
+	"rest-responseheader-desc-contenttype": "Indique le type de média initial d'une ressource avant tout encodage du contenu."
 }

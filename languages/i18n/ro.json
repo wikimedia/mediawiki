@@ -62,7 +62,8 @@
 			"XXN",
 			"לערי ריינהארט",
 			"아라",
-			"Vellion Eagle"
+			"Vellion Eagle",
+			"Blaséd"
 		]
 	},
 	"pagecategories": "{{PLURAL:$1|Categorie|Categorii}}",
@@ -135,7 +136,7 @@
 	"create": "Creare",
 	"skin-view-create": "Creare",
 	"create-local": "Adăugare descriere locală",
-	"delete": "Ștergere",
+	"delete": "Şterge",
 	"undelete_short": "Recuperarea {{PLURAL:$1|unei modificări|a $1 modificări|a $1 de modificări}}",
 	"viewdeleted_short": "Vizualizați {{PLURAL:$1|o modificare ștearsă|$1 modificări șterse|$1 de modificări șterse}}",
 	"protect": "Protejare",
@@ -3717,7 +3718,7 @@
 	"skin-view-edit-local": "Modificare descriere locală",
 	"skin-action-protect": "Protejare",
 	"skin-action-undelete": "Recuperare",
-	"skin-action-delete": "Ștergere",
+	"skin-action-delete": "Şterge",
 	"skin-action-move": "Redenumire",
 	"newpages-showhide-bots": "$1 roboți",
 	"newpages-showhide-patrolled": "$1 editări patrulate",

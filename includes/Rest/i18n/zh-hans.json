@@ -31,7 +31,8 @@
 			"Gsdn",
 			"Vjfjng",
 			"Wzl19371",
-			"Quaff5353"
+			"Quaff5353",
+			"Ouclie"
 		]
 	},
 	"rest-prefix-mismatch": "请求的路径（$1）不在REST API基本路径（$2）中",
@@ -242,6 +243,7 @@
 	"rest-property-desc-revision-url-newer": "如果可用，获取下列修订版本的URL",
 	"rest-property-desc-search-excerpt": "对于 /search/page，显示带有`<span class=\"searchmatch\">`标记的搜索词的页面内容片段。摘录可能在句子中间结束。对于 /search/title，显示易于阅读的页面标题格式。",
 	"rest-property-desc-search-matched-title": "页面重定向的来源页面标题，如果搜索词与重定向页面匹配，否则为空。",
+	"rest-property-desc-search-anchor": "如果搜索词匹配到重定向到的特定部分，则以人类可读格式显示目标页面的相应部分。",
 	"rest-property-desc-search-description": "页面主题的简要摘要，若无摘要则为空。",
 	"rest-property-desc-search-thumbnail": "有关页面缩略图的信息，如果不存在缩略图，则为空。",
 	"rest-property-desc-html-url": "用于获取页面HTML内容的API路由",
@@ -337,5 +339,10 @@
 	"rest-responseheader-desc-contenttype": "表明资源在内容编码前的初始媒体类型",
 	"rest-responseheader-desc-link": "提供在HTTP头中序列化一个或多个链接的方式。该方法允许服务器将客户端指向另一个资源，前述资源包含所请求资源的元数据。",
 	"rest-responseheader-desc-expires": "包含在HTTP缓存上下文中，响应被视为过期的日期和时间。",
-	"rest-responseheader-desc-location": "指示目标URL，主要有两个用途：重定向和标识新创建资源的位置。"
+	"rest-responseheader-desc-location": "指示目标URL，主要有两个用途：重定向和标识新创建资源的位置。",
+	"rest-openapispec-genericerrorresponse-desc": "通用错误响应。该消息将提供有关错误的更多详细信息。",
+	"rest-openapispec-genericerrorresponse-property-desc-httpCode": "错误响应的HTTP状态码。",
+	"rest-openapispec-genericerrorresponse-property-desc-httpMessage": "错误响应的HTTP状态消息。",
+	"rest-openapispec-genericerrorresponse-property-desc-message": "当没有可用的消息翻译时有用的人类可读的错误消息。",
+	"rest-openapispec-genericerrorresponse-property-desc-messageTranslations": "为能够使用语言代码的客户端提供语言代码到人类可读错误消息的映射表。"
 }

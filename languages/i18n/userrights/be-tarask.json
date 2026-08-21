@@ -239,7 +239,7 @@
 	"action-blockemail": "блякаваньне ці разьблякаваньне ўдзельніку магчымасьці адсылкі электронных лістоў",
 	"action-bot": "уважацца аўтаматычным працэсам",
 	"action-editprotected": "рэдагаваньне старонак, абароненых у рэжыме «{{int:restriction-level-sysop}}»",
-	"action-editsemiprotected": "рэдагаваньне старонак, абароненых як «{{int:restriction-level-autoconfirmed}}»",
+	"action-editsemiprotected": "рэдагаваньне абароненых старонак ({{int:restriction-level-autoconfirmed}})",
 	"action-editinterface": "рэдагаваньне інтэрфэйсу карыстальніка",
 	"action-editusercss": "рэдагаваньне CSS-файлаў іншых удзельнікаў",
 	"action-edituserjson": "рэдагаваньне JSON-файлаў іншых удзельнікаў",

@@ -8,7 +8,7 @@
 			"Tofeiku"
 		]
 	},
-	"apihelp-main-param-action": "Tindakan mana untuk dilakukan.",
+	"apihelp-main-param-action": "Tindakan yang perlu dilakukan. Parameter ini hendaklah dihantar sebagai sebahagian daripada URL permintaan (bukan badan POST) untuk kemudahan penggunaan dalam penyahpepijatan, analitik dan penghalaan atau penapisan permintaan.",
 	"apihelp-main-param-format": "Format output.",
 	"apihelp-main-param-assertuser": "Sahkan pengguna semasa ialah pengguna yang dinamakan.",
 	"apihelp-main-param-uselang": "Bahasa yang digunakan untuk terjemahan mesej. <kbd>[[Special:ApiHelp/query+siteinfo|action=query&meta=siteinfo&siprop=languages]]</kbd> mengembalikan senarai kod bahasa. Anda boleh menetapkan <kbd>user</kbd> untuk menggunakan pilihan bahasa pengguna semasa atau <kbd>content</kbd> untuk menggunakan bahasa kandungan wiki ini.",
@@ -101,7 +101,7 @@
 	"api-format-prettyprint-header": "Ini merupakan suatu perwakilan HTML bagi format $1. HTML bagus jika digunakan untuk proses nyahpepijatan, tetapi tidak sesuai untuk kegunaan aplikasi.\n\nTentukan parameter <var>format</var> untuk menukar format output. Untuk melihat perwakilan bukan HTML bagi format $1, tetapkan <kbd>format= $2</kbd>.\n\nLihat [[mw:Special:MyLanguage/API|pendokumenan lengkap]], atau [[Special:ApiHelp/main|bantuan API]] untuk maklumat lanjut.",
 	"api-login-fail-badsessionprovider": "Tidak boleh log masuk apabila menggunakan $1.",
 	"api-help-title": "Bantuan API MediaWiki",
-	"api-help-lead": "Ini merupakan suatu laman pendokumenan MediaWiki API janaan automatik.\n\nPendokumenan dan contoh: https\n://www.mediawiki.org/wiki/Special:MyLanguage/API:Main_page",
+	"api-help-lead": "Laman ini merupakan sebuah laman pendokumenan  [https://www.mediawiki.org/wiki/Special:MyLanguage/API:Action_API API Tindakan MediaWiki (MediaWiki Action API)] janaan automatik.",
 	"api-help-main-header": "Modul utama",
 	"api-help-flag-deprecated": "Modul ini sudah lapuk.",
 	"api-help-flag-internal": "<strong>Modul ini bersifat dalaman atau tidak stabil, dan anda tidak sepatutnya menggunakannya.</strong> Operasinya mungkin berubah tanpa sedar.",
