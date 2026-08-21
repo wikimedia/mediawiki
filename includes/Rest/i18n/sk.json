@@ -94,6 +94,7 @@
 	"rest-module-extra-routes-title": "Dodatočné cesty",
 	"rest-module-extra-routes-desc": "Koncové body REST nepriradené k žiadnemu modulu",
 	"rest-sandbox-recommend-test-server": "Upozornenie: REST Sandbox štandardne vykonáva volania voči produkčnej databáze. Ak chcete predísť neúmyselným úpravám ostrého obsahu, pred odoslaním požiadaviek POST, PUT, PATCH alebo DELETE vyberte v rozbaľovacom zozname serverov server pieskoviska ($1).",
+	"rest-sandbox-recommend-test-server-with-description": "$1\n\nUpozornenie: REST Sandbox štandardne vykonáva volania voči produkčnej databáze. Aby ste predišli neúmyselným úpravám ostrého obsahu, pred odoslaním požiadaviek POST, PUT, PATCH alebo DELETE vyberte v rozbaľovacom zozname serverov server pieskoviska ($2).",
 	"rest-sandbox-server-production": "(Produkcia)",
 	"rest-sandbox-server-sandbox": "(Pieskovisko)",
 	"rest-module-specs.v0-title": "Špecifikácie",

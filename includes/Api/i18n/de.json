@@ -1774,7 +1774,7 @@
 	"apierror-ratelimited": "Du hast dein Aktionslimit überschritten. Bitte warte etwas und versuche es später erneut.",
 	"apierror-readapidenied": "Du benötigt Leseberechtigungen, um dieses Modul zu benutzen.",
 	"apierror-readonly": "Das Wiki ist derzeit im schreibgeschützten Modus.",
-	"apierror-reauthenticate": "Um diesen Vorgang auszuführen, wird eine Sitzung mit erweiterten Sicherheitsrechten benötigt. Bitte melde dich für den Vorgang <kbd>$1</kbd> erneut an.",
+	"apierror-reauthenticate": "Um diesen Vorgang auszuführen, wird eine Sitzung mit erweiterten Sicherheitsrechten benötigt. Bitte führe für den Vorgang <kbd>$1</kbd> eine erneute Authentifizierung durch, indem du das API-Modul <kbd>action=clientlogin</kbd> mit <kbd>loginreauthenticate=$1</kbd> verwendest.",
 	"apierror-revdel-needtarget": "Für diesen RevDel-Typ ist ein Ziel-Titel erforderlich.",
 	"apierror-revisions-badid": "Für den Parameter <var>$1</var> wurde keine Version gefunden.",
 	"apierror-revwrongpage": "Die Version $1 ist keine Version von $2.",
