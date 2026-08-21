@@ -126,6 +126,7 @@ class ResetPasswordSecondaryAuthenticationProvider extends AbstractSecondaryAuth
 		$scope = LoggerFactory::getContext()->addScoped( [
 			'context.passwordResetOnLogin' => $data->hard ? 'forced' : 'suggested',
 		] );
+		$this->getHookRunner()->onChangeAuthenticationDataAudit( $req, $status );
 		$this->manager->changeAuthenticationData( $req );
 
 		$this->manager->removeAuthenticationSessionData( 'reset-pass' );

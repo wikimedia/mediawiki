@@ -308,6 +308,16 @@ class ResetPasswordSecondaryAuthenticationProviderTest extends MediaWikiIntegrat
 		array $authReqs,
 		AuthenticationRequest $expectedAuthManagerReq
 	): void {
+		$hookCalled = false;
+		$this->setTemporaryHook(
+			'ChangeAuthenticationDataAudit',
+			function ( AuthenticationRequest $req, StatusValue $status ) use ( &$hookCalled ) {
+				$this->assertInstanceOf( PasswordAuthenticationRequest::class, $req );
+				$this->assertStatusGood( $status );
+				$hookCalled = true;
+			}
+		);
+
 		$user = $this->createMock( User::class );
 		$user->method( 'getName' )
 			->willReturn( 'TestUser' );
@@ -331,13 +341,20 @@ class ResetPasswordSecondaryAuthenticationProviderTest extends MediaWikiIntegrat
 			->with( 'reset-pass' );
 
 		$provider = new ResetPasswordSecondaryAuthenticationProvider();
-		$this->initProvider( $provider, null, null, $authManager );
+		$this->initProvider(
+			$provider,
+			null,
+			null,
+			$authManager,
+			$this->getServiceContainer()->getHookContainer()
+		);
 
 		$provider = TestingAccessWrapper::newFromObject( $provider );
 
 		$res = $provider->tryReset( $user, $authReqs );
 
 		$this->assertEquals( AuthenticationResponse::newPass(), $res );
+		$this->assertTrue( $hookCalled );
 	}
 
 	public static function provideTryResetShouldSucceedOnValidInput(): iterable {
