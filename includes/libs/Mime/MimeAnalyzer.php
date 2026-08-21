@@ -511,9 +511,7 @@ class MimeAnalyzer implements LoggerAwareInterface {
 				// trust the file extension
 				$mime = $this->getMimeTypeFromExtensionOrNull( $ext );
 			}
-		} elseif ( $mime === 'application/x-opc+zip'
-			|| $mime === 'application/vnd.oasis.opendocument'
-		) {
+		} elseif ( $mime === 'application/x-opc+zip' ) {
 			if ( $this->isMatchingExtension( $ext, $mime ) ) {
 				// A known file extension for an OPC/ODF file,
 				// find the proper MIME type for that file extension
@@ -832,33 +830,33 @@ class MimeAnalyzer implements LoggerAwareInterface {
 	 * @return string
 	 */
 	public function detectZipTypeFromFile( $handle ) {
-		$types = [];
+		$entries = [];
+		$mimeFromMimetype = null;
+		$mimetypeOffset = null;
 		$status = ZipDirectoryReader::readHandle(
 			$handle,
-			static function ( $entry ) use ( &$types ) {
-				$name = $entry['name'];
-				$names = [ $name ];
+			static function ( $entry ) use ( &$entries, $handle, &$mimeFromMimetype, &$mimetypeOffset ) {
+				$entries[] = $entry;
 
-				// If there is a null character, cut off the name at it, because JDK's
-				// ZIP_GetEntry() uses strcmp() if the name hashes match. If a file name
-				// were constructed which had ".class\0" followed by a string chosen to
-				// make the hash collide with the truncated name, that file could be
-				// returned in response to a request for the .class file.
-				$nullPos = strpos( $entry['name'], "\000" );
-				if ( $nullPos !== false ) {
-					$names[] = substr( $entry['name'], 0, $nullPos );
-				}
-
-				// If there is a trailing slash in the file name, we have to strip it,
-				// because that's what ZIP_GetEntry() does.
-				if ( preg_grep( '!\.class/?$!', $names ) ) {
-					$types[] = 'application/java';
-				}
-
-				if ( $name === '[Content_Types].xml' ) {
-					$types[] = 'application/x-opc+zip';
-				} elseif ( $name === 'mimetype' ) {
-					$types[] = 'application/vnd.oasis.opendocument';
+				// EPUB (OCF 3.0 §3.4) and ODF (part 3 §3.2) require the first,
+				// uncompressed (stored) entry to be named "mimetype" whose content is
+				// the container's MIME type string. Read it directly from the archive
+				// (the handle is still open here) and trust it only for known container
+				// types. Pick the earliest (smallest local header offset) such entry.
+				if ( $entry['name'] === 'mimetype' && $entry['compression'] === 0
+					&& ( $mimetypeOffset === null
+						|| $entry['local_header_offset'] < $mimetypeOffset )
+				) {
+					$content = self::readZipEntryContent( $handle, $entry );
+					if ( $content !== null ) {
+						$content = trim( $content );
+						if ( $content === 'application/epub+zip'
+							|| str_starts_with( $content, 'application/vnd.oasis.opendocument' )
+						) {
+							$mimeFromMimetype = $content;
+							$mimetypeOffset = $entry['local_header_offset'];
+						}
+					}
 				}
 			}
 		);
@@ -867,14 +865,74 @@ class MimeAnalyzer implements LoggerAwareInterface {
 			// This could be unknown/unknown but we have some weird phpunit test cases
 			return 'application/zip';
 		}
-		if ( in_array( 'application/java', $types ) ) {
-			// For security, java detection takes precedence
-			return 'application/java';
-		} elseif ( count( $types ) ) {
-			return $types[0];
-		} else {
-			return 'application/zip';
+
+		// Security: any .class entry (the GIFAR vulnerability) takes precedence
+		// over everything else, so it is checked first.
+		foreach ( $entries as $entry ) {
+			$names = [ $entry['name'] ];
+
+			// If there is a null character, cut off the name at it, because JDK's
+			// ZIP_GetEntry() uses strcmp() if the name hashes match. If a file name
+			// were constructed which had ".class\0" followed by a string chosen to
+			// make the hash collide with the truncated name, that file could be
+			// returned in response to a request for the .class file.
+			$nullPos = strpos( $entry['name'], "\000" );
+			if ( $nullPos !== false ) {
+				$names[] = substr( $entry['name'], 0, $nullPos );
+			}
+
+			if ( preg_grep( '!\.class/?$!', $names ) ) {
+				return 'application/java';
+			}
 		}
+
+		// The spec-defined container mimetype is authoritative when present.
+		if ( $mimeFromMimetype !== null ) {
+			return $mimeFromMimetype;
+		}
+
+		// OPC / Office Open XML packages are identified by [Content_Types].xml
+		// (they carry no "mimetype" entry).
+		foreach ( $entries as $entry ) {
+			if ( $entry['name'] === '[Content_Types].xml' ) {
+				return 'application/x-opc+zip';
+			}
+		}
+
+		return 'application/zip';
+	}
+
+	/**
+	 * Read the (uncompressed) content of a stored ZIP entry from an open handle.
+	 *
+	 * Seeks to the entry's local file header, skips the 30-byte fixed header
+	 * plus the variable name and extra fields, and reads the entry data. For
+	 * stored (compression method 0) entries this yields the raw content. The
+	 * handle's position is restored afterwards so the caller (the
+	 * ZipDirectoryReader callback) is unaffected.
+	 *
+	 * @param resource $handle An opened seekable file handle
+	 * @param array $entry An entry as produced by ZipDirectoryReader
+	 * @return string|null The entry content, or null on read failure.
+	 */
+	private static function readZipEntryContent( $handle, array $entry ) {
+		$savedPos = ftell( $handle );
+		fseek( $handle, $entry['local_header_offset'] );
+		$header = fread( $handle, 30 );
+		if ( strlen( $header ) < 30 || substr( $header, 0, 4 ) !== "PK\x03\x04" ) {
+			fseek( $handle, $savedPos );
+			return null;
+		}
+		$nameLength = unpack( 'v', substr( $header, 26, 2 ) )[1];
+		$extraLength = unpack( 'v', substr( $header, 28, 2 ) )[1];
+		$dataOffset = $entry['local_header_offset'] + 30 + $nameLength + $extraLength;
+		fseek( $handle, $dataOffset );
+		$content = fread( $handle, $entry['compressed_size'] );
+		fseek( $handle, $savedPos );
+		if ( $content === false || strlen( $content ) < $entry['compressed_size'] ) {
+			return null;
+		}
+		return $content;
 	}
 
 	/**

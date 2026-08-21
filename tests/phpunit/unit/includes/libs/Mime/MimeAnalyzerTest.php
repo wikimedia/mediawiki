@@ -72,8 +72,6 @@ class MimeAnalyzerTest extends TestCase {
 				'application/vnd.openxmlformats-officedocument.wordprocessingml.document' ],
 			[ 'djvu', 'image/x-djvu', 'image/vnd.djvu' ],
 			[ 'wav', 'audio/wav', 'audio/wav' ],
-			[ 'odt', 'application/vnd.oasis.opendocument',
-				'application/vnd.oasis.opendocument.text' ],
 
 			// XXX: It's probably wrong (as in: confusing and error-prone) for
 			//   ::improveTypeFromExtension to return null (T253483).
@@ -130,6 +128,16 @@ class MimeAnalyzerTest extends TestCase {
 		yield 'JPEG XL bitstream' => [ 'jpegxl-bitstream.jxl', 'jxl', 'image/jxl' ];
 
 		yield 'JPEG XL iso' => [ 'jpegxl-iso.jxl', 'jxl', 'image/jxl' ];
+
+		// ZIP-based containers must not be misdetected as EPUB at the head scan.
+		// The PK local-file-header magic was removed; detection now reads the
+		// container's mimetype entry (T435578).
+		yield 'ODT detected from mimetype entry, not EPUB' => [
+			'lo6-empty.odt', 'odt', 'application/vnd.oasis.opendocument.text'
+		];
+		yield 'EPUB detected from mimetype entry' => [
+			'minimal-epub.epub', 'epub', 'application/epub+zip'
+		];
 	}
 
 	/**
@@ -149,9 +157,17 @@ class MimeAnalyzerTest extends TestCase {
 				'type-at-end.docx',
 				'application/x-opc+zip'
 			],
-			'Typical ODT gives fake generic type' => [
+			'Typical ODT reads its mimetype entry' => [
 				'lo6-empty.odt',
-				'application/vnd.oasis.opendocument'
+				'application/vnd.oasis.opendocument.text'
+			],
+			'EPUB reads its mimetype entry' => [
+				'minimal-epub.epub',
+				'application/epub+zip'
+			],
+			'Plain ZIP is just application/zip' => [
+				'plain.zip',
+				'application/zip'
 			],
 			'Ye olde GIFAR vulnerability' => [
 				'gifar.gif',

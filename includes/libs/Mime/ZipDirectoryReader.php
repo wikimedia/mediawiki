@@ -37,6 +37,16 @@ class ZipDirectoryReader {
 	 *
 	 *   - size: The uncompressed file size
 	 *
+	 *   - compression: The compression method (0 = stored/uncompressed,
+	 *     8 = deflated). Useful for verifying the spec-mandated uncompressed
+	 *     "mimetype" entry of EPUB/ODF containers.
+	 *
+	 *   - local_header_offset: The byte offset of the entry's local file
+	 *     header, for reading the entry's content.
+	 *
+	 *   - compressed_size: The compressed size of the entry's content. For
+	 *     stored (uncompressed) entries this equals the uncompressed size.
+	 *
 	 * @param array $options An associative array of read options, with the option
 	 *   name in the key. This may currently contain:
 	 *
@@ -459,6 +469,9 @@ class ZipDirectoryReader {
 				'name' => $name,
 				'mtime' => $timestamp,
 				'size' => $data['uncompressed size'],
+				'compression' => $data['compression method'],
+				'local_header_offset' => $data['local header offset'],
+				'compressed_size' => $data['compressed size'],
 			];
 			( $this->callback )( $userData );
 		}

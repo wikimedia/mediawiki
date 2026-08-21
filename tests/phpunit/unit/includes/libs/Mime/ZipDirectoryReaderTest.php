@@ -83,6 +83,9 @@ class ZipDirectoryReaderTest extends MediaWikiUnitTestCase {
 				'name' => 'Class.class',
 				'mtime' => '20010115000000',
 				'size' => 1,
+				'compression' => 0,
+				'local_header_offset' => 0,
+				'compressed_size' => 1,
 			],
 		],
 			$this->entries );
