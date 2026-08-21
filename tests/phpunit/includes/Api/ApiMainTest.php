@@ -1445,16 +1445,8 @@ class ApiMainTest extends ApiTestCase {
 
 		$api = $this->newApiMain( 'test', [ 'execute' => $curriedExec ], false );
 
-		// Since we are calling execute() with internal mode turned off,
-		// we need to capture and discard the HTML that will be written to
-		// the output buffer. We also need to disable error logging
-		// and the restore it for later.
+		// Disable error logging and the restore it later.
 		$oldLoggerSpi = LoggerFactory::getProvider();
-		$scope = new ScopedCallback( static function () use ( $oldLoggerSpi ) {
-			ob_end_clean();
-			LoggerFactory::registerProvider( $oldLoggerSpi );
-		} );
-
 		$logCapture = new LogCapturingSpi( new NullSpi() );
 		LoggerFactory::registerProvider( $logCapture );
 
@@ -1462,9 +1454,14 @@ class ApiMainTest extends ApiTestCase {
 		ob_start();
 
 		// Now execute the API module that will fail
-		$api->execute();
+		try {
+			$api->execute();
+		} finally {
+			$output = ob_get_clean();
+			LoggerFactory::registerProvider( $oldLoggerSpi );
+		}
 
-		$errorJson = json_decode( ob_get_clean(), true );
+		$errorJson = json_decode( $output, true );
 		$this->assertNotFalse( $errorJson, 'Response should be valid JSON' );
 
 		foreach ( $expectedResponse as $key => $expected ) {

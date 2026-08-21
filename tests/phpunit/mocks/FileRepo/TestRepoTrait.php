@@ -165,7 +165,6 @@ trait TestRepoTrait {
 			'name' => $info['backend'] ?? 'local-backend',
 			'basePath' => $dir,
 			'obResetFunc' => static function () {
-				ob_end_flush();
 			},
 			'headerFunc' => function ( string $header ) {
 				$this->recordHeader( $header );

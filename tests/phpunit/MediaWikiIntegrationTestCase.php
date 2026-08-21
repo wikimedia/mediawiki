@@ -683,7 +683,6 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 
 		// T46192 Do not attempt to send a real e-mail
 		$this->setTemporaryHook( 'AlternateUserMailer', static fn () => false );
-		ob_start( 'MediaWikiIntegrationTestCase::wfResetOutputBuffersBarrier' );
 	}
 
 	private function maybeSetupDB(): void {
@@ -739,13 +738,6 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 		global $wgRequest;
 
 		self::$setupWithoutTeardown = false;
-
-		$status = ob_get_status();
-		if ( isset( $status['name'] ) &&
-			$status['name'] === 'MediaWikiIntegrationTestCase::wfResetOutputBuffersBarrier'
-		) {
-			ob_end_flush();
-		}
 
 		if ( self::needsDB() && $this->db ) {
 			// Clean up open transactions
@@ -2555,16 +2547,6 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 		if ( !ExtensionRegistry::getInstance()->isLoaded( $extensionName ) ) {
 			$this->markTestSkipped( "Extension $extensionName is required for this test" );
 		}
-	}
-
-	/**
-	 * Used as a marker to prevent wfResetOutputBuffers from breaking PHPUnit.
-	 *
-	 * @param string $buffer
-	 * @return string
-	 */
-	public static function wfResetOutputBuffersBarrier( $buffer ) {
-		return $buffer;
 	}
 
 	/**
