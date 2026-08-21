@@ -62,9 +62,6 @@ class MimeAnalyzer implements LoggerAwareInterface {
 		// 3D
 		'glTF'             => 'model/gltf-binary',
 
-		// archive
-		"PK\x03\x04"       => 'application/epub+zip',
-
 		// Some forbidden fruit...
 		'MZ'               => 'application/octet-stream', // DOS/Windows executable
 		"\xca\xfe\xba\xbe" => 'application/octet-stream', // Mach-O binary

@@ -17,7 +17,6 @@ class MimeMap {
 	public const MIME_EXTENSIONS = [
 		'application/ogg' => [ 'ogx', 'ogg', 'ogm', 'ogv', 'oga', 'spx', 'opus' ],
 		'application/pdf' => [ 'pdf' ],
-		'application/epub+zip' => [ 'epub' ],
 		'application/vnd.apple.mpegurl' => [ 'm3u8', 'm3u' ],
 		'application/vnd.ms-opentype' => [ 'otf' ],
 		'application/vnd.oasis.opendocument.chart' => [ 'odc' ],
@@ -266,7 +265,6 @@ class MimeMap {
 			'application/vnd.ms-excel',
 			'application/vnd.ms-powerpoint',
 			'application/x-director',
-			'application/epub+zip',
 			'image/vnd.djvu',
 			'image/x.djvu',
 			'image/x-djvu',
