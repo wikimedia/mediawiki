@@ -142,7 +142,7 @@ class EntryPoint extends MediaWikiEntryPoint {
 		$services = $this->getServiceContainer();
 
 		$code = $services->getContentLanguageCode()->toString();
-		$langs = [ $code ];
+		$langs = [];
 
 		$queryParams = $this->request->getQueryParams();
 		$requestedLang = $queryParams['lang'] ?? null;
