@@ -1538,7 +1538,7 @@ class SkinTemplate extends Skin {
 			return [];
 		}
 
-		foreach ( $associatedNavigationLinks as $i => $relatedTitleText ) {
+		foreach ( $associatedNavigationLinks as $relatedTitleText ) {
 			$relatedTitle = Title::newFromText( $relatedTitleText );
 			$special = $specialFactory->getPage( $relatedTitle->getText() );
 			if ( $special === null ) {
@@ -1546,12 +1546,17 @@ class SkinTemplate extends Skin {
 			} else {
 				$text = $special->getShortDescription( $relatedTitle->getSubpageText() );
 			}
-			$specialAssociatedNavigationLinks['special-specialAssociatedNavigationLinks-link-' . $i ] = [
+
+			$id = 'special-specialAssociatedNavigationLinks-link-' .
+				str_replace( '/', '-', $relatedTitle->getText() );
+
+			$specialAssociatedNavigationLinks[$id] = [
 				'text' => $text,
 				'href' => $relatedTitle->fixSpecialName()->getLocalURL(),
 				'class' => $relatedTitle->fixSpecialName()->equals( $title->fixSpecialName() ) ? 'selected' : null,
 			];
 		}
+
 		return $specialAssociatedNavigationLinks;
 	}
 
