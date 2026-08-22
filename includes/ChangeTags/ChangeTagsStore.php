@@ -865,22 +865,12 @@ class ChangeTagsStore {
 				$changeTagMapping[$tag] = $this->changeTagDefStore->acquireId( $tag );
 			}
 			$fname = __METHOD__;
-			// T207881: update the counts at the end of the transaction
-			$dbw->onTransactionPreCommitOrIdle( static function () use ( $dbw, $tagsToAdd, $fname ) {
-				$dbw->newUpdateQueryBuilder()
-					->update( self::CHANGE_TAG_DEF )
-					->set( [ 'ctd_count' => new RawSQLValue( 'ctd_count + 1' ) ] )
-					->where( [ 'ctd_name' => $tagsToAdd ] )
-					->caller( $fname )->execute();
-			}, $fname );
-
-			$tagsRows = [];
 			foreach ( $tagsToAdd as $tag ) {
 				// Filter so we don't insert NULLs as zero accidentally.
 				// Keep in mind that $rc_id === null means "I don't care/know about the
 				// rc_id, just delete $tag on this revision/log entry". It doesn't
 				// mean "only delete tags on this revision/log WHERE rc_id IS NULL".
-				$tagsRows[] = array_filter(
+				$tagRow = array_filter(
 					[
 						'ct_rc_id' => $rc_id,
 						'ct_log_id' => $log_id,
@@ -890,13 +880,22 @@ class ChangeTagsStore {
 					]
 				);
 
+				$dbw->newInsertQueryBuilder()
+					->insertInto( self::CHANGE_TAG )
+					->ignore()
+					->row( $tagRow )
+					->caller( __METHOD__ )->execute();
+				if ( $dbw->affectedRows() ) {
+					// T207881: update the counts at the end of the transaction
+					$dbw->onTransactionPreCommitOrIdle( static function () use ( $dbw, $tag, $fname ) {
+						$dbw->newUpdateQueryBuilder()
+							->update( self::CHANGE_TAG_DEF )
+							->set( [ 'ctd_count' => new RawSQLValue( 'ctd_count + 1' ) ] )
+							->where( [ 'ctd_name' => $tag ] )
+							->caller( $fname )->execute();
+					}, $fname );
+				}
 			}
-
-			$dbw->newInsertQueryBuilder()
-				->insertInto( self::CHANGE_TAG )
-				->ignore()
-				->rows( $tagsRows )
-				->caller( __METHOD__ )->execute();
 		}
 
 		// delete from change_tag
