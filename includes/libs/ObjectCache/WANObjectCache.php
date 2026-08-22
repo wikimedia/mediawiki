@@ -588,11 +588,13 @@ class WANObjectCache implements
 	 * @param string[]|string[][] $checkKeys Map of (integer or cache key => "check" key(s));
 	 *  "check" keys must also be made with makeKey()/makeGlobalKey()
 	 * @param float $now The current UNIX timestamp
-	 * @param callable|null $touchedCb Callback yielding a UNIX timestamp from a value, or null
+	 * @param array|null $opts Forwarded from getWithSetCallback, concerning:
+	 *   - touchedCallback
+	 *   - version
 	 * @return array<string,array> Map of (key => WANObjectCache::RESULT_* map) in order of $keys
 	 * @note Callable type hints are not used to avoid class-autoloading
 	 */
-	protected function fetchKeys( array $keys, array $checkKeys, float $now, $touchedCb = null ) {
+	protected function fetchKeys( array $keys, array $checkKeys, float $now, ?array $opts = null ) {
 		$resByKey = [];
 
 		// List of all sister keys that need to be fetched from cache
@@ -688,7 +690,12 @@ class WANObjectCache implements
 				}
 			}
 
-			if ( $touchedCb !== null && $value !== false ) {
+			$touchedCb = $opts['touchedCallback'] ?? null;
+			$version = $opts['version'] ?? null;
+			// Validate the version first because we must not expose user callbacks to data
+			// from a mismatching runtime version. It would also be a wasteful operation
+			// because getWithSetCallback will reject the value anyway.
+			if ( $touchedCb !== null && $res[self::RES_VERSION] === $version && $value !== false ) {
 				$touched = $touchedCb( $value );
 				if ( $touched !== null && $touched >= $res[self::RES_AS_OF] ) {
 					$res[self::RES_CUR_TTL] = min(
@@ -856,6 +863,7 @@ class WANObjectCache implements
 		} else {
 			$ttl = self::TTL_INDEFINITE;
 		}
+
 		$walltime ??= $this->timeSinceLoggedMiss( $key, $now );
 
 		// Forbid caching data that only exists within an uncommitted transaction. Also, lower
@@ -1613,7 +1621,7 @@ class WANObjectCache implements
 		$keygroup = $this->determineKeyGroupForStats( $key );
 
 		// Get the current key value and its metadata
-		$curState = $this->fetchKeys( [ $key ], $checkKeys, $startTime, $touchedCb )[$key];
+		$curState = $this->fetchKeys( [ $key ], $checkKeys, $startTime, $opts )[$key];
 		$curValue = $curState[self::RES_VALUE];
 
 		// Use the cached value if it exists and is not due for synchronous regeneration
@@ -1645,6 +1653,7 @@ class WANObjectCache implements
 		// Use the interim key as a temporary alternative if the key is tombstoned
 		if ( $isKeyTombstoned ) {
 			$volState = $this->getInterimValue( $key, $minAsOf, $startTime, $touchedCb );
+			$this->logger->debug( "fetchOrRegenerate($key): fetch interim key" );
 			$volValue = $volState[self::RES_VALUE];
 		} else {
 			$volState = $curState;
@@ -1779,6 +1788,7 @@ class WANObjectCache implements
 		) {
 			// If the key is write-holed then use the (volatile) interim key as an alternative
 			if ( $isKeyTombstoned ) {
+				$this->logger->debug( "fetchOrRegenerate($key): set interim key" );
 				$this->setInterimValue(
 					$key,
 					$value,
@@ -1851,6 +1861,8 @@ class WANObjectCache implements
 			$wrapped = $this->cache->get( $interimSisterKey );
 			$res = $this->unwrap( $wrapped, $now );
 			if ( $res[self::RES_VALUE] !== false && $res[self::RES_AS_OF] >= $minAsOf ) {
+				// FIXME: This should validate 'version' first and not needlessly invoke
+				// touchedCallback with data from a mismatching version.
 				if ( $touchedCb !== null ) {
 					// Update "last purge time" since the $touchedCb timestamp depends on $value
 					// Get the new "touched timestamp", accounting for callback-checked dependencies
