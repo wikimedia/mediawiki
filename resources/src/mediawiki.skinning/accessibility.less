@@ -33,6 +33,6 @@ plugin/no-unsupported-browser-features */
 	width: ~'calc( @{calc-user} )';
 
 	@supports ( width: round( 1.5px, 1px ) ) {
-		width: ~'calc( round( @{calc-user}, 10px ) )';
+		width: ~'round( @{calc-user}, 10px )';
 	}
 }
