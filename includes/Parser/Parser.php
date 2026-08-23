@@ -4854,6 +4854,16 @@ class Parser implements MessageLocalizer {
 	 * @since 1.6
 	 */
 	public function validateSig( $text ): string|false {
+		// Self-close HTML5 void elements with no attributes (e.g. <br> -> <br />)
+		// so that both spellings are treated identically by the XML
+		// well-formedness check below. This list mirrors Html::VOID_ELEMENTS.
+		// Only bare tags (optional whitespace, no attributes) are matched, to
+		// avoid the ambiguity and abuse surface of a generic attribute match.
+		$text = preg_replace(
+			'/<(area|base|br|col|embed|hr|img|input|keygen|link|meta|param|source|track|wbr)\s*>/i',
+			'<$1 />',
+			$text
+		);
 		return Xml::isWellFormedXmlFragment( $text ) ? $text : false;
 	}
 

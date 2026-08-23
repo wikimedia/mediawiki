@@ -155,4 +155,24 @@ class ParserTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( $title, $parser->getTitle() );
 		$this->assertTrue( $title->isSamePageAs( $parser->getPage() ) );
 	}
+
+	/**
+	 * @dataProvider provideValidateSig
+	 */
+	public function testValidateSig( string $signature, $expected ) {
+		$parser = $this->newParser();
+		$this->assertSame( $expected, $parser->validateSig( $signature ) );
+	}
+
+	public static function provideValidateSig() {
+		return [
+			'HTML5 void <br>' => [ '[[User:Example|Example]]<br>[[User talk:Example|talk]]', '[[User:Example|Example]]<br />[[User talk:Example|talk]]' ],
+			'XML self-closed <br />' => [ '[[User:Example|Example]]<br />[[User talk:Example|talk]]', '[[User:Example|Example]]<br />[[User talk:Example|talk]]' ],
+			'plain text, no tags' => [ 'Example (talk)', 'Example (talk)' ],
+			'malformed tag' => [ '[[User:Example|Example]]<span>', false ],
+			'br with attribute containing gt' => [ '[[User:Example|Example]]<br foo=">">', false ],
+			'br-like tag name (hyphen)' => [ '[[User:Example|Example]]<br-k>', false ],
+			'br-like tag name (dot)' => [ '[[User:Example|Example]]<br.k>', false ],
+		];
+	}
 }
