@@ -939,6 +939,14 @@ CREATE TABLE user_autocreate_serial (
 );
 
 
+CREATE TABLE user_editcount (
+  uec_user INT NOT NULL,
+  uec_shard SMALLINT DEFAULT 0 NOT NULL,
+  uec_count INT DEFAULT 0 NOT NULL,
+  PRIMARY KEY(uec_user, uec_shard)
+);
+
+
 CREATE TABLE user_former_groups (
   ufg_user INT DEFAULT 0 NOT NULL,
   ufg_group TEXT DEFAULT '' NOT NULL,

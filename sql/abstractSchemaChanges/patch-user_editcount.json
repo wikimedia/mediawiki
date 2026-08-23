@@ -1,0 +1,44 @@
+{
+	"before": {},
+	"after": {
+		"name": "user_editcount",
+		"comment": "Stores user edit counts, distributed across shards to support high-volume update scenarios. Each user can have multiple rows (shards) with their edit count split across them. The total edit count for a user is the sum of uec_count across all shards for that user.",
+		"columns": [
+			{
+				"name": "uec_user",
+				"comment": "Key to user.user_id",
+				"type": "integer",
+				"options": {
+					"unsigned": true,
+					"notnull": true
+				}
+			},
+			{
+				"name": "uec_shard",
+				"comment": "Shard number for distributing write load. Multiple rows per user allow concurrent updates without lock contention.",
+				"type": "mwtinyint",
+				"options": {
+					"unsigned": true,
+					"notnull": true,
+					"default": 0,
+					"length": 4
+				}
+			},
+			{
+				"name": "uec_count",
+				"comment": "Edit count for this shard.",
+				"type": "integer",
+				"options": {
+					"unsigned": true,
+					"notnull": true,
+					"default": 0
+				}
+			}
+		],
+		"indexes": [],
+		"pk": [
+			"uec_user",
+			"uec_shard"
+		]
+	}
+}

@@ -862,6 +862,14 @@ CREATE TABLE /*_*/user_autocreate_serial (
 );
 
 
+CREATE TABLE /*_*/user_editcount (
+  uec_user INTEGER UNSIGNED NOT NULL,
+  uec_shard SMALLINT UNSIGNED DEFAULT 0 NOT NULL,
+  uec_count INTEGER UNSIGNED DEFAULT 0 NOT NULL,
+  PRIMARY KEY(uec_user, uec_shard)
+);
+
+
 CREATE TABLE /*_*/user_former_groups (
   ufg_user INTEGER UNSIGNED DEFAULT 0 NOT NULL,
   ufg_group BLOB DEFAULT '' NOT NULL,

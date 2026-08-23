@@ -874,6 +874,14 @@ CREATE TABLE /*_*/user_autocreate_serial (
 ) /*$wgDBTableOptions*/;
 
 
+CREATE TABLE /*_*/user_editcount (
+  uec_user INT UNSIGNED NOT NULL,
+  uec_shard TINYINT(4) UNSIGNED DEFAULT 0 NOT NULL,
+  uec_count INT UNSIGNED DEFAULT 0 NOT NULL,
+  PRIMARY KEY(uec_user, uec_shard)
+) /*$wgDBTableOptions*/;
+
+
 CREATE TABLE /*_*/user_former_groups (
   ufg_user INT UNSIGNED DEFAULT 0 NOT NULL,
   ufg_group VARBINARY(255) DEFAULT '' NOT NULL,

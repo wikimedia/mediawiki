@@ -97,6 +97,9 @@ class SqliteUpdater extends DatabaseUpdater {
 			// 1.47
 			[ 'addField', 'site_stats', 'ss_temp_users', 'patch-site_stats-temp_users.sql' ],
 			[ 'addIndex', 'file', 'file_type_name', 'patch-file-file_type_name.sql' ],
+
+			// 1.48
+			[ 'addTable', 'user_editcount', 'patch-user_editcount.sql' ],
 		];
 	}
 
