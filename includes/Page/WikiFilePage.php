@@ -7,6 +7,7 @@
 namespace MediaWiki\Page;
 
 use MediaWiki\Actions\FileDeleteAction;
+use MediaWiki\Deferred\LinksUpdate\LinksTable;
 use MediaWiki\FileRepo\File\File;
 use MediaWiki\FileRepo\File\LocalFile;
 use MediaWiki\FileRepo\LocalRepo;
@@ -194,7 +195,10 @@ class WikiFilePage extends WikiPage {
 		$this->loadFile();
 		$title = $this->mTitle;
 		$file = $this->mFile;
-		$titleFactory = MediaWikiServices::getInstance()->getTitleFactory();
+
+		$services = MediaWikiServices::getInstance();
+		$titleFactory = $services->getTitleFactory();
+		$lbFactory = $services->getDBLoadBalancerFactory();
 
 		if ( !$file instanceof LocalFile ) {
 			wfDebug( __METHOD__ . " is not supported for this file" );
@@ -203,7 +207,8 @@ class WikiFilePage extends WikiPage {
 
 		/** @var LocalRepo $repo */
 		$repo = $file->getRepo();
-		$dbr = $repo->getReplicaDB();
+		$wikiId = $repo->getDbDomain();
+		$dbr = $lbFactory->getRemoteReplicaDatabase( $wikiId, LinksTable::VIRTUAL_DOMAIN );
 		$res = $dbr->newSelectQueryBuilder()
 			->select( [ 'page_title' => 'lt_title', 'page_namespace' => (string)NS_CATEGORY ] )
 			->from( 'page' )

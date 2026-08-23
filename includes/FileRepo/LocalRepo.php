@@ -500,6 +500,16 @@ class LocalRepo extends FileRepo {
 	}
 
 	/**
+	 * Get the database domain ID for this repository.
+	 *
+	 * @since 1.47
+	 * @return string
+	 */
+	public function getDbDomain(): string {
+		return $this->dbDomain;
+	}
+
+	/**
 	 * Get a connection to the replica DB
 	 * @return IReadableDatabase
 	 */
