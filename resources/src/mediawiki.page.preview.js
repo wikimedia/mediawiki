@@ -579,9 +579,9 @@
 			// possible on latest revision.
 
 			// The section heading text is unconditionally wrapped in <h2> heading and
-			// ends with double newlines, except when it's empty. This is for parity with the
+			// ends with a single newline, except when it's empty. This is for parity with the
 			// server-side rendering of the same case.
-			sectionTitle = sectionTitle === '' ? '' : '== ' + sectionTitle + ' ==\n\n';
+			sectionTitle = sectionTitle === '' ? '' : '== ' + sectionTitle + ' ==\n';
 
 			// Prepend section heading to section text.
 			contents = sectionTitle + contents;

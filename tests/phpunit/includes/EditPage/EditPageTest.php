@@ -97,7 +97,7 @@ class EditPageTest extends MediaWikiLangTestCase {
 	public static function provideExtractSectionTitle() {
 		return [
 			[
-				"== Test ==\n\nJust a test section.",
+				"== Test ==\nJust a test section.",
 				"Test"
 			],
 			[
@@ -588,7 +588,6 @@ hello
 ';
 
 		$newSection = '== new section ==
-
 hello
 ';
 
@@ -794,9 +793,9 @@ hello
 		];
 
 		$text = "Intro\n\n";
-		$text .= "== first section ==\n\n";
+		$text .= "== first section ==\n";
 		$text .= "one\n\ntwo\n\nthree\n\n";
-		$text .= "== second section ==\n\n";
+		$text .= "== second section ==\n";
 		$text .= "four\n\nfive\n\nsix\n\n";
 
 		// extract the first section.

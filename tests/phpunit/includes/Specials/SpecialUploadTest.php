@@ -19,15 +19,15 @@ class SpecialUploadTest extends MediaWikiIntegrationTestCase {
 	public static function provideGetInitialPageText() {
 		return [
 			[
-				'expected' => "== Summary ==\n\nthis is a test\n",
+				'expected' => "== Summary ==\nthis is a test\n",
 				'inputParams' => [
 					'this is a test'
 				],
 			],
 			[
-				'expected' => "== Summary ==\n\nthis is a test\n",
+				'expected' => "== Summary ==\nthis is a test\n",
 				'inputParams' => [
-					"== Summary ==\n\nthis is a test",
+					"== Summary ==\nthis is a test",
 				],
 			],
 		];

@@ -249,7 +249,7 @@ class ApiEditPageTest extends ApiTestCase {
 		$text = $wikiPageFactory->newFromTitle( $title )
 			->getContent( RevisionRecord::RAW )
 			->getText();
-		$this->assertSame( "== header ==\n\ntest", $text );
+		$this->assertSame( "== header ==\ntest", $text );
 
 		// Now on one that does
 		$this->assertTrue( $title->exists( IDBAccessObject::READ_LATEST ) );
@@ -265,7 +265,7 @@ class ApiEditPageTest extends ApiTestCase {
 		$text = $wikiPageFactory->newFromTitle( $title )
 			->getContent( RevisionRecord::RAW )
 			->getText();
-		$this->assertSame( "== header ==\n\ntest\n\n== header ==\n\ntest", $text );
+		$this->assertSame( "== header ==\ntest\n\n== header ==\ntest", $text );
 	}
 
 	/**
@@ -346,13 +346,13 @@ class ApiEditPageTest extends ApiTestCase {
 		$expectedTexts = [
 			"text",
 			"text",
-			"== summary ==\n\ntext",
+			"== summary ==\ntext",
 			"text",
 			"text",
 			"text",
-			"== sectiontitle ==\n\ntext",
-			"== sectiontitle ==\n\ntext",
-			"== sectiontitle ==\n\ntext",
+			"== sectiontitle ==\ntext",
+			"== sectiontitle ==\ntext",
+			"== sectiontitle ==\ntext",
 		];
 
 		$expectedSummaries = [
@@ -1292,7 +1292,7 @@ class ApiEditPageTest extends ApiTestCase {
 
 		$page = $this->getServiceContainer()->getWikiPageFactory()->newFromTitle( $title );
 
-		$this->assertSame( "Initial content\n\n== My section ==\n\nMore content",
+		$this->assertSame( "Initial content\n\n== My section ==\nMore content",
 			$page->getContent()->getText() );
 		$comment = $page->getRevisionRecord()->getComment();
 		$this->assertInstanceOf( CommentStoreComment::class, $comment );
@@ -1314,7 +1314,7 @@ class ApiEditPageTest extends ApiTestCase {
 
 		$page = $this->getServiceContainer()->getWikiPageFactory()->newFromTitle( $title );
 
-		$this->assertSame( "Initial content\n\n== Add new section ==\n\nMore content",
+		$this->assertSame( "Initial content\n\n== Add new section ==\nMore content",
 			$page->getContent()->getText() );
 		// EditPage actually assumes the summary is the section name here
 		$comment = $page->getRevisionRecord()->getComment();
@@ -1338,7 +1338,7 @@ class ApiEditPageTest extends ApiTestCase {
 
 		$page = $this->getServiceContainer()->getWikiPageFactory()->newFromTitle( $title );
 
-		$this->assertSame( "Initial content\n\n== My section ==\n\nMore content",
+		$this->assertSame( "Initial content\n\n== My section ==\nMore content",
 			$page->getContent()->getText() );
 		$comment = $page->getRevisionRecord()->getComment();
 		$this->assertInstanceOf( CommentStoreComment::class, $comment );
@@ -1348,8 +1348,8 @@ class ApiEditPageTest extends ApiTestCase {
 	public function testAppendToSection() {
 		$title = Title::makeTitle( NS_HELP, 'TestAppendToSection' );
 
-		$this->editPage( $title, "== Section 1 ==\n\nContent\n\n" .
-			"== Section 2 ==\n\nFascinating!" );
+		$this->editPage( $title, "== Section 1 ==\nContent\n\n" .
+			"== Section 2 ==\nFascinating!" );
 
 		$this->doApiRequestWithToken( [
 			'action' => 'edit',
@@ -1361,14 +1361,14 @@ class ApiEditPageTest extends ApiTestCase {
 		$text = $this->getServiceContainer()->getWikiPageFactory()->newFromTitle( $title )
 			->getContent()->getText();
 
-		$this->assertSame( "== Section 1 ==\n\nContent and more content\n\n" .
-			"== Section 2 ==\n\nFascinating!", $text );
+		$this->assertSame( "== Section 1 ==\nContent and more content\n\n" .
+			"== Section 2 ==\nFascinating!", $text );
 	}
 
 	public function testAppendToFirstSection() {
 		$title = Title::makeTitle( NS_HELP, 'TestAppendToFirstSection' );
 
-		$this->editPage( $title, "Content\n\n== Section 1 ==\n\nFascinating!" );
+		$this->editPage( $title, "Content\n\n== Section 1 ==\nFascinating!" );
 
 		$this->doApiRequestWithToken( [
 			'action' => 'edit',
@@ -1380,7 +1380,7 @@ class ApiEditPageTest extends ApiTestCase {
 		$text = $this->getServiceContainer()->getWikiPageFactory()->newFromTitle( $title )
 			->getContent()->getText();
 
-		$this->assertSame( "Content and more content\n\n== Section 1 ==\n\n" .
+		$this->assertSame( "Content and more content\n\n== Section 1 ==\n" .
 			"Fascinating!", $text );
 	}
 

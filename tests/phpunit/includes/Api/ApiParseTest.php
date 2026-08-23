@@ -292,7 +292,7 @@ class ApiParseTest extends ApiTestCase {
 		$name = ucfirst( __FUNCTION__ );
 
 		$this->editPage( $name,
-			"Intro\n\n== Section 1 ==\n\nContent 1\n\n== Section 2 ==\n\nContent 2" );
+			"Intro\n\n== Section 1 ==\nContent 1\n\n== Section 2 ==\nContent 2" );
 
 		$res = $this->doApiRequest( [
 			'action' => 'parse',
@@ -316,7 +316,7 @@ class ApiParseTest extends ApiTestCase {
 		$name = ucfirst( __FUNCTION__ );
 
 		$status = $this->editPage( $name,
-			"Intro\n\n== Section 1 ==\n\nContent 1\n\n== Section 2 ==\n\nContent 2" );
+			"Intro\n\n== Section 1 ==\nContent 1\n\n== Section 2 ==\nContent 2" );
 
 		$this->expectApiErrorCode( 'missingcontent-pageid' );
 
@@ -534,7 +534,7 @@ class ApiParseTest extends ApiTestCase {
 			'action' => 'parse',
 			'title' => __CLASS__,
 			'section' => 1,
-			'text' => "Intro\n\n== Section 1 ==\n\nContent\n\n== Section 2 ==\n\nMore content",
+			'text' => "Intro\n\n== Section 1 ==\nContent\n\n== Section 2 ==\nMore content",
 		] );
 
 		$this->assertParsedToRegExp( '!<h2[^>]*>.*Section 1.*</h2>.*\n<p>Content\n</p>!', $res );

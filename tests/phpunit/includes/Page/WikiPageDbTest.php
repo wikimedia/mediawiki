@@ -1050,7 +1050,7 @@ more stuff
 				"new",
 				"No more",
 				"New",
-				trim( self::SECTIONS ) . "\n\n== New ==\n\nNo more"
+				trim( self::SECTIONS ) . "\n\n== New ==\nNo more"
 			],
 		];
 	}

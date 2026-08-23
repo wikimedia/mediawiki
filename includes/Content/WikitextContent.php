@@ -129,7 +129,7 @@ class WikitextContent extends TextContent {
 	 */
 	public static function getSectionHeader( $header ) {
 		$text = strval( $header ) !== '' ? wfMessage( 'newsectionheaderdefaultlevel' )
-			->plaintextParams( $header )->inContentLanguage()->text() . "\n\n" : '';
+			->plaintextParams( $header )->inContentLanguage()->text() . "\n" : '';
 		return $text;
 	}
 

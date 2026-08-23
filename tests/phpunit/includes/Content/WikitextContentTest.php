@@ -104,7 +104,7 @@ just a test"
 				"new",
 				"No more",
 				"New",
-				trim( self::SECTIONS ) . "\n\n\n== New ==\n\nNo more"
+				trim( self::SECTIONS ) . "\n\n\n== New ==\nNo more"
 			],
 		];
 	}
@@ -123,7 +123,7 @@ just a test"
 	public function testAddSectionHeader() {
 		$content = $this->newContent( 'hello world' );
 		$content = $content->addSectionHeader( 'test' );
-		$this->assertEquals( "== test ==\n\nhello world", $content->getText() );
+		$this->assertEquals( "== test ==\nhello world", $content->getText() );
 
 		$content = $this->newContent( 'hello world' );
 		$content = $content->addSectionHeader( '' );
