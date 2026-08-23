@@ -16,6 +16,7 @@ use Wikimedia\TestingAccessWrapper;
 
 /**
  * @covers \Wikimedia\ObjectCache\WANObjectCache
+ * @covers \Wikimedia\ObjectCache\CachedValue
  */
 class WANObjectCacheTest extends MediaWikiUnitTestCase {
 
@@ -109,6 +110,61 @@ class WANObjectCacheTest extends MediaWikiUnitTestCase {
 
 		$this->assertSame( false, $value, "Return value" );
 		$this->assertSame( null, $curTTL, "current TTL" );
+	}
+
+	public function testGetWithInfo() {
+		[ $cache ] = $this->newWanCache();
+		$mockTime = microtime( true );
+		$cache->setMockTime( $mockTime );
+
+		$key = $cache->makeKey( 'x', wfRandomString() );
+		$checkKey = $cache->makeKey( 'ck', wfRandomString() );
+
+		$cached = $cache->getWithInfo( $key );
+		$this->assertFalse( $cached->getValue(), 'Missing key value' );
+		$this->assertFalse( $cached->exists(), 'Missing key exists()' );
+		$this->assertFalse( $cached->isFresh(), 'Missing key isFresh()' );
+		$this->assertNull( $cached->getAsOf() );
+		$this->assertNull( $cached->getVersion() );
+		$this->assertNull( $cached->getLifetime() );
+		$this->assertNull( $cached->getRemainingLifetime() );
+		$this->assertNull( $cached->getTombstoneAsOf() );
+		$this->assertNull( $cached->getCheckKeyAsOf() );
+
+		$setTime = $mockTime;
+		$cache->set( $key, 'value', 60 );
+
+		$mockTime += 10;
+		$cached = $cache->getWithInfo( $key );
+		$this->assertSame( 'value', $cached->getValue() );
+		$this->assertTrue( $cached->exists() );
+		$this->assertTrue( $cached->isFresh() );
+		$this->assertEqualsWithDelta( $setTime, $cached->getAsOf(), 0.01 );
+		$this->assertSame( 60, $cached->getLifetime() );
+		$this->assertEqualsWithDelta( 50, $cached->getRemainingLifetime(), 0.01 );
+		$this->assertNull( $cached->getTombstoneAsOf() );
+
+		$cache->touchCheckKey( $checkKey );
+		$mockTime += 1;
+		$cached = $cache->getWithInfo( $key, [ $checkKey ] );
+		$this->assertSame( 'value', $cached->getValue(), 'Stale values are still returned' );
+		$this->assertFalse( $cached->isFresh(), 'Purged by the check key' );
+		$this->assertNotNull( $cached->getCheckKeyAsOf() );
+
+		$cache->delete( $key );
+		$mockTime += 1;
+		$cached = $cache->getWithInfo( $key );
+		$this->assertFalse( $cached->getValue(), 'Tombstoned key value' );
+		$this->assertNotNull( $cached->getTombstoneAsOf(), 'Tombstoned key as-of time' );
+	}
+
+	public function testGetWithInfoVersion() {
+		[ $cache ] = $this->newWanCache();
+
+		$key = $cache->makeKey( 'x', wfRandomString() );
+		$cache->getWithSetCallback( $key, 60, static fn () => 'value', [ 'version' => 3 ] );
+
+		$this->assertSame( 3, $cache->getWithInfo( $key )->getVersion() );
 	}
 
 	public function testSetOver() {

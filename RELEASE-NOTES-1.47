@@ -175,6 +175,16 @@ For notes on 1.46.x and older releases, see HISTORY.
   request) when reauthentication is not possible for the session type.
 * New hook CategoryViewerGenerateLinkHook as replacement for deprecated hook
   CategoryViewer__generateLinkHook.
+* (T424361) WANObjectCache::buildGetWithSetCallback() returns a new fluent
+  builder, WANGetWithSetCallbackBuilder, for getWithSetCallback() calls. It
+  makes the cache key itself (so callers no longer need
+  makeKey()/makeGlobalKey()) and replaces the untyped options map with named
+  methods. Its callback is
+  given a CacheRegenerationContext instead of the by-reference $ttl and
+  $setOpts parameters. The plain getWithSetCallback() method is unchanged.
+* (T424361) WANObjectCache::getWithInfo() is a new method that returns the
+  value of a key and the metadata about it as a CachedValue object, instead of
+  through the by-reference $curTTL and $info parameters of get().
 * (T314399) ParserOutput::setDisplayTitleParts() and
   ::getDisplayTitleParts() store/fetch the display title as separate localized
   namespace, separator, and main title pieces, so that skins can target

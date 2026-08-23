@@ -32,7 +32,8 @@ use Wikimedia\Telemetry\TracerInterface;
  * as equally up-to-date to data from a replica database, and is thus essentially subject to the
  * same replication lag.
  *
- * The primary way to interact with this class is via the getWithSetCallback() method.
+ * The primary way to interact with this class is via the getWithSetCallback() method,
+ * preferably through the fluent builder returned by buildGetWithSetCallback().
  *
  * Each data center has its own cache cluster, with web servers in a given datacenter
  * populating and reading from the local datacenter only. The exceptions are methods delete(),
@@ -442,30 +443,64 @@ class WANObjectCache implements
 	 *  "check" keys must also be made with makeKey()/makeGlobalKey()
 	 * @param array &$info Metadata map [returned]
 	 * @return mixed Value of cache key; false on failure
+	 * @see WANObjectCache::getWithInfo() for the same thing without by-reference parameters
 	 */
 	final public function get( $key, &$curTTL = null, array $checkKeys = [], &$info = [] ) {
 		// Note that an undeclared variable passed as $info starts as null (not the default).
 		// Also, if no $info parameter is provided, then it doesn't matter how it changes here.
 		$legacyInfo = ( $info !== self::PASS_BY_REF );
 
+		$cachedValue = $this->fetchWithInfo( $key, $checkKeys, __FUNCTION__ );
+
+		$curTTL = $cachedValue->getRemainingLifetime();
+		$info = $legacyInfo
+			? $cachedValue->getAsOf()
+			: [
+				self::KEY_VERSION => $cachedValue->getVersion(),
+				self::KEY_AS_OF => $cachedValue->getAsOf(),
+				self::KEY_TTL => $cachedValue->getLifetime(),
+				self::KEY_CUR_TTL => $cachedValue->getRemainingLifetime(),
+				self::KEY_TOMB_AS_OF => $cachedValue->getTombstoneAsOf(),
+				self::KEY_CHECK_AS_OF => $cachedValue->getCheckKeyAsOf()
+			];
+
+		return $cachedValue->getValue();
+	}
+
+	/**
+	 * Fetch the value of a key from cache, along with what is known about the key
+	 *
+	 * This is the same as get(), except that the value and the key metadata are returned
+	 * together as a CachedValue, instead of via by-reference parameters.
+	 *
+	 * @see WANObjectCache::get()
+	 * @since 1.47
+	 *
+	 * @param string $key Cache key made with makeKey()/makeGlobalKey()
+	 * @param string[] $checkKeys Map of (integer or cache key => "check" key(s));
+	 *  "check" keys must also be made with makeKey()/makeGlobalKey()
+	 * @return CachedValue
+	 */
+	final public function getWithInfo( string $key, array $checkKeys = [] ): CachedValue {
+		return $this->fetchWithInfo( $key, $checkKeys, __FUNCTION__ );
+	}
+
+	/**
+	 * Do the actual I/O for get() and getWithInfo()
+	 *
+	 * @param string $key Cache key made with makeKey()/makeGlobalKey()
+	 * @param string[] $checkKeys Map of (integer or cache key => "check" key(s))
+	 * @param string $opName Name of the calling method, for tracing
+	 * @return CachedValue
+	 */
+	private function fetchWithInfo( string $key, array $checkKeys, string $opName ): CachedValue {
 		/** @noinspection PhpUnusedLocalVariableInspection */
-		$span = $this->startOperationSpan( __FUNCTION__, $key, $checkKeys );
+		$span = $this->startOperationSpan( $opName, $key, $checkKeys );
 
 		$now = $this->getCurrentTime();
 		$res = $this->fetchKeys( [ $key ], $checkKeys, $now )[$key];
 
 		$curTTL = $res[self::RES_CUR_TTL];
-		$info = $legacyInfo
-			? $res[self::RES_AS_OF]
-			: [
-				self::KEY_VERSION => $res[self::RES_VERSION],
-				self::KEY_AS_OF => $res[self::RES_AS_OF],
-				self::KEY_TTL => $res[self::RES_TTL],
-				self::KEY_CUR_TTL => $res[self::RES_CUR_TTL],
-				self::KEY_TOMB_AS_OF => $res[self::RES_TOMB_AS_OF],
-				self::KEY_CHECK_AS_OF => $res[self::RES_CHECK_AS_OF]
-			];
-
 		if ( $curTTL === null || $curTTL <= 0 ) {
 			// Remove old item so the updated one moves to the end of the array
 			unset( $this->missLog[$key] );
@@ -477,7 +512,15 @@ class WANObjectCache implements
 			$this->missLog[$key] = $this->getCurrentTime();
 		}
 
-		return $res[self::RES_VALUE];
+		return new CachedValue(
+			$res[self::RES_VALUE],
+			$res[self::RES_VERSION],
+			$res[self::RES_AS_OF],
+			$res[self::RES_TTL],
+			$curTTL,
+			$res[self::RES_TOMB_AS_OF],
+			$res[self::RES_CHECK_AS_OF]
+		);
 	}
 
 	/**
@@ -1204,6 +1247,32 @@ class WANObjectCache implements
 	}
 
 	/**
+	 * Create a builder for a getWithSetCallback() call
+	 *
+	 * This is the preferred way to call getWithSetCallback(): the builder makes the cache key
+	 * and names each of the options, so that a call reads as prose rather than as an options
+	 * map that has to be looked up.
+	 *
+	 * @code
+	 *     $stats = $cache->buildGetWithSetCallback()
+	 *         ->key( 'language-stats' )
+	 *         ->keepIndefinitely()
+	 *         ->invalidatedByKey( 'language-stats' )
+	 *         ->shortProcessCache()
+	 *         ->getWithSetCallback( static function () {
+	 *             return self::getAllLanguageStats();
+	 *         } );
+	 * @endcode
+	 *
+	 * @see WANGetWithSetCallbackBuilder
+	 * @since 1.47
+	 * @return WANGetWithSetCallbackBuilder
+	 */
+	public function buildGetWithSetCallback(): WANGetWithSetCallbackBuilder {
+		return new WANGetWithSetCallbackBuilder( $this );
+	}
+
+	/**
 	 * Method to fetch/regenerate a cache key
 	 *
 	 * On cache miss, the key will be set to the callback result via set()
@@ -1382,6 +1451,7 @@ class WANObjectCache implements
 	 *         : $this->checkScenarioTolerability( $constraintId, $situation );
 	 * @endcode
 	 *
+	 * @see WANObjectCache::buildGetWithSetCallback()
 	 * @see WANObjectCache::get()
 	 * @see WANObjectCache::set()
 	 *
