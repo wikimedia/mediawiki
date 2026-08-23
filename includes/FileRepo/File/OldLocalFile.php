@@ -482,7 +482,8 @@ class OldLocalFile extends LocalFile {
 						'fr_deleted' => 0,
 						'fr_timestamp' => $dbw->timestamp( $timestamp ),
 						'fr_metadata' => $this->getMetadataForDb( $dbw ),
-						'fr_sha1' => $this->sha1
+						'fr_sha1' => $this->sha1,
+						'fr_archive_name' => $archiveName,
 					] + $commentFields )
 				->caller( __METHOD__ )->execute();
 		}
