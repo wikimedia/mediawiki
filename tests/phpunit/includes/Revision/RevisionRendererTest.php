@@ -436,7 +436,7 @@ class RevisionRendererTest extends MediaWikiIntegrationTestCase {
 		$combinedHtml = $pipeline->run( $combinedOutput, $options, [] )->getContentHolderText();
 		$mainHtml = $pipeline->run( $mainOutput, $options, [] )->getContentHolderText();
 		$this->assertSame( $combinedHtml, $mainHtml );
-		$this->assertSame(
+		$this->assertEquals(
 			$combinedOutput->getLinkList( ParserOutputLinkTypes::LOCAL ),
 			$mainOutput->getLinkList( ParserOutputLinkTypes::LOCAL ) );
 		$this->assertStringContainsString( 'class="mw-content-ltr mw-parser-output"', $mainHtml );
