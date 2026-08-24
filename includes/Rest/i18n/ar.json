@@ -99,6 +99,7 @@
 	"rest-module-extra-routes-title": "واجهة برمجة تطبيقات REST الخاصة بميدياويكي",
 	"rest-module-extra-routes-desc": "نقاط نهاية REST غير المرتبطة بالوحدة",
 	"rest-sandbox-recommend-test-server": "تنبيه: يقوم خادم REST التجريبي بتنفيذ الاستدعاءات على قاعدة بيانات الإنتاج افتراضيًا. لتجنب التعديلات غير المقصودة على المحتوى المباشر، حدد خادم الاختبار ( $1 ) من القائمة المنسدلة للخوادم قبل إرسال طلبات POST أو PUT أو PATCH أو DELETE.",
+	"rest-sandbox-recommend-test-server-with-description": "$1 : يقوم خادم REST Sandbox بتنفيذ طلبات على قاعدة بيانات الإنتاج افتراضيًا. لتجنب التعديلات غير المقصودة على المحتوى المباشر، حدد خادم Sandbox ( $2 ) من القائمة المنسدلة للخوادم قبل إرسال طلبات POST أو PUT أو PATCH أو DELETE.",
 	"rest-sandbox-server-production": "(إنتاج)",
 	"rest-sandbox-server-sandbox": "(بيئة تجريبية)",
 	"rest-module-specs.v0-title": "المواصفات",

@@ -2318,6 +2318,7 @@
 	"sp-contributions-concurrency-user": "Beklager, der bliver lavet for mange forespørgsler fra din brugerkonto. Prøv igen senere.",
 	"sp-contributions-concurrency-ip": "Beklager, der bliver lavet for mange forespørgsler fra din IP-adresse. Prøv igen senere.",
 	"sp-contributions-newcontribution": "Nyt bidrag",
+	"sp-contributions-blocked-config": "Anonyme bidrag fra netværket $1 er blevet blokeret.",
 	"whatlinkshere": "Hvad henviser hertil",
 	"whatlinkshere-count": "Viser {{PLURAL:$1|et element|$1 elementer}}.",
 	"whatlinkshere-title": "Sider der henviser til \"$1\"",

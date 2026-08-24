@@ -113,6 +113,7 @@
 	"right-ipblock-exempt": "Абыход IP-блокаў, аўтаматычных блокаў і блокаў дыяпазонаў",
 	"right-unblockself": "Разблакаваць сябе",
 	"right-protect": "Змена наладаў аховы і праўка старонак пад каскаднай аховай",
+	"right-editalluserpages": "Праўка ўсіх старонак удзельнікаў",
 	"right-editprotected": "Праўка старонак пад аховай ({{int:restriction-level-sysop}})",
 	"right-editsemiprotected": "Праўка старонак пад аховай ({{int:restriction-level-autoconfirmed}})",
 	"right-editcontentmodel": "Рэдагаванне мадэлі змесціва старонкі",

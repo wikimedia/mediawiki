@@ -2478,6 +2478,7 @@
 	"sp-contributions-concurrency-user": "抱歉，您的账号向我们发出了太多请求，请稍后再试。",
 	"sp-contributions-concurrency-ip": "抱歉，您的IP地址向我们发出了太多请求，请稍后再试。",
 	"sp-contributions-newcontribution": "新增贡献",
+	"sp-contributions-blocked-config": "来自网络$1的匿名贡献已被阻止。",
 	"whatlinkshere": "链入页面",
 	"whatlinkshere-count": "显示$1{{PLURAL:$1|项}}。",
 	"whatlinkshere-title": "链接至“$1”的页面",

@@ -1234,7 +1234,7 @@
 	"apihelp-query+revisions+base-paramvalue-prop-tags": "Markierungen für die Version.",
 	"apihelp-query+revisions+base-paramvalue-prop-roles": "Die Liste enthält Schlitzregeln, die in der Version vorhanden sind.",
 	"apihelp-query+revisions+base-param-contentformat-slot": "Inhaltsserialisierungsformat, das für die Ausgabe von Inhalten verwendet wird.",
-	"apihelp-query+revisions+base-param-section": "Rufe nur den Inhalt des Abschnitts mit diesem Bezeichner ab.",
+	"apihelp-query+revisions+base-param-section": "Rufe nur den Inhalt des Abschnitts mit diesem Bezeichner ab. Eine Abschnitts-ID ist entweder eine ganzzahlige Abschnittsnummer (0 = Einleitung, 1 = Abschnitt, der mit der ersten Überschrift beginnt, usw.) oder eine Zeichenfolge wie T-1; in diesem Fall wird die Abschnittsnummer so gezählt, als würde die Seite transkludiert (z. B. kann ein Abschnitt, der in <code>&lt;includeonly&gt;</code> eingeschlossen ist, nur in diesem Modus identifiziert werden).",
 	"apihelp-query+revisions+base-param-contentformat": "Das für <var>$1difftotext</var> verwendete Serialisierungsformat, das für die Ausgabe des Inhalts erwartet wird.",
 	"apihelp-query+search-summary": "Führt eine Volltextsuche aus.",
 	"apihelp-query+search-param-search": "Suche nach Seitentiteln oder Inhalten, die diesem Wert entsprechen. Du kannst den Suchstring verwenden, um spezielle Suchfunktionen aufzurufen, je nachdem, was das Such-Backend des Wikis implementiert.",

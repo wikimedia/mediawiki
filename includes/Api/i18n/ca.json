@@ -11,7 +11,7 @@
 			"Xavier Dengra"
 		]
 	},
-	"apihelp-main-param-action": "Quina acció realitzar.",
+	"apihelp-main-param-action": "Quina acció s'ha de realitzar. Aquest paràmetre s'ha d'enviar com a part de l'URL sol·licitat (no del cos POST) per a facilitar la depuració, l'anàlisi i l'encaminament o filtratge de sol·licituds.",
 	"apihelp-main-param-format": "El format de la sortida.",
 	"apihelp-main-param-curtimestamp": "Inclou la marca horària actual en el resultat.",
 	"apihelp-block-summary": "Bloca un usuari.",
@@ -27,7 +27,7 @@
 	"apihelp-delete-summary": "Suprimeix una pàgina.",
 	"apihelp-disabled-summary": "Aquest mòdul ha estat desactivat.",
 	"apihelp-edit-summary": "Crea i edita pàgines.",
-	"apihelp-edit-param-sectiontitle": "El títol d’una secció nova.",
+	"apihelp-edit-param-sectiontitle": "El títol d’una secció nova en utiltzar <var>$1section=new</var>.",
 	"apihelp-edit-param-text": "Contingut de la pàgina.",
 	"apihelp-edit-param-minor": "Marqueu aquesta edició com a menor.",
 	"apihelp-edit-param-createonly": "No editeu aquesta pàgina si ja existeix.",

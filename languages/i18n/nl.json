@@ -2355,6 +2355,7 @@
 	"sp-contributions-concurrency-user": "Er worden te veel aanvragen vanaf uw gebruikersaccount gemaakt. Probeer het later opnieuw.",
 	"sp-contributions-concurrency-ip": "Er worden te veel aanvragen vanaf uw IP-adres gemaakt. Probeer het later opnieuw.",
 	"sp-contributions-newcontribution": "Nieuwe bijdrage",
+	"sp-contributions-blocked-config": "Anonieme bijdragen vanuit het netwerk $1 zijn geblokkeerd.",
 	"whatlinkshere": "Verwijzingen naar deze pagina",
 	"whatlinkshere-count": "Er {{PLURAL:$1|wordt $1 item|worden $1 items}} weergegeven.",
 	"whatlinkshere-title": "Pagina's die verwijzen naar \"$1\"",

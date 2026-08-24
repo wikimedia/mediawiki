@@ -2239,6 +2239,7 @@
 	"sp-contributions-concurrency-user": "Waan ka xumahay, codsiyo aad u badan ayaa laga dirayaa akoonkaaga. Fadlan mar kale isku day waqti dambe.",
 	"sp-contributions-concurrency-ip": "Raalli noqo, codsiyo aad u badan ayaa laga dirayaa cinwaankaaga IP-ga. Fadlan mar dambe isku day.",
 	"sp-contributions-newcontribution": "Wax ku dar cusub",
+	"sp-contributions-blocked-config": "Wax ka beddellada aan la aqoon ee ka imanaya shabakadda $1 waa la xannibay.",
 	"whatlinkshere": "Maxaa meeshaan la xiriiro",
 	"whatlinkshere-count": "Muujinaya $1 {{PLURAL:$1|shay|shayyo}}.",
 	"whatlinkshere-title": "Boggaga la xiriiro \"$1\"",

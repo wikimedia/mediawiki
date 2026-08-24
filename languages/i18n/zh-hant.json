@@ -2395,6 +2395,7 @@
 	"sp-contributions-concurrency-user": "很抱歉，您的使用者帳號有做出太多請求，請稍後再試。",
 	"sp-contributions-concurrency-ip": "很抱歉，您的 IP 位址有做出太多請求，請稍後再試。",
 	"sp-contributions-newcontribution": "新貢獻",
+	"sp-contributions-blocked-config": "來自網路$1的匿名貢獻已被封鎖。",
 	"whatlinkshere": "連結至此的頁面",
 	"whatlinkshere-count": "顯示$1{{PLURAL:$1|個項目}}。",
 	"whatlinkshere-title": "連結至「$1」的頁面",

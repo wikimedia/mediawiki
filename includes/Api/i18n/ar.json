@@ -1929,7 +1929,7 @@
 	"apierror-ratelimited": "لقد تجاوزت حد المعدل الخاص بك; يُرجَى الانتظار بعض الوقت والمحاولة مرة أخرى.",
 	"apierror-readapidenied": "أنت بحاجة لصلاحية القراءة لاستخدام هذه الوحدة.",
 	"apierror-readonly": "الويكي حاليا في وضع القراءة فقط.",
-	"apierror-reauthenticate": "لتنفيذ هذا العمل تحتاج إلى جلسة مع ارتفاع الأمن. من فضلكم إعادة التوثيق لعملية <kbd>$1</kbd>.",
+	"apierror-reauthenticate": "لإتمام هذا الإجراء، أنت بحاجة إلى جلسة ذات مستوى أمان مرتفع. يُرجى إعادة المصادقة للعملية <kbd>$1</kbd> ، باستخدام وحدة واجهة برمجة التطبيقات <kbd>action=clientlogin</kbd> مع <kbd>loginreauthenticate= $1</kbd> .",
 	"apierror-redirect-appendonly": "لقد حاولت إجراء التعديل باستخدام وضع تحويل التالي، والذي يجب استخدامه في الاقتران مع <kbd>section=new</kbd> أو <var>prependtext</var> أو <var>appendtext</var>.",
 	"apierror-revdel-mutuallyexclusive": "لا يمكن استخدام نفس الحقل في كل من <var>hide</var> و<var>show</var>.",
 	"apierror-revdel-needtarget": "مطلوب عنوان مستهدف لنوع RevDel هذا.",

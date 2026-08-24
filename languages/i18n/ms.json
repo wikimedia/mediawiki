@@ -2275,6 +2275,7 @@
 	"sp-contributions-concurrency-user": "Maaf, terlalu banyak permintaan dibuat daripada alamat IP anda. Sila cuba lagi kemudian.",
 	"sp-contributions-concurrency-ip": "Maaf, terlalu banyak permintaan dibuat daripada alamat IP anda. Sila cuba lagi kemudian.",
 	"sp-contributions-newcontribution": "Sumbangan baharu",
+	"sp-contributions-blocked-config": "Sumbangan awanama daripada rangkaian $1 telah disekat.",
 	"whatlinkshere": "Pautan ke laman ini",
 	"whatlinkshere-count": "Memaparkan $1 {{PLURAL:$1|butir}}.",
 	"whatlinkshere-title": "Laman yang mengandungi pautan ke \"$1\"",

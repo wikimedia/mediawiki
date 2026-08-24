@@ -300,6 +300,7 @@
 	"rest-property-desc-linterror-templateinfo": "Informations sur le modèle en cours de traitement",
 	"rest-property-desc-linterror-params": "Informations supplémentaires spécifiques au type d'erreur de lint",
 	"rest-property-desc-templateinfo-name": "Nom de modèle",
+	"rest-property-desc-templateinfo-multipart": "Indique si le modèle s'étend sur plusieurs blocs de modèles",
 	"rest-property-desc-transform-wikitext": "Contenu wikicode à transformer",
 	"rest-property-desc-transform-wikitext-lint": "Contenu wikicode pour lint",
 	"rest-property-desc-transform-wikitext-body": "Contenu wikicode",
