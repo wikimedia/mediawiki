@@ -179,6 +179,13 @@ class FullSearchResultWidget implements SearchResultWidget {
 		// clone to prevent hook from changing the title stored inside $result
 		$title = clone $result->getTitle();
 		$query = [];
+		if ( $title->isRedirect() ) {
+			// If the search engine is returning a redirect, send them directly to the redirect. If
+			// instead the engine wants to send the user via redirect to the destination page then
+			// $result->getTitle() must be the final destination, and $result->getRedirectTarget()
+			// must hold the redirect.
+			$query['redirect'] = 'no';
+		}
 
 		$attributes = [ 'data-serp-pos' => $position ];
 		$this->hookRunner->onShowSearchHitTitle( $title, $snippet, $result,
