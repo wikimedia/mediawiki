@@ -183,6 +183,14 @@ For notes on 1.47.x and older releases, see HISTORY.
   a key maps to.
 * The EditPageBeforeEditToolbar hook, deprecated since 1.36, has been
   removed.
+* SkinTemplate::injectLegacyMenusIntoPersonalTools and
+  BaseTemplate::getPersonalTools have been removed.
+  Please see T430856 for migration notes.
+* The following Skin data template variables have been removed, see T430856
+  for migration notes:
+*  - searchaction
+*  - personal_urls
+*  - data-portlets.data-personal
 * …
 
 === Deprecations in 1.48 ===

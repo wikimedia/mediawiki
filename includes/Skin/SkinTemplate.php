@@ -26,7 +26,6 @@ use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Specials\Contribute\ContributeFactory;
 use MediaWiki\Title\Title;
 use RuntimeException;
-use Wikimedia\ArrayUtils\ArrayUtils;
 use Wikimedia\Message\MessageParam;
 use Wikimedia\Message\MessageSpecifier;
 use Wikimedia\Timestamp\TimestampFormat as TS;
@@ -219,9 +218,6 @@ class SkinTemplate extends Skin {
 		$tpl->set( 'notspecialpage', !$title->isSpecialPage() );
 
 		$searchTitle = SpecialPage::newSearchPage( $this->getUser() );
-		$searchLink = $searchTitle->getLocalURL();
-		$tpl->set( 'searchaction', $searchLink );
-		$tpl->deprecate( 'searchaction', '1.36' );
 
 		$tpl->set( 'searchtitle', $searchTitle->getPrefixedDBkey() );
 		$tpl->set( 'search', trim( $request->getVal( 'search', '' ) ) );
@@ -271,11 +267,7 @@ class SkinTemplate extends Skin {
 
 		$content_navigation = $this->buildContentNavigationUrlsInternal();
 		$requestedMenus = $this->getOptions()['menus'];
-		# Personal toolbar
-		if ( in_array( 'personal', $requestedMenus ) ) {
-			$tpl->set( 'personal_urls', $this->makeSkinTemplatePersonalUrls( $content_navigation ) );
-		}
-		$tpl->deprecate( 'personal_urls', 'Use content_navigation instead' );
+
 		// The user-menu, notifications, and user-interface-preferences are new content navigation entries which aren't
 		// expected to be part of content_navigation or content_actions. Adding them in there breaks skins that do not
 		// expect it. (See T316196)
@@ -304,10 +296,7 @@ class SkinTemplate extends Skin {
 				unset( $content_navigation[ $key ] );
 			}
 		}
-		$content_actions = $this->buildContentActionUrls( $content_navigation );
 		$tpl->set( 'content_navigation', $content_navigation );
-		$tpl->set( 'content_actions', $content_actions );
-		$tpl->deprecate( 'content_actions', '1.46' );
 
 		// Read footer data AFTER content navigation hooks have run.
 		// This ensures items added via the Universal hook are captured
@@ -686,25 +675,6 @@ class SkinTemplate extends Skin {
 			}
 
 			$portlets['data-' . $name] = $this->getPortletData( $name, $items );
-		}
-
-		$menuOptions = $this->getOptions()['menus'];
-		$intro = 'Skins must now pass `menus` key to skin definition in skin.json. Default value is: '
-			. "['associated-pages', 'views', 'actions', 'variants', 'personal']. <br>";
-
-		// A menu that includes the notifications. Now deprecated.
-		if ( in_array( 'personal', $menuOptions ) ) {
-			wfDeprecatedMsg(
-				$intro . 'Menu "personal" is deprecated. Replace with "user-page", "user-interface-preferences",'
-					. '"notifications" and "user-menu".',
-				'1.46'
-			);
-			$portlets['data-personal'] = $this->getPortletData(
-				'personal',
-				$this->getPersonalToolsForMakeListItem(
-					$this->injectLegacyMenusIntoPersonalTools( $contentNavigation )
-				)
-			);
 		}
 
 		$this->portletsCached = [
@@ -1596,102 +1566,6 @@ class SkinTemplate extends Skin {
 		}
 
 		return $specialAssociatedNavigationLinks;
-	}
-
-	/**
-	 * an array of edit links by default used for the tabs
-	 * @param array $content_navigation
-	 * @return array
-	 */
-	private function buildContentActionUrls( $content_navigation ) {
-		// content_actions has been replaced with content_navigation for backwards
-		// compatibility and also for skins that just want simple tabs content_actions
-		// is now built by flattening the content_navigation arrays into one
-
-		$content_actions = [];
-
-		foreach ( $content_navigation as $links ) {
-			foreach ( $links as $key => $value ) {
-				if ( isset( $value['redundant'] ) && $value['redundant'] ) {
-					// Redundant tabs are dropped from content_actions
-					continue;
-				}
-
-				// content_actions used to have ids built using the "ca-$key" pattern
-				// so the xmlID based id is much closer to the actual $key that we want
-				// for that reason we'll just strip out the ca- if present and use
-				// the latter potion of the "id" as the $key
-				if ( isset( $value['id'] ) && str_starts_with( $value['id'], 'ca-' ) ) {
-					$key = substr( $value['id'], 3 );
-				}
-
-				if ( isset( $content_actions[$key] ) ) {
-					wfDebug( __METHOD__ . ": Found a duplicate key for $key while flattening " .
-						"content_navigation into content_actions." );
-					continue;
-				}
-
-				$content_actions[$key] = $value;
-			}
-		}
-
-		return $content_actions;
-	}
-
-	/**
-	 * Insert legacy menu items from content navigation into the personal toolbar.
-	 *
-	 * @internal
-	 *
-	 * @deprecated 1.46 Update your skin options to request the menu "notification" and "user-menu" instead.
-	 * @param array $contentNavigation
-	 * @return array
-	 */
-	final protected function injectLegacyMenusIntoPersonalTools(
-		array $contentNavigation
-	): array {
-		wfDeprecated( __METHOD__, '1.46', 'Please make sure Skin option menus contains `user-menu` '
-			. '(and possibly `notifications`, `user-interface-preferences`, `user-page`)' );
-		$userMenu = $contentNavigation['user-menu'] ?? [];
-		if ( isset( $contentNavigation['user-page']['userpage'] ) ) {
-			$userMenu = [
-				'userpage' => $contentNavigation['user-page']['userpage'],
-			] + $userMenu;
-		}
-
-		// userpage is only defined for logged-in users, and ArrayUtils::insertAfter requires the
-		// $after parameter to be a known key in the array.
-		if ( isset( $userMenu['userpage'] ) && isset( $contentNavigation['notifications'] ) ) {
-			$userMenu = ArrayUtils::insertAfter(
-				$userMenu,
-				$contentNavigation['notifications'],
-				'userpage'
-			);
-		}
-		if ( isset( $contentNavigation['user-interface-preferences'] ) ) {
-			return array_merge(
-				$contentNavigation['user-interface-preferences'],
-				$userMenu
-			);
-		}
-		return $userMenu;
-	}
-
-	/**
-	 * Build the personal urls array.
-	 *
-	 * @internal
-	 *
-	 * @param array $contentNavigation
-	 * @return array
-	 */
-	private function makeSkinTemplatePersonalUrls(
-		array $contentNavigation
-	): array {
-		if ( isset( $contentNavigation['user-menu'] ) ) {
-			return $this->injectLegacyMenusIntoPersonalTools( $contentNavigation );
-		}
-		return [];
 	}
 
 	/**

@@ -139,24 +139,6 @@ class SkinTemplateTest extends MediaWikiIntegrationTestCase {
 		$this->assertEquals( $expected, $icons, $msg );
 	}
 
-	/**
-	 * @dataProvider provideContentNavigation
-	 * @param array $contentNavigation
-	 * @param array $expected
-	 */
-	public function testInjectLegacyMenusIntoPersonalTools(
-		array $contentNavigation,
-		array $expected
-	) {
-		$wrapper = TestingAccessWrapper::newFromObject( new SkinTemplate() );
-
-		$this->hideDeprecated( 'MediaWiki\Skin\SkinTemplate::injectLegacyMenusIntoPersonalTools' );
-		$this->assertEquals(
-			$expected,
-			$wrapper->injectLegacyMenusIntoPersonalTools( $contentNavigation )
-		);
-	}
-
 	public static function provideContentNavigation(): array {
 		return [
 			'No userpage set' => [
