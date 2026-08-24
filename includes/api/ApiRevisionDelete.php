@@ -107,6 +107,13 @@ class ApiRevisionDelete extends ApiBase {
 		$list = RevisionDeleter::createList(
 			$params['type'], $this->getContext(), $targetObj, $params['ids']
 		);
+
+		if ( $list->areAnySuppressed() ) {
+			// To change anything at all about an already-suppressed revision, the user must have
+			// the suppressrevision right (T435026)
+			$this->checkUserRightsAny( 'suppressrevision' );
+		}
+
 		$status = $list->setVisibility( [
 			'value' => $bitfield,
 			'comment' => $params['reason'] ?? '',
