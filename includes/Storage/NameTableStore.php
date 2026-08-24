@@ -10,7 +10,6 @@ use Psr\Log\LoggerInterface;
 use Wikimedia\Assert\Assert;
 use Wikimedia\ObjectCache\BagOStuff;
 use Wikimedia\ObjectCache\WANObjectCache;
-use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\ILoadBalancer;
 use Wikimedia\Rdbms\IReadableDatabase;
@@ -212,7 +211,7 @@ class NameTableStore {
 		$table = $this->cache->getWithSetCallback(
 			$this->getCacheKey(),
 			$this->cacheTTL,
-			function ( $oldValue, &$ttl, &$setOpts ) use ( $id, $fname ) {
+			function () use ( $id, $fname ) {
 				// Regenerate from replica DB, and primary DB if needed
 				foreach ( [ DB_REPLICA, DB_PRIMARY ] as $source ) {
 					// Log a fallback to primary
@@ -223,15 +222,12 @@ class NameTableStore {
 						);
 					}
 					$db = $this->getDBConnection( $source );
-					$cacheSetOpts = Database::getCacheSetOptions( $db );
 					$table = $this->loadTable( $db );
 					if ( array_key_exists( $id, $table ) ) {
 						break; // found it
 					}
 				}
 				// Use the value from last source checked
-				$setOpts += $cacheSetOpts;
-
 				return $table;
 			},
 			[ 'touchedCallback' => static function ( $oldValue ) use ( $id ) {
@@ -277,9 +273,8 @@ class NameTableStore {
 		$table = $this->cache->getWithSetCallback(
 			$this->getCacheKey(),
 			$this->cacheTTL,
-			function ( $oldValue, &$ttl, &$setOpts ) {
+			function () {
 				$dbr = $this->getDBConnection( DB_REPLICA );
-				$setOpts += Database::getCacheSetOptions( $dbr );
 				return $this->loadTable( $dbr );
 			}
 		);
