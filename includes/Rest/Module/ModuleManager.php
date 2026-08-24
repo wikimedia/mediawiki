@@ -27,7 +27,7 @@ class ModuleManager {
 	// These specs will be available in the Rest Sandbox. No config change is needed.
 	private const CORE_SPECS = [
 		'mw-extra' => [
-			'url' => '/rest.php/specs/v0/module/-',
+			'url' => '/specs/v0/module/-',
 			'name' => 'MediaWiki REST API (routes not in modules)',
 		],
 		'specs.v0' => [
@@ -53,7 +53,7 @@ class ModuleManager {
 	private array $restExternalModules;
 	private array $restModuleOverrides;
 
-	private string $scriptPath;
+	private string $rootPath;
 
 	/** Persistent local server/host cache (e.g. APCu) */
 	private BagOStuff $srvCache;
@@ -69,7 +69,7 @@ class ModuleManager {
 		MainConfigNames::RestSandboxSpecs,
 		MainConfigNames::RestExternalModules,
 		MainConfigNames::RestModuleOverrides,
-		MainConfigNames::ScriptPath
+		MainConfigNames::RestPath
 	];
 
 	/**
@@ -90,7 +90,7 @@ class ModuleManager {
 		$this->restSandboxSpecs = $options->get( MainConfigNames::RestSandboxSpecs );
 		$this->restExternalModules = $options->get( MainConfigNames::RestExternalModules );
 		$this->restModuleOverrides = $options->get( MainConfigNames::RestModuleOverrides );
-		$this->scriptPath = $options->get( MainConfigNames::ScriptPath );
+		$this->rootPath = $options->get( MainConfigNames::RestPath );
 
 		$this->extensionModuleFiles = $extensionModuleFiles;
 		$this->srvCache = $srvCache;
@@ -233,7 +233,7 @@ class ModuleManager {
 		$coreSpecs = self::CORE_SPECS;
 		foreach ( $coreSpecs as $key => &$spec ) {
 			if ( isset( $spec['url'] ) ) {
-				$spec['url'] = $this->scriptPath . $spec['url'];
+				$spec['url'] = $this->rootPath . $spec['url'];
 			}
 			$spec = $this->normalizeSpec( $key, $spec );
 
@@ -322,7 +322,7 @@ class ModuleManager {
 
 		// Extract values from module definition files. Only load a file if necessary.
 		if ( isset( $spec['file'] ) ) {
-			$spec = $this->populateFromFile( $spec, $this->scriptPath );
+			$spec = $this->populateFromFile( $spec );
 		} elseif ( !isset( $spec['name'] ) ) {
 			// If we were otherwise unable to get a name, use the key
 			$spec['name'] = $key;
@@ -340,11 +340,10 @@ class ModuleManager {
 	 * The return value also includes the ModuleMode that should be applied.
 	 *
 	 * @param array<string,string> $spec The sandbox spec. Must have a 'file' key.
-	 * @param string $scriptPath
 	 *
 	 * @return array<string,string>
 	 */
-	private function populateFromFile( array $spec, string $scriptPath ): array {
+	private function populateFromFile( array $spec ): array {
 		$hasUrl = isset( $spec['url'] );
 		$hasName = isset( $spec['name'] ) || isset( $spec['msg'] );
 
@@ -355,7 +354,7 @@ class ModuleManager {
 			$spec['name'] = $moduleDefInfo['title'];
 		}
 		if ( !$hasUrl ) {
-			$spec['url'] = $scriptPath . '/rest.php/specs/v0/module/' . $moduleDefInfo['moduleId'];
+			$spec['url'] = $this->rootPath . '/specs/v0/module/' . $moduleDefInfo['moduleId'];
 		}
 
 		$spec['mode'] = $this->getModuleMode( $moduleDefInfo['moduleId'] );
