@@ -10332,6 +10332,21 @@ Text {{#spantag:<nowiki><b></nowiki> {{#spantag:<nowiki><c></nowiki>}}}}
 !! end
 
 !! test
+Handling of nowiki strip markers in {{#tag}}/legacy extensions (T432547)
+!! wikitext
+Text
+{{#tag:spantaglegacy|<nowiki>test1</nowiki>}}
+{{#tag:spantaglegacy||contents=<nowiki>test2</nowiki>}}
+!! html/php
+<p>Text
+<span>test1</span>
+<span>test2</span>
+</p>
+!! html/parsoid+integrated
+<p>Text <span data-mw='{"name":"spantaglegacy","attrs":{},"body":{"extsrc":"{{#parsoid\u0000fragment}}"},"parts":[{"template":{"target":{"wt":"#tag:spantaglegacy","function":"tag"},"params":{"1":{"wt":"&lt;nowiki>test1&lt;/nowiki>"}},"i":0}}]}' typeof="mw:Extension/spantaglegacy mw:Transclusion">test1</span> <span data-mw='{"name":"spantaglegacy","attrs":{"contents":"test2"},"body":{"extsrc":""},"parts":[{"template":{"target":{"wt":"#tag:spantaglegacy","function":"tag"},"params":{"1":{"wt":""},"2":{"wt":"contents=&lt;nowiki>test2&lt;/nowiki>"}},"i":0}}]}' typeof="mw:Extension/spantaglegacy mw:Transclusion">test2</span></p>
+!! end
+
+!! test
 {{#contentmodel}} parser function
 !! wikitext
 {{#contentmodel}}

@@ -2046,6 +2046,23 @@ subpage title=[[Subpage test/L1/L2/L3]]
 !! end
 
 !! test
+Fragment in a parent (or grandparent) of a subpage
+!! options
+subpage title=[[Subpage test/L1/L2/L3]]
+parsoid=wt2html
+!! wikitext
+[[../#foo]]
+[[../../#foo]]
+!! html/php
+<p><a href="/wiki/Subpage_test/L1/L2#foo" title="Subpage test/L1/L2">Subpage test/L1/L2#foo</a>
+<a href="/wiki/Subpage_test/L1#foo" title="Subpage test/L1">Subpage test/L1#foo</a>
+</p>
+!! html/parsoid
+<p><a rel="mw:WikiLink" href="./Subpage_test/L1/L2#foo" title="Subpage test/L1/L2">Subpage test/L1/L2#foo</a>
+<a rel="mw:WikiLink" href="./Subpage_test/L1#foo" title="Subpage test/L1">Subpage test/L1#foo</a></p>
+!! end
+
+!! test
 T4095: link with three closing brackets
 !! wikitext
 [[Main Page]]]
