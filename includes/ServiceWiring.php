@@ -3076,7 +3076,7 @@ return [
 
 		$store = $services->getObjectCacheFactory()->getLocalClusterInstance();
 		$logger = $store->getLogger();
-		$logger->debug( 'MainWANObjectCache using store {class}', [
+		$logger->debug( 'WANObjectCache using store {class}', [
 			'class' => get_class( $store )
 		] );
 
