@@ -642,8 +642,9 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	}
 
 	/**
+	 * This is a formatted HTML string; use ::getDisplayTitleParts() to
+	 * obtain the title split into namespace, separator, and title parts.
 	 * @return string
-	 * @deprecated since 1.47; use ::getDisplayTitleParts() instead
 	 */
 	public function getTitleText(): string {
 		return $this->mTitleText;

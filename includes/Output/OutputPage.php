@@ -115,15 +115,6 @@ class OutputPage extends ContextSource {
 	 */
 	private $mPageTitle = '';
 
-	/**
-	 * @var string The displayed title of the page. Different from page title
-	 * if overridden by display title magic word or hooks. Can contain safe
-	 * HTML. Different from page title which may contain messages such as
-	 * "Editing X" which is displayed in h1. This can be used for other places
-	 * where the page name is referred on the page.
-	 */
-	private $displayTitle;
-
 	/** @var bool See OutputPage::couldBePublicCached. */
 	private $cacheIsFinal = false;
 
@@ -1175,12 +1166,51 @@ class OutputPage extends ContextSource {
 	/**
 	 * Same as page title but only contains the name of the page, not any other text.
 	 *
+	 * Different from page title if overridden by display title magic
+	 * word or hooks. Can contain safe HTML. Different from page title
+	 * which may contain messages such as "Editing X" which is
+	 * displayed in h1. This can be used for other places where the
+	 * page name is referred on the page.
+	 *
 	 * @since 1.32
 	 * @param string $html Page title text.
 	 * @see OutputPage::setPageTitle
+	 * @deprecated since 1.47; use ::setDisplayTitleParts()
 	 */
 	public function setDisplayTitle( $html ) {
-		$this->displayTitle = $html;
+		// clears any parts previously set by ::setDisplayTitleParts()
+		$this->metadata->setTitleText( $html );
+	}
+
+	/**
+	 * Set the page display title, and the page title, from the separate
+	 * localized namespace, separator, and main title parts provided by
+	 * ParserOutput::getDisplayTitleParts().
+	 *
+	 * Unlike ::setDisplayTitle(), this keeps the parts available to
+	 * ::getDisplayTitleParts(), so that they don't have to be recovered
+	 * from the combined string (T314399).
+	 *
+	 * @param string|HtmlArmor $nsText Localized namespace text
+	 * @param string|HtmlArmor $nsSeparator Separator between the namespace
+	 *  text and the main part of the title
+	 * @param string|HtmlArmor $mainText Main part of the title
+	 * @param string|HtmlArmor|null $combinedText The combined display
+	 *   title HTML seen by legacy consumers of ::getTitleText() and
+	 *   ::getDisplayTitle(); defaults to the concatenation of the
+	 *   three parts above.
+	 * @since 1.47
+	 * @see Parser::formatPageTitle()
+	 */
+	public function setDisplayTitleParts(
+		string|HtmlArmor $nsText,
+		string|HtmlArmor $nsSeparator,
+		string|HtmlArmor $mainText,
+		string|HtmlArmor|null $combinedText = null
+	): void {
+		$this->metadata->setDisplayTitleParts(
+			$nsText, $nsSeparator, $mainText, $combinedText
+		);
 	}
 
 	/**
@@ -1192,7 +1222,7 @@ class OutputPage extends ContextSource {
 	 * @return string HTML
 	 */
 	public function getDisplayTitle() {
-		$html = $this->displayTitle;
+		$html = $this->metadata->getTitleText() ?: null;
 		if ( $html === null ) {
 			return htmlspecialchars( $this->getTitle()->getPrefixedText(), ENT_NOQUOTES );
 		}
@@ -1201,31 +1231,61 @@ class OutputPage extends ContextSource {
 	}
 
 	/**
-	 * Returns page display title without the namespace prefix if possible.
+	 * Returns the page display title, split into its localized namespace,
+	 * separator, and main title parts, so that they can be used
+	 * individually (see Parser::formatPageTitle()).
 	 *
-	 * This method is unreliable and best avoided: it has to recover the
-	 * split from an already-combined string. (T314399)  Prefer
-	 * ParserOutput::getDisplayTitleParts(), which keeps the parts separate.
+	 * If the display title was not set with ::setDisplayTitleParts() the
+	 * parts have to be recovered from the combined string, which is only a
+	 * best effort: a title which can't be split confidently is returned
+	 * whole as the main part, with an empty namespace.
 	 *
-	 * @since 1.32
-	 * @return string HTML
+	 * @since 1.47
+	 * @return array{0:HtmlArmor,1:HtmlArmor,2:HtmlArmor} Three elements:
+	 *  namespace text, namespace separator, and main part of title; all
+	 *  "safe HTML"
 	 * @see ParserOutput::getDisplayTitleParts()
 	 * @see Parser::splitPageTitle()
 	 */
-	public function getUnprefixedDisplayTitle() {
-		$service = MediaWikiServices::getInstance();
-		$languageConverter = $service->getLanguageConverterFactory()
-			->getLanguageConverter( $service->getContentLanguage() );
+	public function getDisplayTitleParts(): array {
+		$displayTitleParts = $this->metadata->getDisplayTitleParts();
+		if ( $displayTitleParts !== null ) {
+			return $displayTitleParts;
+		}
+		$displayTitle = $this->metadata->getTitleText();
+		$converter = MediaWikiServices::getInstance()
+			->getLanguageConverterFactory()
+			->getLanguageConverter(
+				MediaWikiServices::getInstance()->getContentLanguage()
+			);
+		if ( $displayTitle !== '' ) {
+			// Fallback for unsplit display title; unnecessary after
+			// T314399#12254509 is complete because $displayTitleParts === null
+			// will always imply $displayTitle === ''. Since we're supposed
+			// to maintain ParserCache compatibility with the past two LTS
+			// releases, this can be removed in MW >= 1.52.
+			return Parser::splitPageTitle(
+				new HtmlArmor( $displayTitle ),
+				$this->getTitle(),
+				$converter,
+			);
+		}
+		return array_map( static function ( $s ): HtmlArmor {
+			return new HtmlArmor( HtmlArmor::getHtml( $s ) );
+		}, $converter->convertSplitTitle( $this->getTitle() ) );
+	}
 
-		// This recovers the split which ParserOutput::getDisplayTitleParts()
-		// can provide directly; when the display title can't be split, the
-		// main part is the entire title.
-		[ , , $mainText ] = Parser::splitPageTitle(
-			new HtmlArmor( $this->getDisplayTitle() ),
-			$this->getTitle(),
-			$languageConverter
-		);
-		return HtmlArmor::getHtml( $mainText );
+	/**
+	 * Returns page display title without the namespace prefix if possible.
+	 *
+	 * This method is unreliable when the display title was not set in
+	 * split form (ie, using `{{DISPLAYTITLE}}` or `-{T|...}-`). (T314399)
+	 *
+	 * @since 1.32
+	 * @return string HTML
+	 */
+	public function getUnprefixedDisplayTitle(): string {
+		return HtmlArmor::getHtml( $this->getDisplayTitleParts()[2] );
 	}
 
 	/**

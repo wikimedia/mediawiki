@@ -49,6 +49,7 @@ use MediaWiki\User\Options\UserOptionsLookup;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserNameUtils;
 use StatusValue;
+use Wikimedia\HtmlArmor\HtmlArmor;
 use Wikimedia\IPUtils;
 use Wikimedia\NonSerializable\NonSerializableTrait;
 use Wikimedia\Parsoid\Parsoid;
@@ -1070,10 +1071,16 @@ class Article implements Page {
 		# Adjust the title if it was set by displaytitle, -{T|}- or language conversion
 		$titleText = $pOutput->getTitleText();
 		if ( $titleText !== '' ) {
-			# XXX T36514 / T314399 / T306440: we should have a language here
-			# and split the namespace
 			$out->setPageTitle( $titleText );
-			$out->setDisplayTitle( $titleText );
+			$displayTitleParts = $pOutput->getDisplayTitleParts();
+			if ( $displayTitleParts !== null ) {
+				$out->setDisplayTitleParts( ...[
+					...$displayTitleParts,
+					new HtmlArmor( $titleText ),
+				] );
+			} else {
+				$out->setDisplayTitle( $titleText );
+			}
 		}
 	}
 

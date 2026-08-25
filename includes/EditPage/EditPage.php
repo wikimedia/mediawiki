@@ -98,6 +98,7 @@ use OOUI\FieldLayout;
 use RuntimeException;
 use StatusValue;
 use Wikimedia\Assert\Assert;
+use Wikimedia\HtmlArmor\HtmlArmor;
 use Wikimedia\Message\MessageSpecifier;
 use Wikimedia\Message\MessageValue;
 use Wikimedia\ParamValidator\TypeDef\ExpiryDef;
@@ -2185,19 +2186,22 @@ class EditPage implements IEditObject {
 		}
 
 		# Use the title defined by DISPLAYTITLE magic word when present
-		# NOTE: getDisplayTitle() returns HTML while getPrefixedText() returns plain text.
-		#       Escape ::getPrefixedText() so that we have HTML in all cases,
-		#       and pass as a "raw" parameter to ::setPageTitleMsg().
-		$displayTitle = $this->mParserOutput ? $this->mParserOutput->getDisplayTitle() : false;
-		if ( $displayTitle === false ) {
-			$displayTitle = Parser::formatPageTitle(
+		$displayTitleParts = $this->mParserOutput?->getDisplayTitleParts();
+		$displayTitle = Parser::formatPageTitle(
+			# Title parts
+			$displayTitleParts[0] ??
 				str_replace( '_', ' ', $contextTitle->getNsText() ),
-				':',
-				$contextTitle->getText(),
-				$contextTitle->getPageLanguage()
-			);
-		} else {
-			$out->setDisplayTitle( $displayTitle );
+			$displayTitleParts[1] ?? ':',
+			$displayTitleParts[2] ?? $contextTitle->getText(),
+			# We're using the page language, but it might be more accurate
+			# to use the variant in the case of a displaytitle.
+			$contextTitle->getPageLanguage(),
+		);
+		if ( $displayTitleParts !== null ) {
+			$out->setDisplayTitleParts( ...[
+				...$displayTitleParts,
+				new HtmlArmor( $displayTitle ),
+			] );
 		}
 
 		// Enclose the title with an element. This is used on live preview to update the

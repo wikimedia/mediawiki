@@ -499,7 +499,9 @@ class CategoryViewer extends ContextSource {
 	 * @return string HTML
 	 */
 	protected function getPagesSection() {
-		$name = $this->getOutput()->getUnprefixedDisplayTitle();
+		[ , , $name ] = array_map(
+			HtmlArmor::getHtml( ... ), $this->getOutput()->getDisplayTitleParts()
+		);
 		# Don't show articles section if there are none.
 		$html = '';
 
@@ -532,7 +534,9 @@ class CategoryViewer extends ContextSource {
 	 * @return string HTML
 	 */
 	protected function getImageSection() {
-		$name = $this->getOutput()->getUnprefixedDisplayTitle();
+		[ , , $name ] = array_map(
+			HtmlArmor::getHtml( ... ), $this->getOutput()->getDisplayTitleParts()
+		);
 		$html = '';
 		$localCount = $this->showGallery ?
 			$this->gallery->count() :

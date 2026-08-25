@@ -38,6 +38,7 @@ use MediaWiki\Title\TitleValue;
 use MediaWiki\User\User;
 use MediaWiki\Utils\MWTimestamp;
 use PHPUnit\Framework\MockObject\MockObject;
+use Wikimedia\HtmlArmor\HtmlArmor;
 use Wikimedia\Rdbms\FakeResultWrapper;
 use Wikimedia\TestingAccessWrapper;
 use Wikimedia\Timestamp\TimestampFormat as TS;
@@ -903,6 +904,39 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 			$op->setDisplayTitle( $displayTitle );
 		}
 		$this->assertSame( $expected, $op->getUnprefixedDisplayTitle() );
+		// ::getUnprefixedDisplayTitle() is just the main part of the split.
+		$this->assertSame(
+			$expected,
+			HtmlArmor::getHtml( $op->getDisplayTitleParts()[2] )
+		);
+	}
+
+	/**
+	 * @covers \MediaWiki\Output\OutputPage::setDisplayTitleParts
+	 * @covers \MediaWiki\Output\OutputPage::getDisplayTitleParts
+	 * @covers \MediaWiki\Output\OutputPage::getUnprefixedDisplayTitle
+	 */
+	public function testDisplayTitleParts() {
+		$op = $this->newInstance();
+		$op->setTitle( Title::makeTitle( NS_TALK, 'Foo' ) );
+
+		$formatted = Parser::formatPageTitle( 'Talk', ':', new HtmlArmor( '<i>Not Bar</i>' ) );
+		$op->setDisplayTitleParts( 'Talk', ':', new HtmlArmor( '<i>Bar</i>' ), new HtmlArmor( $formatted ) );
+		// The parts are kept, not recovered from the combined string...
+		$this->assertSame(
+			[ 'Talk', ':', '<i>Bar</i>' ],
+			array_map( HtmlArmor::getHtml( ... ), $op->getDisplayTitleParts() )
+		);
+		$this->assertSame( '<i>Bar</i>', $op->getUnprefixedDisplayTitle() );
+		// ...and the display title is the formatted whole.
+		$this->assertSame( $formatted, $op->getDisplayTitle() );
+
+		// Setting a combined display title discards the stale parts.
+		$op->setDisplayTitle( 'Talk:Baz' );
+		$this->assertSame(
+			[ 'Talk', ':', 'Baz' ],
+			array_map( HtmlArmor::getHtml( ... ), $op->getDisplayTitleParts() )
+		);
 	}
 
 	public static function provideUnprefixedDisplayTitle() {
