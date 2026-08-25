@@ -164,7 +164,8 @@
 			"YUMANEKO",
 			"Cookie4782",
 			"Tensama0415",
-			"Kanato Hinokuma"
+			"Kanato Hinokuma",
+			"Ska101~translate"
 		]
 	},
 	"sunday": "日曜日",
@@ -3348,7 +3349,7 @@
 	"semicolon-separator": "；",
 	"comma-separator": "、",
 	"colon-separator": ":&#32;",
-	"word-separator": "​",
+	"word-separator": "&#32;",
 	"ellipsis": "…",
 	"percent": "$1%",
 	"brackets": "[$1]",

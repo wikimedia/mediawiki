@@ -1644,7 +1644,7 @@
 	"emptyfile": "Tiedosto, jota yritit tallentaa, näyttää olevan tyhjä.\nTämä voi johtua kirjoitusvirheestä tiedostopolussa.\nVarmista, haluatko todella tallentaa tämän tiedoston.",
 	"windows-nonascii-filename": "Tämä wiki ei tue tiedostonimiä, joissa on erikoismerkkejä.",
 	"fileexists": "Samanniminen tiedosto on jo olemassa.\nTarkasta tiedosto <strong>[[:$1]]</strong>, mikäli et ole varma, että haluat tallentaa sen päälle.\n[[$1|thumb]]",
-	"filepageexists": "Kuvaussivu <strong>[[:$1]]</strong> on ho olemassa, mutta vastaavaa tiedostoa ei ole olemassa.\nKirjoittamasi yhteenveto ei ilmesty kuvaussivulle,\nellet lisää sitä muokkaamalla sivua manuaalisesti.\n[[$1|thumb]]",
+	"filepageexists": "Kuvaussivu <strong>[[:$1]]</strong> on jo olemassa, mutta vastaavaa tiedostoa ei ole olemassa.\nKirjoittamasi yhteenveto ei ilmesty kuvaussivulle,\nellet lisää sitä muokkaamalla sivua manuaalisesti.\n[[$1|thumb]]",
 	"fileexists-extension": "Tiedosto, jolla on samankaltainen nimi, on jo olemassa: [[$2|thumb]]\n* Tallennettavana olevan tiedoston nimi: <strong>[[:$1]]</strong>\n* Olemassa olevan tiedoston nimi: <strong>[[:$2]]</strong>\nSinun kannattaa käyttää mieluummin tarkempaa nimeä.",
 	"fileexists-thumbnail-yes": "Tiedosto näyttäisi olevan pienennetty kuva ''(pienoiskuva)''. [[$1|thumb]]\nTarkista tiedosto <strong>[[:$1]]</strong>.\nJos yllä oleva tiedosto on alkuperäisversio samasta kuvasta, ei sille tarvitse tallentaa pienoiskuvaa.",
 	"file-thumbnail-no": "Tiedostonimi alkaa merkkijonolla <strong>$1</strong>. Tiedosto näyttäisi olevan pienennetty kuva.\nJos sinulla on tämän kuvan alkuperäinen versio, tallenna se. Muussa tapauksessa nimeä tiedosto uudelleen.",

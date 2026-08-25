@@ -1026,7 +1026,7 @@
 	"searchresults": "Kết quả tìm kiếm",
 	"search-filter-title-prefix": "Chỉ tìm trong các trang có tên bắt đầu bằng “$1”",
 	"search-filter-title-prefix-reset": "Tìm kiếm tất cả các trang",
-	"searchresults-title": "Kết quả tìm kiếm \"$1\"",
+	"searchresults-title": "Kết quả tìm kiếm “$1”",
 	"titlematches": "Đề mục tương tự",
 	"textmatches": "Câu chữ tương tự",
 	"notextmatches": "Không tìm thấy nội dung trang",

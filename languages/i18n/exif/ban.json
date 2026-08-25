@@ -196,6 +196,8 @@
 	"exif-photometricinterpretation-5": "Kawelas (Minab CMYK)",
 	"exif-photometricinterpretation-9": "CIE L*a*b* (pangkodean ICC)",
 	"exif-photometricinterpretation-10": "CIE L*a*b* (pangkodean ITU)",
+	"exif-photometricinterpretation-32803": "Array Saringan Warna",
+	"exif-photometricinterpretation-34892": "Linear raw",
 	"exif-unknowndate": "Tanggal nénten kauningin",
 	"exif-orientation-1": "Normal",
 	"exif-orientation-2": "Kawalik horisontal",
