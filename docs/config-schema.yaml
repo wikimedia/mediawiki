@@ -1138,7 +1138,7 @@ config-schema:
             ImageMagick: '$path/convert -background "#ffffff00" -thumbnail $widthx$height\! $input PNG:$output'
             inkscape: '$path/inkscape -w $width -o $output $input'
             batik: 'java -Djava.awt.headless=true -jar $path/batik-rasterizer.jar -w $width -d $output $input'
-            rsvg: '$path/rsvg-convert -w $width -h $height -o $output $input'
+            rsvg: '$path/rsvg-convert -w $width -h $height -l $lang -o $output $input'
             ImagickExt: ['SvgHandler::rasterizeImagickExt']
         type: object
         description: |-

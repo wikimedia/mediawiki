@@ -389,17 +389,13 @@ class SvgHandler extends ImageHandler {
 					'$path/' => $svgConverterPath ? Shell::escape( "$svgConverterPath/" ) : '',
 					'$width' => (int)$width,
 					'$height' => (int)$height,
+					'$lang' => $lang,
 					'$input' => Shell::escape( $srcPath ),
 					'$output' => Shell::escape( $dstPath ),
 				] );
 
-				$env = [];
-				if ( $lang !== false ) {
-					$env['LANG'] = $lang;
-				}
-
 				wfDebug( __METHOD__ . ": $cmd" );
-				$err = Shell::command()->unsafeCommand( $cmd )->environment( $env )->execute();
+				$err = Shell::command()->unsafeCommand( $cmd )->execute();
 				$retval = $err->getExitCode();
 				$err = $err->getStderr();
 				$err = $err === null ? '' : $err;

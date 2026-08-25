@@ -30,6 +30,9 @@ For notes on 1.46.x and older releases, see HISTORY.
   of local accounts, you wish to prevent it,
   and you've already set `$wgGroupPermissions['*']['createaccount'] = false`,
   set `$wgGroupPermissions['*']['autocreateaccount'] = false` too.
+* If $wgSVGConverter is 'rsvg' then you must have librsvg version 2.52 or higher
+  installed (i.e. any version that supports the `--accept-language` option).
+  This is due to a change in `$wgSVGConverter['rsvg']`; see T125710.
 * …
 
 ==== New configuration ====
