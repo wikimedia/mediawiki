@@ -655,4 +655,30 @@ class SpecialUserRightsTest extends SpecialPageTestBase {
 		/** @type $response WebResponse */
 		$this->assertNull( $response->getHeader( 'Location' ) );
 	}
+
+	public function testPerformsStrictCheckForAddRemoveGroups() {
+		// Clarification:
+		// $wgAddGroups['bureaucrat'] = true; is permitted by docs
+		// $wgAddGroups['bureaucrat'] = [ true ]; should act as if `true` was group name
+		$this->overrideConfigValue( 'AddGroups', [ '*' => [ true ] ] );
+		$this->overrideConfigValue( 'RemoveGroups', [ '*' => [ true ] ] );
+		$user = $this->getTestUser()->getUser();
+
+		[ $html ] = $this->executeSpecialPage(
+			$user->getName(),
+			null,
+			'qqx',
+			$user
+		);
+
+		$this->assertStringContainsString( '(userrights-viewusergroup: ' . $user->getName() . ')', $html );
+
+		// There should be no input for the groups, as we are in view mode
+		$input = DOMCompat::querySelector(
+			DOMUtils::parseHTML( $html ),
+			'#mw-userrights-form2 input'
+		);
+		$this->assertNull( $input,
+			'No input fields should be present in the view mode, apart from the user select form' );
+	}
 }
