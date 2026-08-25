@@ -103,7 +103,7 @@ class TitleFormatter {
 		if ( $title instanceof LinkTarget ) {
 			return $title->getText();
 		} elseif ( $title instanceof PageReference ) {
-			return strtr( $title->getDBKey(), '_', ' ' );
+			return strtr( $title->getDBkey(), '_', ' ' );
 		} else {
 			throw new InvalidArgumentException( '$title has invalid type: ' . get_class( $title ) );
 		}

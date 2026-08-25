@@ -183,7 +183,7 @@ class TitleCleanup extends TableCleanup {
 			$title = Title::newFromText( $clean );
 		} elseif ( $title->exists( IDBAccessObject::READ_LATEST ) ) {
 			$clean = $this->prefix . 'id:' . $row->page_id;
-			$conflict = $title->getDBKey();
+			$conflict = $title->getDBkey();
 			$this->output( "Legalized for '$conflict' exists; using '$clean'\n" );
 			$title = Title::newFromText( $clean );
 		}
@@ -246,7 +246,7 @@ class TitleCleanup extends TableCleanup {
 
 			# Namespace which no longer exists. Put the page in the main namespace
 			# since we don't have any idea of the old namespace name. See T70501.
-			# We build the new title ourself rather than relying on getDBKey() because
+			# We build the new title ourself rather than relying on getDBkey() because
 			# that will return Special:BadTitle
 			$namespaceInfo = $this->getServiceContainer()->getNamespaceInfo();
 			if ( !$namespaceInfo->exists( $ns ) ) {

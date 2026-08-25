@@ -165,7 +165,7 @@ class CategoryLinksTable extends TitleLinksTable {
 			$targetTitle = Title::castFromLinkTarget( $targetTitle );
 			$this->languageConverter->findVariantLink( $name, $targetTitle, true );
 			// Ignore the returned text, DB key should be used for links (T328477).
-			$name = $targetTitle->getDBKey();
+			$name = $targetTitle->getDBkey();
 
 			// Treat custom sort keys as a prefix, so that if multiple
 			// things are forced to sort as '*' or something, they'll
