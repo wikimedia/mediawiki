@@ -16,6 +16,7 @@ use Wikimedia\Message\DataMessageValue;
 use Wikimedia\Message\MessageValue;
 use Wikimedia\ObjectFactory\ObjectFactory;
 use Wikimedia\ParamValidator\ParamValidator;
+use Wikimedia\ParamValidator\TypeDef;
 use Wikimedia\ParamValidator\TypeDef\EnumDef;
 use Wikimedia\ParamValidator\TypeDef\ExpiryDef;
 use Wikimedia\ParamValidator\TypeDef\IntegerDef;
@@ -101,6 +102,19 @@ class ApiParamValidator {
 				'ismultiLimits' => [ ApiBase::LIMIT_SML1, ApiBase::LIMIT_SML2 ],
 			]
 		);
+	}
+
+	/**
+	 * Register a type handler, overriding any existing handler.
+	 *
+	 * @since 1.47
+	 * @see ParamValidator::overrideTypeDef
+	 *
+	 * @param string $name Type name
+	 * @param TypeDef|array|null $typeDef As for addTypeDef, or null to unregister a type.
+	 */
+	public function overrideTypeDef( string $name, $typeDef ) {
+		$this->paramValidator->overrideTypeDef( $name, $typeDef );
 	}
 
 	/**

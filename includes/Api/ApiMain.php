@@ -780,7 +780,7 @@ class ApiMain extends ApiBase {
 	}
 
 	/**
-	 * Get the API module object. Only works after executeAction()
+	 * Get the API module object. Only works after initModule().
 	 *
 	 * @return ApiBase
 	 */
@@ -1597,20 +1597,46 @@ class ApiMain extends ApiBase {
 		$this->addRequestedFields();
 
 		$params = $this->extractRequestParams();
-		$this->mAction = $params['action'];
+		$action = $params['action'];
+
+		if ( $this->mAction !== null && $this->mAction !== $action ) {
+			throw new UnexpectedValueException(
+				"Params specify action module $action, but already initialized module $this->mAction"
+			);
+		}
+
+		$this->mAction = $action;
 
 		return $params;
 	}
 
 	/**
-	 * Set up the module for response
-	 * @return ApiBase The module that will handle this action
+	 * Create the module to be executed.
+	 * Calls to this method with the same $action are idempotent.
+	 * Calling this method with different values for $action will fail.
+	 *
+	 * @internal for use by API frameworks
+	 *
+	 * @param string $action The name of the module to create
+	 *
+	 * @return ApiBase
 	 * @throws ApiUsageException
 	 */
-	protected function setupModule() {
-		// Instantiate the module requested by the user
-		$module = $this->mModuleMgr->getModule( $this->mAction, 'action' );
-		if ( $module === null ) {
+	public function initModule( string $action ): ApiBase {
+		if ( $this->mAction !== null && $this->mAction !== $action ) {
+			throw new UnexpectedValueException(
+				"Trying to initialize action module $action, but already initialized module $this->mAction"
+			);
+		}
+
+		if ( $this->mModule !== null ) {
+			return $this->mModule;
+		}
+
+		$this->mAction = $action;
+
+		$this->mModule = $this->mModuleMgr->getModule( $this->mAction, 'action' );
+		if ( $this->mModule === null ) {
 			// Probably can't happen
 			// @codeCoverageIgnoreStart
 			$this->dieWithError(
@@ -1619,6 +1645,18 @@ class ApiMain extends ApiBase {
 			);
 			// @codeCoverageIgnoreEnd
 		}
+
+		return $this->mModule;
+	}
+
+	/**
+	 * Set up the module for response.
+	 * Only works after setupExecuteAction().
+	 * @return ApiBase The module that will handle this action
+	 * @throws ApiUsageException
+	 */
+	protected function setupModule() {
+		$module = $this->initModule( $this->mAction );
 		$moduleParams = $module->extractRequestParams();
 
 		// Check token, if necessary

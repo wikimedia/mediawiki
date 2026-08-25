@@ -1516,4 +1516,26 @@ class ApiMainTest extends ApiTestCase {
 		return false;
 	}
 
+	public function testInitModule() {
+		$api = new ApiMain( new FauxRequest( [] ) );
+
+		$module = $api->initModule( 'query' );
+		$this->assertSame( 'query', $module->getModuleName() );
+
+		// Idempotent for the same action: returns the very same instance...
+		$this->assertSame( $module, $api->initModule( 'query' ) );
+		// ...and getModule() exposes it.
+		$this->assertSame( $module, $api->getModule() );
+	}
+
+	public function testInitModuleThrowsOnConflictingAction() {
+		$api = new ApiMain( new FauxRequest( [] ) );
+		$api->initModule( 'query' );
+
+		// A second call naming a different action must fail rather than
+		// silently swapping the already-initialized module.
+		$this->expectException( UnexpectedValueException::class );
+		$api->initModule( 'paraminfo' );
+	}
+
 }

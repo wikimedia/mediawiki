@@ -46,6 +46,32 @@ class ApiParamValidatorTest extends ApiTestCase {
 		);
 	}
 
+	public function testOverrideTypeDef(): void {
+		[ $validator ] = $this->getValidator( new FauxRequest( [] ) );
+
+		// Overriding an existing type name replaces the handler used for it.
+		$validator->overrideTypeDef( 'boolean', [ 'class' => IntegerDef::class ] );
+
+		$paramValidator = TestingAccessWrapper::newFromObject( $validator )->paramValidator;
+		$this->assertInstanceOf(
+			IntegerDef::class,
+			$paramValidator->getTypeDef( 'boolean' )
+		);
+	}
+
+	public function testRemoveTypeDef(): void {
+		[ $validator ] = $this->getValidator( new FauxRequest( [] ) );
+
+		// Overriding an existing type name with null.
+		$validator->overrideTypeDef( 'boolean', null );
+
+		$paramValidator = TestingAccessWrapper::newFromObject( $validator )->paramValidator;
+		$this->assertSame(
+			null,
+			$paramValidator->getTypeDef( 'boolean' )
+		);
+	}
+
 	/**
 	 * @dataProvider provideNormalizeSettings
 	 * @param array|mixed $settings
