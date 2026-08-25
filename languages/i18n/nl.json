@@ -461,7 +461,7 @@
 	"userlogin-helplink2": "Hulp bij aanmelden",
 	"userlogin-loggedin": "U bent al aangemeld als {{GENDER:$1|$1}}.",
 	"userlogin-loggedin-continue-as": "Doorgaan als {{GENDER:$1|$1}}",
-	"userlogin-loggedin-heading": "Inloggen als een andere gebruiker",
+	"userlogin-loggedin-heading": "Aanmelden als een andere gebruiker",
 	"userlogin-reauth": "U moet zich opnieuw aanmelden om te bevestigen dat u {{GENDER:$1|$1}} bent.",
 	"userlogin-reauth-description": "Als dit niet was wat u wilde doen, kunt u veilig $1.\nOm door te gaan met deze beveiligingsgevoelige handeling dient u uw identiteit te bevestigen door middel van een van de onderstaande opties.",
 	"userlogin-reauth-description-link": "deze handeling annuleren",

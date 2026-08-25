@@ -351,10 +351,15 @@
 	"rest-requestheader-desc-acceptlanguage": "客戶偏好的天生語言與地區設定。",
 	"rest-requestheader-desc-contenttype": "表示在對資源進行任何內容編碼之前，其原始媒體類型。",
 	"rest-requestheader-desc-ifmatch": "使請求具有條件性，確保所請求的操作（如更新或刪除）僅在伺服器上的資源與客戶端提供的特定版本（透過其ETag識別）相符時才會執行。",
+	"rest-requestbody-desc-create-page": "待建立的頁面",
+	"rest-requestbody-desc-update-page": "待更新或建立的頁面",
 	"rest-endpoint-desc-get-sitemap-index": "返回網站地圖中可用頁面的 XML 列表。索引預設值為 0；若存在其他索引，其清單將列於 robots.txt 檔案中。每個索引最多可關聯 10,000 個頁面。",
 	"rest-endpoint-summ-get-sitemap-index": "取得網站地圖頁面的清單",
 	"rest-endpoint-desc-get-sitemap-page": "回傳網站上現有文章的 XML 列表。每個條目包含該頁面的網址及最後修改日期。每頁最多可容納 10,000 個網址條目。",
 	"rest-endpoint-summ-get-sitemap-page": "取得每頁條目位置的清單",
+	"rest-tag-sitemaps-desc": "與網站地圖相關的操作。網站地圖是 XML 檔案，用以提供網站上頁面、影片及其他檔案的資訊，以及它們之間的關聯性。搜尋引擎會讀取這些檔案，以便更智慧地爬取網站。",
+	"rest-tag-discovery-desc": "REST API 探索與規格的端點",
+	"rest-tag-modules-desc": "REST API 模組規格的端點",
 	"rest-param-desc-sitemap-index-id": "網站地圖索引從 0 開始。其他可用的索引在 robots.txt 檔案中指定。",
 	"rest-param-desc-sitemap-page-id": "所需的條目頁面。",
 	"rest-param-desc-sitemap-include-namespace": "網站地圖中需包含的命名空間識別碼。若未指定，則使用網站預設值。",
@@ -364,5 +369,10 @@
 	"rest-responseheader-desc-contenttype": "表示在應用任何內容編碼之前，資源的原始媒體類型。",
 	"rest-responseheader-desc-link": "提供一種序列化HTTP標頭中一個或多個連結的方法。此機制允許伺服器將客戶端導向至另一個資源，該資源包含所請求資源的元資料。",
 	"rest-responseheader-desc-expires": "包含在HTTP快取情境中，視為回應已過期的日期與時間。",
-	"rest-responseheader-desc-location": "標示目標網址，主要有兩個用途：重定向與識別新建立資源的位置。"
+	"rest-responseheader-desc-location": "標示目標網址，主要有兩個用途：重定向與識別新建立資源的位置。",
+	"rest-openapispec-genericerrorresponse-desc": "通用錯誤的回應。該訊息將提供有關此錯誤的更多詳細資訊。",
+	"rest-openapispec-genericerrorresponse-property-desc-httpCode": "錯誤回應的HTTP狀態碼。",
+	"rest-openapispec-genericerrorresponse-property-desc-httpMessage": "錯誤回應的HTTP狀態訊息。",
+	"rest-openapispec-genericerrorresponse-property-desc-message": "一則人類可讀的錯誤訊息，在沒有可用訊息翻譯時特別有用",
+	"rest-openapispec-genericerrorresponse-property-desc-messageTranslations": "一份將語言代碼對應為人類可讀錯誤訊息的對照表，供能使用此功能的客戶端使用。"
 }

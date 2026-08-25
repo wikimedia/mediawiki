@@ -1236,7 +1236,7 @@
 	"apihelp-query+revisions+base-param-expandtemplates": "請改用 <kbd>[[Special:ApiHelp/expandtemplates|action=expandtemplates]]</kbd>。在修訂內容裡展開模板（需要 $1prop=content）。",
 	"apihelp-query+revisions+base-param-generatexml": "請改用 <kbd>[[Special:ApiHelp/expandtemplates|action=expandtemplates]]</kbd> 或 <kbd>[[Special:ApiHelp/parse|action=parse]]</kbd>。產生用於修訂內容的 XML 解析樹狀（需要 $1prop=content）。",
 	"apihelp-query+revisions+base-param-parse": "請改用 <kbd>[[Special:ApiHelp/parse|action=parse]]</kbd>。解析修訂內容（需要 <var>$2prop=content</var>）。若有使用此選項，出自於效能因素會將 <var>$2limit</var> 強制設成 $1。",
-	"apihelp-query+revisions+base-param-section": "僅檢索帶有此識別碼的段落之內容。",
+	"apihelp-query+revisions+base-param-section": "僅檢索具有此識別碼的段落之內容。段落識別碼可以是整數區段編號（0 = 引言，1 = 以第一個標題開頭的段落，以此類推），或是類似 T-1 的字串；若為後者，則段落編號的計算方式與頁面被轉載時相同（例如，被 <code>&lt;includeonly&gt;</code> 標籤包圍的區段，僅能在此模式下被識別）。",
 	"apihelp-query+revisions+base-param-diffto": "請改用 <kbd>[[Special:ApiHelp/compare|action=compare]]</kbd>。要比較修訂差異的修訂ID，使用 <kbd>prev</kbd>、<kbd>next</kbd> 和 <kbd>cur</kbd> 分別用於上個、下個和目前修訂。若有使用此選項，出自於效能因素會將 <var>$2limit</var> 強制設成 $1。",
 	"apihelp-query+revisions+base-param-difftotext": "請改用 <kbd>[[Special:ApiHelp/compare|action=compare]]</kbd>。要比較修訂差異的文字。只比較有限數量的修訂。覆蓋 <var>$2diffto</var>。若有設定 <var>$2section</var>，僅有該段落會與此文字比較差異。若有使用此選項，出自於效能因素會將 <var>$2limit</var> 強制設成 $1。",
 	"apihelp-query+revisions+base-param-difftotextpst": "請改用 <kbd>[[Special:ApiHelp/compare|action=compare]]</kbd>。在區別前，執行在文字上的預先儲存轉換。僅與 <var>$1difftotext</var> 使用有效。",
@@ -2037,5 +2037,5 @@
 	"api-usage-mailinglist-ref": "在 &lt;https://lists.wikimedia.org/postorius/lists/mediawiki-api-announce.lists.wikimedia.org/&gt; 的 mediawiki-api-announce 郵件清單做出訂閱，來取得 API 棄用與重大修訂的通知。",
 	"api-exception-trace": "$1位在$2的第$3行\n$4",
 	"api-credits-header": "製作群",
-	"api-credits": "API 開發人員：\n* Roan Kattouw (首席開發者 Sep 2007–2009)\n* Victor Vasiliev\n* Bryan Tong Minh\n* Sam Reed\n* Yuri Astrakhan (創立者，首席開發者 Sep 2006–Sep 2007)\n* Brad Jorsch (首席開發者 2013–2020)\n\n請傳送您的評論、建議以及問題至 mediawiki-api@lists.wikimedia.org\n或者回報問題至 https://phabricator.wikimedia.org/。"
+	"api-credits": "API 開發人員：\n* Yuri Astrakhan (創立者，首席開發者 Sep 2006–Sep 2007)\n* Roan Kattouw (首席開發者 Sep 2007–2009)\n* Victor Vasiliev\n* Bryan Tong Minh\n* Sam Reed\n* Brad Jorsch (首席開發者 2013–2020)\n\n請將您的評論、建議、問題發送至mediawiki-api@lists.wikimedia.org\n或者在https://phabricator.wikimedia.org/ 提交錯誤報告。"
 }
