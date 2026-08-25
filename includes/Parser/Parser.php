@@ -649,17 +649,14 @@ class Parser implements MessageLocalizer {
 				// if we can (T314399); see CoreParserFunctions::displaytitle()
 				[ $nsText, $nsSeparator, $mainText ] =
 					$this->splitDisplayTitle( new HtmlArmor( $titleText ), $converter );
-				$this->mOutput->setDisplayTitleParts(
-					$nsText, $nsSeparator, $mainText, new HtmlArmor( $titleText )
-				);
 			} else {
 				[ $nsText, $nsSeparator, $mainText ] = $converter->convertSplitTitle( $page );
 				$titleLang = $this->languageFactory->getLanguage( $converter->getPreferredVariant() );
 				$titleText = self::formatPageTitle( $nsText, $nsSeparator, $mainText, $titleLang );
-				$this->mOutput->setDisplayTitleParts(
-					$nsText, $nsSeparator, $mainText, new HtmlArmor( $titleText )
-				);
 			}
+			$this->mOutput->setDisplayTitleParts(
+				$nsText, $nsSeparator, $mainText, new HtmlArmor( $titleText )
+			);
 		}
 
 		# Recording timing info. Must be called before finalizeAdaptiveCacheExpiry() and
@@ -6528,7 +6525,7 @@ class Parser implements MessageLocalizer {
 	 * pre-T314399 behavior, but may have minor styling issues with skins.
 	 *
 	 * @param HtmlArmor $pageTitle The page title ("safe HTML")
-	 * @param PageReference $page The page $pageTitle is the title of
+	 * @param LinkTarget|PageReference $page Page corresponding to $pageTitle
 	 * @param ILanguageConverter $languageConverter Language
 	 *   converter for (possibly gender-aware) namespace matching
 	 * @return array{0:HtmlArmor,1:HtmlArmor,2:HtmlArmor} Three elements:
@@ -6539,7 +6536,7 @@ class Parser implements MessageLocalizer {
 	 * @internal
 	 */
 	public static function splitPageTitle(
-		HtmlArmor $pageTitle, PageReference $page, ILanguageConverter $languageConverter
+		HtmlArmor $pageTitle, LinkTarget|PageReference $page, ILanguageConverter $languageConverter
 	): array {
 		// Document/enforce that $pageTitle is "safe HTML"
 		$pageTitle = HtmlArmor::getHtml( $pageTitle );

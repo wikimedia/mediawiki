@@ -21,6 +21,7 @@ use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleFactory;
 use MediaWiki\Utils\UrlUtils;
 use Psr\Log\LoggerInterface;
+use Wikimedia\HtmlArmor\HtmlArmor;
 use Wikimedia\Parsoid\DOM\DocumentFragment;
 use Wikimedia\Parsoid\DOM\Element;
 use Wikimedia\Parsoid\DOM\Node;
@@ -202,6 +203,12 @@ class ParsoidLanguageConverter extends OutputTransformStage {
 					'noSideEffects' => true,
 				] );
 				$titleText = Sanitizer::removeSomeTags( $titleText );
+				// Split off localized namespace prefix from -{T|...}- result
+				// if we can (T314399); see CoreParserFunctions::displaytitle()
+				[ $nsText, $nsSeparator, $mainText ] =
+					Parser::splitPageTitle(
+						new HtmlArmor( $titleText ), $title, $converter
+					);
 			} else {
 				$titleLang = $this->languageFactory->getLanguage(
 					$po->getLanguage() ?? $targetLanguage
@@ -209,11 +216,11 @@ class ParsoidLanguageConverter extends OutputTransformStage {
 				[ $nsText, $nsSeparator, $mainText ] = $converter->convertSplitTitle(
 					$title, $titleLang->getCode()
 				);
-				// In the future, those three pieces could be stored separately rather than joined into $titleText,
-				// and OutputPage would format them and join them together, to resolve T314399.
 				$titleText = Parser::formatPageTitle( $nsText, $nsSeparator, $mainText, $titleLang );
 			}
-			$po->setTitleText( $titleText );
+			$po->setDisplayTitleParts(
+				$nsText, $nsSeparator, $mainText, new HtmlArmor( $titleText )
+			);
 		}
 		// Localize/convert TOC
 		// (even if conversion is disabled/$converter is null)
