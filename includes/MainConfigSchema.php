@@ -13738,7 +13738,7 @@ class MainConfigSchema {
 	 * @since 1.47
 	 */
 	public const UseParsoidLinksUpdate = [
-		'default' => null,
+		'default' => true,
 		'type' => '?boolean'
 	];
 

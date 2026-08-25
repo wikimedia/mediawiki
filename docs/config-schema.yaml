@@ -8542,7 +8542,7 @@ config-schema:
             @unstable Temporary feature flag, T391624
             @since 1.47
     UseParsoidLinksUpdate:
-        default: null
+        default: true
         type:
             - boolean
             - 'null'
