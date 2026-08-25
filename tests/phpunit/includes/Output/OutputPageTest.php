@@ -17,6 +17,7 @@ use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageReference;
 use MediaWiki\Page\PageReferenceValue;
 use MediaWiki\Page\PageStoreRecord;
+use MediaWiki\Parser\Parser;
 use MediaWiki\Parser\ParserOptions;
 use MediaWiki\Parser\ParserOutput;
 use MediaWiki\Parser\ParserOutputFlags;
@@ -889,6 +890,43 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 		$this->expectException( Wikimedia\Assert\ParameterTypeException::class );
 		$this->expectExceptionMessage( '$name' );
 		$op->setPageTitle( $msg );
+	}
+
+	/**
+	 * @dataProvider provideUnprefixedDisplayTitle
+	 * @covers \MediaWiki\Output\OutputPage::getUnprefixedDisplayTitle
+	 */
+	public function testUnprefixedDisplayTitle( int $ns, ?string $displayTitle, string $expected ) {
+		$op = $this->newInstance();
+		$op->setTitle( Title::makeTitle( $ns, 'Foo' ) );
+		if ( $displayTitle !== null ) {
+			$op->setDisplayTitle( $displayTitle );
+		}
+		$this->assertSame( $expected, $op->getUnprefixedDisplayTitle() );
+	}
+
+	public static function provideUnprefixedDisplayTitle() {
+		return [
+			'No display title' => [ NS_TALK, null, 'Foo' ],
+			'Unsplit display title' => [ NS_TALK, 'Talk:Bar', 'Bar' ],
+			'Unsplit display title, different case' => [ NS_TALK, 'talk:Bar', 'Bar' ],
+			// The prefix isn't this page's namespace, so it isn't a prefix.
+			'Unsplittable display title' => [ NS_TALK, 'User:Bar', 'User:Bar' ],
+			'Colon in a main namespace display title' => [ NS_MAIN, 'Foo: The Bar', 'Foo: The Bar' ],
+			'Formatted display title' => [
+				NS_TALK, Parser::formatPageTitle( 'Talk', ':', 'Bar' ), 'Bar',
+			],
+			// In the main namespace there are no namespace/separator spans.
+			'Formatted main namespace display title' => [
+				NS_MAIN, Parser::formatPageTitle( '', ':', 'Bar' ), 'Bar',
+			],
+			// As produced by Parser::formatPageTitle() with a title language.
+			'Formatted display title with a language wrapper' => [
+				NS_TALK,
+				'<span lang="en" dir="ltr">' . Parser::formatPageTitle( 'Talk', ':', 'Bar' ) . '</span>',
+				'Bar',
+			],
+		];
 	}
 
 	public function testSetTitle() {

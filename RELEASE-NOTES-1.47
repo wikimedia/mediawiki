@@ -172,6 +172,10 @@ For notes on 1.46.x and older releases, see HISTORY.
   request) when reauthentication is not possible for the session type.
 * New hook CategoryViewerGenerateLinkHook as replacement for deprecated hook
   CategoryViewer__generateLinkHook.
+* (T314399) ParserOutput::setDisplayTitleParts() and
+  ::getDisplayTitleParts() store/fetch the display title as separate localized
+  namespace, separator, and main title pieces, so that skins can target
+  them individually; see Parser::formatPageTitle().
 * …
 
 === External library changes in 1.47 ===
@@ -503,6 +507,13 @@ because of Phabricator reports.
   use FileBackendStore::procFileStatCache.
 * FileBackendStore::expensiveCache is now deprecated. Instead, subclasses should
   use FileBackendStore::procFileDataCache.
+* ParserOutput::setTitleText(), ::getTitleText(), ::setDisplayTitle(), and
+  ::getDisplayTitle() are deprecated. Use ::setDisplayTitleParts() and
+  ::getDisplayTitleParts() instead, which keep the localized namespace,
+  separator, and main title as separate pieces rather than a single
+  pre-formatted HTML string (T314399). Rather than relying on the implicit
+  page property set by ::setDisplayTitle(), use
+  ::setUnsortedPageProperty('displaytitle') explicitly (T293514).
 * FSFile::extensionFromPath() has been deprecated. Use the older
   FileBackend::extensionFromPath() instead.
 * Calling FileBackend::extensionFromPath() with a $case parameter is deprecated

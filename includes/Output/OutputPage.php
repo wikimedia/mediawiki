@@ -1203,36 +1203,29 @@ class OutputPage extends ContextSource {
 	/**
 	 * Returns page display title without the namespace prefix if possible.
 	 *
-	 * This method is unreliable and best avoided. (T314399)
+	 * This method is unreliable and best avoided: it has to recover the
+	 * split from an already-combined string. (T314399)  Prefer
+	 * ParserOutput::getDisplayTitleParts(), which keeps the parts separate.
 	 *
 	 * @since 1.32
 	 * @return string HTML
+	 * @see ParserOutput::getDisplayTitleParts()
+	 * @see Parser::splitPageTitle()
 	 */
 	public function getUnprefixedDisplayTitle() {
 		$service = MediaWikiServices::getInstance();
 		$languageConverter = $service->getLanguageConverterFactory()
 			->getLanguageConverter( $service->getContentLanguage() );
-		$text = $this->getDisplayTitle();
 
-		// Create a regexp with matching groups as placeholders for the namespace, separator and main text
-		$pageTitleRegexp = '/' . str_replace(
-			preg_quote( '(.+?)', '/' ),
-			'(.+?)',
-			preg_quote( Parser::formatPageTitle( '(.+?)', '(.+?)', '(.+?)' ), '/' )
-		) . '/';
-		$matches = [];
-		if ( preg_match( $pageTitleRegexp, $text, $matches ) ) {
-			// The regexp above could be manipulated by malicious user input,
-			// sanitize the result just in case
-			return Sanitizer::removeSomeTags( $matches[3] );
-		}
-
-		$nsPrefix = $languageConverter->convertNamespace(
-			$this->getTitle()->getNamespace()
-		) . ':';
-		$prefix = preg_quote( $nsPrefix, '/' );
-
-		return preg_replace( "/^$prefix/i", '', $text );
+		// This recovers the split which ParserOutput::getDisplayTitleParts()
+		// can provide directly; when the display title can't be split, the
+		// main part is the entire title.
+		[ , , $mainText ] = Parser::splitPageTitle(
+			new HtmlArmor( $this->getDisplayTitle() ),
+			$this->getTitle(),
+			$languageConverter
+		);
+		return HtmlArmor::getHtml( $mainText );
 	}
 
 	/**

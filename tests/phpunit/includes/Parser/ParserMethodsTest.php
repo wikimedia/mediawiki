@@ -117,6 +117,58 @@ class ParserMethodsTest extends MediaWikiLangTestCase {
 		$this->assertEquals( $expected, Parser::formatPageTitle( ...$args ) );
 	}
 
+	public static function provideSplitDisplayTitle() {
+		$formatted = Parser::formatPageTitle( 'Talk', ':', 'Foo' );
+		return [
+			'Main namespace' => [
+				NS_MAIN, 'Foo', [ '', ':', 'Foo' ],
+			],
+			'The page\'s own localized namespace is split off' => [
+				NS_TALK, 'Talk:Foo', [ 'Talk', ':', 'Foo' ],
+			],
+			'The prefix matches case-insensitively, but the user\'s casing is kept' => [
+				NS_TALK, 'talk:Foo', [ 'talk', ':', 'Foo' ],
+			],
+			// T314399: rather than wrap the wrong text in a
+			// `mw-page-title-namespace` span, fall back to no namespace.
+			'A colon which is not the page\'s namespace is not a namespace' => [
+				NS_MAIN, 'Foo: The Bar', [ '', ':', 'Foo: The Bar' ],
+			],
+			'Some other namespace prefix is not split off either' => [
+				NS_TALK, 'User:Foo', [ '', ':', 'User:Foo' ],
+			],
+			'A title which is already formatted is split back apart' => [
+				NS_TALK, $formatted, [ 'Talk', ':', 'Foo' ],
+			],
+		];
+	}
+
+	/**
+	 * @dataProvider provideSplitDisplayTitle
+	 * @covers \MediaWiki\Parser\Parser::splitDisplayTitle
+	 */
+	public function testSplitDisplayTitle( int $ns, string $displayTitle, array $expectedParts ) {
+		$this->overrideConfigValues( [
+			MainConfigNames::AllowDisplayTitle => true,
+			MainConfigNames::RestrictDisplayTitle => false,
+		] );
+		$title = Title::makeTitle( $ns, 'SplitDisplayTitle' );
+		$parser = $this->getServiceContainer()->getParser();
+		$out = $parser->parse(
+			"{{DISPLAYTITLE:$displayTitle}}", $title, ParserOptions::newFromAnon()
+		);
+
+		$parts = $out->getDisplayTitleParts();
+		$this->assertNotNull( $parts );
+		$this->assertSame(
+			$expectedParts, array_map( [ HtmlArmor::class, 'getHtml' ], $parts )
+		);
+		// However the split came out, the display title seen by legacy
+		// consumers is still exactly what the user asked for.
+		$this->assertSame( $displayTitle, $out->getTitleText() );
+		$this->assertSame( $displayTitle, $out->getPageProperty( 'displaytitle' ) );
+	}
+
 	public function testRecursiveParse() {
 		$title = Title::makeTitle( NS_MAIN, 'Foo' );
 		$parser = $this->getServiceContainer()->getParser();

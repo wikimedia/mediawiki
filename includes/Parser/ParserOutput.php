@@ -26,6 +26,7 @@ use UnhandledMatchError;
 use Wikimedia\Assert\Assert;
 use Wikimedia\Bcp47Code\Bcp47Code;
 use Wikimedia\Bcp47Code\Bcp47CodeValue;
+use Wikimedia\HtmlArmor\HtmlArmor;
 use Wikimedia\JsonCodec\Hint;
 use Wikimedia\Message\MessageSpecifier;
 use Wikimedia\Message\MessageValue;
@@ -141,6 +142,14 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	 * @var string Title text of the chosen language variant, as HTML.
 	 */
 	private string $mTitleText;
+
+	/**
+	 * @var ?array{0:string,1:string,2:string} The same title text as
+	 * $mTitleText, split into its localized namespace, separator, and
+	 * main title portions (all HTML), or null if it was not set in
+	 * split form.
+	 */
+	private ?array $mDisplayTitleParts = null;
 
 	/**
 	 * @var array<int,array<string,int>> 2-D map of NS/DBK to ID for the links in the document.
@@ -632,6 +641,10 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 		return $result;
 	}
 
+	/**
+	 * @return string
+	 * @deprecated since 1.47; use ::getDisplayTitleParts() instead
+	 */
 	public function getTitleText(): string {
 		return $this->mTitleText;
 	}
@@ -1017,8 +1030,10 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	/**
 	 * @param string $t
 	 * @return ?string
+	 * @deprecated since 1.47; use ::setDisplayTitleParts() instead
 	 */
 	public function setTitleText( string $t ) {
+		$this->mDisplayTitleParts = null;
 		return wfSetVar( $this->mTitleText, $t );
 	}
 
@@ -1576,10 +1591,100 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	 * ready to be served to the client.
 	 *
 	 * @param string $text Desired title text
+	 * @deprecated since 1.47; use ::setDisplayTitleParts() and
+	 *   ::setUnsortedPageProperty('displaytitle',...) instead
 	 */
 	public function setDisplayTitle( string $text ): void {
 		$this->setTitleText( $text );
 		$this->setPageProperty( 'displaytitle', $text );
+	}
+
+	/**
+	 * Override the title to be used for display, specifying the namespace,
+	 * separator, and main title portions separately.
+	 *
+	 * @note the arguments are expected to be safe HTML, ready to be served
+	 * to the client.
+	 * @note unlike ::setDisplayTitle(), this does not update the
+	 * 'displaytitle' page property.
+	 *
+	 * @param string|HtmlArmor $nsText The namespace portion of the title, or
+	 *   the empty string if no namespace should be displayed (perhaps because
+	 *   the namespace could not be reliably split from a user-supplied title)
+	 * @param string|HtmlArmor $nsSeparator The localized separator to use
+	 *   between the namespace and the main title
+	 * @param string|HtmlArmor $mainText The main title
+	 * @param string|HtmlArmor|null $combinedText The combined display
+	 *   title HTML seen by legacy consumers of ::getTitleText() and
+	 *   ::getDisplayTitle(); defaults to the concatenation of the
+	 *   three parts above.
+	 * @since 1.47
+	 * @see Parser::splitDisplayTitle())
+	 */
+	public function setDisplayTitleParts(
+		string|HtmlArmor $nsText,
+		string|HtmlArmor $nsSeparator,
+		string|HtmlArmor $mainText,
+		string|HtmlArmor|null $combinedText = null
+	): void {
+		$parts = [
+			HtmlArmor::getHtml( $nsText ) ?? '',
+			HtmlArmor::getHtml( $nsSeparator ) ?? '',
+			HtmlArmor::getHtml( $mainText ) ?? '',
+		];
+		if ( $combinedText !== null ) {
+			$combinedText = HtmlArmor::getHtml( $combinedText );
+		}
+		$combinedText ??= $parts[0] ? implode( '', $parts ) : $parts[2];
+		$this->mDisplayTitleParts = $parts;
+		$this->mTitleText = $combinedText;
+	}
+
+	/**
+	 * Override the title to be used for display, specifying the namespace,
+	 * separator, and main title portions separately.
+	 *
+	 * This version of the setter assumes that all parts are (safe) HTML,
+	 * and is intended to be used by external libraries (like Parsoid) which
+	 * don't have access to the HtmlArmor interface.
+	 *
+	 * @see ::setDisplayTitleParts()
+	 */
+	public function setDisplayTitlePartsHtml(
+		string $nsTextHtml,
+		string $nsSeparatorHtml,
+		string $mainTextHtml,
+		?string $combinedTextHtml = null
+	): void {
+		$this->setDisplayTitleParts(
+			new HtmlArmor( $nsTextHtml ),
+			new HtmlArmor( $nsSeparatorHtml ),
+			new HtmlArmor( $mainTextHtml ),
+			// HtmlArmor can wrap `null`
+			new HtmlArmor( $combinedTextHtml ),
+		);
+	}
+
+	/**
+	 * Get the title to be used for display, split into namespace,
+	 * separator, and main title portions.
+	 *
+	 * @return null|array{0:HtmlArmor,1:HtmlArmor,2:HtmlArmor} Three
+	 *  elements: namespace text, namespace separator, and main part of
+	 *  title; all "safe HTML". Returns null if unset.
+	 * @see Parser::splitDisplayTitle()
+	 * @see Parser::formatPageTitle()
+	 * @since 1.47
+	 */
+	public function getDisplayTitleParts(): ?array {
+		if ( $this->mDisplayTitleParts === null ) {
+			return null;
+		}
+		return [
+			new HtmlArmor( $this->mDisplayTitleParts[0] ),
+			new HtmlArmor( $this->mDisplayTitleParts[1] ),
+			new HtmlArmor( $this->mDisplayTitleParts[2] ),
+		];
 	}
 
 	/**
@@ -1589,6 +1694,7 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	 * ready to be served to the client.
 	 *
 	 * @return string|false HTML
+	 * @deprecated since 1.47; use ::getDisplayTitleParts() instead
 	 */
 	public function getDisplayTitle(): string|false {
 		$t = $this->getTitleText();
@@ -2701,6 +2807,7 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 		// We should use the first *modified* title text, but we don't have the original to check.
 		if ( $this->mTitleText === '' ) {
 			$this->mTitleText = $source->mTitleText;
+			$this->mDisplayTitleParts = $source->mDisplayTitleParts;
 		}
 
 		// class names are stored in array keys
@@ -2934,7 +3041,8 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 			// we don't have the original to check.
 			$otherTitle = $metadata->getTitleText();
 			if ( $otherTitle === '' ) {
-				$metadata->setTitleText( $this->getTitleText() );
+				$metadata->mTitleText = $this->mTitleText;
+				$metadata->mDisplayTitleParts = $this->mDisplayTitleParts;
 			}
 			// class names are stored in array keys
 			$metadata->mWrapperDivClasses = self::mergeMap(
@@ -3208,6 +3316,10 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 
 		// TODO: make more fields optional!
 
+		if ( $this->mDisplayTitleParts !== null ) {
+			$data['DisplayTitleParts'] = $this->mDisplayTitleParts;
+		}
+
 		if ( $this->mMaxAdaptiveExpiry !== null ) {
 			$data['MaxAdaptiveExpiry'] = $this->mMaxAdaptiveExpiry;
 		}
@@ -3278,6 +3390,7 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 			$this->setIndicator( $id, $value );
 		}
 		$this->mTitleText = $jsonData['TitleText'] ?? '';
+		$this->mDisplayTitleParts = $jsonData['DisplayTitleParts'] ?? null;
 		$this->mLinks = $jsonData['Links'] ?? [];
 		$this->mLinksSpecial = $jsonData['LinksSpecial'] ?? [];
 		$this->mTemplates = $jsonData['Templates'] ?? [];

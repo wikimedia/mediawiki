@@ -645,14 +645,21 @@ class Parser implements MessageLocalizer {
 			$titleText = $converter->getConvRuleTitle();
 			if ( $titleText !== false ) {
 				$titleText = Sanitizer::removeSomeTags( $titleText );
+				// Split off localized namespace prefix from -{T|...}- result
+				// if we can (T314399); see CoreParserFunctions::displaytitle()
+				[ $nsText, $nsSeparator, $mainText ] =
+					$this->splitDisplayTitle( new HtmlArmor( $titleText ), $converter );
+				$this->mOutput->setDisplayTitleParts(
+					$nsText, $nsSeparator, $mainText, new HtmlArmor( $titleText )
+				);
 			} else {
 				[ $nsText, $nsSeparator, $mainText ] = $converter->convertSplitTitle( $page );
-				// In the future, those three pieces could be stored separately rather than joined into $titleText,
-				// and OutputPage would format them and join them together, to resolve T314399.
 				$titleLang = $this->languageFactory->getLanguage( $converter->getPreferredVariant() );
 				$titleText = self::formatPageTitle( $nsText, $nsSeparator, $mainText, $titleLang );
+				$this->mOutput->setDisplayTitleParts(
+					$nsText, $nsSeparator, $mainText, new HtmlArmor( $titleText )
+				);
 			}
-			$this->mOutput->setTitleText( $titleText );
 		}
 
 		# Recording timing info. Must be called before finalizeAdaptiveCacheExpiry() and
@@ -6482,6 +6489,101 @@ class Parser implements MessageLocalizer {
 	}
 
 	/**
+	 * Split a user-supplied display title for the page being parsed into
+	 * namespace, separator, and main title portions.
+	 *
+	 * @param HtmlArmor $displayTitle The user-supplied display title
+	 * @param ?ILanguageConverter $languageConverter Optional language
+	 *   converter for (possibly gender-aware) namespace matching
+	 * @return array{0:HtmlArmor,1:HtmlArmor,2:HtmlArmor} Three elements:
+	 *  namespace text, namespace separator, and main part of title
+	 * @see Parser::splitPageTitle()
+	 * @since 1.47
+	 * @internal
+	 */
+	public function splitDisplayTitle(
+		HtmlArmor $displayTitle, ?ILanguageConverter $languageConverter = null
+	): array {
+		return self::splitPageTitle(
+			$displayTitle,
+			$this->getPage(),
+			$languageConverter ?? $this->getContentLanguageConverter()
+		);
+	}
+
+	/**
+	 * Split a page title into namespace, separator, and main title portions,
+	 * so that they can be styled individually (see ::formatPageTitle()).
+	 *
+	 * Avoid using this if possible: the split is not guaranteed to succeed.
+	 * This is used in legacy situations where unsplit title text, possible
+	 * with span wrappers and other styling, is provided from the user
+	 * as in the {{displaytitle}} parser function and -{T|...}-.
+	 *
+	 * If the text can't confidently be split -- for example because
+	 * it doesn't begin with $page's localized namespace prefix -- the
+	 * whole text is returned as the main title with an
+	 * empty namespace, which ::formatPageTitle() then renders without
+	 * a `mw-page-title-namespace` span. That maintains the
+	 * pre-T314399 behavior, but may have minor styling issues with skins.
+	 *
+	 * @param HtmlArmor $pageTitle The page title ("safe HTML")
+	 * @param PageReference $page The page $pageTitle is the title of
+	 * @param ILanguageConverter $languageConverter Language
+	 *   converter for (possibly gender-aware) namespace matching
+	 * @return array{0:HtmlArmor,1:HtmlArmor,2:HtmlArmor} Three elements:
+	 *  namespace text, namespace separator, and main part of title
+	 * @see ILanguageConverter::convertSplitTitle()
+	 * @see Parser::formatPageTitle()
+	 * @since 1.47
+	 * @internal
+	 */
+	public static function splitPageTitle(
+		HtmlArmor $pageTitle, PageReference $page, ILanguageConverter $languageConverter
+	): array {
+		// Document/enforce that $pageTitle is "safe HTML"
+		$pageTitle = HtmlArmor::getHtml( $pageTitle );
+
+		// Is this is the output of ::formatPageTitle()?
+		$parts = self::unformatPageTitle( $pageTitle );
+		if ( $parts !== null ) {
+			[ $nsText, $nsSeparator, $mainText ] = $parts;
+		} else {
+			// See if the plain text begins with this page's localized
+			// namespace prefix (e.g. "Talk:Foo"). Use ::convertSplitTitle()
+			// so that gender-distinct namespace aliases (T425402) are matched
+			[ $expectedNsText, $expectedNsSeparator ] =
+				$languageConverter->convertSplitTitle( $page );
+			$prefixRegexp = '/^(' . preg_quote( $expectedNsText, '/' ) . ')(' .
+				preg_quote( $expectedNsSeparator, '/' ) . ')/i';
+			$matches = [];
+			if ( $expectedNsText !== '' && preg_match( $prefixRegexp, $pageTitle, $matches ) ) {
+				// Preserve the casing the user actually typed, both so the
+				// namespace <span> reflects their input and so rejoining
+				// the parts reproduces $pageTitle exactly.
+				$nsText = $matches[1];
+				$nsSeparator = $matches[2];
+				$mainText = substr( $pageTitle, strlen( $matches[0] ) );
+			} else {
+				// We can't confidently split off a namespace; treat the
+				// whole string as the main title and don't add a
+				// namespace <span> at all (T314399).
+				$nsText = '';
+				$nsSeparator = ':';
+				$mainText = $pageTitle;
+			}
+		}
+
+		// Wrap in HtmlArmor to document that the resulting pieces are HTML
+		// not plaintext
+		return [
+			new HtmlArmor( $nsText ),
+			new HtmlArmor( $nsSeparator ),
+			new HtmlArmor( $mainText ),
+		];
+	}
+
+	/**
 	 * Add HTML tags marking the parts of a page title, to be displayed in the first heading of the page.
 	 *
 	 * @internal
@@ -6495,7 +6597,7 @@ class Parser implements MessageLocalizer {
 	 */
 	public static function formatPageTitle( $nsText, $nsSeparator, $mainText, ?Language $titleLang = null ): string {
 		$html = '';
-		if ( $nsText !== '' ) {
+		if ( HtmlArmor::getHtml( $nsText ) !== '' ) {
 			$html .= '<span class="mw-page-title-namespace">' . HtmlArmor::getHtml( $nsText ) . '</span>';
 			$html .= '<span class="mw-page-title-separator">' . HtmlArmor::getHtml( $nsSeparator ) . '</span>';
 		}
@@ -6507,6 +6609,60 @@ class Parser implements MessageLocalizer {
 			], $html );
 		}
 		return $html;
+	}
+
+	/**
+	 * Placeholder standing in for a title part when building regexps which
+	 * match the output of ::formatPageTitle(). It must survive both
+	 * HtmlArmor escaping and preg_quote() unchanged.
+	 */
+	private const PAGE_TITLE_PLACEHOLDER = 'x-mw-page-title-part-x';
+
+	/**
+	 * Inverse of ::formatPageTitle(): if the given HTML was produced by
+	 * ::formatPageTitle(), return the three parts it was built from,
+	 * otherwise return null.
+	 *
+	 * @param string $html "safe HTML"
+	 * @return ?string[] Three "safe HTML" strings -- namespace text,
+	 *  namespace separator, and main part of title -- or null if $html is
+	 *  not the output of ::formatPageTitle()
+	 */
+	private static function unformatPageTitle( string $html ): ?array {
+		static $nsPageTitleRegexp = null;
+		static $mainNsPageTitleRegexp = null;
+
+		// Create a regexp with matching groups as placeholders for the
+		// namespace, separator and main text
+		$nsPageTitleRegexp ??= '/' . str_replace(
+			preg_quote( '(.+?)', '/' ),
+			'(.+?)',
+			preg_quote( self::formatPageTitle( '(.+?)', '(.+?)', '(.+?)' ), '/' )
+		) . '/';
+		// In the main namespace there's no namespace or separator span
+		$mainNsPageTitleRegexp ??= '/' . str_replace(
+			preg_quote( '(.+?)', '/' ),
+			'(.+?)',
+			preg_quote( self::formatPageTitle( '', '', '(.+?)' ), '/' )
+		) . '/';
+
+		$matches = [];
+		if ( preg_match( $nsPageTitleRegexp, $html, $matches ) ) {
+			$parts = [ $matches[1], $matches[2], $matches[3] ];
+		} elseif ( preg_match( $mainNsPageTitleRegexp, $html, $matches ) ) {
+			$parts = [ '', ':', $matches[1] ];
+		} elseif ( preg_match( '/^<span lang="[^"<>]*" dir="[^"<>]*">(.*)<\/span>$/s', $html, $matches ) ) {
+			// ::formatPageTitle() wraps its output in a <span> carrying the
+			// title language when it is given one; retry without it. (The
+			// wrapper itself is dropped: the parts are language-neutral.)
+			return self::unformatPageTitle( $matches[1] );
+		} else {
+			// Perhaps this wasn't the output of ::formatPageTitle()
+			return null;
+		}
+		// The regexps above could be manipulated by malicious user input,
+		// sanitize the results just in case
+		return array_map( Sanitizer::removeSomeTags( ... ), $parts );
 	}
 
 	/**

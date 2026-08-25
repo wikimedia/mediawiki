@@ -3,6 +3,7 @@
 namespace MediaWiki\Tests\Parser;
 
 use LogicException;
+use MediaWiki\Json\JsonCodec;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Parser\ParserOptions;
@@ -15,6 +16,7 @@ use MediaWiki\Title\TitleValue;
 use MediaWiki\Utils\MWTimestamp;
 use MediaWikiLangTestCase;
 use Wikimedia\Bcp47Code\Bcp47CodeValue;
+use Wikimedia\HtmlArmor\HtmlArmor;
 use Wikimedia\Message\MessageValue;
 use Wikimedia\Parsoid\Core\MergeStrategy;
 use Wikimedia\Parsoid\Core\SectionMetadata;
@@ -259,6 +261,145 @@ class ParserOutputTest extends MediaWikiLangTestCase {
 		// Language with a variant
 		$po->setLanguage( $langCrhCyrl );
 		$this->assertSame( $langCrhCyrl->toBcp47Code(), $po->getLanguage()->toBcp47Code() );
+	}
+
+	/**
+	 * Unwrap the HtmlArmor pieces returned by ::getDisplayTitleParts() so
+	 * that they can be compared against plain strings.
+	 */
+	private static function unarmor( ?array $parts ): ?array {
+		return $parts === null ? null :
+			array_map( HtmlArmor::getHtml( ... ), $parts );
+	}
+
+	public static function provideDisplayTitleParts() {
+		return [
+			'Non-main namespace' => [
+				[ 'Talk', ':', 'Hello' ],
+				[ 'Talk', ':', 'Hello' ],
+				'Talk:Hello',
+			],
+			'Main namespace (separator is not joined in)' => [
+				[ '', ':', 'Hello' ],
+				[ '', ':', 'Hello' ],
+				'Hello',
+			],
+			'Localized separator' => [
+				[ 'Talk', ' : ', 'Hello' ],
+				[ 'Talk', ' : ', 'Hello' ],
+				'Talk : Hello',
+			],
+			'Pieces are HTML, not plain text' => [
+				[ 'Talk', ':', new HtmlArmor( '<i>Hello</i>' ) ],
+				[ 'Talk', ':', '<i>Hello</i>' ],
+				'Talk:<i>Hello</i>',
+			],
+			'Explicit combined text overrides the concatenation' => [
+				[ 'Talk', ':', 'Hello', 'Talk - Hello' ],
+				[ 'Talk', ':', 'Hello' ],
+				'Talk - Hello',
+			],
+			'Explicit combined text is escaped unless armored' => [
+				[ 'Talk', ':', 'Hello', '<b>Talk:Hello</b>' ],
+				[ 'Talk', ':', 'Hello' ],
+				'&lt;b&gt;Talk:Hello&lt;/b&gt;',
+			],
+			'Explicit combined text can carry its own markup when armored' => [
+				[ '', ':', 'Hello', new HtmlArmor( '<b>Hello</b>' ) ],
+				[ '', ':', 'Hello' ],
+				'<b>Hello</b>',
+			],
+		];
+	}
+
+	/**
+	 * @dataProvider provideDisplayTitleParts
+	 * @covers \MediaWiki\Parser\ParserOutput::setDisplayTitleParts
+	 * @covers \MediaWiki\Parser\ParserOutput::getDisplayTitleParts
+	 * @covers \MediaWiki\Parser\ParserOutput::getTitleText
+	 * @covers \MediaWiki\Parser\ParserOutput::getDisplayTitle
+	 */
+	public function testDisplayTitleParts( array $args, array $expectedParts, string $expectedCombined ) {
+		$po = new ParserOutput();
+
+		// Unset by default; the legacy accessors report "no display title".
+		$this->assertNull( $po->getDisplayTitleParts() );
+		$this->assertSame( '', $po->getTitleText() );
+		$this->assertFalse( $po->getDisplayTitle() );
+
+		$po->setDisplayTitleParts( ...$args );
+
+		$this->assertSame( $expectedParts, self::unarmor( $po->getDisplayTitleParts() ) );
+		// The legacy combined accessors stay in sync with the parts.
+		$this->assertSame( $expectedCombined, $po->getTitleText() );
+		$this->assertSame( $expectedCombined, $po->getDisplayTitle() );
+		// Unlike the deprecated ::setDisplayTitle(), the page property is
+		// left to the caller (T316424).
+		$this->assertNull( $po->getPageProperty( 'displaytitle' ) );
+
+		// The parts survive a trip through the ParserCache.
+		$codec = new JsonCodec();
+		$po = $codec->deserialize( $codec->serialize( $po ) );
+		$this->assertSame( $expectedParts, self::unarmor( $po->getDisplayTitleParts() ) );
+		$this->assertSame( $expectedCombined, $po->getTitleText() );
+	}
+
+	/**
+	 * The split display title shadows $mTitleText, so on merge it has to
+	 * follow the same first-write-wins policy rather than the generic
+	 * extension data policy (T314399).
+	 *
+	 * @covers \MediaWiki\Parser\ParserOutput::mergeHtmlMetaDataFrom
+	 * @covers \MediaWiki\Parser\ParserOutput::mergeTrackingMetaDataFrom
+	 * @covers \MediaWiki\Parser\ParserOutput::collectMetadata
+	 */
+	public function testDisplayTitlePartsMergePolicy() {
+		$makeA = static function () {
+			$po = new ParserOutput();
+			$po->setDisplayTitleParts( 'Talk', ':', 'A' );
+			return $po;
+		};
+		$makeB = static function () {
+			$po = new ParserOutput();
+			$po->setDisplayTitleParts( 'User', ':', 'B' );
+			return $po;
+		};
+
+		// First write wins, and the parts don't disagree with the combined text.
+		$a = $makeA();
+		$a->mergeHtmlMetaDataFrom( $makeB() );
+		$this->assertSame( 'Talk:A', $a->getTitleText() );
+		$this->assertSame( [ 'Talk', ':', 'A' ], self::unarmor( $a->getDisplayTitleParts() ) );
+
+		// ...including when the first output has no display title at all.
+		$a = new ParserOutput();
+		$a->mergeHtmlMetaDataFrom( $makeB() );
+		$this->assertSame( 'User:B', $a->getTitleText() );
+		$this->assertSame( [ 'User', ':', 'B' ], self::unarmor( $a->getDisplayTitleParts() ) );
+
+		// A source with no display title must not clear ours.
+		$a = $makeA();
+		$a->mergeHtmlMetaDataFrom( new ParserOutput() );
+		$this->assertSame( 'Talk:A', $a->getTitleText() );
+		$this->assertSame( [ 'Talk', ':', 'A' ], self::unarmor( $a->getDisplayTitleParts() ) );
+
+		// ::mergeTrackingMetaDataFrom() never merges $mTitleText, so it
+		// must not merge the parts either.
+		$a = new ParserOutput();
+		$a->mergeTrackingMetaDataFrom( $makeB() );
+		$this->assertSame( '', $a->getTitleText() );
+		$this->assertNull( $a->getDisplayTitleParts() );
+
+		// ::collectMetadata() is ::mergeHtmlMetaDataFrom() in reverse.
+		$metadata = new ParserOutput();
+		$makeA()->collectMetadata( $metadata );
+		$this->assertSame( 'Talk:A', $metadata->getTitleText() );
+		$this->assertSame( [ 'Talk', ':', 'A' ], self::unarmor( $metadata->getDisplayTitleParts() ) );
+
+		$metadata = $makeA();
+		$makeB()->collectMetadata( $metadata );
+		$this->assertSame( 'Talk:A', $metadata->getTitleText() );
+		$this->assertSame( [ 'Talk', ':', 'A' ], self::unarmor( $metadata->getDisplayTitleParts() ) );
 	}
 
 	/**

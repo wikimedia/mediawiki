@@ -618,7 +618,25 @@ class CoreParserFunctions {
 		) {
 			$old = $parser->getOutput()->getPageProperty( 'displaytitle' );
 			if ( $old === null || $arg !== 'displaytitle_noreplace' ) {
-				$parser->getOutput()->setDisplayTitle( $text );
+				// T314399: try to split the namespace out of the
+				// user-supplied title so skins can style it separately
+				[ $nsText, $nsSeparator, $mainText ] =
+					$parser->splitDisplayTitle( new HtmlArmor( $text ) );
+				// The split may not be successful, so the legacy combined
+				// title is still $text exactly.
+				$parser->getOutput()->setDisplayTitleParts(
+					$nsText, $nsSeparator, $mainText, new HtmlArmor( $text )
+				);
+				// T316424: the 'displaytitle' page property is also the
+				// unsplit user-supplied title $text.
+				$parser->getOutput()->setUnsortedPageProperty( 'displaytitle', $text );
+			}
+			if ( $arg === 'displaytitle_noreplace' ) {
+				// Using `noreplace` adds a dependency between different
+				// regions of the page and is incompatible w/ selective update
+				$parser->getOutput()->setOutputFlag(
+					ParserOutputFlags::PREVENT_SELECTIVE_UPDATE
+				);
 			}
 			if ( $old !== null && $old !== $text && !$arg ) {
 
