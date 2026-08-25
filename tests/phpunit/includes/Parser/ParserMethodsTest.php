@@ -6,12 +6,16 @@ use LogicException;
 use MediaWiki\Content\WikitextContent;
 use MediaWiki\Language\RawMessage;
 use MediaWiki\MainConfigNames;
+use MediaWiki\Page\PageIdentityValue;
 use MediaWiki\Parser\Parser;
 use MediaWiki\Parser\ParserOptions;
 use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Revision\RevisionStore;
+use MediaWiki\Tests\User\TempUser\TempUserTestTrait;
 use MediaWiki\Title\Title;
+use MediaWiki\User\StaticUserOptionsLookup;
 use MediaWiki\User\User;
+use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityValue;
 use MediaWikiLangTestCase;
 use MockTitleTrait;
@@ -24,6 +28,7 @@ use Wikimedia\HtmlArmor\HtmlArmor;
  */
 class ParserMethodsTest extends MediaWikiLangTestCase {
 	use MockTitleTrait;
+	use TempUserTestTrait;
 
 	public static function providePreSaveTransform() {
 		return [
@@ -463,6 +468,128 @@ class ParserMethodsTest extends MediaWikiLangTestCase {
 		$this->assertEquals( $expected, $result );
 	}
 
-	// @todo Add tests for cleanSig() / cleanSigInSig(), getSection(),
-	// replaceSection(), getPreloadText()
+	/** @dataProvider provideGetUserSig */
+	public function testGetUserSig(
+		UserIdentity $userIdentity,
+		string $expectedSignature
+	): void {
+		$this->enableAutoCreateTempUser( [ 'matchPattern' => '~2$1' ] );
+		$this->overrideConfigValue( MainConfigNames::LanguageCode, 'qqx' );
+
+		$parser = $this->getServiceContainer()->getParser();
+		$parser->setPage( new PageIdentityValue( 12, NS_USER, 'Test', PageIdentityValue::LOCAL ) );
+		$parser->setUser( $userIdentity );
+		$parser->setOptions( new ParserOptions(
+			$userIdentity,
+			$this->getServiceContainer()->getLanguageFactory()->getLanguage( 'qqx' )
+		) );
+		$this->assertSame(
+			$expectedSignature,
+			$parser->getUserSig( $userIdentity )
+		);
+	}
+
+	public static function provideGetUserSig(): array {
+		return [
+			'IP address user' => [
+				'userIdentity' => new UserIdentityValue( 0, '1.2.3.4' ),
+				'expectedSignature' => '(signature-anon: 1.2.3.4, 1.2.3.4)',
+			],
+			'Temporary account' => [
+				'userIdentity' => new UserIdentityValue( 2, '~2026-1' ),
+				'expectedSignature' => '(signature-temp: ~2026-1, ~2026-1)',
+			],
+			'Named account with no nickname' => [
+				'userIdentity' => new UserIdentityValue( 3, 'TestAccount' ),
+				'expectedSignature' => '(signature: TestAccount, TestAccount)',
+			],
+			'Named account with username of a tilde' => [
+				'userIdentity' => new UserIdentityValue( 5, '~' ),
+				'expectedSignature' => '(signature: &#126;, &#126;)',
+			],
+		];
+	}
+
+	/** @dataProvider provideGetUserSigWhenUserHasNickname */
+	public function testGetUserSigWhenUserHasNickname(
+		string $nickname,
+		bool $isFancySignature,
+		string $expectedSignature
+	): void {
+		$testUser = new UserIdentityValue( 4, 'TestAccount' );
+		$this->setService(
+			'UserOptionsLookup',
+			new StaticUserOptionsLookup( [ 'TestAccount' => [
+				'nickname' => $nickname,
+				'fancysig' => $isFancySignature,
+			] ] )
+		);
+
+		$this->testGetUserSig(
+			$testUser,
+			$expectedSignature
+		);
+	}
+
+	public static function provideGetUserSigWhenUserHasNickname(): array {
+		return [
+			'User has nickname' => [
+				'nickname' => 'TestNickname',
+				'isFancySignature' => false,
+				'expectedSignature' => '(signature: TestAccount, TestNickname)',
+			],
+			'Nickname contains three tildes' => [
+				'nickname' => '~~~TestNicknameAbc',
+				'isFancySignature' => false,
+				'expectedSignature' => '(signature: TestAccount, TestNicknameAbc)',
+			],
+			'Nickname contains four tildes' => [
+				'nickname' => '~~~~TestNicknameAbc',
+				'isFancySignature' => false,
+				'expectedSignature' => '(signature: TestAccount, TestNicknameAbc)',
+			],
+			'Nickname contains five tildes' => [
+				'nickname' => '~~~~~TestNicknameAbc',
+				'isFancySignature' => false,
+				'expectedSignature' => '(signature: TestAccount, TestNicknameAbc)',
+			],
+			'Nickname contains six tildes' => [
+				'nickname' => '~~~~~~TestNicknameAbc',
+				'isFancySignature' => false,
+				'expectedSignature' => '(signature: TestAccount, ~TestNicknameAbc)',
+			],
+			'Nickname contains tildes in several parts of the nickname' => [
+				'nickname' => '~TestNickname~Abc~',
+				'isFancySignature' => false,
+				'expectedSignature' => '(signature: TestAccount, ~TestNickname~Abc&#126;)',
+			],
+			'Nickname is a single tilde' => [
+				'nickname' => '~',
+				'isFancySignature' => false,
+				'expectedSignature' => '(signature: TestAccount, &#126;)',
+			],
+			'Nickname is two tildes' => [
+				'nickname' => '~~',
+				'isFancySignature' => false,
+				'expectedSignature' => '(signature: TestAccount, ~&#126;)',
+			],
+			'Standard nickname has HTML escaped' => [
+				'nickname' => '<a>',
+				'isFancySignature' => false,
+				'expectedSignature' => '(signature: TestAccount, &#60;a&#62;)',
+			],
+			'Fancy signature contains invalid HTML' => [
+				'nickname' => '<a>',
+				'isFancySignature' => true,
+				'expectedSignature' => '(signature: TestAccount, TestAccount)',
+			],
+			'Fancy signature is valid' => [
+				'nickname' => '<strong>Test</strong>',
+				'isFancySignature' => true,
+				'expectedSignature' => '<strong>Test</strong>',
+			],
+		];
+	}
+
+	// @todo Add tests for getSection(), replaceSection(), getPreloadText()
 }
