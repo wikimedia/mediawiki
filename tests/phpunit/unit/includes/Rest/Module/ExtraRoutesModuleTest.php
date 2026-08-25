@@ -125,7 +125,7 @@ class ExtraRoutesModuleTest extends \MediaWikiUnitTestCase {
 		$response = $module->execute( '/ModuleTest/hello/dude', $request );
 		$this->assertSame( 405, $response->getStatusCode(), (string)$response->getBody() );
 		$this->assertSame( 'Method Not Allowed', $response->getReasonPhrase() );
-		$this->assertSame( 'HEAD, GET', $response->getHeaderLine( 'Allow' ) );
+		$this->assertSame( 'HEAD, GET, POST', $response->getHeaderLine( 'Allow' ) );
 	}
 
 	public function testHeadToGet() {
@@ -345,6 +345,19 @@ class ExtraRoutesModuleTest extends \MediaWikiUnitTestCase {
 		$body->rewind();
 		$data = json_decode( $body->getContents(), true );
 		$this->assertSame( 'Denied by hook', $data['message'] );
+	}
+
+	public function testHandlerConfig() {
+		$request = new RequestData( [ 'uri' => new Uri( '/rest/test.v1/ModuleTest/hello/world' ) ] );
+		$module = $this->createRouteFileModule( $request );
+		$handler = $module->getHandlerForPath( '/ModuleTest/hello/world', $request, false );
+
+		$config = $handler->getConfig();
+
+		$this->assertArrayHasKey( 'hello', $config );
+		$this->assertArrayHasKey( 'method', $config );
+		$this->assertArrayHasKey( 'path', $config );
+		$this->assertSame( 'get', $handler->getHttpMethod() );
 	}
 
 	public function testRestAfterExecuteHook() {

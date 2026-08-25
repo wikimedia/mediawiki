@@ -97,6 +97,7 @@ abstract class MatcherBasedModule extends Module {
 				$this->matchers[$method] = new PathMatcher;
 			}
 
+			$info['config']['method'] = $method;
 			$this->matchers[$method]->add( $path, $info );
 		}
 	}

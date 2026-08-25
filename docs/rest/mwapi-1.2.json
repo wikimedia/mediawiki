@@ -120,9 +120,21 @@
 			"required": [ "handler" ],
 			"properties": {
 				"handler": {
-					"$ref": "#/definitions/MWObjectSpec"
+					"oneOf": [
+						{ "$ref": "#/definitions/MWObjectSpec" },
+						{ "$ref": "#/definitions/AdapterSpec" }
+					]
 				}
 			}
+		},
+		"AdapterSpec": {
+			"type": "object",
+			"description": "An adapter spec for adapters supported by Module (tagged union).",
+			"properties": {
+				"type": { "type": "string" }
+			},
+			"required": [ "type" ],
+			"additionalProperties": true
 		},
 		"MWObjectSpec": {
 			"type": "object",

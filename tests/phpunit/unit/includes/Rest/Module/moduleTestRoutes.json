@@ -39,6 +39,16 @@
 				}
 			}
 		},
+		"/ModuleTest/do-action": {
+			"get": {
+				"handler": {
+					"adapter": {
+						"type": "action",
+						"action": "move"
+					}
+				}
+			}
+		},
 		"/ModuleTest/throw": {
 			"get": {
 				"handler": {

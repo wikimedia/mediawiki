@@ -6,6 +6,7 @@ use GuzzleHttp\Psr7\Uri;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Rest\BasicAccess\StaticBasicAuthorizer;
 use MediaWiki\Rest\ErrorFormatterV1;
+use MediaWiki\Rest\Handler\GenericActionHandler;
 use MediaWiki\Rest\Module\ModuleFormatException;
 use MediaWiki\Rest\Module\SpecBasedModule;
 use MediaWiki\Rest\Reporter\ErrorReporter;
@@ -19,6 +20,7 @@ use PHPUnit\Framework\MockObject\MockObject;
 use RuntimeException;
 use Throwable;
 use Wikimedia\Stats\StatsFactory;
+use Wikimedia\TestingAccessWrapper;
 use Wikimedia\Timestamp\ConvertibleTimestamp;
 
 /**
@@ -96,6 +98,21 @@ class SpecBasedModuleTest extends \MediaWikiUnitTestCase {
 	}
 
 	public function testHandlerConfig() {
+		$request = new RequestData( [
+			'uri' => new Uri( '/rest/test.v1/ModuleTest/hello/you' ),
+		] );
+		$module = $this->createOpenApiModule( $request );
+		$handler = $module->getHandlerForPath( '/ModuleTest/hello/you', $request, false );
+
+		$config = $handler->getConfig();
+
+		$this->assertArrayHasKey( 'hello', $config );
+		$this->assertArrayHasKey( 'method', $config );
+		$this->assertArrayHasKey( 'path', $config );
+		$this->assertSame( 'get', $handler->getHttpMethod() );
+	}
+
+	public function testHandlerConfig_execute() {
 		$request = new RequestData( [
 			'uri' => new Uri( '/rest/test.v1/ModuleTest/hello/you' ),
 		] );
@@ -259,6 +276,21 @@ class SpecBasedModuleTest extends \MediaWikiUnitTestCase {
 		$externalDocs = $module->getOpenApiExternalDocs();
 		$this->assertSame( 'Test docs', $externalDocs['description'] );
 		$this->assertSame( 'https://example.com/docs', $externalDocs['url'] );
+	}
+
+	public function testApiActionHandler() {
+		$request = new RequestData( [
+			'uri' => new Uri( '/rest/test.v1/ModuleTest/do-action' ),
+		] );
+		$module = $this->createOpenApiModule( $request );
+
+		$handler = $module->getHandlerForPath( '/ModuleTest/do-action', $request );
+
+		$this->assertInstanceOf( GenericActionHandler::class, $handler );
+		$this->assertSame(
+			'move',
+			TestingAccessWrapper::newFromObject( $handler )->actionName
+		);
 	}
 
 	public function testOpenApiTags() {

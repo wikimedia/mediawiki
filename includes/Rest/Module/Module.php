@@ -8,6 +8,7 @@ use MediaWiki\Profiler\ProfilingContext;
 use MediaWiki\Rest\BasicAccess\BasicAuthorizerInterface;
 use MediaWiki\Rest\CorsUtils;
 use MediaWiki\Rest\Handler;
+use MediaWiki\Rest\Handler\GenericActionHandler;
 use MediaWiki\Rest\Hook\HookRunner;
 use MediaWiki\Rest\HttpException;
 use MediaWiki\Rest\LocalizedHttpException;
@@ -177,6 +178,13 @@ abstract class Module {
 		// calling getPath(), not from the config array.
 		$config = $match['config'] ?? [];
 		$config['path'] ??= $match['path'];
+
+		// Remember the method the module was registered for.
+		// Useful during spec generation.
+		// NOTE: With this in place, we no longer need $method as a parameter
+		// in spec generation. But we can't change the method signatures
+		// without breaking subclasses.
+		$config['method'] ??= $requestMethod;
 
 		$openApiSpec = $match['openApiSpec'] ?? [];
 
@@ -440,6 +448,16 @@ abstract class Module {
 	 * Creates a handler from the given spec, but does not initialize it.
 	 */
 	protected function instantiateHandlerObject( array $spec ): Handler {
+		if ( isset( $spec['adapter'] ) ) {
+			if ( isset( $spec['class'] ) ) {
+				throw new ModuleConfigurationException(
+					'"adapter" cannot be used together with "class"'
+				);
+			}
+
+			return $this->instantiateAdapter( $spec['adapter'] );
+		}
+
 		/** @var $handler Handler (annotation for PHPStorm) */
 		$handler = $this->objectFactory->createObject(
 			$spec,
@@ -447,6 +465,30 @@ abstract class Module {
 		);
 
 		return $handler;
+	}
+
+	private function instantiateAdapter( array $adapterSpec ): Handler {
+		$require = static function ( string $key ) use ( $adapterSpec ) {
+			if ( !isset( $adapterSpec[ $key ] ) ) {
+				throw new ModuleConfigurationException(
+					"adapter spec is missing '$key'"
+				);
+			}
+
+			return $adapterSpec[ $key ];
+		};
+
+		// SEAM: move this to a factory that can be registered with the Module,
+		// to avoid a conceptual dependency between Rest API and Action API.
+
+		switch ( $require( 'type' ) ) {
+			case 'action':
+				return new GenericActionHandler( $require( 'action' ) );
+			default:
+				throw new ModuleConfigurationException(
+					"unknown adapter type '{$adapterSpec['type']}'"
+				);
+		}
 	}
 
 	/**

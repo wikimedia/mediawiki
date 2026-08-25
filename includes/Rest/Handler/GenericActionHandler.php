@@ -8,6 +8,7 @@ use MediaWiki\Api\ApiRestHybrid;
 use MediaWiki\Api\IApiMessage;
 use MediaWiki\Rest\RequestInterface;
 use MediaWiki\Rest\Validator\Validator;
+use MediaWiki\User\LoggedOutEditToken;
 use Wikimedia\Message\MessageValue;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\ParamValidator\TypeDef\BinaryBooleanDef;
@@ -33,6 +34,18 @@ class GenericActionHandler extends ActionModuleBasedHandler {
 	public function setApiMain( ApiMain $apiMain ) {
 		parent::setApiMain( $apiMain );
 		$this->adjustParamValidator( $apiMain );
+	}
+
+	/**
+	 * Adjust the ApiMain's ParamValidator to use REST-style parameter
+	 * interpretation.
+	 */
+	protected function adjustParamValidator( ApiMain $apiMain ): void {
+		// Interpret boolean parameters REST-style (BooleanDef, value-based)
+		// rather than the action API's presence-based PresenceBooleanDef.
+		$apiMain->getParamValidator()->overrideTypeDef(
+			'boolean', [ 'class' => BinaryBooleanDef::class ]
+		);
 	}
 
 	/**
@@ -77,25 +90,35 @@ class GenericActionHandler extends ActionModuleBasedHandler {
 	protected function getActionModuleParameters() {
 		// The action API conflates query params and body params.
 		// Body parameters take precedence.
-		$params = ( $this->getRequest()->getParsedBody() ?? [] )
+		$all = ( $this->getRequest()->getParsedBody() ?? [] )
+			+ $this->getRequest()->getPathParams()
 			+ $this->getRequest()->getQueryParams();
 
-		// Strip all parameters defined by ApiMain.
-		// These shouldn't be needed in a REST style call, compare the comment
-		// in getParamSettings().
-		// TODO: Fail if the client tries to set them, don't just ignore them (T436749)!
+		// TODO: Fail if the client tries to set unsupported params, don't just ignore them (T436749)!
 		// This doesn't happen automatically, since we are overriding
 		// validate() to do nothing, leaving validation to ApiMain.
-		// TODO: Only filter some framework params, allow things like tokens (T436749).
-		$frameworkParams = $this->getApiMain()->getFinalParams();
-		$params = array_diff_key( $params, $frameworkParams );
 
-		// NOTE: ActionModuleBasedHandler will set the correct values
-		//       for format, etc.
+		$params = array_intersect_key( $all, $this->getActionModuleParamSpecs() );
+
+		// Hack: If the ActioModule requires a token, but the session is safe
+		// against CSRF attacks, then make the action module happy by
+		// supplying a valid token.
+		if ( $this->getApiActionModule()->needsToken() && !isset( $params['token'] ) ) {
+			if ( !$this->getSession()->getProvider()->safeAgainstCsrf() ) {
+				$sessionToken = null;
+				if ( $this->getSession()->getUser()->isAnon() ) {
+					$sessionToken = new LoggedOutEditToken();
+				} elseif ( $this->getSession()->hasToken() ) {
+					$sessionToken = $this->getSession()->getToken();
+				}
+
+				$params['token'] = $sessionToken;
+			}
+		}
+
+		// NOTE: ActionModuleBasedHandler will set the correct values for format, etc.
+		// Subclasses may add more things here
 		$params['action'] = $this->actionName;
-
-		// TODO: If there are path parameters, use them. If the path parameters
-		// are titles, apply normalization redirects (T436748).
 
 		return $params;
 	}
@@ -117,23 +140,14 @@ class GenericActionHandler extends ActionModuleBasedHandler {
 	 * @inheritDoc
 	 */
 	public function getParamSettings() {
-		if ( !$this->usesRequestBody() ) {
-			return $this->makeParamSettings( 'query' );
-		} else {
-			return [];
-		}
-	}
+		$params = $this->makeParamSettings( $this->getSupportedPathParams(), 'path' );
 
-	/**
-	 * Adjust the ApiMain's ParamValidator to use REST-style parameter
-	 * interpretation.
-	 */
-	protected function adjustParamValidator( ApiMain $apiMain ): void {
-		// Interpret boolean parameters REST-style (BooleanDef, value-based)
-		// rather than the action API's presence-based PresenceBooleanDef.
-		$apiMain->getParamValidator()->overrideTypeDef(
-			'boolean', [ 'class' => BinaryBooleanDef::class ]
-		);
+		if ( !$this->usesRequestBody() ) {
+			$params += $this->makeParamSettings( $this->getSupportedQueryParams(), 'query' );
+		}
+
+		$params += parent::getParamSettings();
+		return $params;
 	}
 
 	/**
@@ -144,28 +158,47 @@ class GenericActionHandler extends ActionModuleBasedHandler {
 	 * @inheritDoc
 	 */
 	public function getBodyParamSettings(): array {
+		$params = [];
+
 		if ( $this->usesRequestBody() ) {
 			// XXX: Do we need to support 'post' as a source (form data) as well?
 			//      We could ask the helper for the supported body formats...
-			return $this->makeParamSettings( 'body' );
-		} else {
-			return [];
+			$params += $this->makeParamSettings( $this->getSupportedQueryParams(), 'body' );
 		}
+
+		$params += parent::getBodyParamSettings();
+		return $params;
 	}
 
 	/**
-	 * Normalize param settings for use in the REST framework.
+	 * Return parameter specs defined by the ApiModule.
+	 * The specs are raw, but they keys may have been adjusted/filtered.
+	 *
+	 * @return array[]
 	 */
-	private function makeParamSettings( string $source ): array {
-		// NOTE: Don't expose the params defined by ApiMain (maxlag, smaxage,
-		// errorlang, etc.). They should be covered by REST style headers
-		// (Cache-Control, Accept-Language, etc.).
-		// We also strip these in getActionModuleParameters().
-		// If we do include param specs from ApiMain, we'll have to make
-		// sure that they default to the correct message key prefix, namely
-		// apihelp-main-param-*.
-		$params = $this->getApiActionModule()->getFinalParams()
-			+ parent::getParamSettings();
+	protected function getActionModuleParamSpecs(): array {
+		// TODO: Check if we need to allow certain headers from
+		// ApiMain or extensions (T436749).
+		// The token parameter is already handled (and doesn't come from ApiMain).
+		// And centralauthtoken is handled by the AuthenticationProvider.
+
+		return $this->getApiActionModule()->getFinalParams();
+
+		// TODO: allow individual parameters to be suppressed, e.g. list=backlinks
+		// should take bltitle fomr the path and disallow blpageid.
+	}
+
+	/**
+	 * Return the names of supported query parameters.
+	 * Parameters provided in the path are excluded.
+	 *
+	 * @return string[]
+	 */
+	protected function getSupportedQueryParams(): array {
+		$params = $this->getActionModuleParamSpecs();
+
+		// strip path params
+		$params = array_diff_key( $params, array_flip( $this->getSupportedPathParams() ) );
 
 		// Unset the parameters that are forced in getActionModuleParameters(),
 		// because the client can't specify them.
@@ -174,12 +207,31 @@ class GenericActionHandler extends ActionModuleBasedHandler {
 		unset( $params['formatversion'] );
 		unset( $params['errorformat'] );
 
-		foreach ( $params as $param => &$spec ) {
+		return array_keys( $params );
+	}
+
+	/**
+	 * Return normalized param settings for use in the REST framework.
+	 */
+	protected function makeParamSettings( array $names, string $source ): array {
+		$specs = $this->getActionModuleParamSpecs();
+		$settings = [];
+
+		foreach ( $names as $param ) {
+			$spec = $specs[$param];
 			// Action API param specs may be in scalar-shorthand form
 			// (just a default value); the REST framework expects an array.
 			if ( !is_array( $spec ) ) {
-				$spec = [ ParamValidator::PARAM_DEFAULT => $spec ];
+				$spec = [
+					ParamValidator::PARAM_DEFAULT => $spec,
+				];
 			}
+
+			if ( !isset( $spec[ParamValidator::PARAM_TYPE] ) ) {
+				// Compare ParamValidator::normalizeSettingsInternal()
+				$spec[ParamValidator::PARAM_TYPE] = gettype( $spec[ParamValidator::PARAM_DEFAULT] ?? null );
+			}
+
 			$spec[self::PARAM_SOURCE] = $source;
 
 			// Translate Action API help-message specs into the REST
@@ -194,9 +246,11 @@ class GenericActionHandler extends ActionModuleBasedHandler {
 				$msg = "apihelp-{$this->actionName}-param-{$param}";
 				$spec[self::PARAM_DESCRIPTION] = new MessageValue( $msg );
 			}
+
+			$settings[$param] = $spec;
 		}
 
-		return $params;
+		return $settings;
 	}
 
 	/**

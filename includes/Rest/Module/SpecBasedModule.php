@@ -203,6 +203,7 @@ class SpecBasedModule extends MatcherBasedModule {
 			'services',
 			'optional_services',
 			'args',
+			'adapter', // for known adapter classes
 		];
 
 		static $oasKeys = [

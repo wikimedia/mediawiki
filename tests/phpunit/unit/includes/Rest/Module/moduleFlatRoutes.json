@@ -6,6 +6,7 @@
 		}
 	},
 	{
+		"method": [ "GET", "POST" ],
 		"path": "/ModuleTest/hello/{name}",
 		"class": "MediaWiki\\Tests\\Rest\\Handler\\HelloHandler",
 		"hello": "hi!",

@@ -15,6 +15,10 @@ use MediaWiki\Rest\Handler;
 use MediaWiki\Rest\Handler\GenericActionHandler;
 use MediaWiki\Rest\RequestData;
 use MediaWiki\Rest\Response;
+use MediaWiki\Session\Session;
+use MediaWiki\Session\Token;
+use MediaWiki\User\LoggedOutEditToken;
+use MediaWiki\User\User;
 use MediaWikiIntegrationTestCase;
 use StatusValue;
 use Wikimedia\Message\MessageValue;
@@ -41,22 +45,54 @@ class GenericActionHandlerTest extends MediaWikiIntegrationTestCase {
 		$this->apiMain = $this->getApiMain( true );
 	}
 
-	private function newHandler(
-		?ApiBase $actionModule = null,
-		string $actionName = 'test',
-		array $resultData = [],
-		?Exception $throwException = null
-	): GenericActionHandler {
-		$actionModule ??= $this->getDummyApiModule(
-			$this->apiMain, $actionName, [ $actionName => $resultData ], $throwException
+	/**
+	 * Build a GenericActionHandler for testing. All options are optional.
+	 *
+	 * @param array $options
+	 *   - module: ApiBase to wrap. Defaults to a dummy module built from the
+	 *     actionName/resultData/throwException options.
+	 *   - actionName: module name of the dummy module (default 'test').
+	 *   - resultData: result the dummy module returns (default []).
+	 *   - throwException: Exception the dummy module throws (default null).
+	 *   - init: whether to initialize the handler for direct method calls.
+	 *     Execution tests leave this false and initialize via executeHandler()
+	 *     instead (default false).
+	 *   - request: RequestInterface to initialize with (default null).
+	 *   - config: handler config, e.g. [ 'method' => ..., 'path' => ... ] (default []).
+	 *   - session: Session to initialize with (default null).
+	 */
+	private function newHandler( array $options = [] ): GenericActionHandler {
+		$options += [
+			'module' => null,
+			'actionName' => 'test',
+			'resultData' => [],
+			'throwException' => null,
+			'init' => false,
+			'request' => null,
+			'config' => [],
+			'session' => null,
+		];
+
+		$module = $options['module'] ?? $this->getDummyApiModule(
+			$this->apiMain,
+			$options['actionName'],
+			[ $options['actionName'] => $options['resultData'] ],
+			$options['throwException']
 		);
 
 		$this->overrideActionModule(
-			$this->apiMain, $actionModule->getModuleName(), 'action', $actionModule
+			$this->apiMain, $module->getModuleName(), 'action', $module
 		);
 
-		$handler = new GenericActionHandler( $actionModule->getModuleName() );
+		$handler = new GenericActionHandler( $module->getModuleName() );
 		$handler->setApiMain( $this->apiMain );
+
+		if ( $options['init'] ) {
+			$this->initHandler(
+				$handler, $options['request'], $options['config'], [], null, $options['session']
+			);
+		}
+
 		return $handler;
 	}
 
@@ -140,9 +176,28 @@ class GenericActionHandlerTest extends MediaWikiIntegrationTestCase {
 		return $module;
 	}
 
+	/**
+	 * A session mock with configurable CSRF-safety, user (anon or not) and
+	 * session token, for exercising token injection in
+	 * getActionModuleParameters().
+	 */
+	private function newCsrfSession( bool $csrfSafe, bool $anon, ?Token $token ): Session {
+		$session = $this->getSession( $csrfSafe );
+
+		$user = $this->createMock( User::class );
+		$user->method( 'isAnon' )->willReturn( $anon );
+
+		$session->method( 'getUser' )->willReturn( $user );
+		$session->method( 'hasToken' )->willReturn( $token !== null );
+		$session->method( 'getToken' )->willReturn( $token );
+
+		return $session;
+	}
+
 	public function testPost() {
-		$handler = $this->newHandler( actionName: 'fakeaction', resultData: [
-			'from' => 'A', 'to' => 'B',
+		$handler = $this->newHandler( [
+			'actionName' => 'fakeaction',
+			'resultData' => [ 'from' => 'A', 'to' => 'B' ],
 		] );
 		$request = new RequestData( [ 'method' => 'POST' ] );
 
@@ -152,8 +207,9 @@ class GenericActionHandlerTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testGet() {
-		$handler = $this->newHandler( actionName: 'fakeaction', resultData: [
-			'from' => 'A', 'to' => 'B',
+		$handler = $this->newHandler( [
+			'actionName' => 'fakeaction',
+			'resultData' => [ 'from' => 'A', 'to' => 'B' ],
 		] );
 		$request = new RequestData( [ 'method' => 'GET' ] );
 
@@ -163,11 +219,11 @@ class GenericActionHandlerTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testExecute_parameters() {
-		$handler = $this->newHandler(
-			actionModule: $this->newHybridModule( actionName: 'fakeaction', resultData: [
+		$handler = $this->newHandler( [
+			'module' => $this->newHybridModule( actionName: 'fakeaction', resultData: [
 				'from' => 'A', 'to' => 'B',
-			] )
-		);
+			] ),
+		] );
 
 		$request = new RequestData( [
 			'method' => 'POST',
@@ -215,7 +271,7 @@ class GenericActionHandlerTest extends MediaWikiIntegrationTestCase {
 			null,
 			StatusValue::newFatal( ApiMessage::create( 'apierror-something', $apiCode ) )
 		);
-		$handler = $this->newHandler( throwException: $exception );
+		$handler = $this->newHandler( [ 'throwException' => $exception ] );
 		$request = new RequestData( [ 'method' => 'POST' ] );
 
 		$ex = $this->executeHandlerAndGetHttpException( $handler, $request );
@@ -233,7 +289,7 @@ class GenericActionHandlerTest extends MediaWikiIntegrationTestCase {
 				[ 'foo' => 'bar', 'n' => 42 ]
 			) )
 		);
-		$handler = $this->newHandler( throwException: $exception );
+		$handler = $this->newHandler( [ 'throwException' => $exception ] );
 		$request = new RequestData( [ 'method' => 'POST' ] );
 
 		$ex = $this->executeHandlerAndGetHttpException( $handler, $request );
@@ -258,9 +314,9 @@ class GenericActionHandlerTest extends MediaWikiIntegrationTestCase {
 			) )
 		);
 
-		$handler = $this->newHandler( $this->newHybridModule(
-			helper: $helper, throwException: $exception
-		) );
+		$handler = $this->newHandler( [
+			'module' => $this->newHybridModule( helper: $helper, throwException: $exception ),
+		] );
 
 		// 'to' is required by the hybrid module's getAllowedParams(); supply
 		// it so the module's execute() can throw the prepared exception
@@ -290,7 +346,13 @@ class GenericActionHandlerTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testGetActionModuleParameters() {
-		$handler = TestingAccessWrapper::newFromObject( $this->newHandler( actionName: 'test' ) );
+		// init the handler, so getSupportedPathParams() doesn't fail
+		$handler = $this->newHandler( [
+			'module' => $this->newHybridModule( actionName: 'test' ),
+			'init' => true,
+		] );
+
+		$handler = TestingAccessWrapper::newFromObject( $handler );
 		$handler->request = new RequestData( [
 			'method' => 'POST',
 			'queryParams' => [
@@ -312,12 +374,115 @@ class GenericActionHandlerTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( 'test', $params['reason'], 'Body param should be used' );
 		$this->assertSame( 'YY', $params['to'], 'Body param should win over query param' );
 		$this->assertSame( 'X', $params['from'], 'Query param should be used when absent from body' );
-		$this->assertSame( '123', $params['extra'], 'Extra param should be kept' );
+		$this->assertArrayNotHasKey( '123', $params, 'Extra param should have been stripped' );
+	}
+
+	public static function provideCsrfTokenInjection() {
+		// csrfSafe, anon, hasSessionToken, expected outcome
+		// A CSRF-safe session (e.g. OAuth) never needs a fabricated token.
+		yield 'safe session: no token injected' => [ true, true, false, 'none' ];
+		// An unsafe (cookie) session must supply a token to satisfy the action
+		// module: the logged-out edit token for anonymous users...
+		yield 'unsafe + anonymous: logged-out edit token' => [ false, true, false, 'loggedout' ];
+		// ...and the session's own CSRF token for logged-in users.
+		yield 'unsafe + logged-in: session token' => [ false, false, true, 'session' ];
+	}
+
+	/**
+	 * @dataProvider provideCsrfTokenInjection
+	 */
+	public function testCsrfTokenInjection(
+		bool $csrfSafe,
+		bool $anon,
+		bool $hasToken,
+		string $expected
+	) {
+		// A module that requires a CSRF token, like most write actions.
+		$module = new class( $this->apiMain, 'tokentest' ) extends ApiBase {
+			public function execute() {
+			}
+
+			public function needsToken() {
+				return 'csrf';
+			}
+
+			protected function getAllowedParams() {
+				return [ 'to' => null ];
+			}
+		};
+
+		$token = $hasToken ? $this->createMock( Token::class ) : null;
+		$session = $this->newCsrfSession( $csrfSafe, $anon, $token );
+
+		$handler = $this->newHandler( [
+			'module' => $module,
+			'init' => true,
+			'request' => new RequestData( [ 'method' => 'POST', 'parsedBody' => [ 'to' => 'B' ] ] ),
+			'session' => $session,
+		] );
+
+		$params = TestingAccessWrapper::newFromObject( $handler )
+			->getActionModuleParameters();
+
+		switch ( $expected ) {
+			case 'none':
+				// The essential assertion: a CSRF-safe session must NOT have a
+				// token fabricated for it.
+				$this->assertArrayNotHasKey( 'token', $params );
+				break;
+
+			case 'loggedout':
+				$this->assertInstanceOf( LoggedOutEditToken::class, $params['token'] );
+				break;
+
+			case 'session':
+				$this->assertSame( $token, $params['token'] );
+				break;
+		}
+	}
+
+	public function testPathParameter() {
+		$module = $this->newHybridModule();
+
+		// The route declares {from} as a path placeholder; the client also
+		// (wrongly) passes 'from' as a query parameter.
+		$request = new RequestData( [
+			'method' => 'GET',
+			'pathParams' => [ 'from' => 'FromPath' ],
+			'queryParams' => [ 'from' => 'FromQuery', 'to' => 'X' ],
+		] );
+
+		$handler = $this->newHandler( [
+			'module' => $module,
+			'init' => true,
+			'request' => $request,
+			'config' => [ 'method' => 'GET', 'path' => '/test/{from}' ],
+		] );
+
+		$wrapper = TestingAccessWrapper::newFromObject( $handler );
+
+		// A path parameter must not also be offered as a query parameter.
+		$this->assertNotContains(
+			'from',
+			$wrapper->getSupportedQueryParams(),
+			'Path parameter must not be exposed as a query parameter'
+		);
+
+		// It is declared with the 'path' source, while a genuine query
+		// parameter keeps the 'query' source.
+		$settings = $handler->getParamSettings();
+		$this->assertSame( 'path', $settings['from'][Handler::PARAM_SOURCE] );
+		$this->assertSame( 'query', $settings['to'][Handler::PARAM_SOURCE] );
+
+		// The value from the path is the one passed to the action module; the
+		// same-named query parameter is ignored.
+		$params = $wrapper->getActionModuleParameters();
+		$this->assertSame( 'FromPath', $params['from'], 'Path value must win over query param' );
 	}
 
 	public function testGetParamSettings() {
 		$module = $this->newHybridModule();
-		$handler = $this->newHandler( $module );
+		$handler = $this->newHandler( [ 'module' => $module, 'init' => true ] );
 
 		$moduleParams = $module->getFinalParams();
 		$handlerParams = $handler->getParamSettings();
@@ -356,6 +521,134 @@ class GenericActionHandlerTest extends MediaWikiIntegrationTestCase {
 		$this->assertFalse( $handlerParams['movetalk'][ParamValidator::PARAM_DEFAULT] );
 	}
 
+	/**
+	 * A handler whose action-module param specs are fixed to $specs, so
+	 * makeParamSettings() can be exercised directly without a real ApiMain.
+	 * The action name is fixed to 'testaction' for a deterministic default
+	 * description message key.
+	 */
+	private function newHandlerForParamSpecs( array $specs ): GenericActionHandler {
+		return new class( 'testaction', $specs ) extends GenericActionHandler {
+			public function __construct( string $actionName, private array $specs ) {
+				parent::__construct( $actionName );
+			}
+
+			protected function getActionModuleParamSpecs(): array {
+				return $this->specs;
+			}
+		};
+	}
+
+	public static function provideMakeParamSettings() {
+		$defaultDesc = new MessageValue( 'apihelp-testaction-param-myparam' );
+
+		// Scalar-shorthand specs: just a default value, no array. PARAM_TYPE is
+		// derived from the default via gettype(), so falsy values must keep
+		// their real type (false => boolean, 0 => integer, '' / '0' => string)
+		// rather than collapsing to a null/absent type.
+		yield 'shorthand false' => [
+			false,
+			[ ParamValidator::PARAM_DEFAULT => false, ParamValidator::PARAM_TYPE => 'boolean' ],
+			$defaultDesc,
+		];
+		yield 'shorthand zero (int)' => [
+			0,
+			[ ParamValidator::PARAM_DEFAULT => 0, ParamValidator::PARAM_TYPE => 'integer' ],
+			$defaultDesc,
+		];
+		yield 'shorthand empty string' => [
+			'',
+			[ ParamValidator::PARAM_DEFAULT => '', ParamValidator::PARAM_TYPE => 'string' ],
+			$defaultDesc,
+		];
+		yield 'shorthand string "0"' => [
+			'0',
+			[ ParamValidator::PARAM_DEFAULT => '0', ParamValidator::PARAM_TYPE => 'string' ],
+			$defaultDesc,
+		];
+		yield 'shorthand zero (float)' => [
+			0.0,
+			[ ParamValidator::PARAM_DEFAULT => 0.0, ParamValidator::PARAM_TYPE => 'double' ],
+			$defaultDesc,
+		];
+		// The only falsy shorthand with no scalar type: gettype( null ) is the
+		// string 'NULL', which ParamValidator (and the REST Validator) register
+		// as a real type (StringDef, empty allowed). So a null default resolves
+		// to a permissive string param; this mirrors
+		// ParamValidator::normalizeSettingsInternal().
+		yield 'shorthand null' => [
+			null,
+			[ ParamValidator::PARAM_DEFAULT => null, ParamValidator::PARAM_TYPE => 'NULL' ],
+			$defaultDesc,
+		];
+		yield 'shorthand true' => [
+			true,
+			[ ParamValidator::PARAM_DEFAULT => true, ParamValidator::PARAM_TYPE => 'boolean' ],
+			$defaultDesc,
+		];
+		yield 'shorthand non-empty string' => [
+			'hello',
+			[ ParamValidator::PARAM_DEFAULT => 'hello', ParamValidator::PARAM_TYPE => 'string' ],
+			$defaultDesc,
+		];
+
+		// Array specs: an explicit PARAM_TYPE is kept as-is...
+		yield 'array with explicit type, no default' => [
+			[ ParamValidator::PARAM_TYPE => 'integer' ],
+			[ ParamValidator::PARAM_TYPE => 'integer' ],
+			$defaultDesc,
+		];
+		// ...otherwise the type is derived from the default (falsy included).
+		yield 'array with default, type derived' => [
+			[ ParamValidator::PARAM_DEFAULT => 7 ],
+			[ ParamValidator::PARAM_DEFAULT => 7, ParamValidator::PARAM_TYPE => 'integer' ],
+			$defaultDesc,
+		];
+		yield 'array with falsy default, type derived' => [
+			[ ParamValidator::PARAM_DEFAULT => false ],
+			[ ParamValidator::PARAM_DEFAULT => false, ParamValidator::PARAM_TYPE => 'boolean' ],
+			$defaultDesc,
+		];
+		// PARAM_HELP_MSG (a bare key) becomes the description; the raw key is dropped.
+		yield 'array with help message key' => [
+			[ ParamValidator::PARAM_TYPE => 'string', ApiBase::PARAM_HELP_MSG => 'apihelp-move-param-reason' ],
+			[ ParamValidator::PARAM_TYPE => 'string' ],
+			new MessageValue( 'apihelp-move-param-reason' ),
+		];
+		// PARAM_HELP_MSG as [ key, params... ] carries the params into the description.
+		yield 'array with help message key and params' => [
+			[ ParamValidator::PARAM_TYPE => 'string', ApiBase::PARAM_HELP_MSG => [ 'apihelp-move-param-to', 'p1' ] ],
+			[ ParamValidator::PARAM_TYPE => 'string' ],
+			new MessageValue( 'apihelp-move-param-to', [ 'p1' ] ),
+		];
+	}
+
+	/**
+	 * @dataProvider provideMakeParamSettings
+	 */
+	public function testMakeParamSettings( $inputSpec, array $expectedCore, MessageValue $expectedDescription ) {
+		$handler = $this->newHandlerForParamSpecs( [ 'myparam' => $inputSpec ] );
+
+		$result = TestingAccessWrapper::newFromObject( $handler )
+			->makeParamSettings( [ 'myparam' ], 'query' );
+
+		$this->assertArrayHasKey( 'myparam', $result );
+		$spec = $result['myparam'];
+
+		// The source is always the one passed in.
+		$this->assertSame( 'query', $spec[Handler::PARAM_SOURCE], 'source' );
+
+		// The help message is turned into a description, and the raw
+		// PARAM_HELP_MSG key is removed.
+		$this->assertArrayNotHasKey( ApiBase::PARAM_HELP_MSG, $spec );
+		$this->assertEquals( $expectedDescription, $spec[Handler::PARAM_DESCRIPTION], 'description' );
+
+		// Default and derived type. assertSame keeps
+		// falsy defaults distinct (false vs 0 vs '' vs '0' vs null).
+		unset( $spec[Handler::PARAM_SOURCE], $spec[Handler::PARAM_DESCRIPTION] );
+		$this->assertSame( $expectedCore, $spec );
+	}
+
 	public static function provideBooleanParameters() {
 		// Value as it arrives from the client => boolean the wrapped module
 		// should see after REST-style (BooleanDef) interpretation. Under the
@@ -375,9 +668,9 @@ class GenericActionHandlerTest extends MediaWikiIntegrationTestCase {
 	 * @dataProvider provideBooleanParameters
 	 */
 	public function testBooleanParameterInterpretation( $sentValue, bool $expected ) {
-		$handler = $this->newHandler(
-			actionModule: $this->newHybridModule( actionName: 'fakeaction' )
-		);
+		$handler = $this->newHandler( [
+			'module' => $this->newHybridModule( actionName: 'fakeaction' ),
+		] );
 		$request = new RequestData( [
 			'method' => 'POST',
 			// 'to' is required by the hybrid module.
@@ -394,9 +687,9 @@ class GenericActionHandlerTest extends MediaWikiIntegrationTestCase {
 	public function testMissingBooleanWithDefaultIsFalse() {
 		// 'movetalk' is declared with an explicit default of false, so an
 		// absent value resolves to false even under BooleanDef.
-		$handler = $this->newHandler(
-			actionModule: $this->newHybridModule( actionName: 'fakeaction' )
-		);
+		$handler = $this->newHandler( [
+			'module' => $this->newHybridModule( actionName: 'fakeaction' ),
+		] );
 		$request = new RequestData( [
 			'method' => 'POST',
 			'parsedBody' => [ 'to' => 'B' ], // movetalk omitted
@@ -412,9 +705,9 @@ class GenericActionHandlerTest extends MediaWikiIntegrationTestCase {
 		// BooleanDef would leave an absent value as null; BinaryBooleanDef
 		// supplies a false default (like the action API's PresenceBooleanDef),
 		// so an omitted boolean resolves to false rather than null.
-		$handler = $this->newHandler(
-			actionModule: $this->newHybridModule( actionName: 'fakeaction' )
-		);
+		$handler = $this->newHandler( [
+			'module' => $this->newHybridModule( actionName: 'fakeaction' ),
+		] );
 		$request = new RequestData( [
 			'method' => 'POST',
 			'parsedBody' => [ 'to' => 'B' ], // redirect omitted
@@ -444,8 +737,11 @@ class GenericActionHandlerTest extends MediaWikiIntegrationTestCase {
 		};
 
 		$module = $this->newHybridModule( helper: $helper );
-		$handler = $this->newHandler( $module );
-		$this->initHandler( $handler, null, [ 'method' => 'GET' ] );
+		$handler = $this->newHandler( [
+			'module' => $module,
+			'init' => true,
+			'config' => [ 'method' => 'GET' ],
+		] );
 
 		$spec = $handler->getOpenApiSpec( 'get' );
 
@@ -480,8 +776,11 @@ class GenericActionHandlerTest extends MediaWikiIntegrationTestCase {
 		};
 
 		$module = $this->newHybridModule( helper: $helper );
-		$handler = $this->newHandler( $module );
-		$this->initHandler( $handler, null, [ 'method' => 'POST' ] );
+		$handler = $this->newHandler( [
+			'module' => $module,
+			'init' => true,
+			'config' => [ 'method' => 'POST' ],
+		] );
 
 		$spec = $handler->getOpenApiSpec( 'post' );
 
