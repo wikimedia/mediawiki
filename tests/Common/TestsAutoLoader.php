@@ -226,6 +226,7 @@ $wgAutoloadClasses += [
 	'Wikimedia\\Tests\\Diff\FakeDiffOp' => "$testDir/phpunit/unit/includes/libs/Diff/FakeDiffOp.php",
 	'Wikimedia\Tests\JsonSerializationTestTrait' =>
 		"$testDir/phpunit/includes/libs/Serialization/JsonSerializationTestTrait.php",
+	'Wikimedia\\Tests\\ParamValidator\\TypeDef\\BooleanDefTest' => "$testDir/phpunit/unit/includes/libs/ParamValidator/TypeDef/BooleanDefTest.php",
 	'Wikimedia\\Tests\\ParamValidator\\TypeDef\\TypeDefTestCase' => "$testDir/phpunit/unit/includes/libs/ParamValidator/TypeDef/TypeDefTestCase.php",
 	'Wikimedia\\Tests\\ParamValidator\\TypeDef\\TypeDefTestCaseTrait' => "$testDir/phpunit/unit/includes/libs/ParamValidator/TypeDef/TypeDefTestCaseTrait.php",
 	'Wikimedia\\Tests\\SerializationTestTrait' =>

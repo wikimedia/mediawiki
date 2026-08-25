@@ -4536,6 +4536,7 @@ $wgAutoloadLocalClasses = [
 	'Wikimedia\\ParamValidator\\ParamValidator' => __DIR__ . '/includes/libs/ParamValidator/ParamValidator.php',
 	'Wikimedia\\ParamValidator\\SimpleCallbacks' => __DIR__ . '/includes/libs/ParamValidator/SimpleCallbacks.php',
 	'Wikimedia\\ParamValidator\\TypeDef' => __DIR__ . '/includes/libs/ParamValidator/TypeDef.php',
+	'Wikimedia\\ParamValidator\\TypeDef\\BinaryBooleanDef' => __DIR__ . '/includes/libs/ParamValidator/TypeDef/BinaryBooleanDef.php',
 	'Wikimedia\\ParamValidator\\TypeDef\\BooleanDef' => __DIR__ . '/includes/libs/ParamValidator/TypeDef/BooleanDef.php',
 	'Wikimedia\\ParamValidator\\TypeDef\\EnumDef' => __DIR__ . '/includes/libs/ParamValidator/TypeDef/EnumDef.php',
 	'Wikimedia\\ParamValidator\\TypeDef\\ExpiryDef' => __DIR__ . '/includes/libs/ParamValidator/TypeDef/ExpiryDef.php',

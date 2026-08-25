@@ -9,16 +9,17 @@ use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\ParamValidator\TypeDef;
 
 /**
- * Type definition for boolean types
+ * Type definition for optional boolean values.
  *
  * This type accepts certain defined strings to mean 'true' or 'false'.
- * The result from validate() is a PHP boolean.
+ * The result from validate() is a PHP boolean if the parameter was given.
+ * If the parameter was not given (and no default was defined),
+ * the value will be null.
  *
  * Failure codes:
  *  - 'badbool': The value is not a recognized boolean. No data.
  *
  * @since 1.34
- * @unstable
  */
 class BooleanDef extends TypeDef {
 

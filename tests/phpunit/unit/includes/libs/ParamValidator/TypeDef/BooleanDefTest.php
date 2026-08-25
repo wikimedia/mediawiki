@@ -67,6 +67,14 @@ class BooleanDefTest extends TypeDefTestCase {
 		yield "Value false, OPT_ENFORCE_JSON_TYPES" => [ false, false, [], $enforceType ];
 	}
 
+	public function testGetValueReturnsNullWhenParamNotGiven() {
+		$typeDef = $this->getInstance( new SimpleCallbacks( [] ), [] );
+
+		// BooleanDef supplies no default, so an omitted parameter yields null
+		// (unlike BinaryBooleanDef, which defaults it to false).
+		$this->assertNull( $typeDef->getValue( 'missing', [], [] ) );
+	}
+
 	public static function provideStringifyValue() {
 		return [
 			[ true, 'true' ],
