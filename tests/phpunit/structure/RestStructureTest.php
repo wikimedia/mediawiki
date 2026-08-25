@@ -402,7 +402,7 @@ class RestStructureTest extends MediaWikiIntegrationTestCase {
 		$this->assertMatchesJsonSchema( $schemaFile, $moduleSpec, self::SPEC_FILES );
 
 		$ad = AudienceDesignation::fromModuleId( $moduleSpec->moduleId );
-		$this->assertNotNull( $ad );
+		$this->assertNotNull( $ad, "Expected audience designation for {$moduleSpec->moduleId}" );
 
 		$adStrings = [];
 		foreach ( AudienceDesignation::cases() as $case ) {
@@ -411,6 +411,42 @@ class RestStructureTest extends MediaWikiIntegrationTestCase {
 		$adStrings = implode( '|', $adStrings );
 		$versionRegex = '!^[0-9]+\.[0-9]+\.[0-9]+(?:' . $adStrings . ')?(?:[0-9]+)?$!';
 		$this->assertMatchesRegularExpression( $versionRegex, $moduleSpec->info->version );
+
+		// JsonLocalizer replaces the plain field with the formatted message rather
+		// than falling back to it, so a message key that does not exist surfaces
+		// in the published spec instead of being silently ignored.
+		foreach ( $this->collectI18nMessageKeys( $moduleSpec ) as $key => $jsonPath ) {
+			$this->assertTrue(
+				Message::newFromKey( $key )->exists(),
+				"Message '$key', referenced by '$jsonPath' in module "
+					. "'{$moduleSpec->moduleId}', must be defined"
+			);
+		}
+	}
+
+	/**
+	 * Collects the message keys referenced by "x-i18n-" prefixed fields anywhere
+	 * in a module definition.
+	 *
+	 * @param mixed $node
+	 * @param string $path Location of $node in the definition, for error messages
+	 *
+	 * @return array<string,string> message key => path it was referenced from
+	 */
+	private function collectI18nMessageKeys( $node, string $path = '' ): array {
+		$keys = [];
+
+		foreach ( (array)$node as $name => $value ) {
+			$childPath = "$path/$name";
+
+			if ( is_object( $value ) || is_array( $value ) ) {
+				$keys += $this->collectI18nMessageKeys( $value, $childPath );
+			} elseif ( is_string( $name ) && str_starts_with( $name, 'x-i18n-' ) ) {
+				$keys[ $value ] = $childPath;
+			}
+		}
+
+		return $keys;
 	}
 
 	public function testGetModuleDescription(): void {

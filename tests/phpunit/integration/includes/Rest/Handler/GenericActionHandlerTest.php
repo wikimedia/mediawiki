@@ -180,15 +180,18 @@ class GenericActionHandlerTest extends MediaWikiIntegrationTestCase {
 	 * A session mock with configurable CSRF-safety, user (anon or not) and
 	 * session token, for exercising token injection in
 	 * getActionModuleParameters().
+	 *
+	 * hasToken() is deliberately left unstubbed, so it reports that the session
+	 * holds no token yet. Session::getToken() mints one on demand, so the handler
+	 * must ask for the token rather than checking hasToken() first.
 	 */
-	private function newCsrfSession( bool $csrfSafe, bool $anon, ?Token $token ): Session {
+	private function newCsrfSession( bool $csrfSafe, bool $anon, Token $token ): Session {
 		$session = $this->getSession( $csrfSafe );
 
 		$user = $this->createMock( User::class );
 		$user->method( 'isAnon' )->willReturn( $anon );
 
 		$session->method( 'getUser' )->willReturn( $user );
-		$session->method( 'hasToken' )->willReturn( $token !== null );
 		$session->method( 'getToken' )->willReturn( $token );
 
 		return $session;
@@ -378,14 +381,16 @@ class GenericActionHandlerTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public static function provideCsrfTokenInjection() {
-		// csrfSafe, anon, hasSessionToken, expected outcome
-		// A CSRF-safe session (e.g. OAuth) never needs a fabricated token.
-		yield 'safe session: no token injected' => [ true, true, false, 'none' ];
-		// An unsafe (cookie) session must supply a token to satisfy the action
-		// module: the logged-out edit token for anonymous users...
-		yield 'unsafe + anonymous: logged-out edit token' => [ false, true, false, 'loggedout' ];
-		// ...and the session's own CSRF token for logged-in users.
-		yield 'unsafe + logged-in: session token' => [ false, false, true, 'session' ];
+		// csrfSafe, anon, expected outcome
+		// A session that is not safe against CSRF (cookie auth) must supply the
+		// token itself.
+		yield 'unsafe + logged-in: no token injected' => [ false, false, 'none' ];
+		yield 'unsafe + anonymous: no token injected' => [ false, true, 'none' ];
+
+		// A CSRF-safe session (e.g. OAuth) needs no CSRF protection, but the
+		// action API validates the token regardless, so inject a valid one.
+		yield 'safe + anonymous: logged-out edit token' => [ true, true, 'loggedout' ];
+		yield 'safe + logged-in: session token' => [ true, false, 'session' ];
 	}
 
 	/**
@@ -394,7 +399,6 @@ class GenericActionHandlerTest extends MediaWikiIntegrationTestCase {
 	public function testCsrfTokenInjection(
 		bool $csrfSafe,
 		bool $anon,
-		bool $hasToken,
 		string $expected
 	) {
 		// A module that requires a CSRF token, like most write actions.
@@ -411,7 +415,7 @@ class GenericActionHandlerTest extends MediaWikiIntegrationTestCase {
 			}
 		};
 
-		$token = $hasToken ? $this->createMock( Token::class ) : null;
+		$token = $this->createMock( Token::class );
 		$session = $this->newCsrfSession( $csrfSafe, $anon, $token );
 
 		$handler = $this->newHandler( [
@@ -426,8 +430,9 @@ class GenericActionHandlerTest extends MediaWikiIntegrationTestCase {
 
 		switch ( $expected ) {
 			case 'none':
-				// The essential assertion: a CSRF-safe session must NOT have a
-				// token fabricated for it.
+				// The essential assertion: a session that is not safe against
+				// CSRF must NOT have a token fabricated for it, or the action
+				// module's token check is bypassed.
 				$this->assertArrayNotHasKey( 'token', $params );
 				break;
 

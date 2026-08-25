@@ -1,0 +1,123 @@
+{
+	"type": "object",
+	"description": "Response payload of the move action",
+	"required": [
+		"from",
+		"to",
+		"reason",
+		"redirectcreated",
+		"moveoverredirect"
+	],
+	"properties": {
+		"from": { "type": "string" },
+		"to": { "type": "string" },
+		"reason": { "type": "string" },
+		"redirectcreated": { "type": "boolean" },
+		"moveoverredirect": { "type": "boolean" },
+		"talkfrom": { "type": "string" },
+		"talkto": { "type": "string" },
+		"talkmoveoverredirect": { "type": "boolean" },
+		"subpages": {
+			"description": "Per-subpage move results, or an object holding the errors if moving the subpages failed outright. Only present when movesubpages is set.",
+			"oneOf": [
+				{
+					"type": "array",
+					"items": {
+						"type": "object",
+						"required": [ "from" ],
+						"properties": {
+							"from": { "type": "string" },
+							"to": {
+								"type": "string",
+								"description": "Absent if this subpage could not be moved; \"errors\" is then present instead."
+							},
+							"errors": {
+								"type": "array",
+								"items": {
+									"type": "object",
+									"required": [ "code" ],
+									"properties": {
+										"code": { "type": "string" },
+										"text": { "type": "string" },
+										"module": { "type": "string" },
+										"data": { "type": "object" }
+									}
+								}
+							}
+						}
+					}
+				},
+				{
+					"type": "object",
+					"required": [ "errors" ],
+					"properties": {
+						"errors": {
+							"type": "array",
+							"items": {
+								"type": "object",
+								"required": [ "code" ],
+								"properties": {
+									"code": { "type": "string" },
+									"text": { "type": "string" },
+									"module": { "type": "string" },
+									"data": { "type": "object" }
+								}
+							}
+						}
+					}
+				}
+			]
+		},
+		"subpages-talk": {
+			"description": "Per-subpage move results, or an object holding the errors if moving the subpages failed outright. Only present when movesubpages is set.",
+			"oneOf": [
+				{
+					"type": "array",
+					"items": {
+						"type": "object",
+						"required": [ "from" ],
+						"properties": {
+							"from": { "type": "string" },
+							"to": {
+								"type": "string",
+								"description": "Absent if this subpage could not be moved; \"errors\" is then present instead."
+							},
+							"errors": {
+								"type": "array",
+								"items": {
+									"type": "object",
+									"required": [ "code" ],
+									"properties": {
+										"code": { "type": "string" },
+										"text": { "type": "string" },
+										"module": { "type": "string" },
+										"data": { "type": "object" }
+									}
+								}
+							}
+						}
+					}
+				},
+				{
+					"type": "object",
+					"required": [ "errors" ],
+					"properties": {
+						"errors": {
+							"type": "array",
+							"items": {
+								"type": "object",
+								"required": [ "code" ],
+								"properties": {
+									"code": { "type": "string" },
+									"text": { "type": "string" },
+									"module": { "type": "string" },
+									"data": { "type": "object" }
+								}
+							}
+						}
+					}
+				}
+			]
+		}
+	}
+}

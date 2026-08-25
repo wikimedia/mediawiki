@@ -5,8 +5,8 @@
 	"info": {
 		"version": "1.0.0",
 		"title": "Content API",
-		"x-i18n-title": "rest-module-content.v1-title",
-		"x-i18n-description": "rest-module-content.v1-desc"
+		"x-i18n-title": "rest-module-content.v2-title",
+		"x-i18n-description": "rest-module-content.v2-desc"
 	},
 	"externalDocs": {
 		"description": "API documentation",
@@ -57,6 +57,29 @@
 					]
 				}
 			}
+		},
+		"/page:move/{from}": {
+			"post": {
+				"x-i18n-description": "rest-endpoint-desc-post-move-title",
+				"handler": {
+					"adapter": {
+						"type": "action",
+						"action": "move"
+					}
+				}
+			}
+		},
+		"/page:move": {
+			"post": {
+				"x-i18n-description": "rest-endpoint-desc-post-move",
+				"handler": {
+					"adapter": {
+						"type": "action",
+						"action": "move"
+					}
+				}
+			}
 		}
+
 	}
 }

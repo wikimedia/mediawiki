@@ -40,6 +40,9 @@ class ModuleManager {
 		'fragments.v0-internal' => [
 			'file' => "./includes/Rest/fragments.v0-internal.json",
 		],
+		'content.v2-beta' => [
+			'file' => "./includes/Rest/content.v2-beta.json",
+		],
 	];
 
 	/** Seconds to persist module definitions on cache */

@@ -23,7 +23,7 @@ use Wikimedia\ParamValidator\ParamValidator;
  * API Module to move pages
  * @ingroup API
  */
-class ApiMove extends ApiBase {
+class ApiMove extends ApiBase implements ApiRestHybrid {
 
 	use ApiWatchlistTrait;
 
@@ -45,6 +45,22 @@ class ApiMove extends ApiBase {
 		$this->watchlistManager = $watchlistManager;
 		$this->watchedItemStore = $watchedItemStore;
 		$this->userOptionsLookup = $userOptionsLookup;
+	}
+
+	public function getRestHelper(): ApiRestHelper {
+		return new class extends ApiRestHelper {
+			public function getStatusForErrorMessage( IApiMessage $msg ): int {
+				return match ( $msg->getApiCode() ) {
+					'fileexists-sharedrepo-perm' => 403,
+					'cantoverwrite-sharedfile' => 403,
+					default => 0
+				};
+			}
+
+			public function getResponseBodySchemaFileName(): ?string {
+				return __DIR__ . '/Schema/Move-response.json';
+			}
+		};
 	}
 
 	public function execute() {

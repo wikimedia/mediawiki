@@ -102,13 +102,14 @@ class GenericActionHandler extends ActionModuleBasedHandler {
 
 		// Hack: If the ActioModule requires a token, but the session is safe
 		// against CSRF attacks, then make the action module happy by
-		// supplying a valid token.
+		// supplying a valid token. The action API validates the token
+		// unconditionally, it has no exemption for CSRF-safe providers.
 		if ( $this->getApiActionModule()->needsToken() && !isset( $params['token'] ) ) {
-			if ( !$this->getSession()->getProvider()->safeAgainstCsrf() ) {
+			if ( $this->getSession()->getProvider()->safeAgainstCsrf() ) {
 				$sessionToken = null;
 				if ( $this->getSession()->getUser()->isAnon() ) {
 					$sessionToken = new LoggedOutEditToken();
-				} elseif ( $this->getSession()->hasToken() ) {
+				} else {
 					$sessionToken = $this->getSession()->getToken();
 				}
 
