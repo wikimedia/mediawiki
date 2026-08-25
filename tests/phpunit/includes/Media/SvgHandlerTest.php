@@ -121,6 +121,16 @@ class SvgHandlerTest extends MediaWikiMediaTestCase {
 				'svgLanguages' => [ 'he-IL-u-ca-hebrew-tz-jeruslm' ],
 				'expectedMatch' => 'he-IL-u-ca-hebrew-tz-jeruslm',
 			],
+			'different order does not matter (A)' => [
+				'userPreferredLanguage' => 'de',
+				'svgLanguages' => [ 'de', 'de-ch', 'fr', 'de-at' ],
+				'expectedMatch' => 'de',
+			],
+			'different order does not matter (B)' => [
+				'userPreferredLanguage' => 'de',
+				'svgLanguages' => [ 'de-ch', 'de', 'de-at', 'fr' ],
+				'expectedMatch' => 'de',
+			],
 		];
 	}
 

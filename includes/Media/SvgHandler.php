@@ -153,6 +153,7 @@ class SvgHandler extends ImageHandler {
 		if ( $userPreferredLanguage === 'und' ) {
 			return 'und';
 		}
+		sort( $svgLanguages );
 		foreach ( $svgLanguages as $svgLang ) {
 			if ( strcasecmp( $svgLang, $userPreferredLanguage ) === 0 ) {
 				return $svgLang;
