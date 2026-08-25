@@ -6510,11 +6510,6 @@ config-schema:
     EnableJavaScriptTest:
         default: false
         description: 'Allow running of QUnit tests via [[Special:JavaScriptTest]].'
-    CachePrefix:
-        default: false
-        description: |-
-            Overwrite the caching key prefix with custom value.
-            @since 1.19
     DebugToolbar:
         default: false
         description: |-

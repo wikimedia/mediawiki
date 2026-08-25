@@ -3454,12 +3454,6 @@ $wgPageInfoTransclusionLimit = null;
 $wgEnableJavaScriptTest = null;
 
 /**
- * Config variable stub for the CachePrefix setting, for use by phpdoc and IDEs.
- * @see MediaWiki\MainConfigSchema::CachePrefix
- */
-$wgCachePrefix = null;
-
-/**
  * Config variable stub for the DebugToolbar setting, for use by phpdoc and IDEs.
  * @see MediaWiki\MainConfigSchema::DebugToolbar
  */

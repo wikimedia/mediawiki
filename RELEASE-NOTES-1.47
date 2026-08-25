@@ -69,6 +69,9 @@ For notes on 1.46.x and older releases, see HISTORY.
   Whether security-sensitive operations are allowed when the session type does
   not support reauthentication is now decided per session type, via
   SessionProvider::allowSecuritySensitiveOperationIfCannotReauthenticate().
+* $wgCachePrefix has been removed without deprecation (T272194). It no longer
+  has any effect and site administrators that set this configuration setting
+  can safely remove it. Cache keys are now always prefixed by wiki ID.
 * $wgPHPSessionHandling, deprecated since 1.45, has been removed (T431315).
   This means `$_SESSION` is no longer supported in MediaWiki core and will no
   longer read or write to the MediaWiki session store. If you access $_SESSION

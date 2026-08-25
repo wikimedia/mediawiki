@@ -2033,7 +2033,6 @@ return [
 			'OpenTelemetryConfig' => null,
 			'PageInfoTransclusionLimit' => 50,
 			'EnableJavaScriptTest' => false,
-			'CachePrefix' => false,
 			'DebugToolbar' => false,
 			'ApiClientErrorSampleRate' => 1.0,
 			'DisableTextSearch' => false,

@@ -10416,15 +10416,6 @@ class MainConfigSchema {
 	];
 
 	/**
-	 * Overwrite the caching key prefix with custom value.
-	 *
-	 * @since 1.19
-	 */
-	public const CachePrefix = [
-		'default' => false,
-	];
-
-	/**
 	 * Display the new debugging toolbar. This also enables profiling on database
 	 * queries and other useful output.
 	 *

@@ -149,19 +149,17 @@ class ObjectCacheFactoryIntegrationTest extends MediaWikiIntegrationTestCase {
 			return ( new DatabaseDomain( $dbName, $wgDBmwschema, $dbPrefix ) )->getId();
 		};
 		return [
-			'default' => [ false, 'my_wiki', '', $dbDomain( 'my_wiki', '' ) ],
-			'custom' => [ 'custom', 'my_wiki', '', 'custom' ],
-			'prefix' => [ false, 'my_wiki', 'nl_', $dbDomain( 'my_wiki', 'nl_' ) ],
-			'empty string' => [ '', 'my_wiki', 'nl_', $dbDomain( 'my_wiki', 'nl_' ) ],
+			'default' => [ 'my_wiki', '', $dbDomain( 'my_wiki', '' ) ],
+			'prefix' => [ 'my_wiki', 'nl_', $dbDomain( 'my_wiki', 'nl_' ) ],
+			'empty string' => [ 'my_wiki', 'nl_', $dbDomain( 'my_wiki', 'nl_' ) ],
 		];
 	}
 
 	/**
 	 * @dataProvider provideLocalServerKeyspace
 	 */
-	public function testLocalServerKeyspace( $cachePrefix, $dbName, $dbPrefix, $expect ) {
+	public function testLocalServerKeyspace( $dbName, $dbPrefix, $expect ) {
 		$this->overrideConfigValues( [
-			MainConfigNames::CachePrefix => $cachePrefix,
 			MainConfigNames::DBname => $dbName,
 			MainConfigNames::DBprefix => $dbPrefix,
 		] );
@@ -173,8 +171,10 @@ class ObjectCacheFactoryIntegrationTest extends MediaWikiIntegrationTestCase {
 
 	public function testNewMultiWrite() {
 		$this->overrideConfigValues( [
-			MainConfigNames::CachePrefix => 'moon-river',
+			MainConfigNames::DBname => 'foowiki',
+			MainConfigNames::DBprefix => 'eprefix',
 		] );
+
 		$this->setCacheConfig( [
 			'multi-example' => [
 				'class' => 'MultiWriteBagOStuff',
@@ -193,12 +193,12 @@ class ObjectCacheFactoryIntegrationTest extends MediaWikiIntegrationTestCase {
 		$multi = $ocf->getInstance( 'multi-example' );
 		$caches = TestingAccessWrapper::newFromObject( $multi )->caches;
 
-		$this->assertSame( 'moon-river:x', $multi->makeKey( 'x' ), 'MultiWrite key' );
+		$this->assertSame( 'foowiki-eprefix:x', $multi->makeKey( 'x' ), 'MultiWrite key' );
 
 		// Confirm that dependency injection is also applied to the objects constructed
 		// for the child caches (T318272).
-		$this->assertSame( 'moon-river:x', $caches[0]->makeKey( 'x' ), 'inject cache 0 keyspace' );
-		$this->assertSame( 'moon-river:x', $caches[1]->makeKey( 'x' ), 'inject cache 1 keyspace' );
+		$this->assertSame( 'foowiki-eprefix:x', $caches[0]->makeKey( 'x' ), 'inject cache 0 keyspace' );
+		$this->assertSame( 'foowiki-eprefix:x', $caches[1]->makeKey( 'x' ), 'inject cache 1 keyspace' );
 	}
 
 	public static function provideIsDatabaseId() {

@@ -257,16 +257,9 @@ class ExtensionRegistry implements DomainEventSubscriber {
 
 	private function getCache(): BagOStuff {
 		if ( !$this->cache ) {
-			// NOTE: Copy of ObjectCacheFactory::getDefaultKeyspace
-			//
-			// Can't call MediaWikiServices here, as we must not cause services
-			// to be instantiated before extensions have loaded.
-			global $wgCachePrefix;
-			$keyspace = ( is_string( $wgCachePrefix ) && $wgCachePrefix !== '' )
-				? $wgCachePrefix
-				: WikiMap::getCurrentWikiDbDomain()->getId();
-
-			return ObjectCacheFactory::makeLocalServerCache( $keyspace );
+			// NOTE: Can't call MediaWikiServices here, as we must not cause
+			// services to be instantiated before extensions have loaded.
+			return ObjectCacheFactory::makeLocalServerCache( WikiMap::getCurrentWikiDbDomain()->getId() );
 		}
 
 		return $this->cache;

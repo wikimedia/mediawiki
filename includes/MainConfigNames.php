@@ -3469,12 +3469,6 @@ class MainConfigNames {
 	public const EnableJavaScriptTest = 'EnableJavaScriptTest';
 
 	/**
-	 * Name constant for the CachePrefix setting, for use with Config::get()
-	 * @see MainConfigSchema::CachePrefix
-	 */
-	public const CachePrefix = 'CachePrefix';
-
-	/**
 	 * Name constant for the DebugToolbar setting, for use with Config::get()
 	 * @see MainConfigSchema::DebugToolbar
 	 */

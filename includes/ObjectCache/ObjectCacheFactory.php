@@ -69,7 +69,6 @@ class ObjectCacheFactory {
 		MainConfigNames::MemCachedServers,
 		MainConfigNames::MemCachedPersistent,
 		MainConfigNames::MemCachedTimeout,
-		MainConfigNames::CachePrefix,
 		MainConfigNames::ObjectCaches,
 		MainConfigNames::MainCacheType,
 		MainConfigNames::MessageCacheType,
@@ -109,22 +108,6 @@ class ObjectCacheFactory {
 	}
 
 	/**
-	 * Get the default keyspace for this wiki.
-	 *
-	 * This is either the value of the MainConfigNames::CachePrefix setting
-	 * or (if the former is unset) the MainConfigNames::DBname setting, with
-	 * MainConfigNames::DBprefix (if defined).
-	 */
-	private function getDefaultKeyspace(): string {
-		$cachePrefix = $this->options->get( MainConfigNames::CachePrefix );
-		if ( is_string( $cachePrefix ) && $cachePrefix !== '' ) {
-			return $cachePrefix;
-		}
-
-		return $this->domainId;
-	}
-
-	/**
 	 * Create a new cache object of the specified type.
 	 *
 	 * @param string|int $id A key in $wgObjectCaches.
@@ -142,10 +125,10 @@ class ObjectCacheFactory {
 			} elseif ( $id === CACHE_HASH ) {
 				return new HashBagOStuff();
 			} elseif ( $id === CACHE_ACCEL ) {
-				return self::makeLocalServerCache( $this->getDefaultKeyspace() );
+				return self::makeLocalServerCache( $this->domainId );
 			} elseif ( $id === 'wincache' ) {
 				wfDeprecated( __METHOD__ . ' with cache ID "wincache"', '1.43' );
-				return self::makeLocalServerCache( $this->getDefaultKeyspace() );
+				return self::makeLocalServerCache( $this->domainId );
 			}
 
 			throw new InvalidArgumentException( "Invalid object cache type \"$id\" requested. " .
@@ -191,7 +174,7 @@ class ObjectCacheFactory {
 		// Apply default parameters and resolve the logger instance
 		$params += [
 			'logger' => $logger,
-			'keyspace' => $this->getDefaultKeyspace(),
+			'keyspace' => $this->domainId,
 			// T415142: Must be serializable and cannot use the ( ... ) syntax!
 			'asyncHandler' => [ DeferredUpdates::class, 'addCallableUpdate' ],
 			'reportDupes' => true,
@@ -330,7 +313,6 @@ class ObjectCacheFactory {
 			// Make sure the APCu methods actually store anything
 			if ( PHP_SAPI !== 'cli' || ini_get( 'apc.enable_cli' ) ) {
 				return APCUBagOStuff::class;
-
 			}
 		}
 
