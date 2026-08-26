@@ -35,7 +35,6 @@ use MediaWiki\Page\ParserOutputAccess;
 use MediaWiki\Page\ProperPageIdentity;
 use MediaWiki\Page\WikiPage;
 use MediaWiki\Page\WikiPageFactory;
-use MediaWiki\Parser\ParserCache;
 use MediaWiki\Parser\ParserOptions;
 use MediaWiki\Parser\ParserOutput;
 use MediaWiki\Revision\MutableRevisionRecord;
@@ -208,7 +207,7 @@ class DerivedPageDataUpdater implements LoggerAwareInterface, PreparedUpdate {
 		private readonly RevisionStore $revisionStore,
 		private readonly RevisionRenderer $revisionRenderer,
 		private readonly SlotRoleRegistry $slotRoleRegistry,
-		private readonly ParserCache $parserCache,
+		private readonly ParserOutputAccess $parserOutputAccess,
 		private readonly JobQueueGroup $jobQueueGroup,
 		private readonly Language $contLang,
 		private readonly ILBFactory $loadbalancerFactory,
@@ -1241,7 +1240,7 @@ class DerivedPageDataUpdater implements LoggerAwareInterface, PreparedUpdate {
 			// we could try to get the ParserOutput from the parser cache.
 		}
 
-		// TODO: optionally get ParserOutput from the ParserCache here.
+		// TODO: optionally get ParserOutput from the ParserOutputAccess here.
 		// Move the logic used by RefreshLinksJob here!
 	}
 
@@ -1787,9 +1786,10 @@ class DerivedPageDataUpdater implements LoggerAwareInterface, PreparedUpdate {
 		// unnecessary reparse.
 		$timestamp = $this->options['newrev'] ? $this->revision->getTimestamp()
 			: $output->getCacheTime();
-		$this->parserCache->save(
-			$output, $wikiPage, $this->getCanonicalParserOptions(),
-			$timestamp, $this->revision->getId()
+
+		$this->parserOutputAccess->saveToCache(
+			$this->getCanonicalParserOptions(), $output, $wikiPage, $this->revision,
+			options: [], cacheTime: $timestamp
 		);
 
 		// If we enable cache warming with parsoid outputs, let's do it at the same

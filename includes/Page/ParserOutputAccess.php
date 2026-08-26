@@ -817,17 +817,20 @@ class ParserOutputAccess implements LoggerAwareInterface {
 		$this->localCache->clear();
 	}
 
-	private function saveToCache(
-		ParserOptions $parserOptions, ParserOutput $output, PageRecord $page, RevisionRecord $revision, array $options
+	/** @internal */
+	public function saveToCache(
+		ParserOptions $parserOptions, ParserOutput $output, PageRecord $page,
+		RevisionRecord $revision, array $options, ?string $cacheTime = null
 	): void {
+		$options = self::normalizeOptions( $options );
 		$useCache = $this->shouldUseCache( $page, $revision );
 		if ( !$options[ self::OPT_NO_UPDATE_CACHE ] && $output->isCacheable() ) {
 			if ( $useCache === self::CACHE_PRIMARY ) {
 				$primaryCache = $this->getPrimaryCache( $parserOptions );
-				$primaryCache->save( $output, $page, $parserOptions );
+				$primaryCache->save( $output, $page, $parserOptions, $cacheTime, $revision->getId() );
 			} elseif ( $useCache === self::CACHE_SECONDARY ) {
 				$secondaryCache = $this->getSecondaryCache( $parserOptions );
-				$secondaryCache->save( $output, $revision, $parserOptions );
+				$secondaryCache->save( $output, $revision, $parserOptions, $cacheTime );
 			}
 		}
 	}

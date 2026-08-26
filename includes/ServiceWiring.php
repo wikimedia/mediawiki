@@ -1820,7 +1820,7 @@ return [
 			$services->getRevisionStore(),
 			$services->getRevisionRenderer(),
 			$services->getSlotRoleRegistry(),
-			$services->getParserCache(),
+			$services->getParserOutputAccess(),
 			$services->getJobQueueGroup(),
 			$services->getContentLanguage(),
 			$services->getDBLoadBalancerFactory(),

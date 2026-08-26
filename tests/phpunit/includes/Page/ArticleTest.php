@@ -317,7 +317,7 @@ class ArticleTest extends ParserCacheTestBase {
 		$article = $this->newArticle( $title );
 		$this->editPage( $title, '== Hello ==' );
 		$article->view();
-		$this->assertArrayEquals( [ 'pcache', 'pcache' ], $calls, true );
+		$this->assertArrayEquals( [ 'pcache', 'pcache', 'pcache' ], $calls, true );
 		$html = $article->getContext()->getOutput()->getHTML();
 		// check that we're running postprocessing (if the headers are wrapped then that's a good sign)
 		$this->assertStringContainsString(
@@ -326,7 +326,7 @@ class ArticleTest extends ParserCacheTestBase {
 		);
 		$article = $this->newArticle( $title );
 		$article->view();
-		$this->assertArrayEquals( [ 'pcache', 'pcache', 'pcache' ], $calls, true );
+		$this->assertArrayEquals( [ 'pcache', 'pcache', 'pcache', 'pcache' ], $calls, true );
 		$html2 = $article->getContext()->getOutput()->getHTML();
 		$this->assertEquals( $html, $html2 );
 	}
@@ -367,20 +367,14 @@ class ArticleTest extends ParserCacheTestBase {
 		$title = $this->getExistingTestPage()->getTitle();
 		$article = $this->newArticle( $title );
 		$this->editPage( $title, '== Hello ==' );
-		// here we only hit the main parser cache for now.
-		// TODO PageUpdaterFactory (which is used for the edit here) hardwires the legacy cache, should this
-		// adjusted?
-		$this->assertArrayEquals( [ 'pcache' ], $calls, true );
+		$this->assertArrayEquals( [ 'parsoid-pcache', 'parsoid-pcache' ], $calls, true );
 
 		$calls = [];
 		$article->view();
 		$this->assertArrayEquals( [
 			'postproc-parsoid-pcache', // first view, get postproc, miss
 			'postproc-parsoid-pcache', // creates worker to render the page
-			'parsoid-pcache', // first view, get pcache, miss
-			'parsoid-pcache', // first view, get pcache, check outdated cache (parsoid selective update)
-			'parsoid-pcache', // first view, get pcache, save to cache
-			'parsoid-pcache', // postproc, get primary from pcache, hit
+			'parsoid-pcache', // first view, get pcache, hit from derived data update
 			'postproc-parsoid-pcache', // first view, store postproc
 			'postproc-parsoid-pcache', // postprocess, compute cache key for report
 		], $calls, true );
@@ -449,20 +443,14 @@ class ArticleTest extends ParserCacheTestBase {
 		$article = $this->newArticle( $title );
 		$article->setContext( $context );
 		$this->editPage( $title, '== Hello, -{world}- ==' );
-		// here we only hit the main parser cache for now.
-		// TODO PageUpdaterFactory (which is used for the edit here) hardwires the legacy cache, should this
-		// adjusted?
-		$this->assertArrayEquals( [ 'pcache' ], $calls, true );
+		$this->assertArrayEquals( [ 'parsoid-pcache', 'parsoid-pcache' ], $calls, true );
 
 		$calls = [];
 		$article->view();
 		$expectedCallPattern = [
 			'postproc-parsoid-pcache', // first view, get postproc, miss
 			'postproc-parsoid-pcache', // creates worker to render the page
-			'parsoid-pcache', // first view, get pcache, miss
-			'parsoid-pcache', // first view, get pcache, check outdated cache (parsoid selective update)
-			'parsoid-pcache', // first view, get pcache, save to cache
-			'parsoid-pcache', // postproc, get primary from pcache, hit
+			'parsoid-pcache', // first view, get pcache, hit from derived data update
 			'postproc-parsoid-pcache', // first view, store postproc
 			'postproc-parsoid-pcache', // postprocess, compute cache key for report
 		];

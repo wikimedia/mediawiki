@@ -16,8 +16,8 @@ use MediaWiki\JobQueue\JobQueueGroup;
 use MediaWiki\Language\Language;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Page\PageIdentity;
+use MediaWiki\Page\ParserOutputAccess;
 use MediaWiki\Page\WikiPageFactory;
-use MediaWiki\Parser\ParserCache;
 use MediaWiki\Revision\RevisionRenderer;
 use MediaWiki\Revision\RevisionStore;
 use MediaWiki\Revision\SlotRoleRegistry;
@@ -56,7 +56,7 @@ class PageUpdaterFactory {
 	 * @param RevisionStore $revisionStore
 	 * @param RevisionRenderer $revisionRenderer
 	 * @param SlotRoleRegistry $slotRoleRegistry
-	 * @param ParserCache $parserCache
+	 * @param ParserOutputAccess $parserOutputAccess
 	 * @param JobQueueGroup $jobQueueGroup
 	 * @param Language $contLang
 	 * @param ILBFactory $loadbalancerFactory
@@ -79,7 +79,7 @@ class PageUpdaterFactory {
 		private readonly RevisionStore $revisionStore,
 		private readonly RevisionRenderer $revisionRenderer,
 		private readonly SlotRoleRegistry $slotRoleRegistry,
-		private readonly ParserCache $parserCache,
+		private readonly ParserOutputAccess $parserOutputAccess,
 		private readonly JobQueueGroup $jobQueueGroup,
 		private readonly Language $contLang,
 		private readonly ILBFactory $loadbalancerFactory,
@@ -196,7 +196,7 @@ class PageUpdaterFactory {
 			$this->revisionStore,
 			$this->revisionRenderer,
 			$this->slotRoleRegistry,
-			$this->parserCache,
+			$this->parserOutputAccess,
 			$this->jobQueueGroup,
 			$this->contLang,
 			$this->loadbalancerFactory,
