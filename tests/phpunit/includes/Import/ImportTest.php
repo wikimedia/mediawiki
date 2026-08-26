@@ -468,4 +468,65 @@ EOF
 		);
 	}
 
+	public static function provideInvalidLogTitle() {
+		return [
+			'empty logtitle' => [ '' ],
+			'colon-only logtitle' => [ ':' ],
+		];
+	}
+
+	/**
+	 * @dataProvider provideInvalidLogTitle
+	 * @param string $logTitle
+	 */
+	public function testLogEntryImportInvalidLogTitleDoesNotCrash( $logTitle ) {
+		$source = new ImportStringSource( <<<EOF
+<mediawiki xmlns="http://www.mediawiki.org/xml/export-0.11/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mediawiki.org/xml/export-0.11/ http://www.mediawiki.org/xml/export-0.11.xsd" version="0.11" xml:lang="en">
+
+	<logitem>
+		<id>1</id>
+		<timestamp>2008-10-23T00:00:02Z</timestamp>
+		<contributor>
+			<username>Wikimedian</username>
+			<id>12345</id>
+		</contributor>
+		<comment>test</comment>
+		<type>test</type>
+		<action>test</action>
+		<logtitle>$logTitle</logtitle>
+		<params>a:1:{s:3:"foo";s:3:"bar";}</params>
+	</logitem>
+
+</mediawiki>
+EOF
+		);
+
+		$performer = new UltimateAuthority( $this->getTestUser()->getUserIdentity() );
+		$services = $this->getServiceContainer();
+		$importer = $services->getWikiImporterFactory()->getWikiImporter( $source, $performer );
+
+		$notices = [];
+		$importer->setNoticeCallback( static function ( $msg, $params ) use ( &$notices ) {
+			$notices[] = [ $msg, $params ];
+		} );
+
+		// Should not throw TypeError (T434664); the item is skipped instead.
+		$importer->doImport();
+
+		$this->assertSame(
+			[ [ 'import-error-invalid', [ $logTitle ] ] ],
+			$notices,
+			"Invalid logtitle should trigger the existing import-error-invalid notice"
+		);
+
+		$result = $this->getDb()->newSelectQueryBuilder()
+			->from( 'logging' )
+			->where( [
+				'log_type' => 'test',
+				'log_action' => 'test',
+			] )
+			->fetchRowCount();
+		$this->assertSame( 0, $result, "Log entry with invalid logtitle was not imported" );
+	}
+
 }

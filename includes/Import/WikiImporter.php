@@ -808,7 +808,12 @@ class WikiImporter {
 		if ( isset( $logInfo['logtitle'] ) ) {
 			// @todo Using Title for non-local titles is a recipe for disaster.
 			// We should use ForeignTitle here instead.
-			$revision->setTitle( Title::newFromText( $logInfo['logtitle'] ) );
+			$logTitle = Title::newFromText( $logInfo['logtitle'] );
+			if ( $logTitle ) {
+				$revision->setTitle( $logTitle );
+			} else {
+				$this->notice( 'import-error-invalid', $logInfo['logtitle'] );
+			}
 		}
 
 		$revision->setNoUpdates( $this->mNoUpdates );
