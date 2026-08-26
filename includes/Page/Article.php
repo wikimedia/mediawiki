@@ -914,11 +914,14 @@ class Article implements Page {
 			$parsoidCacheWarmingEnabled = $this->getContext()->getConfig()
 				->get( MainConfigNames::ParsoidCacheConfig )['WarmParsoidParserCache'];
 
-			if ( $parsoidCacheWarmingEnabled ) {
+			if ( $parsoidCacheWarmingEnabled && !$parserOptions->getUseParsoid() ) {
 				$parsoidJobSpec = ParsoidCachePrewarmJob::newSpec(
 					$rev->getId(),
 					$this->getPage()->toPageRecord(),
-					[ 'causeAction' => 'view' ]
+					[
+						'causeAction' => 'view',
+						'options' => ParserOutputAccess::OPT_FOR_ARTICLE_VIEW,
+					]
 				);
 				$this->jobQueueGroup->lazyPush( $parsoidJobSpec );
 			}
