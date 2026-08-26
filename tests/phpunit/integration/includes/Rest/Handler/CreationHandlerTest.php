@@ -66,11 +66,6 @@ class CreationHandlerTest extends MediaWikiIntegrationTestCase {
 		$dummyModule = $this->getDummyApiModule( $apiMain, 'edit', $resultData, $throwException );
 
 		$handler->setApiMain( $apiMain );
-		$handler->overrideActionModule(
-			'edit',
-			'action',
-			$dummyModule
-		);
 
 		return $handler;
 	}

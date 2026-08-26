@@ -4,6 +4,7 @@ namespace MediaWiki\Rest\Validator;
 
 use MediaWiki\ParamValidator\TypeDef\ArrayDef;
 use MediaWiki\ParamValidator\TypeDef\NamespaceDef;
+use MediaWiki\ParamValidator\TypeDef\TagsDef;
 use MediaWiki\ParamValidator\TypeDef\TitleDef;
 use MediaWiki\ParamValidator\TypeDef\UserDef;
 use MediaWiki\Permissions\Authority;
@@ -98,6 +99,10 @@ class Validator {
 		'user' => [
 			'class' => UserDef::class,
 			'services' => [ 'UserIdentityLookup', 'TitleParser', 'UserNameUtils' ]
+		],
+		'tags' => [
+			'class' => TagsDef::class,
+			'services' => [ 'ChangeTagsStore' ],
 		],
 		'array' => [
 			'class' => ArrayDef::class,
@@ -337,6 +342,7 @@ class Validator {
 	}
 
 	private const PARAM_TYPE_SCHEMAS = [
+		'anything' => [ 'description' => 'anything' ], // NOTE: empty arrays get serialized as lists.
 		'boolean-param' => [ 'type' => 'boolean' ],
 		'enum-param' => [ 'type' => 'string' ],
 		'integer-param' => [ 'type' => 'integer' ],
@@ -352,6 +358,7 @@ class Validator {
 		'title-param' => [ 'type' => 'string', 'format' => 'mw-title' ],
 		'user-param' => [ 'type' => 'string', 'format' => 'mw-user' ],
 		'array-param' => [ 'type' => 'object' ],
+		'tags-param' => [ 'type' => 'string' ],
 	];
 
 	/**
@@ -420,23 +427,35 @@ class Validator {
 	public static function getParameterSchema( array $paramSetting ): array {
 		$type = $paramSetting[ ParamValidator::PARAM_TYPE ] ?? 'string';
 
-		if ( is_array( $type ) ) {
-			if ( $type === [] ) {
-				// Hack for empty enums. In path and query parameters,
-				// the empty string is often the same as "no value".
-				// TODO: generate a warning!
-				$type = [ '' ];
-			}
-
-			$schema = [
-				'type' => 'string',
-				'enum' => $type
-			];
-		} elseif ( isset( $paramSetting[ ArrayDef::PARAM_SCHEMA ] ) ) {
+		if ( isset( $paramSetting[ ArrayDef::PARAM_SCHEMA ] ) ) {
 			$schema = $paramSetting[ ArrayDef::PARAM_SCHEMA ];
 		} else {
-			// TODO: multi-value params?!
-			$schema = self::PARAM_TYPE_SCHEMAS["{$type}-param"] ?? [];
+			if ( is_array( $type ) ) {
+				if ( $type === [] ) {
+					// Hack for empty enums. In path and query parameters,
+					// the empty string is often the same as "no value".
+					// TODO: generate a warning!
+					$type = [ '' ];
+				}
+
+				$schema = [
+					'type' => 'string',
+					'enum' => $type
+				];
+			} else {
+				$schema = self::PARAM_TYPE_SCHEMAS["{$type}-param"]
+					?? self::PARAM_TYPE_SCHEMAS["anything"];
+			}
+
+			if ( $paramSetting[ ParamValidator::PARAM_ISMULTI ] ?? false ) {
+				$item = $schema;
+				$schema = [
+					'oneOf' => [
+						$item,
+						[ 'type' => 'array', 'items' => $item ],
+					],
+				];
+			}
 		}
 
 		if ( isset( $paramSetting[ ParamValidator::PARAM_DEFAULT ] ) ) {

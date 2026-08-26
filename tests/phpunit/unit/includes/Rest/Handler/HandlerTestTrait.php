@@ -36,10 +36,11 @@ trait HandlerTestTrait {
 	use SessionHelperTestTrait;
 
 	/**
-	 * Calls init() on the Handler, supplying a mock RouteUrlProvider and ResponseFactory.
+	 * Initializes the Handler, supplying a mock RouteUrlProvider and ResponseFactory.
+	 * If $request is not null, the handler will be initialized for execution.
 	 *
 	 * @param Handler $handler
-	 * @param RequestInterface $request
+	 * @param ?RequestInterface $request
 	 * @param array $config
 	 * @param HookContainer|array $hooks Hook container or array of hooks
 	 * @param Authority|null $authority
@@ -50,7 +51,7 @@ trait HandlerTestTrait {
 	 */
 	private function initHandler(
 		Handler $handler,
-		RequestInterface $request,
+		?RequestInterface $request,
 		$config = [],
 		$hooks = [],
 		?Authority $authority = null,
@@ -81,13 +82,6 @@ trait HandlerTestTrait {
 			$module = $this->newModule( [ 'router' => $router ] );
 		}
 
-		if ( !$request->hasBody()
-			&& in_array( $request->getMethod(), RequestInterface::BODY_METHODS )
-		) {
-			// Send an empty body if none was provided.
-			$request->setParsedBody( [] );
-		}
-
 		$authority ??= $this->mockAnonUltimateAuthority();
 		$hookContainer =
 			$hooks instanceof HookContainer ? $hooks : $this->createHookContainer( $hooks );
@@ -102,7 +96,17 @@ trait HandlerTestTrait {
 		$handler->initContext( $module, $config['path'] ?? 'test', $config );
 		$handler->initServices( $authority, $responseFactory, $hookContainer );
 		$handler->initSession( $session );
-		$handler->initForExecute( $request );
+
+		if ( $request ) {
+			if ( !$request->hasBody()
+				&& in_array( $request->getMethod(), RequestInterface::BODY_METHODS )
+			) {
+				// Send an empty body if none was provided.
+				$request->setParsedBody( [] );
+			}
+
+			$handler->initForExecute( $request );
+		}
 	}
 
 	/**

@@ -336,6 +336,42 @@ class ValidatorTest extends MediaWikiUnitTestCase {
 			],
 		];
 
+		yield 'tags parameter, multi-value' => [
+			[
+				ParamValidator::PARAM_TYPE => 'tags',
+				Validator::PARAM_SOURCE => 'query',
+				ParamValidator::PARAM_ISMULTI => true,
+			],
+			[
+				'schema' => [
+					'oneOf' => [
+						[ 'type' => 'string' ],
+						[ 'type' => 'array', 'items' => [ 'type' => 'string' ] ]
+					]
+				],
+				'required' => false,
+				'description' => 'test parameter',
+				'in' => 'query',
+				'name' => 'test',
+			]
+		];
+
+		yield 'tags parameter with PARAM_SCHEMA' => [
+			[
+				ParamValidator::PARAM_TYPE => 'tags',
+				Validator::PARAM_SOURCE => 'query',
+				ParamValidator::PARAM_ISMULTI => true, // should be ignored
+				ArrayDef::PARAM_SCHEMA => [ 'type' => 'array', 'items' => [ 'type' => 'string' ] ],
+			],
+			[
+				'schema' => [ 'type' => 'array', 'items' => [ 'type' => 'string' ] ],
+				'required' => false,
+				'description' => 'test parameter',
+				'in' => 'query',
+				'name' => 'test',
+			]
+		];
+
 		// Should not happen, but we shouldn't let things explode either.
 		yield 'timestamp, missing source, with example' => [
 			[

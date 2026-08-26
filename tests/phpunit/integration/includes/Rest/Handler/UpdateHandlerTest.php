@@ -90,15 +90,9 @@ class UpdateHandlerTest extends MediaWikiLangTestCase {
 		);
 
 		$apiMain = $this->getApiMain( $csrfSafe );
-		$dummyModule = $this->getDummyApiModule( $apiMain, 'edit', $resultData, $throwException );
+		$this->getDummyApiModule( $apiMain, 'edit', $resultData, $throwException );
 
 		$handler->setApiMain( $apiMain );
-		$handler->overrideActionModule(
-			'edit',
-			'action',
-			$dummyModule
-		);
-
 		return $handler;
 	}
 

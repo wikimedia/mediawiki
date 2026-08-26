@@ -413,6 +413,22 @@ abstract class Handler {
 	}
 
 	/**
+	 * Returns the http method for which this module was registered.
+	 * Useful for inspection of handlers in a context other than request
+	 * handling, e.g. while generating an OpenAPI spec.
+	 *
+	 * While handling a request, this would typically be the same
+	 * as $this->getRequest()->getMethod(). The notable exception is a handler
+	 * that was registered for GET being used to handle a HEAD request.
+	 *
+	 * @return string the HTTP method (lower case), or the empty string if
+	 *         initContext() has not been called on the handler.
+	 */
+	public function getHttpMethod(): string {
+		return strtolower( $this->config['method'] ?? '' );
+	}
+
+	/**
 	 * Get the ResponseFactory which can be used to generate Response objects.
 	 * This will raise a fatal error if initServices() has not been
 	 * called.

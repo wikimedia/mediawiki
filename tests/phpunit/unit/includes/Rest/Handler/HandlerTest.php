@@ -796,9 +796,19 @@ class HandlerTest extends MediaWikiUnitTestCase {
 	public function testGetConfig() {
 		$handler = $this->newHandler();
 		$config = [ 'foo' => 'bar' ];
-		$this->initHandler( $handler, new RequestData(), $config );
+		$this->initHandler( $handler, null, $config );
 
 		$this->assertSame( $config, $handler->getConfig() );
+	}
+
+	public function testGetHttpMethod() {
+		$handler = $this->newHandler();
+		$config = [ 'method' => 'POST' ];
+		$this->initHandler( $handler, null, $config );
+
+		// NOTE: We use lower case to be consistent with the OpenApi spec
+		// and module definion files.
+		$this->assertSame( 'post', $handler->getHttpMethod() );
 	}
 
 	public function testGetBodyValidator() {
@@ -916,7 +926,7 @@ class HandlerTest extends MediaWikiUnitTestCase {
 	public function testCsrfUnsafeSessionProviderRejection() {
 		$handler = $this->newHandler( [ 'requireSafeAgainstCsrf' ] );
 		$handler->method( 'requireSafeAgainstCsrf' )->willReturn( true );
-		$this->initHandler( $handler, new RequestData(), [], [], null, $this->getSession( false ) );
+		$this->initHandler( $handler, null, [], [], null, $this->getSession( false ) );
 
 		try {
 			$handler->checkSession();

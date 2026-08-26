@@ -57,7 +57,24 @@ trait ActionModuleBasedHandlerTestTrait {
 				}
 			);
 
+		$this->overrideActionModule( $main, $name, 'action', $module );
 		return $module;
+	}
+
+	/**
+	 * Overrides an action API module on the given ApiMain object.
+	 */
+	private function overrideActionModule( ApiMain $main, string $name, string $group, ApiBase $module ) {
+		$main->getModuleManager()->addModule(
+			$name,
+			$group,
+			[
+				'class' => get_class( $module ),
+				'factory' => static function () use ( $module ) {
+					return $module;
+				}
+			]
+		);
 	}
 
 	/**

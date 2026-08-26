@@ -116,7 +116,7 @@ abstract class EditHandler extends ActionModuleBasedHandler {
 	/**
 	 * @inheritDoc
 	 */
-	protected function throwHttpExceptionForActionModuleError( IApiMessage $msg, $statusCode = 400 ) {
+	protected function throwHttpExceptionForActionModuleError( IApiMessage $msg, $statusCode = 0 ) {
 		$code = $msg->getApiCode();
 
 		if ( $code === 'protectedpage' ) {

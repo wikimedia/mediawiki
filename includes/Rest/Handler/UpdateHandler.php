@@ -167,7 +167,7 @@ class UpdateHandler extends EditHandler {
 	/**
 	 * @inheritDoc
 	 */
-	protected function throwHttpExceptionForActionModuleError( IApiMessage $msg, $statusCode = 400 ) {
+	protected function throwHttpExceptionForActionModuleError( IApiMessage $msg, $statusCode = 0 ) {
 		$code = $msg->getApiCode();
 
 		// Provide a message instructing the client to provide the base revision ID for updates.
