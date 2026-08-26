@@ -2,6 +2,8 @@
 
 use MediaWiki\DAO\WikiAwareEntity;
 use MediaWiki\Logging\DatabaseLogEntry;
+use MediaWiki\Logging\LogEntryBase;
+use MediaWiki\Logging\LogPage;
 use MediaWiki\User\ActorStore;
 use MediaWiki\User\ActorStoreFactory;
 use MediaWiki\User\UserIdentity;
@@ -244,5 +246,50 @@ class DatabaseLogEntryTest extends MediaWikiIntegrationTestCase {
 		$logEntry = DatabaseLogEntry::newFromId( 9999, $mockDb );
 		$this->assertEquals( 'anotherwiki', $logEntry->getPerformerIdentity()->getWikiId() );
 		$this->assertEquals( 'anotherwiki', $logEntry->getTargetPage()->getWikiId() );
+	}
+
+	/**
+	 * @covers \MediaWiki\Logging\DatabaseLogEntry::getAsLogRecord
+	 */
+	public function testGetLogRecord() {
+		$logEntry = DatabaseLogEntry::newFromRow( [
+			'log_id' => 123,
+			'log_type' => 'delete',
+			'log_action' => 'restore',
+			'log_timestamp' => '20200909001122',
+			'log_namespace' => NS_MAIN,
+			'log_title' => 'TestPage',
+			'log_params' => LogEntryBase::makeParamBlob( [
+				'4::color' => 'blue',
+				'associated_rev_id' => 1717,
+			] ),
+			'log_deleted' => LogPage::DELETED_COMMENT,
+			'user_id' => 42,
+			'log_user_text' => 'Testing',
+			'log_actor' => 24,
+			'log_comment_text' => 'test!',
+			'log_comment_data' => null,
+		] );
+
+		$record = $logEntry->getAsLogRecord();
+
+		$this->assertSame( 123, $record->getId() );
+		$this->assertSame( 'delete', $record->getType() );
+		$this->assertSame( 'restore', $record->getSubtype() );
+		$this->assertSame( 'delete/restore', $record->getFullType() );
+		$this->assertTrue(
+			$logEntry->getPerformerIdentity()->equals( $record->getPerformer() )
+		);
+		$this->assertTrue(
+			$logEntry->getTargetPage()->isSamePageAs( $record->getTarget() )
+		);
+		$this->assertSame( '20200909001122', $record->getTimestamp() );
+		$this->assertSame( 'test!', $record->getComment() );
+		$this->assertSame( [ '4::color' => 'blue' ], $record->getParameters() );
+		$this->assertSame( LogPage::DELETED_COMMENT, $record->getDeleted() );
+		$this->assertTrue( $record->isDeleted( LogPage::DELETED_COMMENT ) );
+		$this->assertSame( 1717, $record->getAssociatedRevId() );
+		$this->assertFalse( $record->isLegacy() );
+		$this->assertSame( WikiAwareEntity::LOCAL, $record->getWikiId() );
 	}
 }

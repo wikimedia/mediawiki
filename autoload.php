@@ -2237,6 +2237,7 @@ $wgAutoloadLocalClasses = [
 	'MediaWiki\\Logging\\LogFormatter' => __DIR__ . '/includes/Logging/LogFormatter.php',
 	'MediaWiki\\Logging\\LogFormatterFactory' => __DIR__ . '/includes/Logging/LogFormatterFactory.php',
 	'MediaWiki\\Logging\\LogPage' => __DIR__ . '/includes/Logging/LogPage.php',
+	'MediaWiki\\Logging\\LogRecord' => __DIR__ . '/includes/Logging/LogRecord.php',
 	'MediaWiki\\Logging\\LoggingSelectQueryBuilder' => __DIR__ . '/includes/Logging/LoggingSelectQueryBuilder.php',
 	'MediaWiki\\Logging\\ManualLogEntry' => __DIR__ . '/includes/Logging/ManualLogEntry.php',
 	'MediaWiki\\Logging\\MergeLogFormatter' => __DIR__ . '/includes/Logging/MergeLogFormatter.php',

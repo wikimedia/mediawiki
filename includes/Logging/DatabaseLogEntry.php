@@ -21,6 +21,7 @@ use MediaWiki\User\UserIdentity;
 use MediaWiki\WikiMap\WikiMap;
 use stdClass;
 use Wikimedia\Rdbms\IReadableDatabase;
+use Wikimedia\Timestamp\TimestampException;
 use Wikimedia\Timestamp\TimestampFormat as TS;
 
 /**
@@ -263,6 +264,37 @@ class DatabaseLogEntry extends LogEntryBase {
 	/** @inheritDoc */
 	public function getDeleted() {
 		return $this->row->log_deleted;
+	}
+
+	/**
+	 * Get an immutable value object representing this log entry.
+	 *
+	 * Unlike this class, the returned object is not bound to the database schema
+	 * and is safe to use outside the context of LogFormatter, e.g. as part of a
+	 * domain event.
+	 *
+	 * @note This method is a stopgap until a LogStore service is available to
+	 *       construct LogRecord objects directly.
+	 *
+	 * @throws TimestampException
+	 * @since 1.47
+	 * @unstable
+	 */
+	public function getAsLogRecord(): LogRecord {
+		return new LogRecord(
+			$this->getId(),
+			$this->getType(),
+			$this->getSubtype(),
+			$this->getPerformerIdentity(),
+			$this->getTargetPage(),
+			$this->getTimestamp(),
+			$this->getComment(),
+			$this->getParameters(),
+			$this->getDeleted(),
+			$this->getAssociatedRevId(),
+			$this->isLegacy(),
+			$this->wikiId
+		);
 	}
 }
 

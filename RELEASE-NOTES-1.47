@@ -179,6 +179,8 @@ For notes on 1.46.x and older releases, see HISTORY.
   ::getDisplayTitleParts() store/fetch the display title as separate localized
   namespace, separator, and main title pieces, so that skins can target
   them individually; see Parser::formatPageTitle().
+* (T427815) Add MediaWiki\Logging\LogRecord, a new immutable value object
+  representing an entry in the logging table.
 * …
 
 === External library changes in 1.47 ===
