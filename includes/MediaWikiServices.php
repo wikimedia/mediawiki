@@ -1781,6 +1781,7 @@ class MediaWikiServices extends ServiceContainer {
 
 	/**
 	 * @since 1.30
+	 * @deprecated since 1.47 Use ParserOutputAccess instead
 	 */
 	public function getParserCache(): ParserCache {
 		return $this->getService( 'ParserCache' );

@@ -1852,6 +1852,9 @@ return [
 	},
 
 	'ParserCache' => static function ( MediaWikiServices $services ): ParserCache {
+		// MediaWiki has quite a number of parser caches for various purposes.
+		// Using this service is highly discouraged; you should use
+		// ParserOutputAccess instead.
 		return $services->getParserCacheFactory()
 			->getParserCache( ParserCacheFactory::DEFAULT_NAME );
 	},

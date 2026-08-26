@@ -689,6 +689,8 @@ because of Phabricator reports.
   - buildTagFilterSelector: use ChangeTagsFormatter::buildTagFilter instead
 * Database::getCacheSetOptions() has been hard-deprecated and now emits
   deprecation warnings.
+* The 'ParserCache' service has been deprecated. Use ParserOutputAccess
+  instead.
 * Router::getModuleForPath() was hard-deprecated.
   Use Router::getModuleForRequest() instead.
 * (T408666) The TitleIsAlwaysKnown hook has been deprecated. Use the
