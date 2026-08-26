@@ -59,6 +59,51 @@ class UrlUtilsTest extends MediaWikiUnitTestCase {
 		$this->assertSame( $expected, $urlUtils->getServer( $defaultProto ) );
 	}
 
+	public static function provideGetCanonicalServer() {
+		yield 'wgServer HTTP' => [
+			[
+				UrlUtils::SERVER => 'http://example.org',
+				UrlUtils::CANONICAL_SERVER => false,
+				UrlUtils::INTERNAL_SERVER => false,
+			],
+			'http://example.org',
+		];
+		yield 'wgServer HTTPS' => [
+			[
+				UrlUtils::SERVER => 'https://example.org',
+				UrlUtils::CANONICAL_SERVER => false,
+				UrlUtils::INTERNAL_SERVER => false,
+			],
+			'https://example.org',
+		];
+		yield 'wgServer protocol-relative' => [
+			[
+				UrlUtils::SERVER => '//example.org',
+				UrlUtils::CANONICAL_SERVER => false,
+				UrlUtils::INTERNAL_SERVER => false,
+			],
+			'http://example.org',
+		];
+		yield 'wgServer protocol-relative and HTTPS wgCanonicalServer' => [
+			[
+				UrlUtils::SERVER => '//example.org',
+				UrlUtils::SERVER => 'https://example.org',
+				UrlUtils::INTERNAL_SERVER => false,
+			],
+			'https://example.org',
+		];
+	}
+
+	/**
+	 * @dataProvider provideGetCanonicalServer
+	 * @param array $options
+	 * @param string $expected
+	 */
+	public function testGetCanonicalServer( array $options, string $expected ): void {
+		$urlUtils = new UrlUtils( $options );
+		$this->assertSame( $expected, $urlUtils->getCanonicalServer() );
+	}
+
 	/**
 	 * @dataProvider \MediaWiki\Tests\Unit\Utils\UrlUtilsProviders::provideAssemble
 	 */

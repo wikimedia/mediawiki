@@ -48,8 +48,12 @@ class UrlUtils {
 
 	/**
 	 * @stable to call
-	 * @param array $options All keys are optional, but if you omit SERVER then calling expand()
-	 *   (and getServer(), expandIRI(), and matchesDomainList()) will throw. Recognized keys:
+	 * @param array $options All keys are optional, but SERVER is required in practice as otherwise
+	 *   expand(), getServer(), expandIRI(), and matchesDomainList() may throw. The optionality is
+	 *   for backwards-compatibile access to UrlUtils::assemble (was ported from static global
+	 *   function to instance method), and to ease stubbing in unit tests.
+	 *
+	 * Recognized keys:
 	 *   * self::SERVER: The protocol and server portion of the URLs to expand, with no other parts
 	 *     (port, path, etc.). Example: 'https://example.com'. Protocol-relative URLs are
 	 *     allowed.
