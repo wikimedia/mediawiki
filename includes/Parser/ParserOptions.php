@@ -130,6 +130,7 @@ class ParserOptions {
 		'allowTOC',
 		'injectTOC',
 		'includeDebugInfo',
+		'collapsibleSections',
 		'enableSectionEditLinks',
 		'wrapperDivClass',
 		'deduplicateStyles',

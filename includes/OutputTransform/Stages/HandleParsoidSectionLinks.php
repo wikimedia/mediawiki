@@ -73,7 +73,7 @@ class HandleParsoidSectionLinks extends ContentDOMTransformStage {
 		// adding a <span> with the section edit link
 		// inside that <div>
 		//
-		// If COLLAPSIBLE_SECTIONS is set, then we also wrap a <div>
+		// If ::getCollapsibleSections() is set, then we also wrap a <div>
 		// around the section *contents*.
 		$toc = $po->getTOCData();
 		$sections = ( $toc !== null ) ? $toc->getSections() : [];
@@ -233,7 +233,8 @@ class HandleParsoidSectionLinks extends ContentDOMTransformStage {
 			$div->insertBefore( $h, $divFirstChild );
 		}
 		// Create collapsible section wrapper if requested.
-		if ( $po->getOutputFlag( ParserOutputFlags::COLLAPSIBLE_SECTIONS ) ) {
+		if ( $popts->getCollapsibleSections() ) {
+			$po->setOutputFlag( ParserOutputFlags::COLLAPSIBLE_SECTIONS );
 			$contentsDiv = $df->ownerDocument->createElement( 'div' );
 			DOMCompat::getClassList( $contentsDiv )->add(
 				'mw-collapsible-content'

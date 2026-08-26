@@ -128,7 +128,7 @@ class HandleParsoidSectionLinksTest extends OutputTransformStageTestBase {
 		yield 'Standard Parsoid output: collapsible with links' => [
 			self::newParserOutput( $input, $pOpts, $toc, $input ),
 			$pOpts, $options,
-			self::newParserOutput( $expected, $pOpts, $toc, $input )
+			self::newParserOutput( $expected, $pOpts, $toc, $input, 'collapsible-sections' )
 		];
 
 		// Test that an existing heading <div> wrapper is reused (T357826)
@@ -148,7 +148,7 @@ class HandleParsoidSectionLinksTest extends OutputTransformStageTestBase {
 		yield 'Output with existing div: collapsible with links' => [
 			self::newParserOutput( $input, $pOpts, $toc, $input ),
 			$pOpts, $options,
-			self::newParserOutput( $expected, $pOpts, $toc, $input )
+			self::newParserOutput( $expected, $pOpts, $toc, $input, 'collapsible-sections' )
 		];
 
 		// Empty string isn't a valid id

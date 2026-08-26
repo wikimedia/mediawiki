@@ -43,7 +43,6 @@ class ParsoidParserTest extends MediaWikiIntegrationTestCase {
 			$output->getTitle()->isSameLinkAs( $args[1] )
 		);
 		$usedOptions = [
-			'collapsibleSections',
 			'disableContentConversion',
 			'interfaceMessage',
 			'isMessage',
@@ -55,6 +54,7 @@ class ParsoidParserTest extends MediaWikiIntegrationTestCase {
 		$this->assertEqualsCanonicalizing( $usedOptions, $output->getUsedOptions() );
 
 		$usedOptions = array_merge( $usedOptions, [
+			'collapsibleSections',
 			'enableSectionEditLinks', 'userlang',
 			'disableTitleConversion', 'targetLanguage', 'variant'
 		] );
@@ -96,7 +96,6 @@ class ParsoidParserTest extends MediaWikiIntegrationTestCase {
 			$output->getTitle()->isSameLinkAs( $pageTitle )
 		);
 		$usedOptions = [
-			'collapsibleSections',
 			'disableContentConversion',
 			'interfaceMessage',
 			'isMessage',
@@ -109,6 +108,7 @@ class ParsoidParserTest extends MediaWikiIntegrationTestCase {
 
 		$pipeline = MediaWikiServices::getInstance()->getDefaultOutputPipeline();
 		$usedOptions = array_merge( $usedOptions, [
+			'collapsibleSections',
 			'enableSectionEditLinks', 'userlang',
 			'disableTitleConversion', 'targetLanguage', 'variant'
 		] );

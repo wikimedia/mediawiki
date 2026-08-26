@@ -128,7 +128,7 @@ enum ParserOutputFlags: string {
 	case NO_SECTION_EDIT_LINKS = 'no-section-edit-links';
 
 	/**
-	 * Wrap section contents to allow collapsing them?
+	 * Are section contents wrapped to allow collapsing them?
 	 *
 	 * This reflects the ParserOptions::getCollapsibleSections()
 	 * flag.

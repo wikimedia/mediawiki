@@ -52,7 +52,6 @@ class WikitextContentHandlerIntegrationTest extends TextContentHandlerIntegratio
 
 	public static function provideGetParserOutput() {
 		$commonOptions = [
-			'collapsibleSections',
 			'disableContentConversion',
 			'interfaceMessage',
 			'isPreview',
@@ -177,6 +176,7 @@ class WikitextContentHandlerIntegrationTest extends TextContentHandlerIntegratio
 					],
 				],
 				'UsedOptions' => array_merge( $commonParsoidOptions, [
+					'collapsibleSections',
 					'userlang', 'enableSectionEditLinks',
 				] ),
 			],

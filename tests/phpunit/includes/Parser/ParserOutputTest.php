@@ -1573,19 +1573,15 @@ class ParserOutputTest extends MediaWikiLangTestCase {
 		$this->assertSame( 'mw-parser-output', $pOutput->getWrapperDivClass() );
 		$this->assertFalse( $pOutput->getOutputFlag( ParserOutputFlags::IS_PREVIEW ) );
 		$this->assertTrue( $pOutput->isCacheable() );
-		$this->assertFalse( $pOutput->getOutputFlag( ParserOutputFlags::COLLAPSIBLE_SECTIONS ) );
 
 		// set the various parser options and verify in parser output
 		$pOptions->setWrapOutputClass( 'test-wrapper' );
 		$pOptions->setIsPreview( true );
-		$pOptions->setSuppressSectionEditLinks();
-		$pOptions->setCollapsibleSections();
 		$pOutput = new ParserOutput;
 		$pOutput->setFromParserOptions( $pOptions );
 		$this->assertEquals( 'test-wrapper', $pOutput->getWrapperDivClass() );
 		$this->assertTrue( $pOutput->getOutputFlag( ParserOutputFlags::IS_PREVIEW ) );
 		$this->assertFalse( $pOutput->isCacheable() );
 		$this->assertSame( 'preview', $pOutput->getCacheExpirySource() );
-		$this->assertTrue( $pOutput->getOutputFlag( ParserOutputFlags::COLLAPSIBLE_SECTIONS ) );
 	}
 }

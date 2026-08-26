@@ -490,7 +490,6 @@ class ParserOptionsTest extends MediaWikiLangTestCase {
 	public function testAllCacheVaryingOptions() {
 		$this->setTemporaryHook( 'ParserOptionsRegister', HookContainer::NOOP );
 		$this->assertSame( [
-			'collapsibleSections',
 			'dateformat', 'postproc', 'printable',
 			'thumbsize', 'useParsoid', 'userlang',
 		], array_values( ParserOptions::allCacheVaryingOptions() ) );
@@ -514,7 +513,6 @@ class ParserOptionsTest extends MediaWikiLangTestCase {
 			];
 		} );
 		$this->assertSame( [
-			'collapsibleSections',
 			'dateformat', 'foo', 'postproc', 'printable',
 			'thumbsize', 'useParsoid', 'userlang',
 		], array_values( ParserOptions::allCacheVaryingOptions() ) );

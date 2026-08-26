@@ -2640,11 +2640,6 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 			$this->addWrapperDivClass( $class );
 		}
 
-		// Record whether we should wrap sections for collapsing them
-		if ( $parserOptions->getCollapsibleSections() ) {
-			$this->setOutputFlag( ParserOutputFlags::COLLAPSIBLE_SECTIONS );
-		}
-
 		// Record whether this is a preview parse in the output (T341010)
 		if ( $parserOptions->getIsPreview() ) {
 			$this->setOutputFlag( ParserOutputFlags::IS_PREVIEW, true );
