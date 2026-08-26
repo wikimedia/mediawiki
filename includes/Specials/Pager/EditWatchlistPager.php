@@ -23,6 +23,7 @@ use MediaWiki\Title\Title;
 use MediaWiki\Utils\MWTimestamp;
 use MediaWiki\Watchlist\WatchedItem;
 use MediaWiki\Watchlist\WatchedItemStoreInterface;
+use Wikimedia\Codex\Localization\MediaWikiLocalization;
 use Wikimedia\Codex\Utility\Codex;
 use Wikimedia\Rdbms\FakeResultWrapper;
 use Wikimedia\Rdbms\IResultWrapper;
@@ -358,7 +359,7 @@ class EditWatchlistPager extends CodexTablePager {
 		);
 
 		// Removal button. Will be replaced by the EditWatchlistDialog.vue app.
-		$removalButton = ( new Codex() )->button()
+		$removalButton = ( new Codex( new MediaWikiLocalization( $this->getContext() ) ) )->button()
 			->setAttributes( array_merge(
 				[ 'class' => 'mw-editwatchlist-remove-selected' ],
 				Linker::tooltipAndAccesskeyAttribs( 'watchlistedit-normal-submit' )

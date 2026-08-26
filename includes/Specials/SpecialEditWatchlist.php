@@ -32,6 +32,7 @@ use MediaWiki\Watchlist\WatchlistLabelStore;
 use MediaWiki\Watchlist\WatchlistManager;
 use MediaWiki\Watchlist\WatchlistSpecialPage;
 use Wikimedia\Codex\Component\HtmlSnippet;
+use Wikimedia\Codex\Localization\MediaWikiLocalization;
 use Wikimedia\Codex\Utility\Codex;
 
 /**
@@ -323,9 +324,9 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 
 	private function displayFormSubmitSuccessMessage( string $successMessage ) {
 		$output = $this->getOutput();
-		$msgHtml = ( new Codex() )->message()
+		$msgHtml = ( new Codex( new MediaWikiLocalization( $this->getContext() ) ) )->message()
 			->setType( 'success' )
-			->setContentHtml( new HtmlSnippet( $successMessage, [] ) )
+			->setContentHtml( new HtmlSnippet( $successMessage ) )
 			->build()
 			->getHtml();
 		$output->addHTML( $msgHtml );

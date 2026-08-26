@@ -19,6 +19,7 @@ use MediaWiki\Watchlist\WatchlistLabelStore;
 use MediaWiki\Watchlist\WatchlistSpecialPage;
 use StatusValue;
 use Wikimedia\Codex\Builder\TableBuilder;
+use Wikimedia\Codex\Localization\MediaWikiLocalization;
 use Wikimedia\Codex\Utility\Codex;
 
 /**
@@ -306,7 +307,7 @@ class SpecialWatchlistLabels extends UnlistedSpecialPage {
 	 * Show the table of all labels.
 	 */
 	private function showTable() {
-		$codex = new Codex();
+		$codex = new Codex( new MediaWikiLocalization( $this->getContext() ) );
 		$this->getOutput()->addModules( 'mediawiki.special.watchlistlabels' );
 		$this->getOutput()->addModuleStyles( 'mediawiki.special.watchlistlabels.styles' );
 		$this->showSuccessMessage();
