@@ -927,12 +927,6 @@ $wgDjvuOutputExtension = null;
 $wgEmergencyContact = null;
 
 /**
- * Config variable stub for the RestTermsOfServiceUrl setting, for use by phpdoc and IDEs.
- * @see MediaWiki\MainConfigSchema::RestTermsOfServiceUrl
- */
-$wgRestTermsOfServiceUrl = null;
-
-/**
  * Config variable stub for the PasswordSender setting, for use by phpdoc and IDEs.
  * @see MediaWiki\MainConfigSchema::PasswordSender
  */
@@ -4362,6 +4356,12 @@ $wgRestModuleOverrides = null;
  * @see MediaWiki\MainConfigSchema::RestExternalModules
  */
 $wgRestExternalModules = null;
+
+/**
+ * Config variable stub for the RestTermsOfServiceUrl setting, for use by phpdoc and IDEs.
+ * @see MediaWiki\MainConfigSchema::RestTermsOfServiceUrl
+ */
+$wgRestTermsOfServiceUrl = null;
 
 /**
  * Config variable stub for the MaxShellMemory setting, for use by phpdoc and IDEs.

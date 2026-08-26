@@ -347,7 +347,6 @@ return [
 			'DjvuPostProcessor' => 'pnmtojpeg',
 			'DjvuOutputExtension' => 'jpg',
 			'EmergencyContact' => false,
-			'RestTermsOfServiceUrl' => null,
 			'PasswordSender' => false,
 			'NoReplyAddress' => false,
 			'EnableEmail' => true,
@@ -2716,6 +2715,7 @@ return [
 			],
 			'RestExternalModules' => [
 			],
+			'RestTermsOfServiceUrl' => null,
 			'MaxShellMemory' => 307200,
 			'MaxShellFileSize' => 102400,
 			'MaxShellTime' => 180,
@@ -2912,10 +2912,6 @@ return [
 				'null',
 			],
 			'DjvuPostProcessor' => [
-				'string',
-				'null',
-			],
-			'RestTermsOfServiceUrl' => [
 				'string',
 				'null',
 			],
@@ -3269,6 +3265,10 @@ return [
 			],
 			'RestModuleOverrides' => 'object',
 			'RestExternalModules' => 'object',
+			'RestTermsOfServiceUrl' => [
+				'string',
+				'null',
+			],
 			'ShellRestrictionMethod' => [
 				'string',
 				'boolean',

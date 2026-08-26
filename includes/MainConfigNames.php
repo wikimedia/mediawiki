@@ -942,12 +942,6 @@ class MainConfigNames {
 	public const EmergencyContact = 'EmergencyContact';
 
 	/**
-	 * Name constant for the RestTermsOfServiceUrl setting, for use with Config::get()
-	 * @see MainConfigSchema::RestTermsOfServiceUrl
-	 */
-	public const RestTermsOfServiceUrl = 'RestTermsOfServiceUrl';
-
-	/**
 	 * Name constant for the PasswordSender setting, for use with Config::get()
 	 * @see MainConfigSchema::PasswordSender
 	 */
@@ -4377,6 +4371,12 @@ class MainConfigNames {
 	 * @see MainConfigSchema::RestExternalModules
 	 */
 	public const RestExternalModules = 'RestExternalModules';
+
+	/**
+	 * Name constant for the RestTermsOfServiceUrl setting, for use with Config::get()
+	 * @see MainConfigSchema::RestTermsOfServiceUrl
+	 */
+	public const RestTermsOfServiceUrl = 'RestTermsOfServiceUrl';
 
 	/**
 	 * Name constant for the MaxShellMemory setting, for use with Config::get()

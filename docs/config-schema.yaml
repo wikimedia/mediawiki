@@ -1642,14 +1642,6 @@ config-schema:
         description: |-
             Site admin email address.
             Defaults to "wikiadmin@$wgServerName" (in Setup.php).
-    RestTermsOfServiceUrl:
-        default: null
-        type:
-            - string
-            - 'null'
-        description: |-
-            URL to use for the OpenAPI termsOfService field in the REST API.
-            Defaults to null, so the field is omitted unless a wiki explicitly configures it.
     PasswordSender:
         default: false
         description: |-
@@ -8129,6 +8121,16 @@ config-schema:
             "External" modules are implemented outside MediaWiki and its extensions.
             Listing them here allows them to appear in /discovery and the REST Sandbox.
             @unstable Introduced in 1.47. We may adjust this as we refine this functionality.
+    RestTermsOfServiceUrl:
+        default: null
+        type:
+            - string
+            - 'null'
+        description: |-
+            URL to use for the OpenAPI termsOfService field in the REST API.
+            Defaults to null, which means the termsOfService field is omitted.
+            @see \MediaWiki\Rest\Handler\DiscoveryHandler
+            @since 1.47
     MaxShellMemory:
         default: 307200
         description: 'Maximum amount of virtual memory available to shell processes under linux, in KiB.'
