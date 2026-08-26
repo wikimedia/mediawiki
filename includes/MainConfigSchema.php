@@ -7412,6 +7412,14 @@ class MainConfigSchema {
 	 * MediaWiki currently takes the second option. This setting configures the
 	 * "X seconds".
 	 *
+	 * A rolling window can also be configured, where each time the user takes an action, that
+	 * resets the clock for that action. Setting the reauthentication time for an action to an array
+	 * like `[ X, Y ]` will allow the action if the user either reauthenticated within the last
+	 * X seconds, or if they previously took the action within the last X seconds and
+	 * reauthenticated in the last Y seconds. In other words, it gives the user an initial window
+	 * of X seconds, and restarts the clock every time they take the action again, but doesn't allow
+	 * the total time between reauthentications to exceed Y seconds.
+	 *
 	 * This allows for configuring different time frames for different
 	 * "operations". The operations used in MediaWiki core include:
 	 * - LinkAccounts
@@ -7434,7 +7442,7 @@ class MainConfigSchema {
 	public const ReauthenticateTime = [
 		'default' => [ 'default' => 3600, ],
 		'type' => 'map',
-		'additionalProperties' => [ 'type' => 'integer', ],
+		'additionalProperties' => [ 'type' => 'integer|list', ],
 	];
 
 	/**

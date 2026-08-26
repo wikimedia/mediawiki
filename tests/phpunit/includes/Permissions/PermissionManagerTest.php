@@ -1405,10 +1405,16 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 		$user = $this->getTestUser( 'interface-admin' )->getUser();
 		$siteJsPage = Title::makeTitle( NS_MEDIAWIKI, 'Foo.js' );
 		$operationStatus = AuthManager::SEC_REAUTH;
+		$expectingDone = false;
 		$mockAuthManager = $this->createMock( AuthManager::class );
 		$mockAuthManager->method( 'securitySensitiveOperationStatus' )
 			->willReturnCallback( static function () use ( &$operationStatus ) {
 				return $operationStatus;
+			} );
+		$mockAuthManager->method( 'securitySensitiveOperationDone' )
+			->willReturnCallback( function ( $operation ) use ( &$expectingDone ) {
+				$this->assertTrue( $expectingDone, 'securitySensitiveOperationDone should not be called when rigor is not RIGOR_SECURE or status is not SEC_OK' );
+				$this->assertSame( 'editsitejscss', $operation );
 			} );
 		// Set up the mock so that $authManager->getRequest()->getSession()->getUser() returns $user
 		$mockSession = $this->createMock( Session::class );
@@ -1440,7 +1446,13 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 
 		// Test that operations are allowed when the user has reauthenticated
 		$operationStatus = AuthManager::SEC_OK;
+		// Verify that securitySensitiveOperationDone() is only called in this case, and not in other cases
+		$expectingDone = true;
+		$mockAuthManager->expects( $this->once() )
+			->method( 'securitySensitiveOperationDone' )
+			->with( 'editsitejscss' );
 		$result = $permissionManager->getPermissionStatus( 'edit', $user, $siteJsPage, PermissionManager::RIGOR_SECURE );
+		$expectingDone = false;
 		$this->assertStatusGood( $result, 'RIGOR_SECURE check is OK when user has reauthenticated' );
 		$this->assertNull( $result->getReauthOperation(), 'RIGOR_SECURE check sets reauth operation is set' );
 

@@ -479,6 +479,7 @@ abstract class SpecialPage implements MessageLocalizer {
 
 		$securityStatus = $this->getAuthManager()->securitySensitiveOperationStatus( $level );
 		if ( $securityStatus === AuthManager::SEC_OK ) {
+			$this->getAuthManager()->securitySensitiveOperationDone( $level );
 			$uniqueId = $request->getVal( 'postUniqueId' );
 			if ( $uniqueId ) {
 				$key .= ':' . $uniqueId;

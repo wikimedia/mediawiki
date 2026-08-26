@@ -227,6 +227,8 @@ abstract class AuthManagerSpecialPage extends SpecialPage {
 			if ( $securityStatus !== AuthManager::SEC_OK ) {
 				throw new ErrorPageError( 'cannotauth-not-allowed-title', 'cannotauth-not-allowed' );
 			}
+
+			$this->getAuthManager()->securitySensitiveOperationDone( $securityLevel );
 		}
 
 		$uniqueId = $request->getVal( 'authUniqueId' );

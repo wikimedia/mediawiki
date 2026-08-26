@@ -105,6 +105,7 @@ class ApiAuthManagerHelper {
 		$status = $this->authManager->securitySensitiveOperationStatus( $operation );
 		switch ( $status ) {
 			case AuthManager::SEC_OK:
+				$this->authManager->securitySensitiveOperationDone( $operation );
 				return;
 
 			case AuthManager::SEC_REAUTH:

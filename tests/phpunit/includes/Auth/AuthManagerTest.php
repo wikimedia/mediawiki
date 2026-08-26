@@ -549,6 +549,51 @@ class AuthManagerTest extends MediaWikiIntegrationTestCase {
 				AuthManager::SEC_REAUTH,
 				$this->manager->securitySensitiveOperationStatus( 'test' )
 			);
+
+			// Rolling window
+			$this->config->set( MainConfigNames::ReauthenticateTime, [
+				'default' => 10,
+				'rolling' => [ 5, 60 ]
+			] );
+			// Recent enough to pass
+			$session->set( 'AuthManager:lastAuthTimestamps', [ 'rolling' => time() - 3 ] );
+			$this->assertSame(
+				AuthManager::SEC_OK,
+				$this->manager->securitySensitiveOperationStatus( 'rolling' )
+			);
+			// Not recent enough to pass
+			$session->set( 'AuthManager:lastAuthTimestamps', [ 'rolling' => time() - 10 ] );
+			$this->assertSame(
+				AuthManager::SEC_REAUTH,
+				$this->manager->securitySensitiveOperationStatus( 'rolling' )
+			);
+			// Reauth not recent enough, but action recent enough
+			$session->set( 'AuthManager:lastActionTimestamps', [ 'rolling' => time() - 3 ] );
+			$this->assertSame(
+				AuthManager::SEC_OK,
+				$this->manager->securitySensitiveOperationStatus( 'rolling' )
+			);
+			// Reauth not recent enough and action not recent enough
+			$session->set( 'AuthManager:lastActionTimestamps', [ 'rolling' => time() - 7 ] );
+			$this->assertSame(
+				AuthManager::SEC_REAUTH,
+				$this->manager->securitySensitiveOperationStatus( 'rolling' )
+			);
+			// Action recent enough, but reauth not recent enough
+			$session->set( 'AuthManager:lastActionTimestamps', [ 'rolling' => time() - 3 ] );
+			$session->set( 'AuthManager:lastAuthTimestamps', [ 'rolling' => time() - 65 ] );
+			$this->assertSame(
+				AuthManager::SEC_REAUTH,
+				$this->manager->securitySensitiveOperationStatus( 'rolling' )
+			);
+			// Action not recent enough, but reauth recent enough
+			$session->set( 'AuthManager:lastActionTimestamps', [ 'rolling' => time() - 65 ] );
+			$session->set( 'AuthManager:lastAuthTimestamps', [ 'rolling' => time() - 3 ] );
+			$this->assertSame(
+				AuthManager::SEC_OK,
+				$this->manager->securitySensitiveOperationStatus( 'rolling' )
+			);
+
 		} else {
 			$allowIfCannotReauth = true;
 			$this->assertEquals(

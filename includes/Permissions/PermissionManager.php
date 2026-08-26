@@ -505,6 +505,18 @@ class PermissionManager {
 			}
 		}
 
+		// If RIGOR_SECURE was used and the permission check was successful, assume that the user
+		// is about to take the action, and extend their reauthentication window for any
+		// reauth operations that were checked
+		if ( $status->isGood() && $rigor === self::RIGOR_SECURE ) {
+			// FIXME move securitySensitiveOperationStatus to Session or SessionBackend, so that we
+			// can use it here. We can't dependency-inject AuthManager because of a circular dependency.
+			$authManager = MediaWikiServices::getInstance()->getAuthManager();
+			foreach ( $status->getCheckedReauthOperations() as $operation ) {
+				$authManager->securitySensitiveOperationDone( $operation );
+			}
+		}
+
 		// Clone the status to prevent users of this hook from modifying the original
 		$this->hookRunner->onPermissionStatusAudit( $page, $user, $action, $rigor, clone $status );
 
@@ -1560,6 +1572,10 @@ class PermissionManager {
 	 * @param bool $detailedPermissionErrors If true, use a detailed error message that explains
 	 *   which groups the user needs to be in to be allowed to take the action. If false, use a
 	 *   generic "not allowed" error message ('badaccess-group0')
+	 * @param bool $recordSecuritySensitiveOperation If this is true, and $rigor is RIGOR_SECURE,
+	 *   and the permission check was successful, call AuthManager::securitySensitiveOperationDone()
+	 *   for any reauthentication operations that were checked. This should be set to true if the
+	 *   caller is going to perform the action if the check is successful.
 	 * @return PermissionStatus
 	 * @since 1.47
 	 */
@@ -1568,6 +1584,7 @@ class PermissionManager {
 		string $right,
 		string $rigor = self::RIGOR_SECURE,
 		bool $detailedPermissionErrors = true,
+		bool $recordSecuritySensitiveOperation = false
 	): PermissionStatus {
 		$status = PermissionStatus::newEmpty();
 
@@ -1631,6 +1648,8 @@ class PermissionManager {
 				$status->setReauthOperation( $operation );
 				// If the user cannot reauthenticate, that is fatal regardless of $rigor
 				$status->fatal( 'badaccess-cannotreauthenticate', $operation );
+			} elseif ( $recordSecuritySensitiveOperation && $rigor === self::RIGOR_SECURE ) {
+				$authManager->securitySensitiveOperationDone( $operation );
 			}
 		}
 
@@ -1696,15 +1715,22 @@ class PermissionManager {
 	 * @since 1.34
 	 * @param UserIdentity $user
 	 * @param string $action
+	 * @param bool $recordSecuritySensitiveOperation See getUserRightStatus()
 	 * @return bool True if allowed
 	 */
-	public function userHasRight( UserIdentity $user, $action = '' ): bool {
+	public function userHasRight(
+		UserIdentity $user,
+		$action = '',
+		bool $recordSecuritySensitiveOperation = false
+	): bool {
 		if ( $action === '' ) {
 			// In the spirit of DWIM
 			return true;
 		}
 
-		return $this->getUserRightStatus( $user, $action, self::RIGOR_SECURE, false )->isOK();
+		return $this->getUserRightStatus(
+			$user, $action, self::RIGOR_SECURE, false, $recordSecuritySensitiveOperation
+		)->isOK();
 	}
 
 	/**

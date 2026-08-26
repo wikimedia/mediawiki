@@ -3603,7 +3603,10 @@ return [
 		],
 		'ReauthenticateTime' => [
 			'additionalProperties' => [
-				'type' => 'integer',
+				'type' => [
+					'integer',
+					'array',
+				],
 			],
 		],
 		'ChangeCredentialsBlacklist' => [

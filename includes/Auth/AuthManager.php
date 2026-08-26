@@ -958,12 +958,20 @@ class AuthManager implements LoggerAwareInterface {
 		if ( $session->canSetUser() ) {
 			$id = $session->get( 'AuthManager:lastAuthId' );
 			$lastAuthTimestamps = $session->get( 'AuthManager:lastAuthTimestamps', [] );
-			$last = $lastAuthTimestamps[$operation] ?? null;
-			if ( $id !== $aId || $last === null ) {
+			$lastAuth = $lastAuthTimestamps[$operation] ?? null;
+			if ( $id !== $aId || $lastAuth === null ) {
 				// Forever ago
 				$timeSinceAuth = PHP_INT_MAX;
 			} else {
-				$timeSinceAuth = max( 0, time() - $last );
+				$timeSinceAuth = max( 0, time() - $lastAuth );
+			}
+			$lastActionTimestamps = $session->get( 'AuthManager:lastActionTimestamps', [] );
+			$lastAction = $lastActionTimestamps[$operation] ?? null;
+			if ( $id !== $aId || $lastAction === null ) {
+				// Forever ago
+				$timeSinceAction = PHP_INT_MAX;
+			} else {
+				$timeSinceAction = max( 0, time() - $lastAction );
 			}
 
 			$thresholds = $this->config->get( MainConfigNames::ReauthenticateTime );
@@ -975,7 +983,17 @@ class AuthManager implements LoggerAwareInterface {
 				throw new UnexpectedValueException( '$wgReauthenticateTime lacks a default' );
 			}
 
-			if ( $threshold >= 0 && $timeSinceAuth > $threshold ) {
+			if ( is_array( $threshold ) ) {
+				[ $maxTimeSinceActionOrAuth, $maxTimeSinceAuth ] = $threshold;
+			} else {
+				$maxTimeSinceAuth = $maxTimeSinceActionOrAuth = $threshold;
+			}
+
+			if (
+				( $maxTimeSinceAuth >= 0 && $timeSinceAuth > $maxTimeSinceAuth ) ||
+				( $maxTimeSinceActionOrAuth >= 0 &&
+					min( $timeSinceAction, $timeSinceAuth ) > $maxTimeSinceActionOrAuth )
+			) {
 				$status = self::SEC_REAUTH;
 			}
 		} else {
@@ -1031,6 +1049,22 @@ class AuthManager implements LoggerAwareInterface {
 		);
 
 		return $status;
+	}
+
+	/**
+	 * Mark a security-sensitive operation as just having been done. This resets the timer for
+	 * reauthentication, for operations that are configured to have a rolling window.
+	 *
+	 * @param string $operation See securitySensitiveOperationStatus()
+	 * @since 1.47
+	 */
+	public function securitySensitiveOperationDone( string $operation ): void {
+		$session = $this->request->getSession();
+		if ( $session->canSetUser() ) {
+			$lastActionTimestamps = $session->get( 'AuthManager:lastActionTimestamps', [] );
+			$lastActionTimestamps[$operation] = time();
+			$session->set( 'AuthManager:lastActionTimestamps', $lastActionTimestamps );
+		}
 	}
 
 	/**
@@ -3041,6 +3075,7 @@ class AuthManager implements LoggerAwareInterface {
 		// If the user just logged into this account, they should not have elevated security.
 		if ( !$user->equals( $session->getUser() ) ) {
 			$session->set( 'AuthManager:lastAuthTimestamps', [] );
+			$session->set( 'AuthManager:lastActionTimestamps', [] );
 			$securityLevel = null;
 		}
 

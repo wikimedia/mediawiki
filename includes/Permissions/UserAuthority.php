@@ -268,6 +268,9 @@ class UserAuthority implements Authority {
 			);
 		}
 
+		// FIXME this should use getUserRightStatus() directly, but we currently can't pass
+		// in $this->uiContext. Trying to use RequestContext::getMain() directly here leads to
+		// infinite recursion in various tests.
 		if ( !$this->permissionManager->userHasRight( $this->actor, $action ) ) {
 			if ( !$status ) {
 				return false;
