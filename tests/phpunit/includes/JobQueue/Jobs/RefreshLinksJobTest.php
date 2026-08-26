@@ -9,6 +9,7 @@ use MediaWiki\Page\PageAssertionException;
 use MediaWiki\Page\WikiPage;
 use MediaWiki\Title\Title;
 use MediaWikiIntegrationTestCase;
+use ReflectionMethod;
 use Wikimedia\Rdbms\Platform\ISQLPlatform;
 use Wikimedia\Stats\StatsFactory;
 
@@ -114,7 +115,11 @@ class RefreshLinksJobTest extends MediaWikiIntegrationTestCase {
 		$page = $this->createPage( __METHOD__, [ 'main' => $mainContent, 'aux' => $auxContent ] );
 
 		// clear state
-		$parserCache = $this->getServiceContainer()->getParserCache();
+		$getParserOptions = new ReflectionMethod( 'RefreshLinksJob', 'getParserOptions' );
+		$parserOptions = $getParserOptions->invoke( null, $page );
+		$parserOutputAccess = $this->getServiceContainer()->getParserOutputAccess();
+		$getPrimaryCache = new ReflectionMethod( $parserOutputAccess, 'getPrimaryCache' );
+		$parserCache = $getPrimaryCache->invoke( $parserOutputAccess, $parserOptions );
 		$parserCache->deleteOptionsKey( $page );
 
 		$this->getDb()->newDeleteQueryBuilder()
@@ -166,7 +171,11 @@ class RefreshLinksJobTest extends MediaWikiIntegrationTestCase {
 		$page2 = $this->createPage( "$fname-2", [ 'main' => $mainContent, 'aux' => $auxContent ] );
 
 		// clear state
-		$parserCache = $this->getServiceContainer()->getParserCache();
+		$getParserOptions = new ReflectionMethod( 'RefreshLinksJob', 'getParserOptions' );
+		$parserOptions = $getParserOptions->invoke( null, $page1 );
+		$parserOutputAccess = $this->getServiceContainer()->getParserOutputAccess();
+		$getPrimaryCache = new ReflectionMethod( $parserOutputAccess, 'getPrimaryCache' );
+		$parserCache = $getPrimaryCache->invoke( $parserOutputAccess, $parserOptions );
 		$parserCache->deleteOptionsKey( $page1 );
 		$parserCache->deleteOptionsKey( $page2 );
 

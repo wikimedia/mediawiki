@@ -355,6 +355,17 @@ class RefreshLinksJob extends Job {
 		return false;
 	}
 
+	private static function getParserOptions( WikiPage $page ): ParserOptions {
+		$parserOptions = $page->makeParserOptions( 'canonical' );
+		$useParsoidLinksUpdate = MediaWikiServices::getInstance()->getMainConfig()->get(
+			MainConfigNames::UseParsoidLinksUpdate
+		);
+		if ( $useParsoidLinksUpdate !== null ) {
+			$parserOptions->setUseParsoid( $useParsoidLinksUpdate );
+		}
+		return $parserOptions;
+	}
+
 	/**
 	 * Get the parser output if the page is unchanged from what was loaded in $page
 	 *
@@ -376,12 +387,7 @@ class RefreshLinksJob extends Job {
 			return null;
 		}
 
-		$mainConfig = MediaWikiServices::getInstance()->getMainConfig();
-		$parserOptions = $page->makeParserOptions( 'canonical' );
-		$useParsoidLinksUpdate = $mainConfig->get( MainConfigNames::UseParsoidLinksUpdate );
-		if ( $useParsoidLinksUpdate !== null ) {
-			$parserOptions->setUseParsoid( $useParsoidLinksUpdate );
-		}
+		$parserOptions = self::getParserOptions( $page );
 
 		// Parsoid can do selective updates, so it is always worth the I/O
 		// to check for a previous parse. For the legacy parser, we only
@@ -405,7 +411,7 @@ class RefreshLinksJob extends Job {
 
 		// T371713: Temporary statistics collection code to determine
 		// feasibility of Parsoid selective update
-		$sampleRate = $mainConfig->get(
+		$sampleRate = MediaWikiServices::getInstance()->getMainConfig()->get(
 			MainConfigNames::ParsoidSelectiveUpdateSampleRate
 		);
 		$doSample = $sampleRate && mt_rand( 1, $sampleRate ) === 1;
