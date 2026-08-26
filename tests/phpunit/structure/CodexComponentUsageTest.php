@@ -108,8 +108,11 @@ class CodexComponentUsageTest extends MediaWikiIntegrationTestCase {
 	 */
 	private function buildDependentsMap( RL\ResourceLoader $resourceLoader ): array {
 		$dependencies = [];
+		// A module can select its dependencies from the context. Pass a context, so that such a
+		// module reports its true dependencies and does not warn about the missing argument.
+		$context = new RL\Context( $resourceLoader, new FauxRequest() );
 		foreach ( $resourceLoader->getModuleNames() as $moduleName ) {
-			$dependencies[$moduleName] = $resourceLoader->getModule( $moduleName )->getDependencies();
+			$dependencies[$moduleName] = $resourceLoader->getModule( $moduleName )->getDependencies( $context );
 		}
 
 		$dependents = array_fill_keys( array_keys( $dependencies ), [] );
