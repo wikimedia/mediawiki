@@ -716,6 +716,30 @@ class ChangeTagsTest extends MediaWikiIntegrationTestCase {
 			] );
 	}
 
+	public function testUpdateTagsWhenInsertIgnored(): void {
+		$revId = 341;
+		$rcId = 123;
+		$this->changeTags->updateTags( [ 'tag' ], [], $rcId, $revId );
+
+		// Nothing is added when RC ID is different for same revision ID
+		$secondRcId = 213132;
+		$res = $this->changeTags->updateTags( [ 'tag' ], [], $secondRcId, $revId );
+		$this->assertSame( [ [], [], [ 'tag' ] ], $res );
+
+		// Nothing is added when every insert does nothing.
+		$res = $this->changeTags->updateTags( [ 'tag' ], [], $rcId, $revId );
+		$this->assertSame( [ [], [], [ 'tag' ] ], $res );
+
+		$this->newSelectQueryBuilder()
+			->select( [ 'ctd_name', 'ctd_id', 'ctd_count' ] )
+			->from( 'change_tag_def' )
+			->assertRowValue( [ 'tag', 1, 1 ] );
+		$this->newSelectQueryBuilder()
+			->select( [ 'ct_tag_id', 'ct_rc_id', 'ct_rev_id', 'ct_log_id' ] )
+			->from( 'change_tag' )
+			->assertRowValue( [ 1, $rcId, $revId, null ] );
+	}
+
 	public function testUpdateTagsForTwoLogEntriesWithSameAssociatedRevId(): void {
 		$revId = 789;
 
@@ -790,8 +814,8 @@ class ChangeTagsTest extends MediaWikiIntegrationTestCase {
 		$this->getServiceContainer()->resetServiceForTesting( 'NameTableStoreFactory' );
 
 		$rcId = 123;
-		$this->changeTags->updateTags( [ 'tag1', 'tag2' ], [], $rcId );
-		$this->changeTags->updateTags( [], [ 'tag2' ], $rcId );
+		$this->changeTags->updateTags( [ 'tag1', 'tag2', 'tag3' ], [], $rcId );
+		$this->changeTags->updateTags( [], [ 'tag2', 'tag3' ], $rcId );
 
 		$this->newSelectQueryBuilder()
 			->select( [ 'ctd_name', 'ctd_id', 'ctd_count' ] )

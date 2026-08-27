@@ -904,24 +904,27 @@ class ChangeTagsStore {
 						$insertOccurred = $dbw->affectedRows() > 0;
 					}
 				}
-
 				if ( $insertOccurred ) {
 					$tagsAdded[] = $tag;
-					// T207881: update the counts at the end of the transaction
-					$dbw->onTransactionPreCommitOrIdle( static function () use ( $dbw, $tag, $fname ) {
-						$dbw->newUpdateQueryBuilder()
-							->update( self::CHANGE_TAG_DEF )
-							->set( [ 'ctd_count' => new RawSQLValue( 'ctd_count + 1' ) ] )
-							->where( [ 'ctd_name' => $tag ] )
-							->caller( $fname )->execute();
-					}, $fname );
 				} else {
 					$prevTags[] = $tag;
 				}
 			}
+
+			if ( count( $tagsAdded ) ) {
+				// T207881: update the counts at the end of the transaction
+				$dbw->onTransactionPreCommitOrIdle( static function () use ( $dbw, $tagsAdded, $fname ) {
+					$dbw->newUpdateQueryBuilder()
+						->update( self::CHANGE_TAG_DEF )
+						->set( [ 'ctd_count' => new RawSQLValue( 'ctd_count + 1' ) ] )
+						->where( [ 'ctd_name' => $tagsAdded ] )
+						->caller( $fname )->execute();
+				}, $fname );
+			}
 		}
 
 		// delete from change_tag
+		$tagsRemoved = [];
 		if ( count( $tagsToRemove ) ) {
 			$fname = __METHOD__;
 			foreach ( $tagsToRemove as $tag ) {
@@ -950,28 +953,32 @@ class ChangeTagsStore {
 					->andWhere( $dbw->orExpr( $matchingChangeIdConds ) )
 					->caller( __METHOD__ )->execute();
 				if ( $dbw->affectedRows() ) {
-					// T207881: update the counts at the end of the transaction
-					$dbw->onTransactionPreCommitOrIdle( static function () use ( $dbw, $tag, $fname ) {
-						$dbw->newUpdateQueryBuilder()
-							->update( self::CHANGE_TAG_DEF )
-							->set( [ 'ctd_count' => new RawSQLValue( 'ctd_count - 1' ) ] )
-							->where( [ 'ctd_name' => $tag ] )
-							->caller( $fname )->execute();
-
-						$dbw->newDeleteQueryBuilder()
-							->deleteFrom( self::CHANGE_TAG_DEF )
-							->where( [ 'ctd_name' => $tag, 'ctd_count' => 0, 'ctd_user_defined' => 0 ] )
-							->caller( $fname )->execute();
-					}, $fname );
+					$tagsRemoved[] = $tag;
 				}
+			}
+
+			if ( count( $tagsRemoved ) ) {
+				// T207881: update the counts at the end of the transaction
+				$dbw->onTransactionPreCommitOrIdle( static function () use ( $dbw, $tagsRemoved, $fname ) {
+					$dbw->newUpdateQueryBuilder()
+						->update( self::CHANGE_TAG_DEF )
+						->set( [ 'ctd_count' => new RawSQLValue( 'ctd_count - 1' ) ] )
+						->where( [ 'ctd_name' => $tagsRemoved ] )
+						->caller( $fname )->execute();
+
+					$dbw->newDeleteQueryBuilder()
+						->deleteFrom( self::CHANGE_TAG_DEF )
+						->where( [ 'ctd_name' => $tagsRemoved, 'ctd_count' => 0, 'ctd_user_defined' => 0 ] )
+						->caller( $fname )->execute();
+				}, $fname );
 			}
 		}
 
 		$userObj = $user ? $this->userFactory->newFromUserIdentity( $user ) : null;
 		$this->hookRunner->onChangeTagsAfterUpdateTags(
-			$tagsAdded, $tagsToRemove, $prevTags, $rc_id, $rev_id, $log_id, $params, $rc, $userObj );
+			$tagsAdded, $tagsRemoved, $prevTags, $rc_id, $rev_id, $log_id, $params, $rc, $userObj );
 
-		return [ $tagsAdded, $tagsToRemove, $prevTags ];
+		return [ $tagsAdded, $tagsRemoved, $prevTags ];
 	}
 
 	/**
