@@ -84,6 +84,8 @@ class DeleteAction extends FormAction {
 
 	private ?array $stashedData = null;
 
+	private ?string $reauthOperation = null;
+
 	/**
 	 * @inheritDoc
 	 */
@@ -126,9 +128,13 @@ class DeleteAction extends FormAction {
 		$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
 		$right = $this->getRestriction();
 		if ( $right !== null ) {
-			$permissionManager->throwPermissionErrors(
+			$status = $permissionManager->getPermissionStatus(
 				$right, $user, $this->getTitle(), PermissionManager::RIGOR_FULL
 			);
+			if ( $status->hasMessagesExcept() ) {
+				throw new PermissionsError( $right, $status );
+			}
+			$this->reauthOperation = $status->getReauthOperation();
 		}
 
 		// Block and read-only checks are unchanged from the parent.
@@ -655,7 +661,9 @@ class DeleteAction extends FormAction {
 			'tabindex' => 7,
 			'buttonlabel' => $this->getFormMsg( self::MSG_SUBMIT )->text(),
 			'flags' => [ 'primary', 'destructive' ],
-		];
+		] + ( $this->reauthOperation !== null
+			? $this->getReauthLockButtonAttribs()
+			: [] );
 
 		$fields['ConfirmationRevId'] = [
 			'type' => 'hidden',

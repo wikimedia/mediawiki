@@ -24,6 +24,7 @@ use MediaWiki\Message\Message;
  *   buttons.
  * - size: if rendering as Codex, then you can use the codex keywords
  *   "small", "medium", and "large" to affect the button's size.
+ * - icon: OOUI icon name to render on the button (OOUI display mode only).
  *
  * @stable to extend
  * @since 1.22
@@ -39,6 +40,9 @@ class HTMLButtonField extends HTMLFormField {
 
 	/** @var bool */
 	protected $mFormnovalidate = false;
+
+	/** @var string|null OOUI icon name */
+	protected $mIcon = null;
 
 	/**
 	 * @stable to call
@@ -57,6 +61,10 @@ class HTMLButtonField extends HTMLFormField {
 
 		if ( isset( $info['formnovalidate'] ) ) {
 			$this->mFormnovalidate = $info['formnovalidate'];
+		}
+
+		if ( isset( $info['icon'] ) ) {
+			$this->mIcon = $info['icon'];
 		}
 
 		# Generate the label from a message, if possible
@@ -101,7 +109,7 @@ class HTMLButtonField extends HTMLFormField {
 	 * @return \OOUI\ButtonInputWidget
 	 */
 	public function getInputOOUI( $value ) {
-		return new \OOUI\ButtonInputWidget( [
+		$config = [
 			'name' => $this->mName,
 			'value' => $this->getDefault(),
 			'label' => $this->buttonLabel
@@ -112,9 +120,15 @@ class HTMLButtonField extends HTMLFormField {
 			'id' => $this->mID,
 			'flags' => $this->mFlags,
 			'formNoValidate' => $this->mFormnovalidate,
-		] + \OOUI\Element::configFromHtmlAttributes(
-			$this->getAttributes( [ 'disabled', 'tabindex' ] )
-		) );
+		];
+		if ( $this->mIcon !== null ) {
+			$config['icon'] = $this->mIcon;
+		}
+		return new \OOUI\ButtonInputWidget(
+			$config + \OOUI\Element::configFromHtmlAttributes(
+				$this->getAttributes( [ 'disabled', 'tabindex' ] )
+			)
+		);
 	}
 
 	/** @inheritDoc */
