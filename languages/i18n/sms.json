@@ -299,7 +299,7 @@
 	"storedversion": "Ruõkkum versio",
 	"yourdiff": "Jeäʹrdõõzz",
 	"templatesused": "Tän seeid {{PLURAL:$1|seidd|seeid}}:",
-	"templatesusedpreview": "Tän ouddǩiõččmõõžž {{PLURAL:$1|mall|maall|mallâd}}:",
+	"templatesusedpreview": "Tän ouddǩiõččmõõžž {{PLURAL:$1|seiddad|1=seidd|2=seeid|3=seeid|4=seeid|5=seeid|6=seeid}}:",
 	"template-protected": "(suõjjuum)",
 	"template-semiprotected": "(vuäʹssnes suõjjuum)",
 	"hiddencategories": "Tät seidd kooll {{PLURAL:$1|čiõkkum kategoriaaʹje|$1 čiõkkum kategoriaaʹje}}:",

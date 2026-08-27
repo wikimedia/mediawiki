@@ -5,13 +5,14 @@
 			"Ahmed-Najib-Biabani-Ibrahimkhel",
 			"Amjad Khan",
 			"Baloch Khan",
-			"شاه زمان پټان"
+			"شاه زمان پټان",
+			"باران"
 		]
 	},
 	"exif-imagewidth": "پراخوالی",
 	"exif-imagelength": "لوړوالی",
 	"exif-bitspersample": "د هرې برخې ټوټې",
-	"exif-compression": "فشار طرجخ",
+	"exif-compression": "د فشار جوړښتي‌گارليک",
 	"exif-photometricinterpretation": "پېکسل ترکيب",
 	"exif-orientation": "لورموندنه",
 	"exif-samplesperpixel": "د ټوټو شمېر",
@@ -148,7 +149,7 @@
 	"exif-attributionurl": "کله چې دا کار بيا کاروئ، مهرباني وکړئ تړونی ورکړئ له",
 	"exif-preferredattributionname": "کله چې دا کار بيا کاروئ، مهرباني وکړئ اعتبار ورکړئ له",
 	"exif-pngfilecomment": "د PNG دوتنې څرگندونه",
-	"exif-disclaimer": "ردادعاليک",
+	"exif-disclaimer": "بېرته‌واگ‌اخيستنې",
 	"exif-contentwarning": "د منځپانگې خبرداری",
 	"exif-giffilecomment": "د GIF دوتنې څرگندونه",
 	"exif-intellectualgenre": "د توکو ډول",

@@ -3283,7 +3283,7 @@
 	"fileduplicatesearch-result-n": "Податотеката „$1“ има {{PLURAL:$2|еден истоветен дупликат|$2 истоветни дупликати}}.",
 	"fileduplicatesearch-noresults": "Не пронајдов податотека со име „$1“.",
 	"special-talkpage": "Разговорна страница",
-	"special-talkpage-target": "Засегната страница",
+	"special-talkpage-target": "Предметна страница",
 	"special-talkpage-submit": "Оди на разговорната страница",
 	"specialpages": "Службени страници",
 	"specialpages-note-top": "Легенда",

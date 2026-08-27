@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Tiputini"
+			"Tiputini",
+			"Qllach"
 		]
 	},
 	"cdx-breadcrumb-navigation-label": "Ruta de navegació (breadcrumb)",
