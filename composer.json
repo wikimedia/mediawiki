@@ -225,8 +225,10 @@
 			"composer/installers": true,
 			"dealerdirect/phpcodesniffer-composer-installer": true
 		},
-		"audit": {
-			"block-insecure": false
+		"policy": {
+			"advisories": {
+				"block": false
+			}
 		}
 	},
 	"extra": {
