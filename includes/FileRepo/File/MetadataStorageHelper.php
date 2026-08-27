@@ -69,7 +69,9 @@ class MetadataStorageHelper {
 		}
 		// Remove any items that were split out
 		$envelope['data'] = array_diff_key( $envelope['data'], $blobAddresses );
-		$envelope['blobs'] = $blobAddresses;
+		// Keep addresses from an earlier call, else second serialization in same
+		// request loses them (T420341)
+		$envelope['blobs'] = ( $envelope['blobs'] ?? [] ) + $blobAddresses;
 		$s = $this->jsonEncode( $envelope );
 
 		return [ $s, $blobAddresses ];
