@@ -41,11 +41,15 @@ class ImportExtensionMessages extends Maintenance {
 		if ( $extJson === false ) {
 			$this->fatalError( "Unable to open \"$extJsonPath\"" );
 		}
-		$extData = json_decode( $extJson, JSON_THROW_ON_ERROR );
+		$extData = json_decode( $extJson, true, flags: JSON_THROW_ON_ERROR );
+		if ( !is_array( $extData ) || array_is_list( $extData ) ) {
+			$this->fatalError( "\"$extJsonPath\" contains unexpected data, expected a JSON object" );
+		}
 
 		$this->excludedMsgs = [];
 		foreach ( [ 'namemsg', 'descriptionmsg' ] as $key ) {
 			if ( isset( $extData[$key] ) ) {
+				// @phan-suppress-next-line PhanTypeMismatchProperty False positive, see T436482
 				$this->excludedMsgs[] = $extData[$key];
 			}
 		}
@@ -98,7 +102,7 @@ class ImportExtensionMessages extends Maintenance {
 			$this->error( "Unable to read i18n file \"$extI18nPath\"" );
 			return;
 		}
-		$extData = json_decode( $extJson, JSON_THROW_ON_ERROR );
+		$extData = json_decode( $extJson, true, flags: JSON_THROW_ON_ERROR );
 		$coreData = $this->getCoreData( $lang );
 
 		if ( isset( $extData['@metadata']['authors'] ) ) {
@@ -139,7 +143,7 @@ class ImportExtensionMessages extends Maintenance {
 				// Do not write to coreDataCache -- suppress creation of the core file.
 				return [];
 			}
-			$this->coreDataCache[$lang] = json_decode( $coreJson, JSON_THROW_ON_ERROR );
+			$this->coreDataCache[$lang] = json_decode( $coreJson, true, flags: JSON_THROW_ON_ERROR );
 		}
 		return $this->coreDataCache[$lang];
 	}

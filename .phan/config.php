@@ -105,8 +105,6 @@ $cfg['exclude_analysis_directory_list'] = [
 	// The referenced classes are not available in vendor, only when
 	// included from composer.
 	'includes/Composer/',
-	// Directly references classes that only exist in Translate extension
-	'maintenance/language/',
 	// External class
 	'includes/libs/ObjectCache/Utils/MemcachedClient.php',
 	// File may be valid, but may contain numerous "errors" such as iterating over an

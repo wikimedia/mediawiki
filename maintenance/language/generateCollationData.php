@@ -25,21 +25,21 @@ class GenerateCollationData extends Maintenance {
 	/** @var string The directory with source data files in it */
 	public $dataDir;
 
-	/** @var int The primary weights, indexed by codepoint */
+	/** @var array<int,string> The primary weights, indexed by codepoint */
 	public $weights;
 
 	/**
 	 * A hashtable keyed by codepoint, where presence indicates that a character
 	 * has a decomposition mapping. This makes it non-preferred for group header
 	 * selection.
-	 * @var string[]
+	 * @var array<int,bool>
 	 */
 	public $mappedChars;
 
-	/** @var string */
+	/** @var resource|bool */
 	public $debugOutFile;
 
-	/** @var string[] */
+	/** @var int[][] */
 	private $groups;
 
 	public function __construct() {
@@ -111,12 +111,13 @@ class GenerateCollationData extends Maintenance {
 		// but do not skip a normal space (U+0020) since
 		// people like to use that as a fake no header symbol.
 		$category = substr( $data['gc'], 0, 1 );
+		// @phan-suppress-next-line PhanParamSuspiciousOrder False positive
 		if ( !str_contains( 'LNPS', $category )
 			&& $data['cp'] !== '0020'
 		) {
 			return;
 		}
-		$cp = hexdec( $data['cp'] );
+		$cp = (int)hexdec( $data['cp'] );
 
 		// Skip the CJK ideograph blocks, as an optimisation measure.
 		// UCA doesn't sort them properly anyway, without tailoring.
@@ -172,7 +173,7 @@ class GenerateCollationData extends Maintenance {
 				continue;
 			}
 
-			$cp = hexdec( $m[1] );
+			$cp = (int)hexdec( $m[1] );
 			$allWeights = trim( $m[2] );
 			$primary = '';
 			$tertiary = '';
