@@ -467,31 +467,30 @@ class ChangeTagsStore {
 		$dbProvider = $this->dbProvider;
 		$wiki = $this->wiki;
 
-		return $this->wanCache->getWithSetCallback(
-			$this->wanCache->makeKey( 'tags-usage-statistics', $wiki ),
-			WANObjectCache::TTL_HOUR,
-			static function ( $oldValue, &$ttl, array &$setOpts ) use ( $fname, $dbProvider, $wiki ) {
-				$dbr = $dbProvider->getReplicaDatabase( $wiki );
-				$res = $dbr->newSelectQueryBuilder()
-					->select( [ 'ctd_name', 'ctd_count' ] )
-					->from( self::CHANGE_TAG_DEF )
-					->orderBy( 'ctd_count', SelectQueryBuilder::SORT_DESC )
-					->caller( $fname )
-					->fetchResultSet();
+		$callback = static function () use ( $fname, $dbProvider, $wiki ) {
+			$dbr = $dbProvider->getReplicaDatabase( $wiki );
+			$res = $dbr->newSelectQueryBuilder()
+				->select( [ 'ctd_name', 'ctd_count' ] )
+				->from( self::CHANGE_TAG_DEF )
+				->orderBy( 'ctd_count', SelectQueryBuilder::SORT_DESC )
+				->caller( $fname )
+				->fetchResultSet();
 
-				$out = [];
-				foreach ( $res as $row ) {
-					$out[$row->ctd_name] = $row->ctd_count;
-				}
+			$out = [];
+			foreach ( $res as $row ) {
+				$out[$row->ctd_name] = $row->ctd_count;
+			}
 
-				return $out;
-			},
-			[
-				'checkKeys' => [ $this->wanCache->makeKey( 'tags-usage-statistics', $this->wiki ) ],
-				'lockTSE' => WANObjectCache::TTL_HOUR,
-				'pcTTL' => WANObjectCache::TTL_PROC_LONG
-			]
-		);
+			return $out;
+		};
+		return $this->wanCache->buildGetWithSetCallback()
+			->key( 'tags-usage-statistics', $wiki )
+			->keepForAnHour()
+			->invalidatedByKey( 'tags-usage-statistics', $this->wiki )
+			->allowStale( WANObjectCache::TTL_HOUR )
+			->longProcessCache()
+			->callback( $callback )
+			->fetch();
 	}
 
 	/**
@@ -507,26 +506,26 @@ class ChangeTagsStore {
 		$dbProvider = $this->dbProvider;
 		$wiki = $this->wiki;
 
-		return $this->wanCache->getWithSetCallback(
-			$this->wanCache->makeKey( 'valid-tags-db', $wiki ),
-			WANObjectCache::TTL_HOUR,
-			static function () use ( $fname, $dbProvider, $wiki ) {
-				$dbr = $dbProvider->getReplicaDatabase( $wiki );
-				$tags = $dbr->newSelectQueryBuilder()
-					->select( 'ctd_name' )
-					->from( self::CHANGE_TAG_DEF )
-					->where( [ 'ctd_user_defined' => 1 ] )
-					->caller( $fname )
-					->fetchFieldValues();
+		$callback = static function () use ( $fname, $dbProvider, $wiki ) {
+			$dbr = $dbProvider->getReplicaDatabase( $wiki );
+			$tags = $dbr->newSelectQueryBuilder()
+				->select( 'ctd_name' )
+				->from( self::CHANGE_TAG_DEF )
+				->where( [ 'ctd_user_defined' => 1 ] )
+				->caller( $fname )
+				->fetchFieldValues();
 
-				return array_unique( $tags );
-			},
-			[
-				'checkKeys' => [ $this->wanCache->makeKey( 'valid-tags-db', $this->wiki ) ],
-				'lockTSE' => WANObjectCache::TTL_HOUR,
-				'pcTTL' => WANObjectCache::TTL_PROC_LONG
-			]
-		);
+			return array_unique( $tags );
+		};
+
+		return $this->wanCache->buildGetWithSetCallback()
+			->key( 'valid-tags-db', $wiki )
+			->keepForAnHour()
+			->invalidatedByKey( 'valid-tags-db', $this->wiki )
+			->allowStale( WANObjectCache::TTL_HOUR )
+			->longProcessCache()
+			->callback( $callback )
+			->fetch();
 	}
 
 	/**
@@ -546,19 +545,18 @@ class ChangeTagsStore {
 		}
 		$hookRunner = $this->hookRunner;
 		$wiki = $this->wiki;
-		return $this->wanCache->getWithSetCallback(
-			$this->wanCache->makeKey( 'valid-tags-hook', $wiki ),
-			WANObjectCache::TTL_HOUR,
-			static function () use ( $tags, $hookRunner ) {
-				$hookRunner->onListDefinedTags( $tags );
-				return array_unique( $tags );
-			},
-			[
-				'checkKeys' => [ $this->wanCache->makeKey( 'valid-tags-hook', $this->wiki ) ],
-				'lockTSE' => WANObjectCache::TTL_HOUR,
-				'pcTTL' => WANObjectCache::TTL_PROC_LONG
-			]
-		);
+		$callback = static function () use ( $tags, $hookRunner ) {
+			$hookRunner->onListDefinedTags( $tags );
+			return array_unique( $tags );
+		};
+		return $this->wanCache->buildGetWithSetCallback()
+			->key( 'valid-tags-hook', $wiki )
+			->keepForAnHour()
+			->invalidatedByKey( 'valid-tags-hook', $this->wiki )
+			->allowStale( WANObjectCache::TTL_HOUR )
+			->longProcessCache()
+			->callback( $callback )
+			->fetch();
 	}
 
 	/**
@@ -973,21 +971,19 @@ class ChangeTagsStore {
 		}
 		$hookRunner = $this->hookRunner;
 		$wiki = $this->wiki;
-
-		return $this->wanCache->getWithSetCallback(
-			$this->wanCache->makeKey( 'active-tags', $wiki ),
-			WANObjectCache::TTL_HOUR,
-			static function () use ( $tags, $hookRunner ) {
-				// Ask extensions which tags they consider active
-				$hookRunner->onChangeTagsListActive( $tags );
-				return $tags;
-			},
-			[
-				'checkKeys' => [ $this->wanCache->makeKey( 'active-tags', $this->wiki ) ],
-				'lockTSE' => WANObjectCache::TTL_HOUR,
-				'pcTTL' => WANObjectCache::TTL_PROC_LONG
-			]
-		);
+		$callback = static function () use ( $tags, $hookRunner ) {
+			// Ask extensions which tags they consider active
+			$hookRunner->onChangeTagsListActive( $tags );
+			return $tags;
+		};
+		return $this->wanCache->buildGetWithSetCallback()
+			->key( 'active-tags', $wiki )
+			->keepForAnHour()
+			->invalidatedByKey( 'active-tags', $this->wiki )
+			->allowStale( WANObjectCache::TTL_HOUR )
+			->longProcessCache()
+			->callback( $callback )
+			->fetch();
 	}
 
 	/**

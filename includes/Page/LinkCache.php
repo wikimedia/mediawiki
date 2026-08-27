@@ -426,15 +426,15 @@ class LinkCache implements LoggerAwareInterface {
 		$wanCacheKey = $this->getPersistentCacheKey( $link );
 		if ( $wanCacheKey !== null && !( $queryFlags & IDBAccessObject::READ_LATEST ) ) {
 			// Some pages are often transcluded heavily, so use persistent caching
-			$row = $this->wanCache->getWithSetCallback(
-				$wanCacheKey,
-				WANObjectCache::TTL_DAY,
-				function () use ( $fetchCallback, $ns, $dbkey ) {
-					$dbr = $this->loadBalancer->getConnection( ILoadBalancer::DB_REPLICA );
-					$row = $fetchCallback( $dbr, $ns, $dbkey, [] );
-					return $row;
-				}
-			);
+			$callback = function () use ( $fetchCallback, $ns, $dbkey ) {
+				$dbr = $this->loadBalancer->getConnection( ILoadBalancer::DB_REPLICA );
+				return $fetchCallback( $dbr, $ns, $dbkey, [] );
+			};
+			$row = $this->wanCache->buildGetWithSetCallback()
+				->rawKey( $wanCacheKey )
+				->keepForADay()
+				->callback( $callback )
+				->fetch();
 		} else {
 			// No persistent caching needed, but we can still use the callback.
 			if ( ( $queryFlags & IDBAccessObject::READ_LATEST ) == IDBAccessObject::READ_LATEST ) {
