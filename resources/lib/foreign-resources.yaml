@@ -501,6 +501,20 @@ vue-compiler-dom:
     package/LICENSE:
     package/dist/compiler-dom.global.js:
 
+vue-router:
+  license: MIT
+  homepage: https://router.vuejs.org/
+  authors: Eduardo San Martin Morote
+  version: 4.5.1
+  purl: pkg:npm/vue-router@4.5.1
+  type: tar
+  src: https://registry.npmjs.org/vue-router/-/vue-router-4.5.1.tgz
+  integrity: sha384-LVdq0Rz82jTKL/S2qmeiDVaMLUxXx2mfj7j71jp4b5lPnMmrS11UGvYD2olgHCYl
+  dest:
+    package/LICENSE:
+    package/dist/vue-router.global.js:
+    package/dist/vue-router.global.prod.js:
+
 vuex:
   license: MIT
   homepage: https://vuex.vuejs.org/

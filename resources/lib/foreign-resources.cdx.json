@@ -2,7 +2,7 @@
 	"$schema": "http://cyclonedx.org/schema/bom-1.6.schema.json",
 	"bomFormat": "CycloneDX",
 	"specVersion": "1.6",
-	"serialNumber": "urn:uuid:455541f6-fc7f-4cbc-8ebd-5b98fc0015ab",
+	"serialNumber": "urn:uuid:580e2b85-5fcc-4542-a500-5d522da9ef85",
 	"version": 1,
 	"components": [
 		{
@@ -631,6 +631,30 @@
 			"externalReferences": [
 				{
 					"url": "https://vuejs.org/",
+					"type": "website"
+				}
+			]
+		},
+		{
+			"type": "library",
+			"name": "vue-router",
+			"version": "4.5.1",
+			"licenses": [
+				{
+					"license": {
+						"id": "MIT"
+					}
+				}
+			],
+			"purl": "pkg:npm/vue-router@4.5.1",
+			"authors": [
+				{
+					"name": "Eduardo San Martin Morote"
+				}
+			],
+			"externalReferences": [
+				{
+					"url": "https://router.vuejs.org/",
 					"type": "website"
 				}
 			]

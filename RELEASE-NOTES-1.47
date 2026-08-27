@@ -205,6 +205,8 @@ For notes on 1.46.x and older releases, see HISTORY.
   combined string.
 * (T427815) Add MediaWiki\Logging\LogRecord, a new immutable value object
   representing an entry in the logging table.
+* (T290916) The vue-router module has been added to provide convenient routing
+  to Vue applications.
 * …
 
 === External library changes in 1.47 ===
