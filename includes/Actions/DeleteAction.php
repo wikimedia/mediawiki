@@ -311,7 +311,7 @@ class DeleteAction extends FormAction {
 			if ( $status instanceof PermissionStatus && $status->getReauthOperation() !== null ) {
 				$this->setStashKey( $this->getStashKeyForTitle() );
 				$queryParams = $this->stashDataOnPost();
-				$this->doReauthRedirect( $status, $queryParams );
+				$this->doReauthRedirect( $status, $queryParams, 'delete' );
 				$this->reauthInProgress = true;
 				return;
 			}

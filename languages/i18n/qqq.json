@@ -634,6 +634,7 @@
 	"userlogin-reauth-description": "Used as an explanatory message on [[Special:UserLogin]] when the user is redirected there to log in again when trying to use a security-sensitive page. Allows user to cancel reauth process.\n\nParameters:\n* $1 - link to redirect user to after canceling reauth process. Uses {{msg-mw|userlogin-reauth-description-link}}",
 	"userlogin-reauth-description-link": "Link that allows user to cancel reauth process.",
 	"userlogin-reauth-banner-editsitejscss": "This is the message for the banner on [[Special:UserLogin]] when the user is redirected there to log in again when trying to edit site css or js.",
+	"userlogin-reauth-banner-editsitejscss-delete": "Banner on [[Special:UserLogin]] when the user is redirected there to reauthenticate before deleting a page that contains site-wide JavaScript or CSS.",
 	"userlogin-reauth-banner-edituserjscss": "This is the message for the banner on [[Special:UserLogin]] when the user is redirected there to log in again when trying to edit user css or js.",
 	"userlogin-reauth-banner-ChangeEmail": "This is the message for the banner on [[Special:UserLogin]] when the user is redirected there to log in again when trying to change email.",
 	"userlogin-reauth-banner-generic": "This is the message for the banner on [[Special:UserLogin]] when the user is redirected there to log in again when trying to access a page that requires reauth that doesn't have a previously defined message.\n\nParameters:\n* $1 - security level",
