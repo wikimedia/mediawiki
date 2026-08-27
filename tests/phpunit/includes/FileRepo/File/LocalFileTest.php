@@ -733,8 +733,13 @@ class LocalFileTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( $meta, $file->getMetadata() );
 	}
 
-	public static function provideRecordUpload3() {
-		$files = [
+	/**
+	 * Base file properties for recordUpload3() tests, keyed by file name.
+	 *
+	 * @return array
+	 */
+	private static function getTestFileProps() {
+		return [
 			'test.jpg' => [
 				'width' => 20,
 				'height' => 20,
@@ -800,6 +805,9 @@ class LocalFileTest extends MediaWikiIntegrationTestCase {
 				]
 			]
 		];
+	}
+
+	public static function provideRecordUpload3() {
 		$configurations = [
 			[],
 			[ 'useJsonMetadata' => true ],
@@ -809,7 +817,7 @@ class LocalFileTest extends MediaWikiIntegrationTestCase {
 				'splitMetadataThreshold' => 50
 			]
 		];
-		return ArrayUtils::cartesianProduct( $files, $configurations );
+		return ArrayUtils::cartesianProduct( self::getTestFileProps(), $configurations );
 	}
 
 	private function getMockPdfHandler() {
@@ -864,6 +872,109 @@ class LocalFileTest extends MediaWikiIntegrationTestCase {
 		// Check round-trip through the DB
 		$file = new LocalFile( $title, $repo );
 		$this->assertFileProperties( $props, $file );
+	}
+
+	/**
+	 * Serialize twice, get same output.
+	 *
+	 * Test to guard against recurrence of double write losing blob
+	 * address references of splitMetadata (phab:T420341).
+	 *
+	 * @covers \MediaWiki\FileRepo\File\LocalFile::getMetadataForDb
+	 */
+	public function testGetMetadataForDbIsIdempotent() {
+		$repo = new LocalRepo( [
+			'class' => LocalRepo::class,
+			'name' => 'test',
+			'useJsonMetadata' => true,
+			'useSplitMetadata' => true,
+			'splitMetadataThreshold' => 50,
+			'backend' => new FSFileBackend( [
+				'name' => 'test-backend',
+				'wikiId' => WikiMap::getCurrentWikiId(),
+				'basePath' => '/nonexistent'
+			] )
+		] );
+		$file = new LocalFile( Title::makeTitle( NS_FILE, 'Test.pdf' ), $repo );
+		$wrapper = TestingAccessWrapper::newFromObject( $file );
+		$wrapper->handler = $this->getMockPdfHandler();
+		$wrapper->metadataArray = [
+			'Pages' => '6',
+			// Keeps metadata over threshold once "text" split out
+			'padding' => str_repeat( 'x', 40 ),
+			'text' => [ str_repeat( 'Page text. ', 20 ) ],
+		];
+		$wrapper->dataLoaded = true;
+		$wrapper->extraDataLoaded = true;
+
+		$dbw = $this->getDb();
+		$first = $dbw->decodeBlob( $file->getMetadataForDb( $dbw ) );
+		$second = $dbw->decodeBlob( $file->getMetadataForDb( $dbw ) );
+
+		// No split, no address to lose, nothing proven
+		$this->assertArrayHasKey( 'text', json_decode( $first, true )['blobs'] ?? [] );
+		$this->assertSame( $first, $second );
+	}
+
+	/**
+	 * recordUpload3() serializes once per schema. filerevision ended up without
+	 * the blob addresses image got (T420341).
+	 *
+	 * This is a more specific testcase of testGetMetadataForDbIsIdempotent to make
+	 * clear the connection with the schema migration behavior.
+	 * When this is removed, testGetMetadataForDbIsIdempotent will guard for the future.
+	 *
+	 * @covers \MediaWiki\FileRepo\File\LocalFile::recordUpload3
+	 */
+	public function testRecordUpload3SplitMetadataWriteBoth() {
+		$this->overrideConfigValue(
+			MainConfigNames::FileSchemaMigrationStage,
+			SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_NEW
+		);
+
+		$props = self::getTestFileProps()['large-text.pdf'];
+		// Keeps metadata over splitMetadata threshold once "text" split out
+		$props['metadata']['padding'] = str_repeat( 'x', 40 );
+
+		$repo = new LocalRepo( [
+			'class' => LocalRepo::class,
+			'name' => 'test',
+			'useJsonMetadata' => true,
+			'useSplitMetadata' => true,
+			'splitMetadataThreshold' => 50,
+			'backend' => new FSFileBackend( [
+				'name' => 'test-backend',
+				'wikiId' => WikiMap::getCurrentWikiId(),
+				'basePath' => '/nonexistent'
+			] )
+		] );
+		$title = Title::makeTitle( NS_FILE, 'Test.pdf' );
+		$file = new LocalFile( $title, $repo );
+		TestingAccessWrapper::newFromObject( $file )->handler = $this->getMockPdfHandler();
+
+		$status = $file->recordUpload3(
+			'oldver',
+			'comment',
+			'page text',
+			$this->getTestSysop()->getUser(),
+			$props
+		);
+		$this->assertStatusGood( $status );
+
+		$dbw = $this->getDb();
+		foreach ( [ 'img_metadata' => 'image', 'fr_metadata' => 'filerevision' ] as $field => $table ) {
+			$row = $dbw->newSelectQueryBuilder()
+				->select( $field )
+				->from( $table )
+				->caller( __METHOD__ )->fetchField();
+			$envelope = json_decode( $dbw->decodeBlob( $row ), true );
+			$this->assertArrayHasKey( 'text', $envelope['blobs'] ?? [],
+				"$field lost the BlobStore address for the split item" );
+		}
+
+		// Still readable through the file object
+		$file = new LocalFile( $title, $repo );
+		$this->assertSame( $props['metadata']['text'], $file->getMetadataItem( 'text' ) );
 	}
 
 	/**
