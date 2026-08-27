@@ -671,20 +671,4 @@ class UndeletePage {
 
 		return $status;
 	}
-
-	/**
-	 * @internal BC method to be used by PageArchive only
-	 * @return Status|null
-	 */
-	public function getFileStatus(): ?Status {
-		return $this->fileStatus;
-	}
-
-	/**
-	 * @internal BC methods to be used by PageArchive only
-	 * @return StatusValue<array{int, bool, ?RevisionRecord, array<int,true>}>|null
-	 */
-	public function getRevisionStatus(): ?StatusValue {
-		return $this->revisionStatus;
-	}
 }
