@@ -236,6 +236,26 @@ class ContentSecurityPolicyTest extends MediaWikiIntegrationTestCase {
 				"script-src 'unsafe-eval' blob: 'self' 'unsafe-inline' sister-site.somewhere.com *.wikipedia.org; default-src * data: blob:; style-src * data: blob: 'unsafe-inline'; object-src 'none'; report-uri /w/api.php?action=cspreport&format=json&reportonly=1; report-to " . self::$CSPReportToReportOnlyEndpointName,
 			],
 			[
+				[ 'unsafeEval' => false ],
+				"script-src blob: 'self' 'unsafe-inline' sister-site.somewhere.com *.wikipedia.org; default-src * data: blob:; style-src * data: blob: 'unsafe-inline'; object-src 'none'; report-uri /w/api.php?action=cspreport&format=json; report-to " . self::$CSPReportToEndpointName,
+				"script-src blob: 'self' 'unsafe-inline' sister-site.somewhere.com *.wikipedia.org; default-src * data: blob:; style-src * data: blob: 'unsafe-inline'; object-src 'none'; report-uri /w/api.php?action=cspreport&format=json&reportonly=1; report-to " . self::$CSPReportToReportOnlyEndpointName,
+			],
+			[
+				[ 'unsafeEval' => true ],
+				"script-src 'unsafe-eval' blob: 'self' 'unsafe-inline' sister-site.somewhere.com *.wikipedia.org; default-src * data: blob:; style-src * data: blob: 'unsafe-inline'; object-src 'none'; report-uri /w/api.php?action=cspreport&format=json; report-to " . self::$CSPReportToEndpointName,
+				"script-src 'unsafe-eval' blob: 'self' 'unsafe-inline' sister-site.somewhere.com *.wikipedia.org; default-src * data: blob:; style-src * data: blob: 'unsafe-inline'; object-src 'none'; report-uri /w/api.php?action=cspreport&format=json&reportonly=1; report-to " . self::$CSPReportToReportOnlyEndpointName,
+			],
+			[
+				[ 'unsafeEval' => false, 'unsafeFallback' => false ],
+				"script-src blob: 'self' sister-site.somewhere.com *.wikipedia.org; default-src * data: blob:; style-src * data: blob: 'unsafe-inline'; object-src 'none'; report-uri /w/api.php?action=cspreport&format=json; report-to " . self::$CSPReportToEndpointName,
+				"script-src blob: 'self' sister-site.somewhere.com *.wikipedia.org; default-src * data: blob:; style-src * data: blob: 'unsafe-inline'; object-src 'none'; report-uri /w/api.php?action=cspreport&format=json&reportonly=1; report-to " . self::$CSPReportToReportOnlyEndpointName,
+			],
+			[
+				[ 'unsafeEval' => false, 'default-src' => true ],
+				"script-src blob: 'self' 'unsafe-inline' sister-site.somewhere.com *.wikipedia.org; default-src 'self' data: blob: https://upload.wikimedia.org https://commons.wikimedia.org sister-site.somewhere.com *.wikipedia.org; style-src 'self' data: blob: https://upload.wikimedia.org https://commons.wikimedia.org sister-site.somewhere.com *.wikipedia.org 'unsafe-inline'; object-src 'none'; report-uri /w/api.php?action=cspreport&format=json; report-to " . self::$CSPReportToEndpointName,
+				"script-src blob: 'self' 'unsafe-inline' sister-site.somewhere.com *.wikipedia.org; default-src 'self' data: blob: https://upload.wikimedia.org https://commons.wikimedia.org sister-site.somewhere.com *.wikipedia.org; style-src 'self' data: blob: https://upload.wikimedia.org https://commons.wikimedia.org sister-site.somewhere.com *.wikipedia.org 'unsafe-inline'; object-src 'none'; report-uri /w/api.php?action=cspreport&format=json&reportonly=1; report-to " . self::$CSPReportToReportOnlyEndpointName,
+			],
+			[
 				[ 'default-src' => false ],
 				"script-src 'unsafe-eval' blob: 'self' 'unsafe-inline' sister-site.somewhere.com *.wikipedia.org; default-src * data: blob:; style-src * data: blob: 'unsafe-inline'; object-src 'none'; report-uri /w/api.php?action=cspreport&format=json; report-to " . self::$CSPReportToEndpointName,
 				"script-src 'unsafe-eval' blob: 'self' 'unsafe-inline' sister-site.somewhere.com *.wikipedia.org; default-src * data: blob:; style-src * data: blob: 'unsafe-inline'; object-src 'none'; report-uri /w/api.php?action=cspreport&format=json&reportonly=1; report-to " . self::$CSPReportToReportOnlyEndpointName,

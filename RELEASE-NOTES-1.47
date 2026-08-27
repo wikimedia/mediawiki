@@ -57,6 +57,10 @@ For notes on 1.46.x and older releases, see HISTORY.
 
 ==== Changed configuration ====
 
+* (T419684) $wgCSPHeader (and $wgCSPReportOnlyHeader) now support an
+  'unsafeEval' key. Setting it to false removes 'unsafe-eval' from the
+  script-src directive. Defaults to true, so behavior is unchanged unless
+  a wiki explicitly opts out.
 * …
 
 ==== Removed configuration ====
