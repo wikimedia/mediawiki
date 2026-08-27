@@ -7,7 +7,6 @@
 namespace Wikimedia\ObjectCache;
 
 use LogicException;
-use Wikimedia\LightweightObjectStore\ExpirationAwareness;
 
 /**
  * Fluent builder for a WANObjectCache::getWithSetCallback() call
@@ -28,22 +27,20 @@ use Wikimedia\LightweightObjectStore\ExpirationAwareness;
  *         } );
  * @endcode
  *
- * The callback receives the previous value (false if there was none) and a
- * UpdateContext, which replaces the by-reference parameters of the plain
+ * The callback receives the previous value (false if there was none),
+ * which replaces the `$oldValue` argument of the plain
  * WANObjectCache::getWithSetCallback() callback:
  *
  * @code
  *     $row = $cache->buildGetWithSetCallback()
- *         ->key( 'user-profile', $userId )
+ *         ->key( 'revision-count', $pageId )
  *         ->keepForADay()
  *         ->allowStale( 30 )
- *         ->callback( function ( $oldValue, UpdateContext $context ) {
- *             $row = $this->loadProfileRow();
- *             if ( !$row ) {
- *                 $context->doNotCache();
+ *         ->callback( function ( $oldValue ) use ( $pageId ) {
+ *             if ( $oldValue && $oldValue['latest'] === $this->getLatest( $pageId ) ) {
+ *                 $return $oldValue;
  *             }
- *
- *             return $row;
+ *             return $this->computeRevisionCount( $pageId );
  *         } )
  *         ->fetch();
  * @endcode
@@ -65,8 +62,6 @@ class WANGetWithSetCallbackBuilder {
 	private ?int $lifetime = null;
 	/** @var array Options map for WANObjectCache::getWithSetCallback() */
 	private array $options = [];
-	/** @var array Custom field/value map to pass to the callback */
-	private array $callbackParams = [];
 
 	/**
 	 * @internal Use WANObjectCache::buildGetWithSetCallback()
@@ -98,7 +93,6 @@ class WANGetWithSetCallbackBuilder {
 	 */
 	public function globalKey( string $keygroup, ...$components ) {
 		$this->key = $this->cache->makeGlobalKey( $keygroup, ...$components );
-
 		return $this;
 	}
 
@@ -110,7 +104,6 @@ class WANGetWithSetCallbackBuilder {
 	 */
 	public function lifetime( int $seconds ) {
 		$this->lifetime = $seconds;
-
 		return $this;
 	}
 
@@ -120,81 +113,76 @@ class WANGetWithSetCallbackBuilder {
 	 * @return $this
 	 */
 	public function keepIndefinitely() {
-		return $this->lifetime( ExpirationAwareness::TTL_INDEFINITE );
+		return $this->lifetime( WANObjectCache::TTL_INDEFINITE );
 	}
 
 	/**
 	 * Reuse a newly generated value for one minute
 	 *
 	 * @see WANGetWithSetCallbackBuilder::lifetime()
-	 *
 	 * @return $this
 	 */
 	public function keepForAMinute() {
-		return $this->lifetime( ExpirationAwareness::TTL_MINUTE );
+		return $this->lifetime( WANObjectCache::TTL_MINUTE );
 	}
 
 	/**
 	 * Reuse a newly generated value for one hour
 	 *
 	 * @see WANGetWithSetCallbackBuilder::lifetime()
-	 *
 	 * @return $this
 	 */
 	public function keepForAnHour() {
-		return $this->lifetime( ExpirationAwareness::TTL_HOUR );
+		return $this->lifetime( WANObjectCache::TTL_HOUR );
 	}
 
 	/**
 	 * Reuse a newly generated value for one day
 	 *
 	 * @see WANGetWithSetCallbackBuilder::lifetime()
-	 *
 	 * @return $this
 	 */
 	public function keepForADay() {
-		return $this->lifetime( ExpirationAwareness::TTL_DAY );
+		return $this->lifetime( WANObjectCache::TTL_DAY );
 	}
 
 	/**
 	 * Reuse a newly generated value for one week
 	 *
 	 * @see WANGetWithSetCallbackBuilder::lifetime()
-	 *
 	 * @return $this
 	 */
 	public function keepForAWeek() {
-		return $this->lifetime( ExpirationAwareness::TTL_WEEK );
+		return $this->lifetime( WANObjectCache::TTL_WEEK );
 	}
 
 	/**
 	 * Reuse a newly generated value for one month
 	 *
 	 * @see WANGetWithSetCallbackBuilder::lifetime()
-	 *
 	 * @return $this
 	 */
 	public function keepForAMonth() {
-		return $this->lifetime( ExpirationAwareness::TTL_MONTH );
+		return $this->lifetime( WANObjectCache::TTL_MONTH );
 	}
 
 	/**
 	 * Reuse a newly generated value for one year
 	 *
 	 * @see WANGetWithSetCallbackBuilder::lifetime()
-	 *
 	 * @return $this
 	 */
 	public function keepForAYear() {
-		return $this->lifetime( ExpirationAwareness::TTL_YEAR );
+		return $this->lifetime( WANObjectCache::TTL_YEAR );
 	}
 
 	/**
 	 * Treat the value as stale whenever the given "check" key is touched
 	 *
-	 * The value is seen as stale when either touchCheckKey() or resetCheckKey() is called on
-	 * the given key. This is useful when thousands or millions of keys depend on the same
-	 * entity: that entity can simply have its "check" key updated whenever it is modified.
+	 * The value is seen as stale when either WANObjectCache::touchCheckKey() or
+	 * WANObjectCache::resetCheckKey() is called on the given key.
+	 * This is useful when thousands or millions of keys depend on the same entity:
+	 * that entity can simply have its "check" key updated whenever it is modified.
 	 *
 	 * This may be called more than once, in which case any of the keys invalidates the value.
 	 *
@@ -212,7 +200,6 @@ class WANGetWithSetCallbackBuilder {
 	 * Treat the value as stale whenever the given global "check" key is touched
 	 *
 	 * @see WANGetWithSetCallbackBuilder::invalidatedByKey()
-	 *
 	 * @param string $keygroup Key group component, which must be constant (not user input)
 	 * @param string|int ...$components Additional key components
 	 * @return $this
@@ -241,29 +228,16 @@ class WANGetWithSetCallbackBuilder {
 	}
 
 	/**
-	 * Reuse a value that a purge made stale less than this many seconds ago
+	 * Allow reuse of a recently expired value while another thread regenerates it
 	 *
-	 * The odds of regenerating instead become more likely over time, becoming certain once the
-	 * grace period is reached. This spreads out the load when millions of keys are compared to
-	 * the same "check" key. It does not apply to values that merely reached the end of their
-	 * lifetime; use refreshBeforeExpiry() for that.
+	 * This enables use of a regeneration lock if the value expired less than the given
+	 * number of seconds ago, and returns the stale value if another thread holds the
+	 * regeneration lock already. If a value is used within a short interval after expiry,
+	 * it is assumed the key has a high enough access rate to justify avoiding a stampede.
 	 *
-	 * @param int $seconds
-	 * @return $this
-	 */
-	public function gracePeriod( int $seconds ) {
-		$this->options['graceTTL'] = $seconds;
-
-		return $this;
-	}
-
-	/**
-	 * Reuse a recently expired value while another thread regenerates it
-	 *
-	 * This applies when the value expired less than the given number of seconds ago and another
-	 * thread holds the regeneration lock. A short interval implies a high enough access rate to
-	 * justify avoiding a stampede. Note that no value exists at all after deletion, expiry, or
-	 * eviction at the storage layer; use busyValue() to cover those cases.
+	 * If no previous value exists, this setting is ignored and no regen lock is used (e.g. after
+	 * deletion, expiry, or eviction at the storage layer). Use busyValue() to enable use of
+	 * a regen lock to avoid stempedes in those cases.
 	 *
 	 * This corresponds to the "lockTSE" option of WANObjectCache::getWithSetCallback().
 	 *
@@ -301,21 +275,6 @@ class WANGetWithSetCallbackBuilder {
 	 */
 	public function keepStaleFor( int $seconds ) {
 		$this->options['staleTTL'] = $seconds;
-
-		return $this;
-	}
-
-	/**
-	 * Reject values that were generated before the given UNIX timestamp
-	 *
-	 * This is useful when the source of the value is suspected of having changed recently and
-	 * the caller wants any such change to be reflected.
-	 *
-	 * @param float $unixTimestamp
-	 * @return $this
-	 */
-	public function rejectValuesOlderThan( int|float $unixTimestamp ) {
-		$this->options['minAsOf'] = $unixTimestamp;
 
 		return $this;
 	}
@@ -397,7 +356,7 @@ class WANGetWithSetCallbackBuilder {
 	 * @return $this
 	 */
 	public function shortProcessCache() {
-		return $this->processCacheLifetime( ExpirationAwareness::TTL_PROC_SHORT );
+		return $this->processCacheLifetime( WANObjectCache::TTL_PROC_SHORT );
 	}
 
 	/**
@@ -408,7 +367,7 @@ class WANGetWithSetCallbackBuilder {
 	 * @return $this
 	 */
 	public function longProcessCache() {
-		return $this->processCacheLifetime( ExpirationAwareness::TTL_PROC_LONG );
+		return $this->processCacheLifetime( WANObjectCache::TTL_PROC_LONG );
 	}
 
 	/**
@@ -456,40 +415,13 @@ class WANGetWithSetCallbackBuilder {
 	}
 
 	/**
-	 * Pass a custom field/value map to the callback
-	 *
-	 * The callback reads it via CacheRegenerationContext::getParam().
-	 *
-	 * @param array $params
-	 * @return $this
-	 */
-	public function callbackParams( array $params ) {
-		$this->callbackParams = $params;
-
-		return $this;
-	}
-
-	/**
 	 * Set the callback
 	 *
-	 * The callback is given the previous value (false if there was none) and a
-	 * CacheRegenerationContext. Returning false means "not cacheable"; to store a negative
-	 * result, return some other value, and to skip storing anything at all, call
-	 * CacheRegenerationContext::doNotCache().
-	 *
-	 * @param callable $callback Takes ( mixed $oldValue, CacheRegenerationContext $context )
+	 * @param callable $callback Takes ( mixed $oldValue )
 	 * @return $this
 	 */
 	public function callback( callable $callback ) {
-		$this->callback = static function ( $oldValue, &$ttl, array &$setOpts, $oldAsOf, array $params )
-		use ( $callback )
-		{
-			$context = new UpdateContext( $ttl, $oldValue, $oldAsOf, $params );
-			$value = $callback( $oldValue, $context );
-			$ttl = $context->getLifetime();
-
-			return $value;
-		};
+		$this->callback = $callback;
 
 		return $this;
 	}
@@ -514,8 +446,7 @@ class WANGetWithSetCallbackBuilder {
 			$this->key,
 			$this->lifetime,
 			$this->callback,
-			$this->options,
-			$this->callbackParams
+			$this->options
 		);
 	}
 }

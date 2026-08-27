@@ -5,12 +5,10 @@ namespace Wikimedia\Tests\ObjectCache;
 use LogicException;
 use MediaWikiUnitTestCase;
 use Wikimedia\ObjectCache\HashBagOStuff;
-use Wikimedia\ObjectCache\UpdateContext;
 use Wikimedia\ObjectCache\WANObjectCache;
 
 /**
  * @covers \Wikimedia\ObjectCache\WANGetWithSetCallbackBuilder
- * @covers \Wikimedia\ObjectCache\UpdateContext
  */
 class WANGetWithSetCallbackBuilderTest extends MediaWikiUnitTestCase {
 
@@ -229,12 +227,9 @@ class WANGetWithSetCallbackBuilderTest extends MediaWikiUnitTestCase {
 				->lifetime( 10 )
 				->keepStaleFor( 60 )
 				->callback(
-					static function ( $oldValue, UpdateContext $context ) use ( &$seen ) {
+					static function ( $oldValue ) use ( &$seen ) {
 						$seen[] = [
 							'oldValue' => $oldValue,
-							'hasOldValue' => $context->hasOldValue(),
-							'contextOldValue' => $context->getOldValue(),
-							'oldAsOf' => $context->getOldAsOf(),
 						];
 
 						return 'value';
@@ -249,94 +244,7 @@ class WANGetWithSetCallbackBuilderTest extends MediaWikiUnitTestCase {
 		$get();
 
 		$this->assertSame( false, $seen[0]['oldValue'], 'No prior value' );
-		$this->assertFalse( $seen[0]['hasOldValue'] );
-		$this->assertFalse( $seen[0]['contextOldValue'] );
-		$this->assertNull( $seen[0]['oldAsOf'] );
-
 		$this->assertSame( 'value', $seen[1]['oldValue'], 'Stale prior value' );
-		$this->assertTrue( $seen[1]['hasOldValue'] );
-		$this->assertSame( 'value', $seen[1]['contextOldValue'] );
-		$this->assertEqualsWithDelta( $firstGenerationTime, $seen[1]['oldAsOf'], 0.01 );
-	}
-
-	public function testContextSetLifetime() {
-		[ $cache ] = $this->newWanCache();
-		$mockTime = microtime( true );
-		$cache->setMockTime( $mockTime );
-
-		$calls = 0;
-		$lifetimeSeen = [];
-		$get = static function () use ( $cache, &$calls, &$lifetimeSeen ) {
-			return $cache->buildGetWithSetCallback()
-				->key( 'test-group' )
-				->lifetime( 3600 )
-				->callback(
-					static function ( $oldValue, UpdateContext $context )
-						use ( &$calls, &$lifetimeSeen )
-					{
-						++$calls;
-						$lifetimeSeen[] = $context->getLifetime();
-						$context->setLifetime( 10 );
-
-						return "value-$calls";
-					}
-				)
-				->fetch();
-		};
-
-		$this->assertSame( 'value-1', $get() );
-
-		$mockTime += 30;
-		$this->assertSame( 'value-2', $get(), 'Shortened lifetime was used' );
-		$this->assertSame( [ 3600, 3600 ], $lifetimeSeen, 'Builder lifetime is the default' );
-	}
-
-	public function testContextDoNotCache() {
-		[ $cache ] = $this->newWanCache();
-
-		$calls = 0;
-		$get = static function () use ( $cache, &$calls ) {
-			return $cache->buildGetWithSetCallback()
-				->key( 'test-group' )
-				->lifetime( 3600 )
-				->callback(
-					static function ( $oldValue, UpdateContext $context ) use ( &$calls ) {
-						++$calls;
-						$context->doNotCache();
-
-						return "value-$calls";
-					}
-				)
-				->fetch();
-		};
-
-		$this->assertSame( 'value-1', $get() );
-		$this->assertSame( 'value-2', $get(), 'Nothing was stored' );
-		$this->assertFalse( $cache->get( $cache->makeKey( 'test-group' ) ) );
-	}
-
-	public function testCallbackParams() {
-		[ $cache ] = $this->newWanCache();
-
-		$value = $cache->buildGetWithSetCallback()
-			->key( 'test-group' )
-			->lifetime( 60 )
-			->callbackParams( [ 'id' => 42 ] )
-			->callback(
-				static function ( $oldValue, UpdateContext $context ) {
-					return [
-						'params' => $context->getParams(),
-						'id' => $context->getParam( 'id' ),
-						'missing' => $context->getParam( 'nope', 'fallback' ),
-					];
-				}
-			)
-			->fetch();
-
-		$this->assertSame(
-			[ 'params' => [ 'id' => 42 ], 'id' => 42, 'missing' => 'fallback' ],
-			$value
-		);
 	}
 
 	public function testProcessCache() {

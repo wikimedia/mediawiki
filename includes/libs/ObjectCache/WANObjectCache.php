@@ -450,7 +450,7 @@ class WANObjectCache implements
 		// Also, if no $info parameter is provided, then it doesn't matter how it changes here.
 		$legacyInfo = ( $info !== self::PASS_BY_REF );
 
-		$cachedValue = $this->fetchWithInfo( $key, $checkKeys, __FUNCTION__ );
+		$cachedValue = $this->getWithInfo( $key, $checkKeys );
 
 		$curTTL = $cachedValue->getRemainingLifetime();
 		$info = $legacyInfo
@@ -473,29 +473,16 @@ class WANObjectCache implements
 	 * This is the same as get(), except that the value and the key metadata are returned
 	 * together as a CachedValue, instead of via by-reference parameters.
 	 *
-	 * @see WANObjectCache::get()
 	 * @since 1.47
-	 *
+	 * @see WANObjectCache::get()
 	 * @param string $key Cache key made with makeKey()/makeGlobalKey()
 	 * @param string[] $checkKeys Map of (integer or cache key => "check" key(s));
 	 *  "check" keys must also be made with makeKey()/makeGlobalKey()
 	 * @return CachedValue
 	 */
 	final public function getWithInfo( string $key, array $checkKeys = [] ): CachedValue {
-		return $this->fetchWithInfo( $key, $checkKeys, __FUNCTION__ );
-	}
-
-	/**
-	 * Do the actual I/O for get() and getWithInfo()
-	 *
-	 * @param string $key Cache key made with makeKey()/makeGlobalKey()
-	 * @param string[] $checkKeys Map of (integer or cache key => "check" key(s))
-	 * @param string $opName Name of the calling method, for tracing
-	 * @return CachedValue
-	 */
-	private function fetchWithInfo( string $key, array $checkKeys, string $opName ): CachedValue {
 		/** @noinspection PhpUnusedLocalVariableInspection */
-		$span = $this->startOperationSpan( $opName, $key, $checkKeys );
+		$span = $this->startOperationSpan( 'get', $key, $checkKeys );
 
 		$now = $this->getCurrentTime();
 		$res = $this->fetchKeys( [ $key ], $checkKeys, $now )[$key];

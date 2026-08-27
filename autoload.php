@@ -4530,7 +4530,6 @@ $wgAutoloadLocalClasses = [
 	'Wikimedia\\ObjectCache\\RedisConnRef' => __DIR__ . '/includes/libs/ObjectCache/RedisConnRef.php',
 	'Wikimedia\\ObjectCache\\RedisConnectionPool' => __DIR__ . '/includes/libs/ObjectCache/RedisConnectionPool.php',
 	'Wikimedia\\ObjectCache\\SerializedValueContainer' => __DIR__ . '/includes/libs/ObjectCache/SerializedValueContainer.php',
-	'Wikimedia\\ObjectCache\\UpdateContext' => __DIR__ . '/includes/libs/ObjectCache/UpdateContext.php',
 	'Wikimedia\\ObjectCache\\WANGetWithSetCallbackBuilder' => __DIR__ . '/includes/libs/ObjectCache/WANGetWithSetCallbackBuilder.php',
 	'Wikimedia\\ObjectCache\\WANObjectCache' => __DIR__ . '/includes/libs/ObjectCache/WANObjectCache.php',
 	'Wikimedia\\ParamValidator\\Callbacks' => __DIR__ . '/includes/libs/ParamValidator/Callbacks.php',
