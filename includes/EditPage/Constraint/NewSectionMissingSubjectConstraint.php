@@ -8,7 +8,6 @@ namespace MediaWiki\EditPage\Constraint;
 
 use MediaWiki\PageEdit\PageEditAttemptState;
 use MediaWiki\PageEdit\PageEditStatus;
-use Wikimedia\Message\MessageSpecifier;
 
 /**
  * For a new section, do not allow the user to post with an empty subject (section title) unless they choose to
@@ -23,7 +22,6 @@ class NewSectionMissingSubjectConstraint extends EditConstraint {
 		private readonly string $section,
 		private readonly string $subject,
 		private readonly bool $allowBlankSubject,
-		private readonly MessageSpecifier $submitButtonLabel,
 		private readonly PageEditAttemptState $editAttemptState,
 	) {
 	}
@@ -38,10 +36,7 @@ class NewSectionMissingSubjectConstraint extends EditConstraint {
 			return PageEditStatus::newGood( self::AS_SUMMARY_NEEDED )
 				->setOK( false )
 				->setCanResubmit( true )
-				->warning(
-					'missingcommentheader',
-					$this->submitButtonLabel,
-				);
+				->warning( 'edit-constraint-newsectionmissingsubject-warning' );
 		}
 
 		return PageEditStatus::newGood();

@@ -98,7 +98,6 @@ use RuntimeException;
 use StatusValue;
 use Wikimedia\Assert\Assert;
 use Wikimedia\HtmlArmor\HtmlArmor;
-use Wikimedia\Message\MessageSpecifier;
 use Wikimedia\Message\MessageValue;
 use Wikimedia\ParamValidator\TypeDef\ExpiryDef;
 use Wikimedia\Parsoid\Parsoid;
@@ -356,6 +355,8 @@ class EditPage implements IEditObject {
 	private $editConflictHelperFactory = null;
 	private ?TextConflictHelper $editConflictHelper = null;
 
+	private EditStatusFormatter $editStatusFormatter;
+
 	private AuthManager $authManager;
 	private EditConstraintFactory $constraintFactory;
 	private IContentHandlerFactory $contentHandlerFactory;
@@ -458,6 +459,7 @@ class EditPage implements IEditObject {
 			->getDefaultFormat();
 
 		$this->editAttemptState = new PageEditAttemptState();
+		$this->editStatusFormatter = new EditStatusFormatter( $this->context );
 	}
 
 	/**
@@ -1813,7 +1815,10 @@ class EditPage implements IEditObject {
 			// For status codes that provide their own error/warning messages, we display the errors and warnings in
 			// message boxes.
 			default:
-				$out->addHTML( $this->formatConstraintStatus( $status ) );
+				$out->addHTML( $this->editStatusFormatter->formatStatus(
+					$status,
+					MessageValue::new( $this->pageEditingHelper->getSubmitButtonLabel( $this->page ) )
+				) );
 				return true;
 
 			// There is a UI for edit conflicts, so we don't need to show a message box.
@@ -1859,37 +1864,6 @@ class EditPage implements IEditObject {
 				$this->spamPageWithContent( $resultDetails['spam'] ?? false );
 				return false;
 		}
-	}
-
-	/**
-	 * Wrap warning/error messages in styled message boxes.
-	 * @return string Html
-	 */
-	private function formatConstraintStatus( StatusValue $status ): string {
-		return $this->createMessageBox( $status->getMessages( 'error' ), 'error' ) .
-			$this->createMessageBox( $status->getMessages( 'warning' ), 'warning' );
-	}
-
-	/**
-	 * Create a message box containing multiple messages.
-	 * @param MessageSpecifier[] $messages
-	 * @param string $type `warning` or `error`
-	 */
-	private function createMessageBox( array $messages, string $type ): string {
-		if ( !$messages ) {
-			// Don't create a box if there are no messages
-			return '';
-		}
-
-		$html = implode(
-			Html::openElement( 'br' ),
-			array_map( fn ( $msg ) => $this->context->msg( $msg )->parse(), $messages )
-		);
-
-		if ( $type === 'warning' ) {
-			return Html::warningBox( $html );
-		}
-		return Html::errorBox( $html );
 	}
 
 	/**
@@ -2639,7 +2613,7 @@ class EditPage implements IEditObject {
 			);
 
 			// No call to $this->handleFailedConstraint() here to avoid setting wpRedirect
-			$out->addHTML( $this->formatConstraintStatus( $constraintRunner->checkAllConstraints() ) );
+			$out->addHTML( $this->editStatusFormatter->formatStatus( $constraintRunner->checkAllConstraints() ) );
 		}
 
 		$this->addLongPageWarningHeader();
@@ -3377,7 +3351,9 @@ class EditPage implements IEditObject {
 			Html::element(
 				'h2', [ 'id' => 'mw-previewheader' ],
 				$this->context->msg( 'preview' )->text()
-			) . $this->formatConstraintStatus( $previewStatus ) . $previewNoteHtml . $conflict
+			) . $this->editStatusFormatter->formatStatus(
+				PageEditStatus::cast( $previewStatus )
+			) . $previewNoteHtml . $conflict
 		);
 
 		return $previewhead . $previewHTML . $this->previewTextAfterContent;

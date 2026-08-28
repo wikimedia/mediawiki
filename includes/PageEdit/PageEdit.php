@@ -558,7 +558,6 @@ class PageEdit implements IEditObject {
 				$this->section,
 				$this->inputs->getSectiontitle() ?? '',
 				$allowBlankSummary,
-				$this->getSubmitButtonLabel(),
 				$this->inputs->getAttemptState(),
 			),
 			new MissingCommentConstraint( $this->section, $this->textbox1 ),

@@ -1389,6 +1389,7 @@ $wgAutoloadLocalClasses = [
 	'MediaWiki\\EditPage\\Constraint\\SpamRegexConstraint' => __DIR__ . '/includes/EditPage/Constraint/SpamRegexConstraint.php',
 	'MediaWiki\\EditPage\\DataStashTrait' => __DIR__ . '/includes/EditPage/DataStashTrait.php',
 	'MediaWiki\\EditPage\\EditPage' => __DIR__ . '/includes/EditPage/EditPage.php',
+	'MediaWiki\\EditPage\\EditStatusFormatter' => __DIR__ . '/includes/EditPage/EditStatusFormatter.php',
 	'MediaWiki\\EditPage\\IEditObject' => __DIR__ . '/includes/EditPage/IEditObject.php',
 	'MediaWiki\\EditPage\\IntroMessageBuilder' => __DIR__ . '/includes/EditPage/IntroMessageBuilder.php',
 	'MediaWiki\\EditPage\\IntroMessageList' => __DIR__ . '/includes/EditPage/IntroMessageList.php',

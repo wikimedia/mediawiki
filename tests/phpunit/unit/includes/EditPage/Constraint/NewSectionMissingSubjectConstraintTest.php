@@ -8,7 +8,6 @@ namespace MediaWiki\Tests\Unit\EditPage\Constraint;
 
 use MediaWiki\EditPage\Constraint\EditConstraint;
 use MediaWiki\EditPage\Constraint\NewSectionMissingSubjectConstraint;
-use MediaWiki\Language\RawMessage;
 use MediaWiki\PageEdit\PageEditAttemptState;
 use MediaWikiUnitTestCase;
 
@@ -27,7 +26,6 @@ class NewSectionMissingSubjectConstraintTest extends MediaWikiUnitTestCase {
 			'new',
 			'Subject',
 			false,
-			new RawMessage( '' ),
 			new PageEditAttemptState(),
 		);
 		$this->assertConstraintPassed( $constraint );
@@ -39,7 +37,6 @@ class NewSectionMissingSubjectConstraintTest extends MediaWikiUnitTestCase {
 			'new',
 			'',
 			false,
-			new RawMessage( '' ),
 			$editAttemptState,
 		);
 		$status = $this->assertConstraintFailed( $constraint, EditConstraint::AS_SUMMARY_NEEDED );
@@ -52,7 +49,6 @@ class NewSectionMissingSubjectConstraintTest extends MediaWikiUnitTestCase {
 			'notnew',
 			'',
 			false,
-			new RawMessage( '' ),
 			new PageEditAttemptState(),
 		);
 		$this->assertConstraintPassed( $constraint );
