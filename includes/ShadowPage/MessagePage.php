@@ -37,6 +37,9 @@ class MessagePage extends BaseShadowPage {
 	}
 
 	public function getView( ParserOptions $parserOptions ): ?ShadowPageView {
+		// T324967: disable language conversion on message pages
+		$parserOptions = clone $parserOptions;
+		$parserOptions->disableContentConversion();
 		return $this->parseHelper->getParsedContentView(
 			$this->content, $this->title, $parserOptions );
 	}
