@@ -345,7 +345,7 @@ class WANObjectCacheTest extends MediaWikiUnitTestCase {
 	 * @param array $extOpts
 	 */
 	public function testGetWithSetCallback( array $extOpts ) {
-		[ $cache ] = $this->newWanCache();
+		[ $cache, $bag ] = $this->newWanCache();
 
 		$key = wfRandomString();
 		$value = wfRandomString();
@@ -476,7 +476,7 @@ class WANObjectCacheTest extends MediaWikiUnitTestCase {
 			$key,
 			$cache::TTL_INDEFINITE,
 			$checkFunc,
-			[ 'graceTTL' => $cache::TTL_WEEK, 'checkKeys' => [ $checkKey ] ] + $extOpts
+			[ 'lockTSE' => $cache::TTL_WEEK, 'checkKeys' => [ $checkKey ] ] + $extOpts
 		);
 		$this->assertSame( 'xxx1', $v, "Value returned" );
 		$this->assertSame( 1, $wasSet, "Value computed" );
@@ -489,7 +489,7 @@ class WANObjectCacheTest extends MediaWikiUnitTestCase {
 			$cache::TTL_INDEFINITE,
 			$checkFunc,
 			[
-				'graceTTL' => $cache::TTL_WEEK,
+				'lockTSE' => $cache::TTL_WEEK,
 				'checkKeys' => [ $checkKey ],
 				'ageNew' => -1
 			] + $extOpts
@@ -498,20 +498,21 @@ class WANObjectCacheTest extends MediaWikiUnitTestCase {
 		$this->assertSame( 1, $wasSet, "Cached value returned" );
 
 		$cache->touchCheckKey( $checkKey ); // make key stale
-		$mockWallClock += 0.01; // ~1 week left of grace (barely stale to avoid refreshes)
+		$mockWallClock += 0.01; // ~1 week left of lockTSE (barely stale to avoid refreshes)
 
+		$this->setMutexKey( $bag, $key );
 		$v = $cache->getWithSetCallback(
 			$key,
 			$cache::TTL_INDEFINITE,
 			$checkFunc,
 			[
-				'graceTTL' => $cache::TTL_WEEK,
+				'lockTSE' => $cache::TTL_WEEK,
 				'checkKeys' => [ $checkKey ],
 				'ageNew' => -1,
 			] + $extOpts
 		);
-		$this->assertSame( 'xxx1', $v, "Value still returned after expired (in grace)" );
-		$this->assertSame( 1, $wasSet, "Value still returned after expired (in grace)" );
+		$this->assertSame( 'xxx1', $v, "Stale value while regenerating during lockTSE" );
+		$this->assertSame( 1, $wasSet, "Stale value while regenerating during lockTSE" );
 
 		// Chance of refresh increase to unity as staleness approaches graceTTL
 		$mockWallClock += $cache::TTL_WEEK; // 8 days of being stale
@@ -519,12 +520,12 @@ class WANObjectCacheTest extends MediaWikiUnitTestCase {
 			$key,
 			$cache::TTL_INDEFINITE,
 			$checkFunc,
-			[ 'graceTTL' => $cache::TTL_WEEK, 'checkKeys' => [ $checkKey ] ] + $extOpts
+			[ 'lockTSE' => $cache::TTL_WEEK, 'checkKeys' => [ $checkKey ] ] + $extOpts
 		);
-		$this->assertSame( 'xxx2', $v, "Value was recomputed (past grace)" );
-		$this->assertSame( 2, $wasSet, "Value was recomputed (past grace)" );
-		$this->assertSame( 'xxx1', $oldValReceived, "Callback got post-grace stale value" );
-		$this->assertNotEquals( null, $oldAsOfReceived, "Callback got post-grace stale value" );
+		$this->assertSame( 'xxx2', $v, "Value was recomputed (after touchCheckKey)" );
+		$this->assertSame( 2, $wasSet, "Value was recomputed (after touchCheckKey)" );
+		$this->assertSame( 'xxx1', $oldValReceived, "Callback received old value" );
+		$this->assertNotEquals( null, $oldAsOfReceived, "Callback received old value" );
 	}
 
 	/**

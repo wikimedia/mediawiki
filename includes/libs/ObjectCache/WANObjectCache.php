@@ -215,8 +215,6 @@ class WANObjectCache implements
 
 	/** Idiom for set()/getWithSetCallback() meaning "no post-expiration persistence" */
 	public const STALE_TTL_NONE = 0;
-	/** Idiom for set()/getWithSetCallback() meaning "no post-expiration grace period" */
-	public const GRACE_TTL_NONE = 0;
 	/** Idiom for delete()/touchCheckKey() meaning "no hold-off period" */
 	public const HOLDOFF_TTL_NONE = 0;
 
@@ -1453,14 +1451,6 @@ class WANObjectCache implements
 	 *      is useful if thousands or millions of keys depend on the same entity. The entity can
 	 *      simply have its "check" key updated whenever the entity is modified.
 	 *      Default: [].
-	 *   - graceTTL: If the key is stale due to a purge (by "checkKeys" or "touchedCallback")
-	 *      less than this many seconds ago, consider reusing the stale value. The odds of a
-	 *      refresh become more likely over time, becoming certain once the grace period is
-	 *      reached. This can reduce traffic spikes when millions of keys are compared to the
-	 *      same  "check" key and touchCheckKey() or resetCheckKey() is called on that "check" key.
-	 *      This option is not useful for avoiding traffic spikes in the case of the key simply
-	 *      expiring on account of its TTL (use "lowTTL" instead).
-	 *      Default: WANObjectCache::GRACE_TTL_NONE.
 	 *   - lockTSE: If the value is stale and the "time since expiry" (TSE) is less than the given
 	 *      number of seconds ago, then reuse the stale value if another such thread is already
 	 *      regenerating the value. The TSE of the key is influenced by purges (e.g. via delete(),
@@ -1543,10 +1533,9 @@ class WANObjectCache implements
 	 *
 	 * @param array $cbParams Custom field/value map to pass to the callback (since 1.35)
 	 * @phpcs:ignore Generic.Files.LineLength
-	 * @phan-param array{checkKeys?:string[],graceTTL?:int,lockTSE?:int,busyValue?:mixed,pcTTL?:int,pcGroup?:string,version?:int,minAsOf?:float|int,hotTTR?:int,lowTTL?:int,ageNew?:int,staleTTL?:int,touchedCallback?:callable,segmentable?:bool} $opts
+	 * @phan-param array{checkKeys?:string[],lockTSE?:int,busyValue?:mixed,pcTTL?:int,pcGroup?:string,version?:int,minAsOf?:float|int,hotTTR?:int,lowTTL?:int,ageNew?:int,staleTTL?:int,touchedCallback?:callable,segmentable?:bool} $opts
 	 * @return mixed Value found or written to the key
 	 * @note Options added in 1.28: version, busyValue, hotTTR, ageNew, pcGroup, minAsOf
-	 * @note Options added in 1.31: staleTTL, graceTTL
 	 * @note Options added in 1.33: touchedCallback
 	 * @note Callable type hints are not used to avoid class-autoloading
 	 */
@@ -1614,7 +1603,6 @@ class WANObjectCache implements
 	 */
 	private function fetchOrRegenerate( $key, $ttl, $callback, array $opts, array $cbParams ) {
 		$checkKeys = $opts['checkKeys'] ?? [];
-		$graceTTL = $opts['graceTTL'] ?? self::GRACE_TTL_NONE;
 		$minAsOf = $opts['minAsOf'] ?? self::MIN_TIMESTAMP_NONE;
 		$hotTTR = $opts['hotTTR'] ?? self::HOT_TTR;
 		$lowTTL = $opts['lowTTL'] ?? min( self::LOW_TTL, $ttl );
@@ -1629,7 +1617,7 @@ class WANObjectCache implements
 		$curValue = $curState[self::RES_VALUE];
 
 		// Use the cached value if it exists and is not due for synchronous regeneration
-		if ( $this->isAcceptablyFreshValue( $curState, $graceTTL, $minAsOf ) ) {
+		if ( $this->isAcceptablyFreshValue( $curState, $minAsOf ) ) {
 			if ( !$this->isLotteryRefreshDue( $curState, $lowTTL, $ageNew, $hotTTR, $startTime ) ) {
 				$this->stats->getTiming( 'wanobjectcache_getwithset_seconds' )
 					->setLabel( 'keygroup', $keygroup )
@@ -2440,7 +2428,7 @@ class WANObjectCache implements
 	 *        [
 	 *             // Keep stale values around for doing comparisons for TTL calculations.
 	 *             // High values improve long-tail keys hit-rates, though might waste space.
-	 *             'staleTTL' => GraphQueryClass::GRACE_TTL
+	 *             'staleTTL' => GraphQueryClass::STALE_TTL
 	 *        ]
 	 *     );
 	 * @endcode
@@ -2528,33 +2516,19 @@ class WANObjectCache implements
 	}
 
 	/**
-	 * Check if a key value is non-false, new enough, and either fresh or "gracefully" stale
+	 * Check if a key value is non-false, new enough, and fresh
 	 *
 	 * @param array $res Current value WANObjectCache::RES_* data map
-	 * @param int $graceTTL Consider using stale values if $curTTL is greater than this
 	 * @param float $minAsOf Minimum acceptable value "as of" UNIX timestamp
 	 * @return bool
 	 */
-	private function isAcceptablyFreshValue( $res, $graceTTL, $minAsOf ) {
-		if ( !$this->isValid( $res[self::RES_VALUE], $res[self::RES_AS_OF], $minAsOf ) ) {
-			// Value does not exists or is too old
-			return false;
-		}
-
-		$curTTL = $res[self::RES_CUR_TTL];
-		if ( $curTTL > 0 ) {
-			// Value is definitely still fresh
-			return true;
-		}
-
-		// Remaining seconds during which this stale value can be used
-		$curGraceTTL = $graceTTL + $curTTL;
-
-		return ( $curGraceTTL > 0 )
-			// Chance of using the value decreases as $curTTL goes from 0 to -$graceTTL
-			? !$this->worthRefreshExpiring( $curGraceTTL, $graceTTL, $graceTTL )
-			// Value is too stale to fall in the grace period
-			: false;
+	private function isAcceptablyFreshValue( $res, $minAsOf ) {
+		return (
+			// Value exists and is not not too old
+			$this->isValid( $res[self::RES_VALUE], $res[self::RES_AS_OF], $minAsOf )
+			// Check remaining seconds during which this value is definitely fresh
+			&& $res[self::RES_CUR_TTL] > 0
+		);
 	}
 
 	/**
