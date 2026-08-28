@@ -21,6 +21,7 @@ use Wikimedia\TestingAccessWrapper;
 /**
  * @covers \MediaWiki\PageEdit\PageEdit
  * @covers \MediaWiki\PageEdit\PageEditInputs
+ * @covers \MediaWiki\PageEdit\PageEditResult
  * @group Database
  */
 class PageEditIntegrationTest extends MediaWikiIntegrationTestCase {
@@ -267,6 +268,40 @@ class PageEditIntegrationTest extends MediaWikiIntegrationTestCase {
 		$result = $pageEdit->edit();
 		$this->assertStatusNotGood( $result->getStatus() );
 		$this->assertStatusValue( IEditObject::AS_IMAGE_REDIRECT_LOGGED, $result->getStatus() );
+	}
+
+	/** @dataProvider provideTestPerformBasicEdit */
+	public function testPerformBasicEdit( bool $existingPage ) {
+		$page = $existingPage ? $this->getExistingTestPage() : $this->getNonexistingTestPage();
+		$contents = 'Test page contents';
+		$pageEdit = $this->newPageEdit(
+			$page,
+			$this->getTestUser(),
+			summary: 'Test edit',
+			textbox1: $contents,
+		);
+
+		$result = $pageEdit->edit();
+		$this->assertStatusGood( $result->getStatus() );
+		$this->assertEquals( strlen( $contents ), $result->getContentLength() );
+		$this->assertFalse( $result->isConflict() );
+		$this->assertFalse( $result->isNullEdit() );
+		$this->assertSame( 0, $result->getParentRevId() );
+		$this->assertFalse( $result->isRedirect() );
+		$this->assertSame( '', $result->getSection() );
+		$this->assertSame( '', $result->getSectionanchor() );
+		$this->assertEquals( $contents, $result->getTextbox1() );
+
+		$this->assertTrue( $page->exists() );
+		$revision = $page->getRevisionRecord();
+		$this->assertEquals( $contents, $revision->getMainContentRaw()->serialize() );
+	}
+
+	public static function provideTestPerformBasicEdit(): array {
+		return [
+			[ true ],
+			[ false ]
+		];
 	}
 
 }
