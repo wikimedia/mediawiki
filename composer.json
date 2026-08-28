@@ -89,7 +89,7 @@
 	},
 	"require-dev": {
 		"composer/spdx-licenses": "1.6.0",
-		"doctrine/dbal": "3.10.5",
+		"doctrine/dbal": "3.10.6",
 		"doctrine/sql-formatter": "1.5.4",
 		"ergebnis/phpunit-slow-test-detector": "2.24.0",
 		"ext-simplexml": "*",
