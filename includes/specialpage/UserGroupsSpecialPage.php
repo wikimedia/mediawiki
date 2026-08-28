@@ -751,14 +751,14 @@ abstract class UserGroupsSpecialPage extends SpecialPage {
 	 * Whether the current user can add the target user to the given group.
 	 */
 	protected function canAdd( string $group ): bool {
-		return in_array( $group, $this->addableGroups );
+		return in_array( $group, $this->addableGroups, true );
 	}
 
 	/**
 	 * Whether the current user can remove the target user from the given group.
 	 */
 	protected function canRemove( string $group ): bool {
-		return in_array( $group, $this->removableGroups );
+		return in_array( $group, $this->removableGroups, true );
 	}
 
 	/**
