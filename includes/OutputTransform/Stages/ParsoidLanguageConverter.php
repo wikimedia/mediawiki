@@ -117,11 +117,6 @@ class ParsoidLanguageConverter extends OutputTransformStage {
 			( !$popts->getDisableContentConversion() ) &&
 			( !$popts->getInterfaceMessage() )
 		) {
-			// Converter::loadTables() is protected, so call ::translate()
-			// to load the converter tables. Otherwise trying to add a rule
-			// as the very first thing in the wikitext will fail/crash because
-			// the tables won't have been loaded yet.
-			$converter->translate( 'x', $toVariant->getCode() );
 			// 'nocontentconvert' actually means "treat everything as
 			// surrounded by -{ ... }-" not to skip processing LC markup
 			$isRaw = ( $po->getPageProperty( 'nocontentconvert' ) !== null );
