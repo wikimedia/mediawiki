@@ -719,6 +719,7 @@ abstract class LanguageConverter implements ILanguageConverter {
 		// merge/remove manual conversion rules to/from global table
 		$convTable = $convRule->getConvTable();
 		$action = $convRule->getRulesAction();
+		$this->loadTables();
 		foreach ( $convTable as $variant => $pair ) {
 			$v = $this->validateVariant( $variant );
 			if ( !$v ) {
