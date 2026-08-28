@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Ahmed-Najib-Biabani-Ibrahimkhel",
-			"شاه زمان پټان"
+			"شاه زمان پټان",
+			"باران"
 		]
 	},
 	"config-desc": "د مېډياويکي ځای‌پرځايوونکی",
@@ -64,7 +65,7 @@
 	"config-admin-password-blank": "پازوال گڼون لپاره پټنوم دننه کړئ.",
 	"config-admin-password-mismatch": "دوه پټنومونه چې تاسو دننه کړي، سره ورته نه دي.",
 	"config-admin-email": "برېښليک‌پته:",
-	"config-admin-error-password-invalid": "ناکله ويکي پازوال پټنوم: $1",
+	"config-admin-error-password-invalid": "ناچله ويکي پازوال پټنوم: $1",
 	"config-admin-error-bademail": "تاسو يو ناسمه برېښليک پته دننه کړې ده.",
 	"config-optional-continue": "نورې پوښتنې راڅخه وپوښتئ.",
 	"config-profile": "د کارن رښتو پېژنيال:",

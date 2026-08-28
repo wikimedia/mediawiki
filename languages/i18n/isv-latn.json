@@ -3768,7 +3768,6 @@
 	"userlogout-submit": "Odjaviti se",
 	"userlogout-continue": "Hočete li odjaviti se?",
 	"userlogout-temp": "Ako vy rabotajete na děljenom aparatu, napriklad v bibliotekě ili na školnom kompjuteru, vy možete završiti tutu sesiju, da by drugi ljudi ne mogli upotrěbiti tuto začasno koristničsko konto.",
-	"userlogout-temp-moreinfo": "Imajte v vidu, že pravjenje iz raznyh začasnyh koristničskyh kont može byti protivno pravilam tutoj viki, i že vas mogut zablokovati, ako to děje se često.",
 	"userlogout-temp-messagebox-title": "Jeste li uvěrjeni, že hočete završiti sesiju i odjaviti se?",
 	"userlogout-temp-messagebox-body": "Ako vy odjavite se, uže ne budete iměti dostup k tutomu začasnomu koristničskomu kontu.",
 	"temp-user-logout-confirm-title": "Završiti sesiju",

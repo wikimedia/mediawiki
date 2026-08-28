@@ -3681,7 +3681,6 @@
 	"userlogout-submit": "簽走",
 	"userlogout-continue": "你係咪想簽走？",
 	"userlogout-temp": "如果你喺圖書館或者學校電腦等嘅共用裝置上面編輯，你可以簽走嚟防止其他人用你呢個臨時戶口。",
-	"userlogout-temp-moreinfo": "請留意，用幾個臨時戶口去編輯可能違反呢個Wiki嘅規矩，如果經常咁做，你有可能被封鎖。",
 	"userlogout-temp-messagebox-title": "你真係想退出工作階段去簽走？",
 	"userlogout-temp-messagebox-body": "你一簽走，就冇辦法用返呢個臨時戶口。",
 	"temp-user-logout-confirm-title": "退出工作階段",

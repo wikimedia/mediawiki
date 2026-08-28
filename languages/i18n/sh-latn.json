@@ -3753,7 +3753,6 @@
 	"userlogout-submit": "Odjavi me",
 	"userlogout-continue": "Želite se odjaviti?",
 	"userlogout-temp": "Ako uređujete s javnog uređaja, poput računara u biblioteci ili školi, možete prekinuti ovu sesiju i tako spriječiti druge da koriste ovaj privremeni račun.",
-	"userlogout-temp-moreinfo": "Imajte na umu da uređivanje pomoću višestrukih privremenih računa može biti u suprotnosti s pravilima ovog projekta. Možete biti blokirani ako to često činite.",
 	"userlogout-temp-messagebox-title": "Želite li zaista završiti sesiju i odjaviti se?",
 	"userlogout-temp-messagebox-body": "Pošto se odjavite, više nećete moći pristupiti ovom privremenom računu.",
 	"temp-user-logout-confirm-title": "Izlaz iz sesije",

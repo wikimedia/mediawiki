@@ -3,7 +3,8 @@
 		"authors": [
 			"Dr Lotus Black",
 			"Lionslayer",
-			"Ninjastrikers"
+			"Ninjastrikers",
+			"Kalixlouiis"
 		]
 	},
 	"config-information": "သတင်းအချက်အလက်",
@@ -13,8 +14,8 @@
 	"config-continue": "ဆက်လက် →",
 	"config-page-language": "ဘာသာစကား",
 	"config-page-welcome": "မီဒီယာဝီကီမှ ကြိုပါဆိုပါ၏",
-	"config-page-dbconnect": "ဒေတာဘစ်သို့ ချိတ်ဆက်ရန်",
-	"config-page-dbsettings": "ဒေတာဘစ် အပြင်အဆင်များ",
+	"config-page-dbconnect": "ဒေတာဘေ့စ်သို့ ချိတ်ဆက်ရန်",
+	"config-page-dbsettings": "ဒေတာဘေ့စ် ဆက်တင်များ",
 	"config-page-name": "အမည်",
 	"config-page-options": "ရွေးပိုင်ခွင့်",
 	"config-page-complete": "ပြီးဆုံးသည်",

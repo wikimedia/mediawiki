@@ -911,7 +911,7 @@
 	"apierror-maxlag-generic": "Oczekiwania na serwer bazy danych: opóźnienie $1 {{PLURAL:$1|sekunda|sekundy|sekund}}.",
 	"apierror-missingparam": "Parametr <var>$1</var> musi być podany.",
 	"apierror-missingrev-title": "Brak aktualnej wersji tytułu $1.",
-	"apierror-missingtitle": "Wybrana przez ciebie strona nie istnieje.",
+	"apierror-missingtitle": "Wybrana przez Ciebie strona nie istnieje.",
 	"apierror-missingtitle-byname": "Strona $1 nie istnieje.",
 	"apierror-moduledisabled": "Moduł <kbd>$1</kbd> został wyłączony.",
 	"apierror-mustbeloggedin-generic": "Musisz być zalogowany.",

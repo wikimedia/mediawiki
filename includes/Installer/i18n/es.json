@@ -165,7 +165,7 @@
 	"config-header-postgres": "Configuración de PostgreSQL",
 	"config-header-sqlite": "Configuración de SQLite",
 	"config-invalid-db-type": "El tipo de base de datos no es válido",
-	"config-missing-db-name": "Debes escribir un valor para \"{{int:config-db-nombre}}\".",
+	"config-missing-db-name": "Debes escribir un valor para \"{{int:config-db-name}}\".",
 	"config-missing-db-host": "Debes escribir un valor para \"{{int:config-db-host}}\".",
 	"config-invalid-db-name": "El nombre de la base de datos \"$1\" no es válido.\nUsa sólo caracteres ASCII: letras (a-z, A-Z), números (0-9), guiones bajos (_) y guiones (-).",
 	"config-invalid-db-prefix": "El prefijo de la base de datos \"$1\" no es válido.\nUsa sólo caracteres ASCII: letras (a-z, A-Z), números (0-9), guiones bajos (_) y guiones (-).",

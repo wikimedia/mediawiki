@@ -3845,7 +3845,6 @@
 	"userlogout-submit": "Terminar sessão",
 	"userlogout-continue": "Quer sair?",
 	"userlogout-temp": "Se está a editar num dispositivo partilhado, como uma biblioteca ou computador escolar, pode sair desta sessão para evitar que as pessoas utilizem esta conta temporária.",
-	"userlogout-temp-moreinfo": "Por favor, tenha em atenção que editar com múltiplas contas temporárias pode infringir as regras desta wiki e poderá ser bloqueado se tal acontecer com frequência.",
 	"userlogout-temp-messagebox-title": "Tem a certeza que deseja sair da sessão e terminar a sessão?",
 	"userlogout-temp-messagebox-body": "Assim que terminar a sessão, não poderá mais aceder a esta conta temporária.",
 	"temp-user-logout-confirm-title": "Sair da sessão",

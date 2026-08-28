@@ -3859,7 +3859,6 @@
 	"userlogout-submit": "Saír",
 	"userlogout-continue": "Queres pechar a sesión?",
 	"userlogout-temp": "Se estás a editar nun dispositivo compartido como o ordenador dunha biblioteca ou dunha escola, podes saír desta sesión para evitar que outras persoas usen esta conta temporal.",
-	"userlogout-temp-moreinfo": "Ten en conta que editar con varias contas temporais pode ir en contra das normas deste wiki e poderías recibir un bloqueo se isto ocorre con frecuencia.",
 	"userlogout-temp-messagebox-title": "Queres saír e pechar a sesión?",
 	"userlogout-temp-messagebox-body": "Unha vez que peches a sesión, xa non poderás acceder a esta conta temporal.",
 	"temp-user-logout-confirm-title": "Saír da sesión",

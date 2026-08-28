@@ -318,5 +318,10 @@
 	"rest-responseheader-desc-contenttype": "表示在應用任何內容編碼之前，資源的原始媒體類型。",
 	"rest-responseheader-desc-link": "提供一種序列化HTTP標頭中一個或多個連結的方法。此機制允許伺服器將客戶端導向至另一個資源，該資源包含所請求資源的元資料。",
 	"rest-responseheader-desc-expires": "包含在HTTP快取情境中，視為回應已過期的日期與時間。",
-	"rest-responseheader-desc-location": "標示目標網址，主要有兩個用途：重定向與識別新建立資源的位置。"
+	"rest-responseheader-desc-location": "標示目標網址，主要有兩個用途：重定向與識別新建立資源的位置。",
+	"rest-openapispec-genericerrorresponse-desc": "通用錯誤的回應。該訊息將提供有關此錯誤的更多詳細資訊。",
+	"rest-openapispec-genericerrorresponse-property-desc-httpCode": "錯誤回應的HTTP狀態碼。",
+	"rest-openapispec-genericerrorresponse-property-desc-httpMessage": "錯誤回應的HTTP狀態訊息。",
+	"rest-openapispec-genericerrorresponse-property-desc-message": "一則人類可讀的錯誤訊息，在沒有可用訊息翻譯時特別有用",
+	"rest-openapispec-genericerrorresponse-property-desc-messageTranslations": "一份將語言代碼對應為人類可讀錯誤訊息的對照表，供能使用此功能的客戶端使用。"
 }

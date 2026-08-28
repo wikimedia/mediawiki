@@ -3862,7 +3862,6 @@
 	"userlogout-submit": "Logg ut",
 	"userlogout-continue": "Ønsker du å logge ut?",
 	"userlogout-temp": "Hvis du redigerer fra en delt enhet, som for eksempel en biblioteks- eller skole-PC, kan du avslutte denne økten for å hindre andre fra å bruke denne midlertidige kontoen.",
-	"userlogout-temp-moreinfo": "Merk at redigering med flere kontoer kan stride mot reglene på denne wikien, og du kan bli blokkert om dette skjer hyppig.",
 	"userlogout-temp-messagebox-title": "Er du sikker på at du vil avslutte økten og logge ut?",
 	"userlogout-temp-messagebox-body": "Når du har logget ut vil du ikke lenger kunne få tilgang til denne midlertidige kontoen.",
 	"temp-user-logout-confirm-title": "Avslutt økten",

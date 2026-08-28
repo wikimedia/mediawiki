@@ -3784,7 +3784,6 @@
 	"userlogout-submit": "Mag-log out",
 	"userlogout-continue": "Gusto mo bala mag log out?",
 	"userlogout-temp": "Kon naga-edit ka sa isa ka gin-ambit nga device pareho sang librarya ukon kompyuter sa eskwelahan, mahimo ka magguwa sa sini nga sesyon agud malikawan ang iban nga mga tawo sa paggamit sini nga temporaryo nga account.",
-	"userlogout-temp-moreinfo": "Palihog hibalua nga ang pag-edit gamit ang madamo nga temporaryo nga mga account mahimo nga batok sa mga pagsulundan sini nga wiki kag mahimo ka mabalabagan kon ini masami nga nagakatabo.",
 	"userlogout-temp-messagebox-title": "Sigurado ka bala nga gusto mo magguwa sa sesyon kag mag-log out?",
 	"userlogout-temp-messagebox-body": "Sa tion nga mag-log out ka, indi ka na maka-access sa sini nga temporaryo nga account.",
 	"temp-user-logout-confirm-title": "Magguwa sa sesyon",

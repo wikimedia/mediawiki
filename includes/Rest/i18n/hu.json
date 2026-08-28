@@ -57,6 +57,8 @@
 	"rest-badtoken-missing": "A <var>token</var> paraméter megadása kötelező, kivéve CSRF-biztos hitelesítési módszert használata esetén.",
 	"rest-badtoken-nosession": "CSRF-hiba – nincs munkamenet.",
 	"rest-mock-error": "Tesztelési hiba.",
+	"rest-parsoid-error": "Parsoid-hiba.",
+	"rest-parsoid-unsupported-media": "Nem támogatott médiatípus",
 	"rest-module": "Modul",
 	"rest-module-default": "Alapértelmezett modul",
 	"rest-module-extra-routes-title": "MediaWiki REST API"

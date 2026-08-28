@@ -3835,7 +3835,6 @@
 	"userlogout-submit": "Log keluar",
 	"userlogout-continue": "Adakah anda mahu log keluar?",
 	"userlogout-temp": "Jika anda menyunting pada peranti kongsi seperti perpustakaan atau komputer sekolah, anda boleh keluar sesi ini untuk menghalang orang lain daripada menggunakan akaun sementara ini.",
-	"userlogout-temp-moreinfo": "Sila mengambil perhatian bahawa penyuntingan menggunakan pelbagai akaun sementara mungkin menyalahi peraturan wiki ini dan anda akan disekat jika berlaku terlalu kerap.",
 	"userlogout-temp-messagebox-title": "Adakah anda pasti mahu keluar dari sesi dan log keluar?",
 	"userlogout-temp-messagebox-body": "Sebaik sahaja anda log keluar, anda tidak akan dapat mengakses akaun sementara ini lagi.",
 	"temp-user-logout-confirm-title": "Keluar sesi",

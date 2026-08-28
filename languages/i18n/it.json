@@ -3910,7 +3910,6 @@
 	"userlogout-submit": "Esci",
 	"userlogout-continue": "Vuoi davvero uscire?",
 	"userlogout-temp": "Se stai modificando da un dispositivo condiviso, come un computer della biblioteca o della scuola, puoi uscire da questa sessione per impedire ad altre persone di utilizzare questa utenza temporanea.",
-	"userlogout-temp-moreinfo": "Tieni presente che modificare con più utenze temporanee potrebbe violare le regole di questa wiki e potrebbe portare a un blocco se accade frequentemente.",
 	"userlogout-temp-messagebox-title": "Sei sicuro di voler uscire dalla sessione e disconnetterti?",
 	"userlogout-temp-messagebox-body": "Una volta disconnesso, non potrai più accedere a questa utenza temporanea.",
 	"temp-user-logout-confirm-title": "Esci dalla sessione",

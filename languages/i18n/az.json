@@ -3842,7 +3842,6 @@
 	"userlogout-submit": "Çıxış et",
 	"userlogout-continue": "Çıxmaq istədiyinizdən əminsiniz?",
 	"userlogout-temp": "Kitabxana və ya məktəb kompüteri kimi cihazlarda redaktə edirsinizsə, digər insanların bu müvəqqəti hesabdan istifadə etməsinin qarşısını almaq üçün bu sessiyadan çıxış edə bilərsiniz.",
-	"userlogout-temp-moreinfo": "Nəzərə alın ki, birdən çox müvəqqəti hesabla redaktə etmək bu vikinin qaydalarına zidd ola bilər və bu, tez-tez baş verərsə, bloklana bilərsiniz.",
 	"userlogout-temp-messagebox-title": "Çıxış etmək istədiyinizə əminsiniz?",
 	"userlogout-temp-messagebox-body": "Çıxış etdikdən sonra bu müvəqqəti hesaba daxil ola bilməyəcəksiniz.",
 	"temp-user-logout-confirm-title": "Sessiyadan çıx",

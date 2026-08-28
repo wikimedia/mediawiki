@@ -3900,7 +3900,6 @@
 	"userlogout-submit": "Logga ut",
 	"userlogout-continue": "Vill du logga ut?",
 	"userlogout-temp": "Om du redigerar på en delad enhet (t.ex. en biblioteks- eller skoldator) kan du avsluta denna session för att förhindra att andra använder detta tillfälliga konto.",
-	"userlogout-temp-moreinfo": "Observera att redigering med flera tillfälliga konton kan strida mot reglerna för denna wiki och att du kan bli blockerad om detta händer ofta.",
 	"userlogout-temp-messagebox-title": "Är du säker på att du vill avsluta sessionen och logga ut?",
 	"userlogout-temp-messagebox-body": "När du har loggat ut kommer du inte längre att kunna komma åt detta tillfälliga konto.",
 	"temp-user-logout-confirm-title": "Avsluta session",

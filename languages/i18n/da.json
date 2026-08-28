@@ -3859,7 +3859,6 @@
 	"userlogout-submit": "Log af",
 	"userlogout-continue": "Ønsker du at logge af?",
 	"userlogout-temp": "Hvis du redigerer på en delt enhed, f.eks. et bibliotek eller en skolecomputer, kan du afslutte denne session for at forhindre andre i at bruge denne midlertidige konto.",
-	"userlogout-temp-moreinfo": "Vær opmærksom på, at redigering med flere midlertidige konti kan være imod reglerne for denne wiki, og du kan blive blokeret, hvis dette sker ofte.",
 	"userlogout-temp-messagebox-title": "Er du sikker på, at du vil afslutte denne session og logge ud?",
 	"userlogout-temp-messagebox-body": "Når du logger ud, vil du ikke længere kunne få adgang til denne midlertidige konto.",
 	"temp-user-logout-confirm-title": "Afslut session",

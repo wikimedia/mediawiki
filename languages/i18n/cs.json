@@ -3873,7 +3873,6 @@
 	"userlogout-submit": "Odhlásit se",
 	"userlogout-continue": "Chcete se odhlásit?",
 	"userlogout-temp": "Pokud upravujete na sdíleném zařízení, jako je knihovna nebo školní počítač, můžete tuto relaci ukončit, abyste zabránili ostatním lidem v používání tohoto dočasného účtu.",
-	"userlogout-temp-moreinfo": "Uvědomte si prosím, že editace s vícero dočasnými účty může být v rozporu s pravidly této wiki a pokud se to děje často, můžete být zablokováni.",
 	"userlogout-temp-messagebox-title": "Opravdu chcete ukončit relaci a odhlásit se?",
 	"userlogout-temp-messagebox-body": "Jakmile se odhlásíte, nebudete mít k tomuto dočasnému účtu již přístup.",
 	"temp-user-logout-confirm-title": "Ukončit relaci",

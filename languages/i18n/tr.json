@@ -3970,7 +3970,6 @@
 	"userlogout-submit": "Oturumu kapat",
 	"userlogout-continue": "Çıkış yapmak istiyor musunuz?",
 	"userlogout-temp": "Kütüphane ya da okul bilgisayarı gibi paylaşılan bir aygıtta düzenleme yapıyorsanız, diğer kişilerin bu geçici hesabı kullanmasını önlemek için bu oturumdan çıkabilirsiniz.",
-	"userlogout-temp-moreinfo": "Birden fazla geçici hesapla düzenleme yapmanın bu vikinin kurallarına aykırı olabileceğini ve bu durumun sık sık yinelenmesi durumunda engellenebileceğinizi lütfen unutmayın.",
 	"userlogout-temp-messagebox-title": "Oturumu kapatıp çıkış yapmak istediğinizden emin misiniz?",
 	"userlogout-temp-messagebox-body": "Çıkış yaptığınızda bu geçici hesaba artık erişemeyeceksiniz.",
 	"temp-user-logout-confirm-title": "Oturumdan çık",

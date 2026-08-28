@@ -4,7 +4,8 @@
 			"Af420",
 			"Ahmed-Najib-Biabani-Ibrahimkhel",
 			"Vlad5250",
-			"شاه زمان پټان"
+			"شاه زمان پټان",
+			"باران"
 		]
 	},
 	"userrights": "کارن واکونه",
@@ -212,7 +213,7 @@
 	"action-pagelang": "د مخ ژبه بدلول",
 	"action-reupload": "د همدې دوتنې دپاسه ليکل",
 	"action-reupload-shared": "دا دوتنه په يوه شريکه شوې زخيره کې له سره وليکئ",
-	"action-upload_by_url": "دا دوتنه له يوه URL نه پورته کول",
+	"action-upload_by_url": "دا دوتنه له يوه وېبتړ نه پورته کول",
 	"action-delete": "همدا مخ ړنگول",
 	"action-delete-redirect": "د يوځلي بياليدنې مخگرځي له سره ليکل",
 	"action-deleterevision": "دا ځانگړې مخکتنه ړنگول يا ناړنگول",
@@ -223,7 +224,7 @@
 	"action-undelete": "همدا مخ ناړنگول",
 	"action-suppressrevision": "د هر کارن څخه د مخونو ځانگړې بياليدنې کتل، پټول يا ناپټول",
 	"action-suppressionlog": "دا شخصي يادښت کتل",
-	"action-block": "پر دې کارن د سمون د اسانتياوؤ بنديز لگول يا لرې کول",
+	"action-block": "پر دې کارن د سمون د اسانتياوو بنديز لگول يا لرې کول",
 	"action-protect": "د دې مخ د ژغورنې کچه بدلول",
 	"action-rollback": "په چټکۍ سره د هغه وروستي کارن سمونونه شاگرځ کوي، چې يو ځانگړی مخ يې سم کړی و",
 	"action-import": "له بل ويکي څخه مخونه راغوښتل",
@@ -261,7 +262,7 @@
 	"action-edituserjson": "د نورو کارنانو جی‌اېس‌او‌اېن دوتنې سمول",
 	"action-edituserjs": "د نورو کارنانو جاواسکريپټ دوتنې سمول",
 	"action-editsitecss": "د ټول‌وېبځي سي‌اېس‌اېس سمول",
-	"action-editsitejson": "د ټول‌وېبځي  جی‌اېس‌او‌اېن سمول",
+	"action-editsitejson": "د ټول‌وېبځي جی‌اېس‌او‌اېن سمول",
 	"action-editsitejs": "د ټول‌وېبځي جاواسکريپټ سمول",
 	"action-editmyusercss": "ستاسې خپلې سي‌اېس‌اېس کارن دوتنې سمول",
 	"action-editmyuserjson": "ستاسې خپلې جی‌اېس‌او‌اېن کارن دوتنې سمول",

@@ -5,7 +5,8 @@
 			"Ahmed-Najib-Biabani-Ibrahimkhel",
 			"Macofe",
 			"SaldırganSincap",
-			"شاه زمان پټان"
+			"شاه زمان پټان",
+			"باران"
 		]
 	},
 	"apihelp-main-param-action": "کومه چاره ترسره کړم. دا ارزښت بايد د غوښتنې وېبتړ د برخې په توگه ولېږل شي(نه د پوسټ دبدن په توگه)، ترڅو د ډيبگ‌کولو، ارزولو، د غوښتنې لارموندلو يا چاڼولو کې په اسانۍ وکارول شي.",
@@ -153,7 +154,7 @@
 	"apihelp-query+allcategories-param-dir": "د اوډلو تگلوری.",
 	"apihelp-query+allcategories-param-min": "يوازې هغه وېشنيزې بېرته راگرځوي چې لږترلږه دومره غړي ولري.",
 	"apihelp-query+allcategories-param-max": "يوازې هغه وېشنيزې بېرته راگرځوي چې ډېرترډېره دومره غړي ولري.",
-	"apihelp-query+allcategories-param-limit": "څوم ه وېشنيزې بېرته راگرځول کېږي.",
+	"apihelp-query+allcategories-param-limit": "څومره وېشنيزې بېرته راگرځول کېږي.",
 	"apihelp-query+allcategories-param-prop": "کومې ځانتياوې بايد ترلاسه شي:",
 	"apihelp-query+allcategories-paramvalue-prop-size": "وېشنيزه کې د مخونو شمېر ورگډوي.",
 	"apihelp-query+alldeletedrevisions-param-from": "دې سرليک کې لړليکول پيل کړئ.",

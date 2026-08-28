@@ -3832,7 +3832,6 @@
 	"userlogout-submit": "Logi välja",
 	"userlogout-continue": "Kas soovid välja logida?",
 	"userlogout-temp": "Kui redigeerid jagatava seadme kaudu, näiteks raamatukogu- või kooliarvutis, siis saad selle seansi lõpetada, et takistada teisi kasutamast seda ajutist kontot.",
-	"userlogout-temp-moreinfo": "Palun pane tähele, et mitme ajutise kontoga redigeerimine võib olla vastuolus selle viki reeglitega ning kui seda tuleb ette sageli, siis võidakse sind blokeerida.",
 	"userlogout-temp-messagebox-title": "Kas oled kindel, et soovid seansi lõpetada ja välja logida?",
 	"userlogout-temp-messagebox-body": "Pärast väljalogimist ei ole sul enam võimalik sellele ajutisele kontole juurde pääseda.",
 	"temp-user-logout-confirm-title": "Seansist väljumine",

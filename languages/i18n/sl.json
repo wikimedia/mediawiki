@@ -3877,7 +3877,6 @@
 	"userlogout-submit": "Odjava",
 	"userlogout-continue": "Se želite odjaviti?",
 	"userlogout-temp": "Če urejate na napravi v skupni rabi, kot je knjižnični ali šolski računalnik, lahko to sejo zaprete, da preprečite drugim osebam uporabo tega začasnega računa.",
-	"userlogout-temp-moreinfo": "Upoštevajte, da je urejanje z več začasnimi računi lahko v nasprotju s pravili tega vikija in da vas lahko v primeru pogostega pojavljanja blokiramo.",
 	"userlogout-temp-messagebox-title": "Ste prepričani, da želite zapustiti sejo in se odjaviti?",
 	"userlogout-temp-messagebox-body": "Ko se boste odjavili, ne boste več mogli dostopati do tega začasnega računa.",
 	"temp-user-logout-confirm-title": "Izhod iz seje",

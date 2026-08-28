@@ -3600,7 +3600,6 @@
 	"userlogout-submit": "Atsijungti",
 	"userlogout-continue": "Ar norite atsijungti?",
 	"userlogout-temp": "Jei redaguojate bendrai naudojamame įrenginyje, pvz., bibliotekos ar mokyklos kompiuteryje, galite išeiti iš šios sesijos, kad kiti asmenys negalėtų naudoti šios laikinos paskyros.",
-	"userlogout-temp-moreinfo": "Atkreipkite dėmesį, kad redagavimas naudojant kelias laikinas paskyras gali prieštarauti šios viki taisyklėms ir galite būti užblokuoti, jei tai dažnai kartojasi.",
 	"userlogout-temp-messagebox-title": "Ar tikrai norite išeiti iš sesijos ir atsijungti?",
 	"userlogout-temp-messagebox-body": "Atsijungę nebegalėsite pasiekti šios laikinos paskyros.",
 	"temp-user-logout-confirm-title": "Baigti sesiją",

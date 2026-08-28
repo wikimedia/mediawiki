@@ -3749,7 +3749,6 @@
 	"userlogout-submit": "Skrá út",
 	"userlogout-continue": "Ertu viss um að þú viljir skrá þig út?",
 	"userlogout-temp": "Ef þú ert að breyta á sameiginlegu tæki eins og bókasafni eða skólatölvu geturðu hætt í þessari lotu til að koma í veg fyrir að aðrir noti þennan tímabundna aðgang.",
-	"userlogout-temp-moreinfo": "Athugaðu að það kann að vera andstætt reglum á þessum wiki-vef að gera breytingar með mörgum tímabundnum notandaaðgöngum og það getur leitt til hindrunar á aðgangi þínum ef það gerist ítrekað.",
 	"userlogout-temp-messagebox-title": "Ertu viss um að þú viljir fara úr þessari lotu og skrá þig út?",
 	"userlogout-temp-messagebox-body": "Eftir útskráningu munt þú ekki lengur hafa aðgang að þessum tímabundna notandaaðgangi.",
 	"temp-user-logout-confirm-title": "Fara út úr setu",

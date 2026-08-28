@@ -2017,5 +2017,5 @@
 	"api-usage-mailinglist-ref": "在 &lt;https://lists.wikimedia.org/postorius/lists/mediawiki-api-announce.lists.wikimedia.org/&gt; 的 mediawiki-api-announce 郵件清單做出訂閱，來取得 API 棄用與重大修訂的通知。",
 	"api-exception-trace": "$1位在$2的第$3行\n$4",
 	"api-credits-header": "製作群",
-	"api-credits": "API 開發人員：\n* Roan Kattouw (首席開發者 Sep 2007–2009)\n* Victor Vasiliev\n* Bryan Tong Minh\n* Sam Reed\n* Yuri Astrakhan (創立者，首席開發者 Sep 2006–Sep 2007)\n* Brad Jorsch (首席開發者 2013–2020)\n\n請傳送您的評論、建議以及問題至 mediawiki-api@lists.wikimedia.org\n或者回報問題至 https://phabricator.wikimedia.org/。"
+	"api-credits": "API 開發人員：\n* Yuri Astrakhan (創立者，首席開發者 Sep 2006–Sep 2007)\n* Roan Kattouw (首席開發者 Sep 2007–2009)\n* Victor Vasiliev\n* Bryan Tong Minh\n* Sam Reed\n* Brad Jorsch (首席開發者 2013–2020)\n\n請將您的評論、建議、問題發送至mediawiki-api@lists.wikimedia.org\n或者在https://phabricator.wikimedia.org/ 提交錯誤報告。"
 }

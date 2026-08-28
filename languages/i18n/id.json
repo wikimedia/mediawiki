@@ -114,7 +114,8 @@
 			"아라",
 			"Argo Carpathians",
 			"AF1011",
-			"Ronnie"
+			"Ronnie",
+			"CalER08"
 		]
 	},
 	"pagecategories": "{{PLURAL:$1|Kategori}}",
@@ -3964,7 +3965,6 @@
 	"userlogout-submit": "Keluar log",
 	"userlogout-continue": "Apakah Anda ingin keluar log?",
 	"userlogout-temp": "Jika Anda menyunting di perangkat yang digunakan bersama seperti komputer perpustakaan atau sekolah, Anda dapat keluar dari sesi ini untuk mencegah orang lain menggunakan akun sementara ini.",
-	"userlogout-temp-moreinfo": "Harap diperhatikan bahwa menyunting dengan beberapa akun sementara mungkin melanggar aturan wiki ini dan Anda dapat diblokir jika ini sering terjadi.",
 	"userlogout-temp-messagebox-title": "Apakah Anda yakin ingin keluar dari sesi dan keluar log?",
 	"userlogout-temp-messagebox-body": "Setelah Anda keluar, Anda tidak akan dapat lagi mengakses akun sementara ini.",
 	"temp-user-logout-confirm-title": "Keluar sesi",

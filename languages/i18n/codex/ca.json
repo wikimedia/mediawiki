@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Tiputini"
+			"Tiputini",
+			"Qllach"
 		]
 	},
 	"cdx-breadcrumb-navigation-label": "Ruta de navegació (breadcrumb)",
@@ -22,7 +23,7 @@
 	"cdx-table-pager-button-last-page": "Última pàgina",
 	"cdx-table-pager-button-next-page": "Pàgina següent",
 	"cdx-table-pager-button-prev-page": "Pàgina anterior",
-	"cdx-table-pager-items-per-page-current": "{{PLURAL:$1|$1 fila|$1 files}}",
+	"cdx-table-pager-items-per-page-current": "{{PLURAL:$1|$1 element|$1 elements}}",
 	"cdx-table-pager-items-per-page-default": "Resultats per pàgina",
 	"cdx-table-pagination-status-message-determinate-long": "Mostrant els resultats $1 al $2 de $3",
 	"cdx-table-pagination-status-message-determinate-short": "$1 – $2 de $3",

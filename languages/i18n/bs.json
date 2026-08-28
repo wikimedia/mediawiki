@@ -3258,7 +3258,6 @@
 	"userlogout-submit": "Odjavi me",
 	"userlogout-continue": "Želite li se odjaviti?",
 	"userlogout-temp": "Ako je ovo uređaj koji upotrebljava više osoba (poput računara u biblioteci ili školi) možete napustiti sesiju, što će tim drugim osobama onemogućiti upotrebu ovog privremenog računa.",
-	"userlogout-temp-moreinfo": "Imajte na umu da je uređivanje s više privremenih računa protivno pravilima pojedinih wikija i da biste mogli biti blokirati ako se to često dešava.",
 	"userlogout-temp-messagebox-title": "Jeste li sigurni da želite napustiti sesiju i odjaviti se?",
 	"userlogout-temp-messagebox-body": "Nakon što se odjavite, nećete moći pristupiti ovom privremenom računu.",
 	"paramvalidator-help-type-user-subtype-name": "korisničko ime",
