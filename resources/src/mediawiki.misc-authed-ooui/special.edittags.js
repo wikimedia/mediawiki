@@ -2,6 +2,11 @@
  * JavaScript for Special:EditTags
  */
 ( function () {
+
+	if ( mw.config.get( 'wgCanonicalSpecialPageName' ) !== 'EditTags' ) {
+		return;
+	}
+
 	$( () => {
 		mw.widgets.visibleCodePointLimit(
 			OO.ui.infuse( $( '#wpReason' ) ),
