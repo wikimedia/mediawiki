@@ -6,6 +6,9 @@ namespace MediaWiki\Parser\Parsoid;
 use MediaWiki\Language\Language;
 use MediaWiki\Language\LanguageCode;
 use MediaWiki\Languages\LanguageFactory;
+use MediaWiki\Logger\LoggerFactory;
+use MediaWiki\MainConfigNames;
+use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageReference;
 use MediaWiki\Parser\ContentHolder;
 use MediaWiki\Parser\ParserOutput;
@@ -14,7 +17,6 @@ use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Title\Title;
 use MediaWiki\Utils\MWTimestamp;
 use Wikimedia\Assert\Assert;
-use Wikimedia\Bcp47Code\Bcp47CodeValue;
 use Wikimedia\Parsoid\Config\SiteConfig;
 use Wikimedia\Parsoid\Core\BasePageBundle;
 use Wikimedia\Parsoid\Core\DOMCompat;
@@ -25,6 +27,7 @@ use Wikimedia\Parsoid\DOM\Document;
 use Wikimedia\Parsoid\DOM\Element;
 use Wikimedia\Parsoid\Ext\DOMUtils;
 use Wikimedia\Parsoid\Parsoid;
+use Wikimedia\Parsoid\Utils\PHPUtils;
 use Wikimedia\Timestamp\TimestampFormat;
 
 /**
@@ -359,6 +362,98 @@ final class PageBundleParserOutputConverter {
 			DOMCompat::setTitle( $document, $title->getPrefixedText() );
 		}
 
+		// Export the remaining content metadata via meta tags (and via a
+		// stylesheet for now to aid some clients).
+		//
+		// Note that we deliberately don't export the DISPLAYTITLE here: the
+		// value stored in the ParserOutput corresponds neither to the
+		// ultimate value which would be used in the <h1> tag nor to the
+		// plaintext value which would be used for the page <title>, since
+		// OutputPage does additional validation/stripping on it before use
+		// (T324431).
+		$lang = $parserOutput->getLanguage();
+		if ( $lang !== null ) {
+			$lang = $this->languageFactory?->getLanguage( $lang );
+		}
+
+		// JsConfigVars
+		try {
+			$jsConfigVars = $parserOutput->getJsConfigVars();
+			if ( $jsConfigVars ) {
+				$content = PHPUtils::jsonEncode( $jsConfigVars );
+				self::appendToHead( $document, 'meta', [
+					'property' => 'mw:jsConfigVars',
+					'content' => $content,
+				] );
+			}
+		} catch ( \Exception ) {
+			// See T289358
+			LoggerFactory::getInstance( 'Parsoid' )->warning(
+				'JSON serialization of config data failed. ' .
+				'This usually means the config data is not valid UTF-8.'
+			);
+		}
+
+		// Modules returned from preprocessor / parse requests
+		$modules = $parserOutput->getModules();
+		if ( $modules ) {
+			// mw:generalModules can be processed via JS (and async) and are usually (but
+			// not always) JS scripts.
+			self::appendToHead( $document, 'meta', [
+				'property' => 'mw:generalModules',
+				'content' => implode( '|', array_unique( $modules ) )
+			] );
+		}
+
+		// Styles from modules returned from preprocessor / parse requests
+		$moduleStyles = $parserOutput->getModuleStyles();
+		if ( $moduleStyles ) {
+			// mw:moduleStyles are CSS modules that are render-blocking.
+			self::appendToHead( $document, 'meta', [
+				'property' => 'mw:moduleStyles',
+				'content' => implode( '|', array_unique( $moduleStyles ) )
+			] );
+		}
+		/*
+		 * While unnecessary for Wikimedia clients, a stylesheet url in
+		 * the <head> is useful for clients like Kiwix and others who
+		 * might not want to process the meta tags to construct the
+		 * resourceloader url.
+		 *
+		 * Given that these clients will be consuming Parsoid HTML outside
+		 * a MediaWiki skin, the clients are effectively responsible for
+		 * their own "skin". But, once again, as a courtesy, we are
+		 * hardcoding the vector skin modules for them. But, note that
+		 * this may cause page elements to render differently than how
+		 * they render on Wikimedia sites with the vector skin since this
+		 * is probably missing a number of other modules.
+		 *
+		 * All that said, note that JS-generated parts of the page will
+		 * still require them to have more intimate knowledge of how to
+		 * process the JS modules. Except for <graph>s, page content
+		 * doesn't require JS modules at this point. So, where these
+		 * clients want to invest in the necessary logic to construct a
+		 * better resourceloader url, they could simply delete / ignore
+		 * this stylesheet.
+		 */
+		$moreStyles = array_merge( $moduleStyles, [
+			'mediawiki.skinning.content.parsoid',
+			// Use the base styles that API output and fallback skin use.
+			'mediawiki.skinning.interface',
+			// Make sure to include contents of user generated styles
+			// e.g. MediaWiki:Common.css / MediaWiki:Mobile.css
+			'site.styles'
+		] );
+		// need to use MW-internal language code for constructing resource
+		// loader path.
+		$langMw = $lang === null ? 'en' : $lang->getCode();
+		$modulesLoadURI = MediaWikiServices::getInstance()->getMainConfig()
+			->get( MainConfigNames::LoadScript );
+		$styleURI = $modulesLoadURI . '?lang=' . $langMw . '&modules=' .
+			PHPUtils::encodeURIComponent( implode( '|', array_unique( $moreStyles ) ) ) .
+			'&only=styles&skin=vector';
+		self::appendToHead( $document, 'link', [ 'rel' => 'stylesheet', 'href' => $styleURI ] );
+
 		// Ensure there's a <body>
 		if ( DOMCompat::getBody( $document ) === null ) {
 			DOMCompat::append(
@@ -368,18 +463,8 @@ final class PageBundleParserOutputConverter {
 		}
 
 		// Set properties of <body>
-		$lang = $parserOutput->getLanguage();
-		if ( $lang !== null ) {
-			$lang = $this->languageFactory?->getLanguage( $lang );
-		}
 		self::updateBodyClasslist(
 			DOMCompat::getBody( $document ), $lang, $parserOutput
-		);
-
-		$this->siteConfig->exportMetadataToHeadBcp47(
-			$document, $parserOutput,
-			( $title ?? Title::newMainPage() )->getPrefixedText(),
-			$lang ?? new Bcp47CodeValue( 'en' )
 		);
 	}
 
