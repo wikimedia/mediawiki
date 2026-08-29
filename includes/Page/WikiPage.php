@@ -2401,12 +2401,14 @@ class WikiPage implements Stringable, Page, PageRecord {
 	 * return value.  Callers must decide for themselves how to deal with this.  $safetyMargin
 	 * is provided as an unreliable but situationally useful help for some common cases.
 	 *
-	 * @deprecated since 1.37 Use DeletePage::isBatchedDelete instead.
+	 * @deprecated since 1.37 Use DeletePage::isBatchedDelete instead. Emits deprecation warnings
+	 * since 1.47.
 	 *
 	 * @param int $safetyMargin Added to the revision count when checking for batching
 	 * @return bool True if deletion would be batched, false otherwise
 	 */
 	public function isBatchedDelete( $safetyMargin = 0 ) {
+		wfDeprecated( __METHOD__, '1.47' );
 		$deleteRevisionsBatchSize = MediaWikiServices::getInstance()
 			->getMainConfig()->get( MainConfigNames::DeleteRevisionsBatchSize );
 

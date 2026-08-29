@@ -619,6 +619,8 @@ because of Phabricator reports.
   deprecation warnings.
 * $wgUseCopyrightUpload has been deprecated and will be removed in a future
   version. See T430254 for details.
+* WikiPage::isBatchedDelete(), deprecated since 1.37, now emits deprecation
+  warnings.
 * SpecialVersion::getExtensionTypeName() is unused and has been deprecated.
 * The following ChangeTags methods have been deprecated and emit deprecation
   warnings:
