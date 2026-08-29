@@ -134,6 +134,8 @@ class SpecialUndelete extends SpecialPage {
 
 	private bool $reauthInProgress = false;
 
+	private ?string $reauthOperation = null;
+
 	private LocalRepo $localRepo;
 
 	public function __construct(
@@ -324,6 +326,15 @@ class SpecialUndelete extends SpecialPage {
 		// Finally, do the comprehensive permission check via isAllowed.
 		if ( !$this->userCanExecute( $user ) ) {
 			$this->displayRestrictionError();
+		}
+
+		// Capture whether an undelete on this target would require reauth, so
+		// the form can show a lock icon on the submit button.
+		if ( $this->mTargetObj !== null ) {
+			$status = $this->permissionManager->getPermissionStatus(
+				'undelete', $user, $this->mTargetObj, PermissionManager::RIGOR_FULL
+			);
+			$this->reauthOperation = $status->getReauthOperation();
 		}
 	}
 
@@ -1261,7 +1272,9 @@ class SpecialUndelete extends SpecialPage {
 								'label' => $this->msg( 'undeletebtn' )->text(),
 								'flags' => [ 'primary', 'progressive' ],
 								'type' => 'submit',
-							] ),
+							] + ( $this->reauthOperation !== null
+								? $this->getReauthLockButtonAttribs()
+								: [] ) ),
 							new ButtonInputWidget( [
 								'name' => 'invert',
 								'inputId' => 'mw-undelete-invert',
@@ -1694,7 +1707,7 @@ class SpecialUndelete extends SpecialPage {
 			if ( $status instanceof PermissionStatus && $status->getReauthOperation() !== null ) {
 				$this->setStashKey( $this->getStashKeyForTitle( $this->mTargetObj ) );
 				$queryParams = $this->stashDataOnPost();
-				$this->doReauthRedirect( $status, $queryParams );
+				$this->doReauthRedirect( $status, $queryParams, 'undelete' );
 				$this->reauthInProgress = true;
 				return;
 			}
