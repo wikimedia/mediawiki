@@ -565,7 +565,7 @@ class DeletePage {
 		// Look up the redirect target before deleting the page to avoid inconsistent state (T348881).
 		// The cloning business below is specifically to allow hook handlers to check the redirect
 		// status before the deletion (see I715046dc8157047aff4d5bd03ea6b5a47aee58bb).
-		$page->getRedirectTarget();
+		$this->redirectStore->getRedirectTarget( $page );
 		// Clone the title and wikiPage, so we have the information we need when
 		// we log and run the ArticleDeleteComplete hook.
 		$logTitle = clone $title;
