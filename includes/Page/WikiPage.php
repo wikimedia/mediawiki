@@ -982,11 +982,13 @@ class WikiPage implements Stringable, Page, PageRecord {
 	/**
 	 * Insert or update the redirect table entry for this page to indicate it redirects to $rt
 	 * @deprecated since 1.43; use {@link RedirectStore::updateRedirectTarget()} instead.
+	 * Emits deprecation warnings since 1.47.
 	 * @param LinkTarget $rt Redirect target
 	 * @param int|null $oldLatest Prior page_latest for check and set
 	 * @return bool Success
 	 */
 	public function insertRedirectEntry( LinkTarget $rt, $oldLatest = null ) {
+		wfDeprecated( '1.43', __METHOD__ );
 		return MediaWikiServices::getInstance()->getRedirectStore()
 			->updateRedirectTarget( $this, $rt );
 	}

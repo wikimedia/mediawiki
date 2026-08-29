@@ -634,6 +634,8 @@ because of Phabricator reports.
   deprecated. Pass a UserIdentity instead.
 * WikiPage::isBatchedDelete(), deprecated since 1.37, now emits deprecation
   warnings.
+* WikiPage::insertRedirectEntry(), deprecated since 1.43, now emits deprecation
+  warnings.
 * WANObjectCache::adaptiveTTL, is now deprecated and emits deprecation
   warnings.
 * SpecialVersion::getExtensionTypeName() is unused and has been deprecated.

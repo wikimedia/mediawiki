@@ -214,7 +214,7 @@ class RefreshLinks extends Maintenance {
 				->caller( __METHOD__ )->execute();
 			$fieldValue = 0;
 		} else {
-			$page->insertRedirectEntry( $rt );
+			$maint->getServiceContainer()->getRedirectStore()->updateRedirectTarget( $page, $rt );
 			$fieldValue = 1;
 		}
 
