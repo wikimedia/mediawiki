@@ -712,6 +712,8 @@ because of Phabricator reports.
   "EditPage::attemptSave:after" or "EditFilterMergedContent" hook sets certain
   status values without setting a message. This behaviour is now deprecated,
   and hook handlers are expected to supply messages themselves.
+* WikiPage::checkFlags(), deprecated since 1.32, now emits deprecation
+  warnings.
 * (T433783) The SpecialCreateAccountBenefitsHook has been deprecated and will
   be removed in a future version. There will be no replacement.
 * Title::isAlwaysKnown() has been deprecated. Use the LinkAlwaysKnownLookup

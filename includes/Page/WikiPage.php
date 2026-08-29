@@ -1507,11 +1507,13 @@ class WikiPage implements Stringable, Page, PageRecord {
 	 *
 	 * @deprecated since 1.32, use exists() instead, or simply omit the EDIT_UPDATE
 	 * and EDIT_NEW flags. To protect against race conditions, use PageUpdater::grabParentRevision.
+	 * Emits deprecation warnings since 1.47.
 	 *
 	 * @param int $flags
 	 * @return int Updated $flags
 	 */
 	public function checkFlags( $flags ) {
+		wfDeprecated( __METHOD__, '1.32' );
 		if ( !( $flags & EDIT_NEW ) && !( $flags & EDIT_UPDATE ) ) {
 			if ( $this->exists() ) {
 				$flags |= EDIT_UPDATE;
