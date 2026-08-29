@@ -623,10 +623,6 @@ class PageEdit implements IEditObject {
 						$this->inputs->getContentModel(), $page,
 					),
 					$this->inputs->getPage(),
-					MessageValue::new(
-						'edit-constraint-warning-wrapper-save',
-						[ $this->getSubmitButtonLabel() ],
-					),
 					$this->inputs->getContentFormat(),
 				)
 			);

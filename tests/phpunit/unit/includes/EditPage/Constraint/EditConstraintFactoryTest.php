@@ -18,7 +18,6 @@ use MediaWiki\EditPage\Constraint\RedirectConstraint;
 use MediaWiki\EditPage\Constraint\SpamRegexConstraint;
 use MediaWiki\EditPage\SpamChecker;
 use MediaWiki\HookContainer\HookContainer;
-use MediaWiki\Language\RawMessage;
 use MediaWiki\Logging\LogFormatterFactory;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Page\RedirectLookup;
@@ -100,7 +99,6 @@ class EditConstraintFactoryTest extends MediaWikiUnitTestCase {
 				$this->createMock( Content::class ),
 				$this->createMock( Content::class ),
 				$title,
-				new RawMessage( '' ),
 				''
 			)
 		);

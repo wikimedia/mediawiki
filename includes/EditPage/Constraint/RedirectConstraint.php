@@ -15,7 +15,6 @@ use MediaWiki\Page\RedirectLookup;
 use MediaWiki\PageEdit\PageEditAttemptState;
 use MediaWiki\PageEdit\PageEditStatus;
 use MediaWiki\Title\Title;
-use Wikimedia\Message\MessageSpecifier;
 use Wikimedia\Message\MessageValue;
 
 /**
@@ -38,7 +37,6 @@ class RedirectConstraint extends EditConstraint {
 		private readonly Content $newContent,
 		private readonly ?Content $originalContent,
 		private readonly PageReference $page,
-		private readonly MessageSpecifier $errorMessageWrapper,
 		private readonly ?string $contentFormat,
 		private readonly RedirectLookup $redirectLookup,
 	) {
@@ -127,10 +125,7 @@ class RedirectConstraint extends EditConstraint {
 	private function wrapResult( int $result, MessageValue $errorMessage, LinkTarget $newTarget ): PageEditStatus {
 		$this->editAttemptState->setAllowedProblematicRedirectTarget( $newTarget );
 		return PageEditStatus::newGood( $result )
-			->warning(
-				$this->errorMessageWrapper->getKey(),
-				...array_merge( $this->errorMessageWrapper->getParams(), [ $errorMessage ] )
-			)
+			->warning( $errorMessage )
 			->setOK( false )
 			->setCanResubmit( true );
 	}

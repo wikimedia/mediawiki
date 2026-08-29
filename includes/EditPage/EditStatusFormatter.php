@@ -16,6 +16,11 @@ class EditStatusFormatter {
 
 	private const array WARNINGS_TO_WRAP = [
 		'edit-constraint-newsectionmissingsubject-warning',
+		'edit-constraint-selfredirect-warning',
+		'edit-constraint-brokenredirect-warning',
+		'edit-constraint-doubleredirect-loop-warning',
+		'edit-constraint-doubleredirect-warning',
+		'edit-constraint-invalidredirecttarget-warning',
 	];
 
 	public function __construct(

@@ -10,7 +10,6 @@ use MediaWiki\Content\Content;
 use MediaWiki\Content\ContentHandler;
 use MediaWiki\EditPage\Constraint\RedirectConstraint;
 use MediaWiki\EditPage\IEditObject;
-use MediaWiki\Language\RawMessage;
 use MediaWiki\Page\RedirectLookup;
 use MediaWiki\PageEdit\PageEditAttemptState;
 use MediaWiki\Title\Title;
@@ -63,7 +62,6 @@ class RedirectConstraintTest extends MediaWikiUnitTestCase {
 			$newContent,
 			$originalContent,
 			$title ?? $this->createMock( Title::class ),
-			new RawMessage( '' ),
 			null,
 			$redirectLookup
 		);

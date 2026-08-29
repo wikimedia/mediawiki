@@ -146,7 +146,6 @@ class EditConstraintFactory {
 		Content $newContent,
 		?Content $originalContent,
 		PageReference $page,
-		MessageSpecifier $errorMessageWrapper,
 		?string $contentFormat,
 	): RedirectConstraint {
 		return new RedirectConstraint(
@@ -154,7 +153,6 @@ class EditConstraintFactory {
 			$newContent,
 			$originalContent,
 			$page,
-			$errorMessageWrapper,
 			$contentFormat,
 			$this->redirectLookup
 		);

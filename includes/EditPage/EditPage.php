@@ -3313,7 +3313,6 @@ class EditPage implements IEditObject {
 				$content,
 				null,
 				$this->getTitle(),
-				MessageValue::new( 'edit-constraint-warning-wrapper' ),
 				$this->contentFormat,
 			) );
 
