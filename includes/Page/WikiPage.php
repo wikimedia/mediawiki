@@ -971,10 +971,12 @@ class WikiPage implements Stringable, Page, PageRecord {
 	 * The target will be fetched from the redirect table if possible.
 	 *
 	 * @deprecated since 1.38 Use RedirectLookup::getRedirectTarget() instead.
+	 * Emits deprecation warnings since 1.47.
 	 *
 	 * @return Title|null Title object, or null if this page is not a redirect
 	 */
 	public function getRedirectTarget() {
+		wfDeprecated( __METHOD__, '1.38' );
 		$target = MediaWikiServices::getInstance()->getRedirectLookup()->getRedirectTarget( $this );
 		return Title::castFromLinkTarget( $target );
 	}
@@ -999,7 +1001,8 @@ class WikiPage implements Stringable, Page, PageRecord {
 	 * @return bool|Title|string False, Title of in-wiki target, or string with URL
 	 */
 	public function followRedirect() {
-		return $this->getRedirectURL( $this->getRedirectTarget() );
+		$target = MediaWikiServices::getInstance()->getRedirectLookup()->getRedirectTarget( $this );
+		return $this->getRedirectURL( Title::castFromLinkTarget( $target ) );
 	}
 
 	/**

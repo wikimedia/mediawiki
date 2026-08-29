@@ -716,6 +716,8 @@ because of Phabricator reports.
   warnings.
 * WANObjectCache::adaptiveTTL, is now deprecated and emits deprecation
   warnings.
+* WikiPage::getRedirectTarget(), deprecated since 1.38, now emits deprecation
+  warnings.
 * SpecialVersion::getExtensionTypeName() is unused and has been deprecated.
 * The following ChangeTags methods have been deprecated and emit deprecation
   warnings:
