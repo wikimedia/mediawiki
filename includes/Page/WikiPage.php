@@ -2408,7 +2408,7 @@ class WikiPage implements Stringable, Page, PageRecord {
 	 * @return bool True if deletion would be batched, false otherwise
 	 */
 	public function isBatchedDelete( $safetyMargin = 0 ) {
-		wfDeprecated( __METHOD__, '1.47' );
+		wfDeprecated( __METHOD__, '1.37' );
 		$deleteRevisionsBatchSize = MediaWikiServices::getInstance()
 			->getMainConfig()->get( MainConfigNames::DeleteRevisionsBatchSize );
 
