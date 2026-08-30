@@ -1722,15 +1722,15 @@ class WikiPage implements Stringable, Page, PageRecord {
 	 * this method should be deprecated and callers should be migrated to using
 	 * PageUpdaterFactory::newPageUpdater() instead.
 	 *
-	 * @param Authority|UserIdentity $performer
+	 * @param Authority|UserIdentity $performer Passing an Authority is deprecated since 1.47.
 	 * @param RevisionSlotsUpdate|null $forUpdate If given, allows any cached ParserOutput
 	 *        that may already have been returned via getDerivedDataUpdater to be re-used.
 	 *
 	 * @return PageUpdater
 	 */
 	public function newPageUpdater( $performer, ?RevisionSlotsUpdate $forUpdate = null ) {
-		if ( $performer instanceof Authority ) {
-			// TODO: Deprecate this. But better get rid of this method entirely.
+		if ( !$performer instanceof UserIdentity && $performer instanceof Authority ) {
+			wfDeprecated( __METHOD__, '1.47' );
 			$performer = $performer->getUser();
 		}
 
