@@ -107,12 +107,12 @@ class DerivedPageDataUpdaterTest extends MediaWikiIntegrationTestCase {
 	 * @param WikiPage $page
 	 * @param string|Message|CommentStoreComment $summary
 	 * @param null|string|Content|Content[] $content
-	 * @param User|null $user
+	 * @param UserIdentity|null $user
 	 *
 	 * @return RevisionRecord|null
 	 */
 	private function createRevision( WikiPage $page, $summary, $content = null, $user = null ) {
-		$user ??= $this->getTestUser()->getUser();
+		$user ??= $this->getTestUser()->getUserIdentity();
 		$comment = CommentStoreComment::newUnsavedComment( $summary );
 
 		if ( $content === null || is_string( $content ) ) {
@@ -1623,7 +1623,7 @@ class DerivedPageDataUpdaterTest extends MediaWikiIntegrationTestCase {
 		$parserCache->deleteOptionsKey( $page );
 		$parsoidCache->deleteOptionsKey( $page );
 
-		$user = $this->getTestUser()->getUser();
+		$user = $this->getTestUser()->getUserIdentity();
 
 		ConvertibleTimestamp::setFakeTime( '2022-01-01T00:02:00Z' );
 		$updater = $page->newPageUpdater( $user );

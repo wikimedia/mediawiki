@@ -1667,7 +1667,7 @@ class WikiPage implements Stringable, Page, PageRecord {
 		// NOTE: while doUserEditContent() executes, callbacks to getDerivedDataUpdater and
 		// prepareContentForEdit will generally use the DerivedPageDataUpdater that is also
 		// used by this PageUpdater. However, there is no guarantee for this.
-		$updater = $this->newPageUpdater( $performer, $slotsUpdate )
+		$updater = $this->newPageUpdater( $performer->getUser(), $slotsUpdate )
 			->setContent( SlotRecord::MAIN, $content )
 			->setOriginalRevisionId( $originalRevId );
 		if ( $undidRevId ) {

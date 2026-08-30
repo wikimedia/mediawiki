@@ -19,7 +19,6 @@ use MediaWiki\Page\WikiPage;
 use MediaWiki\Page\WikiPageFactory;
 use MediaWiki\Parser\ParserOptions;
 use MediaWiki\Parser\ParserOutput;
-use MediaWiki\Permissions\Authority;
 use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
@@ -33,6 +32,7 @@ use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
 use MediaWiki\Tests\User\TempUser\TempUserTestTrait;
 use MediaWiki\Title\Title;
 use MediaWiki\User\User;
+use MediaWiki\User\UserIdentity;
 use MediaWiki\Utils\MWTimestamp;
 use PHPUnit\Framework\Assert;
 use Wikimedia\Rdbms\IDBAccessObject;
@@ -81,16 +81,16 @@ class WikiPageDbTest extends MediaWikiLangTestCase {
 	 * @param string|Title|WikiPage $page
 	 * @param string|Content|Content[] $content
 	 * @param int|null $model
-	 * @param Authority|null $performer
+	 * @param UserIdentity|null $performer
 	 *
 	 * @return WikiPage
 	 */
-	protected function createPage( $page, $content, $model = null, ?Authority $performer = null ) {
+	protected function createPage( $page, $content, $model = null, ?UserIdentity $performer = null ) {
 		if ( !$page instanceof WikiPage ) {
 			$page = $this->newPage( $page );
 		}
 
-		$performer ??= $this->getTestUser()->getUser();
+		$performer ??= $this->getTestUser()->getUserIdentity();
 
 		if ( is_string( $content ) ) {
 			$content = ContentHandler::makeContent( $content, $page->getTitle(), $model );
@@ -135,13 +135,10 @@ class WikiPageDbTest extends MediaWikiLangTestCase {
 	}
 
 	public function testPrepareContentForEdit() {
-		$performer = $this->mockUserAuthorityWithPermissions(
-			$this->getTestUser()->getUserIdentity(),
-			[ 'edit' ]
-		);
+		$user = $this->getTestUser()->getUserIdentity();
 		$sysop = $this->getTestUser( [ 'sysop' ] )->getUserIdentity();
 
-		$page = $this->createPage( __METHOD__, __METHOD__, null, $performer );
+		$page = $this->createPage( __METHOD__, __METHOD__, null, $user );
 		$title = $page->getTitle();
 
 		$content = ContentHandler::makeContent(
@@ -157,7 +154,7 @@ class WikiPageDbTest extends MediaWikiLangTestCase {
 			CONTENT_MODEL_WIKITEXT
 		);
 
-		$edit = $page->prepareContentForEdit( $content, null, $performer->getUser(), null, false );
+		$edit = $page->prepareContentForEdit( $content, null, $user, null, false );
 
 		$this->assertInstanceOf(
 			ParserOptions::class,
@@ -181,7 +178,7 @@ class WikiPageDbTest extends MediaWikiLangTestCase {
 		$this->assertSame( $edit->output, $update->getCanonicalParserOutput() );
 
 		// Re-using the prepared info if possible
-		$sameEdit = $page->prepareContentForEdit( $content, null, $performer->getUser(), null, false );
+		$sameEdit = $page->prepareContentForEdit( $content, null, $user, null, false );
 		$this->assertPreparedEditEquals( $edit, $sameEdit, 'equivalent PreparedEdit' );
 		$this->assertSame( $edit->pstContent, $sameEdit->pstContent, 're-use output' );
 		$this->assertSame( $edit->output, $sameEdit->output, 're-use output' );
@@ -190,7 +187,7 @@ class WikiPageDbTest extends MediaWikiLangTestCase {
 		$this->assertSame( $update, $page->getCurrentUpdate() );
 
 		// Not re-using the same PreparedEdit if not possible
-		$edit2 = $page->prepareContentForEdit( $content2, null, $performer->getUser(), null, false );
+		$edit2 = $page->prepareContentForEdit( $content2, null, $user, null, false );
 		$this->assertPreparedEditNotEquals( $edit, $edit2 );
 		$this->assertStringContainsString( 'At vero eos', $edit2->pstContent->serialize(), "content" );
 

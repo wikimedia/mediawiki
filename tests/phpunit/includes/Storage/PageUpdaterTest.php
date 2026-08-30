@@ -115,7 +115,7 @@ class PageUpdaterTest extends MediaWikiIntegrationTestCase {
 	 * @covers \MediaWiki\Page\WikiPage::newPageUpdater()
 	 */
 	public function testCreatePage() {
-		$user = $this->getTestUser()->getUser();
+		$user = $this->getTestUser()->getUserIdentity();
 		$wikiPageFactory = $this->getServiceContainer()->getWikiPageFactory();
 
 		$title = $this->getDummyTitle( __METHOD__ );
@@ -230,7 +230,7 @@ class PageUpdaterTest extends MediaWikiIntegrationTestCase {
 	 * @covers \MediaWiki\Page\WikiPage::newPageUpdater()
 	 */
 	public function testUpdatePage() {
-		$user = $this->getTestUser()->getUser();
+		$user = $this->getTestUser()->getUserIdentity();
 
 		$title = $this->getDummyTitle( __METHOD__ );
 		$this->insertPage( $title );
@@ -357,7 +357,7 @@ class PageUpdaterTest extends MediaWikiIntegrationTestCase {
 	 * @covers \MediaWiki\Storage\PageUpdater::saveRevision()
 	 */
 	public function testRevisionFromEditComplete() {
-		$user = $this->getTestUser()->getUser();
+		$user = $this->getTestUser()->getUserIdentity();
 		$wikiPageFactory = $this->getServiceContainer()->getWikiPageFactory();
 		$tagsStore = $this->getServiceContainer()->getChangeTagsStore();
 
@@ -413,7 +413,7 @@ class PageUpdaterTest extends MediaWikiIntegrationTestCase {
 			}
 		);
 
-		$user = $this->getTestUser()->getUser();
+		$user = $this->getTestUser()->getUserIdentity();
 		$updater = $page->newPageUpdater( $user );
 
 		$oldRevId = $page->getLatest();
@@ -523,7 +523,7 @@ class PageUpdaterTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testEventEmission_new() {
-		$user = $this->getTestUser()->getUser();
+		$user = $this->getTestUser()->getUserIdentity();
 		$wikiPageFactory = $this->getServiceContainer()->getWikiPageFactory();
 
 		$title = $this->getDummyTitle( __METHOD__ );
@@ -583,7 +583,7 @@ class PageUpdaterTest extends MediaWikiIntegrationTestCase {
 
 	public function testEventEmission_edit() {
 		$page = $this->getExistingTestPage();
-		$user = $this->getTestUser()->getUser();
+		$user = $this->getTestUser()->getUserIdentity();
 
 		$updater = $page->newPageUpdater( $user );
 
@@ -616,7 +616,7 @@ class PageUpdaterTest extends MediaWikiIntegrationTestCase {
 
 	public function testEventEmission_suppressed() {
 		$page = $this->getExistingTestPage();
-		$user = $this->getTestUser()->getUser();
+		$user = $this->getTestUser()->getUserIdentity();
 
 		$this->runDeferredUpdates(); // flush
 
@@ -633,7 +633,7 @@ class PageUpdaterTest extends MediaWikiIntegrationTestCase {
 
 	public function testEventEmission_implicit() {
 		$page = $this->getExistingTestPage();
-		$user = $this->getTestUser()->getUser();
+		$user = $this->getTestUser()->getUserIdentity();
 
 		$updater = $page->newPageUpdater( $user );
 
@@ -657,7 +657,7 @@ class PageUpdaterTest extends MediaWikiIntegrationTestCase {
 
 	public function testEventEmission_null() {
 		$page = $this->getExistingTestPage();
-		$user = $this->getTestUser()->getUser();
+		$user = $this->getTestUser()->getUserIdentity();
 
 		$updater = $page->newPageUpdater( $user );
 
@@ -679,7 +679,7 @@ class PageUpdaterTest extends MediaWikiIntegrationTestCase {
 
 	public function testEventEmission_dummy() {
 		$page = $this->getExistingTestPage();
-		$user = $this->getTestUser()->getUser();
+		$user = $this->getTestUser()->getUserIdentity();
 
 		$updater = $page->newPageUpdater( $user );
 
@@ -706,7 +706,7 @@ class PageUpdaterTest extends MediaWikiIntegrationTestCase {
 		$this->editPage( $page, 'Other content for ' . __METHOD__ );
 		$this->assertFalse( $page->getContent()->equals( $originalContent ) );
 
-		$user = $this->getTestUser()->getUser();
+		$user = $this->getTestUser()->getUserIdentity();
 		$updater = $page->newPageUpdater( $user );
 
 		$this->expectDomainEvent(
@@ -728,7 +728,7 @@ class PageUpdaterTest extends MediaWikiIntegrationTestCase {
 
 	public function testEventEmission_derived() {
 		$page = $this->getExistingTestPage();
-		$user = $this->getTestUser()->getUser();
+		$user = $this->getTestUser()->getUserIdentity();
 
 		$updater = $page->newPageUpdater( $user );
 
@@ -783,7 +783,7 @@ class PageUpdaterTest extends MediaWikiIntegrationTestCase {
 			$this->makeUser( $userName );
 		}
 
-		$user = $this->getTestUser()->getUser();
+		$user = $this->getTestUser()->getUserIdentity();
 		$wikiPageFactory = $this->getServiceContainer()->getWikiPageFactory();
 
 		$page = $wikiPageFactory->newFromTitle( $title );
@@ -820,7 +820,7 @@ class PageUpdaterTest extends MediaWikiIntegrationTestCase {
 			$this->makeUser( $userName );
 		}
 
-		$user = $this->getTestUser()->getUser();
+		$user = $this->getTestUser()->getUserIdentity();
 		$wikiPageFactory = $this->getServiceContainer()->getWikiPageFactory();
 
 		$wikiPageFactory->newFromTitle( $title );
@@ -858,7 +858,7 @@ class PageUpdaterTest extends MediaWikiIntegrationTestCase {
 			$this->makeUser( $userName );
 		}
 
-		$user = $this->getTestUser()->getUser();
+		$user = $this->getTestUser()->getUserIdentity();
 		$wikiPageFactory = $this->getServiceContainer()->getWikiPageFactory();
 
 		$wikiPageFactory->newFromTitle( $title );
@@ -886,7 +886,7 @@ class PageUpdaterTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testSetForceEmptyRevisionSetsOriginalRevisionId() {
-		$user = $this->getTestUser()->getUser();
+		$user = $this->getTestUser()->getUserIdentity();
 		$title = $this->getDummyTitle( __METHOD__ );
 		$this->insertPage( $title );
 		$page = $this->getServiceContainer()->getWikiPageFactory()->newFromTitle( $title );
@@ -908,7 +908,7 @@ class PageUpdaterTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testSetForceEmptyRevisionCausesSaveToFailWithChangedContent() {
-		$user = $this->getTestUser()->getUser();
+		$user = $this->getTestUser()->getUserIdentity();
 		$title = $this->getDummyTitle( __METHOD__ );
 		$this->insertPage( $title );
 		$page = $this->getServiceContainer()->getWikiPageFactory()->newFromTitle( $title );
@@ -927,7 +927,7 @@ class PageUpdaterTest extends MediaWikiIntegrationTestCase {
 		// Setup a page with some edits
 		$page = $this->getExistingTestPage( __METHOD__ );
 
-		$user = $this->getTestUser()->getUser();
+		$user = $this->getTestUser()->getUserIdentity();
 
 		$summary = CommentStoreComment::newUnsavedComment( '1' );
 		$updater = $page->newPageUpdater( $user )
@@ -942,7 +942,7 @@ class PageUpdaterTest extends MediaWikiIntegrationTestCase {
 		$revId2 = $updater->getNewRevision()->getId();
 
 		// Perform a rollback
-		$updater = $page->newPageUpdater( $this->getTestSysop()->getUser() )
+		$updater = $page->newPageUpdater( $this->getTestSysop()->getUserIdentity() )
 			->setContent( SlotRecord::MAIN, new TextContent( '1' ) )
 			->markAsRevert( EditResult::REVERT_ROLLBACK, $revId2, $revId1 );
 		$summary = CommentStoreComment::newUnsavedComment( 'revert' );
@@ -999,7 +999,7 @@ class PageUpdaterTest extends MediaWikiIntegrationTestCase {
 	 * @return RevisionRecord|null
 	 */
 	private function createRevision( WikiPage $page, $summary, $content = null ) {
-		$user = $this->getTestUser()->getUser();
+		$user = $this->getTestUser()->getUserIdentity();
 
 		$comment = CommentStoreComment::newUnsavedComment( $summary );
 
@@ -1017,7 +1017,7 @@ class PageUpdaterTest extends MediaWikiIntegrationTestCase {
 	 * @covers \MediaWiki\Storage\PageUpdater::saveRevision()
 	 */
 	public function testMultiContentSaveHook() {
-		$user = $this->getTestUser()->getUser();
+		$user = $this->getTestUser()->getUserIdentity();
 
 		$title = $this->getDummyTitle( __METHOD__ );
 
@@ -1036,7 +1036,6 @@ class PageUpdaterTest extends MediaWikiIntegrationTestCase {
 		$summary = CommentStoreComment::newUnsavedComment( 'Just a test' );
 
 		$expected = [
-			'user' => $user,
 			'title' => $title,
 			'slots' => $slots,
 			'summary' => $summary
@@ -1079,7 +1078,7 @@ class PageUpdaterTest extends MediaWikiIntegrationTestCase {
 	 * @covers \MediaWiki\Storage\PageUpdater::saveRevision()
 	 */
 	public function testMultiContentSaveHookAbort() {
-		$user = $this->getTestUser()->getUser();
+		$user = $this->getTestUser()->getUserIdentity();
 		$title = $this->getDummyTitle( __METHOD__ );
 
 		// start editing non-existing page
@@ -1115,7 +1114,7 @@ class PageUpdaterTest extends MediaWikiIntegrationTestCase {
 	 * @covers \MediaWiki\Storage\PageUpdater::saveRevision()
 	 */
 	public function testCompareAndSwapFailure() {
-		$user = $this->getTestUser()->getUser();
+		$user = $this->getTestUser()->getUserIdentity();
 
 		$title = $this->getDummyTitle( __METHOD__ );
 		$wikiPageFactory = $this->getServiceContainer()->getWikiPageFactory();
@@ -1283,7 +1282,7 @@ class PageUpdaterTest extends MediaWikiIntegrationTestCase {
 	 * @covers \MediaWiki\Storage\PageUpdater::saveRevision()
 	 */
 	public function testFailureOnEditFlags() {
-		$user = $this->getTestUser()->getUser();
+		$user = $this->getTestUser()->getUserIdentity();
 
 		$title = $this->getDummyTitle( __METHOD__ );
 
@@ -1320,7 +1319,7 @@ class PageUpdaterTest extends MediaWikiIntegrationTestCase {
 	 * @covers \MediaWiki\Storage\PageUpdater::saveRevision()
 	 */
 	public function testFailureOnBadContentModel() {
-		$user = $this->getTestUser()->getUser();
+		$user = $this->getTestUser()->getUserIdentity();
 
 		$title = $this->getDummyTitle( __METHOD__ );
 
@@ -1353,7 +1352,7 @@ class PageUpdaterTest extends MediaWikiIntegrationTestCase {
 	public function testSetRcPatrolStatus( $patrolled ) {
 		$revisionStore = $this->getServiceContainer()->getRevisionStore();
 
-		$user = $this->getTestUser()->getUser();
+		$user = $this->getTestUser()->getUserIdentity();
 
 		$title = $this->getDummyTitle( __METHOD__ );
 
@@ -1372,7 +1371,7 @@ class PageUpdaterTest extends MediaWikiIntegrationTestCase {
 	 * @covers \MediaWiki\Storage\PageUpdater::makeNewRevision()
 	 */
 	public function testStalePageID() {
-		$user = $this->getTestUser()->getUser();
+		$user = $this->getTestUser()->getUserIdentity();
 
 		$title = $this->getDummyTitle( __METHOD__ );
 		$summary = CommentStoreComment::newUnsavedComment( 'testing...' );
@@ -1409,7 +1408,7 @@ class PageUpdaterTest extends MediaWikiIntegrationTestCase {
 	 * @covers \MediaWiki\Storage\PageUpdater::setContent()
 	 */
 	public function testInheritSlot() {
-		$user = $this->getTestUser()->getUser();
+		$user = $this->getTestUser()->getUserIdentity();
 
 		$title = $this->getDummyTitle( __METHOD__ );
 		$page = $this->getServiceContainer()->getWikiPageFactory()->newFromTitle( $title );
@@ -1445,7 +1444,7 @@ class PageUpdaterTest extends MediaWikiIntegrationTestCase {
 	 * @covers \MediaWiki\Storage\PageUpdater::updateRevision()
 	 */
 	public function testUpdatingDerivedSlot() {
-		$user = $this->getTestUser()->getUser();
+		$user = $this->getTestUser()->getUserIdentity();
 		$title = $this->getDummyTitle( __METHOD__ );
 		$page = $this->getServiceContainer()->getWikiPageFactory()->newFromTitle( $title );
 
@@ -1481,7 +1480,7 @@ class PageUpdaterTest extends MediaWikiIntegrationTestCase {
 	 * @covers \MediaWiki\Storage\PageUpdater::updateRevision()
 	 */
 	public function testUpdatingDerivedSlotCurrentRevision() {
-		$user = $this->getTestUser()->getUser();
+		$user = $this->getTestUser()->getUserIdentity();
 		$title = $this->getDummyTitle( __METHOD__ );
 		$page = $this->getServiceContainer()->getWikiPageFactory()->newFromTitle( $title );
 
@@ -1506,7 +1505,7 @@ class PageUpdaterTest extends MediaWikiIntegrationTestCase {
 	 * @covers \MediaWiki\Storage\PageUpdater::updateRevision()
 	 */
 	public function testUpdatingDerivedSlotOldRevision() {
-		$user = $this->getTestUser()->getUser();
+		$user = $this->getTestUser()->getUserIdentity();
 		$title = $this->getDummyTitle( __METHOD__ );
 		$page = $this->getServiceContainer()->getWikiPageFactory()->newFromTitle( $title );
 
@@ -1535,7 +1534,7 @@ class PageUpdaterTest extends MediaWikiIntegrationTestCase {
 
 	public function testSetUseAutomaticEditSummaries() {
 		$this->setContentLang( 'qqx' );
-		$user = $this->getTestUser()->getUser();
+		$user = $this->getTestUser()->getUserIdentity();
 
 		$title = $this->getDummyTitle( __METHOD__ );
 		$wikiPageFactory = $this->getServiceContainer()->getWikiPageFactory();
@@ -1623,7 +1622,7 @@ class PageUpdaterTest extends MediaWikiIntegrationTestCase {
 		$services->getDomainEventSource()
 			->registerSubscriber( $ingress );
 
-		$user = $this->getTestUser()->getUser();
+		$user = $this->getTestUser()->getUserIdentity();
 
 		$title = $this->getDummyTitle( __METHOD__ . ( $use ? '_logged' : '_unlogged' ) );
 		$page = $services->getWikiPageFactory()->newFromTitle( $title );
@@ -1761,7 +1760,7 @@ class PageUpdaterTest extends MediaWikiIntegrationTestCase {
 	 * @covers \MediaWiki\Page\WikiPage::getCurrentUpdate()
 	 */
 	public function testPrepareUpdate() {
-		$user = $this->getTestUser()->getUser();
+		$user = $this->getTestUser()->getUserIdentity();
 
 		$title = $this->getDummyTitle( __METHOD__ );
 		$page = $this->getServiceContainer()->getWikiPageFactory()->newFromTitle( $title );
@@ -1776,7 +1775,7 @@ class PageUpdaterTest extends MediaWikiIntegrationTestCase {
 	 * @covers \MediaWiki\Storage\PageUpdater::isChange
 	 */
 	public function testPreventChange_modify() {
-		$user = $this->getTestUser()->getUser();
+		$user = $this->getTestUser()->getUserIdentity();
 		$title = $this->getDummyTitle( __METHOD__ );
 		$page = $this->getServiceContainer()->getWikiPageFactory()->newFromTitle( $title );
 		$updater = $page->newPageUpdater( $user );
@@ -1814,7 +1813,7 @@ class PageUpdaterTest extends MediaWikiIntegrationTestCase {
 	 * @covers \MediaWiki\Storage\PageUpdater::isChange
 	 */
 	public function testPreventChange_create() {
-		$user = $this->getTestUser()->getUser();
+		$user = $this->getTestUser()->getUserIdentity();
 		$title = $this->getDummyTitle( __METHOD__ );
 		$page = $this->getServiceContainer()->getWikiPageFactory()->newFromTitle( $title );
 

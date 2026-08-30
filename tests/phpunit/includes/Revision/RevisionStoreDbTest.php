@@ -1853,7 +1853,7 @@ class RevisionStoreDbTest extends MediaWikiIntegrationTestCase {
 	 * @return bool|RevisionStoreRecord the revision created, or false if missing
 	 */
 	private function createRevisionStoreCacheRecord( $page, $store ) {
-		$user = MediaWikiIntegrationTestCase::getMutableTestUser()->getUser();
+		$user = MediaWikiIntegrationTestCase::getMutableTestUser()->getUserIdentity();
 		$summary = CommentStoreComment::newUnsavedComment( __METHOD__ );
 		$rev = $page->newPageUpdater( $user )
 			->setContent( SlotRecord::MAIN, new WikitextContent( __METHOD__ ) )

@@ -64,9 +64,9 @@ class DeletePageTest extends MediaWikiIntegrationTestCase {
 		$title = Title::newFromText( $titleText, $ns );
 		$page = $this->getServiceContainer()->getWikiPageFactory()->newFromTitle( $title );
 
-		$performer = $this->getTestUser()->getAuthority();
+		$user = $this->getTestUser()->getUserIdentity();
 
-		$updater = $page->newPageUpdater( $performer )
+		$updater = $page->newPageUpdater( $user )
 			->setContent( SlotRecord::MAIN, $content );
 
 		$updater->saveRevision( CommentStoreComment::newUnsavedComment( "testing" ) );

@@ -2184,7 +2184,7 @@ class LocalFile extends File {
 					# New file page; create the description page.
 					# There's already a log entry, so don't make a second RC entry
 					# CDN and file cache for the description page are purged by doUserEditContent.
-					$revRecord = $wikiPage->newPageUpdater( $performer )
+					$revRecord = $wikiPage->newPageUpdater( $performer->getUser() )
 						->setCause( PageUpdater::CAUSE_UPLOAD )
 						->setContent( SlotRecord::MAIN, $newPageContent )
 						->saveRevision( $comment, EDIT_NEW | EDIT_SUPPRESS_RC );

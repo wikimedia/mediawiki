@@ -132,7 +132,7 @@ abstract class DumpTestCase extends MediaWikiLangTestCase {
 	) {
 		$slotRoleRegistry = MediaWikiServices::getInstance()->getSlotRoleRegistry();
 
-		$updater = $page->newPageUpdater( $this->getTestUser()->getUser() );
+		$updater = $page->newPageUpdater( $this->getTestUser()->getUserIdentity() );
 
 		foreach ( $slots as $role => $content ) {
 			if ( !$slotRoleRegistry->isDefinedRole( $role ) ) {

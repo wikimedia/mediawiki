@@ -197,7 +197,7 @@ class RollbackPage {
 		// Begin revision creation cycle by creating a PageUpdater.
 		// If the page is changed concurrently after grabParentRevision(), the rollback will fail.
 		// TODO: move PageUpdater to PageStore or PageUpdaterFactory or something?
-		$updater = $this->wikiPageFactory->newFromTitle( $this->page )->newPageUpdater( $this->performer );
+		$updater = $this->wikiPageFactory->newFromTitle( $this->page )->newPageUpdater( $this->performer->getUser() );
 		$currentRevision = $updater->grabParentRevision();
 
 		if ( !$currentRevision ) {

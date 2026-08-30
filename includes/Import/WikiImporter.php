@@ -522,7 +522,7 @@ class WikiImporter {
 				wfDebug( __METHOD__ . ': Skipping article count adjustment for ' . $pageIdentity .
 					' because WikiPage::getRevisionRecord() returned null' );
 			} else {
-				$update = $page->newPageUpdater( $this->performer )->prepareUpdate();
+				$update = $page->newPageUpdater( $this->performer->getUser() )->prepareUpdate();
 				$countKey = 'title_' . CacheKeyHelper::getKeyForPage( $pageIdentity );
 				$countable = $update->isCountable();
 				if ( array_key_exists( $countKey, $this->countableCache ) &&
