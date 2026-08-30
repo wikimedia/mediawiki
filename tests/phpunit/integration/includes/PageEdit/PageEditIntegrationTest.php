@@ -205,9 +205,9 @@ class PageEditIntegrationTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @dataProvider provideTestShouldAllowBlankSummary
+	 * @dataProvider provideTestShouldForceEditSummary
 	 */
-	public function testShouldAllowBlankSummary(
+	public function testShouldForceEditSummary(
 		int $namespace,
 		bool $userPrefEnabled,
 		bool $expected,
@@ -226,30 +226,30 @@ class PageEditIntegrationTest extends MediaWikiIntegrationTestCase {
 			user: $user,
 			context: $context,
 		);
-		$this->assertEquals( $expected, $pageEdit->shouldAllowBlankSummary() );
+		$this->assertEquals( $expected, $pageEdit->shouldForceEditSummary() );
 	}
 
-	public static function provideTestShouldAllowBlankSummary(): array {
+	public static function provideTestShouldForceEditSummary(): array {
 		return [
 			'Standard behaviour with preference enabled' => [
 				'namespace' => NS_MAIN,
 				'userPrefEnabled' => true,
-				'expected' => false,
+				'expected' => true,
 			],
 			'Editing own user page' => [
 				'namespace' => NS_USER,
 				'userPrefEnabled' => true,
-				'expected' => true,
+				'expected' => false,
 			],
 			'Editing own talk page' => [
 				'namespace' => NS_USER_TALK,
 				'userPrefEnabled' => true,
-				'expected' => true,
+				'expected' => false,
 			],
 			'User preference disabled' => [
 				'namespace' => NS_MAIN,
 				'userPrefEnabled' => false,
-				'expected' => true,
+				'expected' => false,
 			],
 		];
 	}

@@ -39,7 +39,7 @@ class ExistingSectionEditConstraint extends EditConstraint {
 		private readonly string $section,
 		private readonly string $userSummary,
 		private readonly string $autoSummary,
-		private readonly bool $allowBlankSummary,
+		private readonly bool $forceEditSummary,
 		private readonly Content $newContent,
 		private readonly ?Content $originalContent,
 		private readonly MessageSpecifier $submitButtonLabel,
@@ -54,7 +54,7 @@ class ExistingSectionEditConstraint extends EditConstraint {
 		}
 
 		if (
-			!$this->allowBlankSummary &&
+			$this->forceEditSummary &&
 			!$this->editAttemptState->shouldAllowBlankSummary() &&
 			!$this->newContent->equals( $this->originalContent ) &&
 			!$this->newContent->isRedirect() &&

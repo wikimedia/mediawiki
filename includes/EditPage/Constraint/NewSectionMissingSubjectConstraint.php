@@ -21,14 +21,14 @@ class NewSectionMissingSubjectConstraint extends EditConstraint {
 	public function __construct(
 		private readonly string $section,
 		private readonly string $subject,
-		private readonly bool $allowBlankSubject,
+		private readonly bool $forceEditSummary,
 		private readonly PageEditAttemptState $editAttemptState,
 	) {
 	}
 
 	public function checkConstraint(): PageEditStatus {
 		if ( $this->section === 'new' &&
-			!$this->allowBlankSubject &&
+			$this->forceEditSummary &&
 			!$this->editAttemptState->shouldAllowBlankSummary() &&
 			trim( $this->subject ) === ''
 		) {

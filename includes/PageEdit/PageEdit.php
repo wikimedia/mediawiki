@@ -544,7 +544,7 @@ class PageEdit implements IEditObject {
 		$revision = $this->inputs->getOldid()
 			? $this->revisionStore->getRevisionById( $this->inputs->getOldid() )
 			: $page->getRevisionRecord();
-		$allowBlankSummary = $this->shouldAllowBlankSummary();
+		$forceEditSummary = $this->shouldForceEditSummary();
 
 		return new EditConstraintRunner(
 			$this->constraintFactory->newEditFilterMergedContentHookConstraint(
@@ -557,7 +557,7 @@ class PageEdit implements IEditObject {
 			new NewSectionMissingSubjectConstraint(
 				$this->section,
 				$this->inputs->getSectiontitle() ?? '',
-				$allowBlankSummary,
+				$forceEditSummary,
 				$this->inputs->getAttemptState(),
 			),
 			new MissingCommentConstraint( $this->section, $this->textbox1 ),
@@ -565,7 +565,7 @@ class PageEdit implements IEditObject {
 				$this->section,
 				$this->inputs->getSummary(),
 				$this->inputs->getAutoSumm(),
-				$allowBlankSummary,
+				$forceEditSummary,
 				$content,
 				$this->pageEditingHelper->getOriginalContent(
 					$this->inputs->getAuthority(),
@@ -830,17 +830,16 @@ class PageEdit implements IEditObject {
 	}
 
 	/**
-	 * @return bool Whether a blank edit summary should be allowed. This is the case when either
-	 * * the user is editing their own user or talk page
-	 * * the user does not have the preference for the warning enabled
+	 * @return bool Whether the user should be forced to specify an edit summary. This is the case when the user has
+	 * the 'forceeditsummary' preference enabled and they are not editing their own user or talk page.
 	 */
-	private function shouldAllowBlankSummary(): bool {
+	private function shouldForceEditSummary(): bool {
 		$user = $this->inputs->getContext()->getUser();
 		$page = $this->inputs->getPage();
 
-		return ( in_array( $page->getNamespace(), [ NS_USER, NS_USER_TALK ] )
+		return !( in_array( $page->getNamespace(), [ NS_USER, NS_USER_TALK ] )
 				&& $this->titleFormatter->getText( $page ) === $user->getName() )
-			|| !$this->userOptionsLookup->getOption( $user, 'forceeditsummary' );
+			&& $this->userOptionsLookup->getOption( $user, 'forceeditsummary' );
 	}
 
 }

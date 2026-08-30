@@ -25,7 +25,7 @@ class NewSectionMissingSubjectConstraintTest extends MediaWikiUnitTestCase {
 		$constraint = new NewSectionMissingSubjectConstraint(
 			'new',
 			'Subject',
-			false,
+			true,
 			new PageEditAttemptState(),
 		);
 		$this->assertConstraintPassed( $constraint );
@@ -36,7 +36,7 @@ class NewSectionMissingSubjectConstraintTest extends MediaWikiUnitTestCase {
 		$constraint = new NewSectionMissingSubjectConstraint(
 			'new',
 			'',
-			false,
+			true,
 			$editAttemptState,
 		);
 		$status = $this->assertConstraintFailed( $constraint, EditConstraint::AS_SUMMARY_NEEDED );
@@ -48,7 +48,7 @@ class NewSectionMissingSubjectConstraintTest extends MediaWikiUnitTestCase {
 		$constraint = new NewSectionMissingSubjectConstraint(
 			'notnew',
 			'',
-			false,
+			true,
 			new PageEditAttemptState(),
 		);
 		$this->assertConstraintPassed( $constraint );
