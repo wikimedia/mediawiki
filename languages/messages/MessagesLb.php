@@ -192,3 +192,5 @@ $magicWords = [
 	'subjectpagename'           => [ '1', 'Haaptsäit', 'HAUPTSEITE', 'HAUPTSEITENNAME', 'VORDERSEITE', 'SUBJECTPAGENAME', 'ARTICLEPAGENAME' ],
 	'subjectspace'              => [ '1', 'Haaptnummraum', 'HAUPTNAMENSRAUM', 'SUBJECTSPACE', 'ARTICLESPACE' ],
 ];
+
+$linkTrail = '/^([äâàçëéêèïîöôüûßa-z]+)(.*)$/sDu';
