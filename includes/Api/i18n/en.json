@@ -222,7 +222,7 @@
 	"apihelp-feedcontributions-param-namespace": "Which namespace to filter the contributions by.",
 	"apihelp-feedcontributions-param-year": "From year (and earlier).",
 	"apihelp-feedcontributions-param-month": "From month (and earlier).",
-	"apihelp-feedcontributions-param-tagfilter": "Filter contributions that have these tags.",
+	"apihelp-feedcontributions-param-tagfilter": "Only show contributions that have these tags.",
 	"apihelp-feedcontributions-param-deletedonly": "Show only deleted contributions.",
 	"apihelp-feedcontributions-param-toponly": "Only show edits that are the latest revisions.",
 	"apihelp-feedcontributions-param-newonly": "Only show edits that are page creations.",
