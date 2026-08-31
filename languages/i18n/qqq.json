@@ -635,6 +635,7 @@
 	"userlogin-reauth-description-link": "Link that allows user to cancel reauth process. \"Cancel\" is an infinitive, as this message is used inside {{msg-mw|Userlogin-reauth-description}}.",
 	"userlogin-reauth-banner-editsitejscss": "This is the message for the banner on [[Special:UserLogin]] when the user is redirected there to log in again when trying to edit site css or js.",
 	"userlogin-reauth-banner-editsitejscss-delete": "Banner on [[Special:UserLogin]] when the user is redirected there to reauthenticate before deleting a page that contains site-wide JavaScript or CSS.",
+	"userlogin-reauth-banner-editsitejscss-changecontentmodel": "Banner on [[Special:UserLogin]] when the user is redirected there to reauthenticate before changing the content model of a page that contains site-wide JavaScript or CSS.",
 	"userlogin-reauth-banner-editsitejscss-undelete": "Banner on [[Special:UserLogin]] when the user is redirected there to reauthenticate before undeleting a page that contains site-wide JavaScript or CSS.",
 	"userlogin-reauth-banner-edituserjscss": "This is the message for the banner on [[Special:UserLogin]] when the user is redirected there to log in again when trying to edit user css or js.",
 	"userlogin-reauth-banner-ChangeEmail": "This is the message for the banner on [[Special:UserLogin]] when the user is redirected there to log in again when trying to change email.",

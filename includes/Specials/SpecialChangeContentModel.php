@@ -73,6 +73,8 @@ class SpecialChangeContentModel extends FormSpecialPage {
 
 	private bool $reauthInProgress = false;
 
+	private ?string $reauthOperation = null;
+
 	protected function getTitle(): Title {
 		return $this->title
 			? $this->getPageTitle( $this->title->getPrefixedText() )
@@ -156,6 +158,10 @@ class SpecialChangeContentModel extends FormSpecialPage {
 				$form->setSubmitTextMsg( 'changecontentmodel-create-submit' );
 			}
 			$this->getOutput()->addBacklinkSubtitle( $this->title );
+
+			if ( $this->reauthOperation !== null ) {
+				$form->setSubmitLockIcon();
+			}
 		} else {
 			$form->setFormIdentifier( 'titleform' );
 			// T120576
@@ -168,12 +174,16 @@ class SpecialChangeContentModel extends FormSpecialPage {
 		$user = $this->getUser();
 		if ( $this->title ) {
 			$perm = $this->title->exists() ? 'editcontentmodel' : 'createwithcontentmodel';
-			$this->permissionManager->throwPermissionErrors(
+			$status = $this->permissionManager->getPermissionStatus(
 				$perm,
 				$user,
 				$this->title,
 				PermissionManager::RIGOR_FULL
 			);
+			if ( $status->hasMessagesExcept() ) {
+				throw new PermissionsError( $perm, $status );
+			}
+			$this->reauthOperation = $status->getReauthOperation();
 		} elseif ( !$this->permissionManager->userHasAnyRight( $user, 'editcontentmodel', 'createwithcontentmodel' ) ) {
 			// The intended use case of this special page is to change the content model of an existing page
 			// nothing stops you from creating a new page with it but that's a hack so display the permission error
@@ -333,7 +343,7 @@ class SpecialChangeContentModel extends FormSpecialPage {
 			if ( $permissionStatus->getReauthOperation() !== null ) {
 				$this->setStashKey( $this->getStashKeyForTitle( $this->title ) );
 				$queryParams = $this->stashDataOnPost();
-				$this->doReauthRedirect( $permissionStatus, $queryParams );
+				$this->doReauthRedirect( $permissionStatus, $queryParams, 'changecontentmodel' );
 				$this->reauthInProgress = true;
 				return false;
 			}

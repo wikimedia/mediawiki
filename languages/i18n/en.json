@@ -353,6 +353,7 @@
 	"userlogin-reauth-description-link": "cancel this action",
 	"userlogin-reauth-banner-editsitejscss": "<strong>You are publishing site-wide JavaScript or CSS</strong> <br>Changes to this page affect all visitors. Confirm it’s you to continue.",
 	"userlogin-reauth-banner-editsitejscss-delete": "<strong>You are about to delete a page containing site-wide JavaScript or CSS. This affects all visitors to this wiki.</strong>",
+	"userlogin-reauth-banner-editsitejscss-changecontentmodel": "<strong>You are about to change a page containing site-wide JavaScript or CSS. This affects all visitors to this wiki.</strong>",
 	"userlogin-reauth-banner-editsitejscss-undelete": "<strong>You are about to undelete a page containing site-wide JavaScript or CSS. This affects all visitors to this wiki.</strong>",
 	"userlogin-reauth-banner-edituserjscss": "<strong>You are publishing user JavaScript or CSS</strong> <br>Confirm it’s you to continue.",
 	"userlogin-reauth-banner-ChangeEmail": "<strong>You are changing your email</strong> <br>Confirm it’s you to continue.",
