@@ -972,6 +972,7 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 					'autocomplete' => 'email',
 					// FIXME will break non-standard providers
 					'required' => $config->get( MainConfigNames::EmailConfirmToEdit ),
+					'show-optional-flag' => !$config->get( MainConfigNames::EmailConfirmToEdit ),
 					'validation-callback' => function ( $value, $alldata ) {
 						// AuthManager will check most of these, but that will make the auth
 						// session fail and this won't, so nicer to do it this way

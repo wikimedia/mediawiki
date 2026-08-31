@@ -16,6 +16,7 @@ use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Specials\SpecialCreateAccount;
 use TestLogger;
 use Wikimedia\Parsoid\DOM\Document;
+use Wikimedia\Parsoid\Utils\DOMCompat;
 use Wikimedia\Parsoid\Utils\DOMUtils;
 
 /**
@@ -111,6 +112,32 @@ class SpecialCreateAccountTest extends SpecialPageTestBase {
 		$this->assertNull(
 			$doc->getElementById( 'wpCreateaccountMail' ),
 			'Temporary users should not have the option to have a temporary password sent on signup (T328718)'
+		);
+	}
+
+	public function testShouldMarkEmailFieldAsOptional(): void {
+		$this->overrideConfigValue( MainConfigNames::EmailConfirmToEdit, false );
+
+		$specialPage = $this->newSpecialPage();
+		$specialPage->execute( null );
+		$doc = self::getOutputHtml( $specialPage );
+
+		$this->assertNotNull(
+			DOMCompat::querySelector( $doc, 'label[for="wpEmail"] .cdx-label__label__optional-flag' ),
+			'The email address is optional, so its label must have the "(optional)" flag (T435145)'
+		);
+	}
+
+	public function testShouldNotMarkEmailFieldAsOptionalWhenEmailIsRequired(): void {
+		$this->overrideConfigValue( MainConfigNames::EmailConfirmToEdit, true );
+
+		$specialPage = $this->newSpecialPage();
+		$specialPage->execute( null );
+		$doc = self::getOutputHtml( $specialPage );
+
+		$this->assertNull(
+			DOMCompat::querySelector( $doc, 'label[for="wpEmail"] .cdx-label__label__optional-flag' ),
+			'The email address is required, so its label must not have the "(optional)" flag'
 		);
 	}
 
