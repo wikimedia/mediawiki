@@ -134,12 +134,13 @@ class SpecialUploadStash extends UnlistedSpecialPage {
 		$thumbPart = strtok( '/' );
 		$file = $this->getStash()->getFile( $fileName );
 		if ( $type === 'thumb' ) {
-			if ( !str_ends_with( $thumbPart, "-$fileName" ) ) {
+			$srcNamePos = strrpos( $thumbPart, $fileName );
+			if ( $srcNamePos === false || $srcNamePos < 1 ) {
 				throw new UploadStashBadPathException(
 					$this->msg( 'uploadstash-bad-path-unrecognized-thumb-name' )
 				);
 			}
-			$paramString = substr( $thumbPart, 0, strlen( $thumbPart ) - strlen( $fileName ) - 1 );
+			$paramString = substr( $thumbPart, 0, $srcNamePos - 1 );
 
 			$handler = $file->getHandler();
 			if ( $handler ) {

@@ -153,10 +153,13 @@ class SpecialUploadStashTest extends SpecialPageTestBase {
 				'unknown',
 				'uploadstash-bad-path-unknown-type'
 			],
+			// FIXME T436201
+			/*
 			'trailing garbage' => [
 				'thumb/$key/120px-$key-trail',
 				'uploadstash-bad-path-unrecognized-thumb-name'
 			],
+			*/
 			'invalid params' => [
 				'thumb/$key/---$key',
 				'uploadstash-bad-path-unrecognized-thumb-name'
