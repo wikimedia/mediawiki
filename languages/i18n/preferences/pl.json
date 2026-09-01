@@ -237,7 +237,7 @@
 	"prefs-tokenwatchlist": "Token",
 	"prefs-watchlist-token": "Identyfikator listy obserwowanych:",
 	"prefs-watchlist-managetokens": "Zarządzaj tokenami",
-	"prefs-help-tokenmanagement": "Możesz zobaczyć i zresetować tajny klucz przypisany do Twojego konta, służący do uzyskania dostępu do kanału internetowego zmian w obserwowanych przez ciebie stronach. Każdy, kto go zna, będzie mógł je zobaczyć, więc nie udostępniaj go.",
+	"prefs-help-tokenmanagement": "Możesz zobaczyć i zresetować tajny klucz przypisany do Twojego konta, służący do uzyskania dostępu do kanału internetowego zmian w obserwowanych przez Ciebie stronach. Każdy, kto go zna, będzie mógł je zobaczyć, więc nie udostępniaj go.",
 	"prefs-searchoptions": "Wyszukiwanie",
 	"prefs-description-searchoptions": "Wybierz sposób działania autouzupełniania i wyników.",
 	"prefs-searchmisc": "Ogólne",
