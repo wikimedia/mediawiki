@@ -452,6 +452,7 @@
 	"notloggedin": "로그인하지 않음",
 	"userlogin-noaccount": "계정이 없나요?",
 	"userlogin-joinproject": "{{SITENAME}}에 가입하세요",
+	"userlogin-haveaccount": "계정이 이미 있습니까?",
 	"createaccount": "계정 만들기",
 	"userlogin-resetpassword-link": "비밀번호를 잊으셨나요?",
 	"userlogin-helplink2": "로그인 관련 도움말",

@@ -1333,7 +1333,7 @@
 	"nlinks": "$1 {{PLURAL:$1|verwiezing|verwiezinge}}",
 	"nmembers": "$1 {{PLURAL:$1|lid|lede}}",
 	"nmemberschanged": "$1 → $2 {{PLURAL:$2|lid|lede}}",
-	"nrevisions": "$1 {{PLURAL:$1|herzening|herzeninge}}",
+	"nrevisions": "$1 {{PLURAL:$1|versie|versies}}",
 	"nimagelinks": "Gebroek op $1 {{PLURAL:$1|pagina|pagina's}}",
 	"ntransclusions": "Gebroek op $1 {{PLURAL:$1|pagina|pagina's}}",
 	"specialpage-empty": "Deze pagina is laeg.",

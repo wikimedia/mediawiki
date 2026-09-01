@@ -1315,7 +1315,7 @@
 	"fileexists": "Otu faịlụ nwere aha adịlarị, biko lelee <strong>[[:$1]]</strong> ọ bụrụ na {{GENDER:|you}} ejighị n'aka ma ị chọrọ idegharị ya.\n[[$1|thumb]]",
 	"filepageexists": "Emepụtala ibe nkọwa maka faịlụ a na <strong>[[:$1]]</strong>, mana ọ nweghị faịlụ nwere aha a dị ugbu a.\nNchịkọta nke ị tinyere agaghị apụta na ibe nkọwa.\nIji mee ka nchịkọta gị pụta n'ebe ahụ, ị ga-achọ iji aka dezie ya.\n[[$1|thumb]]",
 	"fileexists-extension": "Otu faịlụ nwere aha dịka nkea dị: [[$2|thumb]]\n* Aha faịlụ na-ebugo: <strong>[[:$1]]</strong> \n* Aha faịlụ dị ugbu a: <strong>[[:$2]]</strong> \nIkekwe ị chọrọ iji aha pụrụ iche karịa?",
-	"fileexists-thumbnail-yes": "Faịlụ ahụ dị ka onyonyo nke mbelata nha <em>(thumbnail)</em> .\n[[$1|thumb]]\nBiko lelee faịlụ <strong>[[:$1]]</strong>\nỌ bụrụ na faịlụ I kelere nwere otu onyoonyo ka nke ezigbo nha o nweghi isi ibugo thumbnail ọzọ",
+	"fileexists-thumbnail-yes": "Faịlụ ahụ dị ka onyonyo nke mbelata nha (thumbnail) .\n[[$1|thumb]]\nBiko lelee faịlụ <strong>[[:$1]]</strong>\nỌ bụrụ na faịlụ I kelere nwere otu onyoonyo ka nke ezigbo nha o nweghi isi ibugo thumbnail ọzọ",
 	"file-thumbnail-no": "Aha faịlụ na-amalite na <strong>$1</strong>.\nỌ dị ka ọ bụ ihe onyonyo nke nha ebelatala <em>(thumbnail)</em>.\nỌ bụrụ na ị nwere onyonyo a n'uju bulite nke a, ma ọ bụghị gbanwee aha faịlụ biko.",
 	"fileexists-forbidden": "Otu faịlụ nwere aha a adịlarị, enweghị ike idegharị ya.\nỌ bụrụ na ị ka chọrọ bulite faịlụ gị, biko laghachi azụ were aha ọhụrụ.\n[[File:$1|thumb|center|$1]]",
 	"fileexists-shared-forbidden": "Otu faịlụ nwere aha adịlarị na ebe $1 faịlụ nkekọrịta.\nỌ bụrụ na ị ka chọrọ bulite faịlụ gị, biko laghachi azụ were aha ọhụrụ. \n[[File:$1|thumb|center|$1]]",

@@ -1066,7 +1066,7 @@
 	"windows-nonascii-filename": "Wiki ehe ma nọgodona yinkọ wepo tọn he yin kinkan po wekún vonọtaun lẹ po",
 	"fileexists": "Wepo de he tindo yinkọ ehe tin to aimẹ, jaale pọn <strong>[[:$1]]</strong> eyin {{GENDER:|a}} ma kudeji dọ a jlo na diọ ẹ. \n[[$1|thumb]]",
 	"fileexists-extension": "Wepo he tindo yinkọ mọnkọtọn de ko to aimẹ: [[$2|thumb]]\n* Yinkọ wepo to yinyin mimá jo tọn: <strong>[[:$1]]</strong>\n* yinkọ wepo he ko to aimẹ tọn: <strong>[[:$2]]</strong>\nVlavo be a na jlo na zan yinkọ de he gbọnvo yẹẹ de yà?",
-	"fileexists-thumbnail-yes": "Wepo lọ taidi dọ e yin yẹdide he kiklo etọn ko yin didepò <em>(thumbnail)</em>.\n[[$1|thumb]]\nJaale dín wepo <strong>[[:$1]]</strong>pọ́n.\nEyin wepo lọ yin yẹdide dopolọ, e ma yin dandan nado sẹ yẹdide pẹvi devo.",
+	"fileexists-thumbnail-yes": "Wepo lọ taidi dọ e yin yẹdide he kiklo etọn ko yin didepò (thumbnail).\n[[$1|thumb]]\nJaale dín wepo <strong>[[:$1]]</strong>pọ́n.\nEyin wepo lọ yin yẹdide dopolọ, e ma yin dandan nado sẹ yẹdide pẹvi devo.",
 	"file-thumbnail-no": "Yinkọ wepo tọn lọ bẹ po <strong>$1</strong> po. E taidi dọ yẹdide he sin kikló-yinyin ko yin didepo de wẹ e yin <em>(thumbnail)</em>.\nE yindọ a yẹdide ehe he gbẹ po to ninọmẹ kikló-yinyin tọn etọn jọun mẹ bo má ẹn jo, e má yinmọ́ bo diọ yinkọ wepo tọn lọ.",
 	"fileexists-forbidden": "Wepo devo dé tin bo do yinkọ ehe, e ma ka sọgan yin tẹndiọna. \nNa eyindọ agbẹ jlo nado ma wepo towe, jaale lẹkọ bo vọ yinkọ devo zan.  \n[[File:$1|thumb|center|$1]]",
 	"fileexists-shared-forbidden": "Wepo devo dé tin bo do yinkọ ehe to wepo nuhe he yin mimá lẹ tọn mẹ.\nNa eyindọ agbẹ jlo nado ma wepo towe, jaale lẹkọ bo vọ yinkọ devo zan.  \n[[File:$1|thumb|center|$1]]",

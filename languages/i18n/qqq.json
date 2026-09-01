@@ -2225,7 +2225,7 @@
 	"watchlistlabels-not-enabled": "Message shown on Special:WatchlistLabels when the feature is disabled for the wiki.",
 	"watchlistlabels-not-logged-in": "Warning message shown on Special:UserLogin when a user is not logged in when they try to go to Special:WatchlistLabels (and are redirected).",
 	"watchlistlabels-not-logged-in-for-temp-user": "Warning message shown on Special:CreateAccount when a user is not logged in when they try to go to Special:WatchlistLabels (and are redirected).",
-	"watchlistlabels-table-title": "Label text shown on Special:WatchlistLabels, followed by {{msg-mw|watchlistlabels-table-description}}.",
+	"watchlistlabels-table-title": "Label text shown on [[Special:WatchlistLabels]], followed by {{msg-mw|watchlistlabels-table-description}}.",
 	"watchlistlabels-table-description": "Descriptive text shown under {{msg-mw|watchlistlabels-table-title}}.",
 	"watchlistlabels-table-header": "Table caption for the watchlist labels' table on Special:WatchlistLabels.",
 	"watchlistlabels-table-new-link": "Text for the link to the 'new label' form, shown in the table header on Special:WatchlistLabels.",

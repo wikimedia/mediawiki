@@ -2059,7 +2059,7 @@
 	"watchlistlabels-not-enabled": "La funzionalità delle etichette degli osservati speciali non è abilitata su questa wiki.",
 	"watchlistlabels-not-logged-in": "Accedi per gestire le tue etichette degli osservati speciali.",
 	"watchlistlabels-not-logged-in-for-temp-user": "Registrati per gestire le tue etichette degli osservati speciali.",
-	"watchlistlabels-table-title": "Crea e rimuovi etichette",
+	"watchlistlabels-table-title": "Crea e cancella etichette",
 	"watchlistlabels-table-description": "Le etichette salvate sono mostrate qui sotto.",
 	"watchlistlabels-table-header": "Etichette",
 	"watchlistlabels-table-new-link": "Nuova etichetta",
