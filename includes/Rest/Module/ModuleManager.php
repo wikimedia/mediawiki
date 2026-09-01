@@ -56,6 +56,7 @@ class ModuleManager {
 	private readonly array $restModuleOverrides;
 
 	private string $rootPath;
+	private ?array $moduleInfos = null;
 
 	/**
 	 * @internal
@@ -105,6 +106,10 @@ class ModuleManager {
 		if ( isset( $this->restModuleOverrides[$moduleId]['availability'] ) ) {
 			$mm = ModuleMode::tryFrom( $this->restModuleOverrides[$moduleId]['availability'] );
 			$mm ??= ModuleMode::DISABLED;
+		}
+
+		if ( $moduleId === '' ) {
+			return $mm ?? ModuleMode::PUBLISHED;
 		}
 
 		return $mm ?? ModuleMode::getModuleMode( AudienceDesignation::fromModuleId( $moduleId ) );
@@ -203,6 +208,109 @@ class ModuleManager {
 
 		$this->routeFiles = $routeFiles;
 		$this->disabledRouteFiles = $disabledRouteFiles;
+	}
+
+	/**
+	 * Returns an array of ModuleInfo objects for all registered modules, indexed by module ID.
+	 * This method aggregates and returns both local (Core and Extension) and external modules.
+	 *
+	 * @return ModuleInfo[]
+	 * @since 1.47
+	 */
+	public function getModuleInfos(): array {
+		if ( $this->moduleInfos !== null ) {
+			return $this->moduleInfos;
+		}
+
+		$modules = [];
+
+		// Gather local modules.
+		$routeFiles = $this->getRouteFiles();
+		$disabledRouteFiles = $this->getDisabledRouteFiles();
+		$allLocalRouteFiles = array_merge( $routeFiles, $disabledRouteFiles );
+
+		foreach ( $allLocalRouteFiles as $file ) {
+			$moduleDefInfo = $this->getModuleDefinitionInfo( $file );
+			if ( !$moduleDefInfo ) {
+				continue;
+			}
+
+			$moduleId = $moduleDefInfo['moduleId'];
+			$mode = $this->getModuleMode( $moduleId );
+			$params = $this->getModeParams( $moduleId );
+			$groups = (array)( $params['groups'] ?? [] );
+
+			$modules[$moduleId] = new ModuleInfo(
+				$moduleId,
+				$mode,
+				false, // isExternal
+				$moduleDefInfo['title'] ?? $moduleId,
+				$moduleDefInfo['description'] ?? null,
+				$moduleDefInfo['version'] ?? null,
+				$groups
+			);
+		}
+
+		// Add the prefix-less module.
+		$emptyModuleMode = $this->getModuleMode( '' );
+		$emptyModuleSpec = self::CORE_SPECS['mw-extra'];
+		$emptyModuleSpec = $this->normalizeSpec( 'mw-extra', $emptyModuleSpec );
+		$emptyParams = $this->getModeParams( '' );
+		$modules[''] = new ModuleInfo(
+			'',
+			$emptyModuleMode,
+			false, // isExternal
+			$emptyModuleSpec['name'] ?? 'MediaWiki REST API (routes not in modules)',
+			null,
+			null,
+			(array)( $emptyParams['groups'] ?? [] )
+		);
+
+		// Gather external modules.
+		foreach ( $this->restExternalModules as $externalModuleId => $externalModuleConfig ) {
+			$mode = $this->getModuleMode( $externalModuleId );
+			$externalModuleConfig = $this->jsonLocalizer->localizeJson( $externalModuleConfig );
+			$params = $this->getModeParams( $externalModuleId );
+			$groups = (array)( $params['groups'] ?? [] );
+
+			$modules[$externalModuleId] = new ModuleInfo(
+				$externalModuleId,
+				$mode,
+				true, // isExternal
+				$externalModuleConfig['info']['title'] ?? $externalModuleId,
+				$externalModuleConfig['info']['description'] ?? null,
+				$externalModuleConfig['info']['version'] ?? null,
+				$groups,
+				$externalModuleConfig['base'] ?? null,
+				$externalModuleConfig['spec'] ?? null
+			);
+		}
+
+		// Sort modules case-insensitively, putting prefix-less module first.
+		uksort( $modules, static function ( $a, $b ) {
+			if ( $a === '' ) {
+				return -1;
+			}
+			if ( $b === '' ) {
+				return 1;
+			}
+			return strnatcasecmp( $a, $b );
+		} );
+
+		$this->moduleInfos = $modules;
+		return $this->moduleInfos;
+	}
+
+	/**
+	 * Gets the ModuleInfo for a single module by ID, or null if not found.
+	 *
+	 * @param string $moduleId
+	 * @return ?ModuleInfo
+	 * @since 1.47
+	 */
+	public function getModuleInfo( string $moduleId ): ?ModuleInfo {
+		$infos = $this->getModuleInfos();
+		return $infos[$moduleId] ?? null;
 	}
 
 	/**
@@ -358,6 +466,7 @@ class ModuleManager {
 		$key = $this->srvCache->makeKey(
 			__CLASS__,
 			'definition',
+			'v1',
 			sha1( $file ),
 			// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged
 			(int)@filemtime( $file ),
@@ -373,7 +482,10 @@ class ModuleManager {
 					$md = SpecBasedModule::loadModuleDefinition( $file, $this->jsonLocalizer );
 					return [
 						'moduleId' => $md['moduleId'],
-						'title' => $md['info']['title']
+						'title' => $md['info']['title'] ?? null,
+						'version' => $md['info']['version'] ?? null,
+						'description' => $md['info']['description'] ?? null,
+						'deprecationSettings' => $md['info']['deprecationSettings'] ?? null,
 					];
 				} catch ( ModuleFormatException ) {
 					return [];

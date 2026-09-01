@@ -94,8 +94,12 @@ trait RestTestTrait {
 
 		$request = $params['request'] ?? new RequestData();
 
+		$defaultRouteFiles = [ MW_INSTALL_PATH . '/tests/phpunit/unit/includes/Rest/testRoutes.json' ];
+
 		return new Router(
-			$this->newMockModuleManager( $params['routeFiles'] ?? [ MW_INSTALL_PATH . '/tests/phpunit/unit/includes/Rest/testRoutes.json' ] ),
+			$params['moduleManager'] ?? $this->newMockModuleManager(
+				$params['routeFiles'] ?? $defaultRouteFiles
+			),
 			$params['extraRoutes'] ?? [],
 			$params['options'] ?? new ServiceOptions( Router::CONSTRUCTOR_OPTIONS, $config ),
 			$params['cacheBag'] ?? new EmptyBagOStuff(),
@@ -108,7 +112,9 @@ trait RestTestTrait {
 			$params['errorReporter'] ?? new PHPErrorReporter(),
 			$params['hookContainer'] ?? $this->createHookContainer(),
 			$params['session'] ?? $this->getSession( true ),
-			$params['urlUtils'] ?? new UrlUtils( [ UrlUtils::SERVER => 'https://wiki.example.com' ] ),
+			$params['urlUtils'] ?? new UrlUtils( [
+				UrlUtils::SERVER => $config[MainConfigNames::CanonicalServer] ?? 'https://wiki.example.com',
+			] )
 		);
 	}
 

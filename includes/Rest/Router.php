@@ -18,6 +18,7 @@ use MediaWiki\Rest\Validator\Validator;
 use MediaWiki\Session\Session;
 use MediaWiki\Utils\UrlUtils;
 use Throwable;
+use UnexpectedValueException;
 use Wikimedia\Assert\Assert;
 use Wikimedia\Message\MessageValue;
 use Wikimedia\ObjectCache\BagOStuff;
@@ -30,6 +31,8 @@ use Wikimedia\Stats\StatsFactory;
  * and executing the relevant module for a request.
  */
 class Router {
+	public const ROUTE_MODULE_SPEC = '/specs/v0/module/{module}';
+
 	private const PREFIX_PATTERN = '!^/([-_.\w]+(?:/v[-_.\w]+)?)(/.*)$!';
 
 	public const DEFAULT_ERROR_SCHEMA = '1.0';
@@ -471,6 +474,61 @@ class Router {
 		array $queryParams = []
 	): string {
 		return $this->privateBaseUrl . $this->getRoutePath( $pathWithModulePrefix, $pathParams, $queryParams );
+	}
+
+	/**
+	 * Gets the absolute base URL for a given module ID.
+	 *
+	 * For external modules, UrlUtils expands any relative URL.
+	 * For local modules, the route URL is generated from the module ID.
+	 *
+	 * @param string $moduleId The module ID
+	 * @return string|null The absolute base URL, or null if the module or base URL is unresolvable
+	 * @since 1.47
+	 */
+	public function getModuleBaseUrl( string $moduleId ): ?string {
+		$info = $this->moduleManager->getModuleInfo( $moduleId );
+		if ( !$info ) {
+			return null;
+		}
+
+		if ( $info->isExternal() ) {
+			$baseUrl = $info->getExternalBaseUrl();
+			return $baseUrl !== null ? $this->urlUtils->expand( $baseUrl ) : null;
+		}
+
+		return $this->getRouteUrl( '/' . $moduleId );
+	}
+
+	/**
+	 * Gets the absolute OpenAPI specification URL for a given module ID.
+	 *
+	 * For external modules, UrlUtils expands the spec URL.
+	 * For local modules, returns the default route URL defined by self::ROUTE_MODULE_SPEC.
+	 *
+	 * @param string $moduleId The module ID
+	 * @return string|null The absolute spec URL, or null if the module is unresolvable
+	 * @throws UnexpectedValueException If an external module has no spec URL configured
+	 * @since 1.47
+	 */
+	public function getModuleSpecUrl( string $moduleId ): ?string {
+		$info = $this->moduleManager->getModuleInfo( $moduleId );
+		if ( !$info ) {
+			return null;
+		}
+
+		if ( $info->isExternal() ) {
+			$specUrl = $info->getExternalSpecUrl();
+			if ( $specUrl === null ) {
+				throw new UnexpectedValueException(
+					"External module '$moduleId' has no spec URL configured"
+				);
+			}
+			return $this->urlUtils->expand( $specUrl );
+		}
+
+		$moduleParam = $moduleId === '' ? '-' : $moduleId;
+		return $this->getRouteUrl( self::ROUTE_MODULE_SPEC, [ 'module' => $moduleParam ] );
 	}
 
 	/**

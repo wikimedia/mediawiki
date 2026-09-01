@@ -5,6 +5,7 @@ namespace MediaWiki\Tests\Rest;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Rest\JsonLocalizer;
+use MediaWiki\Rest\Module\ModuleInfo;
 use MediaWiki\Rest\Module\ModuleManager;
 use MediaWiki\Rest\Module\ModuleMode;
 use MediaWiki\Tests\Unit\DummyServicesTrait;
@@ -292,5 +293,142 @@ class ModuleManagerTest extends MediaWikiIntegrationTestCase {
 		}
 		$moduleManager = $this->getModuleManager();
 		$this->assertSame( $expected, $moduleManager->getModuleGroups( $moduleId ) );
+	}
+
+	/**
+	 * Test unified aggregation of local, external, hidden, and disabled modules.
+	 *
+	 * @covers \MediaWiki\Rest\Module\ModuleManager::getModuleInfos
+	 */
+	public function testGetModuleInfos(): void {
+		$overrides = [
+			'mockTwo/v1' => [ 'availability' => 'hidden' ],
+			'mockThree/v1' => [ 'availability' => 'disabled' ],
+			'site/v1' => [ 'availability' => 'published', 'groups' => [ 'site-group' ] ],
+		];
+		$this->overrideConfigValue( MainConfigNames::RestModuleOverrides, $overrides );
+
+		$moduleManager = $this->getModuleManager( [ __DIR__ . '/mockThree.v1.json' ] );
+		$infos = $moduleManager->getModuleInfos();
+
+		// Prefix-less module should be first.
+		$this->assertSame( '', array_key_first( $infos ) );
+		$prefixless = $infos[''];
+		$this->assertInstanceOf( ModuleInfo::class, $prefixless );
+		$this->assertSame( '', $prefixless->getId() );
+		$this->assertFalse( $prefixless->isExternal() );
+		$this->assertSame( ModuleMode::PUBLISHED, $prefixless->getAvailability() );
+		$this->assertSame( 'MediaWiki REST API (routes not in modules)', $prefixless->getTitle() );
+
+		// Check local module site/v1 with groups.
+		$this->assertArrayHasKey( 'site/v1', $infos );
+		$site = $infos['site/v1'];
+		$this->assertInstanceOf( ModuleInfo::class, $site );
+		$this->assertSame( 'site/v1', $site->getId() );
+		$this->assertFalse( $site->isExternal() );
+		$this->assertSame( 'rest-module-site.v1-title', $site->getTitle() );
+		$this->assertSame( '1.0.0', $site->getVersion() );
+		$this->assertSame( ModuleMode::PUBLISHED, $site->getAvailability() );
+		$this->assertSame( [ 'site-group' ], $site->getGroups() );
+
+		// Check hidden local module mockTwo/v1.
+		$this->assertArrayHasKey( 'mockTwo/v1', $infos );
+		$mockTwo = $infos['mockTwo/v1'];
+		$this->assertInstanceOf( ModuleInfo::class, $mockTwo );
+		$this->assertSame( ModuleMode::HIDDEN, $mockTwo->getAvailability() );
+
+		// Check disabled local module mockThree/v1.
+		$this->assertArrayHasKey( 'mockThree/v1', $infos );
+		$mockThree = $infos['mockThree/v1'];
+		$this->assertInstanceOf( ModuleInfo::class, $mockThree );
+		$this->assertSame( ModuleMode::DISABLED, $mockThree->getAvailability() );
+
+		// Check external module mockExternal/v1.
+		$this->assertArrayHasKey( 'mockExternal/v1', $infos );
+		$external = $infos['mockExternal/v1'];
+		$this->assertInstanceOf( ModuleInfo::class, $external );
+		$this->assertSame( 'mockExternal/v1', $external->getId() );
+		$this->assertTrue( $external->isExternal() );
+		$this->assertSame( 'Mock External Module', $external->getTitle() );
+		$this->assertSame( 'This is a mock external module.', $external->getDescription() );
+		$this->assertSame( '1.0.0', $external->getVersion() );
+		$this->assertSame( ModuleMode::PUBLISHED, $external->getAvailability() );
+	}
+
+	/**
+	 * Test that a disabled prefix-less module is still included with DISABLED availability.
+	 *
+	 * Note: Preserve disabled modules to maintain separation of concerns between the module
+	 * configuration provider and downstream consumers with differing requirements, such as
+	 * the following:
+	 * - DiscoveryHandler (/discovery) inspects availability to omit disabled modules.
+	 * - ModuleSpecHandler (/specs/v0/module/{id}) inspects availability to return HTTP 403
+	 *   Forbidden with a clear error message, instead of misclassifying the module as
+	 *   nonexistent with HTTP 404 Not Found.
+	 *
+	 * @covers \MediaWiki\Rest\Module\ModuleManager::getModuleInfos
+	 */
+	public function testGetModuleInfosDisabledPrefixless(): void {
+		$overrides = [
+			'' => [ 'availability' => 'disabled' ],
+		];
+		$this->overrideConfigValue( MainConfigNames::RestModuleOverrides, $overrides );
+
+		$moduleManager = $this->getModuleManager();
+		$infos = $moduleManager->getModuleInfos();
+
+		$this->assertArrayHasKey( '', $infos );
+		$this->assertSame( ModuleMode::DISABLED, $infos['']->getAvailability() );
+	}
+
+	/**
+	 * Test that `getModuleInfos` sorts the prefix-less module first, followed by
+	 * case-insensitive natural order sorting of all remaining module IDs.
+	 *
+	 * @covers \MediaWiki\Rest\Module\ModuleManager::getModuleInfos
+	 */
+	public function testGetModuleInfosSortOrder(): void {
+		$this->overrideConfigValue( MainConfigNames::RestExternalModules, [
+			'C/v1' => [ 'info' => [ 'version' => '1' ], 'spec' => 'https://example.com/c' ],
+			'a/v1' => [ 'info' => [ 'version' => '1' ], 'spec' => 'https://example.com/a' ],
+			'B/v1' => [ 'info' => [ 'version' => '1' ], 'spec' => 'https://example.com/b' ],
+		] );
+
+		$moduleManager = $this->getModuleManager();
+		$infos = $moduleManager->getModuleInfos();
+		$keys = array_keys( $infos );
+
+		// Prefix-less should be first
+		$this->assertSame( '', $keys[0] );
+
+		// The rest must be sorted in natural case-insensitive order
+		$externalKeys = array_values( array_intersect( $keys, [ 'a/v1', 'B/v1', 'C/v1' ] ) );
+		$this->assertSame( [ 'a/v1', 'B/v1', 'C/v1' ], $externalKeys );
+	}
+
+	/**
+	 * Test single-module lookup by module ID, verifying that valid IDs return a `ModuleInfo`
+	 * instance and non-existent IDs return `null`.
+	 *
+	 * @covers \MediaWiki\Rest\Module\ModuleManager::getModuleInfo
+	 */
+	public function testGetModuleInfo(): void {
+		$moduleManager = $this->getModuleManager();
+
+		$site = $moduleManager->getModuleInfo( 'site/v1' );
+		$this->assertInstanceOf( ModuleInfo::class, $site );
+		$this->assertSame( 'site/v1', $site->getId() );
+
+		$external = $moduleManager->getModuleInfo( 'mockExternal/v1' );
+		$this->assertInstanceOf( ModuleInfo::class, $external );
+		$this->assertSame( 'mockExternal/v1', $external->getId() );
+		$this->assertTrue( $external->isExternal() );
+
+		$prefixless = $moduleManager->getModuleInfo( '' );
+		$this->assertInstanceOf( ModuleInfo::class, $prefixless );
+		$this->assertSame( '', $prefixless->getId() );
+
+		$nonexistent = $moduleManager->getModuleInfo( 'nonexistent/v99' );
+		$this->assertNull( $nonexistent );
 	}
 }

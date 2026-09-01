@@ -11,6 +11,9 @@ use MediaWiki\Rest\ErrorFormatterV1;
 use MediaWiki\Rest\ErrorFormatterV2;
 use MediaWiki\Rest\Handler;
 use MediaWiki\Rest\HttpException;
+use MediaWiki\Rest\Module\ModuleInfo;
+use MediaWiki\Rest\Module\ModuleManager;
+use MediaWiki\Rest\Module\ModuleMode;
 use MediaWiki\Rest\PathTemplateMatcher\ModuleConfigurationException;
 use MediaWiki\Rest\RedirectException;
 use MediaWiki\Rest\Reporter\ErrorReporter;
@@ -29,6 +32,7 @@ use PHPUnit\Framework\Assert;
 use PHPUnit\Framework\MockObject\MockObject;
 use RuntimeException;
 use Throwable;
+use UnexpectedValueException;
 use Wikimedia\ObjectCache\HashBagOStuff;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\Stats\StatsFactory;
@@ -995,5 +999,329 @@ class RouterTest extends MediaWikiUnitTestCase {
 		);
 
 		return $cors;
+	}
+
+	/**
+	 * Create a Router instance configured with a mock ModuleManager returning $info.
+	 *
+	 * @param ModuleInfo $info
+	 * @param UrlUtils|null $urlUtils
+	 * @return Router
+	 */
+	private function createRouterWithModuleInfo(
+		ModuleInfo $info,
+		?UrlUtils $urlUtils = null
+	): Router {
+		$moduleManager = $this->createMock( ModuleManager::class );
+		$moduleManager->method( 'getModuleInfo' )
+			->with( $info->getId() )
+			->willReturn( $info );
+
+		$params = [ 'moduleManager' => $moduleManager ];
+		if ( $urlUtils !== null ) {
+			$params['urlUtils'] = $urlUtils;
+		}
+		return $this->newRouter( $params );
+	}
+
+	/**
+	 * Test that `Router::ROUTE_MODULE_SPEC` constant matches the expected route template.
+	 */
+	public function testRouteModuleSpecConstant(): void {
+		$this->assertSame( '/specs/v0/module/{module}', Router::ROUTE_MODULE_SPEC );
+	}
+
+	/**
+	 * Test that `getModuleBaseUrl()` returns an external absolute URL unchanged.
+	 */
+	public function testGetModuleBaseUrlExternalAbsolute(): void {
+		$info = new ModuleInfo(
+			'external/v1',
+			ModuleMode::PUBLISHED,
+			true,
+			'External Module',
+			null,
+			null,
+			[],
+			'https://example.com/base',
+			'https://example.com/spec.json'
+		);
+
+		$router = $this->createRouterWithModuleInfo( $info );
+		$this->assertSame( 'https://example.com/base', $router->getModuleBaseUrl( 'external/v1' ) );
+	}
+
+	/**
+	 * Test that `getModuleBaseUrl()` expands an external relative URL using `UrlUtils`.
+	 */
+	public function testGetModuleBaseUrlExternalRelative(): void {
+		$info = new ModuleInfo(
+			'external/v1',
+			ModuleMode::PUBLISHED,
+			true,
+			'External Module',
+			null,
+			null,
+			[],
+			'/api/rest_v1/c',
+			'https://example.com/spec.json'
+		);
+
+		$router = $this->createRouterWithModuleInfo( $info );
+		$this->assertSame(
+			'https://wiki.example.com/api/rest_v1/c',
+			$router->getModuleBaseUrl( 'external/v1' )
+		);
+	}
+
+	/**
+	 * Test that `getModuleBaseUrl()` returns null when an external module has no base URL.
+	 */
+	public function testGetModuleBaseUrlExternalNull(): void {
+		$info = new ModuleInfo(
+			'external/v1',
+			ModuleMode::PUBLISHED,
+			true,
+			'External Module',
+			null,
+			null,
+			[],
+			null,
+			'https://example.com/spec.json'
+		);
+
+		$router = $this->createRouterWithModuleInfo( $info );
+		$this->assertNull( $router->getModuleBaseUrl( 'external/v1' ) );
+	}
+
+	/**
+	 * Test that `getModuleBaseUrl()` returns null when `UrlUtils` fails to expand a malformed URL.
+	 */
+	public function testGetModuleBaseUrlExternalUnresolvable(): void {
+		$info = new ModuleInfo(
+			'external/v1',
+			ModuleMode::PUBLISHED,
+			true,
+			'External Module',
+			null,
+			null,
+			[],
+			'invalid-relative-url',
+			'https://example.com/spec.json'
+		);
+
+		$urlUtils = $this->createMock( UrlUtils::class );
+		$urlUtils->expects( $this->once() )
+			->method( 'expand' )
+			->with( 'invalid-relative-url' )
+			->willReturn( null );
+
+		$router = $this->createRouterWithModuleInfo( $info, $urlUtils );
+		$this->assertNull( $router->getModuleBaseUrl( 'external/v1' ) );
+	}
+
+	/**
+	 * Test that `getModuleBaseUrl()` for a local module generates the route URL from module ID.
+	 */
+	public function testGetModuleBaseUrlLocal(): void {
+		$info = new ModuleInfo(
+			'local/v1',
+			ModuleMode::PUBLISHED,
+			false,
+			null,
+			null,
+			null,
+			[]
+		);
+
+		$router = $this->createRouterWithModuleInfo( $info );
+		$this->assertSame(
+			'https://wiki.example.com/rest/local/v1',
+			$router->getModuleBaseUrl( 'local/v1' )
+		);
+	}
+
+	/**
+	 * Test that `getModuleBaseUrl()` for the prefix-less module ('') generates the root route URL.
+	 */
+	public function testGetModuleBaseUrlPrefixless(): void {
+		$info = new ModuleInfo(
+			'',
+			ModuleMode::PUBLISHED,
+			false,
+			null,
+			null,
+			null,
+			[]
+		);
+
+		$router = $this->createRouterWithModuleInfo( $info );
+		$this->assertSame(
+			'https://wiki.example.com/rest/',
+			$router->getModuleBaseUrl( '' )
+		);
+	}
+
+	/**
+	 * Test that `getModuleBaseUrl()` returns null when the module does not exist.
+	 */
+	public function testGetModuleBaseUrlNonExistent(): void {
+		$moduleManager = $this->createMock( ModuleManager::class );
+		$moduleManager->method( 'getModuleInfo' )
+			->with( 'nonexistent' )
+			->willReturn( null );
+
+		$router = $this->newRouter( [ 'moduleManager' => $moduleManager ] );
+		$this->assertNull( $router->getModuleBaseUrl( 'nonexistent' ) );
+	}
+
+	/**
+	 * Test that `getModuleSpecUrl()` returns an external absolute spec URL unchanged.
+	 */
+	public function testGetModuleSpecUrlExternalAbsolute(): void {
+		$info = new ModuleInfo(
+			'external/v1',
+			ModuleMode::PUBLISHED,
+			true,
+			'External Module',
+			null,
+			null,
+			[],
+			'https://example.com/base',
+			'https://example.com/spec.json'
+		);
+
+		$router = $this->createRouterWithModuleInfo( $info );
+		$this->assertSame(
+			'https://example.com/spec.json',
+			$router->getModuleSpecUrl( 'external/v1' )
+		);
+	}
+
+	/**
+	 * Test that `getModuleSpecUrl()` expands an external relative spec URL `using UrlUtils`.
+	 */
+	public function testGetModuleSpecUrlExternalRelative(): void {
+		$info = new ModuleInfo(
+			'external/v1',
+			ModuleMode::PUBLISHED,
+			true,
+			'External Module',
+			null,
+			null,
+			[],
+			null,
+			'/api/rest_v1/?spec'
+		);
+
+		$router = $this->createRouterWithModuleInfo( $info );
+		$this->assertSame(
+			'https://wiki.example.com/api/rest_v1/?spec',
+			$router->getModuleSpecUrl( 'external/v1' )
+		);
+	}
+
+	/**
+	 * Test that `getModuleSpecUrl()` throws `UnexpectedValueException` when an external module
+	 * has no spec URL configured.
+	 */
+	public function testGetModuleSpecUrlExternalNull(): void {
+		$info = new ModuleInfo(
+			'external/v1',
+			ModuleMode::PUBLISHED,
+			true,
+			'External Module',
+			null,
+			null,
+			[],
+			null,
+			null
+		);
+
+		$router = $this->createRouterWithModuleInfo( $info );
+		$this->expectException( UnexpectedValueException::class );
+		$this->expectExceptionMessage( "External module 'external/v1' has no spec URL configured" );
+		$router->getModuleSpecUrl( 'external/v1' );
+	}
+
+	/**
+	 * Test that `getModuleSpecUrl()` returns null when `UrlUtils` fails to expand a malformed URL.
+	 */
+	public function testGetModuleSpecUrlExternalUnresolvable(): void {
+		$info = new ModuleInfo(
+			'external/v1',
+			ModuleMode::PUBLISHED,
+			true,
+			'External Module',
+			null,
+			null,
+			[],
+			null,
+			'invalid-spec-url'
+		);
+
+		$urlUtils = $this->createMock( UrlUtils::class );
+		$urlUtils->expects( $this->once() )
+			->method( 'expand' )
+			->with( 'invalid-spec-url' )
+			->willReturn( null );
+
+		$router = $this->createRouterWithModuleInfo( $info, $urlUtils );
+		$this->assertNull( $router->getModuleSpecUrl( 'external/v1' ) );
+	}
+
+	/**
+	 * Test standard local module spec URL generation using `ROUTE_MODULE_SPEC`.
+	 */
+	public function testGetModuleSpecUrlLocalDefault(): void {
+		$info = new ModuleInfo(
+			'local/v1',
+			ModuleMode::PUBLISHED,
+			false,
+			null,
+			null,
+			null,
+			[]
+		);
+
+		$router = $this->createRouterWithModuleInfo( $info );
+		$this->assertSame(
+			'https://wiki.example.com/rest/specs/v0/module/local%2Fv1',
+			$router->getModuleSpecUrl( 'local/v1' )
+		);
+	}
+
+	/**
+	 * Test that the prefix-less module ('') generates a spec URL with the '-' placeholder.
+	 */
+	public function testGetModuleSpecUrlPrefixless(): void {
+		$info = new ModuleInfo(
+			'',
+			ModuleMode::PUBLISHED,
+			false,
+			null,
+			null,
+			null,
+			[]
+		);
+
+		$router = $this->createRouterWithModuleInfo( $info );
+		$this->assertSame(
+			'https://wiki.example.com/rest/specs/v0/module/-',
+			$router->getModuleSpecUrl( '' )
+		);
+	}
+
+	/**
+	 * Test that `getModuleSpecUrl()` returns null when the module does not exist.
+	 */
+	public function testGetModuleSpecUrlNonExistent(): void {
+		$moduleManager = $this->createMock( ModuleManager::class );
+		$moduleManager->method( 'getModuleInfo' )
+			->with( 'nonexistent' )
+			->willReturn( null );
+
+		$router = $this->newRouter( [ 'moduleManager' => $moduleManager ] );
+		$this->assertNull( $router->getModuleSpecUrl( 'nonexistent' ) );
 	}
 }
