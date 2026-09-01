@@ -186,6 +186,7 @@ class LoginHelper extends ContextSource {
 	public function getPreservedParams( array $options ): array {
 		$request = $options['request'] ?? $this->getRequest();
 		$params = ( $options['params'] ?? [] ) + [
+			'showlogin' => $request->getVal( 'showlogin' ),
 			'uselang' => $request->getVal( 'uselang' ),
 			'variant' => $request->getVal( 'variant' ),
 			'display' => $request->getVal( 'display' ),
