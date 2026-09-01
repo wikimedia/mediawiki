@@ -435,11 +435,7 @@ class ForeignAPIRepo extends FileRepo implements IForeignRepoWithMWApi {
 			return $foreignUrl;
 		}
 		$knownThumbUrls[$sizekey] = $localUrl;
-
-		$ttl = $mtime
-			? $this->wanCache->adaptiveTTL( $mtime, $this->apiThumbCacheExpiry )
-			: $this->apiThumbCacheExpiry;
-		$this->wanCache->set( $key, $knownThumbUrls, $ttl );
+		$this->wanCache->set( $key, $knownThumbUrls, $this->apiThumbCacheExpiry );
 		wfDebug( __METHOD__ . " got local thumb $localUrl, saving to cache" );
 
 		return $localUrl;
@@ -604,17 +600,11 @@ class ForeignAPIRepo extends FileRepo implements IForeignRepoWithMWApi {
 			// is transparent to client wikis (which are not expected to issue purges).
 			$this->wanCache->makeGlobalKey( "filerepo-$attribute", sha1( $url ) ),
 			$cacheTTL,
-			function ( $curValue, &$ttl ) use ( $url ) {
+			function () use ( $url ) {
 				$html = $this->httpGet( $url, 'default', [], $mtime );
-				// FIXME: This should use the mtime from the api response body
-				// not the mtime from the last-modified header which usually is not set.
-				if ( $html !== false ) {
-					$ttl = $mtime ? $this->wanCache->adaptiveTTL( $mtime, $ttl ) : $ttl;
-				} else {
-					$ttl = $this->wanCache->adaptiveTTL( $mtime, $ttl );
+				if ( $html === false ) {
 					$html = null; // caches negatives
 				}
-
 				return $html;
 			},
 			[ 'pcGroup' => 'http-get:3', 'pcTTL' => WANObjectCache::TTL_PROC_LONG ]

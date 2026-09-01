@@ -404,9 +404,7 @@ class LocalFile extends File {
 					}
 				}
 
-				if ( $this->fileExists ) {
-					$ttl = $cache->adaptiveTTL( (int)wfTimestamp( TS::UNIX, $this->timestamp ), $ttl );
-				} else {
+				if ( !$this->fileExists ) {
 					$ttl = $cache::TTL_DAY;
 				}
 

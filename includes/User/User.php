@@ -543,7 +543,7 @@ class User implements Stringable, Authority, UserIdentity, UserEmailContact {
 		$data = $cache->getWithSetCallback(
 			$this->getCacheKey( $cache ),
 			$cache::TTL_HOUR,
-			function ( $oldValue, &$ttl ) use ( $cache, $wgFullyInitialised ) {
+			function ( $oldValue, &$ttl ) use ( $wgFullyInitialised ) {
 				wfDebug( "User: cache miss for user {$this->mId}" );
 
 				$this->loadFromDatabase( IDBAccessObject::READ_NORMAL );
@@ -552,12 +552,6 @@ class User implements Stringable, Authority, UserIdentity, UserEmailContact {
 				foreach ( self::$mCacheVars as $name ) {
 					$data[$name] = $this->$name;
 				}
-
-				$ttl = $cache->adaptiveTTL(
-					(int)wfTimestamp( TS::UNIX, $this->mTouched ),
-					$ttl
-				);
-
 				if ( $wgFullyInitialised ) {
 					$groupMemberships = MediaWikiServices::getInstance()
 						->getUserGroupManager()
