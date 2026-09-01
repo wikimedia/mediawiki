@@ -110,6 +110,8 @@ class PostgresUpdater extends DatabaseUpdater {
 
 			// 1.48
 			[ 'addTable', 'user_editcount', 'patch-user_editcount.sql' ],
+			[ 'addTable', 'device_bound_session', 'patch-device_bound_session.sql' ],
+
 			[ 'runMaintenance', CleanupWatchlistTemporaryAccountRows::class ],
 		];
 	}

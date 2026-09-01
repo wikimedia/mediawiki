@@ -412,5 +412,21 @@
 			"x-i18n-description": "rest-endpoint-desc-post-transform-wikitext-to-lint",
 			"x-i18n-summary": "rest-endpoint-summ-post-transform-wikitext-to-lint"
 		}
+	},
+	{
+		"method": "POST",
+		"path": "/dbsc/v0/register",
+		"class": "MediaWiki\\Rest\\Handler\\DeviceBoundSessionRegisterHandler",
+		"services": [ "DeviceBoundSessionManager", "MainConfig" ],
+		"x-i18n-description": "rest-endpoint-desc-post-dbsc-register",
+		"x-i18n-summary": "rest-endpoint-summ-post-dbsc-register"
+	},
+	{
+		"method": "POST",
+		"path": "/dbsc/v0/refresh",
+		"class": "MediaWiki\\Rest\\Handler\\DeviceBoundSessionRefreshHandler",
+		"services": [ "DeviceBoundSessionManager", "MainConfig" ],
+		"x-i18n-description": "rest-endpoint-desc-post-dbsc-refresh",
+		"x-i18n-summary": "rest-endpoint-summ-post-dbsc-refresh"
 	}
 ]

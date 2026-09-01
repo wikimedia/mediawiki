@@ -3307,6 +3307,42 @@ class MainConfigNames {
 	public const CookieSetOnIpBlock = 'CookieSetOnIpBlock';
 
 	/**
+	 * Name constant for the DeviceBoundSessions setting, for use with Config::get()
+	 * @see MainConfigSchema::DeviceBoundSessions
+	 */
+	public const DeviceBoundSessions = 'DeviceBoundSessions';
+
+	/**
+	 * Name constant for the DeviceBoundSessionCookieName setting, for use with Config::get()
+	 * @see MainConfigSchema::DeviceBoundSessionCookieName
+	 */
+	public const DeviceBoundSessionCookieName = 'DeviceBoundSessionCookieName';
+
+	/**
+	 * Name constant for the DeviceBoundSessionCredentialTTL setting, for use with Config::get()
+	 * @see MainConfigSchema::DeviceBoundSessionCredentialTTL
+	 */
+	public const DeviceBoundSessionCredentialTTL = 'DeviceBoundSessionCredentialTTL';
+
+	/**
+	 * Name constant for the DeviceBoundSessionChallengeTTL setting, for use with Config::get()
+	 * @see MainConfigSchema::DeviceBoundSessionChallengeTTL
+	 */
+	public const DeviceBoundSessionChallengeTTL = 'DeviceBoundSessionChallengeTTL';
+
+	/**
+	 * Name constant for the DeviceBoundSessionBindingTTL setting, for use with Config::get()
+	 * @see MainConfigSchema::DeviceBoundSessionBindingTTL
+	 */
+	public const DeviceBoundSessionBindingTTL = 'DeviceBoundSessionBindingTTL';
+
+	/**
+	 * Name constant for the DeviceBoundSessionScopeExcludes setting, for use with Config::get()
+	 * @see MainConfigSchema::DeviceBoundSessionScopeExcludes
+	 */
+	public const DeviceBoundSessionScopeExcludes = 'DeviceBoundSessionScopeExcludes';
+
+	/**
 	 * Name constant for the DebugLogFile setting, for use with Config::get()
 	 * @see MainConfigSchema::DebugLogFile
 	 */

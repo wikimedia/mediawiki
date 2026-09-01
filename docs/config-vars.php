@@ -3292,6 +3292,42 @@ $wgCookieSetOnAutoblock = null;
 $wgCookieSetOnIpBlock = null;
 
 /**
+ * Config variable stub for the DeviceBoundSessions setting, for use by phpdoc and IDEs.
+ * @see MediaWiki\MainConfigSchema::DeviceBoundSessions
+ */
+$wgDeviceBoundSessions = null;
+
+/**
+ * Config variable stub for the DeviceBoundSessionCookieName setting, for use by phpdoc and IDEs.
+ * @see MediaWiki\MainConfigSchema::DeviceBoundSessionCookieName
+ */
+$wgDeviceBoundSessionCookieName = null;
+
+/**
+ * Config variable stub for the DeviceBoundSessionCredentialTTL setting, for use by phpdoc and IDEs.
+ * @see MediaWiki\MainConfigSchema::DeviceBoundSessionCredentialTTL
+ */
+$wgDeviceBoundSessionCredentialTTL = null;
+
+/**
+ * Config variable stub for the DeviceBoundSessionChallengeTTL setting, for use by phpdoc and IDEs.
+ * @see MediaWiki\MainConfigSchema::DeviceBoundSessionChallengeTTL
+ */
+$wgDeviceBoundSessionChallengeTTL = null;
+
+/**
+ * Config variable stub for the DeviceBoundSessionBindingTTL setting, for use by phpdoc and IDEs.
+ * @see MediaWiki\MainConfigSchema::DeviceBoundSessionBindingTTL
+ */
+$wgDeviceBoundSessionBindingTTL = null;
+
+/**
+ * Config variable stub for the DeviceBoundSessionScopeExcludes setting, for use by phpdoc and IDEs.
+ * @see MediaWiki\MainConfigSchema::DeviceBoundSessionScopeExcludes
+ */
+$wgDeviceBoundSessionScopeExcludes = null;
+
+/**
  * Config variable stub for the DebugLogFile setting, for use by phpdoc and IDEs.
  * @see MediaWiki\MainConfigSchema::DebugLogFile
  */

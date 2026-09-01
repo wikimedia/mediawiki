@@ -9960,6 +9960,78 @@ class MainConfigSchema {
 		'default' => true,
 	];
 
+	/**
+	 * Enable Device Bound Session Credentials (DBSC) support: the registration
+	 * and refresh REST endpoints under /dbsc/v0/.
+	 *
+	 * Experimental: the specification is a draft and this is not ready for
+	 * third-party use.
+	 *
+	 * @since 1.48
+	 */
+	public const DeviceBoundSessions = [
+		'default' => false,
+		'type' => 'boolean',
+	];
+
+	/**
+	 * Name of the device-bound credential cookie set alongside the session
+	 * cookie for DBSC-registered sessions.
+	 *
+	 * @since 1.48
+	 */
+	public const DeviceBoundSessionCookieName = [
+		'default' => '__Host-dbsc',
+		'type' => 'string',
+	];
+
+	/**
+	 * Max-Age of the device-bound credential cookie, in seconds. Must be less
+	 * than $wgDeviceBoundSessionChallengeTTL.
+	 *
+	 * @since 1.48
+	 */
+	public const DeviceBoundSessionCredentialTTL = [
+		'default' => 600,
+		'type' => 'integer',
+	];
+
+	/**
+	 * Lifetime of DBSC signing challenges, in seconds. Must exceed
+	 * $wgDeviceBoundSessionCredentialTTL so a challenge cached just before the
+	 * bound cookie expires is still redeemable (enforced by the protocol
+	 * library).
+	 *
+	 * @since 1.48
+	 */
+	public const DeviceBoundSessionChallengeTTL = [
+		'default' => 900,
+		'type' => 'integer',
+	];
+
+	/**
+	 * Hard lifetime of a device binding, in seconds. After this the user agent
+	 * must register again.
+	 *
+	 * @since 1.48
+	 */
+	public const DeviceBoundSessionBindingTTL = [
+		'default' => 2592000,
+		'type' => 'integer',
+	];
+
+	/**
+	 * Extra path prefixes excluded from the DBSC session scope, in addition to
+	 * the script and resource paths, which are excluded automatically.
+	 * Requests in scope are suspended while a credential is refreshed.
+	 *
+	 * @since 1.48
+	 */
+	public const DeviceBoundSessionScopeExcludes = [
+		'default' => [],
+		'type' => 'list',
+	];
+
 	// endregion -- end of cookie settings
 
 	/***************************************************************************/

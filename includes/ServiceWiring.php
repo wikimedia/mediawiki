@@ -235,6 +235,8 @@ use MediaWiki\Search\SearchEngineFactory;
 use MediaWiki\Search\SearchEventIngress;
 use MediaWiki\Search\SearchResultThumbnailProvider;
 use MediaWiki\Search\TitleMatcher;
+use MediaWiki\Session\DeviceBoundSessionManager;
+use MediaWiki\Session\DeviceBoundSessionStore;
 use MediaWiki\Session\MultiBackendSessionStore;
 use MediaWiki\Session\SessionManager;
 use MediaWiki\Session\SessionManagerInterface;
@@ -948,6 +950,50 @@ return [
 
 	'DeletePageFactory' => static function ( MediaWikiServices $services ): DeletePageFactory {
 		return $services->getService( '_PageCommandFactory' );
+	},
+
+	'DeviceBoundSessionManager' => static function ( MediaWikiServices $s ): DeviceBoundSessionManager {
+		$config = $s->getMainConfig();
+		$store = $s->getService( 'DeviceBoundSessionStore' );
+		$restPath = $config->get( MainConfigNames::RestPath );
+		// Requests in scope are suspended while a credential is refreshed, so
+		// exclude paths that disable session handling.
+		$excludes = array_merge(
+			[ wfScript( 'load' ), $config->get( MainConfigNames::ResourceBasePath ) . '/' ],
+			(array)$config->get( MainConfigNames::DeviceBoundSessionScopeExcludes )
+		);
+		$manager = new DeviceBoundSessionManager(
+			static fn ( $audit ) => new \ReportUri\Dbsc\DbscServer(
+				new \ReportUri\Dbsc\Config(
+					cookieName: $config->get( MainConfigNames::DeviceBoundSessionCookieName ),
+					cookieMaxAgeSeconds: (int)$config->get( MainConfigNames::DeviceBoundSessionCredentialTTL ),
+					challengeTtlSeconds: (int)$config->get( MainConfigNames::DeviceBoundSessionChallengeTTL ),
+					registerPath: $restPath . '/dbsc/v0/register',
+					refreshPath: $restPath . '/dbsc/v0/refresh',
+					scopeSpecification: array_map(
+						static fn ( string $p ) => \ReportUri\Dbsc\ScopeRule::exclude( path: $p ),
+						$excludes
+					)
+				),
+				$store,
+				audit: $audit
+			),
+			$store,
+			$s->getSessionManager(),
+			$config->get( MainConfigNames::CanonicalServer )
+		);
+		$manager->setLogger( LoggerFactory::getInstance( 'session' ) );
+		return $manager;
+	},
+
+	'DeviceBoundSessionStore' => static function ( MediaWikiServices $s ): DeviceBoundSessionStore {
+		return new DeviceBoundSessionStore(
+			$s->getConnectionProvider(),
+			$s->getMainObjectStash(),
+			$s->getMainConfig()->get( MainConfigNames::CanonicalServer ),
+			(int)$s->getMainConfig()->get( MainConfigNames::DeviceBoundSessionBindingTTL ),
+			(int)$s->getMainConfig()->get( MainConfigNames::DeviceBoundSessionChallengeTTL )
+		);
 	},
 
 	'DomainEventDispatcher' => static function ( MediaWikiServices $services ): DomainEventDispatcher {
@@ -3426,7 +3472,6 @@ return [
 			$services->getBlockActionInfo()
 		);
 	}
-
 ];
 
 // @codeCoverageIgnoreEnd

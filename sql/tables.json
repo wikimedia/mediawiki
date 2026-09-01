@@ -1125,6 +1125,116 @@
 		]
 	},
 	{
+		"name": "device_bound_session",
+		"comment": "Device Bound Session Credentials (DBSC) bindings, keyed by session id. Rows live under the virtual-devicebound DB domain: the local wiki by default, or a shared cluster when mapped in $wgVirtualDomainsMapping (wiki farms).",
+		"columns": [
+			{
+				"name": "dbs_id",
+				"type": "bigint",
+				"options": {
+					"unsigned": true,
+					"notnull": true,
+					"autoincrement": true
+				}
+			},
+			{
+				"name": "dbs_session",
+				"comment": "Session id the binding belongs to.",
+				"type": "binary",
+				"options": {
+					"notnull": true,
+					"length": 64
+				}
+			},
+			{
+				"name": "dbs_origin",
+				"comment": "Origin (scheme and host) the binding was registered for. A binding is only valid at its own origin.",
+				"type": "binary",
+				"options": {
+					"notnull": true,
+					"length": 255
+				}
+			},
+			{
+				"name": "dbs_subject",
+				"comment": "Scoped central user id, e.g. 'mw:local:123'. Enables farm-wide sign-out.",
+				"type": "binary",
+				"options": {
+					"notnull": true,
+					"length": 64
+				}
+			},
+			{
+				"name": "dbs_user_token",
+				"comment": "Hash of User::getToken() when the binding was created. Changing the user token, or bumping $wgAuthenticationTokenVersion, invalidates the binding the same way it invalidates a session. Empty until enforcement populates it.",
+				"type": "binary",
+				"options": {
+					"notnull": true,
+					"default": "",
+					"length": 43
+				}
+			},
+			{
+				"name": "dbs_binding",
+				"comment": "Serialized binding: device public key (PEM) and cookie/challenge rotation state.",
+				"type": "blob",
+				"options": {
+					"notnull": true,
+					"length": 65535
+				}
+			},
+			{
+				"name": "dbs_created",
+				"type": "mwtimestamp",
+				"options": {
+					"notnull": true
+				}
+			},
+			{
+				"name": "dbs_expires",
+				"comment": "Hard expiry, after which the user agent must re-register.",
+				"type": "mwtimestamp",
+				"options": {
+					"notnull": true
+				}
+			}
+		],
+		"indexes": [
+			{
+				"name": "dbs_origin_session",
+				"columns": [
+					"dbs_origin",
+					"dbs_session"
+				],
+				"unique": true
+			},
+			{
+				"name": "dbs_session",
+				"columns": [
+					"dbs_session"
+				],
+				"unique": false
+			},
+			{
+				"name": "dbs_subject",
+				"columns": [
+					"dbs_subject"
+				],
+				"unique": false
+			},
+			{
+				"name": "dbs_expires",
+				"columns": [
+					"dbs_expires"
+				],
+				"unique": false
+			}
+		],
+		"pk": [
+			"dbs_id"
+		]
+	},
+	{
 		"name": "existencelinks",
 		"comment": "Track dependencies on the existence of a target page, like #ifexist",
 		"columns": [

@@ -30,6 +30,11 @@ For notes on 1.47.x and older releases, see HISTORY.
 
 ==== New configuration ====
 
+* (T393212) Added $wgDeviceBoundSessions, enabling Device Bound Session
+  Credentials (DBSC) support; disabled by default. Related new settings:
+  $wgDeviceBoundSessionCookieName, $wgDeviceBoundSessionCredentialTTL,
+  $wgDeviceBoundSessionChallengeTTL, $wgDeviceBoundSessionBindingTTL,
+  and $wgDeviceBoundSessionScopeExcludes.
 * …
 
 ==== Changed configuration ====
@@ -50,6 +55,12 @@ For notes on 1.47.x and older releases, see HISTORY.
 
 === New features for sysadmins in 1.48 ===
 
+* (T393212) MediaWiki now supports Device Bound Session Credentials (DBSC),
+  binding sessions to a device-held key so that exfiltrated session cookies
+  cannot be replayed from another machine. Off by default; enable with
+  $wgDeviceBoundSessions. Adds the POST REST endpoints
+  /dbsc/v0/register and /dbsc/v0/refresh and the
+  device_bound_session table.
 * …
 
 === New developer features in 1.48 ===
@@ -63,6 +74,7 @@ For notes on 1.47.x and older releases, see HISTORY.
 
 ==== New external libraries ====
 
+* Added report-uri/dbsc-php at 0.2.1.
 * …
 
 ===== New development-only external libraries =====
