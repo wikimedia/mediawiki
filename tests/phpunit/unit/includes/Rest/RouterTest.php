@@ -23,6 +23,7 @@ use MediaWiki\Rest\StringStream;
 use MediaWiki\Rest\Validator\JsonBodyValidator;
 use MediaWiki\Tests\Rest\Handler\HelloHandler;
 use MediaWiki\User\UserIdentityValue;
+use MediaWiki\Utils\UrlUtils;
 use MediaWikiUnitTestCase;
 use PHPUnit\Framework\Assert;
 use PHPUnit\Framework\MockObject\MockObject;
@@ -893,21 +894,36 @@ class RouterTest extends MediaWikiUnitTestCase {
 		$this->assertEquals( 'bar', $validatedParams[ 'pathParam' ], (string)$response->getBody() );
 	}
 
+	private function newUrlUtils(): UrlUtils {
+		return new UrlUtils( [ UrlUtils::SERVER => 'https://wiki.example.com' ] );
+	}
+
 	public function testMakeResponseFactoryDefaultsToLegacyFormatter() {
-		$rf = Router::makeResponseFactory( [], false );
+		$rf = Router::makeResponseFactory( [], false, $this->newUrlUtils(), new RequestData() );
 		$formatter = TestingAccessWrapper::newFromObject( $rf )->errorFormatter;
 		$this->assertInstanceOf( ErrorFormatterV1::class, $formatter );
 	}
 
 	public function testMakeResponseFactoryUsesRegisteredFormatterForSchemaVersion() {
-		$rf = Router::makeResponseFactory( [], false, '2.0' );
+		$rf = Router::makeResponseFactory( [], false, $this->newUrlUtils(), new RequestData(), '2.0' );
 		$formatter = TestingAccessWrapper::newFromObject( $rf )->errorFormatter;
 		$this->assertInstanceOf( ErrorFormatterV2::class, $formatter );
 	}
 
 	public function testMakeResponseFactoryThrowsOnUnknownSchemaVersion() {
 		$this->expectException( ModuleConfigurationException::class );
-		Router::makeResponseFactory( [], false, '9.9' );
+		Router::makeResponseFactory( [], false, $this->newUrlUtils(), new RequestData(), '9.9' );
+	}
+
+	public function testMakeResponseFactoryV2DerivesUrlFromRequest() {
+		$request = new RequestData( [ 'uri' => new Uri( '/rest/test' ) ] );
+		$rf = Router::makeResponseFactory( [], false, $this->newUrlUtils(), $request, '2.0' );
+
+		$body = $rf->createHttpError( 404 )->getBody();
+		$body->rewind();
+		$data = json_decode( $body->getContents(), true );
+
+		$this->assertSame( 'https://wiki.example.com/rest/test', $data['url'] );
 	}
 
 	public function testGetModuleResponseFactory_missing_schema_version() {

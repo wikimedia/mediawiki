@@ -316,13 +316,7 @@ abstract class Module {
 			$response = $this->executeHandler( $handler );
 			$this->hookRunner->onRestAfterExecute( $this, $handler, $path, $request, $response );
 		} catch ( HttpException $e ) {
-			$extraData = [];
-			if ( $this->router->isRestbaseCompatEnabled( $request )
-				&& $e instanceof LocalizedHttpException
-			) {
-				$extraData = $this->router->getRestbaseCompatErrorData( $request, $e );
-			}
-			$response = $this->responseFactory->createFromException( $e, $extraData );
+			$response = $this->responseFactory->createFromException( $e );
 			$this->hookRunner->onRestAfterExecute( $this, $handler, $path, $request, $response );
 		} catch ( Throwable $e ) {
 			if ( $e instanceof PHPUnitException ) {

@@ -16,6 +16,7 @@ use MediaWiki\Rest\Validator\Validator;
 use MediaWiki\Tests\Rest\Handler\SessionHelperTestTrait;
 use MediaWiki\Tests\Unit\DummyServicesTrait;
 use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
+use MediaWiki\Utils\UrlUtils;
 use Psr\Container\ContainerInterface;
 use Wikimedia\ObjectCache\EmptyBagOStuff;
 use Wikimedia\ObjectFactory\ObjectFactory;
@@ -106,7 +107,8 @@ trait RestTestTrait {
 			$params['validator'] ?? new Validator( $objectFactory, $request, $authority ),
 			$params['errorReporter'] ?? new PHPErrorReporter(),
 			$params['hookContainer'] ?? $this->createHookContainer(),
-			$params['session'] ?? $this->getSession( true )
+			$params['session'] ?? $this->getSession( true ),
+			$params['urlUtils'] ?? new UrlUtils( [ UrlUtils::SERVER => 'https://wiki.example.com' ] ),
 		);
 	}
 

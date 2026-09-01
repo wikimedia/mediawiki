@@ -90,7 +90,8 @@ class EntryPoint extends MediaWikiEntryPoint {
 			$restValidator,
 			new MWErrorReporter(),
 			$services->getHookContainer(),
-			$context->getRequest()->getSession()
+			$context->getRequest()->getSession(),
+			$services->getUrlUtils(),
 		) )
 			->setCors( $cors )
 			->setStats( $stats );
@@ -119,7 +120,9 @@ class EntryPoint extends MediaWikiEntryPoint {
 		$context = $this->getContext();
 		$textFormatters = $this->getTextFormatters();
 		$showExceptionDetails = MWExceptionRenderer::shouldShowExceptionDetails();
-		$responseFactory = Router::makeResponseFactory( $textFormatters, $showExceptionDetails );
+		$responseFactory = Router::makeResponseFactory(
+			$textFormatters, $showExceptionDetails, $this->getServiceContainer()->getUrlUtils(), $this->request
+		);
 
 		$this->cors = new CorsUtils(
 			new ServiceOptions(

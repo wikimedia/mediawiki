@@ -26,8 +26,8 @@ abstract class ErrorFormatter {
 	) {
 	}
 
-	public function formatException( int $statusCode, Throwable $exception ): array {
-		$bodyData = [
+	public function formatException( int $statusCode, Throwable $exception, array $extraData = [] ): array {
+		$bodyData = $extraData + [
 			'message' => 'Error: exception of type ' . get_class( $exception ),
 			'reqId' => Telemetry::getInstance()->getRequestId(),
 		];

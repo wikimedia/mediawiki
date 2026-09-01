@@ -16,9 +16,9 @@ use MediaWiki\Rest\PathTemplateMatcher\ModuleConfigurationException;
 use MediaWiki\Rest\Reporter\ErrorReporter;
 use MediaWiki\Rest\Validator\Validator;
 use MediaWiki\Session\Session;
+use MediaWiki\Utils\UrlUtils;
 use Throwable;
 use Wikimedia\Assert\Assert;
-use Wikimedia\Http\HttpStatus;
 use Wikimedia\Message\MessageValue;
 use Wikimedia\ObjectCache\BagOStuff;
 use Wikimedia\ObjectFactory\ObjectFactory;
@@ -35,7 +35,7 @@ class Router {
 	public const DEFAULT_ERROR_SCHEMA = '1.0';
 
 	private const ERROR_FORMATTERS = [
-		'restbase' => ErrorFormatterV1::class,
+		'restbase' => RestbaseCompatErrorFormatter::class,
 		'1.0' => ErrorFormatterV1::class,
 		'2.0' => ErrorFormatterV2::class,
 	];
@@ -100,6 +100,7 @@ class Router {
 	 * @param ErrorReporter $errorReporter
 	 * @param HookContainer $hookContainer
 	 * @param Session $session
+	 * @param UrlUtils $urlUtils
 	 * @internal
 	 */
 	public function __construct(
@@ -116,6 +117,7 @@ class Router {
 		private ErrorReporter $errorReporter,
 		private readonly HookContainer $hookContainer,
 		private readonly Session $session,
+		private readonly UrlUtils $urlUtils,
 	) {
 		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
 
@@ -492,16 +494,10 @@ class Router {
 			$fullPath = $request->getUri()->getPath();
 			$response = $this->doExecute( $fullPath, $request );
 		} catch ( HttpException $e ) {
-			$extraData = [];
-			if ( $this->isRestbaseCompatEnabled( $request )
-				&& $e instanceof LocalizedHttpException
-			) {
-				$extraData = $this->getRestbaseCompatErrorData( $request, $e );
-			}
-			$response = $this->createResponseFromException( $e, $extraData );
+			$response = $this->createResponseFromException( $e, $request );
 		} catch ( Throwable $e ) {
 			$this->errorReporter->reportError( $e, null, $request );
-			$response = $this->createResponseFromException( $e );
+			$response = $this->createResponseFromException( $e, $request );
 		}
 
 		// TODO: Only send the vary header for handlers that opt into
@@ -511,13 +507,15 @@ class Router {
 		return $response;
 	}
 
-	private function createResponseFromException( Throwable $e, ?array $extraData = [] ): ResponseInterface {
-		$responseFactory = self::makeResponseFactory( $this->textFormatters, $this->showExceptionDetails );
-		return $responseFactory->createFromException( $e, $extraData ?? [] );
+	private function createResponseFromException( Throwable $e, RequestInterface $request ): ResponseInterface {
+		$responseFactory = $this->getModuleResponseFactory( [], $request );
+		return $responseFactory->createFromException( $e );
 	}
 
-	private function createRedirectResponse( string $target, int $code ): ResponseInterface {
-		$responseFactory = self::makeResponseFactory( $this->textFormatters, $this->showExceptionDetails );
+	private function createRedirectResponse( string $target, int $code, RequestInterface $request ): ResponseInterface {
+		$responseFactory = self::makeResponseFactory(
+			$this->textFormatters, $this->showExceptionDetails, $this->urlUtils, $request
+		);
 		return $responseFactory->createRedirect( $target, $code );
 	}
 
@@ -528,7 +526,7 @@ class Router {
 		// That's the minimal path that can be routed.
 		if ( $modulePrefix === '' && $path === '' ) {
 			$target = $this->getRoutePath( '/' );
-			return $this->createRedirectResponse( $target, 308 );
+			return $this->createRedirectResponse( $target, 308, $request );
 		}
 
 		$module = $this->getModuleForRequest( $request, $modulePrefix );
@@ -633,34 +631,17 @@ class Router {
 	}
 
 	/**
-	 * @internal
-	 *
-	 * @return array
-	 */
-	public function getRestbaseCompatErrorData( RequestInterface $request, LocalizedHttpException $e ): array {
-		$msg = $e->getMessageSpecifier();
-
-		// Match error fields emitted by the RESTBase endpoints.
-		// EntryPoint::getTextFormatters() ensures 'en' is always available.
-		$responseFactory = self::makeResponseFactory( $this->textFormatters, $this->showExceptionDetails );
-		return [
-			'type' => "MediaWikiError/" .
-				str_replace( ' ', '_', HttpStatus::getMessage( $e->getCode() ) ),
-			'title' => $msg->getKey(),
-			'method' => strtolower( $request->getMethod() ),
-			'detail' => $responseFactory->getFormattedMessage( $msg, 'en' ),
-			'uri' => (string)$request->getUri()
-		];
-	}
-
-	/**
 	 * Factory method of ResponseFactory.
 	 * Injects a suitable implementation of ErrorFormatter.
 	 *
 	 * @internal for use in the REST framework
 	 */
 	public static function makeResponseFactory(
-		array $textFormatters, bool $showExceptionDetails, ?string $schemaVer = null
+		array $textFormatters,
+		bool $showExceptionDetails,
+		UrlUtils $urlUtils,
+		RequestInterface $request,
+		?string $schemaVer = null
 	): ResponseFactory {
 		$schemaVer ??= self::DEFAULT_ERROR_SCHEMA;
 		$formatterClass = self::ERROR_FORMATTERS[ $schemaVer ] ?? null;
@@ -669,22 +650,53 @@ class Router {
 			throw new ModuleConfigurationException( "Unsupported errorSchemaVersion: $schemaVer" );
 		}
 
-		$errorFormatter = new $formatterClass( $textFormatters, $showExceptionDetails );
+		$errorFormatter = match ( $formatterClass ) {
+			ErrorFormatterV1::class => new ErrorFormatterV1( $textFormatters, $showExceptionDetails ),
+			ErrorFormatterV2::class => new ErrorFormatterV2(
+				$textFormatters,
+				$showExceptionDetails,
+				self::getTracingData( $urlUtils, $request )
+			),
+			RestbaseCompatErrorFormatter::class => new RestbaseCompatErrorFormatter(
+				$textFormatters, $showExceptionDetails, self::getRestbaseCompatData( $request )
+			),
+		};
+
 		return new ResponseFactory( $textFormatters, $errorFormatter );
 	}
 
-	// @phan-suppress-next-line PhanUnusedPrivateMethodParameter $request will soon be used
+	private static function getTracingData( UrlUtils $urlUtils, RequestInterface $request ): array {
+		$tracingData = [
+			'tracing' => [ 'module' => 'mediawiki' ],
+		];
+
+		$url = $urlUtils->expand( (string)$request->getUri(), PROTO_CANONICAL );
+		if ( $url !== null ) {
+			$tracingData['url'] = $url;
+		}
+
+		return $tracingData;
+	}
+
+	private static function getRestbaseCompatData( RequestInterface $request ): array {
+		return [
+			'method' => strtolower( $request->getMethod() ),
+			'uri' => (string)$request->getUri(),
+		];
+	}
+
 	private function getModuleResponseFactory( array $moduleInfo, RequestInterface $request ): ResponseFactory {
 		$schemaVer = $moduleInfo['errorSchemaVersion'] ?? null;
 
-		// SEAM: We can vary the formatter based on the request, e.g.:
-		// if ( $this->isRestbaseCompatEnabled( $request ) ) {
-		//				$schemaVer = 'restbase';
-		// }
+		if ( $this->isRestbaseCompatEnabled( $request ) ) {
+			$schemaVer = 'restbase';
+		}
 
 		return self::makeResponseFactory(
 			$this->textFormatters,
 			$this->showExceptionDetails,
+			$this->urlUtils,
+			$request,
 			$schemaVer,
 		);
 	}

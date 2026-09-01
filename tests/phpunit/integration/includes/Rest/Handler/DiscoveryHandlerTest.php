@@ -75,7 +75,8 @@ class DiscoveryHandlerTest extends MediaWikiIntegrationTestCase {
 			$restValidator,
 			new MWErrorReporter(),
 			$services->getHookContainer(),
-			$this->getSession( true )
+			$this->getSession( true ),
+			$services->getUrlUtils(),
 		) );
 	}
 

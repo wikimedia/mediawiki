@@ -2995,6 +2995,7 @@ $wgAutoloadLocalClasses = [
 	'MediaWiki\\Rest\\ResponseFactory' => __DIR__ . '/includes/Rest/ResponseFactory.php',
 	'MediaWiki\\Rest\\ResponseHeaders' => __DIR__ . '/includes/Rest/ResponseHeaders.php',
 	'MediaWiki\\Rest\\ResponseInterface' => __DIR__ . '/includes/Rest/ResponseInterface.php',
+	'MediaWiki\\Rest\\RestbaseCompatErrorFormatter' => __DIR__ . '/includes/Rest/RestbaseCompatErrorFormatter.php',
 	'MediaWiki\\Rest\\RouteDefinitionException' => __DIR__ . '/includes/Rest/RouteDefinitionException.php',
 	'MediaWiki\\Rest\\Router' => __DIR__ . '/includes/Rest/Router.php',
 	'MediaWiki\\Rest\\SimpleHandler' => __DIR__ . '/includes/Rest/SimpleHandler.php',

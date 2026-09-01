@@ -213,10 +213,10 @@ class ResponseFactory {
 		);
 	}
 
-	private function formatException( Throwable $exception ): Response {
+	private function formatException( Throwable $exception, array $extraData = [] ): Response {
 		return $this->wrapHttpError(
 			500,
-			$this->errorFormatter->formatException( 500, $exception )
+			$this->errorFormatter->formatException( 500, $exception, $extraData )
 		);
 	}
 
@@ -278,7 +278,7 @@ class ResponseFactory {
 				}
 				return $response;
 			default:
-				return $this->formatException( $exception );
+				return $this->formatException( $exception, $extraData );
 		}
 	}
 
