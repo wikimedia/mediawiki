@@ -151,7 +151,7 @@ class SpecialCreateAccount extends LoginSignupSpecialPage {
 								'target' => '_self',
 								'tabindex' => 100,
 							],
-							$this->msg( 'login' )->text()
+							$this->msg( 'pt-login-button' )->text()
 						)
 					);
 				},
