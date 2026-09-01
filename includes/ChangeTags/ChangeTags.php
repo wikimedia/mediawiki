@@ -18,6 +18,7 @@ use MediaWiki\MediaWikiServices;
 use MediaWiki\Message\Message;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Permissions\PermissionStatus;
+use MediaWiki\Permissions\SimpleAuthority;
 use MediaWiki\Permissions\UltimateAuthority;
 use MediaWiki\RevisionDelete\RevDelLogList;
 use MediaWiki\Skin\Skin;
@@ -542,6 +543,11 @@ class ChangeTags {
 			$logEntry->setTarget( SpecialPage::getTitleFor( 'Tags' ) );
 		}
 
+		// Filter out any tag that is not publicly viewable, as we don't want to expose them in the public log
+		$initialTags = $changeTagsStore->filterViewableTags(
+			$initialTags,
+			new SimpleAuthority( $performer->getUser(), [] )
+		);
 		$logParams = [
 			'4::revid' => $rev_id,
 			'5::logid' => $log_id,

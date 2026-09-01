@@ -7,6 +7,7 @@ use MediaWiki\ChangeTags\ChangeTags;
 use MediaWiki\ChangeTags\ChangeTagsStore;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\Deferred\DeferredUpdates;
+use MediaWiki\Logging\LogEntryBase;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
@@ -990,6 +991,119 @@ class ChangeTagsTest extends MediaWikiIntegrationTestCase {
 				'expectedStatusErrorMessage' => 'tags-update-add-not-allowed-one',
 			],
 		];
+	}
+
+	public function testUpdateTagsWithChecksWhenTagAlreadyOnChange(): void {
+		$this->changeTags->defineTag( 'test-tag' );
+		$this->changeTags->addTags( 'test-tag', null, 123 );
+
+		$actualStatus = ChangeTags::updateTagsWithChecks(
+			[ 'test-tag' ],
+			[],
+			null,
+			123,
+			null,
+			'',
+			'',
+			$this->mockRegisteredAuthorityWithPermissions( [ 'changetags' ] )
+		);
+		$this->assertStatusGood( $actualStatus );
+		$this->assertArrayEquals(
+			[ 'logId' => null, 'addedTags' => [], 'removedTags' => [] ],
+			(array)$actualStatus->getValue(),
+			false,
+			true
+		);
+
+		$this->newSelectQueryBuilder()
+			->select( 'log_id' )
+			->from( 'logging' )
+			->caller( __METHOD__ )
+			->assertEmptyResult();
+	}
+
+	public function testUpdateTagsWithChecksWhenTagAdded(): void {
+		$testPage = $this->getExistingTestPage();
+		$editStatus = $this->editPage( $testPage, 'Test content' );
+		$this->assertStatusGood( $editStatus );
+		$revId = $editStatus->getNewRevision()->getId();
+
+		$this->changeTags->defineTag( 'test-tag' );
+		$this->changeTags->defineTag( 'other-tag' );
+
+		$this->setTemporaryHook(
+			'ListDefinedTags',
+			static function ( array &$tags ) {
+				$tags[] = 'mw-private-test';
+			}
+		);
+		$this->setRestrictedTags( [ 'mw-private-test' => 'delete' ] );
+
+		$this->changeTags->addTags( [ 'other-tag', 'mw-private-test' ], null, $revId );
+
+		$testUser = $this->getTestUser()->getUserIdentity();
+		$actualStatus = ChangeTags::updateTagsWithChecks(
+			[ 'test-tag' ],
+			[],
+			null,
+			$revId,
+			null,
+			'',
+			'Test reason 1234',
+			$this->mockUserAuthorityWithPermissions( $testUser, [ 'changetags' ] )
+		);
+		$this->assertStatusGood( $actualStatus );
+
+		$actualLogIds = $this->newSelectQueryBuilder()
+			->select( 'log_id' )
+			->from( 'logging' )
+			->where( [ 'log_type' => 'tag', 'log_action' => 'update' ] )
+			->caller( __METHOD__ )
+			->fetchFieldValues();
+		$this->assertCount( 1, $actualLogIds );
+
+		$this->assertArrayEquals(
+			[ 'logId' => (int)$actualLogIds[0], 'addedTags' => [ 'test-tag' ], 'removedTags' => [] ],
+			(array)$actualStatus->getValue(),
+			false,
+			true
+		);
+
+		$this->newSelectQueryBuilder()
+			->select( [ 'log_title', 'log_namespace', 'actor_name', 'comment_text' ] )
+			->from( 'logging' )
+			->join( 'actor', null, 'actor_id = log_actor' )
+			->join( 'comment', null, 'comment_id = log_comment_id' )
+			->where( [ 'log_id' => $actualLogIds[0] ] )
+			->caller( __METHOD__ )
+			->assertRowValue( [
+				$testPage->getDBkey(),
+				$testPage->getNamespace(),
+				$testUser->getName(),
+				'Test reason 1234'
+			] );
+
+		$actualLogParams = $this->newSelectQueryBuilder()
+			->select( [ 'log_params' ] )
+			->from( 'logging' )
+			->where( [ 'log_id' => $actualLogIds[0] ] )
+			->caller( __METHOD__ )
+			->fetchField();
+		$this->assertArrayEquals(
+			[
+				'4::revid' => $revId,
+				'5::logid' => false,
+				'6:list:tagsAdded' => [ 'test-tag' ],
+				'7:number:tagsAddedCount' => 1,
+				'8:list:tagsRemoved' => [],
+				'9:number:tagsRemovedCount' => 0,
+				'initialTags' => [ 'other-tag' ],
+			],
+			LogEntryBase::extractParams( $actualLogParams ),
+			false,
+			true,
+			'Log params should be as expected (including not including the restricted tag in initialTags)'
+		);
 	}
 
 	public function testFilterViewableTags(): void {
