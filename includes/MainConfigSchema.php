@@ -13671,17 +13671,6 @@ class MainConfigSchema {
 	];
 
 	/**
-	 * Whether Article should clone the ParserOutput before postprocessing.
-	 *
-	 * @unstable Temporary feature flag, T410923
-	 * @since 1.45
-	 */
-	public const CloneArticleParserOutput = [
-		'default' => true,
-		'type' => 'boolean',
-	];
-
-	/**
 	 * Whether MediaWiki should use Leximorph handlers and providers for language
 	 * transformations and plural-rule loading.
 	 *

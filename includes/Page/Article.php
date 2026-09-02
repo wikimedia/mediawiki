@@ -717,7 +717,7 @@ class Article implements Page {
 		$skinOptions = $skin->getOptions();
 		$textOptions += [
 			// T371022, T410923
-			'allowClone' => $this->getContext()->getConfig()->get( MainConfigNames::CloneArticleParserOutput ),
+			'allowClone' => true,
 			'skin' => $skin,
 			'injectTOC' => $skinOptions['toc'],
 		];
@@ -934,7 +934,7 @@ class Article implements Page {
 		$skinOptions = $skin->getOptions();
 		$textOptions += [
 			// T371022, T410923
-			'allowClone' => $this->getContext()->getConfig()->get( MainConfigNames::CloneArticleParserOutput ),
+			'allowClone' => true,
 			'skin' => $skin,
 			'injectTOC' => $skinOptions['toc'],
 		];

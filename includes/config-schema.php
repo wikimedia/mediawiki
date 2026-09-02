@@ -2770,7 +2770,6 @@ return [
 			],
 			'FeatureShutdown' => [
 			],
-			'CloneArticleParserOutput' => true,
 			'UseLeximorph' => false,
 			'UsePostprocCacheLegacy' => false,
 			'UsePostprocCacheParsoid' => true,
@@ -3319,7 +3318,6 @@ return [
 			'EnableProtectionIndicators' => 'boolean',
 			'OutputPipelineStages' => 'object',
 			'FeatureShutdown' => 'array',
-			'CloneArticleParserOutput' => 'boolean',
 			'UseLeximorph' => 'boolean',
 			'UsePostprocCacheLegacy' => 'boolean',
 			'UsePostprocCacheParsoid' => 'boolean',
