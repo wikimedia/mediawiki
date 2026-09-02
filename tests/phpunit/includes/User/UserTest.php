@@ -13,6 +13,7 @@ use MediaWiki\Request\WebRequest;
 use MediaWiki\Tests\Unit\DummyServicesTrait;
 use MediaWiki\Tests\User\TempUser\TempUserTestTrait;
 use MediaWiki\Title\Title;
+use MediaWiki\User\ActorStore;
 use MediaWiki\User\User;
 use MediaWiki\User\UserIdentityValue;
 use MediaWiki\Utils\MWTimestamp;
@@ -623,6 +624,20 @@ class UserTest extends MediaWikiIntegrationTestCase {
 			$this->user->equals( $otherUser ),
 			'User created by id should match user with that id'
 		);
+	}
+
+	public function testLoadByNameUsesActorStore() {
+		$testUser = $this->getTestUser()->getUser();
+		$actorStore = $this->createMock( ActorStore::class );
+		$actorStore->expects( $this->once() )
+			->method( 'getUserIdentityByName' )
+			->with( $testUser->getName(), $this->anything() )
+			->willReturn( new UserIdentityValue( $testUser->getId(), $testUser->getName() ) );
+		$this->setService( 'ActorStore', $actorStore );
+
+		$user = $this->getServiceContainer()->getUserFactory()->newFromName( $testUser->getName() );
+		$this->assertNotNull( $user );
+		$this->assertSame( $testUser->getId(), $user->getId() );
 	}
 
 	public function testActorId() {
