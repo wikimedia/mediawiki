@@ -102,6 +102,7 @@ use Wikimedia\HtmlArmor\HtmlArmor;
 use Wikimedia\Message\MessageSpecifier;
 use Wikimedia\Message\MessageValue;
 use Wikimedia\ParamValidator\TypeDef\ExpiryDef;
+use Wikimedia\Parsoid\Parsoid;
 use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\Timestamp\ConvertibleTimestamp;
 use Wikimedia\Timestamp\TimestampFormat as TS;
@@ -2144,6 +2145,16 @@ class EditPage implements IEditObject {
 
 	public function setHeaders() {
 		$out = $this->context->getOutput();
+
+		# Indicate to client-side JS (Visual Editor in particular) whether
+		# Parsoid would be used to render this article, so previews of the
+		# edit can match. Mirrors Article::showMissingArticle().
+		if ( $this->getArticle()->getParserOptions()->getUseParsoid() ) {
+			$out->addJsConfigVars(
+				'wgParsoidHtmlVersion',
+				Parsoid::defaultHTMLVersion()
+			);
+		}
 
 		$out->addModules( 'mediawiki.action.edit' );
 		$out->addModuleStyles( [
