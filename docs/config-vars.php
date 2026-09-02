@@ -4520,12 +4520,6 @@ $wgUpdateRowsPerQuery = null;
 $wgRedirectOnLogin = null;
 
 /**
- * Config variable stub for the VirtualRestConfig setting, for use by phpdoc and IDEs.
- * @see MediaWiki\MainConfigSchema::VirtualRestConfig
- */
-$wgVirtualRestConfig = null;
-
-/**
  * Config variable stub for the EventRelayerConfig setting, for use by phpdoc and IDEs.
  * @see MediaWiki\MainConfigSchema::EventRelayerConfig
  */

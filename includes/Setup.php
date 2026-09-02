@@ -385,7 +385,6 @@ if ( $wgServer === false ) {
 if ( $wgCanonicalServer === false ) {
 	$wgCanonicalServer = MediaWikiServices::getInstance()->getUrlUtils()->getCanonicalServer();
 }
-$wgVirtualRestConfig['global']['domain'] = $wgCanonicalServer;
 
 if ( $wgServerName !== false ) {
 	wfWarn( '$wgServerName should be derived from $wgCanonicalServer, '

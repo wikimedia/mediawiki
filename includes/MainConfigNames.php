@@ -4535,12 +4535,6 @@ class MainConfigNames {
 	public const RedirectOnLogin = 'RedirectOnLogin';
 
 	/**
-	 * Name constant for the VirtualRestConfig setting, for use with Config::get()
-	 * @see MainConfigSchema::VirtualRestConfig
-	 */
-	public const VirtualRestConfig = 'VirtualRestConfig';
-
-	/**
 	 * Name constant for the EventRelayerConfig setting, for use with Config::get()
 	 * @see MainConfigSchema::EventRelayerConfig
 	 */

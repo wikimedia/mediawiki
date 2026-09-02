@@ -32,7 +32,6 @@ class SignatureValidator {
 	/** @var array Made public for use in services */
 	public const CONSTRUCTOR_OPTIONS = [
 		MainConfigNames::SignatureAllowedLintErrors,
-		MainConfigNames::VirtualRestConfig,
 	];
 
 	/** @var UserIdentity */

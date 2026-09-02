@@ -2745,17 +2745,6 @@ return [
 			'UpdateRowsPerJob' => 300,
 			'UpdateRowsPerQuery' => 100,
 			'RedirectOnLogin' => null,
-			'VirtualRestConfig' => [
-				'paths' => [
-				],
-				'modules' => [
-				],
-				'global' => [
-					'timeout' => 360,
-					'forwardCookies' => false,
-					'HTTPProxy' => null,
-				],
-			],
 			'EventRelayerConfig' => [
 				'default' => [
 					'class' => 'Wikimedia\\EventRelayer\\EventRelayerNull',
@@ -3303,7 +3292,6 @@ return [
 				'boolean',
 			],
 			'GenerateReqIDFormat' => 'string',
-			'VirtualRestConfig' => 'object',
 			'EventRelayerConfig' => 'object',
 			'Pingback' => 'boolean',
 			'OriginTrials' => 'array',
@@ -3356,7 +3344,6 @@ return [
 			'Hooks' => 'array_merge_recursive',
 			'RestModuleOverrides' => 'array_replace_recursive',
 			'RestExternalModules' => 'array_replace_recursive',
-			'VirtualRestConfig' => 'array_plus_2d',
 		],
 		'dynamicDefault' => [
 			'UsePathInfo' => [

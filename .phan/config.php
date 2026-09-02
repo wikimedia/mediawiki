@@ -151,7 +151,6 @@ $cfg['globals_type_map'] = array_merge( $cfg['globals_type_map'], [
 	'wgLogHeaders' => 'array<string,string>',
 	'wgLogActionsHandlers' => 'array<string,class-string>',
 	'wgPasswordPolicy' => 'array<string,array<string,string|array>>',
-	'wgVirtualRestConfig' => 'array<string,array>',
 	'wgLocalInterwikis' => 'string[]',
 	'wgDebugLogGroups' => 'string|false|array{destination:string,sample?:int,level:int}',
 	'wgCookiePrefix' => 'string|false',
