@@ -1730,7 +1730,7 @@ class WikiPage implements Stringable, Page, PageRecord {
 	 */
 	public function newPageUpdater( $performer, ?RevisionSlotsUpdate $forUpdate = null ) {
 		if ( !$performer instanceof UserIdentity && $performer instanceof Authority ) {
-			wfDeprecated( __METHOD__, '1.47' );
+			wfDeprecatedMsg( __METHOD__ . ' with an Authority as $performer is deprecated', '1.47' );
 			$performer = $performer->getUser();
 		}
 
