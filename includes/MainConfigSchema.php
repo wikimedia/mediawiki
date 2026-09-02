@@ -13734,7 +13734,7 @@ class MainConfigSchema {
 	 * @since 1.47
 	 */
 	public const UseParsoidMessages = [
-		'default' => null,
+		'default' => true,
 		'type' => '?boolean'
 	];
 

@@ -8536,7 +8536,7 @@ config-schema:
             @unstable Temporary flag, likely to be replaced by a single config in ParserOptions
             @since 1.47
     UseParsoidMessages:
-        default: null
+        default: true
         type:
             - boolean
             - 'null'

@@ -2782,7 +2782,7 @@ return [
 			'ReturnExperimentalPFragmentTypes' => [
 			],
 			'UseParsoidLinksUpdate' => null,
-			'UseParsoidMessages' => null,
+			'UseParsoidMessages' => true,
 		],
 		'type' => [
 			'ConfigRegistry' => 'object',
