@@ -317,4 +317,25 @@ class UserRequirementsConditionCheckerTest extends MediaWikiIntegrationTestCase 
 			],
 		];
 	}
+
+	public function testCheckConditionDoesntLoadUserNotSafeToLoad(): void {
+		$request = new FauxRequest();
+		$request->setIP( '127.0.0.1' );
+		$this->setRequest( $request );
+
+		$mockUser = $this->createNoOpMock( User::class, [ 'isSafeToLoad', 'getWikiId' ] );
+		$mockUser->method( 'isSafeToLoad' )
+			->willReturn( false );
+		$mockUser->method( 'getWikiId' )
+			->willReturn( User::LOCAL );
+		RequestContext::getMain()->setUser( $mockUser );
+
+		$checker = $this->getServiceContainer()->getUserRequirementsConditionChecker();
+		$result = $checker->recursivelyCheckCondition( [ APCOND_ISIP, '127.0.0.1' ], $mockUser );
+		$this->assertSame(
+			false,
+			$result,
+			'Condition that should not match as would only match if user was safe to load'
+		);
+	}
 }

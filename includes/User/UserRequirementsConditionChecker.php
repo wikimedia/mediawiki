@@ -61,7 +61,8 @@ class UserRequirementsConditionChecker {
 	 * @throws LogicException if APCOND_BLOCKED is checked again before returning a result.
 	 */
 	protected function checkCondition( array $cond, UserIdentity $user ): ?bool {
-		$isPerformingRequest = !defined( 'MW_NO_SESSION' ) && $user->equals( $this->context->getUser() );
+		$isPerformingRequest = $this->context->getUser()->isSafeToLoad() &&
+			$user->equals( $this->context->getUser() );
 
 		$conditionType = $cond[0];
 		$args = array_slice( $cond, 1 );

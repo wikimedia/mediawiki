@@ -673,11 +673,12 @@ class UserGroupManagerTest extends MediaWikiIntegrationTestCase {
 		$user = $this->createNoOpMock(
 			User::class,
 			array_merge(
-				[ 'equals', 'getEmail', 'getName', 'assertWiki', 'getWikiId' ],
+				[ 'equals', 'getEmail', 'getName', 'assertWiki', 'getWikiId', 'isSafeToLoad' ],
 				( array_key_exists( 'timestamp', $userSpec ) ? [ 'getEmailAuthenticationTimestamp' ] : [] )
 			)
 		);
 		$user->method( 'getName' )->willReturn( 'User name' );
+		$user->method( 'isSafeToLoad' )->willReturn( true );
 		$user->method( 'getWikiId' )->willReturn( UserIdentity::LOCAL );
 		$user->method( 'assertWiki' )->willReturn( true );
 		$user->expects( $this->once() )
