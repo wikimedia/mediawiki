@@ -2083,7 +2083,7 @@
 	"watchlistlabels-not-enabled": "此wiki尚未啟用監視清單標籤功能。",
 	"watchlistlabels-not-logged-in": "請登入來管理您的監視清單標籤。",
 	"watchlistlabels-not-logged-in-for-temp-user": "請建立帳號來管理您的監視清單標籤。",
-	"watchlistlabels-table-title": "建立和移除標籤",
+	"watchlistlabels-table-title": "建立和刪除標籤",
 	"watchlistlabels-table-description": "您已儲存的標籤如下所示。",
 	"watchlistlabels-table-header": "標籤",
 	"watchlistlabels-table-new-link": "新標籤",

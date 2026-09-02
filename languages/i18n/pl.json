@@ -3302,7 +3302,7 @@
 	"tag-filter-submit": "Filtr",
 	"tag-hidden": "$1 (ukryty znacznik)",
 	"tag-list-wrapper": "[[Special:Tags|{{PLURAL:$1|Znacznik|Znaczniki}}]]: $2",
-	"tag-mw-contentmodelchange": "zmiana modelu zawartości",
+	"tag-mw-contentmodelchange": "Zmiana modelu zawartości",
 	"tag-mw-contentmodelchange-description": "Edycje, które zmieniają model zawartości strony",
 	"tag-mw-new-redirect": "Nowe przekierowanie",
 	"tag-mw-new-redirect-description": "Edycja tworząca nowe przekierowanie albo zmieniająca istniejącą stronę niebędącą przekierowaniem na przekierowanie",

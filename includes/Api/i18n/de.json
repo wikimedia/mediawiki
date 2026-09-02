@@ -245,7 +245,7 @@
 	"apihelp-feedcontributions-param-namespace": "Auf welchen Namensraum die Beiträge begrenzt werden sollen.",
 	"apihelp-feedcontributions-param-year": "Von Jahr (und früher).",
 	"apihelp-feedcontributions-param-month": "Von Monat (und früher).",
-	"apihelp-feedcontributions-param-tagfilter": "Beiträge filtern, die diese Markierungen haben.",
+	"apihelp-feedcontributions-param-tagfilter": "Nur Beiträge anzeigen, die diese Markierungen haben.",
 	"apihelp-feedcontributions-param-deletedonly": "Nur gelöschte Beiträge anzeigen.",
 	"apihelp-feedcontributions-param-toponly": "Nur aktuelle Versionen anzeigen.",
 	"apihelp-feedcontributions-param-newonly": "Nur Seitenerstellungen anzeigen.",

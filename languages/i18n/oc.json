@@ -1174,7 +1174,7 @@
 	"upload-dialog-button-upload": "Mandar",
 	"upload-form-label-infoform-title": "Detalhs",
 	"upload-form-label-infoform-name": "Nom",
-	"upload-form-label-infoform-name-tooltip": "Un títol descriptiu unic pel fichièr, que servirà de nom de fichièr. Podètz utilizar lo lengatge corrent amb d'espacis. Pas inclure l'extension del fichièr.",
+	"upload-form-label-infoform-name-tooltip": "Un títol descriptiu unic pel fichièr, que servirà de nom de fichièr. Podètz utilizar lo lengatge corrent amb d'espacis. Inclure pas l'extension del fichièr.",
 	"upload-form-label-infoform-description": "Descripcion",
 	"upload-form-label-usage-title": "Utilizacion",
 	"upload-form-label-usage-filename": "Nom del fichièr",

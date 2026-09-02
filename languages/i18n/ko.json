@@ -2041,7 +2041,7 @@
 	"watchlistlabels-not-enabled": "주시문서 목록 레이블 기능은 이 위키에서 활성화되어 있지 않습니다.",
 	"watchlistlabels-not-logged-in": "주시문서 목록 레이블을 관리하려면 로그인해 주십시오.",
 	"watchlistlabels-not-logged-in-for-temp-user": "주시문서 목록 레이블을 관리하려면 계정을 생성해 주십시오.",
-	"watchlistlabels-table-title": "레이블 만들기 및 제거",
+	"watchlistlabels-table-title": "레이블 만들기 및 삭제",
 	"watchlistlabels-table-description": "저장된 레이블은 아래에 표시됩니다.",
 	"watchlistlabels-table-header": "레이블",
 	"watchlistlabels-table-new-link": "새 레이블",

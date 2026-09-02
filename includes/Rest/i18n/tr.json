@@ -8,6 +8,7 @@
 			"Joseph",
 			"MuratTheTurkish",
 			"SaldırganSincap",
+			"Slickdaddy",
 			"Stonecy"
 		]
 	},
@@ -287,6 +288,8 @@
 	"rest-property-desc-linterror-dsr": "İlgili DOM kaynak aralığı hakkında bilgi. Dizi her zaman sırasıyla şunları içerir: başlangıç konumu, bitiş konumu, açılış etiketi genişliği ve kapanış etiketi genişliği.",
 	"rest-property-desc-linterror-templateinfo": "Hangi şablonun işlendiği hakkında bilgi",
 	"rest-property-desc-linterror-params": "Lint hatası türüne özgü ek bilgi",
+	"rest-property-desc-templateinfo-name": "Şablon adı",
+	"rest-property-desc-transform-html-body": "HTML içeriği",
 	"rest-endpoint-summ-get-page-history": "Sayfa geçmişini al",
 	"rest-endpoint-summ-get-page-history-counts": "Sayfa geçmişi sayılarını al",
 	"rest-endpoint-summ-get-revision-compare": "Revizyonları karşılaştır",

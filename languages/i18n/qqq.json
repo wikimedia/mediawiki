@@ -623,7 +623,7 @@
 	"notloggedin": "This message is displayed in the standard skin when not logged in. The message is placed above the login link in the top right corner of pages.\n\n{{Identical|Not logged in}}",
 	"userlogin-noaccount": "In the [[Special:Userlogin]] form, this is the text prior to button inviting user to join project.\n{{Identical|Do not have an account}}",
 	"userlogin-joinproject": "Text of button inviting user to create an account.\n\nSee example: [[Special:UserLogin]]",
-	"userlogin-haveaccount": "In the [[Special:CreateAccount]] form, this is the text prior to the link inviting an existing user to log in. The link label is {{msg-mw|pt-login-button}}.",
+	"userlogin-haveaccount": "In the [[Special:CreateAccount]] form, this is the text prior to the link inviting an existing user to log in. The link label is {{msg-mw|login}}.",
 	"createaccount": "{{doc-special|CreateAccount|unlisted=1}}\n{{Identical|Create account}}",
 	"userlogin-resetpassword-link": "Used as link text in the login form.\n\nThe link points to the local page [[Special:PasswordReset]].\n\nSee example: [[Special:UserLogin]]\n\nuserlogin-resetpassword-link may have to be shorter than the old {{msg-mw|userlogin-resetlink}}.\n{{Identical|Forgot your password}}",
 	"userlogin-helplink2": "Label for a link to login help.\n\nSee example: [[Special:UserLogin]]\n\nSee also:\n* {{msg-mw|Helplogin-url}}",

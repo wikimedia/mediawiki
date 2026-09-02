@@ -125,6 +125,7 @@
 	"rest-module-extra-routes-title": "MediaWiki REST API",
 	"rest-module-extra-routes-desc": "与模块不关联的 REST 端点",
 	"rest-sandbox-recommend-test-server": "注意：REST 沙箱默认对生产数据库执行调用。为避免意外修改生产内容，请在发出 POST、PUT、PATCH 或 DELETE 请求之前，从服务器下拉列表中选择沙箱服务器$1。",
+	"rest-sandbox-recommend-test-server-with-description": "$1 \n\n注意：REST沙盒默认对生产数据库执行调用。为避免意外修改生产内容，请在发出POST、PUT、PATCH或DELETE请求之前，从服务器下拉列表中选择沙盒服务器 ( $2 )。",
 	"rest-sandbox-server-production": "（生产）",
 	"rest-sandbox-server-sandbox": "（沙盒）",
 	"rest-module-specs.v0-title": "规格API",
