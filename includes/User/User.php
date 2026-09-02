@@ -442,26 +442,22 @@ class User implements Stringable, Authority, UserIdentity, UserEmailContact {
 					MediaWikiServices::getInstance()->getDBLoadBalancerFactory(),
 					$flags
 				);
-				$queryBuilder = $dbr->newSelectQueryBuilder()
-					->select( [ 'actor_id', 'actor_user', 'actor_name' ] )
-					->from( 'actor' )
-					->recency( $flags );
-				if ( $this->mFrom === 'name' ) {
-					// make sure to use normalized form of IP for anonymous users
-					$queryBuilder->where( [ 'actor_name' => IPUtils::sanitizeIP( $this->mName ) ] );
-				} else {
-					$queryBuilder->where( [ 'actor_id' => $this->mActorId ] );
-				}
-				$row = $queryBuilder->caller( __METHOD__ )->fetchRow();
 
-				if ( !$row ) {
-					// Ugh.
+				$actorStore = MediaWikiServices::getInstance()->getActorStore();
+				if ( $this->mFrom === 'name' ) {
+					$userIdentity = $actorStore->getUserIdentityByName( $this->mName, $flags );
+				} else {
+					$userIdentity = $actorStore->getActorById( $this->mActorId, $dbr );
+				}
+
+				if ( !$userIdentity ) {
 					$this->loadDefaults( $this->mFrom === 'name' ? $this->mName : false );
-				} elseif ( $row->actor_user ) {
-					$this->mId = $row->actor_user;
+				} elseif ( $userIdentity->getId() ) {
+					$this->mId = $userIdentity->getId();
 					$this->loadFromId( $flags );
 				} else {
-					$this->loadDefaults( $row->actor_name, $row->actor_id );
+					$userName = $userIdentity->getName();
+					$this->loadDefaults( $userName, $actorStore->findActorIdByName( $userName, $dbr ) );
 				}
 				break;
 			case 'session':
