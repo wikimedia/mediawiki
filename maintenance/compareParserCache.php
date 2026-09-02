@@ -35,7 +35,7 @@ class CompareParserCache extends Maintenance {
 		$withcache = 0;
 		$withdiff = 0;
 		$services = $this->getServiceContainer();
-		$parserCache = $services->getParserCache();
+		$parserOutputAccess = $services->getParserOutputAccess();
 		$renderer = $services->getRevisionRenderer();
 		$wikiPageFactory = $services->getWikiPageFactory();
 		while ( $pages-- > 0 ) {
@@ -67,7 +67,7 @@ class CompareParserCache extends Maintenance {
 			$page = $wikiPageFactory->newFromTitle( $title );
 			$revision = $page->getRevisionRecord();
 			$parserOptions = $page->makeParserOptions( 'canonical' );
-			$parserOutputOld = $parserCache->get( $page, $parserOptions );
+			$parserOutputOld = $parserOutputAccess->getCachedParserOutput( $page, $parserOptions );
 
 			if ( $parserOutputOld ) {
 				$t1 = microtime( true );

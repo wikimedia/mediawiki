@@ -4,7 +4,7 @@ namespace MediaWiki\Tests\Maintenance;
 
 use CompareParserCache;
 use MediaWiki\Page\PageIdentity;
-use MediaWiki\Parser\ParserCache;
+use MediaWiki\Page\ParserOutputAccess;
 use MediaWiki\Parser\ParserOutput;
 use MediaWiki\Title\Title;
 
@@ -77,13 +77,13 @@ class CompareParserCacheTest extends MaintenanceBaseTestCase {
 		$mockParserOutput = $this->createMock( ParserOutput::class );
 		$mockParserOutput->method( 'getContentHolderText' )
 			->willReturn( 'abc' );
-		$mockParserCache = $this->createMock( ParserCache::class );
-		$mockParserCache->method( 'get' )
+		$mockParserCache = $this->createMock( ParserOutputAccess::class );
+		$mockParserCache->method( 'getCachedParserOutput' )
 			->willReturnCallback( function ( $actualPage ) use ( $page, $mockParserOutput ) {
 				$this->assertTrue( $page->isSamePageAs( $actualPage ) );
 				return $mockParserOutput;
 			} );
-		$this->setService( 'ParserCache', $mockParserCache );
+		$this->setService( 'ParserOutputAccess', $mockParserCache );
 
 		$this->maintenance->setOption( 'namespace', 0 );
 		$this->maintenance->setOption( 'maxpages', 1 );
