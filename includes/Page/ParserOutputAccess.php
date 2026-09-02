@@ -765,7 +765,8 @@ class ParserOutputAccess implements LoggerAwareInterface {
 		);
 	}
 
-	private function getPrimaryCache( ParserOptions $pOpts ): ParserCache {
+	/** @internal */
+	public function getPrimaryCache( ParserOptions $pOpts ): ParserCache {
 		$split = $this->config->get(
 			MainConfigNames::SplitParsoidParserCache
 		);

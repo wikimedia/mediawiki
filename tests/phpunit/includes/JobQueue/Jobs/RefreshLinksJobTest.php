@@ -118,8 +118,7 @@ class RefreshLinksJobTest extends MediaWikiIntegrationTestCase {
 		$getParserOptions = new ReflectionMethod( 'RefreshLinksJob', 'getParserOptions' );
 		$parserOptions = $getParserOptions->invoke( null, $page );
 		$parserOutputAccess = $this->getServiceContainer()->getParserOutputAccess();
-		$getPrimaryCache = new ReflectionMethod( $parserOutputAccess, 'getPrimaryCache' );
-		$parserCache = $getPrimaryCache->invoke( $parserOutputAccess, $parserOptions );
+		$parserCache = $parserOutputAccess->getPrimaryCache( $parserOptions );
 		$parserCache->deleteOptionsKey( $page );
 
 		$this->getDb()->newDeleteQueryBuilder()
@@ -174,8 +173,7 @@ class RefreshLinksJobTest extends MediaWikiIntegrationTestCase {
 		$getParserOptions = new ReflectionMethod( 'RefreshLinksJob', 'getParserOptions' );
 		$parserOptions = $getParserOptions->invoke( null, $page1 );
 		$parserOutputAccess = $this->getServiceContainer()->getParserOutputAccess();
-		$getPrimaryCache = new ReflectionMethod( $parserOutputAccess, 'getPrimaryCache' );
-		$parserCache = $getPrimaryCache->invoke( $parserOutputAccess, $parserOptions );
+		$parserCache = $parserOutputAccess->getPrimaryCache( $parserOptions );
 		$parserCache->deleteOptionsKey( $page1 );
 		$parserCache->deleteOptionsKey( $page2 );
 

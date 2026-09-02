@@ -46,7 +46,6 @@ use MediaWikiIntegrationTestCase;
 use MockTitleTrait;
 use PHPUnit\Framework\Assert;
 use PHPUnit\Framework\MockObject\MockObject;
-use ReflectionMethod;
 use Wikimedia\ArrayUtils\ArrayUtils;
 use Wikimedia\ObjectCache\BagOStuff;
 use Wikimedia\Rdbms\Platform\ISQLPlatform;
@@ -676,9 +675,8 @@ class DerivedPageDataUpdaterTest extends MediaWikiIntegrationTestCase {
 		$update = new RevisionSlotsUpdate();
 
 		$parserOutputAccess = $this->getServiceContainer()->getParserOutputAccess();
-		$getPrimaryCache = new ReflectionMethod( $parserOutputAccess, 'getPrimaryCache' );
 		$parserOptions = ParserOptions::newFromAnon();
-		$pcache = $getPrimaryCache->invoke( $parserOutputAccess, $parserOptions );
+		$pcache = $parserOutputAccess->getPrimaryCache( $parserOptions );
 
 		$pcache->deleteOptionsKey( $page );
 		$rev = $this->createRevision( $page, 'first', $mainContent1 );
@@ -1205,10 +1203,9 @@ class DerivedPageDataUpdaterTest extends MediaWikiIntegrationTestCase {
 			->execute();
 
 		$parserOutputAccess = $this->getServiceContainer()->getParserOutputAccess();
-		$getPrimaryCache = new ReflectionMethod( $parserOutputAccess, 'getPrimaryCache' );
 		$parserOptions = ParserOptions::newFromAnon();
 		$parserOptions->setUseParsoid( false );
-		$pcache = $getPrimaryCache->invoke( $parserOutputAccess, $parserOptions );
+		$pcache = $parserOutputAccess->getPrimaryCache( $parserOptions );
 		$pcache->deleteOptionsKey( $page );
 
 		$options = []; // TODO: test *all* the options...
@@ -1344,9 +1341,8 @@ class DerivedPageDataUpdaterTest extends MediaWikiIntegrationTestCase {
 		$rev = $this->createRevision( $page, 'first', $content );
 
 		$parserOutputAccess = $this->getServiceContainer()->getParserOutputAccess();
-		$getPrimaryCache = new ReflectionMethod( $parserOutputAccess, 'getPrimaryCache' );
 		$parserOptions = ParserOptions::newFromAnon();
-		$pcache = $getPrimaryCache->invoke( $parserOutputAccess, $parserOptions );
+		$pcache = $parserOutputAccess->getPrimaryCache( $parserOptions );
 		$pcache->deleteOptionsKey( $page );
 
 		$this->getDb()->startAtomic( __METHOD__ ); // let deferred updates queue up
@@ -1385,9 +1381,8 @@ class DerivedPageDataUpdaterTest extends MediaWikiIntegrationTestCase {
 		$rev = $this->createRevision( $page, 'first', $content, $user );
 
 		$parserOutputAccess = $this->getServiceContainer()->getParserOutputAccess();
-		$getPrimaryCache = new ReflectionMethod( $parserOutputAccess, 'getPrimaryCache' );
 		$parserOptions = ParserOptions::newFromAnon();
-		$pcache = $getPrimaryCache->invoke( $parserOutputAccess, $parserOptions );
+		$pcache = $parserOutputAccess->getPrimaryCache( $parserOptions );
 		$pcache->deleteOptionsKey( $page );
 
 		$this->getDb()->startAtomic( __METHOD__ ); // let deferred updates queue up
@@ -1632,11 +1627,10 @@ class DerivedPageDataUpdaterTest extends MediaWikiIntegrationTestCase {
 
 		// Assert cache update after edit ----------
 		$parserOutputAccess = $this->getServiceContainer()->getParserOutputAccess();
-		$getPrimaryCache = new ReflectionMethod( $parserOutputAccess, 'getPrimaryCache' );
 
 		$parserOptions = ParserOptions::newFromAnon();
 		$parserOptions->setUseParsoid( false );
-		$parserCache = $getPrimaryCache->invoke( $parserOutputAccess, $parserOptions );
+		$parserCache = $parserOutputAccess->getPrimaryCache( $parserOptions );
 
 		$parserCache->deleteOptionsKey( $page );
 

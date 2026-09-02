@@ -10,6 +10,7 @@ require_once __DIR__ . '/Maintenance.php';
 
 use MediaWiki\MainConfigNames;
 use MediaWiki\Maintenance\Maintenance;
+use MediaWiki\Parser\ParserOptions;
 use Wikimedia\Timestamp\ConvertibleTimestamp;
 use Wikimedia\Timestamp\TimestampFormat as TS;
 
@@ -58,6 +59,12 @@ class PurgeParserCache extends Maintenance {
 				'This requires using the SqlBagOStuff "servers" option in $wgObjectCaches.',
 			false,
 			true );
+		$this->addOption(
+			'name',
+			'Name of the ParserCache instance to purge.  Defaults to the' .
+				'primary cache of ParserOutputAccess.',
+			false,
+			true );
 	}
 
 	public function execute() {
@@ -82,7 +89,15 @@ class PurgeParserCache extends Maintenance {
 
 		$this->output( "Deleting objects expiring before " . $humanDate . "\n" );
 
-		$pc = $this->getServiceContainer()->getParserCache()->getCacheStorage();
+		if ( $this->hasOption( 'name' ) ) {
+			$pc = $this->getServiceContainer()->getParserCacheFactory()->getParserCache(
+				$this->getOption( 'name' )
+			)->getCacheStorage();
+		} else {
+			$parserOutputAccess = $this->getServiceContainer()->getParserOutputAccess();
+			$parserOptions = ParserOptions::newFromAnon();
+			$pc = $parserOutputAccess->getPrimaryCache( $parserOptions )->getCacheStorage();
+		}
 		$success = $pc->deleteObjectsExpiringBefore(
 			$timestamp,
 			$this->showProgressAndWait( ... ),
