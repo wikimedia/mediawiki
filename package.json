@@ -31,7 +31,7 @@
 		"domino": "2.1.0",
 		"dotenv": "8.2.0",
 		"eslint-config-wikimedia": "0.32.3",
-		"grunt": "1.6.2",
+		"grunt": "1.6.3",
 		"grunt-banana-checker": "0.13.0",
 		"grunt-contrib-watch": "1.1.0",
 		"grunt-eslint": "24.3.0",
@@ -49,7 +49,7 @@
 		"pinia": "2.0.16",
 		"qunit": "2.24.1",
 		"stylelint-config-wikimedia": "0.18.0",
-		"svgo": "3.3.3",
+		"svgo": "3.3.5",
 		"vue": "3.5.13",
 		"wdio-mediawiki": "file:tests/selenium/wdio-mediawiki",
 		"xml2js": "^0.6.2"
