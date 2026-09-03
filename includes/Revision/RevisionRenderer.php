@@ -13,11 +13,13 @@ use MediaWiki\Content\Renderer\ContentRenderer;
 use MediaWiki\Html\Html;
 use MediaWiki\Parser\ParserOptions;
 use MediaWiki\Parser\ParserOutput;
-use MediaWiki\Parser\ParserOutputFlags;
+use MediaWiki\Parser\Parsoid\PageBundleParserOutputConverter;
 use MediaWiki\Permissions\Authority;
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
+use Wikimedia\Assert\Assert;
+use Wikimedia\Parsoid\Core\HtmlPageBundle;
 use Wikimedia\Rdbms\ILoadBalancer;
 
 /**
@@ -219,9 +221,7 @@ class RevisionRenderer implements LoggerAwareInterface {
 		$previousOutputs = $this->splitSlotOutput( $rrev, $options, $hints['previous-output'] ?? null );
 
 		// short circuit if there is only the main slot
-		// T351026 hack: if use-parsoid is set, only return main slot output for now
-		// T351113 will remove this hack.
-		if ( array_keys( $slots ) === [ SlotRecord::MAIN ] || $options->getUseParsoid() ) {
+		if ( array_keys( $slots ) === [ SlotRecord::MAIN ] ) {
 			$h = [ 'previous-output' => $previousOutputs[SlotRecord::MAIN] ] + $hints;
 			return $rrev->getSlotParserOutput( SlotRecord::MAIN, $h );
 		}
@@ -229,6 +229,47 @@ class RevisionRenderer implements LoggerAwareInterface {
 		// move main slot to front
 		if ( isset( $slots[SlotRecord::MAIN] ) ) {
 			$slots = [ SlotRecord::MAIN => $slots[SlotRecord::MAIN] ] + $slots;
+		}
+
+		if ( $options->getUseParsoid() ) {
+			$combinedOutput = null;
+			$oldWatcher = false;
+			$options = $rrev->getOptions();
+
+			foreach ( $slots as $role => $slot ) {
+				$h = [ 'previous-output' => $previousOutputs[$role] ] + $hints;
+				$out = $rrev->getSlotParserOutput( $role, $h );
+
+				if ( $combinedOutput === null ) {
+					$combinedOutput = clone $out;
+					$oldWatcher = $options->registerWatcher( $combinedOutput->recordOption( ... ) );
+					if ( $withHtml ) {
+						// The isset above when moving the main slot to the front
+						// implies that we should record the first role for splitting
+						$combinedOutput->setExtensionData( 'core:slots:first', $role );
+					}
+				} else {
+					if ( $withHtml ) {
+						Assert::invariant(
+							!$out->getContentHolder()->isParsoidContent(),
+							"T438406: Can't combine Parsoid output until we figure " .
+								"out what to do with the PageBundle."
+						);
+						$fragmentName = "slot-$role";
+						$combinedOutput->getContentHolder()->setAsHtmlString(
+							$fragmentName,
+							$out->getContentHolderText(),
+						);
+						$combinedOutput->appendExtensionData( 'core:slots', $role );
+					}
+					$out->collectMetadata( $combinedOutput );
+				}
+			}
+
+			if ( $oldWatcher !== false ) {
+				$options->registerWatcher( $oldWatcher );
+			}
+			return $combinedOutput;
 		}
 
 		$combinedOutput = new ParserOutput( null );
@@ -267,10 +308,10 @@ class RevisionRenderer implements LoggerAwareInterface {
 					// skip header for the first slot
 					$first = false;
 				} else {
-					// NOTE: this placeholder is hydrated by ParserOutput::getText().
+					// NOTE: this placeholder is hydrated by HydrateHeaderPlaceholders.
 					$headText = Html::element( 'mw:slotheader', [], $role );
 					$html .= Html::rawElement( 'h1', [ 'class' => 'mw-slot-header' ], $headText );
-					$combinedOutput->setOutputFlag( ParserOutputFlags::HAS_SLOT_HEADERS );
+					$combinedOutput->appendExtensionData( 'core:slots', $role );
 				}
 
 				// XXX: do we want to put a wrapper div around the output?
@@ -290,11 +331,10 @@ class RevisionRenderer implements LoggerAwareInterface {
 	 * This reverses ::combineSlotOutput() in order to enable selective
 	 * update of individual slots.
 	 *
-	 * @todo Currently this doesn't do much other than disable selective
-	 * update if there is more than one slot.  But in the case where
-	 * slot combination is reversible, this should reverse it and attempt
-	 * to reconstruct the original split ParserOutputs from the merged
-	 * ParserOutput.
+	 * @todo Currently, for legacy output, slot combination is not reversible.
+	 * For Parsoid output, the original split ParserOutputs are reconstructed
+	 * from the combined ParserOutput.  However, the munged metadata on the
+	 * combined ParserOutput isn't yet untangled.
 	 *
 	 * @param RenderedRevision $rrev
 	 * @param ParserOptions $options
@@ -303,7 +343,9 @@ class RevisionRenderer implements LoggerAwareInterface {
 	 * @return array<string,?ParserOutput> A mapping from role name to a
 	 *   previous ParserOutput for that slot in the previous parse
 	 */
-	private function splitSlotOutput( RenderedRevision $rrev, ParserOptions $options, ?ParserOutput $previousOutput ) {
+	private function splitSlotOutput(
+		RenderedRevision $rrev, ParserOptions $options, ?ParserOutput $previousOutput
+	) {
 		// If there is no previous parse, then there is nothing to split.
 		$revision = $rrev->getRevision();
 		$revslots = $revision->getSlots();
@@ -312,13 +354,35 @@ class RevisionRenderer implements LoggerAwareInterface {
 		}
 
 		// short circuit if there is only the main slot
-		// T351026 hack: if use-parsoid is set, only return main slot output for now
-		// T351113 will remove this hack.
-		if ( $revslots->getSlotRoles() === [ SlotRecord::MAIN ] || $options->getUseParsoid() ) {
+		if ( $revslots->getSlotRoles() === [ SlotRecord::MAIN ] ) {
 			return [ SlotRecord::MAIN => $previousOutput ];
 		}
 
-		// @todo Currently slot combination is not reversible
-		return array_fill_keys( $revslots->getSlotRoles(), null );
+		if ( !$options->getUseParsoid() ) {
+			// @todo Currently slot combination is not reversible
+			return array_fill_keys( $revslots->getSlotRoles(), null );
+		}
+
+		// FIXME: While the below splits out the html, it's unclear what to do about
+		// the metadata that is collected along the way
+
+		// Extension data was only set when the ParserOutput was combined $withHtml
+		$first = $previousOutput->getExtensionData( 'core:slots:first' ) ?? SlotRecord::MAIN;
+		$slotOutput = [ $first => $previousOutput ];
+		$contentHolder = $previousOutput->getContentHolder();
+
+		foreach ( $previousOutput->getExtensionData( 'core:slots' ) ?? [] as $role => $value ) {
+			$fragmentName = "slot-$role";
+			$html = $contentHolder->getAsHtmlString( $fragmentName ) ?? '';
+			$contentHolder->setAsHtmlString( $fragmentName, null );
+
+			$slotOutput[$role] = PageBundleParserOutputConverter::parserOutputFromPageBundle(
+				HtmlPageBundle::newEmpty( $html ),
+				// T438406: We've asserted this when combining
+				isParsoidContent: false,
+			);
+		}
+
+		return $slotOutput;
 	}
 }

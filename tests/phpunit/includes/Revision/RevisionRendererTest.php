@@ -6,6 +6,7 @@ use LogicException;
 use MediaWiki\CommentStore\CommentStoreComment;
 use MediaWiki\Content\Content;
 use MediaWiki\Content\IContentHandlerFactory;
+use MediaWiki\Content\JavaScriptContent;
 use MediaWiki\Content\Renderer\ContentRenderer;
 use MediaWiki\Content\WikitextContent;
 use MediaWiki\HookContainer\HookContainer;
@@ -28,6 +29,8 @@ use MediaWiki\Title\TitleFactory;
 use MediaWiki\User\UserIdentityValue;
 use MediaWikiIntegrationTestCase;
 use PHPUnit\Framework\MockObject\MockObject;
+use ReflectionClass;
+use ReflectionMethod;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\ILoadBalancer;
 use Wikimedia\Rdbms\SelectQueryBuilder;
@@ -104,6 +107,7 @@ class RevisionRendererTest extends MediaWikiIntegrationTestCase {
 			);
 		} );
 		$roleReg->defineRoleWithModel( 'aux', CONTENT_MODEL_WIKITEXT );
+		$this->setService( 'SlotRoleRegistry', $roleReg );
 
 		return new RevisionRenderer( $lb, $roleReg, $cr );
 	}
@@ -424,24 +428,39 @@ class RevisionRendererTest extends MediaWikiIntegrationTestCase {
 		$this->assertFalse( self::linksContain( $auxOutput, NS_MAIN, 'Kittens' ), 'no main links in aux' );
 
 		// Same tests with Parsoid
-		// T351026: We should get only main slot output in the combined output.
-		// T351113 will have to update this test.
 		$options = ParserOptions::newFromAnon();
 		$options->setUseParsoid();
 		$rr = $renderer->getRenderedRevision( $rev, $options );
+
+		$auxOutput = $rr->getSlotParserOutput( 'aux' );
+
+		// T438406: For now, just pretend this isn't Parsoid content
+		$reflection = new ReflectionClass( $auxOutput->getContentHolder() );
+		$property = $reflection->getProperty( 'isParsoidContent' );
+		$property->setValue( $auxOutput->getContentHolder(), false );
 
 		$combinedOutput = $rr->getRevisionParserOutput();
 		$mainOutput = $rr->getSlotParserOutput( SlotRecord::MAIN );
 
 		$combinedHtml = $pipeline->run( $combinedOutput, $options, [] )->getContentHolderText();
 		$mainHtml = $pipeline->run( $mainOutput, $options, [] )->getContentHolderText();
-		$this->assertSame( $combinedHtml, $mainHtml );
-		$this->assertEquals(
+		$auxHtml = $pipeline->run( $auxOutput, $options, [] )->getContentHolderText();
+
+		$this->assertNotSame( $combinedHtml, $mainHtml );
+
+		$this->assertNotEquals(
 			$combinedOutput->getLinkList( ParserOutputLinkTypes::LOCAL ),
-			$mainOutput->getLinkList( ParserOutputLinkTypes::LOCAL ) );
+			$mainOutput->getLinkList( ParserOutputLinkTypes::LOCAL )
+		);
+
 		$this->assertStringContainsString( 'class="mw-content-ltr mw-parser-output"', $mainHtml );
+		$this->assertStringContainsString( 'Kittens', $mainHtml );
+		$this->assertStringContainsString( 'Goats', $auxHtml );
+		$this->assertStringNotContainsString( 'Goats', $mainHtml );
+		$this->assertStringNotContainsString( 'Kittens', $auxHtml );
 		$this->assertStringContainsString( 'Kittens', $combinedHtml );
-		$this->assertStringNotContainsString( 'Goats', $combinedHtml );
+		$this->assertStringContainsString( 'Goats', $combinedHtml );
+		$this->assertStringContainsString( '>aux<', $combinedHtml, 'slot header' );
 	}
 
 	protected static function linksContain( ParserOutput $parserOutput, int $ns, string $dbkey ) {
@@ -484,6 +503,33 @@ class RevisionRendererTest extends MediaWikiIntegrationTestCase {
 
 		$output = $rr->getRevisionParserOutput( [ 'generate-html' => false ] );
 		$this->assertFalse( $output->hasText(), 'hasText' );
+	}
+
+	public function testCombineAndSplit() {
+		$renderer = $this->newRevisionRenderer();
+
+		$content = new WikitextContent( '[[Test]]' );
+		$rev = MutableRevisionRecord::newFromContent( $this->fakePage, $content )
+			->setContent( 'aux', new JavaScriptContent( 'test = 123;' ) );
+
+		$options = ParserOptions::newFromAnon();
+		$options->setUseParsoid();
+		$rr = $renderer->getRenderedRevision( $rev, $options );
+
+		$combinedOutput = $rr->getRevisionParserOutput();
+
+		$splitSlotOutput = new ReflectionMethod( $renderer, 'splitSlotOutput' );
+		$slotOutput = $splitSlotOutput->invoke( $renderer, $rr, $options, $combinedOutput );
+
+		$this->assertCount( 2, $slotOutput );
+		$this->assertArrayHasKey( SlotRecord::MAIN, $slotOutput );
+		$this->assertArrayHasKey( 'aux', $slotOutput );
+
+		$mainHtml = $slotOutput[SlotRecord::MAIN]->getContentHolderText();
+		$this->assertStringNotContainsString( '123', $mainHtml );
+
+		$auxHtml = $slotOutput['aux']->getContentHolderText();
+		$this->assertStringContainsString( '123', $auxHtml );
 	}
 
 }

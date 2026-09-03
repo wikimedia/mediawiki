@@ -168,6 +168,9 @@ class DefaultOutputPipelineFactory {
 
 		'HydrateHeaderPlaceholders' => [
 			'class' => HydrateHeaderPlaceholders::class,
+			'services' => [
+				'SlotRoleRegistry',
+			]
 		],
 
 		'ExecuteLastStageTransformHooks' => [
