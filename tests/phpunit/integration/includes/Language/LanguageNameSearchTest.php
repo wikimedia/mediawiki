@@ -65,10 +65,9 @@ class LanguageNameSearchTest extends MediaWikiIntegrationTestCase {
 				'zh-my' => 'chinese (malaysia)',
 				'wuu' => 'chinese — isi-wu chinese',
 				'hak' => 'chinese — hakka chinese',
-				'zh-classical' => 'chinese — literary chinese',
-				'lzh' => 'chinesesch — klassescht chinesesch',
+				'lzh' => 'chinese — literary chinese',
 				'hsn' => 'chinese — isi-xiang chinese',
-				'gan' => 'chinese — isi-gan chinese',
+				'gan' => 'chinese — gan chinese',
 				'zh-min-nan' => 'chinese min nan',
 				'nan' => 'chinese — isi-min nan chinese',
 				'cdo' => 'chinese min dong',
@@ -92,7 +91,8 @@ class LanguageNameSearchTest extends MediaWikiIntegrationTestCase {
 			],
 			[ 'musi', [
 				'mui' => class_exists( \MediaWiki\Extension\CLDR\LanguageNames::class ) ? 'musi' : 'musi palembang',
-				'mos' => 'mosi',
+				'umu' => 'munsi',
+				'mos' => 'mosi'
 			]
 			],
 			[ 'palembang', [
