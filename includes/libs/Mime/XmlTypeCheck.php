@@ -194,9 +194,11 @@ class XmlTypeCheck {
 			$this->wellFormed = false;
 			return true;
 		} );
-		$ret = $reader->read();
-		restore_error_handler();
-		return $ret;
+		try {
+			return $reader->read();
+		} finally {
+			restore_error_handler();
+		}
 	}
 
 	private function validate( XMLReader $reader ) {

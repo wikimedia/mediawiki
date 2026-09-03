@@ -10,7 +10,6 @@
 
 namespace MediaWiki\Mail;
 
-use Exception;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MainConfigNames;
@@ -434,12 +433,10 @@ class UserMailer {
 					$extraParams
 				);
 			}
-		} catch ( Exception $e ) {
+		} finally {
 			restore_error_handler();
-			throw $e;
 		}
 
-		restore_error_handler();
 		ini_set( 'html_errors', $html_errors );
 
 		if ( self::$mErrorString ) {

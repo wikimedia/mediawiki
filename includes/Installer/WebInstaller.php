@@ -315,11 +315,9 @@ class WebInstaller extends Installer {
 		try {
 			session_name( 'mw_installer_session' );
 			session_start( $options );
-		} catch ( Exception $e ) {
+		} finally {
 			restore_error_handler();
-			throw $e;
 		}
-		restore_error_handler();
 
 		if ( $this->phpErrors ) {
 			return false;

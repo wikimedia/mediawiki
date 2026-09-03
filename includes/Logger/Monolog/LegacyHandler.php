@@ -13,6 +13,7 @@ use Monolog\Logger;
 use Monolog\LogRecord;
 use Socket;
 use UnexpectedValueException;
+use Wikimedia\ScopedCallback;
 
 /**
  * Monolog imitation of MediaWiki\Logger\LegacyLogger
@@ -118,6 +119,7 @@ class LegacyHandler extends AbstractProcessingHandler {
 		}
 		$this->error = null;
 		set_error_handler( $this->errorTrap( ... ) );
+		$scopedErrorHandlerRestore = new ScopedCallback( restore_error_handler( ... ) );
 
 		if ( str_starts_with( $this->uri, 'udp:' ) ) {
 			$parsed = parse_url( $this->uri );
@@ -152,7 +154,7 @@ class LegacyHandler extends AbstractProcessingHandler {
 		} else {
 			$this->sink = fopen( $this->uri, 'a' );
 		}
-		restore_error_handler();
+		ScopedCallback::consume( $scopedErrorHandlerRestore );
 
 		if ( !$this->sink ) {
 			$this->sink = null;

@@ -103,6 +103,7 @@ class LogstashFormatterTest extends \MediaWikiUnitTestCase {
 			'extra' => [ 'server' => 'host1', 'url' => '/wiki/Foo', 'reqId' => 'abc' ],
 			'context' => [ 'user' => 'bob' ],
 		];
+		$this->expectDeprecationAndContinue( '/Passing an array to .*::format\(\) is deprecated/' );
 		$formatted = json_decode( $formatter->format( $record ), true );
 
 		$this->assertSame( '2020-01-01T00:00:00+00:00', $formatted['@timestamp'] );
@@ -132,6 +133,7 @@ class LogstashFormatterTest extends \MediaWikiUnitTestCase {
 			'datetime' => '2020-01-01T00:00:00+00:00',
 			'context' => [ 'user' => 'bob' ],
 		];
+		$this->expectDeprecationAndContinue( '/Passing an array to .*::format\(\) is deprecated/' );
 		$formatted = json_decode( $formatter->format( $record ), true );
 
 		$this->assertSame( 'bob', $formatted['@fields']['ctx_user'] );
