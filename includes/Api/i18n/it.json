@@ -149,7 +149,7 @@
 	"apihelp-feedcontributions-param-feedformat": "Il formato del feed.",
 	"apihelp-feedcontributions-param-year": "Dall'anno (e precedenti).",
 	"apihelp-feedcontributions-param-month": "Dal mese (e precedenti).",
-	"apihelp-feedcontributions-param-tagfilter": "Filtra contributi che hanno queste etichette.",
+	"apihelp-feedcontributions-param-tagfilter": "Mostra solo contributi che hanno queste etichette.",
 	"apihelp-feedcontributions-param-deletedonly": "Mostra solo i contribuiti cancellati.",
 	"apihelp-feedcontributions-param-toponly": "Mostra solo i contributi che sono le ultime versioni per la pagina.",
 	"apihelp-feedcontributions-param-newonly": "Visualizza solo le modifiche che sono creazioni di pagina.",

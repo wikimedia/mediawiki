@@ -220,7 +220,7 @@
 	"apihelp-feedcontributions-param-namespace": "Que espazo de nomes filtrar polas contribucións.",
 	"apihelp-feedcontributions-param-year": "Desde o ano (e anteriores).",
 	"apihelp-feedcontributions-param-month": "Desde o mes de (e anteriores).",
-	"apihelp-feedcontributions-param-tagfilter": "Filtrar as contribucións que teñan estas etiquetas.",
+	"apihelp-feedcontributions-param-tagfilter": "Mostrar só as contribucións que teñan estas etiquetas.",
 	"apihelp-feedcontributions-param-deletedonly": "Amosar só as contribucións eliminadas.",
 	"apihelp-feedcontributions-param-toponly": "Amosar só as edicións que que son as ultimas revisións.",
 	"apihelp-feedcontributions-param-newonly": "Amosar só as edicións que crearon páxinas.",
