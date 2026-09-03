@@ -3968,7 +3968,6 @@
 	"userlogout-submit": "Kijelentkezés",
 	"userlogout-continue": "Biztos ki szeretnél jelentkezni?",
 	"userlogout-temp": "Ha egy többek által használt eszközt használsz (pl. könyvtárban vagy iskolában), bezárhatod a munkamenetet, megakadályozva, hogy mások használják ezt az ideiglenes fiókot.",
-	"userlogout-temp-moreinfo": "Figyelj rá, hogy több ideiglenes fiók használata ellenkezhet a jelen wiki szabályaival, és lehet, hogy blokkolnak, ha ez gyakran előfordul.",
 	"userlogout-temp-messagebox-title": "Biztosan be akarod zárni a munkamenetet, és ki akarsz jelentkezni?",
 	"userlogout-temp-messagebox-body": "Ha kijelentkezel, a továbbiakban nem fogod tudni elérni ezt az ideiglenes fiókot.",
 	"temp-user-logout-confirm-title": "Munkamenet bezárása",

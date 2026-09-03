@@ -18,7 +18,7 @@
 	"interwiki": "Lihat dan sunting data antarwiki",
 	"interwiki-title-norights": "Lihat data antarwiki",
 	"interwiki_intro": "Ini adalah sebuah laporan mengenai tabel interwiki, yang mendefinisikan jalan pintas awalan untuk menautkan ke wiki lain dan situs luar. Untuk saran penggunaan, silakan lihat [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Interwiki manualnya di MediaWiki.org].",
-	"interwiki-legend-label": "Keterangan",
+	"interwiki-legend-label": "Legenda",
 	"interwiki_prefix": "Prefiks",
 	"interwiki-prefix-label": "Prefiks:",
 	"interwiki_prefix_intro": "Interwiki prefix akan digunakan dalam  <code>[<nowiki />[prefix:<em>pagename</em>]]</code> sintak teksWiki",

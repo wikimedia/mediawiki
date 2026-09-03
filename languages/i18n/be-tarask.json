@@ -2357,7 +2357,7 @@
 	"sp-contributions-submit": "Шукаць",
 	"sp-contributions-outofrange": "Немагчыма паказаць ніякія вынікі. Запытаны IP-дыяпазон большы чым CIDR-ліміт /$1.",
 	"sp-contributions-concurrency-user": "Прабачце, з вашага рахунку йдзе забагата запытаў. Калі ласка, паспрабуйце яшчэ раз пазьней.",
-	"sp-contributions-concurrency-ip": "Прабачце, з вашага IP-адрасу паступае занадта шмат запытаў. Калі ласка, паспрабуйце яшчэ раз пазьней.",
+	"sp-contributions-concurrency-ip": "На жаль, з вашага IP-адрасу прыходзіць забагата запытаў. Калі ласка, паспрабуйце яшчэ раз пазьней.",
 	"sp-contributions-newcontribution": "Новы ўнёсак",
 	"whatlinkshere": "Спасылкі на старонку",
 	"whatlinkshere-count": "Паказаны $1 {{PLURAL:$1|элэмэнт|элэмэнты}}.",

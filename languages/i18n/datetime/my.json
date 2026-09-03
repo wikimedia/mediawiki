@@ -4,7 +4,8 @@
 			"Dr Lotus Black",
 			"Lionslayer",
 			"Ninjastrikers",
-			"ကိုရာဝီ"
+			"ကိုရာဝီ",
+			"Kalixlouiis"
 		]
 	},
 	"january": "ဇန်နဝါရီ",
@@ -74,7 +75,7 @@
 	"duration-years": "$1 {{PLURAL:$1|နှစ်}}",
 	"duration-months": "$1 {{PLURAL:$1|လ|လများ}}",
 	"duration-weeks": "$1 {{PLURAL:$1|ပတ်}}",
-	"duration-days": "$1 {{PLURAL:$1|ရက်|ရက်}}",
+	"duration-days": "$1 {{PLURAL:$1|ရက်}}",
 	"duration-hours": "$1 {{PLURAL:$1|နာရီ|နာရီ}}",
 	"duration-minutes": "$1 {{PLURAL:$1|မိနစ်|မိနစ်}}",
 	"duration-seconds": "$1 {{PLURAL:$1|စက္ကန့်|စက္ကန့်}}",

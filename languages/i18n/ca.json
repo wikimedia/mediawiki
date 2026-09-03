@@ -3991,7 +3991,6 @@
 	"userlogout-submit": "Sortir",
 	"userlogout-continue": "Voleu finalitzar la sessió?",
 	"userlogout-temp": "Si esteu editant en un dispositiu compartit com ara una biblioteca o un ordinador de l'escola, heu de tancar aquesta sessió per evitar que altres persones utilitzin aquest compte temporal.",
-	"userlogout-temp-moreinfo": "Si us plau tingueu en compte que editar amb diversos comptes temporals pot anar en contra de les normes d'aquest wiki i podríeu ser bloquejats si això passés amb freqüència.",
 	"userlogout-temp-messagebox-title": "Esteu segur que voleu abandonar la sessió i tancar-la?",
 	"userlogout-temp-messagebox-body": "Un cop tanqueu la sessió, ja no podreu accedir a aquest compte temporal.",
 	"temp-user-logout-confirm-title": "Tancar la sessió",
