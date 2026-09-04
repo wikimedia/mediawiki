@@ -44,7 +44,9 @@
 			"Sophivorus",
 			"Tiberius1701",
 			"Titoxd",
-			"VegaDark"
+			"VegaDark",
+			"AugusTuber",
+			"JorgeElias2302"
 		]
 	},
 	"userrights": "Permisos de usuario",
@@ -146,6 +148,7 @@
 	"right-blockemail": "Bloquear o desbloquear a un usuario para que no pueda enviar correos electrónicos",
 	"right-hideuser": "Bloquear o desbloquear un nombre de usuario, haciéndolo invisible",
 	"right-ipblock-exempt": "Evitar bloqueos a IP, automáticos y por intervalos",
+	"right-logentryimport": "Importar entradas de registro",
 	"right-unblockself": "Desbloquearse a sí mismo",
 	"right-protect": "Cambiar configuración de protección y editar páginas protegidas en cascada",
 	"right-editprotected": "Editar páginas protegidas ({{int:restriction-level-sysop}})",
@@ -278,6 +281,7 @@
 	"action-viewmyprivateinfo": "ver tu información privada",
 	"action-editmyprivateinfo": "editar tu información privada",
 	"action-editcontentmodel": "editar el modelo de contenido de una página",
+	"action-createwithcontentmodel": "crear páginas con modelos de contenido no predeterminados",
 	"action-managechangetags": "crear y (des)activar etiquetas",
 	"action-applychangetags": "aplicar etiquetas junto con los cambios",
 	"action-changetags": "agregar y quitar etiquetas arbitrarias a revisiones individuales y entradas del registro",

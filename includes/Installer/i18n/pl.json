@@ -164,7 +164,7 @@
 	"config-db-web-help": "Wybierz nazwę użytkownika i hasło, z których korzystać będzie serwer WWW do łączenia się z serwerem baz danych, podczas zwykłej pracy z wiki.",
 	"config-db-web-account-same": "Użyj tego samego konta, co dla instalacji",
 	"config-db-web-create": "Utwórz konto, jeśli jeszcze nie istnieje",
-	"config-db-web-no-create-privs": "Konto podane do wykonania instalacji nie ma wystarczających uprawnień, aby utworzyć nowe konto.\nKonto, które wskazałeś tutaj musi już istnieć.",
+	"config-db-web-no-create-privs": "Konto podane do wykonania instalacji nie ma wystarczających uprawnień, aby utworzyć nowe konto.\nWskazane tu przez Ciebie konto musi już istnieć.",
 	"config-mysql-engine": "Silnik przechowywania",
 	"config-mysql-innodb": "InnoDB (zalecane)",
 	"config-mysql-engine-help": "'''InnoDB''' jest prawie zawsze najlepszą opcją, ponieważ posiada dobrą obsługę współbieżności.\n\n'''MyISAM''' może być szybsze w instalacjach pojedynczego użytkownika lub tylko do odczytu.\nBazy danych MyISAM mają tendencję do ulegania uszkodzeniom częściej niż bazy InnoDB.",
