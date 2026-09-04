@@ -796,11 +796,7 @@ class ApiUpload extends ApiBase {
 					if ( $file ) {
 						$imageinfo = $this->getUploadImageInfoInternal( $file, false );
 					}
-				} elseif ( isset( $progress['imageinfo'] ) ) {
-					// status cache includes imageinfo from older entries (b/c for rollback of deployment)
-					$imageinfo = $progress['imageinfo'];
 				}
-				unset( $progress['imageinfo'] );
 			}
 
 			$this->getResult()->addValue( null, $this->getModuleName(), $progress );

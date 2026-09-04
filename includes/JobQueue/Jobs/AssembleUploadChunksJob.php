@@ -7,7 +7,6 @@
 namespace MediaWiki\JobQueue\Jobs;
 
 use Exception;
-use MediaWiki\Api\ApiUpload;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\Exception\MWExceptionHandler;
 use MediaWiki\JobQueue\GenericParameterJob;
@@ -139,11 +138,6 @@ class AssembleUploadChunksJob extends Job implements GenericParameterJob {
 			// which is same as first chunk but with a different name.
 			$upload->stash->removeFileNoAuth( $this->params['filekey'] );
 
-			// Build the image info array while we have the local reference handy
-			// Deprecated, kept for backward compatibility on deployment
-			$apiUpload = ApiUpload::getDummyInstance();
-			$imageInfo = $apiUpload->getUploadImageInfo( $upload );
-
 			// Cleanup any temporary local file
 			$upload->cleanupTempFile();
 
@@ -155,7 +149,6 @@ class AssembleUploadChunksJob extends Job implements GenericParameterJob {
 					'result' => 'Success',
 					'stage' => 'assembling',
 					'filekey' => $newFileKey,
-					'imageinfo' => $imageInfo,
 					'status' => $status
 				]
 			);

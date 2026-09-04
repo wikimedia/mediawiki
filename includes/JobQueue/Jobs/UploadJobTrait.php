@@ -8,7 +8,6 @@
 namespace MediaWiki\JobQueue\Jobs;
 
 use Exception;
-use MediaWiki\Api\ApiUpload;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\Exception\MWExceptionHandler;
 use MediaWiki\Logger\LoggerFactory;
@@ -260,17 +259,13 @@ trait UploadJobTrait {
 	 * Set the status at the end or processing
 	 */
 	private function setStatusDone() {
-		// Build the image info array while we have the local reference handy
-		// Deprecated, kept for backward compatibility on deployment
-		$imageInfo = ApiUpload::getDummyInstance()->getUploadImageInfo( $this->getUpload() );
-
 		// Cache the info so the user doesn't have to wait forever to get the final info
 		$file = $this->getUpload()->getLocalFile();
 		$this->setStatus(
 			'publish',
 			'Success',
 			Status::newGood(),
-			[ 'filename' => $file->getName(), 'timestamp' => $file->getTimestamp(), 'imageinfo' => $imageInfo ]
+			[ 'filename' => $file->getName(), 'timestamp' => $file->getTimestamp(), ]
 		);
 	}
 
