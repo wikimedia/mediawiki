@@ -176,8 +176,12 @@ abstract class LogFormatterTestCase extends MediaWikiLangTestCase {
 	}
 
 	protected function expandDatabaseRow( $data, $legacy ) {
+		// This imitates a row returned by DatabaseLogEntry::newSelectQueryBuilder
+		// via LoggingSelectQueryBuilder. This is missing a bunch of fields that
+		// haven't yet been needed by tests. Add as needed.
 		return [
 			// no log_id because no insert in database
+			'user_id' => $data['user'] ?? 42,
 			'log_type' => $data['type'],
 			'log_action' => $data['action'],
 			'log_timestamp' => $data['timestamp'] ?? wfTimestampNow(),
