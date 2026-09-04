@@ -20,7 +20,6 @@ use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleValue;
 use stdClass;
 use Wikimedia\ObjectCache\WANObjectCache;
-use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\DBAccessObjectUtils;
 use Wikimedia\Rdbms\IDBAccessObject;
 use Wikimedia\Rdbms\IReadableDatabase;
@@ -376,9 +375,8 @@ class RestrictionStore {
 						// Page protections always leave a new dummy revision
 						$this->wanCache->makeKey( 'page-restrictions', 'v1', $id, $latestRev ),
 						$this->wanCache::TTL_DAY,
-						function ( $curValue, &$ttl, array &$setOpts ) use ( $loadRestrictionsFromDb ) {
+						function ( $curValue, &$ttl ) use ( $loadRestrictionsFromDb ) {
 							$dbr = $this->loadBalancerFactory->getReplicaDatabase();
-							$setOpts += Database::getCacheSetOptions( $dbr );
 							if ( $this->loadBalancerFactory->hasOrMadeRecentPrimaryChanges() ) {
 								// TODO: cleanup Title cache and caller assumption mess in general
 								$ttl = WANObjectCache::TTL_UNCACHEABLE;

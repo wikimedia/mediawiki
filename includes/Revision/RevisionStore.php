@@ -57,7 +57,6 @@ use Wikimedia\Assert\PreconditionException;
 use Wikimedia\IPUtils;
 use Wikimedia\ObjectCache\BagOStuff;
 use Wikimedia\ObjectCache\WANObjectCache;
-use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\DBAccessObjectUtils;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\IDBAccessObject;
@@ -2925,10 +2924,7 @@ class RevisionStore implements RevisionFactory, RevisionLookup, LoggerAwareInter
 			// Page/rev IDs passed in from DB to reflect history merges
 			$this->getRevisionRowCacheKey( $db, $pageId, $revId ),
 			WANObjectCache::TTL_WEEK,
-			function ( $curValue, &$ttl, array &$setOpts ) use (
-				$db, $revId, &$fromCache
-			) {
-				$setOpts += Database::getCacheSetOptions( $db );
+			function () use ( $db, $revId, &$fromCache ) {
 				$row = $this->fetchRevisionRowFromConds( $db, [ 'rev_id' => intval( $revId ) ] );
 				if ( $row ) {
 					$fromCache = false;

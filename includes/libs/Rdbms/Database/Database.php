@@ -2732,6 +2732,7 @@ abstract class Database implements Stringable, IDatabaseForOwner, IMaintainableD
 	 * @deprecated since 1.47, has no effect and should be removed
 	 */
 	public static function getCacheSetOptions( ?IReadableDatabase ...$dbs ) {
+		wfDeprecated( __METHOD__, '1.47' );
 		$res = [ 'pending' => false ];
 
 		foreach ( $dbs as $db ) {
