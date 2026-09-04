@@ -1058,9 +1058,9 @@ class WANObjectCache implements
 	 * However, it is expensive for the former entities to verify against all of the relevant
 	 * "check" keys during each getWithSetCallback() call. A less expensive approach is to do
 	 * these verifications only after a "time-till-verify" (TTV) has passed. This is a middle
-	 * ground between using blind TTLs and using constant verification. The adaptiveTTL() method
-	 * can be used to dynamically adjust the TTV. Also, the initial TTV can make use of the
-	 * last-modified times of the dependent entities (either from the DB or the "check" keys).
+	 * ground between using blind TTLs and using constant verification. Also, the initial TTV
+	 * can make use of the last-modified times of the dependent entities (either from the DB
+	 * or the "check" keys).
 	 *
 	 * Example usage:
 	 * @code
@@ -1525,8 +1525,7 @@ class WANObjectCache implements
 	 *      Default: WANObjectCache::AGE_NEW.
 	 *   - staleTTL: Seconds to keep the key around if it is stale. This means that on cache
 	 *      miss the callback may get $oldValue/$oldAsOf values for keys that have already been
-	 *      expired for this specified time. This is useful if adaptiveTTL() is used on the old
-	 *      value's as-of time when it is verified as still being correct.
+	 *      expired for this specified time.
 	 *      Default: WANObjectCache::STALE_TTL_NONE
 	 *   - touchedCallback: A callback that takes the current value and returns a UNIX timestamp
 	 *      indicating the last time a dynamic dependency changed. Null can be returned if there
@@ -2064,11 +2063,6 @@ class WANObjectCache implements
 	 *                 [],
 	 *                 $queryInfo['joins']
 	 *             );
-	 *             foreach ( $res as $row ) {
-	 *                 $rows[$row->id] = $row;
-	 *                 $mtime = wfTimestamp( TS::UNIX, $row->timestamp );
-	 *                 $ttls[$row->id] = $this->adaptiveTTL( $mtime, $ttls[$row->id] );
-	 *             }
 	 *
 	 *             return $rows;
 	 *         },
@@ -2445,6 +2439,7 @@ class WANObjectCache implements
 	 *     );
 	 * @endcode
 	 *
+	 * @deprecated since 1.47 No replacement, usage should be removed
 	 * @param int|float|string|null $mtime UNIX timestamp; null if none
 	 * @param int $maxTTL Maximum TTL (seconds)
 	 * @param int $minTTL Minimum TTL (seconds); Default: 30
@@ -2453,6 +2448,7 @@ class WANObjectCache implements
 	 * @since 1.28
 	 */
 	public function adaptiveTTL( $mtime, $maxTTL, $minTTL = 30, $factor = 0.2 ) {
+		wfDeprecated( __METHOD__, '1.47' );
 		// handle fractional seconds and string integers
 		$mtime = (int)$mtime;
 		if ( $mtime <= 0 ) {

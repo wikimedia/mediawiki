@@ -2187,39 +2187,6 @@ class WANObjectCacheTest extends MediaWikiUnitTestCase {
 		);
 	}
 
-	/**
-	 * @dataProvider provideAdaptiveTTL
-	 * @param float|int $ago
-	 * @param int $maxTTL
-	 * @param int $minTTL
-	 * @param float $factor
-	 * @param int $adaptiveTTL
-	 */
-	public function testAdaptiveTTL( $ago, $maxTTL, $minTTL, $factor, $adaptiveTTL ) {
-		[ $cache ] = $this->newWanCache();
-		$mtime = $ago ? time() - $ago : $ago;
-		$margin = 5;
-		$ttl = $cache->adaptiveTTL( $mtime, $maxTTL, $minTTL, $factor );
-
-		$this->assertGreaterThanOrEqual( $adaptiveTTL - $margin, $ttl );
-		$this->assertLessThanOrEqual( $adaptiveTTL + $margin, $ttl );
-
-		$ttl = $cache->adaptiveTTL( (string)$mtime, $maxTTL, $minTTL, $factor );
-
-		$this->assertGreaterThanOrEqual( $adaptiveTTL - $margin, $ttl );
-		$this->assertLessThanOrEqual( $adaptiveTTL + $margin, $ttl );
-	}
-
-	public static function provideAdaptiveTTL() {
-		return [
-			[ 3600, 900, 30, 0.2, 720 ],
-			[ 3600, 500, 30, 0.2, 500 ],
-			[ 3600, 86400, 800, 0.2, 800 ],
-			[ false, 86400, 800, 0.2, 800 ],
-			[ null, 86400, 800, 0.2, 800 ]
-		];
-	}
-
 	public function testNewEmpty() {
 		$this->assertInstanceOf(
 			WANObjectCache::class,
