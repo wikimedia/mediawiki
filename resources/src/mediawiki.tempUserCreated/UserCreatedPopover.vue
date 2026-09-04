@@ -4,7 +4,7 @@
 		v-bind="popoverProps"
 		class="mw-popover"
 		:class="cssClasses"
-		use-bottom-sheet
+		use-bottom-sheet="always"
 		stacked-actions
 		placement="bottom"
 		:use-close-button="true"
@@ -122,6 +122,17 @@ module.exports = defineComponent( {
 
 	.mw-popover-content > ul > li {
 		margin-bottom: 0;
+	}
+
+	@media ( min-width: @min-width-breakpoint-tablet ) {
+		min-width: @size-3200;
+	}
+
+	@media ( min-width: @min-width-breakpoint-desktop ) {
+		// Vector already adds a margin-inline-start to ul elements
+		.mw-popover-content > ul {
+			padding-left: 0;
+		}
 	}
 }
 </style>

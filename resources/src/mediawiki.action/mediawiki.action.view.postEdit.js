@@ -40,17 +40,23 @@
 	const config = require( './config.json' );
 	const storageKey = 'mw-PostEdit' + mw.config.get( 'wgPageName' );
 
-	function setupInstrumentation( experiment, selector ) {
-		const { ClickThroughRateInstrument } = require( 'ext.wikimediaEvents.testKitchen' );
-		experiment.sendExposure();
-		setTimeout( () => {
-			// defer some ms the CTR start to give time for the toast to render
-			ClickThroughRateInstrument.start(
-				selector,
-				'Create account CTA',
-				experiment
-			);
-		}, 500 );
+	/**
+	 * Flatten a message from the 'postEdit' hook into plain text.
+	 *
+	 * Listeners may pass 'data.message' as a string, a jQuery object or an array of nodes,
+	 * but the popover title only renders a string.
+	 *
+	 * @param {string|jQuery|Array|Node} message
+	 * @return {string}
+	 */
+	function getPlainText( message ) {
+		if ( typeof message === 'string' ) {
+			return message;
+		}
+		if ( Array.isArray( message ) ) {
+			return message.map( getPlainText ).join( '' );
+		}
+		return $( message ).text();
 	}
 
 	function showConfirmation( data ) {
@@ -62,78 +68,49 @@
 				'postedit-confirmation-saved',
 			data.user || mw.user,
 			mw.config.get( 'wgRevisionId' )
-		).parseDom();
+		);
+		// Only set when 'label' is an mw.Message; listeners may pass a plain string, jQuery
+		// object or array of nodes as 'data.message' instead.
+		const { key } = label;
 
-		data.message = new OO.ui.MessageWidget( {
-			type: 'success',
-			inline: true,
-			label: label
-		} ).$element[ 0 ];
+		// Show a bottom sheet popover with benefits for temp users
+		if ( data.tempUserCreated ) {
+			// mediawiki.action.view.postEdit is loaded two times on temporary account auto-creation, avoid
+			// displaying the confirmation until the temp account is attached (user menu is present in nav).
+			if ( !mw.user.isTemp() ) {
+				return;
+			}
+			mw.tempUserCreated.showCondensedPopup( {
+				classes: [ 'postedit-tempusercreated' ],
+				// The following messages can be used here:
+				// * postedit-confirmation-published-title
+				// * postedit-confirmation-saved-title
+				// * postedit-confirmation-created-title
+				// * postedit-confirmation-restored-title
+				title: key ? mw.msg( key + '-title' ) : getPlainText( label ),
+				content: [
+					mw.message( 'postedit-temp-created-createaccount-benefits' ).text(),
+					mw.message( 'postedit-temp-created-createaccount-benefit-1' ).text(),
+					mw.message( 'postedit-temp-created-createaccount-benefit-2' ).text(),
+					mw.message( 'postedit-temp-created-createaccount-benefit-3' ).text()
+				],
+				primaryActionLabel: mw.message( 'createaccount' ).text(),
+				primaryActionUrl: mw.util.getUrl( 'Special:CreateAccount' )
+			} );
+		} else {
+			data.message = new OO.ui.MessageWidget( {
+				type: 'success',
+				inline: true,
+				label: key ? label.parseDom() : label
+			} ).$element[ 0 ];
 
-		const showDefaultConfirmation = () => {
 			mw.notify( data.message, {
 				classes: [ 'postedit' ]
 			} );
+		}
 
-			// Deprecated - use the 'postEdit' hook, and an additional pause if required
-			mw.hook( 'postEdit.afterRemoval' ).fire();
-
-			if ( data.tempUserCreated ) {
-				mw.tempUserCreated.showPopup();
-			}
-		};
-
-		mw.loader.using( [ 'ext.testKitchen', 'ext.wikimediaEvents.testKitchen' ] )
-			.then( () => mw.testKitchen.getExperiment( 'we-1-8-tempuser-post-edit' ) )
-			.then( ( experiment ) => {
-				const isMobile = mw.config.get( 'skin' ) === 'minerva';
-				const isMobileBreakpoint = window.matchMedia( '(max-width: 639px)' ).matches;
-				// Experiment enrollment criteria
-				if (
-					isMobile &&
-					// Make sure the popover will actually show as a bottom sheet, since we don't provide an
-					// anchor point, it wouldn't fall back to the desktop version so we manually provide the
-					// default confirmation.
-					isMobileBreakpoint &&
-					data.tempUserCreated
-				) {
-					const selector = experiment.isAssignedGroup( 'treatment' ) ?
-						'.mw-popover > footer > * > .cdx-button' :
-						'.postedit-tempuserpopup > * > [href*="Special:CreateAccount"]';
-					if ( experiment.isAssignedGroup( 'treatment' ) ) {
-						// mediawiki.action.view.postEdit is loaded two times on temporary account auto-creation, avoid
-						// displaying the confirmation until the temp account is attached (user menu is present in nav).
-						if ( !mw.user.isTemp() ) {
-							return;
-						}
-						mw.tempUserCreated.showCondensedPopup( {
-							classes: [ 'postedit-tempusercreated' ],
-							title: mw.message( 'postedit-confirmation-published-title' ).text(),
-							content: [
-								mw.message( 'postedit-temp-created-createaccount-benefits' ).text(),
-								mw.message( 'postedit-temp-created-createaccount-benefit-1' ).text(),
-								mw.message( 'postedit-temp-created-createaccount-benefit-2' ).text(),
-								mw.message( 'postedit-temp-created-createaccount-benefit-3' ).text()
-							],
-							primaryActionLabel: mw.message( 'createaccount' ).text(),
-							primaryActionUrl: mw.util.getUrl( 'Special:CreateAccount' )
-						} );
-						// Deprecated - use the 'postEdit' hook, and an additional pause if required
-						mw.hook( 'postEdit.afterRemoval' ).fire();
-						setupInstrumentation( experiment, selector );
-					} else {
-						showDefaultConfirmation();
-						// Ensure exposure is logged only once for VE users in the control group where the toast shows twice.
-						// That is, after the page reloaded and the page was rendered for the temp user
-						if ( mw.user.isTemp() ) {
-							setupInstrumentation( experiment, selector );
-						}
-					}
-				} else {
-					showDefaultConfirmation();
-				}
-			} )
-			.catch( showDefaultConfirmation );
+		// Deprecated - use the 'postEdit' hook, and an additional pause if required
+		mw.hook( 'postEdit.afterRemoval' ).fire();
 	}
 
 	function init() {
@@ -207,7 +184,7 @@
 					'postedit-confirmation-' + action,
 					mw.user,
 					mw.config.get( 'wgRevisionId' )
-				).parseDom(),
+				),
 				tempUserCreated: tempUserCreated
 			} );
 		},
