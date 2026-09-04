@@ -338,7 +338,7 @@ Abort with control-c in the next five seconds....
 WARN
 		);
 
-		$dbr = $this->getDB( DB_REPLICA );
+		$dbr = $this->getReplicaDB();
 
 		$queryBuilderTemplate = $dbr->newSelectQueryBuilder()
 			->select( [ 'user_id', 'user_name', 'up_value' ] )

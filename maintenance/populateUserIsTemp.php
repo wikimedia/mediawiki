@@ -86,8 +86,8 @@ class PopulateUserIsTemp extends LoggedUpdateMaintenance {
 	 */
 	protected function initServices(): void {
 		$this->tempUserConfig = $this->getServiceContainer()->getTempUserConfig();
-		$this->dbw = $this->getDB( DB_PRIMARY );
-		$this->dbr = $this->getDB( DB_REPLICA );
+		$this->dbw = $this->getPrimaryDB();
+		$this->dbr = $this->getReplicaDB();
 	}
 }
 
