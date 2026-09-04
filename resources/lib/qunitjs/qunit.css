@@ -1,5 +1,5 @@
 /*!
- * QUnit 2.26.0
+ * QUnit 3.0.0
  * https://qunitjs.com/
  *
  * Copyright OpenJS Foundation and other contributors
@@ -7,81 +7,66 @@
  * https://jquery.org/license
  */
 
-/** Font Family and Sizes */
+/**
+ * Resets
+ */
 
-#qunit-tests, #qunit-header, #qunit-banner, #qunit-testrunner-toolbar, #qunit-filteredTest, #qunit-userAgent, #qunit-testresult {
-	font-family: "Helvetica Neue Light", "HelveticaNeue-Light", "Helvetica Neue", Calibri, Helvetica, Arial, sans-serif;
-}
-
-#qunit-testrunner-toolbar, #qunit-filteredTest, #qunit-userAgent, #qunit-testresult, #qunit-tests li { font-size: small; }
-#qunit-tests { font-size: smaller; }
-
-
-/** Resets */
-
-#qunit-tests, #qunit-header, #qunit-banner, #qunit-filteredTest, #qunit-userAgent, #qunit-testresult, #qunit-modulefilter {
+body {
 	margin: 0;
 	padding: 0;
+}
+
+[id=qunit] * {
+	margin: 0;
+	padding: 0;
+}
+
+#qunit {
+	font-family: system-ui, sans-serif;
+	font-size: 13px;
+	line-height: 1.2;
+	background: #FFF;
+	color: #333;
 }
 
 /* Style our buttons in a simple way, uninfluenced by the styles
    the tested app might load. Don't affect buttons in #qunit-fixture!
    https://github.com/qunitjs/qunit/pull/1395
    https://github.com/qunitjs/qunit/issues/1437 */
-#qunit-testrunner-toolbar button,
-#qunit-testresult button {
-	all: unset; /* best effort, modern browsers only */
-	font: inherit;
-	color: initial;
-	border: initial;
-	background-color: buttonface;
-	padding: 0 4px;
+[id=qunit] button {
+	all: revert; /* best effort, modern browsers only */
+  cursor: pointer;
+}
+[id=qunit] button:disabled {
+  cursor: default;
 }
 
-
-/** Fixed headers with scrollable tests */
-
-@supports (display: flex) or (display: -webkit-box) {
-	@media (min-height: 500px) {
-		#qunit {
-			position: fixed;
-			left: 0;
-			right: 0;
-			top: 0;
-			bottom: 0;
-			padding: 8px;
-			display: -webkit-box;
-			display: flex;
-			flex-direction: column;
-		}
-
-		#qunit-tests {
-			overflow: scroll;
-		}
-
-		#qunit-banner {
-			flex: 5px 0 0;
-		}
-	}
-}
-
-
-/** Header (excluding toolbar) */
+/**
+ * Header
+ */
 
 #qunit-header {
-	padding: 0.5em 0 0.5em 1em;
+	padding: 13px;
 
 	color: #C2CCD1;
-	background-color: #0D3349;
+	background-color: #1C1E24;
 
-	font-size: 1.5em;
-	line-height: 1em;
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: space-between;
+	align-items: flex-end;
+	gap: 13px;
+}
+
+#qunit-header h1 {
+	flex-grow: 1;
+	font-size: 24px;
+	line-height: 1;
 	font-weight: 400;
-
-	border-radius: 5px 5px 0 0;
 }
 
 #qunit-header a {
+	display: block;
 	text-decoration: none;
 	color: inherit;
 }
@@ -91,136 +76,145 @@
 	color: #FFF;
 }
 
+#qunit-userAgent:after {
+	content: '; ' attr(data-useragent);
+}
+
 #qunit-banner {
+	--qunit-progress: 0%;
+
 	height: 5px;
+	background-image: linear-gradient(#0769AD, #0769AD);
+	background-repeat: no-repeat;
+	background-size: var(--qunit-progress);
+	transition: background-size 100ms ease-out;
+}
+#qunit-banner.qunit-pass {
+	background-image: none;
+	background-color: #64CF06;
+}
+#qunit-banner.qunit-fail {
+	background-image: none;
+	background-color: #EC4242;
+}
+
+#qunit-toolbar {
+	background-color: #EEE;
+	border-bottom: 1px solid #FFF;
+}
+
+#qunit-testresult {
+	clear: both;
+	border-top: 1px solid #FFF;
+}
+
+#qunit-toolbar-urlconfig,
+#qunit-toolbar-filters,
+#qunit-testresult,
+#qunit-filteredTest {
+	padding: 7px 13px;
 }
 
 #qunit-filteredTest {
-	padding: 0.5em 1em 0.5em 1em;
-	color: #366097;
-	background-color: #F4FF77;
+	border-top: 1px solid #FFF;
+	background-color: #fbdbfb;
 }
 
-#qunit-userAgent {
-	padding: 0.5em 1em 0.5em 1em;
-	color: #FFF;
-	background-color: #2B81AF;
-	text-shadow: rgba(0, 0, 0, 0.5) 2px 2px 1px;
+/** Fixed toolbar, with scrollable test results */
+@supports (position: sticky) {
+  @media (min-height: 400px) {
+    #qunit-toolbar {
+      position: sticky;
+      top: 0px;
+      box-shadow: rgba(13, 51, 73, 0.3) 0px 5px 10px -5px;
+    }
+  }
 }
 
+/**
+ * Toolbar elements
+ */
 
-/** Toolbar */
+#qunit-toolbar label {
+	display: inline-block;
+	margin-right: 6px;
+	line-height: 2.1;
+}
+
+#qunit-toolbar form {
+	display: inline-block;
+}
+
+#qunit-toolbar input[type=checkbox],
+#qunit-toolbar input[type=radio] {
+	margin: 3px;
+}
+
+#qunit-toolbar input[type=text] {
+	box-sizing: border-box;
+	height: 30px;
+	padding: 0 6px;
+}
+
+/**
+ * Toolbar layout
+ */
 
 #qunit-testrunner-toolbar {
-	padding: 0.5em 1em 0.5em 1em;
-	color: #5E740B;
-	background-color: #EEE;
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: space-between;
 }
-
-#qunit-testrunner-toolbar .clearfix {
-	height: 0;
-	clear: both;
-}
-
-#qunit-testrunner-toolbar label {
-	display: inline-block;
-}
-
-#qunit-testrunner-toolbar input[type=checkbox],
-#qunit-testrunner-toolbar input[type=radio] {
-	margin: 3px;
-	vertical-align: -2px;
-}
-
-#qunit-testrunner-toolbar input[type=text] {
-	box-sizing: border-box;
-	height: 1.6em;
-}
-
-#qunit-testrunner-toolbar button,
-#qunit-testresult button {
-  border-radius: .25em;
-  border: 1px solid #AAA;
-  background-color: #F8F8F8;
-  color: #222;
-  line-height: 1.6;
-  cursor: pointer;
-}
-#qunit-testrunner-toolbar button:hover,
-#qunit-testresult button:hover {
-	border-color: #AAA;
-	background-color: #FFF;
-	color: #444;
-}
-#qunit-testrunner-toolbar button:active,
-#qunit-testresult button:active {
-	border-color: #777;
-	background-color: #CCC;
-	color: #000;
-}
-#qunit-testrunner-toolbar button:focus,
-#qunit-testresult button:focus {
-	border-color: #2F68DA;
-	/* emulate 2px border without a layout shift */
-	box-shadow: inset 0 0 0 1px #2F68DA
-}
-#qunit-testrunner-toolbar button:disabled,
-#qunit-testresult button:disabled {
-	border-color: #CCC;
-	background-color: #CCC;
-	color: #FFF;
-  cursor: default;
-}
-
 #qunit-toolbar-filters {
-	float: right;
-	/* aligning right avoids overflows and inefficient use of space
-	   around the dropdown menu on narrow viewports */
-	text-align: right;
-}
+	flex-grow: 1;
+	justify-content: flex-end;
 
-.qunit-url-config,
-.qunit-filter,
+	display: flex;
+	flex-flow: row wrap;
+	gap: 7px;
+}
 #qunit-modulefilter {
-	display: inline-block;
-	line-height: 2.1em;
-	text-align: left;
+	flex-grow: 1;
+	max-width: 450px;
 }
-
-.qunit-filter,
-#qunit-modulefilter {
-	position: relative;
-	margin-left: 1em;
+#qunit-modulefilter label {
+	margin-right: 0;
+	display: flex;
+	flex-flow: row wrap;
 }
-
-.qunit-url-config label {
-	margin-right: 0.5em;
-}
-
 #qunit-modulefilter-search {
-	box-sizing: border-box;
-	min-width: 400px;
-	min-width: min(400px, 80vw);
+	width: 100%;
 }
+
+@media (max-width: 1000px) {
+  #qunit-toolbar-filters {
+		justify-content: flex-start;
+  }
+}
+
+/**
+ * Module selector
+ */
 
 #qunit-modulefilter-search-container {
+	/* grow within `#qunit-modulefilter label` */
+	flex-grow: 1;
 	position: relative;
 }
 #qunit-modulefilter-search-container:after {
 	position: absolute;
-	right: 0.3em;
+	right: 6px;
 	bottom: 0;
-	line-height: 100%;
-	content: "\25bc";
-	color: black;
+	height: 30px; /* align with input[type=text] */
+	width: 16px;
+	content: "";
+  background: url('data:image/svg+xml,<svg fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path clip-rule="evenodd" fill-rule="evenodd" d="M12.53 16.28a.75.75 0 01-1.06 0l-7.5-7.5a.75.75 0 011.06-1.06L12 14.69l6.97-6.97a.75.75 0 111.06 1.06l-7.5 7.5z"></path></svg>') center no-repeat;
 }
 
 #qunit-modulefilter-dropdown {
 	/* align with #qunit-modulefilter-search */
 	box-sizing: border-box;
-	min-width: 400px;
-	min-width: min(400px, 80vw);
-	max-width: 80vw;
+	width: 100%;
 	position: absolute;
 	right: 0;
 	top: 100%;
@@ -233,40 +227,28 @@
 	border: 1px solid #AAA;
 	border-top-color: transparent;
 	border-radius: 0 0 .25em .25em;
-	color: #0D3349;
+	color: #333;
 	background-color: #F5F5F5;
 	z-index: 99;
+	max-height: min(80vh, 700px);
+  overflow-y: auto;
 }
 
 #qunit-modulefilter-actions {
 	display: block;
 	overflow: auto;
 	/* align with #qunit-modulefilter-dropdown-list */
-	font: smaller/1.5em sans-serif;
-}
-@media (min-width: 350px) {
-	#qunit-modulefilter-actions {
-		position: absolute;
-		right: 0;
-	}
+	line-height: 1.5;
 }
 
-#qunit-modulefilter-dropdown #qunit-modulefilter-actions > * {
-	box-sizing: border-box;
+#qunit-modulefilter-actions button {
 	max-height: 2.8em;
-	display: block;
-	padding: 0.4em;
-}
-
-#qunit-modulefilter-dropdown #qunit-modulefilter-actions > button {
-	float: right;
 	margin: 0.25em;
 }
 
 #qunit-modulefilter-dropdown-list {
 	margin: 0;
 	padding: 0;
-	font: smaller/1.5em sans-serif;
 }
 
 #qunit-modulefilter-dropdown-list li {
@@ -282,236 +264,208 @@
 #qunit-modulefilter-dropdown-list .clickable.checked {
 	font-weight: bold;
 	background-color: #E2F0F7;
-	color: #0D3349;
 }
 #qunit-modulefilter-dropdown .clickable:hover {
 	background-color: #FFF;
-	color: #444;
 }
 
+/** Test Result */
 
-/** Tests: Pass/Fail */
+#qunit-testresult {
+	/* left #qunit-testresult-display, right #qunit-testresult-controls */
+	display: flex;
+	flex-flow: row wrap;
+	align-items: center;
+	gap: 13px;
+}
+#qunit-testresult a {
+	color: #2F68DA;
+}
+#qunit-testresult .module-name {
+	font-weight: 700;
+}
+#qunit-testresult-controls {
+	max-width: 10%;
+}
+#qunit-testresult-controls:empty {
+	display: none;
+}
+
+/** Test output */
 
 #qunit-tests {
 	list-style-position: inside;
 }
 
-#qunit-tests li {
+.qunit-test {
 	padding: 0.4em 1em 0.4em 1em;
 	border-bottom: 1px solid #FFF;
 	list-style-position: inside;
 }
 
-#qunit-tests > li {
+.qunit-test.running {
 	display: none;
 }
 
-#qunit-tests li.running,
-#qunit-tests li.pass,
-#qunit-tests li.fail,
-#qunit-tests li.skipped,
-#qunit-tests li.aborted {
-	display: list-item;
-}
-
-#qunit-tests.hidepass {
-	position: relative;
-}
-
-#qunit-tests.hidepass li.running,
-#qunit-tests.hidepass li.pass:not(.todo) {
-	visibility: hidden;
-	position: absolute;
-	width:   0;
-	height:  0;
-	padding: 0;
-	border:  0;
-	margin:  0;
-}
-
-#qunit-tests li .qunit-test-name {
+/**
+ * Clicking test name toggles `.qunit-assert-list` and `.qunit-source`.
+ * Note that skipped tests only have `.qunit-source`.
+ */
+.qunit-test .qunit-test-name {
 	cursor: pointer;
 }
 
-#qunit-tests li.skipped .qunit-test-name {
-	cursor: default;
-}
-
-#qunit-tests li a {
+.qunit-test > a {
 	padding: 0.5em;
+	user-select: none;
+}
+.qunit-test a {
 	color: inherit;
 	text-decoration: underline;
 }
-#qunit-tests li a:hover,
-#qunit-tests li a:focus {
-	color: #0D3349;
+.qunit-test a:hover,
+.qunit-test a:focus {
+	color: #333;
 }
 
-#qunit-tests li .runtime {
+.qunit-test .runtime {
 	float: right;
 	font-size: smaller;
+	user-select: none;
 }
 
 .qunit-assert-list {
 	margin-top: 0.5em;
-	padding: 0.5em;
 
 	background-color: #FFF;
-
-	border-radius: 5px;
-}
-
-.qunit-source {
-	margin: 0.6em 0 0.3em;
+	color: #333;
 }
 
 .qunit-collapsed {
 	display: none;
 }
 
-#qunit-tests table {
-	border-collapse: collapse;
-	margin-top: 0.2em;
+.qunit-source {
+	margin: 0.6em 0 0.3em;
 }
 
-#qunit-tests th {
-	text-align: right;
-	vertical-align: top;
-	padding: 0 0.5em 0 0;
-}
-
-#qunit-tests td {
-	vertical-align: top;
-}
-
-#qunit-tests pre {
-	margin: 0;
-	white-space: pre-wrap;
-	word-wrap: break-word;
-}
-
-#qunit-tests del {
-	color: #374E0C;
-	background-color: #E0F2BE;
-	text-decoration: none;
-}
-
-#qunit-tests ins {
-	color: #500;
-	background-color: #FFCACA;
-	text-decoration: none;
-}
-
-/*** Test Counts */
-
-#qunit-tests b.counts                       { color: #0D3349; }
-#qunit-tests b.passed                       { color: #5E740B; }
-#qunit-tests b.failed                       { color: #710909; }
-
-#qunit-tests li li {
-	padding: 5px;
-	background-color: #FFF;
+.qunit-assert-list li {
+	padding: 0.5em 5px;
 	border-bottom: none;
 	list-style-position: inside;
 }
 
-/*** Passing Styles */
+.qunit-assert-list table {
+	border-spacing: 0.5em;
+}
 
+.qunit-assert-list th {
+	text-align: right;
+	vertical-align: top;
+}
 
-#qunit-tests .pass {
+.qunit-assert-list td {
+	vertical-align: top;
+}
+
+.qunit-assert-list pre {
+	white-space: pre-wrap;
+	word-wrap: break-word;
+}
+
+.qunit-assert-list del {
+	color: #00740E;
+	background-color: #D9F9E3;
+	text-decoration: none;
+}
+
+.qunit-assert-list ins {
+	color: #710909;
+	background-color: #FFD8E1;
+	text-decoration: none;
+}
+
+/** Test output: Counts */
+
+.qunit-test .counts {
+	color: #333;
+}
+.qunit-test .passed {
+	color: #00740E;
+}
+.qunit-test .failed {
+	color: #710909;
+}
+
+/** Test output: Passing */
+
+.qunit-test.pass {
 	color: #2F68DA;
 	background-color: #E2F0F7;
 }
 
-#qunit-tests .pass .test-name {
+.qunit-test.pass .test-name {
 	color: #366097;
 }
 
-#qunit-tests li li.pass {
-	color: #3C510C;
-	background-color: #FFF;
-	border-left: 10px solid #C6E746;
+.qunit-assert-list .pass {
+	border-left: 10px solid #64CF06;
 }
 
-#qunit-tests .pass .test-actual,
-#qunit-tests .pass .test-expected           { color: #999; }
+.qunit-test.pass .qunit-assert-list .fail,
+.qunit-test.pass .qunit-assert-list .fail .test-actual,
+.qunit-test.pass .qunit-assert-list .fail .test-expected,
+.qunit-test.pass .qunit-assert-list .fail .test-diff,
+.qunit-test.pass .qunit-assert-list .fail .test-source {
+	color: #366097;
+}
 
-#qunit-banner.qunit-pass                    { background-color: #C6E746; }
+/** Test output: Failing */
 
-/*** Failing Styles */
-
-#qunit-tests .fail {
+.qunit-test.fail {
 	color: #000;
-	background-color: #EE5757;
+	background-color: #FFD8E1;
 }
 
-#qunit-tests li li.fail {
+.qunit-assert-list .fail {
 	color: #710909;
-	background-color: #FFF;
-	border-left: 10px solid #EE5757;
+	border-left: 10px solid #EC4242;
 	white-space: pre;
 }
-
-#qunit-tests > li:last-child {
-	border-radius: 0 0 5px 5px;
+.qunit-assert-list .fail .test-actual {
+	color: #EC4242;
+}
+.qunit-assert-list .fail .test-expected {
+	color: #00740E;
 }
 
-#qunit-tests .fail .test-actual             { color: #EE5757; }
-#qunit-tests .fail .test-expected           { color: #008000; }
+/** Test output: Aborted */
 
-#qunit-banner.qunit-fail                    { background-color: #EE5757; }
-
-
-/*** Aborted tests */
-#qunit-tests .aborted { color: #000; background-color: orange; }
-/*** Skipped tests */
-
-#qunit-tests .skipped {
-	background-color: #EBECE9;
+.qunit-test.aborted {
+	color: #000;
+	background-color: orange;
 }
 
-#qunit-tests .qunit-todo-label,
-#qunit-tests .qunit-skipped-label {
-	background-color: #F4FF77;
-	display: inline-block;
-	font-style: normal;
-	color: #366097;
-	line-height: 1.8em;
-	padding: 0 0.5em;
-	margin: -0.4em 0.4em -0.4em 0;
-}
+/** Test output: Skipped */
 
-#qunit-tests .qunit-todo-label {
+.qunit-test.skipped {
 	background-color: #EEE;
 }
 
-/** Result */
+.qunit-test .qunit-todo-label,
+.qunit-test .qunit-skipped-label {
+	background-color: #F4FF77;
+	display: inline-block;
+	font-style: normal;
+	color: #333;
+	/* Match and consume the 0.4em padding-top/bottom from `.qunit-test` */
+	padding: 0.4em 0.5em;
+	margin: -0.4em 0;
+}
 
-#qunit-testresult {
-	color: #366097;
-	background-color: #E2F0F7;
-
-	border-bottom: 1px solid #FFF;
-}
-#qunit-testresult a {
-	color: #2F68DA;
-}
-#qunit-testresult .clearfix {
-	height: 0;
-	clear: both;
-}
-#qunit-testresult .module-name {
-	font-weight: 700;
-}
-#qunit-testresult-display {
-	padding: 0.5em 1em 0.5em 1em;
-	width: 85%;
-	float:left;
-}
-#qunit-testresult-controls {
-	padding: 0.5em 1em 0.5em 1em;
-  width: 10%;
-	float:left;
+.qunit-test .qunit-todo-label {
+	background-color: #2F68DA;
+	color: #FFF;
 }
 
 /** Fixture */
