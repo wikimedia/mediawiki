@@ -511,40 +511,82 @@ class ApiUpload extends ApiBase {
 						'chunkSize' => $chunkSize,
 					]
 				);
+				UploadBase::setSessionStatus(
+					$this->getUser(),
+					$filekey,
+					[ 'result' => 'Poll', 'stage' => 'assembling', 'status' => Status::newGood() ]
+				);
 
-				$status = $this->mUpload->concatenateChunks();
-				if ( !$status->isGood() ) {
+				try {
+					$status = $this->mUpload->concatenateChunks();
+					if ( !$status->isGood() ) {
+						UploadBase::setSessionStatus(
+							$this->getUser(),
+							$filekey,
+							[ 'result' => 'Failure', 'stage' => 'assembling', 'status' => $status ]
+						);
+						$this->log->info( "Non jobqueue assembly of {filename} failed because {status}",
+							[
+								'user' => $this->getUser()->getName(),
+								'filename' => $this->mParams['filename'] ?? '-',
+								'filekey' => $this->mParams['filekey'] ?? '-',
+								'filesize' => $this->mParams['filesize'],
+								'chunkSize' => $chunkSize,
+								'status' => (string)$status
+							]
+						);
+						$this->dieStatusWithCode( $status, 'stashfailed' );
+					}
+
+					// We can only get warnings like 'duplicate' after concatenating the chunks
+					$warnings = $this->getApiWarnings();
+					if ( $warnings ) {
+						$result['warnings'] = $warnings;
+					}
+
+					// The fully concatenated file has a new filekey. So remove
+					// the old filekey and fetch the new one.
+					$this->mUpload->stash->removeFile( $filekey );
+					$uploadFilekey = $filekey;
+					$filekey = $this->mUpload->getStashFile()->getFileKey();
+
+					$result['result'] = 'Success';
 					UploadBase::setSessionStatus(
 						$this->getUser(),
-						$filekey,
-						[ 'result' => 'Failure', 'stage' => 'assembling', 'status' => $status ]
+						$uploadFilekey,
+						[
+							'result' => 'Success',
+							'stage' => 'assembling',
+							'filekey' => $filekey,
+							'status' => $status
+						]
 					);
-					$this->log->info( "Non jobqueue assembly of {filename} failed because {status}",
+				} catch ( ApiUsageException $e ) {
+					// Forward from self::dieStatusWithCode
+					throw $e;
+				} catch ( Exception $e ) {
+					$this->log->info(
+						'Non jobqueue assembly of {filename} failed: ' . get_class( $e ) . ' ' . $e->getMessage(),
 						[
 							'user' => $this->getUser()->getName(),
 							'filename' => $this->mParams['filename'] ?? '-',
 							'filekey' => $this->mParams['filekey'] ?? '-',
 							'filesize' => $this->mParams['filesize'],
 							'chunkSize' => $chunkSize,
-							'status' => (string)$status
+							'exception' => $e,
 						]
 					);
-					$this->dieStatusWithCode( $status, 'stashfailed' );
+
+					$status = Status::newFatal( $this->getErrorFormatter()->getMessageFromException(
+						$e, [ 'wrap' => new ApiMessage( 'apierror-stashexception', 'stashfailed' ) ]
+					) );
+					UploadBase::setSessionStatus(
+						$this->getUser(),
+						$filekey,
+						[ 'result' => 'Failure', 'stage' => 'assembling', 'status' => $status ]
+					);
+					throw $e;
 				}
-
-				// We can only get warnings like 'duplicate' after concatenating the chunks
-				$warnings = $this->getApiWarnings();
-				if ( $warnings ) {
-					$result['warnings'] = $warnings;
-				}
-
-				// The fully concatenated file has a new filekey. So remove
-				// the old filekey and fetch the new one.
-				UploadBase::setSessionStatus( $this->getUser(), $filekey, false );
-				$this->mUpload->stash->removeFile( $filekey );
-				$filekey = $this->mUpload->getStashFile()->getFileKey();
-
-				$result['result'] = 'Success';
 			}
 		} else {
 			UploadBase::setSessionStatus(
