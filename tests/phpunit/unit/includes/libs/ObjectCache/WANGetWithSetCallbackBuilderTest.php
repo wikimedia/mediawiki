@@ -64,6 +64,24 @@ class WANGetWithSetCallbackBuilderTest extends MediaWikiUnitTestCase {
 		$this->assertFalse( $cache->get( $cache->makeKey( 'test-group', 'id' ) ) );
 	}
 
+	public function testRawKey() {
+		[ $cache ] = $this->newWanCache();
+
+		// A key built elsewhere, e.g. because it is also needed for a getMulti() call
+		$key = $cache->makeKey( 'test-group', 'id' );
+
+		$value = $cache->buildGetWithSetCallback()
+			->rawKey( $key )
+			->lifetime( 60 )
+			->callback( static fn () => 'value' )
+			->fetch();
+
+		$this->assertSame( 'value', $value );
+		// The key is used as given, rather than being encoded a second time
+		$this->assertSame( 'value', $cache->get( $key ) );
+		$this->assertFalse( $cache->get( $cache->makeKey( $key ) ) );
+	}
+
 	public function testKeyIsRequired() {
 		[ $cache ] = $this->newWanCache();
 

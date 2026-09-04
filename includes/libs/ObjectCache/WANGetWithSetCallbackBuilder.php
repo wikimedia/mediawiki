@@ -97,6 +97,23 @@ class WANGetWithSetCallbackBuilder {
 	}
 
 	/**
+	 * Set the cache key from a key that was already built by makeKey() or makeGlobalKey()
+	 *
+	 * Prefer key() or globalKey(), which build the key from its components. Use this only
+	 * when the key is built elsewhere because it is also needed outside of this call, such as
+	 * for a matching WANObjectCache::getMulti() or WANObjectCache::delete() call. Passing a
+	 * ready-made key to key() would encode it a second time and thus address a different entry.
+	 *
+	 * @param string $key Key from WANObjectCache::makeKey() or WANObjectCache::makeGlobalKey()
+	 * @return $this
+	 */
+	public function rawKey( string $key ) {
+		$this->key = $key;
+
+		return $this;
+	}
+
+	/**
 	 * Set how long a newly generated value may be reused for
 	 *
 	 * @param int $seconds
@@ -433,7 +450,7 @@ class WANGetWithSetCallbackBuilder {
 	 */
 	public function fetch() {
 		if ( $this->key === null ) {
-			throw new LogicException( 'No cache key set; call key() or globalKey() first' );
+			throw new LogicException( 'No cache key set; call key(), globalKey(), or rawKey() first' );
 		}
 		if ( $this->lifetime === null ) {
 			throw new LogicException( 'No lifetime set; call lifetime(), keepIndefinitely(), or e.g. keepForADay()' );
