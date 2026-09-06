@@ -16,6 +16,7 @@ use MediaWiki\MediaWikiServices;
 use MediaWiki\Message\Message;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Request\FauxRequest;
+use MediaWiki\Request\WebRequest;
 use MediaWiki\Session\Session;
 use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
 use MediaWikiLangTestCase;
@@ -106,12 +107,11 @@ abstract class ApiTestCase extends MediaWikiLangTestCase {
 	 * @param string|null $tokenType Set to a string like 'csrf' to send an
 	 *   appropriate token
 	 * @param string|null $paramPrefix Prefix to prepend to parameters
-	 * @return array List of:
+	 * @return array{0:array,1:WebRequest,2:array,3?:ApiBase} List of:
 	 * - the result data (array)
 	 * - the request (WebRequest)
 	 * - the session data of the request (array)
 	 * - if $appendModule is true, the Api module $module
-	 * @phan-return {0:array,1:WebRequest,2:array,3?:ApiBase}
 	 * @throws ApiUsageException
 	 */
 	protected function doApiRequest( array $params, ?array $session = null,
