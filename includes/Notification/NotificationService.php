@@ -49,6 +49,7 @@ class NotificationService {
 		$this->specs = $specs;
 	}
 
+	/** @return array<string,NotificationHandler> */
 	private function getHandlers(): array {
 		if ( $this->handlersByType === [] ) {
 			foreach ( $this->specs as $spec ) {
