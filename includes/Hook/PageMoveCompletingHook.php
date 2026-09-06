@@ -22,8 +22,8 @@ interface PageMoveCompletingHook {
 	 * @param LinkTarget $old Old title
 	 * @param LinkTarget $new New title
 	 * @param UserIdentity $user User who did the move
-	 * @param int $pageid Database ID of the page that's been moved
-	 * @param int $redirid Database ID of the created redirect
+	 * @param int $pageid Page ID of the page that's been moved
+	 * @param int $redirid Page ID of the created redirect, or 0 if no redirect was created
 	 * @param string $reason Reason for the move
 	 * @param RevisionRecord $revision RevisionRecord created by the move
 	 * @return bool|void True or no return value to continue or false stop other hook handlers,
