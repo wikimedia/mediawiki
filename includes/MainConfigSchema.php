@@ -3396,6 +3396,14 @@ class MainConfigSchema {
 	 *   ]
 	 * ]
 	 *
+	 * Unlike in VirtualDomainsMapping, 'db' should not be omitted or set to false here.
+	 * In VirtualDomainsMapping, false/omitted means "the local database domain", which
+	 * resolves to the current wiki because that mapping is only ever consulted while running
+	 * as that wiki. An entry here is consulted while running as some *other* wiki (whichever
+	 * one calls getRemotePrimaryDatabase()/getRemoteReplicaDatabase()), so false/omitted would
+	 * instead resolve to the domain of whichever wiki happens to be running the code, not to
+	 * the wiki ID this entry is keyed by. Always spell out the actual database name.
+	 *
 	 * @see self::VirtualDomainsMapping
 	 *
 	 * @since 1.47
