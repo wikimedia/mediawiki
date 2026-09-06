@@ -57,7 +57,11 @@ interface ILBFactory extends IConnectionProvider {
 	 *  - remoteVirtualDomainsMapping: Map of (wiki ID => virtual domain mapping) [optional].
 	 *     Each wiki ID maps to a virtual domain mapping array with the same structure as
 	 *     virtualDomainsMapping. This is used by {@see ILBFactory::getRemoteDatabase()} to
-	 *     resolve virtual domains for remote wikis.
+	 *     resolve virtual domains for remote wikis. Unlike in virtualDomainsMapping, a "db" of
+	 *     false (or an omitted "db") does NOT mean "the mapped wiki's local database" — it still
+	 *     means "the local database domain of whichever wiki is executing this code", i.e. the
+	 *     caller's own wiki, not the wiki ID this entry is keyed by. Always set "db" explicitly
+	 *     to the actual database name of the remote wiki's database.
 	 *  - chronologyProtector: ChronologyProtector instance [optional]
 	 *  - readOnlyReason: Reason the primary server is read-only (false if not)
 	 *  - srvCache: BagOStuff instance for server cache [optional]

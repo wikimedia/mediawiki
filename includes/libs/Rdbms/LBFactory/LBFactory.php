@@ -870,6 +870,23 @@ abstract class LBFactory implements ILBFactory {
 		$dbDomain = $config['db'] ?? false;
 		$cluster = $config['cluster'] ?? null;
 
+		if ( $dbDomain === false ) {
+			// A "db" of false would resolve to the *caller's own* local domain (see
+			// LoadBalancer::resolveDomainInstance()), not to a database belonging to $wikiId.
+			// That is never correct for a remote mapping entry, so this is almost certainly
+			// misconfiguration: the "db" key must name the remote wiki's actual database.
+			$this->logger->warning(
+				'{method}: remoteVirtualDomainsMapping entry for wiki \'{wikiId}\', ' .
+					'virtual domain \'{virtualDomain}\' has no "db" set; ' .
+					'this will resolve to the local domain of the calling wiki, not \'{wikiId}\'',
+				[
+					'method' => __METHOD__,
+					'wikiId' => $wikiId,
+					'virtualDomain' => $virtualDomain,
+				]
+			);
+		}
+
 		if ( $cluster !== null ) {
 			$lb = $this->getExternalLB( $cluster );
 		} else {
