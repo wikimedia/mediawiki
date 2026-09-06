@@ -505,7 +505,8 @@ interface ILBFactory extends IConnectionProvider {
 	 * the virtual domain to an actual cluster and database domain for the specified wiki.
 	 * If no remote mapping is configured for the wiki or virtual domain, it falls back
 	 * to connecting to the external wiki directly using the wiki ID as the domain.
-	 * If $wikiId is false, it falls back to the local wiki's virtual domain mapping.
+	 * If $wikiId is false, or is the local wiki's own domain ID, it falls back to the
+	 * local wiki's virtual domain mapping instead.
 	 *
 	 * @since 1.47
 	 * @param string|false $wikiId The wiki ID (e.g., 'enwiki', 'dewiki'), or false for the local wiki
@@ -521,7 +522,8 @@ interface ILBFactory extends IConnectionProvider {
 	 * the virtual domain to an actual cluster and database domain for the specified wiki.
 	 * If no remote mapping is configured for the wiki or virtual domain, it falls back
 	 * to connecting to the external wiki directly using the wiki ID as the domain.
-	 * If $wikiId is false, it falls back to the local wiki's virtual domain mapping.
+	 * If $wikiId is false, or is the local wiki's own domain ID, it falls back to the
+	 * local wiki's virtual domain mapping instead.
 	 *
 	 * @since 1.47
 	 * @param string|false $wikiId The wiki ID (e.g., 'enwiki', 'dewiki'), or false for the local wiki

@@ -849,8 +849,8 @@ abstract class LBFactory implements ILBFactory {
 	private function getRemoteDatabase( int $index, $wikiId, $virtualDomain, $group = null ): IDatabase {
 		$groups = $group !== null ? [ $group ] : [];
 
-		// Fall back to local wiki if wikiId is false
-		if ( $wikiId === false ) {
+		// Fall back to local wiki if wikiId is false or the local domain ID
+		if ( $this->isLocalDomain( $wikiId ) ) {
 			return $this->getMappedDatabase( $index, $groups, $virtualDomain );
 		}
 
