@@ -1784,3 +1784,16 @@ function wfArrayPlus2d( array $baseArray, array $newValues ) {
 	wfDeprecated( __FUNCTION__, '1.46' );
 	return ArrayUtils::arrayPlus2d( $baseArray, $newValues );
 }
+
+/**
+ * Logs missing classes when unserializing. Should be enabled via the
+ * unserialize_callback_func PHP ini setting.
+ */
+function wfUnserializeMissingClass( string $className ): void {
+	LoggerFactory::getInstance( 'unserialize' )->error( 'Could not unserialize class {class}', [
+		'class' => $className,
+		'exception' => new RuntimeException( __FUNCTION__ ),
+	] );
+	// This will trigger a "PHP Warning: unserialize(): Function wfUnserializeMissingClass()
+	// hasn't defined the class it was called for" warning; we don't care about that.
+}
