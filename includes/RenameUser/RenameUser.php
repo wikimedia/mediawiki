@@ -20,7 +20,6 @@ use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserNameUtils;
 use MediaWiki\WikiMap\WikiMap;
 use Psr\Log\LoggerInterface;
-use Wikimedia\Rdbms\IConnectionProvider;
 
 /**
  * Handles the backend logic of renaming users.
@@ -69,7 +68,6 @@ class RenameUser {
 	public function __construct(
 		private readonly ServiceOptions $options,
 		private readonly CentralIdLookupFactory $centralIdLookupFactory,
-		private readonly IConnectionProvider $dbProvider,
 		private readonly JobQueueGroupFactory $jobQueueGroupFactory,
 		private readonly MovePageFactory $movePageFactory,
 		private readonly UserFactory $userFactory,

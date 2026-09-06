@@ -11,7 +11,6 @@ use MediaWiki\User\CentralId\CentralIdLookupFactory;
 use MediaWiki\User\User;
 use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserNameUtils;
-use Wikimedia\Rdbms\IConnectionProvider;
 
 /**
  * @since 1.44
@@ -26,7 +25,6 @@ class RenameUserFactory {
 	public function __construct(
 		private readonly ServiceOptions $options,
 		private readonly CentralIdLookupFactory $centralIdLookupFactory,
-		private readonly IConnectionProvider $dbProvider,
 		private readonly JobQueueGroupFactory $jobQueueGroupFactory,
 		private readonly MovePageFactory $movePageFactory,
 		private readonly UserFactory $userFactory,
@@ -59,7 +57,6 @@ class RenameUserFactory {
 		return new RenameUser(
 			$this->options,
 			$this->centralIdLookupFactory,
-			$this->dbProvider,
 			$this->jobQueueGroupFactory,
 			$this->movePageFactory,
 			$this->userFactory,
@@ -99,7 +96,6 @@ class RenameUserFactory {
 		return new RenameUser(
 			$this->options,
 			$this->centralIdLookupFactory,
-			$this->dbProvider,
 			$this->jobQueueGroupFactory,
 			$this->movePageFactory,
 			$this->userFactory,
