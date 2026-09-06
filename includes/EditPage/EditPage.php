@@ -318,6 +318,7 @@ class EditPage implements IEditObject {
 
 	public ?string $contentFormat = null;
 
+	/** @var string[] */
 	private array $changeTags = [];
 
 	# Placeholders for text injection by hooks (must be HTML)
@@ -3430,7 +3431,7 @@ class EditPage implements IEditObject {
 	 * to parse with different options, or to otherwise modify the preview HTML.
 	 *
 	 * @param Content $content The page content
-	 * @return array with keys:
+	 * @return array{parserOutput:ParserOutput,html:string} with keys:
 	 *   - parserOutput: The ParserOutput object
 	 *   - html: The HTML to be displayed
 	 */
@@ -3782,7 +3783,7 @@ class EditPage implements IEditObject {
 	 *
 	 * @param int &$tabindex Current tabindex
 	 *
-	 * @return string[] Strings or objects with a __toString() implementation. Usually an array of
+	 * @return (string|\Stringable)[] Strings or objects with a __toString() implementation. Usually an array of
 	 *  {@see ButtonInputWidget}, but EditPageBeforeEditButtons hook handlers might inject something
 	 *  else.
 	 */
@@ -3873,7 +3874,7 @@ class EditPage implements IEditObject {
 	/**
 	 * Show "your edit contains spam" page with your diff and text
 	 *
-	 * @param string|array|false $match Text (or array of texts) which triggered one or more filters
+	 * @param string|string[]|false $match Text (or array of texts) which triggered one or more filters
 	 */
 	public function spamPageWithContent( $match = false ): void {
 		$out = $this->context->getOutput();
