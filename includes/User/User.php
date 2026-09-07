@@ -191,7 +191,7 @@ class User implements Stringable, Authority, UserIdentity, UserEmailContact {
 	// @{
 	/** @var int */
 	public $mId;
-	/** @var string */
+	/** @var string|false */
 	public $mName;
 	/**
 	 * Switched from protected to public for use in UserFactory
