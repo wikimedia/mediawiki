@@ -22,7 +22,7 @@ use MediaWiki\Storage\NameTableStore;
 use MediaWiki\Title\NamespaceInfo;
 use MediaWiki\Title\Title;
 use Wikimedia\ObjectCache\WANObjectCache;
-use Wikimedia\Rdbms\ILoadBalancer;
+use Wikimedia\Rdbms\ILBFactory;
 
 /**
  * categorylinks
@@ -85,7 +85,7 @@ class CategoryLinksTable extends TitleLinksTable {
 	 * @param LanguageConverterFactory $converterFactory
 	 * @param NamespaceInfo $namespaceInfo
 	 * @param WikiPageFactory $wikiPageFactory
-	 * @param ILoadBalancer $loadBalancer
+	 * @param ILBFactory $lbFactory
 	 * @param WANObjectCache $WANObjectCache
 	 * @param Config $config
 	 * @param JobqueueGroup $jobQueueGroup
@@ -99,7 +99,7 @@ class CategoryLinksTable extends TitleLinksTable {
 		LanguageConverterFactory $converterFactory,
 		NamespaceInfo $namespaceInfo,
 		WikiPageFactory $wikiPageFactory,
-		ILoadBalancer $loadBalancer,
+		ILBFactory $lbFactory,
 		WANObjectCache $WANObjectCache,
 		Config $config,
 		JobqueueGroup $jobQueueGroup,
@@ -119,13 +119,19 @@ class CategoryLinksTable extends TitleLinksTable {
 		$this->tableName = $tableName;
 		$this->isTempTable = $isTempTable;
 
+		// Get the actual database domain ID from a connection to the virtual domain
+		$dbr = $lbFactory->getReplicaDatabase( self::VIRTUAL_DOMAIN );
+		$dbDomain = $dbr->getDomainID();
+
 		$this->collationNameStore = new NameTableStore(
-			$loadBalancer,
+			$lbFactory->getLoadBalancer( self::VIRTUAL_DOMAIN ),
 			$WANObjectCache,
 			LoggerFactory::getInstance( 'SecondaryDataUpdate' ),
 			'collation',
 			'collation_id',
-			'collation_name'
+			'collation_name',
+			null,
+			$dbDomain
 		);
 	}
 
