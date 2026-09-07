@@ -16,6 +16,7 @@ require_once __DIR__ . '/Maintenance.php';
 // @codeCoverageIgnoreEnd
 
 use MediaWiki\Collation\Collation;
+use MediaWiki\Deferred\LinksUpdate\LinksTable;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Maintenance\Maintenance;
@@ -114,13 +115,22 @@ TEXT
 	private function init() {
 		$services = $this->getServiceContainer();
 		$this->namespaceInfo = $services->getNamespaceInfo();
+
+		$lbFactory = $this->getServiceContainer()->getDBLoadBalancerFactory();
+
+		// Get the actual database domain ID from a connection to the virtual domain
+		$this->dbr = $lbFactory->getReplicaDatabase( LinksTable::VIRTUAL_DOMAIN );
+		$dbDomain = $this->dbr->getDomainID();
+
 		$this->collationNameStore = new NameTableStore(
-			$this->getServiceContainer()->getDBLoadBalancer(),
+			$lbFactory->getLoadBalancer( LinksTable::VIRTUAL_DOMAIN ),
 			$this->getServiceContainer()->getMainWANObjectCache(),
 			LoggerFactory::getInstance( 'SecondaryDataUpdate' ),
 			'collation',
 			'collation_id',
-			'collation_name'
+			'collation_name',
+			null,
+			$dbDomain
 		);
 
 		if ( $this->hasOption( 'target-collation' ) ) {
@@ -142,8 +152,7 @@ TEXT
 		$this->force = $this->getOption( 'force' );
 		$this->dryRun = $this->getOption( 'dry-run' );
 		$this->verboseStats = $this->getOption( 'verbose-stats' );
-		$this->dbw = $this->getDB( DB_PRIMARY );
-		$this->dbr = $this->getReplicaDB();
+		$this->dbw = $this->getDB( DB_PRIMARY, [], LinksTable::VIRTUAL_DOMAIN );
 		$this->table = $this->getOption( 'table', 'categorylinks' );
 		$this->targetTable = $this->getOption( 'target-table' );
 		$this->normalization = $this->getOption( 'only-migrate-normalization', false );
