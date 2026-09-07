@@ -1636,7 +1636,6 @@
 	"removedwatchtext": "«[[:$1]]» og diskusjonssida hennar er fjerna frå [[Special:Watchlist|overvakingslista]] di.",
 	"removedwatchtext-talk": "«[[:$1]]» og den tilknytte sida hennar er fjerna frå [[Special:Watchlist|overvakingslista di]].",
 	"removedwatchtext-short": "Sida «$1» vart fjerna frå overvakingslista di.",
-	"watchstar-popup-title": "Organiser overvakingslista",
 	"watchstar-popup-already-watched": "\"$1\" og diskusjonssida hennar er på [[Special:Watchlist|overvakingslista]] di.",
 	"watchstar-popup-expiry-help": "Du kan endra standardutløpstida i [[$1|innstillingane dine for overvakingslista]].",
 	"watchstar-popup-labels": "Etikettar til overvakingslista:",

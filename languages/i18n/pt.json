@@ -1006,7 +1006,7 @@
 	"search-thumbnail-alt": "Miniatura para $1",
 	"searchrelated": "relacionados",
 	"searchall": "todos",
-	"showingresultsinrange": "Mostrando abaixo até <strong>$1</strong> {{PLURAL:$1| resultado|resultados}} no intervalo # <strong>$2</strong> a # <strong>$3</strong> .",
+	"showingresultsinrange": "Mostrando abaixo até <strong>$1</strong> {{PLURAL:$1| resultado|resultados}} no intervalo # <strong>$2</strong> a # <strong>$3</strong>.",
 	"search-showingresults": "{{PLURAL:$4|1=Resultado <strong>$1</strong> de <strong>$3</strong>|Resultados <strong>$1 - $2</strong> de <strong>$3</strong>}}",
 	"search-showingresults-approximate": "{{PLURAL:$4|1=Resultado <strong>$1</strong> de pelo menos <strong>$3</strong>|Resultados <strong>$1 – $2</strong> de pelo menos <strong>$3</strong>}}",
 	"search-nonefound": "A pesquisa não produziu resultados.",

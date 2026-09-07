@@ -1758,7 +1758,6 @@
 	"removewatch": "Бақылау тізіміңізден аластату",
 	"removedwatchtext": "«[[:$1]]» және оның талқылау беті [[Special:Watchlist|бақылау тізіміңізден]] аласталды.",
 	"removedwatchtext-short": "«$1» беті бақылау тізіміңізден аласталды",
-	"watchstar-popup-title": "Бақылау тізімін ретке келтіру",
 	"watchstar-popup-labels": "Бақылау тізімі таңбалары:",
 	"watchstar-popup-labels-no-results": "Ешқандай таңба табылмады",
 	"watch": "Бақылау",

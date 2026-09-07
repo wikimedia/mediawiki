@@ -1906,7 +1906,6 @@
 	"removedwatchtext": "Stran »[[:$1]]« in pripadajoča pogovorna stran sta odstranjeni z vašega [[Special:Watchlist|nadzornega seznama]].",
 	"removedwatchtext-talk": "Stran »[[:$1]]« in pripadajoča stran sta bili odstranjeni z vašega [[Special:Watchlist|nadzornega seznama]].",
 	"removedwatchtext-short": "Stran »$1« je bila odstranjena z vašega nadzornega seznama.",
-	"watchstar-popup-title": "Organiziraj nadzorni seznam",
 	"watchstar-popup-already-watched": "»$1« in pripadajoča pogovorna stran sta na vašem [[Special:Watchlist|nadzornem seznamu]].",
 	"watchstar-popup-expiry-help": "Privzeti rok poteka lahko spremenite v svojih [[$1|nastavitvah nadzornega seznama]].",
 	"watchstar-popup-labels": "Oznake nadzornega seznama:",

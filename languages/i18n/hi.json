@@ -1974,7 +1974,6 @@
 	"removedwatchtext": "\"[[:$1]]\" और इसका चर्चा पृष्ठ आपकी [[Special:Watchlist|ध्यानसूची]] से हटा दिए गए हैं।",
 	"removedwatchtext-talk": "\"[[:$1]]\" और इसका संबद्ध पृष्ठ आपकी [[Special:Watchlist|ध्यानसूची]] से हटा दिए गए हैं।",
 	"removedwatchtext-short": "पृष्ठ \"$1\" आपकी ध्यानसूची से हटा दिया गया है।",
-	"watchstar-popup-title": "ध्यानसूची व्यवस्थित करें",
 	"watchstar-popup-already-watched": "\"$1\" और इसका वार्ता पृष्ठ आपकी [[Special:Watchlist|ध्यानसूची]] में हैं।",
 	"watchstar-popup-expiry-help": "आप अपनी [[$1|ध्यानसूची की वरीयताओं]] में डिफ़ॉल्ट समाप्ति बदल सकते हैं।",
 	"watchstar-popup-labels": "ध्यानसूची लेबल्स:",

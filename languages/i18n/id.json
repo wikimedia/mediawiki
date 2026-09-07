@@ -1990,7 +1990,6 @@
 	"removedwatchtext": "\"[[:$1]]\" dan diskusinya telah dihapus dari [[Special:Watchlist|daftar pantauan]] Anda.",
 	"removedwatchtext-talk": "\"[[:$1]]\" dan halaman terkaitnya telah dihapus dari [[Special:Watchlist|daftar pantauan Anda]].",
 	"removedwatchtext-short": "Halaman \"$1\" telah dihapus dari daftar pantauan Anda.",
-	"watchstar-popup-title": "Tata daftar pantauan",
 	"watchstar-popup-already-watched": "\"$1\" dan halaman pembicaraannya berada di [[Special:Watchlist|daftar pantauan]] Anda.",
 	"watchstar-popup-expiry-help": "Anda bisa ubah kedaluwarsa bawaannya di [[$1|preferensi daftar pantauan]] Anda.",
 	"watchstar-popup-labels": "Label daftar pantauan:",

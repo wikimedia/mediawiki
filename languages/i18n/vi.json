@@ -1973,7 +1973,6 @@
 	"removedwatchtext": "“[[:$1]]” cùng trang thảo luận đã được xóa khỏi [[Special:Watchlist|danh sách theo dõi]] của bạn.",
 	"removedwatchtext-talk": "“[[:$1]]” cùng trang liên kết đã được đưa ra khỏi [[Special:Watchlist|danh sách theo dõi]] của bạn.",
 	"removedwatchtext-short": "Trang “$1” đã được xóa khỏi danh sách theo dõi của bạn.",
-	"watchstar-popup-title": "Quản lý danh sách theo dõi",
 	"watchstar-popup-already-watched": "\"$1\" cùng trang thảo luận đã có trong [[Special:Watchlist|danh sách theo dõi]].",
 	"watchstar-popup-expiry-help": "Bạn có thể thay đổi thời hạn mặc định trong [[$1|tùy chọn danh sách theo dõi]].",
 	"watchstar-popup-labels": "Nhãn danh sách theo dõi:",

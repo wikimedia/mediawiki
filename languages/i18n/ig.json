@@ -1917,7 +1917,6 @@
 	"removedwatchtext": "Ewepụla \"[[:$1]]\" na peeji mkparịtaụka ya na [[Special:Watchlist|watchlist]] gị .",
 	"removedwatchtext-talk": "\"[[:$1]]\" na ibé ya na ya so ka ewepụrụla na [[Special:Watchlist|ndetu ndị nlere anya] gị].",
 	"removedwatchtext-short": "Ewepụla ibé \"$1\" na ndetu ndị nlere anya gị.",
-	"watchstar-popup-title": "hazie akara ndepụta nche",
 	"watchstar-popup-already-watched": "\"$1\" yana ibe mkparịtaụka ya dị na [[Special:Watchlist|akara ndepụta nche]] gị",
 	"watchstar-popup-expiry-help": "Ị nwere ike ịgbanwe mgbe mmebi ya ga-adị na [[$1|nhọrọ akara ndepụta nche]]",
 	"watchstar-popup-labels": "Akara aha ndepụta uche",

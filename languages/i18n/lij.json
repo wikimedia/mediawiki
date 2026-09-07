@@ -1892,7 +1892,6 @@
 	"removedwatchtext": "\"[[:$1]]\" e a sò pàgina de discusción són stæte levæ da-a tò [[Special:Watchlist|lìsta di òservæ speciâli]].",
 	"removedwatchtext-talk": "\"[[:$1]]\" e a pàgina a lê asociâ són stæte levæ da-a tò [[Special:Watchlist|lìsta di òservæ speciâli]].",
 	"removedwatchtext-short": "A pàgina \"$1\" a l'é stæta levâ da-a tò lìsta di òservæ speciâli.",
-	"watchstar-popup-title": "Organìzza a lìsta di òservæ speciâli",
 	"watchstar-popup-already-watched": "\"$1\" e a sò pàgina de discusción són zà inta tò [[Special:Watchlist|lìsta di òservæ speciâli]].",
 	"watchstar-popup-expiry-help": "Ti peu cangiâ a scadénsa predefinîa inte tò [[$1|preferénse di òservæ speciâli]].",
 	"watchstar-popup-labels": "Etichétte di òservæ speciâli:",

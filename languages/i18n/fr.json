@@ -2130,7 +2130,6 @@
 	"removedwatchtext": "La page « [[:$1]] » et sa page de discussion ont été retirées de votre [[Special:Watchlist|liste de suivi]].",
 	"removedwatchtext-talk": "« [[:$1]] » et sa page associée ont été supprimés de votre [[Special:Watchlist|liste de suivi]].",
 	"removedwatchtext-short": "La page « $1 » a été supprimée de votre liste de suivi.",
-	"watchstar-popup-title": "Mise à jour de la liste de suivi",
 	"watchstar-popup-already-watched": "« $1 » et sa page de discussion sont dans votre [[Special:Watchlist|liste de suivi]].",
 	"watchstar-popup-expiry-help": "Vous pouvez modifier la durée d'expiration par défaut dans vos [[$1|préférences de la liste de suivi]].",
 	"watchstar-popup-labels": "Étiquettes de la liste de suivi :",

@@ -1741,7 +1741,6 @@
 	"removedwatchtext": "د \"[[:$1]]\" مخ [[Special:Watchlist|ستاسې کتنلړ]] نه لرې شو.",
 	"removedwatchtext-talk": "د \"[[:$1]]\" په نوم يو مخ ستاسې [[Special:Watchlist|کتنلړ]] کې ورگډ شو.\nپه راتلونکې کې چې په دغه مخ او د دې د خبرواترو مخ کې کوم بدلونونه راځي نو هغه به ستاسې کتنلړ کې ښکاري.",
 	"removedwatchtext-short": "د \"$1\" مخ ستاسې له کتنلړ څخه لرې شو.",
-	"watchstar-popup-title": "کتنلړ ترتيبول",
 	"watchstar-popup-already-watched": "\"$1\" او د هغې د خبرو اترو مخ ستاسو [[Special:Watchlist|کتنلړ]] کې دي.",
 	"watchstar-popup-expiry-help": "تاسو کولی شئ تلواله پای‌نېټه د خپل [[$1|کتنلړ غوره‌توبونو]] کې بدله کړئ.",
 	"watchstar-popup-labels": "کتنلړ نښکې:",

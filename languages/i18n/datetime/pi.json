@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Vibhijain"
+			"Vibhijain",
+			"咽頭べさ"
 		]
 	},
 	"january": "ज्यानुवरी",
@@ -15,5 +16,43 @@
 	"september": "सेप्टेम्बर",
 	"october": "ओक्टोबर",
 	"november": "नवम्बर",
-	"december": "दिसम्बर"
+	"december": "दिसम्बर",
+	"january-gen": "फुस्सो",
+	"february-gen": "माघो",
+	"march-gen": "फग्गुणो",
+	"april-gen": "चित्तो",
+	"may-gen": "वेसाखो",
+	"june-gen": "जेट्ठो",
+	"july-gen": "आसट्ठो",
+	"august-gen": "सवणो",
+	"september-gen": "पोट्ठपादो",
+	"october-gen": "अस्सयुजा",
+	"november-gen": "कत्तिको",
+	"december-gen": "मागसिरो",
+	"jan": "फु",
+	"feb": "मा",
+	"mar": "फग्गु",
+	"apr": "चि",
+	"may": "वे",
+	"jun": "जे",
+	"jul": "आस",
+	"aug": "सव",
+	"sep": "पोट्ठ",
+	"oct": "अस्स",
+	"nov": "कत्ति",
+	"dec": "माग",
+	"monday": "चन्दवारो",
+	"tuesday": "कुजवारो",
+	"wednesday": "बुद्धवारो",
+	"thursday": "गुरुवारो",
+	"friday": "सुक्कवारो",
+	"saturday": "सनिवारो",
+	"sunday": "रविवारो",
+	"mon": "चन्द",
+	"tue": "कुज",
+	"wed": "बुद्ध",
+	"thu": "गुरु",
+	"fri": "सुक्क",
+	"sat": "सनि",
+	"sun": "रवि"
 }

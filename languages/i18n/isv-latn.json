@@ -1865,7 +1865,6 @@
 	"removedwatchtext": "Stranica «[[:$1]]» i jejna besědna stranica sut udaljene iz vašego [[Special:Watchlist|spiska slědovanyh stranic]].",
 	"removedwatchtext-talk": "Besědna stranica «[[:$1]]» i povezana s njeju stranica sut udaljene iz vašego [[Special:Watchlist|spiska slědovanyh stranic]].",
 	"removedwatchtext-short": "Stranica «$1» jest udaljena iz vašego spiska slědovanyh stranic.",
-	"watchstar-popup-title": "Organizovati spisok slědovanyh stranic",
 	"watchstar-popup-already-watched": "Stranica «$1» i jejna besědna stranica nahodet se v vašem [[Special:Watchlist|spisku slědovanyh stranic]].",
 	"watchstar-popup-expiry-help": "Vy možete izměniti standardny čas iztečenja v svojih [[$1|nastavjenjah spiska šledovanyh stranic]].",
 	"watchstar-popup-labels": "Etiketky spiska slědovanyh stranic:",

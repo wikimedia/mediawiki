@@ -1976,7 +1976,7 @@
 	"removedwatchtext": "”[[:$1]]” ja sen keskustelusivu on poistettu [[Special:Watchlist|tarkkailulistaltasi]].",
 	"removedwatchtext-talk": "”[[:$1]]” ja siihen liittyvä sivu on poistettu [[Special:Watchlist|tarkkailulistaltasi]].",
 	"removedwatchtext-short": "Sivu ”$1” on poistettu tarkkailulistaltasi.",
-	"watchstar-popup-title": "Järjestä tarkkailulista",
+	"watchstar-popup-undo": "Kumoa",
 	"watchstar-popup-already-watched": "”$1” ja sen keskustelusivu ovat [[Special:Watchlist|tarkkailulistallasi]].",
 	"watchstar-popup-expiry-help": "Voit muutaa oletusarvoista vanhentumisaikaa [[$1|tarkkailulistan asetuksissasi]].",
 	"watchstar-popup-labels": "Aihelaput tarkkailulistassa:",

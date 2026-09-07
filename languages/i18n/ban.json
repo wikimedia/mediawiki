@@ -1901,7 +1901,6 @@
 	"removedwatchtext": "\"[[:$1]]\" miwah kaca pabligbagan puniki sampun kausap saking [[Special:Watchlist|lis pangawasan]] Ida.",
 	"removedwatchtext-talk": "\"[[:$1]]\" miwah kaca kakait sampun kausap saking [[Special:Watchlist|lis pangawasan]].",
 	"removedwatchtext-short": "Kaca \"$1\" sampun kausap saking lis pangawasan.",
-	"watchstar-popup-title": "Atur lis pangawasan",
 	"watchstar-popup-already-watched": "\" $1 \" miwah kaca pabligbagannyané wénten ring [[Special:Watchlist|lis pangawasan]] ragané.",
 	"watchstar-popup-expiry-help": "Ragané dados nguah kadaluwarsa baku ring [[$1|préférénsi lis pangawasan]].",
 	"watchstar-popup-labels": "Labél lis pangawasan:",

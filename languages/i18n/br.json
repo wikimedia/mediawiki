@@ -1911,7 +1911,6 @@
 	"removedwatchtext": "Lamet eo bet ar bajenn \"[[:$1]]\" hag ar bajenn gaozeal stag outi a-ziwar ho [[Special:Watchlist|roll evezhiañ]].",
 	"removedwatchtext-talk": "Lamet eo bet \"[[:$1]]\" hag ar bajenn stag outi a-ziwar ho [[Special:Watchlist|roll evezhiañ]].",
 	"removedwatchtext-short": "Lamet eo bet ar bajenn \"$1\" eus ho roll-evezhiañ.",
-	"watchstar-popup-title": "Frammañ ar roll evezhiañ",
 	"watchstar-popup-already-watched": "Emañ \"$1\" hag he fajenn Kaozeal en ho [[Special:Watchlist|roll evezhiañ]].",
 	"watchstar-popup-expiry-help": "Gallout a rit kemmañ an termen dre ziouer en ho [[$1|penndibaboù a-fet roll evezhiañ]].",
 	"watchstar-popup-labels": "Tikedennoù roll evezhiañ :",

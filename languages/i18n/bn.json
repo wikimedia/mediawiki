@@ -1930,7 +1930,6 @@
 	"removedwatchtext": "\"[[:$1]]\" ও এর আলোচনা পাতাটি আপনার [[Special:Watchlist|নজরতালিকা]] থেকে সরানো হয়েছে।",
 	"removedwatchtext-talk": "\"[[:$1]]\" ও এর সাথে জড়িত পাতা আপনার [[Special:Watchlist|নজরতালিকা]] থেকে সরানো হয়েছে।",
 	"removedwatchtext-short": "\"$1\" পাতাটি আপনার নজরতালিকা থেকে সরিয়ে নেয়া হয়েছে।",
-	"watchstar-popup-title": "নজরতালিকা সুবিন্যস্ত করুন",
 	"watchstar-popup-already-watched": "\"$1\" ও এর আলাপ পাতাটি আপনার [[Special:Watchlist|নজরতালিকায়]] রয়েছে।",
 	"watchstar-popup-expiry-help": "আপনি আপনার [[$1|নজরতালিকার পছন্দসমূহে]] গিয়ে পূর্বনির্ধারিত মেয়াদ পরিবর্তন করতে পারবেন।",
 	"watchstar-popup-labels": "নজরতালিকার লেবেল:",

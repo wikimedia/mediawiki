@@ -2009,7 +2009,6 @@
 	"removedwatchtext": "\"[[:$1]]\" ve ona ait tartışma sayfası ile birlikte [[Special:Watchlist|izleme listenizden]] silinmiştir.",
 	"removedwatchtext-talk": "\"[[:$1]]\" ve bağlantılı sayfası [[Special:Watchlist|izleme listenizden]] çıkarıldı.",
 	"removedwatchtext-short": "\"$1\" sayfası izleme listenizden çıkarıldı.",
-	"watchstar-popup-title": "İzleme listesini düzenle",
 	"watchstar-popup-already-watched": "\"$1\" ve tartışma sayfası [[Special:Watchlist|izleme listenizde]].",
 	"watchstar-popup-expiry-help": "Varsayılan sona erme süresini [[$1|izleme listesi tercihlerinizde]] değiştirebilirsiniz.",
 	"watchstar-popup-labels": "İzleme listesi etiketleri:",

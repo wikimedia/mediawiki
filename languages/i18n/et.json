@@ -1915,7 +1915,6 @@
 	"removedwatchtext": "\"[[:$1]]\" ja selle arutelulehekülg on [[Special:Watchlist|jälgimisloendist]] eemaldatud.",
 	"removedwatchtext-talk": "\"[[:$1]]\" ja sellega seotud lehekülg on sinu [[Special:Watchlist|jälgimisloendist]] eemaldatud.",
 	"removedwatchtext-short": "Lehekülg \"$1\" on eemaldatud sinu jälgimisloendist.",
-	"watchstar-popup-title": "Jälgimisloendi organiseerimine",
 	"watchstar-popup-already-watched": "\"$1\" ja selle arutelulehekülg on sinu [[Special:Watchlist|jälgimisloendis]].",
 	"watchstar-popup-expiry-help": "Saad aegumise vaiketähtaega muuta [[$1|jälgimisloendi eelistustes]].",
 	"watchstar-popup-labels": "Jälgimisloendi sildid:",

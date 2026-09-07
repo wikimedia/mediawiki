@@ -1860,7 +1860,6 @@
 	"removedwatchtext": "\"[[:$1]]\" ని, దాని చర్చ పేజీనీ [[Special:Watchlist|మీ వీక్షణ జాబితా]] నుండి తొలగించాం.",
 	"removedwatchtext-talk": "\"[[:$1]]\" ని, దాని అనుబంధ పేజీనీ [[Special:Watchlist|మీ వీక్షణ జాబితా]] నుండి తొలగించాం.",
 	"removedwatchtext-short": "\"$1\" పేజీని మీ వీక్షణ జాబితా నుండి తొలగించాం.",
-	"watchstar-popup-title": "వీక్షణజాబితాను అమర్చుకోండి",
 	"watchstar-popup-already-watched": "\"$1\", దాని చర్చ పేజీ రెండూ మీ [[Special:Watchlist|వీక్షణజాబితాలో]] ఉన్నాయి.",
 	"watchstar-popup-expiry-help": "ముగిసే గడువును మీ [[$1|వీక్షణజాబితా అభిరుచుల్లో]] మార్చుకోవచ్చు.",
 	"watchstar-popup-labels": "వీక్షణజాబితా లేబుళ్ళు:",

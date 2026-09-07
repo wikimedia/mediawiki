@@ -1998,7 +1998,6 @@
 	"removedwatchtext": "صفحهٔ «[[:$1]]» و صفحهٔ بحث آن از [[Special:Watchlist|فهرست پیگیری‌‌تان]] برداشته شد.",
 	"removedwatchtext-talk": "«[[:$1]]» و صفحهٔ مرتبط به آن از [[Special:Watchlist|فهرست پیگیری‌‌تان]] حذف شدند.",
 	"removedwatchtext-short": "صفحهٔ \"$1\" از فهرست پیگیری‌‌تان حذف شده است.",
-	"watchstar-popup-title": "سازماندهی فهرستی پیگیری",
 	"watchstar-popup-already-watched": "«$1» و صفحهٔ بحث آن در [[Special:Watchlist|فهرست پیگیری شما]] قرار دارند.",
 	"watchstar-popup-expiry-help": "می‌توانید انقضای پیش‌فرض را در [[$1|ترجیحات فهرست پیگیری]] تغییر دهید.",
 	"watchstar-popup-labels": "برچسب‌های فهرست پیگیری:",

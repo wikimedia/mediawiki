@@ -1957,7 +1957,6 @@
 	"removedwatchtext": "Stránka „[[:$1]]“ a jej diskusná stránka boli odstránené z vášho [[Special:Watchlist|zoznamu sledovaných stránok]].",
 	"removedwatchtext-talk": "„[[:$1]]“ a súvisiaca stránka boli odstránené z vášho [[Special:Watchlist|zoznamu sledovaných stránok]].",
 	"removedwatchtext-short": "Stránka „$1“ bola odstránená z vášho zoznamu sledovaných.",
-	"watchstar-popup-title": "Usporiadať zoznam sledovaných",
 	"watchstar-popup-already-watched": "Stránka „$1“ a jej diskusná stránka sú vo vašom [[Special:Watchlist|zozname sledovaných]].",
 	"watchstar-popup-expiry-help": "Predvolený čas vypršania môžete zmeniť v [[$1|nastaveniach zoznamu sledovaných]].",
 	"watchstar-popup-labels": "Štítky zoznamu sledovaných stránok:",

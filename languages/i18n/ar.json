@@ -2019,7 +2019,6 @@
 	"removedwatchtext": "أُزيلت صفحة «[[:$1]]» ونقاشها من [[Special:Watchlist|قائمة مراقبتك]].",
 	"removedwatchtext-talk": "أُزيلت الصفحة النقاش «[[:$1]]» وصفحتها المرافقة من [[Special:Watchlist|قائمة مراقبتك]].",
 	"removedwatchtext-short": "أزيلت صفحة \"$1\" من قائمة مراقبتك.",
-	"watchstar-popup-title": "تنظيم قائمة المراقبة",
 	"watchstar-popup-already-watched": "\" $1 \" وصفحة نقاشها موجودة في [[Special:Watchlist|watchlist]].",
 	"watchstar-popup-expiry-help": "يمكنك تغيير تاريخ انتهاء الصلاحية الافتراضي في [[$1|تفضيلات قائمة المراقبة]].",
 	"watchstar-popup-labels": "تصنيفات قائمة المراقبة:",

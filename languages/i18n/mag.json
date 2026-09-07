@@ -1183,7 +1183,6 @@
 	"removedwatchtext": "\"[[:$1]]\" आउ एकर चर्चा पन्ना अपनेके [[Special:Watchlist|ध्यानसूची]]से हटा देल गेलै ।",
 	"removedwatchtext-talk": "\"[[:$1]]\" आउ एकर सम्बद्ध पन्ना अपनेके [[Special:Watchlist|ध्यानसूची]]से हटा देल गेलै ।",
 	"removedwatchtext-short": "पन्ना \"$1\" अपनेके ध्यानसूचीसे हटा देल गेलै ।",
-	"watchstar-popup-title": "ध्यानसूची व्यवस्थित करथिन",
 	"watchstar-popup-already-watched": "\"$1\" आउ एकर वार्ता पन्ना अपनेके [[Special:Watchlist|ध्यानसूची]]मे हे ।",
 	"watchstar-popup-expiry-help": "अपने अपन [[$1|ध्यानसूची प्राथमिकता]]मे पूर्वनिर्धारित समाप्ति बदल सक हथिन ।",
 	"watchstar-popup-labels": "ध्यानसूची लेबल:",

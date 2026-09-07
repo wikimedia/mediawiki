@@ -1904,7 +1904,6 @@
 	"removedwatchtext": "\"[[:$1]]\" kag ang iya pahina sang paghinun-anon ginkakas sa imo [[Special:Watchlist|watchlist]].",
 	"removedwatchtext-talk": "\"[[:$1]]\" kag ang kaupod sini nga pahina ginkakas sa imo [[Special:Watchlist|watchlist]].",
 	"removedwatchtext-short": "Ang pahina nga \"$1\" ginkakas na sa imo watchlist.",
-	"watchstar-popup-title": "I-organisar ang watchlist",
 	"watchstar-popup-already-watched": "\" $1 \" kag ang iya talk page yara sa imo [[Special:Watchlist|watchlist]].",
 	"watchstar-popup-expiry-help": "Mahimo mo mabag-o ang default nga pag-expire sa imo [[$1|mga gusto sa listahan sang pagbantay]].",
 	"watchstar-popup-labels": "Mga label sang watchlist:",

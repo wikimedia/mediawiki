@@ -1978,7 +1978,6 @@
 	"removedwatchtext": "\"[[:$1]]\" och dess diskussionssida har tagits bort från [[Special:Watchlist|din bevakningslista]].",
 	"removedwatchtext-talk": "\"[[:$1]]\" och dess associerade sida har tagits bort från din [[Special:Watchlist|bevakningslista]].",
 	"removedwatchtext-short": "Sidan \"$1\" har tagits bort från din bevakningslista.",
-	"watchstar-popup-title": "Organisera bevakningslista",
 	"watchstar-popup-already-watched": "\"$1\" och dess diskussionssida finns i din [[Special:Watchlist|bevakningslista]].",
 	"watchstar-popup-expiry-help": "Du kan ändra standardutgångsdatumet i dina [[$1|inställningar för bevakningslistan]].",
 	"watchstar-popup-labels": "Etiketter för bevakningslista:",
