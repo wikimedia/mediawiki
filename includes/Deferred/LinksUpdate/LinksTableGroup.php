@@ -35,7 +35,7 @@ class LinksTableGroup {
 				'LanguageConverterFactory',
 				'NamespaceInfo',
 				'WikiPageFactory',
-				'DBLoadBalancer',
+				'DBLoadBalancerFactory',
 				'MainWANObjectCache',
 				'MainConfig',
 				'JobQueueGroup',
