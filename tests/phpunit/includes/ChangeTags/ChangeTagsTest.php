@@ -716,6 +716,75 @@ class ChangeTagsTest extends MediaWikiIntegrationTestCase {
 			] );
 	}
 
+	public function testUpdateTagsForTwoLogEntriesWithSameAssociatedRevId(): void {
+		$revId = 789;
+
+		$firstRcId = 123;
+		$firstLogId = 456;
+		$firstUpdateTagsResult = $this->changeTags->updateTags(
+			[ 'tag' ],
+			[],
+			$firstRcId,
+			$revId,
+			$firstLogId,
+			'params1'
+		);
+		$this->assertSame( [ [ 'tag' ], [], [] ], $firstUpdateTagsResult );
+
+		// Second call with different log ID and rc ID but same rev ID should create a new change_tag row
+		$secondRcId = 124;
+		$secondLogId = 457;
+		$secondUpdateTagsResult = $this->changeTags->updateTags(
+			[ 'tag' ],
+			[],
+			$secondRcId,
+			$revId,
+			$secondLogId,
+			'params2'
+		);
+		$this->assertSame( [ [ 'tag' ], [], [] ], $secondUpdateTagsResult );
+
+		// Third call with the same log ID as the second call should result in no changes
+		$thirdCallRcId = null;
+		$thirdUpdateTagsResult = $this->changeTags->updateTags(
+			[ 'tag' ],
+			[],
+			$thirdCallRcId,
+			$revId,
+			$secondLogId,
+			'params3'
+		);
+		$this->assertSame( [ [], [], [ 'tag' ] ], $thirdUpdateTagsResult );
+
+		$this->newSelectQueryBuilder()
+			->select( [ 'ctd_name', 'ctd_id', 'ctd_count' ] )
+			->from( 'change_tag_def' )
+			->assertRowValue( [ 'tag', 1, 2 ] );
+		$this->newSelectQueryBuilder()
+			->select( [ 'ct_tag_id', 'ct_rc_id', 'ct_rev_id', 'ct_log_id', 'ct_params' ] )
+			->from( 'change_tag' )
+			->assertResultSet( [
+				[ 1, 123, 789, 456, 'params1' ],
+				// The second change_tag row should hold the second log ID and rc ID, but skip the rev ID due to
+				// the unique constraint on (ct_tag_id, ct_rev_id)
+				[ 1, 124, null, 457, 'params2' ],
+			] );
+
+		// Removing the tag for the second log entry should leave the first unaffected
+		$fourthCallRevId = null;
+		$fourthUpdateTagsResult = $this->changeTags->updateTags( [], [ 'tag' ], $secondRcId, $fourthCallRevId, $secondLogId );
+		$this->assertSame( [ [], [ 'tag' ], [ 'tag' ] ], $fourthUpdateTagsResult );
+
+		$this->newSelectQueryBuilder()
+			->select( [ 'ctd_name', 'ctd_id', 'ctd_count' ] )
+			->from( 'change_tag_def' )
+			->assertRowValue( [ 'tag', 1, 1 ] );
+		$this->newSelectQueryBuilder()
+			->select( [ 'ct_tag_id', 'ct_rc_id', 'ct_rev_id', 'ct_log_id', 'ct_params' ] )
+			->from( 'change_tag' )
+			->assertRowValue( [ 1, 123, 789, 456, 'params1' ] );
+	}
+
 	public function testDeleteTags() {
 		$this->emptyChangeTagsTables();
 		$this->getServiceContainer()->resetServiceForTesting( 'NameTableStoreFactory' );

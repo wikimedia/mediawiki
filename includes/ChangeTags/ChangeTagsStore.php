@@ -781,6 +781,25 @@ class ChangeTagsStore {
 
 		$dbw = $this->dbProvider->getPrimaryDatabase();
 
+		// Check if the change being requested would be a no-op, and if so, return early. We do this before
+		// expanding out any null IDs so that users can remove tags from log IDs where the rev ID has multiple
+		// associated log IDs.
+		$prevTags = $this->getTags( $dbw, $rc_id, $rev_id, $log_id );
+
+		// add tags
+		$tagsToAdd = array_values( array_diff( $tagsToAdd, $prevTags ) );
+		$newTags = array_unique( array_merge( $prevTags, $tagsToAdd ) );
+
+		// remove tags
+		$tagsToRemove = array_values( array_intersect( $tagsToRemove, $newTags ) );
+		$newTags = array_values( array_diff( $newTags, $tagsToRemove ) );
+
+		sort( $prevTags );
+		sort( $newTags );
+		if ( $prevTags == $newTags ) {
+			return [ [], [], $prevTags ];
+		}
+
 		// Might as well look for rcids and so on.
 		if ( !$rc_id ) {
 			// Info might be out of date, somewhat fractionally, on replica DB.
@@ -840,50 +859,54 @@ class ChangeTagsStore {
 				->fetchField();
 		}
 
-		$prevTags = $this->getTags( $dbw, $rc_id, $rev_id, $log_id );
-
-		// add tags
-		$tagsToAdd = array_values( array_diff( $tagsToAdd, $prevTags ) );
-		$newTags = array_unique( array_merge( $prevTags, $tagsToAdd ) );
-
-		// remove tags
-		$tagsToRemove = array_values( array_intersect( $tagsToRemove, $newTags ) );
-		$newTags = array_values( array_diff( $newTags, $tagsToRemove ) );
-
-		sort( $prevTags );
-		sort( $newTags );
-		if ( $prevTags == $newTags ) {
-			return [ [], [], $prevTags ];
-		}
-
 		// insert a row into change_tag for each new tag
+		$tagsAdded = [];
 		if ( count( $tagsToAdd ) ) {
-			$changeTagMapping = [];
-			foreach ( $tagsToAdd as $tag ) {
-				$changeTagMapping[$tag] = $this->changeTagDefStore->acquireId( $tag );
-			}
 			$fname = __METHOD__;
 			foreach ( $tagsToAdd as $tag ) {
-				// Filter so we don't insert NULLs as zero accidentally.
-				// Keep in mind that $rc_id === null means "I don't care/know about the
-				// rc_id, just delete $tag on this revision/log entry". It doesn't
-				// mean "only delete tags on this revision/log WHERE rc_id IS NULL".
-				$tagRow = array_filter(
-					[
-						'ct_rc_id' => $rc_id,
-						'ct_log_id' => $log_id,
-						'ct_rev_id' => $rev_id,
-						'ct_params' => $params,
-						'ct_tag_id' => $changeTagMapping[$tag] ?? null,
-					]
-				);
+				$changeTagId = $this->changeTagDefStore->acquireId( $tag );
+
+				$row = array_filter( [
+					'ct_rc_id' => $rc_id,
+					'ct_log_id' => $log_id,
+					'ct_rev_id' => $rev_id,
+					'ct_params' => $params,
+					'ct_tag_id' => $changeTagId,
+				] );
 
 				$dbw->newInsertQueryBuilder()
 					->insertInto( self::CHANGE_TAG )
 					->ignore()
-					->row( $tagRow )
+					->row( $row )
 					->caller( __METHOD__ )->execute();
-				if ( $dbw->affectedRows() ) {
+				$insertOccurred = $dbw->affectedRows() > 0;
+
+				// If the insert failed due to unique constraint violation, insert a new row without the rev_id if
+				// the log_id on the conflicting row is different so both log entries can have the same tag (T437238)
+				if ( !$insertOccurred && $log_id && $rev_id ) {
+					$logIdOnExistingRow = $dbw->newSelectQueryBuilder()
+						->select( 'ct_log_id' )
+						->from( self::CHANGE_TAG )
+						->where( [
+							'ct_tag_id' => $changeTagId,
+							'ct_rev_id' => $rev_id,
+						] )
+						->caller( __METHOD__ )
+						->fetchField();
+					if ( $logIdOnExistingRow && (int)$logIdOnExistingRow !== (int)$log_id ) {
+						unset( $row['ct_rev_id'] );
+						$dbw->newInsertQueryBuilder()
+							->insertInto( self::CHANGE_TAG )
+							->ignore()
+							->row( $row )
+							->caller( __METHOD__ )
+							->execute();
+						$insertOccurred = $dbw->affectedRows() > 0;
+					}
+				}
+
+				if ( $insertOccurred ) {
+					$tagsAdded[] = $tag;
 					// T207881: update the counts at the end of the transaction
 					$dbw->onTransactionPreCommitOrIdle( static function () use ( $dbw, $tag, $fname ) {
 						$dbw->newUpdateQueryBuilder()
@@ -892,6 +915,8 @@ class ChangeTagsStore {
 							->where( [ 'ctd_name' => $tag ] )
 							->caller( $fname )->execute();
 					}, $fname );
+				} else {
+					$prevTags[] = $tag;
 				}
 			}
 		}
@@ -900,17 +925,29 @@ class ChangeTagsStore {
 		if ( count( $tagsToRemove ) ) {
 			$fname = __METHOD__;
 			foreach ( $tagsToRemove as $tag ) {
-				$conds = array_filter(
-					[
-						'ct_rc_id' => $rc_id,
+				$matchingChangeIdConds = [ $dbw->andExpr( array_filter( [
+					'ct_rc_id' => $rc_id,
+					'ct_log_id' => $log_id,
+					'ct_rev_id' => $rev_id,
+				] ) ) ];
+
+				// If the more than one log ID is associated with a rev ID, the change_tag row to delete may have
+				// our log ID but the rev ID as null.
+				if ( $log_id !== null && $rev_id !== null ) {
+					$logSpecificCond = [
 						'ct_log_id' => $log_id,
-						'ct_rev_id' => $rev_id,
-						'ct_tag_id' => $this->changeTagDefStore->getId( $tag ),
-					]
-				);
+						'ct_rev_id' => null,
+					];
+					if ( $rc_id !== null ) {
+						$logSpecificCond['ct_rc_id'] = $rc_id;
+					}
+					$matchingChangeIdConds[] = $dbw->andExpr( $logSpecificCond );
+				}
+
 				$dbw->newDeleteQueryBuilder()
 					->deleteFrom( self::CHANGE_TAG )
-					->where( $conds )
+					->where( $dbw->expr( 'ct_tag_id', '=', $this->changeTagDefStore->getId( $tag ) ) )
+					->andWhere( $dbw->orExpr( $matchingChangeIdConds ) )
 					->caller( __METHOD__ )->execute();
 				if ( $dbw->affectedRows() ) {
 					// T207881: update the counts at the end of the transaction
@@ -932,9 +969,9 @@ class ChangeTagsStore {
 
 		$userObj = $user ? $this->userFactory->newFromUserIdentity( $user ) : null;
 		$this->hookRunner->onChangeTagsAfterUpdateTags(
-			$tagsToAdd, $tagsToRemove, $prevTags, $rc_id, $rev_id, $log_id, $params, $rc, $userObj );
+			$tagsAdded, $tagsToRemove, $prevTags, $rc_id, $rev_id, $log_id, $params, $rc, $userObj );
 
-		return [ $tagsToAdd, $tagsToRemove, $prevTags ];
+		return [ $tagsAdded, $tagsToRemove, $prevTags ];
 	}
 
 	/**
