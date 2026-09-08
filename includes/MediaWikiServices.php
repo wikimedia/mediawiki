@@ -1468,6 +1468,9 @@ class MediaWikiServices extends ServiceContainer {
 		return $this->getService( 'LeximorphFactory' );
 	}
 
+	/**
+	 * @since 1.47
+	 */
 	public function getLinkAlwaysKnownLookup(): LinkAlwaysKnownLookup {
 		return $this->getService( 'LinkAlwaysKnownLookup' );
 	}

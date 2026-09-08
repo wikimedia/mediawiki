@@ -13,6 +13,9 @@ use Psr\Log\LoggerInterface;
 use RuntimeException;
 use Wikimedia\ObjectCache\MapCacheLRU;
 
+/**
+ * @since 1.47
+ */
 class LinkAlwaysKnownLookup {
 
 	private readonly MapCacheLRU $cache;
