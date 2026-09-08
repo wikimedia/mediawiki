@@ -72,8 +72,6 @@ class ExtraRoutesModule extends MatcherBasedModule {
 		MainConfigNames::RestTermsOfServiceUrl,
 	];
 
-	private readonly JsonLocalizer $jsonLocalizer;
-
 	/**
 	 * @var array<int,array>|null A list of route definitions loaded from
 	 * the files specified by $routeFiles
@@ -97,6 +95,7 @@ class ExtraRoutesModule extends MatcherBasedModule {
 		private array $routeFiles,
 		private readonly array $extraRoutes,
 		Router $router,
+		JsonLocalizer $jsonLocalizer,
 		ResponseFactory $responseFactory,
 		BasicAuthorizerInterface $basicAuth,
 		ObjectFactory $objectFactory,
@@ -108,6 +107,7 @@ class ExtraRoutesModule extends MatcherBasedModule {
 		parent::__construct(
 			$router,
 			'',
+			$jsonLocalizer,
 			$responseFactory,
 			$basicAuth,
 			$objectFactory,
@@ -115,7 +115,6 @@ class ExtraRoutesModule extends MatcherBasedModule {
 			$errorReporter,
 			$hookContainer
 		);
-		$this->jsonLocalizer = new JsonLocalizer( $responseFactory );
 		$this->options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
 	}
 
@@ -244,7 +243,8 @@ class ExtraRoutesModule extends MatcherBasedModule {
 			];
 		}
 		if ( isset( $route['openApiSpec'] ) ) {
-			$info['openApiSpec'] = $this->jsonLocalizer->localizeJson( $route['openApiSpec'] );
+			$jsonLocalizer = $this->getJsonLocalizer();
+			$info['openApiSpec'] = $jsonLocalizer->localizeJson( $route['openApiSpec'] );
 		}
 
 		$info['path'] = $route['path'];
@@ -255,9 +255,10 @@ class ExtraRoutesModule extends MatcherBasedModule {
 	public function getOpenApiInfo() {
 		// Note that mwapi-1.0 is based on OAS 3.0, so it doesn't support the
 		// "summary" property introduced in 3.1.
+		$jsonLocalizer = $this->getJsonLocalizer();
 		$info = [
-			'title' => $this->jsonLocalizer->getFormattedMessage( 'rest-module-extra-routes-title' ),
-			'description' => $this->jsonLocalizer->getFormattedMessage( 'rest-module-extra-routes-desc' ),
+			'title' => $jsonLocalizer->getFormattedMessage( 'rest-module-extra-routes-title' ),
+			'description' => $jsonLocalizer->getFormattedMessage( 'rest-module-extra-routes-desc' ),
 			'version' => '0.1.0',
 			'contact' => $this->getOpenApiContact(),
 		];

@@ -7,19 +7,19 @@ use MediaWiki\HookContainer\StaticHookRegistry;
 use MediaWiki\Language\Language;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Message\Message;
+use MediaWiki\Message\TextFormatter;
 use MediaWiki\ParamValidator\TypeDef\ArrayDef;
 use MediaWiki\Permissions\SimpleAuthority;
 use MediaWiki\Registration\ExtensionRegistry;
 use MediaWiki\Request\WebRequest;
 use MediaWiki\Rest\CorsUtils;
 use MediaWiki\Rest\EntryPoint;
-use MediaWiki\Rest\ErrorFormatterV1;
 use MediaWiki\Rest\Handler;
+use MediaWiki\Rest\JsonLocalizer;
 use MediaWiki\Rest\Module\AudienceDesignation;
 use MediaWiki\Rest\Module\ModuleManager;
 use MediaWiki\Rest\PathTemplateMatcher\PathMatcher;
 use MediaWiki\Rest\RequestData;
-use MediaWiki\Rest\ResponseFactory;
 use MediaWiki\Rest\Router;
 use MediaWiki\Rest\Validator\Validator;
 use MediaWiki\Session\Session;
@@ -129,14 +129,16 @@ class RestStructureTest extends MediaWikiIntegrationTestCase {
 			$context->method( 'getAuthority' )->willReturn( $authority );
 			$context->method( 'getRequest' )->willReturn( $request );
 
-			$responseFactory = $this->createNoOpMock( ResponseFactory::class, [ 'getFormattedMessage', 'getLangCodes' ] );
-			$responseFactory->method( 'getFormattedMessage' )->willReturn( '' );
-			$responseFactory->method( 'getLangCodes' )->willReturn( [ 'en' ] );
-
 			$cors = $this->createNoOpMock( CorsUtils::class );
 
+			$formatters = [ $this->getDummyTextFormatter( true ) ];
 			$this->router = EntryPoint::createRouter(
-				$this->getServiceContainer(), $context, new RequestData(), $responseFactory, [], false, $cors
+				$this->getServiceContainer(),
+				$context,
+				new RequestData(),
+				$formatters,
+				false,
+				$cors
 			);
 		}
 		return $this->router;
@@ -365,7 +367,7 @@ class RestStructureTest extends MediaWikiIntegrationTestCase {
 			new ServiceOptions( ModuleManager::CONSTRUCTOR_OPTIONS, $conf ),
 			ExtensionRegistry::getInstance()->getAttribute( 'RestModuleFiles' ),
 			$services->getLocalServerObjectCache(),
-			new ResponseFactory( [], new ErrorFormatterV1( [], false ) ),
+			new JsonLocalizer( new TextFormatter( 'qqx' ) ),
 		);
 		$files = $moduleManager->getRouteFiles();
 		$files += $moduleManager->getDisabledRouteFiles();

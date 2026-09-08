@@ -16,6 +16,7 @@ use MediaWiki\Rest\BasicAccess\MWBasicAuthorizer;
 use MediaWiki\Rest\Module\ModuleManager;
 use MediaWiki\Rest\Reporter\MWErrorReporter;
 use MediaWiki\Rest\Validator\Validator;
+use Wikimedia\Assert\Assert;
 use Wikimedia\Message\ITextFormatter;
 
 /**
@@ -32,7 +33,6 @@ class EntryPoint extends MediaWikiEntryPoint {
 	 * @param MediaWikiServices $services
 	 * @param IContextSource $context
 	 * @param RequestInterface $request
-	 * @param ResponseFactory $responseFactory
 	 * @param ITextFormatter[] $textFormatters
 	 * @param bool $showExceptionDetails
 	 * @param CorsUtils $cors
@@ -43,11 +43,15 @@ class EntryPoint extends MediaWikiEntryPoint {
 		MediaWikiServices $services,
 		IContextSource $context,
 		RequestInterface $request,
-		ResponseFactory $responseFactory,
 		array $textFormatters,
 		bool $showExceptionDetails,
 		CorsUtils $cors
 	): Router {
+		Assert::parameter(
+			count( $textFormatters ) > 0,
+			'$textFormatters', 'must not be empty'
+		);
+
 		$conf = $services->getMainConfig();
 
 		$authority = $context->getAuthority();
@@ -64,11 +68,13 @@ class EntryPoint extends MediaWikiEntryPoint {
 
 		$stats = $services->getStatsFactory();
 
+		// NOTE: Use preferred language, see getTextFormatters().
+		$defaultTextFormatter = array_first( $textFormatters );
 		$moduleManager = new ModuleManager(
 			new ServiceOptions( ModuleManager::CONSTRUCTOR_OPTIONS, $conf ),
 			ExtensionRegistry::getInstance()->getAttribute( 'RestModuleFiles' ),
 			$services->getLocalServerObjectCache(),
-			$responseFactory
+			new JsonLocalizer( $defaultTextFormatter )
 		);
 
 		return ( new Router(
@@ -129,7 +135,6 @@ class EntryPoint extends MediaWikiEntryPoint {
 				$this->getServiceContainer(),
 				$context,
 				$this->request,
-				$responseFactory,
 				$textFormatters,
 				$showExceptionDetails,
 				$this->cors
@@ -162,6 +167,7 @@ class EntryPoint extends MediaWikiEntryPoint {
 		$factory = $services->getMessageFormatterFactory();
 
 		foreach ( $langs as $lang ) {
+			// XXX: we could key on language here
 			$textFormatters[] = $factory->getTextFormatter( $lang );
 		}
 

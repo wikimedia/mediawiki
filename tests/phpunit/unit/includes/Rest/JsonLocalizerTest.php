@@ -3,7 +3,6 @@
 namespace MediaWiki\Tests\Rest;
 
 use MediaWiki\Rest\JsonLocalizer;
-use MediaWiki\Rest\ResponseFactory;
 use MediaWikiUnitTestCase;
 use Wikimedia\Message\MessageValue;
 
@@ -11,11 +10,7 @@ use Wikimedia\Message\MessageValue;
  * @covers \MediaWiki\Rest\JsonLocalizer
  */
 class JsonLocalizerTest extends MediaWikiUnitTestCase {
-	private function createMockResponseFactory(): ResponseFactory {
-		$responseFactory = $this->createNoOpMock( ResponseFactory::class, [ 'getFormattedMessage' ] );
-		$responseFactory->method( 'getFormattedMessage' )->willReturn( 'translated' );
-		return $responseFactory;
-	}
+	use RestTestTrait;
 
 	public static function providelocalizeJsonObjects() {
 		return [
@@ -48,16 +43,16 @@ class JsonLocalizerTest extends MediaWikiUnitTestCase {
 					'x-i18n-description' => 'foo',
 				],
 				[
-					'description' => 'translated',
+					'description' => '<message key="foo"></message>',
 				]
 			],
 			'pair override' => [
 				[
 					'x-i18n-description' => 'foo',
-					'description' => 'bar',
+					'description' => 'untranslated',
 				],
 				[
-					'description' => 'translated',
+					'description' => '<message key="foo"></message>',
 				]
 			],
 			'nested translatable pair' => [
@@ -73,12 +68,12 @@ class JsonLocalizerTest extends MediaWikiUnitTestCase {
 					],
 				],
 				[
-					'description' => 'translated',
+					'description' => '<message key="foo"></message>',
 					'properties' => [
 						[
 							'my-property-name' => [
 								'type' => 'integer',
-								'description' => 'translated'
+								'description' => '<message key="bar"></message>'
 							]
 						],
 					],
@@ -89,7 +84,7 @@ class JsonLocalizerTest extends MediaWikiUnitTestCase {
 					'x-i18n-title' => 'foo',
 				],
 				[
-					'title' => 'translated',
+					'title' => '<message key="foo"></message>',
 				]
 			],
 			'translatable description and title' => [
@@ -98,8 +93,8 @@ class JsonLocalizerTest extends MediaWikiUnitTestCase {
 					'x-i18n-description' => 'bar',
 				],
 				[
-					'title' => 'translated',
-					'description' => 'translated',
+					'title' => '<message key="foo"></message>',
+					'description' => '<message key="bar"></message>',
 				]
 			],
 		];
@@ -109,7 +104,7 @@ class JsonLocalizerTest extends MediaWikiUnitTestCase {
 	 * @dataProvider provideLocalizeJsonObjects
 	 */
 	public function testLocalizeJson( $inputObj, $expectedObj ) {
-		$util = new JsonLocalizer( $this->createMockResponseFactory() );
+		$util = new JsonLocalizer( $this->getDummyTextFormatter( true ) );
 		$adjustedObj = $util->localizeJson( $inputObj );
 		$this->assertEquals( $expectedObj, $adjustedObj );
 	}
@@ -118,11 +113,11 @@ class JsonLocalizerTest extends MediaWikiUnitTestCase {
 		return [
 			'message key' => [
 				'foo',
-				'translated'
+				'<message key="foo"></message>'
 			],
 			'message value' => [
 				new MessageValue( 'foo' ),
-				'translated'
+				'<message key="foo"></message>'
 			]
 		];
 	}
@@ -131,7 +126,7 @@ class JsonLocalizerTest extends MediaWikiUnitTestCase {
 	 * @dataProvider provideGetFormattedMessage
 	 */
 	public function testGetFormattedMessage( $message, $expectedString ) {
-		$util = new JsonLocalizer( $this->createMockResponseFactory() );
+		$util = new JsonLocalizer( $this->getDummyTextFormatter( true ) );
 		$ret = $util->getFormattedMessage( $message );
 		$this->assertEquals( $expectedString, $ret );
 	}

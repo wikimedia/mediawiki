@@ -14,6 +14,7 @@ use MediaWiki\Rest\RequestData;
 use MediaWiki\Rest\RequestInterface;
 use MediaWiki\Rest\ResponseFactory;
 use MediaWiki\Rest\ResponseInterface;
+use MediaWiki\Tests\Rest\RestTestTrait;
 use Throwable;
 use Wikimedia\TestingAccessWrapper;
 
@@ -22,6 +23,8 @@ use Wikimedia\TestingAccessWrapper;
  * dependencies rather than mocked dependencies where possible.
  */
 trait HandlerIntegrationTestTrait {
+	use RestTestTrait;
+
 	/**
 	 * @param array $requestParams Request parameters as in the RequestData
 	 *   constructor, except that "path" is accepted as a convenience alias
@@ -34,14 +37,15 @@ trait HandlerIntegrationTestTrait {
 		}
 		$request = new RequestData( $requestParams );
 		$context = RequestContext::getMain();
-		$textFormatters = [];
+		$textFormatters = [
+			$this->getDummyTextFormatter( true ),
+		];
 		$showExceptionDetails = false;
 		$responseFactory = new ResponseFactory( $textFormatters, new ErrorFormatterV1( $textFormatters, $showExceptionDetails ) );
 		$router = EntryPoint::createRouter(
 			$this->getServiceContainer(),
 			$context,
 			$request,
-			new ResponseFactory( $textFormatters, new ErrorFormatterV1( $textFormatters, $showExceptionDetails ) ),
 			$textFormatters,
 			$showExceptionDetails,
 			new CorsUtils(

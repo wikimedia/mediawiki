@@ -4,10 +4,10 @@ namespace MediaWiki\Tests\Rest;
 
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\MainConfigNames;
-use MediaWiki\Rest\ErrorFormatterV1;
+use MediaWiki\Rest\JsonLocalizer;
 use MediaWiki\Rest\Module\ModuleManager;
 use MediaWiki\Rest\Module\ModuleMode;
-use MediaWiki\Rest\ResponseFactory;
+use MediaWiki\Tests\Unit\DummyServicesTrait;
 use MediaWikiIntegrationTestCase;
 
 /**
@@ -15,6 +15,7 @@ use MediaWikiIntegrationTestCase;
  */
 class ModuleManagerTest extends MediaWikiIntegrationTestCase {
 	use RestTestTrait;
+	use DummyServicesTrait;
 
 	public function setUp(): void {
 		parent::setUp();
@@ -56,11 +57,13 @@ class ModuleManagerTest extends MediaWikiIntegrationTestCase {
 		$services = $this->getServiceContainer();
 		$conf = $services->getMainConfig();
 
+		$formatter = $this->getDummyTextFormatter();
+
 		return new ModuleManager(
 			new ServiceOptions( ModuleManager::CONSTRUCTOR_OPTIONS, $conf ),
 			$extensionModuleFiles,
 			$services->getLocalServerObjectCache(),
-			new ResponseFactory( [], new ErrorFormatterV1( [], false ) ),
+			new JsonLocalizer( $formatter ),
 		);
 	}
 

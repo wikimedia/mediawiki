@@ -70,7 +70,6 @@ abstract class Handler {
 	/** @var mixed|null */
 	private $validatedBody;
 	private ?ConditionalHeaderUtil $conditionalHeaderUtil = null;
-	private ?JsonLocalizer $jsonLocalizer = null;
 	private HookContainer $hookContainer;
 	private ?Session $session = null;
 	private HookRunner $hookRunner;
@@ -569,15 +568,11 @@ abstract class Handler {
 	 */
 	protected function getJsonLocalizer(): JsonLocalizer {
 		Assert::precondition(
-			$this->responseFactory !== null,
-			'getJsonLocalizer() must not be called before initServices()'
+			$this->module !== null,
+			'getJsonLocalizer() must not be called before initContext()'
 		);
 
-		if ( $this->jsonLocalizer === null ) {
-			$this->jsonLocalizer = new JsonLocalizer( $this->responseFactory );
-		}
-
-		return $this->jsonLocalizer;
+		return $this->module->getJsonLocalizer();
 	}
 
 	/**

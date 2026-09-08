@@ -5,7 +5,6 @@ namespace MediaWiki\Rest\Module;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Rest\JsonLocalizer;
-use MediaWiki\Rest\ResponseFactory;
 use Wikimedia\ObjectCache\BagOStuff;
 
 /**
@@ -72,7 +71,7 @@ class ModuleManager {
 	 * @param ServiceOptions $options
 	 * @param string[] $extensionModuleFiles
 	 * @param BagOStuff $srvCache Optional BagOStuff instance to an APC-style cache.
-	 * @param ResponseFactory $responseFactory
+	 * @param JsonLocalizer $jsonLocalizer
 	 *
 	 * @internal
 	 */
@@ -80,7 +79,7 @@ class ModuleManager {
 		ServiceOptions $options,
 		private readonly array $extensionModuleFiles,
 		private readonly BagOStuff $srvCache,
-		private readonly ResponseFactory $responseFactory,
+		private readonly JsonLocalizer $jsonLocalizer,
 	) {
 		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
 
@@ -248,14 +247,13 @@ class ModuleManager {
 
 		// RestExternalModules (modules not in core or extensions)
 		$externalModules = [];
-		$localizer = new JsonLocalizer( $this->responseFactory );
 		foreach ( $this->restExternalModules as $externalModuleId => $em ) {
 			$mode = $this->getModuleMode( $externalModuleId );
 			if ( $mode !== ModuleMode::PUBLISHED ) {
 				continue;
 			}
 
-			$em = $localizer->localizeJson( $em );
+			$em = $this->jsonLocalizer->localizeJson( $em );
 
 			$externalModules[$externalModuleId] = [
 				'name' => $em['info']['title'] ?? $externalModuleId,
@@ -299,9 +297,8 @@ class ModuleManager {
 	 */
 	private function normalizeSpec( string $key, array $spec ): array {
 		// Translate any message keys from config to a displayable name string
-		$localizer = new JsonLocalizer( $this->responseFactory );
 		if ( isset( $spec['msg'] ) ) {
-			$spec['name'] = $localizer->getFormattedMessage( $spec['msg'] );
+			$spec['name'] = $this->jsonLocalizer->getFormattedMessage( $spec['msg'] );
 			unset( $spec['msg'] );
 		}
 
@@ -363,7 +360,7 @@ class ModuleManager {
 			sha1( $file ),
 			// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged
 			(int)@filemtime( $file ),
-			implode( ',', $this->responseFactory->getLangCodes() )
+			$this->jsonLocalizer->getLangCode()
 		);
 
 		return $this->srvCache->getWithSetCallback(
@@ -372,7 +369,7 @@ class ModuleManager {
 			function () use ( $file ) {
 				// An exception here almost certainly means this is an old-style flat route file.
 				try {
-					$md = SpecBasedModule::loadModuleDefinition( $file, $this->responseFactory );
+					$md = SpecBasedModule::loadModuleDefinition( $file, $this->jsonLocalizer );
 					return [
 						'moduleId' => $md['moduleId'],
 						'title' => $md['info']['title']

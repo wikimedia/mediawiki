@@ -6,6 +6,7 @@ use MediaWiki\Config\ServiceOptions;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Rest\BasicAccess\StaticBasicAuthorizer;
 use MediaWiki\Rest\ErrorFormatterV1;
+use MediaWiki\Rest\JsonLocalizer;
 use MediaWiki\Rest\Module\Module;
 use MediaWiki\Rest\Module\ModuleManager;
 use MediaWiki\Rest\Module\ModuleMode;
@@ -15,6 +16,7 @@ use MediaWiki\Rest\ResponseFactory;
 use MediaWiki\Rest\Router;
 use MediaWiki\Rest\Validator\Validator;
 use MediaWiki\Tests\Rest\Handler\SessionHelperTestTrait;
+use MediaWiki\Tests\Unit\DummyServicesTrait;
 use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
 use Psr\Container\ContainerInterface;
 use Wikimedia\ObjectCache\EmptyBagOStuff;
@@ -31,6 +33,7 @@ use Wikimedia\ObjectFactory\ObjectFactory;
 trait RestTestTrait {
 	use SessionHelperTestTrait;
 	use MockAuthorityTrait;
+	use DummyServicesTrait;
 
 	/**
 	 * @since 1.47
@@ -68,7 +71,9 @@ trait RestTestTrait {
 	 * @return Router
 	 */
 	private function newRouter( array $params = [] ) {
-		$textFormatters = [];
+		$textFormatters = [
+			$this->getDummyTextFormatter( true )
+		];
 		$showExceptionDetails = true;
 
 		$objectFactory = new ObjectFactory(
@@ -119,11 +124,13 @@ trait RestTestTrait {
 
 		$authority = $params['authority'] ?? $this->mockAnonUltimateAuthority();
 		$request = $params['request'] ?? new RequestData();
+		$formatter = $params['formatter'] ?? $this->getDummyTextFormatter( true );
 
 		$module = $this->getMockBuilder( Module::class )
 			->setConstructorArgs( [
 				$params['router'] ?? $this->newRouter( $params ),
 				$params['pathPrefix'] ?? 'mock',
+				$params['jsonLocalizer'] ?? new JsonLocalizer( $formatter ),
 				$params['responseFactory'] ?? new ResponseFactory( [], new ErrorFormatterV1( [], false ) ),
 				$params['basicAuth'] ?? new StaticBasicAuthorizer(),
 				$params['objectFactory'] ?? $objectFactory,

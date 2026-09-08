@@ -11,6 +11,7 @@ use MediaWiki\Rest\Handler;
 use MediaWiki\Rest\Handler\GenericActionHandler;
 use MediaWiki\Rest\Hook\HookRunner;
 use MediaWiki\Rest\HttpException;
+use MediaWiki\Rest\JsonLocalizer;
 use MediaWiki\Rest\LocalizedHttpException;
 use MediaWiki\Rest\PathTemplateMatcher\ModuleConfigurationException;
 use MediaWiki\Rest\Reporter\ErrorReporter;
@@ -49,6 +50,7 @@ abstract class Module {
 	public function __construct(
 		private readonly Router $router,
 		protected readonly string $pathPrefix,
+		protected readonly JsonLocalizer $jsonLocalizer,
 		protected readonly ResponseFactory $responseFactory,
 		private readonly BasicAuthorizerInterface $basicAuth,
 		private readonly ObjectFactory $objectFactory,
@@ -58,6 +60,13 @@ abstract class Module {
 	) {
 		$this->hookRunner = new HookRunner( $hookContainer );
 		$this->stats = StatsFactory::newNull();
+	}
+
+	/**
+	 * @since 1.47
+	 */
+	public function getJsonLocalizer(): JsonLocalizer {
+		return $this->jsonLocalizer;
 	}
 
 	public function getPathPrefix(): string {

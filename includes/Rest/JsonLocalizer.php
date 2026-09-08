@@ -2,6 +2,7 @@
 
 namespace MediaWiki\Rest;
 
+use Wikimedia\Message\ITextFormatter;
 use Wikimedia\Message\MessageSpecifier;
 use Wikimedia\Message\MessageValue;
 
@@ -17,19 +18,19 @@ use Wikimedia\Message\MessageValue;
  * Functions in this class will replace the "x-i18n-description" with a translated "description".
  */
 class JsonLocalizer {
-	private ResponseFactory $responseFactory;
+	private ITextFormatter $formatter;
 
 	private const LOCALIZATION_PREFIX = 'x-i18n-';
 
 	/**
-	 * @param ResponseFactory $responseFactory
+	 * @param ITextFormatter $formatter
 	 *
 	 * @internal
 	 */
 	public function __construct(
-		ResponseFactory $responseFactory
+		ITextFormatter $formatter
 	) {
-		$this->responseFactory = $responseFactory;
+		$this->formatter = $formatter;
 	}
 
 	/**
@@ -118,8 +119,16 @@ class JsonLocalizer {
 			$message = new MessageValue( $message );
 		}
 
-		// TODO: consider if we want to request a specific preferred language
-		return $this->responseFactory->getFormattedMessage( $message );
+		return $this->formatter->format( $message );
+	}
+
+	/**
+	 * Returns the language this localizer produces.
+	 *
+	 * @since 1.47
+	 */
+	public function getLangCode(): string {
+		return $this->formatter->getLangCode();
 	}
 
 }

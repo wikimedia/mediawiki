@@ -13,6 +13,7 @@ use MediaWiki\Rest\Module\ModuleMode;
 use MediaWiki\Rest\Reporter\MWErrorReporter;
 use MediaWiki\Rest\RequestData;
 use MediaWiki\Rest\RequestInterface;
+use MediaWiki\Rest\ResponseInterface;
 use MediaWiki\Rest\Router;
 use MediaWiki\Rest\Validator\Validator;
 use MediaWiki\Session\SessionManagerInterface;
@@ -35,7 +36,8 @@ class ModuleSpecHandlerTest extends MediaWikiIntegrationTestCase {
 	private function createRouter(
 		RequestInterface $request,
 		$specFile,
-		$moduleModes = []
+		ITextFormatter $formatter,
+		$moduleModes = [],
 	): Router {
 		$services = $this->getServiceContainer();
 
@@ -50,15 +52,6 @@ class ModuleSpecHandlerTest extends MediaWikiIntegrationTestCase {
 			$authority
 		);
 
-		$formatter = new class implements ITextFormatter {
-			public function getLangCode(): string {
-				return 'qqx';
-			}
-
-			public function format( MessageSpecifier $message ): string {
-				return $message->dump();
-			}
-		};
 		$textFormatters = [ $formatter ];
 		$showExceptionDetails = false;
 
@@ -115,6 +108,46 @@ class ModuleSpecHandlerTest extends MediaWikiIntegrationTestCase {
 				return null;
 			}
 		};
+	}
+
+	private function executeModuleSpecHandler(
+		RequestData $request,
+		$specFile,
+		array $moduleModes,
+		array $securitySchemes = []
+	): ResponseInterface {
+		$formatter = new class implements ITextFormatter {
+			public function getLangCode(): string {
+				return 'qqx';
+			}
+
+			public function format( MessageSpecifier $message ): string {
+				return $message->dump();
+			}
+		};
+
+		$router = $this->createRouter(
+			$request,
+			$specFile,
+			$formatter,
+			$moduleModes,
+		);
+
+		$module = $this->newModule( [ 'router' => $router, 'formatter' => $formatter ] );
+		$handler = $this->newHandler( $securitySchemes );
+		$response = $this->executeHandler(
+			$handler,
+			$request,
+			[],
+			[],
+			[],
+			[],
+			null,
+			null,
+			$module
+		);
+
+		return $response;
 	}
 
 	/**
@@ -292,19 +325,10 @@ class ModuleSpecHandlerTest extends MediaWikiIntegrationTestCase {
 			'mock/v1' => ModuleMode::PUBLISHED,
 			'' => ModuleMode::PUBLISHED,
 		];
-		$router = $this->createRouter( $request, $specFile, $moduleModes );
-
-		$handler = $this->newHandler();
-		$response = $this->executeHandler(
-			$handler,
+		$response = $this->executeModuleSpecHandler(
 			$request,
-			[],
-			[],
-			[],
-			[],
-			null,
-			null,
-			$router
+			$specFile,
+			$moduleModes
 		);
 		$this->assertSame( 200, $response->getStatusCode() );
 		$this->assertArrayHasKey( 'Content-Type', $response->getHeaders() );
@@ -338,19 +362,10 @@ class ModuleSpecHandlerTest extends MediaWikiIntegrationTestCase {
 		$moduleModes = [
 			'mock/v1' => ModuleMode::PUBLISHED,
 		];
-		$router = $this->createRouter( $request, __DIR__ . '/SpecTestModule.json', $moduleModes );
-
-		$handler = $this->newHandler();
-		$response = $this->executeHandler(
-			$handler,
+		$response = $this->executeModuleSpecHandler(
 			$request,
-			[],
-			[],
-			[],
-			[],
-			null,
-			null,
-			$router
+			__DIR__ . '/SpecTestModule.json',
+			$moduleModes
 		);
 		$this->assertSame( 200, $response->getStatusCode() );
 
@@ -377,19 +392,10 @@ class ModuleSpecHandlerTest extends MediaWikiIntegrationTestCase {
 		$moduleModes = [
 			'mock/v1' => ModuleMode::PUBLISHED,
 		];
-		$router = $this->createRouter( $request, __DIR__ . '/SpecTestModule.json', $moduleModes );
-
-		$handler = $this->newHandler();
-		$response = $this->executeHandler(
-			$handler,
+		$response = $this->executeModuleSpecHandler(
 			$request,
-			[],
-			[],
-			[],
-			[],
-			null,
-			null,
-			$router
+			__DIR__ . '/SpecTestModule.json',
+			$moduleModes
 		);
 		$this->assertSame( 200, $response->getStatusCode() );
 
@@ -438,19 +444,10 @@ class ModuleSpecHandlerTest extends MediaWikiIntegrationTestCase {
 			'mock/v1' => ModuleMode::PUBLISHED,
 			'' => ModuleMode::PUBLISHED,
 		];
-		$router = $this->createRouter( $request, __DIR__ . '/' . $specFile, $moduleModes );
-
-		$handler = $this->newHandler();
-		$response = $this->executeHandler(
-			$handler,
+		$response = $this->executeModuleSpecHandler(
 			$request,
-			[],
-			[],
-			[],
-			[],
-			null,
-			null,
-			$router
+			__DIR__ . '/' . $specFile,
+			$moduleModes
 		);
 		$this->assertSame( 200, $response->getStatusCode() );
 		$data = json_decode( (string)$response->getBody(), true );
@@ -546,19 +543,10 @@ class ModuleSpecHandlerTest extends MediaWikiIntegrationTestCase {
 		$moduleModes = [
 			'mockExternal/v1' => ModuleMode::PUBLISHED,
 		];
-		$router = $this->createRouter( $request, null, $moduleModes );
-
-		$handler = $this->newHandler();
-		$response = $this->executeHandler(
-			$handler,
+		$response = $this->executeModuleSpecHandler(
 			$request,
-			[],
-			[],
-			[],
-			[],
 			null,
-			null,
-			$router
+			$moduleModes
 		);
 		$this->assertSame( 301, $response->getStatusCode() );
 		$this->assertArrayHasKey( 'Location', $response->getHeaders() );
@@ -611,21 +599,10 @@ class ModuleSpecHandlerTest extends MediaWikiIntegrationTestCase {
 		$overrides = [
 			'mock/v1' => ModuleMode::HIDDEN,
 		];
-		$router = $this->createRouter( $request, __DIR__ . '/SpecTestModule.json', $overrides );
-
-		$handler = $this->newHandler();
 
 		$this->expectException( LocalizedHttpException::class );
-		$response = $this->executeHandler(
-			$handler,
-			$request,
-			[],
-			[],
-			[],
-			[],
-			null,
-			null,
-			$router
+		$response = $this->executeModuleSpecHandler(
+			$request, __DIR__ . '/SpecTestModule.json', $overrides
 		);
 		$this->assertSame( 403, $response->getStatusCode() );
 	}
@@ -682,23 +659,12 @@ class ModuleSpecHandlerTest extends MediaWikiIntegrationTestCase {
 		$request = new RequestData(
 			[ 'pathParams' => [ 'module' => 'mock', 'version' => 'v1' ] ]
 		);
-		$router = $this->createRouter(
+
+		$response = $this->executeModuleSpecHandler(
 			$request,
 			__DIR__ . '/SpecTestModule.json',
-			[ 'mock/v1' => ModuleMode::PUBLISHED ]
-		);
-
-		$handler = $this->newHandler( self::getTestSecuritySchemes() );
-		$response = $this->executeHandler(
-			$handler,
-			$request,
-			[],
-			[],
-			[],
-			[],
-			null,
-			null,
-			$router
+			[ 'mock/v1' => ModuleMode::PUBLISHED ],
+			self::getTestSecuritySchemes()
 		);
 		$this->assertSame( 200, $response->getStatusCode() );
 		$data = json_decode( (string)$response->getBody(), true );

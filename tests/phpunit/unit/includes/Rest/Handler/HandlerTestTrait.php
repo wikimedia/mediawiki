@@ -16,7 +16,6 @@ use MediaWiki\Rest\Router;
 use MediaWiki\Rest\Validator\Validator;
 use MediaWiki\Session\Session;
 use MediaWiki\Tests\Rest\RestTestTrait;
-use MediaWiki\Tests\Unit\DummyServicesTrait;
 use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
 use PHPUnit\Framework\Assert;
 use PHPUnit\Framework\MockObject\MockObject;
@@ -31,7 +30,6 @@ use Wikimedia\ObjectFactory\ObjectFactory;
  */
 trait HandlerTestTrait {
 	use RestTestTrait;
-	use DummyServicesTrait;
 	use MockAuthorityTrait;
 	use SessionHelperTestTrait;
 

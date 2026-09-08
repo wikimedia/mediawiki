@@ -8,6 +8,7 @@ use MediaWiki\Rest\ConditionalHeaderUtil;
 use MediaWiki\Rest\ErrorFormatterV1;
 use MediaWiki\Rest\Handler;
 use MediaWiki\Rest\HttpException;
+use MediaWiki\Rest\JsonLocalizer;
 use MediaWiki\Rest\LocalizedHttpException;
 use MediaWiki\Rest\Module\Module;
 use MediaWiki\Rest\RequestData;
@@ -16,7 +17,6 @@ use MediaWiki\Rest\Response;
 use MediaWiki\Rest\ResponseFactory;
 use MediaWiki\Rest\ResponseHeaders;
 use MediaWiki\Rest\ResponseInterface;
-use MediaWiki\Rest\Router;
 use MediaWiki\Rest\Validator\BodyValidator;
 use MediaWiki\Session\Session;
 use MediaWikiUnitTestCase;
@@ -34,6 +34,13 @@ use Wikimedia\Timestamp\TimestampFormat as TS;
 class HandlerTest extends MediaWikiUnitTestCase {
 
 	use HandlerTestTrait;
+
+	private JsonLocalizer $jsonLocalizer;
+
+	protected function setUp(): void {
+		parent::setUp();
+		$this->jsonLocalizer = new JsonLocalizer( $this->getDummyTextFormatter( true ) );
+	}
 
 	/**
 	 * @param string[] $methods
@@ -89,10 +96,11 @@ class HandlerTest extends MediaWikiUnitTestCase {
 
 	public function testGetRouter() {
 		$handler = $this->newHandler();
-		$this->initHandler( $handler, new RequestData() );
+		$router = $this->newRouter();
+		$this->initHandler( $handler, new RequestData(), [], [], null, null, $router );
 
 		$handler = TestingAccessWrapper::newFromObject( $handler );
-		$this->assertInstanceOf( Router::class, $handler->getRouter() );
+		$this->assertSame( $router, $handler->getRouter() );
 	}
 
 	public static function provideGetRouteUrl() {
@@ -2137,8 +2145,7 @@ class HandlerTest extends MediaWikiUnitTestCase {
 		$handler->method( 'getResponseHeaderSettings' )->willReturn( $responseHeaderSettings );
 
 		// The "body" parameter should be processed as "body", not as "parameter".
-		$module = $this->createNoOpMock( Module::class, [ 'getModuleDescription' ] );
-		$module->method( 'getModuleDescription' )->willReturn( [] );
+		$module = $this->newModuleForSpec();
 		$handler->initContext(
 			$module,
 			$routeConfig['path'],
@@ -2173,8 +2180,7 @@ class HandlerTest extends MediaWikiUnitTestCase {
 		$handler->method( 'getResponseBodyExample' )->willReturn( $expectedExample );
 		$handler->method( 'getResponseHeaderSettings' )->willReturn( [] );
 
-		$module = $this->createNoOpMock( Module::class, [ 'getModuleDescription' ] );
-		$module->method( 'getModuleDescription' )->willReturn( [] );
+		$module = $this->newModuleForSpec();
 		$handler->initContext( $module, '/test', [ 'path' => '/test' ], [] );
 
 		$this->initHandlerServices( $handler );
@@ -2209,8 +2215,7 @@ class HandlerTest extends MediaWikiUnitTestCase {
 		$handler->method( 'getResponseHeaderSettings' )->willReturn( [] );
 		$handler->method( 'getRequestBodyDescription' )->willReturn( 'The page content to create or update.' );
 
-		$module = $this->createNoOpMock( Module::class, [ 'getModuleDescription' ] );
-		$module->method( 'getModuleDescription' )->willReturn( [] );
+		$module = $this->newModuleForSpec();
 		$handler->initContext( $module, '/test', [ 'path' => '/test' ], [] );
 
 		$this->initHandlerServices( $handler );
@@ -2244,8 +2249,7 @@ class HandlerTest extends MediaWikiUnitTestCase {
 		$handler->method( 'getResponseBodySchema' )->willReturn( null );
 		$handler->method( 'getResponseHeaderSettings' )->willReturn( [] );
 
-		$module = $this->createNoOpMock( Module::class, [ 'getModuleDescription' ] );
-		$module->method( 'getModuleDescription' )->willReturn( [] );
+		$module = $this->newModuleForSpec();
 		$handler->initContext( $module, '/test', [ 'path' => '/test' ], [] );
 
 		$this->initHandlerServices( $handler );
@@ -2294,8 +2298,7 @@ class HandlerTest extends MediaWikiUnitTestCase {
 		$handler->method( 'getResponseBodySchema' )->willReturn( null );
 		$handler->method( 'getResponseHeaderSettings' )->willReturn( [] );
 
-		$module = $this->createNoOpMock( Module::class, [ 'getModuleDescription' ] );
-		$module->method( 'getModuleDescription' )->willReturn( [] );
+		$module = $this->newModuleForSpec();
 		$handler->initContext( $module, '/test', [ 'path' => '/test' ], [] );
 
 		$this->initHandlerServices( $handler );
@@ -2345,8 +2348,7 @@ class HandlerTest extends MediaWikiUnitTestCase {
 		$handler->method( 'getResponseHeaderSettings' )->willReturn( [] );
 		$handler->method( 'getRequestBodyExample' )->willReturn( $expectedExample );
 
-		$module = $this->createNoOpMock( Module::class, [ 'getModuleDescription' ] );
-		$module->method( 'getModuleDescription' )->willReturn( [] );
+		$module = $this->newModuleForSpec();
 		$handler->initContext( $module, '/test', [ 'path' => '/test' ], [] );
 
 		$this->initHandlerServices( $handler );
@@ -2418,8 +2420,7 @@ class HandlerTest extends MediaWikiUnitTestCase {
 		$handler->method( 'getResponseBodySchema' )->willReturn( null );
 		$handler->method( 'getResponseHeaderSettings' )->willReturn( [] );
 
-		$module = $this->createNoOpMock( Module::class, [ 'getModuleDescription' ] );
-		$module->method( 'getModuleDescription' )->willReturn( [] );
+		$module = $this->newModuleForSpec();
 		$handler->initContext( $module, '/test', [ 'path' => '/test' ], [] );
 
 		$this->initHandlerServices( $handler );
@@ -2477,8 +2478,7 @@ class HandlerTest extends MediaWikiUnitTestCase {
 		// A subclass may opt out of an example entirely by returning null.
 		$handler->method( 'getRequestBodyExample' )->willReturn( null );
 
-		$module = $this->createNoOpMock( Module::class, [ 'getModuleDescription' ] );
-		$module->method( 'getModuleDescription' )->willReturn( [] );
+		$module = $this->newModuleForSpec();
 		$handler->initContext( $module, '/test', [ 'path' => '/test' ], [] );
 
 		$this->initHandlerServices( $handler );
@@ -2487,6 +2487,17 @@ class HandlerTest extends MediaWikiUnitTestCase {
 
 		$this->assertArrayHasKey( 'requestBody', $spec );
 		$this->assertArrayNotHasKey( 'example', $spec['requestBody']['content']['application/json'] );
+	}
+
+	private function newModuleForSpec(): MockObject&Module {
+		$module = $this->createNoOpMock(
+			Module::class,
+			[ 'getModuleDescription', 'getJsonLocalizer' ]
+		);
+		$module->method( 'getModuleDescription' )->willReturn( [] );
+		$module->method( 'getJsonLocalizer' )->willReturn( $this->jsonLocalizer );
+
+		return $module;
 	}
 
 }

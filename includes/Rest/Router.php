@@ -528,11 +528,18 @@ class Router {
 	}
 
 	private function instantiateModule( array $info, string $name ): Module {
+		// NOTE: $this->textFormatters are in the order of preference.
+		//       See EntryPoint::getTextFormaters().
+		//       Use the first one.
+		$defaultFormatter = array_first( $this->textFormatters );
+		$jsonLocalizer = new JsonLocalizer( $defaultFormatter );
+
 		if ( $info['class'] === SpecBasedModule::class ) {
 			$module = new SpecBasedModule(
 				$info['specFile'],
 				$this,
 				$info['pathPrefix'] ?? $name,
+				$jsonLocalizer,
 				$this->getResponseFactory( $info ),
 				$this->basicAuth,
 				$this->objectFactory,
@@ -545,6 +552,7 @@ class Router {
 				$info['routeFiles'] ?? [],
 				$info['extraRoutes'] ?? [],
 				$this,
+				$jsonLocalizer,
 				$this->responseFactory,
 				$this->basicAuth,
 				$this->objectFactory,
@@ -593,6 +601,12 @@ class Router {
 		];
 	}
 
+	/**
+	 * Factory method of ResponseFactory.
+	 * Injects a suitable implementation of ErrorFormatter.
+	 *
+	 * @internal for use in the REST framework
+	 */
 	public static function makeResponseFactory(
 		array $textFormatters, bool $showExceptionDetails, ?string $schemaVer = null
 	): ResponseFactory {
