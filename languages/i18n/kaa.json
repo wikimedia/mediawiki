@@ -336,6 +336,8 @@
 	"userlogin-resetpassword-link": "Jasırın sózdi esten shıǵardıńız ba?",
 	"userlogin-helplink2": "Kiriw ushın járdem",
 	"userlogin-loggedin": "Siz álleqashan {{GENDER:$1|$1}} sıpatında kirgensiz.\nBasqa paydalanıwshı sıpatında kiriw ushın tómendegi formadan paydalanıńız.",
+	"userlogin-loggedin-continue-as": "{{GENDER:$1|$1}} sıpatında dawam etiw",
+	"userlogin-loggedin-heading": "Basqa paydalanıwshı sıpatında kiriw",
 	"userlogin-reauth": "{{GENDER:$1|$1}} ekenligińizdi tastıyıqlaw ushın sistemaǵa qayta kiriwińiz kerek.",
 	"userlogin-createanother": "Basqa akkaunt jaratıw",
 	"createacct-emailrequired": "E-mail adres",

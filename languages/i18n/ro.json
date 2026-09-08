@@ -1904,7 +1904,7 @@
 	"emailmessage": "Mesaj:",
 	"emailsend": "Trimite",
 	"emailccme": "Trimite-mi pe e-mail o copie a mesajului meu",
-	"emailccsubject": "O copie a mesajului la $1: $2",
+	"emailccsubject": "Copie a mesajului către $1: $2",
 	"emailsent": "E-mail trimis",
 	"emailsenttext": "E-mailul dumneavoastră a fost trimis.",
 	"emailuserfooter": "Acest e-mail a fost {{GENDER:$1| trimis}} de $1 către {{GENDER:$2| $2 }} prin funcția „{{int:emailuser}}” de la {{SITENAME}}. Dacă {{GENDER:$2| tu}} răspunzi la acest e-mail, {{GENDER:$2| e-mailul dvs.}} va fi trimis direct către {{GENDER:$1| expeditorul original}}, dezvăluind {{GENDER:$2| adresa dvs. de e-mail}} către {{GENDER:$1| el|ea|ei}}.",

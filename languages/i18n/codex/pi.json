@@ -1,0 +1,34 @@
+{
+	"@metadata": {
+		"authors": [
+			"咽頭べさ"
+		]
+	},
+	"cdx-breadcrumb-navigation-label": "पदनिग्गहसूचि",
+	"cdx-breadcrumb-overflow-label": "अपरानि सञ्चरणविकप्पानि",
+	"cdx-chip-input-chip-added": "$1 ति निस्सयो वड्ढितो॥",
+	"cdx-chip-input-chip-removed": "$1 ति निस्सयो अपनेतो॥",
+	"cdx-input-chip-aria-description": "संसोधेतुं सुवुत्तं सुपीळेहि अपनेतुं सुवुत्तं सुपीळेहि॥",
+	"cdx-dialog-close-button-label": "पिधानं",
+	"cdx-label-optional-flag": "(विकप्पिकं)",
+	"cdx-message-dismiss-button-label": "पिधानं",
+	"cdx-popover-close-button-label": "पिधानं",
+	"cdx-search-input-search-button-label": "अन्वेसना",
+	"cdx-table-select-all-label": "सब्बानि पङ्कियो चिनितुं",
+	"cdx-table-select-row-label": "$2 पङ्कीनं अब्भन्तरे $1 मं पङ्किं चिनितुं॥",
+	"cdx-table-sort-caption": "$1 (खम्भसीसानि सद्धिं पिञ्जेहि सरविवट्टनीयानि होन्ति)॥",
+	"cdx-typeahead-search-search-results-label": "परियेसन फलानि",
+	"cdx-table-pager-button-first-page": "पठमं पिट्ठं",
+	"cdx-table-pager-button-last-page": "अन्तिमं पिट्ठं",
+	"cdx-table-pager-button-next-page": "अपरं पिट्ठं",
+	"cdx-table-pager-button-prev-page": "पुब्बं पिट्ठं",
+	"cdx-table-pager-items-per-page-current": "{{PLURAL:$1|$1 वत्थु|$1 वत्थूनि}}",
+	"cdx-table-pager-items-per-page-default": "एकेकम्हि पिट्ठे फलानि",
+	"cdx-table-pagination-status-message-determinate-long": "$3 ति सब्बसंख्याय अब्भन्तरे $1–$2 दस्सितानि फलानि॥",
+	"cdx-table-pagination-status-message-determinate-short": "$1–$2 ति सब्बसंख्याय अब्भन्तरे $3",
+	"cdx-table-pagination-status-message-indeterminate-long": "बहूनं फलानं अब्भन्तरे $1–$2 दस्सितानि फलानि॥",
+	"cdx-table-pagination-status-message-indeterminate-short": "बहूनं अब्भन्तरे $1–$2",
+	"cdx-table-pagination-status-message-indeterminate-final": "अन्तिमानि {{PLURAL:$1|$1 फलं|$1 फलानि}} दस्सितानि॥",
+	"cdx-table-pagination-status-message-pending": "फलानि आरोपीयन्ति...",
+	"cdx-table-no-data-message": "न अत्थि किञ्चि दत्तं॥"
+}
