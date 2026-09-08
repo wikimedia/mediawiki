@@ -609,7 +609,7 @@ class ExtensionRegistry implements DomainEventSubscriber {
 	 *
 	 * @return array
 	 */
-	public function getAttribute( $name ) {
+	public function getAttribute( $name ): array {
 		if ( isset( $this->testAttributes[$name] ) ) {
 			return $this->testAttributes[$name];
 		}
