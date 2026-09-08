@@ -343,7 +343,7 @@
 	"skin-action-viewsource": "Vikimətnə bax",
 	"viewsource-title": "$1 üçün vikimətnə bax",
 	"actionthrottled": "Sürət məhdudiyyəti",
-	"actionthrottledtext": "Spamla mübarizə məqsədilə qısa vaxt kəsiyi ərzində bu hərəkətlərin təkrarlanma sayı məhdudlaşdırılıb və siz qoyulan həddi aşmısınız.\nLütfən bir neçə dəqiqə sonra yenidən yoxlayın.",
+	"actionthrottledtext": "Spamın qarşısını almaq üçün bu əməliyyatın qısa müddət ərzində məhdud sayda yerinə yetirilə bilmə limiti var və siz artıq bu limiti keçmisiniz.\n\nZəhmət olmasa, bir neçə dəqiqə sonra yenidən cəhd edin.",
 	"protectedpagetext": "Bu səhifə redaktə və ya digər fəaliyyətlərin qarşısını almaq üçün mühafizə edilib.",
 	"viewsourcetext": "Siz bu səhifənin məzmununu görə və köçürə bilərsiniz.",
 	"viewyourtext": "Bu səhifəyə <strong>etdiyiniz dəyişikliklərin</strong> mənbəyinə baxa və köçürə bilərsiniz.",
