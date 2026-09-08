@@ -5,14 +5,12 @@ namespace MediaWiki\Tests\Rest;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Rest\BasicAccess\StaticBasicAuthorizer;
-use MediaWiki\Rest\ErrorFormatterV1;
 use MediaWiki\Rest\JsonLocalizer;
 use MediaWiki\Rest\Module\Module;
 use MediaWiki\Rest\Module\ModuleManager;
 use MediaWiki\Rest\Module\ModuleMode;
 use MediaWiki\Rest\Reporter\PHPErrorReporter;
 use MediaWiki\Rest\RequestData;
-use MediaWiki\Rest\ResponseFactory;
 use MediaWiki\Rest\Router;
 use MediaWiki\Rest\Validator\Validator;
 use MediaWiki\Tests\Rest\Handler\SessionHelperTestTrait;
@@ -131,7 +129,6 @@ trait RestTestTrait {
 				$params['router'] ?? $this->newRouter( $params ),
 				$params['pathPrefix'] ?? 'mock',
 				$params['jsonLocalizer'] ?? new JsonLocalizer( $formatter ),
-				$params['responseFactory'] ?? new ResponseFactory( [], new ErrorFormatterV1( [], false ) ),
 				$params['basicAuth'] ?? new StaticBasicAuthorizer(),
 				$params['objectFactory'] ?? $objectFactory,
 				$params['restValidator'] ?? new Validator( $objectFactory, $request, $authority ),

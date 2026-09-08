@@ -59,10 +59,6 @@ class HandlerTest extends MediaWikiUnitTestCase {
 	}
 
 	private function initHandlerPartially( Handler $handler ) {
-		$formatter = $this->getDummyTextFormatter( true );
-		$textFormatters = [ 'qqx' => $formatter ];
-		$responseFactory = new ResponseFactory( $textFormatters, new ErrorFormatterV1( $textFormatters, false ) );
-
 		$router = $this->newRouter();
 		$module = $this->newModule( [ 'router' => $router ] );
 
@@ -71,7 +67,7 @@ class HandlerTest extends MediaWikiUnitTestCase {
 
 		$session = $this->getSession( true );
 		$handler->initContext( $module, 'test', [] );
-		$handler->initServices( $authority, $responseFactory, $hookContainer );
+		$handler->initServices( $authority, $hookContainer );
 		$handler->initSession( $session );
 
 		return $handler;
@@ -85,11 +81,8 @@ class HandlerTest extends MediaWikiUnitTestCase {
 	 * not what users see at runtime.
 	 */
 	private function initHandlerServices( Handler $handler ): void {
-		$textFormatters = [ 'qqx' => $this->getDummyTextFormatter( true ) ];
-		$responseFactory = new ResponseFactory( $textFormatters, new ErrorFormatterV1( $textFormatters, false ) );
 		$handler->initServices(
 			$this->mockAnonUltimateAuthority(),
-			$responseFactory,
 			$this->createHookContainer()
 		);
 	}
@@ -1217,10 +1210,9 @@ class HandlerTest extends MediaWikiUnitTestCase {
 			'headers' => [ "content-type" => 'application/json' ]
 		] );
 		$handler = new EchoHandler();
-		$this->initHandlerPartially( $handler );
 
 		$this->expectExceptionCode( 400 );
-		$handler->initForExecute( $request );
+		$this->initHandler( $handler, $request );
 	}
 
 	public function testGetRequestIgnoresEmptyBody() {
@@ -1234,8 +1226,7 @@ class HandlerTest extends MediaWikiUnitTestCase {
 			]
 		] );
 		$handler = new EchoHandler();
-		$this->initHandlerPartially( $handler );
-		$handler->initForExecute( $request );
+		$this->initHandler( $handler, $request );
 		$this->addToAssertionCount( 1 );
 	}
 
@@ -1248,7 +1239,14 @@ class HandlerTest extends MediaWikiUnitTestCase {
 		$this->initHandlerPartially( $handler );
 
 		$this->expectExceptionCode( 400 );
-		$handler->initForExecute( $request );
+
+		$textFormatters = [ 'qqx' => $this->getDummyTextFormatter() ];
+		$responseFactory = new ResponseFactory(
+			$textFormatters,
+			new ErrorFormatterV1( $textFormatters, false )
+		);
+
+		$handler->initForExecute( $request, $responseFactory );
 	}
 
 	public function testEmptyBodyWithoutContentTypePasses() {
@@ -1261,8 +1259,7 @@ class HandlerTest extends MediaWikiUnitTestCase {
 		] );
 
 		$handler = new EchoHandler();
-		$this->initHandlerPartially( $handler );
-		$handler->initForExecute( $request );
+		$this->initHandler( $handler, $request );
 		$this->addToAssertionCount( 1 );
 	}
 
@@ -1273,10 +1270,9 @@ class HandlerTest extends MediaWikiUnitTestCase {
 			'bodyContents' => '{"foo":"bar"}', // Request body without content-type
 		] );
 		$handler = new EchoHandler();
-		$this->initHandlerPartially( $handler );
 
 		$this->expectExceptionCode( 415 );
-		$handler->initForExecute( $request );
+		$this->initHandler( $handler, $request );
 	}
 
 	public function testDeleteRequestWithoutBody() {
@@ -1286,8 +1282,7 @@ class HandlerTest extends MediaWikiUnitTestCase {
 			'method' => 'DELETE',
 		] );
 		$handler = new EchoHandler();
-		$this->initHandlerPartially( $handler );
-		$handler->initForExecute( $request );
+		$this->initHandler( $handler, $request );
 		$this->addToAssertionCount( 1 );
 	}
 
@@ -1300,8 +1295,7 @@ class HandlerTest extends MediaWikiUnitTestCase {
 			'headers' => [ "content-type" => 'application/json' ]
 		] );
 		$handler = new EchoHandler();
-		$this->initHandlerPartially( $handler );
-		$handler->initForExecute( $request );
+		$this->initHandler( $handler, $request );
 		$this->addToAssertionCount( 1 );
 	}
 
@@ -1313,10 +1307,9 @@ class HandlerTest extends MediaWikiUnitTestCase {
 			'headers' => [ "content-type" => 'text/plain' ] // Unsupported content type
 		] );
 		$handler = new EchoHandler();
-		$this->initHandlerPartially( $handler );
 
 		$this->expectExceptionCode( 415 );
-		$handler->initForExecute( $request );
+		$this->initHandler( $handler, $request );
 	}
 
 	public function testHandlerCanAccessParsedBodyForJsonRequest() {
@@ -2489,6 +2482,9 @@ class HandlerTest extends MediaWikiUnitTestCase {
 		$this->assertArrayNotHasKey( 'example', $spec['requestBody']['content']['application/json'] );
 	}
 
+	/**
+	 * @return (object&MockObject)|(object&MockObject&Module)|(object&MockObject&Module&object&MockObject)
+	 */
 	private function newModuleForSpec(): MockObject&Module {
 		$module = $this->createNoOpMock(
 			Module::class,

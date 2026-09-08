@@ -43,6 +43,7 @@ class SitemapPageHandlerTest extends MediaWikiIntegrationTestCase {
 
 	public function testGenerateResponseSpec() {
 		$handler = $this->createHandler();
+		$this->initHandler( $handler, null );
 		$wrapper = TestingAccessWrapper::newFromObject( $handler );
 		$spec = $wrapper->generateResponseSpec( 'GET' );
 		$this->assertArrayHasKey( '200', $spec );

@@ -23,7 +23,10 @@ use Wikimedia\TestingAccessWrapper;
  * dependencies rather than mocked dependencies where possible.
  */
 trait HandlerIntegrationTestTrait {
-	use RestTestTrait;
+	use RestTestTrait, HandlerTestTrait {
+		RestTestTrait::newRouter insteadof HandlerTestTrait;
+		HandlerTestTrait::newRouter as newMockRouter;
+	}
 
 	/**
 	 * @param array $requestParams Request parameters as in the RequestData

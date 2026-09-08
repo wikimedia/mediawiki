@@ -17,6 +17,7 @@ use MediaWiki\Rest\Reporter\ErrorReporter;
 use MediaWiki\Rest\Validator\Validator;
 use MediaWiki\Session\Session;
 use Throwable;
+use Wikimedia\Assert\Assert;
 use Wikimedia\Http\HttpStatus;
 use Wikimedia\Message\MessageValue;
 use Wikimedia\ObjectCache\BagOStuff;
@@ -31,7 +32,11 @@ use Wikimedia\Stats\StatsFactory;
 class Router {
 	private const PREFIX_PATTERN = '!^/([-_.\w]+(?:/v[-_.\w]+)?)(/.*)$!';
 
+	public const DEFAULT_ERROR_SCHEMA = '1.0';
+
 	private const ERROR_FORMATTERS = [
+		'restbase' => ErrorFormatterV1::class,
+		'1.0' => ErrorFormatterV1::class,
 		'2.0' => ErrorFormatterV2::class,
 	];
 
@@ -64,8 +69,6 @@ class Router {
 
 	/** @var CorsUtils|null */
 	private $cors;
-
-	private readonly ResponseFactory $responseFactory;
 
 	/** @var ?StatsFactory */
 	private $stats = null;
@@ -121,7 +124,8 @@ class Router {
 		$this->privateBaseUrl = $options->get( MainConfigNames::InternalServer );
 		$this->rootPath = $options->get( MainConfigNames::RestPath );
 		$this->scriptPath = $options->get( MainConfigNames::ScriptPath );
-		$this->responseFactory = self::makeResponseFactory( $textFormatters, $showExceptionDetails );
+
+		Assert::parameter( count( $textFormatters ) > 0, '$textFormatters', 'must not be empty' );
 	}
 
 	/**
@@ -354,11 +358,59 @@ class Router {
 		return array_keys( $this->getModuleMap() );
 	}
 
+	/**
+	 * Returns an uninitialized module by full path.
+	 * @deprecated since 1.47, use getModuleForRequest() instead.
+	 */
 	public function getModuleForPath( string $fullPath ): ?Module {
+		wfDeprecated( __METHOD__, '1.47' );
+
 		[ $moduleName, ] = $this->splitPath( $fullPath );
 		return $this->getModule( $moduleName );
 	}
 
+	/**
+	 * Returns a module suitable for handling the given request.
+	 *
+	 * @param RequestInterface $request
+	 * @param string|null $name The module name, if known. Will be derived from
+	 *        $request if not given.
+	 *
+	 * @return Module|null
+	 * @since since 1.47
+	 */
+	public function getModuleForRequest( RequestInterface $request, ?string $name ): ?Module {
+		if ( $name === null ) {
+			$fullPath = $request->getUri()->getPath();
+			[ $name, ] = $this->splitPath( $fullPath );
+		}
+
+		$module = $this->getModule( $name );
+		$info = $this->getModuleInfo( $name );
+
+		if ( !$module || !$info ) {
+			return null;
+		}
+
+		$responseFactory = $this->getModuleResponseFactory( $info, $request );
+		$module->initForExecute( $responseFactory );
+
+		if ( $this->cors ) {
+			$module->setCors( $this->cors );
+		}
+
+		if ( $this->stats ) {
+			$module->setStats( $this->stats );
+		}
+
+		return $module;
+	}
+
+	/**
+	 * Returns an uninitialized module by name.
+	 * @note To get a module that can be used for handling a request,
+	 * use getModuleForRequest() instead.
+	 */
 	public function getModule( string $name ): ?Module {
 		if ( isset( $this->modules[$name] ) ) {
 			return $this->modules[$name];
@@ -383,14 +435,6 @@ class Router {
 		if ( !$cacheOk ) {
 			$cacheData = $module->getCacheData();
 			$this->cacheModuleData( $name, $cacheData );
-		}
-
-		if ( $this->cors ) {
-			$module->setCors( $this->cors );
-		}
-
-		if ( $this->stats ) {
-			$module->setStats( $this->stats );
 		}
 
 		$this->modules[$name] = $module;
@@ -454,10 +498,10 @@ class Router {
 			) {
 				$extraData = $this->getRestbaseCompatErrorData( $request, $e );
 			}
-			$response = $this->responseFactory->createFromException( $e, $extraData );
+			$response = $this->createResponseFromException( $e, $extraData );
 		} catch ( Throwable $e ) {
 			$this->errorReporter->reportError( $e, null, $request );
-			$response = $this->responseFactory->createFromException( $e );
+			$response = $this->createResponseFromException( $e );
 		}
 
 		// TODO: Only send the vary header for handlers that opt into
@@ -467,6 +511,16 @@ class Router {
 		return $response;
 	}
 
+	private function createResponseFromException( Throwable $e, ?array $extraData = [] ): ResponseInterface {
+		$responseFactory = self::makeResponseFactory( $this->textFormatters, $this->showExceptionDetails );
+		return $responseFactory->createFromException( $e, $extraData ?? [] );
+	}
+
+	private function createRedirectResponse( string $target, int $code ): ResponseInterface {
+		$responseFactory = self::makeResponseFactory( $this->textFormatters, $this->showExceptionDetails );
+		return $responseFactory->createRedirect( $target, $code );
+	}
+
 	private function doExecute( string $fullPath, RequestInterface $request ): ResponseInterface {
 		[ $modulePrefix, $path ] = $this->splitPath( $fullPath );
 
@@ -474,10 +528,10 @@ class Router {
 		// That's the minimal path that can be routed.
 		if ( $modulePrefix === '' && $path === '' ) {
 			$target = $this->getRoutePath( '/' );
-			return $this->responseFactory->createRedirect( $target, 308 );
+			return $this->createRedirectResponse( $target, 308 );
 		}
 
-		$module = $this->getModule( $modulePrefix );
+		$module = $this->getModuleForRequest( $request, $modulePrefix );
 
 		if ( !$module ) {
 			throw new LocalizedHttpException(
@@ -496,12 +550,11 @@ class Router {
 	 *
 	 * @internal
 	 */
-	public function prepareHandler( Handler $handler, ResponseFactory $responseFactory ) {
+	public function prepareHandler( Handler $handler ) {
 		// Injecting services in the Router class means we don't have to inject
 		// them into each Module.
 		$handler->initServices(
 			$this->authority,
-			$responseFactory,
 			$this->hookContainer
 		);
 
@@ -540,7 +593,6 @@ class Router {
 				$this,
 				$info['pathPrefix'] ?? $name,
 				$jsonLocalizer,
-				$this->getResponseFactory( $info ),
 				$this->basicAuth,
 				$this->objectFactory,
 				$this->restValidator,
@@ -553,7 +605,6 @@ class Router {
 				$info['extraRoutes'] ?? [],
 				$this,
 				$jsonLocalizer,
-				$this->responseFactory,
 				$this->basicAuth,
 				$this->objectFactory,
 				$this->restValidator,
@@ -591,12 +642,13 @@ class Router {
 
 		// Match error fields emitted by the RESTBase endpoints.
 		// EntryPoint::getTextFormatters() ensures 'en' is always available.
+		$responseFactory = self::makeResponseFactory( $this->textFormatters, $this->showExceptionDetails );
 		return [
 			'type' => "MediaWikiError/" .
 				str_replace( ' ', '_', HttpStatus::getMessage( $e->getCode() ) ),
 			'title' => $msg->getKey(),
 			'method' => strtolower( $request->getMethod() ),
-			'detail' => $this->responseFactory->getFormattedMessage( $msg, 'en' ),
+			'detail' => $responseFactory->getFormattedMessage( $msg, 'en' ),
 			'uri' => (string)$request->getUri()
 		];
 	}
@@ -610,21 +662,30 @@ class Router {
 	public static function makeResponseFactory(
 		array $textFormatters, bool $showExceptionDetails, ?string $schemaVer = null
 	): ResponseFactory {
-		$formatterClass = $schemaVer === null
-			? ErrorFormatterV1::class
-			: ( self::ERROR_FORMATTERS[$schemaVer]
-				?? throw new ModuleConfigurationException( "Unsupported errorSchemaVersion: $schemaVer" ) );
+		$schemaVer ??= self::DEFAULT_ERROR_SCHEMA;
+		$formatterClass = self::ERROR_FORMATTERS[ $schemaVer ] ?? null;
 
-		return new ResponseFactory( $textFormatters, new $formatterClass( $textFormatters, $showExceptionDetails ) );
-	}
-
-	private function getResponseFactory( array $jsonSpecInfo ): ResponseFactory {
-		$schemaVer = $jsonSpecInfo['errorSchemaVersion'] ?? null;
-
-		if ( $schemaVer === null ) {
-			return $this->responseFactory;
+		if ( !$formatterClass ) {
+			throw new ModuleConfigurationException( "Unsupported errorSchemaVersion: $schemaVer" );
 		}
 
-		return self::makeResponseFactory( $this->textFormatters, $this->showExceptionDetails, $schemaVer );
+		$errorFormatter = new $formatterClass( $textFormatters, $showExceptionDetails );
+		return new ResponseFactory( $textFormatters, $errorFormatter );
+	}
+
+	// @phan-suppress-next-line PhanUnusedPrivateMethodParameter $request will soon be used
+	private function getModuleResponseFactory( array $moduleInfo, RequestInterface $request ): ResponseFactory {
+		$schemaVer = $moduleInfo['errorSchemaVersion'] ?? null;
+
+		// SEAM: We can vary the formatter based on the request, e.g.:
+		// if ( $this->isRestbaseCompatEnabled( $request ) ) {
+		//				$schemaVer = 'restbase';
+		// }
+
+		return self::makeResponseFactory(
+			$this->textFormatters,
+			$this->showExceptionDetails,
+			$schemaVer,
+		);
 	}
 }

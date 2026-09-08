@@ -80,15 +80,12 @@ class SpecBasedModuleTest extends \MediaWikiUnitTestCase {
 		] );
 
 		$formatter = $this->getDummyTextFormatter( true );
-		$textFormatters = [ 'qqx' => $formatter ];
-		$responseFactory = new ResponseFactory( $textFormatters, new ErrorFormatterV1( $textFormatters, true ) );
 
 		$module = new SpecBasedModule(
 			$specFile,
 			$router,
 			'test.v1',
 			new JsonLocalizer( $formatter ),
-			$responseFactory,
 			$auth,
 			$objectFactory,
 			$validator,
@@ -96,6 +93,12 @@ class SpecBasedModuleTest extends \MediaWikiUnitTestCase {
 			$this->createHookContainer()
 		);
 
+		// TODO: fix ResponseFactory constructor signature
+		$responseFactory = new ResponseFactory(
+			[ 'qqx' => $formatter ],
+			new ErrorFormatterV1( [ 'qqx' => $formatter ], true )
+		);
+		$module->initForExecute( $responseFactory );
 		return $module;
 	}
 

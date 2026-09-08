@@ -8,7 +8,6 @@ use MediaWiki\Rest\Handler\RedirectHandler;
 use MediaWiki\Rest\JsonLocalizer;
 use MediaWiki\Rest\PathTemplateMatcher\ModuleConfigurationException;
 use MediaWiki\Rest\Reporter\ErrorReporter;
-use MediaWiki\Rest\ResponseFactory;
 use MediaWiki\Rest\RouteDefinitionException;
 use MediaWiki\Rest\Router;
 use MediaWiki\Rest\Validator\Validator;
@@ -54,7 +53,6 @@ class SpecBasedModule extends MatcherBasedModule {
 		Router $router,
 		string $pathPrefix,
 		JsonLocalizer $jsonLocalizer,
-		ResponseFactory $responseFactory,
 		BasicAuthorizerInterface $basicAuth,
 		ObjectFactory $objectFactory,
 		Validator $restValidator,
@@ -65,7 +63,6 @@ class SpecBasedModule extends MatcherBasedModule {
 			$router,
 			$pathPrefix,
 			$jsonLocalizer,
-			$responseFactory,
 			$basicAuth,
 			$objectFactory,
 			$restValidator,
@@ -97,7 +94,10 @@ class SpecBasedModule extends MatcherBasedModule {
 		}
 
 		$this->routeFileTimestamp = filemtime( $this->definitionFile );
-		$this->moduleDef = static::loadModuleDefinition( $this->definitionFile, $this->getJsonLocalizer() );
+		$this->moduleDef = static::loadModuleDefinition(
+			$this->definitionFile,
+			$this->getJsonLocalizer()
+		);
 
 		return $this->moduleDef;
 	}

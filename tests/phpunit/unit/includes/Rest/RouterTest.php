@@ -910,19 +910,25 @@ class RouterTest extends MediaWikiUnitTestCase {
 		Router::makeResponseFactory( [], false, '9.9' );
 	}
 
-	public function testGetResponseFactoryReturnsInjectedDefaultWhenSchemaVersionAbsent() {
+	public function testGetModuleResponseFactory_missing_schema_version() {
 		$router = $this->newRouter();
 		$wrapper = TestingAccessWrapper::newFromObject( $router );
 
 		// No errorSchemaVersion declared -> reuse the already-injected default ResponseFactory.
-		$this->assertSame( $wrapper->responseFactory, $wrapper->getResponseFactory( [] ) );
+		$request = new RequestData();
+		$rf = $wrapper->getModuleResponseFactory( [], $request );
+		$formatter = TestingAccessWrapper::newFromObject( $rf )->errorFormatter;
+		$this->assertInstanceOf( ErrorFormatterV1::class, $formatter );
 	}
 
-	public function testGetResponseFactorySelectsFormatterForDeclaredSchemaVersion() {
+	public function testGetModuleResponse_use_schema_version() {
+		// SEAM: when the formatter varies on the request, test different
+		// values for $request.
 		$router = $this->newRouter();
+		$request = new RequestData();
 		$wrapper = TestingAccessWrapper::newFromObject( $router );
 
-		$rf = $wrapper->getResponseFactory( [ 'errorSchemaVersion' => '2.0' ] );
+		$rf = $wrapper->getModuleResponseFactory( [ 'errorSchemaVersion' => '2.0' ], $request );
 		$formatter = TestingAccessWrapper::newFromObject( $rf )->errorFormatter;
 		$this->assertInstanceOf( ErrorFormatterV2::class, $formatter );
 	}
@@ -932,7 +938,8 @@ class RouterTest extends MediaWikiUnitTestCase {
 			'routeFiles' => [ __DIR__ . '/mock-schemaver.v1.json' ],
 		] );
 
-		$module = $router->getModule( 'mockschemaver/v1' );
+		$request = new RequestData( [ 'uri' => new Uri( '/rest/mockschemaver/v1' ) ] );
+		$module = $router->getModuleForRequest( $request, 'mockschemaver/v1' );
 		$handler = $module->getHandlerForPath( '/test', new RequestData( [] ), true );
 
 		$this->assertNotNull( $module );

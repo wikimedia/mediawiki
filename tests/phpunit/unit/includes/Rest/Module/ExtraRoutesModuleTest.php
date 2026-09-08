@@ -92,8 +92,6 @@ class ExtraRoutesModuleTest extends \MediaWikiUnitTestCase {
 			'validator' => $validator
 		] );
 
-		$responseFactory = new ResponseFactory( [], new ErrorFormatterV1( [], true ) );
-
 		$options = new \MediaWiki\Config\ServiceOptions( [
 			MainConfigNames::Sitename,
 			MainConfigNames::CanonicalServer,
@@ -108,7 +106,6 @@ class ExtraRoutesModuleTest extends \MediaWikiUnitTestCase {
 			$constructorOverrides['extraRoutes'] ?? [],
 			$router,
 			new JsonLocalizer( $formatter ),
-			$responseFactory,
 			$auth,
 			$objectFactory,
 			$validator,
@@ -117,6 +114,12 @@ class ExtraRoutesModuleTest extends \MediaWikiUnitTestCase {
 			$options
 		);
 
+		// TODO: fix ResponseFactory constructor signature
+		$responseFactory = new ResponseFactory(
+			[ 'qqx' => $formatter ],
+			new ErrorFormatterV1( [ 'qqx' => $formatter ], true )
+		);
+		$module->initForExecute( $responseFactory );
 		return $module;
 	}
 

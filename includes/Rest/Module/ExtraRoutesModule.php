@@ -13,7 +13,6 @@ use MediaWiki\Rest\Handler\RedirectHandler;
 use MediaWiki\Rest\JsonLocalizer;
 use MediaWiki\Rest\PathTemplateMatcher\ModuleConfigurationException;
 use MediaWiki\Rest\Reporter\ErrorReporter;
-use MediaWiki\Rest\ResponseFactory;
 use MediaWiki\Rest\RouteDefinitionException;
 use MediaWiki\Rest\Router;
 use MediaWiki\Rest\Validator\Validator;
@@ -96,7 +95,6 @@ class ExtraRoutesModule extends MatcherBasedModule {
 		private readonly array $extraRoutes,
 		Router $router,
 		JsonLocalizer $jsonLocalizer,
-		ResponseFactory $responseFactory,
 		BasicAuthorizerInterface $basicAuth,
 		ObjectFactory $objectFactory,
 		Validator $restValidator,
@@ -108,7 +106,6 @@ class ExtraRoutesModule extends MatcherBasedModule {
 			$router,
 			'',
 			$jsonLocalizer,
-			$responseFactory,
 			$basicAuth,
 			$objectFactory,
 			$restValidator,

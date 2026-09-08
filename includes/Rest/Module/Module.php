@@ -23,6 +23,7 @@ use MediaWiki\Rest\Router;
 use MediaWiki\Rest\Validator\Validator;
 use PHPUnit\Exception as PHPUnitException;
 use Throwable;
+use Wikimedia\Assert\Assert;
 use Wikimedia\Message\MessageValue;
 use Wikimedia\ObjectFactory\ObjectFactory;
 use Wikimedia\Stats\StatsFactory;
@@ -47,11 +48,15 @@ abstract class Module {
 	private ?CorsUtils $cors = null;
 	private readonly HookRunner $hookRunner;
 
+	// Set by initForExecute() when the module is initialized to handle a
+	// request. Null while the module is uninitialized (e.g. when generating
+	// OpenAPI specs).
+	private ?ResponseFactory $responseFactory = null;
+
 	public function __construct(
 		private readonly Router $router,
 		protected readonly string $pathPrefix,
 		protected readonly JsonLocalizer $jsonLocalizer,
-		protected readonly ResponseFactory $responseFactory,
 		private readonly BasicAuthorizerInterface $basicAuth,
 		private readonly ObjectFactory $objectFactory,
 		private readonly Validator $restValidator,
@@ -104,6 +109,15 @@ abstract class Module {
 	abstract public function initFromCacheData( array $cacheData ): bool;
 
 	/**
+	 * Initialize this module for handling requests via execute().
+	 *
+	 * @internal
+	 */
+	public function initForExecute( ResponseFactory $responseFactory ) {
+		$this->responseFactory = $responseFactory;
+	}
+
+	/**
 	 * Create a Handler for the given path, taking into account the request
 	 * method.
 	 *
@@ -129,6 +143,11 @@ abstract class Module {
 		RequestInterface $request,
 		bool $initForExecute = false
 	): Handler {
+		Assert::precondition(
+			!$initForExecute || $this->responseFactory !== null,
+			'The $initForExecute flag cannot be true if initForExecute() has not been called'
+		);
+
 		$requestMethod = strtoupper( $request->getMethod() );
 
 		$match = $this->findHandlerMatch( $path, $requestMethod );
@@ -174,14 +193,14 @@ abstract class Module {
 		$handler->initContext( $this, $match['path'], $config, $openApiSpec );
 
 		// Inject services and state from the router
-		$this->getRouter()->prepareHandler( $handler, $this->responseFactory );
+		$this->getRouter()->prepareHandler( $handler );
 
 		if ( $initForExecute ) {
 			// Use rawurldecode so a "+" in path params is not interpreted as a space character.
 			$pathParams = array_map( 'rawurldecode', $match['params'] ?? [] );
 			$request->setPathParams( $pathParams );
 
-			$handler->initForExecute( $request );
+			$handler->initForExecute( $request, $this->responseFactory );
 		}
 
 		return $handler;
@@ -285,6 +304,11 @@ abstract class Module {
 	public function execute( string $path, RequestInterface $request ): ResponseInterface {
 		$handler = null;
 		$startTime = ConvertibleTimestamp::hrtime();
+
+		Assert::precondition(
+			$this->responseFactory !== null,
+			'execute() cannot be called before initForExecute()'
+		);
 
 		try {
 			$handler = $this->getHandlerForPath( $path, $request, true );

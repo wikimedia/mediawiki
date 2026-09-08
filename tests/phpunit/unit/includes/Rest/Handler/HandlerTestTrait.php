@@ -57,8 +57,6 @@ trait HandlerTestTrait {
 		$routerOrModule = null
 	) {
 		$formatter = $this->getDummyTextFormatter( true );
-		$textFormatters = [ 'qqx' => $formatter ];
-		$responseFactory = new ResponseFactory( $textFormatters, new ErrorFormatterV1( $textFormatters, false ) );
 
 		$module = null;
 		$router = null;
@@ -77,7 +75,9 @@ trait HandlerTestTrait {
 				$router = $this->newRouter();
 			}
 
-			$module = $this->newModule( [ 'router' => $router ] );
+			$module = $this->newModule(
+				[ 'router' => $router, 'formatter' => $formatter, ]
+			);
 		}
 
 		$authority ??= $this->mockAnonUltimateAuthority();
@@ -92,7 +92,7 @@ trait HandlerTestTrait {
 		//  Consider either adding a formatter parameter, or using these values from any supplied
 		//  Router. (Router does not currently provide accessors, making this inconvenient.)
 		$handler->initContext( $module, $config['path'] ?? 'test', $config );
-		$handler->initServices( $authority, $responseFactory, $hookContainer );
+		$handler->initServices( $authority, $hookContainer );
 		$handler->initSession( $session );
 
 		if ( $request ) {
@@ -103,7 +103,10 @@ trait HandlerTestTrait {
 				$request->setParsedBody( [] );
 			}
 
-			$handler->initForExecute( $request );
+			$textFormatters = [ 'qqx' => $formatter ];
+			$responseFactory = new ResponseFactory( $textFormatters, new ErrorFormatterV1( $textFormatters, false ) );
+
+			$handler->initForExecute( $request, $responseFactory );
 		}
 	}
 
