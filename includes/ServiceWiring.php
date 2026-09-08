@@ -1920,7 +1920,8 @@ return [
 			$services->getHttpRequestFactory(),
 			$services->getTrackingCategories(),
 			$services->getSignatureValidatorFactory(),
-			$services->getUserNameUtils()
+			$services->getUserNameUtils(),
+			$services->getLinkAlwaysKnownLookup(),
 		);
 	},
 

@@ -18,6 +18,7 @@ use MediaWiki\Language\LanguageFactory;
 use MediaWiki\Language\LanguageNameUtils;
 use MediaWiki\Linker\LinkRendererFactory;
 use MediaWiki\Page\File\BadFileLookup;
+use MediaWiki\Page\LinkAlwaysKnownLookup;
 use MediaWiki\Preferences\SignatureValidatorFactory;
 use MediaWiki\SpecialPage\SpecialPageFactory;
 use MediaWiki\Tidy\TidyDriverBase;
@@ -76,6 +77,7 @@ class ParserFactory {
 		private readonly TrackingCategories $trackingCategories,
 		private readonly SignatureValidatorFactory $signatureValidatorFactory,
 		private readonly UserNameUtils $userNameUtils,
+		private readonly LinkAlwaysKnownLookup $linkAlwaysKnownLookup,
 	) {
 		$svcOptions->assertRequiredOptions( Parser::CONSTRUCTOR_OPTIONS );
 
@@ -119,7 +121,8 @@ class ParserFactory {
 				$this->httpRequestFactory,
 				$this->trackingCategories,
 				$this->signatureValidatorFactory,
-				$this->userNameUtils
+				$this->userNameUtils,
+				$this->linkAlwaysKnownLookup,
 			);
 		} finally {
 			self::$inParserFactory--;

@@ -46,6 +46,7 @@ use MediaWiki\MediaWikiServices;
 use MediaWiki\Message\Message;
 use MediaWiki\Page\CacheKeyHelper;
 use MediaWiki\Page\File\BadFileLookup;
+use MediaWiki\Page\LinkAlwaysKnownLookup;
 use MediaWiki\Page\LinkCache;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageReference;
@@ -417,6 +418,7 @@ class Parser implements MessageLocalizer {
 		private TrackingCategories $trackingCategories,
 		private SignatureValidatorFactory $signatureValidatorFactory,
 		private UserNameUtils $userNameUtils,
+		private LinkAlwaysKnownLookup $linkAlwaysKnownLookup,
 	) {
 		$this->deprecateDynamicPropertiesAccess( '1.42', __CLASS__ );
 		$this->deprecatePublicProperty( 'ot', '1.35', __CLASS__ );
@@ -2682,7 +2684,7 @@ class Parser implements MessageLocalizer {
 			# be shown as bluelinks even though they're not included in the page table
 			# @todo FIXME: isAlwaysKnown() can be expensive for file links; we should really do
 			# batch file existence checks for NS_FILE and NS_MEDIA
-			if ( $iw == '' && $nt->isAlwaysKnown() ) {
+			if ( $iw == '' && $this->linkAlwaysKnownLookup->isAlwaysKnown( $nt ) ) {
 				$this->mOutput->addLink( $nt );
 				$s .= $this->makeKnownLinkHolder( $nt, $text, $trail, $prefix );
 			} else {

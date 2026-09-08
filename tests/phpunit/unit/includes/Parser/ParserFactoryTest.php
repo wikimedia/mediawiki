@@ -12,6 +12,7 @@ use MediaWiki\Language\LanguageFactory;
 use MediaWiki\Language\LanguageNameUtils;
 use MediaWiki\Linker\LinkRendererFactory;
 use MediaWiki\Page\File\BadFileLookup;
+use MediaWiki\Page\LinkAlwaysKnownLookup;
 use MediaWiki\Parser\MagicWord;
 use MediaWiki\Parser\MagicWordFactory;
 use MediaWiki\Parser\Parser;
@@ -84,7 +85,8 @@ class ParserFactoryTest extends MediaWikiUnitTestCase {
 			$this->createNoOpMock( HttpRequestFactory::class ),
 			$this->createNoOpMock( TrackingCategories::class ),
 			$this->createNoOpMock( SignatureValidatorFactory::class ),
-			$this->createNoOpMock( UserNameUtils::class )
+			$this->createNoOpMock( UserNameUtils::class ),
+			$this->createNoOpMock( LinkAlwaysKnownLookup::class ),
 		);
 		return $factory;
 	}

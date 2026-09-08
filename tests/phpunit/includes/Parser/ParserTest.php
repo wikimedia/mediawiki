@@ -13,6 +13,7 @@ use MediaWiki\Language\LanguageFactory;
 use MediaWiki\Language\LanguageNameUtils;
 use MediaWiki\Linker\LinkRendererFactory;
 use MediaWiki\Page\File\BadFileLookup;
+use MediaWiki\Page\LinkAlwaysKnownLookup;
 use MediaWiki\Page\PageReferenceValue;
 use MediaWiki\Parser\MagicWord;
 use MediaWiki\Parser\MagicWordFactory;
@@ -86,7 +87,8 @@ class ParserTest extends MediaWikiIntegrationTestCase {
 			$this->createNoOpMock( HttpRequestFactory::class ),
 			$this->createNoOpMock( TrackingCategories::class ),
 			$this->createNoOpMock( SignatureValidatorFactory::class ),
-			$this->createNoOpMock( UserNameUtils::class )
+			$this->createNoOpMock( UserNameUtils::class ),
+			$this->createNoOpMock( LinkAlwaysKnownLookup::class ),
 		];
 	}
 

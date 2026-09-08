@@ -158,12 +158,13 @@ class LinkHolderArray {
 		$linkBatchFactory = $services->getLinkBatchFactory();
 		$lb = $linkBatchFactory->newLinkBatch();
 		$lb->setCaller( __METHOD__ );
+		$linkAlwaysKnownLookup = $services->getLinkAlwaysKnownLookup();
 
 		foreach ( $this->internals as $ns => $entries ) {
 			foreach ( $entries as [ 'title' => $title, 'pdbk' => $pdbk ] ) {
 				/** @var Title $title */
 				# Check if it's a static known link, e.g. interwiki
-				if ( $title->isAlwaysKnown() ) {
+				if ( $linkAlwaysKnownLookup->isAlwaysKnown( $title ) ) {
 					$classes[$pdbk] = '';
 				} elseif ( $ns === NS_SPECIAL ) {
 					$classes[$pdbk] = 'new';
