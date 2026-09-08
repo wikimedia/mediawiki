@@ -713,7 +713,8 @@ return [
 			$services->getContentLanguage(),
 			$services->getTitleParser(),
 			$services->getNamespaceInfo(),
-			$services->getHookContainer()
+			$services->getHookContainer(),
+			$services->getLinkAlwaysKnownLookup(),
 		);
 	},
 

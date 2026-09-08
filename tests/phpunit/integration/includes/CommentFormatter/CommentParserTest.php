@@ -45,7 +45,8 @@ class CommentParserTest extends \MediaWikiIntegrationTestCase {
 			$services->getContentLanguage(),
 			$services->getTitleParser(),
 			$services->getNamespaceInfo(),
-			$services->getHookContainer()
+			$services->getHookContainer(),
+			$services->getLinkAlwaysKnownLookup(),
 		);
 	}
 
@@ -528,7 +529,8 @@ class CommentParserTest extends \MediaWikiIntegrationTestCase {
 			$services->getContentLanguage(),
 			$services->getTitleParser(),
 			$services->getNamespaceInfo(),
-			$services->getHookContainer()
+			$services->getHookContainer(),
+			$services->getLinkAlwaysKnownLookup(),
 		);
 		$result = $parser->finalize( [
 			$parser->preprocess( "[[$present]]" ),

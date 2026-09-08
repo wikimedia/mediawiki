@@ -11,6 +11,7 @@ use MediaWiki\Language\Language;
 use MediaWiki\Linker\Linker;
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\Linker\LinkTarget;
+use MediaWiki\Page\LinkAlwaysKnownLookup;
 use MediaWiki\Page\LinkBatch;
 use MediaWiki\Page\LinkBatchFactory;
 use MediaWiki\Page\LinkCache;
@@ -53,6 +54,7 @@ class CommentParser {
 	private $hookRunner;
 	/** @var LinkCache */
 	private $linkCache;
+	private LinkAlwaysKnownLookup $linkAlwaysKnownLookup;
 
 	/** @var callable[] */
 	private $links = [];
@@ -89,7 +91,8 @@ class CommentParser {
 		Language $contLang,
 		TitleParser $titleParser,
 		NamespaceInfo $namespaceInfo,
-		HookContainer $hookContainer
+		HookContainer $hookContainer,
+		LinkAlwaysKnownLookup $linkAlwaysKnownLookup,
 	) {
 		$this->linkRenderer = $linkRenderer;
 		$this->linkBatchFactory = $linkBatchFactory;
@@ -100,6 +103,7 @@ class CommentParser {
 		$this->titleParser = $titleParser;
 		$this->namespaceInfo = $namespaceInfo;
 		$this->hookRunner = new HookRunner( $hookContainer );
+		$this->linkAlwaysKnownLookup = $linkAlwaysKnownLookup;
 	}
 
 	/**
@@ -494,7 +498,7 @@ class CommentParser {
 				$contextTitle
 			);
 		} elseif ( $this->linkCache->getGoodLinkID( $target ) ||
-			Title::newFromLinkTarget( $target )->isAlwaysKnown()
+			$this->linkAlwaysKnownLookup->isAlwaysKnown( $target )
 		) {
 			// Already known
 			return $this->linkRenderer->makeKnownLink( $target, new HtmlArmor( $text ) );

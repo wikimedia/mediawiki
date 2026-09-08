@@ -7,6 +7,7 @@ use MediaWiki\FileRepo\RepoGroup;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\Language\Language;
 use MediaWiki\Linker\LinkRenderer;
+use MediaWiki\Page\LinkAlwaysKnownLookup;
 use MediaWiki\Page\LinkBatchFactory;
 use MediaWiki\Page\LinkCache;
 use MediaWiki\Title\NamespaceInfo;
@@ -25,7 +26,8 @@ class CommentParserFactory {
 		private readonly Language $contLang,
 		private readonly TitleParser $titleParser,
 		private readonly NamespaceInfo $namespaceInfo,
-		private readonly HookContainer $hookContainer
+		private readonly HookContainer $hookContainer,
+		private readonly LinkAlwaysKnownLookup $linkAlwaysKnownLookup,
 	) {
 	}
 
@@ -39,7 +41,8 @@ class CommentParserFactory {
 			$this->contLang,
 			$this->titleParser,
 			$this->namespaceInfo,
-			$this->hookContainer
+			$this->hookContainer,
+			$this->linkAlwaysKnownLookup,
 		);
 	}
 
