@@ -85,7 +85,9 @@ class SpecialWantedCategories extends WantedQueryPage {
 			$allCategories[] = $row->title;
 		}
 
-		$categoryRes = $db->newSelectQueryBuilder()
+		// Use local database for category table, it is not on the categorylinks virtual domain
+		$localDb = $this->getDatabaseProvider()->getReplicaDatabase();
+		$categoryRes = $localDb->newSelectQueryBuilder()
 			->select( [ 'cat_title', 'cat_pages' ] )
 			->from( 'category' )
 			->where( [ 'cat_title' => $allCategories ] )
