@@ -308,4 +308,9 @@ class ExtraRoutesModule extends MatcherBasedModule {
 			'url' => 'https://www.mediawiki.org/wiki/API:REST_API',
 		];
 	}
+
+	/** @inheritDoc */
+	public function getDeprecatedDate(): ?int {
+		return null;
+	}
 }

@@ -624,6 +624,16 @@ abstract class Module {
 	}
 
 	/**
+	 * Return the timestamp at which this was or will be deprecated, or null if none.
+	 *
+	 * @see Handler::getDeprecatedDate()
+	 * @since 1.47
+	 */
+	public function getDeprecatedDate(): ?int {
+		return $this->getOpenApiInfo()['deprecationSettings']['since'] ?? null;
+	}
+
+	/**
 	 * Returns fields to be included when describing this module in the
 	 * discovery document.
 	 *

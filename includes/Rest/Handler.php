@@ -474,7 +474,7 @@ abstract class Handler {
 	 * @return ?int deprecation date, as a unix timestamp, or null if none
 	 */
 	protected function getDeprecatedDate(): ?int {
-		return $this->getModule()->getModuleDescription()['info']['deprecationSettings']['since']
+		return $this->getModule()->getDeprecatedDate()
 			?? $this->openApiSpec['deprecationSettings']['since']
 			?? null;
 	}
