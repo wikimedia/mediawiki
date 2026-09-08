@@ -989,6 +989,8 @@ class TitleTest extends MediaWikiIntegrationTestCase {
 	 * @param bool $createIfNotExists
 	 */
 	public function testIsAlwaysKnown( $page, $isKnown, bool $createIfNotExists = false ) {
+		$this->expectDeprecationAndContinue( '/Title::isAlwaysKnown/' );
+
 		if ( $createIfNotExists ) {
 			$this->getExistingTestPage( $page );
 		}
@@ -1093,6 +1095,8 @@ class TitleTest extends MediaWikiIntegrationTestCase {
 	 * @covers \MediaWiki\Title\Title::isAlwaysKnown
 	 */
 	public function testIsAlwaysKnownOnInterwiki() {
+		$this->expectDeprecationAndContinue( '/Title::isAlwaysKnown/' );
+
 		$title = Title::makeTitle( NS_MAIN, 'Interwiki link', '', 'externalwiki' );
 		$this->assertTrue( $title->isAlwaysKnown() );
 	}

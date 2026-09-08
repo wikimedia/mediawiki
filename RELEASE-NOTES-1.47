@@ -704,6 +704,8 @@ because of Phabricator reports.
   1.37, now emits deprecation warnings.
 * (T433783) The SpecialCreateAccountBenefitsHook has been deprecated and will
   be removed in a future version. There will be no replacement.
+* Title::isAlwaysKnown() has been deprecated. Use the LinkAlwaysKnownLookup
+  service instead.
 * The hook CategoryViewer__generateLinkHook has been deprecated. Use the hook
   CategoryViewerGenerateLinkHook instead.
 * The SiteStore service has been deprecated in favor of SiteLookup.
