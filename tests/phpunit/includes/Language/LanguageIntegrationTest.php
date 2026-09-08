@@ -1374,6 +1374,39 @@ class LanguageIntegrationTest extends LanguageClassesTestCase {
 	}
 
 	/**
+	 * @dataProvider provideGetDurationIntervals
+	 */
+	public function testGetDurationIntervals( $seconds, $expected, $intervals = [] ) {
+		$this->assertSame(
+			$expected,
+			$this->getLang()->getDurationIntervals( $seconds, $intervals )
+		);
+	}
+
+	public static function provideGetDurationIntervals() {
+		return [
+			[
+				0,
+				[ 'seconds' => 0 ],
+			],
+			[
+				65,
+				[ 'minutes' => 1, 'seconds' => 5 ],
+			],
+			[
+				31_556_952 + 3600,
+				[ 'years' => 1, 'hours' => 1 ],
+			],
+			[
+				// 'months' has a float length, so the division is a float one
+				2_629_746 + 86_400,
+				[ 'months' => 1, 'days' => 1 ],
+				[ 'months', 'days' ],
+			],
+		];
+	}
+
+	/**
 	 * @dataProvider provideFormatDurationBetweenTimestamps
 	 */
 	public function testFormatDurationBetweenTimestamps(

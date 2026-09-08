@@ -2644,7 +2644,7 @@ class Language implements Bcp47Code {
 		$segments = [];
 
 		foreach ( $intervals as $name => $length ) {
-			$value = floor( $seconds / $length );
+			$value = (int)( $seconds / $length );
 
 			if ( $value > 0 || ( $name == $smallestInterval && !$segments ) ) {
 				$seconds -= $value * $length;
