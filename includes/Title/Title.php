@@ -3536,54 +3536,6 @@ class Title implements Stringable, LinkTarget, PageIdentity {
 	}
 
 	/**
-	 * Get the language in which the content of this page is written when
-	 * viewed by user. Defaults to content language, but in certain cases it can be
-	 * e.g. the user language (such as special pages).
-	 *
-	 * @deprecated since 1.42 Use ParserOutput::getLanguage instead. See also OutputPage::getContLangForJS.
-	 *   Hard-deprecated since 1.43.
-	 * @since 1.20
-	 * @return Language
-	 */
-	public function getPageViewLanguage() {
-		wfDeprecated( __METHOD__, '1.42' );
-		$services = MediaWikiServices::getInstance();
-
-		if ( $this->isSpecialPage() ) {
-			// If the user chooses a variant, the content is actually
-			// in a language whose code is the variant code.
-			$userLang = RequestContext::getMain()->getLanguage();
-			$variant = $this->getLanguageConverter( $userLang )->getPreferredVariant();
-			if ( $userLang->getCode() !== $variant ) {
-				return $services->getLanguageFactory()
-					->getLanguage( $variant );
-			}
-
-			return $userLang;
-		}
-
-		// Checking if DB language is set
-		$pageLang = $this->getDbPageLanguage();
-		if ( $pageLang ) {
-			$variant = $this->getLanguageConverter( $pageLang )->getPreferredVariant();
-			if ( $pageLang->getCode() !== $variant ) {
-				return $services->getLanguageFactory()
-					->getLanguage( $variant );
-			}
-
-			return $pageLang;
-		}
-
-		// @note Can't be cached persistently, depends on user settings.
-		// @note ContentHandler::getPageViewLanguage() may need to load the
-		//   content to determine the page language!
-		$contentHandler = $services->getContentHandlerFactory()
-			->getContentHandler( $this->getContentModel() );
-		$pageLang = $contentHandler->getPageViewLanguage( $this );
-		return $pageLang;
-	}
-
-	/**
 	 * Get a list of rendered edit notices for this page.
 	 *
 	 * Array is keyed by the original message key, and values are rendered using parseAsBlock, so

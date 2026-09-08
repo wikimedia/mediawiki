@@ -461,6 +461,7 @@ because of Phabricator reports.
 * Passing null to any of the three constructor parameters of TextboxBuilder,
   deprecated in 1.46, will now throw a PHP error. Use the service to get an
   instance of the class.
+* Title::getPageViewLanguage(), deprecated in 1.42, has been removed.
 * The SpecialVersion::getGitHeadSha1 method, deprecated in 1.41, has
   been removed.
 * The previously protected property Article::$mContext was made private.
