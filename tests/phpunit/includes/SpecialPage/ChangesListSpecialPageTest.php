@@ -56,8 +56,8 @@ class ChangesListSpecialPageTest extends AbstractChangesListSpecialPageTestCase 
 			[ '*' => [ 'edit' => true ] ]
 		);
 		$this->setFakeTime( '20201231000000' );
-		parent::setUp();
 		$this->clearHooks();
+		parent::setUp();
 	}
 
 	protected function tearDown(): void {
