@@ -217,7 +217,7 @@
 	"apihelp-expandtemplates-example-simple": "Expand the wikitext <kbd><nowiki>{{Project:Sandbox}}</nowiki></kbd>.",
 
 	"apihelp-feedcontributions-summary": "Returns a user's contributions feed.",
-	"apihelp-feedcontributions-param-feedformat": "The format of the feed.",
+	"apihelp-feedcontributions-param-feedformat": "The format of the feed. This parameter overrides the <code>format</code> parameter.",
 	"apihelp-feedcontributions-param-user": "What users to get the contributions for.",
 	"apihelp-feedcontributions-param-namespace": "Which namespace to filter the contributions by.",
 	"apihelp-feedcontributions-param-year": "From year (and earlier).",
@@ -231,7 +231,7 @@
 	"apihelp-feedcontributions-example-simple": "Return contributions for user <kbd>Example</kbd>.",
 
 	"apihelp-feedrecentchanges-summary": "Returns a recent changes feed.",
-	"apihelp-feedrecentchanges-param-feedformat": "The format of the feed.",
+	"apihelp-feedrecentchanges-param-feedformat": "The format of the feed. This parameter overrides the <code>format</code> parameter.",
 	"apihelp-feedrecentchanges-param-namespace": "Namespace to limit the results to.",
 	"apihelp-feedrecentchanges-param-invert": "All namespaces but the selected one.",
 	"apihelp-feedrecentchanges-param-associated": "Include associated (talk or main) namespace.",
@@ -254,7 +254,7 @@
 	"apihelp-feedrecentchanges-example-30days": "Show recent changes for 30 days.",
 
 	"apihelp-feedwatchlist-summary": "Returns a watchlist feed.",
-	"apihelp-feedwatchlist-param-feedformat": "The format of the feed.",
+	"apihelp-feedwatchlist-param-feedformat": "The format of the feed. This parameter overrides the <code>format</code> parameter.",
 	"apihelp-feedwatchlist-param-hours": "List pages modified within this many hours from now.",
 	"apihelp-feedwatchlist-param-linktosections": "Link directly to changed sections if possible.",
 	"apihelp-feedwatchlist-example-default": "Show the watchlist feed.",
