@@ -2023,7 +2023,7 @@
 	"watchstar-popup-already-watched": "\"$1\" e la sua pagina di discussione sono già nella tua [[Special:Watchlist|lista degli osservati speciali]].",
 	"watchstar-popup-expiry-help": "Puoi modificare la scadenza predefinita nelle tue [[$1|preferenze degli osservati speciali]].",
 	"watchstar-popup-labels": "Etichette degli osservati speciali:",
-	"watchstar-popup-labels-help": "Crea o cancella etichette con il [[$1|gestore etichette]].",
+	"watchstar-popup-labels-help": "Crea una nuova etichetta in [[$1|gestore etichette]].",
 	"watchstar-popup-labels-no-results": "Nessuna etichetta trovata",
 	"watch": "Segui",
 	"watchthispage": "Aggiungi agli osservati speciali",
