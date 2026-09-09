@@ -514,34 +514,6 @@ class ContentHandlerTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( $customSlotDiffRenderer2, $slotDiffRenderer );
 	}
 
-	public static function providerGetPageViewLanguage() {
-		yield [ NS_FILE, 'sr', 'sr-ec', 'sr-ec' ];
-		yield [ NS_FILE, 'sr', 'sr', 'sr' ];
-		yield [ NS_MEDIAWIKI, 'sr-ec', 'sr', 'sr-ec' ];
-		yield [ NS_MEDIAWIKI, 'sr', 'sr-ec', 'sr' ];
-	}
-
-	/**
-	 * Superseded by OutputPageTest::testGetJsVarsAboutPageLang
-	 *
-	 * @dataProvider providerGetPageViewLanguage
-	 */
-	public function testGetPageViewLanguage( $namespace, $lang, $variant, $expected ) {
-		$contentHandler = $this->getMockBuilder( ContentHandler::class )
-			->disableOriginalConstructor()
-			->getMockForAbstractClass();
-
-		$title = Title::makeTitle( $namespace, 'SimpleTitle' );
-
-		$this->overrideConfigValue( MainConfigNames::DefaultLanguageVariant, $variant );
-
-		$this->setUserLang( $lang );
-		$this->setContentLang( $lang );
-
-		$pageViewLanguage = $contentHandler->getPageViewLanguage( $title );
-		$this->assertEquals( $expected, $pageViewLanguage->getCode() );
-	}
-
 	public static function provideValidateSave() {
 		yield 'wikitext' => [
 			new WikitextContent( 'hello world' ),

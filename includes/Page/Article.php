@@ -956,7 +956,7 @@ class Article implements Page {
 
 			// It would be nice to automatically set this during the first call
 			// to OutputPage::addParserOutputMetadata, but we can't because doing
-			// so would break non-pageview actions where OutputPage::getContLangForJS
+			// so would break non-pageview actions where OutputPage::getContentLangForJS
 			// has different requirements.
 			$pageLang = $pOutput->getLanguage();
 			if ( $pageLang ) {

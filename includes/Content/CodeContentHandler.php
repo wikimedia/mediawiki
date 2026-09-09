@@ -36,22 +36,6 @@ abstract class CodeContentHandler extends TextContentHandler {
 		return MediaWikiServices::getInstance()->getLanguageFactory()->getLanguage( 'en' );
 	}
 
-	/**
-	 * Returns the English language, because code is English, and should be handled as such.
-	 *
-	 * @stable to override
-	 *
-	 * @param Title $title
-	 * @param Content|null $content
-	 *
-	 * @return Language
-	 *
-	 * @see ContentHandler::getPageViewLanguage()
-	 */
-	public function getPageViewLanguage( Title $title, ?Content $content = null ) {
-		return MediaWikiServices::getInstance()->getLanguageFactory()->getLanguage( 'en' );
-	}
-
 	/** @inheritDoc */
 	protected function getContentClass() {
 		throw new LogicException( 'Subclass must override' );
