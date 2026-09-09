@@ -10,7 +10,6 @@
 namespace MediaWiki\DB;
 
 use MediaWiki\Config\ServiceOptions;
-use MediaWiki\Exception\MWExceptionRenderer;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Rest\EntryPoint;
 use UnexpectedValueException;
@@ -237,12 +236,10 @@ class MWLBConfig {
 	 * @return never
 	 */
 	private function reportIfPrefixSet( string $prefix, string $dbType ): never {
-		$e = new UnexpectedValueException(
+		throw new UnexpectedValueException(
 			"\$wgDBprefix is set to '$prefix' but the database type is '$dbType'. " .
 			"MediaWiki does not support using a table prefix with this RDBMS type."
 		);
-		MWExceptionRenderer::output( $e, MWExceptionRenderer::AS_RAW );
-		exit;
 	}
 
 	/**
@@ -251,7 +248,7 @@ class MWLBConfig {
 	 * @return never
 	 */
 	private function reportMismatchedDBs( string $srvDB, string $ldDB ): never {
-		$e = new UnexpectedValueException(
+		throw new UnexpectedValueException(
 			"\$wgDBservers has dbname='$srvDB' but \$wgDBname='$ldDB'. " .
 			"Set \$wgDBname to the database used by this wiki project. " .
 			"There is rarely a need to set 'dbname' in \$wgDBservers. " .
@@ -259,8 +256,6 @@ class MWLBConfig {
 			"use of Database::getDomainId(), and other features are not reliable when " .
 			"\$wgDBservers does not match the local wiki database/prefix."
 		);
-		MWExceptionRenderer::output( $e, MWExceptionRenderer::AS_RAW );
-		exit;
 	}
 
 	/**
@@ -269,7 +264,7 @@ class MWLBConfig {
 	 * @return never
 	 */
 	private function reportMismatchedPrefixes( string $srvTP, string $ldTP ): never {
-		$e = new UnexpectedValueException(
+		throw new UnexpectedValueException(
 			"\$wgDBservers has tablePrefix='$srvTP' but \$wgDBprefix='$ldTP'. " .
 			"Set \$wgDBprefix to the table prefix used by this wiki project. " .
 			"There is rarely a need to set 'tablePrefix' in \$wgDBservers. " .
@@ -277,7 +272,5 @@ class MWLBConfig {
 			"use of Database::getDomainId(), and other features are not reliable when " .
 			"\$wgDBservers does not match the local wiki database/prefix."
 		);
-		MWExceptionRenderer::output( $e, MWExceptionRenderer::AS_RAW );
-		exit;
 	}
 }
