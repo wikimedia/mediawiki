@@ -40,14 +40,15 @@ class SpecialBlockTest extends SpecialPageTestBase {
 
 	protected function setUp(): void {
 		parent::setUp();
+		$this->overrideConfigValues( [
+			MainConfigNames::BlockAllowsUTEdit => true,
+			MainConfigNames::UseCodexSpecialBlock => false,
+			MainConfigNames::EnableMultiBlocks => false,
+		] );
 		$this->blockStore = $this->getServiceContainer()->getDatabaseBlockStore();
 	}
 
 	public function testGetFormFields() {
-		$this->overrideConfigValues( [
-			MainConfigNames::BlockAllowsUTEdit => true,
-			MainConfigNames::UseCodexSpecialBlock => false,
-		] );
 		$page = $this->newSpecialPage();
 		$wrappedPage = TestingAccessWrapper::newFromObject( $page );
 		$fields = $wrappedPage->getFormFields();
@@ -229,7 +230,6 @@ class SpecialBlockTest extends SpecialPageTestBase {
 	 */
 	public function testCodexFormData( array $params, array $expected, bool $multiblocks = false ): void {
 		$this->overrideConfigValues( [
-			MainConfigNames::BlockAllowsUTEdit => true,
 			MainConfigNames::UseCodexSpecialBlock => true,
 			MainConfigNames::EnableMultiBlocks => $multiblocks,
 		] );
@@ -281,12 +281,6 @@ class SpecialBlockTest extends SpecialPageTestBase {
 	}
 
 	public function testMaybeAlterFormDefaults() {
-		$this->overrideConfigValues( [
-			MainConfigNames::BlockAllowsUTEdit => true,
-			MainConfigNames::UseCodexSpecialBlock => false,
-			MainConfigNames::EnableMultiBlocks => false,
-		] );
-
 		$block = $this->insertBlock();
 
 		// Refresh the block from the database.
@@ -308,12 +302,6 @@ class SpecialBlockTest extends SpecialPageTestBase {
 	}
 
 	public function testMaybeAlterFormDefaultsWhenBlockHiddenFromViewingUser(): void {
-		$this->overrideConfigValues( [
-			MainConfigNames::BlockAllowsUTEdit => true,
-			MainConfigNames::UseCodexSpecialBlock => false,
-			MainConfigNames::EnableMultiBlocks => false,
-		] );
-
 		$block = $this->blockStore->insertBlockWithParams( [
 			'targetUser' => $this->getTestUser()->getUser(),
 			'by' => $this->getTestSysop()->getUser(),
@@ -334,10 +322,6 @@ class SpecialBlockTest extends SpecialPageTestBase {
 	}
 
 	public function testMaybeAlterFormDefaultsPartial() {
-		$this->overrideConfigValues( [
-			MainConfigNames::UseCodexSpecialBlock => false,
-			MainConfigNames::EnableMultiBlocks => false,
-		] );
 		$badActor = $this->getTestUser()->getUser();
 		$sysop = $this->getTestSysop()->getUser();
 		$pageSaturn = $this->getExistingTestPage( 'Saturn' );
@@ -719,8 +703,6 @@ class SpecialBlockTest extends SpecialPageTestBase {
 	 * @dataProvider provideProcessFormErrors
 	 */
 	public function testProcessFormErrors( $data, $expected, $options = [] ) {
-		$this->overrideConfigValue( MainConfigNames::BlockAllowsUTEdit, true );
-
 		$performer = $this->getTestSysop()->getUser();
 		$target = !empty( $options['blockingSelf'] ) ? $performer : '1.2.3.4';
 		$defaultData = [
@@ -827,8 +809,6 @@ class SpecialBlockTest extends SpecialPageTestBase {
 	 * @dataProvider provideProcessFormErrorsReblock
 	 */
 	public function testProcessFormErrorsReblock( $data, $permissions, $expected ) {
-		$this->overrideConfigValue( MainConfigNames::BlockAllowsUTEdit, true );
-
 		$performer = $this->getTestSysop()->getUser();
 		$this->overrideUserPermissions( $performer, $permissions );
 		$blockedUser = $this->getTestUser()->getUser();
