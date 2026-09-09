@@ -945,16 +945,16 @@ class ApiMain extends ApiBase {
 		$obLevel = ob_get_level();
 		ob_start();
 
-		$t = microtime( true );
+		$t = ConvertibleTimestamp::hrtime();
 		$isError = false;
 		try {
 			$this->executeAction();
-			$runTime = microtime( true ) - $t;
+			$runTime = ( ConvertibleTimestamp::hrtime() - $t ) / 1e9;
 			$this->logRequest( $runTime );
 
 			$this->statsFactory->getTiming( 'api_executeTiming_seconds' )
 				->setLabel( 'module', $this->mModule->getModuleName() )
-				->observe( 1000 * $runTime );
+				->observeSeconds( $runTime );
 
 			if ( !$this->mModule || $this->mModule->getModuleName() !== 'query' ) {
 				// Skip query module metrics; we will record them in the query module itself.
@@ -962,9 +962,9 @@ class ApiMain extends ApiBase {
 			}
 		} catch ( Throwable $e ) {
 			// If executeAction threw before the time was set, reset it
-			$runTime ??= microtime( true ) - $t;
+			$runTime ??= ( ConvertibleTimestamp::hrtime() - $t ) / 1e9;
 			$this->handleException( $e, $runTime );
-			$this->logRequest( microtime( true ) - $t, $e );
+			$this->logRequest( ( ConvertibleTimestamp::hrtime() - $t ) / 1e9, $e );
 			$isError = true;
 		}
 

@@ -722,7 +722,6 @@ class ApiQuery extends ApiBase {
 			$timer = $statsFactory->getTiming( 'api_query_executeTiming_seconds' )
 				->setLabel( 'module', $module->getModuleName() )
 				->start();
-			$t = microtime( true );
 
 			$params = $module->extractRequestParams();
 			$cacheMode = $this->mergeCacheMode(

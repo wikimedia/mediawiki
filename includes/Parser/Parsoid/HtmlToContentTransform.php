@@ -468,13 +468,10 @@ class HtmlToContentTransform {
 			[ 'from' => $downgrade['from'], 'to' => $downgrade['to'] ]
 		);
 
-		$downgradeTime = microtime( true );
+		$timer = $this->metrics?->getTiming( 'downgrade_time_ms' )
+			->start();
 		Parsoid::downgrade( $downgrade, $pb, $this->siteConfig );
-		if ( $this->metrics ) {
-			$this->metrics
-				->getTiming( 'downgrade_time_ms' )
-				->observe( ( microtime( true ) - $downgradeTime ) * 1000 );
-		}
+		$timer?->stop();
 		// NOTE: Set $this->originalBody to null so getOriginalBody() will re-generate it.
 		// XXX: Parsoid::downgrade operates on the parsed Document, would be nice
 		//      if we could get that instead of getting back HTML which we have to

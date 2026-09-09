@@ -802,16 +802,15 @@ EOT;
 		$stats = $this->getServiceContainer()->getStatsFactory();
 
 		if ( $img->getRepo()->fileExists( $thumbPath ) ) {
-			$starttime = microtime( true );
+			$timer = $stats->getTiming( 'media_thumbnail_stream_seconds' )
+				->start();
 			$status = $img->getRepo()->streamFileWithStatus(
 				$thumbPath,
 				$headers
 			);
-			$streamtime = microtime( true ) - $starttime;
 
 			if ( $status->isOK() ) {
-				$stats->getTiming( 'media_thumbnail_stream_seconds' )
-					->observe( $streamtime * 1000 );
+				$timer->stop();
 			} else {
 				$this->thumbError(
 					500,
