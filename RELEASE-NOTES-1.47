@@ -244,6 +244,8 @@ For notes on 1.46.x and older releases, see HISTORY.
 * Updated @pinia/testing from 0.0.12 to 1.0.3.
 * Updated wikimedia/shellbox from 4.4.0 to 4.5.2.
 * Updated wikimedia/codex (Codex PHP) from 0.7.1 to 0.8.0.
+* Updated codex, codex-design-tokens and codex-icons
+  from v2.6.2 to v2.7.0.
 * …
 
 ===== Changed development-only external libraries =====

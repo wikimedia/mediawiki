@@ -159,6 +159,7 @@
     "imports": [
       "_Icon.js",
       "src/components/thumbnail/Thumbnail.vue",
+      "_constants.js",
       "__plugin-vue_export-helper.js"
     ],
     "css": [

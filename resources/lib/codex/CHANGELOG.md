@@ -1,3 +1,39 @@
+# 2.7.0 / 2026-09-09
+
+## Deprecating changes
+- [DEPRECATING CHANGE] Popover: refine useBottomSheet prop (Anne Tomasevich)
+
+This patch changes the useBottomSheet prop to prefer one of three options: 'never' (default), 'responsive', and 'always'. This change deprecates the boolean usage so it can be removed later.
+
+## Features
+- MenuButton: Add load-more event (Anne Tomasevich)
+- Allow custom icon for progressive and subtle Message types (Les4353)
+- Popover: Add hide arrow prop (TheresNoTime)
+- Popover: Allow bottom sheet to can be available in desktop (Les4353)
+- Card: support larger images and various image positions (Derek Torsani)
+
+## Styles
+- MenuItem: Reset hover color for menu item links (Anushka10patel)
+- MenuItem: Let URL item be full-width (Les4353)
+- MenuItem: Small font size for supporting text (Sam Wilson)
+- Popover: keep the arrow attached when the popover shifts (aude)
+
+## Icons
+- icons: Update Arabic-language 'info' icon to new lightbulbOutline.svg (Bartosz Dziewoński)
+- icons: A few more micro-optimizations to various SVG icons (Thiemo Kreuz)
+- icons: Add `lightbulbDashed` icon (Caro Medelius)
+- icons: Update `ellipsis` and `verticalEllipsis` (Derek Torsani)
+- icons: Add `suggestedInvestigations` icon (Marcin Szwarc)
+
+## Code
+- MenuItem: Remove `rel="noopener noreferrer"` from links that open in a new tab (Timo Tijhof)
+
+## Documentation
+- docs: Add CompositionEvent to type-link ignore list (Neelimaa1)
+- docs, Popover: simplify docs and language around bottom sheet (Anne Tomasevich)
+- docs, Tooltip: Update font-families used (Derek Torsani)
+- docs, Popover: add missing PopoverBottomSheetOptions (Sergio Gimeno)
+
 # v2.6.2 / 2026-07-21
 
 ## Styles

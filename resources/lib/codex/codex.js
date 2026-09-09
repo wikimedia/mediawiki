@@ -62,25 +62,25 @@ const stringHelpers = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defin
   regExpEscape,
   splitStringAtMatch
 }, Symbol.toStringTag, { value: "Module" }));
-const i = '<path d="M9.5 1h1L19 17.2V19H1v-1.8zM9 7v6h2V7zm0 8v2h2v-2z"/>', B = '<path d="M18 20H2V0h16zM4 18h10.969l-3.343-4.347a4 4 0 111.565-1.244L16 16.06V2H4zm6-10a2 2 0 100 4 2 2 0 000-4"/>', V1 = '<path d="M18.154 3.837 8 16.8H6.65l-4.8-3.6 1.2-1.6 4.02 3.015 9.517-12.02z"/>', p1 = '<path d="M14.243 7.172 11.413 10l2.828 2.83-1.414 1.413L10 11.415l-2.827 2.827-1.414-1.414L8.585 10 5.757 7.172l1.415-1.414 2.827 2.828 2.83-2.828z"/><path d="M10 1a9 9 0 110 18 9 9 0 010-18m0 2a7 7 0 100 14 7 7 0 000-14"/>', m1 = '<path d="M16.707 4.707 11.414 10l5.293 5.293-1.414 1.414L10 11.414l-5.293 5.293-1.414-1.414L8.586 10 3.293 4.707l1.414-1.414L10 8.586l5.293-5.293z"/>', f1 = '<path d="M5 8h10v1l-5 5-5-5z"/>', P1 = '<path d="M19 6.4v7.199L13.6 19H6.4L1 13.599v-7.2L6.4 1h7.2zM9 14v2h2v-2zm0-9v7h2V5z"/>', O1 = '<path d="m16.7 8-6 6H9.3l-6-6 1.4-1.4 5.3 5.3 5.3-5.3z"/>', V0 = '<path d="M15 15H5l3.5-4 2 2L15 8z"/><path d="M19 19H1V1h18zM3 17h14V3H3z"/><circle cx="6.5" cy="6.5" r="1.5"/>', u0 = '<path d="M19 19H1V1h18zm-8.5-6-2-2L5 15h10V8zm-4-8a1.5 1.5 0 100 3 1.5 1.5 0 000-3"/>', H = '<path d="M13 20H7v-2h6zM10 0c1.938 0 3.58.556 4.745 1.644C15.918 2.738 16.5 4.27 16.5 6c0 2.22-1.15 3.732-2.04 4.727-.644.72-.96 1.633-.96 2.662V16h-7v-2.611c0-1.029-.317-1.942-.96-2.662C4.65 9.732 3.5 8.22 3.5 6c0-1.627.593-3.145 1.743-4.255C6.395.634 8.032 0 10 0"/>', S0 = '<path d="M10 1a9 9 0 110 18 9 9 0 010-18M8 9v2h1v2H8v2h4v-2h-1V9zm1-4v2h2V5z"/>', E2 = '<path d="M6 17H4V3h2zM16.417 4.707 11.124 10l5.293 5.293-1.414 1.414-6-6V9.293l6-6z"/>', O2 = '<path d="M16 17h-2V3h2zm-5-7.707v1.414l-5.993 6-1.414-1.414L8.886 10 3.593 4.707l1.414-1.414z"/>', X2 = '<path d="M14 9.293v1.414l-5.982 6-1.415-1.414L11.896 10 6.603 4.707l1.414-1.414z"/>', e4 = '<path d="M13.417 4.707 8.124 10l5.293 5.293-1.414 1.414-6-6V9.293l6-6z"/>', b4 = '<path d="M8 1a7 7 0 015.605 11.191l5.102 5.102-1.414 1.414-5.102-5.102A7 7 0 118 1m0 2a5 5 0 100 10A5 5 0 008 3"/>', R4 = '<path d="m15 13-5 5-5-5v-1h10zm0-6v1H5V7l5-5z"/>', h3 = '<path d="M10 1a9 9 0 110 18 9 9 0 010-18M8.823 11.118 6.8 9.6l-1.2 1.6 2.8 2.1h1.1l4.905-5.956-1.561-1.25z"/>', U3 = '<path d="M15 12H5v-1l5-5 5 5z"/>', r5 = i, k5 = B, _5 = V1, c6 = p1, t6 = m1, H6 = f1, I6 = P1, y6 = O1, X6 = V0, t7 = u0, z7 = {
+const m = '<path d="M9.5 1h1L19 17.2V19H1v-1.8zM9 7v6h2V7zm0 8v2h2v-2z"/>', T = '<path d="M18 20H2V0h16zM4 18h10.969l-3.343-4.347a4 4 0 111.565-1.244L16 16.06V2H4zm6-10a2 2 0 100 4 2 2 0 000-4"/>', M1 = '<path d="M18.154 3.837 8 16.8H6.65l-4.8-3.6 1.2-1.6 4.02 3.015 9.517-12.02z"/>', p1 = '<path d="M14.243 7.172 11.413 10l2.828 2.83-1.414 1.413L10 11.415l-2.827 2.827-1.414-1.414L8.585 10 5.757 7.172l1.415-1.414 2.827 2.828 2.83-2.828z"/><path d="M10 1a9 9 0 110 18 9 9 0 010-18m0 2a7 7 0 100 14 7 7 0 000-14"/>', g1 = '<path d="M16.707 4.707 11.414 10l5.293 5.293-1.414 1.414L10 11.414l-5.293 5.293-1.414-1.414L8.586 10 3.293 4.707l1.414-1.414L10 8.586l5.293-5.293z"/>', S1 = '<path d="M5 8h10v1l-5 5-5-5z"/>', E1 = '<path d="M19 6.4v7.199L13.6 19H6.4L1 13.599v-7.2L6.4 1h7.2zM9 14v2h2v-2zm0-9v7h2V5z"/>', N1 = '<path d="m16.7 8-6 6H9.3l-6-6 1.4-1.4 5.3 5.3 5.3-5.3z"/>', M0 = '<path d="M15 15H5l3.5-4 2 2L15 8z"/><path d="M19 19H1V1h18zM3 17h14V3H3z"/><circle cx="6.5" cy="6.5" r="1.5"/>', I0 = '<path d="M19 19H1V1h18zm-8.5-6-2-2L5 15h10V8zm-4-8a1.5 1.5 0 100 3 1.5 1.5 0 000-3"/>', M = '<path d="M13 20H7v-2h6zM10 0c1.938 0 3.58.556 4.745 1.644C15.918 2.738 16.5 4.27 16.5 6c0 2.22-1.15 3.732-2.04 4.727-.644.72-.96 1.633-.96 2.662V16h-7v-2.611c0-1.029-.317-1.942-.96-2.662C4.65 9.732 3.5 8.22 3.5 6c0-1.627.593-3.145 1.743-4.255C6.395.634 8.032 0 10 0"/>', q0 = '<path d="M10 1a9 9 0 110 18 9 9 0 010-18M8 9v2h1v2H8v2h4v-2h-1V9zm1-4v2h2V5z"/>', O2 = '<path d="M6 17H4V3h2zM16.417 4.707 11.124 10l5.293 5.293-1.414 1.414-6-6V9.293l6-6z"/>', N2 = '<path d="M16 17h-2V3h2zm-5-7.707v1.414l-5.993 6-1.414-1.414L8.886 10 3.593 4.707l1.414-1.414z"/>', j2 = '<path d="M14 9.293v1.414l-5.982 6-1.415-1.414L11.896 10 6.603 4.707l1.414-1.414z"/>', z4 = '<path d="M13.417 4.707 8.124 10l5.293 5.293-1.414 1.414-6-6V9.293l6-6z"/>', f4 = '<path d="M8 1a7 7 0 015.605 11.191l5.102 5.102-1.414 1.414-5.102-5.102A7 7 0 118 1m0 2a5 5 0 100 10A5 5 0 008 3"/>', P4 = '<path d="m15 13-5 5-5-5v-1h10zm0-6v1H5V7l5-5z"/>', t3 = '<path d="M10 1a9 9 0 110 18 9 9 0 010-18M8.823 11.118 6.8 9.6l-1.2 1.6 2.8 2.1h1.1l4.905-5.956-1.561-1.25z"/>', w3 = '<path d="M15 12H5v-1l5-5 5 5z"/>', V5 = m, f5 = T, c6 = M1, t6 = p1, o6 = g1, M6 = S1, y6 = E1, F6 = N1, _6 = M0, o7 = I0, V7 = {
   langCodeMap: {
-    ar: H
+    ar: M
   },
-  default: S0
-}, H8 = {
-  ltr: E2,
-  shouldFlip: true
-}, V8 = {
+  default: q0
+}, i8 = {
   ltr: O2,
   shouldFlip: true
-}, x8 = {
-  ltr: X2,
+}, p8 = {
+  ltr: N2,
   shouldFlip: true
-}, U8 = {
-  ltr: e4,
+}, A8 = {
+  ltr: j2,
   shouldFlip: true
-}, $8 = b4, e9 = R4, A9 = h3, ac = U3;
-function Sc(c, l, o) {
+}, D8 = {
+  ltr: z4,
+  shouldFlip: true
+}, t9 = f4, H9 = P4, F9 = t3, nc = w3;
+function Uc(c, l, o) {
   if (typeof c == "string" || "path" in c)
     return c;
   if ("shouldFlip" in c)
@@ -90,7 +90,7 @@ function Sc(c, l, o) {
   const v = l in c.langCodeMap ? c.langCodeMap[l] : c.default;
   return typeof v == "string" || "path" in v ? v : v.ltr;
 }
-function qc(c, l) {
+function Zc(c, l) {
   if (typeof c == "string")
     return false;
   if ("langCodeMap" in c) {
@@ -209,6 +209,23 @@ const ObjectPositions = [
   "center"
 ];
 const imagePositionValidator = makeStringTypeValidator(ObjectPositions);
+const CardThumbnailPositions = [
+  "inline-start",
+  "inline-end",
+  "block-start"
+];
+const cardThumbnailPositionValidator = makeStringTypeValidator(CardThumbnailPositions);
+const CardSeparations = [
+  "none",
+  "divider",
+  "outline"
+];
+const cardSeparationValidator = makeStringTypeValidator(CardSeparations);
+const CardThumbnailSizes = [
+  "small",
+  "large"
+];
+const cardThumbnailSizeValidator = makeStringTypeValidator(CardThumbnailSizes);
 const AccordionSeparations = [
   "none",
   "minimal",
@@ -307,13 +324,13 @@ const _sfc_main$D = defineComponent({
       return (_a = props.lang) != null ? _a : computedLang.value;
     });
     const rootClasses = computed(() => ({
-      "cdx-icon--flipped": overriddenDir.value === "rtl" && overriddenLang.value !== null && qc(props.icon, overriddenLang.value),
+      "cdx-icon--flipped": overriddenDir.value === "rtl" && overriddenLang.value !== null && Zc(props.icon, overriddenLang.value),
       ["cdx-icon--".concat(props.size)]: true
     }));
     const resolvedIcon = computed(
       () => {
         var _a, _b;
-        return Sc(props.icon, (_a = overriddenLang.value) != null ? _a : "", (_b = overriddenDir.value) != null ? _b : "ltr");
+        return Uc(props.icon, (_a = overriddenLang.value) != null ? _a : "", (_b = overriddenDir.value) != null ? _b : "ltr");
       }
     );
     const iconSvg = computed(() => typeof resolvedIcon.value === "string" ? resolvedIcon.value : "");
@@ -941,7 +958,7 @@ const _sfc_main$z = defineComponent({
      */
     placeholderIcon: {
       type: [String, Object],
-      default: t7
+      default: o7
     }
   },
   setup: (props) => {
@@ -1068,6 +1085,49 @@ const _sfc_main$y = defineComponent({
     customPlaceholderIcon: {
       type: [String, Object],
       default: void 0
+    },
+    /**
+     * Position of the thumbnail relative to the card container.
+     *
+     * - `inline-start` (default): thumbnail before the text (left in LTR, right in RTL).
+     * - `inline-end`: thumbnail after the text.
+     * - `block-start`: thumbnail spans the full width of the card, above the text.
+     *
+     * @values 'inline-start', 'inline-end', 'block-start'
+     */
+    thumbnailPosition: {
+      type: String,
+      default: "inline-start",
+      validator: cardThumbnailPositionValidator
+    },
+    /**
+     * Size of the thumbnail. Only applies when `thumbnailPosition` is `inline-start`
+     * or `inline-end`; has no effect when `thumbnailPosition` is `block-start`,
+     * where the thumbnail already spans the full card width regardless of this prop.
+     *
+     * - `small` (default): 3rem (48px).
+     * - `large`: 6rem (96px).
+     *
+     * @values 'small', 'large'
+     */
+    thumbnailSize: {
+      type: String,
+      default: "small",
+      validator: cardThumbnailSizeValidator
+    },
+    /**
+     * Visual separation style of the card.
+     *
+     * - `outline` (default): border around the entire card — the original Card appearance.
+     * - `divider`: border and padding along the bottom edge only.
+     * - `none`: no border or padding.
+     *
+     * @values 'outline', 'divider', 'none'
+     */
+    separation: {
+      type: String,
+      default: "outline",
+      validator: cardSeparationValidator
     }
   },
   setup(props) {
@@ -1097,9 +1157,14 @@ function _sfc_render$z(_ctx, _cache, $props, $setup, $data, $options) {
   return openBlock(), createBlock(resolveDynamicComponent(_ctx.contentTag), {
     href: _ctx.cardLink,
     class: normalizeClass(["cdx-card", {
+      // eslint-disable max-len
       "cdx-card--is-link": _ctx.isLink,
       // Include dynamic classes in the template so that $slots is reactive.
-      "cdx-card--title-only": !_ctx.$slots.description && !_ctx.$slots["supporting-text"]
+      "cdx-card--title-only": !_ctx.$slots.description && !_ctx.$slots["supporting-text"] && _ctx.thumbnailPosition !== "block-start",
+      ["cdx-card--thumbnail-position-".concat(_ctx.thumbnailPosition)]: (_ctx.thumbnail || _ctx.forceThumbnail) && _ctx.thumbnailPosition !== "inline-start",
+      ["cdx-card--separation-".concat(_ctx.separation)]: _ctx.separation !== "outline",
+      ["cdx-card--thumbnail-size-".concat(_ctx.thumbnailSize)]: (_ctx.thumbnail || _ctx.forceThumbnail) && _ctx.thumbnailSize !== "small" && _ctx.thumbnailPosition !== "block-start"
+      // eslint-enable max-len
     }])
   }, {
     default: withCtx(() => [
@@ -1805,11 +1870,11 @@ const computePosition$1 = async (reference, floating, config) => {
   let statefulPlacement = placement;
   let middlewareData = {};
   let resetCount = 0;
-  for (let i2 = 0; i2 < validMiddleware.length; i2++) {
+  for (let i = 0; i < validMiddleware.length; i++) {
     const {
       name,
       fn
-    } = validMiddleware[i2];
+    } = validMiddleware[i];
     const {
       x: nextX,
       y: nextY,
@@ -1852,7 +1917,7 @@ const computePosition$1 = async (reference, floating, config) => {
           y
         } = computeCoordsFromPlacement(rects, statefulPlacement, rtl));
       }
-      i2 = -1;
+      i = -1;
     }
   }
   return {
@@ -3610,7 +3675,7 @@ const _sfc_main$v = defineComponent({
       rootClasses,
       ariaDescription,
       onKeydown,
-      cdxIconClose: t6,
+      cdxIconClose: o6,
       tabIndex,
       tooltipContent,
       textElement
@@ -4354,8 +4419,7 @@ const _sfc_main$s = defineComponent({
     }));
     const contentTag = computed(() => props.url ? "a" : "span");
     const linkAttrs = computed(() => props.url && props.urlNewTab ? {
-      target: "_blank",
-      rel: "noopener noreferrer"
+      target: "_blank"
     } : {});
     const title = computed(() => props.label || String(props.value));
     return {
@@ -4368,7 +4432,7 @@ const _sfc_main$s = defineComponent({
       contentTag,
       linkAttrs,
       title,
-      cdxIconCheck: _5
+      cdxIconCheck: c6
     };
   }
 });
@@ -5882,7 +5946,7 @@ const _sfc_main$p = defineComponent({
       onCompositionEnd,
       onInvalid,
       shouldPreventDefault,
-      cdxIconClear: c6
+      cdxIconClear: t6
     };
   },
   // Public methods
@@ -6305,7 +6369,7 @@ const _sfc_main$o = defineComponent({
       onKeydown,
       onButtonClick,
       onButtonMousedown,
-      cdxIconExpand: y6,
+      cdxIconExpand: F6,
       rootClasses,
       rootStyle,
       otherAttrs
@@ -6898,7 +6962,7 @@ const __default__ = defineComponent({
       close,
       onBackdropClick,
       onBackdropMouseDown,
-      cdxIconClose: t6,
+      cdxIconClose: o6,
       labelId,
       rootClasses,
       backdrop,
@@ -7142,12 +7206,12 @@ function _sfc_render$o(_ctx, _cache, $props, $setup, $data, $options) {
 }
 const Dialog = /* @__PURE__ */ _export_sfc(__default__, [["render", _sfc_render$o]]);
 const iconMap$2 = {
-  subtle: z7,
-  notice: z7,
-  progressive: z7,
-  error: I6,
-  warning: r5,
-  success: A9
+  subtle: V7,
+  notice: V7,
+  progressive: V7,
+  error: y6,
+  warning: V5,
+  success: F9
 };
 const _sfc_main$n = defineComponent({
   name: "CdxMessage",
@@ -7279,7 +7343,7 @@ const _sfc_main$n = defineComponent({
       ["cdx-message--".concat(props.type)]: true
     }));
     const computedIcon = computed(
-      () => props.icon && props.type === "notice" ? props.icon : iconMap$2[props.type]
+      () => props.icon && ["progressive", "subtle", "notice"].includes(props.type) ? props.icon : iconMap$2[props.type]
     );
     const leaveActiveClass = ref("");
     function onDismiss(eventName) {
@@ -7309,7 +7373,7 @@ const _sfc_main$n = defineComponent({
       computedIcon,
       onDismiss,
       onActionButtonClick,
-      cdxIconClose: t6
+      cdxIconClose: o6
     };
   }
 });
@@ -7721,7 +7785,7 @@ const _sfc_main$l = defineComponent({
       placeholderStyles,
       handleError,
       handleLoad,
-      cdxIconImage: X6,
+      cdxIconImage: _6,
       iconSizeClass,
       placeholderClasses
     };
@@ -7770,12 +7834,12 @@ function _sfc_render$l(_ctx, _cache, $props, $setup, $data, $options) {
 }
 const Image$1 = /* @__PURE__ */ _export_sfc(_sfc_main$l, [["render", _sfc_render$l]]);
 const iconMap$1 = {
-  subtle: z7,
-  notice: z7,
-  progressive: z7,
-  error: I6,
-  warning: r5,
-  success: A9
+  subtle: V7,
+  notice: V7,
+  progressive: V7,
+  error: y6,
+  warning: V5,
+  success: F9
 };
 const _sfc_main$k = defineComponent({
   name: "CdxInfoChip",
@@ -8275,7 +8339,14 @@ const _sfc_main$i = defineComponent({
      *
      * @property {string | number} selected The new selected value
      */
-    "update:selected"
+    "update:selected",
+    /**
+     * When the user scrolls towards the bottom of the menu.
+     *
+     * If it is possible to add or load more menu items, now would be a good moment
+     * so that the user can experience infinite scrolling.
+     */
+    "load-more"
   ],
   setup(props, { emit, attrs }) {
     const menu = ref();
@@ -8382,7 +8453,8 @@ function _sfc_render$i(_ctx, _cache, $props, $setup, $data, $options) {
         }, _ctx.menuConfig, {
           role: "menu",
           "aria-labelledby": _ctx.buttonId,
-          footer: _ctx.footer
+          footer: _ctx.footer,
+          onLoadMore: _cache[2] || (_cache[2] = ($event) => _ctx.$emit("load-more"))
         }), {
           default: withCtx(({ menuItem }) => [
             renderSlot(_ctx.$slots, "menu-item", { menuItem })
@@ -8874,12 +8946,26 @@ const _sfc_main$g = defineComponent({
       default: "bottom"
     },
     /**
-     * Whether to use the bottom sheet variant on mobile devices.
-     * When true, the popover will render as a bottom sheet on mobile breakpoints.
+     * Whether to hide the arrow that points to the anchor element.
+     *
+     * Only applies in floating mode. The bottom sheet variant has no arrow. When the arrow
+     * is hidden, the Popover is positioned closer to the anchor element.
      */
-    useBottomSheet: {
+    hideArrow: {
       type: Boolean,
       default: false
+    },
+    /**
+     * Whether to use the bottom sheet variant on mobile devices.
+     *
+     * 'responsive': Popover will render as a bottom sheet on mobile viewport sizes.
+     * 'always': Popover will render as a bottom sheet on all viewport sizes.
+     *
+     * DEPRECATED: boolean values. Use 'responsive', 'always', or 'never' instead.
+     */
+    useBottomSheet: {
+      type: [Boolean, String],
+      default: "never"
     },
     /**
      * Whether to hide the backdrop/scrim behind the bottom sheet.
@@ -8908,7 +8994,10 @@ const _sfc_main$g = defineComponent({
   ],
   setup(props, { emit }) {
     const breakpoint = useBreakpoint();
-    const isBottomSheet = computed(() => props.useBottomSheet && breakpoint.mobile);
+    const isBottomSheet = computed(() => {
+      const isResponsive = props.useBottomSheet === true || props.useBottomSheet === "responsive";
+      return isResponsive && breakpoint.mobile || props.useBottomSheet === "always";
+    });
     const providedTarget = inject("CdxTeleportTarget", void 0);
     const computedTarget = computed(() => {
       var _a;
@@ -8948,14 +9037,17 @@ const _sfc_main$g = defineComponent({
     const sideB = 16;
     const sideC = Math.sqrt(sideA ** 2 + sideB ** 2);
     const triangleHeight = sideC / 2;
+    const arrowPadding = Math.ceil(triangleHeight - sideA / 2) + 2;
     const arrowOffset = 4;
-    const offsetDistance = triangleHeight + arrowOffset;
+    const offsetDistance = computed(
+      () => props.hideArrow ? arrowOffset : triangleHeight + arrowOffset
+    );
     const computedMiddleware = computed(() => {
       if (isBottomSheet.value) {
         return [];
       }
       return [
-        offset(offsetDistance),
+        offset(offsetDistance.value),
         // Default flip behavior will flip floating element across the main axis
         flip(),
         // Shift the floating element along the cross axis so it stays within the
@@ -8978,7 +9070,7 @@ const _sfc_main$g = defineComponent({
             });
           }
         }),
-        arrow({ element: arrowRef })
+        ...props.hideArrow ? [] : [arrow({ element: arrowRef, padding: arrowPadding })]
       ];
     });
     const {
@@ -9005,8 +9097,8 @@ const _sfc_main$g = defineComponent({
         return;
       }
       const { x: arrowX, y: arrowY } = middlewareData.value.arrow;
-      arrowStyles.left = arrowX ? "".concat(arrowX, "px") : "";
-      arrowStyles.top = arrowY ? "".concat(arrowY, "px") : "";
+      arrowStyles.left = arrowX !== void 0 ? "".concat(arrowX, "px") : "";
+      arrowStyles.top = arrowY !== void 0 ? "".concat(arrowY, "px") : "";
       arrowStyles.right = "";
       arrowStyles.bottom = "";
       arrowStyles[oppositeSide.value] = "".concat(-16 / 2 - 1, "px");
@@ -9244,7 +9336,7 @@ const _sfc_main$g = defineComponent({
       showFooter,
       footerActionsClasses,
       close,
-      cdxIconClose: t6,
+      cdxIconClose: o6,
       transitionName,
       backdropClassObject,
       panelClassObject,
@@ -9427,7 +9519,7 @@ function _sfc_render$g(_ctx, _cache, $props, $setup, $data, $options) {
                   )
                 ])
               ])) : createCommentVNode("v-if", true),
-              !_ctx.isBottomSheet ? (openBlock(), createElementBlock(
+              !_ctx.isBottomSheet && !_ctx.hideArrow ? (openBlock(), createElementBlock(
                 "div",
                 {
                   key: 2,
@@ -9870,7 +9962,7 @@ const _sfc_main$d = defineComponent({
       rootStyle,
       otherAttrs,
       handleSubmit,
-      searchIcon: $8,
+      searchIcon: t9,
       translatedSearchButtonLabel,
       useButtonOrLabel
     };
@@ -10137,7 +10229,7 @@ const _sfc_main$c = defineComponent({
       onClick,
       onKeydown,
       startIcon,
-      cdxIconExpand: y6
+      cdxIconExpand: F6
     };
   }
 });
@@ -10367,10 +10459,10 @@ const _sfc_main$a = defineComponent({
       btnLabelPrev,
       btnLabelLast,
       wrappedItemsPerPage,
-      cdxIconPrevious: U8,
-      cdxIconNext: x8,
-      cdxIconMoveFirst: H8,
-      cdxIconMoveLast: V8
+      cdxIconPrevious: D8,
+      cdxIconNext: A8,
+      cdxIconMoveFirst: i8,
+      cdxIconMoveLast: p8
     };
   }
 });
@@ -10476,9 +10568,9 @@ const CdxTablePager = /* @__PURE__ */ _export_sfc(_sfc_main$a, [["render", _sfc_
 const tableTextAlignmentsValidator = makeStringTypeValidator(TableTextAlignments);
 const paginationPositionValidator = makeStringTypeValidator(TablePaginationPositions);
 const iconMap = {
-  none: e9,
-  asc: ac,
-  desc: H6
+  none: H9,
+  asc: nc,
+  desc: M6
 };
 const sortDirectionMap = {
   none: "none",
@@ -11525,8 +11617,8 @@ const _sfc_main$8 = defineComponent({
       assignTemplateRefForTabButton,
       scrollTabs,
       focusActiveTab,
-      cdxIconPrevious: U8,
-      cdxIconNext: x8
+      cdxIconPrevious: D8,
+      cdxIconNext: A8
     };
   },
   /**
@@ -13553,7 +13645,7 @@ const _sfc_main = defineComponent({
       onSubmit,
       onKeydown,
       MenuFooterValue,
-      articleIcon: k5,
+      articleIcon: f5,
       translatedSearchResultsLabel
     };
   },
