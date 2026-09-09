@@ -173,6 +173,7 @@ class ObjectCacheFactoryIntegrationTest extends MediaWikiIntegrationTestCase {
 		$this->overrideConfigValues( [
 			MainConfigNames::DBname => 'foowiki',
 			MainConfigNames::DBprefix => 'eprefix',
+			MainConfigNames::DBmwschema => null,
 		] );
 
 		$this->setCacheConfig( [

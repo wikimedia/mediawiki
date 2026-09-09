@@ -1353,6 +1353,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 
 		$oldConfigFactory = self::$originalServices->getConfigFactory();
 		$oldLoadBalancerFactory = self::$originalServices->getDBLoadBalancerFactory();
+		$oldLoadBalancerFactoryConfig = self::$originalServices->getDBLoadBalancerFactoryConfig();
 
 		$originalConfig = self::$originalServices->getBootstrapConfig();
 		$testConfig = new MultiConfig( [ $configOverrides, $originalConfig ] );
@@ -1397,6 +1398,13 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 			'DBLoadBalancerFactory',
 			static function ( MediaWikiServices $services ) use ( $oldLoadBalancerFactory ) {
 				return $oldLoadBalancerFactory;
+			}
+		);
+		$newServices->resetServiceForTesting( 'DBLoadBalancerFactoryConfig' );
+		$newServices->redefineService(
+			'DBLoadBalancerFactoryConfig',
+			static function ( MediaWikiServices $services ) use ( $oldLoadBalancerFactoryConfig ) {
+				return $oldLoadBalancerFactoryConfig;
 			}
 		);
 

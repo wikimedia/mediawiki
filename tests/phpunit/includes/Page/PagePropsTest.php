@@ -205,7 +205,8 @@ class PagePropsTest extends MediaWikiLangTestCase {
 
 		// This should ignore the above cache
 		$result = $pageProps->getAllProperties( $this->title1 );
-		$this->assertSame( $result, [
+		// Use array comparison as PG responds with a different order
+		$this->assertArrayEquals( $result, [
 			$page1ID => [
 				'property1' => 'ANewHopeee',
 				'property2' => 'value2',
