@@ -423,25 +423,22 @@ class LinkCache implements LoggerAwareInterface {
 
 		$callerShouldAddGoodLink = true;
 
-		$wanCacheKey = $this->getPersistentCacheKey( $link );
-		if ( $wanCacheKey !== null && !( $queryFlags & IDBAccessObject::READ_LATEST ) ) {
-			// Some pages are often transcluded heavily, so use persistent caching
-			$callback = function () use ( $fetchCallback, $ns, $dbkey ) {
-				$dbr = $this->loadBalancer->getConnection( ILoadBalancer::DB_REPLICA );
-				return $fetchCallback( $dbr, $ns, $dbkey, [] );
-			};
-			$row = $this->wanCache->buildGetWithSetCallback()
-				->rawKey( $wanCacheKey )
-				->keepForADay()
-				->callback( $callback )
-				->fetch();
-		} else {
-			// No persistent caching needed, but we can still use the callback.
-			if ( ( $queryFlags & IDBAccessObject::READ_LATEST ) == IDBAccessObject::READ_LATEST ) {
-				$dbr = $this->loadBalancer->getConnection( DB_PRIMARY );
+		if ( !( $queryFlags & IDBAccessObject::READ_LATEST ) ) {
+			$dbr = $this->loadBalancer->getConnection( DB_REPLICA );
+			$wanCacheKey = $this->getPersistentCacheKey( $link );
+			if ( $wanCacheKey !== null ) {
+				// Some pages are often transcluded heavily, so use persistent caching
+				$row = $this->wanCache->buildGetWithSetCallback()
+					->rawKey( $wanCacheKey )
+					->keepForADay()
+					->callback( static fn () => $fetchCallback( $dbr, $ns, $dbkey, [] ) )
+					->fetch();
 			} else {
-				$dbr = $this->loadBalancer->getConnection( DB_REPLICA );
+				// No persistent caching needed, but we can still use the callback.
+				$row = $fetchCallback( $dbr, $ns, $dbkey, [] );
 			}
+		} else {
+			$dbr = $this->loadBalancer->getConnection( DB_PRIMARY );
 			$options = [];
 			if ( ( $queryFlags & IDBAccessObject::READ_EXCLUSIVE ) == IDBAccessObject::READ_EXCLUSIVE ) {
 				$options[] = 'FOR UPDATE';
