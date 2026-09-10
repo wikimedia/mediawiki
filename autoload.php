@@ -4521,6 +4521,7 @@ $wgAutoloadLocalClasses = [
 	'Wikimedia\\ObjectCache\\EmptyBagOStuff' => __DIR__ . '/includes/libs/ObjectCache/EmptyBagOStuff.php',
 	'Wikimedia\\ObjectCache\\HashBagOStuff' => __DIR__ . '/includes/libs/ObjectCache/HashBagOStuff.php',
 	'Wikimedia\\ObjectCache\\IStoreKeyEncoder' => __DIR__ . '/includes/libs/ObjectCache/IStoreKeyEncoder.php',
+	'Wikimedia\\ObjectCache\\IWANCacheBuilder' => __DIR__ . '/includes/libs/ObjectCache/IWANCacheBuilder.php',
 	'Wikimedia\\ObjectCache\\MapCacheLRU' => __DIR__ . '/includes/libs/ObjectCache/MapCacheLRU.php',
 	'Wikimedia\\ObjectCache\\MediumSpecificBagOStuff' => __DIR__ . '/includes/libs/ObjectCache/MediumSpecificBagOStuff.php',
 	'Wikimedia\\ObjectCache\\MemcachedBagOStuff' => __DIR__ . '/includes/libs/ObjectCache/MemcachedBagOStuff.php',

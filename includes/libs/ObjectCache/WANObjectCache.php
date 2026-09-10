@@ -149,6 +149,7 @@ use Wikimedia\Telemetry\TracerInterface;
 class WANObjectCache implements
 	ExpirationAwareness,
 	IStoreKeyEncoder,
+	IWANCacheBuilder,
 	LoggerAwareInterface
 {
 	/** @var BagOStuff The local datacenter cache */
@@ -1240,26 +1241,7 @@ class WANObjectCache implements
 	}
 
 	/**
-	 * Create a builder for a getWithSetCallback() call
-	 *
-	 * This is the preferred way to call getWithSetCallback(): the builder makes the cache key
-	 * and names each of the options, so that a call reads as prose rather than as an options
-	 * map that has to be looked up.
-	 *
-	 * @code
-	 *     $stats = $cache->buildGetWithSetCallback()
-	 *         ->key( 'language-stats' )
-	 *         ->keepIndefinitely()
-	 *         ->invalidatedByKey( 'language-stats' )
-	 *         ->shortProcessCache()
-	 *         ->getWithSetCallback( static function () {
-	 *             return self::getAllLanguageStats();
-	 *         } );
-	 * @endcode
-	 *
-	 * @see WANGetWithSetCallbackBuilder
-	 * @since 1.47
-	 * @return WANGetWithSetCallbackBuilder
+	 * @inheritDoc
 	 */
 	public function buildGetWithSetCallback(): WANGetWithSetCallbackBuilder {
 		return new WANGetWithSetCallbackBuilder( $this );

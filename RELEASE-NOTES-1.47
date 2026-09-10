@@ -203,6 +203,9 @@ For notes on 1.46.x and older releases, see HISTORY.
   carry that split through to the skin, so that the localized namespace and
   the main part of the display title no longer have to be recovered from the
   combined string.
+* (T424361) New interface IWANCacheBuilder now exists exposing
+  ::buildGetWithSetCallback() method which can replace direct use of
+  WANObjectCache.
 * (T427815) Add MediaWiki\Logging\LogRecord, a new immutable value object
   representing an entry in the logging table.
 * (T290916) The vue-router module has been added to provide convenient routing
