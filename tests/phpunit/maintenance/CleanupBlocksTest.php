@@ -13,12 +13,6 @@ use MediaWiki\User\UserIdentityValue;
  * @group Database
  */
 class CleanupBlocksTest extends MaintenanceBaseTestCase {
-	public function assertPreConditions(): void {
-		if ( $this->getDb()->getType() === 'postgres' ) {
-			$this->markTestSkipped( 'cleanupBlocks does not support postgres' );
-		}
-	}
-
 	protected function getMaintenanceClass() {
 		return \CleanupBlocks::class;
 	}

@@ -55,12 +55,11 @@ class CleanupBlocks extends Maintenance {
 		$dbw = $this->getPrimaryDB();
 		$dbw->startAtomic( __METHOD__ );
 		$lockingUsage = $dbw->newSelectQueryBuilder()
-			->select( 'COUNT(*)' )
 			->from( 'block' )
 			->where( [ 'bl_target' => $id ] )
 			->forUpdate()
 			->caller( __METHOD__ )
-			->fetchField();
+			->fetchRowCount();
 		if ( $lockingUsage ) {
 			$dbw->endAtomic( __METHOD__ );
 			$this->output( "primary usage count is non-zero\n" );
@@ -108,12 +107,11 @@ class CleanupBlocks extends Maintenance {
 		$dbw = $this->getPrimaryDB();
 		$dbw->startAtomic( __METHOD__ );
 		$lockingTargetCount = $dbw->newSelectQueryBuilder()
-			->select( 'COUNT(*)' )
 			->from( 'block_target' )
 			->where( [ 'bt_id' => $targetId ] )
 			->forUpdate()
 			->caller( __METHOD__ )
-			->fetchField();
+			->fetchRowCount();
 		if ( $lockingTargetCount ) {
 			$this->output( "target exists in primary\n" );
 			$dbw->endAtomic( __METHOD__ );
@@ -217,7 +215,7 @@ class CleanupBlocks extends Maintenance {
 	private function mergeDuplicateBlockTargets() {
 		$dbr = $this->getReplicaDB();
 		$rawGroups = $this->getReplicaDB()->newSelectQueryBuilder()
-			->select( 'GROUP_CONCAT(bt_id)' )
+			->select( $dbr->buildGroupConcat( 'bt_id', ',' ) )
 			->from( 'block_target' )
 			->where( $dbr->expr( 'bt_user', '!=', null ) )
 			->groupBy( 'bt_user' )
@@ -227,7 +225,7 @@ class CleanupBlocks extends Maintenance {
 		$this->processIdGroups( $rawGroups );
 
 		$rawGroups = $this->getReplicaDB()->newSelectQueryBuilder()
-			->select( 'GROUP_CONCAT(bt_id)' )
+			->select( $dbr->buildGroupConcat( 'bt_id', ',' ) )
 			->from( 'block_target' )
 			->where( $dbr->expr( 'bt_address', '!=', null ) )
 			->groupBy( [ 'bt_auto', 'bt_address' ] )
@@ -362,13 +360,12 @@ class CleanupBlocks extends Maintenance {
 
 		$dbw = $this->getPrimaryDB();
 		$dbw->startAtomic( __METHOD__ );
-		$primaryCount = (int)$dbw->newSelectQueryBuilder()
-			->select( 'COUNT(*)' )
+		$primaryCount = $dbw->newSelectQueryBuilder()
 			->from( 'block' )
 			->where( [ 'bl_target' => $targetId ] )
 			->forUpdate()
 			->caller( __METHOD__ )
-			->fetchField();
+			->fetchRowCount();
 
 		if ( $primaryCount !== $replicaCount ) {
 			$dbw->endAtomic( __METHOD__ );
