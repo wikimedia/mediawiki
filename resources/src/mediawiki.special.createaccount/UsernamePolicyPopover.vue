@@ -5,7 +5,7 @@
 		class="mw-createaccount-username-policy-popover"
 		:title="$i18n( 'createacct-username-policy-popover-title' ).text()"
 		:use-close-button="true"
-		:use-bottom-sheet="true"
+		use-bottom-sheet="responsive"
 		:show-backdrop="true"
 		placement="bottom"
 	>
