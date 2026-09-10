@@ -347,11 +347,9 @@
 
 			// Re-set to idle.
 			updateWatchLinkAttributes( $link, popoverState.action, 'idle' );
-			if ( popoverState.vueWatchlistPopup.isOpen ) {
-				popoverState.vueWatchlistPopup.isOpen = false;
-			} else {
-				popoverState.vueWatchlistPopup.openPopup( $link[ 0 ] );
-			}
+			// Always do the watch or unwatch action, also when the popover is open.
+			// The popover stays open and shows the new state (T437589).
+			popoverState.vueWatchlistPopup.openPopup( $link[ 0 ] );
 		} );
 	}
 
