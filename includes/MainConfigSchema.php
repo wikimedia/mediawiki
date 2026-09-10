@@ -1064,7 +1064,7 @@ class MainConfigSchema {
 	 *                       Short thumbnail names only have the width, parameters, and the extension.
 	 *
 	 * ForeignDBRepo:
-	 *   - dbType, dbServer, dbUser, dbPassword, dbName, dbFlags
+	 *   - dbType, dbServer, dbUser, dbPassword, dbName, dbFlags, dbSchema
 	 *                       equivalent to the corresponding member of $wgDBservers
 	 *   - tablePrefix       Table prefix, the foreign wiki's $wgDBprefix
 	 *   - hasSharedCache    Set to true if the foreign wiki's $wgMainCacheType is identical to,
@@ -1248,6 +1248,18 @@ class MainConfigSchema {
 	public const SharedUploadDBprefix = [
 		'default' => '',
 		'type' => 'string',
+	];
+
+	/**
+	 * Shortcut for the ForeignDBRepo 'dbSchema' setting in $wgForeignFileRepos.
+	 *
+	 * Only used if $wgUseSharedUploads is enabled. Only relevant for PostgreSQL.
+	 *
+	 * @since 1.47
+	 */
+	public const SharedUploadDBschema = [
+		'default' => null,
+		'type' => '?string',
 	];
 
 	/**

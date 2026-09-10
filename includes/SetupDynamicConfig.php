@@ -171,6 +171,7 @@ if ( $wgUseSharedUploads ) {
 			'dbName' => $wgSharedUploadDBname,
 			'dbFlags' => ( $wgDebugDumpSql ? DBO_DEBUG : 0 ) | DBO_DEFAULT,
 			'tablePrefix' => $wgSharedUploadDBprefix,
+			'dbSchema' => $wgSharedUploadDBschema,
 			'hasSharedCache' => $wgCacheSharedUploads,
 			'descBaseUrl' => $wgRepositoryBaseUrl,
 			'fetchDescription' => $wgFetchCommonsDescriptions,

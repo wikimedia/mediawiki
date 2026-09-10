@@ -79,6 +79,7 @@ return [
 			'FetchCommonsDescriptions' => false,
 			'SharedUploadDBname' => false,
 			'SharedUploadDBprefix' => '',
+			'SharedUploadDBschema' => null,
 			'CacheSharedUploads' => true,
 			'ForeignUploadTargets' => [
 				'local',
@@ -2831,6 +2832,10 @@ return [
 				'string',
 			],
 			'SharedUploadDBprefix' => 'string',
+			'SharedUploadDBschema' => [
+				'string',
+				'null',
+			],
 			'CacheSharedUploads' => 'boolean',
 			'ForeignUploadTargets' => 'array',
 			'UploadDialog' => 'object',

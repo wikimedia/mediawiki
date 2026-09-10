@@ -500,6 +500,7 @@ class SetupDynamicConfigTest extends MediaWikiUnitTestCase {
 			'dbName' => 'shared_uploads',
 			'dbFlags' => DBO_DEFAULT,
 			'tablePrefix' => '',
+			'dbSchema' => null,
 			'hasSharedCache' => true,
 			'descBaseUrl' => 'https://commons.wikimedia.org/wiki/File:',
 			'fetchDescription' => false,

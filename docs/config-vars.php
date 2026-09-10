@@ -339,6 +339,12 @@ $wgSharedUploadDBname = null;
 $wgSharedUploadDBprefix = null;
 
 /**
+ * Config variable stub for the SharedUploadDBschema setting, for use by phpdoc and IDEs.
+ * @see MediaWiki\MainConfigSchema::SharedUploadDBschema
+ */
+$wgSharedUploadDBschema = null;
+
+/**
  * Config variable stub for the CacheSharedUploads setting, for use by phpdoc and IDEs.
  * @see MediaWiki\MainConfigSchema::CacheSharedUploads
  */

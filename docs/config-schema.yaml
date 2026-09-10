@@ -559,7 +559,7 @@ config-schema:
               - abbrvThreshold    File names over this size will use the short form of thumbnail names.
                                   Short thumbnail names only have the width, parameters, and the extension.
             ForeignDBRepo:
-              - dbType, dbServer, dbUser, dbPassword, dbName, dbFlags
+              - dbType, dbServer, dbUser, dbPassword, dbName, dbFlags, dbSchema
                                   equivalent to the corresponding member of $wgDBservers
               - tablePrefix       Table prefix, the foreign wiki's $wgDBprefix
               - hasSharedCache    Set to true if the foreign wiki's $wgMainCacheType is identical to,
@@ -673,6 +673,15 @@ config-schema:
             Shortcut for the ForeignDBRepo 'tablePrefix' setting in $wgForeignFileRepos.
             Only used if $wgUseSharedUploads is enabled.
             @since 1.5
+    SharedUploadDBschema:
+        default: null
+        type:
+            - string
+            - 'null'
+        description: |-
+            Shortcut for the ForeignDBRepo 'dbSchema' setting in $wgForeignFileRepos.
+            Only used if $wgUseSharedUploads is enabled. Only relevant for PostgreSQL.
+            @since 1.47
     CacheSharedUploads:
         default: true
         type: boolean

@@ -44,6 +44,9 @@ class ForeignDBRepo extends LocalRepo implements IForeignRepoWithDB {
 	/** @var string */
 	protected $tablePrefix;
 
+	/** @var string|null */
+	protected $dbSchema;
+
 	/** @var IDatabase */
 	protected $dbConn;
 
@@ -66,9 +69,10 @@ class ForeignDBRepo extends LocalRepo implements IForeignRepoWithDB {
 		$this->dbName = $info['dbName'];
 		$this->dbFlags = $info['dbFlags'];
 		$this->tablePrefix = $info['tablePrefix'];
+		$this->dbSchema = $info['dbSchema'];
 		$this->hasAccessibleSharedCache = $info['hasSharedCache'];
 
-		$dbDomain = new DatabaseDomain( $this->dbName, null, $this->tablePrefix );
+		$dbDomain = new DatabaseDomain( $this->dbName, $this->dbSchema, $this->tablePrefix );
 		$this->dbDomain = $dbDomain->getId();
 	}
 
@@ -98,7 +102,8 @@ class ForeignDBRepo extends LocalRepo implements IForeignRepoWithDB {
 			'password' => $this->dbPassword,
 			'dbname' => $this->dbName,
 			'flags' => $this->dbFlags,
-			'tablePrefix' => $this->tablePrefix
+			'tablePrefix' => $this->tablePrefix,
+			'schema' => $this->dbSchema,
 		];
 
 		return static function ( $index ) use ( $type, $params ) {

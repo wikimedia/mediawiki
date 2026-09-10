@@ -354,6 +354,12 @@ class MainConfigNames {
 	public const SharedUploadDBprefix = 'SharedUploadDBprefix';
 
 	/**
+	 * Name constant for the SharedUploadDBschema setting, for use with Config::get()
+	 * @see MainConfigSchema::SharedUploadDBschema
+	 */
+	public const SharedUploadDBschema = 'SharedUploadDBschema';
+
+	/**
 	 * Name constant for the CacheSharedUploads setting, for use with Config::get()
 	 * @see MainConfigSchema::CacheSharedUploads
 	 */

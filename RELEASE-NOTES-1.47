@@ -53,6 +53,9 @@ For notes on 1.46.x and older releases, see HISTORY.
   than the PHP request size limit up to $wgMaxUploadSize. Disabled by default.
 * (T422940) Added $wgRemoteVirtualDomainsMapping, which allows configuring
   virtual domains for remote wikis.
+* (T384501) Added $wgSharedUploadDBschema, a shortcut for the ForeignDBRepo
+  'dbSchema' setting in $wgForeignFileRepos. Needed for shared upload
+  repositories on database types that use schemas, such as PostgreSQL.
 * …
 
 ==== Changed configuration ====
