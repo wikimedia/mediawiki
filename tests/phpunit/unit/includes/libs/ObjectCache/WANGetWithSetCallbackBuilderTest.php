@@ -112,6 +112,7 @@ class WANGetWithSetCallbackBuilderTest extends MediaWikiUnitTestCase {
 				->key( 'test-group' )
 				->keepIndefinitely()
 				->callback( static fn () => $value )
+				->refreshPopularEvery( 0 )
 				->fetch();
 		};
 
