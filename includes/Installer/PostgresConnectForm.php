@@ -57,7 +57,7 @@ class PostgresConnectForm extends DatabaseConnectForm {
 		$status = Status::newGood();
 		if ( ( $newValues['wgDBname'] ?? '' ) === '' ) {
 			$status->fatal( 'config-missing-db-name' );
-		} elseif ( !preg_match( '/^[a-zA-Z0-9_]+$/', $newValues['wgDBname'] ) ) {
+		} elseif ( !preg_match( '/^[a-zA-Z0-9_-]+$/', $newValues['wgDBname'] ) ) {
 			$status->fatal( 'config-invalid-db-name', $newValues['wgDBname'] );
 		}
 		if ( !preg_match( '/^[a-zA-Z0-9_]*$/', $newValues['wgDBmwschema'] ) ) {
