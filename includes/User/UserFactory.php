@@ -12,6 +12,7 @@ use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\User\TempUser\TempUserConfig;
+use MediaWiki\WikiMap\WikiMap;
 use RuntimeException;
 use stdClass;
 use Wikimedia\Rdbms\IDatabase;
@@ -387,7 +388,13 @@ class UserFactory implements UserRigorOptions {
 	 * @return IDatabase
 	 */
 	private function getUserTableConnection( $mode, $wikiId ): IDatabase {
-		if ( is_string( $wikiId ) && $this->loadBalancerFactory->getLocalDomainID() === $wikiId ) {
+		if (
+			is_string( $wikiId ) &&
+			(
+				$this->loadBalancerFactory->getLocalDomainID() === $wikiId ||
+				WikiMap::getWikiIdFromDbDomain( $this->loadBalancerFactory->getLocalDomainID() ) === $wikiId
+			)
+		) {
 			$wikiId = UserIdentity::LOCAL;
 		}
 

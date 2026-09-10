@@ -7,6 +7,7 @@
 namespace MediaWiki\Block;
 
 use MediaWiki\DAO\WikiAwareEntity;
+use MediaWiki\WikiMap\WikiMap;
 use Wikimedia\Rdbms\LBFactory;
 
 /**
@@ -25,7 +26,13 @@ class BlockRestrictionStoreFactory {
 	}
 
 	public function getBlockRestrictionStore( string|false $wikiId = WikiAwareEntity::LOCAL ): BlockRestrictionStore {
-		if ( is_string( $wikiId ) && $this->loadBalancerFactory->getLocalDomainID() === $wikiId ) {
+		if (
+			is_string( $wikiId ) &&
+			(
+				$this->loadBalancerFactory->getLocalDomainID() === $wikiId ||
+				WikiMap::getWikiIdFromDbDomain( $this->loadBalancerFactory->getLocalDomainID() ) === $wikiId
+			)
+		) {
 			$wikiId = WikiAwareEntity::LOCAL;
 		}
 

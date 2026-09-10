@@ -23,6 +23,7 @@ use MediaWiki\Storage\NameTableStoreFactory;
 use MediaWiki\Title\TitleFactory;
 use MediaWiki\User\ActorStore;
 use MediaWiki\User\ActorStoreFactory;
+use MediaWiki\WikiMap\WikiMap;
 use Psr\Log\LoggerInterface;
 use Wikimedia\Assert\Assert;
 use Wikimedia\ObjectCache\BagOStuff;
@@ -144,7 +145,11 @@ class RevisionStoreFactory {
 			// FIXME: We can't normalize the domain in tests, as RevisionStoreDbTest relies on this behaviour to test
 			// cross-wikiness, in absence of a better way (T261848).
 			!defined( 'MW_PHPUNIT_TEST' ) &&
-			is_string( $dbDomain ) && $this->dbLoadBalancerFactory->getLocalDomainID() === $dbDomain
+			is_string( $dbDomain ) &&
+			(
+				$this->dbLoadBalancerFactory->getLocalDomainID() === $dbDomain ||
+				WikiMap::getWikiIdFromDbDomain( $this->dbLoadBalancerFactory->getLocalDomainID() ) === $dbDomain
+			)
 		) {
 			$dbDomain = WikiAwareEntity::LOCAL;
 		}

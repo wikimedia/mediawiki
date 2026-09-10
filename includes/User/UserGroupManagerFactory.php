@@ -10,6 +10,7 @@ use MediaWiki\Config\ServiceOptions;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\JobQueue\JobQueueGroupFactory;
 use MediaWiki\User\TempUser\TempUserConfig;
+use MediaWiki\WikiMap\WikiMap;
 use Wikimedia\Rdbms\ILBFactory;
 use Wikimedia\Rdbms\ReadOnlyMode;
 
@@ -58,7 +59,13 @@ class UserGroupManagerFactory {
 	 * @return UserGroupManager
 	 */
 	public function getUserGroupManager( $wikiId = UserIdentity::LOCAL ): UserGroupManager {
-		if ( is_string( $wikiId ) && $this->dbLoadBalancerFactory->getLocalDomainID() === $wikiId ) {
+		if (
+			is_string( $wikiId ) &&
+			(
+				$this->dbLoadBalancerFactory->getLocalDomainID() === $wikiId ||
+				WikiMap::getWikiIdFromDbDomain( $this->dbLoadBalancerFactory->getLocalDomainID() ) === $wikiId
+			)
+		) {
 			$wikiId = UserIdentity::LOCAL;
 		}
 		$key = (string)$wikiId;

@@ -13,6 +13,7 @@ use MediaWiki\Session\SessionManagerInterface;
 use MediaWiki\User\ActorStoreFactory;
 use MediaWiki\User\TempUser\TempUserConfig;
 use MediaWiki\User\UserFactory;
+use MediaWiki\WikiMap\WikiMap;
 use Psr\Log\LoggerInterface;
 use Wikimedia\LockManager\ILockManager;
 use Wikimedia\Rdbms\LBFactory;
@@ -82,7 +83,13 @@ class DatabaseBlockStoreFactory {
 	}
 
 	public function getDatabaseBlockStore( string|false $wikiId = DatabaseBlock::LOCAL ): DatabaseBlockStore {
-		if ( is_string( $wikiId ) && $this->loadBalancerFactory->getLocalDomainID() === $wikiId ) {
+		if (
+			is_string( $wikiId ) &&
+			(
+				$this->loadBalancerFactory->getLocalDomainID() === $wikiId ||
+				WikiMap::getWikiIdFromDbDomain( $this->loadBalancerFactory->getLocalDomainID() ) === $wikiId
+			)
+		) {
 			$wikiId = DatabaseBlock::LOCAL;
 		}
 
