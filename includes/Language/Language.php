@@ -4867,7 +4867,8 @@ class Language implements Bcp47Code {
 
 			$fmt = $this->createNumberFormatter( $code, $digitGroupingPattern );
 			if ( !$fmt ) {
-				$fallbacks = $this->getFallbackLanguages();
+				// Hardcode fallback for invalid languages to 'en', as English is always defined.
+				$fallbacks = $this->getFallbackLanguages() ?: [ 'en' ];
 				foreach ( $fallbacks as $fallbackCode ) {
 					$fmt = $this->createNumberFormatter( $fallbackCode, $digitGroupingPattern );
 					if ( $fmt ) {
