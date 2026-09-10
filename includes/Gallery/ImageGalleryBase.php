@@ -65,6 +65,7 @@ abstract class ImageGalleryBase extends ContextSource {
 	 * A value of 'true' will truncate the filename to one line using CSS
 	 * and will be the behaviour after deprecation.
 	 *
+	 * @deprecated since 1.28, hard-deprecated since 1.47
 	 * @var bool|int
 	 */
 	protected $mCaptionLength = true;
@@ -175,6 +176,13 @@ abstract class ImageGalleryBase extends ContextSource {
 		$this->mHeights = $galleryOptions['imageHeight'];
 		$this->mCaptionLength = $galleryOptions['captionLength'];
 		$this->mMode = $mode;
+
+		if ( $this->mCaptionLength !== true ) {
+			wfDeprecatedMsg(
+				"\$wgGalleryOptions['captionLength'] is deprecated, use CSS to truncate captions instead",
+				'1.47'
+			);
+		}
 	}
 
 	/**

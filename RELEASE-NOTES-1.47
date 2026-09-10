@@ -551,6 +551,8 @@ because of Phabricator reports.
   Authority.
 * ChangeTagsStore::modifyDisplayQuery() is now hard-deprecated; use
   ChangeTagsStore::addTagsToDisplayQuery() instead.
+* $wgGalleryOptions['captionLength'], deprecated since 1.28, now emits
+  deprecation warnings when set to a non-default value (T310076).
 * The MarkPatrolledComplete hook has been deprecated and will trigger
   deprecation warnings. Use the MarkPatrolledAudit hook instead.
 * The MaintenanceRefreshLinksInit hook has been deprecated.
