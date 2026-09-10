@@ -13761,5 +13761,14 @@ class MainConfigSchema {
 		'type' => '?boolean'
 	];
 
+	/**
+	 * Configuration setting on which sitelookup to use.
+	 * @since 1.47
+	 */
+	public const SiteLookup = [
+		'default' => [],
+		'type' => 'map'
+	];
+
 	// endregion -- End Miscellaneous
 }

@@ -4690,4 +4690,10 @@ class MainConfigNames {
 	 */
 	public const UseParsoidMessages = 'UseParsoidMessages';
 
+	/**
+	 * Name constant for the SiteLookup setting, for use with Config::get()
+	 * @see MainConfigSchema::SiteLookup
+	 */
+	public const SiteLookup = 'SiteLookup';
+
 }

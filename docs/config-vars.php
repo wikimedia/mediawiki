@@ -4674,3 +4674,9 @@ $wgUseParsoidLinksUpdate = null;
  * @see MediaWiki\MainConfigSchema::UseParsoidMessages
  */
 $wgUseParsoidMessages = null;
+
+/**
+ * Config variable stub for the SiteLookup setting, for use by phpdoc and IDEs.
+ * @see MediaWiki\MainConfigSchema::SiteLookup
+ */
+$wgSiteLookup = null;

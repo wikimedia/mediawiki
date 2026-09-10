@@ -8572,3 +8572,9 @@ config-schema:
             A separate config will control Parsoid use for articles and link updates
             @unstable Temporary flag, likely to be replaced by a single config in ParserOptions
             @since 1.47
+    SiteLookup:
+        default: {  }
+        type: object
+        description: |-
+            Configuration setting on which sitelookup to use.
+            @since 1.47

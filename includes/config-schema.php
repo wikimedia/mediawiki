@@ -2777,6 +2777,8 @@ return [
 			],
 			'UseParsoidLinksUpdate' => null,
 			'UseParsoidMessages' => true,
+			'SiteLookup' => [
+			],
 		],
 		'type' => [
 			'ConfigRegistry' => 'object',
@@ -3327,6 +3329,7 @@ return [
 				'boolean',
 				'null',
 			],
+			'SiteLookup' => 'object',
 		],
 		'mergeStrategy' => [
 			'WebPThumbnailType' => 'replace',
