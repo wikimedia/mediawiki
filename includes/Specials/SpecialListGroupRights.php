@@ -109,7 +109,7 @@ class SpecialListGroupRights extends SpecialPage {
 				);
 			}
 
-			$groupWithParentheses = $this->msg( 'parentheses' )->rawParams( $group )->escaped();
+			$groupWithParentheses = $this->msg( 'parentheses' )->plaintextParams( $group )->escaped();
 			$groupname = "<br /><code>$groupWithParentheses</code>";
 
 			if ( $group === 'user' ) {
