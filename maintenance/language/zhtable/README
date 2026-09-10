@@ -12,6 +12,10 @@ unihan database, and phrases not included in the SCIM package.
 
 - trad2simp_noconvert.manual: Do not convert the chars as inapporiate.
 
+- simp2trad_supp_set.manual: Supplementary set of Simplified to Traditional asymmetric character/phrase mappings.
+
+- trad2simp_supp_set.manual: Supplementary set of Traditional to Simplified asymmetric character/phrase mappings.
+
 - tradphrases.manual: Phrases in Traditional Chinese. A portition is obtained
   from the TongWen package (http://tongwen.mozdev.org/)
 
@@ -28,8 +32,10 @@ unihan database, and phrases not included in the SCIM package.
 
 - toTW.manual, toCN.manual and toHK.manual: Special phrase mappings.
 
-* 為方便轉換，以上均含不完整詞組，請勿隨意刪除。
+* 為方便轉換，以上均含不完整詞組，請勿隨意刪除。/ 为方便转换，以上均含不完整词组，请勿随意删除。/ For conversion purposes, some entries above intentionally contain incomplete phrases. Please do not remove them without careful consideration.
 
 zhengzhu at gmail dot com & shinjiman at gmail dot com
 
 Modified by User:Chiefwei at Chinese Wikipedia in 2015.
+
+Modified by User:Peterxy at Chinese Wikipedia in 2026.
