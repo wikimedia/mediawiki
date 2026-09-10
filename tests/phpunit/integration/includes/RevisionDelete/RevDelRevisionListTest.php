@@ -2,13 +2,16 @@
 
 use MediaWiki\Context\RequestContext;
 use MediaWiki\Page\Event\PageHistoryVisibilityChangedEvent;
+use MediaWiki\Page\PageReference;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\RevisionDelete\RevisionDeleter;
 use MediaWiki\Tests\ExpectCallbackTrait;
+use MediaWiki\User\UserIdentity;
 use PHPUnit\Framework\Assert;
 
 /**
  * @covers \MediaWiki\RevisionDelete\RevDelRevisionList
+ * @covers \MediaWiki\RevisionDelete\RevDelList
  * @group Database
  */
 class RevDelRevisionListTest extends MediaWikiIntegrationTestCase {
@@ -25,8 +28,10 @@ class RevDelRevisionListTest extends MediaWikiIntegrationTestCase {
 
 		$page = $this->getExistingTestPage();
 		$rev1 = $page->getLatest();
-		$rev2 = $this->editPage( $page, 'new content' )->getNewRevision()->getId();
-		$rev3 = $this->editPage( $page, 'newer content' )->getNewRevision()->getId();
+		$secondRevUser = $this->getMutableTestUser()->getUser();
+		$rev2 = $this->editPage( $page, 'new content', '', NS_MAIN, $secondRevUser )->getNewRevision()->getId();
+		$thirdRevUser = $this->getMutableTestUser()->getUser();
+		$rev3 = $this->editPage( $page, 'newer content', '', NS_MAIN, $thirdRevUser )->getNewRevision()->getId();
 
 		// flush
 		$this->runDeferredUpdates();
@@ -143,6 +148,28 @@ class RevDelRevisionListTest extends MediaWikiIntegrationTestCase {
 		$status = $deleter->setVisibility( $params );
 		$this->assertStatusOK( $status );
 		$this->runDeferredUpdates();
+		$this->assertOneLogWithTypeExists(
+			'delete',
+			$page,
+			'test 1',
+			$context->getUser(),
+			$ids,
+			0,
+			RevisionRecord::DELETED_TEXT,
+			// Creating a page using ::getExistingTestPage uses the default sysop user
+			[ $this->getTestSysop()->getUser()->getActorId(), $secondRevUser->getActorId() ]
+		);
+
+		$this->newSelectQueryBuilder()
+			->select( [ 'rev_id', 'rev_deleted' ] )
+			->from( 'revision' )
+			->where( [ 'rev_id' => [ $rev1, $rev2, $rev3 ] ] )
+			->caller( __METHOD__ )
+			->assertResultSet( [
+				[ $rev1, RevisionRecord::DELETED_TEXT ],
+				[ $rev2, RevisionRecord::DELETED_TEXT ],
+				[ $rev3, 0 ],
+			] );
 
 		// Suppress text of revisions 2 and 3 /////////////////////////////////
 		$visibility = [
@@ -164,5 +191,112 @@ class RevDelRevisionListTest extends MediaWikiIntegrationTestCase {
 		$status = $deleter->setVisibility( $params );
 		$this->assertStatusOK( $status );
 		$this->runDeferredUpdates();
+		$this->assertOneLogWithTypeExists(
+			'suppress',
+			$page,
+			'test 2',
+			$context->getUser(),
+			$ids,
+			RevisionRecord::DELETED_TEXT,
+			RevisionRecord::DELETED_USER | RevisionRecord::DELETED_RESTRICTED,
+			[ $secondRevUser->getActorId(), $thirdRevUser->getActorId() ]
+		);
+
+		$this->newSelectQueryBuilder()
+			->select( [ 'rev_id', 'rev_deleted' ] )
+			->from( 'revision' )
+			->where( [ 'rev_id' => [ $rev1, $rev2, $rev3 ] ] )
+			->caller( __METHOD__ )
+			->assertResultSet( [
+				[ $rev1, RevisionRecord::DELETED_TEXT ],
+				[ $rev2, RevisionRecord::DELETED_USER | RevisionRecord::DELETED_RESTRICTED ],
+				[ $rev3, RevisionRecord::DELETED_USER | RevisionRecord::DELETED_RESTRICTED ],
+			] );
+	}
+
+	private function assertOneLogWithTypeExists(
+		string $expectedLogType,
+		PageReference $expectedTitle,
+		string $expectedComment,
+		UserIdentity $expectedPerformer,
+		array $expectedRevIds,
+		int $oldVisibilityBits,
+		int $newVisibilityBits,
+		array $expectedAuthorActors
+	): void {
+		$actualLogIds = $this->newSelectQueryBuilder()
+			->select( 'log_id' )
+			->from( 'logging' )
+			->where( [ 'log_type' => $expectedLogType, 'log_action' => 'revision' ] )
+			->caller( __METHOD__ )
+			->fetchFieldValues();
+		$this->assertCount(
+			1,
+			$actualLogIds,
+			"Expected one log with the type $expectedLogType and action revision"
+		);
+		$actualLogId = $actualLogIds[0];
+
+		$this->newSelectQueryBuilder()
+			->select( [ 'log_title', 'log_namespace', 'comment_text', 'actor_name' ] )
+			->from( 'logging' )
+			->join( 'comment', null, 'comment_id = log_comment_id' )
+			->join( 'actor', null, 'actor_id = log_actor' )
+			->where( [ 'log_id' => $actualLogId ] )
+			->caller( __METHOD__ )
+			->assertRowValue( [
+				$expectedTitle->getDBkey(),
+				$expectedTitle->getNamespace(),
+				$expectedComment,
+				$expectedPerformer->getName()
+			] );
+
+		$actualLogParams = $this->newSelectQueryBuilder()
+			->select( 'log_params' )
+			->from( 'logging' )
+			->where( [ 'log_id' => $actualLogId ] )
+			->caller( __METHOD__ )
+			->fetchField();
+		$actualLogParams = LogEntryBase::extractParams( $actualLogParams );
+
+		// Assert on the revision IDs first, as the array keys of the IDs in the parameter do not
+		// matter, but the array keys of other items in the log params do matter
+		$this->assertArrayHasKey( '5::ids', $actualLogParams );
+		$this->assertArrayEquals(
+			$expectedRevIds,
+			$actualLogParams['5::ids'],
+			false,
+			false,
+			'Log params should contain the expected revision IDs'
+		);
+
+		$actualLogParamsWithoutIds = $actualLogParams;
+		unset( $actualLogParamsWithoutIds['5::ids'] );
+
+		$this->assertArrayEquals(
+			[
+				'4::type' => 'revision',
+				'6::ofield' => $oldVisibilityBits,
+				'7::nfield' => $newVisibilityBits,
+			],
+			$actualLogParamsWithoutIds,
+			false,
+			true,
+			'Log params are as expected'
+		);
+
+		$this->newSelectQueryBuilder()
+			->select( 'ls_value' )
+			->from( 'log_search' )
+			->where( [ 'ls_field' => 'rev_id', 'ls_log_id' => $actualLogId ] )
+			->caller( __METHOD__ )
+			->assertFieldValues( array_map( 'strval', $expectedRevIds ) );
+
+		$this->newSelectQueryBuilder()
+			->select( 'ls_value' )
+			->from( 'log_search' )
+			->where( [ 'ls_field' => 'target_author_actor', 'ls_log_id' => $actualLogId ] )
+			->caller( __METHOD__ )
+			->assertFieldValues( array_map( 'strval', $expectedAuthorActors ) );
 	}
 }
