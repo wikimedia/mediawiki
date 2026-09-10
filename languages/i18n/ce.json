@@ -354,6 +354,8 @@
 	"userlogin-loggedin-continue-as": "Кхин дӀа а  {{GENDER:$1|$1}}",
 	"userlogin-loggedin-heading": "Кхин декъашхо санна чугӀо",
 	"userlogin-reauth": "{{GENDER:$1|$1}} хьой хилар бакъдан системин чугӀо.",
+	"userlogin-reauth-description": "Нагахь санна хьуна иза дан дагахь ца хиллехь, йиш йу кхерамза $1.\nКхерамзаллин лакхакхаьчна тӀегӀа оьшуш йолу и операци кхочушйар кхин дӀа дӀадахьархьама, лахахь йалийна йолу кеп лелош, хьо хилар тӀечӀагӀйе.",
+	"userlogin-reauth-banner-editsitejscss": "<strong>Ахь дӀайазйеш йу JavaScript йа CSS йерриге а сайтана</strong><br>ХӀокху агӀонан тӀера хийцамаша массо а хьошалхошна Ӏаткъам бийр бу. Кхин дӀа дӀадахьархьама, тӀечӀагӀде, иза хьо хилар.",
 	"userlogin-createanother": "Кхолла кхин аккаунт",
 	"createacct-loggedin": "Ахь хӀинцале а авторизаци йина {{GENDER:$1|$1}} санна.",
 	"createacct-loggedin-continue-as": "Кхин дӀа а  {{GENDER:$1|$1}}",

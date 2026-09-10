@@ -3233,6 +3233,7 @@
 	"watchlistedit-normal-title": "Editar lista de seguimiento",
 	"watchlistedit-normal-check-all": "Marcar todos",
 	"watchlistedit-normal-done": "{{PLURAL:$1|1 página ha sido borrada|$1 páginas han sido borradas}} de tu lista de seguimiento:",
+	"watchlistedit-search-placeholder": "Buscar páginas en tu lista de seguimiento",
 	"watchlistedit-raw-title": "Editar lista de seguimiento en crudo",
 	"watchlistedit-raw-legend": "Editar tu lista de seguimiento en modo texto",
 	"watchlistedit-raw-explain": "A continuación se muestran los títulos de las páginas en tu lista de seguimiento. Puedes editar la lista añadiendo o eliminando títulos de la lista (un título por línea).\nCuando acabes, pulsa «{{int:Watchlistedit-raw-submit}}».\nTambién puedes [[Special:EditWatchlist|usar el editor estándar]].",
