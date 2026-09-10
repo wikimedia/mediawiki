@@ -64,6 +64,8 @@
 	"seconds": "{{PLURAL:$1|$1 sekunttâd|1=õhtt sekuntt|2=2 sekuunt|3=3 sekuunt|4=4 sekuunt|5=5 sekuunt|6=6 sekuunt}}",
 	"days-abbrev": "$1 p.",
 	"ago": "$1 mââiårra",
+	"duration-centuries": "{{PLURAL:$1|$1 čueʹđeeʹǩǩed|1=čueʹđeeʹǩǩ|2=2 čueʹđeeʹjj|3=3 čueʹđeeʹjj|4=4 čueʹđeeʹjj|5=5 čueʹđeeʹjj|6=6 čueʹđeeʹjj}}",
+	"duration-decades": "{{PLURAL:$1|$1 eeʹǩǩlååʹǩǩed|1=eeʹǩǩlååʹǩǩ|2=2 eeʹǩǩlååʹjj|3=3 eeʹǩǩlååʹjj|4=4 eeʹǩǩlååʹjj|5=5 eeʹǩǩlååʹjj|6=6 eeʹǩǩlååʹjj}}",
 	"duration-years": "{{PLURAL:$1|$1 eeʹǩǩed|1=eeʹǩǩ|2=2 eeʹjj|3=3 eeʹjj|4=4 eeʹjj|5=5 eeʹjj|6=6 eeʹjj}}",
 	"duration-months": "$1 {{PLURAL:$1|määnpââʹjj|määnpââʹj|määnpââʹjjed}}",
 	"duration-weeks": "{{PLURAL:$1|neäʹttled|1=neäʹttel|2=neäʹttel|3=neäʹttel|4=neäʹttel|5=neäʹttel|6=neäʹttel}}",
