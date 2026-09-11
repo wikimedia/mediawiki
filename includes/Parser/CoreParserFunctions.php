@@ -70,7 +70,7 @@ class CoreParserFunctions {
 			'localurl', 'localurle', 'fullurl', 'fullurle', 'canonicalurl',
 			'canonicalurle', 'formatnum', 'grammar', 'gender', 'plural', 'formal',
 			'bidi', 'numberingroup', 'language',
-			'padleft', 'padright', 'anchorencode', 'defaultsort', 'filepath',
+			'padleft', 'padright', 'anchorencode', 'defaultsort', 'categorysort', 'filepath',
 			'pagesincategory', 'pagesize', 'protectionlevel', 'protectionexpiry',
 			# The following are the "parser function" forms of magic
 			# variables defined in CoreMagicVariables.  The no-args form will
@@ -654,7 +654,6 @@ class CoreParserFunctions {
 		} else {
 			$parser->getOutput()->addWarningMsg(
 				'restricted-displaytitle',
-				// Message should be parsed, but this param should only be escaped.
 				wfEscapeWikiText( $filteredText )
 			);
 			$parser->addTrackingCategory( 'restricted-displaytitle-ignored' );
@@ -1453,6 +1452,47 @@ class CoreParserFunctions {
 				)->text() .
 				'</span>';
 		}
+	}
+
+	/**
+	 * Set the default ordering used when listing the members of a category.
+	 *
+	 * Usage: {{CATEGORYSORT:TIMESTAMP}} or {{CATEGORYSORT:RTIMESTAMP}} on a
+	 * category page. TIMESTAMP orders members by the time they were added to
+	 * the category, oldest first; RTIMESTAMP does the same with the most
+	 * recently added members first. Readers can still override this with the
+	 * 'cldsort' and 'cldorder' request parameters.
+	 *
+	 * @since 1.47
+	 * @param Parser $parser
+	 * @param string $text The sort mode, either "TIMESTAMP" or "RTIMESTAMP" (in en)
+	 * @return string
+	 */
+	public static function categorysort( $parser, $text = '' ) {
+		static $magicWords = null;
+		if ( $magicWords === null ) {
+			$magicWords = $parser->getMagicWordFactory()->newArray(
+				[ 'categorysort_timestamp', 'categorysort_rtimestamp' ] );
+		}
+		$text = trim( $text );
+		$arg = $magicWords->matchStartToEnd( $text );
+
+		if ( $arg === 'categorysort_timestamp' ) {
+			$parser->getOutput()->setPageProperty( 'categorysort', 'timestamp' );
+			return '';
+		}
+		if ( $arg === 'categorysort_rtimestamp' ) {
+			$parser->getOutput()->setPageProperty( 'categorysort', 'rtimestamp' );
+			return '';
+		}
+
+		$converter = $parser->getTargetLanguageConverter();
+		return '<span class="error">' .
+			$parser->msg( 'categorysort-invalid',
+				// Message should be parsed, but this param should only be escaped.
+				$converter->markNoConversion( wfEscapeWikiText( $text ) )
+			)->text() .
+			'</span>';
 	}
 
 	/**

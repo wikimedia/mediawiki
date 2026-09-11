@@ -118,6 +118,12 @@ For notes on 1.46.x and older releases, see HISTORY.
   as "Scribunto" module pages, and TemplateStyles "sanitized-css" pages.
 * (T253844) Special:Contributions now shows a note if the target IP address or
   range is affected by a $wgSoftBlockRanges block.
+* The new {{CATEGORYSORT:}} magic word sets the default ordering of a category
+  listing. {{CATEGORYSORT:TIMESTAMP}} lists members by the time they were added
+  to the category, oldest first, and {{CATEGORYSORT:RTIMESTAMP}} lists the most
+  recently added members first. Readers can still override this with the
+  'cldsort' URL parameter, and the new 'cldorder=desc' URL parameter reverses a
+  'cldsort=timestamp' listing.
 * (T32211) The page move form now detects if someone else moved the page
   between the form being opened and submitted.
 * …

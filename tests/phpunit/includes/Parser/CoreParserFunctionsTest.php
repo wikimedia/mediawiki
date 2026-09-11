@@ -6,6 +6,8 @@ use MediaWiki\Language\RawMessage;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Parser\CoreParserFunctions;
 use MediaWiki\Parser\Parser;
+use MediaWiki\Parser\ParserOptions;
+use MediaWiki\Title\Title;
 use MediaWiki\User\User;
 use MediaWikiLangTestCase;
 
@@ -81,6 +83,36 @@ class CoreParserFunctionsTest extends MediaWikiLangTestCase {
 		$parser = $this->getServiceContainer()->getParser();
 
 		$this->assertSame( $expected, CoreParserFunctions::subjectpagename( $parser, $title ) );
+	}
+
+	public static function provideCategorysort() {
+		yield 'timestamp' => [ '{{CATEGORYSORT:TIMESTAMP}}', 'timestamp' ];
+		yield 'reverse timestamp' => [ '{{CATEGORYSORT:RTIMESTAMP}}', 'rtimestamp' ];
+		yield 'case insensitive value' => [ '{{CATEGORYSORT:rtimestamp}}', 'rtimestamp' ];
+		yield 'surrounding whitespace' => [ '{{CATEGORYSORT: TIMESTAMP }}', 'timestamp' ];
+		yield 'last one wins' => [
+			'{{CATEGORYSORT:TIMESTAMP}}{{CATEGORYSORT:RTIMESTAMP}}',
+			'rtimestamp'
+		];
+		yield 'unknown value' => [ '{{CATEGORYSORT:sortkey}}', null ];
+		yield 'empty value' => [ '{{CATEGORYSORT:}}', null ];
+	}
+
+	/**
+	 * @dataProvider provideCategorysort
+	 */
+	public function testCategorysort( string $wikitext, ?string $expected ) {
+		$title = Title::makeTitle( NS_CATEGORY, 'CoreParserFunctionsTest' );
+		$parserOutput = $this->getServiceContainer()->getParserFactory()->getInstance()->parse(
+			$wikitext,
+			$title,
+			ParserOptions::newFromAnon()
+		);
+
+		$this->assertSame( $expected, $parserOutput->getPageProperty( 'categorysort' ) );
+		if ( $expected === null ) {
+			$this->assertStringContainsString( 'class="error"', $parserOutput->getContentHolderText() );
+		}
 	}
 
 	public function testGrammarRespectsGrammarFormsWithLeximorph(): void {

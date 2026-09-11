@@ -57,13 +57,8 @@ class CategoryViewer extends ContextSource {
 	/** @var array<'page'|'subcat'|'file',bool> Sorting order for each type */
 	public array $flip = [];
 
-	/**
-	 * Whether category members should be ordered (and paginated) by cl_timestamp
-	 * -- i.e. when they were added to the category -- instead of the default
-	 * cl_sortkey collation ordering. Triggered via the 'cldsort=timestamp' request
-	 * parameter.
-	 */
 	public readonly bool $sortByTimestamp;
+	public readonly bool $sortDescending;
 
 	public readonly Collation $collation;
 	public ImageGalleryBase $gallery;
@@ -101,10 +96,23 @@ class CategoryViewer extends ContextSource {
 			'mediawiki.action.styles',
 		] );
 		$this->limit = $context->getConfig()->get( MainConfigNames::CategoryPagingLimit );
-		$this->sortByTimestamp = $context->getRequest()->getVal( 'cldsort' ) === 'timestamp';
 		$this->cat = Category::newFromTitle( $page );
 
 		$services = MediaWikiServices::getInstance();
+
+		$sortProperty = $services->getPageProps()
+			->getProperties( $page, 'categorysort' )[$page->getId()] ?? null;
+		[ $sort, $order ] = match ( $sortProperty ) {
+			'timestamp' => [ 'timestamp', 'asc' ],
+			'rtimestamp' => [ 'timestamp', 'desc' ],
+			default => [ null, 'asc' ],
+		};
+		$request = $context->getRequest();
+		$sort = $request->getVal( 'cldsort', $sort );
+		$order = $request->getVal( 'cldorder', $order );
+
+		$this->sortByTimestamp = $sort === 'timestamp';
+		$this->sortDescending = $this->sortByTimestamp && $order === 'desc';
 		$this->collation = $services->getCollationFactory()->getCategoryCollation();
 		$this->languageConverter = $services->getLanguageConverterFactory()->getLanguageConverter();
 
@@ -346,7 +354,7 @@ class CategoryViewer extends ContextSource {
 			if ( isset( $this->from[$type] ) ) {
 				$extraConds[] = $categoryLinksDbr->expr(
 					$sortField,
-					'>=',
+					$this->sortDescending ? '<=' : '>=',
 					$this->sortByTimestamp
 						// @phan-suppress-next-line PhanTypeMismatchArgumentNullable
 						? $categoryLinksDbr->timestamp( $this->from[$type] )
@@ -356,7 +364,7 @@ class CategoryViewer extends ContextSource {
 			} elseif ( isset( $this->until[$type] ) ) {
 				$extraConds[] = $categoryLinksDbr->expr(
 					$sortField,
-					'<',
+					$this->sortDescending ? '>' : '<',
 					$this->sortByTimestamp
 						// @phan-suppress-next-line PhanTypeMismatchArgumentNullable
 						? $categoryLinksDbr->timestamp( $this->until[$type] )
@@ -379,7 +387,7 @@ class CategoryViewer extends ContextSource {
 				->from( 'page' )
 				->andWhere( $extraConds );
 
-			if ( $this->flip[$type] ) {
+			if ( $this->sortDescending !== $this->flip[$type] ) {
 				$queryBuilder->orderBy( $sortField, SelectQueryBuilder::SORT_DESC );
 			} else {
 				$queryBuilder->orderBy( $sortField );
