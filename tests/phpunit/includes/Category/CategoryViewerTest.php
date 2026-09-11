@@ -202,6 +202,31 @@ class CategoryViewerTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
+	 * An invalid 'from'/'until' offset must be ignored rather than causing fatal.
+	 */
+	public function testInvalidTimestampOffsetsAreIgnored() {
+		$title = Title::makeTitle( NS_CATEGORY, 'Example' );
+		$context = new RequestContext();
+		$context->setTitle( $title );
+		$context->setRequest( new FauxRequest( [ 'cldsort' => 'timestamp' ] ) );
+
+		$viewer = new CategoryViewer(
+			$title,
+			$context,
+			[ 'page' => '*', 'subcat' => '20240101000000', 'file' => null ],
+			[ 'page' => '', 'subcat' => null, 'file' => 'nonsense' ]
+		);
+
+		$this->assertSame(
+			[ 'page' => null, 'subcat' => '20240101000000', 'file' => null ],
+			$viewer->from
+		);
+		$this->assertSame( [ 'page' => null, 'subcat' => null, 'file' => null ], $viewer->until );
+
+		$this->assertIsString( $viewer->getHTML() );
+	}
+
+	/**
 	 * Record the arguments that the CategoryViewerGenerateLink hook receives.
 	 *
 	 * @param array &$calls Filled with one entry per hook call

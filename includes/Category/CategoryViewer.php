@@ -31,6 +31,7 @@ use MediaWiki\Title\TitleValue;
 use Wikimedia\HtmlArmor\HtmlArmor;
 use Wikimedia\Rdbms\FakeResultWrapper;
 use Wikimedia\Rdbms\SelectQueryBuilder;
+use Wikimedia\Timestamp\ConvertibleTimestamp;
 
 class CategoryViewer extends ContextSource {
 	use ProtectedHookAccessorTrait;
@@ -68,6 +69,11 @@ class CategoryViewer extends ContextSource {
 
 	private readonly ILanguageConverter $languageConverter;
 
+	/** @var array<'page'|'subcat'|'file',?string> */
+	public readonly array $from;
+	/** @var array<'page'|'subcat'|'file',?string> */
+	public readonly array $until;
+
 	/**
 	 * @since 1.19 $context is a second, required parameter
 	 * @param PageIdentity $page
@@ -80,8 +86,8 @@ class CategoryViewer extends ContextSource {
 	public function __construct(
 		protected PageIdentity $page,
 		IContextSource $context,
-		public readonly array $from = [],
-		public readonly array $until = [],
+		array $from = [],
+		array $until = [],
 		private array $query = [],
 	) {
 		$this->deprecatePublicPropertyFallback(
@@ -113,10 +119,34 @@ class CategoryViewer extends ContextSource {
 
 		$this->sortByTimestamp = $sort === 'timestamp';
 		$this->sortDescending = $this->sortByTimestamp && $order === 'desc';
+		if ( $this->sortByTimestamp ) {
+			$from = self::filterTimestampOffsets( $from );
+			$until = self::filterTimestampOffsets( $until );
+		}
+		$this->from = $from;
+		$this->until = $until;
 		$this->collation = $services->getCollationFactory()->getCategoryCollation();
 		$this->languageConverter = $services->getLanguageConverterFactory()->getLanguageConverter();
 
 		unset( $this->query['title'] );
+	}
+
+	/**
+	 * Replace any offset that isn't a valid timestamp with null, so that it is
+	 * treated as if it hadn't been given at all.
+	 *
+	 * @param array<'page'|'subcat'|'file',?string> $offsets
+	 * @return array<'page'|'subcat'|'file',?string>
+	 */
+	private static function filterTimestampOffsets( array $offsets ): array {
+		foreach ( $offsets as $type => $offset ) {
+			if ( $offset !== null &&
+				( $offset === '' || ConvertibleTimestamp::convert( TS_MW, $offset ) === false )
+			) {
+				$offsets[$type] = null;
+			}
+		}
+		return $offsets;
 	}
 
 	/**
