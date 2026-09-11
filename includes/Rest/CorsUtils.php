@@ -24,7 +24,6 @@ class CorsUtils implements BasicAuthorizerInterface {
 
 	public function __construct(
 		private readonly ServiceOptions $options,
-		private readonly ResponseFactory $responseFactory,
 		private readonly UserIdentity $user,
 	) {
 		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
@@ -139,8 +138,8 @@ class CorsUtils implements BasicAuthorizerInterface {
 	 * @param array $allowedMethods
 	 * @return Response
 	 */
-	public function createPreflightResponse( array $allowedMethods ): Response {
-		$response = $this->responseFactory->createNoContent();
+	public function createPreflightResponse( array $allowedMethods, ResponseFactory $responseFactory ): Response {
+		$response = $responseFactory->createNoContent();
 		$response->setHeader( 'Access-Control-Allow-Methods', $allowedMethods );
 
 		$allowedHeaders = $this->options->get( MainConfigNames::AllowedCorsHeaders );

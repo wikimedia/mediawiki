@@ -7,12 +7,10 @@ use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\Rest\CorsUtils;
 use MediaWiki\Rest\EntryPoint;
-use MediaWiki\Rest\ErrorFormatterV1;
 use MediaWiki\Rest\Handler;
 use MediaWiki\Rest\Reporter\ErrorReporter;
 use MediaWiki\Rest\RequestData;
 use MediaWiki\Rest\RequestInterface;
-use MediaWiki\Rest\ResponseFactory;
 use MediaWiki\Rest\ResponseInterface;
 use MediaWiki\Tests\Rest\RestTestTrait;
 use Throwable;
@@ -44,7 +42,6 @@ trait HandlerIntegrationTestTrait {
 			$this->getDummyTextFormatter( true ),
 		];
 		$showExceptionDetails = false;
-		$responseFactory = new ResponseFactory( $textFormatters, new ErrorFormatterV1( $textFormatters, $showExceptionDetails ) );
 		$router = EntryPoint::createRouter(
 			$this->getServiceContainer(),
 			$context,
@@ -56,7 +53,6 @@ trait HandlerIntegrationTestTrait {
 					CorsUtils::CONSTRUCTOR_OPTIONS,
 					$this->getServiceContainer()->getMainConfig()
 				),
-				$responseFactory,
 				$context->getUser()
 			)
 		);

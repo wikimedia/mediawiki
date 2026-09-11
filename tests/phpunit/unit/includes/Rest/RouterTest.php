@@ -20,7 +20,6 @@ use MediaWiki\Rest\Reporter\ErrorReporter;
 use MediaWiki\Rest\RequestData;
 use MediaWiki\Rest\RequestInterface;
 use MediaWiki\Rest\ResponseException;
-use MediaWiki\Rest\ResponseFactory;
 use MediaWiki\Rest\Router;
 use MediaWiki\Rest\StringStream;
 use MediaWiki\Rest\Validator\JsonBodyValidator;
@@ -153,7 +152,7 @@ class RouterTest extends MediaWikiUnitTestCase {
 	}
 
 	public function testCorsPreflight() {
-		$cors = $this->getCorsUtils();
+		$cors = $this->getCorsUtils( true );
 
 		$request = new RequestData( [
 			'uri' => new Uri( '/rest/mock/v1/RouterTest/hello' ),
@@ -164,9 +163,66 @@ class RouterTest extends MediaWikiUnitTestCase {
 
 		$response = $router->execute( $request );
 		$this->assertSame( 204, $response->getStatusCode() );
+		// Allow-Methods comes from CorsUtils::createPreflightResponse() (in Module).
 		$this->assertSame(
 			[ 'HEAD', 'GET', ],
 			$response->getHeader( 'Access-Control-Allow-Methods' )
+		);
+		// Allow-Origin comes from CorsUtils::modifyResponse(), applied in
+		// Router::execute(). The preflight response is thrown as a
+		// ResponseException from Module and must still reach modifyResponse().
+		$this->assertSame(
+			'*',
+			$response->getHeaderLine( 'Access-Control-Allow-Origin' ),
+			'Access-Control-Allow-Origin must be present on every response'
+		);
+	}
+
+	public static function provideCorsHeadersApplied() {
+		// Router::execute() must apply CORS headers to every response it
+		// returns, regardless of which layer produced it.
+		yield 'normal handler response (module-level 200)' =>
+			[ '/rest/mock/v1/RouterTest/hello', 'GET', 200 ];
+		yield 'no route match (module-level 404)' =>
+			[ '/rest/bogus', 'GET', 404 ];
+		yield 'wrong method (module-level 405)' =>
+			[ '/rest/mock/v1/RouterTest/hello', 'TRACE', 405 ];
+		// Router-level: splitPath() rejects the prefix before any Module runs.
+		yield 'prefix mismatch (router-level 404)' =>
+			[ '/bogus', 'GET', 404 ];
+		// Router-level: doExecute() redirects the empty path before any Module runs.
+		yield 'empty path redirect (router-level 308)' =>
+			[ '/rest', 'GET', 308 ];
+	}
+
+	/**
+	 * @dataProvider provideCorsHeadersApplied
+	 *
+	 * CORS headers are applied in Router::execute() rather than per-Module, so
+	 * they cover every response path uniformly: module-level responses (success
+	 * and errors) as well as router-level responses (redirects and prefix
+	 * mismatches) that never reach a Module.
+	 */
+	public function testCorsHeadersAppliedToAllResponses(
+		string $uri, string $method, int $expectedStatus
+	) {
+		$request = new RequestData( [ 'uri' => new Uri( $uri ), 'method' => $method ] );
+		$router = $this->createRouter( $request );
+		$router->setCors( $this->getCorsUtils( true ) );
+
+		$response = $router->execute( $request );
+
+		$this->assertSame(
+			$expectedStatus,
+			$response->getStatusCode(),
+			"Status code should match. Body: " . $response->getBody()
+		);
+
+		// The essential assertion: modifyResponse() ran for this response path.
+		$this->assertSame(
+			'*',
+			$response->getHeaderLine( 'Access-Control-Allow-Origin' ),
+			'Access-Control-Allow-Origin must be present on every response'
 		);
 	}
 
@@ -978,20 +1034,19 @@ class RouterTest extends MediaWikiUnitTestCase {
 		$this->assertInstanceOf( ErrorFormatterV2::class, $formatter );
 	}
 
-	private function getCorsUtils(): CorsUtils {
+	private function getCorsUtils( bool $allowCrossOrigin = false ): CorsUtils {
 		$cors = new CorsUtils(
 			new ServiceOptions(
 				CorsUtils::CONSTRUCTOR_OPTIONS,
 				[
 					MainConfigNames::AllowedCorsHeaders => [],
-					MainConfigNames::AllowCrossOrigin => [],
+					MainConfigNames::AllowCrossOrigin => $allowCrossOrigin,
 					MainConfigNames::RestAllowCrossOriginCookieAuth => [],
 					MainConfigNames::CanonicalServer => 'testing',
 					MainConfigNames::CrossSiteAJAXdomains => [],
 					MainConfigNames::CrossSiteAJAXdomainExceptions => [],
 				]
 			),
-			new ResponseFactory( [], new ErrorFormatterV1( [], false ) ),
 			new UserIdentityValue(
 				1,
 				'Test'

@@ -120,16 +120,12 @@ class EntryPoint extends MediaWikiEntryPoint {
 		$context = $this->getContext();
 		$textFormatters = $this->getTextFormatters();
 		$showExceptionDetails = MWExceptionRenderer::shouldShowExceptionDetails();
-		$responseFactory = Router::makeResponseFactory(
-			$textFormatters, $showExceptionDetails, $this->getServiceContainer()->getUrlUtils(), $this->request
-		);
 
 		$this->cors = new CorsUtils(
 			new ServiceOptions(
 				CorsUtils::CONSTRUCTOR_OPTIONS,
 				$this->getServiceContainer()->getMainConfig()
 			),
-			$responseFactory,
 			$context->getUser()
 		);
 
@@ -197,12 +193,7 @@ class EntryPoint extends MediaWikiEntryPoint {
 	public function execute() {
 		$this->startOutputBuffer();
 
-		// IDEA: Move the call to cors->modifyResponse() into Module,
-		//       so it's in the same class as cors->createPreflightResponse().
-		$response = $this->cors->modifyResponse(
-			$this->request,
-			$this->router->execute( $this->request )
-		);
+		$response = $this->router->execute( $this->request );
 
 		$webResponse = $this->getResponse();
 

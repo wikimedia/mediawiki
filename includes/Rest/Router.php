@@ -71,7 +71,7 @@ class Router {
 	private $configHash = null;
 
 	/** @var CorsUtils|null */
-	private $cors;
+	private $cors = null;
 
 	/** @var ?StatsFactory */
 	private $stats = null;
@@ -567,6 +567,15 @@ class Router {
 		// TODO: Only send the vary header for handlers that opt into
 		//       restbase compat!
 		$this->varyOnRestbaseCompat( $response );
+
+		// Apply CORS headers to every response, including router-level errors
+		// (unknown module, prefix mismatch), redirects, and top-level
+		// exceptions that never reach a Module. Preflight responses created in
+		// Module::throwNoMatch() also pass through here to gain their
+		// Access-Control-Allow-Origin header.
+		if ( $this->cors ) {
+			$this->cors->modifyResponse( $request, $response );
+		}
 
 		return $response;
 	}

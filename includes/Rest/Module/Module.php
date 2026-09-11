@@ -252,9 +252,9 @@ abstract class Module {
 	protected function throwNoMatch( string $path, string $method, array $allowed ): never {
 		// Check for CORS Preflight. This response will *not* allow the request unless
 		// an Access-Control-Allow-Origin header is added to this response.
-		if ( $this->cors && $method === 'OPTIONS' && $allowed ) {
+		if ( $this->cors && $this->responseFactory && $method === 'OPTIONS' && $allowed ) {
 			// IDEA: Create a CorsHandler, which getHandlerForPath can return in this case.
-			$response = $this->cors->createPreflightResponse( $allowed );
+			$response = $this->cors->createPreflightResponse( $allowed, $this->responseFactory );
 			throw new ResponseException( $response );
 		}
 
@@ -328,7 +328,6 @@ abstract class Module {
 		}
 
 		$this->recordMetrics( $handler, $request, $response, $startTime );
-
 		return $response;
 	}
 

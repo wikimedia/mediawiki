@@ -41,7 +41,6 @@ class CorsUtilsTest extends MediaWikiUnitTestCase {
 					'www.mediawiki.org',
 				],
 			] ),
-			$this->createNoOpMock( ResponseFactory::class ),
 			new UserIdentityValue( (int)$isRegistered, __CLASS__ )
 		);
 
@@ -102,7 +101,6 @@ class CorsUtilsTest extends MediaWikiUnitTestCase {
 	public function testAuthorizeDisallowOrigin() {
 		$cors = new CorsUtils(
 			$this->createServiceOptions(),
-			$this->createMock( ResponseFactory::class ),
 			new UserIdentityValue( 0, __CLASS__ )
 		);
 
@@ -132,7 +130,6 @@ class CorsUtilsTest extends MediaWikiUnitTestCase {
 	public function testModifyResponseNoChange() {
 		$cors = new CorsUtils(
 			$this->createServiceOptions(),
-			$this->createMock( ResponseFactory::class ),
 			new UserIdentityValue( 0, __CLASS__ )
 		);
 
@@ -151,7 +148,6 @@ class CorsUtilsTest extends MediaWikiUnitTestCase {
 			$this->createServiceOptions( [
 				MainConfigNames::AllowCrossOrigin => true,
 			] ),
-			$this->createNoOpMock( ResponseFactory::class ),
 			new UserIdentityValue( 0, __CLASS__ )
 		);
 
@@ -179,7 +175,6 @@ class CorsUtilsTest extends MediaWikiUnitTestCase {
 				MainConfigNames::AllowCrossOrigin => true,
 				MainConfigNames::RestAllowCrossOriginCookieAuth => true,
 			] ),
-			$this->createNoOpMock( ResponseFactory::class ),
 			new UserIdentityValue( (int)$isRegistered, __CLASS__ )
 		);
 
@@ -234,7 +229,6 @@ class CorsUtilsTest extends MediaWikiUnitTestCase {
 				MainConfigNames::AllowCrossOrigin => true,
 				MainConfigNames::RestAllowCrossOriginCookieAuth => true,
 			] ),
-			$this->createNoOpMock( ResponseFactory::class ),
 			new UserIdentityValue( (int)$isRegistered, __CLASS__ )
 		);
 
@@ -289,12 +283,11 @@ class CorsUtilsTest extends MediaWikiUnitTestCase {
 
 		$cors = new CorsUtils(
 			$this->createServiceOptions(),
-			$responseFactory,
 			new UserIdentityValue( 0, __CLASS__ )
 		);
 
 		$methods = [ 'POST' ];
-		$response = $cors->createPreflightResponse( $methods );
+		$response = $cors->createPreflightResponse( $methods, $responseFactory );
 
 		$this->assertInstanceOf( ResponseInterface::class, $response );
 		$this->assertTrue( $response->hasHeader( 'Access-Control-Allow-Headers' ) );
@@ -311,12 +304,11 @@ class CorsUtilsTest extends MediaWikiUnitTestCase {
 			$this->createServiceOptions( [
 				MainConfigNames::AllowedCorsHeaders => [ 'Authorization', 'BlaHeader', ],
 			] ),
-			$responseFactory,
 			new UserIdentityValue( 0, __CLASS__ )
 		);
 
 		$methods = [ 'POST' ];
-		$response = $cors->createPreflightResponse( $methods );
+		$response = $cors->createPreflightResponse( $methods, $responseFactory );
 		$this->assertTrue( $response->hasHeader( 'Access-Control-Allow-Headers' ) );
 		$header = $response->getHeader( 'Access-Control-Allow-Headers' );
 		$this->assertContains( 'Authorization', $header );
