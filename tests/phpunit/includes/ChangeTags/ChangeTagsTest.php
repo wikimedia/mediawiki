@@ -7,13 +7,18 @@ use LogicException;
 use MediaWiki\Block\Block;
 use MediaWiki\ChangeTags\ChangeTags;
 use MediaWiki\ChangeTags\ChangeTagsStore;
+use MediaWiki\ChangeTags\Event\EntityTagsUpdatedEvent;
+use MediaWiki\ChangeTags\Event\LogTagsUpdatedEvent;
+use MediaWiki\ChangeTags\Event\RevisionTagsUpdatedEvent;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\Deferred\DeferredUpdates;
 use MediaWiki\Logging\LogEntryBase;
+use MediaWiki\Logging\ManualLogEntry;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Page\PageReference;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\SpecialPage\SpecialPage;
+use MediaWiki\Tests\ExpectCallbackTrait;
 use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityValue;
@@ -31,6 +36,7 @@ class ChangeTagsTest extends MediaWikiIntegrationTestCase {
 
 	use RestrictedTagTestTrait;
 	use MockAuthorityTrait;
+	use ExpectCallbackTrait;
 
 	private ChangeTagsStore $changeTags;
 
@@ -1667,6 +1673,266 @@ class ChangeTagsTest extends MediaWikiIntegrationTestCase {
 
 		$this->assertContains( '0=1', $conds );
 		$this->assertNotContains( 'DISTINCT', $options );
+	}
+
+	public function testUpdateTagsDispatchesRevisionTagsUpdatedEvent() {
+		$performer = $this->getTestUser()->getUserIdentity();
+		$revId = $this->getExistingTestPage()->getRevisionRecord()->getId();
+		// Empty the tables after creating the page, so that any tags applied
+		// to its creation don't show up as the previous state below.
+		$this->emptyChangeTagsTables();
+
+		$this->expectDomainEvent(
+			RevisionTagsUpdatedEvent::TYPE, 1,
+			function ( RevisionTagsUpdatedEvent $event ) use ( $revId, $performer ) {
+				$expected = $this->makeTagData( [ 'tag1', 'tag2' ], 'params' );
+
+				$this->assertSame( $revId, $event->getRevisionId() );
+				$this->assertSame( $revId, $event->getRevisionRecord()->getId() );
+				$this->assertSame( $expected, $event->getAddedPublicAndPrivateTags() );
+				$this->assertSame( [], $event->getRemovedPublicAndPrivateTags() );
+				$this->assertSame( [], $event->getPublicAndPrivateTagsBefore() );
+				$this->assertSame( $expected, $event->getPublicAndPrivateTagsAfter() );
+				$this->assertSame( 'params', $event->getParams() );
+				$this->assertTrue( $performer->equals( $event->getPerformer() ) );
+			}
+		);
+
+		$rcId = null;
+		$logId = null;
+		$this->changeTags->updateTags(
+			[ 'tag1', 'tag2' ], [], $rcId, $revId, $logId, 'params', null, $performer
+		);
+	}
+
+	/**
+	 * Creating a page also writes a page creation log entry associated with the
+	 * new revision, so tagging that revision affects two entities at once. They
+	 * are reported by one event each, rather than by a single event describing
+	 * both.
+	 */
+	public function testUpdateTagsDispatchesOneEventPerAffectedEntity() {
+		$revId = $this->getExistingTestPage()->getRevisionRecord()->getId();
+		$this->emptyChangeTagsTables();
+
+		$this->expectDomainEvent(
+			RevisionTagsUpdatedEvent::TYPE, 1,
+			function ( RevisionTagsUpdatedEvent $event ) use ( $revId ) {
+				$this->assertSame( $revId, $event->getRevisionId() );
+			}
+		);
+		$this->expectDomainEvent(
+			LogTagsUpdatedEvent::TYPE, 1,
+			function ( LogTagsUpdatedEvent $event ) use ( $revId ) {
+				$logRecord = $event->getLogRecord();
+
+				$this->assertSame( 'create/create', $logRecord->getFullType() );
+				$this->assertSame( $revId, $logRecord->getAssociatedRevId() );
+			}
+		);
+
+		$this->changeTags->addTags( [ 'tag1' ], null, $revId );
+	}
+
+	public function testUpdateTagsDispatchesLogTagsUpdatedEvent() {
+		$performer = $this->getTestUser()->getUserIdentity();
+
+		$logEntry = new ManualLogEntry( 'delete', 'delete' );
+		$logEntry->setPerformer( $performer );
+		$logEntry->setTarget( $this->getExistingTestPage()->getTitle() );
+		$logEntry->setComment( 'testing' );
+		$logId = $logEntry->insert( $this->getDb() );
+
+		$this->emptyChangeTagsTables();
+
+		$this->expectDomainEvent(
+			LogTagsUpdatedEvent::TYPE, 1,
+			function ( LogTagsUpdatedEvent $event ) use ( $logId ) {
+				$expected = $this->makeTagData( [ 'tag1' ] );
+
+				$this->assertSame( $logId, $event->getLogId() );
+				$this->assertSame( 'delete/delete', $event->getLogRecord()->getFullType() );
+				$this->assertSame( $expected, $event->getAddedPublicAndPrivateTags() );
+				$this->assertSame( $expected, $event->getPublicAndPrivateTagsAfter() );
+			}
+		);
+		// The log entry has no associated revision
+		$this->expectDomainEvent( RevisionTagsUpdatedEvent::TYPE, 0 );
+
+		$rcId = null;
+		$revId = null;
+		$this->changeTags->updateTags( [ 'tag1' ], [], $rcId, $revId, $logId );
+	}
+
+	public function testUpdateTagsDispatchesEventWithTagsBeforeAndAfter() {
+		$revId = $this->getExistingTestPage()->getRevisionRecord()->getId();
+		$this->emptyChangeTagsTables();
+
+		$this->changeTags->addTags( [ 'tag1', 'tag2' ], null, $revId, null, 'old params' );
+
+		// Look the ids up now: removing tag1 drops its usage count to zero,
+		// which deletes its change_tag_def row when the transaction commits.
+		$oldTags = $this->makeTagData( [ 'tag1', 'tag2' ], 'old params' );
+
+		// Only the second update should be observed
+		$this->expectDomainEvent(
+			RevisionTagsUpdatedEvent::TYPE, 1,
+			function ( RevisionTagsUpdatedEvent $event ) use ( $oldTags ) {
+				// The added tags have the params of this update. The other tags
+				// keep the params of the first update.
+				$newTags = $this->makeTagData( [ 'tag3' ], 'new params' );
+
+				$this->assertSame( $newTags, $event->getAddedPublicAndPrivateTags() );
+				$this->assertSame(
+					[ 'tag1' => $oldTags['tag1'] ],
+					$event->getRemovedPublicAndPrivateTags()
+				);
+				$this->assertSame( $oldTags, $event->getPublicAndPrivateTagsBefore() );
+				$this->assertSame(
+					[ 'tag2' => $oldTags['tag2'] ] + $newTags,
+					$event->getPublicAndPrivateTagsAfter()
+				);
+				$this->assertSame( 'new params', $event->getParams() );
+			}
+		);
+
+		$rcId = null;
+		$logId = null;
+		$this->changeTags->updateTags( [ 'tag3' ], [ 'tag1' ], $rcId, $revId, $logId, 'new params' );
+	}
+
+	/**
+	 * If a tag is in the tags to add and in the tags to remove, updateTags() adds
+	 * the tag and then removes it. The tag is not present before or after the
+	 * update, thus the event does not show it as added or removed.
+	 */
+	public function testUpdateTagsDispatchesEventWithoutTagAddedAndRemovedInSameUpdate() {
+		$revId = $this->getExistingTestPage()->getRevisionRecord()->getId();
+		$this->emptyChangeTagsTables();
+
+		$this->expectDomainEvent(
+			RevisionTagsUpdatedEvent::TYPE, 1,
+			function ( RevisionTagsUpdatedEvent $event ) {
+				$expected = $this->makeTagData( [ 'tag2' ] );
+
+				$this->assertSame( $expected, $event->getAddedPublicAndPrivateTags() );
+				$this->assertSame( [], $event->getRemovedPublicAndPrivateTags() );
+				$this->assertSame( [], $event->getPublicAndPrivateTagsBefore() );
+				$this->assertSame( $expected, $event->getPublicAndPrivateTagsAfter() );
+			}
+		);
+
+		$rcId = null;
+		$logId = null;
+		$this->changeTags->updateTags( [ 'tag1', 'tag2' ], [ 'tag1' ], $rcId, $revId, $logId );
+	}
+
+	public function testUpdateTagsDispatchesEventSeparatingPrivateTags() {
+		$revId = $this->getExistingTestPage()->getRevisionRecord()->getId();
+		$this->emptyChangeTagsTables();
+
+		$this->expectDomainEvent(
+			RevisionTagsUpdatedEvent::TYPE, 1,
+			function ( RevisionTagsUpdatedEvent $event ) {
+				$tagData = $this->makeTagData( [ 'tag1', 'mw-private-secret' ] );
+				$public = [ 'tag1' => $tagData['tag1'] ];
+				$private = [ 'mw-private-secret' => $tagData['mw-private-secret'] ];
+
+				$this->assertSame( $public, $event->getAddedPublicTags() );
+				$this->assertSame( $private, $event->getAddedPrivateTags() );
+				$this->assertSame( $public, $event->getPublicTagsAfter() );
+				$this->assertSame( $private, $event->getPrivateTagsAfter() );
+			}
+		);
+
+		$this->changeTags->addTags( [ 'tag1', 'mw-private-secret' ], null, $revId );
+	}
+
+	public function testUpdateTagsDoesNotDispatchEventWhenNothingChanges() {
+		$revId = $this->getExistingTestPage()->getRevisionRecord()->getId();
+		$this->emptyChangeTagsTables();
+
+		$this->changeTags->addTags( [ 'tag1' ], null, $revId );
+
+		$this->expectDomainEvent( EntityTagsUpdatedEvent::TYPE, 0 );
+
+		$this->changeTags->addTags( [ 'tag1' ], null, $revId );
+	}
+
+	/**
+	 * Tags attached to a recentchanges row alone are not reported yet, since
+	 * there is no immutable value class representing a recent change.
+	 */
+	public function testUpdateTagsDoesNotDispatchEventForRecentChangeOnly() {
+		$this->emptyChangeTagsTables();
+
+		$this->expectDomainEvent( EntityTagsUpdatedEvent::TYPE, 0 );
+
+		$rcId = 123;
+		$this->changeTags->updateTags( [ 'tag1' ], [], $rcId );
+	}
+
+	/**
+	 * When you delete a page, its revisions move to the archive table. The log entries
+	 * of the page stay in the logging table. updateTags() does not look for revisions
+	 * in the archive table. Thus, it does not send a RevisionTagsUpdatedEvent for these
+	 * revisions, but it sends the LogTagsUpdatedEvent.
+	 */
+	public function testUpdateTagsDoesNotDispatchRevisionEventForArchivedRevision() {
+		$page = $this->getExistingTestPage( __METHOD__ );
+		$archivedRevId = $page->getRevisionRecord()->getId();
+
+		// The page creation log entry has the first revision as its associated revision
+		$logId = (int)$this->getDb()->newSelectQueryBuilder()
+			->select( 'log_id' )
+			->from( 'logging' )
+			->where( [
+				'log_type' => 'create',
+				'log_action' => 'create',
+				'log_namespace' => $page->getNamespace(),
+				'log_title' => $page->getDBkey(),
+			] )
+			->caller( __METHOD__ )
+			->fetchField();
+		$this->assertGreaterThan( 0, $logId, 'The page creation log entry must exist' );
+
+		$this->deletePage( $page );
+		$this->emptyChangeTagsTables();
+
+		$this->expectDomainEvent( RevisionTagsUpdatedEvent::TYPE, 0 );
+		$this->expectDomainEvent(
+			LogTagsUpdatedEvent::TYPE, 1,
+			function ( LogTagsUpdatedEvent $event ) use ( $logId ) {
+				$this->assertSame( $logId, $event->getLogId() );
+			}
+		);
+
+		$rcId = null;
+		$revId = null;
+		$this->changeTags->updateTags( [ 'tag1' ], [], $rcId, $revId, $logId );
+
+		// The change_tag row refers to the archived revision. This shows that
+		// updateTags() found the revision ID, but did not send the event.
+		$this->newSelectQueryBuilder()
+			->select( 'ct_rev_id' )
+			->from( 'change_tag' )
+			->where( [ 'ct_log_id' => $logId ] )
+			->assertFieldValue( $archivedRevId );
+	}
+
+	/**
+	 * Returns the tag data that an EntityTagsUpdatedEvent contains for the given tags.
+	 *
+	 * @param string[] $tagNames
+	 * @param string|null $params The params of all the given tags
+	 * @return array<string,array{id:int,params:?string}>
+	 */
+	private function makeTagData( array $tagNames, ?string $params = null ): array {
+		$tagData = [];
+		foreach ( $this->changeTags->getTagIdsFromNames( $tagNames ) as $tagName => $tagId ) {
+			$tagData[$tagName] = [ 'id' => $tagId, 'params' => $params ];
+		}
+		return $tagData;
 	}
 
 	private function makeTaggedRevision( array $tags = [ 'foo', 'mw-private-secret' ] ): int {

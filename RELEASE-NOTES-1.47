@@ -249,6 +249,14 @@ For notes on 1.46.x and older releases, see HISTORY.
   WANObjectCache.
 * (T427815) Add MediaWiki\Logging\LogRecord, a new immutable value object
   representing an entry in the logging table.
+* (T434143) New domain events representing updates to the change tags attached
+  to an entity: RevisionTagsUpdated and LogTagsUpdated, both sharing the
+  abstract base type EntityTagsUpdated
+  (MediaWiki\ChangeTags\Event\EntityTagsUpdatedEvent). A single tag update may
+  affect a revision and a log entry at once; those are separate entities, so
+  one event is emitted per affected entity. Together they provide a modern
+  replacement for the ChangeTagsAfterUpdateTags hook. Tags attached to a
+  recentchanges row alone are not reported by an event yet.
 * (T290916) The vue-router module has been added to provide convenient routing
   to Vue applications.
 * (T388663) New Notification types TitleNotification and AgentNotification

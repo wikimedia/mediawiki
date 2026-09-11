@@ -626,7 +626,9 @@ return [
 			new ServiceOptions(
 				ChangeTagsStore::CONSTRUCTOR_OPTIONS,
 				$services->getMainConfig()
-			)
+			),
+			$services->getDomainEventDispatcher(),
+			$services->getRevisionLookup()
 		);
 	},
 

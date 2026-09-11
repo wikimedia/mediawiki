@@ -158,16 +158,24 @@ class LogRecordTest extends MediaWikiUnitTestCase {
 		$record->getId();
 	}
 
-	public function testConstructorRejectsNegativeId() {
+	/**
+	 * @dataProvider provideInvalidId
+	 */
+	public function testConstructorRejectsInvalidId( int $id ) {
 		$this->expectException( ParameterAssertionException::class );
 		new LogRecord(
-			-1,
+			$id,
 			'delete',
 			'restore',
 			new UserIdentityValue( 7, 'Performer' ),
 			new PageReferenceValue( NS_MAIN, 'Test', WikiAwareEntity::LOCAL ),
 			'20200909001122'
 		);
+	}
+
+	public static function provideInvalidId() {
+		yield 'zero' => [ 0 ];
+		yield 'negative' => [ -1 ];
 	}
 
 	public function testConstructorRejectsForeignPerformer() {

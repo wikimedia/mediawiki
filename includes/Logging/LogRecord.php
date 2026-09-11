@@ -26,7 +26,7 @@ use Wikimedia\Timestamp\TimestampFormat as TS;
  *
  * @note In the future, instances of this class are expected to be provided by a
  *       LogStore service. For now, they can be obtained from a DatabaseLogEntry,
- *       see DatabaseLogEntry::getLogRecord().
+ *       see DatabaseLogEntry::getAsLogRecord().
  *
  * @unstable
  * @since 1.47
@@ -34,14 +34,12 @@ use Wikimedia\Timestamp\TimestampFormat as TS;
 class LogRecord implements WikiAwareEntity {
 	use WikiAwareEntityTrait;
 
-	private readonly ?int $id;
-
 	private readonly string $timestamp;
 
 	private readonly ?int $associatedRevId;
 
 	/**
-	 * @param ?int $id The log_id of this entry, or null if the log doesn't exist in the DB.
+	 * @param int $id The log_id of this entry.
 	 * @param string $type The main log type, e.g. "delete".
 	 * @param string $subtype The log subtype (also known as the action), e.g. "restore".
 	 * @param UserIdentity $performer The user who performed the logged action.
@@ -61,7 +59,7 @@ class LogRecord implements WikiAwareEntity {
 	 * @throws TimestampException
 	 */
 	public function __construct(
-		?int $id,
+		private readonly int $id,
 		private readonly string $type,
 		private readonly string $subtype,
 		private readonly UserIdentity $performer,
@@ -75,7 +73,7 @@ class LogRecord implements WikiAwareEntity {
 		private readonly string|false $wikiId = self::LOCAL
 	) {
 		$this->assertWikiIdParam( $wikiId );
-		Assert::parameter( $id >= 0, '$id', 'must not be negative' );
+		Assert::parameter( $id > 0, '$id', 'must be a positive integer' );
 		Assert::parameter(
 			$performer->getWikiId() === $wikiId,
 			'$performer',
@@ -87,14 +85,6 @@ class LogRecord implements WikiAwareEntity {
 			'must belong to the same wiki as the log record'
 		);
 
-		// The log id can be 0 if the log doesn't exist.
-		// This happens if it hasn't been inserted into the db yet (ManualLogEntry)
-		// or the LogRecord was created from a recent change that doesn't have
-		// an associated log entry (RCDatabaseLogEntry)
-		// TODO: If LogRecord is supposed to represent a row from the DB,
-		//		maybe it should throw an error?
-		$this->id = $id ?: null;
-
 		// RCDatabaseLogEntry::getAssociatedRevId grabs rc_this_oldid
 		// which returns 0 instead of null when there is no associated revision
 		// See https://www.mediawiki.org/wiki/Manual:Recentchanges_table#rc_this_oldid
@@ -104,11 +94,11 @@ class LogRecord implements WikiAwareEntity {
 	}
 
 	/**
-	 * The log_id of this entry, or null if the log doesn't exist in the database.
+	 * The log_id of this entry.
 	 *
 	 * @param string|false $wikiId The wiki ID expected by the caller.
 	 */
-	public function getId( string|false $wikiId = self::LOCAL ): ?int {
+	public function getId( string|false $wikiId = self::LOCAL ): int {
 		$this->assertWiki( $wikiId );
 		return $this->id;
 	}

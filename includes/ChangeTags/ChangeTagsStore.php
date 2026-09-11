@@ -8,14 +8,19 @@ namespace MediaWiki\ChangeTags;
 
 use InvalidArgumentException;
 use LogicException;
+use MediaWiki\ChangeTags\Event\LogTagsUpdatedEvent;
+use MediaWiki\ChangeTags\Event\RevisionTagsUpdatedEvent;
 use MediaWiki\Config\ServiceOptions;
+use MediaWiki\DomainEvent\DomainEventDispatcher;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
+use MediaWiki\Logging\DatabaseLogEntry;
 use MediaWiki\Logging\ManualLogEntry;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Permissions\SimpleAuthority;
 use MediaWiki\RecentChanges\RecentChange;
+use MediaWiki\Revision\RevisionLookup;
 use MediaWiki\Status\Status;
 use MediaWiki\Storage\NameTableAccessException;
 use MediaWiki\Storage\NameTableStore;
@@ -26,6 +31,7 @@ use MediaWiki\User\UserIdentityValue;
 use Psr\Log\LoggerInterface;
 use Wikimedia\ObjectCache\WANObjectCache;
 use Wikimedia\Rdbms\IConnectionProvider;
+use Wikimedia\Rdbms\IDBAccessObject;
 use Wikimedia\Rdbms\IExpression;
 use Wikimedia\Rdbms\IReadableDatabase;
 use Wikimedia\Rdbms\LikeValue;
@@ -102,6 +108,8 @@ class ChangeTagsStore {
 	private HookRunner $hookRunner;
 	private UserFactory $userFactory;
 	private HookContainer $hookContainer;
+	private DomainEventDispatcher $eventDispatcher;
+	private RevisionLookup $revisionLookup;
 	private string|false $wiki;
 
 	/** @var array<string,string[]>|null Instance cache of the map of restricted tags to the rights */
@@ -115,6 +123,8 @@ class ChangeTagsStore {
 		LoggerInterface $logger,
 		UserFactory $userFactory,
 		ServiceOptions $options,
+		DomainEventDispatcher $eventDispatcher,
+		RevisionLookup $revisionLookup,
 		string|false $wiki = false
 	) {
 		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
@@ -126,6 +136,8 @@ class ChangeTagsStore {
 		$this->hookContainer = $hookContainer;
 		$this->userFactory = $userFactory;
 		$this->hookRunner = new HookRunner( $hookContainer );
+		$this->eventDispatcher = $eventDispatcher;
+		$this->revisionLookup = $revisionLookup;
 		$this->wiki = $wiki;
 	}
 
@@ -632,6 +644,26 @@ class ChangeTagsStore {
 	}
 
 	/**
+	 * Returns the tag data for the EntityTagsUpdatedEvent domain events,
+	 * as a map of tag name to an array with the tag ID and the tag params.
+	 * If a tag name is not valid, the map does not contain it.
+	 *
+	 * @param string[] $tagNames
+	 * @param array<string,string|null> $tagParams Map of tag name to tag params
+	 * @return array<string,array{id:int,params:?string}>
+	 */
+	private function getTagIdsAndParams( array $tagNames, array $tagParams ): array {
+		$tagData = [];
+		foreach ( $this->getTagIdsFromNames( $tagNames ) as $tagName => $tagId ) {
+			$tagData[$tagName] = [
+				'id' => $tagId,
+				'params' => $tagParams[$tagName] ?? null,
+			];
+		}
+		return $tagData;
+	}
+
+	/**
 	 * Returns whether the given tag name is a restricted (private-prefixed) tag.
 	 *
 	 * @since 1.47
@@ -784,7 +816,9 @@ class ChangeTagsStore {
 		// Check if the change being requested would be a no-op, and if so, return early. We do this before
 		// expanding out any null IDs so that users can remove tags from log IDs where the rev ID has multiple
 		// associated log IDs.
-		$prevTags = $this->getTags( $dbw, $rc_id, $rev_id, $log_id );
+		// Also keep the params of the tags for the domain events below.
+		$prevTagParams = $this->getTagsWithData( $dbw, $rc_id, $rev_id, $log_id );
+		$prevTags = array_keys( $prevTagParams );
 
 		// add tags
 		$tagsToAdd = array_values( array_diff( $tagsToAdd, $prevTags ) );
@@ -971,6 +1005,56 @@ class ChangeTagsStore {
 						->where( [ 'ctd_name' => $tagsRemoved, 'ctd_count' => 0, 'ctd_user_defined' => 0 ] )
 						->caller( $fname )->execute();
 				}, $fname );
+			}
+		}
+
+		// Emit domain events
+		// The added tags have the params of this update. The other tags have the
+		// params that they had before this update. If an insert above failed, the
+		// tag is in $prevTags but not in $prevTagParams, and its params are null.
+		$tagsBeforeData = $this->getTagIdsAndParams( $prevTags, $prevTagParams );
+		$tagsAfterData = array_diff_key(
+			$tagsBeforeData + $this->getTagIdsAndParams( $tagsAdded, array_fill_keys( $tagsAdded, $params ) ),
+			array_flip( $tagsRemoved )
+		);
+
+		if ( $rev_id ) {
+			$revisionRecord = $this->revisionLookup->getRevisionById( $rev_id, IDBAccessObject::READ_LATEST );
+			// The revision might be in the archive table if the log entry has an associated_rev_id that was archived.
+			// We only assume the happy case for now
+			if ( $revisionRecord ) {
+				$this->eventDispatcher->dispatch(
+					new RevisionTagsUpdatedEvent(
+						$revisionRecord,
+						$tagsBeforeData,
+						$tagsAfterData,
+						$params,
+						$user
+					),
+					$this->dbProvider
+				);
+			} else {
+				$this->logger->warning(
+					'Attempted emitting RevisionTagsUpdatedEvent
+					but revision {rev_id} does not exist in the RevisionStore.',
+					[ 'rev_id' => $rev_id ]
+				);
+			}
+		}
+
+		if ( $log_id ) {
+			$logEntry = DatabaseLogEntry::newFromId( $log_id, $dbw );
+			if ( $logEntry ) {
+				$this->eventDispatcher->dispatch(
+					new LogTagsUpdatedEvent(
+						$logEntry->getAsLogRecord(),
+						$tagsBeforeData,
+						$tagsAfterData,
+						$params,
+						$user
+					),
+					$this->dbProvider
+				);
 			}
 		}
 

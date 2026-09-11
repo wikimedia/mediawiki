@@ -277,6 +277,8 @@ class DatabaseLogEntry extends LogEntryBase {
 	 *       construct LogRecord objects directly.
 	 *
 	 * @throws TimestampException
+	 * @throws \Wikimedia\Assert\ParameterAssertionException If this entry has no
+	 *         log ID, e.g. an RCDatabaseLogEntry for a change without a log entry.
 	 * @since 1.47
 	 * @unstable
 	 */

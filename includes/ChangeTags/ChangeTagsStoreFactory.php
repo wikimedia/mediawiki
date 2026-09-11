@@ -7,7 +7,9 @@
 namespace MediaWiki\ChangeTags;
 
 use MediaWiki\Config\ServiceOptions;
+use MediaWiki\DomainEvent\DomainEventDispatcher;
 use MediaWiki\HookContainer\HookContainer;
+use MediaWiki\Revision\RevisionLookup;
 use MediaWiki\Storage\NameTableStoreFactory;
 use MediaWiki\User\UserFactory;
 use Psr\Log\LoggerInterface;
@@ -29,7 +31,9 @@ class ChangeTagsStoreFactory {
 		private HookContainer $hookContainer,
 		private LoggerInterface $logger,
 		private UserFactory $userFactory,
-		private ServiceOptions $options
+		private ServiceOptions $options,
+		private DomainEventDispatcher $eventDispatcher,
+		private RevisionLookup $revisionLookup
 	) {
 	}
 
@@ -45,6 +49,8 @@ class ChangeTagsStoreFactory {
 			$this->logger,
 			$this->userFactory,
 			$this->options,
+			$this->eventDispatcher,
+			$this->revisionLookup,
 			$wiki
 		);
 	}
