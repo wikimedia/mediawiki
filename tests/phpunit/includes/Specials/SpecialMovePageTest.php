@@ -611,4 +611,18 @@ class SpecialMovePageTest extends SpecialPageTestBase {
 		$this->assertStringContainsString( '(movepage-moved-redirect)', $html );
 		$this->assertPageContent( 'File:B.png', 'a' );
 	}
+
+	public function testMoveConflict() {
+		$this->assertStatusGood( $this->editPage( 'A', 'a' ) );
+		$pageId = $this->getServiceContainer()
+			->getTitleFactory()
+			->makeTitle( NS_MAIN, 'A' )
+			->getArticleID();
+		[ $html ] = $this->postSpecialMovePage( $this->getTestSysop()->getUser(), 'A', 'B', [
+			'wpMovePageId' => $pageId + 1,
+		] );
+		$this->assertStringContainsString( '(movepage-already-moved)', $html );
+		$this->assertPageContent( 'A', 'a' );
+		$this->assertPageContent( 'B', null );
+	}
 }

@@ -118,6 +118,8 @@ For notes on 1.46.x and older releases, see HISTORY.
   as "Scribunto" module pages, and TemplateStyles "sanitized-css" pages.
 * (T253844) Special:Contributions now shows a note if the target IP address or
   range is affected by a $wgSoftBlockRanges block.
+* (T32211) The page move form now detects if someone else moved the page
+  between the form being opened and submitted.
 * …
 
 === New features for sysadmins in 1.47 ===

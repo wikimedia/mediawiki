@@ -2837,6 +2837,7 @@
 	"movepage-page-moved": "Used as success message when moving page.\n\nCan be followed by {{msg-mw|Movepage-max-pages}}.\n\nParameters:\n* $1 - old page title (with link)\n* $2 - new page title (with link)\nSee also:\n* {{msg-mw|Movepage-page-unmoved}}",
 	"movepage-page-unmoved": "Used as error message when moving page. Parameters:\n* $1 - old page title (with link)\n* $2 - new page title (with link)\nSee also:\n* {{msg-mw|Movepage-page-moved}}",
 	"movepage-max-pages": "PROBABLY (A GUESS): when moving a page, you can select an option of moving its subpages, but there is a maximum that can be moved automatically.\n\nParameters:\n* $1 - maximum moved pages, defined in the variable [[mw:Special:MyLanguage/Manual:$wgMaximumMovedPages|$wgMaximumMovedPages]]",
+	"movepage-already-moved": "Used as an error message when a move conflict happens.",
 	"movelogpage": "{{doc-logpage}}\n\nTitle of [[Special:Log/move]]. Used as heading on that page, and in the dropdown menu on log pages.",
 	"movelogpagetext": "Text on the special page 'Move log'.",
 	"movesubpage": "This is a section header on [[Special:MovePage]], below is a list of subpages.\n\nParameters:\n* $1 - number of subpages\nSee also:\n* {{msg-mw|movenosubpage|without subpage}}\n* {{msg-mw|movesubpagetext|with subpages}}\n* {{msg-mw|movesubpagetalktext|with talk subpages}}",
