@@ -10,7 +10,6 @@ namespace MediaWiki\Skin;
 
 use InvalidArgumentException;
 use MediaWiki\Debug\MWDebug;
-use MediaWiki\Exception\MWException;
 use MediaWiki\Html\Html;
 use MediaWiki\Language\LanguageCode;
 use MediaWiki\Linker\Linker;
@@ -115,7 +114,6 @@ class SkinTemplate extends Skin {
 			return;
 		}
 
-		$request = $this->getRequest();
 		$user = $this->getUser();
 		$title = $this->getTitle();
 		$this->thispage = $title->getPrefixedDBkey();
@@ -147,8 +145,6 @@ class SkinTemplate extends Skin {
 	 */
 	public function generateHTML() {
 		$tpl = $this->prepareQuickTemplate();
-		$options = $this->getOptions();
-		$out = $this->getOutput();
 		// execute template
 		ob_start();
 		$tpl->execute();
@@ -430,8 +426,6 @@ class SkinTemplate extends Skin {
 		$request = $this->getRequest();
 		$pageurl = $title->getLocalURL();
 		$services = MediaWikiServices::getInstance();
-		$authManager = $services->getAuthManager();
-		$groupPermissionsLookup = $services->getGroupPermissionsLookup();
 		$tempUserConfig = $services->getTempUserConfig();
 		$returnto = SkinComponentUtils::getReturnToParam( $title, $request, $authority );
 		$shouldHideUserLinks = $this->isAnonUser && $tempUserConfig->isKnown();
@@ -1136,7 +1130,6 @@ class SkinTemplate extends Skin {
 		if ( in_array( 'user-page', $requestedMenus ) ) {
 			unset( $userMenu['userpage' ] );
 		}
-		$legacyUserMenuSupport = in_array( 'personal', $requestedMenus );
 		$content_navigation = $categoriesData + [
 			// Modern keys: Please ensure these get unset inside Skin::prepareQuickTemplate
 			'user-interface-preferences' => [],
@@ -1451,12 +1444,7 @@ class SkinTemplate extends Skin {
 				}
 			}
 		} else {
-			// If it's not content, and a request URL is set it's got to be a special page
-			try {
-				$url = $request->getRequestURL();
-			} catch ( MWException ) {
-				$url = false;
-			}
+			// If it's not content, it's got to be a special page
 			$associatedPages += $this->getSpecialPageAssociatedNavigationLinks( $title );
 		}
 
@@ -1464,7 +1452,7 @@ class SkinTemplate extends Skin {
 		// Populate footer menus from SkinComponentFooter so that extensions
 		// can modify them via the Universal hook (T318376).
 		$footer = $this->getComponent( 'footer' )->getTemplateData();
-		foreach ( $footer as $key => $data ) {
+		foreach ( $footer as $data ) {
 			$portletId = $data['id'] ?? null;
 			if ( $portletId ) {
 				$items = [];
