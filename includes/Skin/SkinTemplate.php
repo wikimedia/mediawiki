@@ -568,9 +568,15 @@ class SkinTemplate extends Skin {
 	 * @return bool
 	 */
 	protected function useCombinedLoginLink() {
+		$useCombinedLoginLink = $this->getConfig()->get( MainConfigNames::UseCombinedLoginLink );
+
+		if ( !$useCombinedLoginLink ) {
+			// Optimization: Return early and skip AuthManager checks if the combined link is disabled anyway
+			return false;
+		}
+
 		$services = MediaWikiServices::getInstance();
 		$authManager = $services->getAuthManager();
-		$useCombinedLoginLink = $this->getConfig()->get( MainConfigNames::UseCombinedLoginLink );
 		if ( !$authManager->canCreateAccounts() || !$authManager->canAuthenticateNow() ) {
 			// don't show combined login/signup link if one of those is actually not available
 			$useCombinedLoginLink = false;
