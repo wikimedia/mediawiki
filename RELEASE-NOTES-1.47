@@ -377,6 +377,7 @@ because of Phabricator reports.
   ::outputItem(), ::outputFooter(), ::sendHttpHeaders() and ::outputXmlHeader()
   instead.
 * Maintenance::runChild(), deprecated in 1.43, has been removed.
+* Profiler::getAllowOutput(), deprecated since 1.41, has been removed.
 * Html::buttonAttributes() and Html::getTextInputAttributes(),
   deprecated in 1.43, have been removed.
 * AutoloadGenerator::setPsr4Namespaces, deprecated in 1.40, has been removed.

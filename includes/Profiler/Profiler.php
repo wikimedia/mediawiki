@@ -263,19 +263,6 @@ abstract class Profiler {
 	}
 
 	/**
-	 * Whether appending profiles is allowed.
-	 *
-	 * @deprecated since 1.41. Unused.
-	 *
-	 * @since 1.34
-	 * @return bool
-	 */
-	public function getAllowOutput() {
-		wfDeprecated( __METHOD__, '1.41' );
-		return $this->allowOutput;
-	}
-
-	/**
 	 * Get the aggregated inclusive profiling data for each method
 	 *
 	 * The percent time for each time is based on the current "total" time
