@@ -28,17 +28,12 @@ class APCUBagOStuff extends MediumSpecificBagOStuff {
 	private const KEY_SUFFIX = ':5';
 
 	/** @var int Max attempts for implicit CAS operations */
-	private static $CAS_MAX_ATTEMPTS = 100;
+	private const CAS_MAX_ATTEMPTS = 100;
 
 	public function __construct( array $params = [] ) {
 		// No use in segmenting values
 		$params['segmentationSize'] = INF;
 		parent::__construct( $params );
-		// Versions of apcu < 5.1.19 use apc.use_request_time=1 by default, causing new keys
-		// to be assigned timestamps based on the start of the PHP request/script. The longer
-		// the request has been running, the more likely that newly stored keys will instantly
-		// be seen as expired by other requests. Disable apc.use_request_time.
-		ini_set( 'apc.use_request_time', '0' );
 
 		if ( PHP_SAPI === 'cli' ) {
 			$this->attrMap[self::ATTR_DURABILITY] = ini_get( 'apc.enable_cli' )
@@ -94,24 +89,25 @@ class APCUBagOStuff extends MediumSpecificBagOStuff {
 	protected function doIncrWithInit( $key, $exptime, $step, $init, $flags ) {
 		// Use apcu 5.1.12 $ttl argument if apcu_inc() will initialize to $init:
 		// https://www.php.net/manual/en/function.apcu-inc.php
+		$keyWithSuffix = $key . self::KEY_SUFFIX;
 		if ( $step === $init ) {
 			/** @noinspection PhpMethodParametersCountMismatchInspection */
 			$ttl = $this->getExpirationAsTTL( $exptime );
-			$result = apcu_inc( $key . self::KEY_SUFFIX, $step, $success, $ttl );
+			$result = apcu_inc( $keyWithSuffix, $step, $success, $ttl );
 		} else {
 			$result = false;
-			for ( $i = 0; $i < self::$CAS_MAX_ATTEMPTS; ++$i ) {
-				$oldCount = apcu_fetch( $key . self::KEY_SUFFIX );
+			for ( $i = 0; $i < self::CAS_MAX_ATTEMPTS; ++$i ) {
+				$oldCount = apcu_fetch( $keyWithSuffix );
 				if ( $oldCount === false ) {
 					$count = $init;
 					$ttl = $this->getExpirationAsTTL( $exptime );
-					if ( apcu_add( $key . self::KEY_SUFFIX, $count, $ttl ) ) {
+					if ( apcu_add( $keyWithSuffix, $count, $ttl ) ) {
 						$result = $count;
 						break;
 					}
 				} elseif ( is_int( $oldCount ) ) {
 					$count = $oldCount + $step;
-					if ( apcu_cas( $key . self::KEY_SUFFIX, $oldCount, $count ) ) {
+					if ( apcu_cas( $keyWithSuffix, $oldCount, $count ) ) {
 						$result = $count;
 						break;
 					}
