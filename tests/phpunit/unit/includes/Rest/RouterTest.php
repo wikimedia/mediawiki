@@ -20,6 +20,7 @@ use MediaWiki\Rest\Reporter\ErrorReporter;
 use MediaWiki\Rest\RequestData;
 use MediaWiki\Rest\RequestInterface;
 use MediaWiki\Rest\ResponseException;
+use MediaWiki\Rest\RestbaseCompatErrorFormatter;
 use MediaWiki\Rest\Router;
 use MediaWiki\Rest\StringStream;
 use MediaWiki\Rest\Validator\JsonBodyValidator;
@@ -954,59 +955,70 @@ class RouterTest extends MediaWikiUnitTestCase {
 		$this->assertEquals( 'bar', $validatedParams[ 'pathParam' ], (string)$response->getBody() );
 	}
 
-	private function newUrlUtils(): UrlUtils {
-		return new UrlUtils( [ UrlUtils::SERVER => 'https://wiki.example.com' ] );
-	}
-
-	public function testMakeResponseFactoryDefaultsToLegacyFormatter() {
-		$rf = Router::makeResponseFactory( [], false, $this->newUrlUtils(), new RequestData() );
-		$formatter = TestingAccessWrapper::newFromObject( $rf )->errorFormatter;
-		$this->assertInstanceOf( ErrorFormatterV1::class, $formatter );
-	}
-
-	public function testMakeResponseFactoryUsesRegisteredFormatterForSchemaVersion() {
-		$rf = Router::makeResponseFactory( [], false, $this->newUrlUtils(), new RequestData(), '2.0' );
-		$formatter = TestingAccessWrapper::newFromObject( $rf )->errorFormatter;
-		$this->assertInstanceOf( ErrorFormatterV2::class, $formatter );
-	}
-
-	public function testMakeResponseFactoryThrowsOnUnknownSchemaVersion() {
-		$this->expectException( ModuleConfigurationException::class );
-		Router::makeResponseFactory( [], false, $this->newUrlUtils(), new RequestData(), '9.9' );
-	}
-
-	public function testMakeResponseFactoryV2DerivesUrlFromRequest() {
-		$request = new RequestData( [ 'uri' => new Uri( '/rest/test' ) ] );
-		$rf = Router::makeResponseFactory( [], false, $this->newUrlUtils(), $request, '2.0' );
-
-		$body = $rf->createHttpError( 404 )->getBody();
-		$body->rewind();
-		$data = json_decode( $body->getContents(), true );
-
-		$this->assertSame( 'https://wiki.example.com/rest/test', $data['url'] );
-	}
-
 	public function testGetModuleResponseFactory_missing_schema_version() {
+		$request = new RequestData();
 		$router = $this->newRouter();
 		$wrapper = TestingAccessWrapper::newFromObject( $router );
 
 		// No errorSchemaVersion declared -> reuse the already-injected default ResponseFactory.
-		$request = new RequestData();
 		$rf = $wrapper->getModuleResponseFactory( [], $request );
 		$formatter = TestingAccessWrapper::newFromObject( $rf )->errorFormatter;
 		$this->assertInstanceOf( ErrorFormatterV1::class, $formatter );
 	}
 
-	public function testGetModuleResponse_use_schema_version() {
-		// SEAM: when the formatter varies on the request, test different
-		// values for $request.
+	public static function provideGetModuleResponseFactory_use_schema_version() {
+		yield [ '1.0', ErrorFormatterV1::class ];
+		yield [ '2.0', ErrorFormatterV2::class ];
+		yield [ 'restbase', RestbaseCompatErrorFormatter::class ];
+	}
+
+	/**
+	 * @dataProvider provideGetModuleResponseFactory_use_schema_version
+	 */
+	public function testGetModuleResponseFactory_use_schema_version( $schemaVersion, $class ) {
 		$router = $this->newRouter();
 		$request = new RequestData();
 		$wrapper = TestingAccessWrapper::newFromObject( $router );
 
-		$rf = $wrapper->getModuleResponseFactory( [ 'errorSchemaVersion' => '2.0' ], $request );
+		$rf = $wrapper->getModuleResponseFactory( [ 'errorSchemaVersion' => $schemaVersion ], $request );
 		$formatter = TestingAccessWrapper::newFromObject( $rf )->errorFormatter;
-		$this->assertInstanceOf( ErrorFormatterV2::class, $formatter );
+		$this->assertInstanceOf( $class, $formatter );
+	}
+
+	public function testGetModuleResponseFactory_restbase_compat() {
+		$router = $this->newRouter();
+		$request = new RequestData( [ 'headers' => [ 'x-restbase-compat' => 'true' ] ] );
+		$wrapper = TestingAccessWrapper::newFromObject( $router );
+
+		$rf = $wrapper->getModuleResponseFactory( [], $request );
+		$formatter = TestingAccessWrapper::newFromObject( $rf )->errorFormatter;
+		$this->assertInstanceOf( RestbaseCompatErrorFormatter::class, $formatter );
+	}
+
+	public function testGetModuleResponseFactory_bad_schema_version() {
+		$router = $this->newRouter();
+		$request = new RequestData();
+		$wrapper = TestingAccessWrapper::newFromObject( $router );
+
+		$this->expectException( ModuleConfigurationException::class );
+		$wrapper->getModuleResponseFactory( [ 'errorSchemaVersion' => '99.99' ], $request );
+	}
+
+	public function testGetModuleResponseFactory_V2() {
+		$router = $this->newRouter();
+		$request = new RequestData( [
+			'uri' => new Uri( '/rest/test' ),
+			'method' => 'POST',
+		] );
+		$wrapper = TestingAccessWrapper::newFromObject( $router );
+
+		$rf = $wrapper->getModuleResponseFactory( [ 'errorSchemaVersion' => '2.0' ], $request );
+
+		$body = $rf->createHttpError( 404 )->getBody();
+		$body->rewind();
+		$data = json_decode( $body->getContents(), true );
+
+		$this->assertSame( 'https://wiki.example.com/rest/test', $data['tracing']['url'] );
 	}
 
 	public function testModuleDeclaringSchemaVersionUsesRegisteredFormatter() {

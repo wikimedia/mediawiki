@@ -13,11 +13,19 @@ use RuntimeException;
 use Wikimedia\Message\MessageValue;
 
 /** @covers \MediaWiki\Rest\ErrorFormatter */
-class ErrorFormatterTest extends MediaWikiUnitTestCase {
+class ErrorFormatterV1Test extends MediaWikiUnitTestCase {
 	use DummyServicesTrait;
 
-	private function newFormatter( array $textFormatters = [], bool $showExceptionDetails = false ): ErrorFormatter {
-		return new ErrorFormatterV1( $textFormatters, $showExceptionDetails );
+	private function newFormatter(
+		array $textFormatters = [],
+		bool $showExceptionDetails = false,
+		array $tracingData = [
+			'url' => 'https://wiki.example.com/rest/test',
+			'module' => 'mediawiki',
+			'request_id' => '123455'
+		]
+	): ErrorFormatter {
+		return new ErrorFormatterV1( $textFormatters, $showExceptionDetails, $tracingData );
 	}
 
 	public function testFormatErrorBodyRejectsNonErrorCodes() {

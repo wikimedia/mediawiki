@@ -17,12 +17,17 @@ class RestbaseCompatErrorFormatterTest extends MediaWikiUnitTestCase {
 
 	private function newFormatter(
 		array $textFormatters = [],
-		?array $requestData = null
+		bool $showExceptionDetails = false,
+		array $tracingData = [
+			'uri' => '/rest/test',
+			'method' => 'get',
+			'request_id' => '123455'
+		]
 	): RestbaseCompatErrorFormatter {
 		return new RestbaseCompatErrorFormatter(
 			$textFormatters ?: [ $this->getDummyTextFormatter() ],
-			false,
-			$requestData ?? [ 'method' => 'get', 'uri' => '/rest/test' ]
+			$showExceptionDetails,
+			$tracingData
 		);
 	}
 
@@ -46,7 +51,7 @@ class RestbaseCompatErrorFormatterTest extends MediaWikiUnitTestCase {
 
 	public function testFormatLocalizedHttpExceptionAddsRestbaseFields() {
 		$requestData = [ 'method' => 'delete', 'uri' => '/rest/page/Foo' ];
-		$ef = $this->newFormatter( [], $requestData );
+		$ef = $this->newFormatter( [], false, $requestData );
 		$exception = new LocalizedHttpException( new MessageValue( 'rest-nonexistent-title', [ 'Foo' ] ), 404 );
 
 		$body = $ef->formatLocalizedHttpException( 404, $exception );

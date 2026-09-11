@@ -34,7 +34,11 @@ class ErrorFormatterV2Test extends MediaWikiUnitTestCase {
 	private function newFormatter(
 		array $textFormatters = [],
 		bool $showExceptionDetails = false,
-		array $tracingData = [ 'url' => 'https://wiki.example.com/rest/test', 'tracing' => [ 'module' => 'mediawiki' ] ]
+		array $tracingData = [
+			'url' => 'https://wiki.example.com/rest/test',
+			'module' => 'mediawiki',
+			'request_id' => '123455'
+		]
 	): ErrorFormatterV2 {
 		return new ErrorFormatterV2(
 			$textFormatters,
@@ -43,12 +47,13 @@ class ErrorFormatterV2Test extends MediaWikiUnitTestCase {
 		);
 	}
 
-	public function testFormatErrorBodyAddsUrlFromTracingData() {
+	public function testFormatErrorBodyAddsUrlToTracingData() {
 		$ef = $this->newFormatter();
 
 		$body = $ef->formatErrorBody( 404 );
 
-		$this->assertSame( 'https://wiki.example.com/rest/test', $body['url'] );
+		$this->assertArrayNotHasKey( 'url', $body );
+		$this->assertSame( 'https://wiki.example.com/rest/test', $body['tracing']['url'] );
 	}
 
 	public function testFormatErrorBodyAddsHardcodedTracingModule() {

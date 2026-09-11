@@ -52,18 +52,10 @@ class ErrorFormatterV2 extends ErrorFormatter {
 
 	public function formatErrorBody( int $statusCode, array $bodyData = [] ): array {
 		$body = parent::formatErrorBody( $statusCode, $bodyData );
-		unset( $body['httpReason'] );
 
-		if ( isset( $this->tracingData['url'] ) ) {
-			$body['url'] ??= $this->tracingData['url'];
-		}
-
-		$body['tracing'] = ( $body['tracing'] ?? [] ) + $this->tracingData['tracing'];
-
-		if ( isset( $body['reqId'] ) ) {
-			$body['tracing']['request_id'] = $body['reqId'];
-			unset( $body['reqId'] );
-		}
+		// Tracing data is included for all errors (4xx and 5xx) to aid client-side
+		// diagnostics and upstream error reporting.
+		$body['tracing'] = ( $body['tracing'] ?? [] ) + $this->tracingData;
 
 		return $body;
 	}

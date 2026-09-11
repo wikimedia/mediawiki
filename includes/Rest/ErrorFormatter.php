@@ -7,7 +7,6 @@ use MediaWiki\Exception\MWExceptionHandler;
 use MediaWiki\Http\Telemetry;
 use MediaWiki\Language\LanguageCode;
 use Throwable;
-use Wikimedia\Http\HttpStatus;
 use Wikimedia\Message\ITextFormatter;
 use Wikimedia\Message\MessageSpecifier;
 
@@ -122,12 +121,7 @@ abstract class ErrorFormatter {
 		}
 		$extra = [
 			'httpCode' => $statusCode,
-			'httpReason' => HttpStatus::getMessage( $statusCode )
 		];
-
-		if ( $statusCode >= 500 ) {
-			$extra['reqId'] = Telemetry::getInstance()->getRequestId();
-		}
 
 		return $bodyData + $extra;
 	}

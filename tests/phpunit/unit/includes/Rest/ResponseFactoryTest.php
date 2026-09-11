@@ -31,7 +31,12 @@ class ResponseFactoryTest extends MediaWikiUnitTestCase {
 
 	private function createResponseFactory() {
 		$textFormatters = [ $this->getDummyTextFormatter() ];
-		return new ResponseFactory( $textFormatters, new ErrorFormatterV1( $textFormatters, false ) );
+		// Supply tracing data so that 5xx errors carry a reqId, mirroring
+		// production where Router::getTracingData() provides the request id.
+		return new ResponseFactory(
+			$textFormatters,
+			new ErrorFormatterV1( $textFormatters, false, [ 'request_id' => 'test-request-id' ] )
+		);
 	}
 
 	/** @dataProvider provideEncodeJson */

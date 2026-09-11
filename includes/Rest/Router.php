@@ -4,6 +4,7 @@ namespace MediaWiki\Rest;
 
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\HookContainer\HookContainer;
+use MediaWiki\Http\Telemetry;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MainConfigSchema;
 use MediaWiki\Permissions\Authority;
@@ -38,9 +39,9 @@ class Router {
 	public const DEFAULT_ERROR_SCHEMA = '1.0';
 
 	private const ERROR_FORMATTERS = [
-		'restbase' => RestbaseCompatErrorFormatter::class,
-		'1.0' => ErrorFormatterV1::class,
-		'2.0' => ErrorFormatterV2::class,
+		'restbase' => [ 'class' => RestbaseCompatErrorFormatter::class ],
+		'1.0' => [ 'class' => ErrorFormatterV1::class ],
+		'2.0' => [ 'class' => ErrorFormatterV2::class ],
 	];
 
 	/** @var string[] */
@@ -586,9 +587,7 @@ class Router {
 	}
 
 	private function createRedirectResponse( string $target, int $code, RequestInterface $request ): ResponseInterface {
-		$responseFactory = self::makeResponseFactory(
-			$this->textFormatters, $this->showExceptionDetails, $this->urlUtils, $request
-		);
+		$responseFactory = $this->getModuleResponseFactory( [], $request );
 		return $responseFactory->createRedirect( $target, $code );
 	}
 
@@ -704,58 +703,27 @@ class Router {
 	}
 
 	/**
-	 * Factory method of ResponseFactory.
-	 * Injects a suitable implementation of ErrorFormatter.
-	 *
-	 * @internal for use in the REST framework
+	 * Provide information about the request, for use by ErrorFormatters.
+	 * All data returned by this method may be sent to the client verbatim.
+	 * However, the content of this array is not an API contract, it may
+	 * change at any time. It's intended for diagnostic purposes on the
+	 * client side, and, more importantly, when clients report errors
+	 * upstream.
 	 */
-	public static function makeResponseFactory(
-		array $textFormatters,
-		bool $showExceptionDetails,
-		UrlUtils $urlUtils,
-		RequestInterface $request,
-		?string $schemaVer = null
-	): ResponseFactory {
-		$schemaVer ??= self::DEFAULT_ERROR_SCHEMA;
-		$formatterClass = self::ERROR_FORMATTERS[ $schemaVer ] ?? null;
-
-		if ( !$formatterClass ) {
-			throw new ModuleConfigurationException( "Unsupported errorSchemaVersion: $schemaVer" );
-		}
-
-		$errorFormatter = match ( $formatterClass ) {
-			ErrorFormatterV1::class => new ErrorFormatterV1( $textFormatters, $showExceptionDetails ),
-			ErrorFormatterV2::class => new ErrorFormatterV2(
-				$textFormatters,
-				$showExceptionDetails,
-				self::getTracingData( $urlUtils, $request )
-			),
-			RestbaseCompatErrorFormatter::class => new RestbaseCompatErrorFormatter(
-				$textFormatters, $showExceptionDetails, self::getRestbaseCompatData( $request )
-			),
-		};
-
-		return new ResponseFactory( $textFormatters, $errorFormatter );
-	}
-
-	private static function getTracingData( UrlUtils $urlUtils, RequestInterface $request ): array {
+	private function getTracingData( string $method, string $uri ): array {
 		$tracingData = [
-			'tracing' => [ 'module' => 'mediawiki' ],
+			'module' => 'mediawiki',
+			'method' => strtolower( $method ),
+			'uri' => $uri,
+			'request_id' => Telemetry::getInstance()->getRequestId()
 		];
 
-		$url = $urlUtils->expand( (string)$request->getUri(), PROTO_CANONICAL );
+		$url = $this->urlUtils->expand( $uri, PROTO_CANONICAL );
 		if ( $url !== null ) {
 			$tracingData['url'] = $url;
 		}
 
 		return $tracingData;
-	}
-
-	private static function getRestbaseCompatData( RequestInterface $request ): array {
-		return [
-			'method' => strtolower( $request->getMethod() ),
-			'uri' => (string)$request->getUri(),
-		];
 	}
 
 	private function getModuleResponseFactory( array $moduleInfo, RequestInterface $request ): ResponseFactory {
@@ -765,12 +733,25 @@ class Router {
 			$schemaVer = 'restbase';
 		}
 
-		return self::makeResponseFactory(
-			$this->textFormatters,
-			$this->showExceptionDetails,
-			$this->urlUtils,
-			$request,
-			$schemaVer,
+		$schemaVer ??= self::DEFAULT_ERROR_SCHEMA;
+		$formatterSpec = self::ERROR_FORMATTERS[ $schemaVer ] ?? null;
+
+		if ( !$formatterSpec ) {
+			throw new ModuleConfigurationException( "Unsupported errorSchemaVersion: $schemaVer" );
+		}
+
+		$errorFormatter = $this->objectFactory->createObject(
+			$formatterSpec,
+			[
+				'assertClass' => ErrorFormatter::class,
+				'extraArgs' => [
+					$this->textFormatters,
+					$this->showExceptionDetails,
+					$this->getTracingData( $request->getMethod(), (string)$request->getUri() )
+				],
+			]
 		);
+
+		return new ResponseFactory( $this->textFormatters, $errorFormatter );
 	}
 }

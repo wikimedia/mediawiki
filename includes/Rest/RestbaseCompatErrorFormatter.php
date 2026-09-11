@@ -13,15 +13,16 @@ class RestbaseCompatErrorFormatter extends ErrorFormatterV1 {
 	/**
 	 * @param array $textFormatters
 	 * @param bool $showExceptionDetails
-	 * @param array $requestData Pre-computed request data ('method', 'uri'), as built by
-	 *   Router::getRestbaseCompatData(). Keeps this formatter decoupled from the request.
+	 * @param array $tracingData Pre-computed request tracing data, as built by
+	 *        Router::getTracingData(). Keeps this formatter decoupled from
+	 *        UrlUtils and the request.
 	 */
 	public function __construct(
 		array $textFormatters,
 		bool $showExceptionDetails,
-		private readonly array $requestData,
+		private readonly array $tracingData,
 	) {
-		parent::__construct( $textFormatters, $showExceptionDetails );
+		parent::__construct( $textFormatters, $showExceptionDetails, $tracingData );
 	}
 
 	public function formatLocalizedHttpException(
@@ -36,9 +37,9 @@ class RestbaseCompatErrorFormatter extends ErrorFormatterV1 {
 			'type' => 'MediaWikiError/' .
 				str_replace( ' ', '_', HttpStatus::getMessage( $statusCode ) ),
 			'title' => $msg->getKey(),
-			'method' => $this->requestData['method'],
+			'method' => $this->tracingData['method'],
 			'detail' => $this->getPreferredTranslation( $msg ),
-			'uri' => $this->requestData['uri'],
+			'uri' => $this->tracingData['uri'],
 		];
 
 		return parent::formatLocalizedHttpException( $statusCode, $exception, $extraData + $restbaseFields );
