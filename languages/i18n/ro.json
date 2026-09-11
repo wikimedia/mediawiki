@@ -136,7 +136,7 @@
 	"create": "Creare",
 	"skin-view-create": "Creare",
 	"create-local": "Adăugare descriere locală",
-	"delete": "Şterge",
+	"delete": "Șterge",
 	"undelete_short": "Recuperarea {{PLURAL:$1|unei modificări|a $1 modificări|a $1 de modificări}}",
 	"viewdeleted_short": "Vizualizați {{PLURAL:$1|o modificare ștearsă|$1 modificări șterse|$1 de modificări șterse}}",
 	"protect": "Protejare",
