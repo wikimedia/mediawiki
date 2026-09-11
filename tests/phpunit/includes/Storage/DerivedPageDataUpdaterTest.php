@@ -14,7 +14,6 @@ use MediaWiki\Content\WikitextContentHandler;
 use MediaWiki\Deferred\DeferredUpdates;
 use MediaWiki\Deferred\LinksUpdate\LinksUpdate;
 use MediaWiki\Deferred\MWCallableUpdate;
-use MediaWiki\Edit\ParsoidRenderID;
 use MediaWiki\Logging\LogPage;
 use MediaWiki\Logging\ManualLogEntry;
 use MediaWiki\MainConfigNames;
@@ -1609,14 +1608,12 @@ class DerivedPageDataUpdaterTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @covers \MediaWiki\Storage\DerivedPageDataUpdater::doParserCacheUpdate()
-	 * @covers \MediaWiki\JobQueue\Jobs\ParsoidCachePrewarmJob::doParsoidCacheUpdate()
 	 */
 	public function testDoParserCacheUpdate() {
 		$this->overrideConfigValue(
 			MainConfigNames::ParsoidCacheConfig,
 			[
 				'CacheThresholdTime' => 0.0,
-				'WarmParsoidParserCache' => true, // enable caching
 			]
 		);
 
@@ -1641,12 +1638,7 @@ class DerivedPageDataUpdaterTest extends MediaWikiIntegrationTestCase {
 		$parserOptions->setUseParsoid( false );
 		$parserCache = $getPrimaryCache->invoke( $parserOutputAccess, $parserOptions );
 
-		$parsoidParserOptions = ParserOptions::newFromAnon();
-		$parsoidParserOptions->setUseParsoid( true );
-		$parsoidParserCache = $getPrimaryCache->invoke( $parserOutputAccess, $parsoidParserOptions );
-
 		$parserCache->deleteOptionsKey( $page );
-		$parsoidParserCache->deleteOptionsKey( $page );
 
 		$user = $this->getTestUser()->getUserIdentity();
 
@@ -1660,23 +1652,9 @@ class DerivedPageDataUpdaterTest extends MediaWikiIntegrationTestCase {
 		ConvertibleTimestamp::setFakeTime( '2022-01-01T00:03:00Z' );
 		$this->runJobs();
 
-		// Parsoid cache should have an entry
-		$parsoidCached = $parsoidParserCache->get( $page, $parsoidParserOptions, true );
-		$this->assertIsObject( $parsoidCached );
-		$this->assertStringContainsString( 'first', $parsoidCached->getContentHolderText() );
-
-		// The parsoid parser output is generated during runJobs(), after the last call to setFakeTime().
-		$this->assertGreaterThan( $rev->getTimestamp(), $parsoidCached->getCacheTime() );
-		$this->assertSame( $rev->getId(), $parsoidCached->getCacheRevisionId() );
-
-		// Check that ParsoidRenderID::newFromParserOutput() doesn't throw,
-		// so we know that $parsoidCached is valid.
-		ParsoidRenderID::newFromParserOutput( $parsoidCached );
-
 		// The cached ParserOutput should not use the revision timestamp
 		$cached = $parserCache->get( $page, $parserOptions, true );
 		$this->assertIsObject( $cached );
-		$this->assertNotSame( $parsoidCached, $cached );
 		$this->assertStringContainsString( 'first', $cached->getContentHolderText() );
 
 		// The regular parser output is generated immediately during saveRevision(),
@@ -1709,14 +1687,12 @@ class DerivedPageDataUpdaterTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @covers \MediaWiki\Storage\DerivedPageDataUpdater::doParserCacheUpdate()
-	 * @covers \MediaWiki\JobQueue\Jobs\ParsoidCachePrewarmJob::doParsoidCacheUpdate()
 	 */
 	public function testDoParserCacheUpdateForJavaScriptContent() {
 		$this->overrideConfigValue(
 			MainConfigNames::ParsoidCacheConfig,
 			[
 				'CacheThresholdTime' => 0.0,
-				'WarmParsoidParserCache' => true, // enable caching
 			]
 		);
 

@@ -30,7 +30,6 @@ class PageUpdaterFactoryTest extends MediaWikiUnitTestCase {
 			MainConfigNames::ManualRevertSearchRadius => null,
 			MainConfigNames::UseRCPatrol => null,
 			MainConfigNames::ParsoidCacheConfig => [
-				'WarmParsoidParserCache' => false
 			],
 			MainConfigNames::NamespacesWithoutAutoSummaries => null,
 		];

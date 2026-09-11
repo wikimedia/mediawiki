@@ -3,9 +3,9 @@ namespace MediaWiki\Tests\JobQueue;
 
 use MediaWiki\JobQueue\JobFactory;
 use MediaWiki\JobQueue\Jobs\NullJob;
-use MediaWiki\JobQueue\Jobs\ParsoidCachePrewarmJob;
 use MediaWiki\Page\DeleteLinksJob;
 use MediaWiki\Title\Title;
+use MediaWiki\Watchlist\WatchlistExpiryJob;
 use MediaWikiIntegrationTestCase;
 
 /**
@@ -51,16 +51,12 @@ class JobFactoryTest extends MediaWikiIntegrationTestCase {
 			'object spec with title' => [ [ 'class' => DeleteLinksJob::class ], DeleteLinksJob::class ],
 			'object spec with no title and not subclass of GenericParameterJob' => [
 				[
-					'class' => ParsoidCachePrewarmJob::class,
+					'class' => WatchlistExpiryJob::class,
 					'services' => [
-						'ParserOutputAccess',
-						'PageStore',
-						'RevisionLookup',
-						'ParsoidSiteConfig',
 					],
 					'needsPage' => false
 				],
-				ParsoidCachePrewarmJob::class
+				WatchlistExpiryJob::class
 			]
 		];
 	}

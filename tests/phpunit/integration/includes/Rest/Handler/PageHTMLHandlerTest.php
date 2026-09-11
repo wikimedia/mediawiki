@@ -65,7 +65,7 @@ class PageHTMLHandlerTest extends MediaWikiIntegrationTestCase {
 			$this->resetServicesWithMockedParsoid( $parsoid );
 		} else {
 			// ParserOutputAccess has a localCache which can return stale content.
-			// Resetting ensures that ParsoidCachePrewarmJob gets a fresh copy
+			// Resetting ensures that we get a fresh copy
 			// of ParserOutputAccess without these problems!
 			$this->resetServices();
 		}

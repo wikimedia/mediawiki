@@ -24,7 +24,6 @@ use MediaWiki\Edit\PreparedEdit;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\JobQueue\JobQueueGroup;
-use MediaWiki\JobQueue\Jobs\ParsoidCachePrewarmJob;
 use MediaWiki\Language\Language;
 use MediaWiki\Logging\LogPage;
 use MediaWiki\MainConfigNames;
@@ -1791,22 +1790,6 @@ class DerivedPageDataUpdater implements LoggerAwareInterface, PreparedUpdate {
 			$this->getCanonicalParserOptions(), $output, $wikiPage, $this->revision,
 			options: [], cacheTime: $timestamp
 		);
-
-		// If we enable cache warming with parsoid outputs, let's do it at the same
-		// time we're populating the parser cache with pre-generated HTML.
-		// Use OPT_FORCE_PARSE to avoid a useless cache lookup.
-		if ( $this->serviceOptions->get( MainConfigNames::ParsoidCacheConfig )['WarmParsoidParserCache'] ) {
-			$cacheWarmingParams = $this->getCauseForTracing();
-			$cacheWarmingParams['options'] = ParserOutputAccess::OPT_FORCE_PARSE;
-
-			$this->jobQueueGroup->lazyPush(
-				ParsoidCachePrewarmJob::newSpec(
-					$this->revision->getId(),
-					$wikiPage->toPageRecord(),
-					$cacheWarmingParams
-				)
-			);
-		}
 	}
 
 }

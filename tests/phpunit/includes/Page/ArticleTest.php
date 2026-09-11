@@ -180,14 +180,12 @@ class ArticleTest extends ParserCacheTestBase {
 	public function testOutputIsCached() {
 		$this->overrideConfigValue(
 			MainConfigNames::ParsoidCacheConfig,
-			[ 'WarmParsoidParserCache' => true ]
-			+ MainConfigSchema::getDefaultValue( MainConfigNames::ParsoidCacheConfig )
+			MainConfigSchema::getDefaultValue( MainConfigNames::ParsoidCacheConfig )
 		);
 		$title = $this->getExistingTestPage()->getTitle();
 		// Run any jobs enqueued by the creation of the test page
 		$this->runJobs( [ 'minJobs' => 0 ] );
 
-		$beforePreWarm = true;
 		$parserOutputAccess = $this->createNoOpMock(
 			ParserOutputAccess::class,
 			[ 'getCachedParserOutput', 'getParserOutput', ]
@@ -195,41 +193,32 @@ class ArticleTest extends ParserCacheTestBase {
 		$parserOutputAccess->method( 'getCachedParserOutput' )
 			->willReturn( null );
 		$parserOutputAccess
-			->expects( $this->exactly( 2 ) ) // This is the key assertion in this test case.
+			->expects( $this->once() ) // This is the key assertion in this test case.
 			->method( 'getParserOutput' )
 			->with(
 				$this->anything(),
-				$this->callback( function ( ParserOptions $parserOptions ) use ( &$beforePreWarm ) {
-					$expectedReason = $beforePreWarm ? 'page_view' : 'view';
-					$this->assertSame( $expectedReason, $parserOptions->getRenderReason() );
+				$this->callback( function ( ParserOptions $parserOptions ) {
+					$this->assertSame( 'page_view', $parserOptions->getRenderReason() );
 					return true;
 				} ),
 				$this->anything(),
-				$this->callback( function ( $options ) use ( &$beforePreWarm ) {
-					if ( $beforePreWarm ) {
-						$this->assertTrue( $options[ ParserOutputAccess::OPT_NO_CHECK_CACHE ] ?? false,
-							"The cache is not checked again" );
-						$this->assertTrue( $options[ ParserOutputAccess::OPT_LINKS_UPDATE ] ?? false,
-							"WikiPage::triggerOpportunisticLinksUpdate is attempted" );
-					}
+				$this->callback( function ( $options ) {
+					$this->assertTrue( $options[ ParserOutputAccess::OPT_NO_CHECK_CACHE ] ?? false,
+						"The cache is not checked again" );
+					$this->assertTrue( $options[ ParserOutputAccess::OPT_LINKS_UPDATE ] ?? false,
+						"WikiPage::triggerOpportunisticLinksUpdate is attempted" );
 					return true;
 				} )
 			)
-			->willReturnCallback( static function ( $page, $parserOptions, $revision, $options ) use ( &$beforePreWarm ) {
-				$content = $beforePreWarm ? 'Old Kittens' : 'New Kittens';
-				return Status::newGood( new ParserOutput( $content ) );
-			} );
+			->willReturn( Status::newGood( new ParserOutput( 'Kittens' ) ) );
 
 		$this->setService( 'ParserOutputAccess', $parserOutputAccess );
 
 		$article = $this->newArticle( $title );
 		$article->view();
 
-		$beforePreWarm = false;
-		$this->runJobs( [ 'minJobs' => 1, 'maxJobs' => 1 ], [ 'type' => 'parsoidCachePrewarm' ] );
-
 		// This is just a sanity check, not the key assertion.
-		$this->assertStringContainsString( 'Old Kittens', $article->getContext()->getOutput()->getHTML() );
+		$this->assertStringContainsString( 'Kittens', $article->getContext()->getOutput()->getHTML() );
 	}
 
 	/**

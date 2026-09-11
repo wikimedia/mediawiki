@@ -2661,7 +2661,6 @@ config-schema:
         properties:
             StashType: { type: [integer, string, 'null'], default: null }
             StashDuration: { type: integer, default: 86400 }
-            WarmParsoidParserCache: { type: boolean, default: false }
         description: |-
             Configuration for the caching related to parsoid output. The configuration contains the
             following keys:
@@ -2676,8 +2675,6 @@ config-schema:
                   Should be long enough for users to finish editing,
                   since losing an entry from the stash may mean that the user can't save their edit.
                   This is set to one day by default.
-            - WarmParsoidParserCache: Setting this to true will pre-populate the parsoid parser cache
-                  with parsoid outputs on page edits. This speeds up loading HTML into Visual Editor.
             @since 1.39
             @unstable Per MediaWiki 1.39, the structure of this configuration is still subject to
                       change.
@@ -7503,7 +7500,6 @@ config-schema:
             revertedTagUpdate: MediaWiki\JobQueue\Jobs\RevertedTagUpdateJob
             'null': MediaWiki\JobQueue\Jobs\NullJob
             userEditCountInit: MediaWiki\User\UserEditCountInitJob
-            parsoidCachePrewarm: { class: MediaWiki\JobQueue\Jobs\ParsoidCachePrewarmJob, services: [ParserOutputAccess, PageStore, RevisionLookup, ParsoidSiteConfig], needsPage: false }
             renameUserTable: { class: MediaWiki\RenameUser\Job\RenameUserTableJob, services: [MainConfig, DBLoadBalancerFactory] }
             renameUserDerived: { class: MediaWiki\RenameUser\Job\RenameUserDerivedJob, services: [RenameUserFactory, UserFactory] }
             renameUser: { class: MediaWiki\RenameUser\Job\RenameUserTableJob, services: [MainConfig, DBLoadBalancerFactory] }

@@ -5,12 +5,12 @@ use InvalidArgumentException;
 use MediaWiki\JobQueue\IJobSpecification;
 use MediaWiki\JobQueue\Job;
 use MediaWiki\JobQueue\Jobs\NullJob;
-use MediaWiki\JobQueue\Jobs\ParsoidCachePrewarmJob;
 use MediaWiki\JobQueue\Jobs\RefreshLinksJob;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Page\DeleteLinksJob;
 use MediaWiki\Request\WebRequest;
 use MediaWiki\Title\Title;
+use MediaWiki\Watchlist\WatchlistExpiryJob;
 use MediaWikiIntegrationTestCase;
 use stdClass;
 
@@ -141,16 +141,12 @@ class JobTest extends MediaWikiIntegrationTestCase {
 			'object spec with title' => [ [ 'class' => DeleteLinksJob::class ], DeleteLinksJob::class ],
 			'object spec with no title and not subclass of GenericParameterJob' => [
 				[
-					'class' => ParsoidCachePrewarmJob::class,
+					'class' => WatchlistExpiryJob::class,
 					'services' => [
-						'ParserOutputAccess',
-						'PageStore',
-						'RevisionLookup',
-						'ParsoidSiteConfig',
 					],
 					'needsPage' => false
 				],
-				ParsoidCachePrewarmJob::class
+				WatchlistExpiryJob::class
 			]
 		];
 	}

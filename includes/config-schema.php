@@ -552,7 +552,6 @@ return [
 			'ParsoidCacheConfig' => [
 				'StashType' => null,
 				'StashDuration' => 86400,
-				'WarmParsoidParserCache' => false,
 			],
 			'ParsoidSelectiveUpdateSampleRate' => 0,
 			'SplitParsoidParserCache' => true,
@@ -2284,16 +2283,6 @@ return [
 				'revertedTagUpdate' => 'MediaWiki\\JobQueue\\Jobs\\RevertedTagUpdateJob',
 				'null' => 'MediaWiki\\JobQueue\\Jobs\\NullJob',
 				'userEditCountInit' => 'MediaWiki\\User\\UserEditCountInitJob',
-				'parsoidCachePrewarm' => [
-					'class' => 'MediaWiki\\JobQueue\\Jobs\\ParsoidCachePrewarmJob',
-					'services' => [
-						'ParserOutputAccess',
-						'PageStore',
-						'RevisionLookup',
-						'ParsoidSiteConfig',
-					],
-					'needsPage' => false,
-				],
 				'renameUserTable' => [
 					'class' => 'MediaWiki\\RenameUser\\Job\\RenameUserTableJob',
 					'services' => [
