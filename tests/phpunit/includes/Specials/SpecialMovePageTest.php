@@ -22,6 +22,13 @@ use MediaWiki\User\User;
  * @group Database
  */
 class SpecialMovePageTest extends SpecialPageTestBase {
+	protected function setUp(): void {
+		parent::setUp();
+
+		// many of the tests rely on Englis namespace names, ensure those
+		// pass on dev envs with non-default langauges
+		$this->overrideConfigValue( MainConfigNames::LanguageCode, 'en' );
+	}
 
 	protected function newSpecialPage() {
 		return $this->getServiceContainer()->getSpecialPageFactory()->getPage( 'Movepage' );
