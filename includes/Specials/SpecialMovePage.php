@@ -34,7 +34,6 @@ use MediaWiki\Status\Status;
 use MediaWiki\Title\NamespaceInfo;
 use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleArrayFromResult;
-use MediaWiki\Title\TitleFactory;
 use MediaWiki\Title\TitleFormatter;
 use MediaWiki\User\Options\UserOptionsLookup;
 use MediaWiki\User\User;
@@ -108,7 +107,6 @@ class SpecialMovePage extends UnlistedSpecialPage {
 		private readonly WatchlistManager $watchlistManager,
 		private readonly WatchedItemStore $watchedItemStore,
 		private readonly RestrictionStore $restrictionStore,
-		private readonly TitleFactory $titleFactory,
 		private readonly DeletePageFactory $deletePageFactory,
 		private readonly RedirectLookup $redirectLookup,
 		private readonly TitleFormatter $titleFormatter

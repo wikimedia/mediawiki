@@ -1162,7 +1162,6 @@ class SpecialPageFactory {
 				'WatchlistManager',
 				'WatchedItemStore',
 				'RestrictionStore',
-				'TitleFactory',
 				'DeletePageFactory',
 				'RedirectLookup',
 				'TitleFormatter'
