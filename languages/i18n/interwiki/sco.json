@@ -23,7 +23,7 @@
 	"interwiki_0": "naw",
 	"interwiki_error": "Error: The interwiki table is tuim, or somehing else went wrang.",
 	"interwiki-cached": "The interwiki data is cached. Modifiein the cache isna possible.",
-	"interwiki_edit": "Eidit",
+	"interwiki_edit": "Edit",
 	"interwiki_reasonfield": "Raison:",
 	"interwiki_deleting": "Ye'r delytin prefix \"$1\".",
 	"interwiki_deleted": "Prefix \"$1\" wis successfulie remuived fae the interwiki buird.",

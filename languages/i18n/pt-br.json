@@ -303,6 +303,7 @@
 	"badaccess": "Erro de permissão",
 	"badaccess-group0": "Você não tem autorização para executar a ação requisitada.",
 	"badaccess-groups": "A ação que você tentou executar está limitada a usuários {{PLURAL:$2|do grupo|de um dos seguintes grupos}}: $1.",
+	"badaccess-groups-disabled": "A ação que você solicitou está restrita aos usuários do {{PLURAL:$2|grupo|um dos grupos}}: $1. Embora você seja membro do $3, sua participação no {{PLURAL:$4|grupo|grupos}} está desativada no momento.",
 	"versionrequired": "É necessária a versão $1 do MediaWiki",
 	"versionrequiredtext": "Esta página requer a versão $1 do MediaWiki para ser utilizada.\nVeja a [[Special:Version|página sobre a versão do sistema]].",
 	"ok": "OK",

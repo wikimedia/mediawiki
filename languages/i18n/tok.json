@@ -37,7 +37,8 @@
 			"物灵",
 			"Phurlaughn",
 			"Recqy",
-			"Jlwoodwa"
+			"Jlwoodwa",
+			"Junie-dalrezna"
 		]
 	},
 	"pagecategories": "{{PLURAL:$1|kulupu}}",
@@ -402,6 +403,7 @@
 	"createacct-error": "pali sijelo la pakala",
 	"createaccounterror": "mi ken ala pali e sijelo: $1",
 	"createacct-popup-redirect-notice": "sina pini pali e lipu jan la sina tawa ante...",
+	"createacct-username-policy-popover-title": "lawa pi nimi jan",
 	"nocookieslogin": "lipu {{SITENAME}} li wile e nanpa sona tawa kama sijelo.\nilo sina li weka e nanpa ni.\nsina ante e wile ilo la, o alasa sin.",
 	"nocookiesfornew": "mi ken ala sona e tan pi wile sijelo la, mi pali ala e sijelo.\nsina kepeken ala nanpa Cookie la, o ni, o sin e lipu ni, o alasa sin.",
 	"createacct-loginerror": "mi pali e sijelo sina. taso, mi ken ala kama e sina tawa sijelo. o kepeken [[Special:UserLogin|lipu ni]].",
@@ -1063,6 +1065,9 @@
 	"rcfilters-filter-bots-description": "ante lipu tan ilo",
 	"rcfilters-filter-humans-label": "jan (ilo ala)",
 	"rcfilters-filter-humans-description": "jan li ante",
+	"rcfilters-filter-reviewstatus-unpatrolled-label": "jan wawa li lukin ala e ni",
+	"rcfilters-filter-reviewstatus-manual-label": "jan wawa li lukin e ni",
+	"rcfilters-filter-reviewstatus-auto-label": "jan ilo wawa li lukin e ni",
 	"rcfilters-filtergroup-significance": "suli",
 	"rcfilters-filter-minor-label": "ante lili",
 	"rcfilters-filter-minor-description": "ante lili",

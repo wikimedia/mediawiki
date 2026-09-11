@@ -583,6 +583,7 @@
 	"missing-revision-content": "No puede hace load con el contenido del revision #$1 del pagina nombrao como \"$2\".",
 	"userpage-userdoesnotexist": "Hende registrao na este wiki el usuario \"$1\".\nFavor chequea si quiere tu crea/edita con este pagina.",
 	"userpage-userdoesnotexist-view": "Hende registrao con este wiki el usador \"$1\".",
+	"blocked-notice-logextract": "Bloqueao este maga tiempo este {{GENDER:$1|usador}}.\nTaqui el maga reciente entrada de registro del bloqueada activo, para na mas informacion:",
 	"blocked-notice-list-link": "Mira con el block list",
 	"previewnote": "<strong>Acorda que previsualizacion lang este.</strong>\nNo hay pa hace publica el maga cambio de tuyo!",
 	"continue-editing": "Anda na area de editacion",
