@@ -183,6 +183,9 @@ For notes on 1.46.x and older releases, see HISTORY.
   modifyDisplayQueryBuilder(). It takes a required Authority $performer before
   the optional filter arguments, so that rights-restricted change tags can be
   shown to and filtered on by users who are allowed to view them.
+* ChangeTagsStore::updateTagParams() is a new method that replaces the params
+  of a tag a change already carries, without removing the tag and applying it
+  again.
 * (T432457) The UnifiedDiffFormatter class is now stable to extend.
 * (T408666) A new hook LinkTargetIsAlwaysKnownBatch allows overriding whether
   links are always known for a batch of link targets at once. It deprecates

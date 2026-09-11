@@ -3,6 +3,7 @@
 namespace MediaWiki\Tests\ChangeTags;
 
 use InvalidArgumentException;
+use LogicException;
 use MediaWiki\ChangeTags\ChangeTags;
 use MediaWiki\ChangeTags\ChangeTagsStore;
 use MediaWiki\Context\RequestContext;
@@ -611,6 +612,82 @@ class ChangeTagsTest extends MediaWikiIntegrationTestCase {
 		sort( $expected );
 		sort( $actual );
 		$this->assertEquals( $expected, $actual );
+	}
+
+	public function testUpdateTagParams(): void {
+		$rcId = 123;
+		$revId = 341;
+		$logId = null;
+		$this->changeTags->updateTags( [ 'tag1', 'tag2' ], [], $rcId, $revId, $logId, '{"first":1}' );
+
+		$this->assertTrue(
+			$this->changeTags->updateTagParams( 'tag1', '{"second":2}', $rcId, $revId ),
+			'the change carries the tag, so its params are replaced'
+		);
+
+		$this->newSelectQueryBuilder()
+			->select( [ 'ctd_name', 'ct_params', 'ctd_count' ] )
+			->from( 'change_tag' )
+			->join( 'change_tag_def', null, 'ctd_id = ct_tag_id' )
+			->caller( __METHOD__ )
+			->assertResultSet( [
+				// values of fields 'ctd_name', 'ct_params', 'ctd_count'
+				[ 'tag1', '{"second":2}', 1 ],
+				[ 'tag2', '{"first":1}', 1 ],
+			] );
+	}
+
+	public function testUpdateTagParamsWhenTheChangeDoesNotCarryTheTag(): void {
+		$rcId = 123;
+		$revId = 341;
+		$this->changeTags->updateTags( [ 'tag1' ], [], $rcId, $revId );
+
+		$this->assertFalse(
+			$this->changeTags->updateTagParams( 'tag1', '{"a":1}', 999 ),
+			'a change that does not carry the tag reports no update'
+		);
+		$this->assertFalse(
+			$this->changeTags->updateTagParams( 'nosuchtag', '{"a":1}', $rcId, $revId ),
+			'a tag with no definition names no rows to update'
+		);
+	}
+
+	public function testUpdateTagParamsWithoutAChangeId(): void {
+		$this->expectException( InvalidArgumentException::class );
+		$this->changeTags->updateTagParams( 'tag1', null );
+	}
+
+	public function testUpdateTagParamsForSecondLogEntryWithSameAssociatedRevId(): void {
+		$revId = 789;
+		$firstRcId = 123;
+		$firstLogId = 456;
+		$this->changeTags->updateTags( [ 'tag' ], [], $firstRcId, $revId, $firstLogId, 'params1' );
+
+		$secondRcId = 124;
+		$secondLogId = 457;
+		$this->changeTags->updateTags( [ 'tag' ], [], $secondRcId, $revId, $secondLogId, 'params2' );
+
+		$this->assertTrue(
+			$this->changeTags->updateTagParams( 'tag', 'params3', $secondRcId, $revId, $secondLogId ),
+			'the row for the second log entry is updated even though it holds no rev ID'
+		);
+
+		$this->newSelectQueryBuilder()
+			->select( [ 'ct_rc_id', 'ct_rev_id', 'ct_log_id', 'ct_params' ] )
+			->from( 'change_tag' )
+			->caller( __METHOD__ )
+			->assertResultSet( [
+				// values of fields 'ct_rc_id', 'ct_rev_id', 'ct_log_id', 'ct_params'
+				[ $firstRcId, $revId, $firstLogId, 'params1' ],
+				[ $secondRcId, null, $secondLogId, 'params3' ],
+			] );
+	}
+
+	public function testUpdateTagParamsOnRemoteWiki(): void {
+		$store = $this->getServiceContainer()->getChangeTagsStoreFactory()->getChangeTagsStore( 'remotewiki' );
+
+		$this->expectException( LogicException::class );
+		$store->updateTagParams( 'tag1', '{"a":1}', 123 );
 	}
 
 	public function testUpdateTags() {

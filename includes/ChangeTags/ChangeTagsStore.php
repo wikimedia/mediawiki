@@ -982,6 +982,81 @@ class ChangeTagsStore {
 	}
 
 	/**
+	 * Replace the params of a tag already applied to a change.
+	 *
+	 * {@link self::updateTags()} writes ct_params when it applies a tag, and applying a tag the change
+	 * already has does nothing. Use this to change the params of a tag in place, rather
+	 * than removing the tag and applying it again.
+	 *
+	 * This operation is supported only for the local wiki.
+	 *
+	 * At least one of $rcId, $revId and $logId must be given.
+	 *
+	 * @since 1.47
+	 * @param string $tag Name of the tag to update
+	 * @param string|null $params Params to put in the ct_params field of table 'change_tag'
+	 * @param int|null $rcId The rc_id of the change the tag is on
+	 * @param int|null $revId The rev_id of the change the tag is on
+	 * @param int|null $logId The log_id of the change the tag is on
+	 * @return bool Whether the change carried the tag, and so was updated
+	 */
+	public function updateTagParams(
+		string $tag,
+		?string $params,
+		?int $rcId = null,
+		?int $revId = null,
+		?int $logId = null
+	): bool {
+		if ( $this->wiki !== false ) {
+			throw new LogicException( 'ChangeTagsStore does not support updating tag params on remote wikis' );
+		}
+
+		if ( !$rcId && !$logId && !$revId ) {
+			throw new InvalidArgumentException(
+				'At least one of: RCID, revision ID, and log ID MUST be ' .
+				'specified when updating the params of a tag on a change!'
+			);
+		}
+
+		try {
+			$tagId = $this->changeTagDefStore->getId( $tag );
+		} catch ( NameTableAccessException ) {
+			return false;
+		}
+
+		$dbw = $this->dbProvider->getPrimaryDatabase();
+
+		$matchingChangeIdConds = [ $dbw->andExpr( array_filter( [
+			'ct_rc_id' => $rcId,
+			'ct_log_id' => $logId,
+			'ct_rev_id' => $revId,
+		] ) ) ];
+
+		// If more than one log ID is associated with a rev ID, the change_tag row to update may
+		// have our log ID but the rev ID as null.
+		if ( $logId !== null && $revId !== null ) {
+			$logSpecificCond = [
+				'ct_log_id' => $logId,
+				'ct_rev_id' => null,
+			];
+			if ( $rcId !== null ) {
+				$logSpecificCond['ct_rc_id'] = $rcId;
+			}
+			$matchingChangeIdConds[] = $dbw->andExpr( $logSpecificCond );
+		}
+
+		$dbw->newUpdateQueryBuilder()
+			->update( self::CHANGE_TAG )
+			->set( [ 'ct_params' => $params ] )
+			->where( $dbw->expr( 'ct_tag_id', '=', $tagId ) )
+			->andWhere( $dbw->orExpr( $matchingChangeIdConds ) )
+			->caller( __METHOD__ )
+			->execute();
+
+		return (bool)$dbw->affectedRows();
+	}
+
+	/**
 	 * Add tags to a change given its rc_id, rev_id and/or log_id
 	 *
 	 * @param string|string[] $tags Tags to add to the change
