@@ -101,15 +101,6 @@ abstract class Profiler {
 	}
 
 	/**
-	 * @deprecated since 1.41, unused. Can override this base class.
-	 * @param string $id
-	 */
-	public function setProfileID( $id ) {
-		wfDeprecated( __METHOD__, '1.41' );
-		$this->profileID = $id;
-	}
-
-	/**
 	 * @return string
 	 */
 	public function getProfileID() {

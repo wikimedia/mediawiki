@@ -374,6 +374,7 @@ because of Phabricator reports.
   instead.
 * Maintenance::runChild(), deprecated in 1.43, has been removed.
 * Profiler::getAllowOutput(), deprecated since 1.41, has been removed.
+* Profiler::setProfileID(), deprecated since 1.41, has been removed.
 * Html::buttonAttributes() and Html::getTextInputAttributes(),
   deprecated in 1.43, have been removed.
 * WebRequest::isSafeRequest() and WebRequest::markAsSafeRequest(),
