@@ -3202,11 +3202,11 @@ config-schema:
         description: 'Maximum entry size in the message cache, in bytes'
     DisableLangConversion:
         default: false
-        description: 'Whether to enable language variant conversion.'
+        description: 'Whether to disable language variant conversion.'
     DisableTitleConversion:
         default: false
         description: |-
-            Whether to enable language variant conversion for links.
+            Whether to disable language variant conversion for links.
             Note that this option is slightly misnamed.
     DefaultLanguageVariant:
         default: false

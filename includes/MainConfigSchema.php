@@ -5132,14 +5132,14 @@ class MainConfigSchema {
 	];
 
 	/**
-	 * Whether to enable language variant conversion.
+	 * Whether to disable language variant conversion.
 	 */
 	public const DisableLangConversion = [
 		'default' => false,
 	];
 
 	/**
-	 * Whether to enable language variant conversion for links.
+	 * Whether to disable language variant conversion for links.
 	 * Note that this option is slightly misnamed.
 	 */
 	public const DisableTitleConversion = [
