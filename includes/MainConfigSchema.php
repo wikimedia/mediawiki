@@ -12001,7 +12001,11 @@ class MainConfigSchema {
 				],
 			],
 			'clearUserWatchlist' => ClearUserWatchlistJob::class,
-			'watchlistExpiry' => WatchlistExpiryJob::class,
+			'watchlistExpiry' => [
+				'class' => WatchlistExpiryJob::class,
+				// tell the JobFactory not to include the $page parameter in the constructor call
+				'needsPage' => false
+			],
 			'cdnPurge' => CdnPurgeJob::class,
 			'userGroupExpiry' => UserGroupExpiryJob::class,
 			'clearWatchlistNotifications' => ClearWatchlistNotificationsJob::class,

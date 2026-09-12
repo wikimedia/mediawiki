@@ -7495,7 +7495,7 @@ config-schema:
             categoryMembershipChange: { class: MediaWiki\RecentChanges\CategoryMembershipChangeJob, services: [RecentChangeFactory] }
             CategoryCountUpdateJob: { class: MediaWiki\JobQueue\Jobs\CategoryCountUpdateJob, services: [ConnectionProvider, NamespaceInfo] }
             clearUserWatchlist: MediaWiki\Watchlist\ClearUserWatchlistJob
-            watchlistExpiry: MediaWiki\Watchlist\WatchlistExpiryJob
+            watchlistExpiry: { class: MediaWiki\Watchlist\WatchlistExpiryJob, needsPage: false }
             cdnPurge: MediaWiki\JobQueue\Jobs\CdnPurgeJob
             userGroupExpiry: MediaWiki\User\UserGroupExpiryJob
             clearWatchlistNotifications: MediaWiki\Watchlist\ClearWatchlistNotificationsJob

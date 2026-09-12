@@ -11,8 +11,8 @@ use MediaWiki\MediaWikiServices;
  */
 class WatchlistExpiryJob extends Job {
 
-	public function __construct( string $command = 'watchlistExpiry', array $params = [] ) {
-		parent::__construct( $command, $params );
+	public function __construct( array $params = [] ) {
+		parent::__construct( 'watchlistExpiry', $params );
 	}
 
 	/**

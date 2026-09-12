@@ -2273,7 +2273,10 @@ return [
 					],
 				],
 				'clearUserWatchlist' => 'MediaWiki\\Watchlist\\ClearUserWatchlistJob',
-				'watchlistExpiry' => 'MediaWiki\\Watchlist\\WatchlistExpiryJob',
+				'watchlistExpiry' => [
+					'class' => 'MediaWiki\\Watchlist\\WatchlistExpiryJob',
+					'needsPage' => false,
+				],
 				'cdnPurge' => 'MediaWiki\\JobQueue\\Jobs\\CdnPurgeJob',
 				'userGroupExpiry' => 'MediaWiki\\User\\UserGroupExpiryJob',
 				'clearWatchlistNotifications' => 'MediaWiki\\Watchlist\\ClearWatchlistNotificationsJob',
