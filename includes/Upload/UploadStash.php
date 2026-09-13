@@ -115,7 +115,8 @@ class UploadStash {
 				isset( $this->fileMetadata[$key]['us_props'] )
 				&& strlen( $this->fileMetadata[$key]['us_props'] )
 			) {
-				$this->fileProps[$key] = unserialize( $this->fileMetadata[$key]['us_props'] );
+				$this->fileProps[$key] = unserialize( $this->fileMetadata[$key]['us_props'],
+					[ 'allowed_classes' => false ] );
 			} else {
 				// b/c for rows with no us_props
 				wfDebug( __METHOD__ . " fetched props for $key from file" );
