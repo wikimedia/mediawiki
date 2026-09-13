@@ -73,7 +73,6 @@
 		}
 
 		if ( options.classes ) {
-			// eslint-disable-next-line mediawiki/class-doc
 			$notification.addClass( options.classes );
 		}
 

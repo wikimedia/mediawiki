@@ -29,7 +29,6 @@ module.exports = {
 		 * @memberof module:vue.prototype
 		 */
 		function $i18n( key, ...parameters ) {
-			// eslint-disable-next-line mediawiki/msg-doc
 			return mw.message( key, ...parameters );
 		}
 
@@ -39,7 +38,6 @@ module.exports = {
 		app.provide( 'i18n', $i18n );
 
 		function renderI18nHtml( el, binding ) {
-			/* eslint-disable mediawiki/msg-doc */
 			let message;
 
 			if ( Array.isArray( binding.value ) ) {

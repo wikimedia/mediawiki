@@ -68,7 +68,6 @@
 		loadMessagesIfMissing: function ( messages, options ) {
 			messages = Array.isArray( messages ) ? messages : [ messages ];
 			const missing = messages.filter(
-				// eslint-disable-next-line mediawiki/msg-doc
 				( msg ) => !mw.message( msg ).exists()
 			);
 

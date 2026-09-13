@@ -350,7 +350,6 @@ mw.message = function ( key ) {
 mw.msg = function ( key, ...parameters ) {
 	// Shortcut must process text transformations by default
 	// if mediawiki.jqueryMsg is loaded. (T46459)
-	// eslint-disable-next-line mediawiki/msg-doc
 	return mw.message( key, ...parameters ).text();
 };
 

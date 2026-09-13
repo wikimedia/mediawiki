@@ -14,10 +14,14 @@
 		"es-x/no-promise-prototype-finally": "off",
 		"no-jquery/no-done-fail": "off",
 		"no-jquery/no-global-selector": "off",
-		"jsdoc/no-undefined-types": [ 1, {
-			"definedTypes": [
-				"Hooks"
-			]
-		} ]
+		"jsdoc/no-undefined-types": [
+			1,
+			{
+				"definedTypes": [
+					"Hooks"
+				]
+			}
+		],
+		"unicorn/prefer-includes": "warn"
 	}
 }
