@@ -2094,6 +2094,7 @@
 	"apiwarn-global-option-ignored": "Option <var>$1</var> is globally overridden. You can use <kbd>global=update</kbd> to change the option globally, or <kbd>global=override</kbd> to set a local override.",
 	"apiwarn-ignoring-invalid-templated-value": "Ignoring value <kbd>$2</kbd> in <var>$1</var> when processing templated parameters.",
 	"apiwarn-invalidcategory": "\"$1\" is not a category.",
+	"apiwarn-invalidrange": "\"$1\" is not a valid range.",
 	"apiwarn-invalidtitle": "\"$1\" is not a valid title.",
 	"apiwarn-moduleswithoutvars": "Property <kbd>modules</kbd> was set but not <kbd>jsconfigvars</kbd> or <kbd>encodedjsconfigvars</kbd>. Configuration variables are necessary for proper module usage.",
 	"apiwarn-notfile": "\"$1\" is not a file.",

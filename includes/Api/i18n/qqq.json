@@ -1999,6 +1999,7 @@
 	"apiwarn-global-option-ignored": "{{doc-apierror}}\n\nParameters:\n* $1 - Supplied option name.",
 	"apiwarn-ignoring-invalid-templated-value": "{{doc-apierror}}\n\nParameters:\n* $1 - Target parameter having a bad value.\n* $2 - The bad value being ignored.",
 	"apiwarn-invalidcategory": "{{doc-apierror}}\n\nParameters:\n* $1 - Supplied category name.",
+	"apiwarn-invalidrange": "{{doc-apierror}}\n\nParameters:\n* $1 - Computed range.",
 	"apiwarn-invalidtitle": "{{doc-apierror}}\n\nParameters:\n* $1 - Supplied title.",
 	"apiwarn-moduleswithoutvars": "{{doc-apierror}}",
 	"apiwarn-notfile": "{{doc-apierror}}\n\nParameters:\n* $1 - Supplied file name.",

@@ -375,6 +375,17 @@ abstract class ApiQueryBase extends ApiBase {
 		if ( $sort ) {
 			$this->getQueryBuilder()->orderBy( $field, $isDirNewer ? null : 'DESC' );
 		}
+
+		if ( // Warn if the range is impossible due to reversed boundaries
+			( is_numeric( $start ) && is_numeric( $end ) ) && (
+			( $isDirNewer && $start > $end ) ||
+			( !$isDirNewer && $start < $end )
+		) ) {
+			// If $isDirNewer:  $field >= $start AND $field <= $end
+			// If !$isDirNewer: $field <= $start AND $field >= $end
+			$op = $isDirNewer ? '<' : '>';
+			$this->addWarning( [ 'apiwarn-invalidrange', "$start $op $end" ] );
+		}
 	}
 
 	/**
