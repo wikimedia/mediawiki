@@ -87,14 +87,17 @@ class ResolveStubs extends Maintenance {
 	 */
 	public function resolveStub( $row, $dryRun ) {
 		$id = $row->old_id;
-		$stub = unserialize( $row->old_text );
+		$stub = unserialize( $row->old_text, [ 'allowed_classes' => HistoryBlobUtils::getAllowedClasses() ] );
 		$flags = SqlBlobStore::explodeFlags( $row->old_flags );
 
 		$dbr = $this->getReplicaDB();
 
 		if ( !( $stub instanceof HistoryBlobStub ) ) {
-			print "Error at old_id $id: found object of class " . get_class( $stub ) .
-				", expecting HistoryBlobStub\n";
+			$className = get_class( $stub );
+			if ( $className === __PHP_Incomplete_Class::class ) {
+				$className = ( (array)$stub )['__PHP_Incomplete_Class_Name'];
+			}
+			print "Error at old_id $id: found object of class $className, expecting HistoryBlobStub\n";
 			return false;
 		}
 

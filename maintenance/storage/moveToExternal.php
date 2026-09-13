@@ -157,7 +157,7 @@ class MoveToExternal extends Maintenance {
 				if ( in_array( 'error', $flags ) ) {
 					continue;
 				} elseif ( in_array( 'object', $flags ) ) {
-					$obj = unserialize( $text );
+					$obj = unserialize( $text, [ 'allowed_classes' => HistoryBlobUtils::getAllowedClasses() ] );
 					if ( $obj instanceof HistoryBlobStub ) {
 						// Handle later, after CGZ resolution
 						if ( !$this->skipResolve ) {
@@ -186,6 +186,9 @@ class MoveToExternal extends Maintenance {
 						// Store as is
 					} else {
 						$className = get_class( $obj );
+						if ( $className === __PHP_Incomplete_Class::class ) {
+							$className = ( (array)$obj )['__PHP_Incomplete_Class_Name'];
+						}
 						print "Warning: old_id=$id unrecognised object class \"$className\"\n";
 						$success = false;
 						continue;
