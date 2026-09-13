@@ -287,7 +287,8 @@ class CheckStorage extends Maintenance {
 								$this->addError( 'unfixable', "Error: overlong stub header", $oldId );
 								break;
 							}
-							$stubObj = unserialize( $row->header );
+							$stubObj = unserialize( $row->header,
+								[ 'allowed_classes' => HistoryBlobUtils::getAllowedClasses() ] );
 							if ( !is_object( $stubObj ) ) {
 								$this->addError( 'restore text', "Error: unable to unserialize stub object", $oldId );
 								break;
