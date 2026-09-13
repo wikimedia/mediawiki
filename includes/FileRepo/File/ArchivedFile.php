@@ -575,7 +575,7 @@ class ArchivedFile {
 			}
 		} else {
 			// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged
-			$data = @unserialize( $metadataString );
+			$data = @unserialize( $metadataString, [ 'allowed_classes' => false ] );
 			if ( !is_array( $data ) ) {
 				// Legacy error encoding
 				$data = [ '_error' => $metadataString ];

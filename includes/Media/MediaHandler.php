@@ -303,7 +303,7 @@ abstract class MediaHandler {
 		}
 		if ( $blob !== false ) {
 			// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged
-			$metadata = @unserialize( $blob );
+			$metadata = @unserialize( $blob, [ 'allowed_classes' => false ] );
 			if ( $metadata === false ) {
 				// Unserialize error
 				$metadata = [ '_error' => $blob ];

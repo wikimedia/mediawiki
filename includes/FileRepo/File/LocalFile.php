@@ -1328,7 +1328,7 @@ class LocalFile extends File {
 			}
 		} else {
 			// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged
-			$data = @unserialize( $metadataString );
+			$data = @unserialize( $metadataString, [ 'allowed_classes' => false ] );
 			if ( !is_array( $data ) ) {
 				// Legacy error encoding
 				$data = [ '_error' => $metadataString ];
@@ -1833,7 +1833,7 @@ class LocalFile extends File {
 				// property using serialize(). Normally the metadata property
 				// comes from MWFileProps, in which case it won't be a string.
 				// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged
-				$metadata = @unserialize( $props['metadata'] );
+				$metadata = @unserialize( $props['metadata'], [ 'allowed_classes' => false ] );
 			} else {
 				$metadata = $props['metadata'];
 			}
