@@ -18,6 +18,10 @@ class GlobalDependency extends CacheDependency {
 	/** @var mixed */
 	private $value;
 
+	/**
+	 * @param string $name Name of the global variable the cache depends on. The value of
+	 *    the variable must be JSON-compatible.
+	 */
 	public function __construct( string $name ) {
 		$this->name = $name;
 		$this->value = $GLOBALS[$name];

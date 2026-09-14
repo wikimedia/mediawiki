@@ -8,6 +8,7 @@ namespace MediaWiki\Language;
 
 use InvalidArgumentException;
 use LogicException;
+use MediaWiki\Language\Dependency\CacheDependency;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Profiler\Profiler;
 use RuntimeException;
@@ -57,7 +58,9 @@ class LCStoreDB extends LCStore {
 			->where( [ 'lc_lang' => $code, 'lc_key' => $key ] )
 			->caller( __METHOD__ )->fetchField();
 
-		return ( $value !== false ) ? unserialize( $db->decodeBlob( $value ) ) : null;
+		return ( $value !== false )
+			? unserialize( $db->decodeBlob( $value ), [ 'allowed_classes' => CacheDependency::getAllowedClasses() ] )
+			: null;
 	}
 
 	/** @inheritDoc */

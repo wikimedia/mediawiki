@@ -6,6 +6,7 @@
 
 namespace MediaWiki\Language;
 
+use MediaWiki\Language\Dependency\CacheDependency;
 use RuntimeException;
 use Wikimedia\StaticArrayWriter;
 
@@ -179,7 +180,7 @@ class LCStoreStaticArray extends LCStore {
 				// Value array (1.35+) or unwrapped scalar value (1.32 and earlier)
 				return $data;
 			case 's':
-				return unserialize( $data );
+				return unserialize( $data, [ 'allowed_classes' => CacheDependency::getAllowedClasses() ] );
 			case 'a':
 				// Support: MediaWiki 1.34 and earlier (older file format)
 				return array_map( static fn ( $value ) => is_array( $value ) ? self::decode( $value ) : $value, $data );

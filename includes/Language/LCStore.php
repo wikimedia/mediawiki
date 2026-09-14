@@ -33,6 +33,7 @@ abstract class LCStore {
 	 *
 	 * @param string $code Language code
 	 * @param string $key Cache key
+	 * @return mixed Returns a scalar, CacheDependency object or a (possibly deep) array of those.
 	 */
 	abstract public function get( $code, $key );
 
@@ -53,7 +54,7 @@ abstract class LCStore {
 	 * is called, and finishWrite() must be called after.
 	 *
 	 * @param string $key
-	 * @param mixed $value
+	 * @param mixed $value A scalar, CacheDependency object or a (possibly deep) array of those.
 	 */
 	abstract public function set( $key, $value );
 

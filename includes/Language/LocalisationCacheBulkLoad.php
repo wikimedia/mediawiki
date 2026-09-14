@@ -6,6 +6,8 @@
 
 namespace MediaWiki\Language;
 
+use MediaWiki\Language\Dependency\CacheDependency;
+
 /**
  * LocalisationCache optimised for loading many languages at once.
  *
@@ -56,7 +58,8 @@ class LocalisationCacheBulkLoad extends LocalisationCache {
 
 			return $data;
 		} elseif ( $serialize ) {
-			return unserialize( $this->fileCache[$fileName][$fileType] );
+			return unserialize( $this->fileCache[$fileName][$fileType],
+				[ 'allowed_classes' => CacheDependency::getAllowedClasses() ] );
 		} else {
 			return $this->fileCache[$fileName][$fileType];
 		}

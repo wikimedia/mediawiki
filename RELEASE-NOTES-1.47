@@ -592,6 +592,14 @@ For notes on 1.46.x and older releases, see HISTORY.
   WikiMap::getCurrentWikiId() as label instead.
 * TextSlotDiffRenderer::setStatsdDataFactory(), deprecated since 1.43,
   has been removed.
+* CacheDependency is not stable to extend anymore, as the list of possible
+  subclasses is needed during unserialization, and no known extension
+  extended it.
+* LCStore::set() and other ways to set data in the localization cache
+  (notably the LocalisationCacheRecache and LocalisationCacheRecache hooks)
+  are restricted to JSON-compatible values plus CacheDependency subclasses.
+  Setting other values never did anything useful, and no known extension
+  did so.
 
 === Deprecations in 1.47 ===
 

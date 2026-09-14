@@ -9,7 +9,6 @@ namespace MediaWiki\Language\Dependency;
 /**
  * Base class to represent dependencies for LocalisationCache entries.
  *
- * @stable to extend
  * @ingroup Language
  */
 abstract class CacheDependency {
@@ -27,6 +26,24 @@ abstract class CacheDependency {
 	 * @stable to override
 	 */
 	public function loadDependencyValues() {
+	}
+
+	/**
+	 * Get the classes which are allowed to be stored serialized in the LCStore
+	 * @return string[]
+	 */
+	public static function getAllowedClasses(): array {
+		return [
+			ConstantDependency::class,
+			FileDependency::class,
+			GlobalDependency::class,
+			MainConfigDependency::class,
+			// renamespaced in 1.47, can drop this in next LTS release
+			\ConstantDependency::class,
+			\FileDependency::class,
+			\GlobalDependency::class,
+			\MainConfigDependency::class,
+		];
 	}
 }
 
