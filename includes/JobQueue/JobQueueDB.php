@@ -900,7 +900,9 @@ class JobQueueDB extends JobQueue {
 	 * @return RunnableJob
 	 */
 	protected function jobFromRow( $row ) {
-		$params = ( (string)$row->job_params !== '' ) ? unserialize( $row->job_params ) : [];
+		$params = ( (string)$row->job_params !== '' )
+			? unserialize( $row->job_params, [ 'allowed_classes' => false ] )
+			: [];
 		if ( !is_array( $params ) ) { // this shouldn't happen
 			throw new UnexpectedValueException(
 				"Could not unserialize job with ID '{$row->job_id}'." );

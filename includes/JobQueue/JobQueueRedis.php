@@ -15,6 +15,7 @@ use MediaWiki\WikiMap\WikiMap;
 use Psr\Log\LoggerInterface;
 use Redis;
 use RedisException;
+use stdClass;
 use UnexpectedValueException;
 use Wikimedia\Iterators\MappedIterator;
 use Wikimedia\ObjectCache\RedisConnectionPool;
@@ -745,10 +746,10 @@ LUA;
 	 * @return array|false Unserialized version of $blob or false
 	 */
 	protected function unserialize( $blob ) {
-		$fields = unserialize( $blob );
+		$fields = unserialize( $blob, [ 'allowed_classes' => [ stdClass::class ] ] );
 		if ( is_object( $fields ) ) {
 			if ( $fields->enc === 'gzip' && function_exists( 'gzinflate' ) ) {
-				$fields = unserialize( gzinflate( $fields->blob ) );
+				$fields = unserialize( gzinflate( $fields->blob ), [ 'allowed_classes' => false ] );
 			} else {
 				$fields = false;
 			}
