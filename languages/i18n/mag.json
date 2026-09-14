@@ -1186,7 +1186,7 @@
 	"watchstar-popup-already-watched": "\"$1\" आउ एकर वार्ता पन्ना अपनेके [[Special:Watchlist|ध्यानसूची]]मे हे ।",
 	"watchstar-popup-expiry-help": "अपने अपन [[$1|ध्यानसूची प्राथमिकता]]मे पूर्वनिर्धारित समाप्ति बदल सक हथिन ।",
 	"watchstar-popup-labels": "ध्यानसूची लेबल:",
-	"watchstar-popup-labels-help": "[[$1|लेबल प्रबन्धक]]से लेबल बनावथिन वा हटावथिन ।",
+	"watchstar-popup-labels-help": "[[$1|लेबल प्रबन्धक]]मे नया लेबल बनावथिन ।",
 	"watchstar-popup-labels-no-results": "कौनो लेबल नै भेटलै",
 	"watch": "ध्यानसूचीमे डालथिन",
 	"watchthispage": "ई पन्नाके ध्यानसूचीमे रखथिन",

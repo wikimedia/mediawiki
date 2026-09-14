@@ -2616,6 +2616,7 @@
 	"movepage-page-moved": "Siden $1 er blevet flyttet til $2.",
 	"movepage-page-unmoved": "Siden $1 kunne ikke flyttes til $2.",
 	"movepage-max-pages": "Grænsen på $1 {{PLURAL:$1|sideflytning|sideflytninger}} er nået. De resterende sider vil ikke blive flyttet automatisk.",
+	"movepage-already-moved": "Denne side blev flyttet efter du åbnede formularen.",
 	"movelogpage": "Flyttelog",
 	"movelogpagetext": "Nedenfor vises flyttede sider.",
 	"movesubpage": "{{PLURAL:$1|Underside|Undersider}}",

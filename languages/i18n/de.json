@@ -2668,6 +2668,7 @@
 	"movepage-page-moved": "Die Seite „$1“ wurde nach „$2“ verschoben.",
 	"movepage-page-unmoved": "Die Seite „$1“ konnte nicht nach „$2“ verschoben werden.",
 	"movepage-max-pages": "Es wurde die Maximalanzahl von {{PLURAL:$1|einer Seite|$1 Seiten}} verschoben. Alle weiteren Seiten können nicht automatisch verschoben werden.",
+	"movepage-already-moved": "Diese Seite wurde verschoben, nachdem {{#FORMAL:du das Formular geöffnet hattest|Sie das Formular geöffnet hatten}}.",
 	"movelogpage": "Verschiebungs-Logbuch",
 	"movelogpagetext": "Dies ist eine Liste aller verschobenen Seiten.",
 	"movesubpage": "{{PLURAL:$1|Unterseite|Unterseiten}}",

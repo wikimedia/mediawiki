@@ -2653,6 +2653,7 @@
 	"movepage-page-moved": "De pagina $1 is hernoemd naar $2.",
 	"movepage-page-unmoved": "De pagina $1 kon niet hernoemd worden naar $2.",
 	"movepage-max-pages": "Het maximale aantal automatisch te hernoemen pagina's is bereikt ({{PLURAL:$1|$1|$1}}).\nDe overige pagina's worden niet automatisch hernoemd.",
+	"movepage-already-moved": "Deze pagina is hernoemd nadat u het formulier hebt geopend.",
 	"movelogpage": "Hernoemingslogboek",
 	"movelogpagetext": "Hieronder staan hernoemde pagina's.",
 	"movesubpage": "{{PLURAL:$1|Subpagina|Subpagina’s}}",

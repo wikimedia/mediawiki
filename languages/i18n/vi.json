@@ -2622,6 +2622,7 @@
 	"movepage-page-moved": "Trang $1 đã được di chuyển đến $2.",
 	"movepage-page-unmoved": "Trang $1 không thể di chuyển đến $2.",
 	"movepage-max-pages": "Đã có tối đa $1 trang đã di chuyển và không tự động di chuyển thêm được nữa.",
+	"movepage-already-moved": "Trang này đã được di chuyển sau khi bạn mở biểu mẫu.",
 	"movelogpage": "Nhật trình di chuyển",
 	"movelogpagetext": "Dưới đây là danh sách các trang đã được di chuyển.",
 	"movesubpage": "{{PLURAL:$1|Trang con|Các trang con}}",

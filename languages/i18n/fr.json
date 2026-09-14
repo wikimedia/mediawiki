@@ -2777,6 +2777,7 @@
 	"movepage-page-moved": "La page $1 a été renommée en $2.",
 	"movepage-page-unmoved": "La page $1 n’a pas pu être renommée en $2.",
 	"movepage-max-pages": "Le maximum de $1 {{PLURAL:$1|page renommée|pages renommées}} a été atteint et aucune autre page ne sera renommée automatiquement.",
+	"movepage-already-moved": "Cette page a déjà été renommée.",
 	"movelogpage": "Journal des renommages",
 	"movelogpagetext": "Voici la liste de toutes les pages renommées ou déplacées.",
 	"movesubpage": "Sous-page{{PLURAL:$1||s}}",

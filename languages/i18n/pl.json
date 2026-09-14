@@ -2657,6 +2657,7 @@
 	"movepage-page-moved": "Strona „$1” została przeniesiona do „$2”.",
 	"movepage-page-unmoved": "Strona „$1” nie mogła zostać przeniesiona do „$2”.",
 	"movepage-max-pages": "Przeniesionych zostało $1 {{PLURAL:$1|strona|strony|stron}}. Większa liczba nie może być przeniesiona automatycznie.",
+	"movepage-already-moved": "Ta strona została przeniesiona po otwarciu formularza.",
 	"movelogpage": "Rejestr przeniesień",
 	"movelogpagetext": "Lista stron, które ostatnio zostały przeniesione.",
 	"movesubpage": "{{PLURAL:$1|Podstrona|Podstrony}}",

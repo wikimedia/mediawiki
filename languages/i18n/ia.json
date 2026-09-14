@@ -2550,6 +2550,7 @@
 	"movepage-page-moved": "Le pagina $1 ha essite renominate a $2.",
 	"movepage-page-unmoved": "Le pagina $1 non poteva esser renominate a $2.",
 	"movepage-max-pages": "Le maximo de $1 {{PLURAL:$1|pagina|paginas}} ha essite renominate e nulle altere pagina pote esser renominate automaticamente.",
+	"movepage-already-moved": "Iste pagina ha essite renominate post que tu ha aperite le formulario.",
 	"movelogpage": "Registro de renominationes",
 	"movelogpagetext": "Infra es un lista de paginas renominate.",
 	"movesubpage": "{{PLURAL:$1|Subpagina|Subpaginas}}",

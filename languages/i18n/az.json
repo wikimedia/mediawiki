@@ -2585,6 +2585,7 @@
 	"movepage-page-moved": "$1 səhifəsi $2 səhifəsinə köçürülüb.",
 	"movepage-page-unmoved": "$1 səhifəsi $2 səhifəsinə köçürülə bilinmir.",
 	"movepage-max-pages": "Maksimum $1 {{PLURAL:$1|səhifənin}} adı dəyişdirilib və daha avtomatik dəyişdirilməyəcək.",
+	"movepage-already-moved": "Bu səhifənin adı siz formanı açdıqdan sonra dəyişdirilib.",
 	"movelogpage": "Addəyişmə jurnalı",
 	"movelogpagetext": "Aşağıda bütün səhifə addəyişmələrinin siyahısı verilmişdir.",
 	"movesubpage": "{{PLURAL:$1|Alt səhifə|Alt səhifələr}}",

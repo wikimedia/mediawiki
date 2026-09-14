@@ -2693,6 +2693,7 @@
 	"movepage-page-moved": "已移動頁面 $1 到 $2。",
 	"movepage-page-unmoved": "無法移動頁面 $1 到 $2。",
 	"movepage-max-pages": "移動頁面的上限為 $1 頁，超出限制的頁面將不會自動移動。",
+	"movepage-already-moved": "此頁面已在您開啟表單之後，被移至其他位置。",
 	"movelogpage": "移動日誌",
 	"movelogpagetext": "以下是所有移動頁面的動作記錄清單。",
 	"movesubpage": "{{PLURAL:$1|子頁面}}",

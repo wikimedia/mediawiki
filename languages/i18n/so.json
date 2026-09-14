@@ -2536,6 +2536,7 @@
 	"movepage-page-moved": "Bogga $1 waxaa loo wareejiyay $2.",
 	"movepage-page-unmoved": "Bogga $1 lama wareejin karin $2.",
 	"movepage-max-pages": "Ugu badnaan $1 {{PLURAL:$1|bog|bogag}} ayaa la wareejiyay, kuwa kalena si otomaatig ah looma sii wareejin doono.",
+	"movepage-already-moved": "Boggan waa la wareejiyay ka dib markii aad furtay foomka.",
 	"movelogpage": "Diiwaanka wareejinta",
 	"movelogpagetext": "Hoos waxaa ku yaal liiska dhammaan wareejinta bogagga.",
 	"movesubpage": "{{PLURAL:$1|Bog hoosaad|Bogag hoosaad}}",

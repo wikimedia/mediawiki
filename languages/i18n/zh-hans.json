@@ -2777,6 +2777,7 @@
 	"movepage-page-moved": "页面$1已经移动到$2。",
 	"movepage-page-unmoved": "页面$1无法移动到$2。",
 	"movepage-max-pages": "所移动$1个页面的数量已达最大限额，无法同时自动移动更多页面。",
+	"movepage-already-moved": "此页面已在您开启表单后被移动到了其他位置。",
 	"movelogpage": "移动日志",
 	"movelogpagetext": "下面是所有页面移动的列表。",
 	"movesubpage": "{{PLURAL:$1|子页面}}",

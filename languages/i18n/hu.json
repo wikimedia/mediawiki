@@ -2600,6 +2600,7 @@
 	"movepage-page-moved": "A(z) „$1” nevű lap át lett nevezve „$2” névre.",
 	"movepage-page-unmoved": "A(z) „$1” nevű lap nem nevezhető át „$2” névre.",
 	"movepage-max-pages": "{{PLURAL:$1|Egy|$1}} lapnál több nem nevezhető át automatikusan, így a további lapok a helyükön maradnak.",
+	"movepage-already-moved": "Ez a lap át lett nevezve azután, hogy megnyitottad az űrlapot.",
 	"movelogpage": "Átnevezési napló",
 	"movelogpagetext": "Az alábbiakban az átnevezett lapok listája látható.",
 	"movesubpage": "{{PLURAL:$1|Allap|Allapok}}",

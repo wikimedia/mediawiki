@@ -2573,6 +2573,7 @@
 	"movepage-page-moved": "A páxina «$1» trasladouse a «$2».",
 	"movepage-page-unmoved": "A páxina «$1» non se pode trasladar a «$2».",
 	"movepage-max-pages": "Foi movido o número máximo {{PLURAL:$1|dunha páxina|de $1 páxinas}} e non poderán ser movidas automaticamente máis.",
+	"movepage-already-moved": "Esta páxina trasladouse despois de que abrises o formulario.",
 	"movelogpage": "Rexistro de traslados",
 	"movelogpagetext": "A continuación móstrase a lista con todas as páxinas trasladadas.",
 	"movesubpage": "{{PLURAL:$1|Subpáxina|Subpáxinas}}",
