@@ -79,8 +79,8 @@ class DBSiteStore implements SiteStore {
 				: $row->site_language
 			);
 			$site->setSource( $row->site_source );
-			$site->setExtraData( unserialize( $row->site_data ) );
-			$site->setExtraConfig( unserialize( $row->site_config ) );
+			$site->setExtraData( unserialize( $row->site_data, [ 'allowed_classes' => false ] ) );
+			$site->setExtraConfig( unserialize( $row->site_config, [ 'allowed_classes' => false ] ) );
 			$this->siteSanitizer->sanitizeSite( $site );
 			$this->sites[] = $site;
 		}
