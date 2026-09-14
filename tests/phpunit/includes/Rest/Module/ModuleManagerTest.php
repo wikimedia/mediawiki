@@ -29,10 +29,12 @@ class ModuleManagerTest extends MediaWikiIntegrationTestCase {
 		$conf = $this->getServiceContainer()->getMainConfig();
 
 		$rf = $conf->get( MainConfigNames::RestAPIAdditionalRouteFiles );
+		$rf[] = __DIR__ . '/mockOne.v1.json';
 		$rf[] = __DIR__ . '/mockTwo.v1.json';
 		$this->overrideConfigValue( MainConfigNames::RestAPIAdditionalRouteFiles, $rf );
 
 		$overrides = [
+			'mockOne/v1' => [ 'availability' => 'published' ],
 			'mockTwo/v1' => [ 'availability' => 'hidden' ],
 			'mockThree/v1' => [ 'availability' => 'disabled' ],
 			'mockNonexistent/v1' => [ 'availability' => 'gibberish' ],
@@ -153,6 +155,7 @@ class ModuleManagerTest extends MediaWikiIntegrationTestCase {
 	public static function provideSpecs() {
 		// This comes from the hard-coded list in core
 		yield 'mw-extra' => [
+			[],
 			'mw-extra',
 			[
 				'groups' => [ 'default' ],
@@ -161,7 +164,19 @@ class ModuleManagerTest extends MediaWikiIntegrationTestCase {
 			]
 		];
 
+		// Spec URL override should work
+		yield 'mockOne.v1.json' => [
+			[ __DIR__ . '/mockOne.v1.json' ],
+			'mockOne.v1',
+			[
+				'groups' => [ 'preferred' ],
+				'url' => '/rest/mockOne/v1/openapi.json',
+				'name' => 'Mock One Module',
+			]
+		];
+
 		yield 'mockExternal/v1' => [
+			[],
 			'mockExternal/v1',
 			[
 				'groups' => [ 'preferred' ],
@@ -171,6 +186,7 @@ class ModuleManagerTest extends MediaWikiIntegrationTestCase {
 		];
 
 		yield 'site.v1' => [
+			[],
 			'site.v1',
 			[
 				'groups' => [ 'preferred' ],
@@ -179,6 +195,7 @@ class ModuleManagerTest extends MediaWikiIntegrationTestCase {
 		];
 
 		yield 'fragments.v0-internal' => [
+			[],
 			'fragments.v0-internal',
 			[
 				'groups' => [ 'internal' ],
@@ -190,8 +207,8 @@ class ModuleManagerTest extends MediaWikiIntegrationTestCase {
 	/**
 	 * @dataProvider provideSpecs
 	 */
-	public function testSpecs( string $needle, array $expected ) {
-		$moduleManager = $this->getModuleManager();
+	public function testSpecs( array $extensionRouteFiles, string $needle, array $expected ) {
+		$moduleManager = $this->getModuleManager( $extensionRouteFiles );
 		$specs = $moduleManager->getApiSpecs();
 
 		$this->assertArrayHasKey( $needle, $specs, 'Spec ' . $needle . ' not found' );

@@ -532,10 +532,14 @@ class Router {
 				);
 			}
 			return $this->urlUtils->expand( $specUrl );
+		} elseif ( $moduleId === '' ) {
+			return $this->getRouteUrl( self::ROUTE_MODULE_SPEC, [ 'module' => '-' ] );
 		}
 
-		$moduleParam = $moduleId === '' ? '-' : $moduleId;
-		return $this->getRouteUrl( self::ROUTE_MODULE_SPEC, [ 'module' => $moduleParam ] );
+		$specPath = $info->getLocalDescriptionSpecPath();
+		return ( $specPath !== null )
+			? $this->getRouteUrl( '/' . $moduleId . $specPath )
+			: $this->getRouteUrl( self::ROUTE_MODULE_SPEC, [ 'module' => $moduleId ] );
 	}
 
 	/**

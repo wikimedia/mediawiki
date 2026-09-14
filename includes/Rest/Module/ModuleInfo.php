@@ -14,6 +14,7 @@ class ModuleInfo {
 	private ?string $title;
 	private ?string $description;
 	private ?string $version;
+	private ?string $localSpecPath;
 	private array $groups;
 	private ?string $externalBaseUrl;
 	private ?string $externalSpecUrl;
@@ -25,6 +26,7 @@ class ModuleInfo {
 	 * @param ?string $title The display name of the module
 	 * @param ?string $description The description of the module
 	 * @param ?string $version The version string
+	 * @param ?string $oadSpecPath Module-relative OAD spec path (e.g. '/openapi.json'), or, null
 	 * @param string[] $groups The audience designation groups
 	 * @param ?string $externalBaseUrl The external base URL, or null for local modules
 	 * @param ?string $externalSpecUrl The external spec URL, or null for local modules
@@ -36,6 +38,7 @@ class ModuleInfo {
 		?string $title,
 		?string $description,
 		?string $version,
+		?string $oadSpecPath,
 		array $groups,
 		?string $externalBaseUrl = null,
 		?string $externalSpecUrl = null
@@ -46,6 +49,7 @@ class ModuleInfo {
 		$this->title = $title;
 		$this->description = $description;
 		$this->version = $version;
+		$this->localSpecPath = $oadSpecPath;
 		$this->groups = $groups;
 		$this->externalBaseUrl = $externalBaseUrl;
 		$this->externalSpecUrl = $externalSpecUrl;
@@ -76,6 +80,17 @@ class ModuleInfo {
 	}
 
 	/**
+	 * Gets the relative path to the module's OpenAPI OAD spec.
+	 *
+	 * Null for external modules or local modules using the default generated description.
+	 *
+	 * @return string|null
+	 */
+	public function getLocalDescriptionSpecPath(): ?string {
+		return $this->localSpecPath;
+	}
+
+	/**
 	 * @return string[]
 	 */
 	public function getGroups(): array {
@@ -83,7 +98,9 @@ class ModuleInfo {
 	}
 
 	/**
-	 * Gets the configured base URL for an external module. Null for a local module.
+	 * Gets the configured base URL for an external module.
+	 *
+	 * Null for local modules.
 	 *
 	 * @return string|null
 	 */
@@ -92,7 +109,9 @@ class ModuleInfo {
 	}
 
 	/**
-	 * Gets the configured spec URL for an external module. Null for a local module.
+	 * Gets the configured spec URL for an external module.
+	 *
+	 * Null for local modules.
 	 *
 	 * @return string|null
 	 */

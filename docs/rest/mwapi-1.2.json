@@ -68,6 +68,10 @@
 						"type": "string"
 					},
 					"description": "The audience designation groups of this module."
+				},
+				"oadSpecPath": {
+					"description": "The path of an HTTP GET endpoint, relative to the module path prefix, which returns the OpenAPI schema document for this module. This should start with a slash.",
+					"type": "string"
 				}
 			},
 			"additionalProperties": true

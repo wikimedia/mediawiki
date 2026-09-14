@@ -1,0 +1,10 @@
+{
+	"mwapi": "1.0.0",
+	"moduleId": "mockOne/v1",
+	"info": {
+		"version": "1.0.0",
+		"title": "Mock One Module",
+		"oadSpecPath": "/openapi.json"
+	},
+	"paths": {}
+}

@@ -254,7 +254,7 @@ class ModuleManager {
 		foreach ( $routeFiles as $key => $file ) {
 			$moduleDefInfo = $this->getModuleDefinitionInfo( $file );
 			if (
-				isset( $moduleDefInfo['moduleId'] ) &&
+				$moduleDefInfo &&
 				$this->getModuleMode( $moduleDefInfo['moduleId'] ) === ModuleMode::DISABLED
 			) {
 				$disabledRouteFiles[$key] = $file;
@@ -304,6 +304,7 @@ class ModuleManager {
 				$moduleDefInfo['title'] ?? $moduleId,
 				$moduleDefInfo['description'] ?? null,
 				$moduleDefInfo['version'] ?? null,
+				$moduleDefInfo['oadSpecPath'] ?? null,
 				$groups
 			);
 		}
@@ -317,6 +318,7 @@ class ModuleManager {
 			self::CORE_SPECS['mw-extra']['name'],
 			$this->jsonLocalizer->getFormattedMessage( 'rest-module-extra-routes-desc' ),
 			'0.1.0',
+			null,
 			$this->resolveGroups( '', $prefixlessModuleAvailability )
 		);
 
@@ -333,6 +335,7 @@ class ModuleManager {
 				$externalModuleConfig['info']['title'] ?? $externalModuleId,
 				$externalModuleConfig['info']['description'] ?? null,
 				$externalModuleConfig['info']['version'] ?? null,
+				null,
 				$groups,
 				$externalModuleConfig['base'] ?? null,
 				$externalModuleConfig['spec'] ?? null
@@ -397,20 +400,19 @@ class ModuleManager {
 				continue;
 			}
 
-			if ( $info->getId() === '' ) {
-				$key = 'mw-extra';
-			} elseif ( $info->isExternal() ) {
+			if ( $info->isExternal() ) {
 				$key = $info->getId();
+				$url = $info->getExternalSpecUrl();
+			} elseif ( $info->getId() === '' ) {
+				$key = 'mw-extra';
+				$url = $this->rootPath . self::ROUTE_MODULE_SPEC_PREFIX . '-';
 			} else {
 				$key = $this->localModuleFileBasenames[$info->getId()]
 					?? str_replace( '/', '.', $info->getId() );
-			}
-
-			if ( $info->isExternal() ) {
-				$url = $info->getExternalSpecUrl();
-			} else {
-				$moduleParam = $info->getId() === '' ? '-' : $info->getId();
-				$url = $this->rootPath . self::ROUTE_MODULE_SPEC_PREFIX . $moduleParam;
+				$specPath = $info->getLocalDescriptionSpecPath();
+				$url = ( $specPath !== null )
+					? $this->rootPath . '/' . $info->getId() . $specPath
+					: $this->rootPath . self::ROUTE_MODULE_SPEC_PREFIX . $info->getId();
 			}
 
 			$specs[$key] = [
@@ -438,11 +440,12 @@ class ModuleManager {
 	 * Gets necessary info from the module definition info, from cache if possible,
 	 * from the definition file otherwise.
 	 *
-	 * @param string $file The module definition file to load
+	 * This returns null for legacy flat-route definition files.
 	 *
-	 * @return array<string,mixed> The module definition info, or an empty array for flat routes
+	 * @param string $file The module definition file to load
+	 * @return ?array{moduleId: string, title: string, oadSpecPath: ?string}
 	 */
-	private function getModuleDefinitionInfo( string $file ): array {
+	private function getModuleDefinitionInfo( string $file ): ?array {
 		$key = $this->srvCache->makeKey(
 			__CLASS__,
 			'definition',
@@ -467,9 +470,10 @@ class ModuleManager {
 						'description' => $md['info']['description'] ?? null,
 						'deprecationSettings' => $md['info']['deprecationSettings'] ?? null,
 						'groups' => isset( $md['info']['groups'] ) ? (array)$md['info']['groups'] : null,
+						'oadSpecPath' => $md['info']['oadSpecPath'] ?? null
 					];
 				} catch ( ModuleFormatException ) {
-					return [];
+					return null;
 				}
 			}
 		);

@@ -119,7 +119,9 @@ class ModuleSpecHandler extends SimpleHandler {
 			'components' => $this->getComponentsSpec(),
 		];
 
+		// Remove some extra info outside the standard OAD schema
 		unset( $spec['info']['deprecationSettings'] );
+		unset( $spec['info']['oadSpecPath'] );
 
 		if ( !$spec['externalDocs'] ) {
 			unset( $spec['externalDocs'] );

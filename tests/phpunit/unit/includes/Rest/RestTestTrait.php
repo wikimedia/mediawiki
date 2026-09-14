@@ -68,6 +68,7 @@ trait RestTestTrait {
 			$moduleDefinition['info']['title'] ?? $moduleId,
 			$moduleDefinition['info']['description'] ?? null,
 			$moduleDefinition['info']['version'] ?? null,
+			$moduleDefinition['info']['oadSpecPath'] ?? null,
 			$getGroups( $moduleId ),
 			$moduleDefinition['base'] ?? null,
 			$moduleDefinition['spec'] ?? null

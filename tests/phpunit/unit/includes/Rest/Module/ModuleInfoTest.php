@@ -22,6 +22,7 @@ class ModuleInfoTest extends MediaWikiUnitTestCase {
 			'Test Module',
 			'A module description',
 			'1.0.0',
+			'/openapi.json',
 			[ 'beta' ],
 			'https://example.com/base',
 			'https://example.com/spec'
@@ -36,6 +37,7 @@ class ModuleInfoTest extends MediaWikiUnitTestCase {
 		$this->assertSame( [ 'beta' ], $info->getGroups() );
 		$this->assertSame( 'https://example.com/base', $info->getExternalBaseUrl() );
 		$this->assertSame( 'https://example.com/spec', $info->getExternalSpecUrl() );
+		$this->assertSame( '/openapi.json', $info->getLocalDescriptionSpecPath() );
 	}
 
 	/**
@@ -46,6 +48,7 @@ class ModuleInfoTest extends MediaWikiUnitTestCase {
 			'minimal/v1',
 			ModuleMode::HIDDEN,
 			true,
+			null,
 			null,
 			null,
 			null,
@@ -61,6 +64,7 @@ class ModuleInfoTest extends MediaWikiUnitTestCase {
 		$this->assertSame( [], $info->getGroups() );
 		$this->assertNull( $info->getExternalBaseUrl() );
 		$this->assertNull( $info->getExternalSpecUrl() );
+		$this->assertNull( $info->getLocalDescriptionSpecPath() );
 	}
 
 	/**
@@ -73,6 +77,7 @@ class ModuleInfoTest extends MediaWikiUnitTestCase {
 			'test/v1',
 			$mode,
 			false,
+			null,
 			null,
 			null,
 			null,

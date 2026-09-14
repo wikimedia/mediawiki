@@ -1109,6 +1109,7 @@ class RouterTest extends MediaWikiUnitTestCase {
 			'External Module',
 			null,
 			null,
+			null,
 			[],
 			'https://example.com/base',
 			'https://example.com/spec.json'
@@ -1127,6 +1128,7 @@ class RouterTest extends MediaWikiUnitTestCase {
 			ModuleMode::PUBLISHED,
 			true,
 			'External Module',
+			null,
 			null,
 			null,
 			[],
@@ -1153,6 +1155,7 @@ class RouterTest extends MediaWikiUnitTestCase {
 			'External Module',
 			null,
 			null,
+			null,
 			[],
 			null,
 			'https://example.com/spec.json'
@@ -1173,6 +1176,7 @@ class RouterTest extends MediaWikiUnitTestCase {
 			ModuleMode::PUBLISHED,
 			true,
 			'External Module',
+			null,
 			null,
 			null,
 			[],
@@ -1201,6 +1205,7 @@ class RouterTest extends MediaWikiUnitTestCase {
 			null,
 			null,
 			null,
+			null,
 			[]
 		);
 
@@ -1219,6 +1224,7 @@ class RouterTest extends MediaWikiUnitTestCase {
 			'',
 			ModuleMode::PUBLISHED,
 			false,
+			null,
 			null,
 			null,
 			null,
@@ -1256,6 +1262,7 @@ class RouterTest extends MediaWikiUnitTestCase {
 			'External Module',
 			null,
 			null,
+			null,
 			[],
 			'https://example.com/base',
 			'https://example.com/spec.json'
@@ -1277,6 +1284,7 @@ class RouterTest extends MediaWikiUnitTestCase {
 			ModuleMode::PUBLISHED,
 			true,
 			'External Module',
+			null,
 			null,
 			null,
 			[],
@@ -1303,6 +1311,7 @@ class RouterTest extends MediaWikiUnitTestCase {
 			'External Module',
 			null,
 			null,
+			null,
 			[],
 			null,
 			null
@@ -1323,6 +1332,7 @@ class RouterTest extends MediaWikiUnitTestCase {
 			ModuleMode::PUBLISHED,
 			true,
 			'External Module',
+			null,
 			null,
 			null,
 			[],
@@ -1351,6 +1361,7 @@ class RouterTest extends MediaWikiUnitTestCase {
 			null,
 			null,
 			null,
+			null,
 			[]
 		);
 
@@ -1369,6 +1380,7 @@ class RouterTest extends MediaWikiUnitTestCase {
 			'',
 			ModuleMode::PUBLISHED,
 			false,
+			null,
 			null,
 			null,
 			null,

@@ -646,6 +646,7 @@ abstract class Module {
 		// Note that each module object is designated for only one audience,
 		// even if the spec allows multiple.
 		$moduleId = $this->getPathPrefix();
+		$moduleInfo = $this->getOpenApiInfo();
 
 		// Fields from openApiSpec info to include.
 		// Note that mwapi-1.2 and earlier are based on OAS 3.0, so they don't support the
@@ -656,21 +657,20 @@ abstract class Module {
 		// must be synchronized.
 		$infoFields = [ 'version', 'title', 'description', 'deprecationSettings' ];
 
-		$info = array_intersect_key(
-			$this->getOpenApiInfo(),
-			array_flip( $infoFields )
-		);
+		if ( isset( $moduleInfo['oadSpecPath'] ) ) {
+			$spec = $this->getRouter()->getRouteUrl( '/' . $moduleId . $moduleInfo['oadSpecPath'] );
+		} else {
+			$spec = $this->getRouter()->getRouteUrl(
+				'/specs/v0/module/{module}', // hard-coding this here isn't very pretty
+				[ 'module' => $moduleId == '' ? '-' : $moduleId ]
+			);
+		}
 
 		return [
 			'moduleId' => $moduleId,
-			'info' => $info,
-			'base' => $this->getRouter()->getRouteUrl(
-				'/' . $moduleId
-			),
-			'spec' => $this->getRouter()->getRouteUrl(
-				'/specs/v0/module/{module}', // hard-coding this here isn't very pretty
-				[ 'module' => $moduleId == '' ? '-' : $moduleId ]
-			)
+			'info' => array_intersect_key( $moduleInfo, array_flip( $infoFields ) ),
+			'base' => $this->getRouter()->getRouteUrl( '/' . $moduleId ),
+			'spec' => $spec
 		];
 	}
 }
