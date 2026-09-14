@@ -107,6 +107,9 @@
 		"lightbulbOutline": {
 			"file": "../wikimediaui/images/icons/lightbulbOutline.svg"
 		},
+		"lightbulbDashed": {
+			"file": "../wikimediaui/images/icons/lightbulbDashed.svg"
+		},
 		"logIn": {
 			"file": {
 				"ltr": "../wikimediaui/images/icons/logIn-ltr.svg",

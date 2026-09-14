@@ -4,17 +4,27 @@
 			"Bachounda"
 		]
 	},
+	"ooui-copytextlayout-copy": "انسخ",
 	"ooui-outline-control-move-down": "هبط الشيئ للتحت",
 	"ooui-outline-control-move-up": "طلع الشيئ للفوق",
 	"ooui-outline-control-remove": "أمحي العنصر",
 	"ooui-toolbar-more": "زيادة",
 	"ooui-toolgroup-expand": "زيادة",
 	"ooui-toolgroup-collapse": "قليل",
+	"ooui-item-remove": "امحي",
 	"ooui-dialog-message-accept": "مليح",
 	"ooui-dialog-message-reject": "رجَع",
 	"ooui-dialog-process-error": "حاجه ما خدمتش مليح",
+	"ooui-dialog-process-back": "رجوع",
 	"ooui-dialog-process-dismiss": "أرفضها",
 	"ooui-dialog-process-retry": "عاود جرب",
 	"ooui-dialog-process-continue": "واصل",
-	"ooui-selectfile-placeholder": "ما اختاريتش حتا ملف"
+	"ooui-combobox-button-label": "خيارات التبديل",
+	"ooui-selectfile-button-select": "خير ملف",
+	"ooui-selectfile-button-select-multiple": "خير ملفات",
+	"ooui-selectfile-placeholder": "ما اختاريتش حتا ملف",
+	"ooui-selectfile-dragdrop-placeholder": "خلي الملف هنا",
+	"ooui-selectfile-dragdrop-placeholder-multiple": "حط الملفات هنا",
+	"ooui-popup-widget-close-button-aria-label": "بلّع",
+	"ooui-field-help": "معاونه"
 }

@@ -89,6 +89,9 @@
 				"ltr": "images/icons/ongoingConversation-ltr.svg",
 				"rtl": "images/icons/ongoingConversation-rtl.svg"
 			}
+		},
+		"suggestedInvestigations": {
+			"file": "images/icons/suggestedInvestigations.svg"
 		}
 	}
 }

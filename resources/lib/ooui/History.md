@@ -1,6 +1,27 @@
 # OOUI Release History
 
-## v0.54.1 / 2027-07-21
+## v0.54.2 / 2026-09-14
+### Features
+* ListToolGroup: emit an `expand` event when the more/less toggle is used (David Lynch)
+
+### Icons
+* icons: A few more micro-optimizations to various SVG icons (Thiemo Kreuz)
+* icons: add `lightbulbDashed` icon (Caro Medelius)
+* icons: Add `suggestedInvestigations` icon (Marcin Szwarc)
+* icons: Update `ellipsis` and `verticalEllipsis` (Derek Torsani)
+* icons: Update Arabic-language 'info' icon to new lightbulbOutline.svg (Bartosz Dziewoński)
+* Micro-optimize some more selected SVG icons (part 2) (Thiemo Kreuz)
+
+### Code
+* build: Updating dependencies ([BOT] libraryupgrader)
+* build: Updating eslint-config-wikimedia to 0.32.6 ([BOT] libraryupgrader)
+* build: Updating npm dependencies ([BOT] libraryupgrader)
+* build: Updating npm dependencies ([BOT] libraryupgrader)
+* build: Updating npm dependencies ([BOT] libraryupgrader)
+* build: Updating npm dependencies ([BOT] libraryupgrader)
+* build: Updating npm dependencies ([BOT] libraryupgrader)
+
+## v0.54.1 / 2026-07-21
 ### Icons
 * icon: Add `helpNoticeFilled` (Derek Torsani)
 * icons: Amend various icons round 2 (Derek Torsani)

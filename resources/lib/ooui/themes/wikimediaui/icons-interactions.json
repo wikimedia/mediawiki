@@ -136,6 +136,9 @@
 		"lightbulbOutline": {
 			"file": "images/icons/lightbulbOutline.svg"
 		},
+		"lightbulbDashed": {
+			"file": "images/icons/lightbulbDashed.svg"
+		},
 		"logIn": {
 			"file": {
 				"ltr": "images/icons/logIn-ltr.svg",

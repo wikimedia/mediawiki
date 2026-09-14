@@ -5,7 +5,8 @@
 			"Luky001",
 			"Mimarik",
 			"Teslaton",
-			"TomášPolonec"
+			"TomášPolonec",
+			"Wizzard"
 		]
 	},
 	"ooui-copytextlayout-copy": "Kopírovať",
@@ -19,12 +20,16 @@
 	"ooui-dialog-message-accept": "OK",
 	"ooui-dialog-message-reject": "Zrušiť",
 	"ooui-dialog-process-error": "Niečo sa pokazilo",
+	"ooui-dialog-process-back": "Späť",
 	"ooui-dialog-process-dismiss": "Zrušiť",
 	"ooui-dialog-process-retry": "Skúsiť znova",
 	"ooui-dialog-process-continue": "Pokračovať",
+	"ooui-combobox-button-label": "Prepnúť možnosti",
 	"ooui-selectfile-button-select": "Vybrať súbor",
+	"ooui-selectfile-button-select-multiple": "Vybrať súbory",
 	"ooui-selectfile-placeholder": "Nie je vybraný žiadny súbor",
 	"ooui-selectfile-dragdrop-placeholder": "Potiahni súbor sem",
 	"ooui-selectfile-dragdrop-placeholder-multiple": "Potiahnite súbory sem",
+	"ooui-popup-widget-close-button-aria-label": "Zavrieť",
 	"ooui-field-help": "Pomoc"
 }
