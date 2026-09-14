@@ -4,14 +4,17 @@ namespace MediaWiki\Tests\Specials;
 use MediaWiki\Block\BlockUser;
 use MediaWiki\Block\DatabaseBlockStore;
 use MediaWiki\Block\Restriction\NamespaceRestriction;
+use MediaWiki\Content\TextContent;
+use MediaWiki\Import\WikiRevision;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Permissions\UltimateAuthority;
 use MediaWiki\Request\FauxRequest;
+use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Specials\SpecialContributions;
 use MediaWiki\Tests\User\TempUser\TempUserTestTrait;
+use MediaWiki\Title\Title;
 use MediaWiki\User\User;
-use MediaWiki\User\UserFactory;
 use TestUser;
 use Wikimedia\IPUtils;
 use Wikimedia\Parsoid\Utils\DOMCompat;
@@ -87,12 +90,16 @@ class SpecialContributionsTest extends SpecialPageTestBase {
 			'Edit failed for user'
 		);
 
-		$this->disableAutoCreateTempUser();
-		$useModWikiIP = $this->getServiceContainer()->getUserFactory()
-			->newFromName( '1.2.3.xxx', UserFactory::RIGOR_NONE );
-		$useModWikiIPEditStatus = $this->editPage( 'Test1234', 'Test Content', 'test', NS_MAIN, $useModWikiIP );
-		$this->assertStatusGood( $useModWikiIPEditStatus, 'Edit failed for IP in usemod format' );
-		static::$useModWikiIPRevId = $useModWikiIPEditStatus->getNewRevision()->getId();
+		// Import a revision using a usemodwiki IP
+		$importRevision = new WikiRevision();
+		$importTitle = Title::makeTitle( NS_MAIN, 'Test1234' );
+		$importRevision->setTitle( $importTitle );
+		$importRevision->setContent( SlotRecord::MAIN, new TextContent( 'Test usemodwiki IP' ) );
+		$importRevision->setUsername( '1.2.3.xxx' );
+		$importRes = $this->getServiceContainer()->getWikiRevisionOldRevisionImporterNoUpdates()
+			->import( $importRevision );
+		$this->assertTrue( $importRes, 'Failed to import revision with usemodwiki IP' );
+		static::$useModWikiIPRevId = $importTitle->getLatestRevID();
 
 		$blockStatus = $this->getServiceContainer()->getBlockUserFactory()
 			->newBlockUser(
