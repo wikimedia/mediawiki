@@ -390,7 +390,7 @@ class SvgHandler extends ImageHandler {
 					'$path/' => $svgConverterPath ? Shell::escape( "$svgConverterPath/" ) : '',
 					'$width' => (int)$width,
 					'$height' => (int)$height,
-					'$lang' => $lang,
+					'$lang' => Shell::escape( $lang ),
 					'$input' => Shell::escape( $srcPath ),
 					'$output' => Shell::escape( $dstPath ),
 				] );

@@ -847,6 +847,32 @@ class ThumbnailEntryPointTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
+	 * @dataProvider provideLangParam
+	 */
+	public function testLangParam( string $lang, int $responseStatus, ?string $errorMessage ) {
+		$env = $this->makeEnvironment( [
+			'f' => 'Test.png',
+			'width' => '12',
+			'lang' => $lang,
+		] );
+		$entryPoint = $this->getEntryPoint( $env );
+		$entryPoint->run();
+		$output = $entryPoint->getCapturedOutput();
+		$env->assertStatusCode( $responseStatus );
+		if ( $responseStatus !== 200 ) {
+			$this->assertStringContainsString( $errorMessage, $output );
+		}
+	}
+
+	public static function provideLangParam(): array {
+		return [
+			[ 'en-gb', 200, null ],
+			[ '', 200, null ],
+			[ 'en%20gb', 400, 'language code is not well-formed' ],
+		];
+	}
+
+	/**
 	 * @param array $props
 	 * @param string $output binary data
 	 */

@@ -20,6 +20,7 @@ use Exception;
 use InvalidArgumentException;
 use MediaWiki\FileRepo\File\File;
 use MediaWiki\FileRepo\File\UnregisteredLocalFile;
+use MediaWiki\Language\LanguageCode;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Media\MediaTransformError;
@@ -108,6 +109,15 @@ class ThumbnailEntryPoint extends MediaWikiEntryPoint {
 		}
 		if ( isset( $params['p'] ) ) {
 			$params['page'] = $params['p'];
+		}
+		// Basic check of the 'lang' parameter's format.
+		if ( isset( $params['lang'] ) ) {
+			if ( $params['lang'] === '' ) {
+				unset( $params['lang'] );
+			} elseif ( !LanguageCode::isWellFormedLanguageTag( $params['lang'] ) ) {
+				$this->thumbErrorText( 400, 'The specified language code is not well-formed.' );
+				return;
+			}
 		}
 
 		// Is this a thumb of an archived file?
