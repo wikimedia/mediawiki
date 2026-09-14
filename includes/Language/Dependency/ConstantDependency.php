@@ -17,6 +17,10 @@ class ConstantDependency extends CacheDependency {
 	/** @var mixed */
 	private $value;
 
+	/**
+	 * @param string $name Name of the PHP constant the cache depends on. The value of the
+	 *    constant must be JSON-compatible.
+	 */
 	public function __construct( string $name ) {
 		$this->name = $name;
 		$this->value = constant( $name );

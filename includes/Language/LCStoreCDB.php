@@ -11,6 +11,7 @@ use Cdb\Reader;
 use Cdb\Writer;
 use InvalidArgumentException;
 use LogicException;
+use MediaWiki\Language\Dependency\CacheDependency;
 use RuntimeException;
 
 /**
@@ -72,7 +73,7 @@ class LCStoreCDB extends LCStore {
 				return null;
 			}
 
-			return unserialize( $value );
+			return unserialize( $value, [ 'allowed_classes' => CacheDependency::getAllowedClasses() ] );
 		}
 	}
 

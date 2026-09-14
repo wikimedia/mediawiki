@@ -11,14 +11,14 @@ namespace MediaWiki\Language\Hook;
  */
 interface LocalisationCacheRecacheHook {
 	/**
-	 * Called when loading the localisation data into
-	 * cache.
+	 * Called when loading the localisation data into cache.
 	 *
 	 * @since 1.35
 	 *
 	 * @param ?mixed $cache The LocalisationCache object
 	 * @param ?mixed $code language code
-	 * @param ?mixed &$alldata The localisation data from core and extensions
+	 * @param ?mixed &$alldata The localisation data from core and extensions.
+	 *   See LCStore::set() for what type of data is supported.
 	 * @param ?mixed $unused Used to be $purgeBlobs, removed in 1.34
 	 * @return bool|void True or no return value to continue or false to abort
 	 */

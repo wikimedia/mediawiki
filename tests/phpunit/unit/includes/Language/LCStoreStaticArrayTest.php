@@ -2,7 +2,7 @@
 
 namespace MediaWiki\Tests\Unit\Language;
 
-use DateTimeZone;
+use MediaWiki\Language\Dependency\GlobalDependency;
 use MediaWiki\Language\LCStoreStaticArray;
 use MediaWikiUnitTestCase;
 
@@ -44,6 +44,11 @@ class LCStoreStaticArrayTest extends MediaWikiUnitTestCase {
 		$dir = $this->prepareDir();
 		$cache = new LCStoreStaticArray( [ 'directory' => $dir ] );
 
+		// set up GlobalDependency
+		// @phpcs:ignore MediaWiki.NamingConventions.ValidGlobalName.allowedPrefix
+		global $foo, $bar;
+		$foo = $bar = '';
+
 		$data = [
 			'mr-boole' => false,
 			'the-zero' => 0,
@@ -53,10 +58,10 @@ class LCStoreStaticArrayTest extends MediaWikiUnitTestCase {
 				3 => [ 'three', 'threa', 'phree' ],
 				6 => [ 'six', 'seaks', 'phrix' ],
 			],
-			'some-obj' => new DateTimeZone( '-0630' ),
+			'some-obj' => new GlobalDependency( 'foo' ),
 			'unlikely' => [
 				3 => 'three',
-				6 => new DateTimeZone( '-0315' ),
+				6 => new GlobalDependency( 'bar' ),
 			],
 		];
 		$this->file = $dir . '/en.l10n.php';
@@ -66,6 +71,7 @@ class LCStoreStaticArrayTest extends MediaWikiUnitTestCase {
 		}
 		$cache->finishWrite();
 
+		$cls = 'MediaWiki\\Language\\Dependency\\GlobalDependency';
 		$this->assertEquals(
 			[
 				'mr-boole' => false,
@@ -81,11 +87,11 @@ class LCStoreStaticArrayTest extends MediaWikiUnitTestCase {
 				],
 				'some-obj' => [
 					's',
-					'O:12:"DateTimeZone":2:{s:13:"timezone_type";i:1;s:8:"timezone";s:6:"-06:30";}'
+					"O:46:\"$cls\":2:{s:52:\"\0$cls\0name\";s:3:\"foo\";s:53:\"\0$cls\0value\";s:0:\"\";}"
 				],
 				'unlikely' => [
 					's',
-					'a:2:{i:3;s:5:"three";i:6;O:12:"DateTimeZone":2:{s:13:"timezone_type";i:1;s:8:"timezone";s:6:"-03:15";}}'
+					"a:2:{i:3;s:5:\"three\";i:6;O:46:\"$cls\":2:{s:52:\"\0$cls\0name\";s:3:\"bar\";s:53:\"\0$cls\0value\";s:0:\"\";}}"
 				],
 			],
 			require $dir . '/en.l10n.php',
@@ -97,12 +103,12 @@ class LCStoreStaticArrayTest extends MediaWikiUnitTestCase {
 		$this->assertSame( '0', $cache->get( 'en', 'some-string' ), 'decode string' );
 		$this->assertSame( [ 'six', 'seaks', 'phrix' ], $cache->get( 'en', 'common-data' )[6], 'decode array' );
 		$this->assertInstanceOf(
-			DateTimeZone::class,
+			GlobalDependency::class,
 			$cache->get( 'en', 'some-obj' ),
 			'decode object'
 		);
 		$this->assertInstanceOf(
-			DateTimeZone::class,
+			GlobalDependency::class,
 			$cache->get( 'en', 'unlikely' )[6],
 			'decode nested object'
 		);

@@ -296,13 +296,14 @@ class LocalisationCacheTest extends MediaWikiIntegrationTestCase {
 
 		$code = 'xx';
 		$store->startWrite( $code );
+		// This will fail due to the unserialize() filter, but it lets us test invalid types anyway
 		$store->set( 'deps', [ new \stdClass() ] );
 		$store->set( 'list', [] );
 		$store->set( 'preload', [] );
 		$store->finishWrite();
 
 		$this->assertTrue( $lc->isExpired( $code ) );
-		$this->assertSame( 'stdClass is not a subtype of CacheDependency', $lc->getExpiredReason( $code ) );
+		$this->assertSame( '__PHP_Incomplete_Class is not a subtype of CacheDependency', $lc->getExpiredReason( $code ) );
 	}
 
 	public function testIsExpiredDependencyExpiredReason(): void {

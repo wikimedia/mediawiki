@@ -20,6 +20,10 @@ class MainConfigDependency extends CacheDependency {
 	/** @var mixed */
 	private $value;
 
+	/**
+	 * @param string $name Name of the configuration variable the cache depends on. The values
+	 *    the variable can take must be JSON-compatible.
+	 */
 	public function __construct( string $name ) {
 		$this->name = $name;
 		$this->value = $this->getConfig()->get( $this->name );
