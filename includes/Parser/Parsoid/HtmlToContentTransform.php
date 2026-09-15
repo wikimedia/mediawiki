@@ -51,7 +51,7 @@ class HtmlToContentTransform {
 	 * such as injecting data-parsoid attributes from a HtmlPageBundle.
 	 */
 	private bool $docHasBeenProcessed = false;
-	private ?Document $doc = null;
+	private ?Document $modifiedDoc = null;
 	private ?Element $originalBody = null;
 	protected ?StatsFactory $metrics = null;
 	private HtmlPageBundle $modifiedPageBundle;
@@ -177,7 +177,7 @@ class HtmlToContentTransform {
 	}
 
 	public function setOriginalHtml( string $originalHtml ): void {
-		if ( $this->doc ) {
+		if ( $this->modifiedDoc ) {
 			throw new LogicException( __FUNCTION__ . ' cannot be called after' .
 				' getModifiedDocument()' );
 		}
@@ -186,7 +186,7 @@ class HtmlToContentTransform {
 	}
 
 	public function setOriginalDataMW( array $originalDataMW ): void {
-		if ( $this->doc ) {
+		if ( $this->modifiedDoc ) {
 			throw new LogicException( __FUNCTION__ . ' cannot be called after getModifiedDocument()' );
 		}
 
@@ -200,7 +200,7 @@ class HtmlToContentTransform {
 	}
 
 	public function setOriginalDataParsoid( array $originalDataParsoid ): void {
-		if ( $this->doc ) {
+		if ( $this->modifiedDoc ) {
 			throw new LogicException( __FUNCTION__ . ' cannot be called after getModifiedDocument()' );
 		}
 
@@ -256,26 +256,22 @@ class HtmlToContentTransform {
 		return mb_strlen( $this->modifiedPageBundle->html );
 	}
 
-	private function getModifiedDocumentRaw(): Document {
-		if ( !$this->doc ) {
-			$this->doc = $this->parseHTML( $this->modifiedPageBundle->html, true );
-			$this->modifiedPageBundle->version = DOMUtils::extractInlinedContentVersion( $this->doc );
+	private function initModifiedDoc(): void {
+		if ( !$this->modifiedDoc ) {
+			$this->modifiedDoc = $this->parseHTML( $this->modifiedPageBundle->html, true );
+			$this->modifiedPageBundle->version = DOMUtils::extractInlinedContentVersion( $this->modifiedDoc );
+			$this->docHasBeenProcessed = false;
 		}
-
-		return $this->doc;
 	}
 
 	public function getModifiedDocument(): Document {
-		$doc = $this->getModifiedDocumentRaw();
-
+		$this->initModifiedDoc();
 		if ( !$this->docHasBeenProcessed ) {
-			$doc = $this->applyPageBundle( $doc, $this->modifiedPageBundle );
-
-			$this->doc = $doc;
+			$doc = $this->applyPageBundle( $this->modifiedDoc, $this->modifiedPageBundle );
+			$this->modifiedDoc = $doc;
 			$this->docHasBeenProcessed = true;
 		}
-
-		return $doc;
+		return $this->modifiedDoc;
 	}
 
 	/**
@@ -391,7 +387,7 @@ class HtmlToContentTransform {
 	public function getSchemaVersion(): string {
 		// Get the content version of the edited doc, if available.
 		// Make sure $this->modifiedPageBundle->version is initialized.
-		$this->getModifiedDocumentRaw();
+		$this->initModifiedDoc();
 		$inputContentVersion = $this->modifiedPageBundle->version;
 
 		if ( !$inputContentVersion ) {
