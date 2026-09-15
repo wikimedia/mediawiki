@@ -13048,6 +13048,7 @@ class MainConfigSchema {
 			'type' => 'object',
 			'properties' => [
 				'availability' => [ 'type' => 'string' ],
+				'groups' => [ 'type' => 'list' ],
 			],
 			'required' => [ 'availability' ],
 		]

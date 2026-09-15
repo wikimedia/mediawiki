@@ -8107,7 +8107,7 @@ config-schema:
         mergeStrategy: array_replace_recursive
         additionalProperties:
             type: object
-            properties: { availability: { type: string } }
+            properties: { availability: { type: string }, groups: { type: array } }
             required: [availability]
         description: |-
             A list of REST modules, by module id, and the desired availability for each.

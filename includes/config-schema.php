@@ -3752,6 +3752,9 @@ return [
 					'availability' => [
 						'type' => 'string',
 					],
+					'groups' => [
+						'type' => 'array',
+					],
 				],
 				'required' => [
 					'availability',
