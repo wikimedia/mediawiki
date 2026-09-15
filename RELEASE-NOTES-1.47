@@ -703,6 +703,7 @@ because of Phabricator reports.
   be removed in a future version. There will be no replacement.
 * The hook CategoryViewer__generateLinkHook has been deprecated. Use the hook
   CategoryViewerGenerateLinkHook instead.
+* The SiteStore service has been deprecated in favor of SiteLookup.
 * …
 
 === Other changes in 1.47 ===

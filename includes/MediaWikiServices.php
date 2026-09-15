@@ -2174,6 +2174,7 @@ class MediaWikiServices extends ServiceContainer {
 	}
 
 	/**
+	 * @deprecated since 1.47, use getSiteLookup
 	 * @since 1.27
 	 */
 	public function getSiteStore(): SiteStore {
