@@ -626,6 +626,7 @@ class ParserOptions {
 	 *  (T417514)
 	 */
 	public function getThumbSize() {
+		wfDeprecated( __METHOD__, '1.47' );
 		return MediaWikiServices::getInstance()
 			->getUserOptionsLookup()
 			->getDefaultOption( 'thumbsize' );
@@ -642,6 +643,7 @@ class ParserOptions {
 	 *  (T417514)
 	 */
 	public function setThumbSize( $x ) {
+		wfDeprecated( __METHOD__, '1.47' );
 		return $this->getThumbSize();
 	}
 
