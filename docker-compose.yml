@@ -28,6 +28,11 @@ services:
       XDEBUG_CONFIG: '${XDEBUG_CONFIG}'
       XDEBUG_ENABLE: '${XDEBUG_ENABLE:-true}'
       XHPROF_ENABLE: '${XHPROF_ENABLE:-true}'
+      # Docker Desktop on macOS shows the bind mount root as owned by root.
+      # Git then refuses the repository. Tell Git to trust this path.
+      GIT_CONFIG_COUNT: 1
+      GIT_CONFIG_KEY_0: safe.directory
+      GIT_CONFIG_VALUE_0: /var/www/html/w
 
   mediawiki-web:
     image: docker-registry.wikimedia.org/dev/trixie-apache2:1.0.0-s3
@@ -52,3 +57,6 @@ services:
     environment:
       MW_LOG_DIR: /var/www/html/w/cache
       MW_INSTALL_PATH: /var/www/html/w
+      GIT_CONFIG_COUNT: 1
+      GIT_CONFIG_KEY_0: safe.directory
+      GIT_CONFIG_VALUE_0: /var/www/html/w
