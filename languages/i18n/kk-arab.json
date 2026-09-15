@@ -6,7 +6,8 @@
 			"Kaztrans",
 			"Macofe",
 			"Vlad5250",
-			"아라"
+			"아라",
+			"OverflowCat"
 		]
 	},
 	"sunday": "جەكسەنبى",
@@ -98,7 +99,9 @@
 	"permalink": "تۇراقتى سىلتەمە",
 	"print": "باسىپ شىعارۋ",
 	"edit": "وڭدەۋ",
+	"skin-view-edit": "وڭدەۋ",
 	"create": "باستاۋ",
+	"skin-view-create": "باستاۋ",
 	"delete": "جويۋ",
 	"undelete_short": "$1 وڭدەمە جويۋىن بولدىرماۋ",
 	"protect": "قورعاۋ",
