@@ -3039,6 +3039,7 @@
 	"signature": "[[{{ns:user}}:$1|$2]] ([[{{ns:user_talk}}:$1|wadahadal]])",
 	"signature-temp": "[[{{#special:Contributions}}/$1|$2]] ([[{{ns:user_talk}}:$1|wadahadal]])",
 	"duplicate-defaultsort": "<strong>Digniin:</strong> Furaha kala soocidda ee caadiga ah \"$2\" wuxuu ka sarreeyaa furaha kala soocidda ee hore \"$1\".",
+	"categorysort-invalid": "<strong>Cilad:</strong> Habka kala soocidda qaybta \"$1\" lama aqoonsan.",
 	"duplicate-displaytitle": "<strong>Digniin:</strong> Cinwaanka la muujinayo ee \"$2\" wuxuu beddelayaa cinwaankii hore ee \"$1\".",
 	"restricted-displaytitle": "<strong>Digniin:</strong> Cinwaanka la muujiyay \"$1\" waa la iska indhatiray maadaama uusan la mid ahayn cinwaanka dhabta ah ee bogga.",
 	"invalid-indicator-name": "<strong>Qalad:</strong> Sifooyinka <code>name</code> ee tilmaamayaasha xaaladda bogga waa inaanu madhnayn.",

@@ -3328,6 +3328,7 @@
 	"signature": "[[{{ns:user}}:$1|$2]]（[[{{ns:user_talk}}:$1|留言]]）",
 	"signature-temp": "[[{{#special:Contributions}}/$1|$2]]（[[{{ns:user_talk}}:$1|留言]]）",
 	"duplicate-defaultsort": "<strong>警告：</strong>默认排序键“$2”覆盖了之前的默认排序键“$1”。",
+	"categorysort-invalid": "<strong>错误：</strong>无法识别的分类排序模式“$1”。",
 	"duplicate-displaytitle": "<strong>警告：</strong>显示标题“$2”覆盖了之前的显示标题“$1”。",
 	"restricted-displaytitle": "<strong>警告：</strong>显示标题“$1”被忽略，因为它不等同于页面的实际标题。",
 	"invalid-indicator-name": "<strong>错误：</strong>页面状态指示器的<code>name</code>属性必须不为空。",
