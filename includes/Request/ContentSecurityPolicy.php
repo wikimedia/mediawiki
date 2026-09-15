@@ -198,13 +198,7 @@ class ContentSecurityPolicy {
 		$defaultSrc = [ '*', 'data:', 'blob:' ];
 
 		$imgSrc = false;
-		$scriptSrc = [];
-		// Note: default on if unspecified, for backwards compatibility.
-		if ( $policyConfig['unsafeEval'] ?? true ) {
-			$scriptSrc[] = "'unsafe-eval'";
-		}
-		$scriptSrc[] = "blob:";
-		$scriptSrc[] = "'self'";
+		$scriptSrc = [ "'unsafe-eval'", "blob:", "'self'" ];
 
 		$scriptSrc = array_merge( $scriptSrc, $additionalSelfUrlsScript );
 		if ( isset( $policyConfig['script-src'] )
