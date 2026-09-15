@@ -470,7 +470,6 @@ class LinkRenderer {
 		Language $lang, Title $target,
 		bool $forceKnown = false, bool $addLinkTag = false
 	) {
-		$html = '<ul class="redirectText">';
 		if ( $forceKnown ) {
 			$link = $this->makeKnownLink(
 				$target,
