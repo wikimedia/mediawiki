@@ -84,6 +84,13 @@ class SpecialUploadStashTest extends SpecialPageTestBase {
 				'uploadstash-file-too-large',
 				100
 			],
+			'SVG thumb type' => [
+				200,
+				[ 'Content-Type' => 'image/png' ],
+				null,
+				null,
+				'svg'
+			],
 		];
 	}
 
@@ -94,16 +101,22 @@ class SpecialUploadStashTest extends SpecialPageTestBase {
 		int $responseCode,
 		array $responseHeaders,
 		?string $expectedError,
-		?int $dataLength = null
+		?int $dataLength = null,
+		$type = 'jpeg'
 	) {
 		$testUser = $this->getTestUser();
+		$name = match ( $type ) {
+			'jpeg' => 'landscape-plain.jpg',
+			'svg' => 'Wikimedia-logo.svg',
+		};
 		$key = $this->setupStash( $testUser->getUserIdentity(), [
 			'thumbProxyUrl' => 'https://localhost/scaler/',
 			// TODO: get request headers out of MockHttpTrait and assert this value
 			'thumbProxySecret' => 'secret',
+			'file' => $name,
 		] );
 
-		$name = 'landscape-plain.jpg';
+		$thumbSuffix = $type === 'svg' ? '.png' : '';
 
 		if ( $dataLength === null ) {
 			$mockBody = 'thumbnail output';
@@ -118,9 +131,9 @@ class SpecialUploadStashTest extends SpecialPageTestBase {
 			$responseHeaders
 		);
 
-		$this->installMockHttp( function ( $url ) use ( $httpRequest, $name ) {
+		$this->installMockHttp( function ( $url ) use ( $httpRequest, $name, $thumbSuffix ) {
 			$this->assertStringMatchesFormat(
-				"https://localhost/scaler/temp/%x/%x/%d%%21$name/120px-%d%%21$name",
+				"https://localhost/scaler/temp/%x/%x/%d%%21$name/120px-%d%%21$name$thumbSuffix",
 				$url
 			);
 			return $httpRequest;
@@ -134,7 +147,7 @@ class SpecialUploadStashTest extends SpecialPageTestBase {
 		}
 
 		[ $body, $response ] = $this->executeSpecialPage(
-			"thumb/$key/120px-$key",
+			"thumb/$key/120px-$key$thumbSuffix",
 			$request,
 			performer: $testUser->getAuthority()
 		);
@@ -143,7 +156,7 @@ class SpecialUploadStashTest extends SpecialPageTestBase {
 		$this->assertArrayHasKey( 'CONTENT-SECURITY-POLICY', $headers );
 		$this->assertArrayHasKey( 'EXPIRES', $headers );
 		$this->assertStringContainsString( 'private', $headers['CACHE-CONTROL'] );
-		$this->assertSame( 'image/jpeg', $headers['CONTENT-TYPE'] );
+		$this->assertSame( $responseHeaders['Content-Type'], $headers['CONTENT-TYPE'] );
 		$this->assertSame( $mockBody, $body );
 	}
 
