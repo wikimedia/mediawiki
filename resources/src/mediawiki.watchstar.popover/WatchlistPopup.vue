@@ -594,7 +594,12 @@ module.exports = defineComponent( {
 <style lang="less">
 @import 'mediawiki.skin.variables.less';
 
-.mw-watchstar-WatchlistPopup {
+// These rules must win against Codex styles that are themselves single-class
+// selectors, such as `.cdx-popover` and `.cdx-icon`. Chain the Codex class to
+// make each rule more specific, because this module is loaded on demand: if
+// ResourceLoader adds more Codex CSS later, a rule with the same specificity
+// loses on stylesheet order alone (T437769).
+.mw-watchstar-WatchlistPopup.cdx-popover {
 	min-width: @min-width-breakpoint-mobile;
 
 	.cdx-label__label__text {
@@ -607,25 +612,25 @@ module.exports = defineComponent( {
 		display: none;
 	}
 
-	&__header-icon {
+	.mw-watchstar-WatchlistPopup__header-icon {
 		flex-shrink: 0;
 
-		&--success {
+		&.mw-watchstar-WatchlistPopup__header-icon--success {
 			color: @color-icon-success;
 		}
 
-		&--error {
+		&.mw-watchstar-WatchlistPopup__header-icon--error {
 			color: @color-icon-error;
 		}
 
-		&--notice {
+		&.mw-watchstar-WatchlistPopup__header-icon--notice {
 			color: @color-icon-notice;
 		}
 	}
 
 	// The header message is a sentence, not a short label, so allow it to
 	// wrap and sit at a comfortable reading weight rather than a bold title.
-	&__header-title.cdx-popover__header__title {
+	.mw-watchstar-WatchlistPopup__header-title.cdx-popover__header__title {
 		font-weight: normal;
 	}
 }
