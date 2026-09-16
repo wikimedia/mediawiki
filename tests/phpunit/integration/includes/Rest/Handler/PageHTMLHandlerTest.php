@@ -6,7 +6,6 @@ use Exception;
 use MediaWiki\Deferred\DeferredUpdates;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Page\WikiPage;
-use MediaWiki\Parser\Hook\ParserLogLinterDataHook;
 use MediaWiki\Rest\Handler\PageHTMLHandler;
 use MediaWiki\Rest\HttpException;
 use MediaWiki\Rest\LocalizedHttpException;
@@ -16,7 +15,6 @@ use MediaWiki\Title\Title;
 use MediaWiki\Utils\MWTimestamp;
 use MediaWikiIntegrationTestCase;
 use PHPUnit\Framework\MockObject\MockObject;
-use Psr\Http\Message\StreamInterface;
 use Wikimedia\Message\MessageValue;
 use Wikimedia\ObjectCache\HashBagOStuff;
 use Wikimedia\Parsoid\Core\ClientError;
@@ -77,81 +75,6 @@ class PageHTMLHandlerTest extends MediaWikiIntegrationTestCase {
 		return $this->newPageHtmlHandler();
 	}
 
-	public function testExecuteWithHtml() {
-		$page = $this->getExistingTestPage( 'HtmlEndpointTestPage/with/slashes' );
-		$this->assertStatusGood( $this->editPage( $page, self::WIKITEXT ),
-			'Edited a page'
-		);
-
-		$request = new RequestData(
-			[ 'pathParams' => [ 'title' => $page->getTitle()->getPrefixedText() ] ]
-		);
-
-		$handler = $this->newHandler();
-		$data = $this->executeHandlerAndGetBodyData( $handler, $request, [
-			'format' => 'with_html'
-		] );
-
-		$this->assertResponseData( $page, $data );
-		$this->assertStringContainsString( '<!DOCTYPE html>', $data['html'] );
-		$this->assertStringContainsString( '<html', $data['html'] );
-		$this->assertStringContainsString( self::HTML, $data['html'] );
-	}
-
-	public function testExecuteWillLint() {
-		$this->overrideConfigValue( MainConfigNames::ParsoidSettings, [
-			'linting' => true
-		] );
-
-		$mockHandler = $this->createMock( ParserLogLinterDataHook::class );
-		$mockHandler->expects( $this->once() ) // this is the critical assertion in this test case!
-		->method( 'onParserLogLinterData' );
-
-		$this->setTemporaryHook(
-			'ParserLogLinterData',
-			$mockHandler
-		);
-
-		$page = $this->getExistingTestPage( 'HtmlEndpointTestPage/with/slashes' );
-
-		$request = new RequestData(
-			[ 'pathParams' => [ 'title' => $page->getTitle()->getPrefixedText() ] ]
-		);
-
-		$handler = $this->newHandler();
-		$this->executeHandlerAndGetBodyData( $handler, $request, [
-			'format' => 'with_html'
-		] );
-	}
-
-	public function testExecuteWithHtmlForSystemMessagePage() {
-		$title = Title::newFromText( 'MediaWiki:Logouttext' );
-		$page = $this->getNonexistingTestPage( $title );
-
-		$request = new RequestData(
-			[ 'pathParams' => [ 'title' => $page->getTitle()->getPrefixedText() ] ]
-		);
-
-		$handler = $this->newHandler();
-		$data = $this->executeHandlerAndGetBodyData( $handler, $request, [
-			'format' => 'with_html'
-		] );
-
-		// Let's create and test on a full HTML document since system message pages
-		// will not return a full HTML document by default.
-		$data['html'] = ContentUtils::toXML( DOMUtils::parseHTML( $data['html'] ) );
-
-		$this->assertSame( $title->getPrefixedDBkey(), $data['key'] );
-		$this->assertSame( $title->getPrefixedText(), $data['title'] );
-		$this->assertStringContainsString( '<!DOCTYPE html>', $data['html'] );
-		$this->assertStringContainsString( '<html', $data['html'] );
-		$this->assertStringContainsString( '<meta http-equiv', $data['html'] );
-		$this->assertStringContainsString( 'content="en"', $data['html'] );
-
-		$msg = wfMessage( 'logouttext' )->inLanguage( 'en' )->useDatabase( false );
-		$this->assertStringContainsString( $msg->parse(), $data['html'] );
-	}
-
 	public function testExecuteHtmlOnly() {
 		$page = $this->getExistingTestPage( 'HtmlEndpointTestPage/with/slashes' );
 		$this->assertStatusGood( $this->editPage( $page, self::WIKITEXT ),
@@ -163,9 +86,7 @@ class PageHTMLHandlerTest extends MediaWikiIntegrationTestCase {
 		);
 
 		$handler = $this->newHandler();
-		$response = $this->executeHandler( $handler, $request, [
-			'format' => 'html'
-		] );
+		$response = $this->executeHandler( $handler, $request );
 
 		$htmlResponse = (string)$response->getBody();
 		$this->assertStringContainsString( '<!DOCTYPE html>', $htmlResponse );
@@ -175,7 +96,7 @@ class PageHTMLHandlerTest extends MediaWikiIntegrationTestCase {
 
 	public function testGenerateResponseSpecWithHtml() {
 		$handler = $this->newHandler();
-		$this->initHandler( $handler, new RequestData( [] ), [ 'format' => 'html' ] );
+		$this->initHandler( $handler, new RequestData( [] ), [] );
 		$wrapper = TestingAccessWrapper::newFromObject( $handler );
 		$spec = $wrapper->generateResponseSpec( 'GET' );
 
@@ -221,9 +142,7 @@ class PageHTMLHandlerTest extends MediaWikiIntegrationTestCase {
 			// If renders should not occur, use a renderer that will throw if called
 			$renderer = $allowRenders ? null : $this->createNoOpMock( RevisionRenderer::class );
 			$handler = $this->newHandler( null, $renderer );
-			$response = $this->executeHandler( $handler, $request, [
-				'format' => 'html'
-			] );
+			$response = $this->executeHandler( $handler, $request );
 
 			$this->assertSame( $expectedStatus, $response->getStatusCode() );
 
@@ -247,9 +166,7 @@ class PageHTMLHandlerTest extends MediaWikiIntegrationTestCase {
 		);
 
 		$handler = $this->newHandler();
-		$response = $this->executeHandler( $handler, $request, [
-			'format' => 'html'
-		] );
+		$response = $this->executeHandler( $handler, $request );
 
 		$htmlResponse = (string)$response->getBody();
 		// Let's create and test on a full HTML document since system message pages
@@ -265,64 +182,7 @@ class PageHTMLHandlerTest extends MediaWikiIntegrationTestCase {
 		$this->assertStringContainsString( $msg->parse(), $htmlResponse );
 	}
 
-	/**
-	 * Assert that we return a 404 even if an associated remote file description
-	 * page exists (T353688).
-	 */
-	public function testRemoteDescriptionWithNonexistentFilePage() {
-		$name = 'JustSomeSillyFile.png';
-
-		$this->installMockFileRepo( $name );
-
-		$page = $this->getNonexistingTestPage( "File:$name" );
-
-		$request = new RequestData(
-			[ 'pathParams' => [ 'title' => $page->getTitle()->getPrefixedDBkey() ] ]
-		);
-		$handler = $this->newHandler();
-		$exception = $this->executeHandlerAndGetHttpException( $handler, $request, [
-			'format' => 'with_html'
-		] );
-
-		$this->assertSame( 404, $exception->getCode() );
-	}
-
-	/**
-	 * Assert that we return the local page content even if an associated remote
-	 * file description page exists (T353688).
-	 */
-	public function testRemoteDescriptionWithExistingFilePage() {
-		$name = 'JustSomeSillyFile.png';
-
-		$this->installMockFileRepo( $name );
-
-		$pageName = "File:$name";
-		$this->editPage( $pageName, 'Local content' );
-
-		$request = new RequestData(
-			[ 'pathParams' => [ 'title' => $pageName ] ]
-		);
-		$handler = $this->newHandler();
-		$data = $this->executeHandlerAndGetBodyData( $handler, $request, [
-			'format' => 'with_html'
-		] );
-
-		$this->assertSame( $pageName, $data['key'] );
-		$this->assertSame( $pageName, $data['title'] );
-
-		$this->assertStringContainsString( '<html', $data['html'] );
-		$this->assertStringContainsString( 'Local content', $data['html'] );
-	}
-
-	/**
-	 * @dataProvider provideExecuteWithVariant
-	 */
-	public function testExecuteWithVariant(
-		string $format,
-		callable $bodyHtmlHandler,
-		string $expectedContentLanguage,
-		string $expectedVaryHeader
-	) {
+	public function testExecuteWithVariant() {
 		$this->overrideConfigValue( MainConfigNames::UsePigLatinVariant, true );
 		$page = $this->getExistingTestPage( 'HtmlVariantConversion' );
 		$this->assertStatusGood( $this->editPage( $page, '<p>test language conversion</p>' ),
@@ -340,38 +200,16 @@ class PageHTMLHandlerTest extends MediaWikiIntegrationTestCase {
 		);
 
 		$handler = $this->newHandler();
-		$response = $this->executeHandler( $handler, $request, [
-			'format' => $format
-		] );
+		$response = $this->executeHandler( $handler, $request );
 
-		$htmlBody = $bodyHtmlHandler( $response->getBody() );
-		$contentLanguageHeader = $response->getHeaderLine( 'Content-Language' );
-		$varyHeader = $response->getHeaderLine( 'Vary' );
-
-		$this->assertStringContainsString( '>esttay anguagelay onversioncay<', $htmlBody );
-		$this->assertEquals( $expectedContentLanguage, $contentLanguageHeader );
-		$this->assertStringContainsStringIgnoringCase( $expectedVaryHeader, $varyHeader );
+		// The top-level HTML endpoint sets the content language and varies on it.
+		$this->assertStringContainsString(
+			'>esttay anguagelay onversioncay<',
+			(string)$response->getBody()
+		);
+		$this->assertEquals( 'en-x-piglatin', $response->getHeaderLine( 'Content-Language' ) );
+		$this->assertStringContainsStringIgnoringCase( 'accept-language', $response->getHeaderLine( 'Vary' ) );
 		$this->assertStringContainsString( $acceptLanguage, $response->getHeaderLine( 'ETag' ) );
-	}
-
-	public static function provideExecuteWithVariant() {
-		yield 'with_html request should contain accept language but not content language' => [
-			'with_html',
-			static function ( StreamInterface $response ) {
-				return json_decode( $response->getContents(), true )['html'];
-			},
-			'',
-			'accept-language'
-		];
-
-		yield 'html request should contain accept and content language' => [
-			'html',
-			static function ( StreamInterface $response ) {
-				return $response->getContents();
-			},
-			'en-x-piglatin',
-			'accept-language'
-		];
 	}
 
 	public function testEtagLastModified() {
@@ -393,9 +231,7 @@ class PageHTMLHandlerTest extends MediaWikiIntegrationTestCase {
 
 		MWTimestamp::setFakeTime( $time );
 		$handler = $this->newHandler();
-		$response = $this->executeHandler( $handler, $request, [
-			'format' => 'html'
-		] );
+		$response = $this->executeHandler( $handler, $request );
 		$this->assertArrayHasKey( 'ETag', $response->getHeaders() );
 		$etag = $response->getHeaderLine( 'ETag' );
 		$this->assertStringMatchesFormat( '"' . $page->getLatest() . '/%x-%x-%x-%x-%x/%s"', $etag );
@@ -405,9 +241,7 @@ class PageHTMLHandlerTest extends MediaWikiIntegrationTestCase {
 
 		// Now, test that headers work when getting from cache too.
 		$handler = $this->newHandler();
-		$response = $this->executeHandler( $handler, $request, [
-			'format' => 'html'
-		] );
+		$response = $this->executeHandler( $handler, $request );
 		$this->assertArrayHasKey( 'ETag', $response->getHeaders() );
 		$this->assertSame( $etag, $response->getHeaderLine( 'ETag' ) );
 		$etag = $response->getHeaderLine( 'ETag' );
@@ -426,9 +260,7 @@ class PageHTMLHandlerTest extends MediaWikiIntegrationTestCase {
 		DeferredUpdates::doUpdates();
 
 		$handler = $this->newHandler();
-		$response = $this->executeHandler( $handler, $request, [
-			'format' => 'html'
-		] );
+		$response = $this->executeHandler( $handler, $request );
 		$this->assertArrayHasKey( 'ETag', $response->getHeaders() );
 		$this->assertNotSame( $etag, $response->getHeaderLine( 'ETag' ) );
 		$etag = $response->getHeaderLine( 'ETag' );
@@ -480,9 +312,7 @@ class PageHTMLHandlerTest extends MediaWikiIntegrationTestCase {
 
 		$handler = $this->newHandler( $parsoid );
 		$this->expectExceptionObject( $expectedException );
-		$this->executeHandler( $handler, $request, [
-			'format' => 'html'
-		] );
+		$this->executeHandler( $handler, $request );
 	}
 
 	public function testExecute_missingparam() {
@@ -510,7 +340,7 @@ class PageHTMLHandlerTest extends MediaWikiIntegrationTestCase {
 		);
 
 		$handler = $this->newHandler();
-		$this->executeHandler( $handler, $request, [ 'format' => 'html' ] );
+		$this->executeHandler( $handler, $request );
 	}
 
 	private function assertResponseData( WikiPage $page, array $data ): void {
@@ -568,18 +398,6 @@ class PageHTMLHandlerTest extends MediaWikiIntegrationTestCase {
 		// Make sure the output for stashed and unstashed doesn't have the same tag,
 		// since it will actually be different!
 		// FIXME: implement flavors and write test cases for them.
-	}
-
-	public function testETagVariesOnFormat() {
-		$page = $this->getExistingTestPage();
-
-		[ /* $html1 */, $etag1 ] =
-			$this->executePageHTMLRequest( $page, [], [ 'format' => 'html' ] );
-
-		[ /* $html2 */, $etag2 ] =
-			$this->executePageHTMLRequest( $page, [], [ 'format' => 'with_html' ] );
-
-		$this->assertNotSame( $etag1, $etag2 );
 	}
 
 	public function testStashingWithRateLimitExceeded() {

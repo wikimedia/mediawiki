@@ -10,7 +10,7 @@ use MediaWikiIntegrationTestCase;
 use Wikimedia\ObjectCache\HashBagOStuff;
 
 /**
- * @covers \MediaWiki\Rest\Handler\PageSourceHandler
+ * @covers \MediaWiki\Rest\Handler\PageHandler
  * @covers \MediaWiki\Rest\Handler\PageHTMLHandler
  * @covers \MediaWiki\Rest\Handler\Helper\PageRedirectHelper
  * @group Database
@@ -30,20 +30,26 @@ class PageRedirectHandlerTest extends MediaWikiIntegrationTestCase {
 		$this->parserCacheBagOStuff = new HashBagOStuff();
 	}
 
-	private function getHandler( $name ) {
+	/**
+	 * @param string $name
+	 * @return array{$handler Handler, $config: array}
+	 */
+	private function getHandler( string $name ): array {
 		switch ( $name ) {
 			case 'source':
-			case 'bare':
-				return $this->newPageSourceHandler();
-			case 'html':
+				return [ $this->newPageHandler(), [ 'prop' => [ 'source' ] ] ];
 			case 'with_html':
-				return $this->newPageHtmlHandler();
+				return [ $this->newPageHandler(), [ 'prop' => [ 'html' ] ] ];
+			case 'bare':
+				return [ $this->newPageHandler(), [ 'prop' => [] ] ];
+			case 'html':
+				return [ $this->newPageHtmlHandler(), [] ];
 			case 'history':
-				return $this->newPageHistoryHandler();
+				return [ $this->newPageHistoryHandler(), [] ];
 			case 'history_count':
-				return $this->newPageHistoryCountHandler();
+				return [ $this->newPageHistoryCountHandler(), [] ];
 			case 'links_language':
-				return $this->newLanguageLinksHandler();
+				return [ $this->newLanguageLinksHandler(), [] ];
 			default:
 				throw new InvalidArgumentException( "Unknown handler: $name" );
 		}
@@ -67,10 +73,10 @@ class PageRedirectHandlerTest extends MediaWikiIntegrationTestCase {
 				'queryParams' => $requestQueryParams
 			]
 		);
-		$handler = $this->getHandler( $format );
+		[ $handler, $config ] = $this->getHandler( $format );
 		$response = $this->executeHandler( $handler, $request, [
-			'format' => $format,
 			'path' => $path,
+			...$config
 		] );
 		$headerLocation = $response->getHeaderLine( 'location' );
 
@@ -79,6 +85,7 @@ class PageRedirectHandlerTest extends MediaWikiIntegrationTestCase {
 			$response->getStatusCode(),
 			"Expected status for $path"
 		);
+
 		if ( $hasBodyRedirectTarget && $expectedStatus === 200 ) {
 			$body = json_decode( (string)$response->getBody() );
 			$this->assertRedirectPath( $path, [ 'title' => $targetPageTitle ], $body->redirect_target );
@@ -220,10 +227,10 @@ class PageRedirectHandlerTest extends MediaWikiIntegrationTestCase {
 			]
 		);
 
-		$handler = $this->getHandler( $format );
+		[ $handler, $config ] = $this->getHandler( $format );
 		$response = $this->executeHandler( $handler, $request, [
-			'format' => $format,
-			'path' => $path
+			'path' => $path,
+			...$config
 		] );
 		$headerLocation = $response->getHeaderLine( 'location' );
 		$this->assertEquals( 301, $response->getStatusCode(), "Expected status for $path" );
@@ -313,8 +320,8 @@ class PageRedirectHandlerTest extends MediaWikiIntegrationTestCase {
 			'queryParams' => $requestQueryParams,
 		] );
 
-		$handler = $this->getHandler( $format );
-		$routeConfig = [ 'format' => $format, 'path' => $path ];
+		[ $handler, $config ] = $this->getHandler( $format );
+		$routeConfig = [ 'path' => $path, ...$config ];
 
 		if ( $expectedStatus === 404 ) {
 			$exception = $this->executeHandlerAndGetHttpException( $handler, $request, $routeConfig );

@@ -176,12 +176,12 @@
 	},
 	{
 		"path": "/v1/page/{title}",
-		"class": "MediaWiki\\Rest\\Handler\\PageSourceHandler",
+		"class": "MediaWiki\\Rest\\Handler\\PageHandler",
 		"services": [
 			"TitleFormatter",
 			"PageRestHelperFactory"
 		],
-		"format": "source",
+		"prop": [ "source" ],
 		"openApiSpec": {
 			"x-i18n-description": "rest-endpoint-desc-get-page-title",
 			"x-i18n-summary": "rest-endpoint-summ-get-page-title"
@@ -189,12 +189,12 @@
 	},
 	{
 		"path": "/v1/page/{title}/bare",
-		"class": "MediaWiki\\Rest\\Handler\\PageSourceHandler",
+		"class": "MediaWiki\\Rest\\Handler\\PageHandler",
 		"services": [
 			"TitleFormatter",
 			"PageRestHelperFactory"
 		],
-		"format": "bare",
+		"prop": [],
 		"openApiSpec": {
 			"x-i18n-description": "rest-endpoint-desc-get-page-title-bare",
 			"x-i18n-summary": "rest-endpoint-summ-get-page-title-bare"
@@ -206,7 +206,6 @@
 		"services": [
 			"PageRestHelperFactory"
 		],
-		"format": "html",
 		"openApiSpec": {
 			"x-i18n-description": "rest-endpoint-desc-get-page-title-html",
 			"x-i18n-summary": "rest-endpoint-summ-get-page-title-html"
@@ -214,11 +213,13 @@
 	},
 	{
 		"path": "/v1/page/{title}/with_html",
-		"class": "MediaWiki\\Rest\\Handler\\PageHTMLHandler",
+		"class": "MediaWiki\\Rest\\Handler\\PageHandler",
 		"services": [
+			"TitleFormatter",
 			"PageRestHelperFactory"
 		],
-		"format": "with_html",
+		"prop": [ "html" ],
+		"allowShadowHtml": true,
 		"openApiSpec": {
 			"x-i18n-description": "rest-endpoint-desc-get-page-title-with-html",
 			"x-i18n-summary": "rest-endpoint-summ-get-page-title-with-html"

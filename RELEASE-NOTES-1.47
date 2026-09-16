@@ -721,6 +721,8 @@ because of Phabricator reports.
 * Virtual domains in databases no longer require being registered via
   "DatabaseVirtualDomains" option in extension.json. But they must all start
   with 'virtual-' to be recognized as a virtual domain.
+* The REST API endpoints /page/{title}/html and /page/{title}/lint now
+  respond with 404 instead of 403 when the requested title is invalid.
 * …
 
 == Compatibility ==

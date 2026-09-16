@@ -2,7 +2,6 @@
 
 namespace MediaWiki\Rest\Handler;
 
-use LogicException;
 use MediaWiki\Parser\ParserOptions;
 use MediaWiki\Rest\Handler;
 use MediaWiki\Rest\Handler\Helper\HtmlOutputHelper;
@@ -20,10 +19,12 @@ use Wikimedia\Message\MessageValue;
 use Wikimedia\ParamValidator\ParamValidator;
 
 /**
- * A handler that returns Parsoid HTML for the following routes:
- * - /page/{title}/html,
- * - /page/{title}/with_html
+ * A handler that returns Parsoid HTML for the following route:
+ * - /page/{title}/html
  *
+ * (The /page/{title}/with_html route is served by PageHandler via prop=html.)
+ *
+ * @internal
  * @package MediaWiki\Rest\Handler
  */
 class PageHTMLHandler extends SimpleHandler {
@@ -87,7 +88,7 @@ class PageHTMLHandler extends SimpleHandler {
 		$followWikiRedirects = $this->contentHelper->getRedirectsAllowed();
 
 		// The call to $this->contentHelper->getPage() should not return null if
-		// $this->contentHelper->checkAccess() did not throw.
+		// $this->contentHelper->checkAccessPermission() did not throw.
 		Assert::invariant( $page !== null, 'Page should be known' );
 
 		$redirectHelper = $this->getRedirectHelper();
@@ -100,6 +101,9 @@ class PageHTMLHandler extends SimpleHandler {
 		);
 
 		if ( $redirectResponse !== null ) {
+			// XXX: Do we really want 60 second max-age for wiki redirects as well?
+			//      Shouldn't that use the same max-age as page content?
+			//      PageRedirectHelper already sets a longer max-age for normalization redirects.
 			$redirectResponse->setHeader( ResponseHeaders::CACHE_CONTROL, 'max-age=60' );
 			return $redirectResponse;
 		}
@@ -112,33 +116,11 @@ class PageHTMLHandler extends SimpleHandler {
 		// This endpoint emits a full document from the page bundle
 		$parserOutputHtml = $this->htmlHelper->getPageBundle()->html;
 
-		$outputMode = $this->getOutputMode();
-		switch ( $outputMode ) {
-			case 'html':
-				$response = $this->getResponseFactory()->create();
-				$this->contentHelper->setCacheControl( $response, $cacheExpiry );
-				$response->setBody( new StringStream( $parserOutputHtml ) );
-				break;
-			case 'with_html':
-				$body = $this->contentHelper->constructMetadata();
-				$body['html'] = $parserOutputHtml;
+		$response = $this->getResponseFactory()->create();
+		$this->contentHelper->setCacheControl( $response, $cacheExpiry );
+		$response->setBody( new StringStream( $parserOutputHtml ) );
 
-				$redirectTargetUrl = $redirectHelper->getWikiRedirectTargetUrl( $page );
-
-				if ( $redirectTargetUrl ) {
-					$body['redirect_target'] = $redirectTargetUrl;
-				}
-
-				$response = $this->getResponseFactory()->createJson( $body );
-				$this->contentHelper->setCacheControl( $response, $cacheExpiry );
-				break;
-			default:
-				throw new LogicException( "Unknown HTML type $outputMode" );
-		}
-
-		$setContentLanguageHeader = ( $outputMode === 'html' );
-		$this->htmlHelper->putHeaders( $response, $setContentLanguageHeader );
-
+		$this->htmlHelper->putHeaders( $response );
 		return $response;
 	}
 
@@ -153,8 +135,7 @@ class PageHTMLHandler extends SimpleHandler {
 			return null;
 		}
 
-		// Vary eTag based on output mode
-		return $this->htmlHelper->getETag( $this->getOutputMode() );
+		return $this->htmlHelper->getETag();
 	}
 
 	protected function getLastModified(): ?string {
@@ -163,10 +144,6 @@ class PageHTMLHandler extends SimpleHandler {
 		}
 
 		return $this->htmlHelper->getLastModified();
-	}
-
-	private function getOutputMode(): string {
-		return $this->getConfig()['format'];
 	}
 
 	public function needsWriteAccess(): bool {
@@ -202,16 +179,11 @@ class PageHTMLHandler extends SimpleHandler {
 		//    text/html; charset=utf-8; profile="https://www.mediawiki.org/wiki/Specs/HTML/2.8.0"
 		//  That would be more specific, but fragile when the profile version changes. It could
 		//  also be inaccurate if the page content was not in fact produced by Parsoid.
-		if ( $this->getOutputMode() == 'html' ) {
-			unset( $spec['200']['content']['application/json'] );
-			$spec['200']['content']['text/html']['schema']['type'] = 'string';
-			$spec['200']['content']['text/html']['example'] = '<h2 id="mwAA">Hello world</h2>';
-		}
+		unset( $spec['200']['content']['application/json'] );
+		$spec['200']['content']['text/html']['schema']['type'] = 'string';
+		$spec['200']['content']['text/html']['example'] = '<h2 id="mwAA">Hello world</h2>';
 
 		return $spec;
 	}
 
-	public function getResponseBodySchemaFileName( string $method ): ?string {
-		return __DIR__ . '/Schema/ExistingPageHtml.json';
-	}
 }

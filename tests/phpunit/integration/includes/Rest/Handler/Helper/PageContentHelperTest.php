@@ -112,7 +112,8 @@ class PageContentHelperTest extends MediaWikiIntegrationTestCase {
 		$helper = $this->newHelper( [ 'title' => $page->getTitle()->getPrefixedDBkey() ] );
 
 		// Key assertion: this should not throw!
-		$helper->checkAccess();
+		$helper->checkHasContent(); // Status 404: Not Found
+		$helper->checkAccessPermission(); // Status 403: Forbidden
 
 		$targetRev = $helper->getTargetRevision();
 		$this->assertInstanceOf( RevisionRecord::class, $targetRev );
@@ -137,7 +138,8 @@ class PageContentHelperTest extends MediaWikiIntegrationTestCase {
 		}
 
 		try {
-			$helper->checkAccess();
+			$helper->checkHasContent(); // Status 404: Not Found
+			$helper->checkAccessPermission(); // Status 403: Forbidden
 			$this->fail( 'Expected HttpException' );
 		} catch ( HttpException $ex ) {
 			$this->assertSame( 404, $ex->getCode() );
@@ -170,7 +172,8 @@ class PageContentHelperTest extends MediaWikiIntegrationTestCase {
 		}
 
 		try {
-			$helper->checkAccess();
+			$helper->checkHasContent(); // Status 404: Not Found
+			$helper->checkAccessPermission(); // Status 403: Forbidden
 			$this->fail( 'Expected HttpException' );
 		} catch ( HttpException $ex ) {
 			$this->assertSame( 404, $ex->getCode() );
@@ -188,7 +191,21 @@ class PageContentHelperTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testCheckAccessPermission() {
-		$helper = $this->newHelper();
+		// With no title there is no page to authorize against, so the request is
+		// reported as missing rather than as forbidden.
+		try {
+			$this->newHelper()->checkAccessPermission();
+			$this->fail( 'Expected LocalizedHttpException' );
+		} catch ( LocalizedHttpException $ex ) {
+			$this->assertSame( 404, $ex->getCode() );
+		}
+
+		// A page that exists but may not be read is forbidden.
+		$page = $this->getExistingTestPage( __METHOD__ );
+		$helper = $this->newHelper(
+			[ 'title' => $page->getTitle()->getPrefixedDBkey() ],
+			$this->mockAnonNullAuthority()
+		);
 
 		$this->expectException( LocalizedHttpException::class );
 		$this->expectExceptionCode( 403 );
@@ -220,7 +237,8 @@ class PageContentHelperTest extends MediaWikiIntegrationTestCase {
 		}
 
 		try {
-			$helper->checkAccess();
+			$helper->checkHasContent(); // Status 404: Not Found
+			$helper->checkAccessPermission(); // Status 403: Forbidden
 			$this->fail( 'Expected HttpException' );
 		} catch ( HttpException $ex ) {
 			$this->assertSame( 404, $ex->getCode() );
@@ -261,7 +279,8 @@ class PageContentHelperTest extends MediaWikiIntegrationTestCase {
 		);
 
 		// The line below should not throw any exception
-		$helper->checkAccess();
+		$helper->checkHasContent(); // Status 404: Not Found
+		$helper->checkAccessPermission(); // Status 403: Forbidden
 	}
 
 	public static function provideExistingPage(): array {
@@ -328,7 +347,8 @@ class PageContentHelperTest extends MediaWikiIntegrationTestCase {
 		$this->assertNull( $helper->getLastModified() );
 
 		try {
-			$helper->checkAccess();
+			$helper->checkHasContent(); // Status 404: Not Found
+			$helper->checkAccessPermission(); // Status 403: Forbidden
 			$this->fail( 'Expected HttpException' );
 		} catch ( HttpException $ex ) {
 			$this->assertSame( 403, $ex->getCode() );
@@ -357,7 +377,8 @@ class PageContentHelperTest extends MediaWikiIntegrationTestCase {
 
 		$this->expectException( HttpException::class );
 		$this->expectExceptionCode( 403 );
-		$helper->checkAccess();
+		$helper->checkHasContent(); // Status 404: Not Found
+		$helper->checkAccessPermission(); // Status 403: Forbidden
 	}
 
 	public function testMessagePage() {
@@ -381,7 +402,13 @@ class PageContentHelperTest extends MediaWikiIntegrationTestCase {
 		$this->assertNull( $helper->getLastModified() );
 
 		// The line below should not throw any exception
-		$helper->checkAccess();
+		$helper->checkHasContent(); // Status 404: Not Found
+		$helper->checkAccessPermission(); // Status 403: Forbidden
+
+		// ... but a route that does not serve shadow content sees the page as missing.
+		$this->expectException( LocalizedHttpException::class );
+		$this->expectExceptionCode( 404 );
+		$helper->checkHasContent( allowShadowContent: false );
 	}
 
 	public static function provideRedirectsAllowed() {

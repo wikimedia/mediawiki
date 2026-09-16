@@ -17,12 +17,11 @@
 			"get": {
 				"x-i18n-description": "rest-endpoint-desc-get-page-title",
 				"handler": {
-					"class": "MediaWiki\\Rest\\Handler\\PageSourceHandler",
+					"class": "MediaWiki\\Rest\\Handler\\PageHandler",
 					"services": [
 						"TitleFormatter",
 						"PageRestHelperFactory"
-					],
-					"format": "source"
+					]
 				}
 			}
 		},
@@ -33,33 +32,7 @@
 					"class": "MediaWiki\\Rest\\Handler\\PageHTMLHandler",
 					"services": [
 						"PageRestHelperFactory"
-					],
-					"format": "html"
-				}
-			}
-		},
-		"/page/{title}/with_html": {
-			"get": {
-				"x-i18n-description": "rest-endpoint-desc-get-page-title-with-html",
-				"handler": {
-					"class": "MediaWiki\\Rest\\Handler\\PageHTMLHandler",
-					"services": [
-						"PageRestHelperFactory"
-					],
-					"format": "with_html"
-				}
-			}
-		},
-		"/page/{title}/bare": {
-			"get": {
-				"x-i18n-description": "rest-endpoint-desc-get-page-title-bare",
-				"handler": {
-					"class": "MediaWiki\\Rest\\Handler\\PageSourceHandler",
-					"services": [
-						"TitleFormatter",
-						"PageRestHelperFactory"
-					],
-					"format": "bare"
+					]
 				}
 			}
 		},

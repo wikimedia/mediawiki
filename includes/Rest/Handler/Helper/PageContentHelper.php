@@ -195,11 +195,14 @@ class PageContentHelper {
 
 	/**
 	 * Returns an ETag representing a page's source. The ETag assumes a page's source has changed if:
-	 * * The latest revision of a page has been made private or un-readable for another reason
-	 * * A newer revision exists
-	 * * The visible tags on the revision have changed
+	 * - The latest revision of a page has been made private or un-readable for another reason
+	 * - A newer revision exists
+	 * - The visible tags on the revision have changed
+	 *
+	 * @param string $suffix A suffix to attach to the etag.
+	 *        Must consist of characters that are legal in ETags.
 	 */
-	public function getETag(): ?string {
+	public function getETag( string $suffix = '' ): ?string {
 		$revision = $this->getTargetRevision();
 		$revId = $revision ? $revision->getId() : 'e0';
 
@@ -217,7 +220,13 @@ class PageContentHelper {
 		}
 
 		$revisionTag = $revId . $accessibleTag . implode( ', ', $tagsOnRevision );
-		return '"' . sha1( $revisionTag ) . '"';
+		$etag = sha1( $revisionTag );
+
+		if ( $suffix !== '' ) {
+			$etag .= '/' . $suffix;
+		}
+
+		return '"' . $etag . '"';
 	}
 
 	public function getLastModified(): ?string {
@@ -383,13 +392,25 @@ class PageContentHelper {
 	}
 
 	/**
-	 * @throws LocalizedHttpException if access is not allowed
+	 * @throws LocalizedHttpException 404 if the requested title does not address a
+	 *         page, 403 if that page may not be read
 	 */
 	public function checkAccessPermission() {
 		$titleText = $this->getTitleText() ?? '';
+		$page = $this->getPageIdentity();
 
-		// @phan-suppress-next-line PhanTypeMismatchArgumentNullable Validated by hasContent
-		if ( !$this->isAccessible() || !$this->authority->authorizeRead( 'read', $this->getPageIdentity() ) ) {
+		// A title that does not address a page at all (an unparseable title, or one
+		// of a special page) leaves nothing to authorize against, so report it as
+		// missing rather than as forbidden. Checked here and not just in
+		// checkHasContent(), so that callers may run the two checks in either order.
+		if ( !$page ) {
+			throw new LocalizedHttpException(
+				MessageValue::new( 'rest-invalid-title' )->plaintextParams( $titleText ),
+				404
+			);
+		}
+
+		if ( !$this->isAccessible() || !$this->authority->authorizeRead( 'read', $page ) ) {
 			throw new LocalizedHttpException(
 				MessageValue::new( 'rest-permission-denied-title' )->plaintextParams( $titleText ),
 				403
@@ -398,9 +419,14 @@ class PageContentHelper {
 	}
 
 	/**
+	 * @param bool $allowShadowContent Whether the content of a "shadow page" (a
+	 *        page that is known but has no stored content, such as a system
+	 *        message page) satisfies this check. Routes that do not serve shadow
+	 *        content treat such a page as missing.
+	 *
 	 * @throws LocalizedHttpException if no content is available
 	 */
-	public function checkHasContent() {
+	public function checkHasContent( bool $allowShadowContent = true ) {
 		$titleText = $this->getTitleText() ?? '';
 
 		$page = $this->getPageIdentity();
@@ -411,7 +437,9 @@ class PageContentHelper {
 			);
 		}
 
-		if ( !$this->hasContent() ) {
+		$useShadowContent = $allowShadowContent && $this->useShadowContent();
+
+		if ( !$useShadowContent && !$this->getPage() ) {
 			// needs to check if it's possibly a variant title
 			throw new LocalizedHttpException(
 				MessageValue::new( 'rest-nonexistent-title' )->plaintextParams( $titleText ),
@@ -420,20 +448,12 @@ class PageContentHelper {
 		}
 
 		$revision = $this->getTargetRevision();
-		if ( !$revision && !$this->useShadowContent() ) {
+		if ( !$revision && !$useShadowContent ) {
 			throw new LocalizedHttpException(
 				MessageValue::new( 'rest-no-revision' )->plaintextParams( $titleText ),
 				404
 			);
 		}
-	}
-
-	/**
-	 * @throws LocalizedHttpException if the content is not accessible
-	 */
-	public function checkAccess() {
-		$this->checkHasContent(); // Status 404: Not Found
-		$this->checkAccessPermission(); // Status 403: Forbidden
 	}
 
 	/**
