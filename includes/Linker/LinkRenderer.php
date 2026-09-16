@@ -27,7 +27,6 @@ use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityLookup;
 use MediaWiki\User\UserNameUtils;
 use MediaWiki\Utils\UrlUtils;
-use Wikimedia\Assert\Assert;
 use Wikimedia\HtmlArmor\HtmlArmor;
 use Wikimedia\Parsoid\Core\LinkTarget;
 
@@ -176,9 +175,8 @@ class LinkRenderer {
 	 * @return-taint escaped
 	 */
 	public function makeLink(
-		$target, $text = null, array $extraAttribs = [], array $query = []
+		LinkTarget|PageReference $target, $text = null, array $extraAttribs = [], array $query = []
 	) {
-		Assert::parameterType( [ LinkTarget::class, PageReference::class ], $target, '$target' );
 		if ( $this->castToTitle( $target )->isKnown() ) {
 			return $this->makeKnownLink( $target, $text, $extraAttribs, $query );
 		} else {
@@ -228,10 +226,8 @@ class LinkRenderer {
 	 * @return-taint escaped
 	 */
 	public function makePreloadedLink(
-		$target, $text = null, $classes = [], array $extraAttribs = [], array $query = []
+		LinkTarget|PageReference $target, $text = null, $classes = [], array $extraAttribs = [], array $query = []
 	) {
-		Assert::parameterType( [ LinkTarget::class, PageReference::class ], $target, '$target' );
-
 		// Run begin hook
 		$ret = $this->runBeginHook( $target, $text, $extraAttribs, $query );
 		if ( $ret !== null ) {
@@ -281,9 +277,8 @@ class LinkRenderer {
 	 * @return-taint escaped
 	 */
 	public function makeKnownLink(
-		$target, $text = null, array $extraAttribs = [], array $query = []
+		LinkTarget|PageReference $target, $text = null, array $extraAttribs = [], array $query = []
 	) {
-		Assert::parameterType( [ LinkTarget::class, PageReference::class ], $target, '$target' );
 		if ( $target instanceof LinkTarget ) {
 			$isExternal = $target->isExternal();
 		} else {
@@ -327,9 +322,8 @@ class LinkRenderer {
 	 * @return-taint escaped
 	 */
 	public function makeBrokenLink(
-		$target, $text = null, array $extraAttribs = [], array $query = []
+		LinkTarget|PageReference $target, $text = null, array $extraAttribs = [], array $query = []
 	) {
-		Assert::parameterType( [ LinkTarget::class, PageReference::class ], $target, '$target' );
 		// Run legacy hook
 		$ret = $this->runBeginHook( $target, $text, $extraAttribs, $query );
 		if ( $ret !== null ) {
@@ -392,7 +386,7 @@ class LinkRenderer {
 	 * @return string
 	 */
 	public function makeExternalLink(
-		string $url, $text, $title, $linktype = '', $attribs = []
+		string $url, $text, LinkTarget|PageReference $title, $linktype = '', $attribs = []
 	) {
 		$originalUrl = $url;
 		$attribs['class'] ??= [];
@@ -426,11 +420,7 @@ class LinkRenderer {
 			return $link;
 		}
 		// Make a valid LinkTarget from the $title
-		$contextTitle = ( $title === null ) ?
-			// Missing context title from the caller.
-			new TitleValue( NS_SPECIAL, 'Badtitle/LinkRenderer' ) :
-			// Cast to LinkTarget
-			( $title instanceof LinkTarget ? $title : TitleValue::newFromPage( $title ) );
+		$contextTitle = $title instanceof LinkTarget ? $title : TitleValue::newFromPage( $title );
 		$this->hookRunner->onLinkerMakeExternalLinkWithContext(
 			$url, $text, $attribs, $linktype, $contextTitle
 		);
@@ -543,7 +533,7 @@ class LinkRenderer {
 	 * @return null|string
 	 * @return-taint escaped
 	 */
-	private function buildAElement( $target, $text, array $attribs, $isKnown ) {
+	private function buildAElement( LinkTarget|PageReference $target, $text, array $attribs, $isKnown ) {
 		$ret = null;
 		if ( !$this->hookRunner->onHtmlPageLinkRendererEnd(
 			// @phan-suppress-next-line PhanTypeMismatchArgument Type mismatch on pass-by-ref args
@@ -559,7 +549,7 @@ class LinkRenderer {
 	 * @param LinkTarget|PageReference $target Page that will be visited when the user clicks on the link.
 	 * @return string
 	 */
-	private function getLinkText( $target ) {
+	private function getLinkText( LinkTarget|PageReference $target ) {
 		$prefixedText = $this->titleFormatter->getPrefixedText( $target );
 		// If the target is just a fragment, with no title, we return the fragment
 		// text.  Otherwise, we return the title text itself.
@@ -576,7 +566,7 @@ class LinkRenderer {
 	 * add `?redirect=no&debug=true`, you would pass `[ 'redirect' => 'no', 'debug' => 'true' ]`
 	 * @return string non-escaped text
 	 */
-	private function getLinkURL( $target, $query = [] ) {
+	private function getLinkURL( LinkTarget|PageReference $target, $query = [] ) {
 		if ( $this->forceArticlePath ) {
 			$realQuery = $query;
 			$query = [];
@@ -599,7 +589,7 @@ class LinkRenderer {
 	 * @param LinkTarget|PageReference $target Page that will be visited when the user clicks on the link.
 	 * @return MWLinkTarget
 	 */
-	public function normalizeTarget( $target ): MWLinkTarget {
+	public function normalizeTarget( LinkTarget|PageReference $target ): MWLinkTarget {
 		$target = $this->castToLinkTarget( $target );
 		if ( $target->getNamespace() === NS_SPECIAL && !$target->isExternal() ) {
 			[ $name, $subpage ] = $this->specialPageFactory->resolveAlias(
@@ -627,8 +617,7 @@ class LinkRenderer {
 	 * @param bool $isDefaultCaption Whether the link text is the default caption for the target.
 	 * @return string CSS class
 	 */
-	public function getLinkClasses( $target, bool $isDefaultCaption = false ) {
-		Assert::parameterType( [ LinkTarget::class, PageReference::class ], $target, '$target' );
+	public function getLinkClasses( LinkTarget|PageReference $target, bool $isDefaultCaption = false ) {
 		if ( $target instanceof LinkTarget ) {
 			$isExternal = $target->isExternal();
 		} else {
@@ -663,7 +652,7 @@ class LinkRenderer {
 	 * @param LinkTarget|PageReference $target Page that will be visited when the user clicks on the link.
 	 * @return Title
 	 */
-	private function castToTitle( $target ): Title {
+	private function castToTitle( LinkTarget|PageReference $target ): Title {
 		if ( $target instanceof LinkTarget ) {
 			return Title::newFromLinkTarget( $target );
 		}
@@ -675,7 +664,7 @@ class LinkRenderer {
 	 * @param LinkTarget|PageReference $target Page that will be visited when the user clicks on the link.
 	 * @return MWLinkTarget
 	 */
-	private function castToLinkTarget( $target ): MWLinkTarget {
+	private function castToLinkTarget( LinkTarget|PageReference $target ): MWLinkTarget {
 		if ( $target instanceof PageReference ) {
 			return Title::newFromPageReference( $target );
 		}
@@ -753,7 +742,7 @@ class LinkRenderer {
 	 * @param LinkTarget|PageReference|null $title Optional page, for wgNoFollowNsExceptions lookups
 	 * @return string|null Rel attribute for $url
 	 */
-	public function getExternalLinkRel( $url = false, $title = null ): ?string {
+	public function getExternalLinkRel( $url = false, LinkTarget|PageReference|null $title = null ): ?string {
 		if (
 			$this->noFollowLinks
 			&& ( !$title || !in_array( $title->getNamespace(), $this->noFollowNsExceptions ) )
