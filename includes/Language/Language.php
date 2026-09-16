@@ -3237,20 +3237,34 @@ class Language implements Bcp47Code {
 	}
 
 	/**
-	 * Get the first character of a string.
+	 * Get the first logical "character" of a string.
+	 *
+	 * This is used for the section headers of categories. The
+	 * first "character" might not actually be the first character
+	 * of the string. Hangul will be broken apart and in some cases
+	 * it will be the first grapheme cluster instead of first
+	 * unicode character.
 	 *
 	 * @param string $s
 	 * @return string
 	 */
 	public function firstChar( $s ) {
 		$firstChar = mb_substr( $s, 0, 1 );
-
-		if ( $firstChar === '' || strlen( $firstChar ) != 3 ) {
+		if ( $firstChar === '' || strlen( $firstChar ) < 3 ) {
 			return $firstChar;
 		}
 
-		// Break down Hangul syllables to grab the first jamo
 		$code = mb_ord( $firstChar );
+		// If emoji, include combining characters.
+		if (
+			( $code >= 0x2600 && $code <= 0x27BF ) ||
+			( $code >= 0x1F1E6 && $code <= 0x1F1FF ) ||
+			( $code >= 0x1F300 && $code <= 0x1FAFF )
+		) {
+			return grapheme_substr( $s, 0, 1 );
+		}
+
+		// Otherwise, break down Hangul syllables to grab the first jamo
 		if ( $code < 0xac00 || $code >= 0xd7a4 ) {
 			return $firstChar;
 		} elseif ( $code < 0xb098 ) {
