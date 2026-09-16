@@ -1684,7 +1684,7 @@ class Title implements Stringable, LinkTarget, PageIdentity {
 			return true;
 		}
 
-		if ( $this->getInterwiki() !== '' ) {
+		if ( $this->isExternal() ) {
 			wfLogWarning(
 				$method . ': called on interwiki title ' . $this->getFullText() . ', returning '
 				. $title->getFullText()

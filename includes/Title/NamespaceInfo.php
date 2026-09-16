@@ -173,7 +173,7 @@ class NamespaceInfo {
 			throw new MWException( 'Can\'t determine talk page associated with relative section link' );
 		}
 
-		if ( $target->getInterwiki() !== '' ) {
+		if ( $target->isExternal() ) {
 			throw new MWException( 'Can\'t determine talk page associated with interwiki link' );
 		}
 
@@ -254,7 +254,7 @@ class NamespaceInfo {
 			throw new MWException( 'Can\'t determine talk page associated with relative section link' );
 		}
 
-		if ( $target->getInterwiki() !== '' ) {
+		if ( $target->isExternal() ) {
 			throw new MWException( 'Can\'t determine talk page associated with interwiki link' );
 		}
 

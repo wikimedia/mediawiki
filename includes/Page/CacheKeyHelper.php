@@ -58,7 +58,7 @@ abstract class CacheKeyHelper {
 
 		if ( $page instanceof WikiAwareEntity && $page->getWikiId() !== WikiAwareEntity::LOCAL ) {
 			$prefix .= '@id@' . $page->getWikiId();
-		} elseif ( $page instanceof LinkTarget && $page->getInterwiki() !== '' ) {
+		} elseif ( $page instanceof LinkTarget && $page->isExternal() ) {
 			$prefix .= '@iw@' . $page->getInterwiki();
 		}
 
