@@ -934,8 +934,8 @@ abstract class Maintenance {
 	public function finalSetup( SettingsBuilder $settingsBuilder ) {
 		$config = $settingsBuilder->getConfig();
 		$overrides = [];
-		$overrides['DBadminuser'] = $config->get( MainConfigNames::DBadminuser );
-		$overrides['DBadminpassword'] = $config->get( MainConfigNames::DBadminpassword );
+		$overrides[MainConfigNames::DBadminuser] = $config->get( MainConfigNames::DBadminuser );
+		$overrides[MainConfigNames::DBadminpassword] = $config->get( MainConfigNames::DBadminpassword );
 
 		# Turn off output buffering again, it might have been turned on in the settings files
 		if ( ob_get_level() ) {
@@ -944,36 +944,36 @@ abstract class Maintenance {
 
 		# Override $wgServer
 		if ( $this->hasOption( 'server' ) ) {
-			$overrides['Server'] = $this->getOption( 'server', $config->get( MainConfigNames::Server ) );
+			$overrides[MainConfigNames::Server] = $this->getOption( 'server', $config->get( MainConfigNames::Server ) );
 		}
 
 		# If these were passed, use them
 		if ( $this->mDbUser ) {
-			$overrides['DBadminuser'] = $this->mDbUser;
+			$overrides[MainConfigNames::DBadminuser] = $this->mDbUser;
 		}
 		if ( $this->mDbPass ) {
-			$overrides['DBadminpassword'] = $this->mDbPass;
+			$overrides[MainConfigNames::DBadminpassword] = $this->mDbPass;
 		}
 
-		if ( $this->getDbType() == self::DB_ADMIN && isset( $overrides[ 'DBadminuser' ] ) ) {
-			$overrides['DBuser'] = $overrides[ 'DBadminuser' ];
-			$overrides['DBpassword'] = $overrides[ 'DBadminpassword' ];
+		if ( $this->getDbType() == self::DB_ADMIN && isset( $overrides[MainConfigNames::DBadminuser] ) ) {
+			$overrides[MainConfigNames::DBuser] = $overrides[MainConfigNames::DBadminuser];
+			$overrides[MainConfigNames::DBpassword] = $overrides[MainConfigNames::DBadminpassword];
 
 			/** @var array $dbServers */
 			$dbServers = $config->get( MainConfigNames::DBservers );
 			if ( $dbServers ) {
 				foreach ( $dbServers as $i => $server ) {
-					$dbServers[$i]['user'] = $overrides['DBuser'];
-					$dbServers[$i]['password'] = $overrides['DBpassword'];
+					$dbServers[$i]['user'] = $overrides[MainConfigNames::DBuser];
+					$dbServers[$i]['password'] = $overrides[MainConfigNames::DBpassword];
 				}
-				$overrides['DBservers'] = $dbServers;
+				$overrides[MainConfigNames::DBservers] = $dbServers;
 			}
 
 			$lbFactoryConf = $config->get( MainConfigNames::LBFactoryConf );
 			if ( isset( $lbFactoryConf['serverTemplate'] ) ) {
-				$lbFactoryConf['serverTemplate']['user'] = $overrides['DBuser'];
-				$lbFactoryConf['serverTemplate']['password'] = $overrides['DBpassword'];
-				$overrides['LBFactoryConf'] = $lbFactoryConf;
+				$lbFactoryConf['serverTemplate']['user'] = $overrides[MainConfigNames::DBuser];
+				$lbFactoryConf['serverTemplate']['password'] = $overrides[MainConfigNames::DBpassword];
+				$overrides[MainConfigNames::LBFactoryConf] = $lbFactoryConf;
 			}
 
 			// TODO: once MediaWikiServices::getInstance() starts throwing exceptions
@@ -990,7 +990,7 @@ abstract class Maintenance {
 
 		$this->afterFinalSetup();
 
-		$overrides['ShowExceptionDetails'] = true;
+		$overrides[MainConfigNames::ShowExceptionDetails] = true;
 		$overrides['ShowHostname'] = true;
 
 		ini_set( 'max_execution_time', '0' );

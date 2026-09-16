@@ -6,6 +6,7 @@
 
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\FeatureShutdown;
+use MediaWiki\MainConfigNames;
 
 /**
  * @covers \MediaWiki\FeatureShutdown
@@ -18,7 +19,7 @@ class FeatureShutdownTest extends MediaWikiUnitTestCase {
 			new FeatureShutdown(
 				new ServiceOptions(
 					FeatureShutdown::CONSTRUCTOR_OPTIONS,
-					[ 'FeatureShutdown' => [], ]
+					[ MainConfigNames::FeatureShutdown => [] ]
 				)
 			)
 		);
@@ -31,7 +32,7 @@ class FeatureShutdownTest extends MediaWikiUnitTestCase {
 		$fs = new FeatureShutdown(
 			new ServiceOptions(
 				FeatureShutdown::CONSTRUCTOR_OPTIONS,
-				[ 'FeatureShutdown' => $shutdowns, ]
+				[ MainConfigNames::FeatureShutdown => $shutdowns ]
 			)
 		);
 
@@ -81,11 +82,7 @@ class FeatureShutdownTest extends MediaWikiUnitTestCase {
 		$fs = new FeatureShutdown(
 			new ServiceOptions(
 				FeatureShutdown::CONSTRUCTOR_OPTIONS,
-				[
-					'FeatureShutdown' => [
-						'legacy-bars' => [ $shutdown ],
-					],
-				]
+				[ MainConfigNames::FeatureShutdown => [ 'legacy-bars' => [ $shutdown ] ] ]
 			)
 		);
 

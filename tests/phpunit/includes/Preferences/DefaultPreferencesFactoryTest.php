@@ -451,11 +451,11 @@ class DefaultPreferencesFactoryTest extends \MediaWikiIntegrationTestCase {
 	public function testAllServiceOptionsUsed() {
 		$this->assertAllServiceOptionsUsed( [
 			// Only used when $wgEnotifWatchlist or $wgEnotifUserTalk is true
-			'EnotifMinorEdits',
+			MainConfigNames::EnotifMinorEdits,
 			// Only used when $wgEnotifWatchlist or $wgEnotifUserTalk is true
-			'EnotifRevealEditorAddress',
+			MainConfigNames::EnotifRevealEditorAddress,
 			// Only used when 'fancysig' preference is enabled
-			'SignatureValidation',
+			MainConfigNames::SignatureValidation,
 		] );
 	}
 

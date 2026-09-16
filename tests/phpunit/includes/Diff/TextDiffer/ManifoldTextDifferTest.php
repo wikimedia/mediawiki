@@ -2,6 +2,7 @@
 
 use MediaWiki\Context\RequestContext;
 use MediaWiki\Diff\TextDiffer\ManifoldTextDiffer;
+use MediaWiki\MainConfigNames;
 use MediaWiki\Tests\Diff\TextDiffer\TextDifferData;
 
 /**
@@ -14,9 +15,9 @@ class ManifoldTextDifferTest extends MediaWikiIntegrationTestCase {
 		return new ManifoldTextDiffer(
 			RequestContext::getMain(),
 			$services->getLanguageFactory()->getLanguage( 'en' ),
-			$configVars['DiffEngine'] ?? null,
-			$configVars['ExternalDiffEngine'] ?? null,
-			$configVars['Wikidiff2Options'] ?? []
+			$configVars[MainConfigNames::DiffEngine] ?? null,
+			$configVars[MainConfigNames::ExternalDiffEngine] ?? null,
+			$configVars[MainConfigNames::Wikidiff2Options] ?? []
 		);
 	}
 
@@ -51,14 +52,14 @@ class ManifoldTextDifferTest extends MediaWikiIntegrationTestCase {
 			$this->markTestSkipped( 'This test only works on non-Windows platforms' );
 		}
 		$differ = $this->createDiffer( [
-			'ExternalDiffEngine' => __DIR__ . '/externalDiffTest.sh'
+			MainConfigNames::ExternalDiffEngine => __DIR__ . '/externalDiffTest.sh'
 		] );
 		$this->assertTrue( $differ->hasFormat( 'external' ) );
 	}
 
 	public function testRenderForcePhp() {
 		$differ = $this->createDiffer( [
-			'DiffEngine' => 'php'
+			MainConfigNames::DiffEngine => 'php'
 		] );
 		$result = $differ->render( 'foo', 'bar', 'table' );
 		$this->assertSame(
@@ -88,7 +89,7 @@ class ManifoldTextDifferTest extends MediaWikiIntegrationTestCase {
 				'arguments like $wgPhpCli, so it\'s hard to be platform-independent' );
 		}
 		$differ = $this->createDiffer( [
-			'ExternalDiffEngine' => __DIR__ . '/externalDiffTest.sh'
+			MainConfigNames::ExternalDiffEngine => __DIR__ . '/externalDiffTest.sh'
 		] );
 		$result = $differ->renderBatch( 'foo', 'bar',
 			[ 'table', 'inline', 'external', 'unified' ] );
@@ -121,7 +122,7 @@ class ManifoldTextDifferTest extends MediaWikiIntegrationTestCase {
 			$this->markTestSkipped( 'This test only works on non-Windows platforms' );
 		}
 		$differ = $this->createDiffer( [
-			'ExternalDiffEngine' => __DIR__ . '/externalDiffTest.sh'
+			MainConfigNames::ExternalDiffEngine => __DIR__ . '/externalDiffTest.sh'
 		] );
 		$result = $differ->addRowWrapper( $format, 'foo' );
 		if ( $isWrap ) {

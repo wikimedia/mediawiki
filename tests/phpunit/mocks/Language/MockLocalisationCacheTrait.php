@@ -32,9 +32,9 @@ trait MockLocalisationCacheTrait {
 		$options += [
 			'forceRecache' => false,
 			'manualRecache' => false,
-			'ExtensionMessagesFiles' => [],
-			'MessagesDirs' => [],
-			'TranslationAliasesDirs' => [],
+			MainConfigNames::ExtensionMessagesFiles => [],
+			MainConfigNames::MessagesDirs => [],
+			MainConfigNames::TranslationAliasesDirs => [],
 			MainConfigNames::UseLeximorph => false,
 		];
 

@@ -10,6 +10,7 @@ namespace MediaWiki\Specials;
 
 use MediaWiki\Html\Html;
 use MediaWiki\Language\Language;
+use MediaWiki\MainConfigNames;
 use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Title\NamespaceInfo;
 
@@ -136,7 +137,7 @@ class SpecialNamespaceInfo extends SpecialPage {
 		$properties = [];
 		if ( $ns >= NS_MAIN ) {
 			// Don't talk about immovable namespaces for virtual NS_SPECIAL or NS_MEDIA
-			$namespaceProtection = $this->getConfig()->get( 'NamespaceProtection' );
+			$namespaceProtection = $this->getConfig()->get( MainConfigNames::NamespaceProtection );
 			if ( isset( $namespaceProtection[$ns] ) ) {
 				$rightsNeeded = $namespaceProtection[$ns];
 				if ( !is_array( $rightsNeeded ) ) {

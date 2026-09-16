@@ -113,7 +113,7 @@ class SpecialBlock extends FormSpecialPage {
 
 		$this->getOutput()->addJsConfigVars(
 			'wgAutoCreateTempUserEnabled',
-			$this->getConfig()->get( 'AutoCreateTempUser' )['enabled'],
+			$this->getConfig()->get( MainConfigNames::AutoCreateTempUser )['enabled'],
 		);
 
 		if ( $this->getConfig()->get( MainConfigNames::UseCodexSpecialBlock )

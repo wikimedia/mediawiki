@@ -6,6 +6,7 @@ use CopyJobQueue;
 use MediaWiki\JobQueue\JobQueueDB;
 use MediaWiki\JobQueue\JobQueueMemory;
 use MediaWiki\JobQueue\Jobs\NullJob;
+use MediaWiki\MainConfigNames;
 use Wikimedia\TestingAccessWrapper;
 
 /**
@@ -55,7 +56,7 @@ class CopyJobQueueTest extends MaintenanceBaseTestCase {
 	 * @return void
 	 */
 	private function setMigrationConfig() {
-		$this->overrideConfigValue( 'JobTypeConf', [
+		$this->overrideConfigValue( MainConfigNames::JobTypeConf, [
 			'default' => [ 'class' => JobQueueMemory::class ],
 		] );
 		$this->overrideConfigValue( 'JobQueueMigrationConfig', [
@@ -139,7 +140,7 @@ class CopyJobQueueTest extends MaintenanceBaseTestCase {
 			->assertFieldValue( 2 );
 
 		// Finally, run the jobs using the DB job queue configuration to ensure that the move did not corrupt the jobs.
-		$this->overrideConfigValue( 'JobTypeConf', [
+		$this->overrideConfigValue( MainConfigNames::JobTypeConf, [
 			'default' => [ 'class' => JobQueueDB::class ],
 		] );
 		$this->runJobs( [ 'minJobs' => 2 ], [ 'type' => 'null' ] );

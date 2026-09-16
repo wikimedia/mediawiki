@@ -510,7 +510,7 @@ class SkinModule extends FileModule {
 		$isAccessibilityEnabled = in_array( 'accessibility', $this->features );
 
 		$config = $this->getConfig();
-		$limits = $config->get( 'ThumbLimits' );
+		$limits = $config->get( MainConfigNames::ThumbLimits );
 
 		// @todo: these may be converted to em units at later point in project (pending feedback)
 		// @todo: This may be moved to a dedicated module later on to group user customizations
@@ -518,7 +518,7 @@ class SkinModule extends FileModule {
 		if ( $isAccessibilityEnabled ) {
 			[ $smallSize, $defaultSize, $largeSize ] = DefaultPreferencesFactory::getNormalizedThumbSizes(
 				$config->get( MainConfigNames::ThumbLimits ),
-				$config->get( 'DefaultUserOptions' )
+				$config->get( MainConfigNames::DefaultUserOptions )
 			);
 			$featureStyles['all'][] = <<<CSS
 :root {
@@ -738,7 +738,7 @@ CSS;
 		$logos = self::getAvailableLogos( $config, $context->getLanguage() );
 		[ $smallSize, $defaultSize, $largeSize ] = DefaultPreferencesFactory::getNormalizedThumbSizes(
 			$config->get( MainConfigNames::ThumbLimits ),
-			$config->get( 'DefaultUserOptions' )
+			$config->get( MainConfigNames::DefaultUserOptions )
 		);
 
 		$lessVars[ 'image-size-standard' ] = $defaultSize;
@@ -760,7 +760,7 @@ CSS;
 		$config = $this->getConfig();
 		$summary[] = [
 			'csslastmodified' => '2026-06-22',
-			'thumblimits' => $config->get( 'ThumbLimits' ),
+			'thumblimits' => $config->get( MainConfigNames::ThumbLimits ),
 			'logos' => self::getAvailableLogos( $config, $context->getLanguage() ),
 		];
 		return $summary;

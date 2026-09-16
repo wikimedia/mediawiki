@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\MainConfigNames;
 use MediaWiki\Title\Title;
 use MediaWiki\User\UserIdentityValue;
 use MediaWiki\Watchlist\WatchlistLabel;
@@ -85,7 +86,7 @@ class WatchlistLabelStoreIntegrationTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testCountItems(): void {
-		$this->overrideConfigValues( [ 'EnableWatchlistLabels' => true ] );
+		$this->overrideConfigValues( [ MainConfigNames::EnableWatchlistLabels => true ] );
 		$labelStore = $this->getServiceContainer()->getWatchlistLabelStore();
 		$itemStore = $this->getServiceContainer()->getWatchedItemStore();
 		$user = $this->getTestUser()->getUser();

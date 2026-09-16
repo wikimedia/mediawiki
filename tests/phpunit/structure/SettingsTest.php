@@ -343,7 +343,7 @@ class SettingsTest extends MediaWikiIntegrationTestCase {
 
 	public static function provideConfigStructurePartialReplacement() {
 		yield 'GroupPermissions' => [
-			'GroupPermissions',
+			MainConfigNames::GroupPermissions,
 			[ // permissions for each group should be merged
 				'autoconfirmed' => [
 					'autoconfirmed' => true,
@@ -361,7 +361,7 @@ class SettingsTest extends MediaWikiIntegrationTestCase {
 			],
 		];
 		yield 'RateLimits' => [
-			'RateLimits',
+			MainConfigNames::RateLimits,
 			[ // limits for each action should be merged, limits for each group get replaced
 				'move' => [ 'newbie' => [ 1, 80 ], 'user' => [ 8, 60 ], 'ip' => [ 1, 60 ] ],
 				'test' => [ 'ip' => [ 1, 60 ] ],

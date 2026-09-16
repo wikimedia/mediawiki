@@ -823,7 +823,7 @@ class NamespaceInfoTest extends MediaWikiIntegrationTestCase {
 	// Default canonical namespaces
 	// %{
 	private function getDefaultNamespaces() {
-		return [ NS_MAIN => '' ] + self::DEFAULT_OPTIONS['CanonicalNamespaceNames'];
+		return [ NS_MAIN => '' ] + self::DEFAULT_OPTIONS[MainConfigNames::CanonicalNamespaceNames];
 	}
 
 	/**

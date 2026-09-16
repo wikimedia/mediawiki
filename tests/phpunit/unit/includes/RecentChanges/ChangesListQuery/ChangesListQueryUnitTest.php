@@ -2,6 +2,7 @@
 
 namespace MediaWiki\Tests\Unit\RecentChanges\ChangesListQuery;
 
+use MediaWiki\MainConfigNames;
 use MediaWiki\RecentChanges\ChangesListQuery\ChangesListQuery;
 use MediaWiki\Tests\Unit\MockServiceDependenciesTrait;
 
@@ -50,15 +51,15 @@ class ChangesListQueryUnitTest extends \MediaWikiUnitTestCase {
 	public function testSortAndTruncate( $limit, $rows, $expected ) {
 		$config = $this->createMock( \MediaWiki\Config\ServiceOptions::class );
 		$config->method( 'get' )->willReturnMap( [
-			[ 'WatchlistExpiry', true ],
-			[ 'MiserMode', false ],
-			[ 'RCMaxAge', 7776000 ],
-			[ 'EnableChangesListQueryPartitioning', false ],
-			[ 'VirtualDomainsMapping', [] ],
-			[ 'LearnerMemberSince', 0 ],
-			[ 'ExperiencedUserMemberSince', 0 ],
-			[ 'LearnerEdits', 0 ],
-			[ 'ExperiencedUserEdits', 0 ],
+			[ MainConfigNames::WatchlistExpiry, true ],
+			[ MainConfigNames::MiserMode, false ],
+			[ MainConfigNames::RCMaxAge, 7776000 ],
+			[ MainConfigNames::EnableChangesListQueryPartitioning, false ],
+			[ MainConfigNames::VirtualDomainsMapping, [] ],
+			[ MainConfigNames::LearnerMemberSince, 0 ],
+			[ MainConfigNames::ExperiencedUserMemberSince, 0 ],
+			[ MainConfigNames::LearnerEdits, 0 ],
+			[ MainConfigNames::ExperiencedUserEdits, 0 ],
 		] );
 
 		$query = $this->newServiceInstance( ChangesListQuery::class, [

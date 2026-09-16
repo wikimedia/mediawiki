@@ -94,7 +94,7 @@ class LocalisationCacheTest extends MediaWikiIntegrationTestCase {
 
 		// first, recache the l10n cache and test it
 		$lc = $this->getMockLocalisationCache( [], [
-			'ExtensionMessagesFiles' => [
+			MainConfigNames::ExtensionMessagesFiles => [
 				__METHOD__ => "$IP/tests/phpunit/data/localisationcache/ExtensionMessagesFiles.php",
 			]
 		] );
@@ -103,7 +103,7 @@ class LocalisationCacheTest extends MediaWikiIntegrationTestCase {
 
 		// then, make another l10n cache sharing the first one’s LCStore and test that (T343375)
 		$lc = $this->getMockLocalisationCache( [], [
-			'ExtensionMessagesFiles' => [
+			MainConfigNames::ExtensionMessagesFiles => [
 				__METHOD__ => "$IP/tests/phpunit/data/localisationcache/ExtensionMessagesFiles.php",
 			]
 		] );
@@ -116,7 +116,7 @@ class LocalisationCacheTest extends MediaWikiIntegrationTestCase {
 		global $IP;
 
 		$lc = $this->getMockLocalisationCache( [], [
-			'TranslationAliasesDirs' => [
+			MainConfigNames::TranslationAliasesDirs => [
 				__METHOD__ => "$IP/tests/phpunit/data/localisationcache/translation-alias/"
 			]
 		] );

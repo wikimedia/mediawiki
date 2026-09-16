@@ -614,31 +614,31 @@ class SettingsBuilderTest extends TestCase {
 
 		$this->assertSame(
 			'/DEFAULT/',
-			$schema->getDefaultFor( 'StyleDirectory' )
+			$schema->getDefaultFor( MainConfigNames::StyleDirectory )
 		);
 		$this->assertSame(
 			[ 'callback' => [ MainConfigSchema::class, 'getDefaultUsePathInfo' ] ],
-			$schema->getDynamicDefaultDeclarationFor( 'UsePathInfo' )
+			$schema->getDynamicDefaultDeclarationFor( MainConfigNames::UsePathInfo )
 		);
 		$this->assertSame(
 			'replace',
-			$schema->getMergeStrategyFor( 'LBFactoryConf' )->getName()
+			$schema->getMergeStrategyFor( MainConfigNames::LBFactoryConf )->getName()
 		);
 		$this->assertSame(
 			'/DEFAULT/',
-			$schema->getDefaultFor( 'ExtensionDirectory' )
+			$schema->getDefaultFor( MainConfigNames::ExtensionDirectory )
 		);
 		$this->assertSame(
-			[ 'use' => [ 'ScriptPath' ], 'callback' => [ MainConfigSchema::class, 'getDefaultRestPath' ] ],
-			$schema->getDynamicDefaultDeclarationFor( 'RestPath' )
+			[ 'use' => [ MainConfigNames::ScriptPath ], 'callback' => [ MainConfigSchema::class, 'getDefaultRestPath' ] ],
+			$schema->getDynamicDefaultDeclarationFor( MainConfigNames::RestPath )
 		);
 		$this->assertSame(
-			[ 'use' => [ 'ScriptPath' ], 'callback' => [ MainConfigSchema::class, 'getDefaultRestPath' ] ],
-			$schema->getDynamicDefaultDeclarationFor( 'RestPath' )
+			[ 'use' => [ MainConfigNames::ScriptPath ], 'callback' => [ MainConfigSchema::class, 'getDefaultRestPath' ] ],
+			$schema->getDynamicDefaultDeclarationFor( MainConfigNames::RestPath )
 		);
 		$this->assertSame(
 			'replace',
-			$schema->getMergeStrategyFor( 'TiffThumbnailType' )->getName()
+			$schema->getMergeStrategyFor( MainConfigNames::TiffThumbnailType )->getName()
 		);
 	}
 

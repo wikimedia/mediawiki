@@ -66,16 +66,16 @@ class WikiFarmSettingsLoaderTest extends MediaWikiUnitTestCase {
 	public static function provideWikiFarmSettings() {
 		yield [
 			[
-				'WikiFarmSettingsDirectory' => __DIR__ . '/fixtures/sites',
-				'WikiFarmSettingsExtension' => 'yaml',
+				MainConfigNames::WikiFarmSettingsDirectory => __DIR__ . '/fixtures/sites',
+				MainConfigNames::WikiFarmSettingsExtension => 'yaml',
 			],
 			'alpha',
 			[ 'SiteName' => 'Alpha Wiki' ]
 		];
 		yield [
 			[
-				'WikiFarmSettingsDirectory' => __DIR__ . '/fixtures/sites',
-				'WikiFarmSettingsExtension' => 'json',
+				MainConfigNames::WikiFarmSettingsDirectory => __DIR__ . '/fixtures/sites',
+				MainConfigNames::WikiFarmSettingsExtension => 'json',
 			],
 			'beta',
 			[ 'SiteName' => 'Beta Wiki' ]

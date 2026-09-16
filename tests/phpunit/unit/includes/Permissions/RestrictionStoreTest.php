@@ -673,7 +673,7 @@ class RestrictionStoreTest extends MediaWikiUnitTestCase {
 				true,
 				[ (object)[ 'pr_type' => 'edit', 'pr_level' => 'custom',
 					'pr_expiry' => 'infinity', 'pr_cascade' => '0' ], ],
-				[ 'action' => 'edit', 'RestrictionLevels' =>
+				[ 'action' => 'edit', MainConfigNames::RestrictionLevels =>
 					[ '', 'autoconfirmed', 'sysop', 'custom' ] ],
 			],
 

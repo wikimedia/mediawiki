@@ -622,8 +622,8 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 		}
 
 		// Make sure it's not too recent
-		$config['CacheEpoch'] ??= '20000101000000';
-		$config['CachePages'] ??= true;
+		$config[MainConfigNames::CacheEpoch] ??= '20000101000000';
+		$config[MainConfigNames::CachePages] ??= true;
 
 		$op = $this->newInstance( $config, $request );
 

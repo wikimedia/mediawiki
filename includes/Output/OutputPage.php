@@ -3720,7 +3720,7 @@ class OutputPage extends ContextSource {
 		$lookupService = $services->getUserOptionsLookup();
 		$user = $this->getUser();
 		$thumbnailIndex = $lookupService->getOption( $user, 'thumbsize' );
-		$thumbnailSize = $config->get( 'ThumbLimits' )[ $thumbnailIndex ] ?? 250;
+		$thumbnailSize = $config->get( MainConfigNames::ThumbLimits )[$thumbnailIndex] ?? 250;
 		$thumbValue = $thumbnailSize === 250 ? 'standard' : (
 			$thumbnailSize < 250 ? 'small' : 'large'
 		);

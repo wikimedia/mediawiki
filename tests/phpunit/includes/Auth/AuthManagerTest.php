@@ -1632,7 +1632,7 @@ class AuthManagerTest extends MediaWikiIntegrationTestCase {
 			in_array( $level, [ LogLevel::DEBUG, LogLevel::INFO ], true ) ? null : $message
 		);
 		$this->initializeManager();
-		$this->config->set( 'ReauthenticateTime', [ 'default' => 100 ] );
+		$this->config->set( MainConfigNames::ReauthenticateTime, [ 'default' => 100 ] );
 
 		// normal authentication
 		$session->setUser( new User() );

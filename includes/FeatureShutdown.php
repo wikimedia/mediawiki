@@ -17,7 +17,7 @@ use MediaWiki\Config\ServiceOptions;
 class FeatureShutdown {
 	/** @internal Only public for service wiring use. */
 	public const CONSTRUCTOR_OPTIONS = [
-		'FeatureShutdown',
+		MainConfigNames::FeatureShutdown,
 	];
 
 	/** @var array */
@@ -28,7 +28,7 @@ class FeatureShutdown {
 	 */
 	public function __construct( ServiceOptions $options ) {
 		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
-		$this->shutdowns = $options->get( 'FeatureShutdown' );
+		$this->shutdowns = $options->get( MainConfigNames::FeatureShutdown );
 	}
 
 	/**
