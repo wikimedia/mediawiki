@@ -270,6 +270,7 @@ For notes on 1.46.x and older releases, see HISTORY.
 * Updated symfony/yaml from 7.4.6 to 7.4.17.
 * Updated wikimedia/cldr-plural-rule-parser from 3.0.1 to 3.0.2.
 * Updated wikimedia/cssjanus from 2.3.0 to 2.3.1.
+* Updated wikimedia/object-factory from 6.0.0 to 7.0.0.
 * Updated wikimedia/json-codec from 4.0.0 to 5.0.0.
 * Updated wikimedia/language-data from 1.1.13 to 1.1.14.
 * Updated wikimedia/minify from 2.10.0 to 2.12.0.
