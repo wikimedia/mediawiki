@@ -3,6 +3,7 @@
 namespace MediaWiki\Watchlist;
 
 use MediaWiki\JobQueue\Job;
+use MediaWiki\JobQueue\JobSpecification;
 use MediaWiki\MediaWikiServices;
 
 /**
@@ -26,7 +27,7 @@ class WatchlistExpiryJob extends Job {
 		$watchedItemStore->removeExpired( 100 );
 		if ( $watchedItemStore->countExpired() ) {
 			// If there are still items, add a new job.
-			$services->getJobQueueGroup()->push( new static() );
+			$services->getJobQueueGroup()->push( new JobSpecification( $this->getType(), [] ) );
 		}
 		return true;
 	}

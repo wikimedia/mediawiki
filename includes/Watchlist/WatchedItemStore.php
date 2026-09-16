@@ -8,6 +8,7 @@ use LogicException;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Deferred\DeferredUpdates;
 use MediaWiki\JobQueue\JobQueueGroup;
+use MediaWiki\JobQueue\JobSpecification;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Page\LinkBatchFactory;
 use MediaWiki\Page\PageReference;
@@ -387,7 +388,7 @@ class WatchedItemStore implements WatchedItemStoreInterface {
 		$max = mt_getrandmax();
 		if ( mt_rand( 0, $max ) < $max * $this->watchlistPurgeRate ) {
 			// The higher the watchlist purge rate, the more likely we are to enqueue a job.
-			$this->queueGroup->lazyPush( new WatchlistExpiryJob() );
+			$this->queueGroup->lazyPush( new JobSpecification( 'watchlistExpiry', [] ) );
 		}
 	}
 
