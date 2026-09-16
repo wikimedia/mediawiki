@@ -256,6 +256,7 @@ class SiteList extends ArrayObject {
 	/**
 	 * Returns if the list contains the site with the provided site id.
 	 *
+	 * @deprecated since 1.47
 	 * @param int $id
 	 *
 	 * @return bool
@@ -268,6 +269,7 @@ class SiteList extends ArrayObject {
 	 * Returns the Site with the provided site id.
 	 * The site needs to exist, so if not sure, call has first.
 	 *
+	 * @deprecated since 1.47
 	 * @since 1.21
 	 *
 	 * @param int $id
@@ -282,6 +284,7 @@ class SiteList extends ArrayObject {
 	 * Removes the site with the specified site id.
 	 * The site needs to exist, so if not sure, call has first.
 	 *
+	 * @deprecated since 1.47
 	 * @since 1.21
 	 *
 	 * @param int $id

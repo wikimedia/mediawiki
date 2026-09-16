@@ -437,6 +437,7 @@ class Site {
 	/**
 	 * Returns the set internal identifier for the site.
 	 *
+	 * @deprecated since 1.47, use getGlobalId if a unique identifier is needed.
 	 * @since 1.21
 	 *
 	 * @return int|null
@@ -449,6 +450,7 @@ class Site {
 	 * Sets the internal identifier for the site.
 	 * This typically is a primary key in a db table.
 	 *
+	 * @deprecated since 1.47
 	 * @since 1.21
 	 *
 	 * @param int|null $internalId
