@@ -40,11 +40,10 @@
 			"get": {
 				"x-i18n-description": "rest-endpoint-desc-get-revision-id",
 				"handler": {
-					"class": "MediaWiki\\Rest\\Handler\\RevisionSourceHandler",
+					"class": "MediaWiki\\Rest\\Handler\\RevisionHandler",
 					"services": [
 						"PageRestHelperFactory"
-					],
-					"format": "source"
+					]
 				}
 			}
 		},
@@ -55,32 +54,7 @@
 					"class": "MediaWiki\\Rest\\Handler\\RevisionHTMLHandler",
 					"services": [
 						"PageRestHelperFactory"
-					],
-					"format": "html"
-				}
-			}
-		},
-		"/revision/{id}/with_html": {
-			"get": {
-				"x-i18n-description": "rest-endpoint-desc-get-revision-id-with-html",
-				"handler": {
-					"class": "MediaWiki\\Rest\\Handler\\RevisionHTMLHandler",
-					"services": [
-						"PageRestHelperFactory"
-					],
-					"format": "with_html"
-				}
-			}
-		},
-		"/revision/{id}/bare": {
-			"get": {
-				"x-i18n-description": "rest-endpoint-desc-get-revision-id-bare",
-				"handler": {
-					"class": "MediaWiki\\Rest\\Handler\\RevisionSourceHandler",
-					"services": [
-						"PageRestHelperFactory"
-					],
-					"format": "bare"
+					]
 				}
 			}
 		}

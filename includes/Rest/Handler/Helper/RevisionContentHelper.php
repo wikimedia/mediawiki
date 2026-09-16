@@ -75,6 +75,14 @@ class RevisionContentHelper extends PageContentHelper {
 		return (bool)$this->getTargetRevision();
 	}
 
+	/**
+	 * Always false: a page can be shadowed, a revision cannot. A shadow page has
+	 * no stored content, so there is no revision of it to address.
+	 */
+	public function useShadowContent(): bool {
+		return false;
+	}
+
 	public function setCacheControl( ResponseInterface $response, ?int $expiry = null ) {
 		$revision = $this->getTargetRevision();
 
@@ -150,9 +158,14 @@ class RevisionContentHelper extends PageContentHelper {
 	}
 
 	/**
+	 * Combined 404/403 check for a revision, reporting revision specific messages.
+	 * The page side has no equivalent: its handlers call checkHasContent() and
+	 * checkAccessPermission() separately, since a redirect may have to be
+	 * generated between the two.
+	 *
 	 * @throws LocalizedHttpException if the content is not accessible
 	 */
-	public function checkAccess() {
+	public function checkAccessible() {
 		$revId = $this->getRevisionId() ?? '';
 
 		if ( !$this->hasContent() ) {

@@ -14,6 +14,7 @@ use MediaWiki\Rest\Response;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
+use MediaWiki\Title\Title;
 use MediaWikiIntegrationTestCase;
 use Wikimedia\Timestamp\TimestampFormat as TS;
 
@@ -94,6 +95,24 @@ class RevisionContentHelperTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
+	 * A page can be shadowed, a revision cannot: a shadow page has no stored
+	 * content, so there is no revision of it to address. Asserted on a page in a
+	 * namespace where shadow pages do occur, so that the check is not vacuous.
+	 *
+	 * @covers \MediaWiki\Rest\Handler\Helper\RevisionContentHelper::useShadowContent()
+	 */
+	public function testUseShadowContent() {
+		$page = $this->getNonexistingTestPage(
+			Title::makeTitle( NS_MEDIAWIKI, 'Logouttext' )
+		);
+		$this->editPage( $page, 'Custom logout text' );
+
+		$helper = $this->newHelper( [ 'id' => $page->getRevisionRecord()->getId() ] );
+
+		$this->assertFalse( $helper->useShadowContent() );
+	}
+
+	/**
 	 * @covers \MediaWiki\Rest\Handler\Helper\RevisionContentHelper::getTargetRevision()
 	 * @covers \MediaWiki\Rest\Handler\Helper\RevisionContentHelper::getContent()
 	 */
@@ -122,7 +141,7 @@ class RevisionContentHelperTest extends MediaWikiIntegrationTestCase {
 	 * @covers \MediaWiki\Rest\Handler\Helper\RevisionContentHelper::getContent()
 	 * @covers \MediaWiki\Rest\Handler\Helper\RevisionContentHelper::getLastModified()
 	 * @covers \MediaWiki\Rest\Handler\Helper\RevisionContentHelper::getETag()
-	 * @covers \MediaWiki\Rest\Handler\Helper\RevisionContentHelper::checkAccess()
+	 * @covers \MediaWiki\Rest\Handler\Helper\RevisionContentHelper::checkAccessible()
 	 */
 	public function testNoTitle() {
 		$helper = $this->newHelper();
@@ -146,7 +165,7 @@ class RevisionContentHelperTest extends MediaWikiIntegrationTestCase {
 		}
 
 		try {
-			$helper->checkAccess();
+			$helper->checkAccessible();
 			$this->fail( 'Expected HttpException' );
 		} catch ( HttpException $ex ) {
 			$this->assertSame( 404, $ex->getCode() );
@@ -162,7 +181,7 @@ class RevisionContentHelperTest extends MediaWikiIntegrationTestCase {
 	 * @covers \MediaWiki\Rest\Handler\Helper\RevisionContentHelper::getContent()
 	 * @covers \MediaWiki\Rest\Handler\Helper\RevisionContentHelper::getLastModified()
 	 * @covers \MediaWiki\Rest\Handler\Helper\RevisionContentHelper::getETag()
-	 * @covers \MediaWiki\Rest\Handler\Helper\RevisionContentHelper::checkAccess()
+	 * @covers \MediaWiki\Rest\Handler\Helper\RevisionContentHelper::checkAccessible()
 	 */
 	public function testNonExistingRevision() {
 		$helper = $this->newHelper( [ 'id' => 287436534 ] );
@@ -187,7 +206,7 @@ class RevisionContentHelperTest extends MediaWikiIntegrationTestCase {
 		}
 
 		try {
-			$helper->checkAccess();
+			$helper->checkAccessible();
 			$this->fail( 'Expected HttpException' );
 		} catch ( HttpException $ex ) {
 			$this->assertSame( 404, $ex->getCode() );
@@ -203,7 +222,7 @@ class RevisionContentHelperTest extends MediaWikiIntegrationTestCase {
 	 * @covers \MediaWiki\Rest\Handler\Helper\RevisionContentHelper::getContent()
 	 * @covers \MediaWiki\Rest\Handler\Helper\RevisionContentHelper::getLastModified()
 	 * @covers \MediaWiki\Rest\Handler\Helper\RevisionContentHelper::getETag()
-	 * @covers \MediaWiki\Rest\Handler\Helper\RevisionContentHelper::checkAccess()
+	 * @covers \MediaWiki\Rest\Handler\Helper\RevisionContentHelper::checkAccessible()
 	 */
 	public function testForbiddenPage() {
 		[ $page, $revisions ] = $this->getExistingPageWithRevisions( __METHOD__ );
@@ -222,7 +241,7 @@ class RevisionContentHelperTest extends MediaWikiIntegrationTestCase {
 		$this->assertNull( $helper->getLastModified() );
 
 		try {
-			$helper->checkAccess();
+			$helper->checkAccessible();
 			$this->fail( 'Expected HttpException' );
 		} catch ( HttpException $ex ) {
 			$this->assertSame( 403, $ex->getCode() );

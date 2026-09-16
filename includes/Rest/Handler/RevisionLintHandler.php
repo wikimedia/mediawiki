@@ -39,14 +39,14 @@ class RevisionLintHandler extends SimpleHandler {
 	 * @throws LocalizedHttpException
 	 */
 	public function run(): Response {
-		$this->contentHelper->checkAccess();
+		$this->contentHelper->checkAccessible();
 
 		$page = $this->contentHelper->getPage();
 		$revisionRecord = $this->contentHelper->getTargetRevision();
 
-		// The page should be set if checkAccess() didn't throw
+		// The page should be set if checkAccessible() didn't throw
 		Assert::invariant( $page !== null, 'Page should be known' );
-		// The revision should be set if checkAccess() didn't throw
+		// The revision should be set if checkAccessible() didn't throw
 		Assert::invariant( $revisionRecord !== null, 'Revision should be known' );
 
 		// Make sure that it is text content

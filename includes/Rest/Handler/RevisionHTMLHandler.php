@@ -2,7 +2,6 @@
 
 namespace MediaWiki\Rest\Handler;
 
-use LogicException;
 use MediaWiki\Rest\Handler;
 use MediaWiki\Rest\Handler\Helper\HtmlOutputRendererHelper;
 use MediaWiki\Rest\Handler\Helper\PageRestHelperFactory;
@@ -17,9 +16,12 @@ use Wikimedia\Message\MessageValue;
 use Wikimedia\ParamValidator\ParamValidator;
 
 /**
- * A handler that returns Parsoid HTML for the following routes:
- * - /revision/{revision}/html,
- * - /revision/{revision}/with_html
+ * A handler that returns Parsoid HTML for the following route:
+ * - /revision/{revision}/html
+ *
+ * (The /revision/{id}/with_html route is served by RevisionHandler via prop=html.)
+ *
+ * @internal
  */
 class RevisionHTMLHandler extends SimpleHandler {
 
@@ -59,17 +61,17 @@ class RevisionHTMLHandler extends SimpleHandler {
 	 * @throws LocalizedHttpException
 	 */
 	public function run(): Response {
-		$this->contentHelper->checkAccess();
+		$this->contentHelper->checkAccessible();
 
 		$page = $this->contentHelper->getPage();
 		$revisionRecord = $this->contentHelper->getTargetRevision();
 
 		// The call to $this->contentHelper->getPage() should not return null if
-		// $this->contentHelper->checkAccess() did not throw.
+		// $this->contentHelper->checkAccessible() did not throw.
 		Assert::invariant( $page !== null, 'Page should be known' );
 
 		// The call to $this->contentHelper->getTargetRevision() should not return null if
-		// $this->contentHelper->checkAccess() did not throw.
+		// $this->contentHelper->checkAccessible() did not throw.
 		Assert::invariant( $revisionRecord !== null, 'Revision should be known' );
 
 		$cacheExpiry = $this->htmlHelper->getHtml()->getCacheExpiry();
@@ -77,27 +79,13 @@ class RevisionHTMLHandler extends SimpleHandler {
 		// This endpoint emits a full document from the page bundle
 		$parserOutputHtml = $this->htmlHelper->getPageBundle()->html;
 
-		$outputMode = $this->getOutputMode();
-		switch ( $outputMode ) {
-			case 'html':
-				$response = $this->getResponseFactory()->create();
-				// TODO: need to respect content-type returned by Parsoid.
-				$response->setHeader( ResponseHeaders::CONTENT_TYPE, 'text/html' );
-				$this->htmlHelper->putHeaders( $response, forHtml: true );
-				$this->contentHelper->setCacheControl( $response, $cacheExpiry );
-				$response->setBody( new StringStream( $parserOutputHtml ) );
-				break;
-			case 'with_html':
-				$body = $this->contentHelper->constructMetadata();
-				$body['html'] = $parserOutputHtml;
-				$response = $this->getResponseFactory()->createJson( $body );
-				// For JSON content, it doesn't make sense to set content language header
-				$this->htmlHelper->putHeaders( $response, forHtml: false );
-				$this->contentHelper->setCacheControl( $response, $cacheExpiry );
-				break;
-			default:
-				throw new LogicException( "Unknown HTML type $outputMode" );
-		}
+		// This endpoint emits a full HTML document.
+		$response = $this->getResponseFactory()->create();
+		// TODO: need to respect content-type returned by Parsoid.
+		$response->setHeader( ResponseHeaders::CONTENT_TYPE, 'text/html' );
+		$this->htmlHelper->putHeaders( $response, forHtml: true );
+		$this->contentHelper->setCacheControl( $response, $cacheExpiry );
+		$response->setBody( new StringStream( $parserOutputHtml ) );
 
 		return $response;
 	}
@@ -113,8 +101,7 @@ class RevisionHTMLHandler extends SimpleHandler {
 			return null;
 		}
 
-		// Vary eTag based on output mode
-		return $this->htmlHelper->getETag( $this->getOutputMode() );
+		return $this->htmlHelper->getETag();
 	}
 
 	protected function getLastModified(): ?string {
@@ -123,10 +110,6 @@ class RevisionHTMLHandler extends SimpleHandler {
 		}
 
 		return $this->htmlHelper->getLastModified();
-	}
-
-	private function getOutputMode(): string {
-		return $this->getConfig()['format'];
 	}
 
 	public function needsWriteAccess(): bool {
@@ -140,17 +123,11 @@ class RevisionHTMLHandler extends SimpleHandler {
 		//    text/html; charset=utf-8; profile="https://www.mediawiki.org/wiki/Specs/HTML/2.8.0"
 		//  That would be more specific, but fragile when the profile version changes. It could
 		//  also be inaccurate if the page content was not in fact produced by Parsoid.
-		if ( $this->getOutputMode() == 'html' ) {
-			unset( $spec['200']['content']['application/json'] );
-			$spec['200']['content']['text/html']['schema']['type'] = 'string';
-			$spec['200']['content']['text/html']['example'] = '<h2 id="mwAA">Hello world</h2>';
-		}
+		unset( $spec['200']['content']['application/json'] );
+		$spec['200']['content']['text/html']['schema']['type'] = 'string';
+		$spec['200']['content']['text/html']['example'] = '<h2 id="mwAA">Hello world</h2>';
 
 		return $spec;
-	}
-
-	public function getResponseBodySchemaFileName( string $method ): ?string {
-		return __DIR__ . '/Schema/ExistingRevisionHtml.json';
 	}
 
 	public function getParamSettings(): array {

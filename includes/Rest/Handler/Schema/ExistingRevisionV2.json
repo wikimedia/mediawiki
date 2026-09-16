@@ -1,5 +1,5 @@
 {
-	"x-i18n-description": "rest-schema-desc-existing-revision",
+	"x-i18n-description": "rest-schema-desc-revision-metadata",
 	"required": [
 		"id",
 		"size",
@@ -10,19 +10,30 @@
 		"license",
 		"user",
 		"comment",
-		"delta",
-		"html"
+		"delta"
 	],
 	"properties": {
 		"id": {
 			"type": "integer",
-			"x-i18n-description": "rest-param-desc-revision-id",
+			"x-i18n-description": "rest-property-desc-revision-id",
 			"example": 1334073939
 		},
 		"size": {
 			"type": "integer",
 			"x-i18n-description": "rest-property-desc-revision-size",
 			"example": 238224
+		},
+		"delta": {
+			"type": "integer",
+			"nullable": true,
+			"x-i18n-description": "rest-property-desc-revision-delta",
+			"example": 25
+		},
+		"comment": {
+			"type": "string",
+			"nullable": true,
+			"x-i18n-description": "rest-property-desc-revision-comment",
+			"example": "Added isbn. Normalized parameter names."
 		},
 		"minor": {
 			"type": "boolean",
@@ -107,21 +118,19 @@
 				}
 			}
 		},
-		"comment": {
+		"source": {
 			"type": "string",
-			"x-i18n-description": "rest-property-desc-revision-comment",
-			"nullable": true,
-			"example": "Added isbn. Normalized parameter names."
-		},
-		"delta": {
-			"type": "integer",
-			"x-i18n-description": "rest-property-desc-revision-delta",
-			"nullable": true,
-			"example": 25
+			"x-i18n-description": "rest-property-desc-revision-source",
+			"example": "{{Short description|Planetary system consisting of the Sun and..."
 		},
 		"html": {
 			"type": "string",
 			"x-i18n-description": "rest-property-desc-revision-html",
+			"example": "<!DOCTYPE html>..."
+		},
+		"html_url": {
+			"type": "string",
+			"x-i18n-description": "rest-property-desc-revision-html-url",
 			"example": "https://en.wikipedia.org/w/rest.php/v1/revision/1334073939/html"
 		}
 	}

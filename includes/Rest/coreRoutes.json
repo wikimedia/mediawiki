@@ -48,11 +48,11 @@
 	},
 	{
 		"path": "/v1/revision/{id}",
-		"class": "MediaWiki\\Rest\\Handler\\RevisionSourceHandler",
+		"class": "MediaWiki\\Rest\\Handler\\RevisionHandler",
 		"services": [
 			"PageRestHelperFactory"
 		],
-		"format": "source",
+		"prop": [ "source" ],
 		"openApiSpec": {
 			"x-i18n-description": "rest-endpoint-desc-get-revision-id",
 			"x-i18n-summary": "rest-endpoint-summ-get-revision-id"
@@ -64,7 +64,6 @@
 		"services": [
 			"PageRestHelperFactory"
 		],
-		"format": "html",
 		"openApiSpec": {
 			"x-i18n-description": "rest-endpoint-desc-get-revision-id-html",
 			"x-i18n-summary": "rest-endpoint-summ-get-revision-id-html"
@@ -72,11 +71,11 @@
 	},
 	{
 		"path": "/v1/revision/{id}/with_html",
-		"class": "MediaWiki\\Rest\\Handler\\RevisionHTMLHandler",
+		"class": "MediaWiki\\Rest\\Handler\\RevisionHandler",
 		"services": [
 			"PageRestHelperFactory"
 		],
-		"format": "with_html",
+		"prop": [ "html" ],
 		"openApiSpec": {
 			"x-i18n-description": "rest-endpoint-desc-get-revision-id-with-html",
 			"x-i18n-summary": "rest-endpoint-summ-get-revision-id-with-html"
@@ -96,11 +95,11 @@
 	},
 	{
 		"path": "/v1/revision/{id}/bare",
-		"class": "MediaWiki\\Rest\\Handler\\RevisionSourceHandler",
+		"class": "MediaWiki\\Rest\\Handler\\RevisionHandler",
 		"services": [
 			"PageRestHelperFactory"
 		],
-		"format": "bare",
+		"prop": [],
 		"openApiSpec": {
 			"x-i18n-description": "rest-endpoint-desc-get-revision-id-bare",
 			"x-i18n-summary": "rest-endpoint-summ-get-revision-id-bare"
