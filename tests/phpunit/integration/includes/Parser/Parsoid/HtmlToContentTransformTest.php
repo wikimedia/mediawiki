@@ -285,13 +285,12 @@ class HtmlToContentTransformTest extends MediaWikiIntegrationTestCase {
 		$transform->setOriginalDataParsoid( self::ORIG_DATA_PARSOID );
 
 		// should automatically apply downgrade
-		$oldBody = $transform->getOriginalBody();
+		$transform->getOriginalBody();
 
 		// all getters should now reflect the state after the downgrade.
 		// we expect a version >= 2.4.0 and < 3.0.0. So use ^2.4.0
 		$this->assertTrue( Semver::satisfies( $transform->getOriginalSchemaVersion(), '^2.4.0' ) );
 		$this->assertNotSame( $html, $transform->getOriginalHtml() );
-		$this->assertNotSame( $oldBody, ContentUtils::toXML( $transform->getOriginalBody() ) );
 	}
 
 	public function testModifiedDataMW() {
