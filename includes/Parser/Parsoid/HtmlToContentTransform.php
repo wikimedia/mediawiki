@@ -26,12 +26,10 @@ use Wikimedia\Parsoid\Core\ClientError;
 use Wikimedia\Parsoid\Core\DomPageBundle;
 use Wikimedia\Parsoid\Core\HtmlPageBundle;
 use Wikimedia\Parsoid\Core\ResourceLimitExceededException;
-use Wikimedia\Parsoid\Core\SelserData;
+use Wikimedia\Parsoid\Core\SelectiveUpdateData;
 use Wikimedia\Parsoid\DOM\Document;
 use Wikimedia\Parsoid\DOM\Element;
 use Wikimedia\Parsoid\Parsoid;
-use Wikimedia\Parsoid\Utils\ContentUtils;
-use Wikimedia\Parsoid\Utils\DOMCompat;
 use Wikimedia\Parsoid\Utils\DOMUtils;
 use Wikimedia\Stats\StatsFactory;
 
@@ -49,7 +47,7 @@ class HtmlToContentTransform {
 	private ?RevisionRecord $originalRevision = null;
 
 	private ?Element $originalBody = null;
-	private HtmlPageBundle $originalPageBundle;
+	private BasePageBundle $originalPageBundle;
 
 	private ?Document $modifiedDoc = null;
 	private BasePageBundle $modifiedPageBundle;
@@ -277,11 +275,25 @@ class HtmlToContentTransform {
 	}
 
 	/**
+	 * Get the original document, for inspection.
+	 *
+	 * This is the raw document of the original page bundle. It does not
+	 * have the data-parsoid and data-mw of the page bundle loaded into it.
+	 * Do not pass it to Parsoid. Parsoid gets a loaded copy from
+	 * getSelserData() instead.
+	 */
+	public function getOriginalDocument(): Document {
+		$this->processOriginalHtml();
+		return $this->originalPageBundle->doc;
+	}
+
+	/**
 	 * NOTE: The return value of this method depends on
 	 *    setOriginalData() having been called first.
 	 */
 	public function hasOriginalHtml(): bool {
-		return $this->originalPageBundle->html !== '';
+		return ( $this->originalPageBundle instanceof HtmlPageBundle && $this->originalPageBundle->html !== '' )
+			|| ( $this->originalPageBundle instanceof DomPageBundle );
 	}
 
 	/**
@@ -290,38 +302,6 @@ class HtmlToContentTransform {
 	 */
 	public function hasOriginalDataParsoid(): bool {
 		return $this->originalPageBundle->parsoid !== null;
-	}
-
-	/**
-	 * Returns the original HTML, with any necessary processing applied.
-	 *
-	 * @todo Make this method redundant, nothing should operate on HTML strings.
-	 *
-	 * @return string
-	 * @throws ClientError
-	 */
-	public function getOriginalHtml(): string {
-		// NOTE: Schema version should have been set explicitly,
-		//       so don't call getOriginalSchemaVersion,
-		//       which will silently fall back to the default.
-		if ( !$this->originalPageBundle->version ) {
-			throw new ClientError(
-				'Content-type of original html is missing.'
-			);
-		}
-
-		if ( !$this->originalBody ) {
-			// NOTE: Make sure we called getOriginalBody() at least once before we
-			//       return the original HTML, so downgrades can be applied,
-			//       data-parsoid can be injected, and $this->originalPageBundle->html
-			//       is updated accordingly.
-
-			if ( $this->hasOriginalDataParsoid() || $this->needsDowngrade( $this->originalPageBundle ) ) {
-				$this->getOriginalBody();
-			}
-		}
-
-		return $this->originalPageBundle->html ?: '';
 	}
 
 	/**
@@ -339,18 +319,18 @@ class HtmlToContentTransform {
 	 * NOTE: The return value of this method depends on
 	 *    setOriginalData() having been called first.
 	 *
-	 * @return Element
+	 * @return void
 	 * @throws ClientError
 	 */
-	public function getOriginalBody(): Element {
+	public function processOriginalHtml(): void {
+		if ( $this->originalPageBundle instanceof DomPageBundle ) {
+			return;
+		}
+
 		if ( !$this->hasOriginalHtml() ) {
 			throw new LogicException(
 				'No original data supplied, call hasOriginalHtml() first.'
 			);
-		}
-
-		if ( $this->originalBody ) {
-			return $this->originalBody;
 		}
 
 		// NOTE: Schema version should have been set explicitly,
@@ -366,17 +346,10 @@ class HtmlToContentTransform {
 			$this->downgradeOriginalData( $this->originalPageBundle, $this->getSchemaVersion() );
 		}
 
-		$pb = $this->applyPageBundle(
+		$this->originalPageBundle = $this->applyPageBundle(
 			$this->parseHTML( $this->originalPageBundle->html ),
 			$this->originalPageBundle
 		);
-		$doc = $pb->toInlineAttributeDocument( siteConfig: $this->siteConfig );
-		$this->originalBody = DOMCompat::getBody( $doc );
-
-		// XXX: use a separate field??
-		$this->originalPageBundle->html = ContentUtils::toXML( $this->originalBody );
-
-		return $this->originalBody;
 	}
 
 	public function getOriginalSchemaVersion(): string {
@@ -511,27 +484,34 @@ class HtmlToContentTransform {
 	 * Get a selective serialization (selser) data object. This
 	 * can be null if selser is not enabled or oldid is not available.
 	 *
-	 * @return SelserData|null
+	 * Call this method at most once for each transform. It loads the
+	 * original page bundle with DomPageBundle::toDom(). That call marks the
+	 * bundle as used. Parsoid then takes ownership of the loaded document
+	 * and changes it. The modified page bundle is also single-use.
+	 *
+	 * @return SelectiveUpdateData|null
 	 * @throws HttpException
 	 */
-	private function getSelserData(): ?SelserData {
-		$oldhtml = $this->hasOriginalHtml() ? $this->getOriginalHtml() : null;
-
+	private function getSelserData(): ?SelectiveUpdateData {
 		// Selser requires knowledge of the original wikitext.
 		$knowsOriginal = $this->knowsOriginalContent();
 
+		$selserData = null;
 		if ( $knowsOriginal && !empty( $this->parsoidSettings['useSelser'] ) ) {
 			if ( !$this->getPageConfig()->getRevisionContent() ) {
 				throw new LocalizedHttpException( new MessageValue( "rest-previous-revision-unavailable" ),
 					409 );
 			}
 
-			// TODO: T234548/T234549 - $pageConfig->getPageMainContent() is deprecated:
-			//       should use $env->topFrame->getSrcText()
-			$selserData = new SelserData( $this->getPageConfig()->getPageMainContent(),
-				$oldhtml );
-		} else {
-			$selserData = null;
+			if ( $this->hasOriginalHtml() ) {
+				$this->processOriginalHtml();
+
+				// TODO: T234548/T234549 - $pageConfig->getPageMainContent() is deprecated:
+				//       should use $env->topFrame->getSrcText()
+				$selserData = new SelectiveUpdateData( $this->getPageConfig()->getPageMainContent() );
+				// Parsoid needs a revision DOM that is prepared and loaded.
+				$selserData->revDOM = $this->originalPageBundle->toDom( siteConfig: $this->siteConfig );
+			}
 		}
 
 		return $selserData;
@@ -564,6 +544,13 @@ class HtmlToContentTransform {
 	private function htmlToText(): string {
 		$this->processModifiedDoc();
 		$inputContentVersion = $this->getSchemaVersion();
+
+		// Validate the original data even when selser is not used.
+		// Errors must reach the caller as a ClientError, so do not do this
+		// inside the try block.
+		if ( $this->hasOriginalHtml() ) {
+			$this->processOriginalHtml();
+		}
 		$selserData = $this->getSelserData();
 
 		try {

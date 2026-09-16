@@ -10,11 +10,13 @@ use MediaWiki\Content\WikitextContent;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MainConfigSchema;
 use MediaWiki\Page\PageIdentityValue;
+use MediaWiki\Parser\ParserOptions;
 use MediaWiki\Parser\Parsoid\Config\PageConfig;
 use MediaWiki\Parser\Parsoid\HtmlToContentTransform;
 use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWikiIntegrationTestCase;
 use Wikimedia\Parsoid\Core\ClientError;
+use Wikimedia\Parsoid\Core\DOMCompat;
 use Wikimedia\Parsoid\Core\SelserData;
 use Wikimedia\Parsoid\Parsoid;
 use Wikimedia\Parsoid\Utils\ContentUtils;
@@ -99,7 +101,7 @@ class HtmlToContentTransformTest extends MediaWikiIntegrationTestCase {
 		// Note that setOriginalDataParsoid can't validate immediately, because it
 		// may not know the schema version. The order in which the setters are called
 		// should not matter. All checks happen in getters.
-		$transform->getOriginalBody();
+		$transform->processOriginalHtml();
 	}
 
 	public function testHasOriginalHtml() {
@@ -148,26 +150,14 @@ class HtmlToContentTransformTest extends MediaWikiIntegrationTestCase {
 		$this->assertTrue( $transform->hasOriginalDataParsoid() );
 	}
 
-	public function testGetOriginalHtml() {
-		$transform = $this->createHtmlToContentTransform( self::MODIFIED_HTML );
-
-		$this->assertFalse( $transform->hasOriginalHtml() );
-
-		$transform->setOriginalSchemaVersion( '2.4.0' );
-		$transform->setOriginalHtml( self::ORIG_HTML );
-
-		$this->assertTrue( $transform->hasOriginalHtml() );
-		$this->assertSame( self::ORIG_HTML, $transform->getOriginalHtml() );
-	}
-
-	public function testGetOriginalBody() {
+	public function testProcessOriginalHtml() {
 		$transform = $this->createHtmlToContentTransform( self::MODIFIED_HTML );
 		$transform->setOriginalSchemaVersion( '2.4.0' );
 		$transform->setOriginalHtml( self::ORIG_HTML );
 
 		$this->assertSame(
 			self::ORIG_BODY,
-			ContentUtils::toXML( $transform->getOriginalBody() )
+			ContentUtils::toXML( DOMCompat::getBody( $transform->getOriginalDocument() ) )
 		);
 	}
 
@@ -285,12 +275,15 @@ class HtmlToContentTransformTest extends MediaWikiIntegrationTestCase {
 		$transform->setOriginalDataParsoid( self::ORIG_DATA_PARSOID );
 
 		// should automatically apply downgrade
-		$transform->getOriginalBody();
+		$transform->processOriginalHtml();
 
 		// all getters should now reflect the state after the downgrade.
 		// we expect a version >= 2.4.0 and < 3.0.0. So use ^2.4.0
 		$this->assertTrue( Semver::satisfies( $transform->getOriginalSchemaVersion(), '^2.4.0' ) );
-		$this->assertNotSame( $html, $transform->getOriginalHtml() );
+		$this->assertNotSame(
+			$html,
+			ContentUtils::toXML( $newOrigBody = DOMCompat::getBody( $transform->getOriginalDocument() ) )
+		);
 	}
 
 	public function testModifiedDataMW() {
@@ -372,7 +365,7 @@ class HtmlToContentTransformTest extends MediaWikiIntegrationTestCase {
 		$transform->setOriginalDataParsoid( $dataParsoid );
 
 		$this->expectException( ClientError::class );
-		$transform->getOriginalBody();
+		$transform->processOriginalHtml();
 	}
 
 	public function testHtmlToWikitextContent() {
@@ -387,6 +380,44 @@ class HtmlToContentTransformTest extends MediaWikiIntegrationTestCase {
 		$content = $transform->htmlToContent();
 		$this->assertInstanceOf( WikitextContent::class, $content );
 		$this->assertStringContainsString( 'Original Content', $content->getText() );
+	}
+
+	/**
+	 * This is a regression test for T439453.
+	 * FIXME: This should probably be part of HtmlInputransformHelper
+	 */
+	public function testSelser() {
+		$wikitext = "{{Foo|\n|a = x\n|b = y|250px]]\n|}}\n\n'''bold'''   \n* item";
+		$rev = $this->editPage( __METHOD__, $wikitext )->getValue()['revision-record'];
+
+		$parsoid = new Parsoid(
+			$this->getServiceContainer()->getParsoidSiteConfig(),
+			$this->getServiceContainer()->getParsoidDataAccess()
+		);
+		$pageConfig = $this->getServiceContainer()->getParsoidPageConfigFactory()
+			->createFromParserOptions( ParserOptions::newFromAnon(), $rev->getPage(), $rev );
+		$pb = $parsoid->wikitext2html( $pageConfig, [ 'pageBundle' => true ] );
+
+		$transform = $this->createHtmlToContentTransform( $pb->html );
+		$transform->setOptions( [ 'contentmodel' => 'wikitext', 'offsetType' => 'byte' ] );
+		$transform->setOriginalRevisionId( $rev->getId() );
+		$transform->setOriginalSchemaVersion( $pb->version );
+		$transform->setOriginalHtml( $pb->html );
+		$transform->setOriginalDataParsoid( $pb->parsoid );
+		$transform->setOriginalDataMW( $pb->mw );
+
+		$this->assertSame( $wikitext, $transform->htmlToContent()->getText() );
+
+		// Test with a trivial edit
+		$newHtml = preg_replace( "#</body>#", "<!--boo--></body>", $pb->html );
+		$transform = $this->createHtmlToContentTransform( $newHtml );
+		$transform->setOptions( [ 'contentmodel' => 'wikitext', 'offsetType' => 'byte' ] );
+		$transform->setOriginalRevisionId( $rev->getId() );
+		$transform->setOriginalSchemaVersion( $pb->version );
+		$transform->setOriginalHtml( $pb->html );
+		$transform->setOriginalDataParsoid( $pb->parsoid );
+
+		$this->assertSame( $wikitext . "<!--boo-->", $transform->htmlToContent()->getText() );
 	}
 
 	public function testHtmlToJsonContent() {
