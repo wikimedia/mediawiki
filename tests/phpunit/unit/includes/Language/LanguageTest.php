@@ -186,6 +186,10 @@ class LanguageTest extends MediaWikiUnitTestCase {
 			'Digit' => [ '123', '1' ],
 			'Russian' => [ 'Ёпт', 'Ё' ],
 			'Emoji' => [ '😂💀☢️', '😂' ],
+			'ZWJ Emoji' => [ '👩🏻‍🔬👨🏻‍❤️‍👨🏻', '👩🏻‍🔬' ],
+			'Rainbow flag' => [ '🏳️‍🌈🏳️‍🌈', '🏳️‍🌈' ],
+			'Regional flags' => [ '🇨🇦🇪🇺🇦🇺', '🇨🇦' ],
+			'variation selector' => [ '⛷️⛸️', "\u{26F7}\u{FE0F}" ],
 			// Korean is special-cased to remove single letters from syllables
 			'Korean' => [ '위키백과', 'ㅇ' ],
 		];
