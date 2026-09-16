@@ -1677,7 +1677,7 @@
 	"unwatchthispage": "لا تراقب",
 	"notanarticle": "مو صفحة محتوى",
 	"notvisiblerev": "آخر مراجعه سواهه نفر ثاني انحذفت",
-	"watchlist-details": "{{PLURAL:$1||صفحة وحده|صفحتين|$1 صفحات|$1 صفحة}} بقائمة مراقبتك (بالإضافة إلى صفحات النقاش).",
+	"watchlist-details": "{{PLURAL:$1||صفحة وحده|صفحتين|$1 صفحات|$1 صفحة}} بقائمة مراقبتك (بالإضافة لصفحات النقاش).",
 	"watchlist-expiry-days-left": "بعد {{PLURAL:$1|يوم واحد|يومين|$1 ايام|$1 يوم}}",
 	"watchlist-expiring-days-full-text": "بعد {{PLURAL:$1|يوم|يومين|$1 ايام|$1 يوم}} بقائمه مراقبتك",
 	"watchlist-expiry-hours-left": "ظلت جم ساعه",

@@ -3117,6 +3117,7 @@
 	"signature": "[[{{ns:user}}:$1|$2]] ([[{{ns:user_talk}}:$1|conversa]])",
 	"signature-temp": "[[{{#special:Contributions}}/$1|$2]] ([[{{ns:user_talk}}:$1|conversa]])",
 	"duplicate-defaultsort": "<strong>Aviso:</strong> A clave de ordenación predeterminada «$2» anula a clave de ordenación predeterminada anterior «$1».",
+	"categorysort-invalid": "<strong>Erro:</strong> Non se recoñece o modo de ordenación de categorías «$1».",
 	"duplicate-displaytitle": "<strong>Aviso:</strong> O título amosado «$2» anula o título anterior «$1».",
 	"restricted-displaytitle": "<strong>Aviso:</strong> O título amosado «$1» ignorouse porque non é equivalente ao título real da páxina.",
 	"invalid-indicator-name": "<strong>Erro:</strong> O atributo <code>name</code> dos indicadores do estado da páxina non pode estar baleiro.",
