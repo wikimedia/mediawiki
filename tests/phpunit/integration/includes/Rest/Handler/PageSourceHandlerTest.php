@@ -137,6 +137,33 @@ class PageSourceHandlerTest extends MediaWikiIntegrationTestCase {
 		$this->executeHandler( $handler, $request, $config );
 	}
 
+	public static function provideUnusableTitle() {
+		// Titles that do not address a wiki page at all, as opposed to addressing
+		// one that does not exist.
+		yield 'unparseable' => [ '::X::' ];
+		yield 'underscore only' => [ '_' ];
+		yield 'special page' => [ 'Special:Blankpage' ];
+	}
+
+	/**
+	 * A title that addresses no page is reported as missing, not as forbidden:
+	 * there is no page for the permission check to deny access to. See also the
+	 * equivalent cases in tests/api-testing/REST/Page.js.
+	 *
+	 * @dataProvider provideUnusableTitle
+	 */
+	public function testExecute_unusableTitle( string $title ) {
+		$request = new RequestData( [ 'pathParams' => [ 'title' => $title ] ] );
+
+		$exception = $this->executeHandlerAndGetHttpException(
+			$this->newHandler(),
+			$request,
+			[ 'format' => 'source' ]
+		);
+
+		$this->assertSame( 404, $exception->getCode(), $exception->getMessage() );
+	}
+
 	private function assertResponseData( WikiPage $page, array $data ): void {
 		$this->assertSame( $page->getId(), $data['id'] );
 		$this->assertSame( $page->getTitle()->getPrefixedDBkey(), $data['key'] );

@@ -124,18 +124,8 @@ trait HandlerTestTrait {
 		);
 		$router->method( 'getRoutePath' )->willReturnCallback(
 			static function ( $route, $path = [], $query = [] ) {
-				foreach ( $path as $param => $value ) {
-					$route = str_replace(
-						'{' . $param . '}',
-						urlencode( (string)$value ),
-						$route
-					);
-				}
-
-				return wfAppendQuery(
-					'/rest' . $route,
-					$query
-				);
+				$route = Router::substPathParams( $route, $path );
+				return wfAppendQuery( '/rest' . $route, $query );
 			}
 		);
 		$router->method( 'getRouteUrl' )->willReturnCallback(

@@ -455,7 +455,7 @@ class Router {
 		array $pathParams = [],
 		array $queryParams = []
 	): string {
-		$pathWithModulePrefix = $this->substPathParams( $pathWithModulePrefix, $pathParams );
+		$pathWithModulePrefix = self::substPathParams( $pathWithModulePrefix, $pathParams );
 		$path = $this->rootPath . $pathWithModulePrefix;
 		return wfAppendQuery( $path, $queryParams );
 	}
@@ -532,12 +532,18 @@ class Router {
 	}
 
 	/**
-	 * @param string $route
+	 * Substitute parameters into a template string, following the
+	 * requirements for path parameters: Spaces are encoded as %20 (not +)
+	 * and slashes are encoded as %2F, other characters with special meaning
+	 * are encoded as they would be for query parameters.
+	 *
+	 * @param string $route A path with {placeholders}
 	 * @param array $pathParams
 	 *
 	 * @return string
+	 * @since 1.47 (was protected/internal before that)
 	 */
-	protected function substPathParams( string $route, array $pathParams ): string {
+	public static function substPathParams( string $route, array $pathParams ): string {
 		foreach ( $pathParams as $param => $value ) {
 			// NOTE: we use rawurlencode here, since execute() uses rawurldecode().
 			// Spaces in path params must be encoded to %20 (not +).

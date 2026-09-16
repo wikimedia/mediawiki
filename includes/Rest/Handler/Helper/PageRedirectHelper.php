@@ -10,6 +10,7 @@ use MediaWiki\Page\RedirectStore;
 use MediaWiki\Rest\RequestInterface;
 use MediaWiki\Rest\Response;
 use MediaWiki\Rest\ResponseFactory;
+use MediaWiki\Rest\ResponseHeaders;
 use MediaWiki\Rest\Router;
 use MediaWiki\Title\TitleFormatter;
 use MediaWiki\Title\TitleValue;
@@ -31,6 +32,7 @@ class PageRedirectHelper {
 	private bool $followWikiRedirects = false;
 	private string $titleParamName = 'title';
 	private bool $useRelativeRedirects = true;
+	private int $normalizationRedirectMaxAge = 60;
 
 	public function __construct(
 		RedirectStore $redirectStore,
@@ -77,7 +79,12 @@ class PageRedirectHelper {
 		// Check for normalization redirects
 		if ( $titleAsRequested !== $normalizedTitle ) {
 			$redirectTargetUrl = $this->getTargetUrl( $normalizedTitle, false );
-			return $this->responseFactory->createPermanentRedirect( $redirectTargetUrl );
+			$redirectResponse = $this->responseFactory->createPermanentRedirect( $redirectTargetUrl );
+			$redirectResponse->setHeader(
+				ResponseHeaders::CACHE_CONTROL,
+				"max-age={$this->normalizationRedirectMaxAge}"
+			);
+			return $redirectResponse;
 		}
 
 		return null;
@@ -180,7 +187,7 @@ class PageRedirectHelper {
 			$title = $this->titleFormatter->getPrefixedDBkey( $title );
 		}
 
-		$pathParams = [ $this->titleParamName => $title ];
+		$pathParams = [ $this->titleParamName => $title ] + $this->request->getPathParams();
 		$queryParams = $this->request->getQueryParams();
 
 		// Limit to one level of redirection, unless more are explicitly allowed. See T389588.

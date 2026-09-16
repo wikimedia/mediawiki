@@ -38,7 +38,7 @@ class RevisionLintHandlerTest extends MediaWikiIntegrationTestCase {
 	 * @return RevisionLintHandler
 	 */
 	private function newHandler( ?Parsoid $parsoid = null ): RevisionLintHandler {
-		return $this->newRevisionLintHandler( null, $parsoid );
+		return $this->newRevisionLintHandler( $parsoid );
 	}
 
 	public function testExecuteWillNotLogErrors() {

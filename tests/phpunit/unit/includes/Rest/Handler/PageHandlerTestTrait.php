@@ -13,7 +13,6 @@ use MediaWiki\Parser\Parsoid\LintErrorChecker;
 use MediaWiki\Parser\Parsoid\ParsoidParser;
 use MediaWiki\Parser\Parsoid\ParsoidParserFactory;
 use MediaWiki\Registration\ExtensionRegistry;
-use MediaWiki\Rest\ErrorFormatterV1;
 use MediaWiki\Rest\Handler\Helper\HtmlOutputRendererHelper;
 use MediaWiki\Rest\Handler\Helper\HtmlShadowOutputHelper;
 use MediaWiki\Rest\Handler\Helper\PageContentHelper;
@@ -27,7 +26,6 @@ use MediaWiki\Rest\Handler\PageHTMLHandler;
 use MediaWiki\Rest\Handler\PageLintHandler;
 use MediaWiki\Rest\Handler\PageSourceHandler;
 use MediaWiki\Rest\Handler\RevisionLintHandler;
-use MediaWiki\Rest\RequestData;
 use MediaWiki\Rest\RequestInterface;
 use MediaWiki\Rest\ResponseFactory;
 use MediaWiki\Rest\Router;
@@ -76,6 +74,37 @@ trait PageHandlerTestTrait {
 	}
 
 	/**
+	 * Stubs PageRestHelperFactory::newPageRedirectHelper() so that the helper is built
+	 * from the arguments the handler passes in, the way the real factory does.
+	 *
+	 * This matters because the route path and the request are what determine the
+	 * redirect target URL: the handler passes its own getRoutePath(), so a redirect
+	 * stays on the endpoint the request came in on, and the request supplies the
+	 * query parameters that get carried over to the target. A helper pre-built with
+	 * a fixed path and an empty request would make both unobservable.
+	 *
+	 * @param PageRestHelperFactory|MockObject $helperFactory
+	 */
+	private function mockPageRedirectHelper( $helperFactory ): void {
+		$services = $this->getServiceContainer();
+		$helperFactory->method( 'newPageRedirectHelper' )
+			->willReturnCallback( static fn (
+				ResponseFactory $responseFactory,
+				Router $router,
+				string $pathWithModulePrefix,
+				RequestInterface $request
+			) => new PageRedirectHelper(
+				$services->getRedirectStore(),
+				$services->getTitleFormatter(),
+				$responseFactory,
+				$router,
+				$pathWithModulePrefix,
+				$request,
+				$services->getLanguageConverterFactory()
+			) );
+	}
+
+	/**
 	 * @param Parsoid|MockObject $mockParsoid
 	 */
 	public function resetServicesWithMockedParsoid( $mockParsoid ): void {
@@ -101,7 +130,7 @@ trait PageHandlerTestTrait {
 	/**
 	 * @return PageHTMLHandler
 	 */
-	public function newPageHtmlHandler( ?RequestInterface $request = null ) {
+	public function newPageHtmlHandler() {
 		$services = $this->getServiceContainer();
 		$config = [
 			MainConfigNames::RightsUrl => 'https://example.com/rights',
@@ -159,20 +188,7 @@ trait PageHandlerTestTrait {
 				);
 			} );
 
-		$request ??= new RequestData( [] );
-		$responseFactory = new ResponseFactory( [], new ErrorFormatterV1( [], false ) );
-		$helperFactory->method( 'newPageRedirectHelper' )
-			->willReturn(
-				new PageRedirectHelper(
-					$services->getRedirectStore(),
-					$services->getTitleFormatter(),
-					$responseFactory,
-					$this->newRouterForPageHandler( 'https://example.test/api' ),
-					'/test/{title}',
-					$request,
-					$services->getLanguageConverterFactory()
-				)
-			);
+		$this->mockPageRedirectHelper( $helperFactory );
 
 		return new PageHTMLHandler(
 			$helperFactory
@@ -180,14 +196,10 @@ trait PageHandlerTestTrait {
 	}
 
 	/**
-	 * @param RequestInterface|null $request
 	 * @param Parsoid|MockObject|null $parsoid
 	 * @return PageLintHandler
 	 */
-	public function newPageLintHandler(
-		?RequestInterface $request = null,
-		?Parsoid $parsoid = null
-	) {
+	public function newPageLintHandler( ?Parsoid $parsoid = null ) {
 		$services = $this->getServiceContainer();
 		$config = [
 			MainConfigNames::RightsUrl => 'https://example.com/rights',
@@ -213,20 +225,7 @@ trait PageHandlerTestTrait {
 				$services->getShadowPageLoader(),
 			) );
 
-		$request ??= new RequestData( [] );
-		$responseFactory = new ResponseFactory( [], new ErrorFormatterV1( [], false ) );
-		$helperFactory->method( 'newPageRedirectHelper' )
-			->willReturn(
-				new PageRedirectHelper(
-					$services->getRedirectStore(),
-					$services->getTitleFormatter(),
-					$responseFactory,
-					$this->newRouterForPageHandler( 'https://example.test/api' ),
-					'/test/{title}',
-					$request,
-					$services->getLanguageConverterFactory()
-				)
-			);
+		$this->mockPageRedirectHelper( $helperFactory );
 
 		$lintErrorChecker = new LintErrorChecker(
 			$parsoid ?: $services->get( '_Parsoid' ),
@@ -240,14 +239,10 @@ trait PageHandlerTestTrait {
 	}
 
 	/**
-	 * @param RequestInterface|null $request
 	 * @param Parsoid|MockObject|null $parsoid
 	 * @return RevisionLintHandler
 	 */
-	public function newRevisionLintHandler(
-		?RequestInterface $request = null,
-		?Parsoid $parsoid = null
-	) {
+	public function newRevisionLintHandler( ?Parsoid $parsoid = null ) {
 		$services = $this->getServiceContainer();
 		$config = [
 			MainConfigNames::RightsUrl => 'https://example.com/rights',
@@ -273,20 +268,7 @@ trait PageHandlerTestTrait {
 				$services->getShadowPageLoader(),
 			) );
 
-		$request ??= new RequestData( [] );
-		$responseFactory = new ResponseFactory( [], new ErrorFormatterV1( [], false ) );
-		$helperFactory->method( 'newPageRedirectHelper' )
-			->willReturn(
-				new PageRedirectHelper(
-					$services->getRedirectStore(),
-					$services->getTitleFormatter(),
-					$responseFactory,
-					$this->newRouterForPageHandler( 'https://example.test/api' ),
-					'/test/{title}',
-					$request,
-					$services->getLanguageConverterFactory()
-				)
-			);
+		$this->mockPageRedirectHelper( $helperFactory );
 
 		$lintErrorChecker = new LintErrorChecker(
 			$parsoid ?: $services->get( '_Parsoid' ),

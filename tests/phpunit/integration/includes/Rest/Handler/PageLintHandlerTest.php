@@ -39,7 +39,7 @@ class PageLintHandlerTest extends MediaWikiIntegrationTestCase {
 	 * @return PageLintHandler
 	 */
 	private function newHandler( ?Parsoid $parsoid = null ): PageLintHandler {
-		return $this->newPageLintHandler( null, $parsoid );
+		return $this->newPageLintHandler( $parsoid );
 	}
 
 	public function testExecuteWillNotLogErrors() {
