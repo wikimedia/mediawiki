@@ -991,7 +991,7 @@ abstract class Maintenance {
 		$this->afterFinalSetup();
 
 		$overrides[MainConfigNames::ShowExceptionDetails] = true;
-		$overrides['ShowHostname'] = true;
+		$overrides[MainConfigNames::ShowHostnames] = true;
 
 		ini_set( 'max_execution_time', '0' );
 		$settingsBuilder->putConfigValues( $overrides );
