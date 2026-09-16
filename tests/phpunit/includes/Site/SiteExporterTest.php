@@ -80,6 +80,7 @@ class SiteExporterTest extends MediaWikiIntegrationTestCase {
 				foreach ( $moreSites as $site ) {
 					$sites->setSite( $site );
 				}
+				return true;
 			} );
 
 		$store->method( 'getSites' )

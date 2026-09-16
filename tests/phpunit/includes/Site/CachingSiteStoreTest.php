@@ -120,7 +120,7 @@ class CachingSiteStoreTest extends MediaWikiIntegrationTestCase {
 		$store = new CachingSiteStore(
 			new HashSiteStore(), $services->getLocalClusterInstance()
 		);
-		$this->assertTrue( $store->clear() );
+		$this->assertNull( $store->clear() );
 
 		$site = $store->getSite( 'enwiki' );
 		$this->assertNull( $site );

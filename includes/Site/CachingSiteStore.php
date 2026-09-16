@@ -48,7 +48,7 @@ class CachingSiteStore implements SiteStore {
 	 *
 	 * @return string The cache key.
 	 */
-	private function getCacheKey() {
+	private function getCacheKey(): string {
 		if ( $this->cacheKey === null ) {
 			$version = SiteList::getSerialVersionId();
 			$this->cacheKey = $this->cache->makeKey( 'site-SiteList', $version );
@@ -63,7 +63,7 @@ class CachingSiteStore implements SiteStore {
 	 * @since 1.25
 	 * @return SiteList
 	 */
-	public function getSites() {
+	public function getSites(): SiteList {
 		if ( $this->sites === null ) {
 			$this->sites = $this->cache->getWithSetCallback(
 				$this->getCacheKey(),
@@ -81,10 +81,8 @@ class CachingSiteStore implements SiteStore {
 	 * @see SiteStore::getSite
 	 *
 	 * @since 1.25
-	 * @param string $globalId
-	 * @return Site|null
 	 */
-	public function getSite( $globalId ) {
+	public function getSite( string $globalId ): ?Site {
 		$sites = $this->getSites();
 
 		return $sites->hasSite( $globalId ) ? $sites->getSite( $globalId ) : null;
@@ -97,7 +95,7 @@ class CachingSiteStore implements SiteStore {
 	 * @param Site $site
 	 * @return bool Success indicator
 	 */
-	public function saveSite( Site $site ) {
+	public function saveSite( Site $site ): bool {
 		return $this->saveSites( [ $site ] );
 	}
 
@@ -108,7 +106,7 @@ class CachingSiteStore implements SiteStore {
 	 * @param Site[] $sites
 	 * @return bool Success indicator
 	 */
-	public function saveSites( array $sites ) {
+	public function saveSites( array $sites ): bool {
 		if ( !$sites ) {
 			return true;
 		}
@@ -127,7 +125,7 @@ class CachingSiteStore implements SiteStore {
 	 *
 	 * @since 1.25
 	 */
-	public function reset() {
+	public function reset(): void {
 		$this->cache->delete( $this->getCacheKey() );
 		$this->sites = null;
 	}
@@ -140,12 +138,10 @@ class CachingSiteStore implements SiteStore {
 	 * which is per-server, so the cache reset would not apply to any other web servers.
 	 *
 	 * @see SiteStore::clear()
-	 * @return bool Success
 	 */
-	public function clear() {
+	public function clear(): void {
 		$this->reset();
-
-		return $this->siteStore->clear();
+		$this->siteStore->clear();
 	}
 
 }

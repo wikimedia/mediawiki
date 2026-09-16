@@ -20,18 +20,15 @@ interface SiteLookup {
 	 * Return the site with provided global ID, or null if there is no such site.
 	 *
 	 * @since 1.25
-	 * @param string $globalId
-	 * @return Site|null
 	 */
-	public function getSite( $globalId );
+	public function getSite( string $globalId ): ?Site;
 
 	/**
 	 * Return a list of all sites.
 	 *
 	 * @since 1.25
-	 * @return SiteList
 	 */
-	public function getSites();
+	public function getSites(): SiteList;
 
 }
 

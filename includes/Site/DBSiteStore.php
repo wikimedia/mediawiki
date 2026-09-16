@@ -35,9 +35,8 @@ class DBSiteStore implements SiteStore {
 	 * @see SiteStore::getSites
 	 *
 	 * @since 1.25
-	 * @return SiteList
 	 */
-	public function getSites() {
+	public function getSites(): SiteList {
 		$this->loadSites();
 
 		return $this->sites;
@@ -48,7 +47,7 @@ class DBSiteStore implements SiteStore {
 	 *
 	 * @since 1.25
 	 */
-	protected function loadSites() {
+	protected function loadSites(): void {
 		$this->sites = new SiteList();
 
 		$dbr = $this->dbProvider->getReplicaDatabase();
@@ -106,10 +105,8 @@ class DBSiteStore implements SiteStore {
 	 * @see SiteStore::getSite
 	 *
 	 * @since 1.25
-	 * @param string $globalId
-	 * @return Site|null
 	 */
-	public function getSite( $globalId ) {
+	public function getSite( string $globalId ): ?Site {
 		if ( $this->sites === null ) {
 			$this->sites = $this->getSites();
 		}
@@ -124,7 +121,7 @@ class DBSiteStore implements SiteStore {
 	 * @param Site $site
 	 * @return bool Success indicator
 	 */
-	public function saveSite( Site $site ) {
+	public function saveSite( Site $site ): bool {
 		return $this->saveSites( [ $site ] );
 	}
 
@@ -135,7 +132,7 @@ class DBSiteStore implements SiteStore {
 	 * @param Site[] $sites
 	 * @return bool Success indicator
 	 */
-	public function saveSites( array $sites ) {
+	public function saveSites( array $sites ): bool {
 		if ( !$sites ) {
 			return true;
 		}
@@ -216,7 +213,7 @@ class DBSiteStore implements SiteStore {
 	 *
 	 * @since 1.25
 	 */
-	public function reset() {
+	public function reset(): void {
 		$this->sites = null;
 	}
 
@@ -225,7 +222,7 @@ class DBSiteStore implements SiteStore {
 	 *
 	 * @see SiteStore::clear()
 	 */
-	public function clear() {
+	public function clear(): void {
 		$dbw = $this->dbProvider->getPrimaryDatabase();
 
 		$dbw->startAtomic( __METHOD__ );

@@ -24,7 +24,7 @@ interface SiteStore extends SiteLookup {
 	 * @param Site $site
 	 * @return bool Success indicator
 	 */
-	public function saveSite( Site $site );
+	public function saveSite( Site $site ): bool;
 
 	/**
 	 * Saves the provided sites.
@@ -33,13 +33,13 @@ interface SiteStore extends SiteLookup {
 	 * @param Site[] $sites
 	 * @return bool Success indicator
 	 */
-	public function saveSites( array $sites );
+	public function saveSites( array $sites ): bool;
 
 	/**
 	 * Deletes all sites from the database. After calling clear(), getSites() will return an empty
 	 * list and getSite() will return null until saveSite() or saveSites() is called.
 	 */
-	public function clear();
+	public function clear(): void;
 }
 
 /** @deprecated class alias since 1.42 */

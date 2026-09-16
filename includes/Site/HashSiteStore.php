@@ -32,7 +32,7 @@ class HashSiteStore implements SiteStore {
 	 * @param Site $site
 	 * @return bool Success indicator
 	 */
-	public function saveSite( Site $site ) {
+	public function saveSite( Site $site ): bool {
 		$this->sites[ $site->getGlobalId() ?? '' ] = $site;
 
 		return true;
@@ -45,7 +45,7 @@ class HashSiteStore implements SiteStore {
 	 * @param Site[] $sites
 	 * @return bool Success indicator
 	 */
-	public function saveSites( array $sites ) {
+	public function saveSites( array $sites ): bool {
 		foreach ( $sites as $site ) {
 			$this->saveSite( $site );
 		}
@@ -60,9 +60,8 @@ class HashSiteStore implements SiteStore {
 	 * @param string $globalId
 	 * @param string $source either 'cache' or 'recache'.
 	 *  If 'cache', the values can (but not obliged) come from a cache.
-	 * @return Site|null
 	 */
-	public function getSite( $globalId, $source = 'cache' ) {
+	public function getSite( string $globalId, string $source = 'cache' ): ?Site {
 		return $this->sites[ $globalId ] ?? null;
 	}
 
@@ -77,7 +76,7 @@ class HashSiteStore implements SiteStore {
 	 *  If 'cache', the values can (but not obliged) come from a cache.
 	 * @return SiteList
 	 */
-	public function getSites( $source = 'cache' ) {
+	public function getSites( string $source = 'cache' ): SiteList {
 		return new SiteList( $this->sites );
 	}
 
@@ -86,12 +85,9 @@ class HashSiteStore implements SiteStore {
 	 *
 	 * After calling clear(), getSites() will return an empty list and getSite() will
 	 * return null until saveSite() or saveSites() is called.
-	 *
-	 * @return bool
 	 */
-	public function clear() {
+	public function clear(): void {
 		$this->sites = [];
-		return true;
 	}
 
 }
