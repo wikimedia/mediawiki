@@ -23,6 +23,7 @@ use Wikimedia\Parsoid\Config\PageConfig;
 use Wikimedia\Parsoid\Config\SiteConfig;
 use Wikimedia\Parsoid\Core\BasePageBundle;
 use Wikimedia\Parsoid\Core\ClientError;
+use Wikimedia\Parsoid\Core\DomPageBundle;
 use Wikimedia\Parsoid\Core\HtmlPageBundle;
 use Wikimedia\Parsoid\Core\ResourceLimitExceededException;
 use Wikimedia\Parsoid\Core\SelserData;
@@ -46,17 +47,16 @@ class HtmlToContentTransform {
 	private ?Bcp47Code $contentLanguage = null;
 	private ?Content $originalContent = null;
 	private ?RevisionRecord $originalRevision = null;
-	/**
-	 * Whether $this->doc has had any necessary processing applied,
-	 * such as injecting data-parsoid attributes from a HtmlPageBundle.
-	 */
-	private bool $docHasBeenProcessed = false;
-	private ?Document $modifiedDoc = null;
+
 	private ?Element $originalBody = null;
-	protected ?StatsFactory $metrics = null;
-	private HtmlPageBundle $modifiedPageBundle;
 	private HtmlPageBundle $originalPageBundle;
+
+	private ?Document $modifiedDoc = null;
+	private BasePageBundle $modifiedPageBundle;
+	private int $modifiedHtmlSize;
+
 	private ?PageConfig $pageConfig = null;
+	protected ?StatsFactory $metrics = null;
 
 	public function __construct(
 		string $modifiedHTML,
@@ -69,6 +69,7 @@ class HtmlToContentTransform {
 	) {
 		$this->modifiedPageBundle = new HtmlPageBundle( $modifiedHTML );
 		$this->originalPageBundle = new HtmlPageBundle( '' );
+		$this->modifiedHtmlSize = mb_strlen( $modifiedHTML );
 	}
 
 	/**
@@ -253,24 +254,25 @@ class HtmlToContentTransform {
 	 * The size of the modified HTML in characters.
 	 */
 	public function getModifiedHtmlSize(): int {
-		return mb_strlen( $this->modifiedPageBundle->html );
+		return $this->modifiedHtmlSize;
 	}
 
 	private function initModifiedDoc(): void {
 		if ( !$this->modifiedDoc ) {
 			$this->modifiedDoc = $this->parseHTML( $this->modifiedPageBundle->html, true );
 			$this->modifiedPageBundle->version = DOMUtils::extractInlinedContentVersion( $this->modifiedDoc );
-			$this->docHasBeenProcessed = false;
+		}
+	}
+
+	private function processModifiedDoc(): void {
+		$this->initModifiedDoc();
+		if ( $this->modifiedPageBundle instanceof HtmlPageBundle ) {
+			$this->modifiedPageBundle = $this->applyPageBundle( $this->modifiedDoc, $this->modifiedPageBundle );
 		}
 	}
 
 	public function getModifiedDocument(): Document {
-		$this->initModifiedDoc();
-		if ( !$this->docHasBeenProcessed ) {
-			$doc = $this->applyPageBundle( $this->modifiedDoc, $this->modifiedPageBundle );
-			$this->modifiedDoc = $doc;
-			$this->docHasBeenProcessed = true;
-		}
+		$this->processModifiedDoc();
 		return $this->modifiedDoc;
 	}
 
@@ -364,10 +366,11 @@ class HtmlToContentTransform {
 			$this->downgradeOriginalData( $this->originalPageBundle, $this->getSchemaVersion() );
 		}
 
-		$doc = $this->parseHTML( $this->originalPageBundle->html );
-
-		$doc = $this->applyPageBundle( $doc, $this->originalPageBundle );
-
+		$pb = $this->applyPageBundle(
+			$this->parseHTML( $this->originalPageBundle->html ),
+			$this->originalPageBundle
+		);
+		$doc = $pb->toInlineAttributeDocument( siteConfig: $this->siteConfig );
 		$this->originalBody = DOMCompat::getBody( $doc );
 
 		// XXX: use a separate field??
@@ -482,14 +485,12 @@ class HtmlToContentTransform {
 	/**
 	 * @param Document $doc
 	 * @param BasePageBundle $pb
-	 * @return Document $doc The Document with page bundle information in
-	 *   inline-attribute form
-	 *
+	 * @return DomPageBundle
 	 * @throws ClientError
 	 */
-	private function applyPageBundle( Document $doc, BasePageBundle $pb ): Document {
+	private function applyPageBundle( Document $doc, BasePageBundle $pb ): DomPageBundle {
 		if ( $pb->parsoid === null && $pb->mw === null ) {
-			return $doc;
+			return $pb->withDocument( $doc );
 		}
 
 		// Verify that the top-level parsoid object either doesn't contain
@@ -506,9 +507,7 @@ class HtmlToContentTransform {
 		}
 
 		$this->validatePageBundle( $pb );
-		return $pb->withDocument( $doc )->toInlineAttributeDocument(
-			siteConfig: $this->siteConfig,
-		);
+		return $pb->withDocument( $doc );
 	}
 
 	/**
@@ -566,17 +565,16 @@ class HtmlToContentTransform {
 	 * @return string
 	 */
 	private function htmlToText(): string {
-		$doc = $this->getModifiedDocument();
-		$htmlSize = $this->getModifiedHtmlSize();
+		$this->processModifiedDoc();
 		$inputContentVersion = $this->getSchemaVersion();
 		$selserData = $this->getSelserData();
 
 		try {
-			$text = $this->parsoid->dom2wikitext( $this->getPageConfig(), $doc, [
+			$text = $this->parsoid->dom2wikitext( $this->getPageConfig(), $this->modifiedPageBundle, [
 				'inputContentVersion' => $inputContentVersion,
 				'offsetType' => $this->getOffsetType(),
 				'contentmodel' => $this->getContentModel(),
-				'htmlSize' => $htmlSize, // used to trigger status 413 if the input is too big
+				'htmlSize' => $this->modifiedHtmlSize, // used to trigger status 413 if the input is too big
 			], $selserData );
 		} catch ( ClientError $e ) {
 			throw new LocalizedHttpException( new MessageValue( "rest-parsoid-error", [ $e->getMessage() ] ), 400 );
