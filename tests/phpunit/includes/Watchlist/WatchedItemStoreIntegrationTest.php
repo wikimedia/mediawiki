@@ -501,6 +501,37 @@ class WatchedItemStoreIntegrationTest extends MediaWikiIntegrationTestCase {
 		$this->assertLabelCount( 0 );
 	}
 
+	/**
+	 * WatchlistExpiryJob must survive being pushed onto a real queue and dequeued
+	 * (reconstructed by JobFactory) again, not just run from the in-process object
+	 * that pushed it.
+	 */
+	public function testMaybeEnqueueWatchlistExpiryJob(): void {
+		$this->overrideConfigValue( MainConfigNames::WatchlistPurgeRate, 1.0 );
+
+		$store = $this->getServiceContainer()->getWatchedItemStore();
+		// Clear out any expired rows, to start from a known point.
+		$store->removeExpired( 10 );
+
+		$user = $this->getUser();
+		$store->addWatch(
+			$user,
+			Title::makeTitle( NS_MAIN, 'WatchedItemStoreIntegrationTestExpiredPage' ),
+			'20200101000000'
+		);
+		$this->assertSame( 1, $store->countExpired() );
+
+		// Pushes a real WatchlistExpiryJob, built by the real JobFactory service,
+		// onto the real job queue.
+		$store->maybeEnqueueWatchlistExpiryJob();
+
+		// Dequeuing reconstructs the job from its persisted type and params via
+		// JobFactory, the same way a production job runner does.
+		$this->runJobs( [ 'minJobs' => 1, 'numJobs' => 1 ], [ 'type' => 'watchlistExpiry' ] );
+
+		$this->assertSame( 0, $store->countExpired() );
+	}
+
 	public function testRemoveOrphanedExpired() {
 		$store = $this->getServiceContainer()->getWatchedItemStore();
 		// Clear out any expired rows, to start from a known point.
