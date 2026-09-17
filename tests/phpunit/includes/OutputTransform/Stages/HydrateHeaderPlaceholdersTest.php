@@ -8,7 +8,6 @@ use MediaWiki\OutputTransform\OutputTransformStage;
 use MediaWiki\OutputTransform\Stages\HydrateHeaderPlaceholders;
 use MediaWiki\Parser\ParserOptions;
 use MediaWiki\Parser\ParserOutput;
-use MediaWiki\Parser\Parsoid\PageBundleParserOutputConverterStatic;
 use MediaWiki\Revision\SlotRoleRegistry;
 use MediaWiki\Tests\OutputTransform\OutputTransformStageTestBase;
 use Psr\Log\NullLogger;
@@ -57,7 +56,8 @@ class HydrateHeaderPlaceholdersTest extends OutputTransformStageTestBase {
 		yield "legacy" => [ $po, ParserOptions::newFromAnon(), [], $expected ];
 
 		$text = "<h1>main</h1>Hi";
-		$po = PageBundleParserOutputConverterStatic::parserOutputFromPageBundle(
+		$converter = self::getStubPageBundleParserOutputConverter();
+		$po = $converter->parserOutputFromPageBundle(
 			new HtmlPageBundle( $text ),
 			isParsoidContent: true,
 		);
@@ -66,7 +66,7 @@ class HydrateHeaderPlaceholdersTest extends OutputTransformStageTestBase {
 		$po->getContentHolder()->getAsDom();
 
 		$expectedText = '<h1>main</h1>Hi<h1 class="mw-slot-header">test</h1>Ho';
-		$expected = PageBundleParserOutputConverterStatic::parserOutputFromPageBundle(
+		$expected = $converter->parserOutputFromPageBundle(
 			new HtmlPageBundle( $expectedText ),
 			isParsoidContent: true,
 		);
