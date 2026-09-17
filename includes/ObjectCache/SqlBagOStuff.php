@@ -1410,8 +1410,9 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 	 * @param int $batchSize Number of rows to read per keyset batch
 	 * @param callable|null $progress Called once per batch with the running number of rows
 	 *  scanned for the current server (int); useful for pacing the scan
-	 * @return array<string,array<string,array{keys:int,bytes:int}>> Map of
-	 *  (server tag => (key group => [ 'keys' => count, 'bytes' => on-disk bytes ]))
+	 * @return array<string,array{groups:array<string,array{keys:int,bytes:int}>,durationSeconds:float}>
+	 *  Map of (server tag => [ 'groups' => (key group => [ 'keys' => count, 'bytes' => on-disk
+	 *  bytes ]), 'durationSeconds' => seconds that the scan of this server took ])
 	 * @throws InvalidArgumentException
 	 * @since 1.47
 	 */
@@ -1456,7 +1457,13 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 				}
 
 				$serverTag = $this->serverTags[$shardIndex] ?? (string)$shardIndex;
-				$stats[$serverTag] = $this->getServerKeyGroupStats( $db, $batchSize, $progress );
+				$startTime = $this->getCurrentTime();
+				$groups = $this->getServerKeyGroupStats( $db, $batchSize, $progress );
+				$stats[$serverTag] = [
+					'groups' => $groups,
+					// The scan cost shows operators if the census becomes too expensive.
+					'durationSeconds' => $this->getCurrentTime() - $startTime,
+				];
 				$db->unlock( $lockKey, __METHOD__ );
 			} catch ( DBError $e ) {
 				$this->handleDBError( $e, $shardIndex );

@@ -168,7 +168,7 @@ class SqlBagOStuffIntegrationTest extends BagOStuffTestBase {
 		$stats = $cache->getKeyGroupStats();
 
 		$this->assertArrayHasKey( 'ms1', $stats, 'Result is keyed by server tag' );
-		$server = $stats['ms1'];
+		$server = $stats['ms1']['groups'];
 
 		$this->assertSame( 2, $server['groupa']['keys'], 'groupa has two keys' );
 		$this->assertSame( 1, $server['groupb']['keys'], 'groupb has one key' );
@@ -200,7 +200,7 @@ class SqlBagOStuffIntegrationTest extends BagOStuffTestBase {
 		$mockTime += 100;
 
 		$stats = $cache->getKeyGroupStats();
-		$server = $stats['ms1'];
+		$server = $stats['ms1']['groups'];
 
 		$this->assertArrayNotHasKey( 'groupexpired', $server, 'Expired rows are excluded' );
 		$this->assertArrayHasKey( 'groupforever', $server, 'Indefinite rows are counted' );
@@ -265,7 +265,11 @@ class SqlBagOStuffIntegrationTest extends BagOStuffTestBase {
 		$stats = $cache->getKeyGroupStats( 'ms1' );
 
 		$this->assertArrayNotHasKey( 'ms2', $stats, 'Other server tags are excluded' );
-		$this->assertSame( 10, $stats['ms1']['groupa']['keys'], 'Requested tag reports its own rows' );
+		$this->assertSame(
+			10,
+			$stats['ms1']['groups']['groupa']['keys'],
+			'Requested tag reports its own rows'
+		);
 	}
 
 	/**
@@ -284,7 +288,11 @@ class SqlBagOStuffIntegrationTest extends BagOStuffTestBase {
 			$batches++;
 		} );
 
-		$this->assertSame( 5, $stats['ms1']['groupbatch']['keys'], 'All rows counted across batches' );
+		$this->assertSame(
+			5,
+			$stats['ms1']['groups']['groupbatch']['keys'],
+			'All rows counted across batches'
+		);
 		$this->assertGreaterThan( 1, $batches, 'Progress callback fired once per batch' );
 	}
 
@@ -296,7 +304,27 @@ class SqlBagOStuffIntegrationTest extends BagOStuffTestBase {
 
 		$stats = $cache->getKeyGroupStats();
 
-		$this->assertSame( [ 'ms1' => [] ], $stats, 'Empty table yields a per-server-empty result' );
+		$this->assertSame( [ 'ms1' ], array_keys( $stats ), 'Empty table still reports its server' );
+		$this->assertSame( [], $stats['ms1']['groups'], 'Empty table yields no key groups' );
+		$this->assertIsFloat( $stats['ms1']['durationSeconds'], 'Scan duration is always reported' );
+	}
+
+	/**
+	 * @covers \MediaWiki\ObjectCache\SqlBagOStuff::getKeyGroupStats
+	 */
+	public function testGetKeyGroupStatsReportsScanDuration() {
+		$cache = $this->newSqliteStatsCache();
+
+		// The census times itself with the cache's own clock, so a frozen clock must give
+		// exactly zero. This also proves the scan does not read the wall clock directly.
+		$mockTime = (float)self::TEST_TIME;
+		$cache->setMockTime( $mockTime );
+
+		$cache->set( $cache->makeKey( 'groupa', 'k1' ), 'v', 60 );
+
+		$stats = $cache->getKeyGroupStats();
+
+		$this->assertSame( 0.0, $stats['ms1']['durationSeconds'], 'A frozen clock gives no duration' );
 	}
 
 	// @todo Cover graceful degradation when a shard raises a DBError mid-scan. The

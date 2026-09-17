@@ -13,6 +13,7 @@ require_once __DIR__ . '/Maintenance.php';
 
 use MediaWiki\Maintenance\Maintenance;
 use MediaWiki\ObjectCache\SqlBagOStuff;
+use Wikimedia\Timestamp\ConvertibleTimestamp;
 
 /**
  * Maintenance script that reports a census of resident (live, non-expired) keys in a
@@ -86,13 +87,18 @@ class ReportObjectStashStats extends Maintenance {
 	}
 
 	/**
-	 * @param array<string,array<string,array{keys:int,bytes:int}>> $stats
+	 * @param array<string,array{groups:array<string,array{keys:int,bytes:int}>,durationSeconds:float}> $stats
 	 */
 	private function printHuman( array $stats ) {
 		$totals = [];
-		foreach ( $stats as $cluster => $byGroup ) {
-			$this->output( "Cluster: $cluster\n" );
+		foreach ( $stats as $cluster => $report ) {
+			$this->output( sprintf(
+				"Cluster: %s (scanned in %.1fs)\n",
+				$cluster,
+				$report['durationSeconds']
+			) );
 			$this->output( sprintf( "  %-40s %12s %16s\n", 'keygroup', 'keys', 'bytes' ) );
+			$byGroup = $report['groups'];
 			ksort( $byGroup );
 			foreach ( $byGroup as $keygroup => $counts ) {
 				$this->output( sprintf(
@@ -128,14 +134,15 @@ class ReportObjectStashStats extends Maintenance {
 	}
 
 	/**
-	 * @param array<string,array<string,array{keys:int,bytes:int}>> $stats
+	 * @param array<string,array{groups:array<string,array{keys:int,bytes:int}>,durationSeconds:float}> $stats
 	 */
 	private function emitGauges( array $stats ) {
 		$statsFactory = $this->getServiceContainer()->getStatsFactory();
-		foreach ( $stats as $cluster => $byGroup ) {
+		$censusTime = (int)ConvertibleTimestamp::time();
+		foreach ( $stats as $cluster => $report ) {
 			$clusterKeys = 0;
 			$clusterBytes = 0;
-			foreach ( $byGroup as $keygroup => $counts ) {
+			foreach ( $report['groups'] as $keygroup => $counts ) {
 				$statsFactory->getGauge( 'bagostuff_resident_keys' )
 					->setLabel( 'keygroup', $keygroup )
 					->setLabel( 'cluster', $cluster )
@@ -161,6 +168,16 @@ class ReportObjectStashStats extends Maintenance {
 			$statsFactory->getGauge( 'bagostuff_resident_cluster_bytes' )
 				->setLabel( 'cluster', $cluster )
 				->set( $clusterBytes );
+
+			// Report the age of the data, so a failed census is visible
+			$statsFactory->getGauge( 'bagostuff_resident_census_timestamp_seconds' )
+				->setLabel( 'cluster', $cluster )
+				->set( $censusTime );
+
+			// Report the time scan cost, so we can judge if we can run this more often
+			$statsFactory->getGauge( 'bagostuff_resident_census_duration_seconds' )
+				->setLabel( 'cluster', $cluster )
+				->set( $report['durationSeconds'] );
 		}
 	}
 }
