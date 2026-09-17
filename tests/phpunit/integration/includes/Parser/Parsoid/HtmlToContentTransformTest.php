@@ -46,12 +46,20 @@ class HtmlToContentTransformTest extends MediaWikiIntegrationTestCase {
 		] ]
 	] ] ];
 
-	private function setOriginalData( HtmlToContentTransform $transform ) {
+	private function setOriginalData(
+		HtmlToContentTransform $transform,
+		?string $version = '2.4.0',
+		?string $html = self::ORIG_HTML,
+		?array $dataMw = self::ORIG_DATA_MW,
+		?array $dataParsoid = self::ORIG_DATA_PARSOID,
+	) {
 		$transform->setOriginalRevisionId( 1 );
-		$transform->setOriginalSchemaVersion( '2.4.0' );
-		$transform->setOriginalHtml( self::ORIG_HTML );
-		$transform->setOriginalDataMW( self::ORIG_DATA_MW );
-		$transform->setOriginalDataParsoid( self::ORIG_DATA_PARSOID );
+		$transform->setOriginalData( [
+			'schemaVersion' => $version,
+			'html' => $html,
+			'data-mw' => $dataMw,
+			'data-parsoid' => $dataParsoid,
+		] );
 	}
 
 	private function createHtmlToContentTransform( $html = '' ) {
@@ -88,20 +96,16 @@ class HtmlToContentTransformTest extends MediaWikiIntegrationTestCase {
 
 	public function testGetOriginalBodyRequiresValidDataParsoid() {
 		$transform = $this->createHtmlToContentTransform( self::ORIG_HTML );
-		$transform->setOriginalSchemaVersion( '2.4.0' );
-		$transform->setOriginalHtml( self::ORIG_HTML );
 
 		// Invalid data-parsoid structure!
-		$transform->setOriginalDataParsoid( [ 'foo' => 'bar' ] );
+		$this->setOriginalData( $transform, dataParsoid: [ 'foo' => 'bar' ] );
 
 		$exception = new ClientError( 'Invalid data-parsoid was provided.' );
 		$this->expectException( get_class( $exception ) );
 		$this->expectExceptionMessage( $exception->getMessage() );
 
-		// Should throw because setOriginalDataParsoid got bad data.
-		// Note that setOriginalDataParsoid can't validate immediately, because it
-		// may not know the schema version. The order in which the setters are called
-		// should not matter. All checks happen in getters.
+		// Should throw because data-parsoid is invalid.
+		// All checks happen in getters, so this call is necessary.
 		$transform->processOriginalHtml();
 	}
 
@@ -109,53 +113,45 @@ class HtmlToContentTransformTest extends MediaWikiIntegrationTestCase {
 		$transform = $this->createHtmlToContentTransform( self::MODIFIED_HTML );
 		$this->assertFalse( $transform->hasOriginalHtml() );
 
-		$transform->setOriginalDataParsoid( self::ORIG_DATA_PARSOID );
-		$this->assertFalse( $transform->hasOriginalHtml() );
+		$this->setOriginalData( $transform );
 
-		$transform->setOriginalHtml( self::ORIG_HTML );
 		$this->assertTrue( $transform->hasOriginalHtml() );
 	}
 
-	public function testGetOriginalSchemaVersion() {
-		$transform = $this->createHtmlToContentTransform( self::ORIG_HTML ); // no version inline
-		$this->assertSame( Parsoid::defaultHTMLVersion(), $transform->getOriginalSchemaVersion() );
-
-		$transform = $this->createHtmlToContentTransform( self::MODIFIED_HTML ); // has version inline
-		$this->assertSame( '2.4.0', $transform->getOriginalSchemaVersion() );
-
-		$transform->setOriginalSchemaVersion( '2.3.0' );
-		$this->assertSame( '2.3.0', $transform->getOriginalSchemaVersion() );
-	}
-
-	public function testGetSchemaVersion() {
-		$transform = $this->createHtmlToContentTransform( self::ORIG_HTML ); // no version inline
-		$this->assertSame( Parsoid::defaultHTMLVersion(), $transform->getSchemaVersion() );
+	public function testGetSchema() {
+		$transform1 = $this->createHtmlToContentTransform( self::ORIG_HTML ); // no version inline
+		$this->assertSame( Parsoid::defaultHTMLVersion(), $transform1->getSchemaVersion() );
+		$this->assertSame( Parsoid::defaultHTMLVersion(), $transform1->getOriginalSchemaVersion() );
 
 		// Should have an effect, since the HTML has no version specified inline
-		$transform->setOriginalSchemaVersion( '2.3.0' );
-		$this->assertSame( '2.3.0', $transform->getSchemaVersion() );
+		$transform1->setOriginalData( [ 'schemaVersion' => '2.3.0' ] );
+		$this->assertSame( '2.3.0', $transform1->getSchemaVersion() );
+		$this->assertSame( '2.3.0', $transform1->getOriginalSchemaVersion() );
 
-		$transform = $this->createHtmlToContentTransform( self::MODIFIED_HTML ); // has version inline
-		$this->assertSame( '2.4.0', $transform->getSchemaVersion() );
+		$transform2 = $this->createHtmlToContentTransform( self::MODIFIED_HTML ); // has version inline
+		$this->assertSame( '2.4.0', $transform2->getSchemaVersion() );
+		$this->assertSame( '2.4.0', $transform2->getOriginalSchemaVersion() );
 
-		// Should have no impact, since the HTML has a version specified inline
-		$transform->setOriginalSchemaVersion( '2.3.0' );
-		$this->assertSame( '2.4.0', $transform->getSchemaVersion() );
+		// Should have no impact on modified HTML, since the HTML has a version specified inline
+		$transform2->setOriginalData( [ 'schemaVersion' => '2.3.0' ] );
+		$this->assertSame( '2.4.0', $transform2->getSchemaVersion() );
+		$this->assertSame( '2.3.0', $transform1->getOriginalSchemaVersion() );
 	}
 
 	public function testHasOriginalDataParsoid() {
 		$transform = $this->createHtmlToContentTransform( self::MODIFIED_HTML );
 		$this->assertFalse( $transform->hasOriginalDataParsoid() );
 
-		$transform->setOriginalDataParsoid( self::ORIG_DATA_PARSOID );
+		$transform->setOriginalData( [ 'data-parsoid' => [] ] );
 		$this->assertTrue( $transform->hasOriginalDataParsoid() );
 	}
 
 	public function testProcessOriginalHtml() {
 		$transform = $this->createHtmlToContentTransform( self::MODIFIED_HTML );
-		$transform->setOriginalSchemaVersion( '2.4.0' );
-		$transform->setOriginalHtml( self::ORIG_HTML );
-
+		$transform->setOriginalData( [
+			'schemaVersion' => '2.4.0',
+			'html' => self::ORIG_HTML
+		] );
 		$this->assertSame(
 			self::ORIG_BODY,
 			ContentUtils::toXML( DOMCompat::getBody( $transform->getOriginalDocument() ) )
@@ -271,9 +267,11 @@ class HtmlToContentTransformTest extends MediaWikiIntegrationTestCase {
 		$transform = $this->createHtmlToContentTransform( $html );
 		$transform->setMetrics( StatsFactory::newNull() );
 
-		$transform->setOriginalSchemaVersion( '999.0.0' );
-		$transform->setOriginalHtml( $html );
-		$transform->setOriginalDataParsoid( self::ORIG_DATA_PARSOID );
+		$transform->setOriginalData( [
+			'schemaVersion' => '999.0.0',
+			'html' => $html,
+			'data-parsoid' => self::ORIG_DATA_PARSOID
+		] );
 
 		// should automatically apply downgrade
 		$transform->processOriginalHtml();
@@ -288,13 +286,13 @@ class HtmlToContentTransformTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testModifiedDataMW() {
-		$html = $this->getTextFromFile( 'Minimal-999.html' ); // Uses profile version 2.4.0
+		$html = $this->getTextFromFile( 'Minimal-999.html' ); // sets profile version 999.0.0
 		$transform = $this->createHtmlToContentTransform( $html );
 
-		$transform->setOriginalHtml( self::ORIG_HTML );
-		$transform->setOriginalDataParsoid( self::ORIG_DATA_PARSOID );
+		$this->setOriginalData( $transform, version: null, dataMw: null );
 		$transform->setModifiedDataMW( self::MODIFIED_DATA_MW );
-		// should automatically apply downgrade
+
+		// should automatically apply downgrade from v999.0.0
 		$doc = $transform->getModifiedDocument();
 		$html = ContentUtils::toXML( $doc );
 
@@ -329,14 +327,16 @@ class HtmlToContentTransformTest extends MediaWikiIntegrationTestCase {
 		$transform = $this->createHtmlToContentTransform( $html );
 
 		// mainly check that this doesn't explode.
-		$transform->setOriginalSchemaVersion( '999.0.0' );
-		$transform->setOriginalHtml( 'hi' );
+		$transform->setOriginalData( [
+			'schemaVersion' => '999.0.0',
+			'html' => 'hi'
+		] );
 
 		$this->assertTrue( $transform->hasOriginalHtml() );
 		$this->assertFalse( $transform->hasOriginalDataParsoid() );
 	}
 
-	public function testSetOriginalDataParsoidAfterGetModified() {
+	public function testSetOriginalDataAfterUse() {
 		// Use HTML that contains a schema version!
 		// Otherwise, we won't trigger the right error.
 		$html = $this->getTextFromFile( 'Minimal.html' );
@@ -347,13 +347,11 @@ class HtmlToContentTransformTest extends MediaWikiIntegrationTestCase {
 		$this->expectException( LogicException::class );
 		$this->expectExceptionMessage( 'getModifiedDocument()' );
 
-		$transform->setOriginalDataParsoid( [] );
+		$transform->setOriginalData( [] );
 	}
 
 	public function testOffsetTypeMismatch() {
 		$transform = $this->createHtmlToContentTransform( self::ORIG_HTML );
-		$this->setOriginalData( $transform );
-
 		// Set some options to assert on $transform.
 		$transform->setOptions( [
 			'contentmodel' => 'wikitext',
@@ -362,8 +360,7 @@ class HtmlToContentTransformTest extends MediaWikiIntegrationTestCase {
 
 		$dataParsoid = self::ORIG_DATA_PARSOID;
 		$dataParsoid['offsetType'] = 'UCS2';
-
-		$transform->setOriginalDataParsoid( $dataParsoid );
+		$this->setOriginalData( $transform, dataParsoid: $dataParsoid );
 
 		$this->expectException( ClientError::class );
 		$transform->processOriginalHtml();
@@ -404,10 +401,12 @@ class HtmlToContentTransformTest extends MediaWikiIntegrationTestCase {
 		$transform = $this->createHtmlToContentTransform( $pb->html );
 		$transform->setOptions( [ 'contentmodel' => 'wikitext', 'offsetType' => 'byte' ] );
 		$transform->setOriginalRevisionId( $rev->getId() );
-		$transform->setOriginalSchemaVersion( $pb->getContentVersion() );
-		$transform->setOriginalHtml( $pb->html );
-		$transform->setOriginalDataParsoid( $pb->parsoid );
-		$transform->setOriginalDataMW( $pb->mw );
+		$transform->setOriginalData( [
+			'schemaVersion' => $pb->getContentVersion(),
+			'html' => $pb->html,
+			'data-parsoid' => $pb->parsoid,
+			'data-mw' => $pb->mw,
+		] );
 
 		$this->assertSame( $wikitext, $transform->htmlToContent()->getText() );
 
@@ -416,9 +415,11 @@ class HtmlToContentTransformTest extends MediaWikiIntegrationTestCase {
 		$transform = $this->createHtmlToContentTransform( $newHtml );
 		$transform->setOptions( [ 'contentmodel' => 'wikitext', 'offsetType' => 'byte' ] );
 		$transform->setOriginalRevisionId( $rev->getId() );
-		$transform->setOriginalSchemaVersion( $pb->getContentVersion() );
-		$transform->setOriginalHtml( $pb->html );
-		$transform->setOriginalDataParsoid( $pb->parsoid );
+		$transform->setOriginalData( [
+			'schemaVersion' => $pb->getContentVersion(),
+			'html' => $pb->html,
+			'data-parsoid' => $pb->parsoid,
+		] );
 
 		$this->assertSame( $wikitext . "<!--boo-->", $transform->htmlToContent()->getText() );
 	}

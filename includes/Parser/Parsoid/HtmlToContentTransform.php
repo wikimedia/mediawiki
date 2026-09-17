@@ -48,7 +48,7 @@ class HtmlToContentTransform {
 	private ?RevisionRecord $originalRevision = null;
 
 	private ?Element $originalBody = null;
-	private BasePageBundle $originalPageBundle;
+	private ?BasePageBundle $originalPageBundle = null;
 
 	private ?Document $modifiedDoc = null;
 	private BasePageBundle $modifiedPageBundle;
@@ -68,8 +68,12 @@ class HtmlToContentTransform {
 		private readonly LanguageFactory $languageFactory,
 	) {
 		$this->modifiedPageBundle = new HtmlPageBundle( $modifiedHTML );
-		$this->originalPageBundle = new HtmlPageBundle( '' );
 		$this->modifiedHtmlSize = mb_strlen( $modifiedHTML );
+		$this->modifiedDoc = $this->parseHTML( $this->modifiedPageBundle->html, true );
+		$contentVersion = DOMUtils::extractInlinedContentVersion( $this->modifiedDoc );
+		if ( $contentVersion !== null ) {
+			$this->modifiedPageBundle->setContentVersion( $contentVersion );
+		}
 	}
 
 	/**
@@ -164,7 +168,7 @@ class HtmlToContentTransform {
 	 * @throws ClientError
 	 */
 	public function setModifiedDataMW( array $modifiedDataMW ): void {
-		// Relies on setOriginalSchemaVersion having been called already.
+		// Relies on setOriginalData having been called already.
 		if ( !Semver::satisfies( $this->getSchemaVersion(), '^999.0.0' ) ) {
 			throw new ClientError( 'Modified data-mw is not supported by schema version '
 				. $this->getSchemaVersion() );
@@ -173,39 +177,29 @@ class HtmlToContentTransform {
 		$this->modifiedPageBundle->mw = $modifiedDataMW;
 	}
 
-	public function setOriginalSchemaVersion( string $originalSchemaVeraion ): void {
-		$this->originalPageBundle->setContentVersion( $originalSchemaVeraion );
-	}
-
-	public function setOriginalHtml( string $originalHtml ): void {
-		if ( $this->modifiedDoc ) {
-			throw new LogicException( __FUNCTION__ . ' cannot be called after' .
-				' getModifiedDocument()' );
+	/**
+	 * @param array{schemaVersion:?string,html:?string,data-mw:?array,data-parsoid:?array} $data
+	 */
+	public function setOriginalData( array $data ): void {
+		if ( $this->modifiedPageBundle instanceof DomPageBundle ) {
+			// Since the modified page bundle is being *modified* again below,
+			// we shouldn't have used that information already.
+			throw new LogicException( __FUNCTION__ . ' called after getModifiedDocument()' );
 		}
 
-		$this->originalPageBundle->html = $originalHtml;
-	}
-
-	public function setOriginalDataMW( array $originalDataMW ): void {
-		if ( $this->modifiedDoc ) {
-			throw new LogicException( __FUNCTION__ . ' cannot be called after getModifiedDocument()' );
-		}
-
-		$this->originalPageBundle->mw = $originalDataMW;
+		$this->originalPageBundle = new HtmlPageBundle(
+			html: $data['html'] ?? '',
+			parsoid: $data['data-parsoid'] ?? null,
+			mw: $data['data-mw'] ?? null,
+			contentVersion: $data['schemaVersion'] ?? null,
+		);
 
 		// Modified data-mw is going to be the same as original data-mw,
 		// unless specified otherwise.
-		$this->modifiedPageBundle->mw ??= $originalDataMW;
-	}
-
-	public function setOriginalDataParsoid( array $originalDataParsoid ): void {
-		if ( $this->modifiedDoc ) {
-			throw new LogicException( __FUNCTION__ . ' cannot be called after getModifiedDocument()' );
-		}
+		$this->modifiedPageBundle->mw ??= $this->originalPageBundle->mw;
 
 		// data-parsoid is going to be the same for original and modified.
-		$this->originalPageBundle->parsoid = $originalDataParsoid;
-		$this->modifiedPageBundle->parsoid = $originalDataParsoid;
+		$this->modifiedPageBundle->parsoid = $this->originalPageBundle->parsoid;
 	}
 
 	private function getPageConfig(): PageConfig {
@@ -264,18 +258,7 @@ class HtmlToContentTransform {
 		return $this->modifiedHtmlSize;
 	}
 
-	private function initModifiedDoc(): void {
-		if ( !$this->modifiedDoc ) {
-			$this->modifiedDoc = $this->parseHTML( $this->modifiedPageBundle->html, true );
-			$contentVersion = DOMUtils::extractInlinedContentVersion( $this->modifiedDoc );
-			if ( $contentVersion !== null ) {
-				$this->modifiedPageBundle->setContentVersion( $contentVersion );
-			}
-		}
-	}
-
 	private function processModifiedDoc(): void {
-		$this->initModifiedDoc();
 		if ( $this->modifiedPageBundle instanceof HtmlPageBundle ) {
 			$this->modifiedPageBundle = $this->applyPageBundle( $this->modifiedDoc, $this->modifiedPageBundle );
 		}
@@ -313,7 +296,7 @@ class HtmlToContentTransform {
 	 *    setOriginalData() having been called first.
 	 */
 	public function hasOriginalDataParsoid(): bool {
-		return $this->originalPageBundle->parsoid !== null;
+		return $this->originalPageBundle?->parsoid !== null;
 	}
 
 	/**
@@ -340,32 +323,28 @@ class HtmlToContentTransform {
 		}
 
 		if ( !$this->hasOriginalHtml() ) {
-			throw new LogicException(
-				'No original data supplied, call hasOriginalHtml() first.'
-			);
+			throw new LogicException( 'No original data supplied, call setOriginalData() first.' );
 		}
+
+		$origPb = $this->originalPageBundle;
+		'@phan-var HtmlPageBundle $origPb';
 
 		// NOTE: Schema version should have been set explicitly,
 		//       so don't call getOriginalSchemaVersion,
 		//       which will silently fall back to the default.
-		if ( !$this->originalPageBundle->getContentVersion() ) {
-			throw new ClientError(
-				'Content-type of original html is missing.'
-			);
+		if ( !$origPb->getContentVersion() ) {
+			throw new ClientError( 'Content-type of original html is missing.' );
 		}
 
-		if ( $this->needsDowngrade( $this->originalPageBundle ) ) {
-			$this->downgradeOriginalData( $this->originalPageBundle, $this->getSchemaVersion() );
+		if ( $this->needsDowngrade( $origPb ) ) {
+			$this->downgradeOriginalData( $origPb, $this->getSchemaVersion() );
 		}
 
-		$this->originalPageBundle = $this->applyPageBundle(
-			$this->parseHTML( $this->originalPageBundle->html ),
-			$this->originalPageBundle
-		);
+		$this->originalPageBundle = $this->applyPageBundle( $this->parseHTML( $origPb->html ), $origPb );
 	}
 
 	public function getOriginalSchemaVersion(): string {
-		return $this->originalPageBundle->getContentVersion() ?: $this->getSchemaVersion();
+		return $this->originalPageBundle?->getContentVersion() ?: $this->getSchemaVersion();
 	}
 
 	/**
@@ -374,14 +353,16 @@ class HtmlToContentTransform {
 	 *    setOriginalSchemaVersion() having been called first.
 	 */
 	public function getSchemaVersion(): string {
-		$this->initModifiedDoc();
+		// Get the content version of the edited doc, if available.
+		// Make sure $this->modifiedPageBundle->version is initialized.
 		$inputContentVersion = $this->modifiedPageBundle->getContentVersion();
+
 		if ( !$inputContentVersion ) {
 			$this->incrementMetrics(
 				'html2wt_original_version_total',
 				[ 'input_content_version' => 'none' ]
 			);
-			$inputContentVersion = $this->originalPageBundle->getContentVersion() ?: Parsoid::defaultHTMLVersion();
+			$inputContentVersion = $this->originalPageBundle?->getContentVersion() ?: Parsoid::defaultHTMLVersion();
 		}
 
 		return $inputContentVersion;

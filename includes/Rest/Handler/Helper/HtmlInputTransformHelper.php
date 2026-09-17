@@ -456,7 +456,7 @@ class HtmlInputTransformHelper {
 			if ( !$selserContext ) {
 				// NOTE: When the client asked for a specific stash key (resp. etag),
 				//       we should fail with a 412 if we don't have the specific rendering.
-				//       On the other hand, of the client only provided a base revision ID,
+				//       On the other hand, if the client only provided a base revision ID,
 				//       we can re-parse and hope for the best.
 
 				throw new LocalizedHttpException(
@@ -531,17 +531,11 @@ class HtmlInputTransformHelper {
 		}
 
 		$vOriginal = $originalRendering->getContentVersion();
-		if ( $vOriginal !== null ) {
-			$this->transform->setOriginalSchemaVersion( $vOriginal );
-		} elseif ( !empty( $originalRendering->headers['content-type'] ) ) {
+		if ( $vOriginal === null && !empty( $originalRendering->headers['content-type'] ) ) {
 			$vOriginal = ParsoidFormatHelper::parseContentTypeHeader(
 				// @phan-suppress-next-line PhanTypeArraySuspiciousNullable Silly Phan, we just checked.
 				$originalRendering->headers['content-type']
 			);
-
-			if ( $vOriginal ) {
-				$this->transform->setOriginalSchemaVersion( $vOriginal );
-			}
 		}
 
 		if ( $rev instanceof RevisionRecord ) {
@@ -553,19 +547,12 @@ class HtmlInputTransformHelper {
 		// NOTE: We might have an incomplete HtmlPageBundle here, with no HTML.
 		//       HtmlPageBundle::$html is declared to not be nullable, so it would be set to the empty
 		//       string if not given.
-		if ( $originalRendering->html !== '' ) {
-			$this->transform->setOriginalHtml( $originalRendering->html );
-		}
-
-		$originalDataParsoid = $originalRendering->parsoid;
-		if ( $originalDataParsoid !== null ) {
-			$this->transform->setOriginalDataParsoid( $originalDataParsoid );
-		}
-
-		$originalDataMW = $originalRendering->mw;
-		if ( $originalDataMW !== null ) {
-			$this->transform->setOriginalDataMW( $originalDataMW );
-		}
+		$this->transform->setOriginalData( [
+			'schemaVersion' => $vOriginal,
+			'html' => $originalRendering->html,
+			'data-mw' => $originalRendering->mw,
+			'data-parsoid' => $originalRendering->parsoid
+		] );
 	}
 
 	/**
