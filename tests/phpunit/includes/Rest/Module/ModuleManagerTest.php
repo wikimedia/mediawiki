@@ -10,6 +10,7 @@ use MediaWiki\Rest\Module\ModuleManager;
 use MediaWiki\Rest\Module\ModuleMode;
 use MediaWiki\Tests\Unit\DummyServicesTrait;
 use MediaWikiIntegrationTestCase;
+use Wikimedia\Message\ITextFormatter;
 
 /**
  * @covers \MediaWiki\Rest\Module\ModuleManager
@@ -51,14 +52,18 @@ class ModuleManagerTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @param array $extensionModuleFiles
+	 * @param ITextFormatter|null $formatter
 	 *
 	 * @return ModuleManager
 	 */
-	private function getModuleManager( $extensionModuleFiles = [] ): ModuleManager {
+	private function getModuleManager(
+		array $extensionModuleFiles = [],
+		?ITextFormatter $formatter = null
+	): ModuleManager {
 		$services = $this->getServiceContainer();
 		$conf = $services->getMainConfig();
 
-		$formatter = $this->getDummyTextFormatter();
+		$formatter ??= $this->getDummyTextFormatter();
 
 		return new ModuleManager(
 			new ServiceOptions( ModuleManager::CONSTRUCTOR_OPTIONS, $conf ),
@@ -308,7 +313,10 @@ class ModuleManagerTest extends MediaWikiIntegrationTestCase {
 		];
 		$this->overrideConfigValue( MainConfigNames::RestModuleOverrides, $overrides );
 
-		$moduleManager = $this->getModuleManager( [ __DIR__ . '/mockThree.v1.json' ] );
+		$formatter = $this->getServiceContainer()
+			->getMessageFormatterFactory()
+			->getTextFormatter( 'en' );
+		$moduleManager = $this->getModuleManager( [ __DIR__ . '/mockThree.v1.json' ], $formatter );
 		$infos = $moduleManager->getModuleInfos();
 
 		// Prefix-less module should be first.
@@ -319,6 +327,12 @@ class ModuleManagerTest extends MediaWikiIntegrationTestCase {
 		$this->assertFalse( $prefixless->isExternal() );
 		$this->assertSame( ModuleMode::PUBLISHED, $prefixless->getAvailability() );
 		$this->assertSame( 'MediaWiki REST API (routes not in modules)', $prefixless->getTitle() );
+		$this->assertSame(
+			wfMessage( 'rest-module-extra-routes-desc' )->inLanguage( 'en' )->text(),
+			$prefixless->getDescription()
+		);
+		$this->assertSame( '0.1.0', $prefixless->getVersion() );
+		$this->assertTrue( wfMessage( 'rest-module-extra-routes-desc' )->exists() );
 
 		// Check local module site/v1 with groups.
 		$this->assertArrayHasKey( 'site/v1', $infos );
@@ -326,7 +340,10 @@ class ModuleManagerTest extends MediaWikiIntegrationTestCase {
 		$this->assertInstanceOf( ModuleInfo::class, $site );
 		$this->assertSame( 'site/v1', $site->getId() );
 		$this->assertFalse( $site->isExternal() );
-		$this->assertSame( 'rest-module-site.v1-title', $site->getTitle() );
+		$this->assertSame(
+			wfMessage( 'rest-module-site.v1-title' )->inLanguage( 'en' )->text(),
+			$site->getTitle()
+		);
 		$this->assertSame( '1.0.0', $site->getVersion() );
 		$this->assertSame( ModuleMode::PUBLISHED, $site->getAvailability() );
 		$this->assertSame( [ 'site-group' ], $site->getGroups() );

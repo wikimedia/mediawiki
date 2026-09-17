@@ -236,13 +236,13 @@ class ModuleManager {
 			}
 
 			$moduleId = $moduleDefInfo['moduleId'];
-			$mode = $this->getModuleMode( $moduleId );
+			$availability = $this->getModuleMode( $moduleId );
 			$params = $this->getModeParams( $moduleId );
 			$groups = (array)( $params['groups'] ?? [] );
 
 			$modules[$moduleId] = new ModuleInfo(
 				$moduleId,
-				$mode,
+				$availability,
 				false, // isExternal
 				$moduleDefInfo['title'] ?? $moduleId,
 				$moduleDefInfo['description'] ?? null,
@@ -252,30 +252,30 @@ class ModuleManager {
 		}
 
 		// Add the prefix-less module.
-		$emptyModuleMode = $this->getModuleMode( '' );
+		$emptyModuleAvailability = $this->getModuleMode( '' );
 		$emptyModuleSpec = self::CORE_SPECS['mw-extra'];
 		$emptyModuleSpec = $this->normalizeSpec( 'mw-extra', $emptyModuleSpec );
 		$emptyParams = $this->getModeParams( '' );
 		$modules[''] = new ModuleInfo(
 			'',
-			$emptyModuleMode,
+			$emptyModuleAvailability,
 			false, // isExternal
 			$emptyModuleSpec['name'] ?? 'MediaWiki REST API (routes not in modules)',
-			null,
-			null,
+			$this->jsonLocalizer->getFormattedMessage( 'rest-module-extra-routes-desc' ),
+			'0.1.0',
 			(array)( $emptyParams['groups'] ?? [] )
 		);
 
 		// Gather external modules.
 		foreach ( $this->restExternalModules as $externalModuleId => $externalModuleConfig ) {
-			$mode = $this->getModuleMode( $externalModuleId );
+			$availability = $this->getModuleMode( $externalModuleId );
 			$externalModuleConfig = $this->jsonLocalizer->localizeJson( $externalModuleConfig );
 			$params = $this->getModeParams( $externalModuleId );
 			$groups = (array)( $params['groups'] ?? [] );
 
 			$modules[$externalModuleId] = new ModuleInfo(
 				$externalModuleId,
-				$mode,
+				$availability,
 				true, // isExternal
 				$externalModuleConfig['info']['title'] ?? $externalModuleId,
 				$externalModuleConfig['info']['description'] ?? null,

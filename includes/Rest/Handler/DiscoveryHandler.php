@@ -6,7 +6,7 @@ use MediaWiki\Config\Config;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Rest\Handler;
-use MediaWiki\Rest\Module\Module;
+use MediaWiki\Rest\Module\ModuleInfo;
 use MediaWiki\Rest\Module\ModuleMode;
 
 /**
@@ -26,7 +26,6 @@ class DiscoveryHandler extends Handler {
 		MainConfigNames::Sitename,
 		MainConfigNames::Server,
 		MainConfigNames::CanonicalServer,
-		MainConfigNames::RestExternalModules,
 	];
 
 	private readonly ServiceOptions $options;
@@ -55,33 +54,17 @@ class DiscoveryHandler extends Handler {
 		$modules = [];
 
 		$router = $this->getRouter();
-		$moduleManager = $router->getModuleManager();
-		foreach ( $router->getModuleIds() as $moduleId ) {
-			$mode = $moduleManager->getModuleMode( $moduleId );
-			// Any module that is not HIDDEN or DISABLED should be listed in /discovery.
-			// DISABLED modules won't be in this list, so we don't need to explicitly exclude them.
-			if ( $mode !== ModuleMode::HIDDEN ) {
-				$module = $router->getModule( $moduleId );
-				if ( $module ) {
-					$modules[$moduleId] = $this->getModuleSpec( $module );
-				}
-			}
-		}
-
-		$restExternalModules = $this->options->get( MainConfigNames::RestExternalModules );
-		$localizer = $this->getJsonLocalizer();
-		foreach ( $restExternalModules as $externalModuleId => $em ) {
-			$mode = $moduleManager->getModuleMode( $externalModuleId );
-			if ( $mode === ModuleMode::DISABLED || $mode === ModuleMode::HIDDEN ) {
+		$moduleInfos = $router->getModuleManager()->getModuleInfos();
+		foreach ( $moduleInfos as $moduleId => $moduleInfo ) {
+			$availability = $moduleInfo->getAvailability();
+			// `getModuleInfos()` includes all registered modules.
+			// Exclude `HIDDEN` and `DISABLED` modules from `/discovery`.
+			if ( $availability === ModuleMode::DISABLED || $availability === ModuleMode::HIDDEN ) {
 				continue;
 			}
-			$moduleSpec = [ 'moduleId' => $externalModuleId ] + $localizer->localizeJson( $em );
-			$moduleSpec['info']['groups'] = $moduleManager->getModuleGroups( $externalModuleId );
-			$modules[$externalModuleId] = $moduleSpec;
-		}
 
-		// This will put the "routes not in modules" entry first.
-		uksort( $modules, 'strnatcasecmp' );
+			$modules[$moduleId] = $this->getModuleSpec( $moduleInfo );
+		}
 
 		return (object)$modules;
 	}
@@ -140,11 +123,26 @@ class DiscoveryHandler extends Handler {
 		return $contact;
 	}
 
-	private function getModuleSpec( Module $module ): array {
-		$spec = $module->getModuleDescription();
-		$moduleId = $module->getPathPrefix();
-		$spec['info']['groups'] = $this->getRouter()->getModuleManager()->getModuleGroups( $moduleId );
-		return $spec;
+	private function getModuleSpec( ModuleInfo $moduleInfo ): array {
+		$moduleId = $moduleInfo->getId();
+		$infoSpec = [
+			'title' => $moduleInfo->getTitle() ?? $moduleId,
+			'groups' => $moduleInfo->getGroups(),
+		];
+		if ( $moduleInfo->getVersion() !== null ) {
+			$infoSpec['version'] = $moduleInfo->getVersion();
+		}
+		if ( $moduleInfo->getDescription() !== null ) {
+			$infoSpec['description'] = $moduleInfo->getDescription();
+		}
+
+		$router = $this->getRouter();
+		return [
+			'moduleId' => $moduleId,
+			'info' => $infoSpec,
+			'base' => $router->getModuleBaseUrl( $moduleId ) ?? '',
+			'spec' => $router->getModuleSpecUrl( $moduleId ) ?? '',
+		];
 	}
 
 	protected function getResponseBodySchemaFileName( string $method ): ?string {

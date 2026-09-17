@@ -7,6 +7,7 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\Rest\BasicAccess\StaticBasicAuthorizer;
 use MediaWiki\Rest\JsonLocalizer;
 use MediaWiki\Rest\Module\Module;
+use MediaWiki\Rest\Module\ModuleInfo;
 use MediaWiki\Rest\Module\ModuleManager;
 use MediaWiki\Rest\Module\ModuleMode;
 use MediaWiki\Rest\Reporter\PHPErrorReporter;
@@ -38,23 +39,86 @@ trait RestTestTrait {
 	 * @since 1.47
 	 *
 	 * @param array $routeFiles route files to return from mocked getRouteFiles() call
-	 * @param array $moduleModes maps module ids to module modes for mocked getModuleMode() call
+	 * @param array $moduleModes maps module ids to module availabilities for
+	 *   mocked getModuleMode() call
+	 * @param array $moduleGroups maps module ids to groups for mocked getModuleGroups() call
+	 * @param array $externalModules external module configuration array
 	 *
 	 * @return ModuleManager
 	 */
-	private function newMockModuleManager( array $routeFiles, array $moduleModes = [], array $moduleGroups = [] ): ModuleManager {
+	private function newMockModuleManager(
+		array $routeFiles,
+		array $moduleModes = [],
+		array $moduleGroups = [],
+		array $externalModules = []
+	): ModuleManager {
+		$getModuleMode = static fn ( string $moduleId ) =>
+			$moduleModes[$moduleId] ?? ModuleMode::DISABLED;
+		$getModuleGroups = static fn ( string $moduleId ) =>
+			(array)( $moduleGroups[$moduleId] ?? [] );
+
+		$createModuleInfo = static fn (
+			string $moduleId,
+			array $moduleDefinition,
+			bool $isExternal
+		) => new ModuleInfo(
+			$moduleId,
+			$getModuleMode( $moduleId ),
+			$isExternal,
+			$moduleDefinition['info']['title'] ?? $moduleId,
+			$moduleDefinition['info']['description'] ?? null,
+			$moduleDefinition['info']['version'] ?? null,
+			$getModuleGroups( $moduleId ),
+			$moduleDefinition['base'] ?? null,
+			$moduleDefinition['spec'] ?? null
+		);
+
 		$mock = $this->createMock( ModuleManager::class );
 		$mock->method( 'getRouteFiles' )->willReturn( $routeFiles );
-		$mock->method( 'getModuleMode' )->willReturnCallback(
-			static function ( string $moduleId ) use ( $moduleModes ) {
-				return $moduleModes[$moduleId] ?? ModuleMode::DISABLED;
+		$mock->method( 'getModuleMode' )->willReturnCallback( $getModuleMode );
+		$mock->method( 'getModuleGroups' )->willReturnCallback( $getModuleGroups );
+
+		$mock->method( 'getModuleInfos' )->willReturnCallback(
+			static function () use ( $routeFiles, $externalModules, $createModuleInfo ) {
+				$modules = [];
+				// Parse local module spec files.
+				foreach ( $routeFiles as $routeFile ) {
+					if ( is_string( $routeFile ) && file_exists( $routeFile ) ) {
+						$moduleDefinition = json_decode( file_get_contents( $routeFile ), true );
+						if ( isset( $moduleDefinition['moduleId'] ) ) {
+							$moduleId = $moduleDefinition['moduleId'];
+							$modules[$moduleId] = $createModuleInfo(
+								$moduleId,
+								$moduleDefinition,
+								false
+							);
+						}
+					}
+				}
+				// Add external modules.
+				foreach ( $externalModules as $moduleId => $externalModuleConfig ) {
+					$modules[$moduleId] = $createModuleInfo(
+						$moduleId,
+						$externalModuleConfig,
+						true
+					);
+				}
+				// Sort: prefix-less "" first, then natural case-insensitive.
+				uksort( $modules, static function ( $moduleA, $moduleB ) {
+					if ( $moduleA === '' ) {
+						return -1;
+					}
+					if ( $moduleB === '' ) {
+						return 1;
+					}
+					return strnatcasecmp( $moduleA, $moduleB );
+				} );
+				return $modules;
 			}
 		);
-		$mock->method( 'getModuleGroups' )->willReturnCallback(
-			static function ( string $moduleId ) use ( $moduleGroups ) {
-				$groups = $moduleGroups[$moduleId] ?? [];
-				return (array)$groups;
-			}
+
+		$mock->method( 'getModuleInfo' )->willReturnCallback(
+			static fn ( string $moduleId ) => $mock->getModuleInfos()[$moduleId] ?? null
 		);
 
 		return $mock;

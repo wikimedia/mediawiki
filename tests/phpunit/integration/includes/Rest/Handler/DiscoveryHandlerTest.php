@@ -33,7 +33,7 @@ class DiscoveryHandlerTest extends MediaWikiIntegrationTestCase {
 	): Router {
 		$services = $this->getServiceContainer();
 
-		$conf = $services->getMainConfig();
+		$mainConfig = $services->getMainConfig();
 
 		$authority = $this->mockRegisteredUltimateAuthority();
 		$authorizer = new StaticBasicAuthorizer();
@@ -59,13 +59,24 @@ class DiscoveryHandlerTest extends MediaWikiIntegrationTestCase {
 		$moduleModes = [
 			'SpecTestRoutes/v1' => ModuleMode::PUBLISHED,
 			'SpecTestRoutes/v2' => ModuleMode::HIDDEN,
+			'SpecTestRoutes/v3' => ModuleMode::PUBLISHED,
+			'SpecTestRoutes/v4' => ModuleMode::DISABLED,
 			'mockExternal/v1' => ModuleMode::PUBLISHED,
 		];
 
+		// In production, `ModuleManager` reads `RestExternalModules` directly from
+		// an injected configuration. This test uses a mock `ModuleManager`. Therefore,
+		// explicitly pass external modules so that `getModuleInfos()` supplies both local
+		// and external modules to `DiscoveryHandler`.
 		return ( new Router(
-			$this->newMockModuleManager( $specFiles, $moduleModes, $moduleGroups ),
+			$this->newMockModuleManager(
+				$specFiles,
+				$moduleModes,
+				$moduleGroups,
+				$mainConfig->get( MainConfigNames::RestExternalModules )
+			),
 			[],
-			new ServiceOptions( Router::CONSTRUCTOR_OPTIONS, $conf ),
+			new ServiceOptions( Router::CONSTRUCTOR_OPTIONS, $mainConfig ),
 			$services->getLocalServerObjectCache(),
 			$textFormatters,
 			$showExceptionDetails,
@@ -145,7 +156,8 @@ class DiscoveryHandlerTest extends MediaWikiIntegrationTestCase {
 			[
 				__DIR__ . '/SpecTestRoutes.v3.json', // intentionally missorted
 				__DIR__ . '/SpecTestRoutes.v1.json',
-				__DIR__ . '/SpecTestRoutes.v2.json'
+				__DIR__ . '/SpecTestRoutes.v2.json',
+				__DIR__ . '/SpecTestRoutes.v4.json',
 			],
 			[
 				'SpecTestRoutes/v1' => [ 'test-group' ],
@@ -221,6 +233,9 @@ class DiscoveryHandlerTest extends MediaWikiIntegrationTestCase {
 
 		// Ensure the hidden module is actually hidden
 		self::assertArrayNotHasKey( 'SpecTestRoutes/v2', $data['modules'] );
+
+		// Ensure the disabled module is excluded
+		self::assertArrayNotHasKey( 'SpecTestRoutes/v4', $data['modules'] );
 	}
 
 	public function testGetInfoSpecOmitsTermsOfServiceWhenUnset(): void {
