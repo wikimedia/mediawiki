@@ -33,7 +33,6 @@ use MediaWiki\Status\Status;
 use Wikimedia\Bcp47Code\Bcp47Code;
 use Wikimedia\Message\MessageValue;
 use Wikimedia\ParamValidator\ParamValidator;
-use Wikimedia\Parsoid\Config\SiteConfig;
 use Wikimedia\Parsoid\Core\ClientError;
 use Wikimedia\Parsoid\Core\HtmlPageBundle;
 use Wikimedia\Parsoid\Core\ResourceLimitExceededException;
@@ -66,7 +65,7 @@ class HtmlInputTransformHelper {
 	 * @param ParserOutputAccess $parserOutputAccess
 	 * @param PageLookup $pageLookup
 	 * @param RevisionLookup $revisionLookup
-	 * @param SiteConfig $siteConfig
+	 * @param PageBundleParserOutputConverter $pageBundleParserOutputConverter
 	 * @param array $envOptions
 	 * @param ?PageIdentity $page
 	 * @param array|string $body Body structure, or an HTML string
@@ -81,7 +80,7 @@ class HtmlInputTransformHelper {
 		private readonly ParserOutputAccess $parserOutputAccess,
 		private readonly PageLookup $pageLookup,
 		private readonly RevisionLookup $revisionLookup,
-		private readonly SiteConfig $siteConfig,
+		private readonly PageBundleParserOutputConverter $pageBundleParserOutputConverter,
 		array $envOptions = [],
 		?PageIdentity $page = null,
 		$body = '',
@@ -513,8 +512,8 @@ class HtmlInputTransformHelper {
 			// Selser expects a full document (head + body). Request
 			// it explicitly so this keeps working once the canonical
 			// ParserOutput is body-only (T393295)
-			$originalRendering = PageBundleParserOutputConverter::htmlPageBundleFromParserOutput(
-				$originalRendering, $this->siteConfig, bodyOnly: false,
+			$originalRendering = $this->pageBundleParserOutputConverter->htmlPageBundleFromParserOutput(
+				$originalRendering, bodyOnly: false,
 			);
 
 			// NOTE: Use the default if we got a ParserOutput object.
@@ -736,8 +735,8 @@ class HtmlInputTransformHelper {
 					->increment();
 
 				// Full document (head + body) for selser; see the note above.
-				$pb = PageBundleParserOutputConverter::htmlPageBundleFromParserOutput(
-					$parserOutput, $this->siteConfig, bodyOnly: false,
+				$pb = $this->pageBundleParserOutputConverter->htmlPageBundleFromParserOutput(
+					$parserOutput, bodyOnly: false,
 				);
 				return new SelserContext( $pb, $renderID->getRevisionID() );
 			} catch ( HttpException ) {

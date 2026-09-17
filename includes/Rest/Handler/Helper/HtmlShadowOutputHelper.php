@@ -14,7 +14,6 @@ use MediaWiki\Rest\ResponseInterface;
 use MediaWiki\ShadowPage\ShadowPageLoader;
 use MediaWiki\Title\TitleFormatter;
 use Wikimedia\Message\MessageValue;
-use Wikimedia\Parsoid\Config\SiteConfig;
 use Wikimedia\Parsoid\Core\HtmlPageBundle;
 
 /**
@@ -29,7 +28,7 @@ class HtmlShadowOutputHelper implements HtmlOutputHelper {
 	public function __construct(
 		private ShadowPageLoader $shadowPageLoader,
 		private TitleFormatter $titleFormatter,
-		private SiteConfig $siteConfig,
+		private PageBundleParserOutputConverter $pageBundleParserOutputConverter,
 		private ParserOptions $parserOptions,
 		PageIdentity $page
 	) {
@@ -72,8 +71,8 @@ class HtmlShadowOutputHelper implements HtmlOutputHelper {
 	 * body-only, per the ContentHolder invariant.)
 	 */
 	public function getPageBundle(): HtmlPageBundle {
-		return PageBundleParserOutputConverter::htmlPageBundleFromParserOutput(
-			$this->getHtml(), $this->siteConfig, bodyOnly: false
+		return $this->pageBundleParserOutputConverter->htmlPageBundleFromParserOutput(
+			$this->getHtml(), bodyOnly: false
 		);
 	}
 

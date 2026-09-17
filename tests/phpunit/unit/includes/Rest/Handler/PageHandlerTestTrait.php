@@ -117,6 +117,7 @@ trait PageHandlerTestTrait {
 			$services->getParsoidDataAccess(),
 			$services->getNamespaceInfo(),
 			$services->getTrackingCategories(),
+			$services->getPageBundleParserOutputConverter(),
 		);
 
 		// Create a mock Parsoid factory that returns the ParsoidParser object
@@ -170,6 +171,7 @@ trait PageHandlerTestTrait {
 					$services->getHtmlTransformFactory(),
 					$services->getContentHandlerFactory(),
 					$services->getLanguageFactory(),
+					$services->getPageBundleParserOutputConverter(),
 					$page,
 					$parameters,
 					$authority,
@@ -182,7 +184,7 @@ trait PageHandlerTestTrait {
 				return new HtmlShadowOutputHelper(
 					$services->getShadowPageLoader(),
 					$services->getTitleFormatter(),
-					$services->getParsoidSiteConfig(),
+					$services->getPageBundleParserOutputConverter(),
 					ParserOptions::newFromAnon(),
 					$page
 				);
@@ -238,6 +240,7 @@ trait PageHandlerTestTrait {
 					$services->getHtmlTransformFactory(),
 					$services->getContentHandlerFactory(),
 					$services->getLanguageFactory(),
+					$services->getPageBundleParserOutputConverter(),
 					$page,
 					$parameters,
 					$authority,
@@ -250,7 +253,7 @@ trait PageHandlerTestTrait {
 				return new HtmlShadowOutputHelper(
 					$services->getShadowPageLoader(),
 					$services->getTitleFormatter(),
-					$services->getParsoidSiteConfig(),
+					$services->getPageBundleParserOutputConverter(),
 					ParserOptions::newFromAnon(),
 					$page
 				);

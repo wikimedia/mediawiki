@@ -6,7 +6,6 @@ namespace MediaWiki\Tests\OutputTransform\Stages;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\OutputTransform\Stages\ParsoidLanguageConverter;
 use MediaWiki\Parser\ParserOptions;
-use MediaWiki\Parser\Parsoid\PageBundleParserOutputConverter;
 use MediaWiki\Title\Title;
 use MediaWikiIntegrationTestCase;
 use Psr\Log\NullLogger;
@@ -41,7 +40,8 @@ class ParsoidLanguageConverterTest extends MediaWikiIntegrationTestCase {
 	) {
 		$languageFactory = $this->getServiceContainer()->getLanguageFactory();
 		$conv = $this->createStage();
-		$po = PageBundleParserOutputConverter::parserOutputFromPageBundle( new HtmlPageBundle( $input ), isParsoidContent: true );
+		$po = $this->getServiceContainer()->getPageBundleParserOutputConverter()
+			->parserOutputFromPageBundle( new HtmlPageBundle( $input ), isParsoidContent: true );
 		$po->getContentHolder()->addFragment( 'my fragment', $input );
 		$po->setIndicator( 'foo', $input );
 		$po->setTitle( Title::newFromText( 'Test page' ) );

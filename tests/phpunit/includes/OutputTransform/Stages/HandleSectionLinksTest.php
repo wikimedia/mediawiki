@@ -9,7 +9,6 @@ use MediaWiki\OutputTransform\OutputTransformStage;
 use MediaWiki\OutputTransform\Stages\HandleSectionLinks;
 use MediaWiki\Parser\ParserOptions;
 use MediaWiki\Parser\ParserOutput;
-use MediaWiki\Parser\Parsoid\PageBundleParserOutputConverter;
 use MediaWiki\Tests\OutputTransform\OutputTransformStageTestBase;
 use MediaWiki\Tests\OutputTransform\TestUtils;
 use Psr\Log\NullLogger;
@@ -33,9 +32,15 @@ class HandleSectionLinksTest extends OutputTransformStageTestBase {
 		return [ [ new ParserOutput(), ParserOptions::newFromAnon(), [] ] ];
 	}
 
-	public static function provideShouldNotRun(): array {
-		return [
-			[ PageBundleParserOutputConverter::parserOutputFromPageBundle( new HtmlPageBundle( '' ), isParsoidContent: true ), ParserOptions::newFromAnon(), [] ]
+	public static function provideShouldNotRun(): iterable {
+		yield [
+			self::getStubPageBundleParserOutputConverter()
+				->parserOutputFromPageBundle(
+					new HtmlPageBundle( '' ),
+					isParsoidContent: true,
+				),
+			ParserOptions::newFromAnon(),
+			[],
 		];
 	}
 

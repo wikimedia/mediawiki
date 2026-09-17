@@ -109,7 +109,12 @@ class RevisionRendererTest extends MediaWikiIntegrationTestCase {
 		$roleReg->defineRoleWithModel( 'aux', CONTENT_MODEL_WIKITEXT );
 		$this->setService( 'SlotRoleRegistry', $roleReg );
 
-		return new RevisionRenderer( $lb, $roleReg, $cr );
+		return new RevisionRenderer(
+			$lb,
+			$roleReg,
+			$cr,
+			$this->getServiceContainer()->getPageBundleParserOutputConverter()
+		);
 	}
 
 	private function selectFieldCallback( $table, $fields, $cond, $maxRev ) {

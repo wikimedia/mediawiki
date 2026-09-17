@@ -22,12 +22,14 @@ class TransformHtmlToWikitextHandlerTest extends MediaWikiIntegrationTestCase {
 		$dataAccess = $this->getServiceContainer()->getParsoidDataAccess();
 		$siteConfig = $this->getServiceContainer()->getParsoidSiteConfig();
 		$pageConfigFactory = $this->getServiceContainer()->getParsoidPageConfigFactory();
+		$pageBundleParserOutputConverter = $this->getServiceContainer()->getPageBundleParserOutputConverter();
 
 		return new TransformHtmlToWikitextHandler(
 			$revisionLookup,
 			$siteConfig,
 			$pageConfigFactory,
-			$dataAccess
+			$dataAccess,
+			$pageBundleParserOutputConverter
 		);
 	}
 

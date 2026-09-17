@@ -192,6 +192,7 @@ use MediaWiki\Parser\Parsoid\Config\PageConfigFactory as MWPageConfigFactory;
 use MediaWiki\Parser\Parsoid\Config\SiteConfig as MWSiteConfig;
 use MediaWiki\Parser\Parsoid\HtmlTransformFactory;
 use MediaWiki\Parser\Parsoid\LintErrorChecker;
+use MediaWiki\Parser\Parsoid\PageBundleParserOutputConverter;
 use MediaWiki\Parser\Parsoid\ParsoidParserFactory;
 use MediaWiki\Password\PasswordFactory;
 use MediaWiki\Permissions\GrantsInfo;
@@ -1161,7 +1162,8 @@ return [
 			$services->getParsoidSiteConfig(),
 			$services->getTitleFactory(),
 			$services->getLanguageConverterPipeline(),
-			$services->getLanguageFactory()
+			$services->getLanguageFactory(),
+			$services->getPageBundleParserOutputConverter(),
 		);
 	},
 
@@ -1740,6 +1742,16 @@ return [
 		);
 	},
 
+	'PageBundleParserOutputConverter' => static function (
+		MediaWikiServices $services
+	): PageBundleParserOutputConverter {
+		return new PageBundleParserOutputConverter(
+			$services->getParsoidSiteConfig(),
+			$services->getRevisionLookup(),
+			$services->getLanguageFactory(),
+		);
+	},
+
 	'PageEditStash' => static function ( MediaWikiServices $services ): PageEditStash {
 		return new PageEditStash(
 			$services->getObjectCacheFactory()->getLocalClusterInstance(),
@@ -1785,6 +1797,7 @@ return [
 			$services->getChangeTagsStore(),
 			$services->getStatsFactory(),
 			$services->getShadowPageLoader(),
+			$services->getPageBundleParserOutputConverter(),
 		);
 	},
 
@@ -1996,6 +2009,7 @@ return [
 			$services->getNamespaceInfo(),
 			$services->getTrackingCategories(),
 			$services->getParserFactory(),
+			$services->getPageBundleParserOutputConverter(),
 		);
 	},
 
@@ -2374,7 +2388,8 @@ return [
 		$renderer = new RevisionRenderer(
 			$services->getDBLoadBalancer(),
 			$services->getSlotRoleRegistry(),
-			$services->getContentRenderer()
+			$services->getContentRenderer(),
+			$services->getPageBundleParserOutputConverter()
 		);
 
 		$renderer->setLogger( LoggerFactory::getInstance( 'SaveParse' ) );

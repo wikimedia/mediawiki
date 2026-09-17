@@ -21,7 +21,6 @@ use MediaWiki\Parser\ParserOptions;
 use MediaWiki\Parser\ParserOutput;
 use MediaWiki\Parser\Parsoid\HtmlTransformFactory;
 use MediaWiki\Parser\Parsoid\LanguageVariantConverter;
-use MediaWiki\Parser\Parsoid\PageBundleParserOutputConverter;
 use MediaWiki\Parser\Parsoid\ParsoidParser;
 use MediaWiki\Parser\Parsoid\ParsoidParserFactory;
 use MediaWiki\Parser\RevisionOutputCache;
@@ -161,7 +160,7 @@ class HtmlOutputRendererHelperTest extends MediaWikiIntegrationTestCase {
 			$rev = $rev->getId() ?? 0;
 		}
 
-		$pout = PageBundleParserOutputConverter::parserOutputFromPageBundle(
+		$pout = $this->getServiceContainer()->getPageBundleParserOutputConverter()->parserOutputFromPageBundle(
 			new HtmlPageBundle(
 				html: $html,
 				parsoid: [ 'ids' => [
@@ -250,6 +249,7 @@ class HtmlOutputRendererHelperTest extends MediaWikiIntegrationTestCase {
 			$options['HtmlTransformFactory'] ?? $services->getHtmlTransformFactory(),
 			$services->getContentHandlerFactory(),
 			$services->getLanguageFactory(),
+			$services->getPageBundleParserOutputConverter(),
 			$page, $parameters, $authority, $revision, $lenientRevHandling
 		);
 	}
@@ -842,6 +842,7 @@ class HtmlOutputRendererHelperTest extends MediaWikiIntegrationTestCase {
 				$services->getParsoidDataAccess(),
 				$services->getNamespaceInfo(),
 				$services->getTrackingCategories(),
+				$services->getPageBundleParserOutputConverter(),
 			);
 		}
 

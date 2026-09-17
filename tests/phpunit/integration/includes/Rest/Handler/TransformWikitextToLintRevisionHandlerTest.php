@@ -92,12 +92,14 @@ class TransformWikitextToLintRevisionHandlerTest extends MediaWikiIntegrationTes
 		$dataAccess = $this->getServiceContainer()->getParsoidDataAccess();
 		$siteConfig = $this->getServiceContainer()->getParsoidSiteConfig();
 		$pageConfigFactory = $this->getServiceContainer()->getParsoidPageConfigFactory();
+		$pageBundleParserOutputConverter = $this->getServiceContainer()->getPageBundleParserOutputConverter();
 
 		$handler = new TransformWikitextToLintRevisionHandler(
 			$revisionLookup,
 			$siteConfig,
 			$pageConfigFactory,
-			$dataAccess
+			$dataAccess,
+			$pageBundleParserOutputConverter
 		);
 
 		if ( $expectedException ) {

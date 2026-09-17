@@ -16,7 +16,7 @@ class HtmlShadowOutputHelperTest extends MediaWikiIntegrationTestCase {
 		return new HtmlShadowOutputHelper(
 			$services->getShadowPageLoader(),
 			$services->getTitleFormatter(),
-			$services->getParsoidSiteConfig(),
+			$services->getPageBundleParserOutputConverter(),
 			ParserOptions::newFromAnon(),
 			$page
 		);

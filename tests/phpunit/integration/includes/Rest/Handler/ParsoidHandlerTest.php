@@ -15,6 +15,7 @@ use MediaWiki\Parser\ParserOptions;
 use MediaWiki\Parser\Parsoid\Config\PageConfigFactory;
 use MediaWiki\Parser\Parsoid\HtmlToContentTransform;
 use MediaWiki\Parser\Parsoid\HtmlTransformFactory;
+use MediaWiki\Parser\Parsoid\PageBundleParserOutputConverter;
 use MediaWiki\Parser\RevisionOutputCache;
 use MediaWiki\Permissions\UltimateAuthority;
 use MediaWiki\Registration\ExtensionRegistry;
@@ -115,12 +116,15 @@ class ParsoidHandlerTest extends MediaWikiIntegrationTestCase {
 		$siteConfig = $serviceOverrides['ParsoidSiteConfig'] ?? $this->getServiceContainer()->getParsoidSiteConfig();
 		$pageConfigFactory = $serviceOverrides['ParsoidPageConfigFactory']
 			?? $this->getServiceContainer()->getParsoidPageConfigFactory();
+		$pageBundleParserOutputConverter = $serviceOverrides['PageBundleParserOutputConverter']
+			?? $this->getServiceContainer()->getPageBundleParserOutputConverter();
 
 		$handler = new class (
 			$revisionLookup,
 			$siteConfig,
 			$pageConfigFactory,
 			$dataAccess,
+			$pageBundleParserOutputConverter,
 			$methodOverrides
 		) extends ParsoidHandler {
 			/** @var array */
@@ -131,13 +135,15 @@ class ParsoidHandlerTest extends MediaWikiIntegrationTestCase {
 				SiteConfig $siteConfig,
 				PageConfigFactory $pageConfigFactory,
 				DataAccess $dataAccess,
+				PageBundleParserOutputConverter $pageBundleParserOutputConverter,
 				array $overrides
 			) {
 				parent::__construct(
 					$revisionLookup,
 					$siteConfig,
 					$pageConfigFactory,
-					$dataAccess
+					$dataAccess,
+					$pageBundleParserOutputConverter
 				);
 
 				$this->overrides = $overrides;
@@ -1394,7 +1400,7 @@ class ParsoidHandlerTest extends MediaWikiIntegrationTestCase {
 					$this->getServiceContainer()->getParserOutputAccess(),
 					$this->getServiceContainer()->getPageStore(),
 					$this->getServiceContainer()->getRevisionLookup(),
-					$this->getServiceContainer()->getParsoidSiteConfig(),
+					$this->getServiceContainer()->getPageBundleParserOutputConverter(),
 					[],
 					$page,
 					[ 'html' => $html ],

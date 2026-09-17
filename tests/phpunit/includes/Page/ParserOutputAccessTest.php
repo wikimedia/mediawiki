@@ -13,7 +13,6 @@ use MediaWiki\Parser\ParserCache;
 use MediaWiki\Parser\ParserCacheFactory;
 use MediaWiki\Parser\ParserOptions;
 use MediaWiki\Parser\ParserOutput;
-use MediaWiki\Parser\Parsoid\PageBundleParserOutputConverter;
 use MediaWiki\Parser\RevisionOutputCache;
 use MediaWiki\PoolCounter\PoolCounter;
 use MediaWiki\PoolCounter\PoolCounterFactory;
@@ -607,7 +606,7 @@ class ParserOutputAccessTest extends ParserCacheTestBase {
 			html: 'test',
 			version: '0.0', // an obsolete version
 		);
-		$output = PageBundleParserOutputConverter::parserOutputFromPageBundle(
+		$output = $this->getServiceContainer()->getPageBundleParserOutputConverter()->parserOutputFromPageBundle(
 			$fakeBundle, isParsoidContent: true, title: $page,
 		);
 		$parserCache = $this->createMockParserCache( $output, true );

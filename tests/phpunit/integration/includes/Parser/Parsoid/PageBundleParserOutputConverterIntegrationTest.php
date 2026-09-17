@@ -21,12 +21,10 @@ use Wikimedia\Parsoid\Utils\DOMUtils;
  */
 class PageBundleParserOutputConverterIntegrationTest extends MediaWikiIntegrationTestCase {
 	public function testLanguageTransfer() {
-		$parserOutput = self::getParserOutput( HtmlPageBundle::newEmpty( '' ) );
+		$parserOutput = $this->getParserOutput( HtmlPageBundle::newEmpty( '' ) );
 		$parserOutput->setLanguage( new Bcp47CodeValue( 'de' ) );
-		$siteConfig = new MockSiteConfig( [] );
-		$pb = PageBundleParserOutputConverter::htmlPageBundleFromParserOutput(
-			$parserOutput, $siteConfig, bodyOnly: false,
-		);
+		$pb = $this->getServiceContainer()->getPageBundleParserOutputConverter()
+			->htmlPageBundleFromParserOutput( $parserOutput, bodyOnly: false );
 		$this->assertIsString( $pb->headers['content-language'] );
 		$this->assertEquals( 'de', $pb->headers['content-language'] );
 	}
@@ -44,15 +42,16 @@ class PageBundleParserOutputConverterIntegrationTest extends MediaWikiIntegratio
 			MainConfigNames::ParserCacheExpireTime
 		);
 
+		$converter = $this->getServiceContainer()->getPageBundleParserOutputConverter();
 		$original = new ParserOutput();
-		$output = PageBundleParserOutputConverter::parserOutputFromPageBundle(
+		$output = $converter->parserOutputFromPageBundle(
 			$pageBundle, isParsoidContent: true, originalParserOutput: $original
 		);
 		$this->assertSame( $defaultExpiration, $output->getCacheExpiry(),
 			"Cache expiration doesn't match default expiry." );
 
 		$original->updateCacheExpiry( 100 );
-		$output = PageBundleParserOutputConverter::parserOutputFromPageBundle(
+		$output = $converter->parserOutputFromPageBundle(
 			$pageBundle, isParsoidContent: true, originalParserOutput: $original
 		);
 		$this->assertSame( 100, $output->getCacheExpiry(),
@@ -69,10 +68,8 @@ class PageBundleParserOutputConverterIntegrationTest extends MediaWikiIntegratio
 		// ParserOutputs as well.
 		bool $isParsoid = true,
 	) {
-		$siteConfig = new MockSiteConfig( [] );
-		$pageBundle = PageBundleParserOutputConverter::htmlPageBundleFromParserOutput(
-			$parserOutput, $siteConfig, bodyOnly: false,
-		);
+		$pageBundle = $this->getServiceContainer()->getPageBundleParserOutputConverter()
+			->htmlPageBundleFromParserOutput( $parserOutput, bodyOnly: false );
 
 		$html = $pageBundle->html;
 		$this->assertStringStartsWith( '<!DOCTYPE html>', $html );
@@ -140,11 +137,10 @@ class PageBundleParserOutputConverterIntegrationTest extends MediaWikiIntegratio
 
 	public function testMetadataProperPage() {
 		$page = $this->getExistingTestPage();
-		$parserOutput = self::getParserOutput( HtmlPageBundle::newEmpty( 'hello world' ), $page->getTitle() );
+		$parserOutput = $this->getParserOutput( HtmlPageBundle::newEmpty( 'hello world' ), $page->getTitle() );
 		$parserOutput->setCacheRevisionId( $page->getRevisionRecord()->getId() );
-		$siteConfig = new MockSiteConfig( [] );
-		$pb = PageBundleParserOutputConverter::htmlPageBundleFromParserOutput(
-			$parserOutput, $siteConfig, bodyOnly: false,
+		$pb = $this->getServiceContainer()->getPageBundleParserOutputConverter()->htmlPageBundleFromParserOutput(
+			$parserOutput, bodyOnly: false,
 		);
 		$doc = DOMUtils::parseHTML( $pb->html, validateXMLNames: true );
 		self::assertMetaExists( $doc, 'pageId' );
@@ -154,10 +150,9 @@ class PageBundleParserOutputConverterIntegrationTest extends MediaWikiIntegratio
 
 	public function testMetadataSpecialPage() {
 		$title = new TitleValue( NS_SPECIAL, "SpecialPage" );
-		$parserOutput = self::getParserOutput( HtmlPageBundle::newEmpty( 'hello world' ), $title );
-		$siteConfig = new MockSiteConfig( [] );
-		$pb = PageBundleParserOutputConverter::htmlPageBundleFromParserOutput(
-			$parserOutput, $siteConfig, bodyOnly: false,
+		$parserOutput = $this->getParserOutput( HtmlPageBundle::newEmpty( 'hello world' ), $title );
+		$pb = $this->getServiceContainer()->getPageBundleParserOutputConverter()->htmlPageBundleFromParserOutput(
+			$parserOutput, bodyOnly: false,
 		);
 		$doc = DOMUtils::parseHTML( $pb->html, validateXMLNames: true );
 		self::assertMetaAbsent( $doc, 'pageId' );
@@ -168,11 +163,10 @@ class PageBundleParserOutputConverterIntegrationTest extends MediaWikiIntegratio
 	public function testMetadataBogusPage() {
 		$page = $this->getExistingTestPage();
 		$bogusTitle = new TitleValue( NS_SPECIAL, "BogusPage" );
-		$parserOutput = self::getParserOutput( HtmlPageBundle::newEmpty( 'hello world' ), $bogusTitle );
+		$parserOutput = $this->getParserOutput( HtmlPageBundle::newEmpty( 'hello world' ), $bogusTitle );
 		$parserOutput->setCacheRevisionId( $page->getRevisionRecord()->getId() );
-		$siteConfig = new MockSiteConfig( [] );
-		$pb = PageBundleParserOutputConverter::htmlPageBundleFromParserOutput(
-			$parserOutput, $siteConfig, bodyOnly: false,
+		$pb = $this->getServiceContainer()->getPageBundleParserOutputConverter()->htmlPageBundleFromParserOutput(
+			$parserOutput, bodyOnly: false,
 		);
 		$doc = DOMUtils::parseHTML( $pb->html, validateXMLNames: true );
 		// When the revision ID is provided, the metadata information will
@@ -183,23 +177,31 @@ class PageBundleParserOutputConverterIntegrationTest extends MediaWikiIntegratio
 	}
 
 	public static function provideHtmlPageBundleFromParserOutputAsFullDocument() {
-		$po = self::getParserOutput(
+		// Without a RevisionLookup or a LanguageFactory we might be
+		// missing some content in the <head> for full-document form,
+		// but most functionality will be present.
+		$pageBundleParserOutputConverter = new PageBundleParserOutputConverter(
+			new MockSiteConfig( [] ),
+			null,
+			null,
+		);
+		$po = $pageBundleParserOutputConverter->parserOutputFromPageBundle(
 			new HtmlPageBundle(
 				html: 'hello world',
 				headers: [ 'content-language' => 'zh-Hant-TW' ],
 				version: Parsoid::defaultHTMLVersion(),
-			)
+			),
+			isParsoidContent: true,
 		);
 		$po->setTitle( new TitleValue( NS_MAIN, 'Test_Page' ) );
 		$po->setLanguage( new Bcp47CodeValue( 'zh-Hant-TW' ) );
 		yield "with language and title" => [ $po, 'Test Page', 'hello world', 'zh-Hant-TW' ];
 	}
 
-	private static function getParserOutput(
+	private function getParserOutput(
 		HtmlPageBundle $pb, $title = null
 	): ParserOutput {
-		return PageBundleParserOutputConverter::parserOutputFromPageBundle(
-			$pb, isParsoidContent: true, title: $title, siteConfig: new MockSiteConfig( [] ),
-		);
+		return $this->getServiceContainer()->getPageBundleParserOutputConverter()
+			->parserOutputFromPageBundle( $pb, isParsoidContent: true, title: $title );
 	}
 }

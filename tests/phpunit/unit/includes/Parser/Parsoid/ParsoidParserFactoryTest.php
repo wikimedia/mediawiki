@@ -9,11 +9,14 @@ namespace MediaWiki\Tests\Parser\Parsoid;
 
 use MediaWiki\Category\TrackingCategories;
 use MediaWiki\Language\LanguageConverterFactory;
+use MediaWiki\Language\LanguageFactory;
 use MediaWiki\Parser\ParserFactory;
 use MediaWiki\Parser\Parsoid\Config\DataAccess;
 use MediaWiki\Parser\Parsoid\Config\PageConfigFactory;
+use MediaWiki\Parser\Parsoid\PageBundleParserOutputConverter;
 use MediaWiki\Parser\Parsoid\ParsoidParser;
 use MediaWiki\Parser\Parsoid\ParsoidParserFactory;
+use MediaWiki\Revision\RevisionLookup;
 use MediaWiki\Title\NamespaceInfo;
 use MediaWikiUnitTestCase;
 use Wikimedia\Parsoid\Config\SiteConfig;
@@ -52,6 +55,11 @@ class ParsoidParserFactoryTest extends MediaWikiUnitTestCase {
 			$this->namespaceInfo,
 			$this->trackingCategories,
 			$this->legacyParserFactory,
+			new PageBundleParserOutputConverter(
+				$this->createStub( SiteConfig::class ),
+				$this->createStub( RevisionLookup::class ),
+				$this->createStub( LanguageFactory::class ),
+			),
 		);
 		$this->assertInstanceOf( ParsoidParser::class, $factory->create() );
 	}

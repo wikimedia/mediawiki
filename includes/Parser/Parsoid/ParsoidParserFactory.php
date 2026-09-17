@@ -35,6 +35,7 @@ class ParsoidParserFactory {
 		private readonly NamespaceInfo $namespaceInfo,
 		private readonly TrackingCategories $trackingCategories,
 		private readonly ParserFactory $legacyParserFactory,
+		private readonly PageBundleParserOutputConverter $pageBundleParserOutputConverter,
 	) {
 	}
 
@@ -53,6 +54,7 @@ class ParsoidParserFactory {
 			$this->dataAccess,
 			$this->namespaceInfo,
 			$this->trackingCategories,
+			$this->pageBundleParserOutputConverter,
 		);
 	}
 }

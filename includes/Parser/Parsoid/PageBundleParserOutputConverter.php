@@ -5,10 +5,11 @@ namespace MediaWiki\Parser\Parsoid;
 
 use MediaWiki\Language\Language;
 use MediaWiki\Language\LanguageCode;
-use MediaWiki\MediaWikiServices;
+use MediaWiki\Languages\LanguageFactory;
 use MediaWiki\Page\PageReference;
 use MediaWiki\Parser\ContentHolder;
 use MediaWiki\Parser\ParserOutput;
+use MediaWiki\Revision\RevisionLookup;
 use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Title\Title;
 use MediaWiki\Utils\MWTimestamp;
@@ -38,17 +39,12 @@ use Wikimedia\Timestamp\TimestampFormat;
  * @internal
  */
 final class PageBundleParserOutputConverter {
-	/**
-	 * @var string Key used to store parsoid page bundle data in ParserOutput
-	 * @deprecated since 1.45; use ParserOutput::PARSOID_PAGE_BUNDLE_KEY
-	 */
-	public const PARSOID_PAGE_BUNDLE_KEY = ParserOutput::PARSOID_PAGE_BUNDLE_KEY;
 
-	/**
-	 * We do not want instances of this class to be created
-	 * @return void
-	 */
-	private function __construct() {
+	public function __construct(
+		private readonly SiteConfig $siteConfig,
+		private readonly ?RevisionLookup $revisionLookup,
+		private readonly ?LanguageFactory $languageFactory,
+	) {
 	}
 
 	/**
@@ -67,25 +63,22 @@ final class PageBundleParserOutputConverter {
 	 *  from $originalParserOutput will be copied into the new ParserOutput object.
 	 * @param ParsoidLinkTarget|PageReference|null $title The given title will
 	 *  be copied into the new ParserOutput object.
-	 * @param ?SiteConfig $siteConfig
 	 *
 	 * @return ParserOutput
 	 */
-	public static function parserOutputFromPageBundle(
+	public function parserOutputFromPageBundle(
 		HtmlPageBundle $pageBundle,
 		bool $isParsoidContent,
 		?ParserOutput $originalParserOutput = null,
 		// phpcs:ignore MediaWiki.Usage.NullableType.ExplicitNullableTypes
 		ParsoidLinkTarget|PageReference|null $title = null,
-		?SiteConfig $siteConfig = null,
 	): ParserOutput {
-		$siteConfig ??= MediaWikiServices::getInstance()->getParsoidSiteConfig();
 		$parserOutput = new ParserOutput();
 		$parserOutput->setContentHolder(
 			ContentHolder::createFromPageBundle(
 				$pageBundle,
 				isParsoidContent: $isParsoidContent,
-				siteConfig: $siteConfig,
+				siteConfig: $this->siteConfig,
 			)
 		);
 		if ( $originalParserOutput ) {
@@ -117,39 +110,21 @@ final class PageBundleParserOutputConverter {
 	/**
 	 * Returns a Parsoid HtmlPageBundle equivalent to the given ParserOutput.
 	 * @param ParserOutput $parserOutput
-	 *
-	 * @return HtmlPageBundle
-	 * @deprecated Use ::htmlPageBundleFromParserOutput
-	 */
-	public static function pageBundleFromParserOutput( ParserOutput $parserOutput ): HtmlPageBundle {
-		wfDeprecated( __METHOD__, '1.46' );
-		return self::htmlPageBundleFromParserOutput(
-			$parserOutput,
-			MediaWikiServices::getInstance()->getParsoidSiteConfig(),
-			true,
-		);
-	}
-
-	/**
-	 * Returns a Parsoid HtmlPageBundle equivalent to the given ParserOutput.
-	 * @param ParserOutput $parserOutput
-	 * @param SiteConfig $siteConfig ParsoidSiteConfig service
 	 * @param bool $bodyOnly If false, returns a full document with
 	 *  metadata in the <head>.  If true, the `html` section of
 	 *  the PageBundle returns the inner HTML of the <body> element
 	 *  only.
 	 * @return HtmlPageBundle
 	 */
-	public static function htmlPageBundleFromParserOutput(
+	public function htmlPageBundleFromParserOutput(
 		ParserOutput $parserOutput,
-		SiteConfig $siteConfig,
 		bool $bodyOnly = false,
 	): HtmlPageBundle {
-		$bpb = self::basePageBundleFromParserOutput( $parserOutput );
+		$bpb = $this->basePageBundleFromParserOutput( $parserOutput );
 		$html = $parserOutput->getContentHolderText();
 		if ( !$bodyOnly ) {
 			$document = DOMCompat::newDocument();
-			self::addMetadataToDocument( $parserOutput, $siteConfig, $bpb, $document );
+			$this->addMetadataToDocument( $parserOutput, $bpb, $document );
 			// Add selected header information from page bundle to the <head>
 			foreach ( [ 'content-language', 'vary', 'x-mediawiki-render-id' ] as $h ) {
 				if ( isset( $bpb->headers[$h] ) ) {
@@ -184,7 +159,7 @@ final class PageBundleParserOutputConverter {
 		return $pb;
 	}
 
-	private static function basePageBundleFromParserOutput( ParserOutput $parserOutput ): BasePageBundle {
+	private function basePageBundleFromParserOutput( ParserOutput $parserOutput ): BasePageBundle {
 		$contentHolder = $parserOutput->getContentHolder();
 		$basePageBundle = $contentHolder->isParsoidContent() ?
 			$contentHolder->getBasePageBundle() :
@@ -211,10 +186,6 @@ final class PageBundleParserOutputConverter {
 			$basePageBundle->headers['x-mediawiki-render-id'] = $renderid;
 		}
 		return $basePageBundle;
-	}
-
-	public static function hasPageBundle( ParserOutput $parserOutput ): bool {
-		return $parserOutput->getContentHolder()->isParsoidContent();
 	}
 
 	private static function getMetadataMap( string $key ): ?array {
@@ -256,8 +227,8 @@ final class PageBundleParserOutputConverter {
 	 * Add information to the document <head> corresponding to metadata
 	 * stored in the ParserOutput.
 	 */
-	private static function addMetadataToDocument(
-		ParserOutput $parserOutput, SiteConfig $siteConfig,
+	private function addMetadataToDocument(
+		ParserOutput $parserOutput,
 		BasePageBundle $pb, Document $document
 	): void {
 		// This method is a direct port/translation of the AddMetaData
@@ -289,8 +260,7 @@ final class PageBundleParserOutputConverter {
 		$revId = $parserOutput->getCacheRevisionId();
 		$revRecord = null;
 		if ( $revId ) {
-			$revLookup = MediaWikiServices::getInstance()->getRevisionLookup();
-			$revRecord = $revLookup->getRevisionById( $revId );
+			$revRecord = $this->revisionLookup?->getRevisionById( $revId );
 		}
 		if ( $revRecord !== null ) {
 			$revProps += [
@@ -373,7 +343,7 @@ final class PageBundleParserOutputConverter {
 
 			// Add base href pointing to the wiki root
 			$baseUri = $parserOutput->getExtensionData( 'core:base-uri' )
-					 ?? $siteConfig->baseURI();
+					 ?? $this->siteConfig->baseURI();
 			self::appendToHead( $document, 'base', [
 				'href' => $baseUri
 			] );
@@ -400,14 +370,13 @@ final class PageBundleParserOutputConverter {
 		// Set properties of <body>
 		$lang = $parserOutput->getLanguage();
 		if ( $lang !== null ) {
-			$lang = MediaWikiServices::getInstance()->getLanguageFactory()
-				->getLanguage( $lang );
+			$lang = $this->languageFactory?->getLanguage( $lang );
 		}
 		self::updateBodyClasslist(
 			DOMCompat::getBody( $document ), $lang, $parserOutput
 		);
 
-		$siteConfig->exportMetadataToHeadBcp47(
+		$this->siteConfig->exportMetadataToHeadBcp47(
 			$document, $parserOutput,
 			( $title ?? Title::newMainPage() )->getPrefixedText(),
 			$lang ?? new Bcp47CodeValue( 'en' )
@@ -490,7 +459,3 @@ final class PageBundleParserOutputConverter {
 		return $elt;
 	}
 }
-
-/* Temporary class alias to break cyclic dependencies with extensions */
-// phpcs:ignore Generic.Files.LineLength.TooLong
-class_alias( PageBundleParserOutputConverter::class, 'MediaWiki\\Parser\\Parsoid\\PageBundleParserOutputConverterStatic' );

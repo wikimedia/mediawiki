@@ -15,6 +15,7 @@ use MediaWiki\Page\RedirectStore;
 use MediaWiki\Parser\ParserOptions;
 use MediaWiki\Parser\Parsoid\Config\SiteConfig as ParsoidSiteConfig;
 use MediaWiki\Parser\Parsoid\HtmlTransformFactory;
+use MediaWiki\Parser\Parsoid\PageBundleParserOutputConverter;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Rest\RequestInterface;
 use MediaWiki\Rest\ResponseFactory;
@@ -58,6 +59,7 @@ class PageRestHelperFactory {
 	private ChangeTagsStore $changeTagsStore;
 	private StatsFactory $statsFactory;
 	private ShadowPageLoader $shadowPageLoader;
+	private PageBundleParserOutputConverter $pageBundleParserOutputConverter;
 
 	public function __construct(
 		ServiceOptions $options,
@@ -78,6 +80,7 @@ class PageRestHelperFactory {
 		ChangeTagsStore $changeTagsStore,
 		StatsFactory $statsFactory,
 		ShadowPageLoader $shadowPageLoader,
+		PageBundleParserOutputConverter $pageBundleParserOutputConverter,
 	) {
 		$this->options = $options;
 		$this->revisionLookup = $revisionLookup;
@@ -97,6 +100,7 @@ class PageRestHelperFactory {
 		$this->dbProvider = $dbProvider;
 		$this->changeTagsStore = $changeTagsStore;
 		$this->shadowPageLoader = $shadowPageLoader;
+		$this->pageBundleParserOutputConverter = $pageBundleParserOutputConverter;
 	}
 
 	public function newRevisionContentHelper(): RevisionContentHelper {
@@ -174,6 +178,7 @@ class PageRestHelperFactory {
 			$this->htmlTransformFactory,
 			$this->contentHandlerFactory,
 			$this->languageFactory,
+			$this->pageBundleParserOutputConverter,
 			$page,
 			$parameters,
 			$authority,
@@ -188,7 +193,7 @@ class PageRestHelperFactory {
 		return new HtmlShadowOutputHelper(
 			$this->shadowPageLoader,
 			$this->titleFormatter,
-			$this->parsoidSiteConfig,
+			$this->pageBundleParserOutputConverter,
 			$parserOptions,
 			$page
 		);
@@ -220,7 +225,7 @@ class PageRestHelperFactory {
 			$this->parserOutputAccess,
 			$this->pageLookup,
 			$this->revisionLookup,
-			$this->parsoidSiteConfig,
+			$this->pageBundleParserOutputConverter,
 			$envOptions,
 			$page,
 			$body ?? '',

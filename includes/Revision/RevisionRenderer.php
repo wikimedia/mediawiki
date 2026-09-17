@@ -46,6 +46,8 @@ class RevisionRenderer implements LoggerAwareInterface {
 	/** @var ContentRenderer */
 	private $contentRenderer;
 
+	private PageBundleParserOutputConverter $pageBundleParserOutputConverter;
+
 	/** @var string|false */
 	private $dbDomain;
 
@@ -53,17 +55,20 @@ class RevisionRenderer implements LoggerAwareInterface {
 	 * @param ILoadBalancer $loadBalancer
 	 * @param SlotRoleRegistry $roleRegistry
 	 * @param ContentRenderer $contentRenderer
+	 * @param PageBundleParserOutputConverter $pageBundleParserOutputConverter
 	 * @param string|false $dbDomain DB domain of the relevant wiki or false for the current one
 	 */
 	public function __construct(
 		ILoadBalancer $loadBalancer,
 		SlotRoleRegistry $roleRegistry,
 		ContentRenderer $contentRenderer,
+		PageBundleParserOutputConverter $pageBundleParserOutputConverter,
 		$dbDomain = false
 	) {
 		$this->loadBalancer = $loadBalancer;
 		$this->roleRegistry = $roleRegistry;
 		$this->contentRenderer = $contentRenderer;
+		$this->pageBundleParserOutputConverter = $pageBundleParserOutputConverter;
 		$this->dbDomain = $dbDomain;
 		$this->saveParseLogger = new NullLogger();
 	}
@@ -392,7 +397,7 @@ class RevisionRenderer implements LoggerAwareInterface {
 			$html = $contentHolder->getAsHtmlString( $fragmentName ) ?? '';
 			$contentHolder->setAsHtmlString( $fragmentName, null );
 
-			$slotOutput[$role] = PageBundleParserOutputConverter::parserOutputFromPageBundle(
+			$slotOutput[$role] = $this->pageBundleParserOutputConverter->parserOutputFromPageBundle(
 				HtmlPageBundle::newEmpty( $html ),
 				// T438406: We've asserted this when combining
 				isParsoidContent: false,

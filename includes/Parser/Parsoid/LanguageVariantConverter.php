@@ -33,6 +33,7 @@ class LanguageVariantConverter {
 		private readonly LanguageFactory $languageFactory,
 		private readonly SiteConfig $siteConfig,
 		TitleFactory $titleFactory,
+		private readonly PageBundleParserOutputConverter $pageBundleParserOutputConverter,
 		private readonly PageIdentity $pageIdentity,
 	) {
 		$this->pageTitle = $titleFactory->newFromPageIdentity( $pageIdentity );

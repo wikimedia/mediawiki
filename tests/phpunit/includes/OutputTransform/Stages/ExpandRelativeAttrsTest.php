@@ -9,7 +9,6 @@ use MediaWiki\OutputTransform\OutputTransformStage;
 use MediaWiki\OutputTransform\Stages\ExpandRelativeAttrs;
 use MediaWiki\Parser\ParserOptions;
 use MediaWiki\Parser\ParserOutput;
-use MediaWiki\Parser\Parsoid\PageBundleParserOutputConverter;
 use MediaWiki\Tests\OutputTransform\OutputTransformStageTestBase;
 use MediaWiki\Title\Title;
 use Psr\Log\NullLogger;
@@ -32,9 +31,15 @@ class ExpandRelativeAttrsTest extends OutputTransformStageTestBase {
 		);
 	}
 
-	public static function provideShouldRun(): array {
-		return [
-			[ PageBundleParserOutputConverter::parserOutputFromPageBundle( new HtmlPageBundle( '' ), isParsoidContent: true ), ParserOptions::newFromAnon(), [] ],
+	public static function provideShouldRun(): iterable {
+		yield [
+			self::getStubPageBundleParserOutputConverter()
+				->parserOutputFromPageBundle(
+					new HtmlPageBundle( '' ),
+					isParsoidContent: true,
+				),
+			ParserOptions::newFromAnon(),
+			[],
 		];
 	}
 

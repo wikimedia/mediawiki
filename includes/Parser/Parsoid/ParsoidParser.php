@@ -47,6 +47,7 @@ class ParsoidParser /* eventually this will extend \Parser */ {
 		private readonly DataAccess $dataAccess,
 		private readonly NamespaceInfo $namespaceInfo,
 		private readonly TrackingCategories $trackingCategories,
+		private readonly PageBundleParserOutputConverter $pageBundleParserOutputConverter,
 	) {
 	}
 
@@ -126,8 +127,8 @@ class ParsoidParser /* eventually this will extend \Parser */ {
 				$previousOutput->getLanguage()
 			);
 			$oldPageBundle =
-				PageBundleParserOutputConverter::htmlPageBundleFromParserOutput(
-					$previousOutput, $this->siteConfig, bodyOnly: false,
+				$this->pageBundleParserOutputConverter->htmlPageBundleFromParserOutput(
+					$previousOutput, bodyOnly: false,
 				);
 		}
 		$defaultOptions = [
@@ -162,12 +163,11 @@ class ParsoidParser /* eventually this will extend \Parser */ {
 			$headers,
 			$parserOutput );
 
-		$parserOutput = PageBundleParserOutputConverter::parserOutputFromPageBundle(
+		$parserOutput = $this->pageBundleParserOutputConverter->parserOutputFromPageBundle(
 			$pageBundle,
 			isParsoidContent: true,
 			originalParserOutput: $parserOutput,
 			title: $pageConfig->getLinkTarget(),
-			siteConfig: $this->siteConfig,
 		);
 
 		// Register a watcher again because the $parserOutput arg

@@ -101,6 +101,7 @@ class CompareLanguageConverterOutput extends Maintenance {
 			$services->getChangeTagsStore(),
 			StatsFactory::newNull(),
 			$services->getShadowPageLoader(),
+			$services->getPageBundleParserOutputConverter(),
 		);
 	}
 

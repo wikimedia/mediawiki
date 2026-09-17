@@ -7,7 +7,6 @@ use MediaWiki\Config\ServiceOptions;
 use MediaWiki\MainConfigNames;
 use MediaWiki\OutputTransform\Stages\ParsoidLocalization;
 use MediaWiki\Parser\ParserOptions;
-use MediaWiki\Parser\Parsoid\PageBundleParserOutputConverter;
 use MediaWiki\Title\Title;
 use MediaWikiIntegrationTestCase;
 use Psr\Log\NullLogger;
@@ -51,7 +50,8 @@ class ParsoidLocalizationTest extends MediaWikiIntegrationTestCase {
 	) {
 		$this->setUserLang( $userlang );
 		$loc = $this->createStage();
-		$po = PageBundleParserOutputConverter::parserOutputFromPageBundle( new HtmlPageBundle( $input ), isParsoidContent: true );
+		$po = $this->getServiceContainer()->getPageBundleParserOutputConverter()
+			->parserOutputFromPageBundle( new HtmlPageBundle( $input ), isParsoidContent: true );
 		$po->setLanguage( new Bcp47CodeValue( $pagelang ) );
 		$po->setTitle( Title::newFromText( 'Test page' ) );
 		$popts = ParserOptions::newFromAnon();
@@ -84,8 +84,11 @@ class ParsoidLocalizationTest extends MediaWikiIntegrationTestCase {
 				WTUtils::createInterfaceI18nFragment( $doc, $key, $params ) :
 				WTUtils::createPageContentI18nFragment( $doc, $key, $params )
 		);
-		$po = PageBundleParserOutputConverter::parserOutputFromPageBundle(
-			new HtmlPageBundle( ContentUtils::ppToXML( $doc ) ), isParsoidContent: true );
+		$po = $this->getServiceContainer()->getPageBundleParserOutputConverter()
+			->parserOutputFromPageBundle(
+				new HtmlPageBundle( ContentUtils::ppToXML( $doc ) ),
+				isParsoidContent: true,
+			);
 		$po->setLanguage( new Bcp47CodeValue( $lang ?? 'en' ) );
 		$po->setTitle( Title::newFromText( 'Test page' ) );
 		$popts = ParserOptions::newFromAnon();
@@ -107,8 +110,11 @@ class ParsoidLocalizationTest extends MediaWikiIntegrationTestCase {
 		$a = DOMCompat::querySelector( $doc, 'a' );
 		WTUtils::addInterfaceI18nAttribute( $a, 'title', $key, $params );
 
-		$po = PageBundleParserOutputConverter::parserOutputFromPageBundle(
-			new HtmlPageBundle( ContentUtils::ppToXML( $doc ) ), isParsoidContent: true );
+		$po = $this->getServiceContainer()->getPageBundleParserOutputConverter()
+			->parserOutputFromPageBundle(
+				new HtmlPageBundle( ContentUtils::ppToXML( $doc ) ),
+				isParsoidContent: true,
+			);
 		$po->setLanguage( new Bcp47CodeValue( $lang ) );
 		$po->setTitle( Title::newFromText( 'Test page' ) );
 		$popts = ParserOptions::newFromAnon();

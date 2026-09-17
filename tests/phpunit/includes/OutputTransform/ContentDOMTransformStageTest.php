@@ -4,10 +4,12 @@ declare( strict_types = 1 );
 namespace MediaWiki\OutputTransform;
 
 use MediaWiki\Config\ServiceOptions;
+use MediaWiki\Language\LanguageFactory;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Parser\ParserOptions;
 use MediaWiki\Parser\ParserOutput;
 use MediaWiki\Parser\Parsoid\PageBundleParserOutputConverter;
+use MediaWiki\Revision\RevisionLookup;
 use MediaWiki\Tests\OutputTransform\DummyDOMTransformStage;
 use MediaWiki\Title\TitleValue;
 use MediaWikiCoversValidator;
@@ -27,6 +29,14 @@ class ContentDOMTransformStageTest extends TestCase {
 		);
 	}
 
+	private function newConverter(): PageBundleParserOutputConverter {
+		return new PageBundleParserOutputConverter(
+			new MockSiteConfig( [] ),
+			$this->createStub( RevisionLookup::class ),
+			$this->createStub( LanguageFactory::class ),
+		);
+	}
+
 	/**
 	 * Regression test for T365036 - checking that a very basic ParserOutput continues serializing after going
 	 * through a ContentDOMTransformStage
@@ -34,11 +44,10 @@ class ContentDOMTransformStageTest extends TestCase {
 	 */
 	public function testTransform() {
 		$html = "<div>some output</div>";
-		$po = PageBundleParserOutputConverter::parserOutputFromPageBundle(
+		$po = $this->newConverter()->parserOutputFromPageBundle(
 			new HtmlPageBundle( html: $html ),
 			isParsoidContent: true,
 			title: new TitleValue( NS_MAIN, 'Test_Page' ),
-			siteConfig: new MockSiteConfig( [] ),
 		);
 		$transform = $this->createStage();
 		$popts = ParserOptions::newFromAnon();
@@ -66,11 +75,10 @@ class ContentDOMTransformStageTest extends TestCase {
 		$this->assertEquals( $html, $text );
 
 		// Parsoid, also roundtrips the input since document creation marks it as new
-		$po = PageBundleParserOutputConverter::parserOutputFromPageBundle(
+		$po = $this->newConverter()->parserOutputFromPageBundle(
 			new HtmlPageBundle( html: $html ),
 			isParsoidContent: true,
 			title: new TitleValue( NS_MAIN, 'Test_Page' ),
-			siteConfig: new MockSiteConfig( [] ),
 		);
 		$this->assertTrue( $po->getContentHolder()->isParsoidContent() );
 		$po = $transform->transform( $po, $popts, $options );

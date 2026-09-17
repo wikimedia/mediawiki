@@ -84,7 +84,8 @@ abstract class ParsoidHandler extends Handler {
 			$services->getRevisionLookup(),
 			$services->getParsoidSiteConfig(),
 			$services->getParsoidPageConfigFactory(),
-			$services->getParsoidDataAccess()
+			$services->getParsoidDataAccess(),
+			$services->getPageBundleParserOutputConverter(),
 		);
 	}
 
@@ -93,6 +94,7 @@ abstract class ParsoidHandler extends Handler {
 		protected readonly SiteConfig $siteConfig,
 		protected readonly PageConfigFactory $pageConfigFactory,
 		protected readonly DataAccess $dataAccess,
+		private readonly PageBundleParserOutputConverter $pageBundleParserOutputConverter,
 	) {
 		$this->extensionRegistry = ExtensionRegistry::getInstance();
 		$this->metrics = $siteConfig->metrics();
@@ -1067,11 +1069,10 @@ abstract class ParsoidHandler extends Handler {
 			$languageVariantConverter->setPageLanguageOverride( $httpContentLanguage );
 		}
 		// Convert PageBundle to ParserOutput
-		$parserOutput = PageBundleParserOutputConverter::parserOutputFromPageBundle(
+		$parserOutput = $this->pageBundleParserOutputConverter->parserOutputFromPageBundle(
 			$pb,
 			isParsoidContent: true,
 			title: $pageIdentity,
-			siteConfig: $this->siteConfig
 		);
 		try {
 			$parserOutput = $languageVariantConverter->convertParserOutputVariant(
@@ -1084,8 +1085,8 @@ abstract class ParsoidHandler extends Handler {
 				[ 'reason' => $e->getMessage() ]
 			);
 		}
-		$out = PageBundleParserOutputConverter::htmlPageBundleFromParserOutput(
-			$parserOutput, siteConfig: $this->siteConfig, bodyOnly: false,
+		$out = $this->pageBundleParserOutputConverter->htmlPageBundleFromParserOutput(
+			$parserOutput, bodyOnly: false,
 		);
 		$out->headers['vary'] ??= 'Accept-Language';
 

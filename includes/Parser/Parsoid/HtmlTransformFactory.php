@@ -26,6 +26,7 @@ class HtmlTransformFactory {
 		private readonly TitleFactory $titleFactory,
 		private readonly OutputTransformPipeline $languageConverterPipeline,
 		private readonly LanguageFactory $languageFactory,
+		private readonly PageBundleParserOutputConverter $pageBundleParserOutputConverter,
 	) {
 	}
 
@@ -63,6 +64,7 @@ class HtmlTransformFactory {
 			$this->languageFactory,
 			$this->siteConfig,
 			$this->titleFactory,
+			$this->pageBundleParserOutputConverter,
 			$page,
 		);
 	}

@@ -12,6 +12,7 @@ use MediaWiki\Parser\Parsoid\PageBundleParserOutputConverter;
 use MediaWikiIntegrationTestCase;
 use Wikimedia\Bcp47Code\Bcp47CodeValue;
 use Wikimedia\Parsoid\Core\HtmlPageBundle;
+use Wikimedia\Parsoid\Mocks\MockSiteConfig;
 use Wikimedia\Parsoid\Parsoid;
 
 /**
@@ -127,8 +128,9 @@ class LanguageVariantConverterTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public static function provideConvertParserOutputVariant() {
+		$converter = self::getStubPageBundleParserOutputConverter();
 		foreach ( self::provideConvertPageBundleVariant() as $name => $case ) {
-			$case[0] = PageBundleParserOutputConverter::parserOutputFromPageBundle( $case[0], isParsoidContent: true );
+			$case[0] = $converter->parserOutputFromPageBundle( $case[0], isParsoidContent: true );
 			yield $name => $case;
 		}
 	}
@@ -168,10 +170,8 @@ class LanguageVariantConverterTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( 'my-data', $modifiedParserOutput->getExtensionData( 'my-key' ) );
 
 		// Look at full-document $html
-		$siteConfig = $this->getServiceContainer()->getParsoidSiteConfig();
-		$pageBundle = PageBundleParserOutputConverter::htmlPageBundleFromParserOutput(
-			$modifiedParserOutput, $siteConfig, bodyOnly: false,
-		);
+		$pageBundle = $this->getServiceContainer()->getPageBundleParserOutputConverter()
+			->htmlPageBundleFromParserOutput( $modifiedParserOutput, bodyOnly: false );
 		$html = $pageBundle->html;
 		$stripped = preg_replace( ':</?span[^>]*>:', '', $html );
 		$this->assertStringContainsString( $expected, $stripped );
@@ -197,7 +197,21 @@ class LanguageVariantConverterTest extends MediaWikiIntegrationTestCase {
 			$this->getServiceContainer()->getLanguageFactory(),
 			$this->getServiceContainer()->getParsoidSiteConfig(),
 			$this->getServiceContainer()->getTitleFactory(),
+			$this->getServiceContainer()->getPageBundleParserOutputConverter(),
 			$pageIdentity,
+		);
+	}
+
+	// Return a stub PageBundleParserOutputConverter suitable for use within
+	// data providers and other static contexts
+	protected static function getStubPageBundleParserOutputConverter(): PageBundleParserOutputConverter {
+		// Without a RevisionLookup or a LanguageFactory we might be
+		// missing some content in the <head> for full-document form,
+		// but most functionality will be present.
+		return new PageBundleParserOutputConverter(
+			new MockSiteConfig( [] ),
+			null,
+			null,
 		);
 	}
 }

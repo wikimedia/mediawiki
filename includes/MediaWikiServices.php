@@ -134,6 +134,7 @@ use MediaWiki\Parser\Parsoid\Config\PageConfigFactory;
 use MediaWiki\Parser\Parsoid\Config\SiteConfig;
 use MediaWiki\Parser\Parsoid\HtmlTransformFactory;
 use MediaWiki\Parser\Parsoid\LintErrorChecker;
+use MediaWiki\Parser\Parsoid\PageBundleParserOutputConverter;
 use MediaWiki\Parser\Parsoid\ParsoidParserFactory;
 use MediaWiki\Password\PasswordFactory;
 use MediaWiki\Permissions\GrantsInfo;
@@ -1708,6 +1709,14 @@ class MediaWikiServices extends ServiceContainer {
 	 */
 	public function getOldRevisionImporter(): OldRevisionImporter {
 		return $this->getService( 'OldRevisionImporter' );
+	}
+
+	/**
+	 * @since 1.47
+	 * @internal
+	 */
+	public function getPageBundleParserOutputConverter(): PageBundleParserOutputConverter {
+		return $this->getService( 'PageBundleParserOutputConverter' );
 	}
 
 	/**

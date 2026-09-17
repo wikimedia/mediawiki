@@ -96,12 +96,14 @@ class TransformHtmlToWikitextRevisionHandlerTest extends MediaWikiIntegrationTes
 		$dataAccess = $this->getServiceContainer()->getParsoidDataAccess();
 		$siteConfig = $this->getServiceContainer()->getParsoidSiteConfig();
 		$pageConfigFactory = $this->getServiceContainer()->getParsoidPageConfigFactory();
+		$pageBundleParserOutputConverter = $this->getServiceContainer()->getPageBundleParserOutputConverter();
 
 		$handler = new TransformHtmlToWikitextRevisionHandler(
 			$revisionLookup,
 			$siteConfig,
 			$pageConfigFactory,
-			$dataAccess
+			$dataAccess,
+			$pageBundleParserOutputConverter
 		);
 
 		// Always expect an exception, because we aren't setting up test content.

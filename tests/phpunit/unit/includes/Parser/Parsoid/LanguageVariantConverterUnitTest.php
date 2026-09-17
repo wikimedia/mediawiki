@@ -12,6 +12,7 @@ use MediaWiki\Page\PageIdentityValue;
 use MediaWiki\Parser\ParserOptions;
 use MediaWiki\Parser\Parsoid\LanguageVariantConverter;
 use MediaWiki\Parser\Parsoid\PageBundleParserOutputConverter;
+use MediaWiki\Revision\RevisionLookup;
 use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleFactory;
 use MediaWikiUnitTestCase;
@@ -19,7 +20,6 @@ use PHPUnit\Framework\Constraint\Constraint;
 use PHPUnit\Framework\MockObject\MockObject;
 use Wikimedia\Bcp47Code\Bcp47Code;
 use Wikimedia\Bcp47Code\Bcp47CodeValue;
-use Wikimedia\Parsoid\Config\SiteConfig;
 use Wikimedia\Parsoid\Core\HtmlPageBundle;
 use Wikimedia\Parsoid\Mocks\MockSiteConfig;
 use Wikimedia\TestingAccessWrapper;
@@ -62,10 +62,18 @@ class LanguageVariantConverterUnitTest extends MediaWikiUnitTestCase {
 
 		// convertParserOutputVariant is the method that exercises the language
 		// detection logic
-		$parserOutput = PageBundleParserOutputConverter::parserOutputFromPageBundle(
-			$pageBundleMock, isParsoidContent: true, siteConfig: new MockSiteConfig( [] )
+		$parserOutput = $this->newPageBundleConverter()->parserOutputFromPageBundle(
+			$pageBundleMock, isParsoidContent: true
 		);
 		$languageVariantConverter->convertParserOutputVariant( $parserOutput, $targetLanguage, $sourceLanguage );
+	}
+
+	private function newPageBundleConverter(): PageBundleParserOutputConverter {
+		return new PageBundleParserOutputConverter(
+			new MockSiteConfig( [] ),
+			$this->createStub( RevisionLookup::class ),
+			$this->createStub( LanguageFactory::class ),
+		);
 	}
 
 	public static function provideSourceLanguage() {
@@ -165,8 +173,9 @@ class LanguageVariantConverterUnitTest extends MediaWikiUnitTestCase {
 		$languageVariantConverter = new LanguageVariantConverter(
 			$this->getLanguageConverterPipelineMock( $parserOptionsMock ),
 			$languageFactoryMock,
-			$this->createStub( SiteConfig::class ),
+			new MockSiteConfig( [] ),
 			$titleFactoryMock,
+			$this->newPageBundleConverter(),
 			$pageIdentityValue,
 		);
 		// supply a mock parser options

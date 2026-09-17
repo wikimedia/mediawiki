@@ -91,6 +91,7 @@ class RevisionHTMLHandlerTest extends MediaWikiIntegrationTestCase {
 					$services->getHtmlTransformFactory(),
 					$services->getContentHandlerFactory(),
 					$services->getLanguageFactory(),
+					$services->getPageBundleParserOutputConverter(),
 					$page,
 					$parameters,
 					$authority,

@@ -349,9 +349,11 @@ abstract class ParserCacheSerializationTestCases {
 		$parserOutputWithEmptyToC = new ParserOutput( '' );
 		$parserOutputWithEmptyToC->setSections( [] );
 
-		$parserOutputPageBundleOnly = PageBundleParserOutputConverter::parserOutputFromPageBundle(
-			new HtmlPageBundle( 'hello', null, null, null, "1.2.3" ), isParsoidContent: true
-		);
+		$parserOutputPageBundleOnly = self::getStubPageBundleParserOutputConverter()
+			->parserOutputFromPageBundle(
+				new HtmlPageBundle( 'hello', null, null, null, "1.2.3" ),
+				isParsoidContent: true,
+			);
 		$parserOutputPageBundleOnly->setContentHolderText( null );
 
 		MWDebug::clearDeprecationFilters();
@@ -732,7 +734,8 @@ abstract class ParserCacheSerializationTestCases {
 				},
 			],
 			'parsoidEmpty' => [
-				'instance' => PageBundleParserOutputConverter::parserOutputFromPageBundle( new HtmlPageBundle( '' ), isParsoidContent: true ),
+				'instance' => self::getStubPageBundleParserOutputConverter()
+					->parserOutputFromPageBundle( new HtmlPageBundle( '' ), isParsoidContent: true ),
 				'assertions' => static function ( MediaWikiIntegrationTestCase $testCase, ParserOutput $object ) {
 					$testCase->assertTrue( $object->getContentHolder()->isParsoidContent() );
 					$testCase->assertEqualsCanonicalizing( $object->getContentHolder()->getBasePageBundle(), new BasePageBundle() );
@@ -747,7 +750,8 @@ abstract class ParserCacheSerializationTestCases {
 				}
 			],
 			'parsoidContent' => [
-				'instance' => PageBundleParserOutputConverter::parserOutputFromPageBundle(
+				'instance' => self::getStubPageBundleParserOutputConverter()
+					->parserOutputFromPageBundle(
 					HtmlPageBundle::fromDomPageBundle(
 						DomPageBundle::fromLoadedDocument(
 							ContentUtils::createAndLoadDocument(
@@ -810,5 +814,18 @@ abstract class ParserCacheSerializationTestCases {
 				},
 			],
 		];
+	}
+
+	// Return a stub PageBundleParserOutputConverter suitable for use within
+	// data providers and other static contexts
+	protected static function getStubPageBundleParserOutputConverter(): PageBundleParserOutputConverter {
+		// Without a RevisionLookup or a LanguageFactory we might be
+		// missing some content in the <head> for full-document form,
+		// but most functionality will be present.
+		return new PageBundleParserOutputConverter(
+			new MockSiteConfig( [] ),
+			null,
+			null,
+		);
 	}
 }

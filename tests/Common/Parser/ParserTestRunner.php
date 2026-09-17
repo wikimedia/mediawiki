@@ -37,7 +37,6 @@ use MediaWiki\Parser\ParserOptions;
 use MediaWiki\Parser\ParserOutput;
 use MediaWiki\Parser\ParserOutputFlags;
 use MediaWiki\Parser\ParserOutputLinkTypes;
-use MediaWiki\Parser\Parsoid\PageBundleParserOutputConverter;
 use MediaWiki\Permissions\UltimateAuthority;
 use MediaWiki\Registration\ExtensionRegistry;
 use MediaWiki\Revision\MutableRevisionRecord;
@@ -1949,7 +1948,7 @@ class ParserTestRunner {
 		], $headers, $metadata );
 		$pageBundle = new HtmlPageBundle( $origOut );
 		// See ParsoidParser::genParserOutput
-		$metadata = PageBundleParserOutputConverter::parserOutputFromPageBundle(
+		$metadata = $services->getPageBundleParserOutputConverter()->parserOutputFromPageBundle(
 			$pageBundle,
 			isParsoidContent: true,
 			originalParserOutput: $metadata,

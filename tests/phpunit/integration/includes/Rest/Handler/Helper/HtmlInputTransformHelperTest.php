@@ -34,6 +34,7 @@ use Wikimedia\Message\MessageValue;
 use Wikimedia\Parsoid\Core\ClientError;
 use Wikimedia\Parsoid\Core\HtmlPageBundle;
 use Wikimedia\Parsoid\Core\ResourceLimitExceededException;
+use Wikimedia\Parsoid\Mocks\MockSiteConfig;
 use Wikimedia\Parsoid\Parsoid;
 use Wikimedia\Parsoid\Utils\ContentUtils;
 use Wikimedia\Stats\StatsFactory;
@@ -100,7 +101,7 @@ class HtmlInputTransformHelperTest extends MediaWikiIntegrationTestCase {
 			$this->getServiceContainer()->getParserOutputAccess(),
 			$this->getServiceContainer()->getPageStore(),
 			$this->getServiceContainer()->getRevisionLookup(),
-			$this->getServiceContainer()->getParsoidSiteConfig(),
+			$this->getServiceContainer()->getPageBundleParserOutputConverter(),
 			[], /* envOptions */
 			$page,
 			$body,
@@ -754,7 +755,16 @@ class HtmlInputTransformHelperTest extends MediaWikiIntegrationTestCase {
 		$originalContent = new WikitextContent( 'Goats are great!' );
 		$selserContext = new SelserContext( $unchangedPB, 0, $originalContent );
 
-		$unchangedPO = PageBundleParserOutputConverter::parserOutputFromPageBundle( $unchangedPB, isParsoidContent: true );
+		// Without a RevisionLookup or a LanguageFactory we might be
+		// missing some content in the <head> for full-document form,
+		// but most functionality will be present.
+		$pageBundleParserOutputConverter = new PageBundleParserOutputConverter(
+			new MockSiteConfig( [] ),
+			null,
+			null,
+		);
+		$unchangedPO = $pageBundleParserOutputConverter
+			->parserOutputFromPageBundle( $unchangedPB, isParsoidContent: true );
 
 		$renderID = new ParsoidRenderID( 0, 'testing' );
 

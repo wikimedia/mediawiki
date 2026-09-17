@@ -160,12 +160,14 @@ class TransformHandlerTest extends MediaWikiIntegrationTestCase {
 		$dataAccess = $this->getServiceContainer()->getParsoidDataAccess();
 		$siteConfig = $this->getServiceContainer()->getParsoidSiteConfig();
 		$pageConfigFactory = $this->getServiceContainer()->getParsoidPageConfigFactory();
+		$pageBundleParserOutputConverter = $this->getServiceContainer()->getPageBundleParserOutputConverter();
 
 		$handler = new TransformHandler(
 			$revisionLookup,
 			$siteConfig,
 			$pageConfigFactory,
-			$dataAccess
+			$dataAccess,
+			$pageBundleParserOutputConverter
 		);
 		$response = $this->executeHandler( $handler, $request, $config );
 		$response->getBody()->rewind();

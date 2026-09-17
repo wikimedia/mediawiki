@@ -3,9 +3,11 @@ declare( strict_types = 1 );
 
 namespace MediaWiki\Tests\Parser\Parsoid;
 
+use MediaWiki\Language\LanguageFactory;
 use MediaWiki\Parser\ParserOutput;
 use MediaWiki\Parser\ParserOutputFlags;
 use MediaWiki\Parser\Parsoid\PageBundleParserOutputConverter;
+use MediaWiki\Revision\RevisionLookup;
 use MediaWiki\Title\TitleValue;
 use MediaWikiUnitTestCase;
 use Wikimedia\Bcp47Code\Bcp47CodeValue;
@@ -17,12 +19,17 @@ use Wikimedia\Parsoid\Mocks\MockSiteConfig;
  */
 class PageBundleParserOutputConverterTest extends MediaWikiUnitTestCase {
 
+	private function newConverter(): PageBundleParserOutputConverter {
+		return new PageBundleParserOutputConverter(
+			new MockSiteConfig( [] ),
+			$this->createStub( RevisionLookup::class ),
+			$this->createStub( LanguageFactory::class ),
+		);
+	}
+
 	/** @dataProvider provideParserOutputFromPageBundle */
 	public function testParserOutputFromPageBundle( HtmlPageBundle $pageBundle ) {
-		$siteConfig = new MockSiteConfig( [] );
-		$output = PageBundleParserOutputConverter::parserOutputFromPageBundle(
-			$pageBundle, isParsoidContent: true, siteConfig: $siteConfig
-		);
+		$output = $this->newConverter()->parserOutputFromPageBundle( $pageBundle, isParsoidContent: true );
 		$this->assertSame( $pageBundle->html, $output->getContentHolderText() );
 
 		$outputPageBundle = $output->getContentHolder()->getBasePageBundle();
@@ -42,11 +49,10 @@ class PageBundleParserOutputConverterTest extends MediaWikiUnitTestCase {
 		$original->setTitle( new TitleValue( NS_MAIN, 'Test_Page' ) );
 
 		// This should preserve the metadata.
-		$output = PageBundleParserOutputConverter::parserOutputFromPageBundle(
+		$output = $this->newConverter()->parserOutputFromPageBundle(
 			$pageBundle,
 			isParsoidContent: true,
 			originalParserOutput: $original,
-			siteConfig: new MockSiteConfig( [] ),
 		);
 		$this->assertSame( $pageBundle->html, $output->getContentHolderText() );
 
@@ -101,10 +107,10 @@ class PageBundleParserOutputConverterTest extends MediaWikiUnitTestCase {
 	}
 
 	/** @dataProvider providePageBundleFromParserOutput */
-	public function testPageBundleFromParserOutput( ParserOutput $parserOutput ) {
-		$siteConfig = new MockSiteConfig( [] );
-		$pageBundle = PageBundleParserOutputConverter::htmlPageBundleFromParserOutput(
-			$parserOutput, $siteConfig, bodyOnly: true,
+	public function testPageBundleFromParserOutput( HtmlPageBundle $pb ) {
+		$parserOutput = $this->getParserOutput( $pb );
+		$pageBundle = $this->newConverter()->htmlPageBundleFromParserOutput(
+			$parserOutput, bodyOnly: true,
 		);
 
 		$this->assertSame( $parserOutput->getContentHolderText(), $pageBundle->html );
@@ -122,26 +128,22 @@ class PageBundleParserOutputConverterTest extends MediaWikiUnitTestCase {
 
 	public static function providePageBundleFromParserOutput() {
 		yield 'should convert ParsoidOutput containing data-parsoid and data-mw' => [
-			self::getParserOutput(
-				new HtmlPageBundle(
-					html: 'hello world',
-					parsoid: [ 'ids' => '1.22' ],
-					mw: [],
-					version: '2.x',
-					headers: [ 'content-language' => 'xyz' ]
-				)
+			new HtmlPageBundle(
+				html: 'hello world',
+				parsoid: [ 'ids' => '1.22' ],
+				mw: [],
+				version: '2.x',
+				headers: [ 'content-language' => 'xyz' ]
 			)
 		];
 
 		yield 'should convert ParsoidOutput that does not contain data-parsoid or data-mw' => [
-			self::getParserOutput(
-				HtmlPageBundle::newEmpty( html: 'hello world' )
-			)
+			HtmlPageBundle::newEmpty( html: 'hello world' )
 		];
 	}
 
 	public function testTitleTransfer() {
-		$parserOutput = self::getParserOutput(
+		$parserOutput = $this->getParserOutput(
 			HtmlPageBundle::newEmpty( 'abc' ),
 			new TitleValue( NS_MAIN, 'My_Title' )
 		);
@@ -149,14 +151,13 @@ class PageBundleParserOutputConverterTest extends MediaWikiUnitTestCase {
 		$this->assertEquals( 'My_Title', $parserOutput->getTitle()->getDBkey() );
 	}
 
-	private static function getParserOutput(
+	private function getParserOutput(
 		HtmlPageBundle $pb, $title = null
 	): ParserOutput {
-		return PageBundleParserOutputConverter::parserOutputFromPageBundle(
+		return $this->newConverter()->parserOutputFromPageBundle(
 			$pb,
 			isParsoidContent: true,
 			title: $title,
-			siteConfig: new MockSiteConfig( [] ),
 		);
 	}
 }

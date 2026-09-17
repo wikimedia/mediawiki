@@ -71,12 +71,14 @@ class TransformWikitextToHtmlTitleHandlerTest extends MediaWikiIntegrationTestCa
 		$dataAccess = $this->getServiceContainer()->getParsoidDataAccess();
 		$siteConfig = $this->getServiceContainer()->getParsoidSiteConfig();
 		$pageConfigFactory = $this->getServiceContainer()->getParsoidPageConfigFactory();
+		$pageBundleParserOutputConverter = $this->getServiceContainer()->getPageBundleParserOutputConverter();
 
 		$handler = new TransformWikitextToHtmlTitleHandler(
 			$revisionLookup,
 			$siteConfig,
 			$pageConfigFactory,
-			$dataAccess
+			$dataAccess,
+			$pageBundleParserOutputConverter
 		);
 
 		if ( $expectedException ) {

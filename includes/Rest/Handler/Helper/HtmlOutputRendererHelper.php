@@ -132,6 +132,7 @@ class HtmlOutputRendererHelper implements HtmlOutputHelper {
 	 * @param HtmlTransformFactory $htmlTransformFactory
 	 * @param IContentHandlerFactory $contentHandlerFactory
 	 * @param LanguageFactory $languageFactory
+	 * @param PageBundleParserOutputConverter $pageBundleParserOutputConverter
 	 * @param PageIdentity|null $page
 	 * @param array $parameters
 	 * @param Authority|null $authority
@@ -155,6 +156,7 @@ class HtmlOutputRendererHelper implements HtmlOutputHelper {
 		private readonly HtmlTransformFactory $htmlTransformFactory,
 		private readonly IContentHandlerFactory $contentHandlerFactory,
 		private readonly LanguageFactory $languageFactory,
+		private readonly PageBundleParserOutputConverter $pageBundleParserOutputConverter,
 		?PageIdentity $page = null,
 		array $parameters = [],
 		?Authority $authority = null,
@@ -453,8 +455,8 @@ class HtmlOutputRendererHelper implements HtmlOutputHelper {
 					// Stash a full document (head + body) so the later html2wt
 					// selser round-trip keeps working once the canonical
 					// ParserOutput is body-only (T393295)
-					PageBundleParserOutputConverter::htmlPageBundleFromParserOutput(
-						$parserOutput, $this->parsoidSiteConfig, bodyOnly: false,
+					$this->pageBundleParserOutputConverter->htmlPageBundleFromParserOutput(
+						$parserOutput, bodyOnly: false,
 					),
 					$parsoidStashKey->getRevisionID(),
 					$isFakeRevision ? $this->revisionOrId->getContent( SlotRecord::MAIN ) : null
@@ -495,8 +497,8 @@ class HtmlOutputRendererHelper implements HtmlOutputHelper {
 		if ( $this->flavor === 'edit' && $parserOutput->getContentHolder()->isParsoidContent() ) {
 			// The 'edit' flavor inlines data-parsoid/data-mw attributes so the
 			// editor can round-trip.
-			$pb = PageBundleParserOutputConverter::htmlPageBundleFromParserOutput(
-				$parserOutput, $this->parsoidSiteConfig, bodyOnly: true
+			$pb = $this->pageBundleParserOutputConverter->htmlPageBundleFromParserOutput(
+				$parserOutput, bodyOnly: true
 			);
 			$parserOutput->setContentHolder(
 				ContentHolder::createFromPageBundle(
@@ -787,8 +789,8 @@ class HtmlOutputRendererHelper implements HtmlOutputHelper {
 		// body, with the <head> rebuilt from metadata). Request it
 		// explicitly so this keeps emitting a full document once the
 		// canonical ParserOutput is body-only (T393295).
-		$pb = PageBundleParserOutputConverter::htmlPageBundleFromParserOutput(
-			$parserOutput, $this->parsoidSiteConfig, bodyOnly: false,
+		$pb = $this->pageBundleParserOutputConverter->htmlPageBundleFromParserOutput(
+			$parserOutput, bodyOnly: false,
 		);
 
 		if ( $this->flavor === 'edit' ) {

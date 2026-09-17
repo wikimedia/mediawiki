@@ -9,7 +9,9 @@ use Mediawiki\MediaWikiServices;
 use MediaWiki\OutputTransform\OutputTransformStage;
 use MediaWiki\Parser\ParserOptions;
 use MediaWiki\Parser\ParserOutput;
+use MediaWiki\Parser\Parsoid\PageBundleParserOutputConverter;
 use MediaWikiIntegrationTestCase;
+use Wikimedia\Parsoid\Mocks\MockSiteConfig;
 
 abstract class OutputTransformStageTestBase extends MediaWikiIntegrationTestCase {
 	abstract public function createStage(): OutputTransformStage;
@@ -66,6 +68,19 @@ abstract class OutputTransformStageTestBase extends MediaWikiIntegrationTestCase
 			$jsonCodec->toJsonArray( $expected ),
 			$jsonCodec->toJsonArray( $result ),
 			$message
+		);
+	}
+
+	// Return a stub PageBundleParserOutputConverter suitable for use within
+	// data providers and other static contexts
+	protected static function getStubPageBundleParserOutputConverter(): PageBundleParserOutputConverter {
+		// Without a RevisionLookup or a LanguageFactory we might be
+		// missing some content in the <head> for full-document form,
+		// but most functionality will be present.
+		return new PageBundleParserOutputConverter(
+			new MockSiteConfig( [] ),
+			null,
+			null,
 		);
 	}
 }

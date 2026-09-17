@@ -9,7 +9,6 @@ use MediaWiki\OutputTransform\OutputTransformStage;
 use MediaWiki\OutputTransform\Stages\HandleParsoidSectionLinks;
 use MediaWiki\Parser\ParserOptions;
 use MediaWiki\Parser\ParserOutput;
-use MediaWiki\Parser\Parsoid\PageBundleParserOutputConverter;
 use MediaWiki\Skin\Skin;
 use MediaWiki\Tests\OutputTransform\OutputTransformStageTestBase;
 use Psr\Log\NullLogger;
@@ -28,7 +27,15 @@ class HandleParsoidSectionLinksTest extends OutputTransformStageTestBase {
 	}
 
 	public static function provideShouldRun(): iterable {
-		yield [ PageBundleParserOutputConverter::parserOutputFromPageBundle( new HtmlPageBundle( '' ), isParsoidContent: true ), ParserOptions::newFromAnon(), [] ];
+		yield [
+			self::getStubPageBundleParserOutputConverter()
+				->parserOutputFromPageBundle(
+					new HtmlPageBundle( '' ),
+					isParsoidContent: true,
+				),
+			ParserOptions::newFromAnon(),
+			[],
+		];
 	}
 
 	public static function provideShouldNotRun(): iterable {
@@ -42,7 +49,7 @@ class HandleParsoidSectionLinksTest extends OutputTransformStageTestBase {
 		?string $fragment = null,
 		string ...$flags,
 	): ParserOutput {
-		$po = PageBundleParserOutputConverter::parserOutputFromPageBundle(
+		$po = self::getStubPageBundleParserOutputConverter()->parserOutputFromPageBundle(
 			new HtmlPageBundle( $rawText ?? '' ), isParsoidContent: true
 		);
 		if ( $parserOptions !== null ) {

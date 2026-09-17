@@ -8,7 +8,6 @@ use MediaWiki\OutputTransform\OutputTransformStage;
 use MediaWiki\OutputTransform\Stages\DeduplicateStylesDOM;
 use MediaWiki\Parser\ParserOptions;
 use MediaWiki\Parser\ParserOutput;
-use MediaWiki\Parser\Parsoid\PageBundleParserOutputConverter;
 use MediaWiki\Tests\OutputTransform\OutputTransformStageTestBase;
 use MediaWiki\Tests\OutputTransform\TestUtils;
 use Psr\Log\NullLogger;
@@ -76,10 +75,10 @@ EOF
 
 		foreach ( $testCases as $name => [ $input, $isParsoid, $expected ] ) {
 			if ( $isParsoid ) {
-				$in = PageBundleParserOutputConverter::parserOutputFromPageBundle(
+				$in = self::getStubPageBundleParserOutputConverter()->parserOutputFromPageBundle(
 					new HtmlPageBundle( $input ), isParsoidContent: true
 				);
-				$out = PageBundleParserOutputConverter::parserOutputFromPageBundle(
+				$out = self::getStubPageBundleParserOutputConverter()->parserOutputFromPageBundle(
 					new HtmlPageBundle( $expected ), isParsoidContent: true
 				);
 			} else {
