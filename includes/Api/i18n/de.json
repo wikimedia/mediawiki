@@ -1820,6 +1820,7 @@
 	"apiwarn-errorprinterfailed": "Printer-Fehler. Versuche es ohne Parameter.",
 	"apiwarn-ignoring-invalid-templated-value": "Ignorieren des Wertes <kbd>$2</kbd> in <var>$1</var> bei der Verarbeitung von Vorlagenparametern.",
 	"apiwarn-invalidcategory": "„$1“ ist keine Kategorie.",
+	"apiwarn-invalidrange": "„$1“ ist kein gültiger Bereich.",
 	"apiwarn-invalidtitle": "„$1“ ist kein gültiger Titel.",
 	"apiwarn-notfile": "„$1“ ist keine Datei.",
 	"apiwarn-nothumb-noimagehandler": "Konnte keine Vorschau erstellen, weil $1 keinen zugehörigen Bild-Handler hat.",

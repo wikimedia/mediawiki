@@ -946,6 +946,7 @@
 	"apierror-unknownformat": "Nierozpoznany format „$1”.",
 	"apierror-unrecognizedvalue": "Nierozpoznana wartość parametru <var>$1</var>: $2.",
 	"apiwarn-invalidcategory": "„$1” nie jest kategorią.",
+	"apiwarn-invalidrange": "„$1” nie jest prawidłowym zakresem.",
 	"apiwarn-invalidtitle": "„$1” nie jest poprawnym tytułem.",
 	"apiwarn-notfile": "„$1” nie jest plikiem.",
 	"apiwarn-validationfailed-keytoolong": "klucz zbyt długi (dozwolone jest nie więcej niż $1 {{PLURAL:$1|bajt|bajty|bajtów}}).",

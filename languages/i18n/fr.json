@@ -2135,7 +2135,7 @@
 	"watchstar-popup-already-watched": "« $1 » et sa page de discussion sont dans votre [[Special:Watchlist|liste de suivi]].",
 	"watchstar-popup-expiry-help": "Vous pouvez modifier la durée d'expiration par défaut dans vos [[$1|préférences de la liste de suivi]].",
 	"watchstar-popup-labels": "Étiquettes de la liste de suivi :",
-	"watchstar-popup-labels-help": "Créez ou supprimez des étiquettes avec le [[$1|gestionnaire d'étiquettes]].",
+	"watchstar-popup-labels-help": "Créez une nouvelle étiquette dans le [[$1|gestionnaire d'étiquettes]].",
 	"watchstar-popup-labels-add": "Ajouter une étiquette…",
 	"watchstar-popup-labels-none": "Aucune étiquette pour le moment",
 	"watchstar-popup-labels-no-results": "Aucune étiquette trouvée",
