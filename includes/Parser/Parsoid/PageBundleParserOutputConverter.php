@@ -490,3 +490,7 @@ final class PageBundleParserOutputConverter {
 		return $elt;
 	}
 }
+
+/* Temporary class alias to break cyclic dependencies with extensions */
+// phpcs:ignore Generic.Files.LineLength.TooLong
+class_alias( PageBundleParserOutputConverter::class, 'MediaWiki\\Parser\\Parsoid\\PageBundleParserOutputConverterStatic' );
