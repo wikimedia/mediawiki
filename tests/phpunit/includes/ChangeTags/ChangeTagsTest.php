@@ -4,6 +4,7 @@ namespace MediaWiki\Tests\ChangeTags;
 
 use InvalidArgumentException;
 use LogicException;
+use MediaWiki\Block\Block;
 use MediaWiki\ChangeTags\ChangeTags;
 use MediaWiki\ChangeTags\ChangeTagsStore;
 use MediaWiki\Context\RequestContext;
@@ -15,6 +16,7 @@ use MediaWiki\Permissions\Authority;
 use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
 use MediaWiki\User\UserIdentity;
+use MediaWiki\User\UserIdentityValue;
 use MediaWikiIntegrationTestCase;
 use Wikimedia\Rdbms\IExpression;
 use Wikimedia\Rdbms\LikeValue;
@@ -1164,6 +1166,49 @@ class ChangeTagsTest extends MediaWikiIntegrationTestCase {
 				'expectedStatusErrorMessage' => 'tags-update-add-not-allowed-one',
 			],
 		];
+	}
+
+	public function testUpdateTagsWhenUserSitewideBlocked(): void {
+		$this->changeTags->defineTag( 'test-tag' );
+		$block = $this->createMock( Block::class );
+		$block->method( 'isSitewide' )
+			->willReturn( true );
+
+		$actualStatus = ChangeTags::updateTagsWithChecks(
+			[ 'test-tag' ],
+			[],
+			null,
+			null,
+			null,
+			null,
+			'',
+			$this->mockUserAuthorityWithBlock( UserIdentityValue::newAnonymous( '1.2.3.4' ), $block, [ 'changetags' ] )
+		);
+
+		$this->assertStatusError( 'tags-update-no-permission', $actualStatus );
+		$this->assertNull( $actualStatus->getValue() );
+	}
+
+	public function testUpdateTagsWhenAuthoriseActionFails(): void {
+		$this->changeTags->defineTag( 'test-tag' );
+		$authority = $this->createMock( Authority::class );
+		$authority->method( 'isAllowed' )
+			->with( 'changetags' )
+			->willReturn( true );
+		$authority->method( 'isDefinitelyAllowed' )
+			->with( 'changetags' )
+			->willReturn( true );
+		$authority->method( 'authorizeAction' )
+			->with( 'changetags' )
+			->willReturnCallback( static function ( $action, $status ) {
+				$status->fatal( 'test-error' );
+				return false;
+			} );
+
+		$actualStatus = ChangeTags::updateTagsWithChecks( [ 'test-tag' ], [], null, null, null, null, '', $authority );
+
+		$this->assertStatusError( 'test-error', $actualStatus );
+		$this->assertNull( $actualStatus->getValue() );
 	}
 
 	public function testUpdateTagsWithChecksWhenTagAlreadyOnChange(): void {

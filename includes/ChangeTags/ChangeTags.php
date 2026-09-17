@@ -402,13 +402,6 @@ class ChangeTags {
 			return Status::newFatal( 'tags-update-no-permission' );
 		}
 
-		if ( $performer->getBlock() && $performer->getBlock()->isSitewide() ) {
-			return Status::newFatal(
-				'tags-update-blocked',
-				$performer->getUser()->getName()
-			);
-		}
-
 		$changeTagsStore = MediaWikiServices::getInstance()->getChangeTagsStore();
 		if ( $tagsToAdd ) {
 			// to be added, a tag has to be explicitly defined
