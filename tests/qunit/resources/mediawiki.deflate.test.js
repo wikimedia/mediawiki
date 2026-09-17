@@ -18,36 +18,44 @@ QUnit.module( 'mediawiki.deflate', () => {
 		foobar: {
 			data: 'foobar',
 			expected: {
-				chrome: 'rawdeflate,S8vPT0osAgA=',
-				firefox: 'rawdeflate,S8vPT0osAgA=',
+				native: 'rawdeflate,S8vPT0osAgA=',
+				nativeOld: 'rawdeflate,S8vPT0osAgA=',
 				pako: 'rawdeflate,S8vPT0osAgA='
 			}
 		},
 		Unicode: {
 			data: 'ℳ𝒲♥𝓊𝓃𝒾𝒸ℴ𝒹ℯ',
 			expected: {
-				chrome: 'rawdeflate,ASQA2//ihLPwnZKy4pml8J2TivCdk4PwnZK+8J2SuOKEtPCdkrnihK8=',
-				firefox: 'rawdeflate,e9Sy+cPcSZsezVz6Ye7kLiBuBnL3AfGORy1bgNTORy3rAQ==',
+				native: 'rawdeflate,ASQA2//ihLPwnZKy4pml8J2TivCdk4PwnZK+8J2SuOKEtPCdkrnihK8=',
+				nativeOld: 'rawdeflate,e9Sy+cPcSZsezVz6Ye7kLiBuBnL3AfGORy1bgNTORy3rAQ==',
 				pako: 'rawdeflate,e9Sy+cPcSZsezVz6Ye7kLiBuBnL3AfGORy1bgNTORy3rAQ=='
 			}
 		},
 		'Non BMP unicode': {
 			data: '😂𐅀𐅁𐅂𐅃𐅄𐅅𐅆𐅇𐅈𐅉𐅊𐅋𐅌𐅍𐅎𐅏',
 			expected: {
-				chrome: 'rawdeflate,FcbBEUMAAADB1gmHRHDP/LR4JWTsa7t/r2RIxuT5lMwJyZKsyZa8k0+yJ9/kSM7k+gM=',
-				firefox: 'rawdeflate,Fca3EQAgDACx1Ukmp5KOFT0CT6E76T1OtxhY/HsECCISMgoqGjoGJtYD',
+				native: 'rawdeflate,FcbBEUMAAADB1gmHRHDP/LR4JWTsa7t/r2RIxuT5lMwJyZKsyZa8k0+yJ9/kSM7k+gM=',
+				nativeOld: 'rawdeflate,Fca3EQAgDACx1Ukmp5KOFT0CT6E76T1OtxhY/HsECCISMgoqGjoGJtYD',
 				pako: 'rawdeflate,Fca3EQAgDACx1Ukmp5KOFT0CT6E76T1OtxhY/HsECCISMgoqGjoGJtYD'
 			}
 		},
 		'5MB data': {
 			data: longData,
 			expectedMeta: {
-				chrome: {
+				273743: {
+					// Chrome
 					length: 273743,
 					head: '7NbbUlfXGQ',
 					tail: 'md2MlnJwE='
 				},
-				firefox: {
+				517815: {
+					// Firefox 151+
+					length: 517815,
+					head: '7N3bklVllv',
+					tail: 'TA/xc7+b8='
+				},
+				329747: {
+					// Firefox < 151
 					length: 329747,
 					head: '7NZds70FeR',
 					tail: 'InX+jkAQ=='
@@ -60,61 +68,50 @@ QUnit.module( 'mediawiki.deflate', () => {
 			}
 		}
 	}, async ( assert, data ) => {
-		const methods = [ 'pako', 'deflate', 'deflate-raw' ];
-		const OriginalCompressionStream = CompressionStream;
-
-		for ( const method of methods ) {
-			await ( async () => {
-				const done = assert.async();
-				let promise;
-				let platform;
-
-				switch ( method ) {
-					case 'pako':
-						platform = 'pako';
-						promise = Promise.resolve( mw.deflate( data.data ) );
-						break;
-					case 'deflate':
-					case 'deflate-raw':
-						if ( method === 'deflate' ) {
-							// Stub the CompressionStream constructor to disable deflate-raw
-							globalThis.CompressionStream = function ( type ) {
-								if ( type === 'deflate-raw' ) {
-									throw new Error( 'Testing deflate-raw being unavailable' );
-								}
-								// Call the original constructor for other arguments
-								return new OriginalCompressionStream( type );
-							};
-							sinon.spy( globalThis, 'CompressionStream' );
-						}
-						platform = $.client.profile().name;
-						if ( platform !== 'chrome' && platform !== 'firefox' ) {
-							assert.true( true, 'Unknown browser, skipping test' );
-							done();
-							return;
-						}
-						promise = mw.deflateAsync( data.data );
-						break;
-				}
-
-				return promise.then( ( deflated ) => {
-					if ( data.expected ) {
-						assert.strictEqual( deflated, data.expected[ platform ], method );
-					} else {
-						assert.strictEqual( deflated.length, data.expectedMeta[ platform ].length, 'length (' + method + ')' );
-						assert.strictEqual( deflated.slice( 11, 21 ), data.expectedMeta[ platform ].head, 'head (' + method + ')' );
-						assert.strictEqual( deflated.slice( -10 ), data.expectedMeta[ platform ].tail, 'tail (' + method + ')' );
-					}
-					done();
-				} ).finally( () => {
-					// Restore CompressionStream if it was stubbed
-					if ( method === 'deflate' ) {
-						globalThis.CompressionStream.restore();
-						globalThis.CompressionStream = OriginalCompressionStream;
-					}
-				} );
-			} )();
+		function equalDeflate( actual, method ) {
+			if ( data.expected ) {
+				const expected = ( method === 'pako' ?
+					data.expected.pako :
+					( actual === data.expected.nativeOld ?
+						data.expected.nativeOld :
+						data.expected.native
+					)
+				);
+				assert.strictEqual( actual, expected, method );
+			} else {
+				const expectedMeta = ( method === 'pako' ?
+					data.expectedMeta.pako :
+					( data.expectedMeta[ actual.length ] || {} )
+				);
+				assert.strictEqual( actual.length, expectedMeta.length, method + ' length' );
+				assert.strictEqual( actual.slice( 11, 21 ), expectedMeta.head, method + ' head' );
+				assert.strictEqual( actual.slice( -10 ), expectedMeta.tail, method + ' tail' );
+			}
 		}
-	} );
 
+		const OriginalCompressionStream = CompressionStream;
+		let deflated;
+
+		// pako
+		deflated = mw.deflate( data.data );
+		equalDeflate( deflated, 'pako' );
+
+		// deflate-raw
+		deflated = await mw.deflateAsync( data.data );
+		equalDeflate( deflated, 'deflate-raw' );
+
+		// deflate
+		// Replace the CompressionStream constructor to unsupport deflate-raw
+		// eslint-disable-next-line prefer-arrow-callback
+		sinon.replace( globalThis, 'CompressionStream', function ( type ) {
+			if ( type === 'deflate-raw' ) {
+				throw new Error( 'Testing deflate-raw being unavailable' );
+			}
+			// Call the original constructor for other arguments
+			return new OriginalCompressionStream( type );
+		} );
+		deflated = await mw.deflateAsync( data.data );
+		sinon.restore();
+		equalDeflate( deflated, 'deflate' );
+	} );
 } );
