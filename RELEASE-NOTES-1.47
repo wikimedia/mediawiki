@@ -651,6 +651,8 @@ because of Phabricator reports.
   getMetadataItems() functions instead.
 * MediaTransformOutput::streamFile(), deprecated since 1.26, now emits
   deprecation warnings. Use streamFileWithStatus() instead.
+* UploadBase::getImageInfo(), deprecated since 1.42, now emits
+  deprecation warnings.
 * PageUpdater::isUnchanged(), deprecated since 1.38, now emits
   deprecation warnings.
 * LanguageQqx::getMessage(), deprecated since 1.41, now emits deprecation

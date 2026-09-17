@@ -1453,13 +1453,15 @@ abstract class UploadBase {
 	 * Gets image info about the file just uploaded.
 	 *
 	 * @deprecated since 1.42, subclasses of ApiUpload can use
-	 * ApiUpload::getUploadImageInfo() instead.
+	 * ApiUpload::getUploadImageInfo() instead. Hard-deprecated since 1.47.
 	 *
 	 * @param ?ApiResult $result unused since 1.42
 	 * @return array Image info
 	 */
 	public function getImageInfo( $result = null ) {
+		wfDeprecated( __METHOD__, '1.42' );
 		$apiUpload = ApiUpload::getDummyInstance();
+		// When this call is removed, change visibility of ApiUpload::getUploadImageInfo()
 		return $apiUpload->getUploadImageInfo( $this );
 	}
 

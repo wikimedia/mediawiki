@@ -258,7 +258,7 @@ class UploadFromChunks extends UploadFromFile {
 
 		$tAmount = microtime( true ) - $tStart;
 		// @phan-suppress-next-line PhanTypeMismatchArgumentNullable tmpFile is set when tmpPath is set here
-		$this->mStashFile->setLocalReference( $tmpFile ); // reuse (e.g. for getImageInfo())
+		$this->mStashFile->setLocalReference( $tmpFile ); // reuse to build the image info on api uploads
 		$this->logger->info( "Stashed combined ({chunks} chunks) of {oldkey} under new name {filekey}",
 			[
 				'chunks' => $i,
