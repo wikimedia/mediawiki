@@ -3666,7 +3666,7 @@
 	"limitreport-walltime": "Χρήση πραγματικού χρόνου",
 	"limitreport-walltime-value": "$1 {{PLURAL:$1|δευτερόλεπτο|δευτερόλεπτα}}",
 	"limitreport-ppvisitednodes": "Καταμέτρηση κόμβων επισκεφθέντων από τον προεπεξεργαστή",
-	"limitreport-postexpandincludesize": "Μέγεθος συμπερίληψης πριν την ανάπτυξη",
+	"limitreport-postexpandincludesize": "Μέγεθος μετά την επέκτση προτύπων και συναρτήσεων",
 	"limitreport-postexpandincludesize-value": "$1 από $2 {{PLURAL:$2|byte|bytes}}",
 	"limitreport-revisionsize": "Μέγεθος αναθεώρησης",
 	"limitreport-revisionsize-value": "$1/$2 {{PLURAL:$2|byte|bytes}}",

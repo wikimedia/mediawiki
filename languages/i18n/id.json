@@ -115,7 +115,8 @@
 			"Argo Carpathians",
 			"AF1011",
 			"Ronnie",
-			"CalER08"
+			"CalER08",
+			"Iripseudocorus"
 		]
 	},
 	"pagecategories": "{{PLURAL:$1|Kategori}}",
@@ -921,7 +922,7 @@
 	"revdelete-offender": "Pemilik revisi:",
 	"suppressionlog": "Log pemberedelan",
 	"suppressionlogtext": "Berikut adalah daftar penghapusan dan pemblokiran, termasuk isi yang disembunyikan dari para pengurus.\nLihat [[Special:BlockList|daftar pemblokiran]] untuk daftar pembatasan dan pemblokiraan yang sedang berjalan.",
-	"mergehistory": "Riwayat penggabungan sejarah halaman",
+	"mergehistory": "Penggabungan dua riwayat",
 	"mergehistory-header": "Halaman ini memperbolehkan Anda untuk menggabungkan revisi-revisi dari satu halaman sumber ke halaman yang lebih baru.\nPastikan bahwa perubahan ini tetap mempertahankan kontinuitas versi terdahulu halaman.",
 	"mergehistory-box": "Gabung revisi-revisi dari dua halaman",
 	"mergehistory-from": "Halaman sumber:",
@@ -937,8 +938,8 @@
 	"mergehistory-fail-invalid-source": "Halaman asal tidak valid.",
 	"mergehistory-fail-invalid-dest": "Halaman tujuan tidak valid.",
 	"mergehistory-fail-start-after-end": "Timestamp awal berada setelah timestamp akhir, atau setelah revisi terakhir pada halaman tersebut.",
-	"mergehistory-fail-no-change": "Penggabungan sejarah tidak berhasil menggabungkan revisi apa pun. Mohon periksa kembali parameter halaman dan waktu.",
-	"mergehistory-fail-permission": "Izin penggabungan sejarah halaman tidak mencukupi.",
+	"mergehistory-fail-no-change": "Penggabungan riwayat tidak berhasil menggabungkan revisi apa pun. Mohon periksa kembali parameter halaman dan waktu.",
+	"mergehistory-fail-permission": "Izin [[Wikipedia:Penggabungan dua riwayat|penggabungan dua riwayat]] halaman tidak mencukupi.",
 	"mergehistory-fail-self-merge": "Halaman asal dan tujuan sama.",
 	"mergehistory-fail-timestamps-overlap": "Revisi asal tumpang tindih atau lebih baru dari revisi tujuan.",
 	"mergehistory-fail-change-current-revision": "Tidak dapat mengubah revisi terkini dari kedua halaman melalui MergeHistory (kecuali saat menggabungkan seluruh halaman sumber ke halaman tujuan).",
@@ -2460,7 +2461,7 @@
 	"blanknamespace": "(Utama)",
 	"contributions": "Kontribusi pengguna",
 	"tool-link-contributions": "Kontribusi {{GENDER:$1|pengguna}}",
-	"contributions-title": "Kontribusi {{GENDER:$2|Pengguna}} untuk $1",
+	"contributions-title": "Kontribusi {{GENDER:$2|pengguna}} untuk $1",
 	"contributions-title-for-ip-when-temporary-accounts-enabled": "Kontribusi lama pengguna untuk IP $1",
 	"contribute-title": "Berkontribusi",
 	"mycontris": "Kontribusi",

@@ -1151,6 +1151,7 @@
 	"tag-hidden": "$1 (čiõkkum ǩeâlǥal)",
 	"tag-list-wrapper": "[[Special:Tags|{{PLURAL:$1|ǩeâlǥal|ǩeâlggal|ǩeâlggled}}]]: $2",
 	"tag-mw-blank": "Seeid kuârummuš",
+	"tag-mw-blank-description": "Muttâz, kook kuâree seeid",
 	"tag-mw-rollback": "Kååʹmtummuš",
 	"tag-mw-undo": "Kååʹmtummuš",
 	"tag-mw-reverted": "Kååʹmtum",
