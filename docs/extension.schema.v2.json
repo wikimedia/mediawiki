@@ -240,8 +240,16 @@
 			"description": "Raw description of the extension."
 		},
 		"descriptionmsg": {
-			"type": "string",
-			"description": "Message key for a i18n message describing the extension."
+			"description": "Message key for a i18n message describing the extension, or message key with parameters.",
+			"oneOf": [
+				{ "type": "string" },
+				{
+					"type": "array",
+					"items": {
+						"type": "string"
+					}
+				}
+			]
 		},
 		"license-name": {
 			"type": "string",
