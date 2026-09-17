@@ -22,9 +22,10 @@ use LogicException;
  *         ->keepIndefinitely()
  *         ->invalidatedByKey( 'language-stats' )
  *         ->shortProcessCache()
- *         ->getWithSetCallback( static function () {
- *             return self::getAllLanguageStats();
- *         } );
+ *         ->callback( function () {
+ *             return $this->fetchAllLanguageStats();
+ *         } )
+ *         ->fetch();
  * @endcode
  *
  * The callback receives the previous value (false if there was none),

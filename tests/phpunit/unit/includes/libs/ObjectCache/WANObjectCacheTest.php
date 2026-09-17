@@ -12,6 +12,7 @@ use Wikimedia\ObjectCache\BagOStuff;
 use Wikimedia\ObjectCache\EmptyBagOStuff;
 use Wikimedia\ObjectCache\HashBagOStuff;
 use Wikimedia\ObjectCache\WANObjectCache;
+use Wikimedia\Stats\StatsFactory;
 use Wikimedia\TestingAccessWrapper;
 
 /**
@@ -2265,6 +2266,71 @@ class WANObjectCacheTest extends MediaWikiUnitTestCase {
 		] ) );
 
 		$this->assertSame( $class, $wanCache->determineKeyGroupForStats( $key ) );
+	}
+
+	public function testStats() {
+		$statsHelper = StatsFactory::newUnitTestingHelper();
+		$wanCache = new WANObjectCache( [
+			'cache' => new HashBagOStuff(),
+			'stats' => $statsHelper->getStatsFactory(),
+		] );
+		$time = 1301648400.0;
+		$wanCache->setMockTime( $time );
+
+		$wanCache->getWithSetCallback(
+			$wanCache->makeKey( 'example-foo', 'x' ),
+			WANObjectCache::TTL_DAY,
+			static function () use ( &$time ) {
+				$time += 0.5;
+				return 'computed';
+			}
+		);
+
+		$this->assertSame( [
+			'mediawiki.wanobjectcache_regen_seconds:500|ms|#keygroup:example_foo',
+			'mediawiki.wanobjectcache_getwithset_seconds:500|ms|#keygroup:example_foo,result:miss,reason:compute',
+		], $statsHelper->consumeAllFormatted(), 'Simple miss' );
+
+		// Based on testPreemptiveRefresh
+		$asycList = [];
+		$asyncHandler = static function ( $callback ) use ( &$asycList ) {
+			$asycList[] = $callback;
+		};
+		$wanCache = new NearExpiringWANObjectCache( [
+			'cache' => new HashBagOStuff(),
+			'stats' => $statsHelper->getStatsFactory(),
+			'asyncHandler' => $asyncHandler
+		] );
+		$time = 1301648400.0;
+		$wanCache->setMockTime( $time );
+
+		$builder = $wanCache->buildGetWithSetCallback()
+			->key( 'example-bar', 'y' )
+			->lifetime( 300 )
+			->refreshBeforeExpiry( 100 )
+			->refreshPopularEvery( 0 )
+			->callback( static function () use ( &$time ) {
+				$time += 1.5;
+				return 'computed';
+			} );
+
+		$builder->fetch();
+		$this->assertSame( [
+			'mediawiki.wanobjectcache_regen_seconds:1500|ms|#keygroup:example_bar',
+			'mediawiki.wanobjectcache_getwithset_seconds:1500|ms|#keygroup:example_bar,result:miss,reason:compute',
+		], $statsHelper->consumeAllFormatted(), 'Miss before expiry' );
+
+		$time += 250;
+		$builder->fetch();
+		$this->assertSame( [
+			'mediawiki.wanobjectcache_getwithset_seconds:0|ms|#keygroup:example_bar,result:hit,reason:refresh',
+		], $statsHelper->consumeAllFormatted(), 'Cache hit before expiry' );
+		$this->assertCount( 1, $asycList, 'Refresh is scheduled' );
+		$asycList[0](); // run async refresh
+		$this->assertSame( [
+			'mediawiki.wanobjectcache_regen_seconds:1500|ms|#keygroup:example_bar',
+			'mediawiki.wanobjectcache_getwithset_seconds:1500|ms|#keygroup:example_bar,result:renew,reason:compute',
+		], $statsHelper->consumeAllFormatted(), 'Refresh executed' );
 	}
 
 	public function testMakeMultiKeys() {
