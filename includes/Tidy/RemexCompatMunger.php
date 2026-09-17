@@ -46,6 +46,9 @@ class RemexCompatMunger implements TreeHandler {
 		"legend" => true,
 		"map" => true,
 		"mark" => true,
+		"math" => true,
+		/* Bug: T429711 */
+		"default:math" => true,
 		"object" => true,
 		"param" => true,
 		"q" => true,
