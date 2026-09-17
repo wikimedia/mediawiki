@@ -298,7 +298,7 @@ class ChangeTags {
 		$tags = array_values( $tags );
 		$count = count( $tags );
 		$status = Status::newFatal( ( $count > 1 ) ? $msgMulti : $msgOne,
-			Message::listParam( $tags ), $count );
+			Message::listParam( array_map( wfEscapeWikiText( ... ), $tags ) ), $count );
 		$status->value = $tags;
 		return $status;
 	}
