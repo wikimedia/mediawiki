@@ -603,6 +603,8 @@ because of Phabricator reports.
   deprecation warnings.
 * Customizing API help output by overriding the ApiBase::modifyHelp() method
   or by the APIHelpModifyOutput hook has been deprecated.
+* ApiUpload::getDummyInstance(), deprecated since 1.46, now emits
+  deprecation warnings.
 * The global variable $wgLang has been deprecated. Use an available
   ContextSource instead, falling back to RequestContext::getMain(). As MediaWiki
   Core no longer reads from $wgLang, writing to $wgLang in extensions will no

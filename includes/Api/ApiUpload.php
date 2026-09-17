@@ -202,9 +202,10 @@ class ApiUpload extends ApiBase {
 
 	/**
 	 * @deprecated Since 1.46, subclasses of ApiUpload can use
-	 * ApiUpload::getUploadImageInfo() instead.
+	 * ApiUpload::getUploadImageInfo() instead. Hard-deprecated since 1.47.
 	 */
 	public static function getDummyInstance(): self {
+		wfDeprecated( __METHOD__, '1.46' );
 		$services = MediaWikiServices::getInstance();
 		return new ApiUpload(
 			// dummy object (XXX)
