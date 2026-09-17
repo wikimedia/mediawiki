@@ -524,24 +524,24 @@ class ChangeTags {
 		$logEntry->setComment( $reason );
 
 		// find the appropriate target page
+		$target = null;
 		if ( $rev_id ) {
 			$revisionRecord = MediaWikiServices::getInstance()
 				->getRevisionLookup()
 				->getRevisionById( $rev_id );
-			if ( $revisionRecord ) {
-				$logEntry->setTarget( $revisionRecord->getPageAsLinkTarget() );
-			}
+			$target = $revisionRecord?->getPageAsLinkTarget();
 		} elseif ( $log_id ) {
 			// This function is from revision deletion logic and has nothing to do with
 			// change tags, but it appears to be the only other place in core where we
 			// perform logged actions on log items.
-			$logEntry->setTarget( RevDelLogList::suggestTarget( null, [ $log_id ] ) );
+			$target = RevDelLogList::suggestTarget( null, [ $log_id ] );
 		}
 
-		if ( !$logEntry->getTarget() ) {
+		if ( $target === null ) {
 			// target is required, so we have to set something
-			$logEntry->setTarget( SpecialPage::getTitleFor( 'Tags' ) );
+			$target = SpecialPage::getTitleFor( 'Tags' );
 		}
+		$logEntry->setTarget( $target );
 
 		// Filter out any tag that is not publicly viewable, as we don't want to expose them in the public log
 		$initialTags = $changeTagsStore->filterViewableTags(

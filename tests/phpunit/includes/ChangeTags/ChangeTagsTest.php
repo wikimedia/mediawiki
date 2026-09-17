@@ -10,8 +10,11 @@ use MediaWiki\Context\RequestContext;
 use MediaWiki\Deferred\DeferredUpdates;
 use MediaWiki\Logging\LogEntryBase;
 use MediaWiki\MainConfigNames;
+use MediaWiki\Page\PageReference;
 use MediaWiki\Permissions\Authority;
+use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
+use MediaWiki\User\UserIdentity;
 use MediaWikiIntegrationTestCase;
 use Wikimedia\Rdbms\IExpression;
 use Wikimedia\Rdbms\LikeValue;
@@ -1192,7 +1195,7 @@ class ChangeTagsTest extends MediaWikiIntegrationTestCase {
 			->assertEmptyResult();
 	}
 
-	public function testUpdateTagsWithChecksWhenTagAdded(): void {
+	public function testUpdateTagsWithChecksForRevisionWhenTagAdded(): void {
 		$testPage = $this->getExistingTestPage();
 		$editStatus = $this->editPage( $testPage, 'Test content' );
 		$this->assertStatusGood( $editStatus );
@@ -1224,6 +1227,35 @@ class ChangeTagsTest extends MediaWikiIntegrationTestCase {
 		);
 		$this->assertStatusGood( $actualStatus );
 
+		$actualLogId = $this->assertUpdateTagsCreatedLoggingRow(
+			$testPage,
+			$testUser,
+			'Test reason 1234',
+			$revId,
+			false,
+			[ 'test-tag' ],
+			[],
+			[ 'other-tag' ]
+		);
+
+		$this->assertArrayEquals(
+			[ 'logId' => $actualLogId, 'addedTags' => [ 'test-tag' ], 'removedTags' => [] ],
+			(array)$actualStatus->getValue(),
+			false,
+			true
+		);
+	}
+
+	private function assertUpdateTagsCreatedLoggingRow(
+		PageReference $expectedTargetPage,
+		UserIdentity $expectedPerformer,
+		string $expectedComment,
+		int|false $expectedRevId,
+		int|false $expectedLogId,
+		array $expectedTagsAdded,
+		array $expectedTagsRemoved,
+		array $expectedInitialTags
+	): int {
 		$actualLogIds = $this->newSelectQueryBuilder()
 			->select( 'log_id' )
 			->from( 'logging' )
@@ -1231,13 +1263,6 @@ class ChangeTagsTest extends MediaWikiIntegrationTestCase {
 			->caller( __METHOD__ )
 			->fetchFieldValues();
 		$this->assertCount( 1, $actualLogIds );
-
-		$this->assertArrayEquals(
-			[ 'logId' => (int)$actualLogIds[0], 'addedTags' => [ 'test-tag' ], 'removedTags' => [] ],
-			(array)$actualStatus->getValue(),
-			false,
-			true
-		);
 
 		$this->newSelectQueryBuilder()
 			->select( [ 'log_title', 'log_namespace', 'actor_name', 'comment_text' ] )
@@ -1247,10 +1272,10 @@ class ChangeTagsTest extends MediaWikiIntegrationTestCase {
 			->where( [ 'log_id' => $actualLogIds[0] ] )
 			->caller( __METHOD__ )
 			->assertRowValue( [
-				$testPage->getDBkey(),
-				$testPage->getNamespace(),
-				$testUser->getName(),
-				'Test reason 1234'
+				$expectedTargetPage->getDBkey(),
+				$expectedTargetPage->getNamespace(),
+				$expectedPerformer->getName(),
+				$expectedComment
 			] );
 
 		$actualLogParams = $this->newSelectQueryBuilder()
@@ -1261,18 +1286,94 @@ class ChangeTagsTest extends MediaWikiIntegrationTestCase {
 			->fetchField();
 		$this->assertArrayEquals(
 			[
-				'4::revid' => $revId,
-				'5::logid' => false,
-				'6:list:tagsAdded' => [ 'test-tag' ],
-				'7:number:tagsAddedCount' => 1,
-				'8:list:tagsRemoved' => [],
-				'9:number:tagsRemovedCount' => 0,
-				'initialTags' => [ 'other-tag' ],
+				'4::revid' => $expectedRevId,
+				'5::logid' => $expectedLogId,
+				'6:list:tagsAdded' => $expectedTagsAdded,
+				'7:number:tagsAddedCount' => count( $expectedTagsAdded ),
+				'8:list:tagsRemoved' => $expectedTagsRemoved,
+				'9:number:tagsRemovedCount' => count( $expectedTagsRemoved ),
+				'initialTags' => $expectedInitialTags,
 			],
 			LogEntryBase::extractParams( $actualLogParams ),
 			false,
 			true,
 			'Log params should be as expected (including not including the restricted tag in initialTags)'
+		);
+
+		return $actualLogIds[0];
+	}
+
+	public function testUpdateTagsWithChecksForLogWhenTagAdded(): void {
+		$this->changeTags->defineTag( 'test-tag' );
+
+		$logIdHavingTheTagChange = 1234;
+		$testUser = $this->getTestUser()->getUserIdentity();
+		$actualStatus = ChangeTags::updateTagsWithChecks(
+			[ 'test-tag' ],
+			[],
+			null,
+			null,
+			$logIdHavingTheTagChange,
+			'',
+			'Test reason 123',
+			$this->mockUserAuthorityWithPermissions( $testUser, [ 'changetags' ] )
+		);
+		$this->assertStatusGood( $actualStatus );
+
+		$actualLogId = $this->assertUpdateTagsCreatedLoggingRow(
+			SpecialPage::getTitleFor( 'Log' ),
+			$testUser,
+			'Test reason 123',
+			false,
+			$logIdHavingTheTagChange,
+			[ 'test-tag' ],
+			[],
+			[]
+		);
+
+		$this->assertArrayEquals(
+			[ 'logId' => $actualLogId, 'addedTags' => [ 'test-tag' ], 'removedTags' => [] ],
+			(array)$actualStatus->getValue(),
+			false,
+			true
+		);
+	}
+
+	public function testUpdateTagsWithChecksForRecentChangeWhenTagAdded(): void {
+		$this->changeTags->defineTag( 'test-tag' );
+
+		// Use an RC ID that does not associate to a log or rev ID so we can check the fallback handling for
+		// the log title
+		$rcId = 1234;
+		$testUser = $this->getTestUser()->getUserIdentity();
+		$actualStatus = ChangeTags::updateTagsWithChecks(
+			[ 'test-tag' ],
+			[],
+			$rcId,
+			null,
+			null,
+			'',
+			'Test reason',
+			$this->mockUserAuthorityWithPermissions( $testUser, [ 'changetags' ] )
+		);
+		$this->assertStatusGood( $actualStatus );
+
+		$actualLogId = $this->assertUpdateTagsCreatedLoggingRow(
+			SpecialPage::getTitleFor( 'Tags' ),
+			$testUser,
+			'Test reason',
+			false,
+			false,
+			[ 'test-tag' ],
+			[],
+			[]
+		);
+
+		$this->assertArrayEquals(
+			[ 'logId' => $actualLogId, 'addedTags' => [ 'test-tag' ], 'removedTags' => [] ],
+			(array)$actualStatus->getValue(),
+			false,
+			true
 		);
 	}
 
