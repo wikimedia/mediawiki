@@ -52,7 +52,7 @@ trait SerializationTestTrait {
 	 * @dataProvider provideTestDeserialization
 	 */
 	public function testDeserialization( callable $deserializer, object $expected, string $data ) {
-		$deserialized = $deserializer( $data );
+		$deserialized = $deserializer( $data, $this->getServiceContainer() );
 		$this->assertInstanceOf( self::getClassToTest(), $deserialized );
 		$this->validateObjectEquality( $expected, $deserialized );
 	}
@@ -103,10 +103,10 @@ trait SerializationTestTrait {
 	 * @dataProvider provideSerialization
 	 */
 	public function testSerialization( callable $serializer, callable $deserializer, string $expected, object $testInstance ) {
-		$serTestInstance = $serializer( $testInstance );
-		$deserExpected = $deserializer( $expected );
+		$serTestInstance = $serializer( $testInstance, $this->getServiceContainer() );
+		$deserExpected = $deserializer( $expected, $this->getServiceContainer() );
 		$this->assertNotEmpty( $deserExpected );
-		$deserTestInstance = $deserializer( $serTestInstance );
+		$deserTestInstance = $deserializer( $serTestInstance, $this->getServiceContainer() );
 		$this->assertNotEmpty( $deserTestInstance );
 
 		$this->validateObjectEquality( $deserExpected, $deserTestInstance );
@@ -143,10 +143,10 @@ trait SerializationTestTrait {
 		callable $serializer,
 		callable $deserializer
 	) {
-		$blob = $serializer( $instance );
+		$blob = $serializer( $instance, $this->getServiceContainer() );
 		$this->assertNotEmpty( $blob );
 
-		$actual = $deserializer( $blob );
+		$actual = $deserializer( $blob, $this->getServiceContainer() );
 		$this->assertNotEmpty( $actual );
 
 		$this->validateObjectEquality( $instance, $actual );
@@ -244,11 +244,11 @@ trait SerializationTestTrait {
 	}
 
 	/**
-	 * Data provider for acceptance testing, returning instances deserialized
+	 * Data provider for acceptance testing, returning fixtures to be deserialized
 	 * from stored files for various MW versions.
 	 * - For each supported serialization format defined by ::getSupportedSerializationFormats
 	 *  - For each object deserialized from stored file for a particular MW version
-	 * @return Generator for [ $instance which to run assertions on, $assertionsCallback ]
+	 * @return Generator for [ callable $deserializer, string $data, $assertionsCallback ]
 	 */
 	public static function provideDeserializedTestObjects(): Generator {
 		$className = self::getClassToTest();
@@ -263,16 +263,17 @@ trait SerializationTestTrait {
 				$serializationFormat['deserializer']
 			);
 			foreach ( $testCases as $testCaseName => [ 'assertions' => $assertions ] ) {
-				$deserializedObjects = $serializationUtils->getDeserializedInstancesForTestCase(
+				$fixtures = $serializationUtils->getFixturesForTestCase(
 					$className,
 					$testCaseName
 				);
-				foreach ( $deserializedObjects as $deserializedObjectInfo ) {
+				foreach ( $fixtures as $fixture ) {
 					yield "{$className}:{$testCaseName}, " .
-						"deserialized from {$deserializedObjectInfo->ext}, " .
-						"{$deserializedObjectInfo->version}" =>
+						"deserialized from {$fixture->ext}, " .
+						"{$fixture->version}" =>
 					[
-						$deserializedObjectInfo->object,
+						$serializationFormat['deserializer'],
+						$fixture->data,
 						$assertions
 					];
 				}
@@ -283,13 +284,27 @@ trait SerializationTestTrait {
 	/**
 	 * Tests that assertions in $assertionsCallback succeed on $testInstance.
 	 * @see self::getTestInstancesAndAssertions()
-	 * @dataProvider provideDeserializedTestObjects
 	 * @dataProvider provideCurrentVersionTestObjects
 	 */
-	public function testAcceptanceOfDeserializedInstances(
+	public function testAcceptanceOfCurrentVersionInstances(
 		object $testInstance,
 		callable $assertionsCallback
 	) {
+		$assertionsCallback( $this, $testInstance );
+	}
+
+	/**
+	 * Tests that assertions in $assertionsCallback succeed on an instance
+	 * deserialized from data stored for a previous MW version.
+	 * @see self::getTestInstancesAndAssertions()
+	 * @dataProvider provideDeserializedTestObjects
+	 */
+	public function testAcceptanceOfDeserializedInstances(
+		callable $deserializer,
+		string $data,
+		callable $assertionsCallback
+	) {
+		$testInstance = $deserializer( $data, $this->getServiceContainer() );
 		$assertionsCallback( $this, $testInstance );
 	}
 

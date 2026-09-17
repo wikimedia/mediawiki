@@ -3,7 +3,7 @@
 namespace MediaWiki\Tests\Parser;
 
 use MediaWiki\Debug\MWDebug;
-use MediaWiki\Json\JsonCodec;
+use MediaWiki\MediaWikiServices;
 use MediaWiki\Parser\CacheTime;
 use MediaWiki\Parser\ParserOutput;
 use MediaWiki\Parser\ParserOutputFlags;
@@ -802,15 +802,16 @@ abstract class ParserCacheSerializationTestCases {
 	 *  'deserializer' => callable to deserialize objects
 	 */
 	public static function getSupportedSerializationFormats( string $class ): array {
-		$jsonCodec = new JsonCodec();
 		return [
 			[
 				'ext' => 'json',
-				'serializer' => $jsonCodec->serialize( ... ),
-				'deserializer' => static function ( $data ) use ( $jsonCodec ) {
+				'serializer' => static function ( $object, MediaWikiServices $services ) {
+					return $services->getJsonCodec()->serialize( $object );
+				},
+				'deserializer' => static function ( $data, MediaWikiServices $services ) {
 					MWDebug::filterDeprecationForTest( '/::setOutputFlag with non-standard flag/' );
 					MWDebug::filterDeprecationForTest( '/::initFromJson of flag/' );
-					return $jsonCodec->deserialize( $data );
+					return $services->getJsonCodec()->deserialize( $data );
 				},
 			],
 		];

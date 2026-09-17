@@ -4,7 +4,6 @@ namespace MediaWiki\Tests\Parser;
 
 use InvalidArgumentException;
 use MediaWiki\Content\WikitextContent;
-use MediaWiki\Json\JsonCodec;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Page\PageIdentityValue;
 use MediaWiki\Parser\ParserOptions;
@@ -90,7 +89,7 @@ class RevisionOutputCacheTest extends MediaWikiIntegrationTestCase {
 			new WANObjectCache( [ 'cache' => $storage ?: new HashBagOStuff() ] ),
 			$expiry,
 			$epoch,
-			new JsonCodec(),
+			$this->getServiceContainer()->getJsonCodec(),
 			StatsFactory::newNull(),
 			$logger ?: new NullLogger(),
 			$globalIdGenerator

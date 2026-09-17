@@ -11,6 +11,7 @@
 namespace Wikimedia\Tests;
 
 use InvalidArgumentException;
+use MediaWiki\MediaWikiServices;
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
 
@@ -124,19 +125,6 @@ class SerializationTestUtils {
 	}
 
 	/**
-	 * Get an array of instances of $class deserialized from
-	 * files for different code versions, keyed by the test case name.
-	 * @param class-string $class
-	 * @return array
-	 */
-	private function getDeserializedInstances( string $class ): array {
-		return array_map( function ( $fileInfo ) {
-			$fileInfo->object = ( $this->deserializer )( $fileInfo->data );
-			return $fileInfo;
-		}, $this->getMatchingFiles( $class, $this->ext ) );
-	}
-
-	/**
 	 * Get an array of serialization fixtures for $class stored in files
 	 * for different MW versions, for test case name $testCaseName.
 	 * @param class-string $class
@@ -152,28 +140,15 @@ class SerializationTestUtils {
 	}
 
 	/**
-	 * Get an array of instances of $class deserialized from stored files
-	 * for different MW versions, for test case named $testCaseName.
-	 * @param class-string $class
-	 * @param string $testCaseName
-	 * @return array
-	 */
-	public function getDeserializedInstancesForTestCase( string $class, string $testCaseName ): array {
-		return array_filter( $this->getDeserializedInstances( $class ),
-			static function ( $fileInfo ) use ( $testCaseName ) {
-				return $fileInfo->testCaseName === $testCaseName;
-			}
-		);
-	}
-
-	/**
 	 * Get test objects of $class, serialized using $serializer,
 	 * keyed by test case name.
+	 * @param MediaWikiServices|null $services
+	 * @return array
 	 */
-	public function getSerializedInstances(): array {
+	public function getSerializedInstances( ?MediaWikiServices $services = null ): array {
 		$instances = $this->getTestInstances();
-		return array_map( function ( $object ) {
-			return ( $this->serializer )( $object );
+		return array_map( function ( $object ) use ( $services ) {
+			return ( $this->serializer )( $object, $services );
 		}, $instances );
 	}
 

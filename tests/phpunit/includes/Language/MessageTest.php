@@ -905,8 +905,12 @@ class MessageTest extends MediaWikiLangTestCase {
 		return [
 			[
 				'ext' => 'serialized',
-				'serializer' => 'serialize',
-				'deserializer' => 'unserialize'
+				'serializer' => static function ( $obj ) {
+					return serialize( $obj );
+				},
+				'deserializer' => static function ( $data ) {
+					return unserialize( $data );
+				},
 			]
 		];
 	}

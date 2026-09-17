@@ -128,7 +128,8 @@ class ValidateSerializationTestData extends Maintenance {
 				$serializationFormat['deserializer']
 			);
 			$serializationUtils->setLogger( new ConsoleLogger( 'validator' ) );
-			foreach ( $serializationUtils->getSerializedInstances() as $testCaseName => $currentSerialized ) {
+			$serializedInstances = $serializationUtils->getSerializedInstances( $this->getServiceContainer() );
+			foreach ( $serializedInstances as $testCaseName => $currentSerialized ) {
 				$expected = $serializationUtils
 					->getStoredSerializedInstance( $className, $testCaseName, $this->getOption( 'version' ) );
 				$ok = $this->validateSerializationData( $currentSerialized, $expected ) && $ok;

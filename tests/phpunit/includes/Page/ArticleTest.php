@@ -286,14 +286,11 @@ class ArticleTest extends ParserCacheTestBase {
 		$this->overrideConfigValue( MainConfigNames::UsePostprocCacheParsoid, false );
 		$this->overrideConfigValue( MainConfigNames::UseParsoidParser, false );
 		$parserCacheFactory = $this->createMock( ParserCacheFactory::class );
-		$caches = [
-			$this->getParserCache( 'test', new HashBagOStuff() ),
-			$this->getParserCache( 'test', new HashBagOStuff() ),
-		];
 		$calls = [];
+		$caches = [];
 		$parserCacheFactory
 			->method( 'getParserCache' )
-			->willReturnCallback( static function ( $cacheName ) use ( &$calls, $caches ) {
+			->willReturnCallback( static function ( $cacheName ) use ( &$calls, &$caches ) {
 				static $cacheList = [];
 				$calls[] = $cacheName;
 				$which = array_search( $cacheName, $cacheList );
@@ -303,11 +300,15 @@ class ArticleTest extends ParserCacheTestBase {
 				}
 				return $caches[$which];
 			} );
+		// This destroys the existing container, including the services
+		// object held by any existing JsonCodec.
 		$this->overrideMwServices( null, [
 			'ParserCacheFactory' => static function () use ( $parserCacheFactory ) {
 				return $parserCacheFactory;
 			}
 		] );
+		$caches[] = $this->getParserCache( 'test', new HashBagOStuff() );
+		$caches[] = $this->getParserCache( 'test', new HashBagOStuff() );
 		$title = $this->getExistingTestPage()->getTitle();
 		$article = $this->newArticle( $title );
 		$this->editPage( $title, '== Hello ==' );
@@ -345,15 +346,11 @@ class ArticleTest extends ParserCacheTestBase {
 		);
 		$infix = $splitParsoidParserCache ? 'parsoid-' : '';
 		$parserCacheFactory = $this->createMock( ParserCacheFactory::class );
-		$caches = [
-			$this->getParserCache( 'test', new HashBagOStuff() ),
-			$this->getParserCache( 'test', new HashBagOStuff() ),
-			$this->getParserCache( 'test', new HashBagOStuff() ),
-		];
+		$caches = [];
 		$calls = [];
 		$parserCacheFactory
 			->method( 'getParserCache' )
-			->willReturnCallback( static function ( $cacheName ) use ( &$calls, $caches ) {
+			->willReturnCallback( static function ( $cacheName ) use ( &$calls, &$caches ) {
 				static $cacheList = [];
 				$calls[] = $cacheName;
 				$which = array_search( $cacheName, $cacheList );
@@ -363,11 +360,16 @@ class ArticleTest extends ParserCacheTestBase {
 				}
 				return $caches[$which];
 			} );
+		// This destroys the existing container, including the services
+		// object held by any existing JsonCodec.
 		$this->overrideMwServices( null, [
 			'ParserCacheFactory' => static function () use ( $parserCacheFactory ) {
 				return $parserCacheFactory;
 			}
 		] );
+		$caches[] = $this->getParserCache( 'test', new HashBagOStuff() );
+		$caches[] = $this->getParserCache( 'test', new HashBagOStuff() );
+		$caches[] = $this->getParserCache( 'test', new HashBagOStuff() );
 		$title = $this->getExistingTestPage()->getTitle();
 		$article = $this->newArticle( $title );
 		$this->editPage( $title, '== Hello ==' );
@@ -411,15 +413,11 @@ class ArticleTest extends ParserCacheTestBase {
 		$this->overrideConfigValue( MainConfigNames::SplitParsoidParserCache, true );
 		$this->overrideConfigValue( MainConfigNames::UsePigLatinVariant, true );
 		$parserCacheFactory = $this->createMock( ParserCacheFactory::class );
-		$caches = [
-			$this->getParserCache( 'test', new HashBagOStuff() ),
-			$this->getParserCache( 'test', new HashBagOStuff() ),
-			$this->getParserCache( 'test', new HashBagOStuff() ),
-		];
+		$caches = [];
 		$calls = [];
 		$parserCacheFactory
 			->method( 'getParserCache' )
-			->willReturnCallback( static function ( $cacheName ) use ( &$calls, $caches ) {
+			->willReturnCallback( static function ( $cacheName ) use ( &$calls, &$caches ) {
 				static $cacheList = [];
 				$calls[] = $cacheName;
 				$which = array_search( $cacheName, $cacheList );
@@ -429,11 +427,16 @@ class ArticleTest extends ParserCacheTestBase {
 				}
 				return $caches[$which];
 			} );
+		// This destroys the existing container, including the services
+		// object held by any existing JsonCodec.
 		$this->overrideMwServices( null, [
 			'ParserCacheFactory' => static function () use ( $parserCacheFactory ) {
 				return $parserCacheFactory;
 			}
 		] );
+		$caches[] = $this->getParserCache( 'test', new HashBagOStuff() );
+		$caches[] = $this->getParserCache( 'test', new HashBagOStuff() );
+		$caches[] = $this->getParserCache( 'test', new HashBagOStuff() );
 		$title = $this->getExistingTestPage()->getTitle();
 		$req = new FauxRequest( [ 'variant' => 'en-x-piglatin' ] );
 		$this->setRequest( $req );
