@@ -32,6 +32,7 @@ use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
 use MediaWiki\User\User;
 use RuntimeException;
 use StatusValue;
+use TestLogger;
 use UnexpectedValueException;
 use Wikimedia\Rdbms\DBQueryError;
 use Wikimedia\Rdbms\IDatabase;
@@ -171,6 +172,48 @@ class ApiMainTest extends ApiTestCase {
 		}
 
 		return new ApiMain( $req );
+	}
+
+	public static function provideLogRequestUserAgentHeaders() {
+		return [
+			'User-Agent only' => [
+				[ 'User-Agent' => 'Example/1.0' ],
+				[ 'user-agent' => 'Example/1.0' ],
+			],
+			'Api-User-Agent is logged next to User-Agent' => [
+				[ 'User-Agent' => 'Mozilla/5.0', 'Api-User-Agent' => 'ExampleTool/1.0 (maintainer@example.org)' ],
+				[ 'user-agent' => 'Mozilla/5.0', 'api-user-agent' => 'ExampleTool/1.0 (maintainer@example.org)' ],
+			],
+			'Api-User-Agent without User-Agent' => [
+				[ 'Api-User-Agent' => 'ExampleTool/1.0' ],
+				[ 'api-user-agent' => 'ExampleTool/1.0' ],
+			],
+		];
+	}
+
+	/**
+	 * @dataProvider provideLogRequestUserAgentHeaders
+	 */
+	public function testLogRequestLogsUserAgentHeaders( array $headers, array $expected ) {
+		$logger = new TestLogger( true, null, true );
+		$this->setLogger( 'api-request', $logger );
+
+		$api = $this->getNonInternalApiMain(
+			[ 'action' => 'query', 'meta' => 'siteinfo', 'format' => 'json' ],
+			array_change_key_case( $headers, CASE_UPPER )
+		);
+
+		ob_start();
+		try {
+			$api->execute();
+		} finally {
+			ob_end_clean();
+		}
+
+		$buffer = $logger->getBuffer();
+		$this->assertCount( 1, $buffer, 'one api-request event per request' );
+		[ , , $context ] = $buffer[0];
+		$this->assertSame( $expected, $context['http']['request_headers'] ?? [] );
 	}
 
 	public function testUselang() {

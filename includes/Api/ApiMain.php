@@ -2158,7 +2158,7 @@ class ApiMain extends ApiBase {
 		];
 
 		// If set, these headers will be logged in http.request_headers.
-		$httpRequestHeadersToLog = [ 'accept-language', 'referer', 'user-agent', 'content-type' ];
+		$httpRequestHeadersToLog = [ 'accept-language', 'referer', 'user-agent', 'api-user-agent', 'content-type' ];
 		foreach ( $httpRequestHeadersToLog as $header ) {
 			if ( $request->getHeader( $header ) ) {
 				// Set the header in http.request_headers
