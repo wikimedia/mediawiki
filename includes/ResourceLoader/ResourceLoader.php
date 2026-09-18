@@ -257,11 +257,8 @@ class ResourceLoader implements LoggerAwareInterface {
 		foreach ( $registrations as $name => $info ) {
 			// Warn on duplicate registrations
 			if ( isset( $this->moduleInfos[$name] ) ) {
-				// A module has already been registered by this name
-				$this->logger->warning(
-					'ResourceLoader duplicate registration warning. ' .
-					'Another module has already been registered as ' . $name
-				);
+				// (T438387) Add a PHP warning to make CI & production log this in channel:error
+				trigger_error( "ResourceLoader duplicate module registration: \"$name\"", E_USER_WARNING );
 			}
 
 			// Check validity

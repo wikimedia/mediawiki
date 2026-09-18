@@ -16,7 +16,6 @@ use MediaWiki\ResourceLoader\ResourceLoader;
 use MediaWiki\ResourceLoader\SkinModule;
 use MediaWiki\ResourceLoader\StartUpModule;
 use MediaWiki\User\Options\StaticUserOptionsLookup;
-use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
 use RuntimeException;
 use UnexpectedValueException;
@@ -136,13 +135,16 @@ class ResourceLoaderTest extends ResourceLoaderTestCase {
 	}
 
 	public function testRegisterDuplicate() {
-		$logger = $this->createMock( LoggerInterface::class );
-		$logger->expects( $this->once() )
-			->method( 'warning' );
-		$resourceLoader = new EmptyResourceLoader( null, $logger );
+		$resourceLoader = new EmptyResourceLoader();
 
 		$resourceLoader->register( 'test', [ 'class' => SkinModule::class ] );
-		$resourceLoader->register( 'test', [ 'class' => StartUpModule::class ] );
+		$this->expectPHPError(
+			E_USER_WARNING,
+			static function () use ( $resourceLoader ) {
+				$resourceLoader->register( 'test', [ 'class' => StartUpModule::class ] );
+			},
+			'ResourceLoader duplicate module registration: "test"'
+		);
 		$this->assertInstanceOf(
 			StartUpModule::class,
 			$resourceLoader->getModule( 'test' ),
