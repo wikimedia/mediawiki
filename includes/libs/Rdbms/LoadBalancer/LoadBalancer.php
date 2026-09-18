@@ -18,6 +18,7 @@ use Wikimedia\ObjectCache\EmptyBagOStuff;
 use Wikimedia\ObjectCache\WANObjectCache;
 use Wikimedia\ScopedCallback;
 use Wikimedia\Stats\StatsFactory;
+use Wikimedia\Timestamp\ConvertibleTimestamp;
 
 /**
  * @see ILoadBalancer
@@ -579,12 +580,12 @@ class LoadBalancer implements ILoadBalancerForOwner {
 			$failedReplicas = [];
 			foreach ( $this->serverInfo->getStreamingReplicaIndexes() as $i ) {
 				if ( isset( $this->loads[$i] ) && $this->loads[$i] > 0 ) {
-					$start = microtime( true );
+					$start = ConvertibleTimestamp::hrtime();
 					$ok = $this->awaitSessionPrimaryPos( $i, $timeout );
 					if ( !$ok ) {
 						$failedReplicas[] = $this->getServerName( $i );
 					}
-					$timeout -= intval( microtime( true ) - $start );
+					$timeout -= intval( ( ConvertibleTimestamp::hrtime() - $start ) / 1e9 );
 				}
 			}
 

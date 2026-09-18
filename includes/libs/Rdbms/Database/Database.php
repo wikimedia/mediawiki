@@ -23,6 +23,7 @@ use Wikimedia\ScopedCallback;
 use Wikimedia\Telemetry\NoopTracer;
 use Wikimedia\Telemetry\SpanInterface;
 use Wikimedia\Telemetry\TracerInterface;
+use Wikimedia\Timestamp\ConvertibleTimestamp;
 use Wikimedia\Timestamp\TimestampFormat as TS;
 
 /**
@@ -2354,16 +2355,16 @@ abstract class Database implements Stringable, IDatabaseForOwner, IMaintainableD
 		$this->assertHasConnectionHandle();
 
 		$cs = $this->commenceCriticalSection( __METHOD__ );
-		$timeStart = microtime( true );
+		$timeStart = ConvertibleTimestamp::hrtime();
 		try {
 			$this->doBegin( $fname );
 		} catch ( DBError $e ) {
 			$this->completeCriticalSection( __METHOD__, $cs );
 			throw $e;
 		}
-		$timeEnd = microtime( true );
+		$timeEnd = ConvertibleTimestamp::hrtime();
 		// Treat "BEGIN" as a trivial query to gauge the RTT delay
-		$rtt = max( $timeEnd - $timeStart, 0.0 );
+		$rtt = ( $timeEnd - $timeStart ) / 1e9;
 		$this->transactionManager->onBeginInCriticalSection( $mode, $fname, $rtt );
 		$this->replicationReporter->resetReplicationLagStatus( $this );
 		$this->completeCriticalSection( __METHOD__, $cs );

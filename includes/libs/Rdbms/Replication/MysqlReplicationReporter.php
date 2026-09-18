@@ -16,6 +16,7 @@ use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\MySQLPrimaryPos;
 use Wikimedia\Rdbms\Platform\ISQLPlatform;
 use Wikimedia\Rdbms\Query;
+use Wikimedia\Timestamp\ConvertibleTimestamp;
 
 /**
  * @internal
@@ -297,10 +298,10 @@ class MysqlReplicationReporter extends ReplicationReporter {
 			$waitPos = $pos->__toString();
 		}
 
-		$start = microtime( true );
+		$start = ConvertibleTimestamp::hrtime();
 		$res = $conn->query( $query, __METHOD__ );
 		$row = $res->fetchRow();
-		$seconds = max( microtime( true ) - $start, 0 );
+		$seconds = ( ConvertibleTimestamp::hrtime() - $start ) / 1e9;
 
 		// Result can be NULL (error), -1 (timeout), or 0+ per the MySQL manual
 		$status = ( $row[0] !== null ) ? intval( $row[0] ) : null;
