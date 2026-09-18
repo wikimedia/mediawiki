@@ -846,7 +846,7 @@
 	"rev-deleted-comment": "(muokkausyhteenveto poistettu)",
 	"rev-deleted-user": "(käyttäjänimi poistettu)",
 	"rev-deleted-event": "(lokitiedot poistettu)",
-	"rev-deleted-user-contribs": "[käyttäjänimi tai IP-osoite poistettu – muokkaus on piilotettu muokkausluettelosta]",
+	"rev-deleted-user-contribs": "[käyttäjänimi tai IP-osoite poistettu – muokkaus piilotettu muokkaushistoriasta]",
 	"rev-deleted-text-permission": "Tämä versio sivusta on <strong>poistettu</strong>.\nLisätietoja löytyy [{{fullurl:{{#Special:Log}}/delete|page=$1}} poistolokista].",
 	"rev-suppressed-text": "Tämän sivun versio on <strong>häivytetty</strong>.",
 	"rev-suppressed-text-permission": "Tämä versio sivusta on <strong>häivytetty</strong>.\nLisätietoja löytyy [{{fullurl:{{#Special:Log}}/suppress|page=$1}}  häivytyslokista].",

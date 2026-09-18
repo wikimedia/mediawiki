@@ -132,7 +132,7 @@
 	"duration-months": "$1 {{PLURAL:$1|مياشت|مياشتې}}",
 	"duration-weeks": "$1 {{PLURAL:$1|اوونۍ}}",
 	"duration-days": "$1 {{PLURAL:$1|ورځ|ورځې}}",
-	"duration-hours": "$1 {{PLURAL:$1|گړۍ}} مخکې",
+	"duration-hours": "$1 {{PLURAL:$1|گړۍ}}",
 	"duration-minutes": "$1 {{PLURAL:$1|دقيقه|دقيقې}}",
 	"duration-seconds": "$1 {{PLURAL:$1|ثانيه|ثانيې}}",
 	"monday-at": "دوه‌نۍ په $1",

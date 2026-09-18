@@ -367,6 +367,7 @@
 	"createacct-error": "Pogrěška pri tvorjenju konta",
 	"createaccounterror": "Stvorjenje konta ne udalo se: $1",
 	"createacct-popup-redirect-notice": "Vy budete prěsměrovani poslě stvorjenja koristničskogo konta...",
+	"createacct-username-policy-popover-title": "Pravila o koristničskyh imenah",
 	"nocookieslogin": "{{SITENAME}} upotrěbjaje kuki za prijavjenje koristnikov.\nU vas kuki sut izključene.\nProsimo, vključite jih i poprobujte ponovno.",
 	"nocookiesfornew": "Koristničsko konto ne bylo stvorjeno, zatože ne mogli jesmo potvrditi jego izvor. \nPrověrite, sut li u vas vključene kuki, osvěžite tutu stranicu i poprobujte ponovno.",
 	"createacct-loginerror": "Konto jest uspěšno stvorjeno, ale vy ne mogli jeste prijaviti se avtomatično. Prosimo, [[Special:UserLogin|prijavite se ručno]].",
