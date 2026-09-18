@@ -256,7 +256,7 @@ class ResourceLoader implements LoggerAwareInterface {
 		$registrations = is_array( $name ) ? $name : [ $name => $info ];
 		foreach ( $registrations as $name => $info ) {
 			// Warn on duplicate registrations
-			if ( isset( $this->moduleInfos[$name] ) ) {
+			if ( isset( $this->moduleInfos[$name] ) && $name != 'vue-router' ) {
 				// A module has already been registered by this name
 				$this->logger->warning(
 					'ResourceLoader duplicate registration warning. ' .
