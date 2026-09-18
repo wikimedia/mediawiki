@@ -62,9 +62,10 @@ class HtmlToContentTransformTest extends MediaWikiIntegrationTestCase {
 		] );
 	}
 
-	private function createHtmlToContentTransform( $html = '' ) {
+	private function createHtmlToContentTransform( $html = '', $dataMw = null ) {
 		return new HtmlToContentTransform(
 			$html ?? self::ORIG_HTML,
+			$dataMw,
 			PageIdentityValue::localIdentity( 7, NS_MAIN, 'Test' ),
 			new Parsoid(
 				$this->getServiceContainer()->getParsoidSiteConfig(),
@@ -287,10 +288,9 @@ class HtmlToContentTransformTest extends MediaWikiIntegrationTestCase {
 
 	public function testModifiedDataMW() {
 		$html = $this->getTextFromFile( 'Minimal-999.html' ); // sets profile version 999.0.0
-		$transform = $this->createHtmlToContentTransform( $html );
+		$transform = $this->createHtmlToContentTransform( $html, self::MODIFIED_DATA_MW );
 
 		$this->setOriginalData( $transform, version: null, dataMw: null );
-		$transform->setModifiedDataMW( self::MODIFIED_DATA_MW );
 
 		// should automatically apply downgrade from v999.0.0
 		$doc = $transform->getModifiedDocument();
@@ -419,6 +419,7 @@ class HtmlToContentTransformTest extends MediaWikiIntegrationTestCase {
 			'schemaVersion' => $pb->getContentVersion(),
 			'html' => $pb->html,
 			'data-parsoid' => $pb->parsoid,
+			'data-mw' => $pb->mw,
 		] );
 
 		$this->assertSame( $wikitext . "<!--boo-->", $transform->htmlToContent()->getText() );

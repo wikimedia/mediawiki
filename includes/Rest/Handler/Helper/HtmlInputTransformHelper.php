@@ -307,12 +307,11 @@ class HtmlInputTransformHelper {
 			throw new LocalizedHttpException( new MessageValue( "rest-missing-body-field", [ 'html' ] ) );
 		}
 
-		$html = is_array( $body['html'] ) ? $body['html']['body'] : $body['html'];
-
 		// TODO: validate $body against a proper schema.
 		$this->transform = $this->htmlTransformFactory->getHtmlToContentTransform(
-			$html,
-			$this->page
+			is_array( $body['html'] ) ? $body['html']['body'] : $body['html'],
+			$this->page,
+			$body['data-mw']['body'] ?? null
 		);
 
 		$this->transform->setMetrics( $this->statsFactory );
@@ -380,10 +379,6 @@ class HtmlInputTransformHelper {
 					->setLabel( 'status', 'unknown' )
 					->increment();
 			}
-		}
-
-		if ( isset( $body['data-mw']['body'] ) ) {
-			$this->transform->setModifiedDataMW( $body['data-mw']['body'] );
 		}
 
 		if ( $pageLanguage ) {

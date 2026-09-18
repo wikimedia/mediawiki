@@ -59,6 +59,7 @@ class HtmlToContentTransform {
 
 	public function __construct(
 		string $modifiedHTML,
+		?array $modifiedDataMw,
 		private readonly PageIdentity $page,
 		private readonly Parsoid $parsoid,
 		private readonly array $parsoidSettings,
@@ -67,8 +68,8 @@ class HtmlToContentTransform {
 		private readonly IContentHandlerFactory $contentHandlerFactory,
 		private readonly LanguageFactory $languageFactory,
 	) {
-		$this->modifiedPageBundle = new HtmlPageBundle( $modifiedHTML );
 		$this->modifiedHtmlSize = mb_strlen( $modifiedHTML );
+		$this->modifiedPageBundle = new HtmlPageBundle( $modifiedHTML, mw: $modifiedDataMw );
 		$this->modifiedDoc = $this->parseHTML( $this->modifiedPageBundle->html, true );
 		$contentVersion = DOMUtils::extractInlinedContentVersion( $this->modifiedDoc );
 		if ( $contentVersion !== null ) {
@@ -162,23 +163,8 @@ class HtmlToContentTransform {
 	}
 
 	/**
-	 * @note Call this after all original data has been set!
-	 *
-	 * @param array $modifiedDataMW
-	 * @throws ClientError
-	 */
-	public function setModifiedDataMW( array $modifiedDataMW ): void {
-		// Relies on setOriginalData having been called already.
-		if ( !Semver::satisfies( $this->getSchemaVersion(), '^999.0.0' ) ) {
-			throw new ClientError( 'Modified data-mw is not supported by schema version '
-				. $this->getSchemaVersion() );
-		}
-
-		$this->modifiedPageBundle->mw = $modifiedDataMW;
-	}
-
-	/**
 	 * @param array{schemaVersion:?string,html:?string,data-mw:?array,data-parsoid:?array} $data
+	 * @throws ClientError
 	 */
 	public function setOriginalData( array $data ): void {
 		if ( $this->modifiedPageBundle instanceof DomPageBundle ) {
@@ -194,12 +180,18 @@ class HtmlToContentTransform {
 			contentVersion: $data['schemaVersion'] ?? null,
 		);
 
-		// Modified data-mw is going to be the same as original data-mw,
-		// unless specified otherwise.
-		$this->modifiedPageBundle->mw ??= $this->originalPageBundle->mw;
-
 		// data-parsoid is going to be the same for original and modified.
 		$this->modifiedPageBundle->parsoid = $this->originalPageBundle->parsoid;
+
+		// Unless already provided during initialization,
+		// modified data-mw is going to be the same as original data-mw,
+		if ( $this->modifiedPageBundle->mw === null ) {
+			$this->modifiedPageBundle->mw = $this->originalPageBundle->mw;
+		} elseif ( !Semver::satisfies( $this->getSchemaVersion(), '^999.0.0' ) ) {
+			// Validate data-mw provided at construction time.
+			throw new ClientError( 'Modified data-mw is not supported by schema version '
+				. $this->getSchemaVersion() );
+		}
 	}
 
 	private function getPageConfig(): PageConfig {

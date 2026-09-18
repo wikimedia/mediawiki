@@ -62,8 +62,8 @@ class HtmlInputTransformHelperTest extends MediaWikiIntegrationTestCase {
 		$factory = $this->createNoOpMock( HtmlTransformFactory::class, [ 'getHtmlToContentTransform' ] );
 
 		$factory->method( 'getHtmlToContentTransform' )->willReturnCallback(
-			function ( $html ) use ( $methodOverrides ) {
-				return $this->newHtmlToContentTransform( $html, $methodOverrides );
+			function ( $html, $page = null, $modifiedDataMw = null ) use ( $methodOverrides ) {
+				return $this->newHtmlToContentTransform( $html, $methodOverrides, $modifiedDataMw );
 			}
 		);
 
@@ -1203,11 +1203,16 @@ class HtmlInputTransformHelperTest extends MediaWikiIntegrationTestCase {
 		$this->newHelper( [], StatsFactory::newNull(), $page, $body, $params );
 	}
 
-	private function newHtmlToContentTransform( $html, $methodOverrides = [] ): HtmlToContentTransform {
+	private function newHtmlToContentTransform(
+		$html,
+		$methodOverrides = [],
+		?array $modifiedDataMw = null
+	): HtmlToContentTransform {
 		$transform = $this->getMockBuilder( HtmlToContentTransform::class )
 			->onlyMethods( array_keys( $methodOverrides ) )
 			->setConstructorArgs( [
 				$html,
+				$modifiedDataMw,
 				$this->getExistingTestPage(),
 				new Parsoid(
 					$this->getServiceContainer()->getParsoidSiteConfig(),

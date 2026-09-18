@@ -1377,6 +1377,7 @@ class ParsoidHandlerTest extends MediaWikiIntegrationTestCase {
 		$factory = $this->createNoOpMock( HtmlTransformFactory::class, [ 'getHtmlToContentTransform' ] );
 		$factory->method( 'getHtmlToContentTransform' )->willReturn( new HtmlToContentTransform(
 			$html,
+			null,
 			$page,
 			$parsoid,
 			[],

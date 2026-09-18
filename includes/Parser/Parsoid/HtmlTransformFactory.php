@@ -39,9 +39,12 @@ class HtmlTransformFactory {
 	 *
 	 * @return HtmlToContentTransform
 	 */
-	public function getHtmlToContentTransform( string $modifiedHTML, PageIdentity $page ) {
+	public function getHtmlToContentTransform(
+		string $modifiedHTML, PageIdentity $page, ?array $modifiedDataMw = null
+	): HtmlToContentTransform {
 		return new HtmlToContentTransform(
 			$modifiedHTML,
+			$modifiedDataMw,
 			$page,
 			$this->parsoid,
 			$this->parsoidSettings,
