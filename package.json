@@ -58,5 +58,8 @@
 		"vue": "3.5.13",
 		"wdio-mediawiki": "file:tests/selenium/wdio-mediawiki",
 		"xml2js": "^0.6.2"
+	},
+	"overrides": {
+		"nwsapi": "2.2.22"
 	}
 }
