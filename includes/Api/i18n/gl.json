@@ -1988,6 +1988,7 @@
 	"apiwarn-global-option-ignored": "A opción <var>$1</var> anulouse globalmente. Podes usar <kbd>global=update</kbd> para cambiar a opción globalmente ou <kbd>global=override</kbd> para definir unha anulación local.",
 	"apiwarn-ignoring-invalid-templated-value": "Ignorando o valor <kbd>$2</kbd> en <var>$1</var> ao procesar os parámetros modelados.",
 	"apiwarn-invalidcategory": "«$1» non é unha categoría.",
+	"apiwarn-invalidrange": "«$1» non é un rango válido.",
 	"apiwarn-invalidtitle": "«$1» non é un título válido.",
 	"apiwarn-moduleswithoutvars": "A propiedade <kbd>modules</kbd> está definida, pero non o está <kbd>jsconfigvars</kbd> nin <kbd>encodedjsconfigvars</kbd>. As variables de configuración son necesarias para o correcto uso do módulo.",
 	"apiwarn-notfile": "«$1» non é un ficheiro.",

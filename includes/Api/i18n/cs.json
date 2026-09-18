@@ -280,6 +280,7 @@
 	"apierror-mustbeloggedin": "Abyste mohli $1, musíte být přihlášeni.",
 	"apierror-nosuchrcid": "Žádná nedávná změna nemá ID $1.",
 	"apierror-nosuchsection-what": "$2 neobsahuje sekci $1.",
+	"apierror-permissiondenied": "Nemáte oprávnění $1.",
 	"apierror-readonly": "Wiki je právě v módu pro čtení a nelze ji editovat.",
 	"apierror-sectionsnotsupported-what": "$1 nepodporuje sekce.",
 	"api-credits-header": "Zásluhy",
