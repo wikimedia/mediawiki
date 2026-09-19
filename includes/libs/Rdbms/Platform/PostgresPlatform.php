@@ -15,8 +15,7 @@ use Wikimedia\Timestamp\TimestampFormat as TS;
  * @see ISQLPlatform
  */
 class PostgresPlatform extends SQLPlatform {
-	/** @var string */
-	private $coreSchema;
+	private ?string $coreSchema = null;
 
 	/** @inheritDoc */
 	public function limitResult( $sql, $limit, $offset = false ) {

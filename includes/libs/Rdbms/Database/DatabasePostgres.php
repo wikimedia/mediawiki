@@ -643,7 +643,7 @@ __INDEXATTR__;
 	 * Needs transaction
 	 *
 	 * @since 1.19
-	 * @return string Default schema for the current session
+	 * @return string|null Default schema for the current session, or null if none could be determined
 	 */
 	public function getCurrentSchema() {
 		$query = new Query(
@@ -654,7 +654,7 @@ __INDEXATTR__;
 		$res = $this->query( $query, __METHOD__ );
 		$row = $res->fetchRow();
 
-		return $row[0];
+		return $row[0] ?? null;
 	}
 
 	/**
@@ -760,10 +760,23 @@ __INDEXATTR__;
 					"Schema \"" . $desiredSchema . "\" added to the search path\n" );
 			}
 		} else {
-			$this->platform->setCoreSchema( $this->getCurrentSchema() );
-			$this->logger->debug(
-				"Schema \"" . $desiredSchema . "\" not found, using current \"" .
-				$this->getCoreSchema() . "\"\n" );
+			$currentSchema = $this->getCurrentSchema();
+			if ( $currentSchema === null ) {
+				throw new DBUnexpectedError(
+					$this,
+					__METHOD__ . ": no schema was specified and the database connection has " .
+						"no usable default schema."
+				);
+			}
+			$this->platform->setCoreSchema( $currentSchema );
+			if ( $desiredSchema !== null && $desiredSchema !== '' ) {
+				$this->logger->warning(
+					"Schema \"" . $desiredSchema . "\" not found, using current \"" .
+						$currentSchema . "\"\n" );
+			} else {
+				$this->logger->debug(
+					"No schema requested, using current \"" . $currentSchema . "\"\n" );
+			}
 		}
 	}
 
