@@ -148,4 +148,9 @@ class DiscoveryHandler extends Handler {
 	protected function getResponseBodySchemaFileName( string $method ): ?string {
 		return MW_INSTALL_PATH . '/docs/rest/discovery-1.1.json';
 	}
+
+	/** @inheritDoc */
+	public function needsWriteAccess() {
+		return false;
+	}
 }

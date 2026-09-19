@@ -347,4 +347,9 @@ class DiscoveryHandlerTest extends MediaWikiIntegrationTestCase {
 		$this->assertWellFormedDiscoveryDoc( $data );
 	}
 
+	public function testNeedsWriteAccess(): void {
+		$handler = $this->newHandler();
+		$this->assertFalse( $handler->needsWriteAccess() );
+	}
+
 }
