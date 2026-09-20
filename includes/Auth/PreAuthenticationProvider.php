@@ -72,18 +72,19 @@ interface PreAuthenticationProvider extends AuthenticationProvider {
 	 *   This may become a "UserIdentity" in the future.
 	 * @param bool|string $autocreate False if this is not an auto-creation, or
 	 *  the source of the auto-creation passed to AuthManager::autoCreateUser().
-	 * @param array $options
-	 *  - flags: (int) Bitfield of IDBAccessObject::READ_* constants, default IDBAccessObject::READ_NORMAL
-	 *  - creating: (bool) If false (or missing), this call is only testing if
-	 *    a user could be created. If set, this (non-autocreation) is for
+	 * @phpcs:ignore Generic.Files.LineLength.TooLong
+	 * @param array{flags?:int,creating?:bool,canAlwaysAutocreate?:bool,performer?:User|\MediaWiki\Permissions\Authority} $options
+	 * Options for the account creation check.
+	 *  - `flags`: Bitfield of IDBAccessObject::READ_* constants, default IDBAccessObject::READ_NORMAL.
+	 *  - `creating`: If false (or missing), this call is only testing whether
+	 *    a user could be created. If true, this (non-autocreation) call is for
 	 *    actually creating an account and will be followed by a call to
 	 *    testForAccountCreation(). In this case, the provider might return
 	 *    StatusValue::newGood() here and let the later call to
 	 *    testForAccountCreation() do a more thorough test.
-	 *  - canAlwaysAutocreate: (bool) If true the session provider is exempt from
-	 *    autocreate user permissions checks.
-	 *  - performer: (Authority) The performer of the action, used for user rights
-	 *    checking.
+	 *  - `canAlwaysAutocreate`: If true, the session provider is exempt from
+	 *    autocreate user permission checks.
+	 *  - `performer`: The performer of the action, used for user rights checking.
 	 * @return StatusValue
 	 */
 	public function testUserForCreation( $user, $autocreate, array $options = [] );
