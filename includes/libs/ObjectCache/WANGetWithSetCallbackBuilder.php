@@ -253,9 +253,16 @@ class WANGetWithSetCallbackBuilder {
 	 * regeneration lock already. If a value is used within a short interval after expiry,
 	 * it is assumed the key has a high enough access rate to justify avoiding a stampede.
 	 *
-	 * If no previous value exists, this setting is ignored and no regen lock is used (e.g. after
-	 * deletion, expiry, or eviction at the storage layer). Use busyValue() to enable use of
-	 * a regen lock to avoid stempedes in those cases.
+	 * This automatically sets keepStaleFor() to the same number of seconds, unless you set
+	 * it to a higher value.
+	 *
+	 * The expiry is determined by TTL of this key (self::lifetime), check keys (self::invalidatedByKey),
+	 * "touchedCallback" (self::lastModifiedCallback), and purges (WANObjectCache::delete or
+	 * WANObjectCache::touchCheckKey).
+	 *
+	 * If no previous value exists, this setting is ignored and no regen lock is used (e.g. initial
+	 * generation from cold state, or after deletion without holdoff, or cache eviction).
+	 * Use busyValue() to enable use of a regen lock to avoid stempedes in those cases.
 	 *
 	 * This corresponds to the "lockTSE" option of WANObjectCache::getWithSetCallback().
 	 *
@@ -285,8 +292,11 @@ class WANGetWithSetCallbackBuilder {
 	/**
 	 * Keep an expired value around for this many seconds
 	 *
-	 * On a miss, the callback then still sees the expired value as its previous value, which
-	 * suits callbacks that can cheaply verify that it is still correct.
+	 * On a miss, the callback can access the expired value via the $oldValue parameter, to
+	 * allow for cheap verification or renewal without full regeneration.
+	 *
+	 * NOTE: If you set allowStale(), then setting keepStaleFor() is redundant unless you
+	 * set it to something higher.
 	 *
 	 * @param int $seconds
 	 * @return $this

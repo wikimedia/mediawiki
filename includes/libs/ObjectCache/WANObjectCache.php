@@ -887,7 +887,8 @@ class WANObjectCache implements
 
 		// Wrap that value with time/TTL/version metadata
 		$wrapped = $this->wrap( $value, $ttl, $version, $now );
-		$storeTTL = $ttl + $staleTTL;
+		// Don't add staleTTL to TTL_INDEFINITE (0), which would shorten and break it
+		$storeTTL = $ttl === self::TTL_INDEFINITE ? $ttl : ( $ttl + $staleTTL );
 
 		$flags = $this->cache::WRITE_BACKGROUND;
 		if ( $segmentable ) {
@@ -1441,13 +1442,12 @@ class WANObjectCache implements
 	 *      is useful if thousands or millions of keys depend on the same entity. The entity can
 	 *      simply have its "check" key updated whenever the entity is modified.
 	 *      Default: [].
-	 *   - lockTSE: If the value is stale and the "time since expiry" (TSE) is less than the given
-	 *      number of seconds ago, then reuse the stale value if another such thread is already
-	 *      regenerating the value. The TSE of the key is influenced by purges (e.g. via delete(),
-	 *      "checkKeys", "touchedCallback"), and various other options (e.g. "staleTTL"). A low
-	 *      enough TSE is assumed to indicate a high enough key access rate to justify stampede
-	 *      avoidance. Note that no cache value exists after deletion, expiration, or eviction
-	 *      at the storage-layer; to prevent stampedes during these cases, use "busyValue".
+	 *   - lockTSE: Allow reuse of a recently expired value while another thread regenerates it.
+	 *      This enables use of a regeneration lock if the value expired less than the given
+	 *      number of seconds ago, and returns the stale value if another thread holds the
+	 *      regeneration lock already.
+	 *      This automatically sets "staleTTL" to the same number of seconds, unless you have set
+	 *      it to a higher value.
 	 *      Default: WANObjectCache::TSE_NONE.
 	 *   - busyValue: Specify a placeholder value to use when no value exists and another thread
 	 *      is currently regenerating it. This assures that cache stampedes cannot happen if the
@@ -1505,9 +1505,9 @@ class WANObjectCache implements
 	 *      Set `hotTTR: 0` to disable this feature. Setting ageNew to zero does not disable
 	 *      the hotTTR feature.
 	 *      Default: WANObjectCache::AGE_NEW.
-	 *   - staleTTL: Seconds to keep the key around if it is stale. This means that on cache
-	 *      miss the callback may get $oldValue/$oldAsOf values for keys that have already been
-	 *      expired for this specified time.
+	 *   - staleTTL: Keep an expired value around for this many seconds.
+	 *      On a miss, the callback can access the expired value via the $oldValue parameter, to
+	 *      allow for cheap verification or renewal without full regeneration.
 	 *      Default: WANObjectCache::STALE_TTL_NONE
 	 *   - touchedCallback: A callback that takes the current value and returns a UNIX timestamp
 	 *      indicating the last time a dynamic dependency changed. Null can be returned if there
@@ -1674,7 +1674,7 @@ class WANObjectCache implements
 
 		$lockTSE = $opts['lockTSE'] ?? self::TSE_NONE;
 		$busyValue = $opts['busyValue'] ?? null;
-		$staleTTL = $opts['staleTTL'] ?? self::STALE_TTL_NONE;
+		$staleTTL = max( $lockTSE, $opts['staleTTL'] ?? self::STALE_TTL_NONE );
 		$segmentable = $opts['segmentable'] ?? false;
 		$version = $opts['version'] ?? null;
 

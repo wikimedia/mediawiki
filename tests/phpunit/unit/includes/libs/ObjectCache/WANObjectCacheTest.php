@@ -516,7 +516,8 @@ class WANObjectCacheTest extends MediaWikiUnitTestCase {
 		$this->assertSame( 1, $wasSet, "Stale value while regenerating during lockTSE" );
 
 		// Chance of refresh increase to unity as staleness approaches graceTTL
-		$mockWallClock += $cache::TTL_WEEK; // 8 days of being stale
+		// 8 days of being stale.
+		$mockWallClock += $cache::TTL_WEEK;
 		$v = $cache->getWithSetCallback(
 			$key,
 			$cache::TTL_INDEFINITE,
@@ -525,6 +526,8 @@ class WANObjectCacheTest extends MediaWikiUnitTestCase {
 		);
 		$this->assertSame( 'xxx2', $v, "Value was recomputed (after touchCheckKey)" );
 		$this->assertSame( 2, $wasSet, "Value was recomputed (after touchCheckKey)" );
+		// It is 8 days later, which is more than allowStale (lockTSE) of 7 days.
+		// We still have the old value because expiry is TTL_INDEFINITE.
 		$this->assertSame( 'xxx1', $oldValReceived, "Callback received old value" );
 		$this->assertNotEquals( null, $oldAsOfReceived, "Callback received old value" );
 	}
@@ -1507,7 +1510,7 @@ class WANObjectCacheTest extends MediaWikiUnitTestCase {
 		};
 
 		// hotTTR=0 disables random preemptive refresh, which made this test flaky (T434270).
-		$opts = [ 'lockTSE' => 5, 'staleTTL' => 5, 'hotTTR' => 0 ];
+		$opts = [ 'lockTSE' => 5, 'hotTTR' => 0 ];
 		$ret = $cache->getWithSetCallback( $key, 300, $func, $opts );
 		$this->assertSame( 'foo', $ret, 'Initial cache miss' );
 		$this->assertSame( 1, $calls );
