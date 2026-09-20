@@ -52,6 +52,7 @@
 	 * @param {string|null} [value] Cookie value to set. If `null`, this method will remove the cookie.
 	 *  If omitted, this method will get and return the current value.
 	 * @param {mw.cookie.CookieOptions} [options]
+	 * @param {Date|number|null} [options.expires] in days
 	 * @return {string|Object} The current value (if getting a cookie), or an internal `document.cookie`
 	 *  expression (if setting or removing).
 	 */

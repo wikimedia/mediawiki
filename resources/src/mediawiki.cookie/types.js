@@ -11,7 +11,7 @@
  *   modern browsers). Set to None AND set secure=true if the cookie needs to be visible on
  *   cross-domain requests.
  * @property {boolean} [sameSiteLegacy] Deprecated, ignored.
- * @property {Date|number|null} [expires] Number of days to store the value (when setting).
- *  The expiry date of the cookie, or lifetime in seconds.
+ * @property {Date|number|null} [expires] The expiration date of the cookie, or lifetime in seconds
+ *  when used with `mw.cookie.set()`, or days when used with the legacy `$.cookie()`.
  *  If null or 0, then a session cookie is set. Defaults to wgCookieExpiration.
  */

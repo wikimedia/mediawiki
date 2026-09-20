@@ -51,6 +51,7 @@ mw.cookie = {
 	 * @param {string|null} value Value of cookie. If `value` is `null` then this method will
 	 *   instead remove a cookie by name of `key`.
 	 * @param {module:mediawiki.cookie~CookieOptions|Date|number} [options] Options object, or expiry date
+	 * @param {Date|number|null} [options.expires] in seconds
 	 * @memberof module:mediawiki.cookie
 	 */
 
