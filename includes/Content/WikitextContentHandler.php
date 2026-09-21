@@ -23,6 +23,7 @@ use MediaWiki\Search\SearchEngine;
 use MediaWiki\Search\SearchIndexField;
 use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleFactory;
+use Wikimedia\Timestamp\ConvertibleTimestamp;
 use Wikimedia\UUID\GlobalIdGenerator;
 
 /**
@@ -354,11 +355,11 @@ class WikitextContentHandler extends TextContentHandler {
 			$extraArgs = [];
 		}
 
-		$time = -microtime( true );
+		$parseStart = ConvertibleTimestamp::hrtime();
 
 		$parserOutput = $parser
 			->parse( $text, $title, $parserOptions, true, true, $revId, ...$extraArgs );
-		$time += microtime( true );
+		$time = ( ConvertibleTimestamp::hrtime() - $parseStart ) / 1e9;
 
 		// Timing hack
 		if ( $time > 3 ) {

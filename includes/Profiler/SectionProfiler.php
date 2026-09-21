@@ -8,6 +8,7 @@ namespace MediaWiki\Profiler;
 
 use MediaWiki\Logger\LoggerFactory;
 use Psr\Log\LoggerInterface;
+use Wikimedia\Timestamp\ConvertibleTimestamp;
 
 /**
  * Arbitrary section name based PHP profiling.
@@ -275,7 +276,7 @@ class SectionProfiler {
 	 *   - false (default): will fall back to default metric
 	 * @return float
 	 */
-	protected function getTime( $metric = 'wall' ) {
+	private function getTime( $metric = 'wall' ) {
 		if ( $metric === 'cpu' || $metric === 'user' ) {
 			$ru = getrusage( 0 /* RUSAGE_SELF */ );
 			$time = $ru['ru_utime.tv_sec'] + $ru['ru_utime.tv_usec'] / 1e6;
@@ -286,7 +287,7 @@ class SectionProfiler {
 			}
 			return $time;
 		} else {
-			return microtime( true );
+			return ConvertibleTimestamp::hrtime() / 1e9;
 		}
 	}
 }

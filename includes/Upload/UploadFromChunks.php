@@ -16,6 +16,7 @@ use MediaWiki\User\User;
 use Psr\Log\LoggerInterface;
 use StatusValue;
 use Wikimedia\FileBackend\FileBackend;
+use Wikimedia\Timestamp\ConvertibleTimestamp;
 
 /**
  * Backend for uploading files from chunks.
@@ -174,9 +175,9 @@ class UploadFromChunks extends UploadFromFile {
 		}
 
 		// Concatenate the chunks at the temp file
-		$tStart = microtime( true );
+		$tStart = ConvertibleTimestamp::hrtime();
 		$status = $this->repo->concatenate( $fileList, $tmpPath );
-		$tAmount = microtime( true ) - $tStart;
+		$tAmount = ( ConvertibleTimestamp::hrtime() - $tStart ) / 1e9;
 		if ( !$status->isOK() ) {
 			// This is a backend error and not user-related, so log is safe
 			// Upload verification further on is not safe to log server side
@@ -226,7 +227,7 @@ class UploadFromChunks extends UploadFromFile {
 			return $this->convertVerifyErrorToStatus( $ret );
 		}
 
-		$tStart = microtime( true );
+		$tStart = ConvertibleTimestamp::hrtime();
 		// This is a re-implementation of UploadBase::tryStashFile(). We can't call it because we
 		// override doStashFile() with completely different functionality in this class.
 		$error = $this->runUploadStashFileHook( $this->user );
@@ -256,7 +257,7 @@ class UploadFromChunks extends UploadFromFile {
 			return $status;
 		}
 
-		$tAmount = microtime( true ) - $tStart;
+		$tAmount = ( ConvertibleTimestamp::hrtime() - $tStart ) / 1e9;
 		// @phan-suppress-next-line PhanTypeMismatchArgumentNullable tmpFile is set when tmpPath is set here
 		$this->mStashFile->setLocalReference( $tmpFile ); // reuse to build the image info on api uploads
 		$this->logger->info( "Stashed combined ({chunks} chunks) of {oldkey} under new name {filekey}",

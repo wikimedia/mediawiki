@@ -37,6 +37,7 @@ use Wikimedia\Stats\IBufferingStatsdDataFactory;
 use Wikimedia\Stats\StatsFactory;
 use Wikimedia\Telemetry\SpanInterface;
 use Wikimedia\Telemetry\TracerState;
+use Wikimedia\Timestamp\ConvertibleTimestamp;
 
 /**
  * @defgroup entrypoint Entry points
@@ -784,9 +785,9 @@ abstract class MediaWikiEntryPoint {
 			} else {
 				// Do not wait for the response (the script should handle client aborts).
 				// Make sure that we don't close before that script reaches ignore_user_abort().
-				$start = microtime( true );
+				$start = ConvertibleTimestamp::hrtime();
 				$status = fgets( $sock );
-				$sec = microtime( true ) - $start;
+				$sec = ( ConvertibleTimestamp::hrtime() - $start ) / 1e9;
 				if ( !preg_match( '#^HTTP/\d\.\d 202 #', $status ) ) {
 					$invokedWithSuccess = false;
 					$runJobsLogger->error( "Failed to start cron API: received '$status' ($sec)" );

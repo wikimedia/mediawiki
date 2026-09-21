@@ -13,6 +13,7 @@ use MediaWiki\Logger\LoggerFactory;
 use Throwable;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\ScopedCallback;
+use Wikimedia\Timestamp\ConvertibleTimestamp;
 
 /**
  * Defer callable updates to run later in the PHP process
@@ -182,7 +183,7 @@ class DeferredUpdates {
 
 		$updateException = null;
 
-		$startTime = microtime( true );
+		$startTime = ConvertibleTimestamp::hrtime();
 		try {
 			self::attemptUpdate( $update );
 		} catch ( Throwable $updateException ) {
@@ -196,7 +197,7 @@ class DeferredUpdates {
 			);
 			self::getScopeStack()->onRunUpdateFailed( $update );
 		} finally {
-			$walltime = microtime( true ) - $startTime;
+			$walltime = ( ConvertibleTimestamp::hrtime() - $startTime ) / 1e9;
 			$logger->debug( "DeferredUpdates::run: ended $type #{updateId}, processing time: {walltime}", [
 				'updateId' => $updateId,
 				'walltime' => $walltime,
