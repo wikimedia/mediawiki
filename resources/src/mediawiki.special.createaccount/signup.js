@@ -10,6 +10,7 @@ const SignupValidatorFactory = require( './validators.js' );
 /**
  * Minerva: wire “Choose carefully” (username policy popover).
  *
+ * @param $root
  * @memberof module:mediawiki.special.createaccount
  */
 function bootstrapUsernamePolicyPopover( $root ) {

@@ -205,7 +205,7 @@
 			),
 			( errorMsg ) => {
 				this.setPage( 'upload' );
-				// eslint-disable-next-line mediawiki/msg-doc
+
 				this.getPage( 'upload' ).$element.msg( errorMsg );
 				return $.Deferred().resolve();
 			}

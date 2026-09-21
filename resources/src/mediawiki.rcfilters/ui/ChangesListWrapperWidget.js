@@ -121,7 +121,7 @@ ChangesListWrapperWidget.prototype.onModelUpdate = function (
 					$( '<div>' )
 						.addClass( 'mw-rcfilters-ui-changesListWrapperWidget-results-message' )
 						// TODO: Document possible messages
-						// eslint-disable-next-line mediawiki/msg-doc
+
 						.text( mw.msg( conflictItem.getCurrentConflictResultMessage() ) )
 				);
 		} else {
@@ -139,7 +139,7 @@ ChangesListWrapperWidget.prototype.onModelUpdate = function (
 				);
 
 			// remove all classes matching mw-changeslist-*
-			// eslint-disable-next-line mediawiki/class-doc
+
 			this.$element.removeClass( ( elementIndex, allClasses ) => allClasses
 				.split( ' ' )
 				.filter( ( className ) => className.startsWith( 'mw-changeslist-' ) )

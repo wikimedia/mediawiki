@@ -597,7 +597,7 @@ Util = {
 	 * @return {jQuery}
 	 */
 	parseMsg: function ( key, ...parameters ) {
-		// eslint-disable-next-line mediawiki/msg-doc
+
 		const $ret = mw.message( key, ...parameters ).parseDom();
 		return Util.fixupHTML( $ret );
 	},

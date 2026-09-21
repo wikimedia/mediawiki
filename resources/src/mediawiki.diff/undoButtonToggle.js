@@ -13,9 +13,9 @@ module.exports = function ( $undoButton ) {
 			$undoButton.hide();
 		}
 		const $rollbackButton = $( '.mw-rollback-link' );
-		// eslint-disable-next-line mediawiki/class-doc
+
 		$undoButton.children( 'a' ).addClass( UNDO_LINK_FAKE_BUTTON_CLASS );
-		// eslint-disable-next-line mediawiki/class-doc
+
 		$rollbackButton.children( 'a' ).addClass( UNDO_LINK_FAKE_BUTTON_CLASS );
 	}
 };

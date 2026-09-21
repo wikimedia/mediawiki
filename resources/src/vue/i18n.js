@@ -29,7 +29,7 @@ module.exports = {
 		 * @memberof module:vue.prototype
 		 */
 		function $i18n( key, ...parameters ) {
-			// eslint-disable-next-line mediawiki/msg-doc
+
 			return mw.message( key, ...parameters );
 		}
 
@@ -39,7 +39,7 @@ module.exports = {
 		app.provide( 'i18n', $i18n );
 
 		function renderI18nHtml( el, binding ) {
-			/* eslint-disable mediawiki/msg-doc */
+
 			let message;
 
 			if ( Array.isArray( binding.value ) ) {
@@ -56,7 +56,6 @@ module.exports = {
 				// v-i18n-html:foo or v-i18n-html="'foo'"
 				message = mw.message( binding.arg || binding.value );
 			}
-			/* eslint-enable mediawiki/msg-doc */
 
 			el.innerHTML = message.parse();
 		}

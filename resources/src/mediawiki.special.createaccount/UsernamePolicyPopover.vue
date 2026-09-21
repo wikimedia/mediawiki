@@ -12,8 +12,8 @@
 		<ul>
 			<li
 				v-for="( itemHtml, index ) in bulletItemsHtml"
-				v-html="itemHtml"
 				:key="index"
+				v-html="itemHtml"
 			></li>
 		</ul>
 		<a

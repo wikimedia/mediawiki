@@ -52,7 +52,7 @@ const WatchlistTopSectionWidget = function MwRcfiltersUiWatchlistTopSectionWidge
 						.addClass( 'mw-rcfilters-ui-cell' )
 						.addClass( 'mw-rcfilters-ui-watchlistTopSectionWidget-buttonsSection' )
 						.append(
-							// eslint-disable-next-line mediawiki/class-doc
+
 							$( '<div>' )
 								.addClass(
 									// Do not add class in vector-2022 because it is redundant
