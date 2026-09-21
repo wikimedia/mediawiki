@@ -669,6 +669,8 @@
 	"postedit-confirmation-saved": "[[Special:Diff/$2|Är Ännerung]] gouf gespäichert.",
 	"postedit-confirmation-published": "[[Special:Diff/$2|Är Ännerung]] gouf verëffentlecht.",
 	"postedit-temp-created-label": "Temporäre Kont",
+	"postedit-confirmation-saved-title": "Är Ännerung gouf gespäichert!",
+	"postedit-confirmation-restored-title": "D'Säit gouf restauréiert!",
 	"edit-already-exists": "Déi nei Säit konnt net ugeluecht ginn, well et se scho gëtt.",
 	"defaultmessagetext": "Standardtext",
 	"content-failed-to-parse": "Den $2-Inhalt fir den $1-Modell konnt net geparst ginn: $3",

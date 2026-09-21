@@ -1784,6 +1784,8 @@
 	"pageinfo-redirectsto-info": "訊",
 	"pageinfo-contentpage": "计为容頁",
 	"pageinfo-contentpage-yes": "然",
+	"pageinfo-protect-cascading": "諸緘自此連鎖",
+	"pageinfo-protect-cascading-yes": "然",
 	"pageinfo-view-protect-log": "閱此頁緘封之誌。",
 	"markaspatrolleddiff": "審此本",
 	"markaspatrolledtext": "審此文",

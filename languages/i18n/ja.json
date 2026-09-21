@@ -1260,7 +1260,7 @@
 	"rcfilters-filter-user-experience-level-unregistered-description-temp": "ログインしていない編集者と仮アカウントを使用している編集者。",
 	"rcfilters-filter-user-experience-level-newcomer-label": "新規利用者",
 	"rcfilters-filter-user-experience-level-newcomer-description": "登録から4日以内、または編集回数が10回以下の利用者",
-	"rcfilters-filter-user-experience-level-learner-label": "初学者",
+	"rcfilters-filter-user-experience-level-learner-label": "初心者",
 	"rcfilters-filter-user-experience-level-learner-description": "編集経験が「新規利用者」と「経験者」の中間の登録利用者",
 	"rcfilters-filter-user-experience-level-experienced-label": "経験者",
 	"rcfilters-filter-user-experience-level-experienced-description": "500編集以上かつ30日以上の活動履歴がある登録利用者",
