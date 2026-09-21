@@ -108,6 +108,8 @@ class SearchHandler extends Handler {
 		$searchEngine = $this->searchEngineFactory->create();
 		$searchEngine->setNamespaces( $this->searchEngineConfig->defaultNamespaces() );
 		$searchEngine->setLimitOffset( $limit, self::OFFSET );
+		// Some engines may return interwiki results by default, disable it explicitly
+		$searchEngine->setFeatureData( 'interwiki', false );
 		return $searchEngine;
 	}
 
