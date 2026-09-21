@@ -469,6 +469,7 @@ because of Phabricator reports.
   Passing null was deprecated in 1.46.
 * Passing a performer to UploadBase::checkWarnings is mandatory now. Passing
   null was deprecated in 1.46.
+* UploadBase::isThrottled(), deprecated since 1.41, has been removed. 
 * Maintenance::error() no longer accepts a $die argument. This behaviour
   was deprecated in 1.31. Use Maintenance::fatalError() instead.
 * OutputPage::showNewSectionLink(), ::forceHideNewSectionLink(), and

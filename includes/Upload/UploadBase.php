@@ -164,20 +164,6 @@ abstract class UploadBase {
 	}
 
 	/**
-	 * Returns true if the user has surpassed the upload rate limit, false otherwise.
-	 *
-	 * @deprecated since 1.41, use authorizeUpload() instead.
-	 *  Rate limit checks are now implicit in permission checks.
-	 *
-	 * @param User $user
-	 * @return bool
-	 */
-	public static function isThrottled( $user ) {
-		wfDeprecated( __METHOD__, '1.41' );
-		return $user->pingLimiter( 'upload' );
-	}
-
-	/**
 	 * Create a form of UploadBase depending on wpSourceType and initializes it.
 	 *
 	 * @param WebRequest &$request
