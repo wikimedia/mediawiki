@@ -116,18 +116,6 @@ class ModuleManager {
 	}
 
 	/**
-	 * Gets the audience designation groups, if any, for a particular module.
-	 *
-	 * @param string $moduleId The module id
-	 * @return string[] The group names
-	 * @since 1.47
-	 */
-	public function getModuleGroups( string $moduleId ): array {
-		$params = $this->getModeParams( $moduleId );
-		return (array)( $params['groups'] ?? [] );
-	}
-
-	/**
 	 * Gets the configured override parameters (if any) for a particular module
 	 *
 	 * @param string $moduleId The module id
@@ -238,7 +226,7 @@ class ModuleManager {
 			$moduleId = $moduleDefInfo['moduleId'];
 			$availability = $this->getModuleMode( $moduleId );
 			$params = $this->getModeParams( $moduleId );
-			$groups = (array)( $params['groups'] ?? [] );
+			$groups = (array)( $params['groups'] ?? $moduleDefInfo['groups'] ?? [] );
 
 			$modules[$moduleId] = new ModuleInfo(
 				$moduleId,
@@ -450,6 +438,7 @@ class ModuleManager {
 
 		$spec['mode'] = $this->getModuleMode( $moduleDefInfo['moduleId'] );
 		$spec['params'] = $this->getModeParams( $moduleDefInfo['moduleId'] );
+		$spec['params']['groups'] ??= ( $moduleDefInfo['groups'] ?? [] );
 
 		return $spec;
 	}
@@ -460,13 +449,13 @@ class ModuleManager {
 	 *
 	 * @param string $file The module definition file to load
 	 *
-	 * @return array<string,string> The module definition info, or an empty array for flat routes
+	 * @return array<string,mixed> The module definition info, or an empty array for flat routes
 	 */
 	private function getModuleDefinitionInfo( string $file ): array {
 		$key = $this->srvCache->makeKey(
 			__CLASS__,
 			'definition',
-			'v1',
+			'v2',
 			sha1( $file ),
 			// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged
 			(int)@filemtime( $file ),
@@ -486,6 +475,7 @@ class ModuleManager {
 						'version' => $md['info']['version'] ?? null,
 						'description' => $md['info']['description'] ?? null,
 						'deprecationSettings' => $md['info']['deprecationSettings'] ?? null,
+						'groups' => (array)( $md['info']['groups'] ?? [] ),
 					];
 				} catch ( ModuleFormatException ) {
 					return [];

@@ -11,6 +11,7 @@ use MediaWiki\Rest\Module\ModuleMode;
 use MediaWiki\Tests\Unit\DummyServicesTrait;
 use MediaWikiIntegrationTestCase;
 use Wikimedia\Message\ITextFormatter;
+use Wikimedia\TestingAccessWrapper;
 
 /**
  * @covers \MediaWiki\Rest\Module\ModuleManager
@@ -277,27 +278,35 @@ class ModuleManagerTest extends MediaWikiIntegrationTestCase {
 		$this->overrideConfigValue( MainConfigNames::RestExternalModules, $rem );
 	}
 
-	public static function provideGetModuleGroupsCases() {
+	public static function provideGetModuleInfoGroupsCases() {
 		yield from [
-			[ 'example/v1', [] ],
-			[ 'example/v1-published', [] ],
-			[ 'example/v1-internal', [ 'internal' ] ],
-			[ 'example/v1-beta', [ 'beta' ] ],
-			[ 'mockWithOverride/v1', [ 'preferred' ], [ 'mockWithOverride/v1' => [ 'availability' => 'published', 'groups' => [ 'preferred' ] ] ] ],
-			[ 'mockWithMultipleOverrides/v1', [ 'preferred', 'beta' ], [ 'mockWithMultipleOverrides/v1' => [ 'availability' => 'published', 'groups' => [ 'preferred', 'beta' ] ] ] ],
-			[ 'mockWithInternalOverride/v1', [ 'internal' ], [ 'mockWithInternalOverride/v1' => [ 'availability' => 'published', 'groups' => [ 'internal' ] ] ] ],
+			'local module without groups' => [ 'site/v1', [] ],
+			'local module with audience designation suffix' => [ 'fragments/v0-internal', [ 'internal' ] ],
+			'external module without groups' => [ 'mockExternal/v1', [] ],
+			'module with override' => [
+				'site/v1',
+				[ 'preferred' ],
+				[ 'site/v1' => [ 'availability' => 'published', 'groups' => [ 'preferred' ] ] ]
+			],
+			'module with multiple override groups' => [
+				'site/v1',
+				[ 'preferred', 'beta' ],
+				[ 'site/v1' => [ 'availability' => 'published', 'groups' => [ 'preferred', 'beta' ] ] ]
+			],
 		];
 	}
 
 	/**
-	 * @dataProvider provideGetModuleGroupsCases
+	 * @dataProvider provideGetModuleInfoGroupsCases
+	 * @covers \MediaWiki\Rest\Module\ModuleManager::getModuleInfo
+	 * @covers \MediaWiki\Rest\Module\ModuleManager::getModuleInfos
 	 */
-	public function testGetModuleGroups( string $moduleId, array $expected, array $overrides = [] ): void {
+	public function testGetModuleInfoGroups( string $moduleId, array $expected, array $overrides = [] ): void {
 		if ( $overrides ) {
 			$this->overrideConfigValue( MainConfigNames::RestModuleOverrides, $overrides );
 		}
 		$moduleManager = $this->getModuleManager();
-		$this->assertSame( $expected, $moduleManager->getModuleGroups( $moduleId ) );
+		$this->assertSame( $expected, $moduleManager->getModuleInfo( $moduleId )->getGroups() );
 	}
 
 	/**
@@ -447,5 +456,55 @@ class ModuleManagerTest extends MediaWikiIntegrationTestCase {
 
 		$nonexistent = $moduleManager->getModuleInfo( 'nonexistent/v99' );
 		$this->assertNull( $nonexistent );
+	}
+
+	/**
+	 * Test that when module definition files declare groups,
+	 * `getModuleDefinitionInfo`, `getModuleInfos`, and `getApiSpecs`
+	 * reflect those groups.
+	 *
+	 * @covers \MediaWiki\Rest\Module\ModuleManager::getModuleDefinitionInfo
+	 * @covers \MediaWiki\Rest\Module\ModuleManager::getModuleInfos
+	 * @covers \MediaWiki\Rest\Module\ModuleManager::getApiSpecs
+	 * @covers \MediaWiki\Rest\Module\ModuleManager::populateFromFile
+	 */
+	public function testFileDefinedGroups(): void {
+		$file = __DIR__ . '/mockWithGroups.v1.json';
+		$moduleManager = $this->getModuleManager( [ $file ] );
+
+		// 1. Verify `getModuleDefinitionInfo` extracts 'groups'.
+		$wrapper = TestingAccessWrapper::newFromObject( $moduleManager );
+		$defInfo = $wrapper->getModuleDefinitionInfo( $file );
+		$this->assertArrayHasKey( 'groups', $defInfo );
+		$this->assertSame( [ 'file-defined-group' ], $defInfo['groups'] );
+
+		// 2. Verify `getModuleInfos` reflects file-defined groups without override.
+		$infos = $moduleManager->getModuleInfos();
+		$this->assertArrayHasKey( 'mockWithGroups/v1', $infos );
+		$this->assertSame( [ 'file-defined-group' ], $infos['mockWithGroups/v1']->getGroups() );
+
+		// 3. Verify `getApiSpecs` reflects file-defined groups when loaded as an extension module.
+		$specs = $moduleManager->getApiSpecs();
+		$this->assertArrayHasKey( 'mockWithGroups.v1', $specs );
+		$this->assertSame( [ 'file-defined-group' ], $specs['mockWithGroups.v1']['groups'] );
+	}
+
+	/**
+	 * Test that `$wgRestModuleOverrides` takes precedence over groups declared in a
+	 * module definition file.
+	 *
+	 * @covers \MediaWiki\Rest\Module\ModuleManager::getModuleInfos
+	 */
+	public function testFileDefinedGroupsWithOverride(): void {
+		$file = __DIR__ . '/mockWithGroups.v1.json';
+		$this->overrideConfigValue( MainConfigNames::RestModuleOverrides, [
+			'mockWithGroups/v1' => [ 'groups' => [ 'override-group' ] ],
+		] );
+
+		$moduleManager = $this->getModuleManager( [ $file ] );
+		$infos = $moduleManager->getModuleInfos();
+
+		$this->assertArrayHasKey( 'mockWithGroups/v1', $infos );
+		$this->assertSame( [ 'override-group' ], $infos['mockWithGroups/v1']->getGroups() );
 	}
 }

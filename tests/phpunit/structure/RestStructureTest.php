@@ -422,7 +422,7 @@ class RestStructureTest extends MediaWikiIntegrationTestCase {
 		foreach ( $router->getModuleIds() as $moduleName ) {
 			$module = $router->getModule( $moduleName );
 			$info = $module->getModuleDescription();
-			$info['info']['groups'] = $router->getModuleManager()->getModuleGroups( $moduleName );
+			$info['info']['groups'] = $router->getModuleManager()->getModuleInfo( $moduleName )?->getGroups() ?? [];
 
 			$this->assertMatchesJsonSchema( $infoSchema, $info, self::SPEC_FILES, "Module '$moduleName'" );
 		}

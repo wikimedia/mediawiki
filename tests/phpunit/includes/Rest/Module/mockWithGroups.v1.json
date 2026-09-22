@@ -1,0 +1,12 @@
+{
+	"mwapi": "1.2.0",
+	"moduleId": "mockWithGroups/v1",
+	"info": {
+		"version": "1.0.0",
+		"title": "Mock Module with Groups",
+		"groups": [
+			"file-defined-group"
+		]
+	},
+	"paths": {}
+}

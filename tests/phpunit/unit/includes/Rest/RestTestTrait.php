@@ -41,7 +41,7 @@ trait RestTestTrait {
 	 * @param array $routeFiles route files to return from mocked getRouteFiles() call
 	 * @param array $moduleModes maps module ids to module availabilities for
 	 *   mocked getModuleMode() call
-	 * @param array $moduleGroups maps module ids to groups for mocked getModuleGroups() call
+	 * @param array $moduleGroups maps module ids to groups for mocked ModuleInfo objects
 	 * @param array $externalModules external module configuration array
 	 *
 	 * @return ModuleManager
@@ -54,7 +54,7 @@ trait RestTestTrait {
 	): ModuleManager {
 		$getModuleMode = static fn ( string $moduleId ) =>
 			$moduleModes[$moduleId] ?? ModuleMode::DISABLED;
-		$getModuleGroups = static fn ( string $moduleId ) =>
+		$getGroups = static fn ( string $moduleId ) =>
 			(array)( $moduleGroups[$moduleId] ?? [] );
 
 		$createModuleInfo = static fn (
@@ -68,7 +68,7 @@ trait RestTestTrait {
 			$moduleDefinition['info']['title'] ?? $moduleId,
 			$moduleDefinition['info']['description'] ?? null,
 			$moduleDefinition['info']['version'] ?? null,
-			$getModuleGroups( $moduleId ),
+			$getGroups( $moduleId ),
 			$moduleDefinition['base'] ?? null,
 			$moduleDefinition['spec'] ?? null
 		);
@@ -76,7 +76,6 @@ trait RestTestTrait {
 		$mock = $this->createMock( ModuleManager::class );
 		$mock->method( 'getRouteFiles' )->willReturn( $routeFiles );
 		$mock->method( 'getModuleMode' )->willReturnCallback( $getModuleMode );
-		$mock->method( 'getModuleGroups' )->willReturnCallback( $getModuleGroups );
 
 		$mock->method( 'getModuleInfos' )->willReturnCallback(
 			static function () use ( $routeFiles, $externalModules, $createModuleInfo ) {
