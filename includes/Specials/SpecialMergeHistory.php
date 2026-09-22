@@ -307,7 +307,7 @@ class SpecialMergeHistory extends SpecialPage {
 				],
 				'submit' => [
 					'type' => 'submit',
-					'default' => $this->msg( 'mergehistory-submit' ),
+					'buttonlabel' => $this->msg( 'mergehistory-submit' ),
 					'section' => 'mergehistory-submit',
 					'id' => 'mw-merge-submit',
 					'name' => 'merge'
