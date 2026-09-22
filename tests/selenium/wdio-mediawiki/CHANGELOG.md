@@ -1,5 +1,14 @@
 # Changelog
 
+## 6.5.3 / 2026-09-22
+
+* Add branch as tag to Prometheus metrics
+* Disable Chrome/Chromedriver version match (T396536)
+* Fix negative retry numbers for Prometheus (T423522)
+* Retry transient API errors in MwApiHttpClient (T432171)
+* Update per-test skipped count when test was already started (T423522)
+
+
 ## 6.5.2 / 2026-05-18
 
 * Fix duplicate metrics in PrometheusFileReporter (T423522)
