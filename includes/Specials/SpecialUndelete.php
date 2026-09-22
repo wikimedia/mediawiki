@@ -1387,7 +1387,7 @@ class SpecialUndelete extends SpecialPage {
 
 	/**
 	 * @param \stdClass $row
-	 * @param string $earliestLiveTime
+	 * @param string|null $earliestLiveTime
 	 * @param int $remaining
 	 * @param array<int,int> $sizes
 	 * @return string

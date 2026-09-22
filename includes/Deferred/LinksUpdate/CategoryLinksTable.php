@@ -35,14 +35,14 @@ use Wikimedia\Rdbms\ILBFactory;
  */
 class CategoryLinksTable extends TitleLinksTable {
 	/**
-	 * @var array Associative array of new links, with the category name in the
-	 *   key. The value is a list consisting of the sort key prefix and the sort
-	 *   key.
+	 * @var array<string,array{0: string, 1: string}> Associative array of new links, with the
+	 *  category name in the key. The value is a list consisting of the sort key prefix and the sort
+	 *  key.
 	 */
 	private $newLinks = [];
 
 	/**
-	 * @var array|null Associative array of existing links, or null if it has
+	 * @var array<string,string>|null Associative array of existing links, or null if it has
 	 *   not been loaded yet
 	 */
 	private $existingLinks;
@@ -216,7 +216,7 @@ class CategoryLinksTable extends TitleLinksTable {
 	 * Get the new link IDs. The link ID is a list with the name in the first
 	 * element and the sort key prefix in the second element.
 	 *
-	 * @return iterable<array>
+	 * @return iterable<array{0: string, 1: string}>
 	 */
 	protected function getNewLinkIDs() {
 		foreach ( $this->newLinks as $name => [ $prefix, ] ) {
@@ -243,7 +243,7 @@ class CategoryLinksTable extends TitleLinksTable {
 	 * Get the existing links as an associative array, with the category name
 	 * in the key and the sort key prefix in the value.
 	 *
-	 * @return array
+	 * @return array<string,string>
 	 */
 	private function getExistingLinks() {
 		if ( $this->existingLinks === null ) {

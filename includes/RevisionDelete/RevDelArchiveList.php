@@ -102,7 +102,7 @@ class RevDelArchiveList extends RevDelRevisionList {
 
 	/**
 	 * @param array $bitPars See RevisionDeleter::extractBitfield
-	 * @param array $visibilityChangeMap [id => ['oldBits' => $oldBits, 'newBits' => $newBits], ... ]
+	 * @param array<int,array{oldBits: int, newBits: int}> $visibilityChangeMap
 	 * @param array $tags
 	 * @param LogEntry $logEntry
 	 * @param bool $suppressed

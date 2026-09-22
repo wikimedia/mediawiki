@@ -417,7 +417,7 @@ class LinksUpdate extends DataUpdate implements TransactionRoundAwareUpdate {
 	 * Fetch page properties added by this LinksUpdate.
 	 * Only available after the update is complete.
 	 * @since 1.28
-	 * @return null|array
+	 * @return array<string,string>
 	 */
 	public function getAddedProperties() {
 		return $this->getPagePropsTable()->getAssocArray( LinksTable::INSERTED );
@@ -427,7 +427,7 @@ class LinksUpdate extends DataUpdate implements TransactionRoundAwareUpdate {
 	 * Fetch page properties removed by this LinksUpdate.
 	 * Only available after the update is complete.
 	 * @since 1.28
-	 * @return null|array
+	 * @return array<string,string>
 	 */
 	public function getRemovedProperties() {
 		return $this->getPagePropsTable()->getAssocArray( LinksTable::DELETED );

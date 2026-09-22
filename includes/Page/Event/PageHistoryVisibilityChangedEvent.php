@@ -35,10 +35,10 @@ class PageHistoryVisibilityChangedEvent extends PageEvent {
 	 * @param UserIdentity $performer The user performing the update.
 	 * @param int $latestRevisionId
 	 *        The latest revision id at the time of the visibility change event.
-	 * @param int $bitsSet Bitmap indicating which bits got set by the change
-	 * @param int $bitsUnset Bitmap indicating which bits got unset by the change
-	 * @param array<int,array> $visibilityChangeMap a map from revision IDs to visibility changes,
-	 *        in the form [id => ['oldBits' => $oldBits, 'newBits' => $newBits], ... ].
+	 * @param int $bitsSet Bitfield indicating which bits got set by the change
+	 * @param int $bitsUnset Bitfield indicating which bits got unset by the change
+	 * @param array<int,array{oldBits: int, newBits: int}> $visibilityChangeMap Map from revision
+	 *  ids to visibility changes from old to new bitfield
 	 * @param string $reason
 	 * @param array<string> $tags Applicable tags, see ChangeTags.
 	 * @param array<string,bool> $flags See the self::FLAG_XXX constants.

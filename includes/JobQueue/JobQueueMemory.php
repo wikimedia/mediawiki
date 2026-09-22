@@ -28,12 +28,7 @@ class JobQueueMemory extends JobQueue {
 		parent::__construct( $params );
 	}
 
-	/**
-	 * @see JobQueue::doBatchPush
-	 *
-	 * @param IJobSpecification[] $jobs
-	 * @param int $flags
-	 */
+	/** @inheritDoc */
 	protected function doBatchPush( array $jobs, $flags ) {
 		$unclaimed =& $this->getQueueData( 'unclaimed', [] );
 
@@ -49,60 +44,36 @@ class JobQueueMemory extends JobQueue {
 		}
 	}
 
-	/**
-	 * @see JobQueue::supportedOrders
-	 *
-	 * @return string[]
-	 */
+	/** @inheritDoc */
 	protected function supportedOrders() {
 		return [ 'random', 'timestamp', 'fifo' ];
 	}
 
-	/**
-	 * @see JobQueue::optimalOrder
-	 *
-	 * @return string
-	 */
+	/** @inheritDoc */
 	protected function optimalOrder() {
 		return 'fifo';
 	}
 
-	/**
-	 * @see JobQueue::doIsEmpty
-	 *
-	 * @return bool
-	 */
+	/** @inheritDoc */
 	protected function doIsEmpty() {
 		return ( $this->doGetSize() == 0 );
 	}
 
-	/**
-	 * @see JobQueue::doGetSize
-	 *
-	 * @return int
-	 */
+	/** @inheritDoc */
 	protected function doGetSize() {
 		$unclaimed = $this->getQueueData( 'unclaimed' );
 
 		return $unclaimed ? count( $unclaimed ) : 0;
 	}
 
-	/**
-	 * @see JobQueue::doGetAcquiredCount
-	 *
-	 * @return int
-	 */
+	/** @inheritDoc */
 	protected function doGetAcquiredCount() {
 		$claimed = $this->getQueueData( 'claimed' );
 
 		return $claimed ? count( $claimed ) : 0;
 	}
 
-	/**
-	 * @see JobQueue::doPop
-	 *
-	 * @return RunnableJob|false
-	 */
+	/** @inheritDoc */
 	protected function doPop() {
 		if ( $this->doGetSize() == 0 ) {
 			return false;
@@ -128,11 +99,7 @@ class JobQueueMemory extends JobQueue {
 		return $job;
 	}
 
-	/**
-	 * @see JobQueue::doAck
-	 *
-	 * @param RunnableJob $job
-	 */
+	/** @inheritDoc */
 	protected function doAck( RunnableJob $job ) {
 		if ( $this->getAcquiredCount() == 0 ) {
 			return;
@@ -142,9 +109,7 @@ class JobQueueMemory extends JobQueue {
 		unset( $claimed[$job->getMetadata( 'claimId' )] );
 	}
 
-	/**
-	 * @inheritDoc
-	 */
+	/** @inheritDoc */
 	protected function doDelete() {
 		if ( isset( self::$data[$this->type][$this->domain] ) ) {
 			unset( self::$data[$this->type][$this->domain] );
@@ -154,11 +119,7 @@ class JobQueueMemory extends JobQueue {
 		}
 	}
 
-	/**
-	 * @see JobQueue::getAllQueuedJobs
-	 *
-	 * @return \Iterator<RunnableJob> of Job objects.
-	 */
+	/** @inheritDoc */
 	public function getAllQueuedJobs() {
 		$unclaimed = $this->getQueueData( 'unclaimed' );
 		return $unclaimed ?
@@ -166,11 +127,7 @@ class JobQueueMemory extends JobQueue {
 			new ArrayIterator( [] );
 	}
 
-	/**
-	 * @see JobQueue::getAllAcquiredJobs
-	 *
-	 * @return \Iterator<RunnableJob> of Job objects.
-	 */
+	/** @inheritDoc */
 	public function getAllAcquiredJobs() {
 		$claimed = $this->getQueueData( 'claimed' );
 		return $claimed ?

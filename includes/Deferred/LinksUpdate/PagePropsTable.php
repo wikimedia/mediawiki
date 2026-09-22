@@ -21,11 +21,11 @@ class PagePropsTable extends LinksTable {
 	/** @var JobQueueGroup */
 	private $jobQueueGroup;
 
-	/** @var array */
-	private $newProps = [];
+	/** @var array<string,?scalar> */
+	private array $newProps = [];
 
-	/** @var array|null */
-	private $existingProps;
+	/** @var array<string,string>|null */
+	private ?array $existingProps = null;
 
 	/**
 	 * The configured PagePropLinkInvalidations. An associative array where the
@@ -33,9 +33,9 @@ class PagePropsTable extends LinksTable {
 	 * giving the link table names which will be used for backlink cache
 	 * invalidation.
 	 *
-	 * @var array
+	 * @var array<string,string|string[]>
 	 */
-	private $linkInvalidations;
+	private array $linkInvalidations;
 
 	public const CONSTRUCTOR_OPTIONS = [ MainConfigNames::PagePropLinkInvalidations ];
 
@@ -77,9 +77,9 @@ class PagePropsTable extends LinksTable {
 	/**
 	 * Get the existing page_props as an associative array
 	 *
-	 * @return array
+	 * @return array<string,string>
 	 */
-	private function getExistingProps() {
+	private function getExistingProps(): array {
 		if ( $this->existingProps === null ) {
 			$this->existingProps = [];
 			foreach ( $this->fetchExistingRows() as $row ) {
@@ -200,7 +200,7 @@ class PagePropsTable extends LinksTable {
 	 * Get the properties for a given link set as an associative array
 	 *
 	 * @param int $setType The set type as in LinksTable::getLinkIDs()
-	 * @return array
+	 * @return array<string,mixed>
 	 */
 	public function getAssocArray( $setType ) {
 		$props = [];

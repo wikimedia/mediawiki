@@ -272,9 +272,9 @@ class OutputPage extends ContextSource {
 	// Parser related.
 
 	/**
-	 * lazy initialised, use parserOptions()
 	 * @var ParserOptions
-	 * @deprecated since 1.44; see ::parserOptions()
+	 * @deprecated since 1.44; not initialized any more; instead use
+	 *  ParserOptions::newFromContext( $outputPage->getContext() )
 	 */
 	private $mParserOptions = null;
 

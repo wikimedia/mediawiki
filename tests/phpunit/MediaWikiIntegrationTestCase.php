@@ -1663,7 +1663,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	 * @param string $text Page's content
 	 * @param int|null $namespace Namespace id (name cannot already contain namespace)
 	 * @param User|null $user If null, static::getTestSysop()->getUser() is used.
-	 * @return array Title object and page id
+	 * @return array{title: Title, id: int}
 	 */
 	protected function insertPage(
 		$title,

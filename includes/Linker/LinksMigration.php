@@ -99,7 +99,7 @@ class LinksMigration {
 	 * @param string $table
 	 * @param string $joinTable table to end the join chain. Most of the time it's linktarget
 	 * @param string $joinType
-	 * @return array
+	 * @return array{tables:string[], fields:string[], joins:array<string,array>}
 	 */
 	public function getQueryInfo( string $table, string $joinTable = 'linktarget', string $joinType = 'JOIN' ) {
 		$this->assertMapping( $table );

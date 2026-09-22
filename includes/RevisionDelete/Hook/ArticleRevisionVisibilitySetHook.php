@@ -20,10 +20,9 @@ interface ArticleRevisionVisibilitySetHook {
 	 *
 	 * @param Title $title Title of the article
 	 * @param int[] $ids IDs to set the visibility for
-	 * @param array $visibilityChangeMap Map of revision ID to oldBits and newBits.
-	 *   This array can be examined to determine exactly what visibility bits
-	 *   have changed for each revision. This array is of the form:
-	 *   [id => ['oldBits' => $oldBits, 'newBits' => $newBits], ... ]
+	 * @param array<int,array{oldBits: int, newBits: int}> $visibilityChangeMap Map from revision
+	 *  ids to visibility changes from old to new bitfield. This array can be examined to determine
+	 *  exactly which of the {@link RevisionRecord} visibility bits have changed for each revision.
 	 * @return bool|void True or no return value to continue or false to abort
 	 */
 	public function onArticleRevisionVisibilitySet( $title, $ids,

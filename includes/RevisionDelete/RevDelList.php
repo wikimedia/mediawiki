@@ -317,7 +317,7 @@ abstract class RevDelList extends RevisionListBase {
 
 	/**
 	 * @param array $bitPars See RevisionDeleter::extractBitfield
-	 * @param array $visibilityChangeMap [id => ['oldBits' => $oldBits, 'newBits' => $newBits], ... ]
+	 * @param array<int,array{oldBits: int, newBits: int}> $visibilityChangeMap
 	 * @param array $tags
 	 * @param LogEntry $logEntry
 	 * @param bool $suppressed
@@ -447,7 +447,7 @@ abstract class RevDelList extends RevisionListBase {
 	/**
 	 * A hook for setVisibility(): do any necessary updates post-commit.
 	 * STUB
-	 * @param array $visibilityChangeMap [id => ['oldBits' => $oldBits, 'newBits' => $newBits], ... ]
+	 * @param array<int,array{oldBits: int, newBits: int}> $visibilityChangeMap
 	 * @return Status
 	 */
 	public function doPostCommitUpdates( array $visibilityChangeMap ) {

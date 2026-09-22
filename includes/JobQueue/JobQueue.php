@@ -170,7 +170,7 @@ abstract class JobQueue {
 	}
 
 	/**
-	 * @return string One of (random, timestamp, fifo, undefined)
+	 * @return string One of the allowed values from {@link supportedOrders}
 	 */
 	final public function getOrder() {
 		return $this->order;
@@ -179,14 +179,14 @@ abstract class JobQueue {
 	/**
 	 * Get the allowed queue orders for configuration validation
 	 *
-	 * @return array Subset of (random, timestamp, fifo, undefined)
+	 * @return string[] Subset of [ "fifo", "timestamp", "random", "undefined" ]
 	 */
 	abstract protected function supportedOrders();
 
 	/**
 	 * Get the default queue order to use if configuration does not specify one
 	 *
-	 * @return string One of (random, timestamp, fifo, undefined)
+	 * @return string One of "fifo", "timestamp", "random", or "undefined"
 	 */
 	abstract protected function optimalOrder();
 
