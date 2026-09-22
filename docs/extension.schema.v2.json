@@ -1313,15 +1313,93 @@
 			"properties": {
 				"preauth": {
 					"type": "object",
-					"description": "Pre-authentication providers"
+					"description": "Pre-authentication providers",
+					"patternProperties": {
+						".*": {
+							"oneOf": [
+								{
+									"type": "string",
+									"description": "Class name of a pre-authentication authentication provider class."
+								},
+								{
+									"type": "object",
+									"properties": {
+										"sort": {
+											"type": "integer",
+											"description": "Providers are stably sorted by this value to define execution order"
+										},
+										"factory": { "description": "See the ObjectFactorySpec definition" },
+										"class": { "description": "See the ObjectFactorySpec definition" },
+										"args": { "description": "See the ObjectFactorySpec definition" },
+										"services": { "description": "See the ObjectFactorySpec definition" },
+										"optional_services": { "description": "See the ObjectFactorySpec definition" }
+									},
+									"allOf": [ { "$ref": "#/definitions/ObjectFactorySpec" } ],
+									"additionalProperties": false
+								}
+							]
+						}
+					}
 				},
 				"primaryauth": {
 					"type": "object",
-					"description": "Primary authentication providers"
+					"description": "Primary authentication providers",
+					"patternProperties": {
+						".*": {
+							"oneOf": [
+								{
+									"type": "string",
+									"description": "Class name of a primary authentication provider class."
+								},
+								{
+									"type": "object",
+									"properties": {
+										"sort": {
+											"type": "integer",
+											"description": "Providers are stably sorted by this value to define execution order"
+										},
+										"factory": { "description": "See the ObjectFactorySpec definition" },
+										"class": { "description": "See the ObjectFactorySpec definition" },
+										"args": { "description": "See the ObjectFactorySpec definition" },
+										"services": { "description": "See the ObjectFactorySpec definition" },
+										"optional_services": { "description": "See the ObjectFactorySpec definition" }
+									},
+									"allOf": [ { "$ref": "#/definitions/ObjectFactorySpec" } ],
+									"additionalProperties": false
+								}
+							]
+						}
+					}
 				},
 				"secondaryauth": {
 					"type": "object",
-					"description": "Secondary authentication providers"
+					"description": "Secondary authentication providers",
+					"patternProperties": {
+						".*": {
+							"oneOf": [
+								{
+									"type": "string",
+									"description": "Class name of a secondary authentication provider class."
+								},
+								{
+									"type": "object",
+									"properties": {
+										"sort": {
+											"type": "integer",
+											"description": "Providers are stably sorted by this value to define execution order"
+										},
+										"factory": { "description": "See the ObjectFactorySpec definition" },
+										"class": { "description": "See the ObjectFactorySpec definition" },
+										"args": { "description": "See the ObjectFactorySpec definition" },
+										"services": { "description": "See the ObjectFactorySpec definition" },
+										"optional_services": { "description": "See the ObjectFactorySpec definition" }
+									},
+									"allOf": [ { "$ref": "#/definitions/ObjectFactorySpec" } ],
+									"additionalProperties": false
+								}
+							]
+						}
+					}
 				}
 			}
 		},
