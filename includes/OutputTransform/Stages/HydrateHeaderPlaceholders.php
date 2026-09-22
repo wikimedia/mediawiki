@@ -53,6 +53,14 @@ class HydrateHeaderPlaceholders extends OutputTransformStage {
 			return $po;
 		}
 
+		$fragment = $contentHolder->getAsDom();
+		'@phan-var DocumentFragment $fragment';
+
+		$wrapperDivClass = AddWrapperDivClass::wrapperDivClass( $po, $popts, $options );
+		if ( $wrapperDivClass !== null ) {
+			$fragment = DOMCompat::querySelector( $fragment, ".$wrapperDivClass" );
+		}
+
 		foreach ( $po->getExtensionData( 'core:slots' ) ?? [] as $role => $value ) {
 			// TODO: put more fancy layout logic here, see T200915.
 			$roleHandler = $this->roleRegistry->getRoleHandler( $role );
@@ -65,6 +73,7 @@ class HydrateHeaderPlaceholders extends OutputTransformStage {
 
 			$fragmentName = "slot-$role";
 			$df = $contentHolder->getAsDom( $fragmentName );
+			'@phan-var DocumentFragment $df';
 			$contentHolder->setAsDom( $fragmentName, null );
 
 			// TODO: map to message, using the interface language. Set lang="xyz" accordingly.
@@ -75,8 +84,7 @@ class HydrateHeaderPlaceholders extends OutputTransformStage {
 			$h1->appendChild( $df->ownerDocument->createTextNode( $headerText ) );
 			$df->insertBefore( $h1, $df->firstChild );
 
-			'@phan-var DocumentFragment $df';
-			$contentHolder->appendDom( $df );
+			$fragment->appendChild( $df );
 		}
 
 		return $po;
