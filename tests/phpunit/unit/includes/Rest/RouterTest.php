@@ -1142,7 +1142,8 @@ class RouterTest extends MediaWikiUnitTestCase {
 	}
 
 	/**
-	 * Test that `getModuleBaseUrl()` returns null when an external module has no base URL.
+	 * Test that `getModuleBaseUrl()` throws `UnexpectedValueException` when an external module
+	 * has no base URL configured.
 	 */
 	public function testGetModuleBaseUrlExternalNull(): void {
 		$info = new ModuleInfo(
@@ -1158,7 +1159,9 @@ class RouterTest extends MediaWikiUnitTestCase {
 		);
 
 		$router = $this->createRouterWithModuleInfo( $info );
-		$this->assertNull( $router->getModuleBaseUrl( 'external/v1' ) );
+		$this->expectException( UnexpectedValueException::class );
+		$this->expectExceptionMessage( "External module 'external/v1' has no base URL configured" );
+		$router->getModuleBaseUrl( 'external/v1' );
 	}
 
 	/**

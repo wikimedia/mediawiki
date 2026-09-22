@@ -484,7 +484,8 @@ class Router {
 	 * For local modules, the route URL is generated from the module ID.
 	 *
 	 * @param string $moduleId The module ID
-	 * @return string|null The absolute base URL, or null if the module or base URL is unresolvable
+	 * @return string|null The absolute base URL, or null if the module is unresolvable
+	 * @throws UnexpectedValueException If an external module has no base URL configured
 	 * @since 1.47
 	 */
 	public function getModuleBaseUrl( string $moduleId ): ?string {
@@ -495,7 +496,12 @@ class Router {
 
 		if ( $info->isExternal() ) {
 			$baseUrl = $info->getExternalBaseUrl();
-			return $baseUrl !== null ? $this->urlUtils->expand( $baseUrl ) : null;
+			if ( $baseUrl === null ) {
+				throw new UnexpectedValueException(
+					"External module '$moduleId' has no base URL configured"
+				);
+			}
+			return $this->urlUtils->expand( $baseUrl );
 		}
 
 		return $this->getRouteUrl( '/' . $moduleId );
