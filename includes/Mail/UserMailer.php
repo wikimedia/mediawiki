@@ -524,7 +524,7 @@ class UserMailer {
 		$charset = strtoupper( $charset );
 		$charset = str_replace( 'ISO-8859', 'ISO8859', $charset );
 
-		$illegal = '\x00-\x08\x0b\x0c\x0e-\x1f\x7f-\xff=';
+		$illegal = '\x00-\x08\x0a-\x1f\x7f-\xff=';
 		if ( !preg_match( "/[$illegal]/", $string ) ) {
 			return $string;
 		}

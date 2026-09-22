@@ -30,6 +30,44 @@ class UserMailerTest extends MediaWikiUnitTestCase {
 		);
 	}
 
+	public function testQuotedPrintableEncodedNaughtyCharacters() {
+		// Catches attempts to use newline characters to inject additional lines as additional headers
+		$this->assertSame(
+			'=?UTF-8?Q?Cleaned=0Astring?=',
+			UserMailer::quotedPrintable( "Cleaned\nstring" )
+		);
+
+		// Test for all excluded characters
+		$suspects = array_merge(
+			range( "\x00", "\x08" ),
+			range( "\x0a", "\x1f" ),
+			range( "\x7f", "\xff" )
+		);
+
+		$output = UserMailer::quotedPrintable( implode( $suspects ) );
+		foreach ( $suspects as $suspect ) {
+			$this->assertFalse( str_contains( $output, $suspect ) );
+		}
+	}
+
+	public function testQuotedPrintableEscapesBareCr() {
+		// A bare CR must also be escaped, not just LF or CRLF together.
+		$this->assertSame(
+			"=?UTF-8?Q?Cleaned=0Dstring?=",
+			UserMailer::quotedPrintable( "Cleaned\rstring" )
+		);
+	}
+
+	public function testQuotedPrintableEscapesInjectedHeader() {
+		// T434545 / T434543: the reported attack embeds a full CRLF followed
+		// by header-like text, which must come out as a single encoded-word,
+		// not a literal CRLF that could start a new header line.
+		$this->assertSame(
+			"=?UTF-8?Q?Subject-Canary=0D=0ABcc:=20injected@example=2Einvalid?=",
+			UserMailer::quotedPrintable( "Subject-Canary\r\nBcc: injected@example.invalid" )
+		);
+	}
+
 	public function testQuotedPrintablePlainAscii() {
 		$this->assertSame(
 			"Hello World",
