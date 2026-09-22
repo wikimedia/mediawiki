@@ -1275,7 +1275,7 @@ class Title implements Stringable, LinkTarget, PageIdentity {
 			if ( $canonicalName ) {
 				$localName = $spFactory->getLocalNameFor( $canonicalName, $par );
 				if ( $localName != $this->mDbkeyform ) {
-					return self::makeTitle( NS_SPECIAL, $localName );
+					return self::makeTitle( NS_SPECIAL, $localName, $this->mFragment );
 				}
 			}
 		}

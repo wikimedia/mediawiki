@@ -896,28 +896,32 @@ class TitleTest extends MediaWikiIntegrationTestCase {
 		}
 	}
 
-	public static function provideSpecialNamesWithAndWithoutParameter() {
+	public static function provideFixSpecialName() {
 		return [
+			// Expect change - Special:Versions is an alias for Special:Version in MessagesEn.php
+			[ 'Special:Versions', 'Special:Version' ],
+			[ 'Special:Versions/', 'Special:Version/' ],
+			[ 'Special:Versions/param', 'Special:Version/param' ],
+			[ 'Special:Versions/param#fragment', 'Special:Version/param#fragment' ],
+			// Expect no change
 			[ 'Special:Version', null ],
-			[ 'Special:Version/', '' ],
-			[ 'Special:Version/param', 'param' ],
+			[ 'Special:Version/param#fragment', null ],
 		];
 	}
 
 	/**
-	 * @dataProvider provideSpecialNamesWithAndWithoutParameter
+	 * @dataProvider provideFixSpecialName
 	 * @covers \MediaWiki\Title\Title::fixSpecialName
 	 */
-	public function testFixSpecialNameRetainsParameter( $text, $expectedParam ) {
+	public function testFixSpecialName( string $text, ?string $expectedText ) {
 		$title = Title::newFromText( $text );
 		$fixed = $title->fixSpecialName();
-		$stuff = explode( '/', $fixed->getDBkey(), 2 );
-		$par = $stuff[1] ?? null;
-		$this->assertEquals(
-			$expectedParam,
-			$par,
-			"T33100 regression check: Title->fixSpecialName() should preserve parameter"
-		);
+		if ( $expectedText !== null ) {
+			$this->assertSame( $expectedText, $fixed->getFullText() );
+			$this->assertNotSame( $title, $fixed );
+		} else {
+			$this->assertSame( $title, $fixed );
+		}
 	}
 
 	public function flattenErrorsArray( $errors ) {
