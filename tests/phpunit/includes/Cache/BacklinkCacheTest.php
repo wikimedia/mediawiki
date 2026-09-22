@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\Page\PageIdentity;
 use MediaWiki\Title\Title;
 
 /**
@@ -111,11 +112,12 @@ class BacklinkCacheTest extends MediaWikiIntegrationTestCase {
 		$endId = $endId ? Title::newFromText( $endId )->getId() : false;
 		$blcFactory = $this->getServiceContainer()->getBacklinkCacheFactory();
 		$backlinkCache = $blcFactory->getBacklinkCache( Title::newFromText( $title ) );
+		/** @var PageIdentity[] $titlesArray */
 		$titlesArray = iterator_to_array( $backlinkCache->getLinkPages( $table, $startId, $endId, $max ) );
 		$this->assertSameSize( $expectedTitles, $titlesArray );
 		$numOfTitles = count( $titlesArray );
 		for ( $i = 0; $i < $numOfTitles; $i++ ) {
-			$this->assertEquals( $expectedTitles[$i], $titlesArray[$i]->getDbKey() );
+			$this->assertEquals( $expectedTitles[$i], $titlesArray[$i]->getDBkey() );
 		}
 	}
 

@@ -117,7 +117,7 @@ class LinksUpdateTest extends MediaWikiLangTestCase {
 			[ NS_MAIN, 'Bar' ],
 		], array_map(
 			static function ( PageReference $pageReference ) {
-				return [ $pageReference->getNamespace(), $pageReference->getDbKey() ];
+				return [ $pageReference->getNamespace(), $pageReference->getDBkey() ];
 			},
 			$update->getPageReferenceArray( 'pagelinks', LinksTable::INSERTED )
 		) );
@@ -146,7 +146,7 @@ class LinksUpdateTest extends MediaWikiLangTestCase {
 			[ NS_TALK, 'Baz' ],
 		], array_map(
 			static function ( PageReference $pageReference ) {
-				return [ $pageReference->getNamespace(), $pageReference->getDbKey() ];
+				return [ $pageReference->getNamespace(), $pageReference->getDBkey() ];
 			},
 			$update->getPageReferenceArray( 'pagelinks', LinksTable::INSERTED )
 		) );
@@ -154,7 +154,7 @@ class LinksUpdateTest extends MediaWikiLangTestCase {
 			[ NS_MAIN, 'Foo' ],
 		], array_map(
 			static function ( PageReference $pageReference ) {
-				return [ $pageReference->getNamespace(), $pageReference->getDbKey() ];
+				return [ $pageReference->getNamespace(), $pageReference->getDBkey() ];
 			},
 			$update->getPageReferenceArray( 'pagelinks', LinksTable::DELETED )
 		) );
@@ -857,7 +857,7 @@ class LinksUpdateTest extends MediaWikiLangTestCase {
 			[ NS_MAIN, 'Bar' ],
 		], array_map(
 			static function ( PageReference $pageReference ) {
-				return [ $pageReference->getNamespace(), $pageReference->getDbKey() ];
+				return [ $pageReference->getNamespace(), $pageReference->getDBkey() ];
 			},
 			$update->getPageReferenceArray( 'existencelinks', LinksTable::INSERTED )
 		) );

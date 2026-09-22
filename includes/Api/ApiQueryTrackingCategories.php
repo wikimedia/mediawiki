@@ -63,7 +63,7 @@ class ApiQueryTrackingCategories extends ApiQueryCategoryList {
 		foreach ( $cats as $id => $cat ) {
 			if ( empty( $params['trackingcatname'] ) || in_array( $id, $params['trackingcatname'] ) ) {
 				foreach ( $cat['cats'] ?? [] as $link ) {
-					$catNameList[ $link->getDbkey() ] = $id;
+					$catNameList[ $link->getDBkey() ] = $id;
 				}
 			}
 		}

@@ -22,13 +22,15 @@ class ApiMessageTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( $msg->getParams(), $msg2->getParams(), 'getParams' );
 		$this->assertSame( $msg->getLanguage(), $msg2->getLanguage(), 'getLanguage' );
 
+		/** @var Message $msg */
 		$msg = TestingAccessWrapper::newFromObject( $msg );
+		/** @var Message $msg2 */
 		$msg2 = TestingAccessWrapper::newFromObject( $msg2 );
 		$this->assertSame( $msg->isInterface, $msg2->isInterface, 'interface' );
 		$this->assertSame( $msg->useDatabase, $msg2->useDatabase, 'useDatabase' );
 		$this->assertSame(
-			$msg->contextPage ? "{$msg->contextPage->getNamespace()}:{$msg->contextPage->getDbKey()}" : null,
-			$msg2->contextPage ? "{$msg->contextPage->getNamespace()}:{$msg->contextPage->getDbKey()}" : null,
+			$msg->contextPage ? "{$msg->contextPage->getNamespace()}:{$msg->contextPage->getDBkey()}" : null,
+			$msg2->contextPage ? "{$msg->contextPage->getNamespace()}:{$msg->contextPage->getDBkey()}" : null,
 			'title'
 		);
 	}
