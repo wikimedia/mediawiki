@@ -509,4 +509,16 @@ class SkinTemplateTest extends MediaWikiIntegrationTestCase {
 			'Copyright stays suppressed for a genuine redlink even when it opts in'
 		);
 	}
+
+	// T430586
+	public function testMissingUserTalkPageUsesLinkClass() {
+		$wrapper = TestingAccessWrapper::newFromObject( new SkinTemplate() );
+		$wrapper->getContext()->setUser( $this->getTestUser()->getUser() );
+		$wrapper->getContext()->setTitle( Title::makeTitle( NS_MAIN, 'RedlinkTalkTest' ) );
+
+		$mytalk = $wrapper->buildContentNavigationUrlsInternal()['user-menu']['mytalk'];
+
+		$this->assertArrayNotHasKey( 'class', $mytalk );
+		$this->assertSame( [ 'new' ], $mytalk['link-class'] );
+	}
 }
