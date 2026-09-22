@@ -94,6 +94,19 @@ trait RestTestTrait {
 						}
 					}
 				}
+				// Add the prefix-less module.
+				$modules[''] = $createModuleInfo(
+					'',
+					[
+						'info' => [
+							'title' => 'MediaWiki REST API (routes not in modules)',
+							'description' => 'Routes not in modules',
+							'version' => '0.1.0',
+						],
+					],
+					false
+				);
+
 				// Add external modules.
 				foreach ( $externalModules as $moduleId => $externalModuleConfig ) {
 					$modules[$moduleId] = $createModuleInfo(

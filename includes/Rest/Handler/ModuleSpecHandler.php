@@ -34,7 +34,6 @@ class ModuleSpecHandler extends SimpleHandler {
 		MainConfigNames::EmergencyContact,
 		MainConfigNames::Sitename,
 		MainConfigNames::CanonicalServer,
-		MainConfigNames::RestExternalModules,
 		MainConfigNames::RestLocalModuleTestBaseUrl,
 		MainConfigNames::RestTermsOfServiceUrl,
 	];
@@ -63,31 +62,43 @@ class ModuleSpecHandler extends SimpleHandler {
 			$moduleName .= '/' . $version;
 		}
 
-		$mode = null;
 		if ( $moduleName === '-' ) {
-			// Hack that allows us to fetch a spec for the empty module prefix
+			// Spec for the prefix-less module.
 			$moduleName = '';
-			$mode = ModuleMode::PUBLISHED;
+		}
+
+		$moduleInfo = $this->getRouter()->getModuleManager()->getModuleInfo( $moduleName );
+		if ( !$moduleInfo ) {
+			throw new LocalizedHttpException(
+				MessageValue::new( 'rest-unknown-module' )->params( $moduleName ),
+				404
+			);
 		}
 
 		// Suppress OpenAPI spec for HIDDEN or DISABLED modules. This is not a security or
 		// protection mechanism. MediaWiki is open source, so callers can learn the details of
 		// its endpoints.  This is just a way to hide the spec in cases where it should not be
 		// available.
-		$mode ??= $this->getRouter()->getModuleManager()->getModuleMode( $moduleName );
-		if ( $mode === ModuleMode::HIDDEN || $mode === ModuleMode::DISABLED ) {
+		if (
+			$moduleInfo->getAvailability() === ModuleMode::HIDDEN ||
+			$moduleInfo->getAvailability() === ModuleMode::DISABLED
+		) {
 			throw new LocalizedHttpException(
 				MessageValue::new( 'rest-unavailable-spec' )->params( $moduleName ),
 				403
 			);
 		}
 
-		// If this is an external module, redirect to its spec
-		$restExternalModules = $this->options->get( MainConfigNames::RestExternalModules );
-		$em = $restExternalModules[$moduleName] ?? null;
-		if ( $em ) {
-			$response = $this->getResponseFactory()->createPermanentRedirect( $em['spec'] );
-			return $response;
+		// If this module is external, redirect to its spec.
+		if ( $moduleInfo->isExternal() ) {
+			$specUrl = $this->getRouter()->getModuleSpecUrl( $moduleName );
+			if ( $specUrl === null ) {
+				throw new LocalizedHttpException(
+					MessageValue::new( 'rest-unavailable-spec' )->params( $moduleName ),
+					404
+				);
+			}
+			return $this->getResponseFactory()->createPermanentRedirect( $specUrl );
 		}
 
 		$module = $this->getRouter()->getModule( $moduleName );

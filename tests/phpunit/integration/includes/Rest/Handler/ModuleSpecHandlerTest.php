@@ -17,6 +17,7 @@ use MediaWiki\Rest\ResponseInterface;
 use MediaWiki\Rest\Router;
 use MediaWiki\Rest\Validator\Validator;
 use MediaWiki\Session\SessionManagerInterface;
+use MediaWiki\Utils\UrlUtils;
 use MediaWikiIntegrationTestCase;
 use PHPUnit\Framework\Assert;
 use PHPUnit\Framework\Constraint\Constraint;
@@ -55,8 +56,11 @@ class ModuleSpecHandlerTest extends MediaWikiIntegrationTestCase {
 		$textFormatters = [ $formatter ];
 		$showExceptionDetails = false;
 
+		$specFiles = $specFile !== null ? [ $specFile ] : [];
+		$externalModules = $conf->get( MainConfigNames::RestExternalModules );
+
 		return ( new Router(
-			$this->newMockModuleManager( [ $specFile ], $moduleModes ),
+			$this->newMockModuleManager( $specFiles, $moduleModes, [], $externalModules ),
 			[],
 			new ServiceOptions( Router::CONSTRUCTOR_OPTIONS, $conf ),
 			$services->getLocalServerObjectCache(),
@@ -557,6 +561,40 @@ class ModuleSpecHandlerTest extends MediaWikiIntegrationTestCase {
 		);
 	}
 
+	public function testExternalModuleSpecUnresolvable(): void {
+		$urlUtils = $this->createMock( UrlUtils::class );
+		$urlUtils->method( 'expand' )
+			->willReturn( null );
+		$this->setService( 'UrlUtils', $urlUtils );
+
+		$this->overrideConfigValue( MainConfigNames::RestExternalModules, [
+			'mockExternal/v1' => [
+				'info' => [
+					'title' => 'Mock External Module',
+				],
+				'base' => 'https://example.com/mockExternal/v1',
+				'spec' => 'https://example.com/mockExternal/v1/spec.json',
+			],
+		] );
+
+		$request = new RequestData(
+			[ 'pathParams' => [ 'module' => 'mockExternal', 'version' => 'v1' ] ]
+		);
+
+		$moduleModes = [
+			'mockExternal/v1' => ModuleMode::PUBLISHED,
+		];
+
+		$this->expectException( LocalizedHttpException::class );
+		$this->expectExceptionCode( 404 );
+		$this->expectExceptionMessage( 'rest-unavailable-spec' );
+		$this->executeModuleSpecHandler(
+			$request,
+			null,
+			$moduleModes
+		);
+	}
+
 	public static function provideGenerateOperationId(): iterable {
 		// ASCII summary
 		yield 'GET + summary' => [ 'GET', 'Search pages', '/v1/page', 'getSearchPages' ];
@@ -602,10 +640,55 @@ class ModuleSpecHandlerTest extends MediaWikiIntegrationTestCase {
 		];
 
 		$this->expectException( LocalizedHttpException::class );
-		$response = $this->executeModuleSpecHandler(
+		$this->expectExceptionCode( 403 );
+		$this->executeModuleSpecHandler(
 			$request, __DIR__ . '/SpecTestModule.json', $overrides
 		);
-		$this->assertSame( 403, $response->getStatusCode() );
+	}
+
+	public function testDisabledSpec() {
+		$request = new RequestData( [
+			'pathParams' => [ 'module' => 'mock', 'version' => 'v1' ]
+		] );
+
+		$this->expectException( LocalizedHttpException::class );
+		$this->expectExceptionCode( 403 );
+		$this->expectExceptionMessage( 'rest-unavailable-spec' );
+		$this->executeModuleSpecHandler(
+			$request,
+			__DIR__ . '/SpecTestModule.json',
+			[ 'mock/v1' => ModuleMode::DISABLED ]
+		);
+	}
+
+	public function testPrefixLessModuleDisabled() {
+		$request = new RequestData( [
+			'pathParams' => [ 'module' => '-' ]
+		] );
+
+		$this->expectException( LocalizedHttpException::class );
+		$this->expectExceptionCode( 403 );
+		$this->expectExceptionMessage( 'rest-unavailable-spec' );
+		$this->executeModuleSpecHandler(
+			$request,
+			__DIR__ . '/SpecTestFlatRoutes.json',
+			[ '' => ModuleMode::DISABLED ]
+		);
+	}
+
+	public function testUnknownModule() {
+		$request = new RequestData( [
+			'pathParams' => [ 'module' => 'nonexistent', 'version' => 'v1' ]
+		] );
+
+		$this->expectException( LocalizedHttpException::class );
+		$this->expectExceptionCode( 404 );
+		$this->expectExceptionMessage( 'rest-unknown-module' );
+		$this->executeModuleSpecHandler(
+			$request,
+			__DIR__ . '/SpecTestModule.json',
+			[]
+		);
 	}
 
 	public function testGetOpenApiSecurityRequirements() {
