@@ -3,6 +3,7 @@ namespace MediaWiki\Tests\JobQueue\Jobs;
 
 use MediaWiki\CommentStore\CommentStoreComment;
 use MediaWiki\Content\Content;
+use MediaWiki\Content\JavaScriptContent;
 use MediaWiki\Content\WikitextContent;
 use MediaWiki\JobQueue\Jobs\RefreshLinksJob;
 use MediaWiki\Page\PageAssertionException;
@@ -105,13 +106,13 @@ class RefreshLinksJobTest extends MediaWikiIntegrationTestCase {
 	public function testRunForSinglePage() {
 		$this->getServiceContainer()->getSlotRoleRegistry()->defineRoleWithModel(
 			'aux',
-			CONTENT_MODEL_WIKITEXT
+			CONTENT_MODEL_JAVASCRIPT
 		);
 
 		$cacheOpsCounter = $this->statsFactory->getCounter( 'refreshlinks_parsercache_operations_total' );
 
 		$mainContent = new WikitextContent( 'MAIN [[Kittens]]' );
-		$auxContent = new WikitextContent( 'AUX [[Category:Goats]]' );
+		$auxContent = new JavaScriptContent( 'AUX [[Category:Goats]]' );
 		$page = $this->createPage( __METHOD__, [ 'main' => $mainContent, 'aux' => $auxContent ] );
 
 		// clear state
@@ -156,17 +157,17 @@ class RefreshLinksJobTest extends MediaWikiIntegrationTestCase {
 	public function testRunForMultiPage() {
 		$this->getServiceContainer()->getSlotRoleRegistry()->defineRoleWithModel(
 			'aux',
-			CONTENT_MODEL_WIKITEXT
+			CONTENT_MODEL_JAVASCRIPT
 		);
 
 		$fname = __METHOD__;
 
 		$mainContent = new WikitextContent( 'MAIN [[Kittens]]' );
-		$auxContent = new WikitextContent( 'AUX [[Category:Goats]]' );
+		$auxContent = new JavaScriptContent( 'AUX [[Category:Goats]]' );
 		$page1 = $this->createPage( "$fname-1", [ 'main' => $mainContent, 'aux' => $auxContent ] );
 
 		$mainContent = new WikitextContent( 'MAIN [[Dogs]]' );
-		$auxContent = new WikitextContent( 'AUX [[Category:Hamsters]]' );
+		$auxContent = new JavascriptContent( 'AUX [[Category:Hamsters]]' );
 		$page2 = $this->createPage( "$fname-2", [ 'main' => $mainContent, 'aux' => $auxContent ] );
 
 		// clear state
