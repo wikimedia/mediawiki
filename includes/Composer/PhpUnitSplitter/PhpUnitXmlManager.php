@@ -208,7 +208,12 @@ class PhpUnitXmlManager {
 	 */
 	private static function downloadResultsCacheFile( string $resultsCacheUrl ): ?string {
 		$client = self::createGuzzleClient();
-		$content = $client->get( $resultsCacheUrl )->getBody()->getContents();
+		// A split without timing data makes the test run much slower than a slow download.
+		// Thus, wait for a maximum of 30 seconds. See T438928.
+		$content = $client->get( $resultsCacheUrl, [
+			'connect_timeout' => 5,
+			'timeout' => 30,
+		] )->getBody()->getContents();
 		if ( !$content ) {
 			return null;
 		}
