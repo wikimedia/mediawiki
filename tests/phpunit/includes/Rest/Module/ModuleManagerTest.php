@@ -5,6 +5,7 @@ namespace MediaWiki\Tests\Rest;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Rest\JsonLocalizer;
+use MediaWiki\Rest\Module\AudienceDesignation;
 use MediaWiki\Rest\Module\ModuleInfo;
 use MediaWiki\Rest\Module\ModuleManager;
 use MediaWiki\Rest\Module\ModuleMode;
@@ -154,7 +155,7 @@ class ModuleManagerTest extends MediaWikiIntegrationTestCase {
 		yield 'mw-extra' => [
 			'mw-extra',
 			[
-				'groups' => [],
+				'groups' => [ 'default' ],
 				'url' => '/rest/specs/v0/module/-',
 				'name' => 'MediaWiki REST API (routes not in modules)',
 			]
@@ -163,7 +164,7 @@ class ModuleManagerTest extends MediaWikiIntegrationTestCase {
 		yield 'mockExternal/v1' => [
 			'mockExternal/v1',
 			[
-				'groups' => [],
+				'groups' => [ 'preferred' ],
 				'url' => 'https://example.com/mockExternal/v1/spec.json',
 				'name' => 'Mock External Module',
 			]
@@ -172,7 +173,7 @@ class ModuleManagerTest extends MediaWikiIntegrationTestCase {
 		yield 'site.v1' => [
 			'site.v1',
 			[
-				'groups' => [],
+				'groups' => [ 'preferred' ],
 				'url' => '/rest/specs/v0/module/site/v1',
 			]
 		];
@@ -320,18 +321,34 @@ class ModuleManagerTest extends MediaWikiIntegrationTestCase {
 
 	public static function provideGetModuleInfoGroupsCases() {
 		yield from [
-			'local module without groups' => [ 'site/v1', [] ],
-			'local module with audience designation suffix' => [ 'fragments/v0-internal', [ 'internal' ] ],
-			'external module without groups' => [ 'mockExternal/v1', [] ],
+			'local module without groups defaults to public audience group' => [
+				'moduleId' => 'site/v1',
+				'expected' => [ 'preferred' ],
+			],
+			'local module with audience designation suffix' => [
+				'moduleId' => 'fragments/v0-internal',
+				'expected' => [ 'internal' ],
+			],
+			'external module without suffix defaults to public audience group' => [
+				'moduleId' => 'mockExternal/v1',
+				'expected' => [ 'preferred' ],
+			],
 			'module with override' => [
-				'site/v1',
-				[ 'preferred' ],
-				[ 'site/v1' => [ 'availability' => 'published', 'groups' => [ 'preferred' ] ] ]
+				'moduleId' => 'site/v1',
+				'expected' => [ 'preferred' ],
+				'overrides' => [ 'site/v1' => [ 'availability' => 'published', 'groups' => [ 'preferred' ] ] ],
 			],
 			'module with multiple override groups' => [
-				'site/v1',
-				[ 'preferred', 'beta' ],
-				[ 'site/v1' => [ 'availability' => 'published', 'groups' => [ 'preferred', 'beta' ] ] ]
+				'moduleId' => 'site/v1',
+				'expected' => [ 'preferred', 'beta' ],
+				'overrides' => [
+					'site/v1' => [ 'availability' => 'published', 'groups' => [ 'preferred', 'beta' ] ]
+				],
+			],
+			'hidden module has no groups even if overridden' => [
+				'moduleId' => 'site/v1',
+				'expected' => [],
+				'overrides' => [ 'site/v1' => [ 'availability' => 'hidden', 'groups' => [ 'preferred' ] ] ],
 			],
 		];
 	}
@@ -448,6 +465,19 @@ class ModuleManagerTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
+	 * Test that `getApiSpecs` honors group overrides for the prefix-less module.
+	 *
+	 * @covers \MediaWiki\Rest\Module\ModuleManager::getApiSpecs
+	 */
+	public function testGetApiSpecsPrefixlessGroupOverride(): void {
+		$this->overrideConfigValue( MainConfigNames::RestModuleOverrides, [
+			'' => [ 'groups' => [ 'legacy' ] ],
+		] );
+		$specs = $this->getModuleManager()->getApiSpecs();
+		$this->assertSame( [ 'legacy' ], $specs['mw-extra']['groups'] );
+	}
+
+	/**
 	 * Test that `getModuleInfos` sorts the prefix-less module first, followed by
 	 * case-insensitive natural order sorting of all remaining module IDs.
 	 *
@@ -550,5 +580,180 @@ class ModuleManagerTest extends MediaWikiIntegrationTestCase {
 		$specs = $moduleManager->getApiSpecs();
 		$this->assertArrayHasKey( 'mockWithGroups.v1', $specs );
 		$this->assertSame( [ 'override-group' ], $specs['mockWithGroups.v1']['groups'] );
+	}
+
+	public static function provideGetModuleAudienceCases() {
+		yield from [
+			'public' => [ 'site/v1', AudienceDesignation::PUBLIC ],
+			'internal' => [ 'fragments/v0-internal', AudienceDesignation::INTERNAL ],
+			'beta' => [ 'content/v2-beta', AudienceDesignation::BETA ],
+			'flat route' => [ '', AudienceDesignation::NONE ],
+			'external' => [ 'mockExternal/v1', AudienceDesignation::PUBLIC ],
+			'malformed' => [ 'not-a-module-id', null ],
+		];
+	}
+
+	/**
+	 * @dataProvider provideGetModuleAudienceCases
+	 * @covers \MediaWiki\Rest\Module\ModuleManager::getModuleAudience
+	 */
+	public function testGetModuleAudience( string $moduleId, ?AudienceDesignation $expected ): void {
+		$moduleManager = $this->getModuleManager();
+		$this->assertSame( $expected, $moduleManager->getModuleAudience( $moduleId ) );
+	}
+
+	public static function provideExternalModuleAudienceCases() {
+		yield from [
+			'no suffix' => [
+				'moduleId' => 'thing/v1',
+				'expectedAudience' => AudienceDesignation::PUBLIC,
+				'expectedMode' => ModuleMode::PUBLISHED,
+			],
+			'beta suffix' => [
+				'moduleId' => 'thing/v1-beta',
+				'expectedAudience' => AudienceDesignation::BETA,
+				'expectedMode' => ModuleMode::PUBLISHED,
+			],
+			'malformed id disables the module' => [
+				'moduleId' => 'restbase',
+				'expectedAudience' => null,
+				'expectedMode' => ModuleMode::DISABLED,
+			],
+		];
+	}
+
+	/**
+	 * External modules follow the same audience designation rules as local modules.
+	 *
+	 * @dataProvider provideExternalModuleAudienceCases
+	 * @covers \MediaWiki\Rest\Module\ModuleManager::getModuleAudience
+	 * @covers \MediaWiki\Rest\Module\ModuleManager::getModuleMode
+	 */
+	public function testExternalModuleAudience(
+		string $moduleId,
+		?AudienceDesignation $expectedAudience,
+		ModuleMode $expectedMode
+	): void {
+		$this->overrideConfigValue( MainConfigNames::RestExternalModules, [
+			$moduleId => [ 'info' => [ 'version' => '1' ], 'spec' => 'https://example.com/a' ],
+		] );
+		$moduleManager = $this->getModuleManager();
+
+		$this->assertSame( $expectedAudience, $moduleManager->getModuleAudience( $moduleId ) );
+		$this->assertSame( $expectedMode, $moduleManager->getModuleMode( $moduleId ) );
+	}
+
+	public static function provideGetModuleGroupsCases() {
+		$withGroups = __DIR__ . '/mockWithGroups.v1.json';
+		$emptyGroups = __DIR__ . '/mockEmptyGroups.v1.json';
+		$deprecated = __DIR__ . '/mockDeprecated.v1.json';
+
+		yield from [
+			'public audience default' => [
+				'moduleId' => 'site/v1',
+				'expected' => [ 'preferred' ],
+			],
+			'internal audience default' => [
+				'moduleId' => 'fragments/v0-internal',
+				'expected' => [ 'internal' ],
+			],
+			'beta audience default' => [
+				'moduleId' => 'content/v2-beta',
+				'expected' => [ 'beta' ],
+			],
+			'flat route' => [
+				'moduleId' => '',
+				'expected' => [ 'default' ],
+			],
+			'external module without suffix' => [
+				'moduleId' => 'mockExternal/v1',
+				'expected' => [ 'preferred' ],
+			],
+			'external module with audience suffix' => [
+				'moduleId' => 'thing/v1-beta',
+				'expected' => [ 'beta' ],
+				'overrides' => [],
+				'extensionModuleFiles' => [],
+				'externalModules' => [
+					'thing/v1-beta' => [ 'info' => [ 'version' => '1' ], 'spec' => 'https://example.com/a' ],
+				],
+			],
+			'file-defined groups win over the audience default' => [
+				'moduleId' => 'mockWithGroups/v1',
+				'expected' => [ 'file-defined-group' ],
+				'overrides' => [],
+				'extensionModuleFiles' => [ $withGroups ],
+			],
+			'explicitly empty file-defined groups are respected' => [
+				'moduleId' => 'mockEmptyGroups/v1',
+				'expected' => [],
+				'overrides' => [],
+				'extensionModuleFiles' => [ $emptyGroups ],
+			],
+			'override wins over file-defined groups' => [
+				'moduleId' => 'mockWithGroups/v1',
+				'expected' => [ 'override-group' ],
+				'overrides' => [ 'mockWithGroups/v1' => [ 'groups' => [ 'override-group' ] ] ],
+				'extensionModuleFiles' => [ $withGroups ],
+			],
+			'deprecated module' => [
+				'moduleId' => 'mockDeprecated/v1',
+				'expected' => [ 'preferred', 'deprecated' ],
+				'overrides' => [],
+				'extensionModuleFiles' => [ $deprecated ],
+			],
+			'deprecated module with override' => [
+				'moduleId' => 'mockDeprecated/v1',
+				'expected' => [ 'legacy', 'deprecated' ],
+				'overrides' => [ 'mockDeprecated/v1' => [ 'groups' => [ 'legacy' ] ] ],
+				'extensionModuleFiles' => [ $deprecated ],
+			],
+			'deprecated group is not duplicated' => [
+				'moduleId' => 'mockDeprecated/v1',
+				'expected' => [ 'deprecated' ],
+				'overrides' => [ 'mockDeprecated/v1' => [ 'groups' => [ 'deprecated' ] ] ],
+				'extensionModuleFiles' => [ $deprecated ],
+			],
+			'discoverable module keeps its groups' => [
+				'moduleId' => 'site/v1',
+				'expected' => [ 'preferred' ],
+				'overrides' => [ 'site/v1' => [ 'availability' => 'discoverable' ] ],
+			],
+			'hidden module has no groups' => [
+				'moduleId' => 'site/v1',
+				'expected' => [],
+				'overrides' => [ 'site/v1' => [ 'availability' => 'hidden', 'groups' => [ 'preferred' ] ] ],
+			],
+			'unknown module' => [
+				'moduleId' => 'nonexistent/v99',
+				'expected' => [],
+			],
+		];
+	}
+
+	/**
+	 * @dataProvider provideGetModuleGroupsCases
+	 * @covers \MediaWiki\Rest\Module\ModuleManager::getModuleGroups
+	 */
+	public function testGetModuleGroups(
+		string $moduleId,
+		array $expected,
+		array $overrides = [],
+		array $extensionModuleFiles = [],
+		?array $externalModules = null
+	): void {
+		$this->overrideConfigValue( MainConfigNames::RestModuleOverrides, $overrides );
+		if ( $externalModules !== null ) {
+			$this->overrideConfigValue( MainConfigNames::RestExternalModules, $externalModules );
+		}
+		$moduleManager = $this->getModuleManager( $extensionModuleFiles );
+
+		$this->assertSame( $expected, $moduleManager->getModuleGroups( $moduleId ) );
+
+		// The public wrapper must agree with the groups getModuleInfos() exposes to discovery.
+		$info = $moduleManager->getModuleInfo( $moduleId );
+		if ( $info ) {
+			$this->assertSame( $info->getGroups(), $moduleManager->getModuleGroups( $moduleId ) );
+		}
 	}
 }

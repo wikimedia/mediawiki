@@ -33,27 +33,8 @@ enum ModuleMode: string {
 		return match ( $ad ) {
 			AudienceDesignation::PUBLIC => self::PUBLISHED,
 			AudienceDesignation::INTERNAL => self::PUBLISHED,
-			AudienceDesignation::BETA => self::PUBLISHED
+			AudienceDesignation::BETA => self::PUBLISHED,
+			AudienceDesignation::NONE => self::PUBLISHED,
 		};
-	}
-
-	/**
-	 * Gets the mode parameters, if any, for a given audience designation.
-	 *
-	 * @param ?AudienceDesignation $ad The audience designation
-	 *
-	 * @return array
-	 */
-	public static function getModeParams( ?AudienceDesignation $ad ): array {
-		$params = [];
-
-		if ( $ad === AudienceDesignation::BETA ) {
-			$params['groups'] = [ 'beta' ];
-		}
-		if ( $ad === AudienceDesignation::INTERNAL ) {
-			$params['groups'] = [ 'internal' ];
-		}
-
-		return $params;
 	}
 }

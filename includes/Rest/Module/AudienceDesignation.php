@@ -17,6 +17,12 @@ enum AudienceDesignation: string {
 
 	case BETA = 'beta';
 
+	// The prefix-less flat route module has no audience designation at all, which is valid
+	// (unlike a malformed id, represented by null). The empty backing value can never be
+	// produced by a module id suffix, so no module can declare itself as NONE. It is not meant
+	// to be output as an audience string.
+	case NONE = '';
+
 	/**
 	 * Gets a module's audience designation from its module id.
 	 *
@@ -25,6 +31,10 @@ enum AudienceDesignation: string {
 	 * @return ?AudienceDesignation
 	 */
 	public static function fromModuleId( string $moduleId ): ?AudienceDesignation {
+		if ( $moduleId === '' ) {
+			return self::NONE;
+		}
+
 		// Module ids with no audience designation are assumed to be "public".
 		//
 		// Return null for module ids of invalid format, or whose audience designation is present
@@ -49,5 +59,21 @@ enum AudienceDesignation: string {
 		// The leading character of $matches[2] is guaranteed to be a dash. Strip it.
 		$adStr = substr( $matches[2], 1 );
 		return self::tryFrom( $adStr );
+	}
+
+	/**
+	 * Gets the default REST discovery groups for this audience designation. Every published
+	 * module is expected to have at least one group (T429399), so modules without an audience
+	 * fall back to the generic 'default' group rather than an empty list.
+	 *
+	 * @return string[]
+	 */
+	public function getDefaultGroups(): array {
+		return match ( $this ) {
+			self::PUBLIC => [ 'preferred' ],
+			self::INTERNAL => [ 'internal' ],
+			self::BETA => [ 'beta' ],
+			self::NONE => [ 'default' ],
+		};
 	}
 }

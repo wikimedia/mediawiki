@@ -1,0 +1,10 @@
+{
+	"mwapi": "1.2.0",
+	"moduleId": "mockEmptyGroups/v1",
+	"info": {
+		"version": "1.0.0",
+		"title": "Mock Module with Empty Groups",
+		"groups": []
+	},
+	"paths": {}
+}

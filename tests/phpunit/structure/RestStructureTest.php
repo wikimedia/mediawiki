@@ -401,12 +401,16 @@ class RestStructureTest extends MediaWikiIntegrationTestCase {
 
 		$this->assertMatchesJsonSchema( $schemaFile, $moduleSpec, self::SPEC_FILES );
 
+		// Modules defined by a module definition file always have an audience designation.
 		$ad = AudienceDesignation::fromModuleId( $moduleSpec->moduleId );
-		$this->assertNotNull( $ad, "Expected audience designation for {$moduleSpec->moduleId}" );
+		$this->assertNotNull( $ad );
+		$this->assertNotSame( AudienceDesignation::NONE, $ad );
 
 		$adStrings = [];
 		foreach ( AudienceDesignation::cases() as $case ) {
-			$adStrings[] = '-' . $case->value;
+			if ( $case !== AudienceDesignation::NONE ) {
+				$adStrings[] = '-' . $case->value;
+			}
 		}
 		$adStrings = implode( '|', $adStrings );
 		$versionRegex = '!^[0-9]+\.[0-9]+\.[0-9]+(?:' . $adStrings . ')?(?:[0-9]+)?$!';

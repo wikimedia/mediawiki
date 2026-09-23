@@ -3757,9 +3757,6 @@ return [
 						'type' => 'array',
 					],
 				],
-				'required' => [
-					'availability',
-				],
 			],
 		],
 		'RestExternalModules' => [

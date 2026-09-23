@@ -49,6 +49,30 @@ class AudienceDesignationTest extends \MediaWikiUnitTestCase {
 				'mymodule/v1-beta123',
 				AudienceDesignation::BETA,
 			],
+			'flat route module has no audience' => [
+				'',
+				AudienceDesignation::NONE,
+			],
+			'"none" is not a valid suffix' => [
+				'mymodule/v1-none',
+				null,
+			],
+		];
+	}
+
+	/**
+	 * @dataProvider provideGetDefaultGroupsCases
+	 */
+	public function testGetDefaultGroups( AudienceDesignation $ad, array $expected ): void {
+		$this->assertSame( $expected, $ad->getDefaultGroups() );
+	}
+
+	public static function provideGetDefaultGroupsCases() {
+		return [
+			'public' => [ AudienceDesignation::PUBLIC, [ 'preferred' ] ],
+			'internal' => [ AudienceDesignation::INTERNAL, [ 'internal' ] ],
+			'beta' => [ AudienceDesignation::BETA, [ 'beta' ] ],
+			'none' => [ AudienceDesignation::NONE, [ 'default' ] ],
 		];
 	}
 }

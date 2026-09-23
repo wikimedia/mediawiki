@@ -1,0 +1,12 @@
+{
+	"mwapi": "1.2.0",
+	"moduleId": "mockDeprecated/v1",
+	"info": {
+		"version": "1.0.0",
+		"title": "Mock Deprecated Module",
+		"deprecationSettings": {
+			"since": 1735689600
+		}
+	},
+	"paths": {}
+}

@@ -25,27 +25,8 @@ class ModuleModeTest extends \MediaWikiUnitTestCase {
 			[ AudienceDesignation::PUBLIC, ModuleMode::PUBLISHED ],
 			[ AudienceDesignation::INTERNAL, ModuleMode::PUBLISHED ],
 			[ AudienceDesignation::BETA, ModuleMode::PUBLISHED ],
+			[ AudienceDesignation::NONE, ModuleMode::PUBLISHED ],
 			[ null, ModuleMode::DISABLED ],
-		];
-	}
-
-	/**
-	 * @dataProvider provideGetModeParamsCases
-	 */
-	public function testGetModeParams( ?AudienceDesignation $ad, array $expected ): void {
-		$is = ModuleMode::getModeParams( $ad );
-
-		// The default message is unhelpful in identifying which test case failed
-		$msg = "Failure for audience designation " . ( $ad === null ? 'null' : $ad->name );
-		$this->assertSame( $expected, $is, $msg );
-	}
-
-	public static function provideGetModeParamsCases() {
-		yield from [
-			[ AudienceDesignation::PUBLIC, [] ],
-			[ AudienceDesignation::INTERNAL, [ 'groups' => [ 'internal' ] ] ],
-			[ AudienceDesignation::BETA, [ 'groups' => [ 'beta' ] ] ],
-			[ null, [] ],
 		];
 	}
 }
