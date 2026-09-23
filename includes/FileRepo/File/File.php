@@ -1315,7 +1315,7 @@ abstract class File implements MediaHandlerState {
 					wfDebug( __METHOD__ . ": forcing rendering per flag File::RENDER_FORCE" );
 				}
 
-				// If the backend is ready-only, don't keep generating thumbnails
+				// If the backend is read-only, don't keep generating thumbnails
 				// only to return transformation errors, just return the error now.
 				if ( $this->repo->getReadOnlyReason() !== false ) {
 					$thumb = $this->transformErrorOutput( $thumbPath, $thumbUrl, $params, $flags );
