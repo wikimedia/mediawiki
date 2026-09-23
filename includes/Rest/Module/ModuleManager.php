@@ -25,10 +25,20 @@ class ModuleManager {
 		'includes/Rest/content.v2-beta.json',
 	];
 
-	// These specs will be available in the Rest Sandbox. No config change is needed.
+	/**
+	 * Static route path prefix for local OpenAPI specification endpoints.
+	 * Corresponds to the route template in Router::ROUTE_MODULE_SPEC.
+	 */
+	private const ROUTE_MODULE_SPEC_PREFIX = '/specs/v0/module/';
+
+	// These specs will be available in the REST Sandbox. No config change is needed.
+	// Preserved for legacy compatibility with Special:RestSandbox. Can and should
+	// update for consistency as a dedicated extension, and remove once MediaWiki
+	// transitions to Unified Developer Front Door
+	// (https://phabricator.wikimedia.org/project/board/9020/).
 	private const CORE_SPECS = [
 		'mw-extra' => [
-			'url' => '/specs/v0/module/-',
+			'url' => self::ROUTE_MODULE_SPEC_PREFIX . '-',
 			'name' => 'MediaWiki REST API (routes not in modules)',
 		],
 		'specs.v0' => [
@@ -60,6 +70,16 @@ class ModuleManager {
 
 	private string $rootPath;
 	private ?array $moduleInfos = null;
+
+	/**
+	 * Map of local module IDs to their definition file basenames (without .json).
+	 * Preserved for legacy compatibility with Special:RestSandbox. Can and should
+	 * update for consistency as a dedicated extension, and remove once MediaWiki
+	 * transitions to Unified Developer Front Door.
+	 *
+	 * @var array<string,string>
+	 */
+	private array $localModuleFileBasenames = [];
 
 	/**
 	 * @internal
@@ -214,6 +234,7 @@ class ModuleManager {
 		}
 
 		$modules = [];
+		$this->localModuleFileBasenames = [];
 
 		// Gather local modules.
 		$routeFiles = $this->getRouteFiles();
@@ -227,6 +248,7 @@ class ModuleManager {
 			}
 
 			$moduleId = $moduleDefInfo['moduleId'];
+			$this->localModuleFileBasenames[$moduleId] = basename( $file, '.json' );
 			$availability = $this->getModuleMode( $moduleId );
 			$params = $this->getModeParams( $moduleId );
 			$groups = (array)( $params['groups'] ?? $moduleDefInfo['groups'] ?? [] );
@@ -244,14 +266,12 @@ class ModuleManager {
 
 		// Add the prefix-less module.
 		$emptyModuleAvailability = $this->getModuleMode( '' );
-		$emptyModuleSpec = self::CORE_SPECS['mw-extra'];
-		$emptyModuleSpec = $this->normalizeSpec( 'mw-extra', $emptyModuleSpec );
 		$emptyParams = $this->getModeParams( '' );
 		$modules[''] = new ModuleInfo(
 			'',
 			$emptyModuleAvailability,
 			false, // isExternal
-			$emptyModuleSpec['name'] ?? 'MediaWiki REST API (routes not in modules)',
+			self::CORE_SPECS['mw-extra']['name'],
 			$this->jsonLocalizer->getFormattedMessage( 'rest-module-extra-routes-desc' ),
 			'0.1.0',
 			(array)( $emptyParams['groups'] ?? [] )
@@ -318,61 +338,47 @@ class ModuleManager {
 	}
 
 	/**
-	 * Returns the available choices for APIs to explore.
+	 * Returns the available choices for APIs to explore in the REST Sandbox.
 	 *
-	 * @return array<string,array<string,string>>
+	 * Preserved for legacy compatibility with Special:RestSandbox. Can and should
+	 * update for consistency as a dedicated extension, and remove once MediaWiki
+	 * transitions to Unified Developer Front Door.
+	 *
+	 * @return array<string,array<string,mixed>>
 	 */
 	public function getApiSpecs(): array {
-		$coreSpecs = self::CORE_SPECS;
-		foreach ( $coreSpecs as $key => &$spec ) {
-			if ( isset( $spec['url'] ) ) {
-				$spec['url'] = $this->rootPath . $spec['url'];
-			}
-			$spec = $this->normalizeSpec( $key, $spec );
+		$specs = [];
+		$defaultName = self::CORE_SPECS['mw-extra']['name'];
 
-			if ( $spec['mode'] !== ModuleMode::PUBLISHED ) {
-				unset( $coreSpecs[$key] );
-			}
-		}
-		unset( $spec );
-
-		$extensionSpecs = [];
-		foreach ( $this->extensionModuleFiles as $file ) {
-			$key = basename( $file, '.json' );
-			$spec = $this->normalizeSpec( $key, [ 'file' => $file ] );
-			if ( $spec['mode'] === ModuleMode::PUBLISHED ) {
-				$extensionSpecs[$key] = $spec;
-			}
-		}
-
-		// RestExternalModules (modules not in core or extensions)
-		$externalModules = [];
-		foreach ( $this->restExternalModules as $externalModuleId => $em ) {
-			$mode = $this->getModuleMode( $externalModuleId );
-			if ( $mode !== ModuleMode::PUBLISHED ) {
+		foreach ( $this->getModuleInfos() as $info ) {
+			if ( $info->getAvailability() !== ModuleMode::PUBLISHED ) {
 				continue;
 			}
 
-			$em = $this->jsonLocalizer->localizeJson( $em );
+			if ( $info->getId() === '' ) {
+				$key = 'mw-extra';
+			} elseif ( $info->isExternal() ) {
+				$key = $info->getId();
+			} else {
+				$key = $this->localModuleFileBasenames[$info->getId()]
+					?? str_replace( '/', '.', $info->getId() );
+			}
 
-			$externalModules[$externalModuleId] = [
-				'name' => $em['info']['title'] ?? $externalModuleId,
-				'url' => $em['spec'],
-				'mode' => $mode,
-				'params' => $this->getModeParams( $externalModuleId ),
+			if ( $info->isExternal() ) {
+				$url = $info->getExternalSpecUrl();
+			} else {
+				$moduleParam = $info->getId() === '' ? '-' : $info->getId();
+				$url = $this->rootPath . self::ROUTE_MODULE_SPEC_PREFIX . $moduleParam;
+			}
+
+			$specs[$key] = [
+				'url' => $url,
+				'name' => $info->getTitle() ?? ( $info->getId() === '' ? $defaultName : $info->getId() ),
+				'groups' => $info->getGroups(),
 			];
 		}
 
-		$specs = array_merge( $coreSpecs, $extensionSpecs, $externalModules );
-		foreach ( $specs as $key => &$spec ) {
-			unset( $spec['mode'] );
-			$spec['groups'] = $spec['params']['groups'] ?? [];
-			unset( $spec['params'] );
-		}
-		unset( $spec );
-
 		// This will put the "routes not in modules" entry first.
-		$defaultName = self::CORE_SPECS['mw-extra']['name'];
 		uasort( $specs, static function ( $a, $b ) use ( $defaultName ) {
 			if ( $a['name'] === $defaultName ) {
 				return -1;
@@ -384,66 +390,6 @@ class ModuleManager {
 		} );
 
 		return $specs;
-	}
-
-	/**
-	 * Normalizes a single spec definition, performing localization and loading from module
-	 * definition files as needed.
-	 *
-	 * @param string $key spec definition array key, used as a fallback name if necessary
-	 * @param array $spec the spec definition array
-	 *
-	 * @return array<string,mixed> the normalized spec definition
-	 */
-	private function normalizeSpec( string $key, array $spec ): array {
-		// Translate any message keys from config to a displayable name string
-		if ( isset( $spec['msg'] ) ) {
-			$spec['name'] = $this->jsonLocalizer->getFormattedMessage( $spec['msg'] );
-			unset( $spec['msg'] );
-		}
-
-		// Extract values from module definition files. Only load a file if necessary.
-		if ( isset( $spec['file'] ) ) {
-			$spec = $this->populateFromFile( $spec );
-		} elseif ( !isset( $spec['name'] ) ) {
-			// If we were otherwise unable to get a name, use the key
-			$spec['name'] = $key;
-		}
-
-		// Always include sensible defaults
-		$spec['mode'] ??= ModuleMode::PUBLISHED;
-		$spec['params'] ??= [];
-
-		return $spec;
-	}
-
-	/**
-	 * Populates any missing spec details from the input module definition file.
-	 * The return value also includes the ModuleMode that should be applied.
-	 *
-	 * @param array<string,string> $spec The sandbox spec. Must have a 'file' key.
-	 *
-	 * @return array<string,string>
-	 */
-	private function populateFromFile( array $spec ): array {
-		$hasUrl = isset( $spec['url'] );
-		$hasName = isset( $spec['name'] ) || isset( $spec['msg'] );
-
-		$moduleDefInfo = $this->getModuleDefinitionInfo( $spec['file'] );
-
-		// Get any missing information from the module definition file, giving config priority
-		if ( !$hasName ) {
-			$spec['name'] = $moduleDefInfo['title'];
-		}
-		if ( !$hasUrl ) {
-			$spec['url'] = $this->rootPath . '/specs/v0/module/' . $moduleDefInfo['moduleId'];
-		}
-
-		$spec['mode'] = $this->getModuleMode( $moduleDefInfo['moduleId'] );
-		$spec['params'] = $this->getModeParams( $moduleDefInfo['moduleId'] );
-		$spec['params']['groups'] ??= ( $moduleDefInfo['groups'] ?? [] );
-
-		return $spec;
 	}
 
 	/**

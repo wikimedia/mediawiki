@@ -168,6 +168,22 @@ class ModuleManagerTest extends MediaWikiIntegrationTestCase {
 				'name' => 'Mock External Module',
 			]
 		];
+
+		yield 'site.v1' => [
+			'site.v1',
+			[
+				'groups' => [],
+				'url' => '/rest/specs/v0/module/site/v1',
+			]
+		];
+
+		yield 'fragments.v0-internal' => [
+			'fragments.v0-internal',
+			[
+				'groups' => [ 'internal' ],
+				'url' => '/rest/specs/v0/module/fragments/v0-internal',
+			]
+		];
 	}
 
 	/**
@@ -182,6 +198,30 @@ class ModuleManagerTest extends MediaWikiIntegrationTestCase {
 		foreach ( $expected as $key => $expectedValue ) {
 			$this->assertSame( $expectedValue, $spec[$key] ?? null, "Unexpected value for $needle:$key" );
 		}
+	}
+
+	/**
+	 * Test that getApiSpecs() omits hidden, disabled, and discoverable modules,
+	 * only returning PUBLISHED ones.
+	 *
+	 * @covers \MediaWiki\Rest\Module\ModuleManager::getApiSpecs
+	 */
+	public function testApiSpecsOmitNonPublished(): void {
+		$overrides = [
+			'site/v1' => [ 'availability' => 'hidden' ],
+			'specs/v0' => [ 'availability' => 'disabled' ],
+			'content/v2-beta' => [ 'availability' => 'discoverable' ],
+			'' => [ 'availability' => 'disabled' ],
+		];
+		$this->overrideConfigValue( MainConfigNames::RestModuleOverrides, $overrides );
+
+		$moduleManager = $this->getModuleManager();
+		$specs = $moduleManager->getApiSpecs();
+
+		$this->assertArrayNotHasKey( 'site.v1', $specs );
+		$this->assertArrayNotHasKey( 'specs.v0', $specs );
+		$this->assertArrayNotHasKey( 'content.v2-beta', $specs );
+		$this->assertArrayNotHasKey( 'mw-extra', $specs );
 	}
 
 	public function testHasApiSpecs(): void {
@@ -466,7 +506,6 @@ class ModuleManagerTest extends MediaWikiIntegrationTestCase {
 	 * @covers \MediaWiki\Rest\Module\ModuleManager::getModuleDefinitionInfo
 	 * @covers \MediaWiki\Rest\Module\ModuleManager::getModuleInfos
 	 * @covers \MediaWiki\Rest\Module\ModuleManager::getApiSpecs
-	 * @covers \MediaWiki\Rest\Module\ModuleManager::populateFromFile
 	 */
 	public function testFileDefinedGroups(): void {
 		$file = __DIR__ . '/mockWithGroups.v1.json';
@@ -494,6 +533,7 @@ class ModuleManagerTest extends MediaWikiIntegrationTestCase {
 	 * module definition file.
 	 *
 	 * @covers \MediaWiki\Rest\Module\ModuleManager::getModuleInfos
+	 * @covers \MediaWiki\Rest\Module\ModuleManager::getApiSpecs
 	 */
 	public function testFileDefinedGroupsWithOverride(): void {
 		$file = __DIR__ . '/mockWithGroups.v1.json';
@@ -506,5 +546,9 @@ class ModuleManagerTest extends MediaWikiIntegrationTestCase {
 
 		$this->assertArrayHasKey( 'mockWithGroups/v1', $infos );
 		$this->assertSame( [ 'override-group' ], $infos['mockWithGroups/v1']->getGroups() );
+
+		$specs = $moduleManager->getApiSpecs();
+		$this->assertArrayHasKey( 'mockWithGroups.v1', $specs );
+		$this->assertSame( [ 'override-group' ], $specs['mockWithGroups.v1']['groups'] );
 	}
 }
