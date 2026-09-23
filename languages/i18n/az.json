@@ -397,6 +397,8 @@
 	"userlogin-reauth-description-link": "bu əməliyyatı ləğv edə bilərsiniz",
 	"userlogin-reauth-banner-editsitejscss": "<strong>Sayt üzrə JavaScript və ya CSS dərc edirsiniz</strong> <br>Bu səhifədəki dəyişikliklər bütün ziyarətçilərə təsir edəcək. Davam etmək üçün kimliyinizi təsdiqləyin.",
 	"userlogin-reauth-banner-editsitejscss-delete": "<strong>Sayt üzrə JavaScript və ya CSS ehtiva edən səhifəni silmək üzrəsiniz. Bu, bu vikinin bütün ziyarətçilərinə təsir göstərir.</strong>",
+	"userlogin-reauth-banner-editsitejscss-changecontentmodel": "<strong>Sayt üzrə JavaScript və ya CSS ehtiva edən səhifəni redaktə etmək üzrəsiniz. Bu, bu vikinin bütün ziyarətçilərinə təsir göstərir.</strong>",
+	"userlogin-reauth-banner-editsitejscss-undelete": "<strong>Sayt üzrə JavaScript və ya CSS ehtiva edən səhifəni bərpa etmək üzrəsiniz. Bu, bu vikinin bütün ziyarətçilərinə təsir göstərir.</strong>",
 	"userlogin-reauth-banner-edituserjscss": "<strong>İstifadəçi JavaScript və ya CSS-ni dərc edirsiniz</strong> <br>Davam etmək üçün kimliyinizi təsdiqləyin.",
 	"userlogin-reauth-banner-ChangeEmail": "<strong>E-poçt ünvanınızı dəyişirsiniz</strong> <br>Davam etmək üçün kimliyinizi təsdiqləyin.",
 	"userlogin-reauth-banner-generic": "<strong>Aşağıdakı həssas əməliyyatı yerinə yetirmək üzrəsiniz: $1</strong> <br>Davam etmək üçün kimliyinizi təsdiqləyin.",

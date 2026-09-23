@@ -468,6 +468,8 @@
 	"userlogin-reauth-description-link": "deze handeling annuleren",
 	"userlogin-reauth-banner-editsitejscss": "<strong>U publiceert JavaScript of CSS voor de hele site.</strong> <br>Veranderingen op deze pagina hebben gevolgen voor alle bezoekers. Bevestig uw identiteit om door te gaan.",
 	"userlogin-reauth-banner-editsitejscss-delete": "<strong>U staat op het punt een pagina te verwijderen die sitebrede JavaScript of CSS bevat. Dit heeft gevolgen voor alle bezoekers van deze wiki.</strong>",
+	"userlogin-reauth-banner-editsitejscss-changecontentmodel": "<strong>U staat op het punt een pagina te wijzigen die JavaScript- of CSS-code voor de hele site bevat. Dit heeft gevolgen voor alle bezoekers van deze wiki.</strong>",
+	"userlogin-reauth-banner-editsitejscss-undelete": "<strong>U staat op het punt een pagina terug te zetten die JavaScript- of CSS-code voor de hele site bevat. Dit heeft gevolgen voor alle bezoekers van deze wiki.</strong>",
 	"userlogin-reauth-banner-edituserjscss": "<strong>U publiceert gebruikers-JavaScript of -CSS.</strong> <br>Bevestig uw identiteit om door te gaan.",
 	"userlogin-reauth-banner-ChangeEmail": "<strong>U verandert van e-mailadres.</strong> <br>Bevestig uw identiteit om door te gaan.",
 	"userlogin-reauth-banner-generic": "<strong>U staat op het punt de volgende gevoelige handeling te verrichten: $1.</strong> <br>Bevestig uw identiteit om door te gaan.",

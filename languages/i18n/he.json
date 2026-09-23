@@ -411,6 +411,8 @@
 	"userlogin-reauth-description-link": "לבטל את הפעולה הזאת",
 	"userlogin-reauth-banner-editsitejscss": "<strong>{{GENDER:|אתה מפרסם|את מפרסמת}} JavaScript או CSS שמיעוד לכל האתר</strong><br> שינויים בדף הזה משפיעים על כל המבקרים. נא לאשר את זהותך כדי להמשיך.",
 	"userlogin-reauth-banner-editsitejscss-delete": "<strong>{{GENDER:|אתה עומד|את עומדת}} למחוק דף שמכיל JavaScript או CSS שחל על כל האתר. זה משפיע על כל המבקרים בוויקי הזה.</strong>",
+	"userlogin-reauth-banner-editsitejscss-changecontentmodel": "<strong>{{GENDER:|אתה עומד|את עומדת}} לשנות דף שמכיל JavaScript או CSS שחל על כל האתר. זה משפיע על כל המבקרים בוויקי הזה.</strong>",
+	"userlogin-reauth-banner-editsitejscss-undelete": "<strong>{{GENDER:|אתה עומד|את עומדת}} לשחזר ממחיקה דף שמכיל JavaScript או CSS שחל על כל האתר. זה משפיע על כל המבקרים בוויקי הזה.</strong>",
 	"userlogin-reauth-banner-edituserjscss": "<strong>{{GENDER:|אתה מפרסם|את מפרסמת}} JavaScript או CSS של משתמש</strong><br> נא לאשר את זהותך כדי להמשיך.",
 	"userlogin-reauth-banner-ChangeEmail": "<strong>{{GENDER:|אתה|את}} משנה את כתובת הדוא\"ל שלך</strong><br> נא לאשר את זהותך כדי להמשיך.",
 	"userlogin-reauth-banner-generic": "<strong>{{GENDER:|אתה עומד|את עומדת}} לבצע את הפעולה הרגישה הבאה: $1</strong><br> נא לאשר את זהותך כדי להמשיך.",

@@ -507,6 +507,8 @@
 	"userlogin-reauth-description-link": "取消此操作",
 	"userlogin-reauth-banner-editsitejscss": "<strong>您正在發布全站範圍的JavaScript或CSS</strong><br>對此頁面所做的變更會影響所有網站訪客。請確認是本人操作後再繼續。",
 	"userlogin-reauth-banner-editsitejscss-delete": "<strong>您即將刪除包含全站JavaScript或CSS的頁面。這會影響此wiki的所有訪客。</strong>",
+	"userlogin-reauth-banner-editsitejscss-changecontentmodel": "<strong>您即將變更包含全站JavaScript或CSS的頁面。這會影響此wiki的所有訪客。</strong>",
+	"userlogin-reauth-banner-editsitejscss-undelete": "<strong>您即將還原包含全站JavaScript或CSS的頁面。這會影響此wiki的所有訪客。</strong>",
 	"userlogin-reauth-banner-edituserjscss": "<strong>您正在發布使用者JavaScript或CSS</strong><br>請確認是本人操作後再繼續。",
 	"userlogin-reauth-banner-ChangeEmail": "<strong>您正在變更電子郵件地址</strong><br>請確認是本人操作後再繼續。",
 	"userlogin-reauth-banner-generic": "<strong>您即將執行以下敏感操作：$1</strong><br>請確認是本人操作後再繼續。",

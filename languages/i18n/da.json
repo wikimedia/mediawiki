@@ -434,6 +434,8 @@
 	"userlogin-reauth-description-link": "annuller denne handling",
 	"userlogin-reauth-banner-editsitejscss": "<strong>Du udgiver JavaScript eller CSS for hele webstedet</strong><br> Ændringer på denne side påvirker alle besøgende. Bekræft din identitet for at fortsætte.",
 	"userlogin-reauth-banner-editsitejscss-delete": "<strong>Du er ved at slette en side, der indeholder JavaScript eller CSS for hele webstedet. Dette påvirker alle besøgende på denne wiki.</strong>",
+	"userlogin-reauth-banner-editsitejscss-changecontentmodel": "<strong>Du er ved at ændre en side, der indeholder JavaScript eller CSS for hele webstedet. Dette påvirker alle besøgende på denne wiki.</strong>",
+	"userlogin-reauth-banner-editsitejscss-undelete": "<strong>Du er ved at gendanne sletningen af en side, der indeholder JavaScript eller CSS for hele webstedet. Dette påvirker alle besøgende på denne wiki.</strong>",
 	"userlogin-reauth-banner-edituserjscss": "<strong>Du udgiver brugerdefineret JavaScript eller CSS</strong><br> Bekræft din identitet for at fortsætte.",
 	"userlogin-reauth-banner-ChangeEmail": "<strong>Du ændrer din e-mail</strong><br> Bekræft din identitet for at fortsætte.",
 	"userlogin-reauth-banner-generic": "<strong>Du er ved at udføre følgende følsomme handling: $1</strong><br> Bekræft din identitet for at fortsætte.",

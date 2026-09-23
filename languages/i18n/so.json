@@ -359,6 +359,8 @@
 	"userlogin-reauth-description-link": "Jooji ficilkaan",
 	"userlogin-reauth-banner-editsitejscss": "<strong>Waxaad daabacaysaa JavaScript ama CSS heer goob oo dhan ah</strong> <br>Isbeddellada lagu sameeyo boggan waxay saameynayaan dhammaan booqdayaasha. Xaqiiji in aad adigu tahay si aad u sii waddo.",
 	"userlogin-reauth-banner-editsitejscss-delete": "<strong>Waxaad ku dhowdahay inaad tirtirto bog ay ku jiraan JavaScript ama CSS saameeya goobta oo dhan. Tani waxay saamaynaysaa dhammaan booqdayaasha wikigan.</strong>",
+	"userlogin-reauth-banner-editsitejscss-changecontentmodel": "<strong>Waxaad ku dhowdahay inaad beddesho bog ay ku jiraan JavaScript ama CSS oo saameeya dhammaan goobta. Tani waxay saameynaysaa dhammaan booqdayaasha wiki-gan.</strong>",
+	"userlogin-reauth-banner-editsitejscss-undelete": "<strong>Waxaad ku dhowdahay inaad soo celiso bog ay ku jiraan JavaScript ama CSS oo saameeya dhammaan goobta. Tani waxay saameynaysaa dhammaan booqdayaasha wiki-gan.</strong>",
 	"userlogin-reauth-banner-edituserjscss": "<strong>Waxaad daabacaysaa JavaScript ama CSS isticmaale</strong> <br>Xaqiiji in aad adigu tahay si aad u sii waddo.",
 	"userlogin-reauth-banner-ChangeEmail": "<strong>Waxaad beddelaysaa iimaylkaaga</strong> <br>Xaqiiji in aad adigu tahay si aad u sii waddo.",
 	"userlogin-reauth-banner-generic": "<strong>Waxaad ku dhowdahay inaad fuliso tallaabadan xasaasiga ah: $1</strong> <br>Xaqiiji in aad adigu tahay si aad u sii waddo.",

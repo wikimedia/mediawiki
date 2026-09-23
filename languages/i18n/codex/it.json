@@ -4,10 +4,12 @@
 			"Asteralee",
 			"Beta16",
 			"Bultro",
-			"Luca.favorido"
+			"Luca.favorido",
+			"Matroz"
 		]
 	},
 	"cdx-breadcrumb-navigation-label": "Percorso di navigazione",
+	"cdx-breadcrumb-overflow-label": "Altre opzioni di navigazione",
 	"cdx-input-chip-aria-description": "Premi Invio per modificare o Cancella per rimuovere.",
 	"cdx-dialog-close-button-label": "Chiudi",
 	"cdx-label-optional-flag": "(facoltativo)",

@@ -382,6 +382,8 @@
 	"userlogin-reauth-description-link": "откажете ова дејство",
 	"userlogin-reauth-banner-editsitejscss": "<strong>Уредувате JavaScript или CSS за целото мрежно место</strong> <br>Тука направените промени ги засегаат сите посетители. Потврдете дека тоа сте вие за да продолжите.",
 	"userlogin-reauth-banner-editsitejscss-delete": "<strong>На пат сте да избришете страница што содржи JavaScript или CSS што важи за целото мрежно место. Ова ќе ги засегне сите посетители на ова вики.</strong>",
+	"userlogin-reauth-banner-editsitejscss-changecontentmodel": "<strong>На пат сте да измените страница што содржи JavaScript или CSS за целото мрежно место. Ова ги засега сите посетители на викито.</strong>",
+	"userlogin-reauth-banner-editsitejscss-undelete": "<strong>На пат сте да одизбришете страница што содржи JavaScript или CSS за целото мрежно место. Ова ги засега сите посетители на викито.</strong>",
 	"userlogin-reauth-banner-edituserjscss": "<strong>Објавувате кориснички JavaScript или CSS</strong> <br>Потврдете дека сте тоа сте вие пред да продолжите.",
 	"userlogin-reauth-banner-ChangeEmail": "<strong>Ја менувате е-поштата</strong> <br>Потврдете дека тоа сте вие за да продолжите.",
 	"userlogin-reauth-banner-generic": "<strong>На пат сте да го преземете следново чувствително дејство: $1</strong> <br>Потврдете дека тоа сте вие за да продолжите.",
