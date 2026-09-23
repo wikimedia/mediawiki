@@ -18,8 +18,11 @@ use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Status\Status;
 use MediaWiki\Title\Title;
+use MediaWiki\Title\TitleParser;
 use MediaWiki\User\User;
 use SplObjectStorage;
+use Wikimedia\Rdbms\IExpression;
+use Wikimedia\Rdbms\LikeValue;
 
 /**
  * @defgroup Search Search
@@ -709,9 +712,63 @@ abstract class SearchEngine {
 	 * @return Title[]
 	 */
 	protected function simplePrefixSearch( $search ) {
-		// Use default database prefix search
-		$backend = new TitlePrefixSearch;
-		return $backend->defaultSearchBackend( $this->namespaces, $search, $this->limit, $this->offset );
+		$namespaces = $this->namespaces;
+		if ( !$namespaces ) {
+			$namespaces = [ NS_MAIN ];
+		}
+
+		if ( in_array( NS_SPECIAL, $namespaces ) ) {
+			// For now, if special is included, ignore the other namespaces
+			return $this->getSpecialPageSuggester()->suggest( $search, $this->limit, $this->offset );
+		}
+
+		// Construct suitable prefix for each namespace. They differ in cases where
+		// some namespaces always capitalize and some don't.
+		$prefixes = [];
+		// Allow to do a prefix search for e.g. "Talk:"
+		if ( $search === '' ) {
+			$prefixes[$search] = $namespaces;
+		} else {
+			// Don't just ignore input like "[[Foo]]", but try to search for "Foo"
+			$search = preg_replace( TitleParser::getTitleInvalidRegex(), '', $search );
+			foreach ( $namespaces as $namespace ) {
+				$title = Title::makeTitleSafe( $namespace, $search );
+				if ( $title ) {
+					$prefixes[$title->getDBkey()][] = $namespace;
+				}
+			}
+		}
+		if ( !$prefixes ) {
+			return [];
+		}
+
+		$services = MediaWikiServices::getInstance();
+		$dbr = $services->getConnectionProvider()->getReplicaDatabase();
+		// Often there is only one prefix that applies to all requested namespaces,
+		// but sometimes there are two if some namespaces do not always capitalize.
+		$conds = [];
+		foreach ( $prefixes as $prefix => $namespaces ) {
+			$expr = $dbr->expr( 'page_namespace', '=', $namespaces );
+			if ( $prefix !== '' ) {
+				$expr = $expr->and(
+					'page_title',
+					IExpression::LIKE,
+					new LikeValue( (string)$prefix, $dbr->anyString() )
+				);
+			}
+			$conds[] = $expr;
+		}
+
+		$queryBuilder = $dbr->newSelectQueryBuilder()
+			->select( [ 'page_id', 'page_namespace', 'page_title' ] )
+			->from( 'page' )
+			->where( $dbr->orExpr( $conds ) )
+			->orderBy( [ 'page_title', 'page_namespace' ] )
+			->limit( $this->limit )
+			->offset( $this->offset );
+		$res = $queryBuilder->caller( __METHOD__ )->fetchResultSet();
+
+		return iterator_to_array( $services->getTitleFactory()->newTitleArrayFromResult( $res ) );
 	}
 
 	/**

@@ -723,6 +723,8 @@ because of Phabricator reports.
 * The SiteStore service has been deprecated in favor of SiteLookup.
 * The IDatabase::getScopedLockAndFlush() has been deprecated and will trigger
   deprecation warnings. Use the lock manager service instead.
+* PrefixSearch (and corresponding StringPrefixSearch/TitlePrefixSearch) have
+  been hard-deprecated. Use SearchEngine::completionSearch() instead.
 * …
 
 === Other changes in 1.47 ===

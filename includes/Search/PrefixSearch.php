@@ -38,6 +38,7 @@ abstract class PrefixSearch {
 	 * @return (Title|string)[]
 	 */
 	public function search( $search, $limit, $namespaces = [], $offset = 0 ) {
+		wfDeprecated( __METHOD__, '1.47' );
 		$search = trim( $search );
 		if ( $search == '' ) {
 			return []; // Return empty result
@@ -61,6 +62,7 @@ abstract class PrefixSearch {
 	 * @return (Title|string)[]
 	 */
 	public function searchWithVariants( $search, $limit, array $namespaces, $offset = 0 ) {
+		wfDeprecated( __METHOD__, '1.47' );
 		$searches = $this->search( $search, $limit, $namespaces, $offset );
 
 		// if the content language has variants, try to retrieve fallback results
@@ -157,6 +159,7 @@ abstract class PrefixSearch {
 	 * @return Title[]
 	 */
 	public function defaultSearchBackend( $namespaces, $search, $limit, $offset ) {
+		wfDeprecated( __METHOD__, '1.47' );
 		if ( !$namespaces ) {
 			$namespaces = [ NS_MAIN ];
 		}
