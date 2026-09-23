@@ -548,6 +548,8 @@ class UploadVerification {
 		static $validNamespaces = [
 			'',
 			'adobe:ns:meta/',
+			'http://c2pa.org/',
+			'http://c2pa.org/manifest',
 			'http://cipa.jp/exif/1.0/',
 			'http://creativecommons.org/ns#',
 			'http://developer.sonyericsson.com/cell/1.0/',
