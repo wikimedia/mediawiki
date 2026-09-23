@@ -655,4 +655,75 @@ class FileTest extends MediaWikiMediaTestCase {
 			$this->assertThumbNameEquals( $filename, $type, $originalWidth, $params, $expected, true );
 		}
 	}
+
+	public static function provideParseThumbName() {
+		return [
+			'simple JPEG' => [
+				'Test.jpg',
+				'200px-Test.jpg',
+				[
+					'width' => '200',
+					'interlace' => false
+				],
+			],
+			'no handler' => [
+				'Test.txt',
+				'200px-Test.txt',
+				null,
+			],
+			'extension change' => [
+				'Test.svg',
+				'200px-Test.svg.png',
+				[
+					'width' => '200',
+					'lang' => 'en',
+				],
+			],
+			'wrong source part' => [
+				'Test.jpg',
+				'200px-Nonexistent.jpg',
+				null,
+			],
+			'wrong source part, SVG case' => [
+				'Test.svg',
+				'200px-Foo.svg.png',
+				null,
+			],
+			'failed to parse' => [
+				'Test.jpg',
+				'200!px-Test.jpg',
+				null,
+			],
+			'wrong thumb extension' => [
+				'Test.svg',
+				'200px-Test.svg.jpg',
+				null,
+			],
+			'missing thumb extension' => [
+				'Test.svg',
+				'200px-Test.svg',
+				null,
+			],
+		];
+	}
+
+	/**
+	 * @dataProvider provideParseThumbName
+	 * @covers \MediaWiki\FileRepo\File\File::parseThumbName
+	 */
+	public function testParseThumbName(
+		string $origName,
+		string $thumbName,
+		?array $expected
+	) {
+		$mime = $this->getServiceContainer()->getMimeAnalyzer()
+			->getMimeTypeFromExtensionOrNull( FSFileBackend::extensionFromPath( $origName ) );
+		$file = new UnregisteredLocalFile( $origName, $this->repo, $origName, $mime );
+		$params = $file->parseThumbName( $thumbName );
+		$this->assertSame( $expected, $params );
+		// Test round trip to ensure the data provider is correct
+		if ( $expected ) {
+			$this->assertSame( $thumbName, $file->thumbName( $params ) );
+		}
+	}
 }

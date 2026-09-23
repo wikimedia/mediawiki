@@ -134,30 +134,20 @@ class SpecialUploadStash extends UnlistedSpecialPage {
 		$thumbPart = strtok( '/' );
 		$file = $this->getStash()->getFile( $fileName );
 		if ( $type === 'thumb' ) {
-			$srcNamePos = strrpos( $thumbPart, $fileName );
-			if ( $srcNamePos === false || $srcNamePos < 1 ) {
-				throw new UploadStashBadPathException(
-					$this->msg( 'uploadstash-bad-path-unrecognized-thumb-name' )
-				);
-			}
-			$paramString = substr( $thumbPart, 0, $srcNamePos - 1 );
-
-			$handler = $file->getHandler();
-			if ( $handler ) {
-				$params = $handler->parseParamString( $paramString );
-				if ( $params === false ) {
-					// The params are invalid
-					throw new UploadStashBadPathException(
-						$this->msg( 'uploadstash-bad-path-unrecognized-thumb-name' )
-					);
-				}
-
-				$this->outputThumbFromStash( $file, $params );
-			} else {
+			if ( !$file->getHandler() ) {
 				throw new UploadStashBadPathException(
 					$this->msg( 'uploadstash-bad-path-no-handler', $file->getMimeType(), $file->getPath() )
 				);
 			}
+
+			$params = $file->parseThumbName( $thumbPart );
+			if ( $params === null ) {
+				throw new UploadStashBadPathException(
+					$this->msg( 'uploadstash-bad-path-unrecognized-thumb-name' )
+				);
+			}
+
+			$this->outputThumbFromStash( $file, $params );
 		} else {
 			$this->outputOriginal( $file );
 		}

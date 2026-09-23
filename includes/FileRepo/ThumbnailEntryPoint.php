@@ -171,10 +171,12 @@ class ThumbnailEntryPoint extends MediaWikiEntryPoint {
 
 		// Do rendering parameters extraction from thumbnail name.
 		if ( isset( $params['thumbName'] ) ) {
-			$params = $this->extractThumbParams( $img, $params );
+			$params = $this->extractThumbParams( $img, $params )
+				// maybeNormalizeRel404Path will emit a 301 in this case
+				?? $this->extractThumbParams( $img, $params, File::THUMB_FULL_NAME );
 		}
 		if ( $params == null ) {
-			$this->thumbErrorText( 400, 'The specified thumbnail parameters are not recognized.' );
+			$this->thumbErrorText( 404, 'The specified thumbnail parameters are not recognized.' );
 			return;
 		}
 
@@ -487,9 +489,10 @@ class ThumbnailEntryPoint extends MediaWikiEntryPoint {
 	 *
 	 * @param File $file File object for file in question
 	 * @param array $params Array of parameters so far
+	 * @param int $flags May be File::THUMB_FULL_NAME to disable abbreviation
 	 * @return array|null Parameters array with more parameters, or null
 	 */
-	private function extractThumbParams( $file, $params ) {
+	private function extractThumbParams( $file, $params, $flags = 0 ) {
 		if ( !isset( $params['thumbName'] ) ) {
 			throw new InvalidArgumentException( "No thumbnail name passed to extractThumbParams" );
 		}
@@ -497,37 +500,11 @@ class ThumbnailEntryPoint extends MediaWikiEntryPoint {
 		$thumbname = $params['thumbName'];
 		unset( $params['thumbName'] );
 
-		// FIXME: Files in the temp zone don't set a MIME type, which means
-		// they don't have a handler. Which means we can't parse the param
-		// string. However, not a big issue as what good is a param string
-		// if you have no handler to make use of the param string and
-		// actually generate the thumbnail.
-		$handler = $file->getHandler();
-
-		// Based on UploadStash::parseKey
-		$fileNamePos = strrpos( $thumbname, $params['f'] );
-		if ( $fileNamePos === false ) {
-			// Maybe using a short filename? (see FileRepo::nameForThumb)
-			$fileNamePos = strrpos( $thumbname, 'thumbnail' );
+		$extraParams = $file->parseThumbName( $thumbname, $flags );
+		if ( $extraParams ) {
+			return $params + $extraParams;
 		}
 
-		if ( $handler && $fileNamePos !== false ) {
-			$paramString = substr( $thumbname, 0, $fileNamePos - 1 );
-			$extraParams = $handler->parseParamString( $paramString );
-			if ( $extraParams !== false ) {
-				return $params + $extraParams;
-			}
-		}
-
-		// As a last ditch fallback, use the traditional common parameters
-		if ( preg_match( '!^(page(\d*)-)*(\d*)px-[^/]*$!', $thumbname, $matches ) ) {
-			[ /* all */, /* pagefull */, $pagenum, $size ] = $matches;
-			$params['width'] = $size;
-			if ( $pagenum ) {
-				$params['page'] = $pagenum;
-			}
-			return $params; // valid thumbnail URL
-		}
 		return null;
 	}
 

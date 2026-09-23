@@ -111,17 +111,9 @@ class UploadStashFile extends UnregisteredLocalFile {
 		return $path;
 	}
 
-	/**
-	 * Return the file/URL base name of a thumbnail with the specified parameters.
-	 * We override this because we want to use the pretty url name instead of the
-	 * ugly file name.
-	 *
-	 * @param array $params Handler-specific parameters
-	 * @param int $flags
-	 * @return string|false
-	 */
-	public function thumbName( $params, $flags = 0 ) {
-		return $this->generateThumbName( $this->getUrlName(), $params );
+	/** @inheritDoc */
+	protected function getSourcePartOfThumbName( $flags = 0 ) {
+		return $this->getUrlName();
 	}
 
 	/**

@@ -360,9 +360,7 @@ class ThumbnailEntryPointTest extends MediaWikiIntegrationTestCase {
 
 	public static function provideThumbNameParam() {
 		yield [ '12px-Test.png' ];
-		yield [ 'page123456-12px-xyz' ];
-		yield [ '12px-xyz' ];
-		yield [ 'xyzzy', 400 ];
+		yield [ 'xyzzy', 404 ];
 	}
 
 	/**

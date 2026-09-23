@@ -1150,15 +1150,26 @@ abstract class File implements MediaHandlerState {
 	 *
 	 * @stable to override
 	 * @param array $params Handler-specific parameters
-	 * @param int $flags Bitfield that supports THUMB_* constants
+	 * @param int $flags If this bitfield contains self::THUMB_FULL_NAME,
+	 *  force the use of an unabbreviated name for backwards compatibility.
 	 * @return string|false
 	 */
 	public function thumbName( $params, $flags = 0 ) {
-		$name = ( $this->repo && !( $flags & self::THUMB_FULL_NAME ) )
+		return $this->generateThumbName( $this->getSourcePartOfThumbName( $flags ), $params );
+	}
+
+	/**
+	 * Get the source part of the thumb name, which may either be the name of
+	 * the file, or an abbreviation with the same extension. UploadStashFile
+	 * overrides this to use the stash key.
+	 *
+	 * @param int $flags See thumbName()
+	 * @return string
+	 */
+	protected function getSourcePartOfThumbName( $flags = 0 ) {
+		return ( $this->repo && !( $flags & self::THUMB_FULL_NAME ) )
 			? $this->repo->nameForThumb( $this->getName() )
 			: $this->getName();
-
-		return $this->generateThumbName( $name, $params );
 	}
 
 	/**
@@ -1192,6 +1203,48 @@ abstract class File implements MediaHandlerState {
 		}
 
 		return $thumbName;
+	}
+
+	/**
+	 * Invert thumbName(), extracting a parameter array from a string of the
+	 * form "<params>-<source>" or "<params>-thumbnail.<ext>". If the string
+	 * can't be parsed or is not canonical, return null.
+	 *
+	 * @param string $name The thumb name
+	 * @param int $flags If this bitfield contains self::THUMB_FULL_NAME, the
+	 *  unabbreviated name will be used unconditionally.
+	 * @return ?array The parameters, or null if the string was invalid
+	 */
+	public function parseThumbName( string $name, int $flags = 0 ): ?array {
+		$handler = $this->getHandler();
+		if ( !$handler ) {
+			// No valid thumbnails
+			return null;
+		}
+		$sourcePart = $this->getSourcePartOfThumbName( $flags );
+		$sourceExt = $this->getExtension();
+		$thumbExt = FileBackend::extensionFromPath( $name );
+		if ( $sourceExt !== $thumbExt ) {
+			$nameWithoutThumbExt = substr( $name, 0, -strlen( ".$thumbExt" ) );
+		} else {
+			$nameWithoutThumbExt = $name;
+		}
+		if ( !str_ends_with( $nameWithoutThumbExt, "-$sourcePart" ) ) {
+			// Wrong source part
+			return null;
+		}
+		$paramString = substr( $nameWithoutThumbExt, 0, -strlen( "-$sourcePart" ) );
+		$params = $handler->parseParamString( $paramString );
+		if ( $params === false ) {
+			return null;
+		}
+		// Validate thumb extension
+		[ $expectedThumbExt, ] = $this->getHandler()->getThumbType(
+			$sourceExt, $this->getMimeType(), $params );
+		if ( $thumbExt !== $expectedThumbExt ) {
+			return null;
+		}
+		return $params;
 	}
 
 	/**

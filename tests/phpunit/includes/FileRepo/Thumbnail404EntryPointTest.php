@@ -194,7 +194,7 @@ class Thumbnail404EntryPointTest extends MediaWikiIntegrationTestCase {
 	public function testStreamFileWithLongName() {
 		$this->overrideConfigValue( MainConfigNames::VaryOnXFP, true );
 
-		// Note that abbrvThreshold is 16 per MockRepTrait
+		// Note that abbrvThreshold is 16 per TestRepoTrait
 		$file = $this->getTestRepo()->newFile( 'Animated_PNG_example_bouncing_beach_ball.png' );
 		$rel = $file->getRel();
 		$name = $file->getName();
