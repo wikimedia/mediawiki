@@ -64,6 +64,9 @@ abstract class SearchEngine {
 	/** @var HookRunner */
 	private $hookRunner;
 
+	/** @var SpecialPageSuggester|null (lazy loaded) */
+	private ?SpecialPageSuggester $specialPageSuggester = null;
+
 	/** Profile type for completionSearch */
 	public const COMPLETION_PROFILE_TYPE = 'completionSearchProfile';
 
@@ -863,6 +866,21 @@ abstract class SearchEngine {
 		return $this->hookRunner;
 	}
 
+	/**
+	 * Utility to suggest special pages by prefix.
+	 *
+	 * @since 1.47
+	 * @return SpecialPageSuggester
+	 */
+	protected function getSpecialPageSuggester(): SpecialPageSuggester {
+		if ( !$this->specialPageSuggester ) {
+			$this->specialPageSuggester = new SpecialPageSuggester(
+				MediaWikiServices::getInstance()->getSpecialPageFactory(),
+				MediaWikiServices::getInstance()->getContentLanguage(),
+			);
+		}
+		return $this->specialPageSuggester;
+	}
 }
 
 /** @deprecated class alias since 1.46 */

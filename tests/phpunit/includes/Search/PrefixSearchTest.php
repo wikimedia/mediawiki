@@ -100,50 +100,9 @@ class PrefixSearchTest extends MediaWikiLangTestCase {
 				],
 			] ],
 			[ [
-				'Special namespace prefix',
-				'query' => 'Special:',
-				'results' => [
-					'Special:ActiveUsers',
-					'Special:AllMessages',
-					'Special:AllPages',
-				],
-				// Third result when testing offset
-				'offsetresult' => [
-					'Special:AncientPages',
-				],
-			] ],
-			[ [
-				'Special namespace with prefix',
-				'query' => 'Special:Un',
-				'results' => [
-					'Special:Unblock',
-					'Special:UncategorizedCategories',
-					'Special:UncategorizedFiles',
-				],
-				// Third result when testing offset
-				'offsetresult' => [
-					'Special:UncategorizedPages',
-				],
-			] ],
-			[ [
 				'Special page name',
 				'query' => 'Special:EditWatchlist',
 				'results' => [],
-			] ],
-			[ [
-				'Special page subpages',
-				'query' => 'Special:EditWatchlist/',
-				'results' => [
-					'Special:EditWatchlist/clear',
-					'Special:EditWatchlist/raw',
-				],
-			] ],
-			[ [
-				'Special page subpages with prefix',
-				'query' => 'Special:EditWatchlist/cl',
-				'results' => [
-					'Special:EditWatchlist/clear',
-				],
 			] ],
 			[ [
 				'Namespace with case sensitive first letter',

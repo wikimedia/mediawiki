@@ -3116,6 +3116,7 @@ $wgAutoloadLocalClasses = [
 	'MediaWiki\\Search\\SearchWidgets\\SearchFormWidget' => __DIR__ . '/includes/Search/SearchWidgets/SearchFormWidget.php',
 	'MediaWiki\\Search\\SearchWidgets\\SearchResultSetWidget' => __DIR__ . '/includes/Search/SearchWidgets/SearchResultSetWidget.php',
 	'MediaWiki\\Search\\SearchWidgets\\SearchResultWidget' => __DIR__ . '/includes/Search/SearchWidgets/SearchResultWidget.php',
+	'MediaWiki\\Search\\SpecialPageSuggester' => __DIR__ . '/includes/Search/SpecialPageSuggester.php',
 	'MediaWiki\\Search\\SqlSearchResult' => __DIR__ . '/includes/Search/SqlSearchResult.php',
 	'MediaWiki\\Search\\SqlSearchResultSet' => __DIR__ . '/includes/Search/SqlSearchResultSet.php',
 	'MediaWiki\\Search\\StringPrefixSearch' => __DIR__ . '/includes/Search/StringPrefixSearch.php',

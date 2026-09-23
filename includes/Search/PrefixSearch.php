@@ -24,6 +24,11 @@ use Wikimedia\Rdbms\LikeValue;
  */
 abstract class PrefixSearch {
 	/**
+	 * @var SpecialPageSuggester|null (lazy loaded)
+	 */
+	private ?SpecialPageSuggester $specialPageSuggester = null;
+
+	/**
 	 * Do a prefix search of titles and return a list of matching page names.
 	 *
 	 * @param string $search
@@ -118,6 +123,16 @@ abstract class PrefixSearch {
 		return $this->titles( $this->defaultSearchBackend( $namespaces, $search, $limit, $offset ) );
 	}
 
+	private function getSpecialPageSuggester(): SpecialPageSuggester {
+		if ( $this->specialPageSuggester === null ) {
+			$this->specialPageSuggester = new SpecialPageSuggester(
+				MediaWikiServices::getInstance()->getSpecialPageFactory(),
+				MediaWikiServices::getInstance()->getContentLanguage(),
+			);
+		}
+		return $this->specialPageSuggester;
+	}
+
 	/**
 	 * Prefix search special-case for Special: namespace.
 	 *
@@ -127,94 +142,7 @@ abstract class PrefixSearch {
 	 * @return array
 	 */
 	protected function specialSearch( $search, $limit, $offset ) {
-		$searchParts = explode( '/', $search, 2 );
-		$searchKey = $searchParts[0];
-		$subpageSearch = $searchParts[1] ?? null;
-
-		// Handle subpage search separately.
-		$spFactory = MediaWikiServices::getInstance()->getSpecialPageFactory();
-		if ( $subpageSearch !== null ) {
-			// Try matching the full search string as a page name
-			$specialTitle = Title::makeTitleSafe( NS_SPECIAL, $searchKey );
-			if ( !$specialTitle ) {
-				return [];
-			}
-			$special = $spFactory->getPage( $specialTitle->getText() );
-			if ( $special ) {
-				$subpages = $special->prefixSearchSubpages( $subpageSearch, $limit, $offset );
-				return array_map( $specialTitle->getSubpage( ... ), $subpages );
-			} else {
-				return [];
-			}
-		}
-
-		# normalize searchKey, so aliases with spaces can be found - T27675
-		$contLang = MediaWikiServices::getInstance()->getContentLanguage();
-		$searchKey = str_replace( ' ', '_', $searchKey );
-		$searchKey = $contLang->caseFold( $searchKey );
-
-		// Unlike SpecialPage itself, we want the canonical forms of both
-		// canonical and alias title forms...
-		$keys = [];
-		$listedPages = $spFactory->getListedPages();
-		foreach ( $listedPages as $specialPage ) {
-			$page = $specialPage->getLocalName();
-			$keys[$contLang->caseFold( $page )] = [ 'page' => $page, 'rank' => 0 ];
-		}
-
-		// Typing "special:" just lists all special pages by their primary name. No need to list the
-		// same special pages again by all their aliases.
-		if ( $searchKey !== '' ) {
-			foreach ( $contLang->getSpecialPageAliases() as $page => $aliases ) {
-				// Exclude aliases for unlisted or undefined pages (T22885),
-				// e.g. if an extension registers a page based on site configuration.
-				if ( !isset( $listedPages[$page] ) ) {
-					continue;
-				}
-
-				// No need to even consider aliases (and as a result list the same special page
-				// multiple times) when the primary page name already matches.
-				if ( str_starts_with( $contLang->caseFold( $page ), $searchKey ) ) {
-					continue;
-				}
-
-				foreach ( $aliases as $key => $alias ) {
-					$pageKey = $contLang->caseFold( $alias );
-					$keys[$pageKey] = [ 'page' => $alias, 'rank' => $key ];
-					// Stop considering later aliases (and as a result list the same special page
-					// multiple times) when there was already a match.
-					if ( str_starts_with( $pageKey, $searchKey ) ) {
-						break;
-					}
-				}
-			}
-		}
-
-		ksort( $keys );
-
-		$matches = [];
-		foreach ( $keys as $pageKey => $page ) {
-			if ( $searchKey === '' || str_starts_with( $pageKey, $searchKey ) ) {
-				// T29671: Don't use SpecialPage::getTitleFor() here because it
-				// localizes its input leading to searches for e.g. Special:All
-				// returning Spezial:MediaWiki-Systemnachrichten and returning
-				// Spezial:Alle_Seiten twice when $wgLanguageCode == 'de'
-				$matches[$page['rank']][] = Title::makeTitleSafe( NS_SPECIAL, $page['page'] );
-
-				if ( isset( $matches[0] ) && count( $matches[0] ) >= $limit + $offset ) {
-					// We have enough items in primary rank, no use to continue
-					break;
-				}
-			}
-
-		}
-
-		// Ensure keys are in order
-		ksort( $matches );
-		// Flatten the array
-		$matches = array_reduce( $matches, 'array_merge', [] );
-
-		return array_slice( $matches, $offset, $limit );
+		return $this->getSpecialPageSuggester()->suggest( $search, $limit, $offset );
 	}
 
 	/**
