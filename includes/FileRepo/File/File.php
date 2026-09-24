@@ -393,13 +393,14 @@ abstract class File implements MediaHandlerState {
 	}
 
 	/**
-	 * Return the URL of the file
-	 * @stable to override
+	 * Return the URL to the original file
 	 *
+	 * @stable to override
 	 * @return string
 	 */
 	public function getUrl() {
 		if ( $this->url === null ) {
+			// NOTE: Keep in sync with LocalFile::getUrlForPurge
 			$this->assertRepoDefined();
 			$ext = $this->getExtension();
 			$this->url = $this->repo->getZoneUrl( 'public', $ext ) . '/' . $this->getUrlRel();

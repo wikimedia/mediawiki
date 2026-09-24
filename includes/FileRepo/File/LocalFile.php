@@ -1044,7 +1044,7 @@ class LocalFile extends File {
 	/** splitMime inherited */
 	/** getName inherited */
 	/** getTitle inherited */
-	/** getURL inherited */
+	/** getUrl inherited */
 	/** getViewURL inherited */
 	/** getPath inherited */
 	/** isVisible inherited */
@@ -1463,12 +1463,43 @@ class LocalFile extends File {
 	}
 
 	/**
+	 * Return base URL to the original file without any provenance
+	 *
+	 * NOTE: This exists solely for use by LocalFile::purgeCache and must not be stored
+	 * anywhere or returned in any API or HTML response. Use File::getUrl() instead.
+	 *
+	 * This was deemed the least bad workaround for T425216, until there is consistent URL
+	 * normalization between GET and PURGE requests for CDN caching.
+	 *
+	 * 1. Moving the stable interface from File::getUrl to File::getUrlRaw is a breaking change.
+	 * 2. Moving appendRequestProvenance() out of File::getUrl to all callers (except
+	 *    LocalFile::purgeCache) is a footgun that would perpetually create bugs.
+	 * 3. If LocalFile::getUrl had its own implementation, then abstracting a local
+	 *    LocalFile::getUrlRaw helper from it would work well, but LocalFile doesn't have/need
+	 *    its own getUrl implementation. We could duplicate File::getUrl as LocalFile::getUrlRaw
+	 *    and beg to keep them in sync.
+	 * 4. Providing this helper in the parent as private File::getUrlRaw doesn't work because
+	 *    LocalFile::purgeCache is in a subclass and so we'd need it protected with @internal.
+	 *    This is not too bad, but makes the File class harder to understand.
+	 *
+	 * The below is basically number 3, but named with a limited purpose.
+	 *
+	 * @return string
+	 */
+	private function getUrlForPurge() {
+		// NOTE: Keep in sync with File::getUrl
+		$this->assertRepoDefined();
+		$ext = $this->getExtension();
+		return $this->repo->getZoneUrl( 'public', $ext ) . '/' . $this->getUrlRel();
+	}
+
+	/**
 	 * Delete all previously generated thumbnails, refresh metadata in memcached and purge the CDN.
+	 *
+	 * @note This used to purge old thumbnails as well, but doesn't anymore.
+	 *
 	 * @stable to override
-	 *
 	 * @param array $options An array potentially with the key forThumbRefresh.
-	 *
-	 * @note This used to purge old thumbnails by default as well, but doesn't anymore.
 	 */
 	public function purgeCache( $options = [] ) {
 		// Refresh metadata in memcached, but don't touch thumbnails or CDN
@@ -1481,7 +1512,7 @@ class LocalFile extends File {
 		// Purge CDN cache for this file
 		$hcu = MediaWikiServices::getInstance()->getHTMLCacheUpdater();
 		$hcu->purgeUrls(
-			$this->getUrl(),
+			$this->getUrlForPurge(),
 			!empty( $options['forThumbRefresh'] )
 				? $hcu::PURGE_PRESEND // just a manual purge
 				: $hcu::PURGE_INTENT_TXROUND_REFLECTED
@@ -2244,11 +2275,12 @@ class LocalFile extends File {
 				$this->getHookRunner()->onFileUpload( $this, $reupload, !$newPageContent );
 
 				if ( $reupload ) {
+					# TODO: Can we reuse LocalFile::purgeCache here?
 					# Delete old thumbnails
 					$this->purgeThumbnails();
 					# Remove the old file from the CDN cache
 					$hcu = MediaWikiServices::getInstance()->getHTMLCacheUpdater();
-					$hcu->purgeUrls( $this->getUrl(), $hcu::PURGE_INTENT_TXROUND_REFLECTED );
+					$hcu->purgeUrls( $this->getUrlForPurge(), $hcu::PURGE_INTENT_TXROUND_REFLECTED );
 				} else {
 					# Update backlink pages pointing to this title if created
 					$blcFactory = MediaWikiServices::getInstance()->getBacklinkCacheFactory();
