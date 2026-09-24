@@ -2476,6 +2476,7 @@ return [
 			$services->getMainConfig(),
 			LoggerFactory::getInstance( 'session' ),
 			$services->getCentralIdLookup(),
+			$services->getCentralIdLookupFactory()->getLocalLookup(),
 			$services->getHookContainer(),
 			$services->getObjectFactory(),
 			$services->getProxyLookup(),

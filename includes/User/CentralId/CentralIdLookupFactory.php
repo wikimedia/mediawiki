@@ -7,6 +7,7 @@
 namespace MediaWiki\User\CentralId;
 
 use InvalidArgumentException;
+use LogicException;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MainConfigSchema;
@@ -94,6 +95,19 @@ class CentralIdLookupFactory {
 			$this->instanceCache[$providerId] = $provider;
 		}
 		return $this->instanceCache[$providerId];
+	}
+
+	/**
+	 * Get an instance of LocalIdLookup.
+	 *
+	 * Note that LocalIdLookup users aren't actually local when $wgSharedDB is used.
+	 */
+	public function getLocalLookup(): LocalIdLookup {
+		$lookup = $this->getLookup( LocalIdLookup::PROVIDER_ID );
+		if ( $lookup instanceof LocalIdLookup ) {
+			return $lookup;
+		}
+		throw new LogicException( 'Impossible but makes static analyzers happy' );
 	}
 
 	/**

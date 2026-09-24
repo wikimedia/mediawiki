@@ -7142,7 +7142,7 @@ class MainConfigSchema {
 	 */
 	public const CentralIdLookupProviders = [
 		'default' => [
-			'local' => [
+			LocalIdLookup::PROVIDER_ID => [
 				'class' => LocalIdLookup::class,
 				'services' => [
 					'MainConfig',

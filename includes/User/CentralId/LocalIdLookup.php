@@ -27,6 +27,8 @@ use Wikimedia\Rdbms\IDBAccessObject;
  */
 class LocalIdLookup extends CentralIdLookup {
 
+	public const PROVIDER_ID = 'local';
+
 	private readonly ?string $sharedDB;
 
 	/** @var string[] */

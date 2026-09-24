@@ -343,6 +343,7 @@ class AuthManagerTest extends MediaWikiIntegrationTestCase {
 			$this->config,
 			new NullLogger(),
 			$this->getServiceContainer()->getCentralIdLookup(),
+			$this->getServiceContainer()->getCentralIdLookupFactory()->getLocalLookup(),
 			$this->getServiceContainer()->getHookContainer(),
 			$this->getServiceContainer()->getObjectFactory(),
 			$this->getServiceContainer()->getProxyLookup(),

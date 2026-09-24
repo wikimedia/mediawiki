@@ -75,6 +75,7 @@ class SessionBackendTest extends MediaWikiIntegrationTestCase {
 				$this->config,
 				$logger,
 				$this->getServiceContainer()->getCentralIdLookup(),
+				$this->getServiceContainer()->getCentralIdLookupFactory()->getLocalLookup(),
 				$hookContainer,
 				$this->getServiceContainer()->getObjectFactory(),
 				$this->getServiceContainer()->getProxyLookup(),

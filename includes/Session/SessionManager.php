@@ -21,6 +21,7 @@ use MediaWiki\Request\FauxRequest;
 use MediaWiki\Request\ProxyLookup;
 use MediaWiki\Request\WebRequest;
 use MediaWiki\User\CentralId\CentralIdLookup;
+use MediaWiki\User\CentralId\LocalIdLookup;
 use MediaWiki\User\User;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserNameUtils;
@@ -57,6 +58,7 @@ class SessionManager implements SessionManagerInterface {
 	private HookRunner $hookRunner;
 	private Config $config;
 	private CentralIdLookup $centralIdLookup;
+	private LocalIdLookup $localIdLookup;
 	private UrlUtils $urlUtils;
 	private UserNameUtils $userNameUtils;
 	private SessionStore $sessionStore;
@@ -105,6 +107,7 @@ class SessionManager implements SessionManagerInterface {
 		Config $config,
 		LoggerInterface $logger,
 		CentralIdLookup $centralIdLookup,
+		LocalIdLookup $localIdLookup,
 		HookContainer $hookContainer,
 		ObjectFactory $objectFactory,
 		ProxyLookup $proxyLookup,
@@ -115,6 +118,7 @@ class SessionManager implements SessionManagerInterface {
 		$this->config = $config;
 		$this->setLogger( $logger );
 		$this->centralIdLookup = $centralIdLookup;
+		$this->localIdLookup = $localIdLookup;
 		$this->setHookContainer( $hookContainer );
 		$this->objectFactory = $objectFactory;
 		$this->sessionStore = $sessionStore;
@@ -368,6 +372,52 @@ class SessionManager implements SessionManagerInterface {
 	}
 
 	/**
+	 * Return a string that can be used to identify a user (e.g. in a JWT 'sub' field).
+	 *
+	 * The identifier has the form `mw:<scope>:<id>` for non-anonymous users, where <scope> is the
+	 * result of {@link getScope()} (note that the scope itself contains a `:` sign), and <id> is the
+	 * central ID. For users with no central ID (ie. locally existing but unattached accounts),
+	 * the local ID will be used with the LocalIdLookup scope. Anonymous users will get `mw:anon`.
+	 *
+	 * The identifier is unique for a given CentralIdLookup implementation (the same user always
+	 * yields the same identifier, and different users always yield different identifiers) other
+	 * than for anonymous users.
+	 */
+	public function getSubjectIdentifier( UserIdentity $user ): string {
+		// Use a fake scheme as a namespace, since the JWT spec says 'sub' should be an URI
+		// or a string that cannot be mistaken for an URI, and the first seems less hassle.
+		$scheme = 'mw:';
+		$scope = $this->centralIdLookup->getScope();
+
+		$centralIdOrFallback = null;
+		$userName = $this->userNameUtils->getCanonical( $user->getName() );
+		if ( $userName !== false ) {
+			$nameToId = [ $userName => 0 ];
+			[ $userName => $centralIdOrFallback ] = $this->centralIdLookup->lookupOwnedUserNames( $nameToId,
+				CentralIdLookup::AUDIENCE_RAW );
+			if ( !$centralIdOrFallback ) {
+				// Might be a freshly created account, fall back to primary.
+				[ $userName => $centralIdOrFallback ] = $this->centralIdLookup->lookupOwnedUserNames( $nameToId,
+					CentralIdLookup::AUDIENCE_RAW, IDBAccessObject::READ_LATEST );
+			}
+
+			if ( !$centralIdOrFallback ) {
+				// We passed the getCanonical check so $user is not anonymous; it must be an unattached account.
+				$scope = $this->localIdLookup->getScope();
+				[ $userName => $centralIdOrFallback ] = $this->localIdLookup->lookupOwnedUserNames( $nameToId,
+					CentralIdLookup::AUDIENCE_RAW );
+				if ( !$centralIdOrFallback ) {
+					[ $userName => $centralIdOrFallback ] = $this->localIdLookup->lookupOwnedUserNames( $nameToId,
+						CentralIdLookup::AUDIENCE_RAW, IDBAccessObject::READ_LATEST );
+				}
+			}
+		}
+
+		$userValue = $centralIdOrFallback ? "$scope:$centralIdOrFallback" : self::JWT_SUB_ANON;
+		return $scheme . $userValue;
+	}
+
+	/**
 	 * Return a set of key-value pairs applicable for use as claims in a JSON Web Token.
 	 *
 	 * This can be used to standardize some session credentials as JWTs. It is up to individual
@@ -391,35 +441,21 @@ class SessionManager implements SessionManagerInterface {
 	 * @see JwtCodec::create()
 	 */
 	public function getJwtData( UserIdentity $user ): array {
-		$centralId = null;
-		$userName = $this->userNameUtils->getCanonical( $user->getName() );
-		if ( $userName === false ) {
-			$user = null;
-		} else {
-			$nameToId = [ $userName => 0 ];
-			[ $userName => $centralId ] = $this->centralIdLookup->lookupOwnedUserNames( $nameToId,
-				CentralIdLookup::AUDIENCE_RAW );
-			if ( !$centralId ) {
-				[ $userName => $centralId ] = $this->centralIdLookup->lookupOwnedUserNames( $nameToId,
-					CentralIdLookup::AUDIENCE_RAW, IDBAccessObject::READ_LATEST );
-			}
-		}
-		// Use a fake scheme for 'sub' since the spec says it should be an URI or a string that
-		// cannot be mistaken for an URI, and the first seems less hassle
-		$scheme = 'mw:';
-		$userValue = $centralId
-			? $this->centralIdLookup->getScope() . ':' . $centralId
-			: self::JWT_SUB_ANON;
 		$jwtData = [
 			'iss' => $this->urlUtils->getCanonicalServer(),
-			'sub' => $scheme . $userValue,
+			'sub' => $this->getSubjectIdentifier( $user ),
 			// Omit 'exp', it depends on the provider.
 			// Omit 'nbf', no different from 'iat' and RFC 7519 doesn't require it.
 			'iat' => MWTimestamp::time(),
 			'jti' => base64_encode( random_bytes( 16 ) ),
 		];
 
+		$userName = $this->userNameUtils->getCanonical( $user->getName() );
+		if ( $userName === false ) {
+			$user = null;
+		}
 		$this->hookRunner->onGetSessionJwtData( $user, $jwtData );
+
 		return $jwtData;
 	}
 

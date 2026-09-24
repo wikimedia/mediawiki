@@ -109,4 +109,13 @@ interface SessionManagerInterface extends LoggerAwareInterface {
 	 */
 	public function getJwtData( UserIdentity $user ): array;
 
+	/**
+	 * Return a string that can be used to identify a user (e.g. in a JWT 'sub' field).
+	 *
+	 * @param UserIdentity $user The user who is the subject of the claim.
+	 * @return string identifier of the form `mw:<scope>:<id>` for non-anonymous users, mw:anon for anons.
+	 *
+	 * @since 1.47
+	 */
+	public function getSubjectIdentifier( UserIdentity $user ): string;
 }

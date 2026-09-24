@@ -6,6 +6,7 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Title\Title;
 use MediaWiki\User\CentralId\CentralIdLookup;
+use MediaWiki\User\CentralId\LocalIdLookup;
 use RenameUser;
 
 /**
@@ -72,6 +73,11 @@ class RenameUserTest extends MaintenanceBaseTestCase {
 					$mockCentralIdLookup->method( 'isAttached' )
 						->willReturn( true );
 					return $mockCentralIdLookup;
+				},
+			],
+			'local' => [
+				'factory' => function () {
+					return $this->createNoOpAbstractMock( LocalIdLookup::class );
 				},
 			],
 		] );

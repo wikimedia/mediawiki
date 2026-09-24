@@ -18,6 +18,8 @@ use MediaWiki\Session\SessionProvider;
 use MediaWiki\Session\SingleBackendSessionStore;
 use MediaWiki\Session\UserInfo;
 use MediaWiki\User\CentralId\CentralIdLookup;
+use MediaWiki\User\CentralId\CentralIdLookupFactory;
+use MediaWiki\User\CentralId\LocalIdLookup;
 use MediaWiki\User\User;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityValue;
@@ -75,6 +77,7 @@ class SessionManagerTest extends MediaWikiIntegrationTestCase {
 			$this->config,
 			$this->logger,
 			$this->getServiceContainer()->getCentralIdLookup(),
+			$this->getServiceContainer()->getCentralIdLookupFactory()->getLocalLookup(),
 			$this->getServiceContainer()->getHookContainer(),
 			$this->getServiceContainer()->getObjectFactory(),
 			$this->getServiceContainer()->getProxyLookup(),
@@ -1740,6 +1743,25 @@ class SessionManagerTest extends MediaWikiIntegrationTestCase {
 		];
 	}
 
+	public function testGetSubjectIdentifier() {
+		$this->setService( 'CentralIdLookup',
+			$this->getMockCentralIdLookup( [ 'Foo' => 123, 'Bar' => 0, 'Boom' => 0 ] ) );
+		$localLookup = $this->getMockCentralIdLookup( [ 'Foo' => 456, 'Bar' => 789, 'Boom' => 0 ], 'localMock:' );
+		$mockFactory = $this->createNoOpMock( CentralIdLookupFactory::class, [ 'getLocalLookup' ] );
+		$mockFactory->method( 'getLocalLookup' )->willReturn( $localLookup );
+		$this->setService( 'CentralIdLookupFactory', $mockFactory );
+		$sessionManager = $this->createManager();
+
+		$this->assertSame( 'mw:anon',
+			$sessionManager->getSubjectIdentifier( UserIdentityValue::newAnonymous( '1.2.3.4' ) ) );
+		$this->assertSame( 'mw:mock::123',
+			$sessionManager->getSubjectIdentifier( UserIdentityValue::newRegistered( 456, 'Foo' ) ) );
+		$this->assertSame( 'mw:localMock:testwiki:789',
+			$sessionManager->getSubjectIdentifier( UserIdentityValue::newRegistered( 789, 'Bar' ) ) );
+		$this->assertSame( 'mw:anon',
+			$sessionManager->getSubjectIdentifier( UserIdentityValue::newRegistered( 1000, 'Boom' ) ) );
+	}
+
 	public function testGetJwtData() {
 		MWTimestamp::setFakeTime( 1234567 );
 		$this->overrideConfigValue( MainConfigNames::CanonicalServer, 'http://example.org' );
@@ -1772,9 +1794,14 @@ class SessionManagerTest extends MediaWikiIntegrationTestCase {
 		}
 	}
 
-	private function getMockCentralIdLookup( array $userNameToCentralIdMap ): CentralIdLookup {
-		$lookup = $this->createNoOpMock( CentralIdLookup::class, [ 'getScope', 'lookupOwnedUserNames' ] );
-		$lookup->method( 'getScope' )->willReturn( 'mock:' );
+	private function getMockCentralIdLookup(
+		array $userNameToCentralIdMap,
+		bool $local = false
+	): CentralIdLookup {
+		$class = $local ? LocalIdLookup::class : CentralIdLookup::class;
+		$scope = $local ? 'localMock:testwiki' : 'mock:';
+		$lookup = $this->createNoOpMock( $class, [ 'getScope', 'lookupOwnedUserNames' ] );
+		$lookup->method( 'getScope' )->willReturn( $scope );
 		$lookup->method( 'lookupOwnedUserNames' )->willReturnCallback(
 			static function ( $nameToIdMap, $audience, $flags ) use ( $userNameToCentralIdMap ) {
 				if ( !( $flags & IDBAccessObject::READ_LATEST ) ) {
