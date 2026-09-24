@@ -276,7 +276,18 @@ class Thumbnail404EntryPointTest extends MediaWikiIntegrationTestCase {
 		);
 	}
 
-	public function testStreamTempFile() {
+	public static function provideStreamTempFile() {
+		return [
+			'without key' => [ false ],
+			'with key' => [ true ]
+		];
+	}
+
+	/** @dataProvider provideStreamTempFile */
+	public function testStreamTempFile( bool $withKey ) {
+		if ( $withKey ) {
+			$this->installTestRepoGroup( [ 'thumbProxySecret' => 'snowball' ] );
+		}
 		$user = $this->getTestUser()->getUser();
 		$stash = new UploadStash( $this->getTestRepo(), $user );
 		$file = $stash->stashFile( self::IMAGES_DIR . '/adobergb.jpg' );
@@ -285,17 +296,24 @@ class Thumbnail404EntryPointTest extends MediaWikiIntegrationTestCase {
 			. '/13px-' . $file->getName();
 
 		$env = $this->makeEnvironment( $uri );
+		if ( $withKey ) {
+			$env->getFauxRequest()->setHeader( 'X-Swift-Secret', 'snowball' );
+		}
 		$entryPoint = $this->getEntryPoint( $env );
 
 		$entryPoint->run();
 		$output = $entryPoint->getCapturedOutput();
 
-		$env->assertStatusCode( 200 );
-		$env->assertHeaderValue( '200 OK', 'Status' );
-		$this->assertThumbnail(
-			[ 'magic' => self::JPEG_MAGIC, 'width' => 13, ],
-			$output
-		);
+		if ( $withKey ) {
+			$env->assertStatusCode( 200 );
+			$env->assertHeaderValue( '200 OK', 'Status' );
+			$this->assertThumbnail(
+				[ 'magic' => self::JPEG_MAGIC, 'width' => 13, ],
+				$output
+			);
+		} else {
+			$env->assertStatusCode( 403 );
+		}
 	}
 
 	public function testBadPath() {

@@ -147,6 +147,7 @@ trait TestRepoTrait {
 			"updateCompatibleMetadata" => false,
 			"reserializeMetadata" => false,
 			"backend" => 'local-backend',
+			"thumbProxySecret" => $options['thumbProxySecret'] ?? null,
 		];
 
 		if ( !$info['backend'] instanceof FileBackend ) {

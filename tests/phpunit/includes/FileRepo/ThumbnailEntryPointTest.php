@@ -598,7 +598,18 @@ class ThumbnailEntryPointTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( '', $output );
 	}
 
-	public function testStreamTempFile() {
+	public static function provideStreamTempFile() {
+		return [
+			'without key' => [ false ],
+			'with key' => [ true ]
+		];
+	}
+
+	/** @dataProvider provideStreamTempFile */
+	public function testStreamTempFile( $withKey ) {
+		if ( $withKey ) {
+			$this->installTestRepoGroup( [ 'thumbProxySecret' => 'snowball' ] );
+		}
 		$user = $this->getTestUser()->getUser();
 		$stash = new UploadStash( $this->getTestRepo(), $user );
 		$file = $stash->stashFile( self::IMAGES_DIR . '/adobergb.jpg' );
@@ -610,16 +621,23 @@ class ThumbnailEntryPointTest extends MediaWikiIntegrationTestCase {
 				'temp' => 'yes',
 			]
 		);
+		if ( $withKey ) {
+			$env->getFauxRequest()->setHeader( 'X-Swift-Secret', 'snowball' );
+		}
 		$entryPoint = $this->getEntryPoint( $env );
 
 		$entryPoint->run();
 		$output = $entryPoint->getCapturedOutput();
 
-		$env->assertStatusCode( 200 );
-		$this->assertThumbnail(
-			[ 'magic' => self::JPEG_MAGIC, 'width' => 12, ],
-			$output
-		);
+		if ( $withKey ) {
+			$env->assertStatusCode( 200 );
+			$this->assertThumbnail(
+				[ 'magic' => self::JPEG_MAGIC, 'width' => 12, ],
+				$output
+			);
+		} else {
+			$env->assertStatusCode( 403 );
+		}
 	}
 
 	public function testRedirect() {

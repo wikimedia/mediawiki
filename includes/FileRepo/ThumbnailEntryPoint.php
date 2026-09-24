@@ -137,7 +137,27 @@ class ThumbnailEntryPoint extends MediaWikiEntryPoint {
 
 		// Actually fetch the image. Method depends on whether it is archived or not.
 		if ( $isTemp ) {
+			// Special:UploadStash is the normal way to access thumbnails of temp
+			// files, with authentication. However, it can proxy scaling requests
+			// to a remote scaler, and that might be us. Require a secret key to
+			// be configured and sent. (T130436)
 			$repo = $localRepo->getTempRepo();
+			$expectedKey = $localRepo->getThumbProxySecret();
+			if ( !$expectedKey ) {
+				$this->thumbErrorText( 403, 'Access denied. ' .
+					'Use Special:UploadStash for user access to temporary thumbnails. ' .
+					'Configure thumbProxySecret to use thumb_handler.php as a remote ' .
+					'scaler backend.'
+				);
+				return;
+			}
+			$receivedKey = $this->getRequest()->getHeader( 'X-Swift-Secret' );
+			if ( !$receivedKey || !hash_equals( $expectedKey, $receivedKey ) ) {
+				$this->thumbErrorText( 403, 'Access denied: incorrect X-Swift-Secret. ' .
+					'Use Special:UploadStash for user access to temporary thumbnails. ' );
+				return;
+			}
+
 			$img = new UnregisteredLocalFile( false, $repo,
 				# Temp files are hashed based on the name without the timestamp.
 				# The thumbnails will be hashed based on the entire name however.
