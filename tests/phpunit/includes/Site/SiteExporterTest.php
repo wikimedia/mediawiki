@@ -103,13 +103,11 @@ class SiteExporterTest extends MediaWikiIntegrationTestCase {
 		$dewiki = Site::newForType( Site::TYPE_MEDIAWIKI );
 		$dewiki->setGlobalId( 'dewiki' );
 		$dewiki->setGroup( 'wikipedia' );
-		$dewiki->setForward( true );
 		$dewiki->setLanguageCode( 'de' );
 		$dewiki->addLocalId( Site::ID_INTERWIKI, 'wikipedia' );
 		$dewiki->addLocalId( Site::ID_EQUIVALENT, 'de' );
 		$dewiki->setPath( Site::PATH_LINK, 'http://de.wikipedia.org/w/' );
 		$dewiki->setPath( MediaWikiSite::PATH_PAGE, 'http://de.wikipedia.org/wiki/' );
-		$dewiki->setSource( 'meta.wikimedia.org' );
 
 		return [
 			'empty' => [

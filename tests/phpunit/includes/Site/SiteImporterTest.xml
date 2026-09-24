@@ -12,7 +12,6 @@
 		<localid type="interwiki">wikipedia</localid>
 		<localid type="equivalent">de</localid>
 		<group>wikipedia</group>
-		<forward/>
 		<language>de</language>
 		<path type="link">http://de.wikipedia.org/w/</path>
 		<path type="page_path">http://de.wikipedia.org/wiki/</path>

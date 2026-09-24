@@ -3,27 +3,25 @@ Sitelist {#sitelist}
 
 This document describes the XML format used to represent information about external sites known to a MediaWiki installation. This information about external sites is used to allow "inter-wiki" links, cross-language navigation, as well as close integration via direct access to the other site's web API or even directly to their database.
 
-Lists of external sites can be imported and exported using the *importSites.php* and *exportSites.php* scripts. In the database, external sites are described by the `sites` and `site_ids` tables.
+Lists of external sites can be imported and exported using the *importSites.php* and *exportSites.php* scripts. In the database, external sites are described by the `sites` and `site_identifiers` tables.
 
 The formal specification of the format used by *importSites.php* and *exportSites.php* can be found in the *sitelist-1.1.xsd* file. Below is an example and a brief description of what the individual XML elements and attributes mean:
 
 ```xml
 <sites version="1.1">
-	<site>
-		<globalid>acme.com</globalid>
-		<localid type="interwiki">acme</localid>
-		<group>Vendor</group>
-		<path type="link">http://acme.com/</path>
-		<source>meta.wikimedia.org</source>
-	</site>
-	<site type="mediawiki">
-		<globalid>de.wikidik.example</globalid>
-		<localid type="equivalent">de</localid>
-		<group>Dictionary</group>
-		<language>de</language>
-		<forward/>
-		<path type="page_path">http://acme.com/</path>
-	</site>
+  <site>
+    <globalid>acme.com</globalid>
+    <localid type="interwiki">acme</localid>
+    <group>Vendor</group>
+    <path type="link">http://acme.com/</path>
+  </site>
+  <site type="mediawiki">
+    <globalid>de.wikidik.example</globalid>
+    <localid type="equivalent">de</localid>
+    <group>Dictionary</group>
+    <language>de</language>
+    <path type="page_path">http://acme.com/</path>
+  </site>
 </sites>
 ```
 
@@ -44,4 +42,3 @@ The XML elements are used as follows:
   + `link`: Generic URL template, often the document root.
   + `page_path`: (for `mediawiki` sites) URL template for wiki pages (corresponds to the target wiki's `$wgArticlePath` setting)
   + `file_path`: (for `mediawiki` sites) URL pattern for application entry points and resources (corresponds to the target wiki's `$wgScriptPath` setting).
-- `forward`: Whether using a prefix defined by a `localid` tag in the URL will cause the request to be redirected to the corresponding page on the target wiki (currently unused). E.g. whether <http://wiki.acme.com/wiki/foo:Buzz> should be forwarded to <http://wiki.foo.com/read/Buzz>. (CAVEAT: not yet implement, can be specified but has no effect)

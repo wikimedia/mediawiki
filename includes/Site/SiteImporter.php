@@ -150,10 +150,8 @@ class SiteImporter {
 		$type = $this->getAttributeValue( $siteElement, 'type', Site::TYPE_UNKNOWN );
 		$site = Site::newForType( $type );
 
-		$site->setForward( $this->hasChild( $siteElement, 'forward' ) );
 		$site->setGlobalId( $this->getChildText( $siteElement, 'globalid' ) );
 		$site->setGroup( $this->getChildText( $siteElement, 'group', Site::GROUP_NONE ) );
-		$site->setSource( $this->getChildText( $siteElement, 'source', Site::SOURCE_LOCAL ) );
 		$site->setLanguageCode( $this->getChildText( $siteElement, 'language', null ) );
 
 		$pathTags = $siteElement->getElementsByTagName( 'path' );
