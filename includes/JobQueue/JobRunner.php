@@ -192,7 +192,7 @@ class JobRunner {
 		$backoffDeltas = []; // map of (type => seconds)
 		$wait = 'wait'; // block to read backoffs the first time
 
-		$loopStartTime = microtime( true );
+		$loopStartTime = ConvertibleTimestamp::hrtime();
 		$jobsPopped = 0;
 		$timeMsTotal = 0;
 		$lastSyncTime = 1; // initialize "last sync check timestamp" to "ages ago"
@@ -251,7 +251,7 @@ class JobRunner {
 				if ( $maxJobs && $jobsPopped >= $maxJobs ) {
 					$response['reached'] = 'job-limit';
 					break;
-				} elseif ( $maxTime && ( microtime( true ) - $loopStartTime ) > $maxTime ) {
+				} elseif ( $maxTime && ( ConvertibleTimestamp::hrtime() - $loopStartTime ) / 1e9 > $maxTime ) {
 					$response['reached'] = 'time-limit';
 					break;
 				}
