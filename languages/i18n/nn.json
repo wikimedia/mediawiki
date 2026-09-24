@@ -2230,6 +2230,8 @@
 	"block-user-active-range-blocks": "Aktive intervallblokkeringar",
 	"block-user-no-active-range-blocks": "Fann ingen aktive intervallblokkeringar",
 	"block-user-no-previous-blocks": "Fann ingen tidlegare blokkeringar.",
+	"block-item-remove": "Fjern",
+	"block-item-edit": "Endre",
 	"block-target": "Brukarnamn eller IP-adresse:",
 	"block-pages-placeholder": "Legg til sider …",
 	"block-namespaces-placeholder": "Legg til namnerom …",

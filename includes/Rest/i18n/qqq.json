@@ -219,7 +219,7 @@
 	"rest-property-desc-search-matched-title": "{{Experimental}} REST API response field description, for the redirection page",
 	"rest-property-desc-search-description": "{{Experimental}} REST API response field description, for the page summary",
 	"rest-property-desc-search-thumbnail": "{{Experimental}} REST API response field description, for the page thumbnail",
-	"rest-property-desc-html-url": "{{Experimental}} Fetch content of page in HTML",
+	"rest-property-desc-html-url": "{{Experimental}} REST API response field description, for the URL of page HTML",
 	"rest-schema-desc-mock-desc": "{{Experimental}} Mock description for use in tests",
 	"rest-schema-desc-revision-metadata": "{{Experimental}} revision meta-data",
 	"rest-schema-desc-new-page": "{{Experimental}} The new page, including source (usually wikitext)",
