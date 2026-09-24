@@ -37,6 +37,7 @@ use MediaWiki\Utils\MWTimestamp;
 use PHPUnit\Framework\Assert;
 use Wikimedia\Rdbms\IDBAccessObject;
 use Wikimedia\TestingAccessWrapper;
+use Wikimedia\Timestamp\ConvertibleTimestamp;
 use Wikimedia\Timestamp\TimestampFormat as TS;
 
 /**
@@ -1363,12 +1364,14 @@ more stuff
 	}
 
 	public function testInsertOn() {
+		ConvertibleTimestamp::setFakeTime( '2011-01-01T08:01:00Z' );
 		$title = Title::newFromText( __METHOD__ );
 		$page = $this->newPage( $title );
 
-		$startTimeStamp = wfTimestampNow();
+		ConvertibleTimestamp::setFakeTime( '2011-01-01T08:02:00Z' );
 		$result = $page->insertOn( $this->getDb() );
-		$endTimeStamp = wfTimestampNow();
+
+		ConvertibleTimestamp::setFakeTime( '2011-01-01T08:03:00Z' );
 
 		$this->assertIsInt( $result );
 		$this->assertGreaterThan( 0, $result );
@@ -1410,14 +1413,7 @@ more stuff
 			->from( 'page' )
 			->where( $condition )
 			->fetchField();
-		$this->assertTrue(
-			wfTimestamp( TS::UNIX, $startTimeStamp )
-			<= wfTimestamp( TS::UNIX, $pageTouched )
-		);
-		$this->assertTrue(
-			wfTimestamp( TS::UNIX, $endTimeStamp )
-			>= wfTimestamp( TS::UNIX, $pageTouched )
-		);
+		$this->assertSame( '20110101080200', wfTimestamp( TS::MW, $pageTouched ) );
 
 		// Try inserting the same page again and checking the result is false (no change)
 		$result = $page->insertOn( $this->getDb() );
