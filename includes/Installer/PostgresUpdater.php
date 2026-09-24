@@ -9,6 +9,7 @@
 
 namespace MediaWiki\Installer;
 
+use CleanupWatchlistTemporaryAccountRows;
 use FixWrongPasswordPrefixes;
 use MediaWiki\Maintenance\FixAutoblockLogTitles;
 use PopulateUserIsTemp;
@@ -109,6 +110,7 @@ class PostgresUpdater extends DatabaseUpdater {
 
 			// 1.48
 			[ 'addTable', 'user_editcount', 'patch-user_editcount.sql' ],
+			[ 'runMaintenance', CleanupWatchlistTemporaryAccountRows::class ],
 		];
 	}
 
