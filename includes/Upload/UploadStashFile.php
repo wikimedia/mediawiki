@@ -144,6 +144,16 @@ class UploadStashFile extends UnregisteredLocalFile {
 	}
 
 	/**
+	 * If a transform script is configured, it must be suppressed.
+	 * Special:UploadStash is the transform script. (T439062)
+	 *
+	 * @return string|false
+	 */
+	protected function getTransformScript() {
+		return false;
+	}
+
+	/**
 	 * The basename for the URL, which we want to not be related to the filename.
 	 * Will also be used as the lookup key for a thumbnail file.
 	 *

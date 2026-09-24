@@ -1104,7 +1104,7 @@ abstract class File implements MediaHandlerState {
 	/**
 	 * @return string|false
 	 */
-	private function getTransformScript() {
+	protected function getTransformScript() {
 		if ( $this->transformScript === null ) {
 			$this->transformScript = false;
 			if ( $this->repo ) {
