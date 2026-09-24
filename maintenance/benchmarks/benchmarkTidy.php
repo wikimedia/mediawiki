@@ -6,6 +6,7 @@
  */
 
 use MediaWiki\Maintenance\Benchmarker;
+use Wikimedia\Timestamp\ConvertibleTimestamp;
 
 // @codeCoverageIgnoreStart
 require_once __DIR__ . '/../includes/Benchmarker.php';
@@ -35,12 +36,12 @@ class BenchmarkTidy extends Benchmarker {
 		$innerCount = 10;
 		$outerCount = 10;
 		for ( $j = 1; $j <= $outerCount; $j++ ) {
-			$t = microtime( true );
+			$t = ConvertibleTimestamp::hrtime();
 			for ( $i = 0; $i < $innerCount; $i++ ) {
 				$tidy->tidy( $html );
 				print $contLang->formatSize( memory_get_usage( true ) ) . "\n";
 			}
-			$t = ( ( microtime( true ) - $t ) / $innerCount ) * 1000;
+			$t = ( ( ConvertibleTimestamp::hrtime() - $t ) / $innerCount ) / 1e6;
 			$times[] = $t;
 			print "Run $j: $t\n";
 		}

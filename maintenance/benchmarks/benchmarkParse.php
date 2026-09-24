@@ -19,6 +19,7 @@ use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Title\Title;
 use Wikimedia\Rdbms\SelectQueryBuilder;
+use Wikimedia\Timestamp\ConvertibleTimestamp;
 use Wikimedia\Timestamp\TimestampFormat as TS;
 
 /**
@@ -104,19 +105,19 @@ class BenchmarkParse extends Maintenance {
 			$this->fatalError( 'Invalid number of loops specified' );
 		}
 		$startUsage = getrusage();
-		$startTime = microtime( true );
+		$startTime = ConvertibleTimestamp::hrtime();
 		for ( $i = 0; $i < $loops; $i++ ) {
 			$this->runParser( $revision );
 		}
 		$endUsage = getrusage();
-		$endTime = microtime( true );
+		$endTime = ConvertibleTimestamp::hrtime();
 
 		printf( "CPU time = %.3f s, wall clock time = %.3f s\n",
 			// CPU time
 			( $endUsage['ru_utime.tv_sec'] + $endUsage['ru_utime.tv_usec'] * 1e-6
 			- $startUsage['ru_utime.tv_sec'] - $startUsage['ru_utime.tv_usec'] * 1e-6 ) / $loops,
 			// Wall clock time
-			( $endTime - $startTime ) / $loops
+			( $endTime - $startTime ) / 1e9 / $loops
 		);
 	}
 

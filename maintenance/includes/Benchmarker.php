@@ -15,6 +15,7 @@
 namespace MediaWiki\Maintenance;
 
 use Wikimedia\RunningStat;
+use Wikimedia\Timestamp\ConvertibleTimestamp;
 
 // @codeCoverageIgnoreStart
 require_once __DIR__ . '/../Maintenance.php';
@@ -101,9 +102,9 @@ abstract class Benchmarker extends Maintenance {
 				if ( isset( $bench['setupEach'] ) ) {
 					$bench['setupEach']();
 				}
-				$t = microtime( true );
+				$t = ConvertibleTimestamp::hrtime();
 				$bench['function']( ...$bench['args'] );
-				$t = ( microtime( true ) - $t ) * 1000;
+				$t = ( ConvertibleTimestamp::hrtime() - $t ) / 1e6;
 				if ( $verbose ) {
 					$this->verboseRun( $i );
 				}

@@ -13,6 +13,7 @@ use MediaWiki\Composer\PhpUnitSplitter\PhpUnitXml;
 use MediaWiki\Composer\PhpUnitSplitter\SplitGroupExecutor;
 use MediaWiki\Maintenance\ForkController;
 use Shellbox\Shellbox;
+use Wikimedia\Timestamp\ConvertibleTimestamp;
 
 $basePath = getenv( 'MW_INSTALL_PATH' ) !== false ? getenv( 'MW_INSTALL_PATH' ) : __DIR__ . '/../..';
 
@@ -165,7 +166,7 @@ class ComposerLaunchParallel extends ForkController {
 	 * @throws LockingException
 	 */
 	private function runTestSuite( int $groupId ): void {
-		$startTime = microtime( true );
+		$startTime = ConvertibleTimestamp::hrtime();
 		$excludeGroups = array_diff( $this->excludeGroups, $this->groups );
 		$groupName = $this->getGroupName();
 		$resultCacheFile = $this->getLogFilePath( "phpunit_group_{$groupId}_{$groupName}.result.cache" );
@@ -184,7 +185,10 @@ class ComposerLaunchParallel extends ForkController {
 			);
 		}
 		$this->composerSystemInterface->print( $consoleOutput );
-		$this->updateTestTimings( $this->getChildNumber(), microtime( true ) - $startTime );
+		$this->updateTestTimings(
+			$this->getChildNumber(),
+			( ConvertibleTimestamp::hrtime() - $startTime ) / 1e9
+		);
 		$this->composerSystemInterface->exit( $result->getExitCode() );
 	}
 

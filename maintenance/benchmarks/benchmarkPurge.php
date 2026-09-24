@@ -9,6 +9,7 @@
 
 use MediaWiki\Deferred\CdnCacheUpdate;
 use MediaWiki\Maintenance\Benchmarker;
+use Wikimedia\Timestamp\ConvertibleTimestamp;
 
 // @codeCoverageIgnoreStart
 require_once __DIR__ . '/../includes/Benchmarker.php';
@@ -53,11 +54,11 @@ class BenchmarkPurge extends Benchmarker {
 	 * @return string
 	 */
 	private function benchCdn( $urls, $trials = 1 ) {
-		$start = microtime( true );
+		$start = ConvertibleTimestamp::hrtime();
 		for ( $i = 0; $i < $trials; $i++ ) {
 			CdnCacheUpdate::purge( $urls );
 		}
-		$delta = microtime( true ) - $start;
+		$delta = ( ConvertibleTimestamp::hrtime() - $start ) / 1e9;
 		$pertrial = $delta / $trials;
 		$pertitle = $pertrial / count( $urls );
 

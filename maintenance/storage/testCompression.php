@@ -11,6 +11,7 @@ use MediaWiki\Maintenance\Maintenance;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Title\Title;
+use Wikimedia\Timestamp\ConvertibleTimestamp;
 use Wikimedia\Timestamp\TimestampFormat as TS;
 
 // @codeCoverageIgnoreStart
@@ -65,7 +66,7 @@ class TestCompression extends Maintenance {
 		$hashes = [];
 		$keys = [];
 		$uncompressedSize = 0;
-		$t = -microtime( true );
+		$tStart = ConvertibleTimestamp::hrtime();
 		foreach ( $res as $row ) {
 			$revRecord = $revStore->newRevisionFromRow( $row );
 			$text = $revRecord->getSlot( SlotRecord::MAIN, RevisionRecord::RAW )
@@ -80,7 +81,7 @@ class TestCompression extends Maintenance {
 		}
 
 		$serialized = serialize( $blob );
-		$t += microtime( true );
+		$t = ( ConvertibleTimestamp::hrtime() - $tStart ) / 1e9;
 		# print_r( $blob->mDiffMap );
 
 		printf( "%s\nCompression ratio for %d revisions: %5.2f, %s -> %d\n",
@@ -92,7 +93,7 @@ class TestCompression extends Maintenance {
 		);
 		printf( "Compression time: %5.2f ms\n", $t * 1000 );
 
-		$t = -microtime( true );
+		$tStart = ConvertibleTimestamp::hrtime();
 		$blob = unserialize( $serialized );
 		foreach ( $keys as $id => $key ) {
 			$text = $blob->getItem( $key );
@@ -101,7 +102,7 @@ class TestCompression extends Maintenance {
 				# var_dump( $text );
 			}
 		}
-		$t += microtime( true );
+		$t = ( ConvertibleTimestamp::hrtime() - $tStart ) / 1e9;
 		printf( "Decompression time: %5.2f ms\n", $t * 1000 );
 	}
 }
