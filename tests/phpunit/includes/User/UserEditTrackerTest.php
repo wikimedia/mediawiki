@@ -276,7 +276,7 @@ class UserEditTrackerTest extends MediaWikiIntegrationTestCase {
 		$mockTime = time();
 		$wrappedTracker = TestingAccessWrapper::newFromObject( $tracker );
 		// Mock time is passed as reference, so it's only seemingly unused later in this test
-		$wrappedTracker->wanObjectCache->setMockTime( $mockTime );
+		$wrappedTracker->wanCache->setMockTime( $mockTime );
 
 		$this->assertFalse( $tracker->getFirstEditTimestamp( $user ) );
 

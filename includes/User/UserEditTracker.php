@@ -38,7 +38,7 @@ class UserEditTracker {
 		private readonly ActorStoreFactory $actorStoreFactory,
 		private readonly IConnectionProvider $dbProvider,
 		private readonly JobQueueGroup $jobQueueGroup,
-		private readonly WANObjectCache $wanObjectCache,
+		private readonly WANObjectCache $wanCache,
 	) {
 	}
 
@@ -192,9 +192,9 @@ class UserEditTracker {
 			return $this->getUserEditTimestamp( $user, self::FIRST_EDIT, $flags );
 		}
 
-		// For users with edits, the first edit timestamp is fairly stable, only deleting their first edit can
-		// alter it, so we can cache it for a long time.
-		$timestamp = $this->wanObjectCache->getWithSetCallback(
+		// For users with edits, the first edit timestamp is very stable,
+		// only deleting their first or only edit would alter it, so cache it for a long time.
+		$timestamp = $this->wanCache->getWithSetCallback(
 			$this->getCacheKey( self::CACHE_FIRST_EDIT, $user ),
 			WANObjectCache::TTL_MONTH,
 			function () use ( $user ) {
@@ -205,13 +205,11 @@ class UserEditTracker {
 				return $timestamp;
 			},
 			[
-				'lockTSE' => 30,
-				'staleTTL' => WANObjectCache::TTL_DAY,
-				// First edit timestamp is very stable; reduce popularity-based preemptive refresh rate
-				// After the initial hour passes (newAge), the timestamp will be refreshed on average every
-				// 10k requests (i.e. once every 6 hours if requests come at 1 req/sec)
-				'newAge' => 3600,
-				'hotTTR' => 21600,
+				'lockTSE' => WANObjectCache::TTL_DAY,
+				// Disable the default 5min pre-emptive popularity refresh, because this this
+				// data is very stable. Users that read a lot of pages are not more likely to
+				// lose their first edit compared to other users. We have purging anyway.
+				'hotTTR' => 0,
 			]
 		);
 		if ( $timestamp === 0 ) {
@@ -296,8 +294,8 @@ class UserEditTracker {
 	}
 
 	/**
-	 * Invalidates the timestamps of the first edits by users, if they are equal to the timestamps
-	 * passed together with users.
+	 * Invalidate the cached first-edit timestamp for users, if equal to a given timestamp.
+	 *
 	 * @param array<array{0:UserIdentity,1:string|false}> $users Array of pairs (UserIdentity, timestamp).
 	 */
 	public function invalidateCachedFirstEditTimestamps( array $users ): void {
@@ -311,17 +309,19 @@ class UserEditTracker {
 				$timestamp = 0;
 			}
 
+			// NOTE: This should be refactored to not depend on a local cache get
+			// This violates multi-dc assumptions and probably doesn't work very well.
 			$key = $this->getCacheKey( self::CACHE_FIRST_EDIT, $user );
-			$cachedTimestamp = $this->wanObjectCache->get( $key );
+			$cachedTimestamp = $this->wanCache->get( $key );
 
 			if ( $timestamp === $cachedTimestamp ) {
-				$this->wanObjectCache->delete( $key );
+				$this->wanCache->delete( $key );
 			}
 		}
 	}
 
 	/**
-	 * Returns the cache key to be used for reading from or updating the cache
+	 * Return the cache key to be used for reading from or updating the cache
 	 * for a given user, identified by its user ID and the ID of the wiki it
 	 * belongs to. This key can be used for WANObjectCache and array-based caches.
 	 *
@@ -357,6 +357,6 @@ class UserEditTracker {
 		if ( $wikiId === WikiAwareEntity::LOCAL ) {
 			$wikiId = WikiMap::getCurrentWikiId();
 		}
-		return $this->wanObjectCache->makeKey( $keygroup, $userId, $wikiId );
+		return $this->wanCache->makeKey( $keygroup, $userId, $wikiId );
 	}
 }
