@@ -40,7 +40,7 @@ class AddSiteTest extends MaintenanceBaseTestCase {
 	}
 
 	public function testExecuteWhenSiteAlreadyExists() {
-		$foo = Site::newForType( Site::TYPE_UNKNOWN );
+		$foo = new Site();
 		$foo->setGlobalId( 'Foo' );
 		$this->getServiceContainer()->getSiteStore()->saveSite( $foo );
 

@@ -176,6 +176,7 @@ use MediaWiki\ShadowPage\ShadowPageLoader;
 use MediaWiki\Shell\CommandFactory;
 use MediaWiki\Shell\ShellboxClientFactory;
 use MediaWiki\Site\SiteLookup;
+use MediaWiki\Site\SiteSanitizer;
 use MediaWiki\Site\SiteStore;
 use MediaWiki\Skin\SkinFactory;
 use MediaWiki\SpecialPage\SpecialPageFactory;
@@ -2161,6 +2162,13 @@ class MediaWikiServices extends ServiceContainer {
 	 */
 	public function getSiteLookup(): SiteLookup {
 		return $this->getService( 'SiteLookup' );
+	}
+
+	/**
+	 * @since 1.47
+	 */
+	public function getSiteSanitizer(): SiteSanitizer {
+		return $this->getService( 'SiteSanitizer' );
 	}
 
 	/**

@@ -21,15 +21,12 @@ use Wikimedia\Rdbms\IDatabase;
 class DBSiteStore implements SiteStore {
 	/** @var SiteList|null */
 	protected $sites = null;
-	/** @var IConnectionProvider */
-	private $dbProvider;
 
 	/**
 	 * @since 1.27
 	 * @param IConnectionProvider $dbProvider
 	 */
-	public function __construct( IConnectionProvider $dbProvider ) {
-		$this->dbProvider = $dbProvider;
+	public function __construct( private IConnectionProvider $dbProvider, private SiteSanitizer $siteSanitizer ) {
 	}
 
 	/**
@@ -72,7 +69,7 @@ class DBSiteStore implements SiteStore {
 			->caller( __METHOD__ )->fetchResultSet();
 
 		foreach ( $res as $row ) {
-			$site = Site::newForType( $row->site_type );
+			$site = $this->siteSanitizer->newSiteForType( $row->site_type );
 			$site->setGlobalId( $row->site_global_key );
 			$site->setInternalId( (int)$row->site_id );
 			$site->setForward( (bool)$row->site_forward );
@@ -84,6 +81,7 @@ class DBSiteStore implements SiteStore {
 			$site->setSource( $row->site_source );
 			$site->setExtraData( unserialize( $row->site_data ) );
 			$site->setExtraConfig( unserialize( $row->site_config ) );
+			$this->siteSanitizer->sanitizeSite( $site );
 			$this->sites[] = $site;
 		}
 

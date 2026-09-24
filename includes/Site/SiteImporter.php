@@ -25,17 +25,11 @@ use Wikimedia\RequestTimeout\TimeoutException;
 class SiteImporter {
 
 	/**
-	 * @var SiteStore
-	 */
-	private $store;
-
-	/**
 	 * @var callable|null
 	 */
 	private $exceptionCallback;
 
-	public function __construct( SiteStore $store ) {
-		$this->store = $store;
+	public function __construct( private SiteStore $store, private SiteSanitizer $siteSanitizer ) {
 	}
 
 	/**
@@ -148,7 +142,7 @@ class SiteImporter {
 		}
 
 		$type = $this->getAttributeValue( $siteElement, 'type', Site::TYPE_UNKNOWN );
-		$site = Site::newForType( $type );
+		$site = $this->siteSanitizer->newSiteForType( $type );
 
 		$site->setGlobalId( $this->getChildText( $siteElement, 'globalid' ) );
 		$site->setGroup( $this->getChildText( $siteElement, 'group', Site::GROUP_NONE ) );
@@ -177,6 +171,7 @@ class SiteImporter {
 		// @todo: import <data>
 		// @todo: import <config>
 
+		$this->siteSanitizer->sanitizeSite( $site );
 		return $site;
 	}
 

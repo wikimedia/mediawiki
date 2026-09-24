@@ -249,6 +249,7 @@ use MediaWiki\Shell\ShellboxClientFactory;
 use MediaWiki\Site\CachingSiteStore;
 use MediaWiki\Site\DBSiteStore;
 use MediaWiki\Site\SiteLookup;
+use MediaWiki\Site\SiteSanitizer;
 use MediaWiki\Site\SiteStore;
 use MediaWiki\Skin\SkinApi;
 use MediaWiki\Skin\SkinAuthenticationPopup;
@@ -2554,8 +2555,18 @@ return [
 		return $services->getObjectFactory()->createObject( $siteLookupConfig );
 	},
 
+	'SiteSanitizer' => static function ( MediaWikiServices $services ): SiteSanitizer {
+		return new SiteSanitizer(
+			$services->getLanguageNameUtils(),
+			$services->getMainConfig()->get( MainConfigNames::SiteTypes )
+		);
+	},
+
 	'SiteStore' => static function ( MediaWikiServices $services ): SiteStore {
-		$rawSiteStore = new DBSiteStore( $services->getConnectionProvider() );
+		$rawSiteStore = new DBSiteStore(
+			$services->getConnectionProvider(),
+			$services->getSiteSanitizer()
+		);
 
 		// If php-apcu is not installed, then CachingSiteStore still avoids
 		// repeat DB queries in the same request through an in-process cache.

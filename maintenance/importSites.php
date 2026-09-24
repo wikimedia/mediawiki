@@ -33,8 +33,10 @@ class ImportSites extends Maintenance {
 	public function execute() {
 		$file = $this->getArg( 0 );
 
-		$siteStore = $this->getServiceContainer()->getSiteStore();
-		$importer = new SiteImporter( $siteStore );
+		$importer = new SiteImporter(
+			$this->getServiceContainer()->getSiteStore(),
+			$this->getServiceContainer()->getSiteSanitizer()
+		);
 		$importer->setExceptionCallback( $this->reportException( ... ) );
 
 		$importer->importFromFile( $file );

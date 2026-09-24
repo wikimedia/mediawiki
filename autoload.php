@@ -3203,6 +3203,7 @@ $wgAutoloadLocalClasses = [
 	'MediaWiki\\Site\\SiteImporter' => __DIR__ . '/includes/Site/SiteImporter.php',
 	'MediaWiki\\Site\\SiteList' => __DIR__ . '/includes/Site/SiteList.php',
 	'MediaWiki\\Site\\SiteLookup' => __DIR__ . '/includes/Site/SiteLookup.php',
+	'MediaWiki\\Site\\SiteSanitizer' => __DIR__ . '/includes/Site/SiteSanitizer.php',
 	'MediaWiki\\Site\\SiteStore' => __DIR__ . '/includes/Site/SiteStore.php',
 	'MediaWiki\\Skin\\BaseTemplate' => __DIR__ . '/includes/Skin/BaseTemplate.php',
 	'MediaWiki\\Skin\\ComponentRegistryContext' => __DIR__ . '/includes/Skin/Components/ComponentRegistryContext.php',

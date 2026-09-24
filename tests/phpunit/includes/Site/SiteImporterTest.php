@@ -45,7 +45,7 @@ class SiteImporterTest extends MediaWikiIntegrationTestCase {
 		$errorHandler->expects( $this->exactly( $errorCount ) )
 			->method( 'error' );
 
-		$importer = new SiteImporter( $store );
+		$importer = new SiteImporter( $store, $this->getServiceContainer()->getSiteSanitizer() );
 		$importer->setExceptionCallback( [ $errorHandler, 'error' ] );
 
 		return $importer;
@@ -60,16 +60,16 @@ class SiteImporterTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public static function provideImportFromXML() {
-		$foo = Site::newForType( Site::TYPE_UNKNOWN );
+		$foo = new Site();
 		$foo->setGlobalId( 'Foo' );
 
-		$acme = Site::newForType( Site::TYPE_UNKNOWN );
+		$acme = new Site();
 		$acme->setGlobalId( 'acme.com' );
 		$acme->setGroup( 'Test' );
 		$acme->addLocalId( Site::ID_INTERWIKI, 'acme' );
 		$acme->setPath( Site::PATH_LINK, 'http://acme.com/' );
 
-		$dewiki = Site::newForType( Site::TYPE_MEDIAWIKI );
+		$dewiki = new MediaWikiSite();
 		$dewiki->setGlobalId( 'dewiki' );
 		$dewiki->setGroup( 'wikipedia' );
 		$dewiki->setLanguageCode( 'de' );
@@ -146,21 +146,21 @@ class SiteImporterTest extends MediaWikiIntegrationTestCase {
 		$this->expectException( Exception::class );
 
 		$store = $this->createMock( SiteStore::class );
-		$importer = new SiteImporter( $store );
+		$importer = new SiteImporter( $store, $this->getServiceContainer()->getSiteSanitizer() );
 		$importer->importFromXML( 'THIS IS NOT XML' );
 	}
 
 	public function testImportFromFile() {
-		$foo = Site::newForType( Site::TYPE_UNKNOWN );
+		$foo = new Site();
 		$foo->setGlobalId( 'Foo' );
 
-		$acme = Site::newForType( Site::TYPE_UNKNOWN );
+		$acme = new Site();
 		$acme->setGlobalId( 'acme.com' );
 		$acme->setGroup( 'Test' );
 		$acme->addLocalId( Site::ID_INTERWIKI, 'acme' );
 		$acme->setPath( Site::PATH_LINK, 'http://acme.com/' );
 
-		$dewiki = Site::newForType( Site::TYPE_MEDIAWIKI );
+		$dewiki = new MediaWikiSite();
 		$dewiki->setGlobalId( 'dewiki' );
 		$dewiki->setGroup( 'wikipedia' );
 		$dewiki->setLanguageCode( 'de' );

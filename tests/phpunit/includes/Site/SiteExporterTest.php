@@ -36,10 +36,10 @@ class SiteExporterTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testExportSites() {
-		$foo = Site::newForType( Site::TYPE_UNKNOWN );
+		$foo = new Site();
 		$foo->setGlobalId( 'Foo' );
 
-		$acme = Site::newForType( Site::TYPE_UNKNOWN );
+		$acme = new Site();
 		$acme->setGlobalId( 'acme.com' );
 		$acme->setGroup( 'Test' );
 		$acme->addLocalId( Site::ID_INTERWIKI, 'acme' );
@@ -90,17 +90,17 @@ class SiteExporterTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public static function provideRoundTrip() {
-		$foo = Site::newForType( Site::TYPE_UNKNOWN );
+		$foo = new Site();
 		$foo->setGlobalId( 'Foo' );
 
-		$acme = Site::newForType( Site::TYPE_UNKNOWN );
+		$acme = new Site();
 		$acme->setGlobalId( 'acme.com' );
 		$acme->setGroup( 'Test' );
 		$acme->setLanguageCode( 'en' );
 		$acme->addLocalId( Site::ID_INTERWIKI, 'acme' );
 		$acme->setPath( Site::PATH_LINK, 'http://acme.com/' );
 
-		$dewiki = Site::newForType( Site::TYPE_MEDIAWIKI );
+		$dewiki = new MediaWikiSite();
 		$dewiki->setGlobalId( 'dewiki' );
 		$dewiki->setGroup( 'wikipedia' );
 		$dewiki->setLanguageCode( 'de' );
@@ -135,7 +135,7 @@ class SiteExporterTest extends MediaWikiIntegrationTestCase {
 		$actualSites = new SiteList();
 		$store = $this->newSiteStore( $actualSites );
 
-		$importer = new SiteImporter( $store );
+		$importer = new SiteImporter( $store, $this->getServiceContainer()->getSiteSanitizer() );
 		$importer->importFromXML( $xml );
 
 		$this->assertEquals( $sites, $actualSites );

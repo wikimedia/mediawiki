@@ -21,7 +21,10 @@ use MediaWikiIntegrationTestCase;
 class DBSiteStoreTest extends MediaWikiIntegrationTestCase {
 
 	private function newDBSiteStore(): DBSiteStore {
-		return new DBSiteStore( $this->getServiceContainer()->getConnectionProvider() );
+		return new DBSiteStore(
+			$this->getServiceContainer()->getConnectionProvider(),
+			$this->getServiceContainer()->getSiteSanitizer()
+		);
 	}
 
 	public function testGetSites() {

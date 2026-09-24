@@ -25,10 +25,10 @@ class ExportSitesImportSitesLoopTest extends MaintenanceBaseTestCase {
 
 	private function setUpSitesStoreForTest() {
 		// Copied, with modification, from SiteExporter::provideRoundTrip
-		$foo = Site::newForType( Site::TYPE_UNKNOWN );
+		$foo = new Site();
 		$foo->setGlobalId( 'Foo' );
 
-		$dewiki = Site::newForType( Site::TYPE_MEDIAWIKI );
+		$dewiki = new MediaWikiSite();
 		$dewiki->setGlobalId( 'dewiki' );
 		$dewiki->setGroup( 'wikipedia' );
 		$dewiki->addLocalId( Site::ID_INTERWIKI, 'wikipedia' );
