@@ -381,7 +381,7 @@ class ThumbnailEntryPoint extends MediaWikiEntryPoint {
 			return [
 				null,
 				$this->getContext()->msg( 'thumbnail_image-failure-limit', 4 )->escaped(),
-				500,
+				429,
 			];
 		}
 

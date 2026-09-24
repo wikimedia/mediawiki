@@ -870,4 +870,38 @@ class ThumbnailEntryPointTest extends MediaWikiIntegrationTestCase {
 		}
 	}
 
+	public function testFailureLimitReturns429(): void {
+		// Set up a test file.
+		$file = $this->getTestRepo()->newFile( 'Test.png' );
+		$this->assertTrue( $file->exists() );
+		$width = self::$uniqueWidth++;
+		$params = [ 'width' => $width ];
+		$thumbName = $file->thumbName( $params );
+
+		// Force the cache to report the requisite number of failures (it's hardcoded as 4),
+		// so the error is triggered on the next request.
+		$cache = $this->getServiceContainer()->getObjectCacheFactory()->getLocalClusterInstance();
+		$attemptFailureEpoch = 1;
+		$this->overrideConfigValue( MainConfigNames::AttemptFailureEpoch, $attemptFailureEpoch );
+		$key = $cache->makeKey(
+			'attempt-failures',
+			$attemptFailureEpoch,
+			$file->getRepo()->getName(),
+			$file->getSha1(),
+			md5( $thumbName )
+		);
+		$cache->set( $key, 4, $cache::TTL_HOUR );
+
+		// Make a thumb request for the file.
+		$env = $this->makeEnvironment( [ 'f' => 'Test.png', 'width' => $width, 'uselang' => 'qqx' ] );
+		$entryPoint = $this->getEntryPoint( $env );
+		$entryPoint->run();
+		$output = $entryPoint->getCapturedOutput();
+
+		$this->assertStringContainsString(
+			'thumbnail_image-failure-limit: 4',
+			$output
+		);
+		$env->assertStatusCode( 429, $output );
+	}
 }
