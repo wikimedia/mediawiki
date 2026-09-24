@@ -11,6 +11,7 @@ use Wikimedia\ObjectCache\BagOStuff;
 /**
  * Wrap SiteList with an in-process cache and (optionally) a local-server cache.
  *
+ * @deprecated since 1.47
  * @internal For use by core ServiceWiring only. The public interface is SiteStore
  * @ingroup Site
  * @author Jeroen De Dauw < jeroendedauw@gmail.com >

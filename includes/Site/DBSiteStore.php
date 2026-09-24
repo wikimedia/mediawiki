@@ -12,6 +12,7 @@ use Wikimedia\Rdbms\IDatabase;
 /**
  * Holds a list of sites stored in the database.
  *
+ * @deprecated since 1.47, the sites table will be dropped
  * @since 1.25
  * @ingroup Site
  * @author Jeroen De Dauw < jeroendedauw@gmail.com >
