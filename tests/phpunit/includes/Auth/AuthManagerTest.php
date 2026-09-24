@@ -3713,6 +3713,7 @@ class AuthManagerTest extends MediaWikiIntegrationTestCase {
 			[ LogLevel::INFO, 'creating new user ({username}) - from: {from}' ],
 			[ LogLevel::INFO, '{username} already exists locally (race)' ],
 		], $logger->getBuffer() );
+		$this->assertFalse( $this->watchlistManager->isWatched( $user, $user->getUserPage() ) );
 		$logger->clearBuffer();
 
 		// Success!
@@ -3732,6 +3733,7 @@ class AuthManagerTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( [
 			[ LogLevel::INFO, 'creating new user ({username}) - from: {from}' ],
 		], $logger->getBuffer() );
+		$this->assertTrue( $this->watchlistManager->isWatched( $user, $user->getUserPage() ) );
 		$logger->clearBuffer();
 
 		$dbw = $this->getDb();
@@ -3938,6 +3940,40 @@ class AuthManagerTest extends MediaWikiIntegrationTestCase {
 				'anon',
 				false
 			],
+		];
+	}
+
+	/** @dataProvider provideAutoCreateUserSkipsWatchlistEntryForTempUser */
+	public function testAutoCreateUserSkipsWatchlistEntryForTempUser( string $source ): void {
+		$this->logger = new NullLogger();
+		$this->initializeManager( true );
+		$session = $this->request->getSession();
+
+		// Test addToDatabase fails because the user already exists.
+		$tempUsername = $this->getServiceContainer()->getTempUserCreator()->acquireAndStashName( $session );
+		$user = $this->getServiceContainer()->getUserFactory()->newFromName( $tempUsername );
+		$returnedStatus = $this->manager->autoCreateUser( $user, $source, true, true );
+
+		// Check the temp account was created successfully
+		$this->assertStatusGood( $returnedStatus );
+		$this->assertNotEquals( 0, $user->getId() );
+		$this->assertEquals( $tempUsername, $user->getName() );
+		$this->assertEquals( $user->getId(), $session->getUser()->getId() );
+		$this->assertTrue( $user->isTemp() );
+
+		// In no situation should the temporary account have watchlist entries after creation,
+		// including watching their own user page
+		$this->assertCount(
+			0,
+			$this->getServiceContainer()->getWatchedItemStore()->getWatchedItemsForUser( $user ),
+			'Temporary account should not have any watchlist entries after autocreation'
+		);
+	}
+
+	public static function provideAutoCreateUserSkipsWatchlistEntryForTempUser(): array {
+		return [
+			'Temporary account autocreation on edit' => [ 'source' => AuthManager::AUTOCREATE_SOURCE_TEMP ],
+			'Temporary account autocreation on view' => [ 'source' => AuthManager::AUTOCREATE_SOURCE_SESSION ],
 		];
 	}
 

@@ -2265,7 +2265,7 @@ class AuthManager implements LoggerAwareInterface {
 		// Update user count
 		DeferredUpdates::addUpdate( SiteStatsUpdate::factory( [ 'users' => 1 ] ) );
 		// Watch user's userpage and talk page (except temp users)
-		if ( $source !== self::AUTOCREATE_SOURCE_TEMP ) {
+		if ( !$user->isTemp() ) {
 			DeferredUpdates::addCallableUpdate( function () use ( $user ) {
 				$this->watchlistManager->addWatchIgnoringRights( $user, $user->getUserPage() );
 			} );
