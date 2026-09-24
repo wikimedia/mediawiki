@@ -5,10 +5,10 @@ This document describes the XML format used to represent information about exter
 
 Lists of external sites can be imported and exported using the *importSites.php* and *exportSites.php* scripts. In the database, external sites are described by the `sites` and `site_ids` tables.
 
-The formal specification of the format used by *importSites.php* and *exportSites.php* can be found in the *sitelist-1.0.xsd* file. Below is an example and a brief description of what the individual XML elements and attributes mean:
+The formal specification of the format used by *importSites.php* and *exportSites.php* can be found in the *sitelist-1.1.xsd* file. Below is an example and a brief description of what the individual XML elements and attributes mean:
 
 ```xml
-<sites version="1.0">
+<sites version="1.1">
 	<site>
 		<globalid>acme.com</globalid>
 		<localid type="interwiki">acme</localid>
@@ -20,6 +20,7 @@ The formal specification of the format used by *importSites.php* and *exportSite
 		<globalid>de.wikidik.example</globalid>
 		<localid type="equivalent">de</localid>
 		<group>Dictionary</group>
+		<language>de</language>
 		<forward/>
 		<path type="page_path">http://acme.com/</path>
 	</site>
@@ -29,7 +30,7 @@ The formal specification of the format used by *importSites.php* and *exportSite
 
 The XML elements are used as follows:
 
-- `sites`: The root element, containing a set of site tags. May have a `version` attribute with the value `1.0`.
+- `sites`: The root element, containing a set of site tags. May have a `version` attribute with the value `1.1`.
 - `site`: A site entry, representing an external website. May have a `type` attribute with one of the following values:
   + `unknown`: (default) any website
   + `mediawiki`: A MediaWiki site
@@ -38,6 +39,7 @@ The XML elements are used as follows:
   + `interwiki`: Used as an "interwiki" link prefix, for creating cross-wiki links.
   + `equivalent`: Used as a "language" link prefix, for cross-linking equivalent content in different languages.
 - `group`: The site group (e.g. wiki family) the site belongs to.
+- `language`: The primary MediaWiki language code for the wiki content.
 - `path`: A URL template for accessing resources on the site. Several paths may be defined for a given site, for accessing different kinds of resources, identified by the `type` attribute, using one of the following values:
   + `link`: Generic URL template, often the document root.
   + `page_path`: (for `mediawiki` sites) URL template for wiki pages (corresponds to the target wiki's `$wgArticlePath` setting)

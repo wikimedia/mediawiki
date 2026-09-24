@@ -73,6 +73,7 @@ class SiteImporterTest extends MediaWikiIntegrationTestCase {
 		$dewiki->setGlobalId( 'dewiki' );
 		$dewiki->setGroup( 'wikipedia' );
 		$dewiki->setForward( true );
+		$dewiki->setLanguageCode( 'de' );
 		$dewiki->addLocalId( Site::ID_INTERWIKI, 'wikipedia' );
 		$dewiki->addLocalId( Site::ID_EQUIVALENT, 'de' );
 		$dewiki->setPath( Site::PATH_LINK, 'http://de.wikipedia.org/w/' );
@@ -109,6 +110,7 @@ class SiteImporterTest extends MediaWikiIntegrationTestCase {
 						'<localid type="interwiki">wikipedia</localid>' .
 						'<localid type="equivalent">de</localid>' .
 						'<group>wikipedia</group>' .
+						'<language>de</language>' .
 						'<forward/>' .
 						'<path type="link">http://de.wikipedia.org/w/</path>' .
 						'<path type="page_path">http://de.wikipedia.org/wiki/</path>' .
@@ -164,6 +166,7 @@ class SiteImporterTest extends MediaWikiIntegrationTestCase {
 		$dewiki->setGlobalId( 'dewiki' );
 		$dewiki->setGroup( 'wikipedia' );
 		$dewiki->setForward( true );
+		$dewiki->setLanguageCode( 'de' );
 		$dewiki->addLocalId( Site::ID_INTERWIKI, 'wikipedia' );
 		$dewiki->addLocalId( Site::ID_EQUIVALENT, 'de' );
 		$dewiki->setPath( Site::PATH_LINK, 'http://de.wikipedia.org/w/' );

@@ -12,7 +12,7 @@ use MediaWiki\Xml\Xml;
 /**
  * Utility for exporting site entries to XML.
  *
- * For the output file format, see docs/sitelist.md and docs/sitelist-1.0.xsd.
+ * For the output file format, see docs/sitelist.md and docs/sitelist-1.1.xsd.
  *
  * @since 1.25
  * @ingroup Site
@@ -45,8 +45,8 @@ class SiteExporter {
 	 */
 	public function exportSites( $sites ) {
 		$attributes = [
-			'version' => '1.0',
-			'xmlns' => 'http://www.mediawiki.org/xml/sitelist-1.0/',
+			'version' => '1.1',
+			'xmlns' => 'http://www.mediawiki.org/xml/sitelist-1.1/',
 		];
 
 		fwrite( $this->sink, Xml::openElement( 'sites', $attributes ) . "\n" );
@@ -83,6 +83,10 @@ class SiteExporter {
 
 		if ( $site->shouldForward() ) {
 			fwrite( $this->sink, "\t\t" . Xml::element( 'forward', null, '' ) . "\n" );
+		}
+
+		if ( $site->getLanguageCode() !== null ) {
+			fwrite( $this->sink, "\t\t" . Xml::element( 'language', null, $site->getLanguageCode() ) . "\n" );
 		}
 
 		foreach ( $site->getAllPaths() as $type => $path ) {

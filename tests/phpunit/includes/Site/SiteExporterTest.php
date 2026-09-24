@@ -63,7 +63,7 @@ class SiteExporterTest extends MediaWikiIntegrationTestCase {
 		$this->assertStringContainsString( '<path type="link">http://acme.com/</path>', $xml );
 		$this->assertStringContainsString( '</sites>', $xml );
 
-		$xsdFile = __DIR__ . '/../../../../docs/sitelist-1.0.xsd';
+		$xsdFile = __DIR__ . '/../../../../docs/sitelist-1.1.xsd';
 		$xsdData = file_get_contents( $xsdFile );
 
 		$document = new DOMDocument();
@@ -96,6 +96,7 @@ class SiteExporterTest extends MediaWikiIntegrationTestCase {
 		$acme = Site::newForType( Site::TYPE_UNKNOWN );
 		$acme->setGlobalId( 'acme.com' );
 		$acme->setGroup( 'Test' );
+		$acme->setLanguageCode( 'en' );
 		$acme->addLocalId( Site::ID_INTERWIKI, 'acme' );
 		$acme->setPath( Site::PATH_LINK, 'http://acme.com/' );
 
@@ -103,6 +104,7 @@ class SiteExporterTest extends MediaWikiIntegrationTestCase {
 		$dewiki->setGlobalId( 'dewiki' );
 		$dewiki->setGroup( 'wikipedia' );
 		$dewiki->setForward( true );
+		$dewiki->setLanguageCode( 'de' );
 		$dewiki->addLocalId( Site::ID_INTERWIKI, 'wikipedia' );
 		$dewiki->addLocalId( Site::ID_EQUIVALENT, 'de' );
 		$dewiki->setPath( Site::PATH_LINK, 'http://de.wikipedia.org/w/' );

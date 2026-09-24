@@ -16,7 +16,7 @@ use Wikimedia\RequestTimeout\TimeoutException;
 /**
  * Utility for importing site entries from XML.
  *
- * For the expected format of the input, see docs/sitelist.md and docs/sitelist-1.0.xsd.
+ * For the expected format of the input, see docs/sitelist.md and docs/sitelist-1.1.xsd.
  *
  * @since 1.25
  * @ingroup Site
@@ -154,6 +154,7 @@ class SiteImporter {
 		$site->setGlobalId( $this->getChildText( $siteElement, 'globalid' ) );
 		$site->setGroup( $this->getChildText( $siteElement, 'group', Site::GROUP_NONE ) );
 		$site->setSource( $this->getChildText( $siteElement, 'source', Site::SOURCE_LOCAL ) );
+		$site->setLanguageCode( $this->getChildText( $siteElement, 'language', null ) );
 
 		$pathTags = $siteElement->getElementsByTagName( 'path' );
 		for ( $i = 0; $i < $pathTags->length; $i++ ) {
