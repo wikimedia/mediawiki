@@ -1012,6 +1012,42 @@ class LocalFileTest extends MediaWikiIntegrationTestCase {
 		$this->assertStatusGood( $status );
 	}
 
+	public static function providePurgeCache() {
+		yield 'default' => [
+			[ MainConfigNames::TrackMediaRequestProvenance => false ],
+			[
+				'/b/bd/Test.jpg',
+			]
+		];
+		yield 'media provenance' => [
+			[ MainConfigNames::TrackMediaRequestProvenance => true ],
+			[
+				'/b/bd/Test.jpg',
+			]
+		];
+	}
+
+	/**
+	 * @covers \MediaWiki\FileRepo\File\LocalFile
+	 * @dataProvider providePurgeCache
+	 */
+	public function testPurgeCache( array $config, array $expected ) {
+		$this->overrideConfigValues( $config );
+		$purgeUrls = [];
+		$hcu = $this->createMock( NullHTMLCacheUpdater::class );
+		$hcu->method( 'purgeUrls' )
+			->willReturnCallback( static function ( $urls ) use ( &$purgeUrls ) {
+				array_push( $purgeUrls, ...(array)$urls );
+			} );
+
+		$this->setService( 'HTMLCacheUpdater', $hcu );
+		$repo = $this->getLocalRepoForUpload();
+		$title = Title::makeTitle( NS_FILE, 'Test.jpg' );
+		$file = new LocalFile( $title, $repo );
+		$file->purgeCache();
+		$this->assertSame( $expected, $purgeUrls );
+	}
+
 	/**
 	 * @covers \MediaWiki\FileRepo\File\LocalFile
 	 */
