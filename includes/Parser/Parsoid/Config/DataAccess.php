@@ -268,6 +268,7 @@ class DataAccess extends IDataAccess {
 				'badFile' => $this->badFileLookup->isBadFile( $file, $page ),
 				'timestamp' => $file->getTimestamp(),
 				'sha1' => $file->getSha1(),
+				'canonicaltitle' => $file->getTitle(),
 			];
 
 			$length = $file->getLength();
