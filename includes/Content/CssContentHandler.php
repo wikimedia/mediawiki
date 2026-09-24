@@ -101,22 +101,16 @@ class CssContentHandler extends CodeContentHandler {
 		ParserOutput &$output
 	) {
 		'@phan-var CssContent $content';
-		if ( in_array( $content->getModel(), $this->textModelsToParse ) ) {
-			// parse just to get links etc into the database, HTML is replaced below.
-			$output = $this->parserFactory->getInstance()
-				->parse(
-					$content->getText(),
-					$cpoParams->getPage(),
-					WikiPage::makeParserOptionsFromTitleAndModel(
-						$cpoParams->getPage(),
-						$content->getModel(),
-						'canonical'
-					),
-					true,
-					true,
-					$cpoParams->getRevId()
-				);
-		}
+
+		$parserOptions = WikiPage::makeParserOptionsFromTitleAndModel(
+			$cpoParams->getPage(),
+			$content->getModel(),
+			'canonical'
+		);
+		$this->collectMetadata(
+			$content, $cpoParams, $output, $this->textModelsToParse, $this->parserFactory,
+			$parserOptions
+		);
 
 		if ( $cpoParams->getGenerateHtml() ) {
 			$highlightOutput = $this->codeHighlighter->highlight( $content->getText(), new CodeHighlighterOptions(
