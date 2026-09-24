@@ -2,6 +2,7 @@
 
 use MediaWiki\Context\RequestContext;
 use MediaWiki\MainConfigNames;
+use MediaWiki\Request\FauxRequest;
 use MediaWiki\Skin\BaseTemplate;
 use MediaWiki\Skin\QuickTemplate;
 use MediaWiki\Skin\SkinFallback;
@@ -520,5 +521,31 @@ class SkinTemplateTest extends MediaWikiIntegrationTestCase {
 
 		$this->assertArrayNotHasKey( 'class', $mytalk );
 		$this->assertSame( [ 'new' ], $mytalk['link-class'] );
+	}
+
+	public static function providePageShare(): array {
+		return [
+			'enabled, content page' => [ [ 'test' ], NS_MAIN, 'view', true ],
+			'enabled for another skin' => [ [ 'other' ], NS_MAIN, 'view', false ],
+			'disabled' => [ [], NS_MAIN, 'view', false ],
+			'not a content page' => [ [ 'test' ], NS_TALK, 'view', false ],
+			'not the view action' => [ [ 'test' ], NS_MAIN, 'history', false ],
+		];
+	}
+
+	/**
+	 * @dataProvider providePageShare
+	 * @covers \MediaWiki\Skin\SkinTemplate::buildContentNavigationUrlsInternal
+	 */
+	public function testPageShare( array $skins, int $namespace, string $action, bool $expected ) {
+		$this->overrideConfigValue( MainConfigNames::PageShareSkinsEnabled, $skins );
+		$page = $this->getExistingTestPage( Title::makeTitle( $namespace, 'PageShareTest' ) );
+
+		$wrapper = TestingAccessWrapper::newFromObject( new SkinTemplate( [ 'name' => 'test' ] ) );
+		$wrapper->getContext()->setTitle( $page->getTitle() );
+		$wrapper->getContext()->setRequest( new FauxRequest( [ 'action' => $action ] ) );
+		$views = $wrapper->buildContentNavigationUrlsInternal()['views'];
+
+		$this->assertSame( $expected, isset( $views['share'] ) );
 	}
 }

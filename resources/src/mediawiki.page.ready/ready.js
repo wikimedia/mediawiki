@@ -320,9 +320,12 @@ try {
 updateThumbnailsToPreferredSize( $( '#mw-content-text .mw-parser-output' ) );
 mw.hook( 'wikipage.content' ).add( updateThumbnailsToPreferredSize );
 
-$( document.body ).on( 'click', '.mw-heading a.mw-section-share', function ( event ) {
-	event.preventDefault();
-	const url = new URL( this.getAttribute( 'href' ), location );
+/**
+ * @param {string} href
+ * @ignore
+ */
+function shareHref( href ) {
+	const url = new URL( href, location );
 	let link = url.toString();
 	try {
 		// decodeURI() may throw
@@ -334,6 +337,26 @@ $( document.body ).on( 'click', '.mw-heading a.mw-section-share', function ( eve
 		}
 	} catch ( err ) {}
 	share( { url: link } );
+}
+
+// Handles share link clicks. By default, the share() method from share.js is
+// used. But extensions can also override this behavior in favor of their own
+// custom functionality.
+document.body.addEventListener( 'click', ( event ) => {
+	if ( event.defaultPrevented ) {
+		return;
+	}
+
+	// Skins put the class on either the link or its list item.
+	const shareSelector = '.mw-heading a.mw-section-share, ' +
+		'a.mw-page-share[data-mw-interface], .mw-page-share a[data-mw-interface]';
+
+	const link = event.target.closest( shareSelector );
+
+	if ( link ) {
+		event.preventDefault();
+		shareHref( link.getAttribute( 'href' ) );
+	}
 } );
 
 // Load lazy loaded images in print mode (T148047). This code supports the mobile site

@@ -2082,6 +2082,12 @@ class MainConfigNames {
 	public const EnableSectionShare = 'EnableSectionShare';
 
 	/**
+	 * Name constant for the PageShareSkinsEnabled setting, for use with Config::get()
+	 * @see MainConfigSchema::PageShareSkinsEnabled
+	 */
+	public const PageShareSkinsEnabled = 'PageShareSkinsEnabled';
+
+	/**
 	 * Name constant for the UseCombinedLoginLink setting, for use with Config::get()
 	 * @see MainConfigSchema::UseCombinedLoginLink
 	 */

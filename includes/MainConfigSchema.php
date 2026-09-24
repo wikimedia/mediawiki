@@ -5603,6 +5603,16 @@ class MainConfigSchema {
 	];
 
 	/**
+	 * List of skins that show a link for sharing content pages, in the views menu.
+	 *
+	 * @unstable
+	 */
+	public const PageShareSkinsEnabled = [
+		'default' => [],
+		'type' => 'list',
+	];
+
+	/**
 	 * Login / create account link behavior when it's possible for anonymous users
 	 * to create an account.
 	 *

@@ -928,6 +928,7 @@ class SkinTemplate extends Skin {
 		// * skin-view-edit-local
 		// * skin-view-foreign
 		// * skin-view-history
+		// * skin-view-share
 		// * skin-view-view
 		$msg = wfMessageFallback(
 				"$skname-$labelMessageKey",
@@ -1012,6 +1013,39 @@ class SkinTemplate extends Skin {
 			'data' => [
 				'mw-interface' => '1',
 				'mw-expiry' => $watchExpiry,
+			],
+		];
+	}
+
+	/**
+	 * Get the attributes for the share link, if it should be shown.
+	 *
+	 * @param Title $title
+	 * @param string $action
+	 * @param bool $onPage
+	 * @return array|null
+	 */
+	private function getShareLinkAttrs( Title $title, string $action, bool $onPage ): ?array {
+		if (
+			!$onPage || $action !== 'view' || !$title->isContentPage() ||
+			!in_array(
+				$this->getSkinName(),
+				$this->getConfig()->get( MainConfigNames::PageShareSkinsEnabled ),
+				true
+			)
+		) {
+			return null;
+		}
+
+		return [
+			'class' => 'mw-page-share',
+			'text' => $this->getSkinNavOverrideableLabel( 'view-share' ),
+			'icon' => 'share',
+			'href' => $title->getLocalURL(),
+			// Page content cannot set this attribute, so mediawiki.page.ready
+			// uses it to ensure that this is a trusted link.
+			'data' => [
+				'mw-interface' => '1',
 			],
 		];
 	}
@@ -1317,6 +1351,11 @@ class SkinTemplate extends Skin {
 						'icon' => 'history',
 						'href' => $title->getLocalURL( 'action=history' ),
 					];
+
+					$shareLink = $this->getShareLinkAttrs( $title, $action, $onPage );
+					if ( $shareLink ) {
+						$content_navigation['views']['share'] = $shareLink;
+					}
 
 					if ( $this->getAuthority()->probablyCan( 'delete', $title ) ) {
 						$content_navigation['actions']['delete'] = [

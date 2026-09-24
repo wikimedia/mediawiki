@@ -2067,6 +2067,12 @@ $wgFooterIcons = null;
 $wgEnableSectionShare = null;
 
 /**
+ * Config variable stub for the PageShareSkinsEnabled setting, for use by phpdoc and IDEs.
+ * @see MediaWiki\MainConfigSchema::PageShareSkinsEnabled
+ */
+$wgPageShareSkinsEnabled = null;
+
+/**
  * Config variable stub for the UseCombinedLoginLink setting, for use by phpdoc and IDEs.
  * @see MediaWiki\MainConfigSchema::UseCombinedLoginLink
  */

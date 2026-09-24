@@ -3490,6 +3490,12 @@ config-schema:
             Enable sharing links to sections. Next to edit section link.
             Wider roll out on Wikimedia blocked on T431514
             @unstable
+    PageShareSkinsEnabled:
+        default: []
+        type: array
+        description: |-
+            List of skins that show a link for sharing content pages, in the views menu.
+            @unstable
     UseCombinedLoginLink:
         default: false
         description: |-
