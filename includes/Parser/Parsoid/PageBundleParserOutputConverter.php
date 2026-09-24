@@ -189,11 +189,14 @@ final class PageBundleParserOutputConverter {
 		$basePageBundle = $contentHolder->isParsoidContent() ?
 			$contentHolder->getBasePageBundle() :
 			new BasePageBundle(
-				parsoid: [ 'ids' => [] ],
-				headers: [],
+				[ 'ids' => [] ], // parsoid
+				null, // mw
+				null, // counters
 				// It would be nice to have this be "null", but
 				// ParsoidFormatHelper chokes on that: T325137.
-				version: '0.0.0',
+				'0.0.0', // contentVersion
+				[], // headers
+				null // contentmodel
 			);
 
 		$lang = $parserOutput->getLanguage();
