@@ -173,6 +173,7 @@ return [
 			'tests/qunit/resources/mediawiki.rcfilters/UriProcessor.test.js',
 			'tests/qunit/resources/mediawiki.router.test.js',
 			'tests/qunit/resources/mediawiki.special.block/AdditionalDetailsField.test.js',
+			'tests/qunit/resources/mediawiki.page.ready/share.test.js',
 			'tests/qunit/resources/mediawiki.page.ready/wprovStrip.test.js',
 			'tests/qunit/resources/mediawiki.special.upload/warnings.test.js',
 			'tests/qunit/resources/mediawiki.storage.test.js',
