@@ -457,6 +457,14 @@ class PageContentHelper {
 	}
 
 	/**
+	 * @throws LocalizedHttpException if the content is not accessible
+	 */
+	public function checkAccess() {
+		$this->checkHasContent(); // Status 404: Not Found
+		$this->checkAccessPermission(); // Status 403: Forbidden
+	}
+
+	/**
 	 * @return MutableRevisionRecord|RevisionRecord|null
 	 */
 	private function getRevisionRecordForMetadata() {

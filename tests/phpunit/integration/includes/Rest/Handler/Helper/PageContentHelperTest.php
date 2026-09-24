@@ -112,8 +112,7 @@ class PageContentHelperTest extends MediaWikiIntegrationTestCase {
 		$helper = $this->newHelper( [ 'title' => $page->getTitle()->getPrefixedDBkey() ] );
 
 		// Key assertion: this should not throw!
-		$helper->checkHasContent(); // Status 404: Not Found
-		$helper->checkAccessPermission(); // Status 403: Forbidden
+		$helper->checkAccess();
 
 		$targetRev = $helper->getTargetRevision();
 		$this->assertInstanceOf( RevisionRecord::class, $targetRev );
@@ -138,8 +137,7 @@ class PageContentHelperTest extends MediaWikiIntegrationTestCase {
 		}
 
 		try {
-			$helper->checkHasContent(); // Status 404: Not Found
-			$helper->checkAccessPermission(); // Status 403: Forbidden
+			$helper->checkAccess();
 			$this->fail( 'Expected HttpException' );
 		} catch ( HttpException $ex ) {
 			$this->assertSame( 404, $ex->getCode() );
@@ -172,8 +170,7 @@ class PageContentHelperTest extends MediaWikiIntegrationTestCase {
 		}
 
 		try {
-			$helper->checkHasContent(); // Status 404: Not Found
-			$helper->checkAccessPermission(); // Status 403: Forbidden
+			$helper->checkAccess();
 			$this->fail( 'Expected HttpException' );
 		} catch ( HttpException $ex ) {
 			$this->assertSame( 404, $ex->getCode() );
@@ -237,8 +234,7 @@ class PageContentHelperTest extends MediaWikiIntegrationTestCase {
 		}
 
 		try {
-			$helper->checkHasContent(); // Status 404: Not Found
-			$helper->checkAccessPermission(); // Status 403: Forbidden
+			$helper->checkAccess();
 			$this->fail( 'Expected HttpException' );
 		} catch ( HttpException $ex ) {
 			$this->assertSame( 404, $ex->getCode() );
@@ -279,8 +275,7 @@ class PageContentHelperTest extends MediaWikiIntegrationTestCase {
 		);
 
 		// The line below should not throw any exception
-		$helper->checkHasContent(); // Status 404: Not Found
-		$helper->checkAccessPermission(); // Status 403: Forbidden
+		$helper->checkAccess();
 	}
 
 	public static function provideExistingPage(): array {
@@ -347,8 +342,7 @@ class PageContentHelperTest extends MediaWikiIntegrationTestCase {
 		$this->assertNull( $helper->getLastModified() );
 
 		try {
-			$helper->checkHasContent(); // Status 404: Not Found
-			$helper->checkAccessPermission(); // Status 403: Forbidden
+			$helper->checkAccess();
 			$this->fail( 'Expected HttpException' );
 		} catch ( HttpException $ex ) {
 			$this->assertSame( 403, $ex->getCode() );
@@ -377,8 +371,7 @@ class PageContentHelperTest extends MediaWikiIntegrationTestCase {
 
 		$this->expectException( HttpException::class );
 		$this->expectExceptionCode( 403 );
-		$helper->checkHasContent(); // Status 404: Not Found
-		$helper->checkAccessPermission(); // Status 403: Forbidden
+		$helper->checkAccess();
 	}
 
 	public function testMessagePage() {
@@ -402,6 +395,7 @@ class PageContentHelperTest extends MediaWikiIntegrationTestCase {
 		$this->assertNull( $helper->getLastModified() );
 
 		// The line below should not throw any exception
+		$helper->checkAccess();
 		$helper->checkHasContent(); // Status 404: Not Found
 		$helper->checkAccessPermission(); // Status 403: Forbidden
 
