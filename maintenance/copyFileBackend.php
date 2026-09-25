@@ -9,6 +9,7 @@
 
 use MediaWiki\Maintenance\Maintenance;
 use Wikimedia\FileBackend\FileBackend;
+use Wikimedia\Timestamp\ConvertibleTimestamp;
 
 // @codeCoverageIgnoreStart
 require_once __DIR__ . '/Maintenance.php';
@@ -210,9 +211,9 @@ class CopyFileBackend extends Maintenance {
 			foreach ( $srcPathsRel as $srcPathRel ) {
 				$srcPaths[] = $src->getRootStoragePath() . "/$backendRel/$srcPathRel";
 			}
-			$t_start = microtime( true );
+			$t_start = ConvertibleTimestamp::hrtime();
 			$fsFiles = $src->getLocalReferenceMulti( [ 'srcs' => $srcPaths, 'latest' => 1 ] );
-			$elapsed_ms = floor( ( microtime( true ) - $t_start ) * 1000 );
+			$elapsed_ms = floor( ( ConvertibleTimestamp::hrtime() - $t_start ) / 1e6 );
 			$this->output( "\n\tDownloaded these file(s) [{$elapsed_ms}ms]:\n\t" .
 				implode( "\n\t", $srcPaths ) . "\n\n" );
 		}
@@ -261,13 +262,13 @@ class CopyFileBackend extends Maintenance {
 		}
 
 		// Copy in the batch of source files...
-		$t_start = microtime( true );
+		$t_start = ConvertibleTimestamp::hrtime();
 		$status = $dst->doQuickOperations( $ops, [ 'bypassReadOnly' => true ] );
 		if ( !$status->isOK() ) {
 			sleep( 10 ); // wait and retry copy again
 			$status = $dst->doQuickOperations( $ops, [ 'bypassReadOnly' => true ] );
 		}
-		$elapsed_ms = floor( ( microtime( true ) - $t_start ) * 1000 );
+		$elapsed_ms = floor( ( ConvertibleTimestamp::hrtime() - $t_start ) / 1e6 );
 		if ( !$status->isOK() ) {
 			$this->error( $status );
 			$this->fatalError( "$domainId: Could not copy file batch." );
@@ -298,13 +299,13 @@ class CopyFileBackend extends Maintenance {
 		}
 
 		// Delete the batch of source files...
-		$t_start = microtime( true );
+		$t_start = ConvertibleTimestamp::hrtime();
 		$status = $dst->doQuickOperations( $ops, [ 'bypassReadOnly' => true ] );
 		if ( !$status->isOK() ) {
 			sleep( 10 ); // wait and retry copy again
 			$status = $dst->doQuickOperations( $ops, [ 'bypassReadOnly' => true ] );
 		}
-		$elapsed_ms = floor( ( microtime( true ) - $t_start ) * 1000 );
+		$elapsed_ms = floor( ( ConvertibleTimestamp::hrtime() - $t_start ) / 1e6 );
 		if ( !$status->isOK() ) {
 			$this->error( $status );
 			$this->fatalError( "$domainId: Could not delete file batch." );

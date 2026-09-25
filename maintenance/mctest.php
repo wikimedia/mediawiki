@@ -11,6 +11,7 @@
 use MediaWiki\MainConfigNames;
 use MediaWiki\Maintenance\Maintenance;
 use Wikimedia\ObjectCache\BagOStuff;
+use Wikimedia\Timestamp\ConvertibleTimestamp;
 
 // @codeCoverageIgnoreStart
 require_once __DIR__ . '/Maintenance.php';
@@ -111,45 +112,45 @@ class McTest extends Maintenance {
 		// Clear out any old values
 		$mcc->deleteMulti( $keys );
 
-		$time_start = microtime( true );
+		$time_start = ConvertibleTimestamp::hrtime();
 		foreach ( $valueByKey as $key => $value ) {
 			if ( $mcc->add( $key, $value ) ) {
 				$add++;
 			}
 		}
-		$addMs = intval( 1e3 * ( microtime( true ) - $time_start ) );
+		$addMs = intval( ( ConvertibleTimestamp::hrtime() - $time_start ) / 1e6 );
 
-		$time_start = microtime( true );
+		$time_start = ConvertibleTimestamp::hrtime();
 		foreach ( $valueByKey as $key => $value ) {
 			if ( $mcc->set( $key, $value ) ) {
 				$set++;
 			}
 		}
-		$setMs = intval( 1e3 * ( microtime( true ) - $time_start ) );
+		$setMs = intval( ( ConvertibleTimestamp::hrtime() - $time_start ) / 1e6 );
 
-		$time_start = microtime( true );
+		$time_start = ConvertibleTimestamp::hrtime();
 		foreach ( $valueByKey as $key => $value ) {
 			if ( $mcc->get( $key ) === $value ) {
 				$get++;
 			}
 		}
-		$getMs = intval( 1e3 * ( microtime( true ) - $time_start ) );
+		$getMs = intval( ( ConvertibleTimestamp::hrtime() - $time_start ) / 1e6 );
 
-		$time_start = microtime( true );
+		$time_start = ConvertibleTimestamp::hrtime();
 		foreach ( $keys as $key ) {
 			if ( $mcc->delete( $key ) ) {
 				$delete++;
 			}
 		}
-		$delMs = intval( 1e3 * ( microtime( true ) - $time_start ) );
+		$delMs = intval( ( ConvertibleTimestamp::hrtime() - $time_start ) / 1e6 );
 
-		$time_start = microtime( true );
+		$time_start = ConvertibleTimestamp::hrtime();
 		foreach ( $keys as $index => $key ) {
 			if ( $mcc->incrWithInit( $key, $mcc::TTL_INDEFINITE, $index ) === $index ) {
 				$incr++;
 			}
 		}
-		$incrMs = intval( 1e3 * ( microtime( true ) - $time_start ) );
+		$incrMs = intval( ( ConvertibleTimestamp::hrtime() - $time_start ) / 1e6 );
 
 		$this->output(
 			" add: $add/$count {$addMs}ms   " .
@@ -164,25 +165,25 @@ class McTest extends Maintenance {
 		$keys = array_keys( $valueByKey );
 		$iterations = count( $valueByKey );
 
-		$time_start = microtime( true );
+		$time_start = ConvertibleTimestamp::hrtime();
 		$mSetOk = $mcc->setMulti( $valueByKey ) ? '✓' : '✗';
-		$mSetMs = intval( 1e3 * ( microtime( true ) - $time_start ) );
+		$mSetMs = intval( ( ConvertibleTimestamp::hrtime() - $time_start ) / 1e6 );
 
-		$time_start = microtime( true );
+		$time_start = ConvertibleTimestamp::hrtime();
 		$found = $mcc->getMulti( $keys );
-		$mGetMs = intval( 1e3 * ( microtime( true ) - $time_start ) );
+		$mGetMs = intval( ( ConvertibleTimestamp::hrtime() - $time_start ) / 1e6 );
 		$mGetOk = 0;
 		foreach ( $found as $key => $value ) {
 			$mGetOk += ( $value === $valueByKey[$key] );
 		}
 
-		$time_start = microtime( true );
+		$time_start = ConvertibleTimestamp::hrtime();
 		$mChangeTTLOk = $mcc->changeTTLMulti( $keys, 3600 ) ? '✓' : '✗';
-		$mChangeTTTMs = intval( 1e3 * ( microtime( true ) - $time_start ) );
+		$mChangeTTTMs = intval( ( ConvertibleTimestamp::hrtime() - $time_start ) / 1e6 );
 
-		$time_start = microtime( true );
+		$time_start = ConvertibleTimestamp::hrtime();
 		$mDelOk = $mcc->deleteMulti( $keys ) ? '✓' : '✗';
-		$mDelMs = intval( 1e3 * ( microtime( true ) - $time_start ) );
+		$mDelMs = intval( ( ConvertibleTimestamp::hrtime() - $time_start ) / 1e6 );
 
 		$this->output(
 			" setMulti (IB): $mSetOk {$mSetMs}ms   " .
@@ -197,25 +198,25 @@ class McTest extends Maintenance {
 		$iterations = count( $valueByKey );
 		$flags = $mcc::WRITE_BACKGROUND;
 
-		$time_start = microtime( true );
+		$time_start = ConvertibleTimestamp::hrtime();
 		$mSetOk = $mcc->setMulti( $valueByKey, 0, $flags ) ? '✓' : '✗';
-		$mSetMs = intval( 1e3 * ( microtime( true ) - $time_start ) );
+		$mSetMs = intval( ( ConvertibleTimestamp::hrtime() - $time_start ) / 1e6 );
 
-		$time_start = microtime( true );
+		$time_start = ConvertibleTimestamp::hrtime();
 		$found = $mcc->getMulti( $keys );
-		$mGetMs = intval( 1e3 * ( microtime( true ) - $time_start ) );
+		$mGetMs = intval( ( ConvertibleTimestamp::hrtime() - $time_start ) / 1e6 );
 		$mGetOk = 0;
 		foreach ( $found as $key => $value ) {
 			$mGetOk += ( $value === $valueByKey[$key] );
 		}
 
-		$time_start = microtime( true );
+		$time_start = ConvertibleTimestamp::hrtime();
 		$mChangeTTLOk = $mcc->changeTTLMulti( $keys, 3600, $flags ) ? '✓' : '✗';
-		$mChangeTTTMs = intval( 1e3 * ( microtime( true ) - $time_start ) );
+		$mChangeTTTMs = intval( ( ConvertibleTimestamp::hrtime() - $time_start ) / 1e6 );
 
-		$time_start = microtime( true );
+		$time_start = ConvertibleTimestamp::hrtime();
 		$mDelOk = $mcc->deleteMulti( $keys, $flags ) ? '✓' : '✗';
-		$mDelMs = intval( 1e3 * ( microtime( true ) - $time_start ) );
+		$mDelMs = intval( ( ConvertibleTimestamp::hrtime() - $time_start ) / 1e6 );
 
 		$this->output(
 			" setMulti (DB): $mSetOk {$mSetMs}ms   " .
