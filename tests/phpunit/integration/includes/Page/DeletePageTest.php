@@ -26,6 +26,7 @@ use MediaWiki\User\User;
 use MediaWikiIntegrationTestCase;
 use PHPUnit\Framework\Assert;
 use Wikimedia\ScopedCallback;
+use Wikimedia\Timestamp\ConvertibleTimestamp;
 
 /**
  * @covers \MediaWiki\Page\DeletePage
@@ -263,10 +264,19 @@ class DeletePageTest extends MediaWikiIntegrationTestCase {
 		$this->assertArrayEquals( $expectedTags, array_map( 'intval', $actualTags ) );
 	}
 
+	private function setFakeTime( $time ) {
+		ConvertibleTimestamp::setFakeTime( $time );
+		$now = ConvertibleTimestamp::now( TS_UNIX );
+		$this->getServiceContainer()->getMainWANObjectCache()->setMockTime( $now );
+	}
+
 	/**
 	 * @dataProvider provideDeleteUnsafe
 	 */
 	public function testDeleteUnsafe( bool $suppress, array $tags, bool $immediate, string $logSubtype ) {
+		$this->setFakeTime( '2011-04-01T00:01:00Z' );
+		$this->getServiceContainer()->getWANObjectCache()->setMockTime( $time );
+
 		$teardownScope = DeferredUpdates::preventOpportunisticUpdates();
 		$pageAuthor = $this->getTestUser()->getUser();
 		$deleterUser = static::getTestSysop()->getUser();
@@ -292,6 +302,7 @@ class DeletePageTest extends MediaWikiIntegrationTestCase {
 		$editTracker = $this->getServiceContainer()->getUserEditTracker();
 		$this->assertNotFalse( $editTracker->getFirstEditTimestamp( $pageAuthor ) );
 
+		$this->setFakeTime( '2011-04-01T00:02:00Z' );
 		$reason = "testing deletion";
 		$deletePage = $this->getDeletePage( $page, $deleter );
 		$status = $deletePage
@@ -332,6 +343,8 @@ class DeletePageTest extends MediaWikiIntegrationTestCase {
 		$this->assertDeletionLogged( $page, $id, $deleterUser, $reason, $suppress, $logSubtype, $logID );
 		$this->assertDeletionTags( $logID, $tags );
 		$this->assertPageLinksUpdate( $id );
+
+		$this->setFakeTime( '2011-04-01T00:03:00Z' );
 		$this->assertFalse( $editTracker->getFirstEditTimestamp( $pageAuthor ) );
 
 		ScopedCallback::consume( $teardownScope );
