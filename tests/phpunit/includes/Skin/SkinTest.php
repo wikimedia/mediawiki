@@ -252,6 +252,67 @@ class SkinTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( $expected, $skin->isResponsive() );
 	}
 
+	/**
+	 * @dataProvider provideInitPageResponsiveOptions
+	 */
+	public function testInitPage( bool $userPrefersResponsive, bool $isResponsive, string $expectedViewportContent ) {
+		$this->overrideConfigValue( MainConfigNames::SkinMetaTags, [] );
+
+		$user = $this->getMutableTestUser()->getUser();
+		$this->getServiceContainer()->getUserOptionsManager()->setOption(
+			$user,
+			'skin-responsive',
+			$userPrefersResponsive
+		);
+
+		$skin = new class( [
+			'name' => 'testskin',
+			'responsive' => $isResponsive
+		] ) extends Skin {
+			public function outputPage() {
+			}
+		};
+		$context = new RequestContext();
+		$context->setUser( $user );
+		$context->setTitle( Title::makeTitle( NS_MAIN, 'Test' ) );
+		$skin->setContext( $context );
+
+		$out = new OutputPage( $context );
+		$skin->initPage( $out );
+
+		$viewportTags = array_values( array_filter(
+			$out->getMetaTags(),
+			static function ( $tag ) {
+				return $tag[0] === 'viewport';
+			}
+		) );
+		$this->assertCount( 1, $viewportTags, 'Exactly one viewport meta tag should be added' );
+		$this->assertSame( $expectedViewportContent, $viewportTags[0][1] );
+	}
+
+	public static function provideInitPageResponsiveOptions() {
+		yield 'skin-responsive preference is true' => [
+			true,
+			true,
+			'width=device-width, initial-scale=1.0, user-scalable=yes, minimum-scale=0.25, maximum-scale=5.0',
+		];
+		yield 'if skin-responsive preference is false, overrides skin meta tag' => [
+			false,
+			true,
+			'width=1120',
+		];
+		yield 'skin-responsive preference has no impact on non-responsive skin' => [
+			true,
+			false,
+			'width=1120',
+		];
+		yield 'non-responsive skin default to desktop viewport' => [
+			false,
+			false,
+			'width=1120',
+		];
+	}
+
 	public static function provideSkinResponsiveOptions() {
 		yield 'responsive not set' => [
 			[ 'name' => 'test', 'userPreference' => true ],
@@ -267,7 +328,7 @@ class SkinTest extends MediaWikiIntegrationTestCase {
 		];
 		yield 'responsive true, user preference false' => [
 			[ 'name' => 'test', 'responsive' => true, 'userPreference' => false ],
-			false
+			true
 		];
 		yield 'responsive false, user preference false' => [
 			[ 'name' => 'test', 'responsive' => false, 'userPreference' => false ],

@@ -358,18 +358,13 @@ abstract class Skin extends ContextSource {
 	/**
 	 * Indicates if this skin is responsive.
 	 * Responsive skins have skin--responsive added to <body> by OutputPage,
-	 * and a viewport <meta> tag set by Skin::initPage.
 	 *
 	 * @since 1.36
 	 * @stable to override
 	 * @return bool
 	 */
 	public function isResponsive() {
-		$isSkinResponsiveCapable = $this->getOptions()['responsive'];
-		$userOptionsLookup = MediaWikiServices::getInstance()->getUserOptionsLookup();
-
-		return $isSkinResponsiveCapable &&
-			$userOptionsLookup->getBoolOption( $this->getUser(), 'skin-responsive' );
+		return $this->getOptions()['responsive'];
 	}
 
 	/**
@@ -381,7 +376,18 @@ abstract class Skin extends ContextSource {
 		$siteName = $this->getConfig()->get( MainConfigNames::Sitename );
 		$this->preloadExistence();
 
-		if ( $this->isResponsive() ) {
+		$userOptionsLookup = MediaWikiServices::getInstance()->getUserOptionsLookup();
+		$userPrefersDesktop = !(
+			$userOptionsLookup->getBoolOption(
+				$this->getUser(),
+				'skin-responsive'
+			)
+		);
+		if ( $userPrefersDesktop ) {
+			$out->addHtmlClasses( 'skin-user-prefers-desktop-view' );
+		}
+
+		if ( $this->isResponsive() && !$userPrefersDesktop ) {
 			$out->addMeta(
 				'viewport',
 				'width=device-width, initial-scale=1.0, ' .
