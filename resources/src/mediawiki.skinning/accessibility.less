@@ -36,3 +36,14 @@ plugin/no-unsupported-browser-features */
 		width: ~'round( @{calc-user}, 10px )';
 	}
 }
+
+/* Underline preference */
+/* stylelint-disable-next-line selector-class-pattern */
+html.skin-underline-clientpref-always a {
+	text-decoration: underline;
+}
+
+/* stylelint-disable-next-line selector-class-pattern */
+html.skin-underline-clientpref-never a {
+	text-decoration: none;
+}

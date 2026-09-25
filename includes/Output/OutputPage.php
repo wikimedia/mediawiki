@@ -3746,15 +3746,59 @@ class OutputPage extends ContextSource {
 	}
 
 	/**
+	 * Returns an array of attributes for the body tag.
+	 * The list of body attributes MUST not vary by user.
+	 *
+	 * @param Skin $sk
+	 * @return array
+	 */
+	final public function getBodyAttributes( Skin $sk ): array {
+		$services = MediaWikiServices::getInstance();
+		$lookupService = $services->getUserOptionsLookup();
+		$sitedir = $services->getContentLanguage()->getDir();
+		$user = $this->getUser();
+		$userdir = $this->getLanguage()->getDir();
+		$skinOptions = $sk->getOptions();
+		$bodyClasses = array_merge( $this->mAdditionalBodyClasses, $skinOptions['bodyClasses'] );
+		$bodyClasses[] = 'mediawiki';
+
+		# Classes for LTR/RTL directionality support
+		$bodyClasses[] = $userdir;
+		$bodyClasses[] = "sitedir-$sitedir";
+
+		// See Article:showDiffPage for class to support article diff styling
+
+		// Parser feature migration class
+		// The idea is that this will eventually be removed, after the wikitext
+		// which requires it is cleaned up.
+		$bodyClasses[] = 'mw-hide-empty-elt';
+
+		$bodyClasses[] = $sk->getPageClasses( $this->getTitle() );
+		$bodyClasses[] = 'skin-' . Sanitizer::escapeClass( $sk->getSkinName() );
+		$bodyClasses[] =
+			'action-' . Sanitizer::escapeClass( $this->getContext()->getActionName() );
+
+		if ( $sk->isResponsive() ) {
+			$bodyClasses[] = 'skin--responsive';
+		}
+
+		$bodyAttrs = [];
+		// While the expandClassList() is not strictly needed, it's used for backwards compatibility
+		// (this used to be built as a string and hooks likely still expect that).
+		$bodyAttrs['class'] = Html::expandClassList( $bodyClasses );
+
+		$this->getHookRunner()->onOutputPageBodyAttributes( $this, $sk, $bodyAttrs );
+		return $bodyAttrs;
+	}
+
+	/**
 	 * @param Skin $sk The given Skin
 	 * @param bool $includeStyle Unused
 	 * @return string The doctype, opening "<html>", and head element.
 	 */
 	public function headElement( Skin $sk, $includeStyle = true ) {
 		$config = $this->getConfig();
-		$userdir = $this->getLanguage()->getDir();
 		$services = MediaWikiServices::getInstance();
-		$sitedir = $services->getContentLanguage()->getDir();
 
 		$rlHtmlAtribs = $this->getRlClient()->getDocumentAttributes();
 		$skinHtmlAttribs = $sk->getHtmlElementAttributes();
@@ -3766,14 +3810,26 @@ class OutputPage extends ContextSource {
 		$thumbValue = $thumbnailSize === 250 ? 'standard' : (
 			$thumbnailSize < 250 ? 'small' : 'large'
 		);
+
 		// Combine the classes from different sources, and convert to a string, which is needed below
-		$htmlClass = Html::expandClassList( [
+		$htmlClassList = [
 			Html::expandClassList( $rlHtmlAtribs['class'] ?? [] ),
 			Html::expandClassList( $skinHtmlAttribs['class'] ?? [] ),
 			Html::expandClassList( $this->mAdditionalHtmlClasses ),
 			// This uses `-clientpref-` for now to support future customization for anonymous users.
 			'skin-thumbsize-clientpref-' . $thumbValue,
-		] );
+		];
+		$underline = $lookupService->getOption( $user, 'underline' );
+		if ( $underline < 2 ) {
+			// The following classes can be used here:
+			// * mw-underline-always
+			// * mw-underline-never
+			$htmlClassList[] = 'skin-underline-clientpref-' . ( $underline ? 'always' : 'never' );
+		} else {
+			$htmlClassList[] = 'skin-underline-clientpref-browser';
+		}
+
+		$htmlClass = Html::expandClassList( $htmlClassList );
 
 		if ( $htmlClass === '' ) {
 			$htmlClass = null;
@@ -3807,47 +3863,7 @@ class OutputPage extends ContextSource {
 		$pieces = array_merge( $pieces, array_values( $this->mHeadItems ) );
 
 		$pieces[] = Html::closeElement( 'head' );
-
-		$skinOptions = $sk->getOptions();
-		$bodyClasses = array_merge( $this->mAdditionalBodyClasses, $skinOptions['bodyClasses'] );
-		$bodyClasses[] = 'mediawiki';
-
-		# Classes for LTR/RTL directionality support
-		$bodyClasses[] = $userdir;
-		$bodyClasses[] = "sitedir-$sitedir";
-
-		// See Article:showDiffPage for class to support article diff styling
-
-		$underline = $lookupService->getOption( $user, 'underline' );
-		if ( $underline < 2 ) {
-			// The following classes can be used here:
-			// * mw-underline-always
-			// * mw-underline-never
-			$bodyClasses[] = 'mw-underline-' . ( $underline ? 'always' : 'never' );
-		}
-
-		// Parser feature migration class
-		// The idea is that this will eventually be removed, after the wikitext
-		// which requires it is cleaned up.
-		$bodyClasses[] = 'mw-hide-empty-elt';
-
-		$bodyClasses[] = $sk->getPageClasses( $this->getTitle() );
-		$bodyClasses[] = 'skin-' . Sanitizer::escapeClass( $sk->getSkinName() );
-		$bodyClasses[] =
-			'action-' . Sanitizer::escapeClass( $this->getContext()->getActionName() );
-
-		if ( $sk->isResponsive() ) {
-			$bodyClasses[] = 'skin--responsive';
-		}
-
-		$bodyAttrs = [];
-		// While the expandClassList() is not strictly needed, it's used for backwards compatibility
-		// (this used to be built as a string and hooks likely still expect that).
-		$bodyAttrs['class'] = Html::expandClassList( $bodyClasses );
-
-		$this->getHookRunner()->onOutputPageBodyAttributes( $this, $sk, $bodyAttrs );
-
-		$pieces[] = Html::openElement( 'body', $bodyAttrs );
+		$pieces[] = Html::openElement( 'body', $this->getBodyAttributes( $sk ) );
 
 		// Add dedicated ARIA live region container for notifications to assistive technology users.
 		// Note that `aria-atomic="false"` and `aria-relevant="additions text"` are the default

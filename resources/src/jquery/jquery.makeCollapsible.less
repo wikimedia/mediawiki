@@ -28,11 +28,13 @@
 	.mw-collapsible-text {
 		.cdx-mixin-link-base();
 
-		.mw-underline-always & {
+		/* stylelint-disable-next-line selector-class-pattern */
+		html.skin-underline-clientpref-always & {
 			text-decoration: underline;
 		}
 
-		.mw-underline-never & {
+		/* stylelint-disable-next-line selector-class-pattern */
+		html.skin-underline-clientpref-never & {
 			text-decoration: none;
 		}
 	}
