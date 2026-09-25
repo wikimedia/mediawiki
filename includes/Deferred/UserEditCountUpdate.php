@@ -66,6 +66,10 @@ class UserEditCountUpdate implements DeferrableUpdate, MergeableUpdate {
 		( new AutoCommitUpdate( $dbw, __METHOD__, function () use ( $lb, $dbw, $fname, $editTracker ) {
 			foreach ( $this->infoByUser as $userId => $info ) {
 				$user = $info->getUser();
+				// This will generally loop only over one user (the current user)
+				// for which edit count is already preloaded by User::load
+				// and UserEditTracker::setCachedUserEditCount.
+				$oldCountCached = $editTracker->getUserEditCount( $user );
 
 				$dbw->newUpdateQueryBuilder()
 					->update( 'user' )
@@ -92,10 +96,11 @@ class UserEditCountUpdate implements DeferrableUpdate, MergeableUpdate {
 				// Clear the edit count in the UserEditTracker cache.
 				$editTracker->clearUserEditCache( $user );
 
-				// If the user's first edit timestamp is false (i.e. no edit), invalidate the cache.
-				$editTracker->invalidateCachedFirstEditTimestamps( [
-					[ $user, false ],
-				] );
+				// Optimization: Avoid recomputing first-edit timestamp after every edit
+				// Only purge if this is (one of) the user's first edits
+				if ( $oldCountCached === 0 ) {
+					$editTracker->invalidateCachedFirstEditTimestamps( [ $user ] );
+				}
 			}
 		} ) )->doUpdate();
 

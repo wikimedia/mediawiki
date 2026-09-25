@@ -10,6 +10,7 @@ use MediaWiki\Deferred\UserEditCountUpdate;
 use MediaWiki\JobQueue\JobQueueGroup;
 use MediaWiki\WikiMap\WikiMap;
 use Wikimedia\ObjectCache\WANObjectCache;
+use Wikimedia\Rdbms\DBAccessObjectUtils;
 use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\Rdbms\IDBAccessObject;
 use Wikimedia\Rdbms\SelectQueryBuilder;
@@ -172,13 +173,35 @@ class UserEditTracker {
 	}
 
 	/**
-	 * Get the user's first edit timestamp. First edit timestamp is fairly immutable and therefore it's cached.
-	 * If you need to obtain uncached data, use $flags different from READ_NORMAL.
+	 * Get the user's first edit timestamp.
+	 *
+	 * First edit timestamp rarely changes and is therefore strongly cached.
+	 * We try to best-effort purge this, but if you need to obtain absolutely
+	 * correct and uncached data from a primary database, use READ_LATEST.
+	 *
+	 * We account for the following:
+	 *
+	 * - Your first ever edit.
+	 *   Purged post-save via UserEditCountUpdate whenever the cached editcount is 0.
+	 *   Given this acts on cached count (for performance reasons), this may purge
+	 *   for the first several edits, which is harmless.
+	 *
+	 * - Your first edit's page is deleted and a different edit is now your first.
+	 *   Purged via DeletePage after any deletion for all impacted users.
+	 *
+	 * - Your first edit after your only edits(s) were deleted.
+	 *   Via UserEditCountUpdate, same as for first ever edit.
+	 *
+	 * We do not account for:
+	 *
+	 * - Importing revisions that attach edits to your account that are older than your
+	 *   oldest edit on this wiki. In practice it will probably be correct within a few minutes,
+	 *   but if the data for this user is in the cache and frequently accessed, it may be stale
+	 *   for upto a month.
 	 *
 	 * @param UserIdentity $user
-	 * @param int $flags bit field, see IDBAccessObject::READ_XXX
-	 * @return string|false Timestamp of first edit, or false for non-existent/anonymous user
-	 *  accounts.
+	 * @param int $flags IDBAccessObject::READ_NORMAL or IDBAccessObject::READ_LATEST
+	 * @return string|false Timestamp of first edit, or false for unknown or unregistered accounts.
 	 */
 	public function getFirstEditTimestamp(
 		UserIdentity $user,
@@ -188,7 +211,7 @@ class UserEditTracker {
 			// User is unregistered, quick to determine, no need to cache
 			return false;
 		}
-		if ( $flags !== IDBAccessObject::READ_NORMAL ) {
+		if ( DBAccessObjectUtils::hasFlags( $flags, IDBAccessObject::READ_LATEST ) ) {
 			return $this->getUserEditTimestamp( $user, self::FIRST_EDIT, $flags );
 		}
 
@@ -294,36 +317,23 @@ class UserEditTracker {
 	}
 
 	/**
-	 * Invalidate the cached first-edit timestamp for users, if equal to a given timestamp.
+	 * Invalidate the cached first-edit timestamp.
 	 *
-	 * @param array<array{0:UserIdentity,1:string|false}> $users Array of pairs (UserIdentity, timestamp).
+	 * @param UserIdentity[] $users
 	 */
 	public function invalidateCachedFirstEditTimestamps( array $users ): void {
-		foreach ( $users as [ $user, $timestamp ] ) {
+		foreach ( $users as $user ) {
 			if ( !$user->isRegistered() ) {
 				continue;
 			}
-
-			if ( $timestamp === false ) {
-				// We cache "no first edit" as 0, because false means "don't cache"
-				$timestamp = 0;
-			}
-
-			// NOTE: This should be refactored to not depend on a local cache get
-			// This violates multi-dc assumptions and probably doesn't work very well.
-			$key = $this->getCacheKey( self::CACHE_FIRST_EDIT, $user );
-			$cachedTimestamp = $this->wanCache->get( $key );
-
-			if ( $timestamp === $cachedTimestamp ) {
-				$this->wanCache->delete( $key );
-			}
+			$this->wanCache->delete( $this->getCacheKey( self::CACHE_FIRST_EDIT, $user ) );
 		}
 	}
 
 	/**
-	 * Return the cache key to be used for reading from or updating the cache
-	 * for a given user, identified by its user ID and the ID of the wiki it
-	 * belongs to. This key can be used for WANObjectCache and array-based caches.
+	 * Get the cache key by keygroup and UserIdentity.
+	 *
+	 * This key is used for WANObjectCache and the in-class array cache.
 	 *
 	 * @param string $keygroup Key group component, to separate different things.
 	 * @param UserIdentity $user User to get the cache key for.
@@ -340,9 +350,9 @@ class UserEditTracker {
 	}
 
 	/**
-	 * Returns the cache key to be used for reading from or updating the cache
-	 * for a given user, identified by its user ID and the ID of the wiki it
-	 * belongs to. This key can be used for WANObjectCache and array-based caches.
+	 * Get the cache key by keygroup, user ID, and wiki ID.
+	 *
+	 * This key is used for WANObjectCache and the in-class array cache.
 	 *
 	 * @param string $keygroup Key group component, to separate different things.
 	 * @param int $userId ID of the user to get the cache key for.

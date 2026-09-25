@@ -44,8 +44,6 @@ use Wikimedia\ObjectCache\BagOStuff;
 use Wikimedia\Rdbms\IDBAccessObject;
 use Wikimedia\Rdbms\LBFactory;
 use Wikimedia\RequestTimeout\TimeoutException;
-use Wikimedia\Timestamp\ConvertibleTimestamp;
-use Wikimedia\Timestamp\TimestampFormat as TS;
 
 /**
  * Backend logic for performing a page delete action.
@@ -752,12 +750,9 @@ class DeletePage {
 				$ipRevIds[] = $row->rev_id;
 			}
 
-			// Record the timestamp of the first edit by the user to this page,
-			// used for purging UserEditTracker cache.
 			if ( !array_key_exists( (int)$row->rev_user, $revAuthors ) ) {
 				$userIdentity = new UserIdentityValue( (int)$row->rev_user, $row->rev_user_text );
-				$timestamp = ConvertibleTimestamp::convert( TS::MW, $row->rev_timestamp );
-				$revAuthors[$userIdentity->getId()] = [ $userIdentity, $timestamp ];
+				$revAuthors[$userIdentity->getId()] = $userIdentity;
 			}
 		}
 
