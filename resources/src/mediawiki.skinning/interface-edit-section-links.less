@@ -12,7 +12,7 @@
 	font-weight: normal;
 	.margin-inline( 1em, 0 );
 	vertical-align: baseline;
-	/* Avoid affecting the height of the heading */
+	/* Avoid increasing the CSS 2.1 §10.8.1 line box height of the heading */
 	line-height: 0;
 	unicode-bidi: isolate;
 
@@ -22,6 +22,9 @@
 		white-space: pre;
 		// Needed for 'pointer-events' below
 		display: inline-block;
+		// Override the inherited zero line-height so that the inline-block has
+		// a non-zero height, used by the :focus-visible ring.
+		line-height: 1;
 
 		&::before,
 		&::after {
