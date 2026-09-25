@@ -144,7 +144,7 @@ class HtmlToContentTransform {
 
 	/** @throws ClientError */
 	private function validatePageBundle( BasePageBundle $pb ) {
-		$version = $pb->version;
+		$version = $pb->getContentVersion();
 		if ( !$version ) {
 			return;
 		}
@@ -172,7 +172,7 @@ class HtmlToContentTransform {
 	}
 
 	public function setOriginalSchemaVersion( string $originalSchemaVeraion ): void {
-		$this->originalPageBundle->version = $originalSchemaVeraion;
+		$this->originalPageBundle->setContentVersion( $originalSchemaVeraion );
 	}
 
 	public function setOriginalHtml( string $originalHtml ): void {
@@ -260,7 +260,10 @@ class HtmlToContentTransform {
 	private function initModifiedDoc(): void {
 		if ( !$this->modifiedDoc ) {
 			$this->modifiedDoc = $this->parseHTML( $this->modifiedPageBundle->html, true );
-			$this->modifiedPageBundle->version = DOMUtils::extractInlinedContentVersion( $this->modifiedDoc );
+			$contentVersion = DOMUtils::extractInlinedContentVersion( $this->modifiedDoc );
+			if ( $contentVersion !== null ) {
+				$this->modifiedPageBundle->setContentVersion( $contentVersion );
+			}
 		}
 	}
 
@@ -338,7 +341,7 @@ class HtmlToContentTransform {
 		// NOTE: Schema version should have been set explicitly,
 		//       so don't call getOriginalSchemaVersion,
 		//       which will silently fall back to the default.
-		if ( !$this->originalPageBundle->version ) {
+		if ( !$this->originalPageBundle->getContentVersion() ) {
 			throw new ClientError(
 				'Content-type of original html is missing.'
 			);
@@ -355,25 +358,23 @@ class HtmlToContentTransform {
 	}
 
 	public function getOriginalSchemaVersion(): string {
-		return $this->originalPageBundle->version ?: $this->getSchemaVersion();
+		return $this->originalPageBundle->getContentVersion() ?: $this->getSchemaVersion();
 	}
 
 	/**
+	 * Get the content version of the modified doc, if available.
 	 * NOTE: The return value of this method depends on
-	 *    setOriginalData() having been called first.
+	 *    setOriginalSchemaVersion() having been called first.
 	 */
 	public function getSchemaVersion(): string {
-		// Get the content version of the edited doc, if available.
-		// Make sure $this->modifiedPageBundle->version is initialized.
 		$this->initModifiedDoc();
-		$inputContentVersion = $this->modifiedPageBundle->version;
-
+		$inputContentVersion = $this->modifiedPageBundle->getContentVersion();
 		if ( !$inputContentVersion ) {
 			$this->incrementMetrics(
 				'html2wt_original_version_total',
 				[ 'input_content_version' => 'none' ]
 			);
-			$inputContentVersion = $this->originalPageBundle->version ?: Parsoid::defaultHTMLVersion();
+			$inputContentVersion = $this->originalPageBundle->getContentVersion() ?: Parsoid::defaultHTMLVersion();
 		}
 
 		return $inputContentVersion;
@@ -396,7 +397,7 @@ class HtmlToContentTransform {
 	}
 
 	private function needsDowngrade( HtmlPageBundle $pb ): bool {
-		$vOriginal = $pb->version;
+		$vOriginal = $pb->getContentVersion();
 		$vEdited = $this->getSchemaVersion();
 
 		// Downgrades are only expected to be between major version
@@ -414,11 +415,12 @@ class HtmlToContentTransform {
 
 	/** @throws ClientError */
 	private function downgradeOriginalData( HtmlPageBundle $pb, string $targetSchemaVersion ) {
-		if ( $pb->version === null ) {
+		$contentVersion = $pb->getContentVersion();
+		if ( $contentVersion === null ) {
 			throw new ClientError( 'Missing schema version' );
 		}
 
-		if ( $targetSchemaVersion === $pb->version ) {
+		if ( $targetSchemaVersion === $contentVersion ) {
 			// nothing to do.
 			return;
 		}
@@ -430,11 +432,11 @@ class HtmlToContentTransform {
 		}
 
 		// We need to downgrade the original to match the edited doc's version.
-		$downgrade = Parsoid::findDowngrade( $pb->version, $targetSchemaVersion );
+		$downgrade = Parsoid::findDowngrade( $contentVersion, $targetSchemaVersion );
 
 		if ( !$downgrade ) {
 			throw new ClientError(
-				"No downgrade possible from schema version {$pb->version} to {$targetSchemaVersion}."
+				"No downgrade possible from schema version {$contentVersion} to {$targetSchemaVersion}."
 			);
 		}
 

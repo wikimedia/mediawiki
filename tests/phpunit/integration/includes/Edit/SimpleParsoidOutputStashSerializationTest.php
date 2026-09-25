@@ -79,7 +79,7 @@ class SimpleParsoidOutputStashSerializationTest extends MediaWikiIntegrationTest
 						'annotation' => -1,
 						'transclusion' => -1,
 					], $pb->counters );
-					$testCase->assertSame( '1.2.3.4', $pb->version );
+					$testCase->assertSame( '1.2.3.4', $pb->getContentVersion() );
 					$testCase->assertSame( [
 						'X-Header-Test' => 'header test',
 					], $pb->headers );

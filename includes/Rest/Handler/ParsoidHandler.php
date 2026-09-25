@@ -765,7 +765,7 @@ abstract class ParsoidHandler extends Handler {
 			ParsoidFormatHelper::setContentType(
 				$response,
 				ParsoidFormatHelper::FORMAT_PAGEBUNDLE,
-				$pb->version
+				$pb->getContentVersion()
 			);
 		} else {
 			$out = $helper->getHtml();
@@ -976,7 +976,7 @@ abstract class ParsoidHandler extends Handler {
 
 			$response = $this->getResponseFactory()->createJson( $pb->responseData() );
 			ParsoidFormatHelper::setContentType(
-				$response, ParsoidFormatHelper::FORMAT_PAGEBUNDLE, $pb->version
+				$response, ParsoidFormatHelper::FORMAT_PAGEBUNDLE, $pb->getContentVersion()
 			);
 			return $response;
 			// Ensure we only reuse from semantically similar content versions.
@@ -1018,7 +1018,7 @@ abstract class ParsoidHandler extends Handler {
 
 		$response = $this->getResponseFactory()->createJson( $out->responseData() );
 		ParsoidFormatHelper::setContentType(
-			$response, ParsoidFormatHelper::FORMAT_PAGEBUNDLE, $out->version
+			$response, ParsoidFormatHelper::FORMAT_PAGEBUNDLE, $out->getContentVersion()
 		);
 		return $response;
 	}
@@ -1092,7 +1092,7 @@ abstract class ParsoidHandler extends Handler {
 		$response = $this->getResponseFactory()->createJson( $out->responseData() );
 		$response->addHeader( 'Vary', 'Accept-Language' );
 		ParsoidFormatHelper::setContentType(
-			$response, ParsoidFormatHelper::FORMAT_PAGEBUNDLE, $out->version
+			$response, ParsoidFormatHelper::FORMAT_PAGEBUNDLE, $out->getContentVersion()
 		);
 		return $response;
 	}

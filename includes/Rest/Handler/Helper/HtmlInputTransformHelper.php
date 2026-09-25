@@ -520,8 +520,10 @@ class HtmlInputTransformHelper {
 			// NOTE: Use the default if we got a ParserOutput object.
 			//       Don't apply the default if we got passed a HtmlPageBundle,
 			//       in that case, we want to require the version to be explicit.
-			if ( $originalRendering->version === null && !isset( $originalRendering->headers['content-type'] ) ) {
-				$originalRendering->version = Parsoid::defaultHTMLVersion();
+			if ( $originalRendering->getContentVersion() === null &&
+				!isset( $originalRendering->headers['content-type'] )
+			) {
+				$originalRendering->setContentVersion( Parsoid::defaultHTMLVersion() );
 			}
 		}
 
@@ -529,8 +531,9 @@ class HtmlInputTransformHelper {
 			return;
 		}
 
-		if ( $originalRendering->version !== null ) {
-			$this->transform->setOriginalSchemaVersion( $originalRendering->version );
+		$vOriginal = $originalRendering->getContentVersion();
+		if ( $vOriginal !== null ) {
+			$this->transform->setOriginalSchemaVersion( $vOriginal );
 		} elseif ( !empty( $originalRendering->headers['content-type'] ) ) {
 			$vOriginal = ParsoidFormatHelper::parseContentTypeHeader(
 				// @phan-suppress-next-line PhanTypeArraySuspiciousNullable Silly Phan, we just checked.

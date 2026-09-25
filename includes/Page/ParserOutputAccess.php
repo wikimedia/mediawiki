@@ -344,7 +344,7 @@ class ParserOutputAccess implements LoggerAwareInterface {
 		) {
 			$pageBundle = $output->getContentHolder()->getBasePageBundle();
 			// T333606: Force a reparse if the version coming from cache is not the default
-			$cachedVersion = $pageBundle->version ?? null;
+			$cachedVersion = $pageBundle->getContentVersion();
 			if (
 				$cachedVersion !== null && // T325137: BadContentModel, no sense in reparsing
 				$cachedVersion !== Parsoid::defaultHTMLVersion()

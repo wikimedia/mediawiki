@@ -776,7 +776,7 @@ abstract class ParserCacheSerializationTestCases {
 				'instance' => $parserOutputPageBundleOnly,
 				'assertions' => static function ( MediaWikiIntegrationTestCase $testCase, ParserOutput $object ) {
 					$testCase->assertNull( $object->getContentHolder()->getAsHtmlString() );
-					$testCase->assertEquals( '1.2.3', $object->getContentHolder()->getBasePageBundle()->version );
+					$testCase->assertEquals( '1.2.3', $object->getContentHolder()->getBasePageBundle()->getContentVersion() );
 				}
 			]
 		];

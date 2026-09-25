@@ -521,7 +521,7 @@ class HtmlOutputRendererHelper implements HtmlOutputHelper {
 			$html,
 			null, null,
 			$pb->counters,
-			$pb->version,
+			$pb->getContentVersion(),
 			$pb->headers,
 			$pb->contentmodel,
 			$fragments,
@@ -731,7 +731,7 @@ class HtmlOutputRendererHelper implements HtmlOutputHelper {
 		$headers = $forHtml ? [
 			// default headers
 			'content-type' => ParsoidFormatHelper::getContentType(
-				ParsoidFormatHelper::FORMAT_HTML, $pb->version
+				ParsoidFormatHelper::FORMAT_HTML, $pb->getContentVersion()
 			),
 			'content-language' => $this->getHtmlOutputContentLanguage()
 				->toBcp47Code(),

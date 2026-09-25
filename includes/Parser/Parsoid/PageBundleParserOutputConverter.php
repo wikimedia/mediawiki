@@ -355,7 +355,7 @@ final class PageBundleParserOutputConverter {
 
 		if ( $parserOutput->getContentHolder()->isParsoidContent() ) {
 			// Set the parsoid content-type strings
-			$htmlVersion = $pb->version ??
+			$htmlVersion = $pb->getContentVersion() ??
 				$parserOutput->getExtensionData( 'core:html-version' ) ??
 				Parsoid::defaultHTMLVersion();
 			// FIXME: Should we be using http-equiv for this?

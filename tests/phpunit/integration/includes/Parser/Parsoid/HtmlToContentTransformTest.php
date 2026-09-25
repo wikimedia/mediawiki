@@ -401,7 +401,7 @@ class HtmlToContentTransformTest extends MediaWikiIntegrationTestCase {
 		$transform = $this->createHtmlToContentTransform( $pb->html );
 		$transform->setOptions( [ 'contentmodel' => 'wikitext', 'offsetType' => 'byte' ] );
 		$transform->setOriginalRevisionId( $rev->getId() );
-		$transform->setOriginalSchemaVersion( $pb->version );
+		$transform->setOriginalSchemaVersion( $pb->getContentVersion() );
 		$transform->setOriginalHtml( $pb->html );
 		$transform->setOriginalDataParsoid( $pb->parsoid );
 		$transform->setOriginalDataMW( $pb->mw );
@@ -413,7 +413,7 @@ class HtmlToContentTransformTest extends MediaWikiIntegrationTestCase {
 		$transform = $this->createHtmlToContentTransform( $newHtml );
 		$transform->setOptions( [ 'contentmodel' => 'wikitext', 'offsetType' => 'byte' ] );
 		$transform->setOriginalRevisionId( $rev->getId() );
-		$transform->setOriginalSchemaVersion( $pb->version );
+		$transform->setOriginalSchemaVersion( $pb->getContentVersion() );
 		$transform->setOriginalHtml( $pb->html );
 		$transform->setOriginalDataParsoid( $pb->parsoid );
 

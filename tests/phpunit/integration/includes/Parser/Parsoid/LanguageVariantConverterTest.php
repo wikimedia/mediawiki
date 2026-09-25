@@ -178,7 +178,7 @@ class LanguageVariantConverterTest extends MediaWikiIntegrationTestCase {
 		if ( $expectedLanguage !== false ) {
 			$this->assertMatchesRegularExpression( "@<meta http-equiv=\"content-language\" content=\"($expectedLanguage)\"/>@i", $html );
 		}
-		$this->assertEquals( Parsoid::defaultHTMLVersion(), $pageBundle->version );
+		$this->assertEquals( Parsoid::defaultHTMLVersion(), $pageBundle->getContentVersion() );
 
 		if ( $expectedLanguage !== false ) {
 			$this->assertMatchesRegularExpression( "@^$expectedLanguage@i", $pageBundle->headers['content-language'] );
