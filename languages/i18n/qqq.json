@@ -2653,7 +2653,7 @@
 	"block-user-no-active-range-blocks": "Message shown at [[Special:Block]] when there are no active range blocks for an IP address.",
 	"block-user-previous-blocks": "Header for the previous blocks table",
 	"block-user-no-previous-blocks": "Message shown when there are no previous block log entries for the user",
-	"block-user-label-count-exceeds-limit": "{{optional}}\nLabel displaying the total number of blocks or block events, with a '+' sign to indicate additional entries.\n\nParameters:\n* $1 - total number of blocks or log events",
+	"block-user-label-count-exceeds-limit": "{{optional}}\n{{identical|$1+}}\nLabel displaying the total number of blocks or block events, with a '+' sign to indicate additional entries.\n\nParameters:\n* $1 - total number of blocks or log events",
 	"block-user-suppressed-blocks": "Header for the suppressed blocks table",
 	"block-user-no-suppressed-blocks": "Message shown when there are no suppressed block log entries for the user",
 	"block-item-remove": "Menu item label for removing a block on [[Special:Block]]",

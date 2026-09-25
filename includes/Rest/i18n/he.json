@@ -187,6 +187,8 @@
 	"rest-param-desc-wikitext-to-html-title": "כותרת הדף לשימוש כהקשר להמרת קוד ויקי ל־HTML.",
 	"rest-param-desc-html-to-wikitext-title": "כותרת הדף לשימוש כהקשר להמרת HTML לקוד ויקי.",
 	"rest-param-desc-wikitext-to-lint-title": "כותרת הדף לשימוש כהקשר לבדיקת הניקיון",
+	"rest-requestbody-desc-transform-wikitext": "תוכן קוד ויקי להמרה",
+	"rest-requestbody-desc-transform-html": "תוכן HTML להמרה לקוד ויקי",
 	"rest-param-desc-update-title": "כותרת דף. כדי לעצב את הכותרת, יש להחליף רווחים בתווי קו תחתון, ולאחר מכן לבצע פעולת URL-encode על התוצאה (למשל: Steller%27s_jay). בארגז החול של ה־API, יש להחליף רווחים בתווי קו תחתון, אך לא לעשות את פעולת ה־URL-encode (למשל: Steller's_jay).",
 	"rest-param-desc-diff-linenumber": "מספר vשורה של השינוי על סמך גרסת ה־`to`",
 	"rest-param-desc-diff-text": "טקסט השורה, כולל תוכן משתי הגרסאות. עבור שורה שמכילה טקסט שונה בין שתי הגרסאות, יש להשתמש בפונקציה highlightRanges כדי לציין באופן חזותי טקסט שנוסף והוסר. עבור שורה שמכילה שורה חדשה, ה־API מחזיר \"\" (מחרוזת ריקה).",

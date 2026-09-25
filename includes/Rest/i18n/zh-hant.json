@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Addonian1123",
 			"August.C",
 			"Kly",
 			"LowensteinYang",
@@ -168,13 +169,13 @@
 	"rest-param-desc-module-spec-version": "模組規格的版本",
 	"rest-param-desc-opensearch-ctype": "開啟搜尋ctype說明",
 	"rest-param-desc-pagehistory-count-title": "頁面標題。格式化時，請先將空格替換為底線，再進行URL編碼（例如：Steller%27s_jay）。在API沙盒中則只需將空格替換為底線，無須進行URL編碼（例如：Steller's_jay）。",
-	"rest-param-desc-pagehistory-count-type": "計數類型（匿名、機器人、編輯者、編輯、小修改、已被回退）",
+	"rest-param-desc-pagehistory-count-type": "計數類型（匿名、機器人、編輯者、編輯、小修改、已被還原）",
 	"rest-param-desc-pagehistory-count-from": "將計數範圍限制在兩個版本之間，由版本 ID 指定。必須與「to」參數搭配使用。",
 	"rest-param-desc-pagehistory-count-to": "將計數範圍限制在兩個版本之間，由版本 ID 指定。必須與「from」參數搭配使用。",
 	"rest-param-desc-pagehistory-title": "頁面標題。格式化時，請先將空格替換為底線，再進行URL編碼（例如：Steller%27s_jay）。在API沙盒中則只需將空格替換為底線，無須進行URL編碼（例如：Steller's_jay）。",
 	"rest-param-desc-pagehistory-older-than": "接受一個修訂版本ID。回傳比指定修訂版本ID更早的下一個20個修訂版本。",
 	"rest-param-desc-pagehistory-newer-than": "接受一個修訂版本ID。回傳比指定修訂版本ID更新的下一個20個修訂版本。",
-	"rest-param-desc-pagehistory-filter": "使用篩選器來回傳僅是標記為（已被回退、匿名、機器人、小修改）的版本。每項請求僅接受一個篩選器。",
+	"rest-param-desc-pagehistory-filter": "使用篩選器來回傳僅是標記為（已被還原、匿名、機器人、小修改）的版本。每項請求僅接受一個篩選器。",
 	"rest-param-desc-search-q": "搜尋的項目",
 	"rest-param-desc-search-limit": "最多回傳的搜尋結果的數量，範圍為1至100。預設值：50",
 	"rest-param-desc-transform-from": "轉換自",

@@ -386,6 +386,8 @@
 	"userlogin-reauth-description-link": "cancelar esta acción",
 	"userlogin-reauth-banner-editsitejscss": "<strong>Estás a publicar JavaScript ou CSS de todo o sitio</strong><br>Os cambios feitos nesta páxina afectan a todos os visitantes. Confirma que es ti para continuares.",
 	"userlogin-reauth-banner-editsitejscss-delete": "<strong>Estás a piques de eliminar unha páxina que contén JavaScript ou CSS de todo o sitio. Isto afectará a todos os visitantes do wiki.</strong>",
+	"userlogin-reauth-banner-editsitejscss-changecontentmodel": "<strong>Estás a piques de modificar unha páxina que contén JavaScript ou CSS de todo o sitio. Isto afectará a todos os visitantes do wiki.</strong>",
+	"userlogin-reauth-banner-editsitejscss-undelete": "<strong>Estás a piques de restaurar unha páxina que contén JavaScript ou CSS de todo o sitio. Isto afectará a todos os visitantes do wiki.</strong>",
 	"userlogin-reauth-banner-edituserjscss": "<strong>Estás a publicar JavaScript ou CSS de usuario</strong><br>Confirma que es ti para continuares.",
 	"userlogin-reauth-banner-ChangeEmail": "<strong>Estás a modificar o teu enderezo electrónico</strong><br>Confirma que es ti para continuares.",
 	"userlogin-reauth-banner-generic": "<strong>Estás a piques de realizar a seguinte acción delicada: $1</strong><br>Confirma que es ti para continuares.",

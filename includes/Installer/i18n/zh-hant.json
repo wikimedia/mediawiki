@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Addonian1123",
 			"Anthony Fok",
 			"Cwlin0416",
 			"Diskdance",
@@ -212,7 +213,7 @@
 	"config-profile-no-anon": "需要註冊帳號",
 	"config-profile-fishbowl": "僅授權的編輯者",
 	"config-profile-private": "非公開 wiki",
-	"config-profile-help": "wiki 最佳的運作方式是盡可能讓大家都可以編輯。\n在 MediaWiki，可以很輕易的審查最近做的所有變更操作，並且可以還原由新手或惡意使用者造成的損害。\n\n不論如何，很多人發現 MediaWiki 可以廣泛的運用在各種地方，但並不是很容易可以說服每個人都遵守對 wiki 有益的方式。\n所以您必須做出以下選擇。\n\n使用<strong>{{int:config-profile-wiki}}</strong>模式，允許所有人編輯頁面，包含未登入使用者。\n使用<strong>{{int:config-profile-no-anon}}</strong>模式，允許所有人編輯頁面，不包含未登入的使用者。此模式較能管理所有使用者的言論，但會扼殺臨時使用者的貢獻機會。\n\n使用<strong>{{int:config-profile-fishbowl}}</strong>模式，僅經核准的使用者可以編輯，所有人可以檢視頁面，包含修訂的記錄。\n使用<strong>{{int:config-profile-private}}</strong>模式，僅經核准的使用者可以編輯、檢視頁面。\n\n有關更多複雜的使用者權限設定可在安裝程序結束後設定，請參考 [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:User_rights 相關說明文件]。",
+	"config-profile-help": "當您允許盡可能多的人編輯wiki時，wiki 才能發揮最佳的效果。\n在 MediaWiki，可以很輕易的審查最近做的所有變更操作，並且可以還原由新手或惡意使用者造成的損害。\n\n不論如何，很多人發現 MediaWiki 可以廣泛的運用在各種地方，但並不是很容易可以說服每個人都遵守對 wiki 有益的方式。\n所以您必須做出以下選擇。\n\n使用<strong>{{int:config-profile-wiki}}</strong>模式，允許所有人編輯頁面，包含未登入使用者。\n使用<strong>{{int:config-profile-no-anon}}</strong>模式，允許所有人編輯頁面，不包含未登入的使用者。此模式較能管理所有使用者的言論，但會扼殺臨時使用者的貢獻機會。\n\n使用<strong>{{int:config-profile-fishbowl}}</strong>模式，僅經核准的使用者可以編輯，所有人可以檢視頁面，包含修訂的記錄。\n使用<strong>{{int:config-profile-private}}</strong>模式，僅經核准的使用者可以編輯、檢視頁面。\n\n有關更多複雜的使用者權限設定可在安裝程序結束後設定，請參考 [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:User_rights 相關說明文件]。",
 	"config-license": "著作權聲明與授權條款：",
 	"config-license-none": "無授權條款頁尾",
 	"config-license-cc-by-sa": "CC BY-SA（創用CC 姓名標示─相同方式分享）",

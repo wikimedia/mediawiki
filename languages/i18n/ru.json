@@ -880,6 +880,7 @@
 	"postedit-temp-created-label": "Временная учётная запись",
 	"postedit-temp-created": "Для вас была автоматически сгенерирована [[$2|учётная запись]], созданная путём добавления cookie-файла в ваш браузер. Чтобы выбрать имя по своему усмотрению и получить больше возможностей, подумайте о [$1 создании учётной записи].",
 	"postedit-confirmation-published-title": "Ваша правка была опубликована!",
+	"postedit-confirmation-saved-title": "Ваша правка была сохранена!",
 	"postedit-temp-created-createaccount-benefits": "Создайте учётную запись, чтобы:",
 	"postedit-temp-created-createaccount-benefit-1": "Получать признание за ваши будущие правки",
 	"postedit-temp-created-createaccount-benefit-2": "Создавать свою репутацию",
