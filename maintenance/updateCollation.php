@@ -121,9 +121,10 @@ TEXT
 		// Get the actual database domain ID from a connection to the virtual domain
 		$this->dbr = $lbFactory->getReplicaDatabase( LinksTable::VIRTUAL_DOMAIN );
 		$dbDomain = $this->dbr->getDomainID();
+		$linksLb = $lbFactory->getLoadBalancer( LinksTable::VIRTUAL_DOMAIN );
 
 		$this->collationNameStore = new NameTableStore(
-			$lbFactory->getLoadBalancer( LinksTable::VIRTUAL_DOMAIN ),
+			$linksLb,
 			$this->getServiceContainer()->getMainWANObjectCache(),
 			LoggerFactory::getInstance( 'SecondaryDataUpdate' ),
 			'collation',
@@ -152,7 +153,7 @@ TEXT
 		$this->force = $this->getOption( 'force' );
 		$this->dryRun = $this->getOption( 'dry-run' );
 		$this->verboseStats = $this->getOption( 'verbose-stats' );
-		$this->dbw = $this->getDB( DB_PRIMARY, [], LinksTable::VIRTUAL_DOMAIN );
+		$this->dbw = $linksLb->getMaintenanceConnectionRef( DB_PRIMARY, [], $dbDomain );
 		$this->table = $this->getOption( 'table', 'categorylinks' );
 		$this->targetTable = $this->getOption( 'target-table' );
 		$this->normalization = $this->getOption( 'only-migrate-normalization', false );
