@@ -93,7 +93,6 @@ class MainSlotRoleHandler extends SlotRoleHandler {
 		// NOTE: this method must not rely on $title->getContentModel() directly or indirectly,
 		//       because it is used to initialize the mContentModel member.
 
-		$ext = '';
 		$ns = $page->getNamespace();
 		$model = $this->namespaceContentModels[$ns] ?? null;
 
@@ -108,43 +107,24 @@ class MainSlotRoleHandler extends SlotRoleHandler {
 			return $model;
 		}
 
-		// Could this page contain code based on the title?
-		$isCodePage = $ns === NS_MEDIAWIKI && preg_match( '!\.(css|js|json|vue)$!u', $title->getText(), $m );
-		if ( $isCodePage ) {
-			$ext = $m[1];
-		}
-
-		// Is this a user subpage containing code?
-		$isCodeSubpage = $ns === NS_USER
-			&& !$isCodePage
-			&& preg_match( "/\\/.*\\.(js|css|json|vue)$/", $title->getText(), $m );
-
-		if ( $isCodeSubpage ) {
-			$ext = $m[1];
-		}
-
-		// Is this wikitext, according to $wgNamespaceContentModels or the DefaultModelFor hook?
-		$isWikitext = $model === null || $model == CONTENT_MODEL_WIKITEXT;
-		$isWikitext = $isWikitext && !$isCodePage && !$isCodeSubpage;
-
-		if ( !$isWikitext ) {
-			switch ( $ext ) {
-				case 'js':
-					return CONTENT_MODEL_JAVASCRIPT;
-				case 'css':
-					return CONTENT_MODEL_CSS;
-				case 'json':
-					return CONTENT_MODEL_JSON;
-				case 'vue':
-					return CONTENT_MODEL_VUE;
-				default:
-					return $model ?? CONTENT_MODEL_TEXT;
+		// Code can only exist in these namespaces
+		if ( $ns === NS_MEDIAWIKI ||
+			// Code in the user namespace can only exist on subpages
+			( $ns === NS_USER && str_contains( $title->getDBkey(), '/' ) )
+		) {
+			// Could this page contain code based on the title?
+			if ( preg_match( '/\.(css|js|json|vue)$/', $title->getDBkey(), $m ) ) {
+				return match ( $m[1] ) {
+					'css' => CONTENT_MODEL_CSS,
+					'js' => CONTENT_MODEL_JAVASCRIPT,
+					'json' => CONTENT_MODEL_JSON,
+					'vue' => CONTENT_MODEL_VUE,
+				};
 			}
 		}
 
-		// We established that it must be wikitext
-
-		return CONTENT_MODEL_WIKITEXT;
+		// Is this wikitext, according to $wgNamespaceContentModels or the DefaultModelFor hook?
+		return $model ?? CONTENT_MODEL_WIKITEXT;
 	}
 
 }

@@ -43,7 +43,7 @@ class MainSlotRoleHandlerTest extends MediaWikiUnitTestCase {
 		// TitleFactory that for these tests is only called with Title objects, so just
 		// return them
 		$titleFactory = $this->createMock( TitleFactory::class );
-		$titleFactory->method( 'newFromLinkTarget' )
+		$titleFactory->method( 'newFromPageReference' )
 			->with( $this->isInstanceOf( Title::class ) )
 			->willReturnArgument( 0 );
 		$titleFactory->method( 'newFromPageIdentity' )
@@ -69,23 +69,27 @@ class MainSlotRoleHandlerTest extends MediaWikiUnitTestCase {
 		$this->assertArrayHasKey( 'placement', $hints );
 	}
 
-	public function testGetDefaultModel() {
+	/**
+	 * @dataProvider provideContentModels
+	 */
+	public function testGetDefaultModel( int $ns, string $titleText, string $expected ) {
 		$handler = $this->getRoleHandler(
 			[ 100 => CONTENT_MODEL_TEXT ]
 		);
 
-		// For the main handler, the namespace determines the default model
-		$titleMain = $this->makeMockTitle(
-			'Article',
-			[ 'namespace' => NS_MAIN ]
-		);
-		$this->assertSame( CONTENT_MODEL_WIKITEXT, $handler->getDefaultModel( $titleMain ) );
+		$title = $this->makeMockTitle( $titleText, [ 'namespace' => $ns ] );
+		$this->assertSame( $expected, $handler->getDefaultModel( $title ) );
+	}
 
-		$title100 = $this->makeMockTitle(
-			'Other page',
-			[ 'namespace' => 100 ]
-		);
-		$this->assertSame( CONTENT_MODEL_TEXT, $handler->getDefaultModel( $title100 ) );
+	public function provideContentModels() {
+		return [
+			[ NS_MAIN, 'Article', CONTENT_MODEL_WIKITEXT ],
+			[ 100, 'Other page', CONTENT_MODEL_TEXT ],
+			[ 999, 'Invalid', CONTENT_MODEL_WIKITEXT ],
+			[ NS_MEDIAWIKI, 'Code.js', CONTENT_MODEL_JAVASCRIPT ],
+			[ NS_USER, 'Username.js', CONTENT_MODEL_WIKITEXT ],
+			[ NS_USER, 'Username/subpage.js', CONTENT_MODEL_JAVASCRIPT ],
+		];
 	}
 
 	public function testIsAllowedModel() {
