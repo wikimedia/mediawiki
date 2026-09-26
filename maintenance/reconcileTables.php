@@ -18,6 +18,12 @@ class ReconcileTables extends Maintenance {
 		$this->addOption( 'primaryKey', 'Primary key column', true, true, 'pk' );
 		$this->addOption( 'source', 'Source virtual domain', false, true );
 		$this->addOption( 'target', 'Target virtual domain', true, true );
+		$this->addOption(
+			'sleep',
+			'Sleep time (in seconds) between every batch. Default: 0',
+			false,
+			true
+		);
 		$this->addOption( 'dry', 'Dry mode' );
 		$this->setBatchSize( 500 );
 	}
@@ -28,6 +34,7 @@ class ReconcileTables extends Maintenance {
 		$sourceDomain = $this->getOption( 'source', false );
 		$targetDomain = $this->getOption( 'target' );
 		$batchSize = $this->getBatchSize();
+		$sleep = (int)$this->getOption( 'sleep', 0 );
 		$dry = $this->getOption( 'dry', false );
 
 		$services = MediaWikiServices::getInstance();
@@ -126,6 +133,10 @@ class ReconcileTables extends Maintenance {
 					"Inserted $inserted rows, deleted $deleted rows, updated $updated rows.\n" );
 			}
 			$this->commitTransactionRound( __METHOD__ );
+
+			if ( $sleep > 0 ) {
+				sleep( $sleep );
+			}
 		}
 
 		$this->output( "Done.\n" );
