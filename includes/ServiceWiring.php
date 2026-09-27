@@ -917,6 +917,15 @@ return [
 
 		$lbFactoryConfigBuilder->setDomainAliases( $instance );
 
+		if (
+			isset( $lbConf['servers'] ) &&
+			count( $lbConf['servers'] ) === 1 &&
+			!defined( 'MW_PHPUNIT_TEST' )
+		) {
+			// Bound to this instance, which the installer keeps using after it resets the services
+			$wanCache->setPendingCallback( $instance->hasPrimaryChanges( ... ) );
+		}
+
 		return $instance;
 	},
 
@@ -3102,17 +3111,6 @@ return [
 			$wanParams['asyncHandler'] = DeferredUpdates::addCallableUpdate( ... );
 		}
 
-		// Only the callback only if it's a simple one-database setup.
-		$lbConf = $services->getDBLoadBalancerFactoryConfig()->getConfig();
-		if (
-			isset( $lbConf['servers'] ) &&
-			count( $lbConf['servers'] ) === 1 &&
-			!defined( 'MW_PHPUNIT_TEST' )
-		) {
-			$wanParams['pendingCallback'] = static function () use ( $services ) {
-				return $services->getDBLoadBalancer()->hasPrimaryChanges();
-			};
-		}
 		return new WANObjectCache( $wanParams );
 	},
 

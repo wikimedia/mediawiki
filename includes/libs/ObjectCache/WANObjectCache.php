@@ -381,6 +381,10 @@ class WANObjectCache implements
 		$this->logger = $logger;
 	}
 
+	public function setPendingCallback( ?callable $callback ): void {
+		$this->pendingCallback = $callback;
+	}
+
 	/**
 	 * Get an instance that wraps EmptyBagOStuff
 	 */
