@@ -82,14 +82,19 @@ class ElevatedSecurityAuthenticationRequestTest extends AuthenticationRequestTes
 		throw new BadMethodCallException( 'Should not be called' );
 	}
 
+	private static function freezeClock(): void {
+		// The value of Token::toString() depends on the clock, so freeze it to make sure the
+		// expected and actual token are based on the same timestamp.
+		MWTimestamp::setFakeTime( time() );
+	}
+
 	public static function provideLoadFromSubmissionCallbacks() {
 		yield 'not present' => [ [ static function ( $testCase ) {
 			$session = RequestContext::getMain()->getRequest()->getSession();
 			$user = $testCase->getTestUser()->getUser();
 			$session->setUser( $user );
-			// HACK calculate the same token create() will. Stop the clock to make sure it is the same.
-			MWTimestamp::setFakeTime( time() );
-			$token = $session->getToken( [ $user->getId(), 'foo' ], 'reauth' );
+			self::freezeClock();
+			$token = $session->getToken( [ $user->getId(), 'foo' ], 'reauth' )->toString();
 			return [
 				'getInstance args' => [ $session, 'foo' ],
 				'request data' => [],
@@ -106,6 +111,7 @@ class ElevatedSecurityAuthenticationRequestTest extends AuthenticationRequestTes
 			$session = RequestContext::getMain()->getRequest()->getSession();
 			$user = $testCase->getTestUser()->getUser();
 			$session->setUser( $user );
+			self::freezeClock();
 			$token = $session->getToken( [ $user->getId(), 'foo' ], 'reauth' )->toString();
 			return [
 				'getInstance args' => [ $session, 'foo' ],
@@ -125,6 +131,7 @@ class ElevatedSecurityAuthenticationRequestTest extends AuthenticationRequestTes
 			$session = RequestContext::getMain()->getRequest()->getSession();
 			$user = $testCase->getTestUser()->getUser();
 			$session->setUser( $user );
+			self::freezeClock();
 			$correctToken = $session->getToken( [ $user->getId(), 'foo' ], 'reauth' )->toString();
 			$objectToken = $session->getToken( [ $user->getId(), 'bar' ], 'reauth' )->toString();
 			return [
@@ -145,6 +152,7 @@ class ElevatedSecurityAuthenticationRequestTest extends AuthenticationRequestTes
 			$session = RequestContext::getMain()->getRequest()->getSession();
 			$user = $testCase->getTestUser()->getUser();
 			$session->setUser( $user );
+			self::freezeClock();
 			$correctToken = $session->getToken( [ $user->getId(), 'foo' ], 'reauth' )->toString();
 			$submittedToken = $session->getToken( [ $user->getId(), 'bar' ], 'reauth' )->toString();
 			return [
@@ -166,6 +174,7 @@ class ElevatedSecurityAuthenticationRequestTest extends AuthenticationRequestTes
 			$user1 = $testCase->getTestUser()->getUser();
 			$user2 = $testCase->getTestUser( [ 'sysop' ] )->getUser();
 			$session->setUser( $user1 );
+			self::freezeClock();
 			$correctToken = $session->getToken( [ $user1->getId(), 'foo' ], 'reauth' )->toString();
 			$submittedToken = $session->getToken( [ $user2->getId(), 'foo' ], 'reauth' )->toString();
 			return [
