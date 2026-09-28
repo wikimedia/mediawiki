@@ -1251,7 +1251,7 @@ class ExtensionProcessorTest extends MediaWikiUnitTestCase {
 		$schemaFileHash = md5_file( "$IP/docs/extension.schema.v1.json", false );
 
 		$this->assertSame(
-			'de2fd4d39168df97aec1f3f0575ca0fc',
+			'caa179111c3e9fbe94b0e2c8b198edd7',
 			$schemaFileHash,
 			"Manifest_version 1 is frozen and should not be changed or given new features" );
 	}

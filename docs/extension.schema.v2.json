@@ -1853,7 +1853,7 @@
 		"$comment": "----------------------------------------------------------------------",
 		"DatabaseVirtualDomains": {
 			"type": "array",
-			"description": "Names of virtual domains that are used to get a db connection.",
+			"description": "Names of virtual domains that are used to get a db connection. As of 1.47, this field has no effect.",
 			"items": {
 				"type": "string"
 			}

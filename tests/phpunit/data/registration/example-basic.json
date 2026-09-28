@@ -488,7 +488,6 @@
 	"ActionFilteredLogs": {
 		"logtype1": { "action1": [ "filter1", "filter2" ] }
 	},
-	"DatabaseVirtualDomains": [ "virtual1", "virtual2" ],
 	"FeedClasses": { "feed1": "FeedClass" },
 	"RecentChangesFlags": { "flag1": "FlagClass" },
 	"SearchMappings": { "search1": "SearchClass" }
