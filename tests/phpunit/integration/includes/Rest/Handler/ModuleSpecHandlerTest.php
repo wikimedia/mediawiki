@@ -586,7 +586,7 @@ class ModuleSpecHandlerTest extends MediaWikiIntegrationTestCase {
 		];
 
 		$this->expectException( LocalizedHttpException::class );
-		$this->expectExceptionCode( 404 );
+		$this->expectExceptionCode( 500 );
 		$this->expectExceptionMessage( 'rest-unavailable-spec' );
 		$this->executeModuleSpecHandler(
 			$request,

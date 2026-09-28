@@ -95,7 +95,7 @@ class ModuleSpecHandler extends SimpleHandler {
 			if ( $specUrl === null ) {
 				throw new LocalizedHttpException(
 					MessageValue::new( 'rest-unavailable-spec' )->params( $moduleName ),
-					404
+					500
 				);
 			}
 			return $this->getResponseFactory()->createPermanentRedirect( $specUrl );
