@@ -285,7 +285,8 @@ class RefreshLinksJob extends Job {
 		}
 
 		// Tell DerivedPageDataUpdater to use this parser output
-		$options['known-revision-output'] = $output;
+		$options += $output;
+
 		// Execute corresponding DataUpdates immediately
 		$page->doSecondaryDataUpdates( $options );
 		InfoAction::invalidateCache( $page );
@@ -373,14 +374,15 @@ class RefreshLinksJob extends Job {
 	 * @param ParserOutputAccess $parserOutputAccess
 	 * @param WikiPage $page Page already loaded with READ_LATEST
 	 * @param StatsFactory $stats
-	 * @return ParserOutput|null Combined output for all slots; might only contain metadata
+	 * @return array{known-revision-output: ParserOutput, known-revision-options: ParserOptions}|null
+	 *   Combined output for all slots; might only contain metadata
 	 */
 	private function getParserOutput(
 		RevisionRenderer $renderer,
 		ParserOutputAccess $parserOutputAccess,
 		WikiPage $page,
 		StatsFactory $stats
-	) {
+	): ?array {
 		$revision = $this->getLatestRevisionIfUnchanged( $page, $stats );
 		if ( !$revision ) {
 			// race condition?
@@ -404,7 +406,10 @@ class RefreshLinksJob extends Job {
 				->setLabel( 'html_changed', 'n/a' )
 				->increment();
 
-			return $cachedOutput;
+			return [
+				'known-revision-output' => $cachedOutput,
+				'known-revision-options' => $parserOptions,
+			];
 		}
 
 		$causeAction = $this->params['causeAction'] ?? 'RefreshLinksJob';
@@ -494,7 +499,10 @@ class RefreshLinksJob extends Job {
 				$output->getOutputFlag( ParserOutputFlags::ASYNC_NOT_READY ) ? 'true' : 'false' )
 			->increment();
 
-		return $output;
+		return [
+			'known-revision-output' => $output,
+			'known-revision-options' => $parserOptions,
+		];
 	}
 
 	/**

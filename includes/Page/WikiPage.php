@@ -1942,6 +1942,7 @@ class WikiPage implements Stringable, Page, PageRecord {
 	 *     matched the $rev and $options. This mechanism is intended as a temporary stop-gap,
 	 *     for the time until caches have been changed to store RenderedRevision states instead
 	 *     of ParserOutput objects. (default: null) (since 1.33)
+	 *   - known-revision-options: ParserOptions object associated with the known-revision-output
 	 * @since 1.32
 	 */
 	public function doSecondaryDataUpdates( array $options = [] ) {

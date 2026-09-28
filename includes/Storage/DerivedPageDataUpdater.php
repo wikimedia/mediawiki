@@ -834,7 +834,10 @@ class DerivedPageDataUpdater implements LoggerAwareInterface, PreparedUpdate {
 			// TODO: this should happen when stashing the ParserOutput, not now!
 			$output->setCacheTime( $stashedEdit->timestamp );
 
+			// FIXME(T439926): Ideally we would have stored the ParserOptions
+			// associated with the ParserOutput to be passed here
 			$renderHints['known-revision-output'] = $output;
+			// $renderHints['known-revision-options'] = $stashedEdit->options;
 
 			$this->logger->debug( __METHOD__ . ': using stashed edit output...' );
 		}
@@ -848,7 +851,8 @@ class DerivedPageDataUpdater implements LoggerAwareInterface, PreparedUpdate {
 		// NOTE: the revision is either new or current, so we can bypass audience checks.
 		$this->renderedRevision = $this->revisionRenderer->getRenderedRevision(
 			$this->revision,
-			null,
+			// @phan-suppress-next-line PhanCoalescingAlwaysNull
+			$renderHints['known-revision-options'] ?? null,
 			null,
 			$renderHints
 		);
@@ -1055,6 +1059,7 @@ class DerivedPageDataUpdater implements LoggerAwareInterface, PreparedUpdate {
 	 *    matched the $rev and $options. This mechanism is intended as a temporary stop-gap,
 	 *    for the time until caches have been changed to store RenderedRevision states instead
 	 *    of ParserOutput objects. (default: null) (since 1.33)
+	 *  - 'known-revision-options': ParserOptions object associated with the known-revision-output
 	 *  - editResult: EditResult object created during the update. Required to perform reverted
 	 *    tag update using RevertedTagUpdateJob. (default: null) (since 1.36)
 	 */
@@ -1220,7 +1225,10 @@ class DerivedPageDataUpdater implements LoggerAwareInterface, PreparedUpdate {
 		if ( $this->renderedRevision ) {
 			$this->renderedRevision->updateRevision( $revision );
 			if ( isset( $options['known-revision-output'] ) ) {
-				$this->renderedRevision->setRevisionParserOutput( $options['known-revision-output'] );
+				$this->renderedRevision->setRevisionParserOutput(
+					$options['known-revision-output'],
+					$options['known-revision-options'] ?? null
+				);
 			}
 		} else {
 			[ $causeAction, ] = $this->getCauseForTracing();
@@ -1228,7 +1236,7 @@ class DerivedPageDataUpdater implements LoggerAwareInterface, PreparedUpdate {
 			// NOTE: the revision is either new or current, so we can bypass audience checks.
 			$this->renderedRevision = $this->revisionRenderer->getRenderedRevision(
 				$this->revision,
-				null,
+				$options['known-revision-options'] ?? null,
 				null,
 				[
 					'use-master' => $this->usePrimary(),

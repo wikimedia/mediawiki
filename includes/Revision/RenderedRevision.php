@@ -152,9 +152,22 @@ class RenderedRevision implements SlotRenderingProvider {
 	 * @internal
 	 *
 	 * @param ParserOutput $output
+	 * @param ?ParserOptions $options
 	 */
-	public function setRevisionParserOutput( ParserOutput $output ) {
+	public function setRevisionParserOutput(
+		ParserOutput $output, ?ParserOptions $options = null
+	) {
 		$this->revisionOutput = $output;
+
+		if ( $options ) {
+			$this->options = $options;
+		} elseif ( $this->revision->getMainContentModel() === CONTENT_MODEL_WIKITEXT ) {
+			Assert::invariant(
+				$this->getOptions()->getUseParsoid() ===
+					$output->getContentHolder()->isParsoidContent(),
+				'Options do not reflect Parsoid use.'
+			);
+		}
 
 		// If there is only one slot, we assume that the combined output is identical
 		// with the main slot's output. This is intended to prevent a redundant re-parse of

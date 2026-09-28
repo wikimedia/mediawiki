@@ -79,7 +79,7 @@ class RevisionRenderer implements LoggerAwareInterface {
 	 * @param Authority|null $forPerformer User for privileged access. Default is unprivileged
 	 *   (public) access, unless the 'audience' hint is set to something else RevisionRecord::RAW.
 	 * @phpcs:ignore Generic.Files.LineLength.TooLong
-	 * @param array{use-master?:bool,audience?:int,known-revision-output?:ParserOutput,causeAction?:?string,previous-output?:?ParserOutput} $hints
+	 * @param array{use-master?:bool,audience?:int,known-revision-output?:ParserOutput,known-revision-options?:ParserOptions,causeAction?:?string,previous-output?:?ParserOutput} $hints
 	 *   Hints given as an associative array. Known keys:
 	 *   - 'use-master' Use primary DB when rendering for the parser cache during save.
 	 *     Default is to use a replica.
@@ -91,6 +91,7 @@ class RevisionRenderer implements LoggerAwareInterface {
 	 *     matched the $rev and $options. This mechanism is intended as a temporary stop-gap,
 	 *     for the time until caches have been changed to store RenderedRevision states instead
 	 *     of ParserOutput objects.
+	 *   - 'known-revision-options' ParserOptions object associated with the known-revision-output
 	 *   - 'previous-output' A previously-rendered ParserOutput for this page. This
 	 *     can be used by Parsoid for selective updates.
 	 *   - 'causeAction' the reason for rendering. This should be informative, for used for
@@ -125,6 +126,16 @@ class RevisionRenderer implements LoggerAwareInterface {
 			$options = $forPerformer ?
 				ParserOptions::newFromUser( $forPerformer->getUser() ) :
 				ParserOptions::newFromAnon();
+
+			// If we've asked for canonical options and are passing Parsoid content,
+			// ensure our options reflect that.  RefreshLinksJob sets a
+			// 'known-revision-output' with Parsoid content when UseParsoidLinksUpdate
+			// may differ from the canonical choice.
+			if ( isset( $hints['known-revision-output'] ) ) {
+				$options->setUseParsoid(
+					$hints['known-revision-output']->getContentHolder()->isParsoidContent()
+				);
+			}
 		}
 
 		if ( isset( $hints['causeAction'] ) ) {
@@ -167,7 +178,12 @@ class RevisionRenderer implements LoggerAwareInterface {
 		$renderedRevision->setSaveParseLogger( $this->saveParseLogger );
 
 		if ( isset( $hints['known-revision-output'] ) ) {
-			$renderedRevision->setRevisionParserOutput( $hints['known-revision-output'] );
+			$renderedRevision->setRevisionParserOutput(
+				$hints['known-revision-output'],
+				// $hints['known-revision-options'] should ideally have been
+				// used as $options when calling getRenderedRevision
+				null
+			);
 		}
 
 		return $renderedRevision;
