@@ -592,7 +592,9 @@ class RefreshLinksJob extends Job {
 	): bool {
 		// As long as the cache rev ID matches the latest rev ID and it reflects
 		// the job's triggering change, then it is usable.
-		return $cachedOutput->getCacheRevisionId() == $currentRevision->getId()
+		// Without a root job timestamp, there is no way to tell the latter.
+		return isset( $this->params['rootJobTimestamp'] )
+			&& $cachedOutput->getCacheRevisionId() == $currentRevision->getId()
 			&& $cachedOutput->getCacheTime() >= $this->getLagAwareRootTimestamp();
 	}
 

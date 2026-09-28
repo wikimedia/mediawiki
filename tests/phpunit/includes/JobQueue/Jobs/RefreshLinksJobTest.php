@@ -6,6 +6,7 @@ use MediaWiki\Content\Content;
 use MediaWiki\Content\JavaScriptContent;
 use MediaWiki\Content\WikitextContent;
 use MediaWiki\JobQueue\Jobs\RefreshLinksJob;
+use MediaWiki\MainConfigNames;
 use MediaWiki\Page\PageAssertionException;
 use MediaWiki\Page\WikiPage;
 use MediaWiki\Title\Title;
@@ -152,6 +153,36 @@ class RefreshLinksJobTest extends MediaWikiIntegrationTestCase {
 
 		$this->assertTrue( $result );
 		$this->assertSame( 1, $cacheOpsCounter->getSampleCount() );
+	}
+
+	/**
+	 * Mimics Wikibase's ChangeDispatchTest.js with DiscussionTools loaded (T439393).
+	 * @see swh:1:cnt:5deeb40d7d31816e400d108724bcab3eaab83561
+	 */
+	public function testCachedParsoidOutputIgnoredWithoutRootJobTimestamp() {
+		$this->overrideConfigValues( [
+			MainConfigNames::UseParsoidLinksUpdate => true,
+			MainConfigNames::ParserCacheType => CACHE_HASH,
+		] );
+		$page = $this->createPage( __METHOD__, [ 'main' => new WikitextContent( '[[Kittens]]' ) ] );
+
+		$getParserOptions = new ReflectionMethod( 'RefreshLinksJob', 'getParserOptions' );
+		$parserOptions = $getParserOptions->invoke( null, $page );
+		$parserOutputAccess = $this->getServiceContainer()->getParserOutputAccess();
+		$staleOutput = $parserOutputAccess->getParserOutput( $page, $parserOptions )->getValue();
+		$staleOutput->addLink( Title::makeTitle( NS_MAIN, 'Stale' ) );
+		$parserOutputAccess->getPrimaryCache( $parserOptions )
+			->save( $staleOutput, $page, $parserOptions );
+
+		$job = new RefreshLinksJob( $page->getTitle(), [] );
+		$this->assertTrue( $job->run() );
+
+		$this->newSelectQueryBuilder()
+			->select( 'lt_title' )
+			->from( 'pagelinks' )
+			->join( 'linktarget', null, 'pl_target_id=lt_id' )
+			->where( [ 'pl_from' => $page->getId() ] )
+			->assertFieldValue( 'Kittens' );
 	}
 
 	public function testRunForMultiPage() {
