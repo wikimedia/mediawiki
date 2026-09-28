@@ -60,6 +60,8 @@ class GenericActionHandlerTest extends MediaWikiIntegrationTestCase {
 	 *   - request: RequestInterface to initialize with (default null).
 	 *   - config: handler config, e.g. [ 'method' => ..., 'path' => ... ] (default []).
 	 *   - session: Session to initialize with (default null).
+	 *   - adapterConfig: the route's adapter spec, e.g. a 'suppressedParams'
+	 *     list (default []).
 	 */
 	private function newHandler( array $options = [] ): GenericActionHandler {
 		$options += [
@@ -71,6 +73,7 @@ class GenericActionHandlerTest extends MediaWikiIntegrationTestCase {
 			'request' => null,
 			'config' => [],
 			'session' => null,
+			'adapterConfig' => [],
 		];
 
 		$module = $options['module'] ?? $this->getDummyApiModule(
@@ -84,7 +87,7 @@ class GenericActionHandlerTest extends MediaWikiIntegrationTestCase {
 			$this->apiMain, $module->getModuleName(), 'action', $module
 		);
 
-		$handler = new GenericActionHandler( $module->getModuleName() );
+		$handler = new GenericActionHandler( $module->getModuleName(), $options['adapterConfig'] );
 		$handler->setApiMain( $this->apiMain );
 
 		if ( $options['init'] ) {
@@ -230,7 +233,14 @@ class GenericActionHandlerTest extends MediaWikiIntegrationTestCase {
 
 		$request = new RequestData( [
 			'method' => 'POST',
-			'queryParams' => [ 'from' => 'SourceOne', 'to' => 'Target', 'maxlag' => 17 ],
+			'queryParams' => [
+				'from' => 'SourceOne',
+				'to' => 'Target',
+				// maxlag is an ApiMain param the adapter deliberately allows
+				// through; requestid is one it suppresses.
+				'maxlag' => 17,
+				'requestid' => 'abc',
+			],
 			'parsedBody' => [ 'from' => 'SourceTwo', 'extra' => 123 ],
 		] );
 
@@ -248,7 +258,8 @@ class GenericActionHandlerTest extends MediaWikiIntegrationTestCase {
 		$mainParams = $data['MAIN_PARAMETERS'];
 
 		// test filtered parameters
-		$this->assertNull( $mainParams['maxlag'], 'ApiMain parameter should be suppressed' );
+		$this->assertSame( 17, $mainParams['maxlag'], 'Allowed ApiMain parameter should reach ApiMain' );
+		$this->assertNull( $mainParams['requestid'], 'Suppressed ApiMain parameter should be dropped' );
 		$this->assertSame( 'fakeaction', $mainParams['action'] );
 		$this->assertSame( 'json', $mainParams['format'] );
 		$this->assertSame( 'plaintext', $mainParams['errorformat'] );
@@ -366,14 +377,17 @@ class GenericActionHandlerTest extends MediaWikiIntegrationTestCase {
 			'parsedBody' => [
 				'to' => 'YY', // should overrid query param
 				'reason' => 'test', // should be set
-				'maxlag' => '123', // should be stripped
-				'format' => 'xml'   // should get forced to 'json'
+				'maxlag' => '123', // allowed ApiMain param, should be passed through
+				'requestid' => 'abc', // suppressed ApiMain param, should be stripped
+				'format' => 'xml'   // suppressed; ActionModuleBasedHandler forces 'json'
 			],
 		] );
 
 		$params = $handler->getActionModuleParameters();
 
-		$this->assertArrayNotHasKey( 'maxlag', $params, 'maxlag should have been stripped' );
+		$this->assertSame( '123', $params['maxlag'], 'Allowed ApiMain param should be passed through' );
+		$this->assertArrayNotHasKey( 'requestid', $params, 'Suppressed ApiMain param should be stripped' );
+		$this->assertArrayNotHasKey( 'format', $params, 'Suppressed ApiMain param should be stripped' );
 		$this->assertSame( 'test', $params['reason'], 'Body param should be used' );
 		$this->assertSame( 'YY', $params['to'], 'Body param should win over query param' );
 		$this->assertSame( 'X', $params['from'], 'Query param should be used when absent from body' );
@@ -807,5 +821,123 @@ class GenericActionHandlerTest extends MediaWikiIntegrationTestCase {
 			$expectedSchema,
 			$spec['responses']['200']['content']['application/json']['schema']
 		);
+	}
+
+	/**
+	 * The suppression list is a denylist, so a misspelt or stale entry
+	 * suppresses nothing and the leak only surfaces in a generated OpenAPI
+	 * spec. Check it against the parameters ApiMain actually declares.
+	 */
+	public function testSuppressedActionParamsAreWellFormed() {
+		$suppressed = GenericActionHandler::SUPPRESSED_ACTION_PARAMS;
+
+		$this->assertSame(
+			$suppressed,
+			array_unique( $suppressed ),
+			'Suppression list must not contain duplicates'
+		);
+
+		$this->assertSame(
+			[],
+			array_diff( $suppressed, array_keys( $this->apiMain->getFinalParams() ) ),
+			'Every suppressed name must be a parameter ApiMain actually declares'
+		);
+	}
+
+	/**
+	 * An adapter endpoint exposes the wrapped module's own parameters plus the
+	 * ApiMain parameters that are not suppressed. The exact set is pinned so
+	 * that a newly added ApiMain parameter fails here, forcing a deliberate
+	 * decision about whether it belongs in a REST endpoint.
+	 */
+	public function testGetActionModuleParamSpecs() {
+		$handler = $this->newHandler( [ 'module' => $this->newHybridModule() ] );
+
+		$specs = TestingAccessWrapper::newFromObject( $handler )
+			->getActionModuleParamSpecs();
+
+		$expected = [
+			// declared by the fake action module
+			'from', 'fromid', 'to', 'reason', 'movetalk', 'redirect', 'tags',
+			// ApiMain parameters deliberately left available to REST clients.
+			// New parameters need to be added either here or to
+			// GenericActionHandler::SUPPRESSED_ACTION_PARAMS.
+			'maxlag', 'smaxage', 'maxage', 'assert', 'assertuser',
+			'origin', 'crossorigin', 'uselang', 'variant',
+		];
+
+		$actual = array_keys( $specs );
+		sort( $expected );
+		sort( $actual );
+
+		$this->assertSame( $expected, $actual );
+	}
+
+	public static function provideDeclaredParamSources() {
+		// A route whose method takes no request body declares its parameters
+		// as query parameters, via getParamSettings()...
+		yield 'GET route declares query parameters' => [ 'GET', 'query' ];
+		// ...one that does declares them as body parameters instead, via
+		// getBodyParamSettings(). Both have to honour the suppression list.
+		yield 'POST route declares body parameters' => [ 'POST', 'body' ];
+	}
+
+	/**
+	 * The suppressedParams list comes from the route's adapter spec, so it has
+	 * to be reflected in the parameters the endpoint declares, not just applied
+	 * internally.
+	 *
+	 * @dataProvider provideDeclaredParamSources
+	 */
+	public function testSuppressedParamIsNotDeclared( string $method, string $expectedSource ) {
+		$handler = $this->newHandler( [
+			'module' => $this->newHybridModule(),
+			'init' => true,
+			'config' => [ 'method' => $method ],
+			'adapterConfig' => [
+				GenericActionHandler::SUPPRESSED_PARAMS_KEY => [ 'movetalk' ],
+			],
+		] );
+
+		// The two declaration methods are complementary: whichever one carries
+		// the module's parameters for this route, the suppression must apply.
+		$declared = $handler->getParamSettings() + $handler->getBodyParamSettings();
+
+		$this->assertArrayNotHasKey(
+			'movetalk', $declared, 'Suppressed parameter must not be declared'
+		);
+
+		// The essential assertion for the POST case: the module's remaining
+		// parameters are still declared, as body parameters, rather than being
+		// lost along with the query parameters getParamSettings() omits for
+		// methods that take a body.
+		$this->assertArrayHasKey( 'from', $declared );
+		$this->assertSame( $expectedSource, $declared['from'][Handler::PARAM_SOURCE] );
+	}
+
+	/**
+	 * Suppressing a parameter has to be enforced, not just undocumented: a
+	 * client that supplies it anyway must not reach the action module with it.
+	 * Declaration and enforcement read the same spec map today, but they are
+	 * separate contracts (compare the T436749 TODO in
+	 * getActionModuleParameters()).
+	 */
+	public function testSuppressedParamIsNotForwarded() {
+		$handler = $this->newHandler( [
+			'module' => $this->newHybridModule( actionName: 'fakeaction' ),
+			'adapterConfig' => [
+				GenericActionHandler::SUPPRESSED_PARAMS_KEY => [ 'movetalk' ],
+			],
+		] );
+		$request = new RequestData( [
+			'method' => 'POST',
+			// 'to' is required by the fake action module.
+			'parsedBody' => [ 'to' => 'B', 'movetalk' => true ],
+		] );
+
+		$data = $this->executeHandlerAndGetBodyData( $handler, $request );
+
+		// movetalk defaults to false; the client's true must have been dropped.
+		$this->assertFalse( $data['PARAMETERS']['movetalk'] );
 	}
 }

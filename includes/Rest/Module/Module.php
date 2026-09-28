@@ -482,7 +482,7 @@ abstract class Module {
 
 		switch ( $require( 'type' ) ) {
 			case 'action':
-				return new GenericActionHandler( $require( 'action' ) );
+				return new GenericActionHandler( $require( 'action' ), $adapterSpec );
 			default:
 				throw new ModuleConfigurationException(
 					"unknown adapter type '{$adapterSpec['type']}'"

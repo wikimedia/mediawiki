@@ -20,8 +20,54 @@ use Wikimedia\ParamValidator\TypeDef\BinaryBooleanDef;
  */
 class GenericActionHandler extends ActionModuleBasedHandler {
 
+	/**
+	 * Names of common action API parameters that should not be supported
+	 * when exposing an endpoint via the REST framework.
+	 */
+	public const SUPPRESSED_ACTION_PARAMS = [
+		// the action is dictated by the endpoint, it cannot be supplied by the client
+		'action',
+
+		// the format and language are dictated by the REST framework
+		'format',
+		'errorformat',
+		'errorlang',
+		'errorsuselocal',
+
+		// This is a client-controlled requestid (not x-request-id!).
+		// The REST response has no room for it.
+		// Could be supported by the REST framework / middleware as a header.
+		'requestid',
+
+		// servedby and curtimestamp have no room in a resources response.
+		// They could be added as tracing data by the ErrorFormatter,
+		// or by the REST framework / middleware as headers.
+		'servedby',
+		'curtimestamp',
+
+		// responselanginfo doesn't have a place in a REST response.
+		'responselanginfo',
+
+		// We allow assert and assertuser for now, but ideally they would
+		// be replaced by headers handled by the REST framework / middleware.
+		// Same for maxlag, smaxage, and maxage: we should support them for
+		// all APIs, or not at all.
+		// Same also for origin and crossorigin for CORS support.
+
+		// We allow uselang and variant, but they should arguably be
+		// per-endpoint params, since their exact interpretation and impact
+		// depends a lot on what's actually being done.
+	];
+
+	/**
+	 * Corresponds to the property declared in the AdapterSpec fragment
+	 * in mwapi-1.2.json.
+	 */
+	public const SUPPRESSED_PARAMS_KEY = 'suppressedParams';
+
 	public function __construct(
-		protected string $actionName
+		protected readonly string $actionName,
+		protected readonly array $adapterConfig = [],
 	) {
 	}
 
@@ -94,7 +140,8 @@ class GenericActionHandler extends ActionModuleBasedHandler {
 			+ $this->getRequest()->getPathParams()
 			+ $this->getRequest()->getQueryParams();
 
-		// TODO: Fail if the client tries to set unsupported params, don't just ignore them (T436749)!
+		// TODO: Fail if the client tries to set unsupported params,
+		// don't just ignore them (T436749)!
 		// This doesn't happen automatically, since we are overriding
 		// validate() to do nothing, leaving validation to ApiMain.
 
@@ -178,15 +225,19 @@ class GenericActionHandler extends ActionModuleBasedHandler {
 	 * @return array[]
 	 */
 	protected function getActionModuleParamSpecs(): array {
-		// TODO: Check if we need to allow certain headers from
-		// ApiMain or extensions (T436749).
-		// The token parameter is already handled (and doesn't come from ApiMain).
-		// And centralauthtoken is handled by the AuthenticationProvider.
+		$paramSpecs = $this->getApiActionModule()->getFinalParams()
+			+ $this->getApiMain()->getFinalParams();
 
-		return $this->getApiActionModule()->getFinalParams();
+		$suppressedParams = $this->adapterConfig[ self::SUPPRESSED_PARAMS_KEY ] ?? [];
 
-		// TODO: allow individual parameters to be suppressed, e.g. list=backlinks
-		// should take bltitle fomr the path and disallow blpageid.
+		// Suppress parameters that do not apply to the REST API
+		$paramSpecs = array_diff_key(
+			$paramSpecs,
+			array_flip( self::SUPPRESSED_ACTION_PARAMS ),
+			array_flip( $suppressedParams )
+		);
+
+		return $paramSpecs;
 	}
 
 	/**

@@ -135,7 +135,14 @@
 			"type": "object",
 			"description": "An adapter spec for adapters supported by Module (tagged union).",
 			"properties": {
-				"type": { "type": "string" }
+				"type": { "type": "string" },
+				"suppressedParams": {
+					"type": "array",
+					"items": {
+						"type": "string"
+					},
+					"description": "Any parameters that should not be exposed in the REST API."
+				}
 			},
 			"required": [ "type" ],
 			"additionalProperties": true

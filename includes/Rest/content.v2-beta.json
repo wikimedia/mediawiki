@@ -64,7 +64,8 @@
 				"handler": {
 					"adapter": {
 						"type": "action",
-						"action": "move"
+						"action": "move",
+						"suppressedParams": [ "fromid" ]
 					}
 				}
 			}
