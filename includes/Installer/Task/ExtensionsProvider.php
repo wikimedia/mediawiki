@@ -23,12 +23,11 @@ class ExtensionsProvider extends Task {
 
 	/** @inheritDoc */
 	public function getProvidedNames() {
-		return [ 'HookContainer', 'VirtualDomains', 'ExtensionTaskSpecs' ];
+		return [ 'HookContainer', 'ExtensionTaskSpecs' ];
 	}
 
 	public function execute(): Status {
 		if ( !$this->getOption( 'Extensions' ) ) {
-			$this->getContext()->provide( 'VirtualDomains', [] );
 			$this->getContext()->provide( 'ExtensionTaskSpecs', [] );
 			return Status::newGood();
 		}
@@ -56,8 +55,6 @@ class ExtensionsProvider extends Task {
 				MediaWikiServices::getInstance()->getObjectFactory()
 			)
 		);
-		$this->getContext()->provide( 'VirtualDomains',
-			$data['attributes']['DatabaseVirtualDomains'] ?? [] );
 		$this->getContext()->provide( 'ExtensionTaskSpecs',
 			$data['attributes']['InstallerTasks'] ?? [] );
 

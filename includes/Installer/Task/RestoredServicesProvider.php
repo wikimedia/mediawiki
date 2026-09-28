@@ -21,7 +21,7 @@ class RestoredServicesProvider extends Task {
 
 	/** @inheritDoc */
 	public function getDependencies() {
-		return [ 'tables', 'VirtualDomains' ];
+		return [ 'tables' ];
 	}
 
 	/** @inheritDoc */

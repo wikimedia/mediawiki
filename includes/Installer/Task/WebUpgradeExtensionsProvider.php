@@ -30,7 +30,7 @@ class WebUpgradeExtensionsProvider extends Task {
 
 	/** @inheritDoc */
 	public function getProvidedNames() {
-		return [ 'HookContainer', 'VirtualDomains', 'ExtensionTaskSpecs' ];
+		return [ 'HookContainer', 'ExtensionTaskSpecs' ];
 	}
 
 	public function execute(): Status {
@@ -82,8 +82,6 @@ class WebUpgradeExtensionsProvider extends Task {
 				MediaWikiServices::getInstance()->getObjectFactory()
 			)
 		);
-		$this->getContext()->provide( 'VirtualDomains',
-			$extInfo['attributes']['DatabaseVirtualDomains'] ?? [] );
 
 		$this->getContext()->provide( 'ExtensionTaskSpecs', [] );
 		return Status::newGood();
