@@ -114,6 +114,13 @@
 				}
 			}
 		},
+		"/EntryPoint/cookies": {
+			"get": {
+				"handler": {
+					"factory": "MediaWiki\\Tests\\Rest\\EntryPointTest::mockHandlerCookies"
+				}
+			}
+		},
 		"/RouterTest/throw": {
 			"get": {
 				"handler": {

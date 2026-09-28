@@ -210,7 +210,7 @@ class EntryPoint extends MediaWikiEntryPoint {
 			$webResponse->setCookie(
 				$cookie['name'],
 				$cookie['value'],
-				$cookie['expiry'],
+				$cookie['expire'],
 				$cookie['options']
 			);
 		}
