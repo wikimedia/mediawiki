@@ -13,6 +13,7 @@ use MediaWiki\Maintenance\Maintenance;
 use MediaWiki\Title\Title;
 use Wikimedia\Diff\Diff;
 use Wikimedia\Diff\UnifiedDiffFormatter;
+use Wikimedia\Timestamp\ConvertibleTimestamp;
 
 /**
  * @ingroup Maintenance
@@ -70,11 +71,11 @@ class CompareParserCache extends Maintenance {
 			$parserOutputOld = $parserOutputAccess->getCachedParserOutput( $page, $parserOptions );
 
 			if ( $parserOutputOld ) {
-				$t1 = microtime( true );
+				$t1 = ConvertibleTimestamp::hrtime();
 				$parserOutputNew = $renderer->getRenderedRevision( $revision, $parserOptions )
 					->getRevisionParserOutput();
 
-				$sec = microtime( true ) - $t1;
+				$sec = ( ConvertibleTimestamp::hrtime() - $t1 ) / 1e9;
 				$totalsec += $sec;
 
 				$this->output( "Parsed '{$title->getPrefixedText()}' in $sec seconds.\n" );

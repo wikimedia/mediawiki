@@ -16,6 +16,7 @@ use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Maintenance\Maintenance;
 use MediaWiki\Permissions\UltimateAuthority;
 use MediaWiki\User\User;
+use Wikimedia\Timestamp\ConvertibleTimestamp;
 
 // @codeCoverageIgnoreStart
 require_once __DIR__ . '/Maintenance.php';
@@ -245,7 +246,7 @@ TEXT
 
 	private function showReport() {
 		if ( !$this->mQuiet ) {
-			$delta = microtime( true ) - $this->startTime;
+			$delta = ( ConvertibleTimestamp::hrtime() - $this->startTime ) / 1e9;
 			if ( $delta ) {
 				$rate = sprintf( "%.2f", $this->pageCount / $delta );
 				$revrate = sprintf( "%.2f", $this->revCount / $delta );
@@ -297,7 +298,7 @@ TEXT
 	 * @param resource $handle
 	 */
 	private function importFromHandle( $handle ): bool {
-		$this->startTime = microtime( true );
+		$this->startTime = ConvertibleTimestamp::hrtime();
 
 		$user = User::newSystemUser( User::MAINTENANCE_SCRIPT_USER, [ 'steal' => true ] );
 

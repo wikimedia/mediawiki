@@ -13,6 +13,7 @@ use MediaWiki\Password\ParameterizedPassword;
 use MediaWiki\User\User;
 use Wikimedia\Rdbms\IExpression;
 use Wikimedia\Rdbms\LikeValue;
+use Wikimedia\Timestamp\ConvertibleTimestamp;
 
 // @codeCoverageIgnoreStart
 require_once __DIR__ . '/Maintenance.php';
@@ -69,7 +70,7 @@ class WrapOldPasswords extends Maintenance {
 				$this->beginTransactionRound( __METHOD__ );
 			}
 
-			$start = microtime( true );
+			$start = ConvertibleTimestamp::hrtime();
 			$res = $dbw->newSelectQueryBuilder()
 				->select( [ 'user_id', 'user_name', 'user_password' ] )
 				->lockInShareMode()
@@ -136,7 +137,7 @@ class WrapOldPasswords extends Maintenance {
 			}
 
 			$this->output( "Last id processed: $minUserId; Actually updated: $count...\n" );
-			$delta = microtime( true ) - $start;
+			$delta = ( ConvertibleTimestamp::hrtime() - $start ) / 1e9;
 			$this->output( sprintf(
 				"%4d passwords wrapped in %6.2fms (%6.2fms each)\n",
 				$res->numRows(),

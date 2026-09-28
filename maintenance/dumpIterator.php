@@ -23,6 +23,7 @@ use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Settings\SettingsBuilder;
 use MediaWiki\Title\Title;
 use MediaWiki\User\User;
+use Wikimedia\Timestamp\ConvertibleTimestamp;
 
 // @codeCoverageIgnoreStart
 require_once __DIR__ . '/Maintenance.php';
@@ -71,7 +72,7 @@ abstract class DumpIterator extends Maintenance {
 			return;
 		}
 
-		$this->startTime = microtime( true );
+		$this->startTime = ConvertibleTimestamp::hrtime();
 
 		if ( $this->getOption( 'dump' ) == '-' ) {
 			$source = new ImportStreamSource( $this->getStdin() );
@@ -98,7 +99,7 @@ abstract class DumpIterator extends Maintenance {
 
 		$this->conclusions();
 
-		$delta = microtime( true ) - $this->startTime;
+		$delta = ( ConvertibleTimestamp::hrtime() - $this->startTime ) / 1e9;
 		$this->error( "Done {$this->count} revisions in " . round( $delta, 2 ) . " seconds " );
 		if ( $delta > 0 ) {
 			$this->error( round( $this->count / $delta, 2 ) . " pages/sec" );

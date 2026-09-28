@@ -80,7 +80,7 @@ class PurgeParserCache extends Maintenance {
 			$this->fatalError( "Must specify either --expiredate or --age" );
 		}
 		$this->usleep = 1e3 * $this->getOption( 'msleep', 0 );
-		$this->lastTimestamp = microtime( true );
+		$this->lastTimestamp = ConvertibleTimestamp::hrtime();
 
 		$humanDate = ConvertibleTimestamp::convert( TS::RFC2822, $timestamp );
 		if ( $this->hasOption( 'dry-run' ) ) {
@@ -134,8 +134,8 @@ class PurgeParserCache extends Maintenance {
 			// and on how many table rows there are.
 			return;
 		}
-		$now = microtime( true );
-		$sec = sprintf( "%.1f", $now - $this->lastTimestamp );
+		$now = ConvertibleTimestamp::hrtime();
+		$sec = sprintf( "%.1f", ( $now - $this->lastTimestamp ) / 1e9 );
 
 		// Give a sense of how much time is spent in the delete operations vs the sleep time,
 		// by recording the number of iterations we've completed since the last progress update.

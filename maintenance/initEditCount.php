@@ -16,6 +16,7 @@ use MediaWiki\Maintenance\Maintenance;
 use MediaWiki\WikiMap\WikiMap;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\RawSQLValue;
+use Wikimedia\Timestamp\ConvertibleTimestamp;
 
 class InitEditCount extends Maintenance {
 	public function __construct() {
@@ -51,7 +52,7 @@ class InitEditCount extends Maintenance {
 				->from( 'user' )
 				->caller( __METHOD__ )->fetchField();
 
-			$start = microtime( true );
+			$start = ConvertibleTimestamp::hrtime();
 			$migrated = 0;
 			for ( $min = 0; $min <= $lastUser; $min += $chunkSize ) {
 				$max = $min + $chunkSize;
@@ -74,7 +75,7 @@ class InitEditCount extends Maintenance {
 					++$migrated;
 				}
 
-				$delta = microtime( true ) - $start;
+				$delta = ( ConvertibleTimestamp::hrtime() - $start ) / 1e9;
 				$rate = ( $delta == 0.0 ) ? 0.0 : $migrated / $delta;
 				$this->output( sprintf( "%s %d (%0.1f%%) done in %0.1f secs (%0.3f accounts/sec).\n",
 					WikiMap::getCurrentWikiDbDomain()->getId(),

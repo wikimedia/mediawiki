@@ -28,6 +28,7 @@ use MediaWiki\Maintenance\Maintenance;
 use MediaWiki\Settings\SettingsBuilder;
 use MediaWiki\WikiMap\WikiMap;
 use Wikimedia\Rdbms\DatabaseSqlite;
+use Wikimedia\Timestamp\ConvertibleTimestamp;
 
 /**
  * Maintenance script to run database schema updates.
@@ -161,7 +162,7 @@ class UpdateMediaWiki extends Maintenance {
 			$this->countDown( 5 );
 		}
 
-		$time1 = microtime( true );
+		$time1 = ConvertibleTimestamp::hrtime();
 
 		$shared = $this->hasOption( 'doshared' );
 
@@ -216,9 +217,9 @@ class UpdateMediaWiki extends Maintenance {
 
 		$updater->purgeCache();
 
-		$time2 = microtime( true );
+		$time2 = ConvertibleTimestamp::hrtime();
 
-		$timeDiff = $lang->formatTimePeriod( $time2 - $time1 );
+		$timeDiff = $lang->formatTimePeriod( ( $time2 - $time1 ) / 1e9 );
 		$this->output( "\nDone in $timeDiff.\n" );
 	}
 

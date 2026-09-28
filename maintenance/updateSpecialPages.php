@@ -16,6 +16,7 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\Maintenance\Maintenance;
 use MediaWiki\SpecialPage\QueryPage;
 use Wikimedia\Rdbms\IDatabase;
+use Wikimedia\Timestamp\ConvertibleTimestamp;
 
 /**
  * Maintenance script to update cached special pages.
@@ -73,15 +74,15 @@ class UpdateSpecialPages extends Maintenance {
 			if ( !$this->hasOption( 'only' ) || $this->getOption( 'only' ) === $queryPage->getName() ) {
 				$this->output( sprintf( '%-30s [QueryPage] ', $special ) );
 				if ( $queryPage->isExpensive() ) {
-					$t1 = microtime( true );
+					$t1 = ConvertibleTimestamp::hrtime();
 					# Do the query
 					$num = $queryPage->recache( $limit );
-					$t2 = microtime( true );
+					$t2 = ConvertibleTimestamp::hrtime();
 					if ( $num === false ) {
 						$this->output( "FAILED: database error\n" );
 					} else {
 						$this->output( "got $num rows in " );
-						$this->outputElapsedTime( $t2 - $t1 );
+						$this->outputElapsedTime( ( $t2 - $t1 ) / 1e9 );
 					}
 					# Reopen any connections that have closed
 					$this->reopenAndWaitForReplicas();
@@ -142,12 +143,12 @@ class UpdateSpecialPages extends Maintenance {
 					$this->error( "Uncallable function $call!" );
 					continue;
 				}
-				$t1 = microtime( true );
+				$t1 = ConvertibleTimestamp::hrtime();
 				$call( $dbw );
-				$t2 = microtime( true );
+				$t2 = ConvertibleTimestamp::hrtime();
 
 				$this->output( "completed in " );
-				$this->outputElapsedTime( $t2 - $t1 );
+				$this->outputElapsedTime( ( $t2 - $t1 ) / 1e9 );
 
 				# Wait for the replica DB to catch up
 				$this->reopenAndWaitForReplicas();
