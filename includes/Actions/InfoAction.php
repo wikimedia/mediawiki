@@ -247,9 +247,8 @@ class InfoAction extends FormlessAction {
 				'tr',
 				[
 					'id' => $id === null ? null : 'mw-' . $id,
-					'style' => 'vertical-align: top;',
 				],
-				Html::rawElement( 'td', [], $name ) .
+				Html::rawElement( 'th', [ 'scope' => 'row' ], $name ) .
 					Html::rawElement( 'td', [], $value )
 			);
 	}

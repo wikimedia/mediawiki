@@ -49,11 +49,24 @@ p.mw-delete-editreasons {
 .action-info .mw-templatesUsedExplanation {
 	display: none;
 }
+/*
+ * action=info
+ * Style table rows
+ */
+.action-info .mw-page-info tr {
+	vertical-align: top;
+}
+
+.action-info .mw-page-info th[ scope='row' ] {
+	font-weight: normal;
+	text-align: left;
+}
 
 /*
  * action=info, highlight targeted elements
  * See also InfoAction::addRow
  */
-.action-info .mw-page-info tr:target {
+.action-info .mw-page-info tr:target,
+.action-info .mw-page-info tr:target > th {
 	background-color: rgba( 0, 127, 255, 0.133 );
 }
