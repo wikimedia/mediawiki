@@ -386,6 +386,7 @@ if ( !$wgVirtualDomainsMapping ) {
 }
 if ( $wgBotPasswordsCluster ) {
 	$wgVirtualDomainsMapping['virtual-botpasswords']['cluster'] = $wgBotPasswordsCluster;
+	$wgVirtualDomainsMapping['virtual-botpasswords']['db'] ??= false;
 }
 
 if ( $wgBotPasswordsDatabase ) {

@@ -3379,6 +3379,8 @@ class MainConfigSchema {
 	 * If you want to get another db in the main cluster, just omit 'cluster'. For example:
 	 *  [ 'virtual-centralauth' => [ 'db' => 'centralauth' ] ]
 	 *
+	 * The db key is mandatory, the cluster key is optional. See ILBFactory documentation.
+	 *
 	 * @since 1.41
 	 */
 	public const VirtualDomainsMapping = [
