@@ -47,6 +47,7 @@
 	"rest-sandbox-server-production": "(Produzione)",
 	"rest-sandbox-server-sandbox": "(Sandbox)",
 	"rest-module-content.v1-title": "API di contenuti",
+	"rest-module-content.v2-title": "API di contenuti",
 	"rest-module-site.v1-title": "API del sito",
 	"rest-param-desc-revision-id": "Identificativo versione",
 	"rest-param-desc-compare-from-id": "Identificativo versione",

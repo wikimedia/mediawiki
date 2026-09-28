@@ -388,6 +388,8 @@
 	"userlogin-reauth-description-link": "batalkan tindakan ini",
 	"userlogin-reauth-banner-editsitejscss": "<strong>Anda menerbitkan JavaScript atau CSS tapak</strong><br> Perubahan pada laman ini akan menjejaskan semua pelawat. Sahkan bahawa anda benar-benar ialah anda untuk meneruskan.",
 	"userlogin-reauth-banner-editsitejscss-delete": "<strong>Anda akan menghapuskan sebuah laman yang mengandungi JavaScript atau CSS rentas tapak web. Hal ini akan mengganggu kesemua pelawat di wiki ini.</strong>",
+	"userlogin-reauth-banner-editsitejscss-changecontentmodel": "<strong>Anda akan melakukan perubahan terhadap laman yang mengandungi JavaScript atau CSS rentas tapak web. Hal ini akan mengganggu kesemua pelawat di wiki ini.</strong>",
+	"userlogin-reauth-banner-editsitejscss-undelete": "<strong>Anda akan menyahhapuskan sebuah laman yang mengandungi JavaScript atau CSS rentas tapak web. Hal ini akan mengganggu kesemua pelawat di wiki ini.</strong>",
 	"userlogin-reauth-banner-edituserjscss": "<strong>Anda sedang menerbitkan JavaScript atau CSS pengguna</strong><br> Sahkan yang anda benar-benar ialah anda untuk meneruskan.",
 	"userlogin-reauth-banner-ChangeEmail": "<strong>Anda sedang menukar e-mel anda</strong><br> Sahkan yang anda benar-benar ialah anda untuk meneruskan.",
 	"userlogin-reauth-banner-generic": "<strong>Anda akan melakukan tindakan sensitif berikut: $1</strong><br> Sahkan yang anda benar-benar ialah anda untuk meneruskan.",
