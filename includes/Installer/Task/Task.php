@@ -304,16 +304,6 @@ abstract class Task {
 		return $this->getContext()->getProvision( 'HookContainer' );
 	}
 
-	/*
-	 * Get the array of database virtual domains declared in extensions.
-	 * Subclasses that want to call this must declare a dependency on
-	 * "VirtualDomains".
-	 */
-	public function getVirtualDomains(): array {
-		$this->assertDependsOn( 'VirtualDomains' );
-		return $this->getContext()->getProvision( 'VirtualDomains' );
-	}
-
 	/**
 	 * @param string $dependency
 	 */

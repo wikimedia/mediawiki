@@ -171,7 +171,6 @@ class InstallPreConfigured extends Maintenance {
 					'extensions',
 					[
 						'HookContainer' => $this->getHookContainer(),
-						'VirtualDomains' => $reg->getAttribute( 'DatabaseVirtualDomains' ),
 						'ExtensionTaskSpecs' => $reg->getAttribute( 'InstallerTasks' ),
 					]
 				]

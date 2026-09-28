@@ -4,6 +4,7 @@ namespace MediaWiki\Installer\Task;
 
 use MediaWiki\ExternalStore\ExternalStoreDB;
 use MediaWiki\ExternalStore\ExternalStoreFactory;
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Status\Status;
 use Wikimedia\Rdbms\DatabaseDomain;
@@ -28,7 +29,7 @@ class CreateExternalDomainsTask extends Task {
 
 	/** @inheritDoc */
 	public function getDependencies() {
-		return [ 'VirtualDomains', 'services' ];
+		return [ 'services' ];
 	}
 
 	public function execute(): Status {
@@ -45,7 +46,8 @@ class CreateExternalDomainsTask extends Task {
 
 	private function createVirtualDomains(): Status {
 		$status = Status::newGood();
-		foreach ( $this->getVirtualDomains() as $virtualDomain ) {
+		$virtualDomains = array_keys( $this->getConfigVar( MainConfigNames::VirtualDomainsMapping ) );
+		foreach ( $virtualDomains as $virtualDomain ) {
 			if ( !$this->shouldDoShared()
 				&& $this->lbFactory->isSharedVirtualDomain( $virtualDomain )
 			) {
