@@ -72,16 +72,6 @@ class ModuleManager {
 	private ?array $moduleInfos = null;
 
 	/**
-	 * Map of local module IDs to their definition file basenames (without .json).
-	 * Preserved for legacy compatibility with Special:RestSandbox. Can and should
-	 * update for consistency as a dedicated extension, and remove once MediaWiki
-	 * transitions to Unified Developer Front Door.
-	 *
-	 * @var array<string,string>
-	 */
-	private array $localModuleFileBasenames = [];
-
-	/**
 	 * @internal
 	 */
 	public const CONSTRUCTOR_OPTIONS = [
@@ -279,7 +269,6 @@ class ModuleManager {
 		}
 
 		$modules = [];
-		$this->localModuleFileBasenames = [];
 
 		// Gather local modules.
 		$routeFiles = $this->getRouteFiles();
@@ -293,7 +282,6 @@ class ModuleManager {
 			}
 
 			$moduleId = $moduleDefInfo['moduleId'];
-			$this->localModuleFileBasenames[$moduleId] = basename( $file, '.json' );
 			$availability = $this->getModuleMode( $moduleId );
 			$groups = $this->resolveGroups( $moduleId, $availability, $moduleDefInfo );
 
@@ -407,8 +395,7 @@ class ModuleManager {
 				$key = 'mw-extra';
 				$url = $this->rootPath . self::ROUTE_MODULE_SPEC_PREFIX . '-';
 			} else {
-				$key = $this->localModuleFileBasenames[$info->getId()]
-					?? str_replace( '/', '.', $info->getId() );
+				$key = str_replace( '/', '.', $info->getId() );
 				$specPath = $info->getLocalDescriptionSpecPath();
 				$url = ( $specPath !== null )
 					? $this->rootPath . '/' . $info->getId() . $specPath
