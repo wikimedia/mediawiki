@@ -14,6 +14,7 @@ use Wikimedia\Message\MessageSpecifier;
  * @internal
  */
 abstract class ErrorFormatter {
+	use JsonFileLoaderTrait;
 
 	/**
 	 * @param ITextFormatter[] $textFormatters
@@ -125,5 +126,14 @@ abstract class ErrorFormatter {
 
 		return $bodyData + $extra;
 	}
+
+	/**
+	 * OpenAPI 3.0 Schema Object describing the error bodies this formatter produces.
+	 * Descriptions should be given as x-i18n-description message keys, which are
+	 * resolved when the spec is generated.
+	 *
+	 * @see ResponseFactory::getResponseComponents()
+	 */
+	abstract public function getOpenApiSchema(): array;
 
 }

@@ -6,6 +6,8 @@ use JsonSchemaAssertionTrait;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Rest\BasicAccess\StaticBasicAuthorizer;
+use MediaWiki\Rest\ErrorFormatterV1;
+use MediaWiki\Rest\ErrorFormatterV2;
 use MediaWiki\Rest\Handler;
 use MediaWiki\Rest\Handler\ModuleSpecHandler;
 use MediaWiki\Rest\LocalizedHttpException;
@@ -348,6 +350,50 @@ class ModuleSpecHandlerTest extends MediaWikiIntegrationTestCase {
 			'https://foundation.wikimedia.org/wiki/Policy:Terms_of_Use#12._API_Terms',
 			$data['info']['termsOfService']
 		);
+	}
+
+	public static function provideErrorResponseModel() {
+		$schemaVerModule = MW_INSTALL_PATH . '/tests/phpunit/unit/includes/Rest/mock-schemaver.v1.json';
+		yield 'module without errorSchemaVersion' => [
+			__DIR__ . '/SpecTestModule.json', 'mock', [], ErrorFormatterV1::class,
+		];
+		yield 'module with errorSchemaVersion 2.0' => [
+			$schemaVerModule, 'mockschemaver', [], ErrorFormatterV2::class,
+		];
+		// The spec doesn't depend on the request: RESTBase compat is not documented
+		yield 'x-restbase-compat header is ignored' => [
+			$schemaVerModule, 'mockschemaver', [ 'x-restbase-compat' => 'true' ], ErrorFormatterV2::class,
+		];
+	}
+
+	/**
+	 * GenericErrorResponseModel is the schema of the module's own error format.
+	 *
+	 * @dataProvider provideErrorResponseModel
+	 */
+	public function testErrorResponseModelFollowsErrorFormat( $specFile, $module, $headers, $formatterClass ) {
+		// Keep the generated spec independent of the local wiki's config, so it's valid OpenAPI.
+		$this->overrideConfigValues( [
+			MainConfigNames::RightsText => 'Test License',
+			MainConfigNames::RightsUrl => 'https://example.com/license',
+			MainConfigNames::CanonicalServer => 'https://example.com:1234',
+			MainConfigNames::RestPath => '/api',
+		] );
+
+		$response = $this->executeModuleSpecHandler(
+			new RequestData( [ 'pathParams' => [ 'module' => $module, 'version' => 'v1' ], 'headers' => $headers ] ),
+			$specFile,
+			[ "$module/v1" => ModuleMode::PUBLISHED ]
+		);
+		$data = json_decode( (string)$response->getBody(), true );
+
+		$this->assertWellFormedOAS( $data );
+		$expected = ( new $formatterClass( [], false, [] ) )->getOpenApiSchema();
+		$actual = $data['components']['schemas']['GenericErrorResponseModel'];
+		$this->assertSame( $expected['required'], $actual['required'] );
+		$this->assertSame( array_keys( $expected['properties'] ), array_keys( $actual['properties'] ) );
+		$this->assertArrayHasKey( 'description', $actual );
+		$this->assertStringNotContainsString( 'x-i18n-', json_encode( $data['components'] ) );
 	}
 
 	public function testGetInfoSpecOmitsTermsOfService(): void {

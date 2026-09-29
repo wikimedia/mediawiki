@@ -371,7 +371,14 @@
 	"rest-responseheader-desc-location": "Indicates a target URL for two primary purposes: redirection and identifying the location of a newly created resource.",
 	"rest-openapispec-genericerrorresponse-desc": "Generic error response. The message will provide more details about the error.",
 	"rest-openapispec-genericerrorresponse-property-desc-httpCode": "The HTTP status code of the error response.",
-	"rest-openapispec-genericerrorresponse-property-desc-httpMessage": "The HTTP status message of the error response.",
 	"rest-openapispec-genericerrorresponse-property-desc-message": "A human-readable error message, useful when no message translations are available",
-	"rest-openapispec-genericerrorresponse-property-desc-messageTranslations": "A map of language codes to human-readable error messages, for clients that can use them."
+	"rest-openapispec-genericerrorresponse-property-desc-messageTranslations": "A map of language codes to human-readable error messages, for clients that can use them.",
+	"rest-openapispec-genericerrorresponse-v2-desc": "Error response of modules using version 2.0 of the error format.",
+	"rest-openapispec-genericerrorresponse-restbasecompat-desc": "Error response in the RESTBase-compatible format, returned when the request has the header \"x-restbase-compat: true\".",
+	"rest-openapispec-genericerrorresponse-property-desc-httpReason": "The standard reason phrase of the HTTP status code, for example \"Not Found\".",
+	"rest-openapispec-genericerrorresponse-property-desc-errorKey": "The message key identifying the error. Only present for localized errors.",
+	"rest-openapispec-genericerrorresponse-property-desc-reqId": "The ID of the request. Only present for server errors; include it when reporting the error.",
+	"rest-openapispec-genericerrorresponse-property-desc-exception": "Structured details of the exception that caused the error. Only present when the wiki is configured to show exception details.",
+	"rest-openapispec-genericerrorresponse-property-desc-errorCode": "A machine-readable code identifying the error. Only present for localized errors.",
+	"rest-openapispec-genericerrorresponse-property-desc-tracing": "Diagnostic information about the request, useful when reporting the error. Always contains \"module\", and may contain \"request_id\", \"method\", \"uri\" and \"url\". The content of this object is not part of the API contract and may change at any time."
 }

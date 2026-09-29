@@ -11,6 +11,7 @@ use MediaWiki\Rest\Handler;
 use MediaWiki\Rest\Handler\GenericActionHandler;
 use MediaWiki\Rest\Hook\HookRunner;
 use MediaWiki\Rest\HttpException;
+use MediaWiki\Rest\JsonFileLoaderTrait;
 use MediaWiki\Rest\JsonLocalizer;
 use MediaWiki\Rest\LocalizedHttpException;
 use MediaWiki\Rest\PathTemplateMatcher\ModuleConfigurationException;
@@ -38,6 +39,7 @@ use Wikimedia\Timestamp\ConvertibleTimestamp;
  * @since 1.43
  */
 abstract class Module {
+	use JsonFileLoaderTrait;
 
 	/**
 	 * @internal for use in cached module data
@@ -548,39 +550,6 @@ abstract class Module {
 		$this->stats = $stats;
 
 		return $this;
-	}
-
-	/**
-	 * Loads a module specification from a file.
-	 *
-	 * This method does not know or care about the structure of the file
-	 * other than that it must be JSON and contain a list or map
-	 * (that is, a JSON array or object).
-	 *
-	 * @param string $fileName
-	 *
-	 * @internal
-	 *
-	 * @return array An associative or indexed array describing the module
-	 * @throws ModuleConfigurationException
-	 */
-	public static function loadJsonFile( string $fileName ): array {
-		$json = file_get_contents( $fileName );
-		if ( $json === false ) {
-			throw new ModuleConfigurationException(
-				"Failed to load file `$fileName`"
-			);
-		}
-
-		$spec = json_decode( $json, true );
-
-		if ( !is_array( $spec ) ) {
-			throw new ModuleConfigurationException(
-				"Failed to parse `$fileName` as a JSON object"
-			);
-		}
-
-		return $spec;
 	}
 
 	/**

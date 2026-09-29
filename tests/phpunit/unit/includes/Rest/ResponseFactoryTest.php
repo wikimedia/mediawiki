@@ -5,19 +5,26 @@ namespace MediaWiki\Tests\Rest;
 use ArrayIterator;
 use Exception;
 use InvalidArgumentException;
+use JsonSchemaAssertionTrait;
+use MediaWiki\Rest\ErrorFormatter;
 use MediaWiki\Rest\ErrorFormatterV1;
+use MediaWiki\Rest\ErrorFormatterV2;
 use MediaWiki\Rest\HttpException;
 use MediaWiki\Rest\LocalizedHttpException;
 use MediaWiki\Rest\RedirectException;
 use MediaWiki\Rest\ResponseException;
 use MediaWiki\Rest\ResponseFactory;
+use MediaWiki\Rest\Router;
 use MediaWiki\Tests\Unit\DummyServicesTrait;
 use MediaWikiUnitTestCase;
+use RuntimeException;
 use Wikimedia\Message\MessageValue;
+use Wikimedia\TestingAccessWrapper;
 
 /** @covers \MediaWiki\Rest\ResponseFactory */
 class ResponseFactoryTest extends MediaWikiUnitTestCase {
 	use DummyServicesTrait;
+	use JsonSchemaAssertionTrait;
 
 	public static function provideEncodeJson() {
 		return [
@@ -271,5 +278,90 @@ class ResponseFactoryTest extends MediaWikiUnitTestCase {
 		$ret = $rf->getFormattedMessage( $mv, 'doesnotexist' );
 		$this->assertIsString( $ret );
 		$this->assertSame( 'rftest', $ret );
+	}
+
+	public function testGetResponseComponentsDescribesTheFormatterInUse() {
+		$errorFormatter = new ErrorFormatterV2( [], false, [] );
+		$components = ( new ResponseFactory( [], $errorFormatter ) )->getResponseComponents();
+
+		$this->assertSame(
+			[ '$ref' => '#/components/schemas/GenericErrorResponseModel' ],
+			$components['responses']['GenericErrorResponse']['content']['application/json']['schema']
+		);
+		$this->assertSame(
+			[ 'GenericErrorResponseModel' => $errorFormatter->getOpenApiSchema() ],
+			$components['schemas']
+		);
+	}
+
+	public static function provideErrorBodies(): iterable {
+		$entryPoints = [
+			// "error" is supplied by the caller, as in Module::executeHandler()
+			'formatErrorBody' => static fn ( ErrorFormatter $ef ) =>
+				$ef->formatErrorBody( 403, [ 'error' => 'rest-read-denied' ] ),
+			'formatException' => static fn ( ErrorFormatter $ef ) =>
+				$ef->formatException( 500, new RuntimeException( 'boom' ) ),
+			'formatHttpException' => static fn ( ErrorFormatter $ef ) =>
+				$ef->formatHttpException( 403, new HttpException( 'denied', 403 ) ),
+			'formatLocalizedHttpException' => static fn ( ErrorFormatter $ef ) =>
+				$ef->formatLocalizedHttpException(
+					404, new LocalizedHttpException( new MessageValue( 'rest-test-key' ), 404 )
+				),
+			'formatLocalizedHttpError' => static fn ( ErrorFormatter $ef ) =>
+				$ef->formatLocalizedHttpError( 404, new MessageValue( 'rest-test-key' ) ),
+		];
+		// Every error format the Router can select
+		foreach ( TestingAccessWrapper::constant( Router::class, 'ERROR_FORMATTERS' ) as $version => $spec ) {
+			foreach ( $entryPoints as $entryPoint => $format ) {
+				yield "$version, $entryPoint" => [ $spec['class'], $format ];
+			}
+		}
+	}
+
+	/**
+	 * Each formatter's OpenAPI schema must describe what the formatter actually emits.
+	 *
+	 * @dataProvider provideErrorBodies
+	 * @covers \MediaWiki\Rest\ErrorFormatterV1
+	 * @covers \MediaWiki\Rest\ErrorFormatterV2
+	 * @covers \MediaWiki\Rest\RestbaseCompatErrorFormatter
+	 */
+	public function testErrorResponseSchemaMatchesFormatterOutput( string $formatterClass, callable $format ) {
+		$tracingData = [
+			'module' => 'mediawiki',
+			'method' => 'get',
+			'uri' => '/w/rest.php/v1/page/Foo',
+			'request_id' => '123455',
+			'url' => 'https://wiki.example.com/w/rest.php/v1/page/Foo',
+		];
+		$variants = [
+			'no text formatters' => new $formatterClass( [], false, $tracingData ),
+			'text formatter, exception details' =>
+				new $formatterClass( [ $this->getDummyTextFormatter() ], true, $tracingData ),
+		];
+
+		foreach ( $variants as $variant => $ef ) {
+			$schema = $ef->getOpenApiSchema();
+			$body = $format( $ef );
+			$this->assertMatchesJsonSchema( $schema, $body, [], $variant );
+
+			// The schemas keep additionalProperties open for handler-supplied data, so
+			// validation alone would not notice a formatter renaming or leaking a field.
+			$this->assertSame(
+				[],
+				array_values( array_diff( array_keys( $body ), array_keys( $schema['properties'] ), [ 'error' ] ) ),
+				"$variant: keys not declared in the schema"
+			);
+			if ( isset( $body['tracing'] ) ) {
+				$this->assertSame(
+					[],
+					array_values( array_diff(
+						array_keys( $body['tracing'] ),
+						array_keys( $schema['properties']['tracing']['properties'] )
+					) ),
+					"$variant: tracing keys not declared in the schema"
+				);
+			}
+		}
 	}
 }

@@ -376,7 +376,14 @@
 	"rest-responseheader-desc-location": "Description of the Location response header",
 	"rest-openapispec-genericerrorresponse-desc": "Description of the generic error response returned by REST API endpoints when an error occurs that doesn't have a more specific error response defined.",
 	"rest-openapispec-genericerrorresponse-property-desc-httpCode": "Description of the HTTP status code property in the generic error response.",
-	"rest-openapispec-genericerrorresponse-property-desc-httpMessage": "Description of the HTTP status message property in the generic error response.",
 	"rest-openapispec-genericerrorresponse-property-desc-message": "Description of the human-readable error message property in the generic error response.",
-	"rest-openapispec-genericerrorresponse-property-desc-messageTranslations": "Description of the map of language codes to human-readable error messages property in the generic error response."
+	"rest-openapispec-genericerrorresponse-property-desc-messageTranslations": "Description of the map of language codes to human-readable error messages property in the generic error response.",
+	"rest-openapispec-genericerrorresponse-v2-desc": "Description of the error response schema of REST API modules that use version 2.0 of the error format.",
+	"rest-openapispec-genericerrorresponse-restbasecompat-desc": "Description of the RESTBase-compatible error response schema, used when the request has the x-restbase-compat header.",
+	"rest-openapispec-genericerrorresponse-property-desc-httpReason": "Description of the httpReason property (HTTP reason phrase) in the error response.",
+	"rest-openapispec-genericerrorresponse-property-desc-errorKey": "Description of the errorKey property in the error response.",
+	"rest-openapispec-genericerrorresponse-property-desc-reqId": "Description of the reqId (request ID) property in the error response.",
+	"rest-openapispec-genericerrorresponse-property-desc-exception": "Description of the exception property (structured exception details) in the error response.",
+	"rest-openapispec-genericerrorresponse-property-desc-errorCode": "Description of the errorCode property in the version 2.0 error response.",
+	"rest-openapispec-genericerrorresponse-property-desc-tracing": "Description of the tracing property in the version 2.0 error response. The quoted words are field names and must not be translated."
 }

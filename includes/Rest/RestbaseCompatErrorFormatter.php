@@ -56,4 +56,8 @@ class RestbaseCompatErrorFormatter extends ErrorFormatterV1 {
 		}
 		return $translations ? reset( $translations ) : $msg->getKey();
 	}
+
+	public function getOpenApiSchema(): array {
+		return self::loadJsonFile( __DIR__ . '/Handler/Schema/ErrorResponseRestbaseCompat.json' );
+	}
 }

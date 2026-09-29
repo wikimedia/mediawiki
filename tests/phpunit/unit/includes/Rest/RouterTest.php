@@ -1046,6 +1046,31 @@ class RouterTest extends MediaWikiUnitTestCase {
 		$this->assertInstanceOf( ErrorFormatterV2::class, $formatter );
 	}
 
+	public static function provideGetModuleResponseFactoryByName() {
+		// The default route file is a flat list, i.e. the prefix-less module ''.
+		yield 'module without errorSchemaVersion' => [ [], '', [], ErrorFormatterV1::class ];
+		yield 'module with errorSchemaVersion 2.0' =>
+			[ [ __DIR__ . '/mock-schemaver.v1.json' ], 'mockschemaver/v1', [], ErrorFormatterV2::class ];
+		yield 'x-restbase-compat header' => [
+			[ __DIR__ . '/mock-schemaver.v1.json' ], 'mockschemaver/v1',
+			[ 'x-restbase-compat' => 'true' ], RestbaseCompatErrorFormatter::class
+		];
+	}
+
+	/**
+	 * @dataProvider provideGetModuleResponseFactoryByName
+	 */
+	public function testGetModuleResponseFactoryByName( $routeFiles, $moduleName, $headers, $expectedFormatter ) {
+		$router = $this->newRouter( $routeFiles ? [ 'routeFiles' => $routeFiles ] : [] );
+
+		$responseFactory = $router->getModuleResponseFactoryByName(
+			$moduleName, new RequestData( [ 'headers' => $headers ] )
+		);
+
+		$formatter = TestingAccessWrapper::newFromObject( $responseFactory )->errorFormatter;
+		$this->assertInstanceOf( $expectedFormatter, $formatter );
+	}
+
 	private function getCorsUtils( bool $allowCrossOrigin = false ): CorsUtils {
 		$cors = new CorsUtils(
 			new ServiceOptions(

@@ -386,12 +386,16 @@ class ResponseFactory {
 	 * providing information about the structure of some standard responses,
 	 * for use in path specs.
 	 *
+	 * GenericErrorResponseModel is the schema of this factory's error format,
+	 * see ErrorFormatter::getOpenApiSchema().
+	 *
 	 * @see https://swagger.io/specification/#components-object
 	 * @see https://swagger.io/specification/#response-object
 	 *
+	 * @internal For use by ModuleSpecHandler
 	 * @return array
 	 */
-	public static function getResponseComponents(): array {
+	public function getResponseComponents(): array {
 		return [
 			'responses' => [
 				'GenericErrorResponse' => [
@@ -406,40 +410,8 @@ class ResponseFactory {
 				]
 			],
 			'schemas' => [
-				'GenericErrorResponseModel' => [
-					'x-i18n-description' => 'rest-openapispec-genericerrorresponse-desc',
-					'required' => [ 'httpCode' ],
-					'properties' => [
-						'httpCode' => [
-							'type' => 'integer',
-							'x-i18n-description' => 'rest-openapispec-genericerrorresponse-property-desc-httpCode',
-							'example' => 500
-						],
-						'httpMessage' => [
-							'type' => 'string',
-							'x-i18n-description' => 'rest-openapispec-genericerrorresponse-property-desc-httpMessage',
-							'example' => 'Internal Server Error'
-						],
-						'message' => [
-							'type' => 'string',
-							'x-i18n-description' => 'rest-openapispec-genericerrorresponse-property-desc-message',
-							'example' => 'An unexpected error occurred'
-						],
-						'messageTranslations' => [
-							'type' => 'object',
-							'additionalProperties' => [
-								'type' => 'string'
-							],
-							// phpcs:ignore -- ignore the line being too long, for readability of the i18n key
-							'x-i18n-description' => 'rest-openapispec-genericerrorresponse-property-desc-messageTranslations',
-							'example' => [
-								'en' => 'An unexpected error occurred',
-								'es' => 'Ocurrió un error inesperado'
-							]
-						],
-					]
-				]
-			]
+				'GenericErrorResponseModel' => $this->errorFormatter->getOpenApiSchema(),
+			],
 		];
 	}
 

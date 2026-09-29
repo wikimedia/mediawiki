@@ -11,7 +11,6 @@ use MediaWiki\Rest\Module\Module;
 use MediaWiki\Rest\Module\ModuleMode;
 use MediaWiki\Rest\RequestData;
 use MediaWiki\Rest\Response;
-use MediaWiki\Rest\ResponseFactory;
 use MediaWiki\Rest\SimpleHandler;
 use MediaWiki\Rest\Validator\Validator;
 use MediaWiki\Session\SessionManagerInterface;
@@ -116,7 +115,7 @@ class ModuleSpecHandler extends SimpleHandler {
 			'externalDocs' => $module->getOpenApiExternalDocs(),
 			'tags' => $module->getOpenApiTags(),
 			'paths' => $this->getPathsSpec( $module ),
-			'components' => $this->getComponentsSpec(),
+			'components' => $this->getComponentsSpec( $moduleName ),
 		];
 
 		// Remove some extra info outside the standard OAD schema
@@ -452,12 +451,17 @@ class ModuleSpecHandler extends SimpleHandler {
 		return $id;
 	}
 
-	private function getComponentsSpec(): array {
+	private function getComponentsSpec( string $moduleName ): array {
 		$components = [];
 
-		// Resolve x-i18n-message references
+		// Resolve x-i18n-message references. Use the documented module's response factory
+		// rather than $this->getResponseFactory(), so that the error schema is the one that
+		// module actually uses. Pass a blank request, not $this->getRequest(): the spec must
+		// not depend on request headers, so error formats selected per request (such as
+		// RESTBase compat via x-restbase-compat) are intentionally not documented.
 		$resolvedComponents = $this->getJsonLocalizer()->localizeJson(
-			ResponseFactory::getResponseComponents()
+			$this->getRouter()->getModuleResponseFactoryByName( $moduleName, new RequestData() )
+				->getResponseComponents()
 		);
 
 		// XXX: also collect reusable components from handler specs (but how to avoid name collisions?).

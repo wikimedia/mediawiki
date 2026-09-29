@@ -736,6 +736,18 @@ class Router {
 		return $tracingData;
 	}
 
+	/**
+	 * Like getModuleResponseFactory(), but for the module with the given name: the
+	 * ResponseFactory that module would use for this request, with the
+	 * error format selected by the module's errorSchemaVersion or, if the request
+	 * asks for it, the RESTBase-compatible format (see isRestbaseCompatEnabled()).
+	 *
+	 * @internal For use by ModuleSpecHandler
+	 */
+	public function getModuleResponseFactoryByName( string $moduleName, RequestInterface $request ): ResponseFactory {
+		return $this->getModuleResponseFactory( $this->getModuleInfo( $moduleName ) ?? [], $request );
+	}
+
 	private function getModuleResponseFactory( array $moduleInfo, RequestInterface $request ): ResponseFactory {
 		$schemaVer = $moduleInfo['errorSchemaVersion'] ?? null;
 

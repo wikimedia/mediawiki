@@ -1,0 +1,49 @@
+{
+	"type": "object",
+	"x-i18n-description": "rest-openapispec-genericerrorresponse-restbasecompat-desc",
+	"required": [ "httpCode", "httpReason" ],
+	"properties": {
+		"httpCode": {
+			"type": "integer",
+			"minimum": 400,
+			"maximum": 599,
+			"x-i18n-description": "rest-openapispec-genericerrorresponse-property-desc-httpCode",
+			"example": 404
+		},
+		"httpReason": {
+			"type": "string",
+			"x-i18n-description": "rest-openapispec-genericerrorresponse-property-desc-httpReason",
+			"example": "Not Found"
+		},
+		"message": {
+			"type": "string",
+			"x-i18n-description": "rest-openapispec-genericerrorresponse-property-desc-message",
+			"example": "The specified page does not exist"
+		},
+		"messageTranslations": {
+			"type": "object",
+			"additionalProperties": { "type": "string" },
+			"x-i18n-description": "rest-openapispec-genericerrorresponse-property-desc-messageTranslations",
+			"example": { "en": "The specified page does not exist" }
+		},
+		"errorKey": {
+			"type": "string",
+			"x-i18n-description": "rest-openapispec-genericerrorresponse-property-desc-errorKey",
+			"example": "rest-nonexistent-title"
+		},
+		"reqId": {
+			"type": "string",
+			"x-i18n-description": "rest-openapispec-genericerrorresponse-property-desc-reqId"
+		},
+		"exception": {
+			"type": "object",
+			"x-i18n-description": "rest-openapispec-genericerrorresponse-property-desc-exception"
+		},
+		"type": { "type": "string", "example": "MediaWikiError/Not_Found" },
+		"title": { "type": "string", "example": "rest-nonexistent-title" },
+		"method": { "type": "string", "example": "get" },
+		"detail": { "type": "string", "example": "The specified page does not exist" },
+		"uri": { "type": "string", "example": "/w/rest.php/v1/page/Foo" }
+	},
+	"additionalProperties": true
+}
