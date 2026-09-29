@@ -36,6 +36,7 @@ use MediaWiki\Title\Title;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityValue;
 use MediaWiki\Utils\MWFileProps;
+use MediaWiki\WikiMap\WikiMap;
 use RuntimeException;
 use stdClass;
 use UnexpectedValueException;
@@ -2632,14 +2633,17 @@ class LocalFile extends File {
 		}
 
 		$pageId = $this->title->getArticleID();
-
-		if ( $pageId ) {
-			$url = $this->repo->makeUrl( [ 'curid' => $pageId ] );
-			if ( $url !== false ) {
-				return $url;
-			}
+		if ( !$pageId ) {
+			return null;
 		}
-		return null;
+
+		// T428296: This is intentionally unlocalised to produce a consistent and short URL
+		$url = WikiMap::getForeignURL( WikiMap::getCurrentWikiId(), "Special:Redirect/page/$pageId" );
+		if ( $url === false ) {
+			return null;
+		}
+
+		return $url;
 	}
 
 	/**
