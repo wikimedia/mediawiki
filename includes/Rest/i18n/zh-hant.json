@@ -10,7 +10,9 @@
 			"Taiwania Justo",
 			"LowensteinYang",
 			"臺灣象象",
-			"Peterxy"
+			"Peterxy",
+			"Addonian1123",
+			"Sekidoki"
 		]
 	},
 	"rest-prefix-mismatch": "請求的路徑（$1）不在REST API的基本路徑（$2）內",
@@ -29,7 +31,7 @@
 	"rest-permission-error": "權限被拒絕：$1",
 	"rest-permission-denied-anon": "不可被匿名使用者存取",
 	"rest-permission-denied-title": "使用者沒有權限來讀取標題（$1）",
-	"rest-permission-denied-revision": "使用者沒有權限來存取請求修訂($1)。",
+	"rest-permission-denied-revision": "使用者沒有權限來存取所請求的修訂($1)。",
 	"rest-rate-limit-exceeded": "超出了速率限制。請稍後再試。",
 	"rest-resource-limit-exceeded": "資源限制超出處理請求的範圍。",
 	"rest-pagehistory-incompatible-params": "參數「older_than」與「newer_than」不可同時指定",
@@ -38,7 +40,7 @@
 	"rest-pagehistorycount-type-unrecognized": "指定的計算類型（$1）無效",
 	"rest-pagehistorycount-parameters-invalid": "指定的參數組合不支援。",
 	"rest-compare-page-mismatch": "指定的修訂屬不同頁面，不可比較。",
-	"rest-compare-permission-denied": "使用者沒有權限來存取請求修訂",
+	"rest-compare-permission-denied": "使用者沒有權限來存取所請求的修訂",
 	"rest-compare-nonexistent": "由參數$1指定的修訂不存在。",
 	"rest-compare-inaccessible": "由參數$1指定的修訂不可公開存取。",
 	"rest-compare-wrong-content": "由參數$2所指定的修訂部份$1插槽，擁有無法轉換成文字的內容類型。",
