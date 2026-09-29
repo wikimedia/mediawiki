@@ -18,7 +18,6 @@ class XmlSelect {
 	private array $options = [];
 	/** @var string|int|float|array|false */
 	private $default;
-	private string $tagName = 'select';
 	/** @var (string|int)[] */
 	private array $attributes = [];
 
@@ -44,14 +43,6 @@ class XmlSelect {
 	 */
 	public function setDefault( $default ): void {
 		$this->default = $default;
-	}
-
-	/**
-	 * @deprecated since 1.45
-	 */
-	public function setTagName( string $tagName ): void {
-		wfDeprecated( __METHOD__, '1.45' );
-		$this->tagName = $tagName;
 	}
 
 	/**
@@ -129,7 +120,7 @@ class XmlSelect {
 			$contents .= self::formatOptions( $options, $this->default );
 		}
 
-		return Html::rawElement( $this->tagName, $this->attributes, rtrim( $contents ) );
+		return Html::rawElement( 'select', $this->attributes, rtrim( $contents ) );
 	}
 
 	/**

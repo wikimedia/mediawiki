@@ -402,6 +402,7 @@ because of Phabricator reports.
   - Xml::listDropdown(),
   - Xml::listDropdownOptions() & Xml::listDropdownOptionsOoui(), and
   - Xml::option().
+* XmlSelect::setTagName(), deprecated since 1.45, has been removed.
 * Content::getNativeData(), deprecated since 1.33, has been removed.
 * LinksUpdate::getImages(), deprecated since 1.44, has been removed. Use
   LinksUpdate::getParserOutput()->getLinkList(::MEDIA) instead.
