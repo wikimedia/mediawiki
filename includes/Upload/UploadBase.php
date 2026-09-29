@@ -1187,60 +1187,6 @@ abstract class UploadBase {
 	}
 
 	/**
-	 * Checks if the MIME type of the uploaded file matches the file extension.
-	 *
-	 * @deprecated 1.45
-	 * @param string $mime The MIME type of the uploaded file
-	 * @param string $extension The filename extension that the file is to be served with
-	 * @return bool
-	 */
-	public static function verifyExtension( $mime, $extension ) {
-		wfDeprecated( __METHOD__, '1.45' );
-		// External callers should probably be using verifyFile and not this method.
-		$verify = MediaWikiServices::getInstance()->getUploadVerification();
-		return $verify->verifyExtension( $mime, $extension );
-	}
-
-	/**
-	 * Heuristic for detecting files that *could* contain JavaScript instructions or
-	 * things that may look like HTML to a browser and are thus
-	 * potentially harmful. The present implementation will produce false
-	 * positives in some situations.
-	 *
-	 * @warning This only does some of the checks and should not be used to verify files by itself.
-	 *
-	 * @deprecated 1.45 use UploadVerification::verifyFile() instead
-	 * @param string|null $file Pathname to the temporary upload file
-	 * @param string $mime The MIME type of the file
-	 * @param string|null $extension The extension of the file
-	 * @return bool True if the file contains something looking like embedded scripts
-	 */
-	public static function detectScript( $file, $mime, $extension ) {
-		wfDeprecated( __METHOD__, '1.45' );
-		// When replacing usage of this in extensions, use UploadVerification::verifyFile.
-		// detectScript is unlikely to be the method you want.
-		$verify = MediaWikiServices::getInstance()->getUploadVerification();
-		return $verify->detectScript( $file, $mime, $extension );
-	}
-
-	/**
-	 * Generic wrapper function for a virus scanner program.
-	 * This relies on the $wgAntivirus and $wgAntivirusSetup variables.
-	 * $wgAntivirusRequired may be used to deny upload if the scan fails.
-	 *
-	 * @param string $file Pathname to the temporary upload file
-	 * @return bool|null|string False if not virus is found, null if the scan fails or is disabled,
-	 *   or a string containing feedback from the virus scanner if a virus was found.
-	 *   If textual feedback is missing but a virus was found, this function returns true.
-	 * @deprecated 1.45 Use UploadVerification->detectVirus() directly.
-	 */
-	public static function detectVirus( $file ) {
-		wfDeprecated( __METHOD__, '1.45' );
-		$uploadVerification = MediaWikiServices::getInstance()->getUploadVerification();
-		return $uploadVerification->detectVirus( $file );
-	}
-
-	/**
 	 * Check if there's a file overwrite conflict and, if so, if restrictions
 	 * forbid this user from performing the upload.
 	 *
