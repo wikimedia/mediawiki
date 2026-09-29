@@ -12,6 +12,14 @@ THIS IS NOT A RELEASE YET
 
 === Changes since 1.43.9 ===
 * Localisation updates.
+* (T429616) PNGHandler: Guard against missing frameCount in metadata.
+* (T429559, T431099) MediaWiki Docker: Upgrade base images to ones with PHP
+  8.3.32.
+* (T432165, T432723, T433969) Upgrade guzzlehttp/guzzle from 7.12.3 to 7.15.2.
+* (T357603) REST: include ETag in 304 responses.
+* (T250395, T434627) SkinFallback: name the valid key for a loaded skin instead
+  of suggesting wfLoadSkin.
+* Logger: Update oversize UDP payload truncation for macOS.
 
 == MediaWiki 1.43.9 ==
 
