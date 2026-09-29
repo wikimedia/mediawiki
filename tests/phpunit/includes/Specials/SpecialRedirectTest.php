@@ -55,7 +55,7 @@ class SpecialRedirectTest extends MediaWikiIntegrationTestCase {
 
 		$special->setParameter( 'page/' . $page->getId() );
 		$ret = $special->dispatch();
-		$this->assertSame( '/index.php?curid=' . $page->getId(), $special->getOutput()->getRedirect() );
+		$this->assertSame( 'https://example.org/wiki/Help:Test', $special->getOutput()->getRedirect() );
 		$this->assertSame( '301', $special->getOutput()->mRedirectCode );
 		$this->assertTrue( $ret );
 	}

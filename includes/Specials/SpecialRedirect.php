@@ -155,7 +155,7 @@ class SpecialRedirect extends FormSpecialPage {
 	}
 
 	/**
-	 * Handle Special:Redirect/page/xxx (by redirecting to index.php?curid=xxx)
+	 * Handle Special:Redirect/page/xxx
 	 *
 	 * @return Status A good status contains the url to redirect to
 	 */
@@ -168,10 +168,16 @@ class SpecialRedirect extends FormSpecialPage {
 		if ( $curid === 0 ) {
 			return Status::newFatal( 'redirect-not-exists' );
 		}
+		$title = Title::newFromID( $curid );
+		if ( !$title ) {
+			return Status::newFatal( 'redirect-not-exists' );
+		}
 
-		return Status::newGood( wfAppendQuery( wfScript( 'index' ), [
-			'curid' => $curid
-		] ) );
+		// Optimization: Prefer canonical URL over `?curid=` because
+		// * Let search engines follow and carry pagerank (avoid robots.txt disallow, T428296)
+		// * Faster response to user by leveraging CDN cache
+		// * Reduce CDN cache misses (T432488)
+		return Status::newGood( $title->getFullURL() );
 	}
 
 	/**
