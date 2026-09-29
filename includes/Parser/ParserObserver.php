@@ -25,7 +25,6 @@ use Wikimedia\ObjectCache\MapCacheLRU;
 /**
  * For observing and detecting parser behaviors, such as duplicate parses
  * @internal
- * @package MediaWiki\Parser
  */
 class ParserObserver {
 	private readonly MapCacheLRU $previousParseStackTraces;

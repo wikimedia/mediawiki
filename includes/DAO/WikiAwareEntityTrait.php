@@ -13,7 +13,6 @@ use Wikimedia\Assert\PreconditionException;
 
 /**
  * Helper trait for {@link WikiAwareEntity implementations}
- * @package MediaWiki\DAO
  */
 trait WikiAwareEntityTrait {
 

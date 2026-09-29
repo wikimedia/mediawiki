@@ -9,7 +9,6 @@ use MediaWiki\Rest\RequestInterface;
  * Wraps an array of BasicAuthorizerInterface and checks them
  * all to authorize the request
  * @internal
- * @package MediaWiki\Rest\BasicAccess
  */
 class CompoundAuthorizer implements BasicAuthorizerInterface {
 

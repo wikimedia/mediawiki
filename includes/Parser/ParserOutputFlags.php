@@ -27,7 +27,6 @@ namespace MediaWiki\Parser;
  * all currently-active release branches before those flags are written
  * into the parser cache.
  *
- * @package MediaWiki\Parser
  * @since 1.38
  */
 enum ParserOutputFlags: string {

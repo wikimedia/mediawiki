@@ -18,8 +18,6 @@ namespace MediaWiki\Parser;
  * within MediaWiki core.
  *
  * All string sets used should be defined in this class.
- *
- * @package MediaWiki\Parser
  */
 enum ParserOutputStringSets: string {
 

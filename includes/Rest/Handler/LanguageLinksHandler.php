@@ -23,8 +23,6 @@ use Wikimedia\Timestamp\TimestampFormat as TS;
 /**
  * Class LanguageLinksHandler
  * REST API handler for /page/{title}/links/language endpoint.
- *
- * @package MediaWiki\Rest\Handler
  */
 class LanguageLinksHandler extends SimpleHandler {
 

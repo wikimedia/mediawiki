@@ -14,8 +14,6 @@ use Wikimedia\ParamValidator\ParamValidator;
  * discouraged, and you should preferably require that the endpoint be used with a session provider that is
  * safe against CSRF, such as OAuth.
  * @see Handler::requireSafeAgainstCsrf()
- *
- * @package MediaWiki\Rest
  */
 trait TokenAwareHandlerTrait {
 	/** @inheritDoc */

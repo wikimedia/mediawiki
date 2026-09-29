@@ -26,7 +26,6 @@ use MediaWiki\Rest\RouteDefinitionException;
  * Path parameters and query parameters will be looped through.
  *
  * @since 1.43
- * @package MediaWiki\Rest\Handler
  */
 class RedirectHandler extends Handler {
 

@@ -25,7 +25,6 @@ use Wikimedia\ParamValidator\ParamValidator;
  * (The /page/{title}/with_html route is served by PageHandler via prop=html.)
  *
  * @internal
- * @package MediaWiki\Rest\Handler
  */
 class PageHTMLHandler extends SimpleHandler {
 

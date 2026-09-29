@@ -22,7 +22,6 @@ use Wikimedia\UUID\GlobalIdGenerator;
 /**
  * Returns an instance of the ParserCache by its name.
  * @since 1.36
- * @package MediaWiki\Parser
  */
 class ParserCacheFactory {
 

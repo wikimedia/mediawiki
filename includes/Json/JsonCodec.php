@@ -23,7 +23,6 @@ use Wikimedia\JsonCodec\JsonCodecable;
  *
  * @stable to type
  * @since 1.36
- * @package MediaWiki\Json
  */
 class JsonCodec
 	extends \Wikimedia\JsonCodec\JsonCodec

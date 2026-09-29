@@ -18,8 +18,6 @@ namespace MediaWiki\Parser;
  * within MediaWiki core.
  *
  * All link types used should be defined in this class.
- *
- * @package MediaWiki\Parser
  */
 enum ParserOutputLinkTypes: string {
 

@@ -15,7 +15,6 @@ use MediaWiki\Page\PageRecord;
  * response latency.
  *
  * @since 1.42
- * @package MediaWiki\Parser
  */
 class ParserCacheFilter {
 

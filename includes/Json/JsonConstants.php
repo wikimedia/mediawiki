@@ -10,7 +10,6 @@ namespace MediaWiki\Json;
 /**
  * Defines JSON-related constants.
  * @internal
- * @package MediaWiki\Json
  */
 interface JsonConstants {
 

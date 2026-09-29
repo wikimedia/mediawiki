@@ -16,8 +16,6 @@ use Wikimedia\Parsoid\Core\ResourceLimitExceededException;
 
 /**
  * A handler that returns linter errors for main (text) content of pages
- *
- * @package MediaWiki\Rest\Handler
  */
 class PageLintHandler extends SimpleHandler {
 

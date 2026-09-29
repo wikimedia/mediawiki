@@ -21,7 +21,6 @@ use MediaWiki\MainConfigNames;
  * (e.g. 'user'). Callers must account for this when using {@see self::getGroupPermissions()}.
  *
  * @since 1.36
- * @package MediaWiki\Permissions
  */
 class GroupPermissionsLookup {
 
