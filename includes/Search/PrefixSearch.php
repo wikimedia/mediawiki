@@ -17,9 +17,9 @@ use Wikimedia\Rdbms\LikeValue;
 /**
  * Handles searching prefixes of titles and finding any page
  * names that match. Used largely by the OpenSearch implementation.
- * @deprecated Since 1.27, Use SearchEngine::defaultPrefixSearch or SearchEngine::completionSearch
  *
- * @stable to extend
+ * @deprecated Since 1.27, Use SearchEngine::defaultPrefixSearch or SearchEngine::completionSearch
+ * @stable to extend, but deprecated since 1.27, emitting warnings since 1.47
  * @ingroup Search
  */
 abstract class PrefixSearch {
@@ -36,6 +36,7 @@ abstract class PrefixSearch {
 	 * @param array $namespaces Used if query is not explicitly prefixed
 	 * @param int $offset How many results to offset from the beginning
 	 * @return (Title|string)[]
+	 * @deprecated This class is deprecated. Use SearchEngine::completionSearch() instead.
 	 */
 	public function search( $search, $limit, $namespaces = [], $offset = 0 ) {
 		wfDeprecated( __METHOD__, '1.47' );
@@ -54,12 +55,13 @@ abstract class PrefixSearch {
 
 	/**
 	 * Do a prefix search for all possible variants of the prefix
+	 *
 	 * @param string $search
 	 * @param int $limit
 	 * @param array $namespaces
 	 * @param int $offset How many results to offset from the beginning
-	 *
 	 * @return (Title|string)[]
+	 * @deprecated This class is deprecated. Use SearchEngine::completionSearch() instead.
 	 */
 	public function searchWithVariants( $search, $limit, array $namespaces, $offset = 0 ) {
 		wfDeprecated( __METHOD__, '1.47' );
@@ -157,6 +159,7 @@ abstract class PrefixSearch {
 	 * @param int $limit Max number of items to return
 	 * @param int $offset Number of items to skip
 	 * @return Title[]
+	 * @deprecated This class is deprecated. Use SearchEngine::completionSearch() instead.
 	 */
 	public function defaultSearchBackend( $namespaces, $search, $limit, $offset ) {
 		wfDeprecated( __METHOD__, '1.47' );
