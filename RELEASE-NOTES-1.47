@@ -406,6 +406,8 @@ because of Phabricator reports.
   - Xml::option().
 * XmlSelect::setTagName(), deprecated since 1.45, has been removed.
 * Content::getNativeData(), deprecated since 1.33, has been removed.
+* WikitextContent::getRedirectTargetAndText(), deprecated since 1.43,
+  has been removed.
 * LinksUpdate::getImages(), deprecated since 1.44, has been removed. Use
   LinksUpdate::getParserOutput()->getLinkList(::MEDIA) instead.
 * LinksUpdate::getAddedLinks(), ::getRemovedLinks(), deprecated since 1.38,

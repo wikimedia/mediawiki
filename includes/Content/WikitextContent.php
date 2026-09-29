@@ -134,23 +134,6 @@ class WikitextContent extends TextContent {
 	}
 
 	/**
-	 * Extract the redirect target and the remaining text on the page.
-	 *
-	 * @since 1.23
-	 * @deprecated since 1.41, use WikitextContentHandler::extractRedirectTargetAndText
-	 *
-	 * @return array List of two elements: Title|null and string.
-	 */
-	public function getRedirectTargetAndText() {
-		wfDeprecated( __METHOD__, '1.41' );
-
-		$handler = $this->getContentHandler();
-		[ $target, $content ] = $handler->extractRedirectTargetAndText( $this );
-
-		return [ Title::castFromLinkTarget( $target ), $content->getText() ];
-	}
-
-	/**
 	 * Implement redirect extraction for wikitext.
 	 *
 	 * @return Title|null

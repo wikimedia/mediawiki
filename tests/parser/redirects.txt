@@ -212,7 +212,7 @@ parsoid=html2wt
 Foo
 !! end
 
-## WikiContent::getRedirectTargetAndText() strips the redirect from text so,
+## WikitextContentHandler::extractRedirectTargetAndText() strips the redirect from text so,
 ## in practice, the legacy parse never sees it from the source.  Hence, the
 ## the difference in output.
 !! test
@@ -227,7 +227,7 @@ parsoid=wt2html
 <link rel="mw:PageProp/redirect" href="./Main_Page"/><!-- haha --><h2 id="hi">hi</h2>
 !! end
 
-## WikiContent::getRedirectTargetAndText() strips the redirect from text so,
+## WikitextContentHandler::extractRedirectTargetAndText() strips the redirect from text so,
 ## in practice, the legacy parse never sees it from the source.  Hence, the
 ## the difference in output.
 !! test
