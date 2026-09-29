@@ -164,7 +164,7 @@ describe( 'POST /page', () => {
 				assert.match( editHeader[ 'content-type' ], /^application\/json/ );
 				assert.nestedProperty( editBody, 'messageTranslations' );
 
-				expect( newPage.text ).to.satisfySchemaInApiSpec( 'GenericErrorResponseModel' );
+				expect( newPage.body ).to.satisfySchemaInApiSpec( 'GenericErrorResponseModel' );
 			} );
 		} );
 
@@ -184,7 +184,7 @@ describe( 'POST /page', () => {
 			assert.match( editHeader[ 'content-type' ], /^application\/json/ );
 			assert.nestedProperty( editBody, 'messageTranslations' );
 
-			expect( newPage.text ).to.satisfySchemaInApiSpec( 'GenericErrorResponseModel' );
+			expect( newPage.body ).to.satisfySchemaInApiSpec( 'GenericErrorResponseModel' );
 		} );
 
 		it( 'should fail if a bad token is given', async () => {
@@ -203,7 +203,7 @@ describe( 'POST /page', () => {
 			assert.match( editHeader[ 'content-type' ], /^application\/json/ );
 			assert.nestedProperty( editBody, 'messageTranslations' );
 
-			expect( newPage.text ).to.satisfySchemaInApiSpec( 'GenericErrorResponseModel' );
+			expect( newPage.body ).to.satisfySchemaInApiSpec( 'GenericErrorResponseModel' );
 		} );
 
 		it( 'should fail if a bad content model is given', async () => {
@@ -223,7 +223,7 @@ describe( 'POST /page', () => {
 			assert.match( editHeader[ 'content-type' ], /^application\/json/ );
 			assert.nestedProperty( editBody, 'messageTranslations' );
 
-			expect( newPage.text ).to.satisfySchemaInApiSpec( 'GenericErrorResponseModel' );
+			expect( newPage.body ).to.satisfySchemaInApiSpec( 'GenericErrorResponseModel' );
 
 		} );
 
@@ -243,7 +243,7 @@ describe( 'POST /page', () => {
 			assert.match( editHeader[ 'content-type' ], /^application\/json/ );
 			assert.nestedProperty( editBody, 'messageTranslations' );
 
-			expect( newPage.text ).to.satisfySchemaInApiSpec( 'GenericErrorResponseModel' );
+			expect( newPage.body ).to.satisfySchemaInApiSpec( 'GenericErrorResponseModel' );
 		} );
 	} );
 
@@ -267,7 +267,7 @@ describe( 'POST /page', () => {
 			assert.match( editHeader[ 'content-type' ], /^application\/json/ );
 			assert.nestedProperty( editBody, 'messageTranslations' );
 
-			expect( newPage.text ).to.satisfySchemaInApiSpec( 'GenericErrorResponseModel' );
+			expect( newPage.body ).to.satisfySchemaInApiSpec( 'GenericErrorResponseModel' );
 		} );
 	} );
 
@@ -295,7 +295,7 @@ describe( 'POST /page', () => {
 			assert.match( editHeader[ 'content-type' ], /^application\/json/ );
 			assert.nestedProperty( editBody, 'messageTranslations' );
 
-			expect( newPage.text ).to.satisfySchemaInApiSpec( 'GenericErrorResponseModel' );
+			expect( newPage.body ).to.satisfySchemaInApiSpec( 'GenericErrorResponseModel' );
 		} );
 
 	} );

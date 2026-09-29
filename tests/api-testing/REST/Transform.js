@@ -97,7 +97,7 @@ function validateSpec( response ) {
 
 function validateDefaultSpec( response ) {
 
-	expect( response.text ).to.satisfySchemaInApiSpec( 'GenericErrorResponseModel' );
+	expect( response.body ).to.satisfySchemaInApiSpec( 'GenericErrorResponseModel' );
 }
 
 describe( '/transform/ and related endpoints', () => {

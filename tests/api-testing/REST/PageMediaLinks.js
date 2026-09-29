@@ -40,7 +40,7 @@ describe( 'Page media links', () => {
 			const { status, text } = await client.get( `/v1/page/${ dummyPageTitle }/links/media` );
 			assert.deepEqual( status, 404 );
 
-			expect( text ).to.satisfySchemaInApiSpec( 'GenericErrorResponseModel' );
+			expect( JSON.parse( text ) ).to.satisfySchemaInApiSpec( 'GenericErrorResponseModel' );
 		} );
 	} );
 } );

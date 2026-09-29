@@ -180,7 +180,7 @@ describe( 'POST /page:move', () => {
 			// requireOnlyOneParameter throws 'missingparam' → unmapped → 400
 			assert.equal( res.status, 400 );
 			assert.match( res.header[ 'content-type' ], /^application\/json/ );
-			expect( res.text ).to.satisfySchemaInApiSpec( 'GenericErrorResponseModel' );
+			expect( res.body ).to.satisfySchemaInApiSpec( 'GenericErrorResponseModel' );
 		} );
 
 		it( 'should fail when to is missing', async () => {
@@ -195,7 +195,7 @@ describe( 'POST /page:move', () => {
 
 			const res = await client.post( `${ pathPrefix }/page:move`, reqBody );
 			assert.equal( res.status, 400 );
-			expect( res.text ).to.satisfySchemaInApiSpec( 'GenericErrorResponseModel' );
+			expect( res.body ).to.satisfySchemaInApiSpec( 'GenericErrorResponseModel' );
 		} );
 	} );
 
@@ -220,7 +220,7 @@ describe( 'POST /page:move', () => {
 			// which is mapped to 401 — see the next test.)
 			assert.equal( res.status, 400 );
 			assert.match( res.header[ 'content-type' ], /^application\/json/ );
-			expect( res.text ).to.satisfySchemaInApiSpec( 'GenericErrorResponseModel' );
+			expect( res.body ).to.satisfySchemaInApiSpec( 'GenericErrorResponseModel' );
 		} );
 
 		it( 'should return 401 when a bad token is given', async () => {
@@ -237,7 +237,7 @@ describe( 'POST /page:move', () => {
 
 			const res = await client.post( `${ pathPrefix }/page:move`, reqBody );
 			assert.equal( res.status, 401 );
-			expect( res.text ).to.satisfySchemaInApiSpec( 'GenericErrorResponseModel' );
+			expect( res.body ).to.satisfySchemaInApiSpec( 'GenericErrorResponseModel' );
 		} );
 	} );
 
@@ -257,7 +257,7 @@ describe( 'POST /page:move', () => {
 
 			// missingtitle → 404 per the hardcoded mapping
 			assert.equal( res.status, 404 );
-			expect( res.text ).to.satisfySchemaInApiSpec( 'GenericErrorResponseModel' );
+			expect( res.body ).to.satisfySchemaInApiSpec( 'GenericErrorResponseModel' );
 		} );
 
 		it( 'should return 404 when fromid refers to a nonexistent page', async () => {
@@ -274,7 +274,7 @@ describe( 'POST /page:move', () => {
 
 			// nosuchpageid → 404 per the hardcoded mapping
 			assert.equal( res.status, 404 );
-			expect( res.text ).to.satisfySchemaInApiSpec( 'GenericErrorResponseModel' );
+			expect( res.body ).to.satisfySchemaInApiSpec( 'GenericErrorResponseModel' );
 		} );
 	} );
 
@@ -332,7 +332,7 @@ describe( 'POST /page:move', () => {
 
 			const res = await client.post( `${ pathPrefix }/page:move/${ from }`, reqBody );
 			assert.equal( res.status, 400 );
-			expect( res.text ).to.satisfySchemaInApiSpec( 'GenericErrorResponseModel' );
+			expect( res.body ).to.satisfySchemaInApiSpec( 'GenericErrorResponseModel' );
 		} );
 
 		it( 'should return 404 when the page named in the path does not exist', async () => {
@@ -349,7 +349,7 @@ describe( 'POST /page:move', () => {
 
 			// missingtitle → 404 per the hardcoded mapping
 			assert.equal( res.status, 404 );
-			expect( res.text ).to.satisfySchemaInApiSpec( 'GenericErrorResponseModel' );
+			expect( res.body ).to.satisfySchemaInApiSpec( 'GenericErrorResponseModel' );
 		} );
 	} );
 } );

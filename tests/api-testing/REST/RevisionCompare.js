@@ -32,7 +32,7 @@ describe( 'Revision Compare', () => {
 			const { status, text } = await client.get( `/v1/revision/${ validRevId }/compare/${ invalidRevId }` );
 			assert.equal( status, 400 );
 
-			expect( text ).to.satisfySchemaInApiSpec( 'GenericErrorResponseModel' );
+			expect( JSON.parse( text ) ).to.satisfySchemaInApiSpec( 'GenericErrorResponseModel' );
 		} );
 
 		it( 'should successfully get diff between 2 valid revisions', async () => {
@@ -55,7 +55,7 @@ describe( 'Revision Compare', () => {
 			const { status, text } = await client.get( `/v1/revision/${ validRevId }/compare/${ nonExistentRevId }` );
 			assert.strictEqual( status, 404 );
 
-			expect( text ).to.satisfySchemaInApiSpec( 'GenericErrorResponseModel' );
+			expect( JSON.parse( text ) ).to.satisfySchemaInApiSpec( 'GenericErrorResponseModel' );
 		} );
 
 		it( 'should return 400 if revision ids belong to different pages', async () => {
@@ -64,7 +64,7 @@ describe( 'Revision Compare', () => {
 			const { status, text } = await client.get( `/v1/revision/${ pageOneRev }/compare/${ pageTwoRev }` );
 			assert.strictEqual( status, 400 );
 
-			expect( text ).to.satisfySchemaInApiSpec( 'GenericErrorResponseModel' );
+			expect( JSON.parse( text ) ).to.satisfySchemaInApiSpec( 'GenericErrorResponseModel' );
 		} );
 	} );
 
