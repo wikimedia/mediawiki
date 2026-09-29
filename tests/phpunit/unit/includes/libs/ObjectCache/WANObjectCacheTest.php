@@ -14,12 +14,35 @@ use Wikimedia\ObjectCache\HashBagOStuff;
 use Wikimedia\ObjectCache\WANObjectCache;
 use Wikimedia\Stats\StatsFactory;
 use Wikimedia\TestingAccessWrapper;
+use Wikimedia\Timestamp\ConvertibleTimestamp;
 
 /**
  * @covers \Wikimedia\ObjectCache\WANObjectCache
  * @covers \Wikimedia\ObjectCache\CachedValue
  */
 class WANObjectCacheTest extends MediaWikiUnitTestCase {
+
+	/**
+	 * Replace the duration in formatted stats lines with a placeholder.
+	 *
+	 * Under ConvertibleTimestamp::setFakeTime() the monotonic clock advances a fixed
+	 * step per reading, so the emitted value reflects how many times the clock was
+	 * read, not how long anything took. Assert the names and labels instead.
+	 *
+	 * @param string[] $lines
+	 * @return string[]
+	 */
+	private static function withoutDurations( array $lines ): array {
+		return preg_replace( '/:[0-9.]+\|ms/', ':<duration>|ms', $lines );
+	}
+
+	/**
+	 * @param string $line A formatted stats line
+	 * @return float The duration it carries
+	 */
+	private static function durationOf( string $line ): float {
+		return preg_match( '/:(-?[0-9.]+)\|ms/', $line, $m ) ? (float)$m[1] : NAN;
+	}
 
 	/**
 	 * @param array $params
@@ -2279,6 +2302,7 @@ class WANObjectCacheTest extends MediaWikiUnitTestCase {
 		] );
 		$time = 1301648400.0;
 		$wanCache->setMockTime( $time );
+		ConvertibleTimestamp::setFakeTime( '20110401120000' );
 
 		$wanCache->getWithSetCallback(
 			$wanCache->makeKey( 'example-foo', 'x' ),
@@ -2290,9 +2314,9 @@ class WANObjectCacheTest extends MediaWikiUnitTestCase {
 		);
 
 		$this->assertSame( [
-			'mediawiki.wanobjectcache_regen_seconds:500|ms|#keygroup:example_foo',
-			'mediawiki.wanobjectcache_getwithset_seconds:500|ms|#keygroup:example_foo,result:miss,reason:compute',
-		], $statsHelper->consumeAllFormatted(), 'Simple miss' );
+			'mediawiki.wanobjectcache_getwithset_seconds:<duration>|ms|#keygroup:example_foo,result:miss,reason:compute',
+			'mediawiki.wanobjectcache_regen_seconds:<duration>|ms|#keygroup:example_foo',
+		], self::withoutDurations( $statsHelper->consumeAllFormatted() ), 'Simple miss' );
 
 		// Based on testPreemptiveRefresh
 		$asycList = [];
@@ -2319,21 +2343,60 @@ class WANObjectCacheTest extends MediaWikiUnitTestCase {
 
 		$builder->fetch();
 		$this->assertSame( [
-			'mediawiki.wanobjectcache_regen_seconds:1500|ms|#keygroup:example_bar',
-			'mediawiki.wanobjectcache_getwithset_seconds:1500|ms|#keygroup:example_bar,result:miss,reason:compute',
-		], $statsHelper->consumeAllFormatted(), 'Miss before expiry' );
+			'mediawiki.wanobjectcache_getwithset_seconds:<duration>|ms|#keygroup:example_bar,result:miss,reason:compute',
+			'mediawiki.wanobjectcache_regen_seconds:<duration>|ms|#keygroup:example_bar',
+		], self::withoutDurations( $statsHelper->consumeAllFormatted() ), 'Miss before expiry' );
 
 		$time += 250;
 		$builder->fetch();
 		$this->assertSame( [
-			'mediawiki.wanobjectcache_getwithset_seconds:0|ms|#keygroup:example_bar,result:hit,reason:refresh',
-		], $statsHelper->consumeAllFormatted(), 'Cache hit before expiry' );
+			'mediawiki.wanobjectcache_getwithset_seconds:<duration>|ms|#keygroup:example_bar,result:hit,reason:refresh',
+		], self::withoutDurations( $statsHelper->consumeAllFormatted() ), 'Cache hit before expiry' );
 		$this->assertCount( 1, $asycList, 'Refresh is scheduled' );
 		$asycList[0](); // run async refresh
 		$this->assertSame( [
-			'mediawiki.wanobjectcache_regen_seconds:1500|ms|#keygroup:example_bar',
-			'mediawiki.wanobjectcache_getwithset_seconds:1500|ms|#keygroup:example_bar,result:renew,reason:compute',
-		], $statsHelper->consumeAllFormatted(), 'Refresh executed' );
+			'mediawiki.wanobjectcache_getwithset_seconds:<duration>|ms|#keygroup:example_bar,result:renew,reason:compute',
+			'mediawiki.wanobjectcache_regen_seconds:<duration>|ms|#keygroup:example_bar',
+		], self::withoutDurations( $statsHelper->consumeAllFormatted() ), 'Refresh executed' );
+	}
+
+	/**
+	 * A backwards step in the wall clock, such as an NTP correction, must not
+	 * affect the latency metrics, which are measured with a monotonic clock.
+	 */
+	public function testStatsWithBackwardsWallClock() {
+		$statsHelper = StatsFactory::newUnitTestingHelper();
+		$wanCache = new WANObjectCache( [
+			'cache' => new HashBagOStuff(),
+			'stats' => $statsHelper->getStatsFactory(),
+		] );
+		$time = 1301648400.0;
+		$wanCache->setMockTime( $time );
+		// The timers run on ConvertibleTimestamp's monotonic clock, which advances
+		// independently of the wall clock that setMockTime() controls.
+		ConvertibleTimestamp::setFakeTime( '20110401120000' );
+
+		$wanCache->getWithSetCallback(
+			$wanCache->makeKey( 'example-foo', 'x' ),
+			WANObjectCache::TTL_DAY,
+			static function () use ( &$time ) {
+				// The wall clock jumps backwards while the callback runs.
+				$time -= 10;
+				return 'computed';
+			}
+		);
+
+		$formatted = $statsHelper->consumeAllFormatted();
+		$this->assertSame( [
+			'mediawiki.wanobjectcache_getwithset_seconds:<duration>|ms|#keygroup:example_foo,result:miss,reason:compute',
+			'mediawiki.wanobjectcache_regen_seconds:<duration>|ms|#keygroup:example_foo',
+		], self::withoutDurations( $formatted ) );
+
+		// The point of the test: measured with a wall clock, these would both
+		// be -10000 ms.
+		foreach ( $formatted as $line ) {
+			$this->assertGreaterThan( 0, self::durationOf( $line ), $line );
+		}
 	}
 
 	public function testMakeMultiKeys() {

@@ -1577,8 +1577,12 @@ class WANObjectCache implements
 		$ageNew = $opts['ageNew'] ?? self::AGE_NEW;
 		$touchedCb = $opts['touchedCallback'] ?? null;
 		$startTime = $this->getCurrentTime();
+		// Measure the call with a timer, not a clock: $startTime is a wall-clock
+		// timestamp used below for cache freshness, and cannot serve both roles.
+		$timer = $this->stats->getTiming( 'wanobjectcache_getwithset_seconds' )->start();
 
 		$keygroup = $this->determineKeyGroupForStats( $key );
+		$timer->setLabel( 'keygroup', $keygroup );
 
 		// Get the current key value and its metadata
 		$curState = $this->fetchKeys( [ $key ], $checkKeys, $startTime, $opts )[$key];
@@ -1587,21 +1591,17 @@ class WANObjectCache implements
 		// Use the cached value if it exists and is not due for synchronous regeneration
 		if ( $this->isAcceptablyFreshValue( $curState, $minAsOf ) ) {
 			if ( !$this->isLotteryRefreshDue( $curState, $lowTTL, $ageNew, $hotTTR, $startTime ) ) {
-				$this->stats->getTiming( 'wanobjectcache_getwithset_seconds' )
-					->setLabel( 'keygroup', $keygroup )
-					->setLabel( 'result', 'hit' )
+				$timer->setLabel( 'result', 'hit' )
 					->setLabel( 'reason', 'good' )
-					->observe( 1e3 * ( $this->getCurrentTime() - $startTime ) );
+					->stop();
 
 				return [ $curValue, $curState[self::RES_VERSION], $curState[self::RES_AS_OF] ];
 			} elseif ( $this->scheduleAsyncRefresh( $key, $ttl, $callback, $opts, $cbParams ) ) {
 				$this->logger->debug( "fetchOrRegenerate($key): hit with async refresh" );
 
-				$this->stats->getTiming( 'wanobjectcache_getwithset_seconds' )
-					->setLabel( 'keygroup', $keygroup )
-					->setLabel( 'result', 'hit' )
+				$timer->setLabel( 'result', 'hit' )
 					->setLabel( 'reason', 'refresh' )
-					->observe( 1e3 * ( $this->getCurrentTime() - $startTime ) );
+					->stop();
 
 				return [ $curValue, $curState[self::RES_VERSION], $curState[self::RES_AS_OF] ];
 			} else {
@@ -1642,11 +1642,9 @@ class WANObjectCache implements
 		if ( $isExtremelyNewValue ) {
 			$this->logger->debug( "fetchOrRegenerate($key): volatile hit" );
 
-			$this->stats->getTiming( 'wanobjectcache_getwithset_seconds' )
-				->setLabel( 'keygroup', $keygroup )
-				->setLabel( 'result', 'hit' )
+			$timer->setLabel( 'result', 'hit' )
 				->setLabel( 'reason', 'volatile' )
-				->observe( 1e3 * ( $this->getCurrentTime() - $startTime ) );
+				->stop();
 
 			return [ $volValue, $volState[self::RES_VERSION], $curState[self::RES_AS_OF] ];
 		}
@@ -1689,22 +1687,18 @@ class WANObjectCache implements
 			if ( $this->isValid( $volValue, $volState[self::RES_AS_OF], $minAsOf ) ) {
 				$this->logger->debug( "fetchOrRegenerate($key): returning stale value" );
 
-				$this->stats->getTiming( 'wanobjectcache_getwithset_seconds' )
-					->setLabel( 'keygroup', $keygroup )
-					->setLabel( 'result', 'hit' )
+				$timer->setLabel( 'result', 'hit' )
 					->setLabel( 'reason', 'stale' )
-					->observe( 1e3 * ( $this->getCurrentTime() - $startTime ) );
+					->stop();
 
 				return [ $volValue, $volState[self::RES_VERSION], $curState[self::RES_AS_OF] ];
 			} elseif ( $busyValue !== null ) {
 				$miss = is_infinite( $minAsOf ) ? 'renew' : 'miss';
 				$this->logger->debug( "fetchOrRegenerate($key): busy $miss" );
 
-				$this->stats->getTiming( 'wanobjectcache_getwithset_seconds' )
-					->setLabel( 'keygroup', $keygroup )
-					->setLabel( 'result', $miss )
+				$timer->setLabel( 'result', $miss )
 					->setLabel( 'reason', 'busy' )
-					->observe( 1e3 * ( $this->getCurrentTime() - $startTime ) );
+					->stop();
 
 				$placeholderValue = ( $busyValue instanceof Closure ) ? $busyValue() : $busyValue;
 
@@ -1714,7 +1708,9 @@ class WANObjectCache implements
 
 		// Generate the new value given any prior value with a matching version
 		$setOpts = [];
-		$preCallbackTime = $this->getCurrentTime();
+		$regenTimer = $this->stats->getTiming( 'wanobjectcache_regen_seconds' )
+			->setLabel( 'keygroup', $keygroup )
+			->start();
 		++$this->callbackDepth;
 		// https://github.com/phan/phan/issues/4419
 		/** @noinspection PhpUnusedLocalVariableInspection */
@@ -1730,14 +1726,7 @@ class WANObjectCache implements
 		} finally {
 			--$this->callbackDepth;
 		}
-		$postCallbackTime = $this->getCurrentTime();
-
-		// How long it took to generate the value
-		$walltime = max( $postCallbackTime - $preCallbackTime, 0.0 );
-
-		$this->stats->getTiming( 'wanobjectcache_regen_seconds' )
-			->setLabel( 'keygroup', $keygroup )
-			->observe( 1e3 * $walltime );
+		$regenTimer->stop();
 
 		// Attempt to save the newly generated value if applicable
 		if (
@@ -1776,11 +1765,9 @@ class WANObjectCache implements
 		$miss = is_infinite( $minAsOf ) ? 'renew' : 'miss';
 		$this->logger->debug( "fetchOrRegenerate($key): $miss, new value computed" );
 
-		$this->stats->getTiming( 'wanobjectcache_getwithset_seconds' )
-			->setLabel( 'keygroup', $keygroup )
-			->setLabel( 'result', $miss )
+		$timer->setLabel( 'result', $miss )
 			->setLabel( 'reason', 'compute' )
-			->observe( 1e3 * ( $this->getCurrentTime() - $startTime ) );
+			->stop();
 
 		return [ $value, $version, $curState[self::RES_AS_OF] ];
 	}
