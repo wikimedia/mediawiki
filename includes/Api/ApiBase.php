@@ -13,7 +13,6 @@ use LogicException;
 use MediaWiki\Api\Validator\SubmoduleDef;
 use MediaWiki\Block\Block;
 use MediaWiki\Context\ContextSource;
-use MediaWiki\Context\IContextSource;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\Language\RawMessage;
 use MediaWiki\MainConfigNames;
@@ -1326,39 +1325,6 @@ abstract class ApiBase extends ContextSource {
 		}
 
 		return $user;
-	}
-
-	/**
-	 * Create a Message from a string or array
-	 *
-	 * A string is used as a message key. An array has the message key as the
-	 * first value and message parameters as subsequent values.
-	 *
-	 * @since 1.25
-	 * @deprecated since 1.43, use ApiBase::msg()
-	 * @param string|array|Message $msg
-	 * @phan-param string|non-empty-array|Message $msg
-	 * @param IContextSource $context
-	 * @param array|null $params
-	 * @return Message|null
-	 */
-	public static function makeMessage( $msg, IContextSource $context, ?array $params = null ) {
-		wfDeprecated( __METHOD__, '1.43' );
-		if ( is_string( $msg ) ) {
-			$msg = wfMessage( $msg );
-		} elseif ( is_array( $msg ) ) {
-			$msg = wfMessage( ...$msg );
-		}
-		if ( !$msg instanceof Message ) {
-			return null;
-		}
-
-		$msg->setContext( $context );
-		if ( $params ) {
-			$msg->params( $params );
-		}
-
-		return $msg;
 	}
 
 	/**
