@@ -48,6 +48,7 @@
 			"กิ๊ฟ เลิกล่ะ สายแข็ง",
 			"จักรกฤช วงศ์สระหลวง (Jakkrit Vongsraluang) / PaePae",
 			"วรากร อึ้งวิเชียร (Varakorn Ungvichian)",
+			"咽頭べさ",
 			"아라"
 		]
 	},
@@ -196,6 +197,7 @@
 	"new-messages-link-plural": "{{PLURAL:$1|สารใหม่|999=สารใหม่}}",
 	"new-messages-diff-link-plural": "$1 การเปลี่ยนแปลงล่าสุด",
 	"editsection": "แก้ไข",
+	"sharesection": "แบ่ง",
 	"editold": "แก้ไข",
 	"viewsourceold": "ดูต้นฉบับ",
 	"editlink": "แก้ไข",

@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"A.jalate",
 			"DannyS712",
 			"Eulalio",
 			"Fitoschido",
@@ -75,6 +76,7 @@
 	"rest-module-content.v1-title": "Contenido de la página",
 	"rest-param-desc-media-links-title": "Título del archivo",
 	"rest-param-desc-media-mediatype": "El tipo de archivo",
+	"rest-endpoint-desc-post-move": "Mueve (renombrar) una página.",
 	"rest-responseheader-desc-cachecontrol": "Dicta el comportamiento de almacenamiento en caché de un navegador, permitiéndole saber con qué frecuencia debe actualizar los recursos almacenados localmente.",
 	"rest-responseheader-desc-deprecation": "Dicta el comportamiento de almacenamiento en caché de un navegador, permitiéndole saber con qué frecuencia debe actualizar los recursos almacenados localmente."
 }

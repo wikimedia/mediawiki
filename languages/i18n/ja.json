@@ -2060,7 +2060,7 @@
 	"watchstar-popup-already-watched": "「$1」および付随するページは[[Special:Watchlist|ウォッチリスト]] に登録されています。",
 	"watchstar-popup-expiry-help": "[[$1|ウォッチリストの個人設定]]で期限の規定値を変更できます。",
 	"watchstar-popup-labels": "ウォッチリストのラベル:",
-	"watchstar-popup-labels-help": "[[$1|ラベルマネージャー]]を使用してラベルを作成または削除します。",
+	"watchstar-popup-labels-help": "[[$1|ラベルマネージャー]]で新しいラベルを作成します。",
 	"watchstar-popup-labels-add": "ラベルを追加…",
 	"watchstar-popup-labels-no-results": "ラベルが見つかりませんでした",
 	"watch": "ウォッチ",
