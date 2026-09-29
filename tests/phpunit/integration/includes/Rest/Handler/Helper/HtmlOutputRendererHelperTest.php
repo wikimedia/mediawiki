@@ -160,20 +160,18 @@ class HtmlOutputRendererHelperTest extends MediaWikiIntegrationTestCase {
 			$rev = $rev->getId() ?? 0;
 		}
 
-		$pb = new HtmlPageBundle(
-			html: $html,
-			parsoid: [ 'ids' => [
-				't3s7' => [ 'dsr' => [ 0, 0, 0, 0 ] ],
-			] ],
-			mw:  [ 'ids' => [] ],
-			headers: [
-				'content-language' => $lang
-			]
-		);
-		$pb->setContentVersion( $version );
-
 		$pout = $this->getServiceContainer()->getPageBundleParserOutputConverter()->parserOutputFromPageBundle(
-			$pb,
+			new HtmlPageBundle(
+				html: $html,
+				parsoid: [ 'ids' => [
+					't3s7' => [ 'dsr' => [ 0, 0, 0, 0 ] ],
+				] ],
+				mw:  [ 'ids' => [] ],
+				contentVersion: $version,
+				headers: [
+					'content-language' => $lang
+				]
+			),
 			isParsoidContent: true,
 		);
 		$pout->setCacheRevisionId( $rev ?? $page->getLatest() );

@@ -84,27 +84,25 @@ class PageBundleParserOutputConverterTest extends MediaWikiUnitTestCase {
 	}
 
 	public static function provideParserOutputFromPageBundle() {
-		$pb = new HtmlPageBundle(
-			html: 'html content',
-			parsoid: [ 'ids' => '1.33' ],
-			mw: [ 'ids' => '1.33' ], // looks bogus
-			headers: [ 'content-language' => 'abc' ],
-			contentmodel: 'testing'
-		);
-		$pb->setContentVersion( '1.x' );
 		yield 'should convert HtmlPageBundle containing data-parsoid and data-mw' => [
-			$pb
+			new HtmlPageBundle(
+				html: 'html content',
+				parsoid: [ 'ids' => '1.33' ],
+				mw: [ 'ids' => '1.33' ], // looks bogus
+				contentVersion: '1.x',
+				headers: [ 'content-language' => 'abc' ],
+				contentmodel: 'testing'
+			)
 		];
 
-		$pb = new HtmlPageBundle(
-			html: 'html content',
-			parsoid: [],
-			mw: [],
-			headers: [ 'content-language' => null ]
-		);
-		$pb->setContentVersion( '1.x' );
 		yield 'should convert HtmlPageBundle that contains no data-parsoid or data-mw' => [
-			$pb
+			new HtmlPageBundle(
+				html: 'html content',
+				parsoid: [],
+				mw: [],
+				contentVersion: '1.x',
+				headers: [ 'content-language' => null ]
+			)
 		];
 	}
 
@@ -129,15 +127,14 @@ class PageBundleParserOutputConverterTest extends MediaWikiUnitTestCase {
 	}
 
 	public static function providePageBundleFromParserOutput() {
-		$pb = new HtmlPageBundle(
-			html: 'hello world',
-			parsoid: [ 'ids' => '1.22' ],
-			mw: [],
-			headers: [ 'content-language' => 'xyz' ]
-		);
-		$pb->setContentVersion( '2.x' );
 		yield 'should convert ParsoidOutput containing data-parsoid and data-mw' => [
-			$pb
+			new HtmlPageBundle(
+				html: 'hello world',
+				parsoid: [ 'ids' => '1.22' ],
+				mw: [],
+				contentVersion: '2.x',
+				headers: [ 'content-language' => 'xyz' ]
+			)
 		];
 
 		yield 'should convert ParsoidOutput that does not contain data-parsoid or data-mw' => [

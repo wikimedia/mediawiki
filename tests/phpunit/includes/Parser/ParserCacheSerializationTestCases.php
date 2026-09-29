@@ -351,7 +351,7 @@ abstract class ParserCacheSerializationTestCases {
 
 		$parserOutputPageBundleOnly = self::getStubPageBundleParserOutputConverter()
 			->parserOutputFromPageBundle(
-				new HtmlPageBundle( 'hello', null, null, null, "1.2.3" ),
+				new HtmlPageBundle( html: 'hello', contentVersion: "1.2.3" ),
 				isParsoidContent: true,
 			);
 		$parserOutputPageBundleOnly->setContentHolderText( null );

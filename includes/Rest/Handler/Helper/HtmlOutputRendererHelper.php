@@ -520,13 +520,12 @@ class HtmlOutputRendererHelper implements HtmlOutputHelper {
 			fragments: $fragments
 		);
 		return new HtmlPageBundle(
-			$html,
-			null, null,
-			$pb->counters,
-			$pb->getContentVersion(),
-			$pb->headers,
-			$pb->contentmodel,
-			$fragments,
+			html: $html,
+			counters: $pb->counters,
+			contentVersion: $pb->getContentVersion(),
+			headers: $pb->headers,
+			contentmodel: $pb->contentmodel,
+			fragments: $fragments,
 		);
 	}
 

@@ -608,9 +608,10 @@ class ParserOutputAccessTest extends ParserCacheTestBase {
 	public function testGetCachedParserOutputForObsoleteParsoidVersion() {
 		$page = $this->getExistingTestPage( __METHOD__ );
 
-		$fakeBundle = HtmlPageBundle::newEmpty( 'test' );
-		// Set an obsolete version
-		$fakeBundle->setContentVersion( '0.0' );
+		$fakeBundle = new HtmlPageBundle(
+			html: 'test',
+			contentVersion: '0.0', // an obsolete version
+		);
 		$output = $this->getServiceContainer()->getPageBundleParserOutputConverter()->parserOutputFromPageBundle(
 			$fakeBundle, isParsoidContent: true, title: $page,
 		);

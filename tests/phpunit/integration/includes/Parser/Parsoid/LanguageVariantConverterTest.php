@@ -25,109 +25,100 @@ class LanguageVariantConverterTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public static function provideConvertPageBundleVariant() {
-		$pb = HtmlPageBundle::newEmpty(
-			html: '<p>test language conversion</p>',
-			headers: []
-		);
-		$pb->setContentVersion( Parsoid::defaultHTMLVersion() );
 		yield 'No source or base, rely on page language (en)' => [
-			$pb,
+			HtmlPageBundle::newEmpty(
+				html: '<p>test language conversion</p>',
+				contentVersion: Parsoid::defaultHTMLVersion(),
+				headers: []
+			),
 			null,
 			'en-x-piglatin',
 			null,
 			'>esttay anguagelay onversioncay<'
 		];
-		$pb = HtmlPageBundle::newEmpty(
-			html: '<p>test language conversion</p>',
-			headers:[ 'content-language' => 'en' ]
-		);
-		$pb->setContentVersion( Parsoid::defaultHTMLVersion() );
 		yield 'Source variant is base language' => [
-			$pb,
+			HtmlPageBundle::newEmpty(
+				html: '<p>test language conversion</p>',
+				contentVersion: Parsoid::defaultHTMLVersion(),
+				headers:[ 'content-language' => 'en' ]
+			),
 			null,
 			'en-x-piglatin',
 			'en',
 			'>esttay anguagelay onversioncay<'
 		];
-		$pb = HtmlPageBundle::newEmpty(
-			html: '<p>Бутун инсанлар сербестлик, менлик ве укъукъларда мусавий олып дунйагъа келелер.</p>',
-			headers: [ 'content-language' => 'crh' ]
-		);
-		$pb->setContentVersion( Parsoid::defaultHTMLVersion() );
 		yield 'Source language is null' => [
-			$pb,
+			HtmlPageBundle::newEmpty(
+				html: '<p>Бутун инсанлар сербестлик, менлик ве укъукъларда мусавий олып дунйагъа келелер.</p>',
+				contentVersion: Parsoid::defaultHTMLVersion(),
+				headers: [ 'content-language' => 'crh' ]
+			),
 			null,
 			'crh-Latn',
 			null,
 			'>Butun insanlar serbestlik, menlik ve uquqlarda musaviy olıp dunyağa keleler.</'
 		];
-		$pb = HtmlPageBundle::newEmpty(
-			html: '<p>Бутун инсанлар сербестлик, менлик ве укъукъларда мусавий олып дунйагъа келелер.</p>',
-			headers: [ 'content-language' => 'crh' ]
-		);
-		$pb->setContentVersion( Parsoid::defaultHTMLVersion() );
 		yield 'Source language is explicit' => [
-			$pb,
+			HtmlPageBundle::newEmpty(
+				html: '<p>Бутун инсанлар сербестлик, менлик ве укъукъларда мусавий олып дунйагъа келелер.</p>',
+				contentVersion: Parsoid::defaultHTMLVersion(),
+				headers: [ 'content-language' => 'crh' ]
+			),
 			null,
 			'crh-Latn',
 			'crh-Cyrl',
 			'>Butun insanlar serbestlik, menlik ve uquqlarda musaviy olıp dunyağa keleler.</'
 		];
-		$pb = HtmlPageBundle::newEmpty(
-			html: '<p>Бутун инсанлар сербестлик, менлик ве укъукъларда мусавий олып дунйагъа келелер.</p>',
-			headers:[ 'content-language' => 'crh-Cyrl' ]
-		);
-		$pb->setContentVersion( Parsoid::defaultHTMLVersion() );
 		yield 'Content language is provided via HTTP header' => [
-			$pb,
+			HtmlPageBundle::newEmpty(
+				html: '<p>Бутун инсанлар сербестлик, менлик ве укъукъларда мусавий олып дунйагъа келелер.</p>',
+				contentVersion: Parsoid::defaultHTMLVersion(),
+				headers:[ 'content-language' => 'crh-Cyrl' ]
+			),
 			'crh',
 			'crh-Latn',
 			'crh-Cyrl',
 			'>Butun insanlar serbestlik, menlik ve uquqlarda musaviy olıp dunyağa keleler.</'
 		];
-		$pb = HtmlPageBundle::newEmpty(
-			html:'<p>Бутун инсанлар сербестлик, менлик ве укъукъларда мусавий олып дунйагъа келелер.</p>',
-			headers:[]
-		);
-		$pb->setContentVersion( Parsoid::defaultHTMLVersion() );
 		yield 'Content language is variant' => [
-			$pb,
+			HtmlPageBundle::newEmpty(
+				html:'<p>Бутун инсанлар сербестлик, менлик ве укъукъларда мусавий олып дунйагъа келелер.</p>',
+				contentVersion: Parsoid::defaultHTMLVersion(),
+				headers:[]
+			),
 			'crh-Cyrl',
 			'crh-Latn',
 			null,
 			'>Butun insanlar serbestlik, menlik ve uquqlarda musaviy olıp dunyağa keleler.</'
 		];
-		$pb = HtmlPageBundle::newEmpty(
-			html:'<p>Бутун инсанлар сербестлик, менлик ве укъукъларда мусавий олып дунйагъа келелер.</p>',
-			headers: []
-		);
-		$pb->setContentVersion( Parsoid::defaultHTMLVersion() );
 		yield 'No content-language, but source variant provided' => [
-			$pb,
+			HtmlPageBundle::newEmpty(
+				html:'<p>Бутун инсанлар сербестлик, менлик ве укъукъларда мусавий олып дунйагъа келелер.</p>',
+				contentVersion: Parsoid::defaultHTMLVersion(),
+				headers: []
+			),
 			null,
 			'crh-Latn',
 			'crh-Cyrl',
 			'>Butun insanlar serbestlik, menlik ve uquqlarda musaviy olıp dunyağa keleler.</'
 		];
-		$pb = HtmlPageBundle::newEmpty(
-			html: '<p>Бутун инсанлар сербестлик, менлик ве укъукъларда мусавий олып дунйагъа келелер.</p>',
-			headers: []
-		);
-		$pb->setContentVersion( Parsoid::defaultHTMLVersion() );
 		yield 'Source variant is a base language code' => [
-			$pb,
+			HtmlPageBundle::newEmpty(
+				html: '<p>Бутун инсанлар сербестлик, менлик ве укъукъларда мусавий олып дунйагъа келелер.</p>',
+				contentVersion: Parsoid::defaultHTMLVersion(),
+				headers: []
+			),
 			null,
 			'crh-Latn',
 			'crh',
 			'>Butun insanlar serbestlik, menlik ve uquqlarda musaviy olıp dunyağa keleler.</'
 		];
-		$pb = HtmlPageBundle::newEmpty(
-			html: '<p>Hallo Wereld</p>',
-			headers:[]
-		);
-		$pb->setContentVersion( Parsoid::defaultHTMLVersion() );
 		yield 'Base language does not support variants' => [
-			$pb,
+			HtmlPageBundle::newEmpty(
+				html: '<p>Hallo Wereld</p>',
+				contentVersion: Parsoid::defaultHTMLVersion(),
+				headers:[]
+			),
 			'nl',
 			'nl-be',
 			null,
