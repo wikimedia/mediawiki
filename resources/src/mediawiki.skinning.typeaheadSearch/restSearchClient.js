@@ -63,7 +63,7 @@ function adaptApiResponse( urlGeneratorInstance, query, restResponse, showDescri
 				} : undefined
 			};
 			if ( page.matched_title && page.title !== page.matched_title ) {
-				result.supportingText = mw.msg( 'redirectedfrom', page.matched_title );
+				result.supportingText = mw.msg( 'searchsuggest-redirected-from', page.matched_title );
 			}
 			return result;
 		} )

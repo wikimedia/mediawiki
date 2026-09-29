@@ -119,7 +119,7 @@ return [
 			'resources/src/mediawiki.skinning.typeaheadSearch/urlGenerator.js',
 		],
 		'messages' => [
-			'redirectedfrom',
+			'searchsuggest-redirected-from',
 			'search-close',
 			'searchbutton',
 			'searchresults',

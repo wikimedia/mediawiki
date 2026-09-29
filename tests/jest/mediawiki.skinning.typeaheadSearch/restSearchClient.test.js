@@ -156,7 +156,7 @@ describe( 'restApiSearchClient', () => {
 		} ) );
 		const searchResult = await restSearchClient( searchApiUrl, urlGenerator, recommendationApiUrl )
 			.fetchRecommendationByTitle( 'source' ).fetch;
-		expect( searchResult.results[ 0 ].supportingText ).toBe( 'redirectedfrom: Source title' );
+		expect( searchResult.results[ 0 ].supportingText ).toBe( 'searchsuggest-redirected-from: Source title' );
 		expect( searchResult.results[ 1 ].supportingText ).toBeUndefined();
 	} );
 
