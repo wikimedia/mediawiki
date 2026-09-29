@@ -124,10 +124,10 @@ class CollationTest extends MediaWikiLangTestCase {
 			[ 'uca-zh@collation=pinyin', '重庆', 'C' ], // With a special handling ("&虫<重庆/庆") in the ICU implementation.
 			[ 'uca-zh@collation=pinyin', 'Test', 'T' ],
 
-			[ 'uca-zh@collation=stroke', '测试', '⠉' ],
-			[ 'uca-zh@collation=stroke', '重要', '⠉' ],
-			[ 'uca-zh@collation=stroke', '安全', '⠆' ],
-			[ 'uca-zh@collation=stroke', '馗龙', '⠋' ],
+			[ 'uca-zh@collation=stroke', '测试', '9 strokes' ],
+			[ 'uca-zh@collation=stroke', '重要', '9 strokes' ],
+			[ 'uca-zh@collation=stroke', '安全', '6 strokes' ],
+			[ 'uca-zh@collation=stroke', '馗龙', '11 strokes' ],
 			[ 'uca-zh@collation=stroke', 'Test', 'T' ],
 
 			[ 'uca-default-u-kn', '1 metter', '0–9' ],

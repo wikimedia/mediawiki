@@ -20,6 +20,7 @@
 	"broken-file-category": "Pages with broken file links",
 	"categoryviewer-pagedlinks": "($1) ($2)",
 	"category-header-numerals": "$1–$2",
+	"category-header-strokes": "$1 {{PLURAL:$1|stroke|strokes}}",
 	"about": "About",
 	"article": "Content page",
 	"newwindow": "(opens in new window)",

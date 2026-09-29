@@ -388,6 +388,11 @@ class IcuCollation extends Collation {
 
 		if ( str_starts_with( $sortLetter, "\u{FDD0}" ) ) {
 			$sortLetter = substr( $sortLetter, strlen( "\u{FDD0}" ) );
+
+			if ( $this->localeGroup === 'zh@collation=stroke' ) {
+				$strokeCount = mb_ord( $sortLetter ) - 0x2800;
+				$sortLetter = wfMessage( 'category-header-strokes' )->numParams( $strokeCount )->text();
+			}
 		}
 
 		if ( $this->mainCollator->getAttribute( Collator::NUMERIC_COLLATION ) === Collator::ON ) {
