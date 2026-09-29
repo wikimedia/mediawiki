@@ -11,6 +11,7 @@ use MediaWiki\Language\Language;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Title\Title;
 use MediaWiki\User\UserIdentity;
+use MediaWiki\WikiMap\WikiMap;
 use Wikimedia\ObjectCache\WANObjectCache;
 use Wikimedia\Rdbms\DBUnexpectedError;
 
@@ -84,20 +85,24 @@ class ForeignDBFile extends LocalFile {
 			->where( [ 'page_namespace' => NS_FILE, 'page_title' => $this->title->getDBkey() ] )
 			->caller( __METHOD__ )->fetchField();
 
-		if ( $pageId !== false ) {
-			// NOTE: FileRepo supports a "articleUrl" field that would let
-			// us form pretty URLs in theory. But, consumers like Wikimedia
-			// Commons don't set this field today, and we have no method
-			// to make these URLs. The closest we have is FileRepo::getDescriptionUrl
-			// but that hardcodes the Image-namespace.
-			// TODO: Consider using WikiMap in ForeignDBViaLBRepo or setting
-			// in articleUrl in wmf-config.
-			$url = $this->repo->makeUrl( [ 'curid' => $pageId ] );
-			if ( $url !== false ) {
-				return $url;
-			}
+		if ( $pageId === false ) {
+			return null;
 		}
-		return null;
+
+		// NOTE: FileRepo supports a "articleUrl" field that would let
+		// us form pretty URLs in theory. But, consumers like Wikimedia
+		// Commons don't set this field today, and we have no method
+		// to make these URLs. The closest we have is FileRepo::getDescriptionUrl
+		// but that hardcodes the Image-namespace.
+		//
+		// T428296: This is intentionally unlocalised to produce a consistent and short URL
+		$wikiId = WikiMap::getWikiIdFromDbDomain( $this->repo->getDbDomain() );
+		$url = WikiMap::getForeignURL( $wikiId, "Special:Redirect/page/$pageId" );
+		if ( $url === false ) {
+			return null;
+		}
+
+		return $url;
 	}
 
 	/**
