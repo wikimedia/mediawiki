@@ -263,6 +263,7 @@ abstract class ImageHandler extends MediaHandler {
 		if ( $image->mustRender() || $params['width'] < $image->getWidth() ) {
 			return new ThumbnailImage( $image, $url, false, $params );
 		}
+		return false;
 	}
 
 	/** @inheritDoc */
