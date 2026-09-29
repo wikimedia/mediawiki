@@ -24,6 +24,7 @@ use MediaWiki\User\UserFactory;
  * - page: permalink for page by numeric page ID.
  * - logid: permalink for any log entry.
  *
+ * @internal
  * @ingroup SpecialPage
  * @since 1.22
  */
@@ -93,6 +94,7 @@ class SpecialRedirect extends FormSpecialPage {
 	/**
 	 * Handle Special:Redirect/file/xxxx
 	 *
+	 * @see SpecialFilepath
 	 * @return Status A good status contains the url to redirect to
 	 */
 	public function dispatchFile() {
@@ -133,8 +135,8 @@ class SpecialRedirect extends FormSpecialPage {
 
 	/**
 	 * Handle Special:Redirect/revision/xxx
-	 * (by redirecting to index.php?oldid=xxx)
 	 *
+	 * @see SpecialPermanentLink
 	 * @return Status A good status contains the url to redirect to
 	 */
 	public function dispatchRevision() {
@@ -174,7 +176,6 @@ class SpecialRedirect extends FormSpecialPage {
 
 	/**
 	 * Handle Special:Redirect/logid/xxx
-	 * (by redirecting to index.php?title=Special:Log&logid=xxx)
 	 *
 	 * @since 1.27
 	 * @return Status A good status contains the url to redirect to
@@ -200,7 +201,7 @@ class SpecialRedirect extends FormSpecialPage {
 	 *
 	 * @return Status|bool True if a redirect was successfully handled.
 	 */
-	private function dispatch() {
+	public function dispatch() {
 		// the various namespaces supported by Special:Redirect
 		$status = match ( $this->mType ) {
 			'user' => $this->dispatchUser(),

@@ -10,10 +10,9 @@ use LogicException;
 use MediaWiki\Title\Title;
 
 /**
- * Shortcut to construct a special page alias.
+ * Base class for redirect shortcuts.
  *
  * @stable to extend
- *
  * @ingroup SpecialPage
  */
 abstract class RedirectSpecialPage extends UnlistedSpecialPage {

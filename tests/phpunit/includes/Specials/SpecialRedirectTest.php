@@ -1,6 +1,7 @@
 <?php
 namespace MediaWiki\Tests\Specials;
 
+use MediaWiki\MainConfigNames;
 use MediaWiki\Specials\SpecialRedirect;
 use MediaWikiIntegrationTestCase;
 
@@ -10,60 +11,100 @@ use MediaWikiIntegrationTestCase;
  * @license GPL-2.0-or-later
  */
 class SpecialRedirectTest extends MediaWikiIntegrationTestCase {
-	private const CLAZZ = 'SpecialRedirectTest';
+	protected function setUp(): void {
+		parent::setUp();
+		$this->overrideConfigValues( [
+			MainConfigNames::Server => 'https://example.org',
+			MainConfigNames::CanonicalServer => 'https://example.org',
+		] );
+	}
 
-	private const CREATE_USER = 'create_user';
-
-	/**
-	 * @dataProvider provideDispatch
-	 */
-	public function testDispatch( $method, $type, $value, $expectedStatus ) {
-		$userFactory = $this->getServiceContainer()->getUserFactory();
-		$page = new SpecialRedirect(
+	public function testUserRedirect() {
+		$special = new SpecialRedirect(
 			$this->getServiceContainer()->getRepoGroup(),
-			$userFactory
+			$this->getServiceContainer()->getUserFactory()
+		);
+		$user = $this->getTestSysop()->getUser();
+
+		$special->setParameter( 'user/' . $user->getId() );
+		$ret = $special->dispatch();
+		$this->assertSame( 'https://example.org/wiki/User:UTSysop', $special->getOutput()->getRedirect() );
+		$this->assertSame( '302', $special->getOutput()->mRedirectCode );
+		$this->assertTrue( $ret );
+	}
+
+	public function testRevisionRedirect() {
+		$special = new SpecialRedirect(
+			$this->getServiceContainer()->getRepoGroup(),
+			$this->getServiceContainer()->getUserFactory()
 		);
 
-		// setup the user object
-		if ( $value === self::CREATE_USER ) {
-			$user = $userFactory->newFromName( self::CLAZZ );
-			$user->addToDatabase();
-			$value = $user->getId();
-		}
+		$special->setParameter( 'revision/1' );
+		$ret = $special->dispatch();
+		$this->assertSame( '/index.php?oldid=1', $special->getOutput()->getRedirect() );
+		$this->assertSame( '301', $special->getOutput()->mRedirectCode );
+		$this->assertTrue( $ret );
+	}
 
-		$page->setParameter( $type . '/' . $value );
+	public function testPageRedirect() {
+		$special = new SpecialRedirect(
+			$this->getServiceContainer()->getRepoGroup(),
+			$this->getServiceContainer()->getUserFactory()
+		);
+		$page = $this->getExistingTestPage( 'Help:Test' );
 
-		$status = $page->$method();
-		$this->assertSame(
-			$expectedStatus === 'good', $status->isGood(),
-			$method . ' does not return expected status "' . $expectedStatus . '"'
+		$special->setParameter( 'page/' . $page->getId() );
+		$ret = $special->dispatch();
+		$this->assertSame( '/index.php?curid=' . $page->getId(), $special->getOutput()->getRedirect() );
+		$this->assertSame( '301', $special->getOutput()->mRedirectCode );
+		$this->assertTrue( $ret );
+	}
+
+	public function testLogidRedirect() {
+		$special = new SpecialRedirect(
+			$this->getServiceContainer()->getRepoGroup(),
+			$this->getServiceContainer()->getUserFactory()
+		);
+
+		$special->setParameter( 'logid/1' );
+		$ret = $special->dispatch();
+		$this->assertSame( '/index.php?title=Special%3ALog&logid=1', $special->getOutput()->getRedirect() );
+		$this->assertSame( '301', $special->getOutput()->mRedirectCode );
+		$this->assertTrue( $ret );
+	}
+
+	/**
+	 * @dataProvider provideDispatchInvalid
+	 */
+	public function testDispatchInvalid( $method, $subpage ) {
+		$page = new SpecialRedirect(
+			$this->getServiceContainer()->getRepoGroup(),
+			$this->getServiceContainer()->getUserFactory()
+		);
+		$page->setParameter( $subpage );
+		$status = $page->dispatch();
+		$this->assertFalse(
+			$status->isGood(),
+			$method . ' expects fatal status'
 		);
 	}
 
-	public static function provideDispatch() {
-		foreach ( [
-			[ 'nonumeric', 'fatal' ],
-			[ '3', 'fatal' ],
-			[ self::CREATE_USER, 'good' ],
-		] as $dispatchUser ) {
-			yield [ 'dispatchUser', 'user', $dispatchUser[0], $dispatchUser[1] ];
-		}
-		foreach ( [
-			[ 'bad<name', 'fatal' ],
-			[ 'File:Non-exists.jpg', 'fatal' ],
-			// TODO Cannot test the good path here, because a file must exists
-		] as $dispatchFile ) {
-			yield [ 'dispatchFile', 'file', $dispatchFile[0], $dispatchFile[1] ];
-		}
-		foreach ( [
-			[ 'nonumeric', 'fatal' ],
-			[ '0', 'fatal' ],
-			[ '1', 'good' ],
-		] as $dispatch ) {
-			yield [ 'dispatchRevision', 'revision', $dispatch[0], $dispatch[1] ];
-			yield [ 'dispatchPage', 'revision', $dispatch[0], $dispatch[1] ];
-			yield [ 'dispatchLog', 'log', $dispatch[0], $dispatch[1] ];
-		}
+	public static function provideDispatchInvalid() {
+		yield [ 'dispatchUser', 'user/nonumeric' ];
+		yield [ 'dispatchUser', 'user/3' ];
+
+		// TODO Cannot test the good path here, because a file must exists
+		yield [ 'dispatchFile', 'file/bad<name' ];
+		yield [ 'dispatchFile', 'file/File:Non-exists.jpg' ];
+
+		yield [ 'dispatchRevision', 'revision/nonumeric' ];
+		yield [ 'dispatchRevision', 'revision/0' ];
+
+		yield [ 'dispatchPage', 'page/nonumeric' ];
+		yield [ 'dispatchPage', 'page/0' ];
+
+		yield [ 'dispatchLog', 'logid/nonumeric' ];
+		yield [ 'dispatchLog', 'logid/0' ];
 	}
 
 }

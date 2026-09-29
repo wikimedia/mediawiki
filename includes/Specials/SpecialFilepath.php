@@ -12,8 +12,11 @@ use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Title\Title;
 
 /**
- * Redirects to the URL of a thumbnail for the given file.
+ * Redirect to the thumbnail URL of a given filename
  *
+ * This is a shortcut for Special:Redirect/file/###.
+ *
+ * @see SpecialRedirect
  * @ingroup SpecialPage
  */
 class SpecialFilepath extends RedirectSpecialPage {

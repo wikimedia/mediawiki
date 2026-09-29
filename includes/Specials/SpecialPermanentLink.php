@@ -11,14 +11,19 @@ use MediaWiki\SpecialPage\RedirectSpecialPage;
 use MediaWiki\Title\Title;
 
 /**
- * Redirect from Special:PermanentLink/### to index.php?oldid=###.
+ * Redirect from Special:PermanentLink/### to index.php?oldid=###
  *
+ * This is effectively a shortcut for Special:Redirect/revision/###.
+ *
+ * This exists to allow for easy handwritten links to old revisions in
+ * wikitext using `[[Link]]` syntax, especially in edit summaries (T2268).
+ *
+ * @see SpecialRedirect
  * @ingroup SpecialPage
  */
 class SpecialPermanentLink extends RedirectSpecialPage {
 	public function __construct() {
 		parent::__construct( 'PermanentLink' );
-		$this->mAllowedRedirectParams = [];
 	}
 
 	/**
