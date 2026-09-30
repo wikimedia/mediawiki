@@ -488,6 +488,8 @@ because of Phabricator reports.
   now throws a TypeError.
 * The protected static method UserMailer::sendWithPear() has been removed
   following the migration from PEAR Mail to symfony/mailer.
+* UserCache class and MediaWikiServices::getUserCache(), deprecated since 1.43,
+  have been removed.
 * DBLoadBalancerFactoryConfigBuilder service has been removed without
   deprecation. It is internal to the rdbms library and shouldn't be used
   outside of it.

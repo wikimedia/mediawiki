@@ -29,7 +29,6 @@ use MediaWiki\Block\UnblockUserFactory;
 use MediaWiki\Cache\BacklinkCacheFactory;
 use MediaWiki\Cache\GenderCache;
 use MediaWiki\Cache\HTMLCacheUpdater;
-use MediaWiki\Cache\UserCache;
 use MediaWiki\Category\TrackingCategories;
 use MediaWiki\ChangeTags\ChangeTagsFormatter;
 use MediaWiki\ChangeTags\ChangeTagsStore;
@@ -2352,14 +2351,6 @@ class MediaWikiServices extends ServiceContainer {
 	 */
 	public function getUrlUtils(): UrlUtils {
 		return $this->getService( 'UrlUtils' );
-	}
-
-	/**
-	 * @since 1.36
-	 * @deprecated since 1.43, use ActorStore
-	 */
-	public function getUserCache(): UserCache {
-		return $this->getService( 'UserCache' );
 	}
 
 	/**
