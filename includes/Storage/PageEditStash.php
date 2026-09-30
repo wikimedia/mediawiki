@@ -13,7 +13,6 @@ use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Json\JsonCodec;
 use MediaWiki\Page\PageIdentity;
-use MediaWiki\Page\WikiPage;
 use MediaWiki\Page\WikiPageFactory;
 use MediaWiki\Parser\ParserOutputFlags;
 use MediaWiki\Revision\SlotRecord;
@@ -97,19 +96,14 @@ class PageEditStash {
 	}
 
 	/**
-	 * @param PageUpdater $pageUpdater (a WikiPage instance is also supported but deprecated)
+	 * @param PageUpdater $pageUpdater
 	 * @param Content $content Edit content
 	 * @param UserIdentity $user
 	 * @param string $summary Edit summary
 	 * @return string Class ERROR_* constant
 	 */
-	public function parseAndCache( $pageUpdater, Content $content, UserIdentity $user, string $summary ) {
+	public function parseAndCache( PageUpdater $pageUpdater, Content $content, UserIdentity $user, string $summary ) {
 		$logger = $this->logger;
-
-		if ( $pageUpdater instanceof WikiPage ) {
-			wfDeprecated( __METHOD__ . ' with WikiPage instance', '1.42' );
-			$pageUpdater = $pageUpdater->newPageUpdater( $user );
-		}
 
 		$page = $pageUpdater->getPage();
 		$contentHash = $this->getContentHash( $content );

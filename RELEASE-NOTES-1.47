@@ -484,6 +484,8 @@ because of Phabricator reports.
 * ContentHandler::getAutoDeleteReason() and WikiPage::getAutoDeleteReason()
   no longer accept the $hasHistory parameter. This parameter has been
   emitting warnings since 1.38 and has no replacement.
+* Passing a WikiPage to PageEditStash::parseAndCache(), deprecated since 1.42,
+  now throws a TypeError.
 * The protected static method UserMailer::sendWithPear() has been removed
   following the migration from PEAR Mail to symfony/mailer.
 * DBLoadBalancerFactoryConfigBuilder service has been removed without
