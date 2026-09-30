@@ -3,6 +3,7 @@
  * Copyright (C) 2017 Kunal Mehta <legoktm@debian.org>
  *
  * @license GPL-2.0-or-later
+ * @file
  */
 
 namespace MediaWiki\Composer;

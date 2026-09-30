@@ -3,6 +3,7 @@
  * A class to check request restrictions expressed as a JSON object
  *
  * @license GPL-2.0-or-later
+ * @file
  */
 
 namespace MediaWiki\Utils;

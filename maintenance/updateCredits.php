@@ -1,12 +1,7 @@
 <?php
 /**
- * Update the CREDITS list by merging in the list of git commit authors.
- *
- * The contents of the existing contributors list will be preserved. If a name
- * needs to be removed for some reason that must be done manually before or
- * after running this script.
- *
  * @license GPL-2.0-or-later
+ * @file
  */
 
 namespace MediaWiki\Maintenance;
@@ -18,6 +13,12 @@ require_once __DIR__ . '/Maintenance.php';
 // @codeCoverageIgnoreEnd
 
 /**
+ * Update the CREDITS list by merging in the list of git commit authors.
+ *
+ * The contents of the existing contributors list will be preserved. If a name
+ * needs to be removed for some reason that must be done manually before or
+ * after running this script.
+ *
  * @ingroup Maintenance
  */
 class UpdateCredits extends Maintenance {

@@ -6,6 +6,7 @@
  *
  * @stable to type
  * @since 1.28
+ * @file
  */
 
 namespace MediaWiki\Search;
