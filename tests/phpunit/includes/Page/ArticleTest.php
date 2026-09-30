@@ -279,6 +279,7 @@ class ArticleTest extends ParserCacheTestBase {
 	public function testPostprocFeatureflagFalse(): void {
 		$this->overrideConfigValue( MainConfigNames::UsePostprocCacheLegacy, false );
 		$this->overrideConfigValue( MainConfigNames::UsePostprocCacheParsoid, false );
+		$this->overrideConfigValue( MainConfigNames::UseParsoidParser, false );
 		$parserCacheFactory = $this->createMock( ParserCacheFactory::class );
 		$caches = [
 			$this->getParserCache( 'test', new HashBagOStuff() ),
@@ -323,6 +324,7 @@ class ArticleTest extends ParserCacheTestBase {
 	/** @covers \MediaWiki\Page\Article::view */
 	public function testPostprocFeatureflagTrue(): void {
 		$this->overrideConfigValue( MainConfigNames::UsePostprocCacheParsoid, true );
+		$this->overrideConfigValue( MainConfigNames::UseParsoidParser, true );
 		$parserCacheFactory = $this->createMock( ParserCacheFactory::class );
 		$caches = [
 			$this->getParserCache( 'test', new HashBagOStuff() ),
@@ -347,12 +349,6 @@ class ArticleTest extends ParserCacheTestBase {
 				return $parserCacheFactory;
 			}
 		] );
-		$this->setTemporaryHook(
-			'ParserOptionsRegister',
-			static function ( &$defaults, &$inCacheKey, &$lazyLoad ) {
-				$defaults['useParsoid'] = true;
-			}
-		);
 		$title = $this->getExistingTestPage()->getTitle();
 		$article = $this->newArticle( $title );
 		$this->editPage( $title, '== Hello ==' );
@@ -392,6 +388,7 @@ class ArticleTest extends ParserCacheTestBase {
 	 */
 	public function testParsoidLanguageConversion( bool $useSameVariant ): void {
 		$this->overrideConfigValue( MainConfigNames::UsePostprocCacheParsoid, true );
+		$this->overrideConfigValue( MainConfigNames::UseParsoidParser, true );
 		$this->overrideConfigValue( MainConfigNames::UsePigLatinVariant, true );
 		$parserCacheFactory = $this->createMock( ParserCacheFactory::class );
 		$caches = [
@@ -417,12 +414,6 @@ class ArticleTest extends ParserCacheTestBase {
 				return $parserCacheFactory;
 			}
 		] );
-		$this->setTemporaryHook(
-			'ParserOptionsRegister',
-			static function ( &$defaults, &$inCacheKey, &$lazyLoad ) {
-				$defaults['useParsoid'] = true;
-			}
-		);
 		$title = $this->getExistingTestPage()->getTitle();
 		$req = new FauxRequest( [ 'variant' => 'en-x-piglatin' ] );
 		$this->setRequest( $req );

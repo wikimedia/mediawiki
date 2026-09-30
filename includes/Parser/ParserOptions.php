@@ -1477,6 +1477,9 @@ class ParserOptions {
 
 		$this->mUser = $user;
 		$this->options['userlang'] = $lang;
+		$this->options['useParsoid'] = MediaWikiServices::getInstance()->getMainConfig()->get(
+			MainConfigNames::UseParsoidParser
+		);
 	}
 
 	/**

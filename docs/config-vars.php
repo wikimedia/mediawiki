@@ -4682,6 +4682,12 @@ $wgUseParsoidLinksUpdate = null;
 $wgUseParsoidMessages = null;
 
 /**
+ * Config variable stub for the UseParsoidParser setting, for use by phpdoc and IDEs.
+ * @see MediaWiki\MainConfigSchema::UseParsoidParser
+ */
+$wgUseParsoidParser = null;
+
+/**
  * Config variable stub for the SiteLookup setting, for use by phpdoc and IDEs.
  * @see MediaWiki\MainConfigSchema::SiteLookup
  */

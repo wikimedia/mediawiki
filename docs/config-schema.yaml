@@ -8585,6 +8585,13 @@ config-schema:
             A separate config will control Parsoid use for articles and link updates
             @unstable Temporary flag, likely to be replaced by a single config in ParserOptions
             @since 1.47
+    UseParsoidParser:
+        default: false
+        type: boolean
+        description: |-
+            Set Parsoid as the default wikitext parser
+            A separate config controls Parsoid use for messages and link updates
+            @since 1.47
     SiteLookup:
         default: {  }
         type: object
