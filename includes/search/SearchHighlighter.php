@@ -38,6 +38,12 @@ class SearchHighlighter {
 	public const DEFAULT_CONTEXT_LINES = 2;
 	public const DEFAULT_CONTEXT_CHARS = 75;
 
+	/**
+	 * Limit of regex matches when highlightText() splits the text. Unclosed
+	 * markup makes the split quadratic in the text length.
+	 */
+	private const MAX_SCAN_STEPS = 10000;
+
 	/** @var bool */
 	protected $mCleanWikitext = true;
 
@@ -94,7 +100,11 @@ class SearchHighlighter {
 		$start = 0;
 		$textLen = strlen( $text );
 		$count = 0; // sequence number to maintain ordering
+		$steps = 0;
 		while ( $start < $textLen ) {
+			if ( ++$steps > self::MAX_SCAN_STEPS ) {
+				return $this->highlightNone( $text, $contextlines, $contextchars );
+			}
 			// find start of template/image/table
 			if ( preg_match( $spat, $text, $matches, PREG_OFFSET_CAPTURE, $start ) ) {
 				$epat = '';
@@ -123,6 +133,9 @@ class SearchHighlighter {
 					$offset = $start + 1;
 					$found = false;
 					while ( preg_match( $epat, $text, $endMatches, PREG_OFFSET_CAPTURE, $offset ) ) {
+						if ( ++$steps > self::MAX_SCAN_STEPS ) {
+							return $this->highlightNone( $text, $contextlines, $contextchars );
+						}
 						if ( array_key_exists( 2, $endMatches ) ) {
 							// found end
 							if ( $level == 0 ) {

@@ -36,4 +36,23 @@ class SearchHighlighterTest extends \MediaWikiIntegrationTestCase {
 			],
 		];
 	}
+
+	/**
+	 * @covers \SearchHighlighter::highlightText
+	 */
+	public function testHighlightText() {
+		$highlighter = new SearchHighlighter();
+		$actual = $highlighter->highlightText( "foo {{tpl}} bar baz", [ 'bar' ] );
+		$this->assertStringContainsString( "<span class='searchmatch'>bar</span>", $actual );
+	}
+
+	/**
+	 * @covers \SearchHighlighter::highlightText
+	 */
+	public function testHighlightTextStopsOnUnclosedMarkup() {
+		$highlighter = new SearchHighlighter();
+		$text = str_repeat( '{{ zqxjkw ', 12000 );
+		$actual = $highlighter->highlightText( $text, [ 'zqxjkw' ] );
+		$this->assertSame( $highlighter->highlightNone( $text ), $actual );
+	}
 }
