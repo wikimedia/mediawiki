@@ -2022,8 +2022,6 @@ return [
 			'DeprecationReleaseLimit' => false,
 			'Profiler' => [
 			],
-			'StatsdServer' => false,
-			'StatsdMetricPrefix' => 'MediaWiki',
 			'StatsTarget' => null,
 			'StatsFormat' => null,
 			'StatsPrefix' => 'mediawiki',

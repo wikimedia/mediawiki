@@ -10313,31 +10313,6 @@ class MainConfigSchema {
 	];
 
 	/**
-	 * Destination of statsd metrics.
-	 *
-	 * A host or host:port of a statsd server. Port defaults to 8125.
-	 *
-	 * If not set, statsd metrics will not be collected.
-	 *
-	 * @see MediaWiki::emitBufferedStats()
-	 * @since 1.25
-	 */
-	public const StatsdServer = [
-		'default' => false,
-	];
-
-	/**
-	 * Prefix for metric names sent to $wgStatsdServer.
-	 *
-	 * @see \MediaWiki\MediaWikiServices::getInstance()->getStatsdDataFactory
-	 * @see \Wikimedia\Stats\BufferingStatsdDataFactory
-	 * @since 1.25
-	 */
-	public const StatsdMetricPrefix = [
-		'default' => 'MediaWiki',
-	];
-
-	/**
 	 * Stats output target URI e.g. udp://127.0.0.1:8125
 	 *
 	 * If null, metrics will not be sent.

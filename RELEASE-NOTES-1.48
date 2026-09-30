@@ -39,6 +39,9 @@ For notes on 1.47.x and older releases, see HISTORY.
 ==== Removed configuration ====
 * $wgWebPThumbnailType has been removed. WebP images are served as WebP
   thumbnails unconditionally.
+* $wgStatsdServer and $wgStatsdMetricPrefix, deprecated since 1.25
+  and unused since 1.45, have been removed. For StatsD support, see:
+  https://www.mediawiki.org/wiki/Manual:Stats.
 * …
 
 === New user-facing features in 1.48 ===

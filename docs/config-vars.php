@@ -3406,18 +3406,6 @@ $wgDeprecationReleaseLimit = null;
 $wgProfiler = null;
 
 /**
- * Config variable stub for the StatsdServer setting, for use by phpdoc and IDEs.
- * @see MediaWiki\MainConfigSchema::StatsdServer
- */
-$wgStatsdServer = null;
-
-/**
- * Config variable stub for the StatsdMetricPrefix setting, for use by phpdoc and IDEs.
- * @see MediaWiki\MainConfigSchema::StatsdMetricPrefix
- */
-$wgStatsdMetricPrefix = null;
-
-/**
  * Config variable stub for the StatsTarget setting, for use by phpdoc and IDEs.
  * @see MediaWiki\MainConfigSchema::StatsTarget
  */

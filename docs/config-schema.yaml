@@ -6436,21 +6436,6 @@ config-schema:
             could be long running and the data would accumulate. Use the `--profiler`
             parameter of maintenance scripts to override this.
             @since 1.17.0
-    StatsdServer:
-        default: false
-        description: |-
-            Destination of statsd metrics.
-            A host or host:port of a statsd server. Port defaults to 8125.
-            If not set, statsd metrics will not be collected.
-            @see MediaWiki::emitBufferedStats()
-            @since 1.25
-    StatsdMetricPrefix:
-        default: MediaWiki
-        description: |-
-            Prefix for metric names sent to $wgStatsdServer.
-            @see \MediaWiki\MediaWikiServices::getInstance()->getStatsdDataFactory
-            @see \Wikimedia\Stats\BufferingStatsdDataFactory
-            @since 1.25
     StatsTarget:
         default: null
         type:

@@ -3421,18 +3421,6 @@ class MainConfigNames {
 	public const Profiler = 'Profiler';
 
 	/**
-	 * Name constant for the StatsdServer setting, for use with Config::get()
-	 * @see MainConfigSchema::StatsdServer
-	 */
-	public const StatsdServer = 'StatsdServer';
-
-	/**
-	 * Name constant for the StatsdMetricPrefix setting, for use with Config::get()
-	 * @see MainConfigSchema::StatsdMetricPrefix
-	 */
-	public const StatsdMetricPrefix = 'StatsdMetricPrefix';
-
-	/**
 	 * Name constant for the StatsTarget setting, for use with Config::get()
 	 * @see MainConfigSchema::StatsTarget
 	 */
