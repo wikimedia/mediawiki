@@ -199,7 +199,9 @@ class SpecialUndelete extends SpecialPage {
 
 		$this->mUnsuppress = !empty( $values['wpUnsuppress'] )
 			&& $this->permissionManager->userHasRight( $this->getUser(), 'suppressrevision' );
-		$this->mUndeleteTalk = !empty( $values['undeletetalk'] );
+		// A browser sends a checkbox only if the user selects it. Older form HTML
+		// sends an empty value, so accept the key alone.
+		$this->mUndeleteTalk = array_key_exists( 'undeletetalk', $values );
 
 		$timestamps = [];
 		$this->mFileVersions = [];
@@ -1256,6 +1258,7 @@ class SpecialUndelete extends SpecialPage {
 					new CheckboxInputWidget( [
 						'name' => 'undeletetalk',
 						'inputId' => 'mw-undelete-undeletetalk',
+						'value' => '1',
 						'selected' => false,
 					] ),
 					[

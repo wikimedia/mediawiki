@@ -231,6 +231,54 @@ class SpecialUndeleteTest extends SpecialPageTestBase {
 		$this->assertTrue( $wrapper->mUnsuppress );
 	}
 
+	public function testHandleRetrievedDataUndeleteTalkFromEmptyCheckboxValue(): void {
+		$page = $this->newSpecialPageForUser( $this->getTestUser()->getUser() );
+		$wrapper = TestingAccessWrapper::newFromObject( $page );
+
+		// T437716: older form HTML gave the checkbox an empty value
+		$wrapper->handleRetrievedData( [ 'undeletetalk' => '' ] );
+
+		$this->assertTrue( $wrapper->mUndeleteTalk );
+	}
+
+	public function testHandleRetrievedDataUndeleteTalkOffWhenKeyAbsent(): void {
+		$page = $this->newSpecialPageForUser( $this->getTestUser()->getUser() );
+		$wrapper = TestingAccessWrapper::newFromObject( $page );
+
+		$wrapper->handleRetrievedData( [] );
+
+		$this->assertFalse( $wrapper->mUndeleteTalk );
+	}
+
+	/**
+	 * T437716: the checkbox must post a non-empty value, like the other
+	 * checkboxes on this form.
+	 */
+	public function testUndeleteTalkCheckboxHasValue(): void {
+		$title = $this->getNonexistingTestPage()->getTitle();
+		$talkTitle = Title::castFromLinkTarget(
+			$this->getServiceContainer()->getNamespaceInfo()->getTalkPage( $title )
+		);
+		$this->editPage( $title, 'subject content' );
+		$this->editPage( $talkTitle, 'talk content' );
+		$this->deletePage( $this->getExistingTestPage( $title ) );
+		$this->deletePage( $this->getExistingTestPage( $talkTitle ) );
+
+		[ $html ] = $this->executeSpecialPage(
+			'',
+			new FauxRequest( [ 'target' => $title->getPrefixedText() ] ),
+			'qqx',
+			$this->getTestSysop()->getAuthority()
+		);
+
+		$checkbox = $this->assertSelectorMatchesOneElementInNode(
+			DOMUtils::parseHTML( $html ),
+			'input[name="undeletetalk"]',
+			true
+		);
+		$this->assertStringContainsString( 'value="1"', $checkbox );
+	}
+
 	public function testGetTitleWithoutTargetReturnsBareSpecialPage(): void {
 		$page = $this->newSpecialPageForUser( $this->getTestUser()->getUser() );
 
