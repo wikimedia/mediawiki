@@ -644,6 +644,7 @@ class OutputPage extends ContextSource {
 	/**
 	 * Load one or more ResourceLoader modules on this page.
 	 *
+	 * @since 1.17
 	 * @param string|string[] $modules Module name (string) or array of module names
 	 */
 	public function addModules( $modules ) {
@@ -671,6 +672,7 @@ class OutputPage extends ContextSource {
 	 * using a standard `<link rel=stylesheet>` HTML tag, rather than as a combined
 	 * Javascript and CSS package. Thus, they will even load when JavaScript is disabled.
 	 *
+	 * @since 1.17
 	 * @param string|string[] $modules Module name (string) or array of module names
 	 */
 	public function addModuleStyles( $modules ) {
