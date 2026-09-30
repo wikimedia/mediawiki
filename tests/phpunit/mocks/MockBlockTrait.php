@@ -65,7 +65,7 @@ trait MockBlockTrait {
 		$blockManager = $this->getMockBuilder( BlockManager::class )
 			->disableOriginalConstructor()
 			->onlyMethods( [
-				'getUserBlock', 'getBlock', 'getCreateAccountBlock', 'getIpBlock', 'clearUserCache'
+				'getBlock', 'getCreateAccountBlock', 'getIpBlock', 'clearUserCache'
 			] )
 			->getMock();
 
@@ -80,9 +80,6 @@ trait MockBlockTrait {
 
 			return null;
 		};
-
-		$blockManager->method( 'getUserBlock' )
-			->willReturnCallback( $callback );
 
 		$blockManager->method( 'getBlock' )
 			->willReturnCallback( $callback );

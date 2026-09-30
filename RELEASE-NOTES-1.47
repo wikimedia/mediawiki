@@ -504,6 +504,7 @@ because of Phabricator reports.
   been removed.
 * The previously protected property Article::$mContext was made private.
   Access to it has been deprecated since 1.35.
+* BlockManager::getUserBlock(), deprecated since 1.42, has been removed.
 * The following ChangeTags methods which were deprecated in 1.41 have been
   removed:
   - getTags

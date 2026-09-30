@@ -89,66 +89,6 @@ class BlockManager {
 	 * return a composite block that combines the strictest features of the applicable
 	 * blocks.
 	 *
-	 * Different blocks may be sought, depending on the user and their permissions. The
-	 * user may be:
-	 * (1) The global user (and can be affected by IP blocks). The global request object
-	 * is needed for checking the IP address, the XFF header and the cookies.
-	 * (2) The global user (and exempt from IP blocks). The global request object is
-	 * available.
-	 * (3) Another user (not the global user). No request object is available or needed;
-	 * just look for a block against the user account.
-	 *
-	 * Cases #1 and #2 check whether the global user is blocked in practice; the block
-	 * may due to their user account being blocked or to an IP address block or cookie
-	 * block (or multiple of these). Case #3 simply checks whether a user's account is
-	 * blocked, and does not determine whether the person using that account is affected
-	 * in practice by any IP address or cookie blocks.
-	 *
-	 * @deprecated since 1.42 Use getBlock(), which is the same except that it expects
-	 *   the caller to do ipblock-exempt permission checking and to set $request to null
-	 *   if the user is exempt from IP blocks.
-	 *
-	 * @param UserIdentity $user
-	 * @param WebRequest|null $request The global request object if the user is the
-	 *  global user (cases #1 and #2), otherwise null (case #3). The IP address and
-	 *  information from the request header are needed to find some types of blocks.
-	 * @param bool $fromReplica Whether to check the replica DB first.
-	 *  To improve performance, non-critical checks are done against replica DBs.
-	 *  Check when actually saving should be done against primary.
-	 * @param bool $disableIpBlockExemptChecking This is used internally to prevent
-	 *   an infinite recursion with autopromote. See T270145.
-	 * @return AbstractBlock|null The most relevant block, or null if there is no block.
-	 */
-	public function getUserBlock(
-		UserIdentity $user,
-		$request,
-		$fromReplica,
-		$disableIpBlockExemptChecking = false
-	) {
-		wfDeprecated( __METHOD__, '1.42' );
-		// If this is the global user, they may be affected by IP blocks (case #1),
-		// or they may be exempt (case #2). If affected, look for additional blocks
-		// against the IP address and referenced in a cookie.
-		$checkIpBlocks = $request &&
-			// Because calling getBlock within Autopromote leads back to here,
-			// thus causing a infinite recursion. We fix this by not checking for
-			// ipblock-exempt when calling getBlock within Autopromote.
-			// See T270145.
-			!$disableIpBlockExemptChecking &&
-			!$this->isIpBlockExempt( $user );
-
-		return $this->getBlock(
-			$user,
-			$checkIpBlocks ? $request : null,
-			$fromReplica
-		);
-	}
-
-	/**
-	 * Get the blocks that apply to a user. If there is only one, return that, otherwise
-	 * return a composite block that combines the strictest features of the applicable
-	 * blocks.
-	 *
 	 * If the user is exempt from IP blocks, the request should be null.
 	 *
 	 * @since 1.42
