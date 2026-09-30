@@ -16,9 +16,20 @@ class WikiMapTest extends MediaWikiLangTestCase {
 
 	protected function setUp(): void {
 		parent::setUp();
+		$this->overrideConfigValues( [
+			// FIXME: This is an invalid $wgCanonicalServer value
+			MainConfigNames::CanonicalServer => '//this.wiki.org',
+			MainConfigNames::DBname => 'thiswiki',
+			MainConfigNames::DBprefix => ''
+		] );
+		$this->setMwGlobals( [
+			'wgConf' => new SiteConfiguration(),
+		] );
+	}
 
-		$conf = new SiteConfiguration();
-		$conf->settings = [
+	private function setWgConf() {
+		global $wgConf;
+		$wgConf->settings = [
 			'wgServer' => [
 				'enwiki' => 'http://en.example.org',
 				'ruwiki' => '//ru.example.org',
@@ -30,16 +41,10 @@ class WikiMapTest extends MediaWikiLangTestCase {
 				'ruwiki' => '/wiki/$1',
 			],
 		];
-		$conf->suffixes = [ 'wiki' ];
-		$this->setMwGlobals( 'wgConf', $conf );
+		$wgConf->suffixes = [ 'wiki' ];
 		$this->overrideConfigValues( [
 			MainConfigNames::LocalDatabases => [ 'enwiki', 'ruwiki', 'nopathwiki' ],
-			MainConfigNames::CanonicalServer => '//this.wiki.org',
-			MainConfigNames::DBname => 'thiswiki',
-			MainConfigNames::DBprefix => ''
 		] );
-
-		TestSites::insertIntoDb();
 	}
 
 	public static function provideGetWiki() {
@@ -68,10 +73,10 @@ class WikiMapTest extends MediaWikiLangTestCase {
 	 * @dataProvider provideGetWiki
 	 */
 	public function testGetWiki( $expected, $wikiId, $useWgConf = true ) {
-		if ( !$useWgConf ) {
-			$this->setMwGlobals( [
-				'wgConf' => new SiteConfiguration(),
-			] );
+		if ( $useWgConf ) {
+			$this->setWgConf();
+		} else {
+			TestSites::insertIntoDb();
 		}
 
 		$this->assertEquals( $expected, WikiMap::getWiki( $wikiId ) );
@@ -90,6 +95,8 @@ class WikiMapTest extends MediaWikiLangTestCase {
 	 * @dataProvider provideGetWikiName
 	 */
 	public function testGetWikiName( $expected, $wikiId ) {
+		$this->setWgConf();
+		TestSites::insertIntoDb();
 		$this->assertEquals( $expected, WikiMap::getWikiName( $wikiId ) );
 	}
 
@@ -123,6 +130,8 @@ class WikiMapTest extends MediaWikiLangTestCase {
 	 * @dataProvider provideMakeForeignLink
 	 */
 	public function testMakeForeignLink( $expected, $wikiId, $page, $text = null ) {
+		$this->setWgConf();
+		TestSites::insertIntoDb();
 		$this->assertEquals(
 			$expected,
 			WikiMap::makeForeignLink( $wikiId, $page, $text )
@@ -159,6 +168,8 @@ class WikiMapTest extends MediaWikiLangTestCase {
 	 * @dataProvider provideForeignUserLink
 	 */
 	public function testForeignUserLink( $expected, $wikiId, $user, $text = null ) {
+		$this->setWgConf();
+		TestSites::insertIntoDb();
 		$this->assertEquals( $expected, WikiMap::foreignUserLink( $wikiId, $user, $text ) );
 	}
 
@@ -184,13 +195,13 @@ class WikiMapTest extends MediaWikiLangTestCase {
 	 * @dataProvider provideGetForeignURL
 	 */
 	public function testGetForeignURL( $expected, $wikiId, $page, $fragment = null ) {
+		$this->setWgConf();
+		TestSites::insertIntoDb();
 		$this->assertEquals( $expected, WikiMap::getForeignURL( $wikiId, $page, $fragment ) );
 	}
 
-	/**
-	 * @covers \MediaWiki\WikiMap\WikiMap::getCanonicalServerInfoForAllWikis()
-	 */
 	public function testGetCanonicalServerInfoForAllWikis() {
+		$this->setWgConf();
 		$expected = [
 			'thiswiki' => [
 				'url' => '//this.wiki.org',
@@ -237,9 +248,9 @@ class WikiMapTest extends MediaWikiLangTestCase {
 
 	/**
 	 * @dataProvider provideGetWikiFromUrl
-	 * @covers \MediaWiki\WikiMap\WikiMap::getWikiFromUrl()
 	 */
 	public function testGetWikiFromUrl( $url, $wiki ) {
+		$this->setWgConf();
 		$this->assertEquals( $wiki, WikiMap::getWikiFromUrl( $url ) );
 	}
 
@@ -257,16 +268,11 @@ class WikiMapTest extends MediaWikiLangTestCase {
 
 	/**
 	 * @dataProvider provideGetWikiIdFromDbDomain
-	 * @covers \MediaWiki\WikiMap\WikiMap::getWikiIdFromDbDomain()
 	 */
 	public function testGetWikiIdFromDbDomain( $domain, $wikiId ) {
 		$this->assertEquals( $wikiId, WikiMap::getWikiIdFromDbDomain( $domain ) );
 	}
 
-	/**
-	 * @covers \MediaWiki\WikiMap\WikiMap::isCurrentWikiDbDomain()
-	 * @covers \MediaWiki\WikiMap\WikiMap::getCurrentWikiDbDomain()
-	 */
 	public function testIsCurrentWikiDomain() {
 		$this->overrideConfigValue( MainConfigNames::DBmwschema, 'mediawiki' );
 
@@ -304,9 +310,6 @@ class WikiMapTest extends MediaWikiLangTestCase {
 
 	/**
 	 * @dataProvider provideIsCurrentWikiId
-	 * @covers \MediaWiki\WikiMap\WikiMap::isCurrentWikiId()
-	 * @covers \MediaWiki\WikiMap\WikiMap::getCurrentWikiDbDomain()
-	 * @covers \MediaWiki\WikiMap\WikiMap::getWikiIdFromDbDomain()
 	 */
 	public function testIsCurrentWikiId( $wikiId, $db, $schema, $prefix ) {
 		$this->overrideConfigValues( [
