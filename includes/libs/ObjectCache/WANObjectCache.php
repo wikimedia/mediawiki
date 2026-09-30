@@ -181,9 +181,6 @@ class WANObjectCache implements
 	/** @var TracerInterface */
 	private $tracer;
 
-	/** @var array<string,float> Maps key to UNIX timestamp for get() cache misses */
-	private array $missLog = [];
-
 	/** @var int Callback stack depth for getWithSetCallback() */
 	private $callbackDepth = 0;
 	/** @var mixed[] Temporary warm-up cache */
@@ -488,24 +485,12 @@ class WANObjectCache implements
 		$now = $this->getCurrentTime();
 		$res = $this->fetchKeys( [ $key ], $checkKeys, $now )[$key];
 
-		$curTTL = $res[self::RES_CUR_TTL];
-		if ( $curTTL === null || $curTTL <= 0 ) {
-			// Remove old item so the updated one moves to the end of the array
-			unset( $this->missLog[$key] );
-			if ( count( $this->missLog ) >= 10 ) {
-				// Drop the oldest entry
-				array_shift( $this->missLog );
-			}
-			// Log the timestamp in case a corresponding set() call does not provide "walltime"
-			$this->missLog[$key] = $this->getCurrentTime();
-		}
-
 		return new CachedValue(
 			$res[self::RES_VALUE],
 			$res[self::RES_VERSION],
 			$res[self::RES_AS_OF],
 			$res[self::RES_TTL],
-			$curTTL,
+			$res[self::RES_CUR_TTL],
 			$res[self::RES_TOMB_AS_OF],
 			$res[self::RES_CHECK_AS_OF]
 		);
@@ -797,12 +782,10 @@ class WANObjectCache implements
 	 *      Default: false
 	 *   - version: Integer version number signifying the format of the value.
 	 *      Default: null
-	 *   - walltime: How long the value took to generate in seconds. Default: null
 	 * @phpcs:ignore Generic.Files.LineLength
-	 * @phan-param array{staleTTL?:int,creating?:bool,version?:int,walltime?:int|float,segmentable?:bool} $opts
+	 * @phan-param array{staleTTL?:int,creating?:bool,version?:int,segmentable?:bool} $opts
 	 * @note Options added in 1.28: staleTTL
 	 * @note Options added in 1.33: creating
-	 * @note Options added in 1.34: version, walltime
 	 * @note Options added in 1.40: segmentable
 	 * @return bool Success
 	 */
@@ -818,7 +801,6 @@ class WANObjectCache implements
 			$value,
 			$ttl,
 			$opts['version'] ?? null,
-			$opts['walltime'] ?? null,
 			$opts['staleTTL'] ?? self::STALE_TTL_NONE,
 			$opts['segmentable'] ?? false,
 			$opts['creating'] ?? false
@@ -837,7 +819,6 @@ class WANObjectCache implements
 	 * @param mixed $value
 	 * @param int|float $ttl
 	 * @param int|null $version
-	 * @param float|null $walltime
 	 * @param int $staleTTL
 	 * @param bool $segmentable
 	 * @param bool $creating
@@ -848,7 +829,6 @@ class WANObjectCache implements
 		$value,
 		$ttl,
 		?int $version,
-		?float $walltime,
 		int $staleTTL,
 		bool $segmentable,
 		bool $creating
@@ -867,8 +847,6 @@ class WANObjectCache implements
 			$ttl = self::TTL_INDEFINITE;
 		}
 
-		$walltime ??= $this->timeSinceLoggedMiss( $key, $now );
-
 		// Forbid caching data that only exists within an uncommitted transaction. Also, lower
 		// the TTL when the data has a "since" time so far in the past that a delete() tombstone,
 		// made after that time, could have already expired (the key is no longer write-holed).
@@ -879,7 +857,6 @@ class WANObjectCache implements
 				"Rejected set() for {cachekey} due to pending writes.",
 				[
 					'cachekey' => $key,
-					'walltime' => $walltime
 				]
 			);
 
@@ -1785,7 +1762,6 @@ class WANObjectCache implements
 					$value,
 					$ttl,
 					$version,
-					$walltime,
 					$staleTTL,
 					$segmentable,
 					( $curValue === false )
@@ -2893,15 +2869,6 @@ class WANObjectCache implements
 		$wrappedBySisterKey += array_fill_keys( $sisterKeys, false );
 
 		return $wrappedBySisterKey;
-	}
-
-	/**
-	 * @param string $key Cache key made with makeKey()/makeGlobalKey()
-	 * @param float $now Current UNIX timestamp
-	 * @return float|null Seconds since the last logged get() miss for this key, or, null
-	 */
-	private function timeSinceLoggedMiss( $key, $now ) {
-		return isset( $this->missLog[$key] ) ? ( $now - $this->missLog[$key] ) : null;
 	}
 
 	/**
