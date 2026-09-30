@@ -321,10 +321,24 @@ class ArticleTest extends ParserCacheTestBase {
 		$this->assertEquals( $html, $html2 );
 	}
 
-	/** @covers \MediaWiki\Page\Article::view */
-	public function testPostprocFeatureflagTrue(): void {
+	public static function provideSplitParsoidParserCache(): array {
+		return [
+			'With Parsoid parser cache split' => [ true ],
+			'Without Parsoid parser cache split' => [ false ],
+		];
+	}
+
+	/**
+	 * @covers \MediaWiki\Page\Article::view
+	 * @dataProvider provideSplitParsoidParserCache
+	 */
+	public function testPostprocFeatureflagTrue( bool $splitParsoidParserCache ): void {
 		$this->overrideConfigValue( MainConfigNames::UsePostprocCacheParsoid, true );
 		$this->overrideConfigValue( MainConfigNames::UseParsoidParser, true );
+		$this->overrideConfigValue(
+			MainConfigNames::SplitParsoidParserCache, $splitParsoidParserCache
+		);
+		$infix = $splitParsoidParserCache ? 'parsoid-' : '';
 		$parserCacheFactory = $this->createMock( ParserCacheFactory::class );
 		$caches = [
 			$this->getParserCache( 'test', new HashBagOStuff() ),
@@ -352,16 +366,16 @@ class ArticleTest extends ParserCacheTestBase {
 		$title = $this->getExistingTestPage()->getTitle();
 		$article = $this->newArticle( $title );
 		$this->editPage( $title, '== Hello ==' );
-		$this->assertArrayEquals( [ 'parsoid-pcache', 'parsoid-pcache' ], $calls, true );
+		$this->assertArrayEquals( [ "{$infix}pcache", "{$infix}pcache" ], $calls, true );
 
 		$calls = [];
 		$article->view();
 		$this->assertArrayEquals( [
-			'postproc-parsoid-pcache', // first view, get postproc, miss
-			'postproc-parsoid-pcache', // creates worker to render the page
-			'parsoid-pcache', // first view, get pcache, hit from derived data update
-			'postproc-parsoid-pcache', // first view, store postproc
-			'postproc-parsoid-pcache', // postprocess, compute cache key for report
+			"postproc-{$infix}pcache", // first view, get postproc, miss
+			"postproc-{$infix}pcache", // creates worker to render the page
+			"{$infix}pcache", // first view, get pcache, hit from derived data update
+			"postproc-{$infix}pcache", // first view, store postproc
+			"postproc-{$infix}pcache", // postprocess, compute cache key for report
 		], $calls, true );
 		$html = $article->getContext()->getOutput()->getHTML();
 		// check that we're running postprocessing (if the headers are wrapped then that's a good sign)
@@ -376,7 +390,7 @@ class ArticleTest extends ParserCacheTestBase {
 		$html2 = $article->getContext()->getOutput()->getHTML();
 		// second run, we're cached, we hit the postproc cache once
 		$this->assertArrayEquals( [
-			'postproc-parsoid-pcache'
+			"postproc-{$infix}pcache"
 		], $calls, true );
 		$this->assertEquals( $html, $html2 );
 	}
@@ -389,6 +403,7 @@ class ArticleTest extends ParserCacheTestBase {
 	public function testParsoidLanguageConversion( bool $useSameVariant ): void {
 		$this->overrideConfigValue( MainConfigNames::UsePostprocCacheParsoid, true );
 		$this->overrideConfigValue( MainConfigNames::UseParsoidParser, true );
+		$this->overrideConfigValue( MainConfigNames::SplitParsoidParserCache, true );
 		$this->overrideConfigValue( MainConfigNames::UsePigLatinVariant, true );
 		$parserCacheFactory = $this->createMock( ParserCacheFactory::class );
 		$caches = [

@@ -1149,6 +1149,7 @@ class ParserOutputAccessTest extends ParserCacheTestBase {
 	}
 
 	public function testParsoidCacheSplit() {
+		$this->overrideConfigValue( MainConfigNames::SplitParsoidParserCache, true );
 		$parserCacheFactory = $this->createMock( ParserCacheFactory::class );
 		$revisionOutputCache = $this->getRevisionOutputCache( new HashBagOStuff() );
 		$caches = [
@@ -1201,6 +1202,7 @@ class ParserOutputAccessTest extends ParserCacheTestBase {
 	}
 
 	public function testParsoidRevisionCacheSplit() {
+		$this->overrideConfigValue( MainConfigNames::SplitParsoidParserCache, true );
 		$parserCacheFactory = $this->createMock( ParserCacheFactory::class );
 		$parserCache = $this->getParserCache( 'test', new HashBagOStuff() );
 		$caches = [
@@ -1304,6 +1306,7 @@ class ParserOutputAccessTest extends ParserCacheTestBase {
 	}
 
 	public function testPostprocOptionsCacheSplit() {
+		$this->overrideConfigValue( MainConfigNames::SplitParsoidParserCache, true );
 		$parserCacheFactory = $this->createMock( ParserCacheFactory::class );
 		$caches = [
 			$this->getParserCache( 'test', new HashBagOStuff() ),
@@ -1366,6 +1369,7 @@ class ParserOutputAccessTest extends ParserCacheTestBase {
 	}
 
 	public function testPostprocOptionsUnsafeCache() {
+		$this->overrideConfigValue( MainConfigNames::SplitParsoidParserCache, true );
 		$parserCacheFactory = $this->createMock( ParserCacheFactory::class );
 		$caches = [
 			$this->getParserCache( 'test', new HashBagOStuff() ),

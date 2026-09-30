@@ -4311,7 +4311,7 @@ class MainConfigSchema {
 	 */
 	public const SplitParsoidParserCache = [
 		'type' => 'boolean',
-		'default' => true,
+		'default' => false,
 	];
 
 	/**

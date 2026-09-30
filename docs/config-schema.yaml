@@ -2691,7 +2691,7 @@ config-schema:
             complete.
     SplitParsoidParserCache:
         type: boolean
-        default: true
+        default: false
         description: |-
             Split the parser cache between Parsoid and the legacy parser.
             @warning This is TEMPORARY to mitigate cache risk during

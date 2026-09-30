@@ -27,7 +27,23 @@ class ParserCacheIndependenceTest extends ParserCacheTestBase {
 		] );
 	}
 
-	public function testPartialInvalidation(): void {
+	public static function provideSplitParsoidParserCache(): array {
+		return [
+			'With Parsoid parser cache split' => [ true ],
+			'Without Parsoid parser cache split' => [ false ],
+		];
+	}
+
+	/**
+	 * @dataProvider provideSplitParsoidParserCache
+	 */
+	public function testPartialInvalidation( bool $splitParsoidParserCache ): void {
+		$this->overrideConfigValue(
+			MainConfigNames::SplitParsoidParserCache, $splitParsoidParserCache
+		);
+
+		$infix = $splitParsoidParserCache ? 'parsoid-' : '';
+
 		$parserCacheFactory = $this->createMock( ParserCacheFactory::class );
 		$bag = new HashBagOStuff();
 		// defining the pcache and postproc-pcache makes it clear that we do not try to access them (otherwise they'd
@@ -54,10 +70,10 @@ class ParserCacheIndependenceTest extends ParserCacheTestBase {
 		$page = $this->getExistingTestPage( __METHOD__ );
 		$access->getParserOutput( $page, $parserOptions, $page->getRevisionRecord() );
 		$this->assertArrayEquals( [
-			[ 'postproc-parsoid-pcache', false ],
-			[ 'postproc-parsoid-pcache', false ], // selective update sample
-			[ 'parsoid-pcache', false ],
-			[ 'parsoid-pcache', false ] // selective update sample
+			[ "postproc-{$infix}pcache", false ],
+			[ "postproc-{$infix}pcache", false ], // selective update sample
+			[ "{$infix}pcache", false ],
+			[ "{$infix}pcache", false ] // selective update sample
 		], $this->trackerWrapper->calls );
 
 		// Second access: postproc cache hits
@@ -66,7 +82,7 @@ class ParserCacheIndependenceTest extends ParserCacheTestBase {
 		$page = $this->getExistingTestPage( __METHOD__ );
 		$access->getParserOutput( $page, $parserOptions, $page->getRevisionRecord() );
 		$this->assertArrayEquals( [
-			[ 'postproc-parsoid-pcache', true ]
+			[ "postproc-{$infix}pcache", true ]
 		], $this->trackerWrapper->calls );
 
 		// other post-processing options: hit the primary cache
@@ -76,19 +92,19 @@ class ParserCacheIndependenceTest extends ParserCacheTestBase {
 		$page = $this->getExistingTestPage( __METHOD__ );
 		$access->getParserOutput( $page, $parserOptions, $page->getRevisionRecord() );
 		$this->assertArrayEquals( [
-			[ 'postproc-parsoid-pcache', false ], // miss on postproc
-			[ 'postproc-parsoid-pcache', false ], // selective update check
-			[ 'parsoid-pcache', true ] // found it in primary!
+			[ "postproc-{$infix}pcache", false ], // miss on postproc
+			[ "postproc-{$infix}pcache", false ], // selective update check
+			[ "{$infix}pcache", true ] // found it in primary!
 		], $this->trackerWrapper->calls );
 
 		// remove from primary - postproc still hits
-		$caches['parsoid-pcache']->deleteOptionsKey( $page );
+		$caches["{$infix}pcache"]->deleteOptionsKey( $page );
 		$this->trackerWrapper->reset();
 		$access->clearLocalCache();
 		$page = $this->getExistingTestPage( __METHOD__ );
 		$access->getParserOutput( $page, $parserOptions, $page->getRevisionRecord() );
 		$this->assertArrayEquals( [
-			[ 'postproc-parsoid-pcache', true ] // hit on postproc
+			[ "postproc-{$infix}pcache", true ] // hit on postproc
 		], $this->trackerWrapper->calls );
 
 		// new options: we have neither postproc nor primary (since primary hasn't been regenerated)
@@ -101,10 +117,10 @@ class ParserCacheIndependenceTest extends ParserCacheTestBase {
 		$page = $this->getExistingTestPage( __METHOD__ );
 		$access->getParserOutput( $page, $parserOptions, $page->getRevisionRecord() );
 		$this->assertArrayEquals( [
-			[ 'postproc-parsoid-pcache', false ], // miss on postproc
-			[ 'postproc-parsoid-pcache', false ], // selective update check
-			[ 'parsoid-pcache', false ], // miss on primary
-			[ 'parsoid-pcache', false ] // selective update check
+			[ "postproc-{$infix}pcache", false ], // miss on postproc
+			[ "postproc-{$infix}pcache", false ], // selective update check
+			[ "{$infix}pcache", false ], // miss on primary
+			[ "{$infix}pcache", false ] // selective update check
 		], $this->trackerWrapper->calls );
 
 		// now primary has been regenerated
@@ -113,7 +129,7 @@ class ParserCacheIndependenceTest extends ParserCacheTestBase {
 		self::assertNotNull( $access->getCachedParserOutput( $page, $parserOptions, $page->getRevisionRecord() ) );
 
 		// let's drop postproc entries - we still get the primary pcache entries
-		$caches['postproc-parsoid-pcache']->deleteOptionsKey( $page );
+		$caches["postproc-{$infix}pcache"]->deleteOptionsKey( $page );
 		$parserOptions = ParserOptions::newFromAnon();
 		$parserOptions->setUseParsoid();
 		$parserOptions->enablePostproc();
@@ -122,9 +138,9 @@ class ParserCacheIndependenceTest extends ParserCacheTestBase {
 		$page = $this->getExistingTestPage( __METHOD__ );
 		$access->getParserOutput( $page, $parserOptions, $page->getRevisionRecord() );
 		$this->assertArrayEquals( [
-			[ 'postproc-parsoid-pcache', false ], // miss on postproc
-			[ 'postproc-parsoid-pcache', false ], // selective update check
-			[ 'parsoid-pcache', true ], // hit on primary
+			[ "postproc-{$infix}pcache", false ], // miss on postproc
+			[ "postproc-{$infix}pcache", false ], // selective update check
+			[ "{$infix}pcache", true ], // hit on primary
 		], $this->trackerWrapper->calls );
 
 		// still, when the page expires, both caches are invalidated
@@ -143,10 +159,10 @@ class ParserCacheIndependenceTest extends ParserCacheTestBase {
 		$this->trackerWrapper->reset();
 		$access->getParserOutput( $page, $parserOptions, $page->getRevisionRecord() );
 		$this->assertArrayEquals( [
-			[ 'postproc-parsoid-pcache', false ], // miss on postproc
-			[ 'postproc-parsoid-pcache', true ], // selective update check
-			[ 'parsoid-pcache', false ], // miss on primary
-			[ 'parsoid-pcache', true ] // selective update check
+			[ "postproc-{$infix}pcache", false ], // miss on postproc
+			[ "postproc-{$infix}pcache", true ], // selective update check
+			[ "{$infix}pcache", false ], // miss on primary
+			[ "{$infix}pcache", true ] // selective update check
 		], $this->trackerWrapper->calls );
 	}
 

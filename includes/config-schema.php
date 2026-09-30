@@ -554,7 +554,7 @@ return [
 				'StashDuration' => 86400,
 			],
 			'ParsoidSelectiveUpdateSampleRate' => 0,
-			'SplitParsoidParserCache' => true,
+			'SplitParsoidParserCache' => false,
 			'ParserCacheFilterConfig' => [
 				'pcache' => [
 					'default' => [
