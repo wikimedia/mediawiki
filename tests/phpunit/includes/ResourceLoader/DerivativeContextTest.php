@@ -23,7 +23,6 @@ class DerivativeContextTest extends MediaWikiIntegrationTestCase {
 				'modules' => 'test.default',
 				'only' => 'scripts',
 				'skin' => 'fallback',
-				'target' => 'test',
 		] );
 		return new Context(
 			new ResourceLoader( ResourceLoaderTestCase::getMinimalConfig() ),

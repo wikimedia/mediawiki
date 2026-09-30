@@ -94,7 +94,6 @@ class SpecialJavaScriptTest extends SpecialPage {
 			'lang' => 'qqx',
 			'skin' => 'fallback',
 			'debug' => $req->getRawVal( 'debug' ),
-			'target' => 'test',
 		];
 		$embedContext = new RL\Context( $rl, new FauxRequest( $query ) );
 		$query['only'] = 'scripts';

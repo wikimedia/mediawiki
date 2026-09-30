@@ -56,7 +56,6 @@ class ClientHtml {
 	/**
 	 * @param Context $context
 	 * @param array $options [optional] Array of options
-	 *  - 'target': Parameter for modules=startup request, see StartUpModule.
 	 *  - 'safemode': Parameter for modules=startup request, see StartUpModule.
 	 *  - 'clientPrefEnabled': See Skin options.
 	 *  - 'clientPrefCookiePrefix': See $wgCookiePrefix.
@@ -65,7 +64,6 @@ class ClientHtml {
 		$this->context = $context;
 		$this->resourceLoader = $context->getResourceLoader();
 		$this->options = $options + [
-			'target' => null,
 			'safemode' => null,
 			'clientPrefEnabled' => false,
 			'clientPrefCookiePrefix' => '',
@@ -352,17 +350,21 @@ RLPAGEMODULES = {$pageModulesJson};
 		}
 
 		// Async scripts. Once the startup is loaded, inline RLQ scripts will run.
-		// Pass-through a custom 'target' from OutputPage (T143066).
-		$startupQuery = [ 'raw' => '1' ];
-		foreach ( [ 'target', 'safemode' ] as $param ) {
-			if ( $this->options[$param] !== null ) {
-				$startupQuery[$param] = (string)$this->options[$param];
-			}
-		}
 		$chunks[] = $this->getLoad(
 			'startup',
 			Module::TYPE_SCRIPTS,
-			$startupQuery
+			// These params end up in the load.php URL by way of
+			// ClientHtml::getLoad > ResourceLoader::createLoaderURL > wfAppendQuery.
+			//
+			// The "raw" param also triggers ResourceLoader\DerivativeContext::setRaw (via ClientHtml::makeContext)
+			// which is how ClientHtml::getLoad knows to make this an external `<script async>`
+			// instead of an inline `mw.loader.load()` call.
+			[
+				'raw' => '1',
+				'safemode' => ( $this->options['safemode'] !== null )
+					? (string)$this->options['safemode']
+					: null,
+			]
 		);
 
 		return WrappedString::join( "\n", $chunks );

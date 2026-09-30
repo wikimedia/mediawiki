@@ -350,11 +350,6 @@ class OutputPage extends ContextSource {
 	private $mProperties = [];
 
 	/**
-	 * @var string|null ResourceLoader target for load.php links. If null, will be omitted
-	 */
-	private $mTarget = null;
-
-	/**
 	 * @var bool Whether parser output contains a table of contents
 	 */
 	private $mEnableTOC = false;
@@ -679,13 +674,6 @@ class OutputPage extends ContextSource {
 		foreach ( (array)$modules as $moduleName ) {
 			$this->mModuleStyles[$moduleName] = $moduleName;
 		}
-	}
-
-	/**
-	 * @return null|string ResourceLoader target
-	 */
-	public function getTarget() {
-		return $this->mTarget;
 	}
 
 	/**
@@ -3682,7 +3670,6 @@ class OutputPage extends ContextSource {
 			$clientPrefCookiePrefix = $config->get( MainConfigNames::CookiePrefix );
 
 			$rlClient = new RL\ClientHtml( $context, [
-				'target' => $this->getTarget(),
 				// When 'safemode', disallowUserJs(), or reduceAllowedModules() is used
 				// to only restrict modules to ORIGIN_CORE (ie. disallow ORIGIN_USER), the list of
 				// modules enqueued for loading on this page is filtered to just those.
