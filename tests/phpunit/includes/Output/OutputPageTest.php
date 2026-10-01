@@ -1804,6 +1804,7 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 			'getExtraCSPDefaultSrcs',
 			'getExtraCSPStyleSrcs',
 			'getExtraCSPScriptSrcs',
+			'getLimitReportData',
 			'getLimitReportJSData',
 			'getAllFlags',
 		];
@@ -3076,6 +3077,33 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 		// An explicit set still overrides it
 		$op->getMetadata()->setRevisionTimestamp( '20100101000000' );
 		$this->assertSame( '20100101000000', $op->getMetadata()->getRevisionTimestamp() );
+	}
+
+	/**
+	 * @covers \MediaWiki\Output\OutputPage::addParserOutputMetadata
+	 */
+	public function testLimitReportIsMergedByKey() {
+		$op = $this->newInstance();
+
+		$po1 = new ParserOutput();
+		$po1->setLimitReportData( 'limitreport-expensivefunctioncount', [ 1, 500 ] );
+		$po1->setLimitReportData( 'limitreport-cputime', '0.010' );
+		$op->addParserOutputMetadata( $po1 );
+
+		$po2 = new ParserOutput();
+		$po2->setLimitReportData( 'limitreport-cputime', '0.020' );
+		$po2->setLimitReportData( 'cachereport-origin', 'example' );
+		$op->addParserOutputMetadata( $po2 );
+
+		$this->assertSame( [
+			'limitreport' => [
+				'expensivefunctioncount' => [ 'value' => 1, 'limit' => 500 ],
+				'cputime' => '0.020',
+			],
+			'cachereport' => [
+				'origin' => 'example',
+			],
+		], $op->getMetadata()->getLimitReportJSData() );
 	}
 
 	public function testNoTOC() {

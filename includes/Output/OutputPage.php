@@ -374,9 +374,6 @@ class OutputPage extends ContextSource {
 	 */
 	private $contentLang;
 
-	/** @var array Profiling data */
-	private $limitReportJSData = [];
-
 	/** @var array Map Title to Content */
 	private $contentOverrides = [];
 
@@ -2403,12 +2400,10 @@ class OutputPage extends ContextSource {
 			$this->enableOOUI();
 		}
 
-		// Include parser limit report
-		// FIXME: This should append, rather than overwrite, or else this
-		// data should be injected into the OutputPage like is done for the
-		// other page-level things (like OutputPage::setTOCData()).
-		if ( !$this->limitReportJSData ) {
-			$this->limitReportJSData = $parserOutput->getLimitReportJSData();
+		// Include parser limit report. Merge each key: the last value wins.
+		// (See ParserOutput::collectMetadata())
+		foreach ( $parserOutput->getLimitReportData() as $key => $value ) {
+			$this->metadata->setLimitReportData( (string)$key, $value );
 		}
 
 		// Link flags are ignored for now, but may in the future be
@@ -3961,8 +3956,9 @@ class OutputPage extends ContextSource {
 		$vars['wgBackendResponseTime'] = round( $elapsed * 1000 );
 
 		$vars += $this->getJSVars( self::JS_VAR_LATE );
-		if ( $this->limitReportJSData ) {
-			$vars['wgPageParseReport'] = $this->limitReportJSData;
+		$limitReportJSData = $this->metadata->getLimitReportJSData();
+		if ( $limitReportJSData ) {
+			$vars['wgPageParseReport'] = $limitReportJSData;
 		}
 
 		$rlContext = $this->getRlClientContext();
