@@ -770,6 +770,10 @@ class SpecialUndelete extends SpecialPage {
 
 				$popts->setSuppressSectionEditLinks();
 				$out->addParserOutput( $pout, $popts );
+				// The deleted revision is not the current revision of a page.
+				// Remove its timestamp, so the footer does not show it as the
+				// "last edited" time.
+				$out->getMetadata()->setRevisionTimestamp( null );
 			} catch ( RevisionAccessException ) {
 			}
 		}

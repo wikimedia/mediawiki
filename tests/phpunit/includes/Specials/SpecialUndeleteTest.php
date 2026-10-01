@@ -97,6 +97,32 @@ class SpecialUndeleteTest extends SpecialPageTestBase {
 		}
 	}
 
+	public function testPreviewDoesNotSetRevisionTimestamp(): void {
+		$this->setGroupPermissions( [ '*' => [ 'read' => true, 'deletedtext' => true, 'deletedhistory' => true ] ] );
+
+		$title = $this->getNonexistingTestPage()->getTitle();
+		$user = $this->getTestUser()->getUser();
+		ConvertibleTimestamp::setFakeTime( '20240101000000' );
+		$revRecord = $this->editPage( $title, 'deleted page content', '', NS_MAIN, $user )->getNewRevision();
+		$this->deletePage( $title );
+
+		$context = new RequestContext();
+		$context->setRequest( new FauxRequest( [
+			'target' => $title->getPrefixedText(),
+			'timestamp' => $revRecord->getTimestamp(),
+			'preview' => '1',
+			'wpEditToken' => $user->getEditToken(),
+		], true ) );
+		$context->setLanguage( 'qqx' );
+		$context->setAuthority( $user );
+
+		[ $html ] = $this->executeSpecialPage( '', null, 'qqx', $user, false, $context );
+
+		$this->assertStringContainsString( 'deleted page content', $html );
+		// The footer must not show the deleted revision as the last edit
+		$this->assertNull( $context->getOutput()->getMetadata()->getRevisionTimestamp() );
+	}
+
 	public static function provideShowDiff(): array {
 		return [
 			'Authority can see deleted text but not the rights-restricted tag' => [

@@ -961,9 +961,11 @@ class Article implements Page {
 		}
 
 		# Preload timestamp to avoid a DB hit
+		# (::addPostProcessedParserOutput() above copies $cachedTimestamp
+		# to $outputPage, unless $outputPage already has a more recent
+		# timestamp.)
 		$cachedTimestamp = $pOutput->getRevisionTimestamp();
 		if ( $cachedTimestamp !== null ) {
-			$outputPage->getMetadata()->setRevisionTimestamp( $cachedTimestamp );
 			$this->mPage->setTimestamp( $cachedTimestamp );
 		}
 	}
@@ -998,6 +1000,8 @@ class Article implements Page {
 			$cachedId = $pOutput->getCacheRevisionId();
 			if ( $cachedId !== null ) {
 				$outputPage->setRevisionId( $cachedId );
+				// The cached output can be for an older revision. Reset the
+				// timestamp here.
 				$outputPage->getMetadata()->setRevisionTimestamp( $pOutput->getRevisionTimestamp() );
 			}
 		}

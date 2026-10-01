@@ -3045,6 +3045,39 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 		$this->assertTrue( $op->isTOCEnabled() );
 	}
 
+	/**
+	 * @covers \MediaWiki\Output\OutputPage::addParserOutputMetadata
+	 */
+	public function testRevisionTimestampKeepsMaximum() {
+		$op = $this->newInstance();
+		$this->assertNull( $op->getMetadata()->getRevisionTimestamp() );
+
+		// A ParserOutput without a timestamp does not change it
+		$op->addParserOutputMetadata( new ParserOutput() );
+		$this->assertNull( $op->getMetadata()->getRevisionTimestamp() );
+
+		$po = new ParserOutput();
+		$po->setRevisionTimestamp( '20200101000000' );
+		$op->addParserOutputMetadata( $po );
+		$this->assertSame( '20200101000000', $op->getMetadata()->getRevisionTimestamp() );
+
+		// An older timestamp does not change it
+		$po = new ParserOutput();
+		$po->setRevisionTimestamp( '20100101000000' );
+		$op->addParserOutputMetadata( $po );
+		$this->assertSame( '20200101000000', $op->getMetadata()->getRevisionTimestamp() );
+
+		// A newer timestamp replaces it
+		$po = new ParserOutput();
+		$po->setRevisionTimestamp( '20250101000000' );
+		$op->addParserOutputMetadata( $po );
+		$this->assertSame( '20250101000000', $op->getMetadata()->getRevisionTimestamp() );
+
+		// An explicit set still overrides it
+		$op->getMetadata()->setRevisionTimestamp( '20100101000000' );
+		$this->assertSame( '20100101000000', $op->getMetadata()->getRevisionTimestamp() );
+	}
+
 	public function testNoTOC() {
 		$op = $this->newInstance();
 		$this->assertFalse( $op->getOutputFlag( ParserOutputFlags::NO_TOC ) );

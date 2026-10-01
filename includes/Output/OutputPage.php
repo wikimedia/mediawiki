@@ -2304,6 +2304,16 @@ class OutputPage extends ContextSource {
 			$this->metadata->appendLinkList( ParserOutputLinkTypes::LANGUAGE, $linkItem );
 		}
 
+		// Keep the most recent revision timestamp
+		// (Stay consistent with ParserOutput::collectMetadata())
+		$revTimestamp = $parserOutput->getRevisionTimestamp();
+		if ( $revTimestamp !== null ) {
+			$oldTimestamp = $this->metadata->getRevisionTimestamp();
+			if ( $oldTimestamp === null || $revTimestamp > $oldTimestamp ) {
+				$this->metadata->setRevisionTimestamp( $revTimestamp );
+			}
+		}
+
 		$cats = [];
 		foreach (
 			$parserOutput->getLinkList( ParserOutputLinkTypes::CATEGORY )
