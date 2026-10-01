@@ -12638,7 +12638,7 @@ class MainConfigSchema {
 	 * If you operate an intranet wiki, or a wiki farm with many different domain, it is
 	 * recommended to override this and set a fixed public homepage or email address instead.
 	 *
-	 * @since 1.47
+	 * @since 1.47 (also backported to 1.43.10, 1.45.5, 1.46.1)
 	 * @see $wgEmergencyContact
 	 * @see MediaWiki\Http\HttpRequestFactory::getUserAgent
 	 * @see https://www.mediawiki.org/wiki/InstantCommons#User-Agent_Policy
