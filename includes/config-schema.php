@@ -2776,9 +2776,9 @@ return [
 			'ParserOptionsLogUnsafeSampleRate' => 0,
 			'ReturnExperimentalPFragmentTypes' => [
 			],
-			'UseParsoidLinksUpdate' => true,
+			'UseParsoidLinksUpdate' => null,
 			'UseParsoidMessages' => false,
-			'UseParsoidParser' => false,
+			'UseParsoidParser' => true,
 			'SiteLookup' => [
 			],
 		],

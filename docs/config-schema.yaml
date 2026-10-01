@@ -8548,7 +8548,7 @@ config-schema:
             @unstable Temporary feature flag, T391624
             @since 1.47
     UseParsoidLinksUpdate:
-        default: true
+        default: null
         type:
             - boolean
             - 'null'
@@ -8580,7 +8580,7 @@ config-schema:
             @experimental Using Parsoid for messages still very much experimental and untested
             @since 1.47
     UseParsoidParser:
-        default: false
+        default: true
         type: boolean
         description: |-
             Set Parsoid as the default wikitext parser

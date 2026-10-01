@@ -70,6 +70,19 @@ For notes on 1.46.x and older releases, see HISTORY.
 * (T384501) Added $wgSharedUploadDBschema, a shortcut for the ForeignDBRepo
   'dbSchema' setting in $wgForeignFileRepos. Needed for shared upload
   repositories on database types that use schemas, such as PostgreSQL.
+* (T435645) Added $wgSplitParsoidParserCache, which controls whether legacy
+  and Parsoid ParserOutput are saved in different ParserCache objects in
+  ParserOutputAccess. The split was introduced to mitigate risk during
+  the migration to Parsoid. It is disabled by default and will be removed in
+  a future release. However, wikis using the ParserMigration extension may need
+  to enable it to avoid effectively invalidating the ParserCache.
+* (T432760) Added $wgUseParsoidParser, $wgUseParsoidLinksUpdate,
+  and $wgUseParsoidMessages to control the use of Parsoid for wikitext parsing.
+  $wgUseParsoidParser is enabled by default, meaning articles will be rendered
+  by Parsoid. $wgUseParsoidLinksUpdate is set to null, meaning that it will
+  take the same value as $wgUseParsoidParser. $wgUseParsoidMessages is
+  disabled by default. Using Parsoid for parsing messages is still considered
+  experimental.
 * …
 
 ==== Changed configuration ====

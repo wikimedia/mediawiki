@@ -13746,7 +13746,7 @@ class MainConfigSchema {
 	 * @since 1.47
 	 */
 	public const UseParsoidLinksUpdate = [
-		'default' => true,
+		'default' => null,
 		'type' => '?boolean'
 	];
 
@@ -13778,7 +13778,7 @@ class MainConfigSchema {
 	 * @since 1.47
 	 */
 	public const UseParsoidParser = [
-		'default' => false,
+		'default' => true,
 		'type' => 'boolean'
 	];
 

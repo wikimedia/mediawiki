@@ -23,6 +23,7 @@ use Wikimedia\TestingAccessWrapper;
  * See also unit tests at \MediaWiki\Tests\Unit\WikitextContentHandlerTest
  *
  * @group ContentHandler
+ * @group Database
  * @covers \MediaWiki\Content\WikitextContentHandler
  * @covers \MediaWiki\Content\TextContentHandler
  * @covers \MediaWiki\Content\ContentHandler
