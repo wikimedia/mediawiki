@@ -8,7 +8,7 @@ PHP 8.5 workboard: https://phabricator.wikimedia.org/tag/php_8.5_support/
 
 == MediaWiki 1.43.10 ==
 
-THIS IS NOT A RELEASE YET
+This is a security and maintenance release of the MediaWiki 1.43 branch.
 
 === Changes since 1.43.9 ===
 * Localisation updates.
@@ -20,6 +20,25 @@ THIS IS NOT A RELEASE YET
 * (T250395, T434627) SkinFallback: name the valid key for a loaded skin instead
   of suggesting wfLoadSkin.
 * Logger: Update oversize UDP payload truncation for macOS.
+* (T422686) http: Add contact URL to default HttpRequestFactory::getUserAgent.
+* (T413545) Bump parsoid to 0.20.10.
+* (T431819, CVE-2026-102967) SECURITY: SpecialUpload: Prevent Open Redirect
+  using wpDestUrl.
+* (T431819, CVE-2026-102968) SECURITY: NoLocalSettings: Fixes a potential path
+  traversal.
+* (T434278, CVE-2026-102970) SECURITY: APIComparePages should preserve revision
+  visibility.
+* (T434521, CVE-2026-102971) SECURITY: PageContentHelper: Respect visibility of
+  user_id in output.
+* (T120386, CVE-2026-102972) SECURITY: Disallow raw action for Special:MyPage.
+* (T435022, CVE-2026-102973) SECURITY: ApiEmailUser: Check authorizeSend()
+  instead of canSend() before sending an email.
+* (T435026, CVE-2026-102975) SECURITY: ApiRevisionDelete: Check permissions
+  when unsuppressing.
+* (T435457, CVE-2026-102974) SECURITY: Run ImageRedirectConstraint with
+  post-PST content.
+* (T432551, CVE-2026-102966) SECURITY: Fix deleted edit summary leak in page
+  history feeds.
 
 == MediaWiki 1.43.9 ==
 
