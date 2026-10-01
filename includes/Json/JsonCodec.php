@@ -2,7 +2,6 @@
 /**
  * @license GPL-2.0-or-later
  * @file
- * @ingroup Json
  */
 
 namespace MediaWiki\Json;
@@ -19,10 +18,15 @@ use Wikimedia\JsonCodec\JsonClassCodec;
 use Wikimedia\JsonCodec\JsonCodecable;
 
 /**
+ * @defgroup Json JSON
+ */
+
+/**
  * Helper class to serialize/deserialize things to/from JSON.
  *
  * @stable to type
  * @since 1.36
+ * @ingroup Json
  */
 class JsonCodec
 	extends \Wikimedia\JsonCodec\JsonCodec

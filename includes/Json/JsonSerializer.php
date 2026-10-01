@@ -2,7 +2,6 @@
 /**
  * @license GPL-2.0-or-later
  * @file
- * @ingroup Json
  */
 
 namespace MediaWiki\Json;
@@ -15,6 +14,7 @@ use JsonException;
  * @stable to type
  * @since 1.36
  * @deprecated since 1.45; use JsonCodecInterface
+ * @ingroup Json
  */
 interface JsonSerializer {
 

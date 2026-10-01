@@ -2,7 +2,6 @@
 /**
  * @license GPL-2.0-or-later
  * @file
- * @ingroup Json
  */
 
 namespace MediaWiki\Json;
@@ -20,6 +19,7 @@ use Wikimedia\JsonCodec\JsonClassCodec;
  * @see JsonClassCodec
  * @since 1.43
  * @internal
+ * @ingroup Json
  * @implements JsonClassCodec<JsonSerializable>
  */
 class JsonSerializableCodec implements JsonClassCodec {

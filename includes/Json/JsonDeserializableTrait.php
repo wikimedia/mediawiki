@@ -2,12 +2,14 @@
 /**
  * @license GPL-2.0-or-later
  * @file
- * @ingroup Json
  */
 
 namespace MediaWiki\Json;
 
-/** @deprecated since 1.45; use JsonCodecableTrait in new code. */
+/**
+ * @deprecated since 1.45; use JsonCodecableTrait in new code.
+ * @ingroup Json
+ */
 trait JsonDeserializableTrait {
 
 	public function jsonSerialize(): array {

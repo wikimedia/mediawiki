@@ -2,7 +2,6 @@
 /**
  * @license GPL-2.0-or-later
  * @file
- * @ingroup Json
  */
 
 namespace MediaWiki\Json;
@@ -20,6 +19,7 @@ use JsonSerializable;
  * @see JsonDeserializableTrait
  * @since 1.36
  * @deprecated since 1.45; use JsonCodecable in new code
+ * @ingroup Json
  */
 interface JsonDeserializable extends JsonSerializable {
 

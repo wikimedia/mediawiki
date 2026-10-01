@@ -2,7 +2,6 @@
 /**
  * @license GPL-2.0-or-later
  * @file
- * @ingroup Json
  */
 
 namespace MediaWiki\Json;
@@ -10,6 +9,7 @@ namespace MediaWiki\Json;
 /**
  * Defines JSON-related constants.
  * @internal
+ * @ingroup Json
  */
 interface JsonConstants {
 
