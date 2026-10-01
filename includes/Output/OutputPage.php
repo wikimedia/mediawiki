@@ -2413,6 +2413,8 @@ class OutputPage extends ContextSource {
 			$this->metadata->addLanguageLink( $l );
 		}
 
+		$flagsBefore = $this->extractParserOutputFlags( $parserOutput );
+
 		$this->getHookRunner()->onOutputPageParserOutput( $this, $parserOutput );
 
 		// This check must be after 'OutputPageParserOutput' runs in addParserOutputMetadata
@@ -2424,16 +2426,48 @@ class OutputPage extends ContextSource {
 		// should be shown (or hidden) in the output.
 		$this->mEnableTOC = $this->mEnableTOC ||
 			$parserOutput->getOutputFlag( ParserOutputFlags::SHOW_TOC );
+
+		// The OutputPageParserOutput hook can change the flags of
+		// $parserOutput. This is deprecated: emit a deprecation
+		// warning if they changed.
+		$flagsAfter = $this->extractParserOutputFlags( $parserOutput );
+		if ( $flagsBefore !== $flagsAfter ) {
+			wfDeprecatedMsg(
+				'Changing ParserOutput flags in the OutputPageParserOutput hook ' .
+				'was deprecated in MediaWiki 1.47. Changed flags: ' .
+				implode( ', ', array_merge(
+					array_diff( $flagsBefore, $flagsAfter ),
+					array_diff( $flagsAfter, $flagsBefore )
+				) ),
+				'1.47'
+			);
+		}
 		// Uniform handling of all boolean flags: they are OR'ed together
 		// (See ParserOutput::collectMetadata())
-		$flags =
+		foreach ( $flagsAfter as $flag ) {
+			$this->metadata->setOutputFlag( $flag );
+		}
+	}
+
+	/**
+	 * Get the flags that are set in a ParserOutput.
+	 *
+	 * @param ParserOutput $parserOutput
+	 * @return string[] The sorted names of the flags that are set in
+	 *  $parserOutput
+	 */
+	private function extractParserOutputFlags( ParserOutput $parserOutput ): array {
+		$names =
 			array_flip( $parserOutput->getAllFlags() ) +
 			array_flip( ParserOutputFlags::values() );
-		foreach ( $flags as $name => $ignore ) {
+		$flags = [];
+		foreach ( $names as $name => $ignore ) {
 			if ( $parserOutput->getOutputFlag( $name ) ) {
-				$this->metadata->setOutputFlag( $name );
+				$flags[] = (string)$name;
 			}
 		}
+		sort( $flags );
+		return $flags;
 	}
 
 	private function getParserOutputText(

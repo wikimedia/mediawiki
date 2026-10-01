@@ -3002,6 +3002,49 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 		$this->assertTrue( $op->getOutputFlag( ParserOutputFlags::SHOW_TOC ) );
 	}
 
+	/**
+	 * @covers \MediaWiki\Output\OutputPage::addParserOutputMetadata
+	 */
+	public function testFlagsAreCopiedAfterOutputPageParserOutputHook() {
+		$op = $this->newInstance();
+		$po = new ParserOutput();
+		$po->setOutputFlag( ParserOutputFlags::NO_GALLERY );
+		$seen = null;
+		$this->setTemporaryHook( 'OutputPageParserOutput',
+			static function ( OutputPage $out ) use ( &$seen ) {
+				$seen = $out->getOutputFlag( ParserOutputFlags::NO_GALLERY );
+			}
+		);
+		$op->addParserOutputMetadata( $po );
+		// The flags are copied after the hook runs.
+		$this->assertFalse( $seen );
+		$this->assertTrue( $op->getOutputFlag( ParserOutputFlags::NO_GALLERY ) );
+	}
+
+	/**
+	 * @covers \MediaWiki\Output\OutputPage::addParserOutputMetadata
+	 */
+	public function testFlagChangeInOutputPageParserOutputHookIsDeprecated() {
+		$op = $this->newInstance();
+		$po = new ParserOutput();
+		$po->setOutputFlag( ParserOutputFlags::NO_GALLERY );
+		$this->setTemporaryHook( 'OutputPageParserOutput',
+			static function ( OutputPage $out, ParserOutput $po ) {
+				$po->setOutputFlag( ParserOutputFlags::NO_GALLERY, false );
+				$po->setOutputFlag( ParserOutputFlags::SHOW_TOC );
+			}
+		);
+		$this->expectDeprecationAndContinue(
+			'/Changing ParserOutput flags in the OutputPageParserOutput hook/'
+		);
+		$op->addParserOutputMetadata( $po );
+		// A flag that the hook clears is not copied.
+		$this->assertFalse( $op->getOutputFlag( ParserOutputFlags::NO_GALLERY ) );
+		// A flag that the hook sets is copied.
+		$this->assertTrue( $op->getOutputFlag( ParserOutputFlags::SHOW_TOC ) );
+		$this->assertTrue( $op->isTOCEnabled() );
+	}
+
 	public function testNoTOC() {
 		$op = $this->newInstance();
 		$this->assertFalse( $op->getOutputFlag( ParserOutputFlags::NO_TOC ) );

@@ -762,6 +762,10 @@ because of Phabricator reports.
   deprecation warnings. Use the lock manager service instead.
 * PrefixSearch (and the corresponding StringPrefixSearch/TitlePrefixSearch) have
   been deprecated. Use SearchEngine::completionSearch() instead.
+* (T301020) Changing the flags of the ParserOutput in an OutputPageParserOutput
+  hook handler is deprecated and emits warnings. Set the flag on the
+  OutputPage (for example, with OutputPage::getMetadata()->setOutputFlag())
+  instead.
 * The ResourceLoader module mediawiki.skinning.content.parsoid has been
   deprecated. Please remove usages.
 * Title::estimateRevisionCount() is unused and has been deprecated.
