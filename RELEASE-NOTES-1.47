@@ -34,6 +34,8 @@ For notes on 1.46.x and older releases, see HISTORY.
 * If $wgSVGConverter is 'rsvg' then you must have librsvg version 2.52 or higher
   installed (i.e. any version that supports the `--accept-language` option).
   This is due to a change in `$wgSVGConverter['rsvg']`; see T125710.
+* 'xx-uca-ckb' collation is no longer supported for $wgCategoryCollation,
+  use 'uppercase-ckb' collation instead.
 * …
 
 ==== New configuration ====
@@ -374,6 +376,7 @@ because of Phabricator reports.
   by ::getExternalLinks() has been deprecated since 1.43.
 * CategoryViewer::getSubcategorySortChar(), deprecated in 1.45,
   has been removed.
+* CollationCkb class, deprecated since 1.44, has been removed.
 * OutputPage::getTarget() has been removed without deprecation. Its setter was
   removed in 1.43, but this was missed.
 * SessionInfo::compare() has been removed without deprecation.

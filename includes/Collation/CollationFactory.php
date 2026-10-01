@@ -65,12 +65,6 @@ class CollationFactory {
 				'root-u-kn',
 			]
 		],
-		'xx-uca-ckb' => [
-			'class' => CollationCkb::class,
-			'services' => [
-				'LanguageFactory',
-			]
-		],
 		'uppercase-ab' => [
 			'class' => AbkhazUppercaseCollation::class,
 			'services' => [
