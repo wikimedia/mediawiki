@@ -844,7 +844,7 @@ class DerivedPageDataUpdater implements LoggerAwareInterface, PreparedUpdate {
 		[ $causeAction, ] = $this->getCauseForTracing();
 		$renderHints['causeAction'] = $causeAction;
 
-			// NOTE: we want a canonical rendering, so don't pass $this->user or ParserOptions
+		// NOTE: we want a canonical rendering, so don't pass $this->user or ParserOptions
 		// NOTE: the revision is either new or current, so we can bypass audience checks.
 		$this->renderedRevision = $this->revisionRenderer->getRenderedRevision(
 			$this->revision,
@@ -1219,6 +1219,9 @@ class DerivedPageDataUpdater implements LoggerAwareInterface, PreparedUpdate {
 		// Prune any output that depends on the revision ID.
 		if ( $this->renderedRevision ) {
 			$this->renderedRevision->updateRevision( $revision );
+			if ( isset( $options['known-revision-output'] ) ) {
+				$this->renderedRevision->setRevisionParserOutput( $options['known-revision-output'] );
+			}
 		} else {
 			[ $causeAction, ] = $this->getCauseForTracing();
 			// NOTE: we want a canonical rendering, so don't pass $this->user or ParserOptions
@@ -1736,9 +1739,6 @@ class DerivedPageDataUpdater implements LoggerAwareInterface, PreparedUpdate {
 
 		$triggeringUser = $this->options['triggeringUser'] ?? $this->user;
 		[ $causeAction, $causeAgent ] = $this->getCauseForTracing();
-		if ( isset( $options['known-revision-output'] ) ) {
-			$this->getRenderedRevision()->setRevisionParserOutput( $options['known-revision-output'] );
-		}
 
 		// Bundle all of the data updates into a single deferred update wrapper so that
 		// any failure will cause at most one refreshLinks job to be enqueued by
