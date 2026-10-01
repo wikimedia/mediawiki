@@ -191,11 +191,6 @@ class GenericActionHandler extends ActionModuleBasedHandler {
 			+ $this->getRequest()->getPathParams()
 			+ $this->getRequest()->getQueryParams();
 
-		// TODO: Fail if the client tries to set unsupported params,
-		// don't just ignore them (T436749)!
-		// This doesn't happen automatically, since we are overriding
-		// validate() to do nothing, leaving validation to ApiMain.
-
 		$params = array_intersect_key( $all, $this->getActionModuleParamSpecs() );
 
 		// Hack: If the ActioModule requires a token, but the session is safe
@@ -242,9 +237,15 @@ class GenericActionHandler extends ActionModuleBasedHandler {
 		$params = $this->makeParamSettings( $this->getSupportedPathParams(), 'path' );
 
 		if ( !$this->usesRequestBody() ) {
-			$params += $this->makeParamSettings( $this->getSupportedQueryParams(), 'query' );
+			$supported = $this->getSupportedQueryParams();
+		} else {
+			$supported = array_intersect(
+				$this->getSupportedQueryParams(),
+				$this->getQueryOnlyParams()
+			);
 		}
 
+		$params += $this->makeParamSettings( $supported, 'query' );
 		$params += parent::getParamSettings();
 		return $params;
 	}
@@ -262,7 +263,12 @@ class GenericActionHandler extends ActionModuleBasedHandler {
 		if ( $this->usesRequestBody() ) {
 			// XXX: Do we need to support 'post' as a source (form data) as well?
 			//      We could ask the helper for the supported body formats...
-			$params += $this->makeParamSettings( $this->getSupportedQueryParams(), 'body' );
+			$supported = array_diff(
+				$this->getSupportedQueryParams(),
+				$this->getQueryOnlyParams()
+			);
+
+			$params += $this->makeParamSettings( $supported, 'body' );
 		}
 
 		$params += parent::getBodyParamSettings();
@@ -316,6 +322,19 @@ class GenericActionHandler extends ActionModuleBasedHandler {
 			array_flip( self::SUPPRESSED_ACTION_PARAMS ),
 			array_flip( $suppressedParams )
 		);
+	}
+
+	/**
+	 * Return the names of query parameters that can never be given in the
+	 * request body. The action API doesn't really distinguish between
+	 * query parameters and post data, but some parameters must be part of
+	 * the URI.
+	 *
+	 * @return string[]
+	 */
+	protected function getQueryOnlyParams(): array {
+		// See ApiMain::getAllowedParams()
+		return [ 'origin', 'crossorigin' ];
 	}
 
 	/**
@@ -410,12 +429,16 @@ class GenericActionHandler extends ActionModuleBasedHandler {
 	 * @inheritDoc
 	 */
 	public function validate( Validator $restValidator ) {
-		// HACK: disable REST validation completely by not calling the parent.
+		// HACK: disable REST validation by not calling the parent.
 		// This breaks access to validated parameters and body in the handler.
 		// But since all parameter access, including validation, happens in the
 		// action module, that should be fine.
-		// It would be nice of ApiMain provided a way to trigger validation
+		// It would be nice if ApiMain provided a way to trigger validation
 		// separately from execution, then we could call it here.
+
+		// We still want to fail if the client tries to send extra body params,
+		// don't just ignore them (T436749)!
+		$this->detectExtraneousBodyFields( $restValidator );
 	}
 
 	/**
