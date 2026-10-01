@@ -515,9 +515,6 @@ class ApiParse extends ApiBase {
 			if ( isset( $prop['text'] ) ) {
 				$result_array['text'] = $newText;
 				$result_array[ApiResult::META_BC_SUBELEMENTS][] = 'text';
-				if ( $context ) {
-					$this->getHookRunner()->onOutputPageBeforeHTML( $context->getOutput(), $result_array['text'] );
-				}
 			}
 		}
 
@@ -525,6 +522,11 @@ class ApiParse extends ApiBase {
 			// This needs to happen after running the OutputTransform pipeline so that the metadata inserted by
 			// the pipeline is also added to the OutputPage
 			$outputPage->addParserOutputMetadata( $p_result );
+
+			// Run this after OutputPageParserOutput, in the same order as OutputPage::addParserOutput()
+			if ( isset( $result_array['text'] ) ) {
+				$this->getHookRunner()->onOutputPageBeforeHTML( $outputPage, $result_array['text'] );
+			}
 
 			$this->getHookRunner()->onApiParseMakeOutputPage( $this, $outputPage );
 		}

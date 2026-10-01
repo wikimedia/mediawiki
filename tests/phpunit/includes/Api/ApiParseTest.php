@@ -886,6 +886,86 @@ class ApiParseTest extends ApiTestCase {
 		$this->assertArrayNotHasKey( 'warnings', $res[0] );
 	}
 
+	public function testPipelineMetadataWithSkin() {
+		// T384151: Metadata added by the output transform pipeline must reach the response
+		$this->setupSkin();
+		$this->setTemporaryHook( 'ParserOutputPostCacheTransform',
+			static function ( $parserOutput, &$text, &$options ) {
+				$parserOutput->setJsConfigVar( 'apiParseTestPipeline', 'x' );
+			}
+		);
+
+		$res = $this->doApiRequest( [
+			'action' => 'parse',
+			'title' => __CLASS__,
+			'text' => 'Content',
+			'prop' => 'text|jsconfigvars',
+			'useskin' => 'testing',
+		] );
+
+		$this->assertSame( 'x', $res[0]['parse']['jsconfigvars']['apiParseTestPipeline'] ?? null );
+	}
+
+	public function testMetadataInApiParseMakeOutputPageHook() {
+		$this->setupSkin();
+		$this->setTemporaryHook( 'ParserAfterParse',
+			static function ( $parser ) {
+				$parser->getOutput()->setJsConfigVar( 'apiParseTestParser', 'y' );
+			}
+		);
+		$seen = null;
+		$this->setTemporaryHook( 'ApiParseMakeOutputPage',
+			static function ( $module, $outputPage ) use ( &$seen ) {
+				$seen = $outputPage->getJsConfigVars()['apiParseTestParser'] ?? null;
+			}
+		);
+
+		$this->doApiRequest( [
+			'action' => 'parse',
+			'title' => __CLASS__,
+			'text' => 'Content',
+			'prop' => 'text|jsconfigvars',
+			'useskin' => 'testing',
+		] );
+
+		$this->assertSame( 'y', $seen );
+	}
+
+	public function testOutputPageParserOutputDataInBeforeHTMLHook() {
+		// Extensions pass data from OutputPageParserOutput to OutputPageBeforeHTML,
+		// as on a page view (OutputPage::addParserOutput())
+		$this->setupSkin();
+		$calls = [];
+		$this->setTemporaryHook( 'ParserAfterParse',
+			static function ( $parser ) {
+				$parser->getOutput()->setExtensionData( 'apiParseTestData', 'hook-added' );
+			}
+		);
+		$this->setTemporaryHook( 'OutputPageParserOutput',
+			static function ( $out, $pout ) use ( &$calls ) {
+				$calls[] = 'OutputPageParserOutput';
+				$out->setProperty( 'apiParseTestData', $pout->getExtensionData( 'apiParseTestData' ) );
+			}
+		);
+		$this->setTemporaryHook( 'OutputPageBeforeHTML',
+			static function ( $out, &$text ) use ( &$calls ) {
+				$calls[] = 'OutputPageBeforeHTML';
+				$text .= '<p>' . $out->getProperty( 'apiParseTestData' ) . '</p>';
+			}
+		);
+
+		$res = $this->doApiRequest( [
+			'action' => 'parse',
+			'title' => __CLASS__,
+			'text' => 'Content',
+			'prop' => 'text',
+			'useskin' => 'testing',
+		] );
+
+		$this->assertSame( [ 'OutputPageParserOutput', 'OutputPageBeforeHTML' ], $calls );
+		$this->assertStringContainsString( '<p>hook-added</p>', $res[0]['parse']['text'] );
+	}
+
 	public function testIndicators() {
 		$res = $this->doApiRequest( [
 			'action' => 'parse',
