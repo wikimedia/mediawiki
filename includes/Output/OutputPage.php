@@ -115,6 +115,22 @@ class OutputPage extends ContextSource {
 	 */
 	private $mPageTitle = '';
 
+	/**
+	 * The display title of this page as safe HTML, split into the
+	 * localized namespace, separator, and main title parts, plus a
+	 * combined form. Null if the display title was not set; the split
+	 * components are null if it was not set in split form.
+	 *
+	 * This is substantially the same as
+	 * $this->metadata->getDisplayTitleParts(), but for historical reasons
+	 * not every ParserOutput added to the OutputPage sets the output page
+	 * display title.  So we keep our own copy here.
+	 *
+	 * @var array{0:?string,1:?string,2:?string,3:?string}|null
+	 * @see ParserOutput::getDisplayTitleParts()
+	 */
+	private ?array $displayTitleParts = null;
+
 	/** @var bool See OutputPage::couldBePublicCached. */
 	private $cacheIsFinal = false;
 
@@ -1162,8 +1178,8 @@ class OutputPage extends ContextSource {
 	 * @deprecated since 1.47; use ::setDisplayTitleParts()
 	 */
 	public function setDisplayTitle( $html ) {
-		// clears any parts previously set by ::setDisplayTitleParts()
-		$this->metadata->setTitleText( $html );
+		// clears any split parts previously set by ::setDisplayTitleParts()
+		$this->displayTitleParts = [ null, null, null, (string)$html ];
 	}
 
 	/**
@@ -1192,9 +1208,17 @@ class OutputPage extends ContextSource {
 		string|HtmlArmor $mainText,
 		string|HtmlArmor|null $combinedText = null
 	): void {
-		$this->metadata->setDisplayTitleParts(
-			$nsText, $nsSeparator, $mainText, $combinedText
-		);
+		// Use the same rules as ParserOutput::setDisplayTitleParts()
+		$parts = [
+			HtmlArmor::getHtml( $nsText ) ?? '',
+			HtmlArmor::getHtml( $nsSeparator ) ?? '',
+			HtmlArmor::getHtml( $mainText ) ?? '',
+		];
+		if ( $combinedText !== null ) {
+			$combinedText = HtmlArmor::getHtml( $combinedText );
+		}
+		$combinedText ??= $parts[0] ? implode( '', $parts ) : $parts[2];
+		$this->displayTitleParts = [ ...$parts, $combinedText ];
 	}
 
 	/**
@@ -1206,7 +1230,7 @@ class OutputPage extends ContextSource {
 	 * @return string HTML
 	 */
 	public function getDisplayTitle() {
-		$html = $this->metadata->getTitleText() ?: null;
+		$html = ( $this->displayTitleParts[3] ?? '' ) ?: null;
 		if ( $html === null ) {
 			return htmlspecialchars( $this->getTitle()->getPrefixedText(), ENT_NOQUOTES );
 		}
@@ -1232,11 +1256,13 @@ class OutputPage extends ContextSource {
 	 * @see Parser::splitPageTitle()
 	 */
 	public function getDisplayTitleParts(): array {
-		$displayTitleParts = $this->metadata->getDisplayTitleParts();
-		if ( $displayTitleParts !== null ) {
-			return $displayTitleParts;
+		if ( ( $this->displayTitleParts[0] ?? null ) !== null ) {
+			return array_map(
+				static fn ( string $s ) => new HtmlArmor( $s ),
+				array_slice( $this->displayTitleParts, 0, 3 ),
+			);
 		}
-		$displayTitle = $this->metadata->getTitleText();
+		$displayTitle = $this->displayTitleParts[3] ?? '';
 		$converter = MediaWikiServices::getInstance()
 			->getLanguageConverterFactory()
 			->getLanguageConverter(
@@ -1269,6 +1295,8 @@ class OutputPage extends ContextSource {
 	 * @return string HTML
 	 */
 	public function getUnprefixedDisplayTitle(): string {
+		// The parts are HtmlArmor objects. Thus getHtml() does not escape them again.
+		// @phan-suppress-next-line SecurityCheck-DoubleEscaped
 		return HtmlArmor::getHtml( $this->getDisplayTitleParts()[2] );
 	}
 

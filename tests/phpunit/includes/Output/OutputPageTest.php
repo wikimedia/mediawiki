@@ -939,6 +939,30 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 		);
 	}
 
+	/**
+	 * The display title of the page is separate from the title text in
+	 * the metadata: a ParserOutput does not change it.
+	 *
+	 * @covers \MediaWiki\Output\OutputPage::getDisplayTitle
+	 * @covers \MediaWiki\Output\OutputPage::getDisplayTitleParts
+	 */
+	public function testDisplayTitleIsNotMetadata() {
+		$op = $this->newInstance();
+		$op->setTitle( Title::makeTitle( NS_TALK, 'Foo' ) );
+		$op->setDisplayTitleParts( 'Talk', ':', 'Bar' );
+
+		$po = new ParserOutput();
+		$po->setDisplayTitleParts( 'Help', ':', 'Message' );
+		$op->addParserOutputMetadata( $po );
+		$op->getMetadata()->setDisplayTitleParts( 'User', ':', 'Other' );
+
+		$this->assertSame( 'Talk:Bar', $op->getDisplayTitle() );
+		$this->assertSame(
+			[ 'Talk', ':', 'Bar' ],
+			array_map( HtmlArmor::getHtml( ... ), $op->getDisplayTitleParts() )
+		);
+	}
+
 	public static function provideUnprefixedDisplayTitle() {
 		return [
 			'No display title' => [ NS_TALK, null, 'Foo' ],
