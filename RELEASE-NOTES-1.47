@@ -20,6 +20,12 @@ oldest supported upgrading version, MediaWiki 1.39.
 
 Some specific notes for MediaWiki 1.47 upgrades are below:
 
+* Direct upgrade from 1.43 to 1.47 is supported per our compatibility policy
+  but in a one-time departure from policy, *rollback* from 1.47 to 1.43
+  is not supported without clearing the ParserCache of entries generated
+  by 1.47.  Rollback from 1.47 to 1.45 is fully supported.  We recommend
+  a two-step upgrade from 1.43 to 1.45.6 and then to 1.47, which will
+  preserve rollback-compatibility of ParserCache entries.
 * …
 
 For notes on 1.46.x and older releases, see HISTORY.
