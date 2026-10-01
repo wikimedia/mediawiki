@@ -1,13 +1,15 @@
 {
 	"@metadata": {
 		"authors": [
-			"Strainu"
+			"Strainu",
+			"Vellion Eagle"
 		]
 	},
 	"cdx-input-chip-aria-description": "Apăsați Enter pentru a edita sau Delete pentru a elimina.",
 	"cdx-dialog-close-button-label": "Închide",
 	"cdx-label-optional-flag": "(opțional)",
 	"cdx-message-dismiss-button-label": "Închide",
+	"cdx-popover-close-button-label": "Închide",
 	"cdx-search-input-search-button-label": "Caută",
 	"cdx-table-select-all-label": "Selectează toate rândurile",
 	"cdx-table-select-row-label": "Selecează rândul $1 din $2",
@@ -24,5 +26,6 @@
 	"cdx-table-pagination-status-message-indeterminate-long": "Se afișează rezultate $1 – $2 din multe",
 	"cdx-table-pagination-status-message-indeterminate-short": "$1 – $2 din multe",
 	"cdx-table-pagination-status-message-indeterminate-final": "Se afișează {{PLURAL:$1|ultimul $1 rezultat|ultimele $1 rezultate|ultimele $1 de rezultate}}",
-	"cdx-table-pagination-status-message-pending": "Se încarcă rezultatele..."
+	"cdx-table-pagination-status-message-pending": "Se încarcă rezultatele...",
+	"cdx-table-no-data-message": "Nu există date disponibile."
 }

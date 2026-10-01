@@ -1,0 +1,33 @@
+{
+	"@metadata": {
+		"authors": [
+			"咽頭べさ"
+		]
+	},
+	"cdx-breadcrumb-navigation-label": "ပ္ညုၚ်ထ္ၜးဂၠံၚ်",
+	"cdx-breadcrumb-overflow-label": "ပ္ညုၚ်ထ္ၜးဂၠံၚ်ပဵုနူပၠန်ဂမၠိုၚ်",
+	"cdx-chip-input-chip-added": "ဗပေၚ်စုတ်ပ္ညုၚ် $1 တုဲဒှ်အာယျ။",
+	"cdx-chip-input-chip-removed": "မပါဲထောံပ္ညုၚ် $1 တုဲဒှ်အာယျ။",
+	"cdx-input-chip-aria-description": "အရန်ဂွံပလေဝ်ဒါန်ဍဵုထောံ Enter ညိ ဟွံသေၚ်မ္ဂး အရၚ်ပါဲထောံဍဵုထောံ Delete ညိ။",
+	"cdx-dialog-close-button-label": "တၟာတ်ဏောၚ်",
+	"cdx-label-optional-flag": "(ဟၟဲပၟိက်ဂွံဗပေၚ်စုတ်ဏီရ)",
+	"cdx-message-dismiss-button-label": "တၟာတ်ဏောၚ်",
+	"cdx-popover-close-button-label": "တၟာတ်ဏောၚ်",
+	"cdx-search-input-search-button-label": "အရၚ်ဂွံဂၠာဲ",
+	"cdx-table-select-all-label": "အရၚ်ဂွံဂၠာဲတန်သီုဖ္အိုတ်ဂမၠိုၚ်",
+	"cdx-table-select-row-label": "ရုဲကေတ်တန် $1 သာ် သီုကဵု $2",
+	"cdx-table-sort-caption": "$1 (မစဳရေၚ်ကေတ်အတိုၚ်က္ဍိုပ်လိက်နကဵုမဍဵုမပါဒၟံၚ်ဟေၚ်ရ)။",
+	"cdx-typeahead-search-search-results-label": "ပရေၚ်မဂၠာဲဆဵုဂဗဂမၠိုၚ်",
+	"cdx-table-pager-button-first-page": "မုက်လိက်ကၠာအိုတ်",
+	"cdx-table-pager-button-last-page": "မုက်လိက်ဗွဲကြဴ",
+	"cdx-table-pager-button-next-page": "မုက်လိက်ဂတ",
+	"cdx-table-pager-button-prev-page": "မုက်လိက်ဗွဲလက္ကရဴ",
+	"cdx-table-pager-items-per-page-default": "မုက်လိက်ဏာကဵုဖဵုနိဿန်",
+	"cdx-table-pagination-status-message-determinate-long": "ပွမထ္ၜးဖဵုနိဿန် $3 သာ် သီုကဵုထ္ၜးဒၟံၚ် $1–$2 ကီုရ",
+	"cdx-table-pagination-status-message-determinate-short": "$1–$2 နူကဵု $3",
+	"cdx-table-pagination-status-message-indeterminate-long": "ပွမပွဖဵုနိဿန် $1–$2 နူကဵုဗွဲမဂၠိုၚ်ဂၠေၚ်",
+	"cdx-table-pagination-status-message-indeterminate-short": "$1–$2 နူကဵုဗွဲမဂၠိုၚ်ဂၠေၚ်",
+	"cdx-table-pagination-status-message-indeterminate-final": "ပွမထ္ၜးဆေၚ်စပ်ကဵုဗွဲကြဴအိုတ် {{PLURAL:$1|$1 သာ်|$1 သာ်ဂမၠိုၚ်}}",
+	"cdx-table-pagination-status-message-pending": "ပွမကေတ်ဒၟံၚ်ဖဵုနိဿန်ဂမၠိုၚ်...",
+	"cdx-table-no-data-message": "စရၚ်မဂွံမာန်ဟၟဲဏီရ။"
+}

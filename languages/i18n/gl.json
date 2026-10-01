@@ -2417,7 +2417,7 @@
 	"whatlinkshere-count": "{{PLURAL:$1|Amósase $1 elemento|Amósanse $1 elementos}}.",
 	"whatlinkshere-title": "Páxinas que ligan con «$1»",
 	"whatlinkshere-page": "Páxina:",
-	"linkshere": "As seguintes páxinas ligan con <strong>$2</strong>:",
+	"linkshere": "As seguintes páxinas ligan con «<strong>$2</strong>»:",
 	"nolinkshere": "Ningunha páxina liga con «<strong>$2</strong>».",
 	"nolinkshere-filter": "Ningunha páxina liga con <strong>$2</strong> coa configuración de busca actual.",
 	"nolinkshere-ns": "Ningunha páxina liga con «<strong>$2</strong>» no espazo de nomes elixido.",
