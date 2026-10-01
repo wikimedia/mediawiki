@@ -2309,24 +2309,14 @@ class OutputPage extends ContextSource {
 	 * @param ParserOutput $parserOutput
 	 */
 	public function addParserOutputMetadata( ParserOutput $parserOutput ) {
-		// T301020 This should eventually use the standard "merge ParserOutput"
-		// function between $parserOutput and $this->metadata.
-		foreach (
-			$parserOutput->getLinkList( ParserOutputLinkTypes::LANGUAGE )
-			as $linkItem
-		) {
-			$this->metadata->appendLinkList( ParserOutputLinkTypes::LANGUAGE, $linkItem );
-		}
+		// Merge the metadata of $parserOutput into $this->metadata (T301020).
+		// This merges the flags, language links, template and media links,
+		// page properties, extension data, revision timestamp, and limit
+		// report, among other things.
+		$parserOutput->collectMetadata( $this->metadata );
 
-		// Keep the most recent revision timestamp
-		// (Stay consistent with ParserOutput::collectMetadata())
-		$revTimestamp = $parserOutput->getRevisionTimestamp();
-		if ( $revTimestamp !== null ) {
-			$oldTimestamp = $this->metadata->getRevisionTimestamp();
-			if ( $oldTimestamp === null || $revTimestamp > $oldTimestamp ) {
-				$this->metadata->setRevisionTimestamp( $revTimestamp );
-			}
-		}
+		// The code below copies the metadata which OutputPage keeps in
+		// other properties, or which have side effects on OutputPage.
 
 		$cats = [];
 		foreach (
@@ -2362,9 +2352,6 @@ class OutputPage extends ContextSource {
 		$this->addModules( $parserOutput->getModules() );
 		$this->addModuleStyles( $parserOutput->getModuleStyles() );
 		$this->addJsConfigVars( $parserOutput->getJsConfigVars() );
-		if ( $parserOutput->getPreventClickjacking() ) {
-			$this->metadata->setPreventClickjacking( true );
-		}
 		$scriptSrcs = $parserOutput->getExtraCSPScriptSrcs();
 		foreach ( $scriptSrcs as $src ) {
 			$this->getCSP()->addScriptSrc( $src );
@@ -2402,25 +2389,9 @@ class OutputPage extends ContextSource {
 			}
 		}
 
-		// Template versioning and File Search Options
-		foreach ( [
-			ParserOutputLinkTypes::TEMPLATE,
-			ParserOutputLinkTypes::MEDIA,
-		] as $linkType ) {
-			foreach ( $parserOutput->getLinkList( $linkType ) as $linkItem ) {
-				$this->metadata->appendLinkList( $linkType, $linkItem );
-			}
-		}
-
 		// Enable OOUI if requested via ParserOutput
 		if ( $parserOutput->getEnableOOUI() ) {
 			$this->enableOOUI();
-		}
-
-		// Include parser limit report. Merge each key: the last value wins.
-		// (See ParserOutput::collectMetadata())
-		foreach ( $parserOutput->getLimitReportData() as $key => $value ) {
-			$this->metadata->setLimitReportData( (string)$key, $value );
 		}
 
 		// Link flags are ignored for now, but may in the future be
@@ -2435,6 +2406,8 @@ class OutputPage extends ContextSource {
 			$this->metadata->addLanguageLink( $l );
 		}
 
+		// ::collectMetadata() copied the flags already. Extract the flags
+		// again to find changes that the hook makes.
 		$flagsBefore = $this->extractParserOutputFlags( $parserOutput );
 
 		$this->getHookRunner()->onOutputPageParserOutput( $this, $parserOutput );

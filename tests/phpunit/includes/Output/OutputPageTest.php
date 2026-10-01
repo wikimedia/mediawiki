@@ -1266,31 +1266,15 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 		);
 		$this->assertSame( [ 'pt:E' ], $op->getLanguageLinks() );
 
-		$pOut1 = $this->createParserOutputStub( [
-			'getLinkList' => static function ( $type ) {
-				if ( $type !== ParserOutputLinkTypes::LANGUAGE ) {
-					return [];
-				}
-				return [
-					[ 'link' => TitleValue::tryNew( NS_MAIN, 'F', '', 'he' ) ],
-					[ 'link' => TitleValue::tryNew( NS_MAIN, 'G', 'y', 'ar' ) ],
-				];
-			},
-		] );
+		$pOut1 = new ParserOutput( '' );
+		$pOut1->addLanguageLink( TitleValue::tryNew( NS_MAIN, 'F', '', 'he' ) );
+		$pOut1->addLanguageLink( TitleValue::tryNew( NS_MAIN, 'G', 'y', 'ar' ) );
 		$op->addParserOutputMetadata( $pOut1 );
 		$this->assertSame( [ 'ar:G#y', 'he:F', 'pt:E' ], $op->getLanguageLinks() );
 
 		# Duplicates are removed in OutputPage (T26502)
-		$pOut2 = $this->createParserOutputStub( [
-			'getLinkList' => static function ( $type ) {
-				if ( $type !== ParserOutputLinkTypes::LANGUAGE ) {
-					return [];
-				}
-				return [
-					[ 'link' => TitleValue::tryNew( NS_MAIN, 'H', '', 'pt' ) ],
-				];
-			},
-		] );
+		$pOut2 = new ParserOutput( '' );
+		$pOut2->addLanguageLink( TitleValue::tryNew( NS_MAIN, 'H', '', 'pt' ) );
 		$op->addParserOutput( $pOut2, ParserOptions::newFromAnon() );
 		$this->assertSame( [ 'ar:G#y', 'he:F', 'pt:E' ], $op->getLanguageLinks() );
 	}
@@ -1828,51 +1812,38 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 		$op = $this->newInstance();
 		$this->assertSame( [], $op->getTemplateIds() );
 
-		// Test with no template id's
-		$stubPOEmpty = $this->createParserOutputStub();
-		$op->addParserOutputMetadata( $stubPOEmpty );
+		// Test with no template ids
+		$poEmpty = new ParserOutput( '' );
+		$op->addParserOutputMetadata( $poEmpty );
 		$this->assertSame( [], $op->getTemplateIds() );
 
-		// Test with some arbitrary template id's
-		$mkList = static function ( $ids, $pageid ) {
-			$list = [];
+		// Test with some arbitrary template ids
+		$mkParserOutput = static function ( $ids, $pageid ) {
+			$po = new ParserOutput( '' );
 			foreach ( $ids as $ns => $arr ) {
 				foreach ( $arr as $dbkey => $revid ) {
-					$list[] = [
-						'link' => new TitleValue( $ns, (string)$dbkey ),
-						'pageid' => $pageid,
-						'revid' => $revid,
-					];
+					$po->addTemplate( new TitleValue( $ns, (string)$dbkey ), $pageid, $revid );
 				}
 			}
-			return $list;
+			return $po;
 		};
-		$mkGetLinkList = static fn ( $ids, $pageid ) => static fn ( $lt ) =>
-			match ( $lt ) {
-			ParserOutputLinkTypes::TEMPLATE => $mkList( $ids, $pageid ),
-			default => [],
-			};
 
 		$ids = [
 			NS_MAIN => [ 'A' => 3, 'B' => 17 ],
 			NS_TALK => [ 'C' => 31 ],
 			NS_MEDIA => [ 'D' => -1 ],
 		];
-		$stubPO1 = $this->createParserOutputStub(
-			'getLinkList', $mkGetLinkList( $ids, 42 )
-		);
+		$po1 = $mkParserOutput( $ids, 42 );
 
-		$op->addParserOutputMetadata( $stubPO1 );
+		$op->addParserOutputMetadata( $po1 );
 		$this->assertSame( $ids, $op->getTemplateIds() );
 
-		// Test merging with a second set of id's
+		// Test merging with a second set of ids
 		$ids2 = [
 				NS_MAIN => [ 'E' => 1234 ],
 				NS_PROJECT => [ 'F' => 5678 ],
 		];
-		$stubPO2 = $this->createParserOutputStub(
-			'getLinkList', $mkGetLinkList( $ids2, 4242 )
-		);
+		$po2 = $mkParserOutput( $ids2, 4242 );
 
 		$finalIds = [
 			NS_MAIN => [ 'E' => 1234, 'A' => 3, 'B' => 17 ],
@@ -1881,11 +1852,11 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 			NS_PROJECT => [ 'F' => 5678 ],
 		];
 
-		$op->addParserOutput( $stubPO2, ParserOptions::newFromAnon() );
+		$op->addParserOutput( $po2, ParserOptions::newFromAnon() );
 		$this->assertEqualsCanonicalizing( $finalIds, $op->getTemplateIds() );
 
-		// Test merging with an empty set of id's
-		$op->addParserOutputMetadata( $stubPOEmpty );
+		// Test merging with an empty set of ids
+		$op->addParserOutputMetadata( $poEmpty );
 		$this->assertEqualsCanonicalizing( $finalIds, $op->getTemplateIds() );
 	}
 
@@ -1894,26 +1865,20 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( [], $op->getFileSearchOptions() );
 
 		// Test with no files
-		$stubPOEmpty = $this->createParserOutputStub();
+		$poEmpty = new ParserOutput( '' );
 
-		$op->addParserOutputMetadata( $stubPOEmpty );
+		$op->addParserOutputMetadata( $poEmpty );
 		$this->assertSame( [], $op->getFileSearchOptions() );
 
-		// Test with some arbitrary template id's
-		$mkList = static function ( $ids ) {
-			$list = [];
-			foreach ( $ids as $dbkey => $arr ) {
-				$list[] = [
-					'link' => new TitleValue( NS_FILE, (string)$dbkey ),
-				] + $arr;
+		$mkParserOutput = static function ( $files ) {
+			$po = new ParserOutput( '' );
+			foreach ( $files as $dbkey => $arr ) {
+				$po->addImage(
+					new TitleValue( NS_FILE, (string)$dbkey ), $arr['time'], $arr['sha1']
+				);
 			}
-			return $list;
+			return $po;
 		};
-		$mkGetLinkList = static fn ( $ids ) => static fn ( $lt ) =>
-			match ( $lt ) {
-			ParserOutputLinkTypes::MEDIA => $mkList( $ids ),
-			default => [],
-			};
 
 		// Test with some arbitrary files
 		$files1 = [
@@ -1924,11 +1889,9 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 			],
 		];
 
-		$stubPO1 = $this->createParserOutputStub(
-			'getLinkList', $mkGetLinkList( $files1 )
-		);
+		$po1 = $mkParserOutput( $files1 );
 
-		$op->addParserOutput( $stubPO1, ParserOptions::newFromAnon() );
+		$op->addParserOutput( $po1, ParserOptions::newFromAnon() );
 		$this->assertSame( $files1, $op->getFileSearchOptions() );
 
 		// Test merging with a second set of files
@@ -1937,15 +1900,13 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 			'B' => [ 'time' => null, 'sha1' => null ],
 		];
 
-		$stubPO2 = $this->createParserOutputStub(
-			'getLinkList', $mkGetLinkList( $files2 )
-		);
+		$po2 = $mkParserOutput( $files2 );
 
-		$op->addParserOutputMetadata( $stubPO2 );
+		$op->addParserOutputMetadata( $po2 );
 		$this->assertEqualsCanonicalizing( array_merge( $files2, $files1 ), $op->getFileSearchOptions() );
 
 		// Test merging with an empty set of files
-		$op->addParserOutput( $stubPOEmpty, ParserOptions::newFromAnon() );
+		$op->addParserOutput( $poEmpty, ParserOptions::newFromAnon() );
 		$this->assertEqualsCanonicalizing( array_merge( $files2, $files1 ), $op->getFileSearchOptions() );
 	}
 
@@ -2648,12 +2609,14 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 		$op->setPreventClickjacking( false );
 		$this->assertFalse( $op->getPreventClickjacking() );
 
-		$pOut1 = $this->createParserOutputStub( 'getPreventClickjacking', true );
+		$pOut1 = new ParserOutput( '' );
+		$pOut1->setPreventClickjacking( true );
 		$op->addParserOutputMetadata( $pOut1 );
 		$this->assertTrue( $op->getPreventClickjacking() );
 
 		// The ParserOutput can't allow, only prevent
-		$pOut2 = $this->createParserOutputStub( 'getPreventClickjacking', false );
+		$pOut2 = new ParserOutput( '' );
+		$pOut2->setPreventClickjacking( false );
 		$op->addParserOutputMetadata( $pOut2 );
 		$this->assertTrue( $op->getPreventClickjacking() );
 
@@ -3006,7 +2969,7 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 	/**
 	 * @covers \MediaWiki\Output\OutputPage::addParserOutputMetadata
 	 */
-	public function testFlagsAreCopiedAfterOutputPageParserOutputHook() {
+	public function testFlagsAreVisibleInOutputPageParserOutputHook() {
 		$op = $this->newInstance();
 		$po = new ParserOutput();
 		$po->setOutputFlag( ParserOutputFlags::NO_GALLERY );
@@ -3017,8 +2980,8 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 			}
 		);
 		$op->addParserOutputMetadata( $po );
-		// The flags are copied after the hook runs.
-		$this->assertFalse( $seen );
+		// ::collectMetadata() copies the flags before the hook runs.
+		$this->assertTrue( $seen );
 		$this->assertTrue( $op->getOutputFlag( ParserOutputFlags::NO_GALLERY ) );
 	}
 
@@ -3039,9 +3002,9 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 			'/Changing ParserOutput flags in the OutputPageParserOutput hook/'
 		);
 		$op->addParserOutputMetadata( $po );
-		// A flag that the hook clears is not copied.
-		$this->assertFalse( $op->getOutputFlag( ParserOutputFlags::NO_GALLERY ) );
-		// A flag that the hook sets is copied.
+		// The flag was copied before the hook cleared it, thus it stays set.
+		$this->assertTrue( $op->getOutputFlag( ParserOutputFlags::NO_GALLERY ) );
+		// A flag that the hook sets is copied after the hook.
 		$this->assertTrue( $op->getOutputFlag( ParserOutputFlags::SHOW_TOC ) );
 		$this->assertTrue( $op->isTOCEnabled() );
 	}
