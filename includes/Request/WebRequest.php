@@ -920,21 +920,6 @@ class WebRequest {
 	}
 
 	/**
-	 * Get a cookie set with SameSite=None.
-	 *
-	 * @deprecated since 1.42 use getCookie(), but note the different $prefix default
-	 *
-	 * @param string $key The name of the cookie
-	 * @param string $prefix A prefix to use, empty by default
-	 * @param mixed|null $default What to return if the value isn't found
-	 * @return mixed Cookie value or $default if the cookie is not set
-	 */
-	public function getCrossSiteCookie( $key, $prefix = '', $default = null ) {
-		wfDeprecated( __METHOD__, '1.42' );
-		return $this->getCookie( $key, $prefix, $default );
-	}
-
-	/**
 	 * Return the path and query string portion of the main request URI.
 	 * This will be suitable for use as a relative link in HTML output.
 	 *
