@@ -158,6 +158,13 @@ class OutputPage extends ContextSource {
 	/**
 	 * @var ?TOCData Table of Contents information from ParserOutput, or
 	 *   null if no TOCData was ever set.
+	 *
+	 * This is not the same as $this->metadata->getTOCData().
+	 * ParserOutput::collectMetadata() *appends* the sections of each
+	 * ParserOutput to the TOC of the metadata, while in OutputPage
+	 * ::addParserOutputMetadata() *replaces* the TOC with the
+	 * non-empty TOC of each ParserOutput that has one
+	 * (T307256#8817705; see also T327429).
 	 */
 	private $tocData;
 
@@ -206,7 +213,17 @@ class OutputPage extends ContextSource {
 	 */
 	private bool $mCategoriesSorted = true;
 
-	/** @var array<string,string> */
+	/**
+	 * @var array<string,string> The indicators of this page, as a map
+	 *  from the identifier to the HTML contents.
+	 *
+	 * This is not the same as $this->metadata->getIndicators().
+	 * OutputPage::addParserOutputMetadata() wraps the indicators of each
+	 * ParserOutput with the wrapper div class of that ParserOutput
+	 * (usually .mw-parser-output). Other callers of
+	 * ::setIndicators() can also add indicators that are *not* wrapped.
+	 * (T188443)
+	 */
 	private array $mIndicators = [];
 
 	/**
