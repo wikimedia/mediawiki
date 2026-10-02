@@ -3,6 +3,7 @@ namespace MediaWiki\Storage;
 
 use MediaWiki\Content\Content;
 use MediaWiki\Page\PageIdentity;
+use MediaWiki\Parser\ParserOptions;
 use MediaWiki\Parser\ParserOutput;
 use MediaWiki\Revision\RenderedRevision;
 use MediaWiki\Revision\RevisionRecord;
@@ -95,6 +96,15 @@ interface PreparedUpdate {
 	 * @return ParserOutput
 	 */
 	public function getCanonicalParserOutput(): ParserOutput;
+
+	/**
+	 * Returns the canonical parser options used to produce
+	 * getCanonicalParserOutput().
+	 *
+	 * @since 1.47
+	 * @return ParserOptions
+	 */
+	public function getCanonicalParserOptions(): ParserOptions;
 
 	/**
 	 * Returns the canonical parser output without requiring rendering.

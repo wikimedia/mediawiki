@@ -1306,6 +1306,9 @@ class DerivedPageDataUpdater implements LoggerAwareInterface, PreparedUpdate {
 		return $this->getRenderedRevision()->getRevisionParserOutput();
 	}
 
+	/**
+	 * @inheritDoc
+	 */
 	public function getCanonicalParserOptions(): ParserOptions {
 		return $this->getRenderedRevision()->getOptions();
 	}
