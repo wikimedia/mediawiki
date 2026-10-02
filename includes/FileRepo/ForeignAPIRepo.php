@@ -37,6 +37,8 @@ use Wikimedia\Timestamp\TimestampFormat as TS;
  * ];
  * @endcode
  *
+ * @stable to type
+ * @since 1.13
  * @ingroup FileRepo
  */
 class ForeignAPIRepo extends FileRepo implements IForeignRepoWithMWApi {
@@ -44,14 +46,6 @@ class ForeignAPIRepo extends FileRepo implements IForeignRepoWithMWApi {
 	 * server maintainers in identify ForeignAPI usage.
 	 * Update the version every time you make breaking or significant changes. */
 	private const VERSION = "2.1";
-
-	/**
-	 * List of iiprop values for the thumbnail fetch queries.
-	 */
-	private const IMAGE_INFO_PROPS = [
-		'url',
-		'timestamp',
-	];
 
 	/** @var callable */
 	protected $fileFactory = [ ForeignAPIFile::class, 'newFromTitle' ];
@@ -205,19 +199,15 @@ class ForeignAPIRepo extends FileRepo implements IForeignRepoWithMWApi {
 	 * @return array|null
 	 */
 	public function fetchImageQuery( $query ) {
-		$languageCode = MediaWikiServices::getInstance()->getMainConfig()
-			->get( MainConfigNames::LanguageCode );
-
-		$query = array_merge( $query,
-			[
-				'format' => 'json',
-				'action' => 'query',
-				'redirects' => 'true'
-			] );
-
-		if ( !isset( $query['uselang'] ) ) { // uselang is unset or null
-			$query['uselang'] = $languageCode;
-		}
+		$query = array_merge( $query, [
+			'format' => 'json',
+			'action' => 'query',
+			'redirects' => 'true',
+			// Optimization: Set uselang to fix CDN caching (T97096)
+			// Optimization: Set uselang=content to improve CDN caching (T56037)
+			// The only localised errors are unreachable via API.
+			'uselang' => 'content',
+		] );
 
 		$data = $this->httpGetCached( 'Metadata', $query, $this->apiMetadataExpiry );
 
@@ -278,19 +268,22 @@ class ForeignAPIRepo extends FileRepo implements IForeignRepoWithMWApi {
 	 * @param int $height
 	 * @param array|null &$result Output-only parameter, guaranteed to become an array
 	 * @param string $otherParams
-	 *
-	 * @return string|false
+	 * @return string|MediaTransformError|false
 	 */
 	private function getThumbUrl(
 		$name, $width = -1, $height = -1, &$result = null, $otherParams = ''
 	) {
 		$data = $this->fetchImageQuery( [
 			'titles' => 'File:' . $name,
-			'iiprop' => self::getIIProps(),
+			'iiprop' => implode( '|', [
+				'url',
+				'timestamp',
+			] ),
 			'iiurlwidth' => $width,
 			'iiurlheight' => $height,
 			'iiurlparam' => $otherParams,
-			'prop' => 'imageinfo' ] );
+			'prop' => 'imageinfo'
+		] );
 		$info = $this->getImageInfo( $data );
 
 		if ( $data && $info && isset( $info['thumburl'] ) ) {
@@ -298,37 +291,7 @@ class ForeignAPIRepo extends FileRepo implements IForeignRepoWithMWApi {
 			$result = $info;
 
 			return $info['thumburl'];
-		} else {
-			return false;
-		}
-	}
-
-	/**
-	 * @param string $name
-	 * @param int $width
-	 * @param int $height
-	 * @param string $otherParams
-	 * @param string|null $lang Language code for language of error
-	 * @return MediaTransformError|false
-	 * @since 1.22
-	 */
-	public function getThumbError(
-		$name, $width = -1, $height = -1, $otherParams = '', $lang = null
-	) {
-		$data = $this->fetchImageQuery( [
-			'titles' => 'File:' . $name,
-			'iiprop' => self::getIIProps(),
-			'iiurlwidth' => $width,
-			'iiurlheight' => $height,
-			'iiurlparam' => $otherParams,
-			'prop' => 'imageinfo',
-			'uselang' => $lang,
-		] );
-		$info = $this->getImageInfo( $data );
-
-		if ( $data && $info && isset( $info['thumberror'] ) ) {
-			wfDebug( __METHOD__ . " got remote thumb error " . $info['thumberror'] );
-
+		} elseif ( $data && $info && isset( $info['thumberror'] ) ) {
 			return new MediaTransformError(
 				'thumbnail_error_remote',
 				$width,
@@ -347,12 +310,13 @@ class ForeignAPIRepo extends FileRepo implements IForeignRepoWithMWApi {
 	 * If the url has been requested today, get it from cache
 	 * Otherwise retrieve remote thumb url, check for local file.
 	 *
+	 * @internal For use by ForeignAPIFile
 	 * @param string $name Is a dbkey form of a title
 	 * @param int $width
 	 * @param int $height
 	 * @param string $params Other rendering parameters (page number, etc)
 	 *   from handler's makeParamString.
-	 * @return string|false
+	 * @return string|MediaTransformError|false
 	 */
 	public function getThumbUrlFromCache( $name, $width, $height, $params = "" ) {
 		// We can't check the local cache using FileRepo functions because
@@ -383,7 +347,7 @@ class ForeignAPIRepo extends FileRepo implements IForeignRepoWithMWApi {
 		$metadata = null;
 		$foreignUrl = $this->getThumbUrl( $name, $width, $height, $metadata, $params );
 
-		if ( !$foreignUrl ) {
+		if ( !$foreignUrl || $foreignUrl instanceof MediaTransformError ) {
 			wfDebug( __METHOD__ . " Could not find thumburl" );
 
 			return false;
@@ -569,14 +533,6 @@ class ForeignAPIRepo extends FileRepo implements IForeignRepoWithMWApi {
 
 			return false;
 		}
-	}
-
-	/**
-	 * @return string
-	 * @since 1.23
-	 */
-	protected static function getIIProps() {
-		return implode( '|', self::IMAGE_INFO_PROPS );
 	}
 
 	/**
