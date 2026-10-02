@@ -1972,6 +1972,7 @@
 	"watchlistlabels-onboarding-final": "বুঝেছি!",
 	"watchlistlabels-onboarding-manage-title": "লেবেল তৈরি করুন",
 	"watchlistlabels-onboarding-manage-body": "নিজস্ব লেবেল তৈরি, পুনঃনামকরণ বা অপসারণ করতে ‘লেবেল পরিচালনা করুন’ বিভাগে যান।",
+	"watchlistlabels-editwatchlist-dialog-button-unassign": "লেবেল সরান",
 	"watchlistlabels-editwatchlist-dialog-intro-more": "আরও $2টি {{PLURAL:$1|পাতা}}",
 	"watchlistlabels-editwatchlist-dialog-unassign": "সরান",
 	"watchlistlabels-list-wrapper": "[[Special:WatchlistLabels|লেবেল]]: $1",

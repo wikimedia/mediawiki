@@ -3656,7 +3656,7 @@
 	"logentry-partialblock-block-page": "{{PLURAL:$1|页面}}$2",
 	"logentry-partialblock-block-ns": "{{PLURAL:$1|命名空间}}$2",
 	"logentry-partialblock-block-action": "{{PLURAL:$1|操作}}$2",
-	"logentry-partialblock-block": "$1{{GENDER:$2|封禁了}}{{GENDER:$4|$3}}对$7的编辑，期限为$5$6",
+	"logentry-partialblock-block": "$1{{GENDER:$2|封禁了}}{{GENDER:$4|$3}}，涉及$7，期限为$5$6",
 	"logentry-partialblock-block-multi": "$1为{{GENDER:$4|$3}}{{GENDER:$2|新增了}}一条对$7的编辑的封禁，期限为$5$6",
 	"logentry-partialblock-reblock": "$1{{GENDER:$2|更改了}}{{GENDER:$4|$3}}的$7的封禁设置，期限为$5 $6",
 	"logentry-non-editing-block-block": "$1{{GENDER:$2|封禁了}}{{GENDER:$4|$3}}的特定非编辑操作，期限为$5$6",

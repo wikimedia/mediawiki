@@ -120,7 +120,8 @@
 			"Xxmarijnw",
 			"לערי ריינהארט",
 			"아라",
-			"XXBlackburnXx"
+			"XXBlackburnXx",
+			"Ciell"
 		]
 	},
 	"pagecategories": "{{PLURAL:$1|Categorie|Categorieën}}",
@@ -2390,7 +2391,7 @@
 	"blockipsuccesstext": "[[Special:Contributions/$1|$1]] is geblokkeerd.<br />\nZie de [[Special:BlockList|blokkadelijst]] voor recente blokkades.",
 	"ipb-empty-block": "De opgegeven blokkade legt geen beperkingen op.",
 	"ipb-block-not-found": "Het blokkeren is niet gelukt, waarschijnlijk omdat een andere beheerder tegelijkertijd probeerde deze gebruiker te blokkeren. Controleer de blokkeringsstatus en probeer het opnieuw.",
-	"ipb-blockingself": "U staat op het punt uzelf te blokkeren. Weet u zeker dat u dat wilt doen?",
+	"ipb-blockingself": "Je staat op het punt jezelf te blokkeren! Weet je zeker dat je dat wilt?",
 	"ipb-confirmhideuser": "U staat op het punt een gebruiker te blokkeren met de optie \"gebruiker verbergen\". Hiermee wordt de gebruikersnaam in alle lijsten en logboekregels verborgen. Weet u het zeker?",
 	"ipb-confirmaction": "Weet u zeker dat u dit wilt doen? Selecteer dan het selectievakje \"{{int:ipb-confirm}}\" hieronder.",
 	"ipb-edit-dropdown": "Redenen voor blokkeren bewerken",

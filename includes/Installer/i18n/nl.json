@@ -233,7 +233,7 @@
 	"config-upload-help": "Het toestaan van het uploaden van bestanden stelt uw server mogelijk bloot aan beveiligingsrisico's.\nEr is meer [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Security informatie over beveiliging] beschikbaar in de handleiding.\n\nOm het bestandsuploads mogelijk te maken kunt u de rechten op de submap <code>images</code> onder de hoofdmap van MediaWiki aanpassen, zodat de webserver erin kan schrijven.\nDaarmee wordt deze functie ingeschakeld.",
 	"config-upload-deleted": "Map voor verwijderde bestanden:",
 	"config-upload-deleted-help": "Kies een map waarin verwijderde bestanden gearchiveerd kunnen worden.\nIdealiter is deze map niet via het web te benaderen.",
-	"config-personalization-settings": "Personalizatie",
+	"config-personalization-settings": "Personalisatie",
 	"config-logo-summary": "Voor elk van deze velden moet u een afbeelding van het juiste formaat uploaden en de URL in de onderstaande vakken invoeren. U kunt <code>$wgStylePath</code> of <code>$wgScriptPath</code> gebruiken wanneer uw logo relatief is aan die paden. U kunt elk van deze vakken leeg laten.",
 	"config-logo-preview-main": "Hoofdpagina",
 	"config-logo-icon": "Logo (pictogram)",

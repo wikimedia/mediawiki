@@ -8,10 +8,11 @@
 			"Paloi Sciurala",
 			"Strainu",
 			"Trotinel Iftode",
-			"Wintereu"
+			"Wintereu",
+			"Vellion Eagle"
 		]
 	},
-	"apihelp-main-param-action": "Ce acțiune să facă.",
+	"apihelp-main-param-action": "Ce acțiune trebuie efectuată. Acest parametru ar trebui trimis ca parte a adresei URL a solicitării (nu a corpului POST) pentru a facilita utilizarea în depanare, analiză și rutare sau filtrare a solicitărilor.",
 	"apihelp-main-param-format": "Formatul de ieșire.",
 	"apihelp-main-paramvalue-errorformat-wikitext": "Wikitext neparsat.",
 	"apihelp-main-paramvalue-errorformat-raw": "Cheia mesajului și parametrii.",

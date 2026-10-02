@@ -168,7 +168,8 @@
 			"아라",
 			"NenhumaFênix",
 			"Vickvvy",
-			"User3412"
+			"User3412",
+			"Andersonv"
 		]
 	},
 	"pagecategories": "{{PLURAL:$1|Categoria|Categorias}}",
@@ -697,6 +698,8 @@
 	"edit-constraint-warning-wrapper-save": "<strong>Aviso:</strong> $2\n\nSe você clicar em \"$1\" novamente, o redirecionamento será criado de qualquer maneira.",
 	"edit-constraint-selfredirect-warning": "Você está redirecionando esta página para si mesma.\nÉ possível que você tenha especificado o destino incorreto para o redirecionamento, ou pode estar editando a página incorreta.",
 	"edit-constraint-brokenredirect-warning": "Você está redirecionando esta página para uma página que não existe.\nTalvez você tenha especificado o destino incorreto para o redirecionamento.",
+	"edit-constraint-doubleredirect-warning": "Você está tentando redirecionar esta página para uma segunda página de redirecionamento, criando um redirecionamento duplo.\nSua página de destino atualmente redireciona para [[$1]].\n\nConsidere revisar o conteúdo deste redirecionamento da seguinte forma:\n$2",
+	"edit-constraint-doubleredirect-loop-warning": "Você está tentando configurar um redirecionamento que aponta para a própria página, criando assim um loop de redirecionamento que não funciona. Por favor, reconsidere o que está fazendo.",
 	"edit-constraint-invalidredirecttarget-warning": "Você está tentando redirecionar essa página para uma página que não é um alvo válido de redirecionamento. Por favor reconsidere o que você está fazendo.",
 	"edit-constraint-warning-wrapper-save-deleted-revision": "<strong>Aviso:</strong> $2\n\nSe você quer continuar mesmo assim, aperte em \"$1\" de novo, mas isso vai publicar os conteúdos da revisão excluída.",
 	"missingcommenttext": "Por favor, digite um comentário.",
