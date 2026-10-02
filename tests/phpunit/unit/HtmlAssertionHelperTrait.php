@@ -12,7 +12,7 @@ use Wikimedia\Parsoid\Ext\DOMUtils;
  * tests to check the outputted HTML matches the expected structure
  *
  * @stable to use
- * @since 1.47
+ * @since 1.47 (also backported to 1.46.2)
  */
 trait HtmlAssertionHelperTrait {
 	/**
@@ -28,7 +28,7 @@ trait HtmlAssertionHelperTrait {
 	 * @param string $html The HTML to search through
 	 * @param string $selector The CSS selector to use as the search term
 	 * @return string The HTML of the found element
-	 * @since 1.47
+	 * @since 1.47 (also backported to 1.46.2)
 	 */
 	protected function assertSelectorMatchesOneElement( string $html, string $selector ): string {
 		$specialPageDocument = DOMUtils::parseHTML( $html );
@@ -46,7 +46,7 @@ trait HtmlAssertionHelperTrait {
 	 * @param string $selector The CSS selector to use as the search term
 	 * @param bool $returnAsHtml Whether a HTML string should be returned instead of an {@link Element} object.
 	 * @return Element|string The found element as an object or a HTML string, depending on the value of $returnAsHtml
-	 * @since 1.47
+	 * @since 1.47 (also backported to 1.46.2)
 	 */
 	protected function assertSelectorMatchesOneElementInNode(
 		Document|Element $node,
