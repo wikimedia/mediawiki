@@ -7,6 +7,7 @@
 namespace MediaWiki\FileRepo\File;
 
 use MediaHandler;
+use MediaTransformError;
 use MediaTransformOutput;
 use MediaWiki\FileRepo\ForeignAPIRepo;
 use MediaWiki\MediaWikiServices;
@@ -18,6 +19,8 @@ use MediaWiki\User\UserIdentityValue;
 /**
  * Foreign file accessible through api.php requests.
  *
+ * @stable to type
+ * @since 1.13
  * @ingroup FileAbstraction
  */
 class ForeignAPIFile extends File {
@@ -141,15 +144,10 @@ class ForeignAPIFile extends File {
 			$thumbUrl = '/';
 		}
 		if ( $thumbUrl === false ) {
-			global $wgLang;
-
-			return $this->repo->getThumbError(
-				$this->getName(),
-				$width,
-				$height,
-				$otherParams,
-				$wgLang->getCode()
-			);
+			return false;
+		}
+		if ( $thumbUrl instanceof MediaTransformError ) {
+			return $thumbUrl;
 		}
 
 		return $this->handler->getTransform( $this, 'bogus', $thumbUrl, $params );
