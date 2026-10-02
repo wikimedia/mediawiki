@@ -23,7 +23,8 @@
 			"Vlad5250",
 			"Ævar Arnfjörð Bjarmason <avarab@gmail.com>",
 			"לערי ריינהארט",
-			"아라"
+			"아라",
+			"Sanderpel713"
 		]
 	},
 	"sunday": "sündag",
@@ -282,6 +283,7 @@
 	"perfcachedts": "Disse gegeavens kommet uut et tüskengehöägen dee vöär et lätst bywarked is up $1. Der {{PLURAL:$4|steyt houguut eyn resultaat|ståt houguut $4 resultaten}} in et tüskengehöägen.",
 	"querypage-no-updates": "Disse syde wördt neet bywarked.\nGegeavens up disse syde wördet neet vervarsd.",
 	"viewsource": "Brontekst bekyken",
+	"skin-action-viewsource": "Bronkode bekyken",
 	"viewsource-title": "Bron bekyken van $1",
 	"actionthrottled": "Handeling teagenholden",
 	"actionthrottledtext": "As måtregel teagen misbruuk, is et antal keyren dat jy disse handeling in een korte tyd uutvoren künnet betöänd. Jy hebbet de limit oaverskreaden. Probeer et oaver een antal minuten weader.",

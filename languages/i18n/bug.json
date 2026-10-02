@@ -8,7 +8,8 @@
 			"Notanotheramy",
 			"Zaidpjd (on bug.wikipedia.org)",
 			"Han4299",
-			"Rdwnnr"
+			"Rdwnnr",
+			"Iripseudocorus"
 		]
 	},
 	"sunday": "Ahaq",
@@ -213,6 +214,7 @@
 	"revdelete-hide-comment": "Padécéng rangkumang",
 	"revdelete-hide-user": "Aseppagguna/alamaq IP pammadécéng",
 	"revdelete-log": "Sabaq:",
+	"lineno": "Barisik $1:",
 	"editundo": "baléq",
 	"viewprevnext": "Ita ($1 {{int:pipe-separator}} $2) ($3)",
 	"searchprofile-articles": "Lemparang liseq",

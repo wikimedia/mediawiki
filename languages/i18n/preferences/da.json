@@ -125,7 +125,7 @@
 	"prefs-skin-responsive": "Aktiver responsiv tilstand",
 	"prefs-help-skin-responsive": "Tilpas udseendet til skærmstørrelsen på mobil.",
 	"prefs-dateformat": "Formatering af datoer",
-	"datedefault": "Standard",
+	"datedefault": "Ingen foretrukket",
 	"prefs-timeoffset": "Tidsforskel",
 	"servertime": "Serverens tid:",
 	"localtime": "Lokaltid:",

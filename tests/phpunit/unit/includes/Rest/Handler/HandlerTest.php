@@ -176,8 +176,16 @@ class HandlerTest extends MediaWikiUnitTestCase {
 	public function testCheckPreconditions( $status ) {
 		$request = new RequestData();
 
-		$util = $this->createNoOpMock( ConditionalHeaderUtil::class, [ 'checkPreconditions' ] );
+		$util = $this->createNoOpMock(
+			ConditionalHeaderUtil::class,
+			[ 'checkPreconditions', 'applyResponseHeaders', ]
+		);
 		$util->method( 'checkPreconditions' )->with( $request )->willReturn( $status );
+		$util->method( 'applyResponseHeaders' )->willReturnCallback(
+			static function ( ResponseInterface $response ) {
+				$response->setHeader( 'etag', '"the-etag"' );
+			}
+		);
 
 		$handler = $this->newHandler( [ 'getConditionalHeaderUtil' ] );
 		$handler->method( 'getConditionalHeaderUtil' )->willReturn( $util );
@@ -185,8 +193,17 @@ class HandlerTest extends MediaWikiUnitTestCase {
 		$this->initHandler( $handler, $request );
 		$resp = $handler->checkPreconditions();
 
-		$responseStatus = $resp ? $resp->getStatusCode() : null;
-		$this->assertSame( $status, $responseStatus );
+		if ( $status ) {
+			$this->assertNotNull( $resp );
+			$responseStatus = $resp->getStatusCode();
+			$this->assertSame( $status, $responseStatus );
+
+			// T357603: Response must include the Etag as specified in
+			// https://datatracker.ietf.org/doc/html/rfc9110#name-304-not-modified
+			$this->assertSame( '"the-etag"', $resp->getHeaderLine( 'etag' ) );
+		} else {
+			$this->assertNull( $resp );
+		}
 	}
 
 	public function testApplyConditionalResponseHeaders() {

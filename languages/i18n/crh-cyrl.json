@@ -15,7 +15,8 @@
 			"Исмаил Садуев",
 			"Рустам Нурыев",
 			"Умар",
-			"아라"
+			"아라",
+			"Хтосьці"
 		]
 	},
 	"sunday": "Базар",
@@ -224,6 +225,9 @@
 	"nospecialpagetext": "<strong>Тапылмагъан бир махсус саифеге кирдинъиз.</strong>\n\nБар олгъан бутюн махсус саифелерни [[Special:SpecialPages|{{int:specialpages}}]] саифесинде корип олурсынъыз.",
 	"error": "Хата",
 	"databaseerror": "Малюмат базасынынъ хатасы",
+	"databaseerror-query": "Сорама: $1",
+	"databaseerror-function": "Функция: $1",
+	"databaseerror-error": "Хата: $1",
 	"laggedreplicamode": "Дикъкъат! Бу саифеде сонъки янъарув олмай биле.",
 	"readonly": "Малюмат базасы килитленди",
 	"enterlockreason": "Блок этювнинъ себебини ве девамыны кирсетинъиз.",
@@ -313,6 +317,7 @@
 	"nocookiesnew": "Къулланыджы эсабы ачылгъан, факъат танытылмагъан. {{SITENAME}} къулланыджыларны танытмакъ ичюн «cookies»ни къуллана. Сизде бу функция къапалы вазиеттедир. «Cookies» функциясыны ишлетип текрар янъы адынъыз ве паролинъизнен тырышып бакъыныз.",
 	"nocookieslogin": "{{SITENAME}} «cookies»ни къуллана. Сизде бу функция къапалы вазиеттедир. «Cookies» функциясыны ишлетип текрар тырышып бакъынъыз.",
 	"noname": "Догъру къулланыджы адыны кирсетмединъиз.",
+	"userlogin-authpopup-cancel": "Лягъу",
 	"loginsuccesstitle": "Кириш япылды",
 	"loginsuccess": "'''$1 адынен {{SITENAME}} сайтында чалышып оласынъыз.'''",
 	"nosuchuser": "«$1» адлы къулланыджы ёкъ.\nКъулланыджы адларында буюк ве кичик арифлер арасында фаркъ бар.\nДогъру язгъанынъызны тешкеринъиз я да [[Special:CreateAccount|янъы къулланыджы эсабыны ачынъыз]].",
@@ -609,6 +614,7 @@
 	"rcfilters-quickfilters": "Сакълангъан сюзгючлер",
 	"rcfilters-quickfilters-placeholder-title": "Аля даа ич бир сюзгюч сакъланмады",
 	"rcfilters-savedqueries-defaultlabel": "Сакълангъан сюзгючлер",
+	"rcfilters-savedqueries-cancel-label": "Лягъу",
 	"rcfilters-clear-all-filters": "Сюзгючлернинъ эписини темизле",
 	"rcfilters-show-new-changes": "Сонъки денъиштирмелер",
 	"rcfilters-empty-filter": "Фааль сюзгюч ёкъ. Денъиштирмелернинъ эписи косьтериле.",

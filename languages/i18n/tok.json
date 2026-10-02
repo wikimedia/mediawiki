@@ -37,7 +37,8 @@
 			"Tymewalk",
 			"Phurlaughn",
 			"Recqy",
-			"Jlwoodwa"
+			"Jlwoodwa",
+			"Junie-dalrezna"
 		]
 	},
 	"sunday": "tenpo suno #7 pi tenpo esun",
@@ -1333,6 +1334,9 @@
 	"rcfilters-filter-bots-description": "ante lipu tan ilo",
 	"rcfilters-filter-humans-label": "jan (ilo ala)",
 	"rcfilters-filter-humans-description": "jan li ante",
+	"rcfilters-filter-reviewstatus-unpatrolled-label": "jan wawa li lukin ala e ni",
+	"rcfilters-filter-reviewstatus-manual-label": "jan wawa li lukin e ni",
+	"rcfilters-filter-reviewstatus-auto-label": "jan ilo wawa li lukin e ni",
 	"rcfilters-filtergroup-significance": "suli",
 	"rcfilters-filter-minor-label": "ante lili",
 	"rcfilters-filter-minor-description": "ante lili",

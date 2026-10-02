@@ -235,7 +235,9 @@
 			"Serieminou",
 			"Alkmen-Alesia",
 			"AhmedG612",
-			"Maxime2024"
+			"Maxime2024",
+			"Crowwhailord",
+			"NClara"
 		]
 	},
 	"sunday": "dimanche",
@@ -2663,7 +2665,7 @@
 	"year": "Datant de l’année (et précédentes) :",
 	"date": "À partir du (et antérieurement) :",
 	"sp-contributions-blocklog": "journal des blocages",
-	"sp-contributions-suppresslog": "contributions de l’utilisat{{GENDER:$1|eur|rice}} supprimées",
+	"sp-contributions-suppresslog": "contributions de l’utilisat{{GENDER:$1|eur|rice}} masquées",
 	"sp-contributions-deleted": "contributions de l’utilisat{{GENDER:$1|eur|rice}} supprimées",
 	"sp-contributions-uploads": "téléversements",
 	"sp-contributions-logs": "journaux",
@@ -4398,6 +4400,7 @@
 	"right-renameuser": "Renommer les utilisateurs",
 	"renameuser-renamed-notice": "Cet utilisateur a été renommé.\nLe journal des renommages est fourni ci-dessous à titre de référence.",
 	"log-unknown-action": "action inconnue « $2 » effectuée sur [[$1]]",
+	"log-unsafe-logentry": "(Cette entrée de journal n'a pas pu être affichée, car ses paramètres contiennent des données sérialisées non sécurisées.)",
 	"createacct-benefit-heading-temp-user": "Merci d'avoir contribué à {{SITENAME}}.\nCréez un compte pour accéder à plus de fonctionnalités.",
 	"createacct-benefit-subheading-temp-user": "{{SITENAME}} est fait par des gens comme vous. Avec un compte, vous pouvez avoir une identité permanente et sécurisée avec accès à des fonctionnalités comme :",
 	"benefit-1-description": "Listes de suivi qui vous permettent de garder trace des pages qui vous intéressent.",

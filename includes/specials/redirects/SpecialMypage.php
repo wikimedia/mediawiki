@@ -38,6 +38,16 @@ class SpecialMypage extends RedirectSpecialArticle {
 	 * @param TempUserConfig $tempUserConfig
 	 */
 	public function __construct( TempUserConfig $tempUserConfig ) {
+		// T120386 - disallow raw action
+		$action = $this->getRequest()->getVal( 'action' );
+		$disallowedActions = [ 'raw' ];
+		if ( $action && in_array( $action, $disallowedActions, true ) ) {
+			$this->getOutput()->addHTML(
+				$this->msg( 'mypage-disallowed-action' )->params( $action )->escaped()
+			);
+			return;
+		}
+
 		parent::__construct( 'Mypage' );
 
 		$this->tempUserConfig = $tempUserConfig;

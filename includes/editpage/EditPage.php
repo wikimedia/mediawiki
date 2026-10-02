@@ -2162,13 +2162,7 @@ class EditPage implements IEditObject {
 				$this->mTitle
 			)
 		);
-		$constraintRunner->addConstraint(
-			new ImageRedirectConstraint(
-				$textbox_content,
-				$this->mTitle,
-				$authority
-			)
-		);
+
 		$constraintRunner->addConstraint(
 			$constraintFactory->newUserBlockConstraint( $this->mTitle, $requestUser )
 		);
@@ -2257,7 +2251,7 @@ class EditPage implements IEditObject {
 			$pageUpdater = $this->page->newPageUpdater( $pstUser )
 				// @phan-suppress-next-line PhanTypeMismatchArgumentNullable False positive
 				->setContent( SlotRecord::MAIN, $content );
-			$pageUpdater->prepareUpdate( $flags );
+			$preparedUpdate = $pageUpdater->prepareUpdate( $flags );
 
 			// BEGINNING OF MIGRATION TO EDITCONSTRAINT SYSTEM (see T157658)
 			// Create a new runner to avoid rechecking the prior constraints, use the same factory
@@ -2407,7 +2401,7 @@ class EditPage implements IEditObject {
 
 			$pageUpdater = $this->page->newPageUpdater( $pstUser )
 				->setContent( SlotRecord::MAIN, $content );
-			$pageUpdater->prepareUpdate( $flags );
+			$preparedUpdate = $pageUpdater->prepareUpdate( $flags );
 
 			// BEGINNING OF MIGRATION TO EDITCONSTRAINT SYSTEM (see T157658)
 			// Create a new runner to avoid rechecking the prior constraints, use the same factory
@@ -2480,8 +2474,20 @@ class EditPage implements IEditObject {
 		$this->contentLength = strlen( $this->toEditText( $content ) );
 
 		// BEGINNING OF MIGRATION TO EDITCONSTRAINT SYSTEM (see T157658)
+
+		$postPstContent = $preparedUpdate->getRawContent( SlotRecord::MAIN );
+
 		// Create a new runner to avoid rechecking the prior constraints, use the same factory
 		$constraintRunner = new EditConstraintRunner();
+
+		$constraintRunner->addConstraint(
+			new ImageRedirectConstraint(
+				$postPstContent,
+				$this->mTitle,
+				$authority
+			)
+		);
+
 		$constraintRunner->addConstraint(
 			new SelfRedirectConstraint(
 				$this->allowSelfRedirect,
@@ -2490,6 +2496,7 @@ class EditPage implements IEditObject {
 				$this->getTitle()
 			)
 		);
+
 		$constraintRunner->addConstraint(
 			// Same constraint is used to check size before and after merging the
 			// edits, which use different failure codes

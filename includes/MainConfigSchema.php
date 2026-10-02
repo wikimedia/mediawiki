@@ -2569,6 +2569,8 @@ class MainConfigSchema {
 	 * Site admin email address.
 	 *
 	 * Defaults to "wikiadmin@$wgServerName" (in Setup.php).
+	 *
+	 * @see $wgHTTPUserAgentContact
 	 */
 	public const EmergencyContact = [
 		'default' => false,
@@ -12624,6 +12626,26 @@ class MainConfigSchema {
 	 */
 	public const HTTPImportTimeout = [
 		'default' => 25,
+	];
+
+	/**
+	 * Contact URL and/or email address in the User-Agent header of outgoing HTTP requests
+	 *
+	 * This defaults to $wgCanonicalServer and is placed in parentheses after
+	 * `MediaWiki/{MW_VERSION}` in the default user agent string for all outgoing HTTP
+	 * requests, including via HttpRequestFactory, ForeignAPIRepo, and MultiHttpClient.
+	 *
+	 * If you operate an intranet wiki, or a wiki farm with many different domain, it is
+	 * recommended to override this and set a fixed public homepage or email address instead.
+	 *
+	 * @since 1.47 (also backported to 1.43.10, 1.45.5, 1.46.1)
+	 * @see $wgEmergencyContact
+	 * @see MediaWiki\Http\HttpRequestFactory::getUserAgent
+	 * @see https://www.mediawiki.org/wiki/InstantCommons#User-Agent_Policy
+	 */
+	public const HTTPUserAgentContact = [
+		'default' => false,
+		'type' => 'string|false',
 	];
 
 	/**

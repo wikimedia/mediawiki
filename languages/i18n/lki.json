@@ -19,7 +19,9 @@
 			"Miladrahimi",
 			"Mjbmr",
 			"Physicsch",
-			"Process cq"
+			"Process cq",
+			"LordProfo",
+			"LProfo"
 		]
 	},
 	"sunday": "یشۀمۀ",
@@ -469,7 +471,7 @@
 	"resetpass-temp-password": ":رمز عبور موقت",
 	"resetpass-abort-generic": "تغییر گذرواژه به دست یکی از افزونه‌ها لغو شده است.",
 	"resetpass-expired": "رمز عبور شما منقضی شده‌است. لطفاً برای ورود رمز عبور جدیدی را تنظیم کنید.",
-	"resetpass-expired-soft": "رمز عبور شما منقضی شده‌است، و نیاز به تنظیم مجدد دارد. لطفاً اکنون رمز عبور جدیدی را انتخاب کنید، یا برای تنظیم مجدد آن بعدآً، دکمه \"{{int:authprovider-resetpass-skip-label}}\" را کلیک کنید.",
+	"resetpass-expired-soft": "گذرواژهٔ شما منقضی شده و نیاز است که تغییر یابد. لطفاً اکنون گذرواژهٔ جدیدی را انتخاب کنید، یا روی \"{{int:authprovider-resetpass-skip-label}}\" کلیک کنید تا بعداً آن را تغییر دهید.",
 	"resetpass-validity-soft": "گذرواهٔ شما صحیح نیست: $1\n\nلطفاً یک گذرواژهٔ تازه الآن انتخاب کنید یا بر «{{int:authprovider-resetpass-skip-label}}» کلیک کنید که دوباره آن را بعداً انتخاب کنید.",
 	"passwordreset": "بازنشانی گذرواژه",
 	"passwordreset-text-one": "برای بازنشانی گذرواژه‌تان این فرم را کامل کنید.",
@@ -1612,7 +1614,7 @@
 	"removedwatchtext-short": "صفحهٔ \"$1\" از فهرست پیگیری‌های شما حذف شده‌است.",
 	"watch": "پی‌گیری",
 	"watchthispage": "پئ گیری اێ وەڵگە",
-	"unwatch": "توقف پی‌گیری",
+	"unwatch": "توقف پیگیری",
 	"unwatchthispage": "توقف پی‌گیری",
 	"notanarticle": "صفحه محتوایی نیست",
 	"notvisiblerev": "آخرین نسخه توسط کاربری دیگر حذف شده‌است",

@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"बडा काजी"
+			"बडा काजी",
+			"Pratik11"
 		]
 	},
 	"rest-permission-error": "अनुमति अस्वीकृत: $1",

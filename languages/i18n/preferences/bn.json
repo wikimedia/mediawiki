@@ -15,7 +15,8 @@
 			"Yahya",
 			"Zaheen",
 			"আফতাবুজ্জামান",
-			"খাত্তাব হাসান"
+			"খাত্তাব হাসান",
+			"Bodhisattwa"
 		]
 	},
 	"preferences": "পছন্দসমূহ",
@@ -143,7 +144,7 @@
 	"prefs-diffs": "পার্থক্য",
 	"tog-diffonly": "পার্থক্যের নিচে পাতার বিষয়বস্তু না দেখানো হোক",
 	"tog-norollbackdiff": "রোলব্যাকের পরে সংস্করণগুলির পার্থক্য না দেখানো হোক",
-	"prefs-advancedrendering": "উচ্চতর বিকল্পগুলি",
+	"prefs-advancedrendering": "উন্নত বিকল্প",
 	"tog-underline": "সংযোগের নিচে দাগ দেখানো হোক:",
 	"underline-default": "আবরণ বা ব্রাউজারে যেমনভাবে নির্দিষ্ট করা আছে",
 	"underline-never": "কখনো নয়",
@@ -180,7 +181,7 @@
 	"recentchangesdays-max": "সর্বোচ্চ $1 {{PLURAL:$1|দিনের}}",
 	"recentchangescount": "পূর্বনির্ধারিতভাবে, সাম্প্রতিক পরিবর্তনে, পাতার ইতিহাসে, ও লগে প্রদর্শনের জন্য সম্পাদনার সংখ্যা:",
 	"prefs-help-recentchangescount": "সর্বোচ্চ সংখ্যা: ১০০০",
-	"prefs-advancedrc": "উচ্চতর পছন্দগুলি",
+	"prefs-advancedrc": "উন্নত বিকল্প",
 	"tog-usenewrc": "সাম্প্রতিক পরিবর্তনসমূহ এবং নজরতালিকা পাতায় পরিবর্তনগুলি একত্রে প্রদর্শন করা হোক",
 	"rcfilters-preference-label": "জাভাস্ক্রিপ্টহীন ইন্টারফেস ব্যবহার করুন",
 	"rcfilters-preference-help": "অনুসন্ধান ছাঁকনি বা আলোকপাতকরণ বৈশিষ্ট্য ছাড়াই [[{{#special:RecentChanges}}|সাম্প্রতিক পরিবর্তন]] ও [[{{#special:RecentChangesLinked}}|সম্পর্কিত পরিবর্তন]] লোড করে।",
@@ -202,7 +203,7 @@
 	"prefs-watchlist-days-max": "সর্বোচ্চ $1 {{PLURAL:$1|দিন|দিন}}",
 	"prefs-watchlist-edits": "নজরতালিকাতে দেখানোর জন্য সর্বাধিক পরিবর্তনের সংখ্যা:",
 	"prefs-watchlist-edits-max": "সর্বোচ্চ সংখ্যা: ১০০০",
-	"prefs-advancedwatchlist": "উচ্চতর বিকল্পগুলি",
+	"prefs-advancedwatchlist": "উন্নত বিকল্প",
 	"tog-extendwatchlist": "শুধু সাম্প্রতিক পরিবর্তনই নয়, সকল পরিবর্তন দেখতে নজরতালিকা সম্প্রসারণ করা হোক",
 	"tog-watchlistunwatchlinks": "পরিবর্তনসহ দেখা পাতাগুলিতে সরাসরি দেখা/না দেখার ({{int:Watchlist-unwatch}}/{{int:Watchlist-unwatch-undo}}) চিহ্ন যুক্ত করুন (এই কার্যকারিতা জন্য জাভাস্ক্রিপ্ট প্রয়োজন)",
 	"rcfilters-watchlist-preference-label": "জাভাস্ক্রিপ্টহীন ইন্টারফেস ব্যবহার করুন",
@@ -234,7 +235,7 @@
 	"searchlimit-help": "সর্বাধিক সংখ্যা: $1",
 	"search-thumbnail-extra-namespaces-label": "ডেস্কটপে বিশেষ:অনুসন্ধানে থাম্বনেইল দেখান",
 	"search-thumbnail-extra-namespaces-message": "{{#special:search}} পাতার ফলাফলে $1 {{PLURAL:$2|নামস্থানের}} জন্য থাম্বনেইল প্রদর্শন করে",
-	"prefs-advancedsearchoptions": "উচ্চতর পছন্দগুলি",
+	"prefs-advancedsearchoptions": "উন্নত পছন্দ",
 	"prefs-reset-intro": "আপনি এই পাতা ব্যবহার করে আপনার পছন্দসমূহকে সাইটের পূর্বপ্রদত্ত সেটিংসে পরিবর্তন করতে পারেন।\nপরিবর্তন করার পর এটা  আর ফিরিয়ে আনা যাবে না।",
 	"prefs-reset-confirm": "হ্যাঁ, আমি আমার পছন্দগুলি পুনঃস্থাপন করতে চাই।",
 	"restoreprefs": "সকল পূর্বনির্ধারিত সেটিং ফিরিয়ে আনুন"

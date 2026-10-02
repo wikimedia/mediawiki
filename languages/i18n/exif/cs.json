@@ -372,6 +372,7 @@
 	"exif-exposurelockused": "Použit zámek expozice",
 	"exif-exposurelockused-true": "Ano",
 	"exif-exposurelockused-false": "Ne",
+	"exif-posepitchdegrees": "Sklon (stupně)",
 	"exif-initialviewheadingdegrees": "Počáteční směr pohledu (stupňů)",
 	"exif-initialhorizontalfovdegrees": "Počáteční zorné pole (stupňů vodorovně)",
 	"exif-initialverticalfovdegrees": "Počáteční zorné pole (stupňů svisle)",

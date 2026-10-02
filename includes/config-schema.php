@@ -2488,6 +2488,7 @@ return [
 			'HTTPMaxTimeout' => 0,
 			'HTTPMaxConnectTimeout' => 0,
 			'HTTPImportTimeout' => 25,
+			'HTTPUserAgentContact' => false,
 			'AsyncHTTPTimeout' => 25,
 			'HTTPProxy' => '',
 			'LocalVirtualHosts' => [
@@ -3006,6 +3007,10 @@ return [
 			'HTTPConnectTimeout' => 'number',
 			'HTTPMaxTimeout' => 'number',
 			'HTTPMaxConnectTimeout' => 'number',
+			'HTTPUserAgentContact' => [
+				'string',
+				'boolean',
+			],
 			'LocalVirtualHosts' => 'object',
 			'LocalHTTPProxy' => [
 				'string',

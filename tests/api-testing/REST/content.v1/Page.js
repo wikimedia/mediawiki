@@ -265,9 +265,26 @@ describe( 'Page Source', () => {
 		it( 'Should successfully return page HTML', async () => {
 			const { status, headers, text } = await client.get( `/page/${ page }/html` );
 			assert.deepEqual( status, 200, text );
+			assert.nestedProperty( headers, 'date' );
+			assert.nestedProperty( headers, 'etag' );
 			assert.match( headers[ 'content-type' ], /^text\/html/ );
 			assert.match( text, /<html\b/ );
 			assert.match( text, /Edit \w+<\/b>/ );
+		} );
+		it( 'Should return a 304 on if-modified-since', async () => {
+			const res = await client.get( `${ pathPrefix }/page/${ page }/html` );
+			const { headers } = res;
+			const { 'last-modified': lastModified, etag } = headers;
+
+			const res2 = await client.get( `${ pathPrefix }/page/${ page }/html` )
+				.set( 'if-modified-since', lastModified );
+
+			const { status: status2, headers: headers2, text: text2 } = res2;
+			assert.deepEqual( status2, 304, text2 );
+
+			// See T357603
+			assert.nestedPropertyVal( headers2, 'etag', etag );
+			assert.nestedPropertyVal( headers2, 'last-modified', lastModified );
 		} );
 		it( 'Should successfully return page HTML for a system message', async () => {
 			const msg = 'MediaWiki:Newpage-desc';

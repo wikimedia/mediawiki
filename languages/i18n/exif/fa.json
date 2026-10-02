@@ -10,7 +10,9 @@
 			"Meisam",
 			"Reza1615",
 			"ZxxZxxZ",
-			"LordProfo"
+			"LordProfo",
+			"Kamrani.exe",
+			"LProfo"
 		]
 	},
 	"exif-imagewidth": "عرض",
@@ -206,6 +208,7 @@
 	"exif-photometricinterpretation-9": "CIE L*a*b* (رمزنگاری ICC)",
 	"exif-photometricinterpretation-10": "CIE L*a*b* (رمزنگاری ITU)",
 	"exif-photometricinterpretation-32803": "آرایه فیلتر رنگ",
+	"exif-photometricinterpretation-34892": "خام خطی",
 	"exif-unknowndate": "تاریخ نامعلوم",
 	"exif-orientation-1": "عادی",
 	"exif-orientation-2": "افقی پشت و روشده",
@@ -377,6 +380,24 @@
 	"exif-usepanoramaviewer": "استفاده از نمایشگر پانوراما",
 	"exif-usepanoramaviewer-true": "بله",
 	"exif-usepanoramaviewer-false": "خیر",
+	"exif-exposurelockused": "قفل نوردهی استفاده‌شده",
 	"exif-exposurelockused-true": "بله",
-	"exif-exposurelockused-false": "خیر"
+	"exif-exposurelockused-false": "خیر",
+	"exif-poseheadingdegrees": "سمت وضعیت (درجه)",
+	"exif-posepitchdegrees": "پیچ (درجه)",
+	"exif-poserolldegrees": "رول (درجه)",
+	"exif-initialviewheadingdegrees": "سمت نمای اولیه (درجه)",
+	"exif-initialviewpitchdegrees": "پیچ نمای اولیه (درجه)",
+	"exif-initialviewrolldegrees": "رول نمای اولیه (درجه)",
+	"exif-initialhorizontalfovdegrees": "زاویهٔ دید اولیه (درجات افقی)",
+	"exif-initialverticalfovdegrees": "زاویهٔ دید اولیه (درجات عمودی)",
+	"exif-sourcephotoscount": "تعداد عکس‌های منبع",
+	"exif-croppedareaimagewidthpixels": "پهنای برش‌خوردهٔ پانوراما",
+	"exif-croppedareaimageheightpixels": "ارتفاع برش‌خوردهٔ پانوراما",
+	"exif-fullpanowidthpixels": "پهنای کامل پانوراما",
+	"exif-fullpanoheightpixels": "ارتفاع کامل پانوراما",
+	"exif-croppedarealeftpixels": "برش چپ پانوراما",
+	"exif-croppedareatoppixels": "برش بالای پانوراما",
+	"exif-initialcameradolly": "دالی اولیهٔ دوربین",
+	"exif-stitchingsoftware": "نرم‌افزار اتصال"
 }
