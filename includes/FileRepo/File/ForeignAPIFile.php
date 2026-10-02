@@ -8,6 +8,7 @@ namespace MediaWiki\FileRepo\File;
 
 use MediaWiki\FileRepo\ForeignAPIRepo;
 use MediaWiki\Media\MediaHandler;
+use MediaWiki\Media\MediaTransformError;
 use MediaWiki\Media\MediaTransformOutput;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Permissions\Authority;
@@ -19,6 +20,8 @@ use Wikimedia\Timestamp\TimestampFormat as TS;
 /**
  * Foreign file accessible through api.php requests.
  *
+ * @stable to type
+ * @since 1.13
  * @ingroup FileAbstraction
  */
 class ForeignAPIFile extends File {
@@ -142,13 +145,10 @@ class ForeignAPIFile extends File {
 			$thumbUrl = '/';
 		}
 		if ( $thumbUrl === false ) {
-			return $this->repo->getThumbError(
-				$this->getName(),
-				$width,
-				$height,
-				$otherParams,
-				$this->handler->getLanguage()->getCode()
-			);
+			return false;
+		}
+		if ( $thumbUrl instanceof MediaTransformError ) {
+			return $thumbUrl;
 		}
 
 		return $this->handler->getTransform( $this, 'bogus', $thumbUrl, $params );
