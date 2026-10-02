@@ -462,6 +462,8 @@
 	"resettokens-resetbutton": "विचितानि तोकननि पुन ठापेहि",
 	"editrecovery": "संसोधन पुन लाभो",
 	"edit-recovery-nojs-placeholder": "संसोधन पुन लाभो सब्भावत्थाय JavaScript आवस्सकं होति॥",
+	"edit-recovery-special-user-unnamed": "इमं सब्भावं उपयोजेतुं करुणा करोत्वा [[Special:UserLogin|लॉग इन]] वा [[Special:CreateAccount|अकाउंट करोहि]]॥",
+	"edit-recovery-special-user-not-enabled": "त्वं इमं सब्भावं [[Special:Preferences#mw-prefsection-editing|तव रुचियं]] अनुजानितुं सक्कोसि॥",
 	"edit-recovery-special-edit": "सम्पादेतु",
 	"edit-recovery-special-delete": "विनासनं",
 	"edit-recovery-special-recovered-on": "$1 तो",

@@ -86,6 +86,7 @@
 	"search-close": "Pechar o diálogo de busca",
 	"search-ignored-headings": " #<!-- Deixa esta liña tal e como está --> <pre>\n# Cabeceiras que non se terán en conta nas procuras.\n# Os cambios feitos aquí entran en vigor cando se indexa a páxina coa cabeceira.\n# Podes forzar o reindexado da páxina facendo unha edición baleira.\n# A sintaxe é a seguinte:\n#   * Todo o que vaia despois dun carácter «#» ata o final da liña é un comentario.\n#   * Toda liña que non estea en branco é o título exacto a ignorar, incluídas maiúsculas e minúsculas e demais.\nReferencias\nLigazóns externas\nVéxase tamén\n #</pre> <!-- Deixa esta liña tal e como está -->",
 	"searchbutton": "Procurar",
+	"searchsuggest-redirected-from": "(Redirección desde «$1»)",
 	"searchsuggest-containing-html": "Procurar as páxinas que conteñan «<strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>»",
 	"search-loader": "Cargando as suxestións de busca",
 	"go": "Vai",
