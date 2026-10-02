@@ -5,6 +5,14 @@ PHP 8.2 workboard: https://phabricator.wikimedia.org/tag/php_8.2_support/
 PHP 8.3 workboard: https://phabricator.wikimedia.org/tag/php_8.3_support/
 PHP 8.4 workboard: https://phabricator.wikimedia.org/tag/php_8.4_support/
 PHP 8.5 workboard: https://phabricator.wikimedia.org/tag/php_8.5_support/
+PHP 8.6 workboard: https://phabricator.wikimedia.org/tag/php_8.6_support/
+
+== MediaWiki 1.45.6 ==
+
+This is a maintenance release of the MediaWiki 1.45 branch.
+
+=== Changes since 1.45.5 ===
+* Fix minor backport issues.
 
 == MediaWiki 1.45.5 ==
 
