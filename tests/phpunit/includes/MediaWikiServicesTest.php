@@ -22,7 +22,6 @@ use Wikimedia\Services\SalvageableService;
 class MediaWikiServicesTest extends MediaWikiIntegrationTestCase {
 	private const DEPRECATED_SERVICES = [
 		'BlockErrorFormatter',
-		'ConfigRepository',
 		'ConfiguredReadOnlyMode',
 	];
 

@@ -545,6 +545,8 @@ because of Phabricator reports.
 * Task::getVirtualDomains() and the "VirtualDomains" installer provision have
   been removed. Installer tasks that need the list of virtual domains should
   read the VirtualDomainsMapping configuration variable instead.
+* ConfigRepository class and MediaWikiServices::getConfigRepository(),
+  deprecated since 1.42, have been removed.
 * ApiBase::makeMessage(), deprecated since 1.43, has been removed.
 * …
 

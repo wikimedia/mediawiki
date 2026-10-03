@@ -67,7 +67,6 @@ use MediaWiki\CommentStore\CommentStore;
 use MediaWiki\Config\Config;
 use MediaWiki\Config\ConfigException;
 use MediaWiki\Config\ConfigFactory;
-use MediaWiki\Config\ConfigRepository;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Content\CodeHighlighter;
 use MediaWiki\Content\ContentHandlerFactory;
@@ -730,10 +729,6 @@ return [
 			$factory->register( $name, $callback );
 		}
 		return $factory;
-	},
-
-	'ConfigRepository' => static function ( MediaWikiServices $services ): ConfigRepository {
-		return new ConfigRepository( $services->getConfigFactory() );
 	},
 
 	'ConfigSchema' => static function ( MediaWikiServices $services ): ConfigSchema {

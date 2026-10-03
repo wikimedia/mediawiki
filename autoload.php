@@ -1206,7 +1206,6 @@ $wgAutoloadLocalClasses = [
 	'MediaWiki\\Config\\Config' => __DIR__ . '/includes/Config/Config.php',
 	'MediaWiki\\Config\\ConfigException' => __DIR__ . '/includes/Config/ConfigException.php',
 	'MediaWiki\\Config\\ConfigFactory' => __DIR__ . '/includes/Config/ConfigFactory.php',
-	'MediaWiki\\Config\\ConfigRepository' => __DIR__ . '/includes/Config/ConfigRepository.php',
 	'MediaWiki\\Config\\EtcdConfig' => __DIR__ . '/includes/Config/EtcdConfig.php',
 	'MediaWiki\\Config\\EtcdConfigParseError' => __DIR__ . '/includes/Config/EtcdConfigParseError.php',
 	'MediaWiki\\Config\\GlobalVarConfig' => __DIR__ . '/includes/Config/GlobalVarConfig.php',

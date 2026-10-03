@@ -40,7 +40,6 @@ use MediaWiki\CommentFormatter\RowCommentFormatter;
 use MediaWiki\CommentStore\CommentStore;
 use MediaWiki\Config\Config;
 use MediaWiki\Config\ConfigFactory;
-use MediaWiki\Config\ConfigRepository;
 use MediaWiki\Config\GlobalVarConfig;
 use MediaWiki\Content\CodeHighlighter;
 use MediaWiki\Content\ContentJsonCodec;
@@ -1011,15 +1010,6 @@ class MediaWikiServices extends ServiceContainer {
 	 */
 	public function getConfigFactory(): ConfigFactory {
 		return $this->getService( 'ConfigFactory' );
-	}
-
-	/**
-	 * @deprecated since 1.42. Unused.
-	 * @since 1.32
-	 */
-	public function getConfigRepository(): ConfigRepository {
-		wfDeprecated( __METHOD__, '1.42' );
-		return $this->getService( 'ConfigRepository' );
 	}
 
 	/**
