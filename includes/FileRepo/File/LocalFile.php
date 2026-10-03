@@ -926,6 +926,14 @@ class LocalFile extends File {
 		}
 
 		if ( $this->migrationStage & SCHEMA_COMPAT_WRITE_NEW ) {
+			$fileId = $this->acquireFileIdFromName();
+			// Clear the cached file type ID so it will be recalculated with the new MIME type
+			$this->fileTypeId = 0;
+			$dbw->newUpdateQueryBuilder()
+				->update( 'file' )
+				->set( [ 'file_type' => $this->getFileTypeId() ] )
+				->where( [ 'file_id' => $fileId ] )
+				->caller( __METHOD__ )->execute();
 			$dbw->newUpdateQueryBuilder()
 				->update( 'filerevision' )
 				->set( [
@@ -936,7 +944,7 @@ class LocalFile extends File {
 					'fr_metadata' => $metadata,
 					'fr_sha1' => $this->sha1,
 				] )
-				->where( [ 'fr_file' => $this->acquireFileIdFromName() ] )
+				->where( [ 'fr_file' => $fileId ] )
 				->andWhere( [ 'fr_timestamp' => $freshnessTimestamp ] )
 				->caller( __METHOD__ )->execute();
 		}
