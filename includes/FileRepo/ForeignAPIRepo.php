@@ -59,12 +59,11 @@ class ForeignAPIRepo extends FileRepo implements IForeignRepoWithMWApi {
 	 * @var int API metadata cache time.
 	 * @since 1.38
 	 *
-	 * This is often the performance bottleneck for ForeignAPIRepo. For
-	 * each file used, we must fetch file metadata for it and every high-DPI
-	 * variant, in serial, during the parse. This is slow if a page has many
-	 * files, with RTT of the handshake often being significant. The metadata
-	 * rarely changes, but if a new version of the file was uploaded, it might
-	 * be displayed incorrectly until its metadata entry falls out of cache.
+	 * This is often the performance bottleneck for ForeignAPIRepo.
+	 * For each file used, we must fetch file metadata and thumb urls, in serial,
+	 * during the parse. This is slow if a page has many files.
+	 * The metadata rarely changes, but if a new version of the file was uploaded,
+	 * it may be displayed incorrectly until its metadata falls out of cache.
 	 */
 	protected $apiMetadataExpiry = 4 * 3600; // 4 hours
 
@@ -271,27 +270,43 @@ class ForeignAPIRepo extends FileRepo implements IForeignRepoWithMWApi {
 	 * @return string|MediaTransformError|false
 	 */
 	private function getThumbUrl(
-		$name, $width = -1, $height = -1, &$result = null, $otherParams = ''
+		$name, $width, $height, &$result = null, $otherParams = ''
 	) {
+		// Optimization: Omit width from $otherParams to improve cache hit ratio.
+		// The width is ignored by ApiQueryImageInfo with iiprop=thumburls.
+		//
+		// For most thumbs, $otherParams reflects $width like "250px", which we can ignore.
+		// For SVGs or PDFs, it is like "langde-250px" or "lossy-page2-250px", where we omit the
+		// trailing "-250px" and pass the rest.
+		// Inspired by LightboxImage#getUrlParam of the MultimediaViewer extension.
+		$otherParams = preg_replace( '/(^|-)\d+px$/', '', $otherParams );
 		$data = $this->fetchImageQuery( [
 			'titles' => 'File:' . $name,
+			'prop' => 'imageinfo',
 			'iiprop' => implode( '|', [
-				'url',
 				'timestamp',
+				'thumburls',
 			] ),
-			'iiurlwidth' => $width,
-			'iiurlheight' => $height,
-			'iiurlparam' => $otherParams,
-			'prop' => 'imageinfo'
+			'iiurlparam' => ( $otherParams !== '' ? $otherParams : null ),
 		] );
 		$info = $this->getImageInfo( $data );
 
-		if ( $data && $info && isset( $info['thumburl'] ) ) {
-			wfDebug( __METHOD__ . " got remote thumb " . $info['thumburl'] );
-			$result = $info;
+		if ( $info && isset( $info['thumburls'] ) && is_array( $info['thumburls'] ) && $info['thumburls'] ) {
+			ksort( $info['thumburls'] );
+			foreach ( $info['thumburls'] as $thumbWidth => $thumbInfo ) {
+				$thumburl = $thumbInfo['url'];
+				if ( $thumbWidth >= $width ) {
+					break;
+				}
+			}
 
-			return $info['thumburl'];
-		} elseif ( $data && $info && isset( $info['thumberror'] ) ) {
+			wfDebug( __METHOD__ . " got remote thumb " . $thumburl );
+			$result = [
+				'timestamp' => $info['timestamp']
+			];
+			return $thumburl;
+		}
+		if ( $info && isset( $info['thumberror'] ) ) {
 			return new MediaTransformError(
 				'thumbnail_error_remote',
 				$width,
@@ -312,8 +327,8 @@ class ForeignAPIRepo extends FileRepo implements IForeignRepoWithMWApi {
 	 *
 	 * @internal For use by ForeignAPIFile
 	 * @param string $name Is a dbkey form of a title
-	 * @param int $width
-	 * @param int $height
+	 * @param int $width Must be set and above zero
+	 * @param int $height Must be set and above zero
 	 * @param string $params Other rendering parameters (page number, etc)
 	 *   from handler's makeParamString.
 	 * @return string|MediaTransformError|false
