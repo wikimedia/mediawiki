@@ -247,33 +247,67 @@ class LocalFileDeleteBatch {
 		}
 
 		if ( $deleteCurrent ) {
-			$tables = [ 'image' ];
+			$migrationStage = MediaWikiServices::getInstance()->getMainConfig()->get(
+				MainConfigNames::FileSchemaMigrationStage
+			);
+			if ( $migrationStage & SCHEMA_COMPAT_WRITE_OLD ) {
+				$tables = [ 'image' ];
+				$sourceFields = [
+					'name' => 'img_name',
+					'size' => 'img_size',
+					'width' => 'img_width',
+					'height' => 'img_height',
+					'metadata' => 'img_metadata',
+					'bits' => 'img_bits',
+					'media_type' => 'img_media_type',
+					'major_mime' => 'img_major_mime',
+					'minor_mime' => 'img_minor_mime',
+					'description_id' => 'img_description_id',
+					'timestamp' => 'img_timestamp',
+					'sha1' => 'img_sha1',
+					'actor' => 'img_actor',
+				];
+				$conds = [ 'img_name' => $this->file->getName() ];
+				$joins = [];
+			} else {
+				$tables = [ 'file', 'filerevision', 'filetypes' ];
+				$sourceFields = [
+					'name' => 'file_name',
+					'size' => 'fr_size',
+					'width' => 'fr_width',
+					'height' => 'fr_height',
+					'metadata' => 'fr_metadata',
+					'bits' => 'fr_bits',
+					'media_type' => 'ft_media_type',
+					'major_mime' => 'ft_major_mime',
+					'minor_mime' => 'ft_minor_mime',
+					'description_id' => 'fr_description_id',
+					'timestamp' => 'fr_timestamp',
+					'sha1' => 'fr_sha1',
+					'actor' => 'fr_actor',
+				];
+				$conds = [ 'file_name' => $this->file->getName(), 'file_deleted' => 0 ];
+				$joins = [
+					'filerevision' => [ 'JOIN', 'file_latest = fr_id' ],
+					'filetypes' => [ 'JOIN', 'file_type = ft_id' ],
+				];
+			}
+
 			$fields = [
 				'fa_storage_group' => $encGroup,
 				'fa_storage_key' => $dbw->conditional(
-					[ 'img_sha1' => '' ],
+					[ $sourceFields['sha1'] => '' ],
 					$dbw->addQuotes( '' ),
-					$dbw->buildConcat( [ "img_sha1", $encExt ] )
+					$dbw->buildConcat( [ $sourceFields['sha1'], $encExt ] )
 				),
 				'fa_deleted_user' => $encUserId,
 				'fa_deleted_timestamp' => $encTimestamp,
 				'fa_deleted' => $this->suppress ? $bitfield : 0,
-				'fa_name' => 'img_name',
 				'fa_archive_name' => 'NULL',
-				'fa_size' => 'img_size',
-				'fa_width' => 'img_width',
-				'fa_height' => 'img_height',
-				'fa_metadata' => 'img_metadata',
-				'fa_bits' => 'img_bits',
-				'fa_media_type' => 'img_media_type',
-				'fa_major_mime' => 'img_major_mime',
-				'fa_minor_mime' => 'img_minor_mime',
-				'fa_description_id' => 'img_description_id',
-				'fa_timestamp' => 'img_timestamp',
-				'fa_sha1' => 'img_sha1',
-				'fa_actor' => 'img_actor',
 			];
-			$joins = [];
+			foreach ( $sourceFields as $field => $sourceField ) {
+				$fields["fa_$field"] = $sourceField;
+			}
 
 			$fields += array_map(
 				$dbw->addQuotes( ... ),
@@ -281,7 +315,7 @@ class LocalFileDeleteBatch {
 			);
 
 			$dbw->insertSelect( 'filearchive', $tables, $fields,
-				[ 'img_name' => $this->file->getName() ], __METHOD__, [ 'IGNORE' ], [], $joins );
+				$conds, __METHOD__, [ 'IGNORE' ], [], $joins );
 		}
 
 		if ( count( $oldRels ) ) {

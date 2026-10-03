@@ -1063,6 +1063,48 @@ class LocalFileTest extends MediaWikiIntegrationTestCase {
 		$this->assertTrue( $repo->fileExists( ( new LocalFile( $targetTitle, $repo ) )->getPath() ) );
 	}
 
+	public static function provideDeleteFileArchivesAllVersions() {
+		yield 'old' => [ SCHEMA_COMPAT_OLD ];
+		yield 'write both, read new' => [ SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_NEW ];
+		yield 'new' => [ SCHEMA_COMPAT_NEW ];
+	}
+
+	/**
+	 * @dataProvider provideDeleteFileArchivesAllVersions
+	 * @covers \MediaWiki\FileRepo\File\LocalFileDeleteBatch
+	 */
+	public function testDeleteFileArchivesAllVersions( int $migrationStage ) {
+		$this->overrideConfigValue( MainConfigNames::FileSchemaMigrationStage, $migrationStage );
+		$repo = $this->getLocalRepoForUpload();
+		$title = Title::makeTitle( NS_FILE, 'Test.png' );
+		$user = $this->getTestUser()->getUser();
+		foreach ( [ 'greyscale-png.png', '1bit-png.png' ] as $src ) {
+			$file = new LocalFile( $title, $repo );
+			$status = $file->upload(
+				__DIR__ . "/../../../data/media/$src", 'comment', 'page text', 0, false, false, $user
+			);
+			$this->assertStatusGood( $status );
+		}
+		$currentSha1 = $file->getSha1();
+
+		$file = new LocalFile( $title, $repo );
+		$this->assertStatusGood( $file->deleteFile( 'reason', $user ) );
+
+		$rows = iterator_to_array( $this->getDb()->newSelectQueryBuilder()
+			->select( [ 'fa_archive_name', 'fa_sha1', 'fa_media_type', 'fa_major_mime', 'fa_minor_mime' ] )
+			->from( 'filearchive' )
+			->where( [ 'fa_name' => 'Test.png' ] )
+			->orderBy( 'fa_timestamp' )
+			->caller( __METHOD__ )->fetchResultSet() );
+		$this->assertCount( 2, $rows );
+		$this->assertNotNull( $rows[0]->fa_archive_name );
+		$this->assertNull( $rows[1]->fa_archive_name, 'current version is archived' );
+		$this->assertSame( $currentSha1, $rows[1]->fa_sha1 );
+		$this->assertSame( 'BITMAP', $rows[1]->fa_media_type );
+		$this->assertSame( 'image', $rows[1]->fa_major_mime );
+		$this->assertSame( 'png', $rows[1]->fa_minor_mime );
+	}
+
 	public static function providePurgeCache() {
 		yield 'default' => [
 			[ MainConfigNames::TrackMediaRequestProvenance => false ],
