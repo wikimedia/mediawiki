@@ -11,6 +11,7 @@ use MediaWiki\WikiMap\WikiMap;
 use MockHttpTrait;
 use Wikimedia\FileBackend\FSFileBackend;
 use Wikimedia\Mime\MimeAnalyzer;
+use Wikimedia\Timestamp\ConvertibleTimestamp;
 
 /**
  * @group API
@@ -86,6 +87,36 @@ class ApiUploadTest extends ApiUploadTestCase {
 		$this->assertSame( filesize( $filePath ), (int)$result['upload']['imageinfo']['size'] );
 		$this->assertEquals( $mimeType, $result['upload']['imageinfo']['mime'] );
 		$this->assertTrue( $this->getServiceContainer()->getWatchlistManager()->isTempWatched( $user, $title ) );
+	}
+
+	public function testUploadNewFileUsesWatchcreationsExpiryPreference() {
+		// Fake current time to be 2019-06-05T19:50:42Z
+		ConvertibleTimestamp::setFakeTime( 1559764242 );
+
+		$title = Title::makeTitle( NS_FILE, 'TestUploadExpiryPref.jpg' );
+		$user = $this->getTestUser()->getUser();
+
+		$optionsManager = $this->getServiceContainer()->getUserOptionsManager();
+		$optionsManager->setOption( $user, 'watchcreations', 1 );
+		$optionsManager->setOption( $user, 'watchcreations-expiry', '1 week' );
+		// Must not be used for a file that doesn't exist yet (T432106).
+		$optionsManager->setOption( $user, 'watchdefault-expiry', '1 year' );
+		$optionsManager->saveOptions( $user );
+
+		$this->fakeUploadFile( 'file', $title->getText(), 'image/jpeg', $this->filePath( 'yuv420.jpg' ) );
+		[ $result ] = $this->doApiRequestWithToken( [
+			'action' => 'upload',
+			'filename' => $title->getText(),
+			'file' => 'dummy content',
+			'comment' => 'dummy comment',
+			'text' => "This is the page text for {$title->getText()}",
+			'watchlist' => 'preferences',
+		], null, $user );
+
+		$this->assertSame( 'Success', $result['upload']['result'] );
+		$item = $this->getServiceContainer()->getWatchedItemStore()->getWatchedItem( $user, $title );
+		$this->assertNotNull( $item );
+		$this->assertSame( '20190612195042', $item->getExpiry() );
 	}
 
 	public function testUploadErrorZeroLength() {

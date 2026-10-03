@@ -1131,7 +1131,8 @@ class ApiUpload extends ApiBase {
 				$this->getWatchlistValue( 'preferences', $title, $user, 'watchcreations' )
 			);
 		}
-		$watchlistExpiry = $this->getExpiryFromParams( $this->mParams, $title, $user );
+		$expiryOption = $file->exists() ? 'watchdefault-expiry' : 'watchcreations-expiry';
+		$watchlistExpiry = $this->getExpiryFromParams( $this->mParams, $title, $user, $expiryOption );
 
 		// Deprecated parameters
 		if ( $this->mParams['watch'] ) {
