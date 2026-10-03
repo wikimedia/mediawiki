@@ -893,9 +893,9 @@ class LocalFile extends File {
 	public function upgradeRow() {
 		$dbw = $this->repo->getPrimaryDB();
 
-		// Make a DB query condition that will fail to match the image row if the
-		// image was reuploaded while the upgrade was in process.
-		$freshnessCondition = [ 'img_timestamp' => $dbw->timestamp( $this->getTimestamp() ) ];
+		// Store the timestamp to use in the freshness condition. This will fail to match
+		// the image row if the image was reuploaded while the upgrade was in process.
+		$freshnessTimestamp = $dbw->timestamp( $this->getTimestamp() );
 
 		$this->loadFromFile();
 
@@ -926,7 +926,7 @@ class LocalFile extends File {
 					'img_sha1' => $this->sha1,
 				] )
 				->where( [ 'img_name' => $this->getName() ] )
-				->andWhere( $freshnessCondition )
+				->andWhere( [ 'img_timestamp' => $freshnessTimestamp ] )
 				->caller( __METHOD__ )->execute();
 		}
 
@@ -942,7 +942,7 @@ class LocalFile extends File {
 					'fr_sha1' => $this->sha1,
 				] )
 				->where( [ 'fr_file' => $this->acquireFileIdFromName() ] )
-				->andWhere( [ 'fr_timestamp' => $dbw->timestamp( $this->getTimestamp() ) ] )
+				->andWhere( [ 'fr_timestamp' => $freshnessTimestamp ] )
 				->caller( __METHOD__ )->execute();
 		}
 
