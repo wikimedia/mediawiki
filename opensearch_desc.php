@@ -12,6 +12,8 @@
  * @ingroup entrypoint
  */
 
+use MediaWiki\Context\RequestContext;
+
 // This endpoint is supposed to be independent of request cookies and other
 // details of the session. Enforce this constraint with respect to session use.
 define( 'MW_NO_SESSION', 1 );
