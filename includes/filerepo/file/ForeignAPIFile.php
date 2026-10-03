@@ -122,7 +122,7 @@ class ForeignAPIFile extends File {
 	}
 
 	/**
-	 * @param array $params
+	 * @param array $params These are passed from Linker::makeImageLink
 	 * @param int $flags
 	 * @return MediaTransformOutput|false
 	 */
@@ -141,6 +141,15 @@ class ForeignAPIFile extends File {
 
 		if ( $width > 0 || $height > 0 ) {
 			// Only query the remote if there are dimensions
+
+			// This is a substitute for what these methods do during File::transform on a local wiki:
+			// * ImageHandler::normaliseParams
+			// * ImageHandler::getSteppedThumbWidth
+			if ( $width > 0 ) {
+				$height = File::scaleHeight( $this->getWidth(), $this->getHeight(), $width );
+			} else {
+				$width = MediaHandler::fitBoxWidth( $this->getWidth(), $this->getHeight(), $height );
+			}
 			$thumbUrl = $this->repo->getThumbUrlFromCache(
 				$this->getName(),
 				$width,
