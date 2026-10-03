@@ -1012,6 +1012,57 @@ class LocalFileTest extends MediaWikiIntegrationTestCase {
 		$this->assertStatusGood( $status );
 	}
 
+	public static function provideMoveOntoDeletedFile() {
+		foreach ( [
+			'write both, read old' => SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_OLD,
+			'write both, read new' => SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_NEW,
+			'new' => SCHEMA_COMPAT_NEW,
+		] as $stageName => $stage ) {
+			yield "deleted, $stageName" => [ $stage, false ];
+			yield "suppressed, $stageName" => [ $stage, true ];
+		}
+	}
+
+	/**
+	 * @dataProvider provideMoveOntoDeletedFile
+	 * @covers \MediaWiki\FileRepo\File\LocalFileMoveBatch
+	 */
+	public function testMoveOntoDeletedFile( int $migrationStage, bool $suppress ) {
+		$this->overrideConfigValue( MainConfigNames::FileSchemaMigrationStage, $migrationStage );
+		$repo = $this->getLocalRepoForUpload();
+		$user = $this->getTestUser()->getUser();
+		$sourceTitle = Title::makeTitle( NS_FILE, 'Source.png' );
+		$targetTitle = Title::makeTitle( NS_FILE, 'Target.png' );
+
+		$source = new LocalFile( $sourceTitle, $repo );
+		$this->assertStatusGood( $source->upload(
+			__DIR__ . '/../../../data/media/greyscale-png.png', 'comment', 'page text', 0, false, false, $user
+		) );
+		$target = new LocalFile( $targetTitle, $repo );
+		$this->assertStatusGood( $target->upload(
+			__DIR__ . '/../../../data/media/1bit-png.png', 'comment', 'page text', 0, false, false, $user
+		) );
+		$this->assertStatusGood( $target->deleteFile( 'reason', $user, $suppress ) );
+
+		$source = new LocalFile( $sourceTitle, $repo );
+		$sourceSha1 = $source->getSha1();
+		$this->assertStatusGood( $source->move( $targetTitle ) );
+
+		$rows = iterator_to_array( $this->getDb()->newSelectQueryBuilder()
+			->select( [ 'file_deleted', 'fr_sha1' ] )
+			->from( 'file' )
+			->join( 'filerevision', null, 'file_latest = fr_id' )
+			->where( [ 'file_name' => 'Target.png' ] )
+			->caller( __METHOD__ )->fetchResultSet() );
+		$this->assertCount( 1, $rows );
+		$this->assertSame( 0, (int)$rows[0]->file_deleted );
+		$this->assertSame( $sourceSha1, $rows[0]->fr_sha1 );
+
+		// The file was moved, not copied
+		$this->assertFalse( $repo->fileExists( ( new LocalFile( $sourceTitle, $repo ) )->getPath() ) );
+		$this->assertTrue( $repo->fileExists( ( new LocalFile( $targetTitle, $repo ) )->getPath() ) );
+	}
+
 	public static function providePurgeCache() {
 		yield 'default' => [
 			[ MainConfigNames::TrackMediaRequestProvenance => false ],

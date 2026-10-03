@@ -393,11 +393,12 @@ class LocalFileMoveBatch {
 			MainConfigNames::FileSchemaMigrationStage
 		);
 		if ( ( $migrationStage & SCHEMA_COMPAT_WRITE_NEW ) && $this->file->getFileIdFromName() ) {
+			// Any non-zero value means deleted, this includes suppressed files
 			$deleted = $dbw->newSelectQueryBuilder()
 				->select( 'file_id' )
 				->from( 'file' )
 				->where( [ 'file_name' => $this->newName ] )
-				->andWhere( [ 'file_deleted' => 1 ] )
+				->andWhere( $dbw->expr( 'file_deleted', '!=', 0 ) )
 				->caller( __METHOD__ )->fetchField();
 
 			if ( $deleted ) {
@@ -406,8 +407,7 @@ class LocalFileMoveBatch {
 				// this should change to update deleted revisions too.
 				$dbw->newDeleteQueryBuilder()
 					->deleteFrom( 'file' )
-					->where( [ 'file_name' => $this->newName ] )
-					->andWhere( [ 'file_deleted' => 1 ] )
+					->where( [ 'file_id' => $deleted ] )
 					->caller( __METHOD__ )->execute();
 
 				// Paranoia
