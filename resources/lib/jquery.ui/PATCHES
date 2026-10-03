@@ -23,6 +23,12 @@ jquery.ui.datepicker
 * I717f2580e Avoid deprecated jQuery.expr.filters.
 
 
+jquery.ui.effect.js
+* I5d3b11725 Anchor stringParsers regexes to preserve CSS variables
+             https://phabricator.wikimedia.org/T391461
+             Backport of https://github.com/jquery/jquery-color/commit/4955a6640f
+
+
 jquery.ui.mouse.js
 * Ia49ad6470 Avoid deprecated jQuery.fn.bind().
 * Ia49ad6470 Avoid deprecated jQuery.fn.unbind().
