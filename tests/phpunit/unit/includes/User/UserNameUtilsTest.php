@@ -357,11 +357,4 @@ class UserNameUtilsTest extends MediaWikiUnitTestCase {
 		$this->assertTrue( $utils->isTemp( '*1234' ) );
 	}
 
-	public function testGetTempPlaceholder() {
-		$this->expectDeprecationAndContinue( '/getTempPlaceholder/' );
-		$utils = $this->getDummyUserNameUtils();
-		$name = $utils->getTempPlaceholder();
-		$this->assertSame( '*Unregistered *', $name );
-	}
-
 }

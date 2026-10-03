@@ -503,6 +503,7 @@ because of Phabricator reports.
   following the migration from PEAR Mail to symfony/mailer.
 * UserCache class and MediaWikiServices::getUserCache(), deprecated since 1.43,
   have been removed.
+* UserNameUtils::getTempPlaceholder(), deprecated since 1.45, has been removed.
 * DBLoadBalancerFactoryConfigBuilder service has been removed without
   deprecation. It is internal to the rdbms library and shouldn't be used
   outside of it.
