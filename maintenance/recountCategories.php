@@ -7,8 +7,8 @@
  * @ingroup Maintenance
  */
 
+use MediaWiki\Deferred\LinksUpdate\CategoryLinksTable;
 use MediaWiki\Maintenance\Maintenance;
-use Wikimedia\Rdbms\RawSQLExpression;
 
 // @codeCoverageIgnoreStart
 require_once __DIR__ . '/Maintenance.php';
@@ -122,68 +122,108 @@ TEXT
 		$this->output( "Finding up to {$this->getBatchSize()} drifted rows " .
 			"greater than cat_id {$this->minimumId}...\n" );
 
-		$dbr = $this->getDB( DB_REPLICA, 'vslow' );
+		// First, let's find out which categories have drifted and need to be updated.
+		// Use local database for category table (category table is not in virtual domain)
+		$dbrLocal = $this->getDB( DB_REPLICA, 'vslow' );
+		$candidates = [];
+		$res = $dbrLocal->newSelectQueryBuilder()
+			->select( [ 'cat_id', 'cat_title', 'cat_count' => "cat_{$mode}" ] )
+			->from( 'category' )
+			->where( $dbrLocal->expr( 'cat_id', '>', (int)$this->minimumId ) )
+			->orderBy( 'cat_id' )
+			->limit( $this->getBatchSize() )
+			->caller( __METHOD__ )->fetchResultSet();
 
-		$queryBuilder = $dbr->newSelectQueryBuilder()
-			->select( 'COUNT(*)' )
-			->from( 'categorylinks' )
-			->join( 'linktarget', null, 'cl_target_id = lt_id' )
-			->where( [
-				new RawSQLExpression( 'lt_title = cat_title' ),
-				'lt_namespace' => NS_CATEGORY,
-			] );
-
-		if ( $mode === 'subcats' ) {
-			$queryBuilder->andWhere( [ 'cl_type' => 'subcat' ] );
-		} elseif ( $mode === 'files' ) {
-			$queryBuilder->andWhere( [ 'cl_type' => 'file' ] );
+		foreach ( $res as $row ) {
+			$candidates[(int)$row->cat_id] = [ 'title' => $row->cat_title, 'count' => (int)$row->cat_count ];
 		}
 
-		$countingSubquery = $queryBuilder->caller( __METHOD__ )->getSQL();
-
-		// First, let's find out which categories have drifted and need to be updated.
-		// The query counts the categorylinks for each category on the replica DB,
-		// but this data can't be used for updating the master, so we don't include it
-		// in the results.
-		$idsToUpdate = $dbr->newSelectQueryBuilder()
-			->select( 'cat_id' )
-			->from( 'category' )
-			->where( [ $dbr->expr( 'cat_id', '>', (int)$this->minimumId ), "cat_{$mode} != ($countingSubquery)" ] )
-			->limit( $this->getBatchSize() )
-			->caller( __METHOD__ )->fetchFieldValues();
-		if ( !$idsToUpdate ) {
+		if ( !$candidates ) {
 			return false;
 		}
-		$this->output( "Updating cat_{$mode} field on " .
-			count( $idsToUpdate ) . " rows...\n" );
 
 		// In the next batch, start where this query left off. The rows selected
 		// in this iteration shouldn't be selected again after being updated, but
 		// we still keep track of where we are up to, as extra protection against
 		// infinite loops.
-		$this->minimumId = end( $idsToUpdate );
+		$this->minimumId = array_key_last( $candidates );
+
+		$linkConds = [ 'lt_namespace' => NS_CATEGORY ];
+		if ( $mode === 'subcats' ) {
+			$linkConds['cl_type'] = 'subcat';
+		} elseif ( $mode === 'files' ) {
+			$linkConds['cl_type'] = 'file';
+		}
+
+		// The query counts the categorylinks for each category on the replica DB,
+		// but this data can't be used for updating the master, so we only use it to
+		// find the drifted categories and don't write it.
+		$connectionProvider = $this->getServiceContainer()->getConnectionProvider();
+		$dbrLinks = $connectionProvider->getReplicaDatabase( CategoryLinksTable::VIRTUAL_DOMAIN, 'vslow' );
+		$res = $dbrLinks->newSelectQueryBuilder()
+			->select( [ 'lt_title', 'link_count' => 'COUNT(*)' ] )
+			->from( 'categorylinks' )
+			->join( 'linktarget', null, 'cl_target_id = lt_id' )
+			->where( $linkConds )
+			->andWhere( [ 'lt_title' => array_column( $candidates, 'title' ) ] )
+			->groupBy( 'lt_title' )
+			->caller( __METHOD__ )->fetchResultSet();
+
+		$replicaCounts = [];
+		foreach ( $res as $row ) {
+			$replicaCounts[$row->lt_title] = (int)$row->link_count;
+		}
+
+		$driftedIds = [];
+		foreach ( $candidates as $id => $candidate ) {
+			if ( ( $replicaCounts[$candidate['title']] ?? 0 ) !== $candidate['count'] ) {
+				$driftedIds[] = $id;
+			}
+		}
+
+		if ( !$driftedIds ) {
+			return 0;
+		}
+
+		$this->output( "Updating cat_{$mode} field on up to " .
+			count( $driftedIds ) . " rows...\n" );
 
 		// Now, on master, find the correct counts for these categories.
-		$dbw = $this->getPrimaryDB();
-		$res = $dbw->newSelectQueryBuilder()
-			->select( [ 'cat_id', 'count' => "($countingSubquery)" ] )
-			->from( 'category' )
-			->where( [ 'cat_id' => $idsToUpdate ] )
+		$driftedTitles = [];
+		foreach ( $driftedIds as $id ) {
+			$driftedTitles[] = $candidates[$id]['title'];
+		}
+
+		$dbwLinks = $connectionProvider->getPrimaryDatabase( CategoryLinksTable::VIRTUAL_DOMAIN );
+		$res = $dbwLinks->newSelectQueryBuilder()
+			->select( [ 'lt_title', 'link_count' => 'COUNT(*)' ] )
+			->from( 'categorylinks' )
+			->join( 'linktarget', null, 'cl_target_id = lt_id' )
+			->where( $linkConds )
+			->andWhere( [ 'lt_title' => $driftedTitles ] )
+			->groupBy( 'lt_title' )
 			->caller( __METHOD__ )->fetchResultSet();
+
+		$primaryCounts = [];
+		foreach ( $res as $row ) {
+			$primaryCounts[$row->lt_title] = (int)$row->link_count;
+		}
 
 		// Update the category counts on the rows we just identified.
 		// This logic is equivalent to Category::refreshCounts, except here, we
 		// don't remove rows when cat_pages is zero and the category description page
 		// doesn't exist - instead we print a suggestion to run
 		// cleanupEmptyCategories.php.
+		$dbw = $this->getPrimaryDB();
 		$affectedRows = 0;
-		foreach ( $res as $row ) {
+		foreach ( $driftedIds as $id ) {
+			$count = $primaryCounts[$candidates[$id]['title']] ?? 0;
 			$dbw->newUpdateQueryBuilder()
 				->update( 'category' )
-				->set( [ "cat_{$mode}" => $row->count ] )
+				->set( [ "cat_{$mode}" => $count ] )
 				->where( [
-					'cat_id' => $row->cat_id,
-					$dbw->expr( "cat_{$mode}", '!=', (int)$row->count ),
+					'cat_id' => $id,
+					$dbw->expr( "cat_{$mode}", '!=', $count ),
 				] )
 				->caller( __METHOD__ )
 				->execute();
