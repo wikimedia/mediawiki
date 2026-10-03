@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\Context\RequestContext;
+use MediaWiki\Logging\LogEntryBase;
 use MediaWiki\Page\Event\PageHistoryVisibilityChangedEvent;
 use MediaWiki\Page\PageReference;
 use MediaWiki\Revision\RevisionRecord;

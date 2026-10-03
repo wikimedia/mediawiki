@@ -1,6 +1,8 @@
 <?php
 
+use MediaWiki\FileRepo\LocalRepo;
 use MediaWiki\Request\FauxRequest;
+use MediaWiki\Status\Status;
 use MediaWiki\Upload\UploadFromChunks;
 
 /**

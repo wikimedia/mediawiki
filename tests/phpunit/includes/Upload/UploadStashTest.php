@@ -7,7 +7,9 @@ use MediaWiki\Upload\Exception\UploadStashNoSuchKeyException;
 use MediaWiki\Upload\Exception\UploadStashNotLoggedInException;
 use MediaWiki\Upload\Exception\UploadStashWrongOwnerException;
 use MediaWiki\Upload\Exception\UploadStashZeroLengthFileException;
+use MediaWiki\Upload\UploadStash;
 use MediaWiki\Upload\UploadStashFile;
+use MediaWiki\User\User;
 use Wikimedia\FileBackend\FSFile\FSFile;
 
 /**

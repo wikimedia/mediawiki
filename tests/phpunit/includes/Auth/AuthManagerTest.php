@@ -43,6 +43,7 @@ use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\StaticHookRegistry;
 use MediaWiki\Language\Language;
 use MediaWiki\Language\LanguageConverterFactory;
+use MediaWiki\Language\RawMessage;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\Logging\DatabaseLogEntry;
 use MediaWiki\MainConfigNames;
@@ -2032,7 +2033,7 @@ class AuthManagerTest extends MediaWikiIntegrationTestCase {
 				$invalidReq,
 				StatusValue::newGood(),
 				StatusValue::newGood(),
-				\Status::newFatal( 'invalid' ),
+				Status::newFatal( 'invalid' ),
 				[ [ LogLevel::DEBUG, 'Auth data change failed at AuthRequest validation' ] ],
 			],
 			[
@@ -2099,7 +2100,7 @@ class AuthManagerTest extends MediaWikiIntegrationTestCase {
 			->getMockForAbstractClass();
 		$invalidReq->expects( $this->any() )
 			->method( 'validate' )
-			->willReturn( StatusValue::newFatal( new \RawMessage( 'invalid' ) ) );
+			->willReturn( StatusValue::newFatal( new RawMessage( 'invalid' ) ) );
 		$invalidReq->username = 'Foo';
 		$mock1 = $this->getMockForAbstractClass( PrimaryAuthenticationProvider::class );
 		$mock1->expects( $this->any() )->method( 'getUniqueId' )->willReturn( '1' );

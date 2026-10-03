@@ -3,6 +3,7 @@
 use MediaWiki\Auth\AuthenticationResponse;
 use MediaWiki\Config\HashConfig;
 use MediaWiki\Config\MultiConfig;
+use MediaWiki\Context\RequestContext;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Password\InvalidPassword;
 use MediaWiki\Password\Password;
@@ -11,6 +12,7 @@ use MediaWiki\Session\SessionManager;
 use MediaWiki\Status\Status;
 use MediaWiki\User\BotPassword;
 use MediaWiki\User\CentralId\CentralIdLookup;
+use MediaWiki\User\User;
 use MediaWiki\Utils\MWRestrictions;
 use Wikimedia\Rdbms\IDBAccessObject;
 use Wikimedia\TestingAccessWrapper;

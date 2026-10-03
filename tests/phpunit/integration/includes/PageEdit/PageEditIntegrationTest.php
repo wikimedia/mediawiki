@@ -11,7 +11,7 @@ use MediaWiki\PageEdit\PageEdit;
 use MediaWiki\PageEdit\PageEditFactory;
 use MediaWiki\PageEdit\PageEditInputs;
 use MediaWiki\Revision\RevisionStore;
-use MediaWiki\User\StaticUserOptionsLookup;
+use MediaWiki\User\Options\StaticUserOptionsLookup;
 use MediaWikiIntegrationTestCase;
 use TestUser;
 use Wikimedia\TestingAccessWrapper;

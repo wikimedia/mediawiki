@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\Logging\LogEntryBase;
+use MediaWiki\Registration\ExtensionRegistry;
 
 /**
  * @covers \MediaWiki\Logging\LogEntryBase

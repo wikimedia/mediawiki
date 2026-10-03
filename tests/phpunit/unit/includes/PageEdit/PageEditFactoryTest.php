@@ -18,7 +18,7 @@ use MediaWiki\Permissions\RateLimiter;
 use MediaWiki\Revision\RevisionStore;
 use MediaWiki\ShadowPage\ShadowPageLoader;
 use MediaWiki\Title\TitleFormatter;
-use MediaWiki\User\UserOptionsLookup;
+use MediaWiki\User\Options\UserOptionsLookup;
 use MediaWiki\Watchlist\WatchedItemStoreInterface;
 use MediaWiki\Watchlist\WatchlistManager;
 use MediaWikiUnitTestCase;

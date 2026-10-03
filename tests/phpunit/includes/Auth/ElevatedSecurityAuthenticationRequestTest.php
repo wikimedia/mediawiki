@@ -5,7 +5,7 @@ namespace MediaWiki\Auth;
 use BadMethodCallException;
 use LogicException;
 use MediaWiki\Context\RequestContext;
-use MWTimestamp;
+use MediaWiki\Utils\MWTimestamp;
 use StatusValue;
 
 /**

@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\FileRepo\File\File;
+use MediaWiki\FileRepo\File\UnregisteredLocalFile;
 use MediaWiki\FileRepo\FileRepo;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Media\BitmapHandler;

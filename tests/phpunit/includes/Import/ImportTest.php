@@ -1,8 +1,12 @@
 <?php
 
+use MediaWiki\Context\RequestContext;
 use MediaWiki\Import\ImportStringSource;
+use MediaWiki\Logging\DatabaseLogEntry;
 use MediaWiki\MainConfigNames;
+use MediaWiki\Output\OutputPage;
 use MediaWiki\Permissions\UltimateAuthority;
+use MediaWiki\Registration\ExtensionRegistry;
 use MediaWiki\Title\ForeignTitle;
 use MediaWiki\Title\Title;
 use MediaWiki\User\User;
