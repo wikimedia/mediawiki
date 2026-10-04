@@ -80,6 +80,18 @@ class ApiQueryImageInfo extends ApiQueryBase {
 	public function execute() {
 		$params = $this->extractRequestParams();
 
+		// File metadata rarely changes. If a file is reuploaded with different
+		// dimensions, then downstream consumers of this API may display the image
+		// incorrectly until the cache expires. Note that generally, consumers of
+		// this API have their own cache as well, e.g.
+		// ForeignAPIRepo::apiMetadataExpiry defaults to 4 hours, and
+		// and $wgParserCacheExpireTime defaults to 24 hours, so the thumb URL and
+		// thumb dimensions are already cached longer than this either way.
+		//
+		// The value is chosen for parity with ViewAction/ActionEntryPoint::performAction
+		// where non-canonical/unpurged URLs default to 1 hour.
+		$this->getMain()->setCacheMaxAge( 3600 );
+
 		/** @var array<string,true> $prop */
 		$prop = array_fill_keys( $params['prop'], true );
 
@@ -146,6 +158,11 @@ class ApiQueryImageInfo extends ApiQueryBase {
 				$start = $title === $fromTitle ? $fromTimestamp : $params['start'];
 
 				if ( !isset( $images[$title] ) ) {
+					// Shorten CDN cache to 1min if a file doesn't exist, so that if a user
+					// accesses this API during an upload, or uploads it in response to seeing
+					// a missing thumbnail, they will shortly see it work.
+					$this->getMain()->setCacheMaxAge( 60 );
+
 					if ( isset( $prop['uploadwarning'] ) || isset( $prop['badfile'] ) ) {
 						// uploadwarning and badfile need info about non-existing files
 						$images[$title] = $this->repoGroup->getLocalRepo()->newFile( $title );
