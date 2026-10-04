@@ -243,9 +243,9 @@ class ForeignAPIRepo extends FileRepo implements IForeignRepoWithMWApi {
 	 */
 	public function findBySha1( $hash ) {
 		$results = $this->fetchImageQuery( [
-			'aisha1base36' => $hash,
-			'aiprop' => ForeignAPIFile::getProps(),
 			'list' => 'allimages',
+			'aiprop' => ForeignAPIFile::getProps(),
+			'aisha1base36' => $hash,
 		] );
 		$ret = [];
 		if ( isset( $results['query']['allimages'] ) ) {
@@ -262,78 +262,22 @@ class ForeignAPIRepo extends FileRepo implements IForeignRepoWithMWApi {
 	}
 
 	/**
-	 * @param string $name
-	 * @param int $width
-	 * @param int $height
-	 * @param array|null &$result Output-only parameter, guaranteed to become an array
-	 * @param string $otherParams
-	 * @return string|MediaTransformError|false
-	 */
-	private function getThumbUrl(
-		$name, $width, $height, &$result = null, $otherParams = ''
-	) {
-		// Optimization: Omit width from $otherParams to improve cache hit ratio.
-		// The width is ignored by ApiQueryImageInfo with iiprop=thumburls.
-		//
-		// For most thumbs, $otherParams reflects $width like "250px", which we can ignore.
-		// For SVGs or PDFs, it is like "langde-250px" or "lossy-page2-250px", where we omit the
-		// trailing "-250px" and pass the rest.
-		// Inspired by LightboxImage#getUrlParam of the MultimediaViewer extension.
-		$otherParams = preg_replace( '/(^|-)\d+px$/', '', $otherParams );
-		$data = $this->fetchImageQuery( [
-			'titles' => 'File:' . $name,
-			'prop' => 'imageinfo',
-			'iiprop' => implode( '|', [
-				'timestamp',
-				'thumburls',
-			] ),
-			'iiurlparam' => ( $otherParams !== '' ? $otherParams : null ),
-		] );
-		$info = $this->getImageInfo( $data );
-
-		if ( $info && isset( $info['thumburls'] ) && is_array( $info['thumburls'] ) && $info['thumburls'] ) {
-			ksort( $info['thumburls'] );
-			foreach ( $info['thumburls'] as $thumbWidth => $thumbInfo ) {
-				$thumburl = $thumbInfo['url'];
-				if ( $thumbWidth >= $width ) {
-					break;
-				}
-			}
-
-			wfDebug( __METHOD__ . " got remote thumb " . $thumburl );
-			$result = [
-				'timestamp' => $info['timestamp']
-			];
-			return $thumburl;
-		}
-		if ( $info && isset( $info['thumberror'] ) ) {
-			return new MediaTransformError(
-				'thumbnail_error_remote',
-				$width,
-				$height,
-				$this->getDisplayName(),
-				$info['thumberror'] // already parsed message from foreign repo
-			);
-		} else {
-			return false;
-		}
-	}
-
-	/**
 	 * Return the imageurl from cache if possible
 	 *
 	 * If the url has been requested today, get it from cache
 	 * Otherwise retrieve remote thumb url, check for local file.
 	 *
+	 * TODO: Move this to ForeignAPIFile near ForeignAPIFile::getThumbUrlFromInfo
+	 *
 	 * @internal For use by ForeignAPIFile
-	 * @param string $name Is a dbkey form of a title
+	 * @param ForeignAPIFile $file
 	 * @param int $width Must be set and above zero
 	 * @param int $height Must be set and above zero
 	 * @param string $params Other rendering parameters (page number, etc)
 	 *   from handler's makeParamString.
 	 * @return string|MediaTransformError|false
 	 */
-	public function getThumbUrlFromCache( $name, $width, $height, $params = "" ) {
+	public function getThumbUrlFromCache( ForeignAPIFile $file, $width, $height, $params = "" ) {
 		// We can't check the local cache using FileRepo functions because
 		// we override fileExistsBatch(). We have to use the FileBackend directly.
 		$backend = $this->getBackend(); // convenience
@@ -341,9 +285,11 @@ class ForeignAPIRepo extends FileRepo implements IForeignRepoWithMWApi {
 		if ( !$this->canCacheThumbs() ) {
 			$result = null; // can't pass "null" by reference, but it's ok as default value
 
-			return $this->getThumbUrl( $name, $width, $height, $result, $params );
+			return $file->getThumbUrlFromInfo( $width, $height, $result, $params );
 		}
 
+		// The dbkey form of a file page title
+		$name = $file->getName();
 		$key = $this->getLocalCacheKey( 'file-thumb-url', sha1( $name ) );
 		$sizekey = "$width:$height:$params";
 
@@ -360,7 +306,7 @@ class ForeignAPIRepo extends FileRepo implements IForeignRepoWithMWApi {
 		}
 
 		$metadata = null;
-		$foreignUrl = $this->getThumbUrl( $name, $width, $height, $metadata, $params );
+		$foreignUrl = $file->getThumbUrlFromInfo( $width, $height, $metadata, $params );
 
 		if ( !$foreignUrl || $foreignUrl instanceof MediaTransformError ) {
 			wfDebug( __METHOD__ . " Could not find thumburl" );
