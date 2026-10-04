@@ -181,7 +181,7 @@ class MemcachedClient {
 	/**
 	 * If only using one server; contains ip:port to connect to
 	 *
-	 * @var string
+	 * @var string|null
 	 * @access private
 	 */
 	public $_single_sock;
@@ -197,7 +197,7 @@ class MemcachedClient {
 	/**
 	 * Our bit buckets
 	 *
-	 * @var array
+	 * @var array|null
 	 * @access private
 	 */
 	public $_buckets;
@@ -800,7 +800,7 @@ class MemcachedClient {
 	/**
 	 * Close the specified socket
 	 *
-	 * @param string $sock Socket to close
+	 * @param resource $sock Socket to close
 	 *
 	 * @access private
 	 */
@@ -816,7 +816,7 @@ class MemcachedClient {
 	/**
 	 * Connects $sock to $host, timing out after $timeout
 	 *
-	 * @param int $sock Socket to connect
+	 * @param resource|false|null &$sock Socket to connect
 	 * @param string $host Host:IP to connect to
 	 *
 	 * @return bool
@@ -867,7 +867,7 @@ class MemcachedClient {
 	/**
 	 * Marks a host as dead until 30-40 seconds in the future
 	 *
-	 * @param string $sock Socket to mark as dead
+	 * @param resource $sock Socket to mark as dead
 	 *
 	 * @access private
 	 */
@@ -886,7 +886,7 @@ class MemcachedClient {
 		} else {
 			$ip = $host;
 		}
-		$this->_host_dead[$ip] = time() + 30 + intval( rand( 0, 10 ) );
+		$this->_host_dead[$ip] = time() + 30 + rand( 0, 10 );
 		$this->_host_dead[$host] = $this->_host_dead[$ip];
 		unset( $this->_cache_sock[$host] );
 	}
@@ -899,7 +899,7 @@ class MemcachedClient {
 	 *
 	 * @param string $key Key to retrieve value for;
 	 *
-	 * @return Resource|bool Resource on success, false on failure
+	 * @return resource|false Resource on success, false on failure
 	 * @access private
 	 */
 	function get_sock( $key ) {
@@ -968,7 +968,7 @@ class MemcachedClient {
 	 * @param string|array $key Key to perform it on
 	 * @param int $amt Amount to adjust
 	 *
-	 * @return int New value of $key
+	 * @return int|null New value of $key, null on failure
 	 * @access private
 	 */
 	function _incrdecr( $cmd, $key, $amt = 1 ) {
@@ -1052,7 +1052,7 @@ class MemcachedClient {
 					$match[2], // flags
 					$match[3], // len
 					$match[4] ?? null, // casToken (appears with "gets" but not "get")
-					$this->_fread( $sock, $match[3] + 2 ), // data
+					$this->_fread( $sock, (int)$match[3] + 2 ), // data
 				);
 			} elseif ( $decl == "END" ) {
 				/**
@@ -1205,7 +1205,7 @@ class MemcachedClient {
 	 *
 	 * @param string $host Host:IP to get socket for
 	 *
-	 * @return Resource|bool IO Stream or false
+	 * @return resource|false IO Stream or false
 	 * @access private
 	 */
 	function sock_to_host( $host ) {
@@ -1224,11 +1224,11 @@ class MemcachedClient {
 		if ( isset( $this->_host_dead[$host] ) && $this->_host_dead[$host] > $now ||
 			isset( $this->_host_dead[$ip] ) && $this->_host_dead[$ip] > $now
 		) {
-			return null;
+			return false;
 		}
 
 		if ( !$this->_connect_sock( $sock, $host ) ) {
-			return null;
+			return false;
 		}
 
 		// Do not buffer writes
@@ -1306,7 +1306,7 @@ class MemcachedClient {
 	 *
 	 * @param Resource $sock The socket
 	 * @param int $len The number of bytes to read
-	 * @return string|bool The string on success, false on failure.
+	 * @return string|false The string on success, false on failure.
 	 */
 	function _fread( $sock, $len ) {
 		$buf = '';
@@ -1377,6 +1377,8 @@ class MemcachedClient {
 		$e = null;
 		$n = stream_select( $r, $w, $e, 0, 0 );
 		while ( $n == 1 && !feof( $f ) ) {
+			// Discard whatever is left in the buffer
+			// @phan-suppress-next-line PhanPluginUseReturnValueInternalKnown
 			fread( $f, 1024 );
 			$r = array( $f );
 			$w = null;

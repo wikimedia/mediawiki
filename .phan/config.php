@@ -105,8 +105,6 @@ $cfg['exclude_analysis_directory_list'] = [
 	// The referenced classes are not available in vendor, only when
 	// included from composer.
 	'includes/Composer/',
-	// External class
-	'includes/libs/ObjectCache/Utils/MemcachedClient.php',
 	// File may be valid, but may contain numerous "errors" such as iterating over an
 	// empty array due to the version checking in T246594 not being currently used.
 	'includes/PHPVersionCheck.php',

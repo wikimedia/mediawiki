@@ -108,6 +108,10 @@ class Mcc extends Maintenance {
 						break;
 					}
 					$res = $mcc->get( $args[0] );
+					if ( $mcc->_buckets === null ) {
+						print "No servers configured\n";
+						break;
+					}
 					$hv = $mcc->_hashfunc( $args[0] );
 					for ( $i = 0; $i < 3; $i++ ) {
 						print $mcc->_buckets[$hv % $mcc->_bucketcount] . "\n";
