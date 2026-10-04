@@ -2,6 +2,63 @@ Change notes from older releases. For current info, see RELEASE-NOTES-1.47.
 
 = MediaWiki 1.46 =
 
+== MediaWiki 1.46.2 ==
+
+This is a maintenance release of the MediaWiki 1.46 branch.
+
+=== Changes since 1.46.1 ===
+* Localisation updates.
+* Fix minor backport issues.
+
+== MediaWiki 1.46.1 ==
+
+This is a security and maintenance release of the MediaWiki 1.46 branch.
+
+=== Changes since 1.46.0 ===
+* Localisation updates.
+* (T429616) PNGHandler: Guard against missing frameCount in metadata.
+* (T425988, T425740, T425782, T431182) Fix MediaHandler caching to not preserve
+  language.
+* (T429559, T431099) MediaWiki Docker: Upgrade base images to ones with PHP
+  8.3.32.
+* (T432165, T432723, T433969) Upgrade guzzlehttp/guzzle from 7.12.3 to 7.15.2.
+* (T419563) api: Fetch additional rows in ApiQueryCategories to have enough
+  results.
+* Setup: Move SessionManager::shutdown() out of PHPSessionHandler code.
+* (T433922) Api: Use correct query when continue prop=categories.
+* (T250395, T434627) SkinFallback: name the valid key for a loaded skin instead
+  of suggesting wfLoadSkin.
+* Logger: Update oversize UDP payload truncation for macOS.
+* (T434982) Revert epub addition.
+* (T435907) UserGroupsSpecialPage: Check in_array in strict mode.
+* (T431583) ResourceLoader: Vary E-Tag if response contains errors.
+* (T423519) Blank userlogout-temp-moreinfo message.
+* (T420341) File: Ensure blob storage addresses are written to filerevision.
+* (T428406) OldLocalFile: Set fr_archive_name when recording old upload.
+* (T438928) PhpUnitSplitter: Wait longer for the PHPUnit results cache.
+* (T427349, T426684) tests: make CleanupWatchlistLabelMemberTest run-order
+  independent.
+* (T422686) http: Add contact URL to default HttpRequestFactory::getUserAgent.
+* (T432551, CVE-2026-102966) SECURITY: Fix deleted edit summary leak in page
+  history feeds.
+* (T431819, CVE-2026-102967) SECURITY: SpecialUpload: Prevent Open Redirect
+  using wpDestUrl.
+* (T431819, CVE-2026-102968) SECURITY: NoLocalSettings: Fixes a potential path
+  traversal.
+* (T434189, CVE-2026-102969) SECURITY: Check the authority of selser data when
+  html is supplied.
+* (T434278, CVE-2026-102970) SECURITY: APIComparePages should preserve revision
+  visibility.
+* (T434521, CVE-2026-102971) SECURITY: PageContentHelper: Respect visibility of
+  user_id in output.
+* (T120386, CVE-2026-102972) SECURITY: Disallow raw action for Special:MyPage.
+* (T435022, CVE-2026-102973) SECURITY: ApiEmailUser: Check authorizeSend()
+  instead of canSend() before sending an email.
+* (T435457, CVE-2026-102974) SECURITY: Run ImageRedirectConstraint with
+  post-PST content.
+* (T435026, CVE-2026-102975) SECURITY: ApiRevisionDelete: Check permissions
+  when unsuppressing.
+
 == MediaWiki 1.46.0 ==
 
 === Changes since MediaWiki 1.46.0-rc.0 ===
@@ -1257,6 +1314,53 @@ going to run a public MediaWiki, so you can be notified of security fixes.
 There's usually someone online in #mediawiki on irc.libera.chat.
 
 = MediaWiki 1.45 =
+
+== MediaWiki 1.45.6 ==
+
+This is a maintenance release of the MediaWiki 1.45 branch.
+
+=== Changes since 1.45.5 ===
+* Fix minor backport issues.
+
+== MediaWiki 1.45.5 ==
+
+This is a security and maintenance release of the MediaWiki 1.45 branch.
+
+=== Changes since 1.45.4 ===
+* Localisation updates.
+* (T429616) PNGHandler: Guard against missing frameCount in metadata.
+* (T429559, T431099) MediaWiki Docker: Upgrade base images to ones with PHP
+  8.3.32.
+* (T432165, T432723, T433969) Upgrade guzzlehttp/guzzle from 7.12.3 to 7.15.2.
+* Setup: Move SessionManager::shutdown() out of PHPSessionHandler code.
+* Logger: Update oversize UDP payload truncation for macOS.
+* (T431583) ResourceLoader: Vary E-Tag if response contains errors.
+* (T423519) Blank userlogout-temp-moreinfo message.
+* (T435907) UserGroupsSpecialPage: Check in_array in strict mode.
+* (T438928) PhpUnitSplitter: Wait longer for the PHPUnit results cache.
+* (T428948) Forward-compatibility for serialization of ContentHolder in
+  ParserOutput.
+* (T428948) Store indicators in ContentHolder: forward compatibility.
+* (T250395, T434627) SkinFallback: name the valid key for a loaded skin instead
+  of suggesting wfLoadSkin.
+* (T422686) http: Add contact URL to default HttpRequestFactory::getUserAgent.
+* (T432551, CVE-2026-102966) SECURITY: Fix deleted edit summary leak in page
+  history feeds.
+* (T431819, CVE-2026-102967) SECURITY: SpecialUpload: Prevent Open Redirect
+  using wpDestUrl.
+* (T431819, CVE-2026-102968) SECURITY: NoLocalSettings: Fixes a potential path
+  traversal.
+* (T434278, CVE-2026-102970) SECURITY: APIComparePages should preserve revision
+  visibility.
+* (T434521, CVE-2026-102971) SECURITY: PageContentHelper: Respect visibility of
+  user_id in output.
+* (T120386, CVE-2026-102972) SECURITY: Disallow raw action for Special:MyPage.
+* (T435022, CVE-2026-102973) SECURITY: ApiEmailUser: Check authorizeSend()
+  instead of canSend() before sending an email.
+* (T435026, CVE-2026-102975) SECURITY: ApiRevisionDelete: Check permissions
+  when unsuppressing.
+* (T435457, CVE-2026-102974) SECURITY: Run ImageRedirectConstraint with
+  post-PST content.
 
 == MediaWiki 1.45.4 ==
 
@@ -3311,6 +3415,47 @@ going to run a public MediaWiki, so you can be notified of security fixes.
 There's usually someone online in #mediawiki on irc.libera.chat.
 
 = MediaWiki 1.43 =
+
+== MediaWiki 1.43.11 ==
+
+This is a maintenance release of the MediaWiki 1.43 branch.
+
+=== Changes since 1.43.10 ===
+* Fix minor backport issues.
+
+== MediaWiki 1.43.10 ==
+
+This is a security and maintenance release of the MediaWiki 1.43 branch.
+
+=== Changes since 1.43.9 ===
+* Localisation updates.
+* (T429616) PNGHandler: Guard against missing frameCount in metadata.
+* (T429559, T431099) MediaWiki Docker: Upgrade base images to ones with PHP
+  8.3.32.
+* (T432165, T432723, T433969) Upgrade guzzlehttp/guzzle from 7.12.3 to 7.15.2.
+* (T357603) REST: include ETag in 304 responses.
+* (T250395, T434627) SkinFallback: name the valid key for a loaded skin instead
+  of suggesting wfLoadSkin.
+* Logger: Update oversize UDP payload truncation for macOS.
+* (T422686) http: Add contact URL to default HttpRequestFactory::getUserAgent.
+* (T413545) Bump parsoid to 0.20.10.
+* (T431819, CVE-2026-102967) SECURITY: SpecialUpload: Prevent Open Redirect
+  using wpDestUrl.
+* (T431819, CVE-2026-102968) SECURITY: NoLocalSettings: Fixes a potential path
+  traversal.
+* (T434278, CVE-2026-102970) SECURITY: APIComparePages should preserve revision
+  visibility.
+* (T434521, CVE-2026-102971) SECURITY: PageContentHelper: Respect visibility of
+  user_id in output.
+* (T120386, CVE-2026-102972) SECURITY: Disallow raw action for Special:MyPage.
+* (T435022, CVE-2026-102973) SECURITY: ApiEmailUser: Check authorizeSend()
+  instead of canSend() before sending an email.
+* (T435026, CVE-2026-102975) SECURITY: ApiRevisionDelete: Check permissions
+  when unsuppressing.
+* (T435457, CVE-2026-102974) SECURITY: Run ImageRedirectConstraint with
+  post-PST content.
+* (T432551, CVE-2026-102966) SECURITY: Fix deleted edit summary leak in page
+  history feeds.
 
 == MediaWiki 1.43.9 ==
 
