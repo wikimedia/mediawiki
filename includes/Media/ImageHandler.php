@@ -191,10 +191,7 @@ abstract class ImageHandler extends MediaHandler {
 					return $srcWidth;
 				}
 			}
-			if ( $widthStep == $requestWidth ) {
-				return $requestWidth;
-			}
-			if ( $widthStep > $requestWidth ) {
+			if ( $widthStep >= $requestWidth ) {
 				return $widthStep;
 			}
 			$prevStep = $widthStep;
