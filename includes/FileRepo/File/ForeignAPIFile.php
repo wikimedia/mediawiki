@@ -56,8 +56,8 @@ class ForeignAPIFile extends File {
 	public static function newFromTitle( Title $title, $repo ) {
 		$data = $repo->fetchImageQuery( [
 			'titles' => 'File:' . $title->getDBkey(),
-			'iiprop' => self::getProps(),
 			'prop' => 'imageinfo',
+			'iiprop' => self::getProps(),
 			'iimetadataversion' => MediaHandler::getMetadataVersion(),
 			// extmetadata is language-dependent, accessing the current language here
 			// would be problematic, so we just get them all
@@ -84,11 +84,15 @@ class ForeignAPIFile extends File {
 	}
 
 	/**
-	 * Get the property string for iiprop and aiprop
+	 * Get the properties required for the ForeignAPIFile::__construct $info parameter
+	 *
+	 * This is for use with ApiQueryImageInfo (iiprop) or ApiQueryAllImages (aiprop) queries.
+	 *
+	 * @internal For use by ForeignAPIFile::newFromTitle and ForeignAPIRepo::findBySha1
 	 * @return string
 	 */
 	public static function getProps() {
-		return 'timestamp|user|comment|url|size|sha1|metadata|mime|mediatype|extmetadata';
+		return 'timestamp|user|comment|url|thumburls|size|sha1|metadata|mime|mediatype|extmetadata';
 	}
 
 	/**
@@ -144,7 +148,7 @@ class ForeignAPIFile extends File {
 				$width = MediaHandler::fitBoxWidth( $this->getWidth(), $this->getHeight(), $height );
 			}
 			$thumbUrl = $this->repo->getThumbUrlFromCache(
-				$this->getName(),
+				$this,
 				$width,
 				$height,
 				$otherParams
@@ -161,6 +165,69 @@ class ForeignAPIFile extends File {
 		}
 
 		return $this->handler->getTransform( $this, 'bogus', $thumbUrl, $params );
+	}
+
+	/**
+	 * @internal For use by ForeignApiRepo
+	 * @param int $width
+	 * @param int $height
+	 * @param array|null &$result Output-only parameter, guaranteed to become an array
+	 * @param string $otherParams
+	 * @return string|MediaTransformError|false
+	 */
+	public function getThumbUrlFromInfo( $width, $height, &$result = null, $otherParams = '' ) {
+		// Optimization: Only make a separate API request if this a parameterized thumbnail.
+		//
+		// For most thumbs, $otherParams has no params other than $width (e.g. "250px") for
+		// which the pre-cached 'thumburls' data from ForeignAPIFile::newFromTitle suffices.
+		//
+		// Remove width from $otherParams to improve cache hit ratio, and because it is
+		// ignored by ApiQueryImageInfo with iiprop=thumburls anyway.
+		// For SVGs or PDFs, it is like "langde-250px" or "lossy-page2-250px", where we omit the
+		// trailing "-250px" and pass the rest.
+		// Inspired by LightboxImage#getUrlParam of the MultimediaViewer extension.
+		$otherParams = preg_replace( '/(^|-)\d+px$/', '', $otherParams );
+		if ( $otherParams === '' ) {
+			$info = $this->mInfo;
+		} else {
+			$data = $this->repo->fetchImageQuery( [
+				'titles' => 'File:' . $this->getName(),
+				'prop' => 'imageinfo',
+				'iiprop' => implode( '|', [
+					'timestamp',
+					'thumburls',
+				] ),
+				'iiurlparam' => $otherParams,
+			] );
+			$info = $this->repo->getImageInfo( $data );
+		}
+
+		if ( $info && isset( $info['thumburls'] ) && is_array( $info['thumburls'] ) && $info['thumburls'] ) {
+			ksort( $info['thumburls'] );
+			foreach ( $info['thumburls'] as $thumbWidth => $thumbInfo ) {
+				$thumburl = $thumbInfo['url'];
+				if ( $thumbWidth >= $width ) {
+					break;
+				}
+			}
+
+			wfDebug( 'ForeignAPIRepo got remote thumb ' . $thumburl );
+			$result = [
+				'timestamp' => $info['timestamp']
+			];
+			return $thumburl;
+		}
+		if ( $info && isset( $info['thumberror'] ) ) {
+			return new MediaTransformError(
+				'thumbnail_error_remote',
+				$width,
+				$height,
+				$this->repo->getDisplayName(),
+				$info['thumberror'] // already parsed message from foreign repo
+			);
+		} else {
+			return false;
+		}
 	}
 
 	// Info we can get from API...
