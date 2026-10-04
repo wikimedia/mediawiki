@@ -49,7 +49,7 @@ class SkinComponentFooterTest extends MediaWikiUnitTestCase {
 					'src' => 'foo.jpg',
 					'alt' => 'alt text'
 				],
-				false,
+				'withoutImage',
 				'alt text',
 			]
 		];

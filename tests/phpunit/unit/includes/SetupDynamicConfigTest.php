@@ -724,21 +724,21 @@ class SetupDynamicConfigTest extends MediaWikiUnitTestCase {
 		];
 		yield '$wgCacheEpoch set to before LocalSettings touched' => [
 			[ MainConfigNames::CacheEpoch => static function () use ( $expectedDefault ): string {
-				return $expectedDefault[MainConfigNames::CacheEpoch]() - 1;
+				return (string)( $expectedDefault[MainConfigNames::CacheEpoch]() - 1 );
 			} ],
 			[ MainConfigNames::CacheEpoch => static function () use ( $expectedDefault ): string {
 				$expected = $expectedDefault[MainConfigNames::CacheEpoch]();
 				// If the file exists, its mtime is later than what we set $wgCacheEpoch to and so
 				// it should override what we set.
-				return file_exists( MW_CONFIG_FILE ) ? $expected : $expected - 1;
+				return file_exists( MW_CONFIG_FILE ) ? $expected : (string)( $expected - 1 );
 			} ],
 		];
 		yield '$wgCacheEpoch set to after LocalSettings touched' => [
 			[ MainConfigNames::CacheEpoch => static function () use ( $expectedDefault ): string {
-				return $expectedDefault[MainConfigNames::CacheEpoch]() + 1;
+				return (string)( $expectedDefault[MainConfigNames::CacheEpoch]() + 1 );
 			} ],
 			[ MainConfigNames::CacheEpoch => static function () use ( $expectedDefault ): string {
-				return $expectedDefault[MainConfigNames::CacheEpoch]() + 1;
+				return (string)( $expectedDefault[MainConfigNames::CacheEpoch]() + 1 );
 			} ],
 		];
 		yield '$wgInvalidateCacheOnLocalSettingsChange false' => [

@@ -141,7 +141,7 @@ class ExpiryDefTest extends TypeDefTestCase {
 		);
 		$this->expectException( InvalidArgumentException::class );
 		$this->expectExceptionMessage( 'Invalid expiry value: 0' );
-		ExpiryDef::normalizeExpiry( 0, TS::ISO_8601 );
+		ExpiryDef::normalizeExpiry( '0', TS::ISO_8601 );
 	}
 
 	public static function provideGetInfo() {

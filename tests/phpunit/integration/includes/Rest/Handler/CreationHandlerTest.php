@@ -315,7 +315,7 @@ class CreationHandlerTest extends MediaWikiIntegrationTestCase {
 		);
 		$this->assertSame( 'application/json', $response->getHeaderLine( 'Content-Type' ) );
 
-		$responseData = json_decode( $response->getBody(), true );
+		$responseData = json_decode( (string)$response->getBody(), true );
 		$this->assertIsArray( $responseData, 'Body must be a JSON array' );
 
 		// Check parameters passed to ApiEditPage by CreationHandler based on $requestData

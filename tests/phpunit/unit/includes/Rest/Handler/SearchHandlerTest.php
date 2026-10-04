@@ -240,7 +240,7 @@ class SearchHandlerTest extends MediaWikiUnitTestCase {
 		$this->assertSame( 'public, max-age=1200', $response->getHeaderLine( 'Cache-Control' ) );
 		$this->assertSame( 'a-search-id', $response->getHeaderLine( 'X-Search-ID' ) );
 
-		$data = json_decode( $response->getBody(), true );
+		$data = json_decode( (string)$response->getBody(), true );
 		$this->assertIsArray( $data, 'Body must be a JSON array' );
 
 		$this->assertArrayHasKey( 'pages', $data );
@@ -280,7 +280,7 @@ class SearchHandlerTest extends MediaWikiUnitTestCase {
 		$this->assertSame( 'public, max-age=1200', $response->getHeaderLine( 'Cache-Control' ) );
 		$this->assertSame( 'a-search-id', $response->getHeaderLine( 'X-Search-ID' ) );
 
-		$data = json_decode( $response->getBody(), true );
+		$data = json_decode( (string)$response->getBody(), true );
 		$this->assertIsArray( $data, 'Body must be a JSON array' );
 
 		$this->assertArrayHasKey( 'pages', $data );

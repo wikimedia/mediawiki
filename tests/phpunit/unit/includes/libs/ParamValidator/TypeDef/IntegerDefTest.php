@@ -90,7 +90,7 @@ class IntegerDefTest extends TypeDefTestCase {
 			[ (string)PHP_INT_MAX, PHP_INT_MAX ],
 			[ '0000' . PHP_INT_MAX, PHP_INT_MAX ],
 			[ (string)PHP_INT_MIN, PHP_INT_MIN ],
-			[ '-0000' . substr( PHP_INT_MIN, 1 ), PHP_INT_MIN ],
+			[ '-0000' . substr( (string)PHP_INT_MIN, 1 ), PHP_INT_MIN ],
 
 			'Native int' => [ 2, 2 ],
 			'Native float' => [ 1.0, 1 ],
@@ -115,7 +115,7 @@ class IntegerDefTest extends TypeDefTestCase {
 			],
 
 			'Overflow' => [ self::plusOne( (string)PHP_INT_MAX ), $badinteger ],
-			'Negative overflow' => [ '-' . self::plusOne( substr( PHP_INT_MIN, 1 ) ), $badinteger ],
+			'Negative overflow' => [ '-' . self::plusOne( substr( (string)PHP_INT_MIN, 1 ) ), $badinteger ],
 
 			'Float' => [ '1.5', $badinteger ],
 			'Float (e notation)' => [ '1e1', $badinteger ],

@@ -165,7 +165,7 @@ trait SerializationTestTrait {
 		$i = 0;
 		foreach ( $expected as $k => $v ) {
 			$this->validateEquality( $k, $aKeys[$i], "$propName:$i" );
-			$this->validateEquality( $v, $actual[$k], $k );
+			$this->validateEquality( $v, $actual[$k], (string)$k );
 			$i++;
 		}
 	}

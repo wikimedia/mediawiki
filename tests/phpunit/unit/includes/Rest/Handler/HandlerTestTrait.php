@@ -275,7 +275,7 @@ trait HandlerTestTrait {
 		$this->assertLessThan( 300, $response->getStatusCode() );
 		$this->assertSame( 'application/json', $response->getHeaderLine( 'Content-Type' ) );
 
-		$data = json_decode( $response->getBody(), true );
+		$data = json_decode( (string)$response->getBody(), true );
 		$this->assertIsArray( $data, 'Body must be a JSON array' );
 
 		return $data;

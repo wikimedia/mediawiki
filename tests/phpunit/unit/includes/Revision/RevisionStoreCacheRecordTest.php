@@ -51,8 +51,8 @@ class RevisionStoreCacheRecordTest extends RevisionStoreRecordTest {
 
 		$row = array_merge( $row, $rowOverrides );
 
-		$title = new PageIdentityValue( $row['rev_page'], NS_MAIN, 'Dummy', $wikiId );
-		$user = new UserIdentityValue( $row['rev_user'], 'Tester' );
+		$title = new PageIdentityValue( intval( $row['rev_page'] ), NS_MAIN, 'Dummy', $wikiId );
+		$user = new UserIdentityValue( intval( $row['rev_user'] ), 'Tester' );
 
 		if ( !$callback ) {
 			$callback = function ( $revId ) use ( $row ) {

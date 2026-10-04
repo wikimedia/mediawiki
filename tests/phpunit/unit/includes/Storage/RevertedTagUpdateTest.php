@@ -560,7 +560,7 @@ class RevertedTagUpdateTest extends MediaWikiUnitTestCase {
 					$id,
 					'20100101202020',
 					// Make it appear as though rev 125 has the same content as 124
-					$id === 125 ? 124 : $id
+					(string)( $id === 125 ? 124 : $id )
 				);
 			} );
 		$revisionStore->expects( $this->once() )

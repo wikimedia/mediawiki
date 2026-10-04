@@ -150,7 +150,7 @@ class DatabaseTestHelper extends Database {
 	/** @inheritDoc */
 	public function strencode( $s ) {
 		// Choose apos to avoid handling of escaping double quotes in quoted text
-		return str_replace( "'", "\'", $s );
+		return str_replace( "'", "\'", (string)$s );
 	}
 
 	/** @inheritDoc */

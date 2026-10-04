@@ -132,7 +132,7 @@ class SpecBasedModuleTest extends \MediaWikiUnitTestCase {
 		$this->assertSame( 200, $response->getStatusCode(), (string)$response->getBody() );
 
 		// "hi!" comes from the route definition, the default is 'Hello!'.
-		$data = json_decode( $response->getBody(), true );
+		$data = json_decode( (string)$response->getBody(), true );
 		$this->assertSame( 'hi!', $data['message'] );
 		$this->assertSame( [
 			'mediawiki.rest_api_latency_seconds:1|ms|#path:test_v1_ModuleTest_hello_name,method:GET,status:200',

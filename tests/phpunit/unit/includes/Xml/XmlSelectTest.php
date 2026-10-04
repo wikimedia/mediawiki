@@ -110,7 +110,7 @@ class XmlSelectTest extends MediaWikiUnitTestCase {
 		$select = new XmlSelect();
 		$select->setAttribute( 'dummy', 0x777 );
 		$select->setAttribute( 'string', 'euro €' );
-		$select->setAttribute( 1911, 'razor' );
+		$select->setAttribute( '1911', 'razor' );
 
 		# verify we can retrieve them
 		$this->assertSame(
@@ -123,22 +123,12 @@ class XmlSelectTest extends MediaWikiUnitTestCase {
 		);
 		$this->assertEquals(
 			'razor',
-			$select->getAttribute( 1911 )
+			$select->getAttribute( '1911' )
 		);
 
 		# non-existent keys should give us 'null'
 		$this->assertNull(
 			$select->getAttribute( 'I DO NOT EXIT' )
-		);
-
-		# verify string / integer
-		$this->assertEquals(
-			'razor',
-			$select->getAttribute( '1911' )
-		);
-		$this->assertSame(
-			0x777,
-			$select->getAttribute( 'dummy' )
 		);
 	}
 }

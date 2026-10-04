@@ -518,7 +518,7 @@ class RouterTest extends MediaWikiUnitTestCase {
 		$this->assertStringStartsWith( self::CANONICAL_SERVER, $url );
 
 		$uri = new Uri( $url );
-		$this->assertStringContainsString( $expectedUrl, $uri );
+		$this->assertStringContainsString( $expectedUrl, (string)$uri );
 	}
 
 	/**
@@ -532,7 +532,7 @@ class RouterTest extends MediaWikiUnitTestCase {
 		$this->assertStringStartsWith( self::INTERNAL_SERVER, $url );
 
 		$uri = new Uri( $url );
-		$this->assertStringContainsString( $expectedUrl, $uri );
+		$this->assertStringContainsString( $expectedUrl, (string)$uri );
 	}
 
 	public function testCaching() {

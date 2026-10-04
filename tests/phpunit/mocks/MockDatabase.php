@@ -87,9 +87,9 @@ class MockDatabase extends Database {
 	protected function doSingleStatementQuery( string $sql ): QueryStatus {
 		$query = QueryBuilderFromRawSql::buildQuery( $sql, 0 );
 		if ( $query->isWriteQuery() ) {
-			return new QueryStatus( true, 0, 0, '' );
+			return new QueryStatus( true, 0, '', 0 );
 		} else {
-			return new QueryStatus( new FakeResultWrapper( [] ), 0, 0, '' );
+			return new QueryStatus( new FakeResultWrapper( [] ), 0, '', 0 );
 		}
 	}
 

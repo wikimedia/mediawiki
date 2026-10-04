@@ -19,6 +19,6 @@ trait MediaWikiGroupValidator {
 		// NOTE: This ONLY checks for the group in the class level doc comment.
 		$rc = new ReflectionClass( static::class );
 		// DocComment includes the '*/', match them for one-line comments
-		return (bool)preg_match( '/@group +Database( *\*\/)?$/m', $rc->getDocComment() );
+		return (bool)preg_match( '/@group +Database( *\*\/)?$/m', $rc->getDocComment() ?: '' );
 	}
 }
