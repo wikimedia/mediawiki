@@ -162,6 +162,7 @@
 	"rest-param-desc-media-links-array": "Array of media used on the page",
 	"rest-param-desc-module-spec-module": "Module spec module",
 	"rest-param-desc-module-spec-version": "Module spec version",
+	"rest-param-desc-module-spec-lang": "Language code in which to return the OpenAPI specification",
 	"rest-param-desc-opensearch-ctype": "Open search description ctype",
 	"rest-param-desc-pagehistory-count-title": "Page title. To format the title, replace spaces with underscores, and then URL-encode the result (example: Steller%27s_jay). In the API sandbox, replace spaces with underscores, but do not URL-encode (example: Steller's_jay).",
 	"rest-param-desc-pagehistory-count-type": "Type of count (anonymous, bot, editors, edits, minor, reverted)",

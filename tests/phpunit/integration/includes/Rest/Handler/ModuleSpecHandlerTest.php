@@ -835,6 +835,48 @@ class ModuleSpecHandlerTest extends MediaWikiIntegrationTestCase {
 		$this->assertWellFormedOAS( $data );
 	}
 
+	public function testSpecsV0SpecIncludesLangParam(): void {
+		$specFile = MW_INSTALL_PATH . '/includes/Rest/specs.v0.json';
+		$moduleModes = [
+			'specs/v0' => ModuleMode::PUBLISHED,
+		];
+		$request = new RequestData( [
+			'pathParams' => [ 'module' => 'specs', 'version' => 'v0' ]
+		] );
+
+		$response = $this->executeModuleSpecHandler(
+			$request,
+			$specFile,
+			$moduleModes
+		);
+		$this->assertSame( 200, $response->getStatusCode() );
+		$data = json_decode( (string)$response->getBody(), true );
+
+		$expectedLangParam = [
+			'name' => 'lang',
+			'description' => '<message key="rest-param-desc-module-spec-lang"></message>',
+			'in' => 'query',
+			'example' => 'fr',
+			'schema' => [
+				'type' => 'string',
+			],
+			'required' => false,
+		];
+
+		$this->assertArrayHasKey( 'paths', $data );
+		$this->assertArrayHasKey( '/module/{module}', $data['paths'] );
+		$this->assertArrayHasKey( '/module/{module}/{version}', $data['paths'] );
+
+		$this->assertContainsEquals(
+			$expectedLangParam,
+			$data['paths']['/module/{module}']['get']['parameters']
+		);
+		$this->assertContainsEquals(
+			$expectedLangParam,
+			$data['paths']['/module/{module}/{version}']['get']['parameters']
+		);
+	}
+
 	public static function newFooBarHandler() {
 		return new class extends Handler {
 			public function getParamSettings() {

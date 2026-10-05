@@ -167,6 +167,7 @@
 	"rest-param-desc-media-links-array": "{{Experimental}} REST API response field description, for array of media files on a page",
 	"rest-param-desc-module-spec-module": "{{Experimental}} Module spec module parameter description",
 	"rest-param-desc-module-spec-version": "{{Experimental}} Module spec version parameter description",
+	"rest-param-desc-module-spec-lang": "{{Experimental}} Module spec language parameter description",
 	"rest-param-desc-opensearch-ctype": "{{Experimental}} Open search description ctype parameter description",
 	"rest-param-desc-pagehistory-count-title": "{{Experimental}} Page history count title parameter description",
 	"rest-param-desc-pagehistory-count-type": "{{Experimental}} Page history count type parameter description",
