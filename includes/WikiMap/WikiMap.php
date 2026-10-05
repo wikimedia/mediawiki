@@ -25,6 +25,11 @@ class WikiMap {
 	 * @return WikiReference|null WikiReference object or null if the wiki was not found
 	 */
 	public static function getWiki( $wikiID ) {
+		if ( $wikiID === self::getCurrentWikiId() ) {
+			global $wgCanonicalServer, $wgArticlePath, $wgServer;
+			return new WikiReference( $wgCanonicalServer, $wgArticlePath, $wgServer );
+		}
+
 		$wikiReference = self::getWikiReferenceFromWgConf( $wikiID );
 		if ( $wikiReference ) {
 			return $wikiReference;
@@ -44,6 +49,7 @@ class WikiMap {
 
 		$wgConf->loadFullData();
 
+		// FIXME: T417511
 		[ $major, $minor ] = $wgConf->siteFromDB( $wikiID );
 		if ( $major === null ) {
 			return null;

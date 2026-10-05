@@ -54,9 +54,9 @@ class WikiMapTest extends MediaWikiLangTestCase {
 	}
 
 	public static function provideGetWiki_default() {
+		$current = new WikiReference( 'https://this.wiki.org', '/wiki/$1', '//this.wiki.org' );
 		return [
-			// FIXME: current wiki should always work
-			'current' => [ null, 'thiswiki' ],
+			'current' => [ $current, 'thiswiki' ],
 			'unknown' => [ null, 'xyzzy' ],
 			'enwiki' => [ null, 'enwiki' ],
 			'enwiktionary' => [ null, 'enwiktionary' ],
@@ -69,11 +69,11 @@ class WikiMapTest extends MediaWikiLangTestCase {
 	}
 
 	public static function provideGetWiki_withWgConf() {
+		$current = new WikiReference( 'https://this.wiki.org', '/wiki/$1', '//this.wiki.org' );
 		$enwiki = new WikiReference( 'http://en.example.org', '/w/$1' );
 		$ruwiki = new WikiReference( 'https://ru.example.org', '/wiki/$1', '//ru.example.org' );
 		return [
-			// FIXME: current wiki should always work
-			'current' => [ null, 'thiswiki' ],
+			'current' => [ $current, 'thiswiki' ],
 			'unknown' => [ null, 'xyzzy' ],
 			'enwiki (wgConf)' => [ $enwiki, 'enwiki' ],
 			'ruwiki (wgConf)' => [ $ruwiki, 'ruwiki' ],
@@ -90,12 +90,12 @@ class WikiMapTest extends MediaWikiLangTestCase {
 	}
 
 	public static function provideGetWiki_withSites() {
+		$current = new WikiReference( 'https://this.wiki.org', '/wiki/$1', '//this.wiki.org' );
 		$enwiki = new WikiReference( 'https://en.wikipedia.org', '/wiki/$1' );
 		$nlwiki = new WikiReference( 'https://nl.wikipedia.org', '/wiki/$1' );
 		$enwiktionary = new WikiReference( 'https://en.wiktionary.org', '/wiki/$1' );
 		return [
-			// FIXME: current wiki should always work
-			'current' => [ null, 'thiswiki' ],
+			'current' => [ $current, 'thiswiki' ],
 			'unknown' => [ null, 'xyzzy' ],
 			'enwiki' => [ $enwiki, 'enwiki' ],
 			'nlwiki (sites)' => [ $nlwiki, 'nlwiki' ],
@@ -112,8 +112,7 @@ class WikiMapTest extends MediaWikiLangTestCase {
 
 	public static function provideGetWikiName() {
 		return [
-			// FIXME: This should not fallback to ID instead of domain
-			'current' => [ 'thiswiki', 'thiswiki' ],
+			'current' => [ 'this.wiki.org', 'thiswiki' ],
 			'unknown' => [ 'xyzzy', 'xyzzy' ],
 			'enwiki' => [ 'en.example.org', 'enwiki' ],
 			'ruwiki' => [ 'ru.example.org', 'ruwiki' ],
@@ -132,8 +131,11 @@ class WikiMapTest extends MediaWikiLangTestCase {
 
 	public static function provideMakeForeignLink() {
 		return [
-			// FIXME: current wiki should always work
-			'current' => [ false, 'thiswiki', 'Foo' ],
+			'current' => [
+				'<a class="external" rel="nofollow" href="//this.wiki.org/wiki/Foo">Foo</a>',
+				'thiswiki',
+				'Foo'
+			],
 			'unknown' => [ false, 'xyzzy', 'Foo' ],
 			'enwiki' => [
 				'<a class="external" rel="nofollow" ' .
@@ -172,8 +174,11 @@ class WikiMapTest extends MediaWikiLangTestCase {
 
 	public static function provideForeignUserLink() {
 		return [
-			// FIXME: current wiki should always work
-			'current' => [ false, 'thiswiki', 'Foo' ],
+			'current' => [
+				'<a class="external" rel="nofollow" href="//this.wiki.org/wiki/User:Foo">User:Foo</a>',
+				'thiswiki',
+				'Foo'
+			],
 			'unknown' => [ false, 'xyzzy', 'Foo' ],
 			'enwiki' => [
 				'<a class="external" rel="nofollow" ' .
@@ -209,8 +214,7 @@ class WikiMapTest extends MediaWikiLangTestCase {
 
 	public static function provideGetForeignURL() {
 		return [
-			// FIXME: current wiki should always work
-			'current' => [ false, 'thiswiki', 'Foo' ],
+			'current' => [ '//this.wiki.org/wiki/Foo', 'thiswiki', 'Foo' ],
 			'unknown' => [ false, 'xyzzy', 'Foo' ],
 			'enwiki' => [ 'http://en.example.org/w/Foo', 'enwiki', 'Foo' ],
 			'enwiktionary (sites)' => [
