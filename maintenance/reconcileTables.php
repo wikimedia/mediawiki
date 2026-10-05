@@ -24,6 +24,12 @@ class ReconcileTables extends Maintenance {
 			false,
 			true
 		);
+		$this->addOption(
+			'start',
+			'Start from this primary key value. Default: 0',
+			false,
+			true
+		);
 		$this->addOption( 'dry', 'Dry mode' );
 		$this->setBatchSize( 500 );
 	}
@@ -46,7 +52,8 @@ class ReconcileTables extends Maintenance {
 
 		$this->output( "Reading rows from source virtual domain: $sourceDomain\n" );
 
-		$lastKey = 0;
+		// Don't cast to int, should match primary key type
+		$lastKey = $this->getOption( 'start', 0 );
 
 		$inserted = 0;
 		$updated = 0;
