@@ -203,8 +203,6 @@ class WANObjectCache implements
 
 	/** Consider regeneration if the key will expire within this many seconds */
 	private const LOW_TTL = 60;
-	/** Max TTL, in seconds, to store keys when a data source has high replication lag */
-	public const TTL_LAGGED = 30;
 
 	/** Expected time-till-refresh, in seconds, if the key is accessed once per second */
 	private const HOT_TTR = 900;

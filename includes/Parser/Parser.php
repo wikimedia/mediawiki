@@ -3899,7 +3899,8 @@ class Parser implements MessageLocalizer {
 				if ( !$status->isOK() ) {
 					$ttl = $cache::TTL_UNCACHEABLE;
 				} elseif ( $req->getResponseHeader( 'X-Database-Lagged' ) !== null ) {
-					$ttl = min( $cache::TTL_LAGGED, $ttl );
+					// Align $wgCdnMaxageLagged, although not currently configurable
+					$ttl = min( 30, $ttl );
 				}
 
 				return [
