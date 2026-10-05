@@ -756,6 +756,7 @@ because of Phabricator reports.
   deprecation warnings. Use the lock manager service instead.
 * PrefixSearch (and the corresponding StringPrefixSearch/TitlePrefixSearch) have
   been deprecated. Use SearchEngine::completionSearch() instead.
+* Title::estimateRevisionCount() is unused and has been deprecated.
 * …
 
 === Other changes in 1.47 ===

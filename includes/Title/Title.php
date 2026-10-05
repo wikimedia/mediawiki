@@ -3046,9 +3046,13 @@ class Title implements Stringable, LinkTarget, PageIdentity {
 	/**
 	 * Get the approximate revision count of this page.
 	 *
+	 * @deprecated since 1.47
+	 *
 	 * @return int
 	 */
 	public function estimateRevisionCount() {
+		wfDeprecated( __METHOD__, '1.47' );
+
 		if ( !$this->exists() ) {
 			return 0;
 		}
