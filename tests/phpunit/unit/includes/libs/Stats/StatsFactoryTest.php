@@ -25,17 +25,17 @@ class StatsFactoryTest extends TestCase {
 	use MediaWikiCoversValidator;
 
 	public function testGetCounter() {
-		$m = StatsFactory::newNull();
+		$m = StatsFactory::newUnitTestingHelper()->getStatsFactory();
 		$this->assertInstanceOf( CounterMetric::class, $m->getCounter( 'test' ) );
 	}
 
 	public function testGetGauge() {
-		$m = StatsFactory::newNull();
+		$m = StatsFactory::newUnitTestingHelper()->getStatsFactory();
 		$this->assertInstanceOf( GaugeMetric::class, $m->getGauge( 'test' ) );
 	}
 
 	public function testGetTiming() {
-		$m = StatsFactory::newNull();
+		$m = StatsFactory::newUnitTestingHelper()->getStatsFactory();
 		$this->assertInstanceOf( TimingMetric::class, $m->getTiming( 'test' ) );
 	}
 

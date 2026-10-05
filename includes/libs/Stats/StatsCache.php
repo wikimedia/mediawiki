@@ -33,7 +33,7 @@ class StatsCache {
 	 * @param string $component
 	 * @param string $name
 	 * @param string $expectedClass
-	 * @return MetricInterface|null
+	 * @return MetricInterface|NullMetric|null
 	 * @throws TypeError If cached value is for a different metric type.
 	 */
 	public function get( string $component, string $name, string $expectedClass ) {

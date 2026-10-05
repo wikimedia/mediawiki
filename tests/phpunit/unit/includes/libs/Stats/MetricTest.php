@@ -145,11 +145,11 @@ class MetricTest extends MediaWikiUnitTestCase {
 
 	public function testSampledMetrics() {
 		$rounds = 10;
-		$m = StatsFactory::newNull();
+		$m = StatsFactory::newUnitTestingHelper()->getStatsFactory();
 		$ten_percent_metrics = $m->getCounter( 'test.sampled.ten' )->setSampleRate( 0.1 );
-		$m = StatsFactory::newNull();
+		$m = StatsFactory::newUnitTestingHelper()->getStatsFactory();
 		$all_metrics = $m->getCounter( 'test.sampled.hundred' )->setSampleRate( 1.0 );
-		$m = StatsFactory::newNull();
+		$m = StatsFactory::newUnitTestingHelper()->getStatsFactory();
 		$zero_metrics = $m->getCounter( 'test.sampled.zero' )->setSampleRate( 0.0 );
 		for ( $i = 0; $i < $rounds; $i++ ) {
 			$ten_percent_metrics->increment();
@@ -167,7 +167,7 @@ class MetricTest extends MediaWikiUnitTestCase {
 	}
 
 	public function testTimerNotStarted() {
-		$m = StatsFactory::newNull();
+		$m = StatsFactory::newUnitTestingHelper()->getStatsFactory();
 		$this->expectPHPWarning(
 			'Stats: (metricName) stop() called before start()',
 			static function () use ( $m ) {
@@ -177,7 +177,7 @@ class MetricTest extends MediaWikiUnitTestCase {
 	}
 
 	public function testChangingLabelsToUsedMetric() {
-		$m = StatsFactory::newNull();
+		$m = StatsFactory::newUnitTestingHelper()->getStatsFactory();
 		$counter = $m->getCounter( 'testMetricCounter' )->setLabel( 'labelOne', 'a' );
 		$counter->increment();
 		$callable = static function () use ( $counter ) {
@@ -217,7 +217,7 @@ class MetricTest extends MediaWikiUnitTestCase {
 	}
 
 	public function testCounterHandleNotAllLabelsHaveValues() {
-		$m = StatsFactory::newNull();
+		$m = StatsFactory::newUnitTestingHelper()->getStatsFactory();
 		$m->getCounter( 'testMetricCounter' )->setLabel( 'labelOne', 'a' )->increment();
 		$this->expectPHPWarning(
 			'Stats: (testMetricCounter) Cannot associate label keys with label values - Not all initialized labels have an assigned value.',
@@ -228,7 +228,7 @@ class MetricTest extends MediaWikiUnitTestCase {
 	}
 
 	public function testGaugeHandleNotAllLabelsHaveValues() {
-		$m = StatsFactory::newNull();
+		$m = StatsFactory::newUnitTestingHelper()->getStatsFactory();
 		$m->getGauge( 'testMetricGauge' )->setLabel( 'labelOne', 'a' )->set( 1 );
 		$this->expectPHPWarning(
 			'Stats: (testMetricGauge) Cannot associate label keys with label values - Not all initialized labels have an assigned value.',
@@ -239,7 +239,7 @@ class MetricTest extends MediaWikiUnitTestCase {
 	}
 
 	public function testTimingHandleNotAllLabelsHaveValues() {
-		$m = StatsFactory::newNull();
+		$m = StatsFactory::newUnitTestingHelper()->getStatsFactory();
 		$m->getTiming( 'testMetricTiming' )->setLabel( 'labelOne', 'a' )->observeSeconds( 0.1 );
 		$this->expectPHPWarning(
 			'Stats: (testMetricTiming) Cannot associate label keys with label values - '
@@ -251,7 +251,7 @@ class MetricTest extends MediaWikiUnitTestCase {
 	}
 
 	public function testSampleRateOOB() {
-		$m = StatsFactory::newNull();
+		$m = StatsFactory::newUnitTestingHelper()->getStatsFactory();
 		$counter = $m->getCounter( 'CounterMetricName' );
 		$gauge = $m->getCounter( 'GaugeMetricName' );
 		$timing = $m->getCounter( 'TimingMetricName' );
@@ -276,7 +276,7 @@ class MetricTest extends MediaWikiUnitTestCase {
 	}
 
 	public function testSampleRateDisallowed() {
-		$m = StatsFactory::newNull();
+		$m = StatsFactory::newUnitTestingHelper()->getStatsFactory();
 		$m->getCounter( 'CounterMetricName' )->increment();
 		$callable = static function () use ( $m ) {
 			$m->getCounter( 'CounterMetricName' )->setSampleRate( 0.5 );
@@ -343,7 +343,7 @@ class MetricTest extends MediaWikiUnitTestCase {
 	}
 
 	public function testMsConversion() {
-		$statsFactory = StatsFactory::newNull();
+		$statsFactory = StatsFactory::newUnitTestingHelper()->getStatsFactory();
 		$statsFactory->getTiming( 'test_seconds' )->observeSeconds( 1 );
 		$statsFactory->getTiming( 'test_seconds' )->observeNanoseconds( 1000000 );
 		$samples = $statsFactory->getTiming( 'test_seconds' )->getSamples();
@@ -365,7 +365,8 @@ class MetricTest extends MediaWikiUnitTestCase {
 	}
 
 	public function testSetLabelReserved() {
-		$metric = StatsFactory::newNull()->getCounter( 'metricName' );
+		$m = StatsFactory::newUnitTestingHelper()->getStatsFactory();
+		$metric = $m->getCounter( 'metricName' );
 		$callable = static function () use ( $metric ) {
 			$metric->setLabel( 'Le', 'foo' );
 		};
@@ -374,15 +375,17 @@ class MetricTest extends MediaWikiUnitTestCase {
 	}
 
 	public function testSetLabelsReserved() {
-		$metric = @StatsFactory::newNull()->getCounter( 'test' )
+		$m = StatsFactory::newUnitTestingHelper()->getStatsFactory();
+		$metric = @$m->getCounter( 'test' )
 			->setLabels( [ 'foo' => 'a', 'lE' => '1', 'bar' => 'c' ] );
 		$this->assertInstanceOf( NullMetric::class, $metric );
 	}
 
 	public function testInvalidBucketValue() {
+		$m = StatsFactory::newUnitTestingHelper()->getStatsFactory();
 		$this->expectException( 'InvalidArgumentException' );
 		$this->expectExceptionMessage( 'Stats: (metricName) Got illegal bucket value \'foo\' - must be float or \'+Inf\'' );
-		StatsFactory::newNull()->getCounter( 'metricName' )->setBucket( 'foo' );
+		$m->getCounter( 'metricName' )->setBucket( 'foo' );
 	}
 
 	public function testInvalidLabel() {
@@ -431,7 +434,7 @@ class MetricTest extends MediaWikiUnitTestCase {
 	}
 
 	public function testStopRunningTimerWarning() {
-		$statsFactory = StatsFactory::newNull();
+		$statsFactory = StatsFactory::newUnitTestingHelper()->getStatsFactory();
 		$timing = $statsFactory->getTiming( 'metricName' )->start();
 		$callable = static function () use ( $timing ) {
 			$timing->stop();

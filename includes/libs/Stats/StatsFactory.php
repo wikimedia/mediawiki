@@ -201,14 +201,16 @@ class StatsFactory {
 	 * Create a no-op StatsFactory.
 	 *
 	 * Use this as the default in a service that takes an optional StatsFactory,
-	 * or as null implementation in PHPUnit tests, where we don't need to send
-	 * output to an actual network service.
+	 * or as null implementation in PHPUnit tests, where we don't need to capture,
+	 * buffer, or send any metrics.
+	 *
+	 * To capture the metrics for testing, use StatsFactory::newUnitTestingHelper.
 	 *
 	 * @since 1.42
 	 * @return self
 	 */
 	public static function newNull(): self {
-		return new self( new StatsCache(), new NullEmitter(), new NullLogger() );
+		return new self( new NullStatsCache(), new NullEmitter(), new NullLogger() );
 	}
 
 	/**

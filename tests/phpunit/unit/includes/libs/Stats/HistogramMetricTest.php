@@ -16,7 +16,7 @@ class HistogramMetricTest extends TestCase {
 	private array $buckets;
 
 	protected function setUp(): void {
-		$this->statsFactory = StatsFactory::newNull();
+		$this->statsFactory = StatsFactory::newUnitTestingHelper()->getStatsFactory();
 		$this->buckets = [ 0.01, 0.1, 1, 10 ];
 		$metric = $this->statsFactory->getHistogram( 'test', $this->buckets );
 		$metric->setLabel( 'foo', 'bar' );

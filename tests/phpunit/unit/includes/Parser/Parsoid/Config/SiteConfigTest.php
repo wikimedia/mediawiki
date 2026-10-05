@@ -74,7 +74,7 @@ class SiteConfigTest extends MediaWikiUnitTestCase {
 
 	protected function setUp(): void {
 		parent::setUp();
-		$this->statsFactory = StatsFactory::newNull();
+		$this->statsFactory = StatsFactory::newUnitTestingHelper()->getStatsFactory();
 	}
 
 	private function createMockOrOverride( string $class, array $overrides ) {

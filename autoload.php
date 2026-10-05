@@ -4697,6 +4697,7 @@ $wgAutoloadLocalClasses = [
 	'Wikimedia\\Stats\\Metrics\\NullMetric' => __DIR__ . '/includes/libs/Stats/Metrics/NullMetric.php',
 	'Wikimedia\\Stats\\Metrics\\RunningTimer' => __DIR__ . '/includes/libs/Stats/Metrics/RunningTimer.php',
 	'Wikimedia\\Stats\\Metrics\\TimingMetric' => __DIR__ . '/includes/libs/Stats/Metrics/TimingMetric.php',
+	'Wikimedia\\Stats\\NullStatsCache' => __DIR__ . '/includes/libs/Stats/NullStatsCache.php',
 	'Wikimedia\\Stats\\NullStatsdDataFactory' => __DIR__ . '/includes/libs/Stats/NullStatsdDataFactory.php',
 	'Wikimedia\\Stats\\OutputFormats' => __DIR__ . '/includes/libs/Stats/OutputFormats.php',
 	'Wikimedia\\Stats\\PrefixingStatsdDataFactoryProxy' => __DIR__ . '/includes/libs/Stats/PrefixingStatsdDataFactoryProxy.php',
