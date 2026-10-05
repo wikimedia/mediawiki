@@ -519,6 +519,13 @@ class ModuleSpecHandler extends SimpleHandler {
 				ParamValidator::PARAM_DEFAULT => '',
 				Handler::PARAM_DESCRIPTION => new MessageValue( 'rest-param-desc-module-spec-version' ),
 			],
+			'lang' => [
+				self::PARAM_SOURCE => 'query',
+				ParamValidator::PARAM_TYPE => 'string',
+				ParamValidator::PARAM_REQUIRED => false,
+				Handler::PARAM_DESCRIPTION => new MessageValue( 'rest-param-desc-module-spec-lang' ),
+				Handler::PARAM_EXAMPLE => 'fr',
+			],
 		];
 	}
 
