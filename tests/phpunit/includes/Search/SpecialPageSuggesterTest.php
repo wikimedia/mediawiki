@@ -14,20 +14,14 @@ use MediaWikiLangTestCase;
  * @covers \MediaWiki\Search\SpecialPageSuggester
  */
 class SpecialPageSuggesterTest extends MediaWikiLangTestCase {
-	private SpecialPageSuggester $specialPageSuggester;
-
 	protected function setUp(): void {
 		parent::setUp();
 
 		// Avoid special pages from extensions interfering with the tests
 		$this->overrideConfigValues( [
 			MainConfigNames::SpecialPages => [],
-			MainConfigNames::Hooks, []
+			MainConfigNames::Hooks => [],
 		] );
-		$this->specialPageSuggester = new SpecialPageSuggester(
-			$this->getServiceContainer()->getSpecialPageFactory(),
-			$this->getServiceContainer()->getContentLanguage(),
-		);
 	}
 
 	public static function provideSearch(): \Generator {
@@ -37,7 +31,8 @@ class SpecialPageSuggesterTest extends MediaWikiLangTestCase {
 				'Special:ActiveUsers',
 				'Special:AllMessages',
 				'Special:AllPages',
-			]
+			],
+			'en'
 		];
 		yield 'simple prefix' => [
 			'Un',
@@ -45,32 +40,49 @@ class SpecialPageSuggesterTest extends MediaWikiLangTestCase {
 				'Special:Unblock',
 				'Special:UncategorizedCategories',
 				'Special:UncategorizedFiles',
-			]
+			],
+			'en'
 		];
-		yield 'page name' => [ 'EditWatchlist', [] ];
+		yield 'page name' => [ 'EditWatchlist', [], 'en' ];
 		yield 'sub pages' => [
 			'EditWatchlist/',
-			[ 'Special:EditWatchlist/clear', 'Special:EditWatchlist/raw' ]
+			[ 'Special:EditWatchlist/clear', 'Special:EditWatchlist/raw' ],
+			'en'
 		];
 		yield 'prefix on sub pages' => [
 			'EditWatchlist/cl',
-			[ 'Special:EditWatchlist/clear' ]
+			[ 'Special:EditWatchlist/clear' ],
+			'en'
+		];
+		yield 'prefix on canonical page' => [
+			'ListGroupRight',
+			[ 'Special:ListGroupRights' ],
+			'sv'
 		];
 	}
 
 	/**
 	 * @dataProvider provideSearch
 	 */
-	public function testSearch( string $search, array $expected_results ): void {
-		$results = $this->specialPageSuggester->suggest( $search, 3, 0 );
+	public function testSearch( string $search, array $expected_results, string $lang ): void {
+		$this->overrideConfigValue( MainConfigNames::LanguageCode, $lang );
+		$specialPageSuggester = new SpecialPageSuggester(
+			$this->getServiceContainer()->getSpecialPageFactory(),
+			$this->getServiceContainer()->getContentLanguage(),
+		);
+		$results = $specialPageSuggester->suggest( $search, 3, 0 );
 		$title_strings = array_map( static fn ( Title $title ): string => $title->getPrefixedText(), $results );
 		$this->assertEquals( $expected_results, $title_strings );
 	}
 
 	public function testSearchWithOffset(): void {
-		$results = $this->specialPageSuggester->suggest( 'Un', 2, 0 );
+		$specialPageSuggester = new SpecialPageSuggester(
+			$this->getServiceContainer()->getSpecialPageFactory(),
+			$this->getServiceContainer()->getContentLanguage(),
+		);
+		$results = $specialPageSuggester->suggest( 'Un', 2, 0 );
 		$expected_results = [ $results[1] ];
-		$results = $this->specialPageSuggester->suggest( 'Un', 1, 1 );
+		$results = $specialPageSuggester->suggest( 'Un', 1, 1 );
 		$this->assertEquals( $expected_results, $results );
 	}
 
