@@ -240,9 +240,7 @@ class ImageHistoryList extends ContextSource {
 		if ( $uploader ) {
 			$row .= Linker::userLink( $uploader->getId(), $uploader->getName() );
 			if ( $local ) {
-				$row .= Html::rawElement( 'span', [ 'style' => 'white-space: nowrap;' ],
-					Linker::userToolLinks( $uploader->getId(), $uploader->getName() )
-				);
+				$row .= Linker::userToolLinks( $uploader->getId(), $uploader->getName() );
 			}
 		} else {
 			$row .= Html::element( 'span', [ 'class' => 'history-deleted' ],
