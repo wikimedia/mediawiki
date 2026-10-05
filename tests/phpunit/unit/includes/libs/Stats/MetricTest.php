@@ -1,5 +1,7 @@
 <?php
 
+declare( strict_types=1 );
+
 namespace Wikimedia\Tests\Stats;
 
 use MediaWikiUnitTestCase;

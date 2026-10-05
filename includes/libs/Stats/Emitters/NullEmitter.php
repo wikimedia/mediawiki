@@ -4,6 +4,8 @@
  * @file
  */
 
+declare( strict_types=1 );
+
 namespace Wikimedia\Stats\Emitters;
 
 /**

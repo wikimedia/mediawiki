@@ -17,6 +17,7 @@
 		<include-pattern>*/OutputTransform/*</include-pattern>
 		<include-pattern>*/Password/*</include-pattern>
 		<include-pattern>*/Parsoid/*</include-pattern>
+		<include-pattern>*/Stats/*</include-pattern>
 	</rule>
 	<rule ref="Generic.Files.LineLength">
 		<exclude-pattern>*/languages/messages/*</exclude-pattern>

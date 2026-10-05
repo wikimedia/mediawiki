@@ -6,6 +6,8 @@
  * @file
  */
 
+declare( strict_types=1 );
+
 namespace Wikimedia\Stats;
 
 use Liuggio\StatsdClient\Entity\StatsdData;
