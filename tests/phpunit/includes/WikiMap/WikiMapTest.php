@@ -17,8 +17,8 @@ class WikiMapTest extends MediaWikiLangTestCase {
 	protected function setUp(): void {
 		parent::setUp();
 		$this->overrideConfigValues( [
-			// FIXME: This is an invalid $wgCanonicalServer value
-			MainConfigNames::CanonicalServer => '//this.wiki.org',
+			MainConfigNames::Server => '//this.wiki.org',
+			MainConfigNames::CanonicalServer => 'https://this.wiki.org',
 			MainConfigNames::DBname => 'thiswiki',
 			MainConfigNames::DBprefix => ''
 		] );
@@ -36,6 +36,12 @@ class WikiMapTest extends MediaWikiLangTestCase {
 				'nopathwiki' => '//nopath.example.org',
 				'thiswiki' => '//this.wiki.org'
 			],
+			'wgCanonicalServer' => [
+				'enwiki' => 'http://en.example.org',
+				'ruwiki' => 'https://ru.example.org',
+				'nopathwiki' => 'https://nopath.example.org',
+				'thiswiki' => 'https://this.wiki.org'
+			],
 			'wgArticlePath' => [
 				'enwiki' => '/w/$1',
 				'ruwiki' => '/wiki/$1',
@@ -50,7 +56,7 @@ class WikiMapTest extends MediaWikiLangTestCase {
 	public static function provideGetWiki() {
 		// As provided by $wgConf
 		$enwiki = new WikiReference( 'http://en.example.org', '/w/$1' );
-		$ruwiki = new WikiReference( '//ru.example.org', '/wiki/$1' );
+		$ruwiki = new WikiReference( 'https://ru.example.org', '/wiki/$1', '//ru.example.org' );
 
 		// Created from site objects
 		$nlwiki = new WikiReference( 'https://nl.wikipedia.org', '/wiki/$1' );
@@ -204,8 +210,8 @@ class WikiMapTest extends MediaWikiLangTestCase {
 		$this->setWgConf();
 		$expected = [
 			'thiswiki' => [
-				'url' => '//this.wiki.org',
-				'parts' => [ 'scheme' => '', 'host' => 'this.wiki.org', 'delimiter' => '//' ]
+				'url' => 'https://this.wiki.org',
+				'parts' => [ 'scheme' => 'https', 'host' => 'this.wiki.org', 'delimiter' => '://' ]
 			],
 			'enwiki' => [
 				'url' => 'http://en.example.org',
@@ -213,8 +219,8 @@ class WikiMapTest extends MediaWikiLangTestCase {
 					'scheme' => 'http', 'host' => 'en.example.org', 'delimiter' => '://' ]
 			],
 			'ruwiki' => [
-				'url' => '//ru.example.org',
-				'parts' => [ 'scheme' => '', 'host' => 'ru.example.org', 'delimiter' => '//' ]
+				'url' => 'https://ru.example.org',
+				'parts' => [ 'scheme' => 'https', 'host' => 'ru.example.org', 'delimiter' => '://' ]
 			]
 		];
 
