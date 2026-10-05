@@ -1212,17 +1212,11 @@ class LocalFile extends File {
 		$this->load( self::LOAD_ALL );
 		$result = [];
 		$addresses = [];
-		$logger = LoggerFactory::getInstance( 'LocalFile' );
 		foreach ( $itemNames as $itemName ) {
 			if ( array_key_exists( $itemName, $this->metadataArray ) ) {
 				$result[$itemName] = $this->metadataArray[$itemName];
 			} elseif ( isset( $this->unloadedMetadataBlobs[$itemName] ) ) {
 				$addresses[$itemName] = $this->unloadedMetadataBlobs[$itemName];
-			} else {
-				$logger->debug(
-					"Metadata item {item} not present in {file}",
-					[ 'item' => $itemName, 'file' => $this->getName() ]
-				);
 			}
 		}
 
@@ -1234,11 +1228,6 @@ class LocalFile extends File {
 				if ( $value !== null ) {
 					$result[$itemName] = $value;
 					$this->metadataArray[$itemName] = $value;
-				} else {
-					$logger->warning(
-						"Could not retrieve metadata item {item} stored at {address} for {file}",
-						[ 'item' => $itemName, 'address' => $address, 'file' => $this->getName() ]
-					);
 				}
 			}
 		}
