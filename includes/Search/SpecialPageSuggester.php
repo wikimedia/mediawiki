@@ -83,12 +83,6 @@ class SpecialPageSuggester {
 					continue;
 				}
 
-				// No need to even consider aliases (and as a result list the same special page
-				// multiple times) when the primary page name already matches.
-				if ( str_starts_with( $this->contentLanguage->caseFold( $page ), $searchKey ) ) {
-					continue;
-				}
-
 				foreach ( $aliases as $key => $alias ) {
 					$pageKey = $this->contentLanguage->caseFold( $alias );
 					$keys[$pageKey] = [ 'page' => $alias, 'rank' => $key ];
