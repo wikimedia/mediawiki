@@ -40,6 +40,7 @@ class DeprecatedHooks {
 		'RollbackComplete' => [ 'deprecatedVersion' => '1.36', 'silent' => true ],
 		'SearchDataForIndex' => [ 'deprecatedVersion' => '1.40', 'silent' => true ],
 		'SpecialCreateAccountBenefits' => [ 'deprecatedVersion' => '1.47' ],
+		'SpecialWhatLinksHereQuery' => [ 'deprecatedVersion' => '1.48', 'silent' => true ],
 		'TitleIsAlwaysKnown' => [ 'deprecatedVersion' => '1.47', 'silent' => true ],
 		'userCan' => [ 'deprecatedVersion' => '1.37' ],
 		'UserCanSendEmail' => [ 'deprecatedVersion' => '1.41', 'silent' => true ],

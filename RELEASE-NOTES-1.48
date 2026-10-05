@@ -54,6 +54,9 @@ For notes on 1.47.x and older releases, see HISTORY.
 
 === New developer features in 1.48 ===
 
+* The SpecialWhatLinksHereBacklinkQuery hook was added. It allows
+  extensions to filter the backlink query of Special:WhatLinksHere before
+  the limit is applied.
 * …
 
 === External library changes in 1.48 ===
@@ -151,6 +154,8 @@ For notes on 1.47.x and older releases, see HISTORY.
 === Deprecations in 1.48 ===
 
 * Xml::escapeTagsOnly() is unused and has been deprecated.
+* The SpecialWhatLinksHereQuery hook has been deprecated. Use the
+  SpecialWhatLinksHereBacklinkQuery hook instead.
 * …
 
 === Other changes in 1.48 ===

@@ -21,6 +21,7 @@ use MediaWiki\Page\LinkBatchFactory;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Search\SearchEngineFactory;
 use MediaWiki\SpecialPage\FormSpecialPage;
+use MediaWiki\Specials\Hook\SpecialWhatLinksHereBacklinkQueryData;
 use MediaWiki\Title\NamespaceInfo;
 use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleFactory;
@@ -248,6 +249,11 @@ class SpecialWhatLinksHere extends FormSpecialPage {
 				->limit( 2 * $queryLimit )
 				->leftJoin( 'redirect', 'redirect', $on );
 
+			$hookRunner->onSpecialWhatLinksHereBacklinkQuery(
+				new SpecialWhatLinksHereBacklinkQueryData( $dbr, $table, $fromCol, $this->formData ),
+				$subQuery
+			);
+
 			$queryBuilder = $dbr->newSelectQueryBuilder()
 				->table( $subQuery, 'temp_backlink_range' )
 				->join( 'page', 'page', "$fromCol = page_id" )
@@ -269,6 +275,11 @@ class SpecialWhatLinksHere extends FormSpecialPage {
 				->orderBy( 'rd_from', $sortDirection )
 				->limit( $limit + 1 )
 				->join( 'page', 'page', 'rd_from = page_id' );
+
+			$hookRunner->onSpecialWhatLinksHereBacklinkQuery(
+				new SpecialWhatLinksHereBacklinkQueryData( $dbr, 'redirect', 'rd_from', $this->formData ),
+				$queryBuilder
+			);
 
 			$hookRunner->onSpecialWhatLinksHereQuery( 'redirect', $this->formData, $queryBuilder );
 

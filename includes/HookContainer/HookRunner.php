@@ -33,6 +33,7 @@ use MediaWiki\Search\SearchEngine;
 use MediaWiki\Session\Session;
 use MediaWiki\Skin\Skin;
 use MediaWiki\SpecialPage\SpecialPage;
+use MediaWiki\Specials\Hook\SpecialWhatLinksHereBacklinkQueryData;
 use MediaWiki\Title\Title;
 use MediaWiki\User\User;
 use MediaWiki\User\UserIdentity;
@@ -526,6 +527,7 @@ class HookRunner implements
 	\MediaWiki\Specials\Hook\SpecialTrackingCategories__preprocessHook,
 	\MediaWiki\Specials\Hook\SpecialUploadCompleteHook,
 	\MediaWiki\Specials\Hook\SpecialVersionVersionUrlHook,
+	\MediaWiki\Specials\Hook\SpecialWhatLinksHereBacklinkQueryHook,
 	\MediaWiki\Specials\Hook\SpecialWhatLinksHereQueryHook,
 	\MediaWiki\Specials\Hook\UnblockUserCompleteHook,
 	\MediaWiki\Specials\Hook\UnblockUserHook,
@@ -4485,6 +4487,18 @@ class HookRunner implements
 		return $this->container->run(
 			'SpreadAnyEditBlock',
 			[ $user, &$blockWasSpread ]
+		);
+	}
+
+	/** @inheritDoc */
+	public function onSpecialWhatLinksHereBacklinkQuery(
+		SpecialWhatLinksHereBacklinkQueryData $data,
+		SelectQueryBuilder $queryBuilder
+	): void {
+		$this->container->run(
+			'SpecialWhatLinksHereBacklinkQuery',
+			[ $data, $queryBuilder ],
+			[ 'abortable' => false ]
 		);
 	}
 

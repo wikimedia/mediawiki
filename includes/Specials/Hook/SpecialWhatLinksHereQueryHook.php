@@ -6,9 +6,9 @@ use Wikimedia\Rdbms\SelectQueryBuilder;
 
 /**
  * This is a hook handler interface, see docs/Hooks.md.
- * Use the hook name "SpecialWhatLinksHereQueryHook" to register handlers implementing this interface.
+ * Use the hook name "SpecialWhatLinksHereQuery" to register handlers implementing this interface.
  *
- * @stable to implement
+ * @deprecated since 1.48, use SpecialWhatLinksHereBacklinkQueryHook instead
  * @ingroup Hooks
  */
 interface SpecialWhatLinksHereQueryHook {
@@ -19,6 +19,7 @@ interface SpecialWhatLinksHereQueryHook {
 	 * of this hook.
 	 *
 	 * @since 1.43
+	 * @deprecated since 1.48, use SpecialWhatLinksHereBacklinkQueryHook instead
 	 *
 	 * @param string $table table name
 	 * @param array $data Data submitted from the form, as processed by `HTMLForm`
