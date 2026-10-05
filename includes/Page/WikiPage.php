@@ -1094,13 +1094,15 @@ class WikiPage implements Stringable, Page, PageRecord {
 	/**
 	 * Should the parser cache be used?
 	 *
+	 * @deprecated since 1.47; use ParserOutputAccess::shouldUseCache()
+	 *
 	 * @param ParserOptions $parserOptions ParserOptions to check
 	 * @param int $oldId
 	 * @return bool
 	 */
 	public function shouldCheckParserCache( ParserOptions $parserOptions, $oldId ) {
+		wfDeprecated( __METHOD__, '1.47' );
 		// NOTE: Keep in sync with ParserOutputAccess::shouldUseCache().
-		// TODO: Once ParserOutputAccess is stable, deprecated this method.
 		return $this->exists()
 			&& ( $oldId === null || $oldId === 0 || $oldId === $this->getLatest() )
 			&& $this->getContentHandler()->isParserCacheSupported();

@@ -770,6 +770,8 @@ because of Phabricator reports.
 * The ResourceLoader module mediawiki.skinning.content.parsoid has been
   deprecated. Please remove usages.
 * Title::estimateRevisionCount() is unused and has been deprecated.
+* WikiPage::shouldCheckParserCache() has been deprecated. Use
+  ParserOutputAccess::shouldUseCache() instead.
 * …
 
 === Other changes in 1.47 ===
