@@ -66,7 +66,7 @@ class SpecialFileDuplicateSearch extends SpecialPage {
 	 */
 	private function showList( $dupes ) {
 		$html = [];
-		$html[] = "<ol class='special'>";
+		$html[] = "<ol class='mw-fileduplicatesearch'>";
 
 		foreach ( $dupes as $dupe ) {
 			$line = $this->formatResult( $dupe );
@@ -91,6 +91,7 @@ class SpecialFileDuplicateSearch extends SpecialPage {
 		}
 
 		$out = $this->getOutput();
+		$out->addModuleStyles( 'mediawiki.special' );
 
 		# Create the input form
 		$formFields = [
@@ -127,7 +128,6 @@ class SpecialFileDuplicateSearch extends SpecialPage {
 			if ( $img ) {
 				$thumb = $img->transform( [ 'width' => 120, 'height' => 120 ] );
 				if ( $thumb ) {
-					$out->addModuleStyles( 'mediawiki.special' );
 					$out->addHTML( '<div id="mw-fileduplicatesearch-icon">' .
 						$thumb->toHtml( [ 'desc-link' => false ] ) . '<br />' .
 						$this->msg( 'fileduplicatesearch-info' )
@@ -194,9 +194,7 @@ class SpecialFileDuplicateSearch extends SpecialPage {
 		$uploader = $result->getUploader( File::FOR_THIS_USER, $this->getAuthority() );
 		if ( $result->isLocal() && $uploader ) {
 			$user = Linker::userLink( $uploader->getId(), $uploader->getName() );
-			$user .= '<span style="white-space: nowrap;">';
 			$user .= Linker::userToolLinks( $uploader->getId(), $uploader->getName() );
-			$user .= '</span>';
 		} elseif ( $uploader ) {
 			$user = htmlspecialchars( $uploader->getName() );
 		} else {
