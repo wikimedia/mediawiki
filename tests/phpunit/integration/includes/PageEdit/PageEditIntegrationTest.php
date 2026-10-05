@@ -5,12 +5,14 @@ namespace MediaWiki\Tests\PageEdit;
 use MediaWiki\Context\DerivativeContext;
 use MediaWiki\Context\IContextSource;
 use MediaWiki\Context\RequestContext;
+use MediaWiki\EditPage\IEditObject;
 use MediaWiki\Page\PageIdentityValue;
 use MediaWiki\Page\ProperPageIdentity;
 use MediaWiki\PageEdit\PageEdit;
 use MediaWiki\PageEdit\PageEditFactory;
 use MediaWiki\PageEdit\PageEditInputs;
 use MediaWiki\Revision\RevisionStore;
+use MediaWiki\Title\Title;
 use MediaWiki\User\Options\StaticUserOptionsLookup;
 use MediaWikiIntegrationTestCase;
 use TestUser;
@@ -263,6 +265,21 @@ class PageEditIntegrationTest extends MediaWikiIntegrationTestCase {
 				'expected' => true,
 			],
 		];
+	}
+
+	public function testFileRedirectCheckedAfterPST() {
+		// Make sure that ImageRedirectConstraint cannot be bypassed using PST (T435457)
+		$pageEdit = $this->newPageEdit(
+			$this->getNonexistingTestPage( Title::makeTitle( NS_FILE, 'FileRedirect' ) ),
+			$this->getTestUser(),
+			summary: 'Test edit',
+			textbox1: '{{subst:ucfirst:#REDIRECT [[File:RedirectTarget.png]]}}',
+		);
+		$this->setGroupPermissions( 'user', 'upload', false );
+
+		$result = $pageEdit->edit();
+		$this->assertStatusNotGood( $result->getStatus() );
+		$this->assertStatusValue( IEditObject::AS_IMAGE_REDIRECT_LOGGED, $result->getStatus() );
 	}
 
 }
