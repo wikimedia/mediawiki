@@ -3166,7 +3166,6 @@
 	"tags-apply-not-allowed-one": "Nije dopušteno da se oznaka \"$1\" primijeni ručno.",
 	"tags-apply-not-allowed-multi": "Nije dopušteno da se {{PLURAL:$2|sljedeća oznaka staje ručno|sljedeće oznake staju ručno}}: $1",
 	"tags-update-no-permission": "Nemate dopuštenje da dodate ili uklonite oznake promjena sa zasebnih verzija ili dnevničkih unosa.",
-	"tags-update-blocked": "Ne možete dodavati niti uklanjati oznake za promjenu dok {{GENDER:$1|ste}} blokirani.",
 	"tags-update-add-not-allowed-one": "Nije dopušteno da se oznaka \"$1\" dodaje ručno.",
 	"tags-update-add-not-allowed-multi": "Nije dopušteno da se {{PLURAL:$2|sljedeća oznaka dodaje ručno|sljedeće oznake dodaju ručno}}: $1",
 	"tags-update-remove-not-allowed-one": "Nije dopušteno da se uklanja oznaka \"$1\".",

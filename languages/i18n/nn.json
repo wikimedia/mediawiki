@@ -2686,7 +2686,6 @@
 	"tags-create-reason": "Årsak:",
 	"tags-create-submit": "Opprett",
 	"tags-create-no-name": "Du må oppgje eit merkenamn.",
-	"tags-update-blocked": "Du kan ikkje leggja til eller fjerna merke medan {{GENDER:$1|du}} er blokkert.",
 	"tags-edit-title": "Endra merke",
 	"tags-edit-existing-tags-none": "«Ingen»",
 	"tags-edit-chosen-placeholder": "Vel nokre merke",

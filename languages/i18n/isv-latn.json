@@ -3213,7 +3213,6 @@
 	"tags-apply-not-allowed-one": "Značka «$1» ne može byti priměnjena ručno.",
 	"tags-apply-not-allowed-multi": "{{PLURAL:$2|Slědujuča značka ne može byti priměnjena|Slědujuče značky ne mogut byti priměnjene}} ručno: $1",
 	"tags-update-no-permission": "Dodavanje ili udaljanje značek pri individualnyh versijah ili zapisah v dnevnikah ne jest vam dozvoljeno.",
-	"tags-update-blocked": "Dodavanje ili udaljanje značek pri izměnah ne jest vam dozvoljeno poka {{GENDER:$1|vy}} jeste zablokovani.",
 	"tags-update-add-not-allowed-one": "Značka «$1» ne može byti dodana ručno.",
 	"tags-update-add-not-allowed-multi": "{{PLURAL:$2|Slědujuča značka ne može byti dodana|Slědujuče značky ne mogut byti dodane}} ručno: $1",
 	"tags-update-remove-not-allowed-one": "Značka «$1» ne može byti udaljena ručno.",

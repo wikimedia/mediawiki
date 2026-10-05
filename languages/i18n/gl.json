@@ -1602,7 +1602,7 @@
 	"unusedtemplateswlh": "outras ligazóns",
 	"randompage": "Páxina ao chou",
 	"randompage-nopages": "Non hai páxinas {{PLURAL:$2|no seguinte espazo de nomes|nos seguintes espazos de nomes}}: $1.",
-	"randompage-disallowed-action": "Por razóns de seguridade, non se pode efectuar a acción «$1» na páxina «Special:Random».",
+	"randompage-disallowed-action": "Por motivos de seguridade, non se pode efectuar a acción «$1» na páxina «Special:Random».",
 	"randomincategory": "Páxina aleatoria na categoría",
 	"randomincategory-invalidcategory": "«$1» non é un nome de categoría válido.",
 	"randomincategory-nopages": "Non hai páxinas na [[:Category:$1]].",
@@ -3335,7 +3335,6 @@
 	"tags-apply-not-allowed-one": "A etiqueta «$1» non se pode aplicar manualmente.",
 	"tags-apply-not-allowed-multi": "{{PLURAL:$2|A seguinte etiqueta non se pode|As seguintes etiquetas non se poden}} aplicar manualmente: $1",
 	"tags-update-no-permission": "Non tes os permisos necesarios para engadir ou quitar etiquetas de revisións individuais ou de entradas do rexistro.",
-	"tags-update-blocked": "Non podes engadir nin eliminar etiquetas mentres esteas {{GENDER:$1|bloqueado|bloqueada}}.",
 	"tags-update-add-not-allowed-one": "A etiqueta «$1» non se pode engadir manualmente.",
 	"tags-update-add-not-allowed-multi": "{{PLURAL:$2|A seguinte etiqueta non se pode|As seguintes etiquetas non se poden}} engadir manualmente: $1",
 	"tags-update-remove-not-allowed-one": "A etiqueta «$1» non se pode eliminar.",
@@ -4017,5 +4016,7 @@
 	"table-of-contents-hide-button-aria-label": "Agochar a táboa de contidos",
 	"diff-usergroups": "$1 {{PLURAL:$1|grupo|grupos}} de usuario",
 	"languageselector-no-results": "Non se atopou ningún resultado.",
-	"languageselector-invalid-input": "«$1» non é unha lingua válida."
+	"languageselector-invalid-input": "«$1» non é unha lingua válida.",
+	"mypage-disallowed-action": "Por motivos de seguridade, non se pode efectuar a acción «$1» na páxina «Special:MyPage».",
+	"import-upload-reauth-reupload": "Verificouse a túa identidade. Selecciona de novo o ficheiro de importación e envíao de novo."
 }

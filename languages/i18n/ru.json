@@ -262,6 +262,7 @@
 	"go": "Перейти",
 	"searcharticle": "Перейти",
 	"skin-view-history": "История",
+	"skin-view-share": "Поделиться",
 	"history": "История",
 	"history_short": "История",
 	"history_small": "история",
@@ -2920,6 +2921,7 @@
 	"tooltip-ca-addsection": "Создать новый раздел",
 	"tooltip-ca-viewsource": "Эта страница защищена от изменений.\nВы можете посмотреть её исходный текст.",
 	"tooltip-ca-history": "Журнал изменений страницы",
+	"tooltip-ca-share": "Поделиться этой страницей",
 	"tooltip-ca-protect": "Защитить страницу от изменений",
 	"tooltip-ca-unprotect": "Изменить защиту этой страницы",
 	"tooltip-ca-delete": "Удалить эту страницу",
@@ -3506,7 +3508,6 @@
 	"tags-apply-not-allowed-one": "Метка «$1» не может быть применена вручную.",
 	"tags-apply-not-allowed-multi": "{{PLURAL:$2|Следующая метка не может быть применена|Следующие метки не могут быть применены}} вручную: $1",
 	"tags-update-no-permission": "У вас нет права на добавление или изменение меток изменения из отдельных версий или записей журналов.",
-	"tags-update-blocked": "Вы не можете добавлять или удалять метки правок, пока {{GENDER:$1|вы}} заблокированы.",
 	"tags-update-add-not-allowed-one": "Тег \"$1\" не может быть добавлен вручную.",
 	"tags-update-add-not-allowed-multi": "{{PLURAL:$2|Следующий тег|Следующие теги}} нельзя добавлять вручную: $1",
 	"tags-update-remove-not-allowed-one": "Метка «$1» не может быть удалена.",
@@ -4193,5 +4194,7 @@
 	"table-of-contents-hide-button-aria-label": "Скрыть содержание",
 	"diff-usergroups": "$1 {{PLURAL:$1|группа участника|группы участника|групп участника}}",
 	"languageselector-no-results": "Ничего не найдено.",
-	"languageselector-invalid-input": "«$1» — некорректный язык."
+	"languageselector-invalid-input": "«$1» — некорректный язык.",
+	"mypage-disallowed-action": "По соображениям безопасности действие «$1» нельзя использовать на странице Special:MyPage.",
+	"import-upload-reauth-reupload": "Ваша личность подтверждена. Пожалуйста, снова выберите файл для импорта и отправьте его повторно."
 }

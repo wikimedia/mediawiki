@@ -3547,7 +3547,6 @@
 	"tags-apply-not-allowed-one": "标签“$1”不允许手动应用。",
 	"tags-apply-not-allowed-multi": "以下{{PLURAL:$2|标签}}不允许手动应用：$1",
 	"tags-update-no-permission": "您并无权限从个别修订或日志记录中添加或移除更改标签。",
-	"tags-update-blocked": "{{GENDER:$1|您}}不能在被封禁的情况下添加或移除更改标签。",
 	"tags-update-add-not-allowed-one": "标签“$1”不允许手动添加。",
 	"tags-update-add-not-allowed-multi": "以下{{PLURAL:$2|标签}}不允许手动添加：$1",
 	"tags-update-remove-not-allowed-one": "标签“$1”不允许移除。",
@@ -4230,5 +4229,7 @@
 	"table-of-contents-hide-button-aria-label": "隐藏目录",
 	"diff-usergroups": "$1个{{PLURAL:$1|用户组}}",
 	"languageselector-no-results": "未找到结果。",
-	"languageselector-invalid-input": "“$1”不是有效的语言。"
+	"languageselector-invalid-input": "“$1”不是有效的语言。",
+	"mypage-disallowed-action": "出于安全原因，Special:MyPage页面不能使用操作“$1”。",
+	"import-upload-reauth-reupload": "您的身份已验证。请再次选择您的导入文件并提交。"
 }

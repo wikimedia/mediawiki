@@ -2844,7 +2844,6 @@
 	"tags-apply-not-allowed-one": "Tegmerkii $1 ei sua azettua käzil.",
 	"tags-apply-not-allowed-multi": "Nämmii {{PLURAL:$2|tegmerkilöi}} ei sua azettua käzil: $1",
 	"tags-update-no-permission": "Sinul ei ole oigevuksii ližätä libo muuttua muutoksien tegmerkilöi erillizis versielöis libo žurnualoin kirjutuksis.",
-	"tags-update-blocked": "Sinul ei ole oigevuksii ližätä libo muuttua muutoksien tegmerkilöi, kuni {{GENDER:$1|olet}} lukitunnu.",
 	"tags-update-add-not-allowed-one": "Tegmerkii $1 ei sua ližätä käzil.",
 	"tags-update-add-not-allowed-multi": "Nämmii {{PLURAL:$2|tegmerkilöi}} ei sua azettua käzil: $1",
 	"tags-update-remove-not-allowed-one": "Tegmerkii $1 ei sua ottua iäre.",

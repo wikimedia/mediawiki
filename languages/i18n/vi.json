@@ -3382,7 +3382,6 @@
 	"tags-apply-not-allowed-one": "Thẻ “$1” không được phép được áp dụng thủ công.",
 	"tags-apply-not-allowed-multi": "{{PLURAL:$2|Thẻ|Các thẻ}} sau không được phép áp dụng thủ công: $1",
 	"tags-update-no-permission": "Bạn không có quyền thêm hoặc loại bỏ các thẻ thay đổi từ phiên bản riêng hoặc mục nhật trình.",
-	"tags-update-blocked": "{{GENDER:$1}}Bạn không thể gắn hoặc gỡ thẻ đánh dấu trong lúc bị cấm.",
 	"tags-update-add-not-allowed-one": "Thẻ “$1” không được phép thêm vào thủ công.",
 	"tags-update-add-not-allowed-multi": "{{PLURAL:$2|Thẻ|Các thẻ}} sau không được phép thêm thủ công: $1",
 	"tags-update-remove-not-allowed-one": "Thẻ đánh dấu “$1” không được phép loại bỏ.",

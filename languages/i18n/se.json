@@ -2930,7 +2930,6 @@
 	"tags-apply-not-allowed-one": "Gilkora \"$1\" ii sáhte lasihit manuálalaččat.",
 	"tags-apply-not-allowed-multi": "Čuovvovaš {{PLURAL:$2|gilkora|gilkoriid}} ii sáhte lasihit manuálalaččat: $1",
 	"tags-update-no-permission": "Dus eai leat vuoigatvuođat lasihit dahje sihkkut gilkoriid ovttaskas siidoveršuvnnain dahje loggamearkkastagain.",
-	"tags-update-blocked": "It sáhte lasihit dahje sihkkut rievdadangilkoriid, go {{GENDER:$1|don leat}} hehttejuvvon.",
 	"tags-update-add-not-allowed-one": "Gilkora \"$1\" ii sáhte lasihit manuálalaččat.",
 	"tags-update-add-not-allowed-multi": "Čuovvovaš {{PLURAL:$2|gilkora|gilkoriid}} ii sáhte lasihit manuálalaččat: $1",
 	"tags-update-remove-not-allowed-one": "Gilkora \"$1\" ii sáhte sihkkut.",

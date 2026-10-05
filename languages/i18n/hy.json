@@ -1884,7 +1884,6 @@
 	"tags-activate-submit": "Ակտիվացնել",
 	"tags-deactivate-reason": "Պատճառ՝",
 	"tags-deactivate-submit": "Ապաակտիվացնել",
-	"tags-update-blocked": "Դուք չեք կարող ավելացնել կամ հեռացնել թեգեր, քանի դեռ {{GENDER:$1|դուք}} արգելափակված եք",
 	"tags-edit-reason": "Պատճառ՝",
 	"tags-edit-nooldid-title": "Անվավեր նպատակային տարբերակ",
 	"tags-edit-nooldid-text": "Այս գործառույթը կատարելու համար Դուք կամ չեք նշել որևէ թիրախային տարբերակ, կամ նշված տարբերակը գոյություն չունի։",

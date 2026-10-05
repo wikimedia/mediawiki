@@ -3405,7 +3405,6 @@
 	"tags-apply-not-allowed-one": "Мітку «$1» не можна додавати вручну.",
 	"tags-apply-not-allowed-multi": "{{PLURAL:$2|Таку мітку|Такі мітки}} не можна додавати вручну: $1",
 	"tags-update-no-permission": "Ви не маєте права додавати або вилучати мітки окремих версій чи журнальних записів.",
-	"tags-update-blocked": "Ви не можете додавати чи вилучати теги редагувань, поки {{GENDER:$1|Вас}} заблоковано.",
 	"tags-update-add-not-allowed-one": "Мітку \"$1\" не можна додавати вручну.",
 	"tags-update-add-not-allowed-multi": "{{PLURAL:$2|Таку мітку|Такі мітки}} не можна додавати вручну: $1",
 	"tags-update-remove-not-allowed-one": "Мітку «$1» не дозволено вилучати.",

@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"GastonJeremiah"
+			"GastonJeremiah",
+			"Mayéna"
 		]
 	},
 	"pagecategories": "{{PLURAL:$1|Hawu|Hawii}}",
@@ -156,7 +157,7 @@
 	"loginreqlink": "jib l'nin",
 	"newarticletext": "Wadga b'tahgd kee kpah kan saa.\nKa-b bona b'hɛkaa,hoor ʋadgun(nyan[$1 wadga tɔrgm] tɔrgm boolm).\nKalbana bah loh na b'dan nah, lee kilkn ŋmɛɛtgm<strong>kaan</strong> Takŋa jugun.",
 	"anontalkpagetext": "----\n<em>N'ba zaŋt ɦii sͻgiiga wadgan ka Kpaɦ hida hoorb wadgan la ka kpaɦ zaŋa</em> kee.\nWeree ka,l' ba na t'zaŋ ɦa'IP adrɛsŋu saa na t'nyaan ɦuu.\nNibda kͻd baɦ ba' bee zaŋ Welee IP adrɛsŋu.\nKa' l' ba na{{GENDER:|}} {{GENDER:|zaŋta}} yen wii n ka-n nyaan na gwɛɛt tiit daa-n l'ba na n ba' gbam tii, nii-n bee [[Special:CreateAccount|hoor n'hidr]] la [[Special:UserLogin|n'koɦoo-t]]na n'kpɛɛ titmb n zaŋt jenba su ka goor.",
-	"noarticletext": "Gwɛɛtiit kpah wadgan keenan.\nBa' b bee [[Special:Search/{{PAGENAME}}| b'bag wadgan-n kena]] wadbohliin,\n<span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|wadga={{FULLPAGENAMEE}}}} bag tirnt wadgii],\nla [{{fullurl:{{FULLPAGENAME}}|action=edit}}b'hɛh wadga]</span>.",
+	"noarticletext": "Gwɛɛtiit kpah wadgan keenan.\nBa' b bee [[Special:Search/{{PAGENAME}}| b'bag wadgan-n kena]] wadbohliin,\n<span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|wadga={{FULLPAGENAMEE}}}} bag tirnt wadgii],\nla [{{fullurl:{{urlencodeFULLPAGENAME}}|action=edit}}b'hɛh wadga]</span>.",
 	"noarticletext-nopermission": "Gwɛɛtiit kpah wadgan keenan.\nBa' b bee [[Special:Search/{{PAGENAME}}| b'bag wadgan-n kena]] wadbohliin,\n<span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|wadga={{FULLPAGENAMEE}}}} bag tirnt wadgii],\nla [{{fullurl:{{FULLPAGENAME}}|action=edit}}b'hɛh wadga]</span>.",
 	"userpage-userdoesnotexist-view": "Zaŋta hidr hoorlaŋa \"$1\" kpah kan",
 	"clearyourcache": "<strong>Gwɛɛt:</strong> ka b'diɦ gwɛɛt faam, l'ba na b' hee tulgm b' baɦgb kalaŋa na b'nyan lagiib.\n* <strong>Firefox / Safari:</strong> ɦig b'mad <em>Shift</em> ka kilkŋa <em>Reload</em>, la ka faada <em>Ctrl-F5</em> la <em>Ctrl-R</em> (<em>⌘-R</em> Mac jugun)\n* <strong>Google Chrome:</strong> ɦig <em>Ctrl-Shift-R</em> (<em>⌘-Shift-R</em> Mac jugun)\n* <strong>Internet Explorer / Edge:</strong> ɦig b'mad <em>Ctrl</em> ka kilkŋa <em>jana reet</em>, la faad <em>Ctrl-F5</em> jugun\n* <strong>Opera:</strong> faad  <em>Ctrl-F5</em> jugun.",
@@ -224,12 +225,12 @@
 	"search-suggest": "Bonah b'biir nah: $1",
 	"search-interwiki-more": "(jeengu)",
 	"searchall": "Mɛngu",
-	"search-showingresults": "{{PLURAL:$4|Yuuŋb <strong>$1</strong> na <strong>$3</strong>|Yuuŋb<strong>$1 na $2</strong> jugun <strong>$3</strong>}}",
+	"search-showingresults": "{{PLURAL:$4|1=Yuuŋb <strong>$1</strong> na <strong>$3</strong>|Yuuŋb<strong>$1 na $2</strong> jugun <strong>$3</strong>}}",
 	"search-nonefound": "leedgm miim kpaɦ tuur-n gbam-bii",
 	"mypreferences": "B'sɔkla bii",
 	"rightslog": "Zaŋta hɛb kalaŋa wad",
 	"skin-action-addsection": "Hewlb gwɛɛtjugu",
-	"enhancedrc-history": "Weem gwɛɛt",
+	"enhancedrc-history": "Weem",
 	"recentchanges": "Lagiib kwɛkwɛɛlb",
 	"recentchanges-summary": "Tagd lagiib kwɛkwɛɛlb wadga-n keena jugun",
 	"recentchanges-noresult": "Lagiib bii kpah n turnt n ŋmɛɛgt Ghana jugun",

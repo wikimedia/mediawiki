@@ -2861,7 +2861,6 @@
 	"tags-apply-not-allowed-one": " \"$1\" тегез киын бичаса кутыны уг луы.",
 	"tags-apply-not-allowed-multi": "Кайтазэ тегез {{PLURAL:$2|is|tags are}} киын бичаса кутыны уг луы: $1",
 	"tags-update-no-permission": "Нимазъям тупатъянъёсысь яке журналэ гожтэмъёсысь воштэт тегъёсты ватсалляны яке ӵушылыны тӥляд лэзетты ӧвӧл.",
-	"tags-update-blocked": "Тӥ уд быгатӥське ватсалляны яке чушылыны  воштэт тегъёсты, ворсэтын ке {{GENDER:$1|тӥ}} .",
 	"tags-update-add-not-allowed-one": " \"$1\" тегез киын бичаса ватсаны уг луы.",
 	"tags-update-add-not-allowed-multi": "Кайтазэ тегез {{PLURAL:$2|is|tags are}} киын бичаса ватсаны уг луы: $1",
 	"tags-update-remove-not-allowed-one": "\"$1\" тегез ӵушыны уг луы.",

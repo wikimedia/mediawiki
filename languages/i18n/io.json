@@ -2817,7 +2817,6 @@
 	"tags-activate-reason": "Motivo:",
 	"tags-activate-not-found": "L'etiketo \"$1\" ne existas.",
 	"tags-deactivate-reason": "Motivo:",
-	"tags-update-blocked": "Dum ke {{GENDER:$1|vu}} blokusabos, vu ne povos modifikar od efacar etiketi.",
 	"tags-edit-existing-tags-none": "<em>Nulo</em>",
 	"tags-edit-chosen-no-results": "Trovesis nula etiketo qua koincidas kun to",
 	"tags-edit-reason": "Motivo:",

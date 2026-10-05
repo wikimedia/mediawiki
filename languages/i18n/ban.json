@@ -3315,7 +3315,6 @@
 	"tags-apply-not-allowed-one": "Cihna \"$1\" tan kalugra antuk katerapang sacara manual.",
 	"tags-apply-not-allowed-multi": "{{PLURAL:$2|Tag}} puniki nénten kalugra antuk katerapang sacara manual: $1",
 	"tags-update-no-permission": "Ragané nénten madué lugra antuk ngawewehin utawi ngusap pagentosan tag saking révisi utawi majingan log ngaraga.",
-	"tags-update-blocked": "Ragané ten prasida ngaweweh utawi ngusap pagentosan tag ritatkala {{GENDER:$1|Ragané}} kacadel.",
 	"tags-update-add-not-allowed-one": "Cihna \"$1\" tan kalugra antuk kawewehin sacara manual.",
 	"tags-update-add-not-allowed-multi": "Puniki {{PLURAL:$2|cihna|cihna-cihna}} sané tan kalugra antuk kawewehin sacara manual: $1",
 	"tags-update-remove-not-allowed-one": "Cihna \"$1\" tan kalugra antuk kausap.",

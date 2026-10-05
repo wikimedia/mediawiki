@@ -3351,7 +3351,6 @@
 	"tags-apply-not-allowed-one": "Značku „$1“ není dovoleno ručně přidávat.",
 	"tags-apply-not-allowed-multi": "Následující {{PLURAL:$2|značku|značky}} není dovoleno ručně přidávat: $1",
 	"tags-update-no-permission": "Nemáte oprávnění přidávat libovolné značky na jednotlivé revize a protokolovací záznamy a odebírat je",
-	"tags-update-blocked": "Nemůžete přidávat nebo odebírat značky, když jste {{GENDER:$1|zablokován|zablokována|zablokováni}}.",
 	"tags-update-add-not-allowed-one": "Značku „$1“ není dovoleno ručně přidávat.",
 	"tags-update-add-not-allowed-multi": "Následující {{PLURAL:$2|značku|značky}} není dovoleno ručně přidávat: $1",
 	"tags-update-remove-not-allowed-one": "Značku „$1“ není dovoleno odebírat.",
@@ -4034,5 +4033,7 @@
 	"table-of-contents-hide-button-aria-label": "Skrýt obsah",
 	"diff-usergroups": "$1 {{PLURAL:$1|uživatelské skupiny|uživatelské skupiny|uživatelských skupin}}",
 	"languageselector-no-results": "Nenalezeny žádné výsledky.",
-	"languageselector-invalid-input": "„$1“ není platný jazyk."
+	"languageselector-invalid-input": "„$1“ není platný jazyk.",
+	"mypage-disallowed-action": "Z bezpečnostních důvodů nelze na stránku Speciální:Moje stránka použít akci „$1“.",
+	"import-upload-reauth-reupload": "Vaše identita byla ověřena. Znovu prosím vyberte svůj importní soubor a odešlete jej znovu."
 }

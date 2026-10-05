@@ -2831,7 +2831,6 @@
 	"tags-apply-not-allowed-one": "L'eticheta \"$1\" la po minga vesser aplicada a man.",
 	"tags-apply-not-allowed-multi": "{{PLURAL:$2|Quel'eticheta chì la po minga vesser aplicada|'Sti etichete chì i poden minga vesser aplicade}}  manualment: $1",
 	"tags-update-no-permission": "Te gh'hee minga el permess de sgiontà o de toeu via i etichete de modifega d'una version o vos de register.",
-	"tags-update-blocked": "Te podet minga sgiontà o toeu via i etichete de modifega intanta che {{GENDER:$1|te seet blocad|te see blocada}}.",
 	"tags-update-add-not-allowed-one": "L'eticheta \"$1\" la po vesser minga sgiontada a man.",
 	"tags-update-add-not-allowed-multi": "{{PLURAL:$2|Quel'eticheta chì la po minga vesser sgiontada|Chi etichete chì i poden minga vesser sgintade}} a man: $1",
 	"tags-update-remove-not-allowed-one": "L'eticheta \"$1\" a se po toeula minga via.",
