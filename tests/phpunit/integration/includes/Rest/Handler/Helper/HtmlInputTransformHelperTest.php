@@ -116,7 +116,7 @@ class HtmlInputTransformHelperTest extends MediaWikiIntegrationTestCase {
 
 	private static function getJsonFromFile( string $name ): array {
 		$text = self::getTextFromFile( $name );
-		return json_decode( $text, JSON_OBJECT_AS_ARRAY );
+		return json_decode( $text, true );
 	}
 
 	public static function provideRequests() {

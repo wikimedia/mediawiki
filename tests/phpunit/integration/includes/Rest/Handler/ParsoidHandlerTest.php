@@ -330,7 +330,7 @@ class ParsoidHandlerTest extends MediaWikiIntegrationTestCase {
 
 	private static function getJsonFromFile( string $name ): array {
 		$text = self::getTextFromFile( $name );
-		return json_decode( $text, JSON_OBJECT_AS_ARRAY );
+		return json_decode( $text, true );
 	}
 
 	// Mostly lifted from the contentTypeMatcher in tests/api-testing/REST/Transform.js
@@ -1666,7 +1666,7 @@ class ParsoidHandlerTest extends MediaWikiIntegrationTestCase {
 		$body->rewind();
 		$pbJson = $body->getContents();
 
-		$pbData = json_decode( $pbJson, JSON_OBJECT_AS_ARRAY );
+		$pbData = json_decode( $pbJson, true );
 		$html = $pbData['html']['body']; // HTML with data-parsoid stripped out
 
 		// Got HTML, now convert back
@@ -1715,7 +1715,7 @@ class ParsoidHandlerTest extends MediaWikiIntegrationTestCase {
 		$body->rewind();
 		$pbJson = $body->getContents();
 
-		$pbData = json_decode( $pbJson, JSON_OBJECT_AS_ARRAY );
+		$pbData = json_decode( $pbJson, true );
 		$html = $pbData['html']['body']; // HTML with data-parsoid stripped out
 
 		// Got HTML, now convert back
@@ -2163,7 +2163,7 @@ class ParsoidHandlerTest extends MediaWikiIntegrationTestCase {
 		}
 
 		// HACK: try to parse as json, just in case:
-		$jsonData = json_decode( $data, JSON_OBJECT_AS_ARRAY );
+		$jsonData = json_decode( $data, true );
 
 		foreach ( $expectedData as $index => $exp ) {
 			if ( is_int( $index ) ) {
@@ -2339,7 +2339,7 @@ class ParsoidHandlerTest extends MediaWikiIntegrationTestCase {
 		$body->rewind();
 		$data = $body->getContents();
 
-		$jsonData = json_decode( $data, JSON_OBJECT_AS_ARRAY );
+		$jsonData = json_decode( $data, true );
 
 		$this->assertIsArray( $jsonData );
 		$this->assertStringContainsString( "not wikitext", $jsonData['html']['body'] );

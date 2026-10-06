@@ -107,7 +107,7 @@ class ApiStructureTest extends MediaWikiIntegrationTestCase {
 			foreach ( self::$testGlobals as $globals ) {
 				$g = [];
 				foreach ( $globals as $k => $v ) {
-					$g[] = "$k=" . var_export( $v, 1 );
+					$g[] = "$k=" . var_export( $v, true );
 				}
 				$k = "Module $path with " . implode( ', ', $g );
 				$ret[$k] = [ $path, $globals ];
