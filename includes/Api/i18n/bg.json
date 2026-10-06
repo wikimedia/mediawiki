@@ -34,7 +34,7 @@
 	"apihelp-expandtemplates-param-title": "Заглавие на страница.",
 	"apihelp-feedcontributions-param-year": "От година (и по-рано).",
 	"apihelp-feedcontributions-param-month": "От месец (и по-рано).",
-	"apihelp-feedcontributions-param-tagfilter": "Филтриране на приноси, които имат тези етикети.",
+	"apihelp-feedcontributions-param-tagfilter": "Показване само на приноси, които имат тези етикети.",
 	"apihelp-feedcontributions-param-deletedonly": "Показване само на изтритите приноси.",
 	"apihelp-feedcontributions-param-newonly": "Показване само на редакции за създаване на страници.",
 	"apihelp-feedcontributions-param-hideminor": "Скриване на малки промени.",

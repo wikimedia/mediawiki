@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Ar choler",
 			"Fohanno",
 			"Fulup",
 			"Huñvreüs",
@@ -339,7 +340,7 @@
 	"exif-iimcategory-rel": "Relijion ha kredennoù",
 	"exif-iimcategory-sci": "Skiantoù ha teknologiezhoù",
 	"exif-iimcategory-soi": "Temoù kevredigezhel",
-	"exif-iimcategory-spo": "Sport",
+	"exif-iimcategory-spo": "Sportoù",
 	"exif-iimcategory-war": "Brezelioù, tabutoù ha turmud",
 	"exif-iimcategory-wea": "Amzer",
 	"exif-urgency-normal": "Normal ($1)",

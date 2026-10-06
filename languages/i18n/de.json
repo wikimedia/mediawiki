@@ -154,6 +154,7 @@
 	"index-category": "Seiten, die indexiert werden können",
 	"noindex-category": "Seiten, die nicht indexiert werden können",
 	"broken-file-category": "Seiten mit defekten Dateilinks",
+	"category-header-strokes": "$1 {{PLURAL:$1|Strich|Striche}}",
 	"about": "Über",
 	"article": "Seite",
 	"newwindow": "(wird in einem neuen Fenster geöffnet)",
