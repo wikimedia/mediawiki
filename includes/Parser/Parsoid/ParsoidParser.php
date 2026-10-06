@@ -213,9 +213,6 @@ class ParsoidParser /* eventually this will extend \Parser */ {
 	 * @internal
 	 */
 	public function addMetadata( ParserOutput $parserOutput, PageConfig $pageConfig ): ParserOutput {
-		// Add Parsoid skinning module
-		$parserOutput->addModuleStyles( [ 'mediawiki.skinning.content.parsoid' ] );
-
 		// (T10068) Allow control over whether robots index a page.
 		# __NOINDEX__ always overrides __INDEX__, see T16899
 		foreach ( [ 'noindex', 'index' ] as $indexSwitch ) {

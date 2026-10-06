@@ -762,6 +762,8 @@ because of Phabricator reports.
   deprecation warnings. Use the lock manager service instead.
 * PrefixSearch (and the corresponding StringPrefixSearch/TitlePrefixSearch) have
   been deprecated. Use SearchEngine::completionSearch() instead.
+* The ResourceLoader module mediawiki.skinning.content.parsoid has been
+  deprecated. Please remove usages.
 * Title::estimateRevisionCount() is unused and has been deprecated.
 * …
 

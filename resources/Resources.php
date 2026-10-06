@@ -87,14 +87,13 @@ return [
 	],
 
 	'mediawiki.skinning.content.parsoid' => [
+		'deprecated' => '[1.47] Skins already provide these styles. Do not add this module.',
 		// Style Parsoid HTML+RDFa output consistent with wikitext from PHP parser
 		// with the interface.css styles; skinStyles should be used if your
 		// skin over-rides common content styling.
 		'skinStyles' => [
 			'default' => [
-				'resources/src/mediawiki.skinning/content.parsoid.less',
-				'resources/src/mediawiki.skinning/content.media-common.less',
-				'resources/src/mediawiki.skinning/content.media-screen.less',
+				'resources/src/mediawiki.skinning/mediawiki.skinning.content.parsoid.less',
 			],
 		],
 	],
