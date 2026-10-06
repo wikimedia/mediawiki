@@ -259,6 +259,7 @@
 	"readonly": "Database locked",
 	"enterlockreason": "Enter reason for de lock, wey you sanso go add estimate of wen de lock go be released.",
 	"readonlytext": "Rydii dem lock de database go fresh entries den oda changes, somtyms e dey happen for routine database maintenance, wey after, e go go back to normal.\n\nDe system administrator wey lock am give dis explanation: $1",
+	"missing-article": "De database no find de text of a page wey na e for find, dem name \"$1\" $2.\n\nDis usually be caused by following an outdated diff anaa history link to a page wey na e be deleted.\n\nIf dis no be de case, you fi find a bug insyd de software.\nPlease report dis to an [[Special:ListUsers/sysop|administrator]], making note of de URL.",
 	"missingarticle-rev": "(nsakraeɛ#: $1)",
 	"missingarticle-diff": "(Diff: $1, $2)",
 	"timeouterror": "Server timed out",

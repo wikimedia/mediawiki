@@ -134,7 +134,8 @@
 			"Talex42",
 			"IWL04",
 			"NguoiDungKhongDinhDanh",
-			"DraconicDark"
+			"DraconicDark",
+			"TigerZhang"
 		]
 	},
 	"sunday": "Sonntag",
@@ -4185,5 +4186,6 @@
 	"benefit-3-description": "Voreinstellungen, mit denen du dein Konto individuell gestalten kannst.",
 	"temp-user-unable-to-acquire": "Es ist nicht möglich, einen temporären Benutzernamen für das Konto zu erstellen. Bitte versuche es erneut.",
 	"table-of-contents-show-button-aria-label": "Inhaltsverzeichnis anzeigen",
-	"table-of-contents-hide-button-aria-label": "Inhaltsverzeichnis ausblenden"
+	"table-of-contents-hide-button-aria-label": "Inhaltsverzeichnis ausblenden",
+	"mypage-disallowed-action": "Aus Sicherheitsgründen kann die Aktion „$1“ auf der Seite Spezial:MyPage nicht verwendet werden."
 }

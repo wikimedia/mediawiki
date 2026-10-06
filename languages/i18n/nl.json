@@ -120,7 +120,8 @@
 			"ABPMAB",
 			"Elphie",
 			"Erik Baas",
-			"XXBlackburnXx"
+			"XXBlackburnXx",
+			"Ciell"
 		]
 	},
 	"sunday": "zondag",
@@ -2611,7 +2612,7 @@
 	"blockipsuccesstext": "[[Special:Contributions/$1|$1]] is geblokkeerd.<br />\nZie de [[Special:BlockList|blokkadelijst]] voor recente blokkades.",
 	"ipb-empty-block": "De opgegeven blokkade legt geen beperkingen op.",
 	"ipb-block-not-found": "Het blokkeren is niet gelukt, waarschijnlijk omdat een andere beheerder tegelijkertijd probeerde deze gebruiker te blokkeren. Controleer de blokkeringsstatus en probeer het opnieuw.",
-	"ipb-blockingself": "U staat op het punt uzelf te blokkeren. Weet u zeker dat u dat wilt doen?",
+	"ipb-blockingself": "Je staat op het punt jezelf te blokkeren! Weet je zeker dat je dat wilt?",
 	"ipb-confirmhideuser": "U staat op het punt een gebruiker te blokkeren met de optie \"gebruiker verbergen\". Hiermee wordt de gebruikersnaam in alle lijsten en logboekregels verborgen. Weet u het zeker?",
 	"ipb-confirmaction": "Weet u zeker dat u dit wilt doen? Selecteer dan het selectievakje \"{{int:ipb-confirm}}\" hieronder.",
 	"ipb-edit-dropdown": "Redenen voor blokkeren bewerken",
@@ -4165,5 +4166,6 @@
 	"benefit-3-description": "Voorkeuren, waarmee u uw account naar uw hand kunt zetten.",
 	"temp-user-unable-to-acquire": "Het is niet gelukt een gebruikersnaam voor het tijdelijke account te verkrijgen. Probeer het opnieuw.",
 	"table-of-contents-show-button-aria-label": "Inhoudsopgave weergeven",
-	"table-of-contents-hide-button-aria-label": "Inhoudsopgave verbergen"
+	"table-of-contents-hide-button-aria-label": "Inhoudsopgave verbergen",
+	"mypage-disallowed-action": "Om veiligheidsredenen kan de handeling \"$1\" niet worden gebruikt op de pagina Special:MyPage."
 }

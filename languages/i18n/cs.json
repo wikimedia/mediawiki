@@ -4163,5 +4163,6 @@
 	"benefit-3-description": "Nastavení, které vám umožní přizpůsobit si prožitek.",
 	"temp-user-unable-to-acquire": "Nebylo vám možné přidělit dočasný uživatelský účet. Zkuste to prosím znovu později.",
 	"table-of-contents-show-button-aria-label": "Zobrazit obsah",
-	"table-of-contents-hide-button-aria-label": "Skrýt obsah"
+	"table-of-contents-hide-button-aria-label": "Skrýt obsah",
+	"mypage-disallowed-action": "Z bezpečnostních důvodů nelze na stránku Speciální:Moje stránka použít akci „$1“."
 }

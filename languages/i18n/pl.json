@@ -4208,5 +4208,6 @@
 	"benefit-3-description": "Preferencje pozwalające dostosować Twoje korzystanie z projektu.",
 	"temp-user-unable-to-acquire": "Nie udało się uzyskać nazwy tymczasowego konta użytkownika. Spróbuj ponownie.",
 	"table-of-contents-show-button-aria-label": "Pokaż spis treści",
-	"table-of-contents-hide-button-aria-label": "Ukryj spis treści"
+	"table-of-contents-hide-button-aria-label": "Ukryj spis treści",
+	"mypage-disallowed-action": "Ze względów bezpieczeństwa, akcja „$1” nie może zostać użyta na stronie {{#special:MyPage}}."
 }

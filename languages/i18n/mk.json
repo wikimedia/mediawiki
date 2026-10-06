@@ -4168,5 +4168,6 @@
 	"benefit-3-description": "Нагодувања со кои можете да го прилагодите вашето доживување.",
 	"temp-user-unable-to-acquire": "Не можев да го добијам корисничкото име за привремена сметка. Обидете се повторно.",
 	"table-of-contents-show-button-aria-label": "Прикажи ја Содржината",
-	"table-of-contents-hide-button-aria-label": "Скриј ја Соодржината"
+	"table-of-contents-hide-button-aria-label": "Скриј ја Соодржината",
+	"mypage-disallowed-action": "Од безбедносни пречини „$1“ не може да се користи на страницата Special:MyPage."
 }

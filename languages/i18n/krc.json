@@ -3181,7 +3181,6 @@
 	"colon-separator": ":&#32;",
 	"ellipsis": "...",
 	"percent": "$1%",
-	"parentheses": "($1)",
 	"brackets": "[$1]",
 	"brackets-start": "[",
 	"brackets-end": "]",

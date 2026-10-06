@@ -3592,5 +3592,6 @@
 	"benefit-3-description": "Dookhyada kuu oggolaanaya inaad habeyso khibraddaada.",
 	"temp-user-unable-to-acquire": "Lama helin magac koonto ku-meelgaar ah. Fadlan mar kale isku day.",
 	"table-of-contents-show-button-aria-label": "Muuji jadwalka waxyaabaha ku jira",
-	"table-of-contents-hide-button-aria-label": "Qari tusmada waxyaabaha ku jira"
+	"table-of-contents-hide-button-aria-label": "Qari tusmada waxyaabaha ku jira",
+	"mypage-disallowed-action": "Sababo amni awgood, ficilka \"$1\" laguma isticmaali karo bogga Special:MyPage."
 }

@@ -2483,7 +2483,7 @@
 	"whatlinkshere-count": "{{PLURAL:$1|Amósase $1 elemento|Amósanse $1 elementos}}.",
 	"whatlinkshere-title": "Páxinas que ligan con «$1»",
 	"whatlinkshere-page": "Páxina:",
-	"linkshere": "As seguintes páxinas ligan con <strong>$2</strong>:",
+	"linkshere": "As seguintes páxinas ligan con «<strong>$2</strong>»:",
 	"nolinkshere": "Ningunha páxina liga con «<strong>$2</strong>».",
 	"nolinkshere-filter": "Ningunha páxina liga con <strong>$2</strong> coa configuración de busca actual.",
 	"nolinkshere-ns": "Ningunha páxina liga con «<strong>$2</strong>» no espazo de nomes elixido.",
@@ -4105,5 +4105,6 @@
 	"benefit-3-description": "Preferencias que che permiten personalizar a túa experiencia.",
 	"temp-user-unable-to-acquire": "Non se puido adquirir un nome de usuario para a conta temporal. Inténtao de novo.",
 	"table-of-contents-show-button-aria-label": "Amosar a táboa de contidos",
-	"table-of-contents-hide-button-aria-label": "Agochar a táboa de contidos"
+	"table-of-contents-hide-button-aria-label": "Agochar a táboa de contidos",
+	"mypage-disallowed-action": "Por motivos de seguridade, non se pode efectuar a acción «$1» na páxina «Special:MyPage»."
 }
