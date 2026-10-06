@@ -138,11 +138,6 @@ $( () => {
 		mw.hook( 'wikipage.diff' ).fire( $nodes.eq( 0 ) );
 	}
 
-	$( '#t-print a' ).on( 'click', ( e ) => {
-		window.print();
-		e.preventDefault();
-	} );
-
 	const $permanentLink = $( '#t-permalink a' );
 	function updatePermanentLinkHash() {
 		if ( mw.util.getTargetFromFragment() ) {

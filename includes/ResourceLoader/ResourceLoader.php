@@ -22,7 +22,6 @@ use MediaWiki\Html\Html;
 use MediaWiki\Html\HtmlJsCode;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
-use MediaWiki\Output\OutputPage;
 use MediaWiki\Profiler\ProfilingContext;
 use MediaWiki\Registration\ExtensionRegistry;
 use MediaWiki\Request\HeaderCallback;
@@ -1481,11 +1480,11 @@ MESSAGE;
 	 * Combines an associative array mapping media type to CSS into a
 	 * single stylesheet with "@media" blocks.
 	 *
+	 * @internal For use by ResourceLoader and Installer
 	 * @param array<string,string|string[]> $stylePairs Map from media type to CSS string(s)
-	 * @param WebRequest $request
 	 * @return string[] CSS strings
 	 */
-	public static function makeCombinedStyles( array $stylePairs, WebRequest $request ) {
+	public static function makeCombinedStyles( array $stylePairs ) {
 		$out = [];
 		foreach ( $stylePairs as $media => $styles ) {
 			// FileModule::getStyle can return the styles as a string or an
@@ -1497,9 +1496,6 @@ MESSAGE;
 				if ( $style === '' ) {
 					continue;
 				}
-				// Transform the media type based on request params and config
-				// The way that this relies on $wgRequest to propagate request params is slightly evil
-				$media = OutputPage::transformCssMedia( $media, $request );
 
 				if ( $media === '' || $media == 'all' ) {
 					$out[] = $style;
@@ -1829,7 +1825,7 @@ MESSAGE;
 			$context->getVersion(),
 			$context->getDebug(),
 			$context->getOnly(),
-			$context->getRequest()->getBool( 'printable' ),
+			null,
 			null,
 			$extraQuery
 		);
@@ -1846,14 +1842,14 @@ MESSAGE;
 	 * @param string|null $version
 	 * @param int $debug
 	 * @param string|null $only
-	 * @param bool $printable
+	 * @param bool|null $printable Unused as of MW 1.47
 	 * @param bool|null $handheld Unused as of MW 1.38
 	 * @param array $extraQuery
 	 * @return array
 	 */
 	public static function makeLoaderQuery( array $modules, $lang, $skin, $user = null,
 		$version = null, $debug = Context::DEBUG_OFF, $only = null,
-		$printable = false, $handheld = null, array $extraQuery = []
+		$printable = null, $handheld = null, array $extraQuery = []
 	) {
 		$query = [
 			'modules' => self::makePackedModulesString( $modules ),
@@ -1879,9 +1875,6 @@ MESSAGE;
 		}
 		if ( $only !== null ) {
 			$query['only'] = $only;
-		}
-		if ( $printable ) {
-			$query['printable'] = 1;
 		}
 		foreach ( $extraQuery as $name => $value ) {
 			$query[$name] = $value;

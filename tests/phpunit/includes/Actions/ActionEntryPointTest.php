@@ -212,6 +212,20 @@ class ActionEntryPointTest extends MediaWikiIntegrationTestCase {
 				'redirect' => false,
 			],
 			[
+				// View: Index with legacy printable parameter (T259141)
+				'url' => 'http://example.org/w/index.php?title=Foo_Bar&printable=yes',
+				'query' => [ 'title' => 'Foo_Bar', 'printable' => 'yes' ],
+				'title' => 'Foo_Bar',
+				'redirect' => 'http://example.org/wiki/Foo_Bar',
+			],
+			[
+				// View: Index with unknown query parameter
+				'url' => 'http://example.org/w/index.php?title=Foo_Bar&foo=bar',
+				'query' => [ 'foo' => 'bar' ],
+				'title' => 'Foo_Bar',
+				'redirect' => false,
+			],
+			[
 				// Edit: Index with action query
 				'url' => 'http://example.org/w/index.php?title=Foo_Bar&action=edit',
 				'query' => [ 'title' => 'Foo_Bar', 'action' => 'edit' ],

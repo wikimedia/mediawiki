@@ -1101,16 +1101,6 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 		];
 	}
 
-	public function testPrintable() {
-		$op = $this->newInstance();
-
-		$this->assertFalse( $op->isPrintable() );
-
-		$op->setPrintable();
-
-		$this->assertTrue( $op->isPrintable() );
-	}
-
 	public function testDisable() {
 		$op = $this->newInstance();
 
@@ -2962,70 +2952,6 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 				'/images/test.jpg',
 				'/images/test.jpg?edcf2'
 			],
-		];
-	}
-
-	/** @dataProvider provideTransformCssMedia */
-	protected function testTransformCssMedia( $queryData, $media, $expectedReturn ) {
-		$fauxRequest = new FauxRequest( $queryData, false );
-
-		$actualReturn = OutputPage::transformCssMedia( $media, $fauxRequest );
-		$this->assertSame( $expectedReturn, $actualReturn );
-	}
-
-	public static function provideTransformCssMedia() {
-		yield 'On printable request, screen returns null' => [
-			'queryData' => [ 'printable' => '1' ],
-			'media' => 'screen',
-			'expectedReturn' => null,
-		];
-
-		yield 'On printable request, screen media query returns null' => [
-			'queryData' => [ 'printable' => '1' ],
-			'media' => self::SCREEN_MEDIA_QUERY,
-			'expectedReturn' => null,
-		];
-
-		yield 'On printable request, screen media query with only returns null' => [
-			'queryData' => [ 'printable' => '1' ],
-			'media' => self::SCREEN_ONLY_MEDIA_QUERY,
-			'expectedReturn' => null,
-		];
-
-		yield 'On printable request, media print returns empty string' => [
-			'queryData' => [ 'printable' => '1' ],
-			'media' => 'print',
-			'expectedReturn' => '',
-		];
-
-		yield 'On screen request, screen media type is preserved' => [
-			'queryData' => [],
-			'media' => 'screen',
-			'expectedReturn' => 'screen',
-		];
-
-		yield 'On screen request, handheld media type is preserved' => [
-			'queryData' => [],
-			'media' => 'handheld',
-			'expectedReturn' => 'handheld',
-		];
-
-		yield 'On screen request, screen media query is preserved.' => [
-			'queryData' => [],
-			'media' => self::SCREEN_MEDIA_QUERY,
-			'expectedReturn' => self::SCREEN_MEDIA_QUERY,
-		];
-
-		yield 'On screen request, screen media query with only is preserved.' => [
-			'queryData' => [],
-			'media' => self::SCREEN_ONLY_MEDIA_QUERY,
-			'expectedReturn' => self::SCREEN_ONLY_MEDIA_QUERY,
-		];
-
-		yield 'On screen request, print media type is preserved' => [
-			'queryData' => [],
-			'media' => 'print',
-			'expectedReturn' => 'print',
 		];
 	}
 

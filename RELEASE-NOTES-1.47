@@ -462,9 +462,6 @@ because of Phabricator reports.
   - addParserOutputContent: requires non-null ParserOptions (1.44)
   - addParserOutputText: requires string first argument (1.42)
   - addParserOutput: requires non-null ParserOptions (1.44)
-  - transformCssMedia: requires non-null WebRequest as 2nd argument (1.46)
-* ResourceLoader::makeCombinedStyles() now requires a non-null WebRequest
-  as its 2nd argument (deprecated in 1.46)
 * The unused method SpecialVersion::getVersionLinked, deprecated in 1.46, has
   been removed.
 * The ConditionalDefaultOptionsAddCondition hook, deprecated in 1.46, has been
@@ -634,6 +631,9 @@ because of Phabricator reports.
 * The "MainWANObjectCache" service and MediaWikiServices::getMainWANObjectCache
   method have been deprecated. Inject the "WANObjectCache" service name
   or call MediaWikiServices::getWANObjectCache instead.
+* OutputPage::setPrintable, OutputPage::isPrintable, and
+  OutputPage::transformCssMedia are no longer needed per T259141 and have been
+  deprecated without replacement.
 * QuickTemplate::msg() and QuickTemplate::haveMsg() got deprecated and shouldn't
   be used any more.
 * The shell global functions wfEscapeShellArg(), wfShellExec(),

@@ -371,10 +371,6 @@ class ActionEntryPoint extends MediaWikiEntryPoint {
 		$request = $context->getRequest();
 		$output = $context->getOutput();
 
-		if ( $request->getRawVal( 'printable' ) === 'yes' ) {
-			$output->setPrintable();
-		}
-
 		$user = $context->getUser();
 		$title = $context->getTitle();
 		$requestTitle = $title;
@@ -558,6 +554,16 @@ class ActionEntryPoint extends MediaWikiEntryPoint {
 	protected function tryNormaliseRedirect( Title $title ): bool {
 		$request = $this->getRequest();
 		$output = $this->getOutput();
+
+		if ( $request->getRawVal( 'printable' ) === 'yes'
+			&& ( $request->getRawVal( 'action' ) ?? 'view' ) === 'view'
+			&& $request->getCheck( 'title' )
+		) {
+			// Optimization: Replace popular deprecated URL with cheap and cacheable redirect (T259141)
+			$output->setCdnMaxage( 1200 );
+			$output->redirect( $title->getFullURL(), '301' );
+			return true;
+		}
 
 		if ( ( $request->getRawVal( 'action' ) ?? 'view' ) !== 'view'
 			|| $request->wasPosted()

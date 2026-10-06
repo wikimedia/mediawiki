@@ -140,12 +140,6 @@ class OutputPage extends ContextSource {
 	private $mHasCopyright = false;
 
 	/**
-	 * @var bool We have to set isPrintable(). Some pages should
-	 * never be printed (ex: redirections).
-	 */
-	private $mPrintable = false;
-
-	/**
 	 * @var ?TOCData Table of Contents information from ParserOutput, or
 	 *   null if no TOCData was ever set.
 	 */
@@ -1362,20 +1356,18 @@ class OutputPage extends ContextSource {
 	}
 
 	/**
-	 * Set the page as printable, i.e. it'll be displayed with all
-	 * print styles included
+	 * @deprecated since 1.47 No longer needed per T259141
 	 */
 	public function setPrintable() {
-		$this->mPrintable = true;
+		wfDeprecated( __METHOD__, '1.47' );
 	}
 
 	/**
-	 * Return whether the page is "printable"
-	 *
+	 * @deprecated since 1.47 No longer needed per T259141
 	 * @return bool
 	 */
 	public function isPrintable() {
-		return $this->mPrintable;
+		return false;
 	}
 
 	/**
@@ -3550,9 +3542,7 @@ class OutputPage extends ContextSource {
 				$this->getSkin()->getSkinName(),
 				$this->getUser()->isRegistered() ? $this->getUser()->getName() : null,
 				null, // version; not relevant
-				$this->inDebugMode(),
-				null, // only; not relevant
-				$this->isPrintable()
+				$this->inDebugMode()
 			);
 			$this->rlClientContext = new RL\Context(
 				$this->getResourceLoader(),
@@ -4820,39 +4810,13 @@ class OutputPage extends ContextSource {
 	}
 
 	/**
-	 * Transform "media" attribute based on request parameters
-	 *
-	 * @param string $media Current value of the "media" attribute
-	 * @param WebRequest $request
-	 * @return string|null Modified value of the "media" attribute, or null to disable
-	 * this stylesheet
+	 * @deprecated since 1.47 No longer needed per T259141
+	 * @param string $media
+	 * @param WebRequest|null $request
+	 * @return string
 	 */
-	public static function transformCssMedia( $media, WebRequest $request ) {
-		if ( $request->getBool( 'printable' ) ) {
-			// When browsing with printable=yes, apply "print" media styles
-			// as if they are screen styles (no media, media="").
-			if ( $media === 'print' ) {
-				return '';
-			}
-
-			// https://www.w3.org/TR/css3-mediaqueries/#syntax
-			//
-			// This regex will not attempt to understand a comma-separated media_query_list
-			// Example supported values for $media:
-			//
-			//     'screen', 'only screen', 'screen and (min-width: 982px)' ),
-			//
-			// Example NOT supported value for $media:
-			//
-			//     '3d-glasses, screen, print and resolution > 90dpi'
-			//
-			// If it's a "printable" request, we disable all screen stylesheets.
-			$screenMediaQueryRegex = '/^(?:only\s+)?screen\b/i';
-			if ( preg_match( $screenMediaQueryRegex, $media ) === 1 ) {
-				return null;
-			}
-		}
-
+	public static function transformCssMedia( $media, $request = null ) {
+		wfDeprecated( __METHOD__, '1.47' );
 		return $media;
 	}
 
