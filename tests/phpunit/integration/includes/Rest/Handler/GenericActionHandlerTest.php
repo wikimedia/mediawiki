@@ -22,6 +22,8 @@ use MediaWiki\User\User;
 use MediaWikiIntegrationTestCase;
 use StatusValue;
 use Wikimedia\Message\MessageValue;
+use Wikimedia\Message\ParamType;
+use Wikimedia\Message\ScalarParam;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\TestingAccessWrapper;
 
@@ -639,6 +641,30 @@ class GenericActionHandlerTest extends MediaWikiIntegrationTestCase {
 			[ ParamValidator::PARAM_TYPE => 'string', ApiBase::PARAM_HELP_MSG => [ 'apihelp-move-param-to', 'p1' ] ],
 			[ ParamValidator::PARAM_TYPE => 'string' ],
 			new MessageValue( 'apihelp-move-param-to', [ 'p1' ] ),
+		];
+		// PARAM_HELP_MSG may already be a message object (see ApiBase::PARAM_HELP_MSG);
+		yield 'help message object' => [
+			[ ParamValidator::PARAM_TYPE => 'string', ApiBase::PARAM_HELP_MSG => new MessageValue( 'apihelp-move-param-to' ) ],
+			[ ParamValidator::PARAM_TYPE => 'string' ],
+			new MessageValue( 'apihelp-move-param-to' ),
+		];
+		yield 'help message object with params' => [
+			[
+				ParamValidator::PARAM_TYPE => 'string',
+				ApiBase::PARAM_HELP_MSG => new MessageValue( 'apihelp-move-param-to', [ 'p1', 2 ] )
+			],
+			[ ParamValidator::PARAM_TYPE => 'string' ],
+			new MessageValue( 'apihelp-move-param-to', [ 'p1', 2 ] ),
+		];
+		yield 'help message object with numParams' => [
+			[
+				ParamValidator::PARAM_TYPE => 'string',
+				ApiBase::PARAM_HELP_MSG => ( new MessageValue( 'apihelp-move-param-to' ) )
+					->numParams( 10 )
+			],
+			[ ParamValidator::PARAM_TYPE => 'string' ],
+			new MessageValue( 'apihelp-move-param-to',
+				[ new ScalarParam( ParamType::NUM, 10 ) ] ),
 		];
 	}
 

@@ -9,6 +9,7 @@ use MediaWiki\Api\IApiMessage;
 use MediaWiki\Rest\RequestInterface;
 use MediaWiki\Rest\Validator\Validator;
 use MediaWiki\User\LoggedOutEditToken;
+use Wikimedia\Message\MessageSpecifier;
 use Wikimedia\Message\MessageValue;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\ParamValidator\TypeDef\BinaryBooleanDef;
@@ -287,12 +288,11 @@ class GenericActionHandler extends ActionModuleBasedHandler {
 			$spec[self::PARAM_SOURCE] = $source;
 
 			// Translate Action API help-message specs into the REST
-			// framework's description field. PARAM_HELP_MSG holds either
-			// a bare message key or [ key, params... ].
+			// framework's description field. PARAM_HELP_MSG holds either a bare
+			// message key, an array [ key, params... ], or a MessageSpecifier.
 			if ( isset( $spec[ApiBase::PARAM_HELP_MSG] ) ) {
-				$helpMsg = (array)$spec[ApiBase::PARAM_HELP_MSG];
-				$key = array_shift( $helpMsg );
-				$spec[self::PARAM_DESCRIPTION] = new MessageValue( $key, $helpMsg );
+				$helpMsg = $spec[ApiBase::PARAM_HELP_MSG];
+				$spec[self::PARAM_DESCRIPTION] = self::toMessageSpecifier( $helpMsg );
 				unset( $spec[ApiBase::PARAM_HELP_MSG] );
 			} else {
 				$msg = "apihelp-{$this->actionName}-param-{$param}";
@@ -303,6 +303,18 @@ class GenericActionHandler extends ActionModuleBasedHandler {
 		}
 
 		return $settings;
+	}
+
+	private static function toMessageSpecifier(
+		string|array|MessageSpecifier $helpMsg
+	): MessageSpecifier {
+		if ( $helpMsg instanceof MessageSpecifier ) {
+			return $helpMsg;
+		}
+
+		$helpMsg = (array)$helpMsg;
+		$key = array_shift( $helpMsg );
+		return new MessageValue( $key, $helpMsg );
 	}
 
 	/**
