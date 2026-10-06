@@ -448,11 +448,11 @@ vue:
   license: MIT
   homepage: https://vuejs.org/
   authors: Yuxi (Evan) You
-  version: 3.5.13
-  purl: pkg:npm/vue@3.5.13
+  version: 3.5.43
+  purl: pkg:npm/vue@3.5.43
   type: tar
-  src: https://registry.npmjs.org/vue/-/vue-3.5.13.tgz
-  integrity: sha384-+0bU8/XSlZlbtiI2pM86YfxHl9QAVK5XQUByFz0bNM87zV7gdekl7B+rx9axKREU
+  src: https://registry.npmjs.org/vue/-/vue-3.5.43.tgz
+  integrity: sha384-VvUlkmZfx7Xr645IaN4/qQc+GSTyPeOfpZBmfOnUvuYfflSf0w81iNa1r2FYh/C9
   dest:
     package/README.md:
     package/LICENSE:
@@ -491,11 +491,11 @@ vue-compiler-dom:
   license: MIT
   homepage: https://vuejs.org/
   authors: Yuxi (Evan) You
-  version: 3.5.13
-  purl: pkg:npm/@vue/compiler-dom@3.5.13
+  version: 3.5.43
+  purl: pkg:npm/@vue/compiler-dom@3.5.43
   type: tar
-  src: https://registry.npmjs.org/@vue/compiler-dom/-/compiler-dom-3.5.13.tgz
-  integrity: sha512-ZOJ46sMOKUjO3e94wPdCzQ6P1Lx/vhp2RSvfaab88Ajexs0AHeV0uasYhi99WPaogmBlRHNRuly8xV75cNTMDA==
+  src: https://registry.npmjs.org/@vue/compiler-dom/-/compiler-dom-3.5.43.tgz
+  integrity: sha512-PEZoAk3NQmsn/ejMzSOCyTYqwGqczrWm70PuhBKjjv1+TCoQAaO/zOqNwjV+honlNstT5ILxtc+8r8UUfj+iEQ==
   dest:
     package/README.md:
     package/LICENSE:

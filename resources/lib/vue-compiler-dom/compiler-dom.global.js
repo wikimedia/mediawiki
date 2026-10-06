@@ -1,12 +1,11 @@
 /**
-* @vue/compiler-dom v3.5.13
+* @vue/compiler-dom v3.5.43
 * (c) 2018-present Yuxi (Evan) You and Vue contributors
 * @license MIT
 **/
 var VueCompilerDOM = (function (exports) {
   'use strict';
 
-  /*! #__NO_SIDE_EFFECTS__ */
   // @__NO_SIDE_EFFECTS__
   function makeMap(str) {
     const map = /* @__PURE__ */ Object.create(null);
@@ -34,15 +33,15 @@ var VueCompilerDOM = (function (exports) {
   );
   const cacheStringFunction = (fn) => {
     const cache = /* @__PURE__ */ Object.create(null);
-    return (str) => {
+    return ((str) => {
       const hit = cache[str];
       return hit || (cache[str] = fn(str));
-    };
+    });
   };
-  const camelizeRE = /-(\w)/g;
+  const camelizeRE = /-\w/g;
   const camelize = cacheStringFunction(
     (str) => {
-      return str.replace(camelizeRE, (_, c) => c ? c.toUpperCase() : "");
+      return str.replace(camelizeRE, (c) => c.slice(1).toUpperCase());
     }
   );
   const capitalize = cacheStringFunction((str) => {
@@ -68,7 +67,7 @@ var VueCompilerDOM = (function (exports) {
     [512]: `NEED_PATCH`,
     [1024]: `DYNAMIC_SLOTS`,
     [2048]: `DEV_ROOT_FRAGMENT`,
-    [-1]: `HOISTED`,
+    [-1]: `CACHED`,
     [-2]: `BAIL`
   };
 
@@ -122,10 +121,10 @@ var VueCompilerDOM = (function (exports) {
 
   const listDelimiterRE = /;(?![^(]*\))/g;
   const propertyDelimiterRE = /:([^]+)/;
-  const styleCommentRE = /\/\*[^]*?\*\//g;
+  const styleCommentRE = /"(?:[^"\\]|\\[^])*"|'(?:[^'\\]|\\[^])*'|\\[^]|\/\*[^]*?\*\//g;
   function parseStringStyle(cssText) {
     const ret = {};
-    cssText.replace(styleCommentRE, "").split(listDelimiterRE).forEach((item) => {
+    cssText.replace(styleCommentRE, (match) => match.startsWith("/*") ? "" : match).split(listDelimiterRE).forEach((item) => {
       if (item) {
         const tmp = item.split(propertyDelimiterRE);
         tmp.length > 1 && (ret[tmp[0].trim()] = tmp[1].trim());
@@ -143,81 +142,81 @@ var VueCompilerDOM = (function (exports) {
   const isMathMLTag = /* @__PURE__ */ makeMap(MATH_TAGS);
   const isVoidTag = /* @__PURE__ */ makeMap(VOID_TAGS);
 
-  const FRAGMENT = Symbol(`Fragment` );
-  const TELEPORT = Symbol(`Teleport` );
-  const SUSPENSE = Symbol(`Suspense` );
-  const KEEP_ALIVE = Symbol(`KeepAlive` );
-  const BASE_TRANSITION = Symbol(
+  const FRAGMENT = /* @__PURE__ */ Symbol(`Fragment` );
+  const TELEPORT = /* @__PURE__ */ Symbol(`Teleport` );
+  const SUSPENSE = /* @__PURE__ */ Symbol(`Suspense` );
+  const KEEP_ALIVE = /* @__PURE__ */ Symbol(`KeepAlive` );
+  const BASE_TRANSITION = /* @__PURE__ */ Symbol(
     `BaseTransition` 
   );
-  const OPEN_BLOCK = Symbol(`openBlock` );
-  const CREATE_BLOCK = Symbol(`createBlock` );
-  const CREATE_ELEMENT_BLOCK = Symbol(
+  const OPEN_BLOCK = /* @__PURE__ */ Symbol(`openBlock` );
+  const CREATE_BLOCK = /* @__PURE__ */ Symbol(`createBlock` );
+  const CREATE_ELEMENT_BLOCK = /* @__PURE__ */ Symbol(
     `createElementBlock` 
   );
-  const CREATE_VNODE = Symbol(`createVNode` );
-  const CREATE_ELEMENT_VNODE = Symbol(
+  const CREATE_VNODE = /* @__PURE__ */ Symbol(`createVNode` );
+  const CREATE_ELEMENT_VNODE = /* @__PURE__ */ Symbol(
     `createElementVNode` 
   );
-  const CREATE_COMMENT = Symbol(
+  const CREATE_COMMENT = /* @__PURE__ */ Symbol(
     `createCommentVNode` 
   );
-  const CREATE_TEXT = Symbol(
+  const CREATE_TEXT = /* @__PURE__ */ Symbol(
     `createTextVNode` 
   );
-  const CREATE_STATIC = Symbol(
+  const CREATE_STATIC = /* @__PURE__ */ Symbol(
     `createStaticVNode` 
   );
-  const RESOLVE_COMPONENT = Symbol(
+  const RESOLVE_COMPONENT = /* @__PURE__ */ Symbol(
     `resolveComponent` 
   );
-  const RESOLVE_DYNAMIC_COMPONENT = Symbol(
+  const RESOLVE_DYNAMIC_COMPONENT = /* @__PURE__ */ Symbol(
     `resolveDynamicComponent` 
   );
-  const RESOLVE_DIRECTIVE = Symbol(
+  const RESOLVE_DIRECTIVE = /* @__PURE__ */ Symbol(
     `resolveDirective` 
   );
-  const RESOLVE_FILTER = Symbol(
+  const RESOLVE_FILTER = /* @__PURE__ */ Symbol(
     `resolveFilter` 
   );
-  const WITH_DIRECTIVES = Symbol(
+  const WITH_DIRECTIVES = /* @__PURE__ */ Symbol(
     `withDirectives` 
   );
-  const RENDER_LIST = Symbol(`renderList` );
-  const RENDER_SLOT = Symbol(`renderSlot` );
-  const CREATE_SLOTS = Symbol(`createSlots` );
-  const TO_DISPLAY_STRING = Symbol(
+  const RENDER_LIST = /* @__PURE__ */ Symbol(`renderList` );
+  const RENDER_SLOT = /* @__PURE__ */ Symbol(`renderSlot` );
+  const CREATE_SLOTS = /* @__PURE__ */ Symbol(`createSlots` );
+  const TO_DISPLAY_STRING = /* @__PURE__ */ Symbol(
     `toDisplayString` 
   );
-  const MERGE_PROPS = Symbol(`mergeProps` );
-  const NORMALIZE_CLASS = Symbol(
+  const MERGE_PROPS = /* @__PURE__ */ Symbol(`mergeProps` );
+  const NORMALIZE_CLASS = /* @__PURE__ */ Symbol(
     `normalizeClass` 
   );
-  const NORMALIZE_STYLE = Symbol(
+  const NORMALIZE_STYLE = /* @__PURE__ */ Symbol(
     `normalizeStyle` 
   );
-  const NORMALIZE_PROPS = Symbol(
+  const NORMALIZE_PROPS = /* @__PURE__ */ Symbol(
     `normalizeProps` 
   );
-  const GUARD_REACTIVE_PROPS = Symbol(
+  const GUARD_REACTIVE_PROPS = /* @__PURE__ */ Symbol(
     `guardReactiveProps` 
   );
-  const TO_HANDLERS = Symbol(`toHandlers` );
-  const CAMELIZE = Symbol(`camelize` );
-  const CAPITALIZE = Symbol(`capitalize` );
-  const TO_HANDLER_KEY = Symbol(
+  const TO_HANDLERS = /* @__PURE__ */ Symbol(`toHandlers` );
+  const CAMELIZE = /* @__PURE__ */ Symbol(`camelize` );
+  const CAPITALIZE = /* @__PURE__ */ Symbol(`capitalize` );
+  const TO_HANDLER_KEY = /* @__PURE__ */ Symbol(
     `toHandlerKey` 
   );
-  const SET_BLOCK_TRACKING = Symbol(
+  const SET_BLOCK_TRACKING = /* @__PURE__ */ Symbol(
     `setBlockTracking` 
   );
-  const PUSH_SCOPE_ID = Symbol(`pushScopeId` );
-  const POP_SCOPE_ID = Symbol(`popScopeId` );
-  const WITH_CTX = Symbol(`withCtx` );
-  const UNREF = Symbol(`unref` );
-  const IS_REF = Symbol(`isRef` );
-  const WITH_MEMO = Symbol(`withMemo` );
-  const IS_MEMO_SAME = Symbol(`isMemoSame` );
+  const PUSH_SCOPE_ID = /* @__PURE__ */ Symbol(`pushScopeId` );
+  const POP_SCOPE_ID = /* @__PURE__ */ Symbol(`popScopeId` );
+  const WITH_CTX = /* @__PURE__ */ Symbol(`withCtx` );
+  const UNREF = /* @__PURE__ */ Symbol(`unref` );
+  const IS_REF = /* @__PURE__ */ Symbol(`isRef` );
+  const WITH_MEMO = /* @__PURE__ */ Symbol(`withMemo` );
+  const IS_MEMO_SAME = /* @__PURE__ */ Symbol(`isMemoSame` );
   const helperNameMap = {
     [FRAGMENT]: `Fragment`,
     [TELEPORT]: `Teleport`,
@@ -641,13 +640,27 @@ var VueCompilerDOM = (function (exports) {
     getPos(index) {
       let line = 1;
       let column = index + 1;
-      for (let i = this.newlines.length - 1; i >= 0; i--) {
-        const newlineIndex = this.newlines[i];
-        if (index > newlineIndex) {
-          line = i + 2;
-          column = index - newlineIndex;
-          break;
+      const length = this.newlines.length;
+      let j = -1;
+      if (length > 100) {
+        let l = -1;
+        let r = length;
+        while (l + 1 < r) {
+          const m = l + r >>> 1;
+          this.newlines[m] < index ? l = m : r = m;
         }
+        j = l;
+      } else {
+        for (let i = length - 1; i >= 0; i--) {
+          if (index > this.newlines[i]) {
+            j = i;
+            break;
+          }
+        }
+      }
+      if (j >= 0) {
+        line = j + 2;
+        column = index - this.newlines[j];
       }
       return {
         column,
@@ -1160,7 +1173,7 @@ var VueCompilerDOM = (function (exports) {
       this.buffer = input;
       while (this.index < this.buffer.length) {
         const c = this.buffer.charCodeAt(this.index);
-        if (c === 10) {
+        if (c === 10 && this.state !== 33) {
           this.newlines.push(this.index);
         }
         switch (this.state) {
@@ -1525,24 +1538,26 @@ var VueCompilerDOM = (function (exports) {
     "43": "X_V_MODEL_ON_SCOPE_VARIABLE",
     "X_V_MODEL_ON_PROPS": 44,
     "44": "X_V_MODEL_ON_PROPS",
-    "X_INVALID_EXPRESSION": 45,
-    "45": "X_INVALID_EXPRESSION",
-    "X_KEEP_ALIVE_INVALID_CHILDREN": 46,
-    "46": "X_KEEP_ALIVE_INVALID_CHILDREN",
-    "X_PREFIX_ID_NOT_SUPPORTED": 47,
-    "47": "X_PREFIX_ID_NOT_SUPPORTED",
-    "X_MODULE_MODE_NOT_SUPPORTED": 48,
-    "48": "X_MODULE_MODE_NOT_SUPPORTED",
-    "X_CACHE_HANDLER_NOT_SUPPORTED": 49,
-    "49": "X_CACHE_HANDLER_NOT_SUPPORTED",
-    "X_SCOPE_ID_NOT_SUPPORTED": 50,
-    "50": "X_SCOPE_ID_NOT_SUPPORTED",
-    "X_VNODE_HOOKS": 51,
-    "51": "X_VNODE_HOOKS",
-    "X_V_BIND_INVALID_SAME_NAME_ARGUMENT": 52,
-    "52": "X_V_BIND_INVALID_SAME_NAME_ARGUMENT",
-    "__EXTEND_POINT__": 53,
-    "53": "__EXTEND_POINT__"
+    "X_V_MODEL_ON_CONST": 45,
+    "45": "X_V_MODEL_ON_CONST",
+    "X_INVALID_EXPRESSION": 46,
+    "46": "X_INVALID_EXPRESSION",
+    "X_KEEP_ALIVE_INVALID_CHILDREN": 47,
+    "47": "X_KEEP_ALIVE_INVALID_CHILDREN",
+    "X_PREFIX_ID_NOT_SUPPORTED": 48,
+    "48": "X_PREFIX_ID_NOT_SUPPORTED",
+    "X_MODULE_MODE_NOT_SUPPORTED": 49,
+    "49": "X_MODULE_MODE_NOT_SUPPORTED",
+    "X_CACHE_HANDLER_NOT_SUPPORTED": 50,
+    "50": "X_CACHE_HANDLER_NOT_SUPPORTED",
+    "X_SCOPE_ID_NOT_SUPPORTED": 51,
+    "51": "X_SCOPE_ID_NOT_SUPPORTED",
+    "X_VNODE_HOOKS": 52,
+    "52": "X_VNODE_HOOKS",
+    "X_V_BIND_INVALID_SAME_NAME_ARGUMENT": 53,
+    "53": "X_V_BIND_INVALID_SAME_NAME_ARGUMENT",
+    "__EXTEND_POINT__": 54,
+    "54": "__EXTEND_POINT__"
   };
   const errorMessages = {
     // parse errors
@@ -1583,7 +1598,7 @@ var VueCompilerDOM = (function (exports) {
     [32]: `v-for has invalid expression.`,
     [33]: `<template v-for> key should be placed on the <template> tag.`,
     [34]: `v-bind is missing expression.`,
-    [52]: `v-bind with same-name shorthand only allows static argument.`,
+    [53]: `v-bind with same-name shorthand only allows static argument.`,
     [35]: `v-on is missing expression.`,
     [36]: `Unexpected custom directive on <slot> outlet.`,
     [37]: `Mixed v-slot usage on both the component and nested <template>. When there are multiple named slots, all slots should use <template> syntax to avoid scope ambiguity.`,
@@ -1595,16 +1610,17 @@ var VueCompilerDOM = (function (exports) {
     [43]: `v-model cannot be used on v-for or v-slot scope variables because they are not writable.`,
     [44]: `v-model cannot be used on a prop, because local prop bindings are not writable.
 Use a v-bind binding combined with a v-on listener that emits update:x event instead.`,
-    [45]: `Error parsing JavaScript expression: `,
-    [46]: `<KeepAlive> expects exactly one child component.`,
-    [51]: `@vnode-* hooks in templates are no longer supported. Use the vue: prefix instead. For example, @vnode-mounted should be changed to @vue:mounted. @vnode-* hooks support has been removed in 3.4.`,
+    [45]: `v-model cannot be used on a const binding because it is not writable.`,
+    [46]: `Error parsing JavaScript expression: `,
+    [47]: `<KeepAlive> expects exactly one child component.`,
+    [52]: `@vnode-* hooks in templates are no longer supported. Use the vue: prefix instead. For example, @vnode-mounted should be changed to @vue:mounted. @vnode-* hooks support has been removed in 3.4.`,
     // generic errors
-    [47]: `"prefixIdentifiers" option is not supported in this build of compiler.`,
-    [48]: `ES module mode is not supported in this build of compiler.`,
-    [49]: `"cacheHandlers" option is only supported when the "prefixIdentifiers" option is enabled.`,
-    [50]: `"scopeId" option is only supported in module mode.`,
+    [48]: `"prefixIdentifiers" option is not supported in this build of compiler.`,
+    [49]: `ES module mode is not supported in this build of compiler.`,
+    [50]: `"cacheHandlers" option is only supported when the "prefixIdentifiers" option is enabled.`,
+    [51]: `"scopeId" option is only supported in module mode.`,
     // just to fulfill types
-    [53]: ``
+    [54]: ``
   };
 
   function walkIdentifiers(root, onIdentifier, includeAll = false, parentStack = [], knownIds = /* @__PURE__ */ Object.create(null)) {
@@ -1651,7 +1667,8 @@ Use a v-bind binding combined with a v-on listener that emits update:x event ins
     }
   }
   function walkBlockDeclarations(block, onIdent) {
-    for (const stmt of block.body) {
+    const body = block.type === "SwitchCase" ? block.consequent : block.body;
+    for (const stmt of body) {
       if (stmt.type === "VariableDeclaration") {
         if (stmt.declare) continue;
         for (const decl of stmt.declarations) {
@@ -1664,6 +1681,8 @@ Use a v-bind binding combined with a v-on listener that emits update:x event ins
         onIdent(stmt.id);
       } else if (isForStatement(stmt)) {
         walkForStatement(stmt, true, onIdent);
+      } else if (stmt.type === "SwitchStatement") {
+        walkSwitchStatement(stmt, true, onIdent);
       }
     }
   }
@@ -1678,6 +1697,20 @@ Use a v-bind binding combined with a v-on listener that emits update:x event ins
           onIdent(id);
         }
       }
+    }
+  }
+  function walkSwitchStatement(stmt, isVar, onIdent) {
+    for (const cs of stmt.cases) {
+      for (const stmt2 of cs.consequent) {
+        if (stmt2.type === "VariableDeclaration" && (stmt2.kind === "var" ? isVar : !isVar)) {
+          for (const decl of stmt2.declarations) {
+            for (const id of extractIdentifiers(decl.id)) {
+              onIdent(id);
+            }
+          }
+        }
+      }
+      walkBlockDeclarations(cs, onIdent);
     }
   }
   function extractIdentifiers(param, nodes = []) {
@@ -1757,7 +1790,7 @@ Use a v-bind binding combined with a v-on listener that emits update:x event ins
         return BASE_TRANSITION;
     }
   }
-  const nonIdentifierRE = /^\d|[^\$\w\xA0-\uFFFF]/;
+  const nonIdentifierRE = /^$|^\d|[^\$\w\xA0-\uFFFF]/;
   const isSimpleIdentifier = (name) => !nonIdentifierRE.test(name);
   const validFirstIdentCharRE = /[A-Za-z_$\xA0-\uFFFF]/;
   const validIdentCharRE = /[\.\?\w$\xA0-\uFFFF]/;
@@ -1827,7 +1860,7 @@ Use a v-bind binding combined with a v-on listener that emits update:x event ins
   };
   const isMemberExpressionNode = NOOP ;
   const isMemberExpression = isMemberExpressionBrowser ;
-  const fnExpRE = /^\s*(async\s*)?(\([^)]*?\)|[\w$_]+)\s*(:[^=]+)?=>|^\s*(async\s+)?function(?:\s+[\w$]+)?\s*\(/;
+  const fnExpRE = /^\s*(?:async\s*)?(?:\([^)]*?\)|[\w$_]+)\s*(?::[^=]+)?=>|^\s*(?:async\s+)?function(?:\s+[\w$]+)?\s*\(/;
   const isFnExpressionBrowser = (exp) => fnExpRE.test(getExpSource(exp));
   const isFnExpressionNode = NOOP ;
   const isFnExpression = isFnExpressionBrowser ;
@@ -1896,6 +1929,9 @@ Use a v-bind binding combined with a v-on listener that emits update:x event ins
   function isText$1(node) {
     return node.type === 5 || node.type === 2;
   }
+  function isVPre(p) {
+    return p.type === 7 && p.name === "pre";
+  }
   function isVSlot(p) {
     return p.type === 7 && p.name === "slot";
   }
@@ -1919,6 +1955,9 @@ Use a v-bind binding combined with a v-on listener that emits update:x event ins
     return [props, callPath];
   }
   function injectProp(node, prop, context) {
+    if (node.type !== 13 && injectSlotKey(node, prop)) {
+      return;
+    }
     let propsWithInjection;
     let props = node.type === 13 ? node.props : node.arguments[2];
     let callPath = [];
@@ -1975,6 +2014,24 @@ Use a v-bind binding combined with a v-on listener that emits update:x event ins
         node.arguments[2] = propsWithInjection;
       }
     }
+  }
+  function injectSlotKey(node, prop) {
+    var _a, _b, _c;
+    if (prop.key.type !== 4 || prop.key.content !== "key") {
+      return false;
+    }
+    const props = node.arguments[2];
+    if (props && !isString(props)) {
+      const [unnormalizedProps] = getUnnormalizedProps(props);
+      if (unnormalizedProps && !isString(unnormalizedProps) && unnormalizedProps.type === 15 && hasProp(prop, unnormalizedProps)) {
+        return true;
+      }
+    }
+    (_a = node.arguments)[2] || (_a[2] = "{}");
+    (_b = node.arguments)[3] || (_b[3] = "undefined");
+    (_c = node.arguments)[4] || (_c[4] = "undefined");
+    node.arguments[5] = prop.value;
+    return true;
   }
   function hasProp(prop, props) {
     let result = false;
@@ -2039,6 +2096,20 @@ Use a v-bind binding combined with a v-on listener that emits update:x event ins
     }
   }
   const forAliasRE = /([\s\S]*?)\s+(?:in|of)\s+(\S[\s\S]*)/;
+  function isAllWhitespace(str) {
+    for (let i = 0; i < str.length; i++) {
+      if (!isWhitespace(str.charCodeAt(i))) {
+        return false;
+      }
+    }
+    return true;
+  }
+  function isWhitespaceText(node) {
+    return node.type === 2 && isAllWhitespace(node.content) || node.type === 12 && isWhitespaceText(node.content);
+  }
+  function isCommentOrWhitespace(node) {
+    return node.type === 3 || isWhitespaceText(node);
+  }
 
   const defaultParserOptions = {
     parseMode: "base",
@@ -2194,7 +2265,7 @@ Use a v-bind binding combined with a v-on listener that emits update:x event ins
     ondirarg(start, end) {
       if (start === end) return;
       const arg = getSlice(start, end);
-      if (inVPre) {
+      if (inVPre && !isVPre(currentProp)) {
         currentProp.name += arg;
         setLocEnd(currentProp.nameLoc, end);
       } else {
@@ -2209,7 +2280,7 @@ Use a v-bind binding combined with a v-on listener that emits update:x event ins
     },
     ondirmodifier(start, end) {
       const mod = getSlice(start, end);
-      if (inVPre) {
+      if (inVPre && !isVPre(currentProp)) {
         currentProp.name += "." + mod;
         setLocEnd(currentProp.nameLoc, end);
       } else if (currentProp.name === "slot") {
@@ -2289,7 +2360,7 @@ Use a v-bind binding combined with a v-on listener that emits update:x event ins
               "COMPILER_V_BIND_SYNC",
               currentOptions,
               currentProp.loc,
-              currentProp.rawName
+              currentProp.arg.loc.source
             )) {
               currentProp.name = "model";
               currentProp.modifiers.splice(syncIndex, 1);
@@ -2360,7 +2431,7 @@ Use a v-bind binding combined with a v-on listener that emits update:x event ins
       }
     },
     oncdata(start, end) {
-      if (stack[0].ns !== 0) {
+      if ((stack[0] ? stack[0].ns : currentOptions.ns) !== 0) {
         onText(getSlice(start, end), start, end);
       } else {
         emitError(1, start - 9);
@@ -2635,7 +2706,7 @@ Use a v-bind binding combined with a v-on listener that emits update:x event ins
     return c > 64 && c < 91;
   }
   const windowsNewlineRE = /\r\n/g;
-  function condenseWhitespace(nodes, tag) {
+  function condenseWhitespace(nodes) {
     const shouldCondense = currentOptions.whitespace !== "preserve";
     let removedWhitespace = false;
     for (let i = 0; i < nodes.length; i++) {
@@ -2660,14 +2731,6 @@ Use a v-bind binding combined with a v-on listener that emits update:x event ins
       }
     }
     return removedWhitespace ? nodes.filter(Boolean) : nodes;
-  }
-  function isAllWhitespace(str) {
-    for (let i = 0; i < str.length; i++) {
-      if (!isWhitespace(str.charCodeAt(i))) {
-        return false;
-      }
-    }
-    return true;
   }
   function hasNewlineChar(str) {
     for (let i = 0; i < str.length; i++) {
@@ -2799,12 +2862,12 @@ Use a v-bind binding combined with a v-on listener that emits update:x event ins
       context,
       // Root node is unfortunately non-hoistable due to potential parent
       // fallthrough attributes.
-      isSingleElementRoot(root, root.children[0])
+      !!getSingleElementRoot(root)
     );
   }
-  function isSingleElementRoot(root, child) {
-    const { children } = root;
-    return children.length === 1 && child.type === 1 && !isSlotOutlet(child);
+  function getSingleElementRoot(root) {
+    const children = root.children.filter((x) => x.type !== 3);
+    return children.length === 1 && children[0].type === 1 && !isSlotOutlet(children[0]) ? children[0] : null;
   }
   function walk(node, parent, context, doNotHoistNode = false, inFor = false) {
     const { children } = node;
@@ -2837,6 +2900,11 @@ Use a v-bind binding combined with a v-on listener that emits update:x event ins
       } else if (child.type === 12) {
         const constantType = doNotHoistNode ? 0 : getConstantType(child, context);
         if (constantType >= 2) {
+          if (child.codegenNode.type === 14 && child.codegenNode.arguments.length > 0) {
+            child.codegenNode.arguments.push(
+              -1 + (` /* ${PatchFlagNames[-1]} */` )
+            );
+          }
           toCache.push(child);
           continue;
         }
@@ -2897,9 +2965,7 @@ Use a v-bind binding combined with a v-on listener that emits update:x event ins
     }
     function getCacheExpression(value) {
       const exp = context.cache(value);
-      if (inFor && context.hmr) {
-        exp.needArraySpread = true;
-      }
+      exp.needArraySpread = true;
       return exp;
     }
     function getSlotNode(node2, name) {
@@ -3136,6 +3202,7 @@ Use a v-bind binding combined with a v-on listener that emits update:x event ins
       imports: [],
       cached: [],
       constantCache: /* @__PURE__ */ new WeakMap(),
+      vForMemoKeyedNodes: /* @__PURE__ */ new WeakSet(),
       temps: 0,
       identifiers: /* @__PURE__ */ Object.create(null),
       scopes: {
@@ -3258,15 +3325,15 @@ Use a v-bind binding combined with a v-on listener that emits update:x event ins
     const { helper } = context;
     const { children } = root;
     if (children.length === 1) {
-      const child = children[0];
-      if (isSingleElementRoot(root, child) && child.codegenNode) {
-        const codegenNode = child.codegenNode;
+      const singleElementRootChild = getSingleElementRoot(root);
+      if (singleElementRootChild && singleElementRootChild.codegenNode) {
+        const codegenNode = singleElementRootChild.codegenNode;
         if (codegenNode.type === 13) {
           convertToBlock(codegenNode, context);
         }
         root.codegenNode = codegenNode;
       } else {
-        root.codegenNode = child;
+        root.codegenNode = children[0];
       }
     } else if (children.length > 1) {
       let patchFlag = 64;
@@ -3978,7 +4045,7 @@ Use a v-bind binding combined with a v-on listener that emits update:x event ins
       }
       context.onError(
         createCompilerError(
-          45,
+          46,
           node.loc,
           void 0,
           message
@@ -4001,7 +4068,7 @@ Use a v-bind binding combined with a v-on listener that emits update:x event ins
           const exp = dir.exp;
           const arg = dir.arg;
           if (exp && exp.type === 4 && !(dir.name === "on" && arg) && // key has been processed in transformFor(vMemo + vFor)
-          !(memo && arg && arg.type === 4 && arg.content === "key")) {
+          !(memo && context.vForMemoKeyedNodes.has(node) && arg && arg.type === 4 && arg.content === "key")) {
             dir.exp = processExpression(
               exp,
               context,
@@ -4035,7 +4102,7 @@ Use a v-bind binding combined with a v-on listener that emits update:x event ins
   }
 
   const transformIf = createStructuralDirectiveTransform(
-    /^(if|else|else-if)$/,
+    /^(?:if|else|else-if)$/,
     (node, dir, context) => {
       return processIf(node, dir, context, (ifNode, branch, isRoot) => {
         const siblings = context.parent.children;
@@ -4094,17 +4161,15 @@ Use a v-bind binding combined with a v-on listener that emits update:x event ins
       let i = siblings.indexOf(node);
       while (i-- >= -1) {
         const sibling = siblings[i];
-        if (sibling && sibling.type === 3) {
+        if (sibling && isCommentOrWhitespace(sibling)) {
           context.removeNode(sibling);
-          comments.unshift(sibling);
-          continue;
-        }
-        if (sibling && sibling.type === 2 && !sibling.content.trim().length) {
-          context.removeNode(sibling);
+          if (sibling.type === 3) {
+            comments.unshift(sibling);
+          }
           continue;
         }
         if (sibling && sibling.type === 9) {
-          if (dir.name === "else-if" && sibling.branches[sibling.branches.length - 1].condition === void 0) {
+          if ((dir.name === "else-if" || dir.name === "else") && sibling.branches[sibling.branches.length - 1].condition === void 0) {
             context.onError(
               createCompilerError(30, node.loc)
             );
@@ -4253,80 +4318,6 @@ Use a v-bind binding combined with a v-on listener that emits update:x event ins
     }
   }
 
-  const transformBind = (dir, _node, context) => {
-    const { modifiers, loc } = dir;
-    const arg = dir.arg;
-    let { exp } = dir;
-    if (exp && exp.type === 4 && !exp.content.trim()) {
-      {
-        exp = void 0;
-      }
-    }
-    if (!exp) {
-      if (arg.type !== 4 || !arg.isStatic) {
-        context.onError(
-          createCompilerError(
-            52,
-            arg.loc
-          )
-        );
-        return {
-          props: [
-            createObjectProperty(arg, createSimpleExpression("", true, loc))
-          ]
-        };
-      }
-      transformBindShorthand(dir);
-      exp = dir.exp;
-    }
-    if (arg.type !== 4) {
-      arg.children.unshift(`(`);
-      arg.children.push(`) || ""`);
-    } else if (!arg.isStatic) {
-      arg.content = `${arg.content} || ""`;
-    }
-    if (modifiers.some((mod) => mod.content === "camel")) {
-      if (arg.type === 4) {
-        if (arg.isStatic) {
-          arg.content = camelize(arg.content);
-        } else {
-          arg.content = `${context.helperString(CAMELIZE)}(${arg.content})`;
-        }
-      } else {
-        arg.children.unshift(`${context.helperString(CAMELIZE)}(`);
-        arg.children.push(`)`);
-      }
-    }
-    if (!context.inSSR) {
-      if (modifiers.some((mod) => mod.content === "prop")) {
-        injectPrefix(arg, ".");
-      }
-      if (modifiers.some((mod) => mod.content === "attr")) {
-        injectPrefix(arg, "^");
-      }
-    }
-    return {
-      props: [createObjectProperty(arg, exp)]
-    };
-  };
-  const transformBindShorthand = (dir, context) => {
-    const arg = dir.arg;
-    const propName = camelize(arg.content);
-    dir.exp = createSimpleExpression(propName, false, arg.loc);
-  };
-  const injectPrefix = (arg, prefix) => {
-    if (arg.type === 4) {
-      if (arg.isStatic) {
-        arg.content = prefix + arg.content;
-      } else {
-        arg.content = `\`${prefix}\${${arg.content}}\``;
-      }
-    } else {
-      arg.children.unshift(`'${prefix}' + (`);
-      arg.children.push(`)`);
-    }
-  };
-
   const transformFor = createStructuralDirectiveTransform(
     "for",
     (node, dir, context) => {
@@ -4338,12 +4329,9 @@ Use a v-bind binding combined with a v-on listener that emits update:x event ins
         const isTemplate = isTemplateNode(node);
         const memo = findDir(node, "memo");
         const keyProp = findProp(node, `key`, false, true);
-        const isDirKey = keyProp && keyProp.type === 7;
-        if (isDirKey && !keyProp.exp) {
-          transformBindShorthand(keyProp);
-        }
+        keyProp && keyProp.type === 7;
         let keyExp = keyProp && (keyProp.type === 6 ? keyProp.value ? createSimpleExpression(keyProp.value.content, true) : void 0 : keyProp.exp);
-        const keyProperty = keyProp && keyExp ? createObjectProperty(`key`, keyExp) : null;
+        const keyProperty = keyExp ? createObjectProperty(`key`, keyExp) : null;
         const isStableFragment = forNode.source.type === 4 && forNode.source.constType > 0;
         const fragmentFlag = isStableFragment ? 64 : keyProp ? 128 : 256;
         forNode.codegenNode = createVNodeCall(
@@ -4360,6 +4348,7 @@ Use a v-bind binding combined with a v-on listener that emits update:x event ins
           node.loc
         );
         return () => {
+          var _a;
           let childBlock;
           const { children } = forNode;
           if (isTemplate) {
@@ -4403,7 +4392,8 @@ Use a v-bind binding combined with a v-on listener that emits update:x event ins
             if (isTemplate && keyProperty) {
               injectProp(childBlock, keyProperty, context);
             }
-            if (childBlock.isBlock !== !isStableFragment) {
+            const shouldUseBlock = !isStableFragment || childBlock.isBlockRequired === true;
+            if (childBlock.isBlock !== shouldUseBlock) {
               if (childBlock.isBlock) {
                 removeHelper(OPEN_BLOCK);
                 removeHelper(
@@ -4415,12 +4405,15 @@ Use a v-bind binding combined with a v-on listener that emits update:x event ins
                 );
               }
             }
-            childBlock.isBlock = !isStableFragment;
+            childBlock.isBlock = shouldUseBlock;
             if (childBlock.isBlock) {
               helper(OPEN_BLOCK);
               helper(getVNodeBlockHelper(context.inSSR, childBlock.isComponent));
             } else {
               helper(getVNodeHelper(context.inSSR, childBlock.isComponent));
+              if (childBlock.needsPatch) {
+                childBlock.patchFlag = ((_a = childBlock.patchFlag) != null ? _a : 0) | 512;
+              }
             }
           }
           if (memo) {
@@ -4432,7 +4425,7 @@ Use a v-bind binding combined with a v-on listener that emits update:x event ins
             loop.body = createBlockStatement([
               createCompoundExpression([`const _memo = (`, memo.exp, `)`]),
               createCompoundExpression([
-                `if (_cached`,
+                `if (_cached && _cached.el`,
                 ...keyExp ? [` && _cached.key === `, keyExp] : [],
                 ` && ${context.helperString(
                 IS_MEMO_SAME
@@ -4641,7 +4634,7 @@ Use a v-bind binding combined with a v-on listener that emits update:x event ins
         );
       } else if (vElse = findDir(
         slotElement,
-        /^else(-if)?$/,
+        /^else(?:-if)?$/,
         true
         /* allowEmpty */
       )) {
@@ -4649,11 +4642,11 @@ Use a v-bind binding combined with a v-on listener that emits update:x event ins
         let prev;
         while (j--) {
           prev = children[j];
-          if (prev.type !== 3) {
+          if (!isCommentOrWhitespace(prev)) {
             break;
           }
         }
-        if (prev && isTemplateNode(prev) && findDir(prev, /^(else-)?if$/)) {
+        if (prev && isTemplateNode(prev) && findDir(prev, /^(?:else-)?if$/)) {
           let conditional = dynamicSlots[dynamicSlots.length - 1];
           while (conditional.alternate.type === 19) {
             conditional = conditional.alternate;
@@ -4727,7 +4720,7 @@ Use a v-bind binding combined with a v-on listener that emits update:x event ins
       } else if (implicitDefaultChildren.length && // #3766
       // with whitespace: 'preserve', whitespaces between slots will end up in
       // implicitDefaultChildren. Ignore if all implicit children are whitespaces.
-      implicitDefaultChildren.some((node2) => isNonWhitespaceContent(node2))) {
+      !implicitDefaultChildren.every(isWhitespaceText)) {
         if (hasNamedDefaultSlot) {
           context.onError(
             createCompilerError(
@@ -4800,11 +4793,6 @@ Use a v-bind binding combined with a v-on listener that emits update:x event ins
     }
     return false;
   }
-  function isNonWhitespaceContent(node) {
-    if (node.type !== 2 && node.type !== 12)
-      return true;
-    return node.type === 2 ? !!node.content.trim() : isNonWhitespaceContent(node.content);
-  }
 
   const directiveImportMap = /* @__PURE__ */ new WeakMap();
   const transformElement = (node, context) => {
@@ -4823,6 +4811,8 @@ Use a v-bind binding combined with a v-on listener that emits update:x event ins
       let vnodeDynamicProps;
       let dynamicPropNames;
       let vnodeDirectives;
+      let needsPatch = false;
+      let isBlockRequired = false;
       let shouldUseBlock = (
         // dynamic component may resolve to plain elements
         isDynamicComponent || vnodeTag === TELEPORT || vnodeTag === SUSPENSE || !isComponent && // <svg> and <foreignObject> must be forced into blocks so that block
@@ -4842,6 +4832,8 @@ Use a v-bind binding combined with a v-on listener that emits update:x event ins
         vnodeProps = propsBuildResult.props;
         patchFlag = propsBuildResult.patchFlag;
         dynamicPropNames = propsBuildResult.dynamicPropNames;
+        needsPatch = propsBuildResult.needsPatch;
+        isBlockRequired = propsBuildResult.isBlockRequired;
         const directives = propsBuildResult.directives;
         vnodeDirectives = directives && directives.length ? createArrayExpression(
           directives.map((dir) => buildDirectiveArgs(dir, context))
@@ -4856,7 +4848,7 @@ Use a v-bind binding combined with a v-on listener that emits update:x event ins
           patchFlag |= 1024;
           if (node.children.length > 1) {
             context.onError(
-              createCompilerError(46, {
+              createCompilerError(47, {
                 start: node.children[0].loc.start,
                 end: node.children[node.children.length - 1].loc.end,
                 source: ""
@@ -4892,7 +4884,7 @@ Use a v-bind binding combined with a v-on listener that emits update:x event ins
       if (dynamicPropNames && dynamicPropNames.length) {
         vnodeDynamicProps = stringifyDynamicPropNames(dynamicPropNames);
       }
-      node.codegenNode = createVNodeCall(
+      const vnodeCall = node.codegenNode = createVNodeCall(
         context,
         vnodeTag,
         vnodeProps,
@@ -4905,6 +4897,13 @@ Use a v-bind binding combined with a v-on listener that emits update:x event ins
         isComponent,
         node.loc
       );
+      needsPatch = needsPatch && (patchFlag === 0 || patchFlag === 32);
+      if (needsPatch) {
+        vnodeCall.needsPatch = true;
+      }
+      if (isBlockRequired) {
+        vnodeCall.isBlockRequired = true;
+      }
     };
   };
   function resolveComponentType(node, context, ssr = false) {
@@ -4956,6 +4955,7 @@ Use a v-bind binding combined with a v-on listener that emits update:x event ins
     const runtimeDirectives = [];
     const hasChildren = children.length > 0;
     let shouldUseBlock = false;
+    let isBlockRequired = false;
     let patchFlag = 0;
     let hasRef = false;
     let hasClassBinding = false;
@@ -4997,19 +4997,20 @@ Use a v-bind binding combined with a v-on listener that emits update:x event ins
         if (isEventHandler && isReservedProp(name)) {
           hasVnodeHook = true;
         }
+        if (name === "ref") {
+          hasRef = true;
+        }
         if (isEventHandler && value.type === 14) {
           value = value.arguments[0];
         }
         if (value.type === 20 || (value.type === 4 || value.type === 8) && getConstantType(value, context) > 0) {
           return;
         }
-        if (name === "ref") {
-          hasRef = true;
-        } else if (name === "class") {
+        if (name === "class") {
           hasClassBinding = true;
         } else if (name === "style") {
           hasStyleBinding = true;
-        } else if (name !== "key" && !dynamicPropNames.includes(name)) {
+        } else if (name !== "ref" && name !== "key" && !dynamicPropNames.includes(name)) {
           dynamicPropNames.push(name);
         }
         if (isComponent && (name === "class" || name === "style") && !dynamicPropNames.includes(name)) {
@@ -5068,13 +5069,12 @@ Use a v-bind binding combined with a v-on listener that emits update:x event ins
         if (isVOn && ssr) {
           continue;
         }
-        if (
-          // #938: elements with dynamic keys should be forced into blocks
-          isVBind && isStaticArgOf(arg, "key") || // inline before-update hooks need to force block so that it is invoked
-          // before children
-          isVOn && hasChildren && isStaticArgOf(arg, "vue:before-update")
-        ) {
+        if (isVBind && isStaticArgOf(arg, "key")) {
           shouldUseBlock = true;
+        }
+        if (isVOn && hasChildren && arg && isStaticExp(arg) && camelize(arg.content) === "vue:beforeUpdate") {
+          shouldUseBlock = true;
+          isBlockRequired = true;
         }
         if (isVBind && isStaticArgOf(arg, "ref")) {
           pushRefVForMarker();
@@ -5083,9 +5083,8 @@ Use a v-bind binding combined with a v-on listener that emits update:x event ins
           hasDynamicKeys = true;
           if (exp) {
             if (isVBind) {
-              pushRefVForMarker();
-              pushMergeArg();
               {
+                pushMergeArg();
                 {
                   const hasOverridableKeys = mergeArgs.some((arg2) => {
                     if (arg2.type === 15) {
@@ -5115,6 +5114,8 @@ Use a v-bind binding combined with a v-on listener that emits update:x event ins
                   continue;
                 }
               }
+              pushRefVForMarker();
+              pushMergeArg();
               mergeArgs.push(exp);
             } else {
               pushMergeArg({
@@ -5156,6 +5157,7 @@ Use a v-bind binding combined with a v-on listener that emits update:x event ins
           runtimeDirectives.push(prop);
           if (hasChildren) {
             shouldUseBlock = true;
+            isBlockRequired = true;
           }
         }
       }
@@ -5194,7 +5196,8 @@ Use a v-bind binding combined with a v-on listener that emits update:x event ins
         patchFlag |= 32;
       }
     }
-    if (!shouldUseBlock && (patchFlag === 0 || patchFlag === 32) && (hasRef || hasVnodeHook || runtimeDirectives.length > 0)) {
+    const needsPatch = (patchFlag === 0 || patchFlag === 32) && (hasRef || hasVnodeHook || runtimeDirectives.length > 0);
+    if (!shouldUseBlock && needsPatch) {
       patchFlag |= 512;
     }
     if (!context.inSSR && propsExpression) {
@@ -5260,7 +5263,9 @@ Use a v-bind binding combined with a v-on listener that emits update:x event ins
       directives: runtimeDirectives,
       patchFlag,
       dynamicPropNames,
-      shouldUseBlock
+      shouldUseBlock,
+      needsPatch,
+      isBlockRequired
     };
   }
   function dedupeProperties(properties) {
@@ -5442,7 +5447,7 @@ Use a v-bind binding combined with a v-on listener that emits update:x event ins
       if (arg.isStatic) {
         let rawName = arg.content;
         if (rawName.startsWith("vnode")) {
-          context.onError(createCompilerError(51, arg.loc));
+          context.onError(createCompilerError(52, arg.loc));
         }
         if (rawName.startsWith("vue:")) {
           rawName = `vnode-${rawName.slice(4)}`;
@@ -5510,6 +5515,58 @@ Use a v-bind binding combined with a v-on listener that emits update:x event ins
     }
     ret.props.forEach((p) => p.key.isHandlerKey = true);
     return ret;
+  };
+
+  const transformBind = (dir, _node, context) => {
+    const { modifiers, loc } = dir;
+    const arg = dir.arg;
+    let { exp } = dir;
+    if (exp && exp.type === 4 && !exp.content.trim()) {
+      {
+        exp = void 0;
+      }
+    }
+    if (arg.type !== 4) {
+      arg.children.unshift(`(`);
+      arg.children.push(`) || ""`);
+    } else if (!arg.isStatic) {
+      arg.content = arg.content ? `${arg.content} || ""` : `""`;
+    }
+    if (modifiers.some((mod) => mod.content === "camel")) {
+      if (arg.type === 4) {
+        if (arg.isStatic) {
+          arg.content = camelize(arg.content);
+        } else {
+          arg.content = `${context.helperString(CAMELIZE)}(${arg.content})`;
+        }
+      } else {
+        arg.children.unshift(`${context.helperString(CAMELIZE)}(`);
+        arg.children.push(`)`);
+      }
+    }
+    if (!context.inSSR) {
+      if (modifiers.some((mod) => mod.content === "prop")) {
+        injectPrefix(arg, ".");
+      }
+      if (modifiers.some((mod) => mod.content === "attr")) {
+        injectPrefix(arg, "^");
+      }
+    }
+    return {
+      props: [createObjectProperty(arg, exp)]
+    };
+  };
+  const injectPrefix = (arg, prefix) => {
+    if (arg.type === 4) {
+      if (arg.isStatic) {
+        arg.content = prefix + arg.content;
+      } else {
+        arg.content = `\`${prefix}\${${arg.content}}\``;
+      }
+    } else {
+      arg.children.unshift(`'${prefix}' + (`);
+      arg.children.push(`)`);
+    }
   };
 
   const transformText = (node, context) => {
@@ -5623,8 +5680,11 @@ Use a v-bind binding combined with a v-on listener that emits update:x event ins
       context.onError(createCompilerError(44, exp.loc));
       return createTransformProps();
     }
-    const maybeRef = false;
-    if (!expString.trim() || !isMemberExpression(exp) && !maybeRef) {
+    if (bindingType === "literal-const" || bindingType === "setup-const") {
+      context.onError(createCompilerError(45, exp.loc));
+      return createTransformProps();
+    }
+    if (!expString.trim() || !isMemberExpression(exp) && true) {
       context.onError(
         createCompilerError(42, exp.loc)
       );
@@ -5693,7 +5753,7 @@ Use a v-bind binding combined with a v-on listener that emits update:x event ins
         if (child.type === 4) {
           parseFilter(child, context);
         } else if (child.type === 8) {
-          rewriteFilter(node, context);
+          rewriteFilter(child, context);
         } else if (child.type === 5) {
           rewriteFilter(child.content, context);
         }
@@ -5821,7 +5881,7 @@ Use a v-bind binding combined with a v-on listener that emits update:x event ins
   const transformMemo = (node, context) => {
     if (node.type === 1) {
       const dir = findDir(node, "memo");
-      if (!dir || seen.has(node)) {
+      if (!dir || seen.has(node) || context.inSSR) {
         return;
       }
       seen.add(node);
@@ -5843,9 +5903,36 @@ Use a v-bind binding combined with a v-on listener that emits update:x event ins
     }
   };
 
+  const transformVBindShorthand = (node, context) => {
+    if (node.type === 1) {
+      for (const prop of node.props) {
+        if (prop.type === 7 && prop.name === "bind" && (!prop.exp || // #13930 :foo in in-DOM templates will be parsed into :foo="" by browser
+        prop.exp.type === 4 && !prop.exp.content.trim()) && prop.arg) {
+          const arg = prop.arg;
+          if (arg.type !== 4 || !arg.isStatic) {
+            context.onError(
+              createCompilerError(
+                53,
+                arg.loc
+              )
+            );
+            prop.exp = createSimpleExpression("", true, arg.loc);
+          } else {
+            const propName = camelize(arg.content);
+            if (validFirstIdentCharRE.test(propName[0]) || // allow hyphen first char for https://github.com/vuejs/language-tools/pull/3424
+            propName[0] === "-") {
+              prop.exp = createSimpleExpression(propName, false, arg.loc);
+            }
+          }
+        }
+      }
+    }
+  };
+
   function getBaseTransformPreset(prefixIdentifiers) {
     return [
       [
+        transformVBindShorthand,
         transformOnce,
         transformIf,
         transformMemo,
@@ -5869,17 +5956,17 @@ Use a v-bind binding combined with a v-on listener that emits update:x event ins
     const isModuleMode = options.mode === "module";
     {
       if (options.prefixIdentifiers === true) {
-        onError(createCompilerError(47));
-      } else if (isModuleMode) {
         onError(createCompilerError(48));
+      } else if (isModuleMode) {
+        onError(createCompilerError(49));
       }
     }
     const prefixIdentifiers = false;
     if (options.cacheHandlers) {
-      onError(createCompilerError(49));
+      onError(createCompilerError(50));
     }
     if (options.scopeId && !isModuleMode) {
-      onError(createCompilerError(50));
+      onError(createCompilerError(51));
     }
     const resolvedOptions = extend({}, options, {
       prefixIdentifiers
@@ -5920,26 +6007,26 @@ Use a v-bind binding combined with a v-on listener that emits update:x event ins
 
   const noopDirectiveTransform = () => ({ props: [] });
 
-  const V_MODEL_RADIO = Symbol(`vModelRadio` );
-  const V_MODEL_CHECKBOX = Symbol(
+  const V_MODEL_RADIO = /* @__PURE__ */ Symbol(`vModelRadio` );
+  const V_MODEL_CHECKBOX = /* @__PURE__ */ Symbol(
     `vModelCheckbox` 
   );
-  const V_MODEL_TEXT = Symbol(`vModelText` );
-  const V_MODEL_SELECT = Symbol(
+  const V_MODEL_TEXT = /* @__PURE__ */ Symbol(`vModelText` );
+  const V_MODEL_SELECT = /* @__PURE__ */ Symbol(
     `vModelSelect` 
   );
-  const V_MODEL_DYNAMIC = Symbol(
+  const V_MODEL_DYNAMIC = /* @__PURE__ */ Symbol(
     `vModelDynamic` 
   );
-  const V_ON_WITH_MODIFIERS = Symbol(
+  const V_ON_WITH_MODIFIERS = /* @__PURE__ */ Symbol(
     `vOnModifiersGuard` 
   );
-  const V_ON_WITH_KEYS = Symbol(
+  const V_ON_WITH_KEYS = /* @__PURE__ */ Symbol(
     `vOnKeysGuard` 
   );
-  const V_SHOW = Symbol(`vShow` );
-  const TRANSITION = Symbol(`Transition` );
-  const TRANSITION_GROUP = Symbol(
+  const V_SHOW = /* @__PURE__ */ Symbol(`vShow` );
+  const TRANSITION = /* @__PURE__ */ Symbol(`Transition` );
+  const TRANSITION_GROUP = /* @__PURE__ */ Symbol(
     `TransitionGroup` 
   );
   registerRuntimeHelpers({
@@ -6050,55 +6137,55 @@ Use a v-bind binding combined with a v-on listener that emits update:x event ins
     );
   }
   const DOMErrorCodes = {
-    "X_V_HTML_NO_EXPRESSION": 53,
-    "53": "X_V_HTML_NO_EXPRESSION",
-    "X_V_HTML_WITH_CHILDREN": 54,
-    "54": "X_V_HTML_WITH_CHILDREN",
-    "X_V_TEXT_NO_EXPRESSION": 55,
-    "55": "X_V_TEXT_NO_EXPRESSION",
-    "X_V_TEXT_WITH_CHILDREN": 56,
-    "56": "X_V_TEXT_WITH_CHILDREN",
-    "X_V_MODEL_ON_INVALID_ELEMENT": 57,
-    "57": "X_V_MODEL_ON_INVALID_ELEMENT",
-    "X_V_MODEL_ARG_ON_ELEMENT": 58,
-    "58": "X_V_MODEL_ARG_ON_ELEMENT",
-    "X_V_MODEL_ON_FILE_INPUT_ELEMENT": 59,
-    "59": "X_V_MODEL_ON_FILE_INPUT_ELEMENT",
-    "X_V_MODEL_UNNECESSARY_VALUE": 60,
-    "60": "X_V_MODEL_UNNECESSARY_VALUE",
-    "X_V_SHOW_NO_EXPRESSION": 61,
-    "61": "X_V_SHOW_NO_EXPRESSION",
-    "X_TRANSITION_INVALID_CHILDREN": 62,
-    "62": "X_TRANSITION_INVALID_CHILDREN",
-    "X_IGNORED_SIDE_EFFECT_TAG": 63,
-    "63": "X_IGNORED_SIDE_EFFECT_TAG",
-    "__EXTEND_POINT__": 64,
-    "64": "__EXTEND_POINT__"
+    "X_V_HTML_NO_EXPRESSION": 54,
+    "54": "X_V_HTML_NO_EXPRESSION",
+    "X_V_HTML_WITH_CHILDREN": 55,
+    "55": "X_V_HTML_WITH_CHILDREN",
+    "X_V_TEXT_NO_EXPRESSION": 56,
+    "56": "X_V_TEXT_NO_EXPRESSION",
+    "X_V_TEXT_WITH_CHILDREN": 57,
+    "57": "X_V_TEXT_WITH_CHILDREN",
+    "X_V_MODEL_ON_INVALID_ELEMENT": 58,
+    "58": "X_V_MODEL_ON_INVALID_ELEMENT",
+    "X_V_MODEL_ARG_ON_ELEMENT": 59,
+    "59": "X_V_MODEL_ARG_ON_ELEMENT",
+    "X_V_MODEL_ON_FILE_INPUT_ELEMENT": 60,
+    "60": "X_V_MODEL_ON_FILE_INPUT_ELEMENT",
+    "X_V_MODEL_UNNECESSARY_VALUE": 61,
+    "61": "X_V_MODEL_UNNECESSARY_VALUE",
+    "X_V_SHOW_NO_EXPRESSION": 62,
+    "62": "X_V_SHOW_NO_EXPRESSION",
+    "X_TRANSITION_INVALID_CHILDREN": 63,
+    "63": "X_TRANSITION_INVALID_CHILDREN",
+    "X_IGNORED_SIDE_EFFECT_TAG": 64,
+    "64": "X_IGNORED_SIDE_EFFECT_TAG",
+    "__EXTEND_POINT__": 65,
+    "65": "__EXTEND_POINT__"
   };
   const DOMErrorMessages = {
-    [53]: `v-html is missing expression.`,
-    [54]: `v-html will override element children.`,
-    [55]: `v-text is missing expression.`,
-    [56]: `v-text will override element children.`,
-    [57]: `v-model can only be used on <input>, <textarea> and <select> elements.`,
-    [58]: `v-model argument is not supported on plain elements.`,
-    [59]: `v-model cannot be used on file inputs since they are read-only. Use a v-on:change listener instead.`,
-    [60]: `Unnecessary value binding used alongside v-model. It will interfere with v-model's behavior.`,
-    [61]: `v-show is missing expression.`,
-    [62]: `<Transition> expects exactly one child element or component.`,
-    [63]: `Tags with side effect (<script> and <style>) are ignored in client component templates.`
+    [54]: `v-html is missing expression.`,
+    [55]: `v-html will override element children.`,
+    [56]: `v-text is missing expression.`,
+    [57]: `v-text will override element children.`,
+    [58]: `v-model can only be used on <input>, <textarea> and <select> elements.`,
+    [59]: `v-model argument is not supported on plain elements.`,
+    [60]: `v-model cannot be used on file inputs since they are read-only. Use a v-on:change listener instead.`,
+    [61]: `Unnecessary value binding used alongside v-model. It will interfere with v-model's behavior.`,
+    [62]: `v-show is missing expression.`,
+    [63]: `<Transition> expects exactly one child element or component.`,
+    [64]: `Tags with side effect (<script> and <style>) are ignored in client component templates.`
   };
 
   const transformVHtml = (dir, node, context) => {
     const { exp, loc } = dir;
     if (!exp) {
       context.onError(
-        createDOMCompilerError(53, loc)
+        createDOMCompilerError(54, loc)
       );
     }
     if (node.children.length) {
       context.onError(
-        createDOMCompilerError(54, loc)
+        createDOMCompilerError(55, loc)
       );
       node.children.length = 0;
     }
@@ -6116,12 +6203,12 @@ Use a v-bind binding combined with a v-on listener that emits update:x event ins
     const { exp, loc } = dir;
     if (!exp) {
       context.onError(
-        createDOMCompilerError(55, loc)
+        createDOMCompilerError(56, loc)
       );
     }
     if (node.children.length) {
       context.onError(
-        createDOMCompilerError(56, loc)
+        createDOMCompilerError(57, loc)
       );
       node.children.length = 0;
     }
@@ -6147,7 +6234,7 @@ Use a v-bind binding combined with a v-on listener that emits update:x event ins
     if (dir.arg) {
       context.onError(
         createDOMCompilerError(
-          58,
+          59,
           dir.arg.loc
         )
       );
@@ -6157,7 +6244,7 @@ Use a v-bind binding combined with a v-on listener that emits update:x event ins
       if (value && isStaticArgOf(value.arg, "value")) {
         context.onError(
           createDOMCompilerError(
-            60,
+            61,
             value.loc
           )
         );
@@ -6185,7 +6272,7 @@ Use a v-bind binding combined with a v-on listener that emits update:x event ins
                 isInvalidType = true;
                 context.onError(
                   createDOMCompilerError(
-                    59,
+                    60,
                     dir.loc
                   )
                 );
@@ -6211,7 +6298,7 @@ Use a v-bind binding combined with a v-on listener that emits update:x event ins
     } else {
       context.onError(
         createDOMCompilerError(
-          57,
+          58,
           dir.loc
         )
       );
@@ -6319,7 +6406,7 @@ Use a v-bind binding combined with a v-on listener that emits update:x event ins
     const { exp, loc } = dir;
     if (!exp) {
       context.onError(
-        createDOMCompilerError(61, loc)
+        createDOMCompilerError(62, loc)
       );
     }
     return {
@@ -6339,7 +6426,7 @@ Use a v-bind binding combined with a v-on listener that emits update:x event ins
           if (hasMultipleChildren(node)) {
             context.onError(
               createDOMCompilerError(
-                62,
+                63,
                 {
                   start: node.children[0].loc.start,
                   end: node.children[node.children.length - 1].loc.end,
@@ -6368,7 +6455,7 @@ Use a v-bind binding combined with a v-on listener that emits update:x event ins
   };
   function hasMultipleChildren(node) {
     const children = node.children = node.children.filter(
-      (c) => c.type !== 3 && !(c.type === 2 && !c.content.trim())
+      (c) => !isCommentOrWhitespace(c)
     );
     const child = children[0];
     return children.length !== 1 || child.type === 11 || child.type === 9 && child.branches.some(hasMultipleChildren);
@@ -6378,7 +6465,7 @@ Use a v-bind binding combined with a v-on listener that emits update:x event ins
     if (node.type === 1 && node.tagType === 0 && (node.tag === "script" || node.tag === "style")) {
       context.onError(
         createDOMCompilerError(
-          63,
+          64,
           node.loc
         )
       );
@@ -6387,6 +6474,9 @@ Use a v-bind binding combined with a v-on listener that emits update:x event ins
   };
 
   function isValidHTMLNesting(parent, child) {
+    if (parent === "template") {
+      return true;
+    }
     if (parent in onlyValidChildren) {
       return onlyValidChildren[parent].has(child);
     }
@@ -6708,6 +6798,8 @@ Use a v-bind binding combined with a v-on listener that emits update:x event ins
   exports.hasScopeRef = hasScopeRef;
   exports.helperNameMap = helperNameMap;
   exports.injectProp = injectProp;
+  exports.isAllWhitespace = isAllWhitespace;
+  exports.isCommentOrWhitespace = isCommentOrWhitespace;
   exports.isCoreComponent = isCoreComponent;
   exports.isFnExpression = isFnExpression;
   exports.isFnExpressionBrowser = isFnExpressionBrowser;
@@ -6727,7 +6819,9 @@ Use a v-bind binding combined with a v-on listener that emits update:x event ins
   exports.isStaticPropertyKey = isStaticPropertyKey;
   exports.isTemplateNode = isTemplateNode;
   exports.isText = isText$1;
+  exports.isVPre = isVPre;
   exports.isVSlot = isVSlot;
+  exports.isWhitespaceText = isWhitespaceText;
   exports.locStub = locStub;
   exports.noopDirectiveTransform = noopDirectiveTransform;
   exports.parse = parse;
@@ -6749,8 +6843,10 @@ Use a v-bind binding combined with a v-on listener that emits update:x event ins
   exports.transformModel = transformModel$1;
   exports.transformOn = transformOn$1;
   exports.transformStyle = transformStyle;
+  exports.transformVBindShorthand = transformVBindShorthand;
   exports.traverseNode = traverseNode;
   exports.unwrapTSNode = unwrapTSNode;
+  exports.validFirstIdentCharRE = validFirstIdentCharRE;
   exports.walkBlockDeclarations = walkBlockDeclarations;
   exports.walkFunctionParams = walkFunctionParams;
   exports.walkIdentifiers = walkIdentifiers;

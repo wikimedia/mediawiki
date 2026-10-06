@@ -2,7 +2,7 @@
 	"$schema": "http://cyclonedx.org/schema/bom-1.6.schema.json",
 	"bomFormat": "CycloneDX",
 	"specVersion": "1.6",
-	"serialNumber": "urn:uuid:9e307f09-7256-4ef3-8a57-077eb1c9cb6a",
+	"serialNumber": "urn:uuid:14bf74a3-3d21-43a5-90c5-f1cabcce2c42",
 	"version": 1,
 	"components": [
 		{
@@ -542,7 +542,7 @@
 		{
 			"type": "library",
 			"name": "vue",
-			"version": "3.5.13",
+			"version": "3.5.43",
 			"licenses": [
 				{
 					"license": {
@@ -550,7 +550,7 @@
 					}
 				}
 			],
-			"purl": "pkg:npm/vue@3.5.13",
+			"purl": "pkg:npm/vue@3.5.43",
 			"authors": [
 				{
 					"name": "Yuxi (Evan) You"
@@ -614,7 +614,7 @@
 		{
 			"type": "library",
 			"name": "vue-compiler-dom",
-			"version": "3.5.13",
+			"version": "3.5.43",
 			"licenses": [
 				{
 					"license": {
@@ -622,7 +622,7 @@
 					}
 				}
 			],
-			"purl": "pkg:npm/@vue/compiler-dom@3.5.13",
+			"purl": "pkg:npm/@vue/compiler-dom@3.5.43",
 			"authors": [
 				{
 					"name": "Yuxi (Evan) You"
