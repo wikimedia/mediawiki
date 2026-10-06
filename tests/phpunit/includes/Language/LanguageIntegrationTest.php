@@ -1751,8 +1751,8 @@ class LanguageIntegrationTest extends LanguageClassesTestCase {
 		$oldTz = date_default_timezone_get();
 		date_default_timezone_set( 'Australia/Melbourne' );
 		try {
-			$ts1 = wfTimestamp( TS::UNIX, '20250115001810' );
-			$ts2 = wfTimestamp( TS::UNIX, '20250415001810' );
+			$ts1 = (int)wfTimestamp( TS::UNIX, '20250115001810' );
+			$ts2 = (int)wfTimestamp( TS::UNIX, '20250415001810' );
 			$result = $this->getLang()->formatDurationBetweenTimestamps( $ts1, $ts2 );
 			$this->assertSame( '3 months', $result );
 		} finally {

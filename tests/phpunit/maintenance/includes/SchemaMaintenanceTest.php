@@ -100,10 +100,11 @@ class SchemaMaintenanceTest extends MaintenanceBaseTestCase {
 		$directory = new RecursiveDirectoryIterator( $directoryPath );
 		$directoryIterator = new RecursiveIteratorIterator( $directory );
 
-		foreach ( $directoryIterator as $path ) {
-			if ( $path->isDir() || $path === $directoryPath ) {
+		foreach ( $directoryIterator as $file ) {
+			if ( $file->isDir() ) {
 				continue;
 			}
+			$path = $file->getPathname();
 
 			// Check that the filename is expected to be present.
 			$this->assertTrue( str_starts_with( $path, $directoryPath ) );
