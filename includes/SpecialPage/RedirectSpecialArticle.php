@@ -21,7 +21,7 @@ use MediaWiki\Title\Title;
  * the following subset of GET parameters to the target page, while
  * removing and/or ignoring all others.
  *
- * - useskin, uselang, printable: to alter the appearance of the resulting page
+ * - useskin, uselang: to alter the appearance of the resulting page
  *
  * - redirect: allows viewing one's user page or talk page even if it is a
  * redirect.

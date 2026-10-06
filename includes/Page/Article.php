@@ -502,17 +502,7 @@ class Article implements Page {
 		$parserOptions = $this->getParserOptions( $oldid );
 
 		$poOptions = [];
-		# Render printable version, use printable version cache
-		if ( $outputPage->isPrintable() ) {
-			$parserOptions->setIsPrintable( true );
-			$parserOptions->setSuppressSectionEditLinks();
-			$this->addMessageBoxStyles( $outputPage );
-			$outputPage->prependHTML(
-				Html::warningBox(
-					$outputPage->msg( 'printableversion-deprecated-warning' )->escaped()
-				)
-			);
-		} elseif ( $this->viewIsRenderAction || !$this->isCurrent() ||
+		if ( $this->viewIsRenderAction || !$this->isCurrent() ||
 			!$authority->probablyCan( 'edit', $this->getTitle() )
 		) {
 			$parserOptions->setSuppressSectionEditLinks();
@@ -1174,12 +1164,6 @@ class Article implements Page {
 			return [
 				'index' => 'noindex',
 				'follow' => 'nofollow'
-			];
-		} elseif ( $context->getOutput()->isPrintable() ) {
-			# Discourage indexing of printable versions, but encourage following
-			return [
-				'index' => 'noindex',
-				'follow' => 'follow'
 			];
 		} elseif ( $context->getRequest()->getInt( 'curid' ) ) {
 			# For ?curid=x urls, disallow indexing

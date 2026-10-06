@@ -212,7 +212,8 @@ class SkinTemplate extends Skin {
 		$tpl->set( 'skinname', $this->skinname );
 		$tpl->set( 'skinclass', static::class );
 		$tpl->set( 'skin', $this );
-		$tpl->set( 'printable', $out->isPrintable() );
+		// T259141: Kept for backwards compatibility
+		$tpl->set( 'printable', false );
 		$tpl->set( 'handheld', $request->getBool( 'handheld' ) );
 		$tpl->set( 'loggedin', $this->loggedin );
 		$tpl->set( 'notspecialpage', !$title->isSpecialPage() );

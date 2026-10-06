@@ -1367,6 +1367,7 @@ class OutputPage extends ContextSource {
 	 * @return bool
 	 */
 	public function isPrintable() {
+		wfDeprecated( __METHOD__, '1.47' );
 		return false;
 	}
 

@@ -1280,7 +1280,7 @@ abstract class Skin extends ContextSource {
 
 		// A print stylesheet is attached to all pages, but nobody ever
 		// figures that out. :)  Add a link...
-		if ( !$out->isPrintable() && ( $out->isArticle() || $title->isSpecialPage() ) ) {
+		if ( $out->isArticle() || $title->isSpecialPage() ) {
 			$nav_urls['print'] = [
 				'text' => $this->msg( 'printableversion' )->text(),
 				'href' => 'javascript:print();'
