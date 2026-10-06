@@ -218,7 +218,6 @@ class RevisionStoreDbTest extends MediaWikiIntegrationTestCase {
 			$this->getServiceContainer()->getPageStore(),
 			$this->getServiceContainer()->getTitleFactory(),
 			$this->getServiceContainer()->getHookContainer(),
-			$this->getServiceContainer()->getRecentChangeLookup(),
 			$dbDomain
 		);
 
@@ -693,7 +692,8 @@ class RevisionStoreDbTest extends MediaWikiIntegrationTestCase {
 
 		$this->assertGreaterThan( 0, $result );
 		$this->assertSame(
-			$store->getRecentChange( $storeRecord )->getAttribute( 'rc_id' ),
+			$this->getServiceContainer()->getRecentChangeLookup()
+				->getRecentChangeByRevision( $storeRecord )->getAttribute( 'rc_id' ),
 			$result
 		);
 	}
@@ -714,23 +714,6 @@ class RevisionStoreDbTest extends MediaWikiIntegrationTestCase {
 		$result = $store->getRcIdIfUnpatrolled( $storeRecord );
 
 		$this->assertSame( 0, $result );
-	}
-
-	public function testGetRecentChange() {
-		$page = $this->getTestPage();
-		$content = new WikitextContent( __METHOD__ );
-		$status = $page->doUserEditContent(
-			$content,
-			$this->getTestSysop()->getUser(),
-			__METHOD__
-		);
-		$revRecord = $status->getNewRevision();
-
-		$store = $this->getServiceContainer()->getRevisionStore();
-		$storeRecord = $store->getRevisionById( $revRecord->getId() );
-		$recentChange = $store->getRecentChange( $storeRecord );
-
-		$this->assertEquals( $revRecord->getId(), $recentChange->getAttribute( 'rc_this_oldid' ) );
 	}
 
 	public function testGetRevisionById() {
@@ -896,7 +879,6 @@ class RevisionStoreDbTest extends MediaWikiIntegrationTestCase {
 			$services->getPageStoreFactory()->getPageStore( $dbDomain ),
 			$services->getTitleFactory(),
 			$services->getHookContainer(),
-			$services->getRecentChangeLookup(),
 			$dbDomain
 		);
 

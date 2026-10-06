@@ -49,7 +49,7 @@ class ApiPatrol extends ApiBase {
 			if ( !$rev ) {
 				$this->dieWithError( [ 'apierror-nosuchrevid', $params['revid'] ] );
 			}
-			$rc = $this->revisionStore->getRecentChange( $rev );
+			$rc = $this->recentChangeLookup->getRecentChangeByRevision( $rev );
 			if ( !$rc ) {
 				$this->dieWithError( [ 'apierror-notpatrollable', $params['revid'] ] );
 			}

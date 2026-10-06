@@ -2420,7 +2420,6 @@ return [
 			$services->getPageStoreFactory(),
 			$services->getTitleFactory(),
 			$services->getHookContainer(),
-			$services->getRecentChangeLookup()
 		);
 	},
 

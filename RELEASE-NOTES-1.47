@@ -803,6 +803,10 @@ because of Phabricator reports.
   $pageLanguageOverride parameter is deprecated and emits warnings;
   instead use ::setTargetLanguage() on the ParserOptions passed to the
   method.
+* RevisionStore::getRecentChange() has been deprecated and emits deprecation
+  warnings. Use RecentChangeLookup::getRecentChangeByRevision() instead.
+* RevisionStore::getRcIdIfUnpatrolled() has been deprecated without a
+  direct replacement
 * …
 
 === Other changes in 1.47 ===

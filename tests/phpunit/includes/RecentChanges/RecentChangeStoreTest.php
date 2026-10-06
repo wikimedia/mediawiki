@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\Content\WikitextContent;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageIdentityValue;
@@ -8,10 +9,14 @@ use MediaWiki\Page\PageReferenceValue;
 use MediaWiki\RecentChanges\RecentChange;
 use MediaWiki\RecentChanges\RecentChangeStore;
 use MediaWiki\Registration\ExtensionRegistry;
+use MediaWiki\Revision\MutableRevisionRecord;
+use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Title\Title;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityValue;
 use MediaWiki\Utils\MWTimestamp;
+use Wikimedia\Assert\PreconditionException;
+use Wikimedia\Rdbms\IDBAccessObject;
 
 /**
  * @group Database
@@ -291,5 +296,121 @@ class RecentChangeStoreTest extends MediaWikiIntegrationTestCase {
 		$expected = [ 'mw.edit', 'mw.new', 'mw.log', 'primary' ];
 		$sources = $this->recentChangeStore->getPrimarySources();
 		$this->assertArrayEquals( $expected, $sources );
+	}
+
+	public static function provideGetRecentChangeByRevision() {
+		yield 'edit' => [ RecentChange::SRC_EDIT, 0 ];
+		yield 'new page' => [ RecentChange::SRC_NEW, 0 ];
+		yield 'log' => [ RecentChange::SRC_LOG, 0 ];
+		yield 'edit, read latest' => [ RecentChange::SRC_EDIT, IDBAccessObject::READ_LATEST ];
+	}
+
+	/**
+	 * @dataProvider provideGetRecentChangeByRevision
+	 * @covers \MediaWiki\RecentChanges\RecentChangeStore::getRecentChangeByRevision
+	 */
+	public function testGetRecentChangeByRevision( string $source, int $flags ) {
+		$revId = 12345;
+		// Add a categorization change with the same rc_this_oldid first.
+		// The method must not return this change.
+		$this->insertRecentChangeForRevision( $revId, RecentChange::SRC_CATEGORIZE );
+		$expected = $this->insertRecentChangeForRevision( $revId, $source );
+
+		$rc = $this->recentChangeStore->getRecentChangeByRevision( $this->newRevision( $revId ), $flags );
+
+		$this->assertNotNull( $rc );
+		$this->assertSame( (int)$expected->getAttribute( 'rc_id' ), (int)$rc->getAttribute( 'rc_id' ) );
+		$this->assertSame( $source, $rc->getAttribute( 'rc_source' ) );
+	}
+
+	/**
+	 * @covers \MediaWiki\RecentChanges\RecentChangeStore::getRecentChangeByRevision
+	 */
+	public function testGetRecentChangeByRevision_noChange() {
+		$this->assertNull(
+			$this->recentChangeStore->getRecentChangeByRevision( $this->newRevision( 12345 ) )
+		);
+	}
+
+	/**
+	 * @covers \MediaWiki\RecentChanges\RecentChangeStore::getRecentChangeByRevision
+	 */
+	public function testGetRecentChangeByRevision_onlyCategorizationChange() {
+		$revId = 12345;
+		$this->insertRecentChangeForRevision( $revId, RecentChange::SRC_CATEGORIZE );
+
+		$this->assertNull(
+			$this->recentChangeStore->getRecentChangeByRevision( $this->newRevision( $revId ) )
+		);
+	}
+
+	/**
+	 * @covers \MediaWiki\RecentChanges\RecentChangeStore::getRecentChangeByRevision
+	 */
+	public function testGetRecentChangeByRevision_foreignWiki() {
+		$page = new PageIdentityValue( 17, NS_MAIN, 'SomeTitle', 'otherwiki' );
+		$rev = new MutableRevisionRecord( $page, 'otherwiki' );
+		$rev->setId( 12345 );
+
+		$this->expectException( PreconditionException::class );
+		$this->recentChangeStore->getRecentChangeByRevision( $rev );
+	}
+
+	/**
+	 * @covers \MediaWiki\RecentChanges\RecentChangeStore::getRecentChangeByRevision
+	 */
+	public function testGetRecentChange() {
+		$page = $this->getExistingTestPage();
+		$content = new WikitextContent( __METHOD__ );
+		$status = $page->doUserEditContent(
+			$content,
+			$this->getTestSysop()->getUser(),
+			__METHOD__
+		);
+		$revRecord = $status->getNewRevision();
+
+		$revisionStore = $this->getServiceContainer()->getRevisionStore();
+		$storeRecord = $revisionStore->getRevisionById( $revRecord->getId() );
+		$recentChange = $this->recentChangeStore->getRecentChangeByRevision( $storeRecord );
+
+		$this->assertEquals( $revRecord->getId(), $recentChange->getAttribute( 'rc_this_oldid' ) );
+	}
+
+	private function newRevision( int $revId ): RevisionRecord {
+		$rev = new MutableRevisionRecord( $this->title );
+		$rev->setId( $revId );
+		return $rev;
+	}
+
+	/**
+	 * Add a recent change for a revision to the database.
+	 *
+	 * @param int $revId The value for rc_this_oldid
+	 * @param string $source One of the RecentChange::SRC_* constants
+	 * @return RecentChange
+	 */
+	private function insertRecentChangeForRevision( int $revId, string $source ): RecentChange {
+		$now = MWTimestamp::now();
+		$rc = match ( $source ) {
+			RecentChange::SRC_EDIT => $this->recentChangeStore->createEditRecentChange(
+				$now, $this->title, false, $this->user, self::USER_COMMENT, 0, false,
+				'', 0, 0, $revId
+			),
+			RecentChange::SRC_NEW => $this->recentChangeStore->createNewPageRecentChange(
+				$now, $this->title, false, $this->user, self::USER_COMMENT, false,
+				'', 0, $revId
+			),
+			RecentChange::SRC_LOG => $this->recentChangeStore->createLogRecentChange(
+				$now, PageReferenceValue::localReference( NS_SPECIAL, 'Log/test' ), $this->user,
+				'action comment', '192.168.0.2', 'test', 'testing', $this->title, self::USER_COMMENT,
+				'', 7, '', $revId
+			),
+			RecentChange::SRC_CATEGORIZE => $this->recentChangeStore->createCategorizationRecentChange(
+				$now, Title::makeTitle( NS_CATEGORY, 'SomeCategory' ), $this->user, self::USER_COMMENT,
+				$this->title, 0, $revId, false
+			),
+		};
+		$this->recentChangeStore->insertRecentChange( $rc );
+		return $rc;
 	}
 }

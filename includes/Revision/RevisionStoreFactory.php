@@ -17,7 +17,6 @@ use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\DAO\WikiAwareEntity;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\Page\PageStoreFactory;
-use MediaWiki\RecentChanges\RecentChangeLookup;
 use MediaWiki\Storage\BlobStoreFactory;
 use MediaWiki\Storage\NameTableStoreFactory;
 use MediaWiki\Title\TitleFactory;
@@ -57,7 +56,6 @@ class RevisionStoreFactory {
 	private PageStoreFactory $pageStoreFactory;
 	private TitleFactory $titleFactory;
 	private HookContainer $hookContainer;
-	private RecentChangeLookup $recentChangeLookup;
 
 	public function __construct(
 		ILBFactory $dbLoadBalancerFactory,
@@ -73,7 +71,6 @@ class RevisionStoreFactory {
 		PageStoreFactory $pageStoreFactory,
 		TitleFactory $titleFactory,
 		HookContainer $hookContainer,
-		RecentChangeLookup $recentChangeLookup
 	) {
 		$this->dbLoadBalancerFactory = $dbLoadBalancerFactory;
 		$this->blobStoreFactory = $blobStoreFactory;
@@ -88,7 +85,6 @@ class RevisionStoreFactory {
 		$this->pageStoreFactory = $pageStoreFactory;
 		$this->titleFactory = $titleFactory;
 		$this->hookContainer = $hookContainer;
-		$this->recentChangeLookup = $recentChangeLookup;
 	}
 
 	/**
@@ -168,7 +164,6 @@ class RevisionStoreFactory {
 			$this->pageStoreFactory->getPageStore( $dbDomain ),
 			$this->titleFactory,
 			$this->hookContainer,
-			$this->recentChangeLookup,
 			$dbDomain
 		);
 

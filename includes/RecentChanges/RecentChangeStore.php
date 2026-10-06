@@ -10,6 +10,7 @@ use MediaWiki\ChangeTags\ChangeTagsStore;
 use MediaWiki\CommentStore\CommentStore;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Context\RequestContext;
+use MediaWiki\DAO\WikiAwareEntity;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\JobQueue\JobQueueGroup;
@@ -19,6 +20,7 @@ use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageReference;
 use MediaWiki\Page\WikiPageFactory;
 use MediaWiki\Permissions\PermissionManager;
+use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Storage\EditResult;
 use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleFormatter;
@@ -30,6 +32,7 @@ use RuntimeException;
 use Wikimedia\Assert\Assert;
 use Wikimedia\IPUtils;
 use Wikimedia\Rdbms\IConnectionProvider;
+use Wikimedia\Rdbms\IDBAccessObject;
 use Wikimedia\Timestamp\TimestampFormat as TS;
 
 /**
@@ -139,6 +142,29 @@ class RecentChangeStore implements RecentChangeFactory, RecentChangeLookup {
 			return $this->newRecentChangeFromRow( $row );
 		}
 		return null;
+	}
+
+	/**
+	 * @inheritDoc
+	 */
+	public function getRecentChangeByRevision( RevisionRecord $rev, int $flags = 0 ): ?RecentChange {
+		$rev->assertWiki( WikiAwareEntity::LOCAL );
+
+		$rc = $this->getRecentChangeByConds(
+			[
+				'rc_this_oldid' => $rev->getId(),
+				// rc_this_oldid does not have to be unique,
+				// in particular, it is shared with categorization
+				// changes. Prefer the original change because callers
+				// often expect a change for patrolling.
+				'rc_source' => [ RecentChange::SRC_EDIT, RecentChange::SRC_NEW, RecentChange::SRC_LOG ],
+			],
+			__METHOD__,
+			( $flags & IDBAccessObject::READ_LATEST ) == IDBAccessObject::READ_LATEST
+		);
+
+		// XXX: cache this locally? Glue it to the RevisionRecord?
+		return $rc;
 	}
 
 	/**

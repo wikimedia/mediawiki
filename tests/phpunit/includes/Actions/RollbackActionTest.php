@@ -122,7 +122,8 @@ class RollbackActionTest extends MediaWikiIntegrationTestCase {
 		// ...but have different rev IDs.
 		$this->assertNotSame( $latestRev->getId(), $initialRev->getId() );
 
-		$recentChange = $revisionStore->getRecentChange( $latestRev );
+		$recentChange = $this->getServiceContainer()->getRecentChangeLookup()
+			->getRecentChangeByRevision( $latestRev );
 		$this->assertSame( '0', $recentChange->getAttribute( 'rc_bot' ) );
 		$this->assertSame( $this->sysop->getName(), $recentChange->getAttribute( 'rc_user_text' ) );
 
@@ -147,7 +148,8 @@ class RollbackActionTest extends MediaWikiIntegrationTestCase {
 
 		$revisionStore = $this->getServiceContainer()->getRevisionStore();
 		$latestRev = $revisionStore->getRevisionByTitle( $this->testPage );
-		$recentChange = $revisionStore->getRecentChange( $latestRev );
+		$recentChange = $this->getServiceContainer()->getRecentChangeLookup()
+			->getRecentChangeByRevision( $latestRev );
 		$this->assertSame( '1', $recentChange->getAttribute( 'rc_bot' ) );
 	}
 }

@@ -294,8 +294,8 @@ class WikiPageDbTest extends MediaWikiLangTestCase {
 
 		$revRecord = $page->getRevisionRecord();
 		$recentChange = $this->getServiceContainer()
-			->getRevisionStore()
-			->getRecentChange( $revRecord );
+			->getRecentChangeLookup()
+			->getRecentChangeByRevision( $revRecord );
 		$preparedEditAfter = $page->prepareContentForEdit( $content, $revRecord, $user1 );
 
 		$this->assertNotNull( $recentChange );
@@ -371,8 +371,8 @@ class WikiPageDbTest extends MediaWikiLangTestCase {
 
 		$revRecord = $page->getRevisionRecord();
 		$recentChange = $this->getServiceContainer()
-			->getRevisionStore()
-			->getRecentChange( $revRecord );
+			->getRecentChangeLookup()
+			->getRecentChangeByRevision( $revRecord );
 		$this->assertNotNull( $recentChange );
 		$this->assertSame( $revRecord->getId(), (int)$recentChange->getAttribute( 'rc_this_oldid' ) );
 

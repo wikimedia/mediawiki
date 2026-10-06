@@ -6,7 +6,6 @@ use MediaWiki\CommentStore\CommentStore;
 use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\Page\PageStore;
 use MediaWiki\Page\PageStoreFactory;
-use MediaWiki\RecentChanges\RecentChangeLookup;
 use MediaWiki\Revision\RevisionStore;
 use MediaWiki\Revision\RevisionStoreFactory;
 use MediaWiki\Revision\SlotRoleRegistry;
@@ -48,8 +47,7 @@ class RevisionStoreFactoryTest extends MediaWikiUnitTestCase {
 			$this->createMock( IContentHandlerFactory::class ),
 			$this->getPageStoreFactory(),
 			$this->createMock( TitleFactory::class ),
-			$this->createHookContainer(),
-			$this->createMock( RecentChangeLookup::class )
+			$this->createHookContainer()
 		);
 		$this->assertTrue( true );
 	}
@@ -79,8 +77,7 @@ class RevisionStoreFactoryTest extends MediaWikiUnitTestCase {
 			$this->createMock( IContentHandlerFactory::class ),
 			$this->getPageStoreFactory(),
 			$this->createMock( TitleFactory::class ),
-			$this->createHookContainer(),
-			$this->createMock( RecentChangeLookup::class )
+			$this->createHookContainer()
 		);
 
 		$store = $factory->getRevisionStore( $wikiId );

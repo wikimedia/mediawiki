@@ -160,9 +160,9 @@ class CategoryMembershipChange {
 		$lastRevId = 0;
 		$ip = '';
 
-		$revisionStore = MediaWikiServices::getInstance()->getRevisionStore();
-		$correspondingRc = $revisionStore->getRecentChange( $revision ) ??
-			$revisionStore->getRecentChange( $revision, IDBAccessObject::READ_LATEST );
+		$recentChangeLookup = MediaWikiServices::getInstance()->getRecentChangeLookup();
+		$correspondingRc = $recentChangeLookup->getRecentChangeByRevision( $revision ) ??
+			$recentChangeLookup->getRecentChangeByRevision( $revision, IDBAccessObject::READ_LATEST );
 		if ( $correspondingRc !== null ) {
 			$bot = $correspondingRc->getAttribute( 'rc_bot' ) ?: 0;
 			$ip = $correspondingRc->getAttribute( 'rc_ip' ) ?: '';

@@ -119,7 +119,7 @@ class ApiQueryWatchlistIntegrationTest extends ApiTestCase {
 		$updater->setContent( SlotRecord::MAIN, $page->getContentHandler()->unserializeContent( $content ) );
 		$rev = $updater->saveRevision( $summary );
 
-		$rc = $this->getServiceContainer()->getRevisionStore()->getRecentChange( $rev );
+		$rc = $this->getServiceContainer()->getRecentChangeLookup()->getRecentChangeByRevision( $rev );
 		$rc->markPatrolled( $patrollingUser, [] );
 	}
 

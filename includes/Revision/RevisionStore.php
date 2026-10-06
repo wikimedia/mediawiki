@@ -24,6 +24,7 @@ use MediaWiki\Exception\MWException;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Linker\LinkTarget;
+use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\LegacyArticleIdAccess;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageIdentityValue;
@@ -31,7 +32,6 @@ use MediaWiki\Page\PageReference;
 use MediaWiki\Page\PageStore;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\RecentChanges\RecentChange;
-use MediaWiki\RecentChanges\RecentChangeLookup;
 use MediaWiki\Storage\BadBlobException;
 use MediaWiki\Storage\BlobAccessException;
 use MediaWiki\Storage\BlobStore;
@@ -114,7 +114,6 @@ class RevisionStore implements RevisionFactory, RevisionLookup, LoggerAwareInter
 	private HookRunner $hookRunner;
 	private PageStore $pageStore;
 	private TitleFactory $titleFactory;
-	private RecentChangeLookup $recentChangeLookup;
 
 	/**
 	 * @param ILoadBalancer $loadBalancer
@@ -135,7 +134,6 @@ class RevisionStore implements RevisionFactory, RevisionLookup, LoggerAwareInter
 	 * @param PageStore $pageStore
 	 * @param TitleFactory $titleFactory
 	 * @param HookContainer $hookContainer
-	 * @param RecentChangeLookup $recentChangeLookup
 	 * @param false|string $wikiId Relevant wiki id or WikiAwareEntity::LOCAL for the current one
 	 *
 	 * @todo $blobStore should be allowed to be any BlobStore!
@@ -154,7 +152,6 @@ class RevisionStore implements RevisionFactory, RevisionLookup, LoggerAwareInter
 		PageStore $pageStore,
 		TitleFactory $titleFactory,
 		HookContainer $hookContainer,
-		RecentChangeLookup $recentChangeLookup,
 		$wikiId = WikiAwareEntity::LOCAL
 	) {
 		Assert::parameterType( [ 'string', 'false' ], $wikiId, '$wikiId' );
@@ -174,7 +171,6 @@ class RevisionStore implements RevisionFactory, RevisionLookup, LoggerAwareInter
 		$this->pageStore = $pageStore;
 		$this->titleFactory = $titleFactory;
 		$this->hookRunner = new HookRunner( $hookContainer );
-		$this->recentChangeLookup = $recentChangeLookup;
 	}
 
 	public function setLogger( LoggerInterface $logger ): void {
@@ -1045,14 +1041,18 @@ class RevisionStore implements RevisionFactory, RevisionLookup, LoggerAwareInter
 	/**
 	 * MCR migration note: this replaced Revision::isUnpatrolled
 	 *
-	 * @todo This is overly specific, so move or kill this method.
+	 * @deprecated since 1.47, use RecentChangeLookup::getRecentChangeByRevision() and check rc_patrolled instead
 	 *
 	 * @param RevisionRecord $rev
 	 *
 	 * @return int Rcid of the unpatrolled row, zero if there isn't one
 	 */
 	public function getRcIdIfUnpatrolled( RevisionRecord $rev ) {
-		$rc = $this->getRecentChange( $rev );
+		if ( $this->wikiId !== RevisionRecord::LOCAL ) {
+			throw new PreconditionException( 'RecentChangeLookup is only available for the local wiki' );
+		}
+
+		$rc = MediaWikiServices::getInstance()->getRecentChangeLookup()->getRecentChangeByRevision( $rev );
 		if ( $rc && $rc->getAttribute( 'rc_patrolled' ) == RecentChange::PRC_UNPATROLLED ) {
 			return $rc->getAttribute( 'rc_id' );
 		} else {
@@ -1065,7 +1065,9 @@ class RevisionStore implements RevisionFactory, RevisionLookup, LoggerAwareInter
 	 *
 	 * MCR migration note: this replaced Revision::getRecentChange
 	 *
-	 * @todo move this somewhere else?
+	 * @deprecated since 1.47, use RecentChangeLookup::getRecentChangeByRevision() instead
+	 * @todo This should be safe to remove in 1.48.
+	 *   MediaWikiServices::getInstance()->getRecentChangeLookup() is acceptable as a transitional compromise.
 	 *
 	 * @param RevisionRecord $rev
 	 * @param int $flags (optional) $flags include:
@@ -1074,25 +1076,14 @@ class RevisionStore implements RevisionFactory, RevisionLookup, LoggerAwareInter
 	 * @return null|RecentChange
 	 */
 	public function getRecentChange( RevisionRecord $rev, $flags = 0 ) {
+		wfDeprecated( __METHOD__, '1.47' );
+
 		if ( $this->wikiId !== RevisionRecord::LOCAL ) {
 			throw new PreconditionException( 'RecentChangeLookup is only available for the local wiki' );
 		}
 
-		$rc = $this->recentChangeLookup->getRecentChangeByConds(
-			[
-				'rc_this_oldid' => $rev->getId( $this->wikiId ),
-				// rc_this_oldid does not have to be unique,
-				// in particular, it is shared with categorization
-				// changes. Prefer the original change because callers
-				// often expect a change for patrolling.
-				'rc_source' => [ RecentChange::SRC_EDIT, RecentChange::SRC_NEW, RecentChange::SRC_LOG ],
-			],
-			__METHOD__,
-			( $flags & IDBAccessObject::READ_LATEST ) == IDBAccessObject::READ_LATEST
-		);
-
-		// XXX: cache this locally? Glue it to the RevisionRecord?
-		return $rc;
+		return MediaWikiServices::getInstance()->getRecentChangeLookup()
+			->getRecentChangeByRevision( $rev, $flags );
 	}
 
 	/**

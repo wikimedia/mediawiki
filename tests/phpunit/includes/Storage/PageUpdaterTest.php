@@ -1354,7 +1354,7 @@ class PageUpdaterTest extends MediaWikiIntegrationTestCase {
 	 * @covers \MediaWiki\Storage\PageUpdater::setRcPatrolStatus()
 	 */
 	public function testSetRcPatrolStatus( $patrolled ) {
-		$revisionStore = $this->getServiceContainer()->getRevisionStore();
+		$recentChangeLookup = $this->getServiceContainer()->getRecentChangeLookup();
 
 		$user = $this->getTestUser()->getUserIdentity();
 
@@ -1367,7 +1367,7 @@ class PageUpdaterTest extends MediaWikiIntegrationTestCase {
 			->setRcPatrolStatus( $patrolled )
 			->saveRevision( $summary );
 
-		$rc = $revisionStore->getRecentChange( $rev );
+		$rc = $recentChangeLookup->getRecentChangeByRevision( $rev );
 		$this->assertEquals( $patrolled, $rc->getAttribute( 'rc_patrolled' ) );
 	}
 

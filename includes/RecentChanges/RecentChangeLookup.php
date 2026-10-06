@@ -6,6 +6,9 @@
 
 namespace MediaWiki\RecentChanges;
 
+use MediaWiki\Revision\RevisionRecord;
+use Wikimedia\Assert\PreconditionException;
+
 /**
  * @since 1.45
  * @ingroup RecentChanges
@@ -32,6 +35,22 @@ interface RecentChangeLookup {
 		string $fname = __METHOD__,
 		bool $fromPrimary = false
 	): ?RecentChange;
+
+	/**
+	 * Get the RC object belonging to the latest revision, if there's one
+	 *
+	 * MCR migration note: this replaced Revision::getRecentChange
+	 *
+	 * @since 1.47
+	 *
+	 * @param RevisionRecord $rev
+	 * @param int $flags (optional) $flags include:
+	 *      IDBAccessObject::READ_LATEST: Select the data from the primary DB
+	 *
+	 * @return null|RecentChange
+	 * @throws PreconditionException If the revision is not from the local wiki
+	 */
+	public function getRecentChangeByRevision( RevisionRecord $rev, int $flags = 0 ): ?RecentChange;
 
 	/**
 	 * Get the rc_source values for events that are not replicated from elsewhere

@@ -72,7 +72,8 @@ class ApiRollbackTest extends ApiTestCase {
 		// And that the watchlist expiry matches user preferences (1 day after mocked time).
 		$this->assertSame( '20240202000000', $watchedItemStore->getWatchedItem( $sysop, $title )->getExpiry() );
 
-		$recentChange = $revisionStore->getRecentChange( $latestRev );
+		$recentChange = $this->getServiceContainer()->getRecentChangeLookup()
+			->getRecentChangeByRevision( $latestRev );
 		$this->assertSame( '0', $recentChange->getAttribute( 'rc_bot' ) );
 		$this->assertSame( $sysop->getName(), $recentChange->getAttribute( 'rc_user_text' ) );
 	}
@@ -101,7 +102,8 @@ class ApiRollbackTest extends ApiTestCase {
 		$this->assertArrayHasKey( 'rollback', $apiResult );
 		$this->assertSame( $title->getPrefixedText(), $apiResult['rollback']['title'] );
 
-		$recentChange = $revisionStore->getRecentChange( $revisionStore->getRevisionByTitle( $title ) );
+		$recentChange = $this->getServiceContainer()->getRecentChangeLookup()
+			->getRecentChangeByRevision( $revisionStore->getRevisionByTitle( $title ) );
 		$this->assertSame( '1', $recentChange->getAttribute( 'rc_bot' ) );
 	}
 

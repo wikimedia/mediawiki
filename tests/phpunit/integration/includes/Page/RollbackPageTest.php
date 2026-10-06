@@ -154,6 +154,7 @@ class RollbackPageTest extends MediaWikiIntegrationTestCase {
 		$rev3 = $status3->getNewRevision();
 
 		$revisionStore = $this->getServiceContainer()->getRevisionStore();
+		$recentChangeLookup = $this->getServiceContainer()->getRecentChangeLookup();
 		/**
 		 * We are having issues with doRollback spuriously failing. Apparently
 		 * the last revision somehow goes missing or not committed under some
@@ -167,7 +168,7 @@ class RollbackPageTest extends MediaWikiIntegrationTestCase {
 		$this->assertEquals( $user1->getName(), $rev2->getUser()->getName() );
 		$this->assertEquals( $user2->getName(), $rev3->getUser()->getName() );
 
-		$rc3 = $revisionStore->getRecentChange( $rev3 );
+		$rc3 = $recentChangeLookup->getRecentChangeByRevision( $rev3 );
 		$this->assertEquals(
 			RecentChange::PRC_UNPATROLLED,
 			$rc3->getAttribute( 'rc_patrolled' )
@@ -188,8 +189,8 @@ class RollbackPageTest extends MediaWikiIntegrationTestCase {
 
 		$this->runJobs( [ 'minJobs' => 1 ], [ 'type' => 'revertedTagUpdate' ] );
 
-		$rc = $revisionStore->getRecentChange( $page->getRevisionRecord() );
-		$rc3 = $revisionStore->getRecentChange( $rev3 );
+		$rc = $recentChangeLookup->getRecentChangeByRevision( $page->getRevisionRecord() );
+		$rc3 = $recentChangeLookup->getRecentChangeByRevision( $rev3 );
 
 		$this->assertNotNull( $rc, 'RecentChanges entry' );
 		$this->assertEquals(
@@ -238,8 +239,8 @@ class RollbackPageTest extends MediaWikiIntegrationTestCase {
 
 		$this->assertEquals( $status3->getNewRevision(), $page->getRevisionRecord() );
 
-		$rc3 = $this->getServiceContainer()->getRevisionStore()
-			->getRecentChange( $status3->getNewRevision() );
+		$rc3 = $this->getServiceContainer()->getRecentChangeLookup()
+			->getRecentChangeByRevision( $status3->getNewRevision() );
 		$this->assertNotContains(
 			ChangeTags::TAG_REVERTED,
 			$this->getServiceContainer()->getChangeTagsStore()
@@ -342,7 +343,8 @@ class RollbackPageTest extends MediaWikiIntegrationTestCase {
 			->markAsBot( true )
 			->rollbackIfAllowed();
 		$this->assertStatusGood( $rollbackResult );
-		$rc = $this->getServiceContainer()->getRevisionStore()->getRecentChange( $page->getRevisionRecord() );
+		$rc = $this->getServiceContainer()->getRecentChangeLookup()
+			->getRecentChangeByRevision( $page->getRevisionRecord() );
 		$this->assertNotNull( $rc );
 		$this->assertSame( '1', $rc->getAttribute( 'rc_bot' ) );
 	}
@@ -361,7 +363,8 @@ class RollbackPageTest extends MediaWikiIntegrationTestCase {
 			->markAsBot( true )
 			->rollbackIfAllowed();
 		$this->assertStatusGood( $rollbackResult );
-		$rc = $this->getServiceContainer()->getRevisionStore()->getRecentChange( $page->getRevisionRecord() );
+		$rc = $this->getServiceContainer()->getRecentChangeLookup()
+			->getRecentChangeByRevision( $page->getRevisionRecord() );
 		$this->assertNotNull( $rc );
 		$this->assertSame( '0', $rc->getAttribute( 'rc_bot' ) );
 	}
@@ -389,19 +392,19 @@ class RollbackPageTest extends MediaWikiIntegrationTestCase {
 		$this->assertStatusGood( $status, 'edit 3 success' );
 		$rev3 = $status->getNewRevision();
 
-		$revisionStore = $this->getServiceContainer()->getRevisionStore();
+		$recentChangeLookup = $this->getServiceContainer()->getRecentChangeLookup();
 
-		$rc1 = $revisionStore->getRecentChange( $rev1 );
+		$rc1 = $recentChangeLookup->getRecentChangeByRevision( $rev1 );
 		$this->assertEquals(
 			RecentChange::PRC_AUTOPATROLLED,
 			$rc1->getAttribute( 'rc_patrolled' )
 		);
 
 		// manually patrol the first reverted revision
-		$rc2 = $revisionStore->getRecentChange( $rev2 );
+		$rc2 = $recentChangeLookup->getRecentChangeByRevision( $rev2 );
 		$rc2->reallyMarkPatrolled();
 
-		$rc3 = $revisionStore->getRecentChange( $rev3 );
+		$rc3 = $recentChangeLookup->getRecentChangeByRevision( $rev3 );
 		$this->assertEquals(
 			RecentChange::PRC_UNPATROLLED,
 			$rc3->getAttribute( 'rc_patrolled' )
@@ -414,21 +417,21 @@ class RollbackPageTest extends MediaWikiIntegrationTestCase {
 			->rollback();
 		$this->assertStatusGood( $rollbackResult );
 
-		$rc1 = $revisionStore->getRecentChange( $rev1 );
+		$rc1 = $recentChangeLookup->getRecentChangeByRevision( $rev1 );
 		$this->assertEquals(
 			RecentChange::PRC_AUTOPATROLLED,
 			$rc1->getAttribute( 'rc_patrolled' )
 		);
 		$this->assertFalse( (bool)$rc1->getAttribute( 'rc_bot' ) );
 
-		$rc2 = $revisionStore->getRecentChange( $rev2 );
+		$rc2 = $recentChangeLookup->getRecentChangeByRevision( $rev2 );
 		$this->assertEquals(
 			RecentChange::PRC_PATROLLED,
 			$rc2->getAttribute( 'rc_patrolled' )
 		);
 		$this->assertSame( $markAsBot, (bool)$rc2->getAttribute( 'rc_bot' ) );
 
-		$rc3 = $revisionStore->getRecentChange( $rev3 );
+		$rc3 = $recentChangeLookup->getRecentChangeByRevision( $rev3 );
 		$this->assertEquals(
 			RecentChange::PRC_PATROLLED,
 			$rc3->getAttribute( 'rc_patrolled' )
@@ -465,7 +468,8 @@ class RollbackPageTest extends MediaWikiIntegrationTestCase {
 			$currentTimestamp
 		] );
 		$this->assertSame( $expectedSummary, $page->getRevisionRecord()->getComment()->text );
-		$rc = $this->getServiceContainer()->getRevisionStore()->getRecentChange( $page->getRevisionRecord() );
+		$rc = $this->getServiceContainer()->getRecentChangeLookup()
+			->getRecentChangeByRevision( $page->getRevisionRecord() );
 		$this->assertNotNull( $rc );
 		$this->assertSame( $expectedSummary, $rc->getAttribute( 'rc_comment' ) );
 	}
