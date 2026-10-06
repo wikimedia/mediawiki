@@ -296,8 +296,7 @@ class Site {
 	 * @return string|null
 	 */
 	public function getLinkPath() {
-		$type = $this->getLinkPathType();
-		return $type === null ? null : $this->getPath( $type );
+		return $this->getPath( $this->getLinkPathType() );
 	}
 
 	/**
