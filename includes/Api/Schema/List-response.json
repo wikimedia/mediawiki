@@ -1,0 +1,15 @@
+{
+	"description": "Response envelope for paginated lists.",
+	"allOf": [
+		{ "type": "object", "x-comment": "https://schema.wikimedia.org/repositories/mediawiki/api/fragments/pagination-v1-beta.json" },
+		{
+			"type": "object",
+			"properties": {
+				"items": {
+					"type": "array",
+					"items": {}
+				}
+			}
+		}
+	]
+}

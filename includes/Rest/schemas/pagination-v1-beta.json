@@ -1,0 +1,32 @@
+{
+	"x-comment": "Placeholder location. This schema is meant to be published at https://schema.wikimedia.org/repositories/mediawiki/api/fragments/pagination-v1-beta.json, which is how other schemas refer to it. Until it is published there, that URL does not resolve. The \"next\" structure is not final.",
+	"x-id": "https://schema.wikimedia.org/repositories/mediawiki/api/fragments/pagination-v1-beta.json",
+	"type": "object",
+	"description": "Envelope of a paginated list. The schema of the entries in \"items\" is defined by each endpoint.",
+	"required": [ "items", "pagination" ],
+	"properties": {
+		"items": {
+			"type": "array",
+			"description": "The entries of this page of the list.",
+			"items": {}
+		},
+		"pagination": {
+			"type": "object",
+			"required": [ "next" ],
+			"properties": {
+				"next": {
+					"description": "How to request the next page, or null if there are no more pages.",
+					"type": "object",
+					"nullable": true,
+					"required": [ "params" ],
+					"properties": {
+						"params": {
+							"type": "object",
+							"description": "Query parameters to pass back, together with the original ones, to get the next page."
+						}
+					}
+				}
+			}
+		}
+	}
+}

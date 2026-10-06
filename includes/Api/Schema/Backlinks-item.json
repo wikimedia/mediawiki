@@ -1,0 +1,27 @@
+{
+	"type": "object",
+	"required": [ "pageid", "ns", "title" ],
+	"properties": {
+		"pageid": { "type": "integer" },
+		"ns": { "type": "integer", "description": "Namespace number" },
+		"title": { "type": "string", "description": "Prefixed page title" },
+		"redirect": {
+			"type": "boolean",
+			"description": "Only present, and true, if the page is a redirect."
+		},
+		"redirlinks": {
+			"type": "array",
+			"description": "Pages that link to this redirect. Only present if requested with the redirect parameter.",
+			"items": {
+				"type": "object",
+				"required": [ "pageid", "ns", "title" ],
+				"properties": {
+					"pageid": { "type": "integer" },
+					"ns": { "type": "integer" },
+					"title": { "type": "string" },
+					"redirect": { "type": "boolean" }
+				}
+			}
+		}
+	}
+}

@@ -1,0 +1,11 @@
+{
+	"allOf": [
+		{ "type": "object" },
+		{
+			"type": "object",
+			"properties": {
+				"items": { "type": "array", "items": {} }
+			}
+		}
+	]
+}

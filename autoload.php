@@ -872,6 +872,7 @@ $wgAutoloadLocalClasses = [
 	'MediaWiki\\Api\\ApiImportReporter' => __DIR__ . '/includes/Api/ApiImportReporter.php',
 	'MediaWiki\\Api\\ApiLanguageSearch' => __DIR__ . '/includes/Api/ApiLanguageSearch.php',
 	'MediaWiki\\Api\\ApiLinkAccount' => __DIR__ . '/includes/Api/ApiLinkAccount.php',
+	'MediaWiki\\Api\\ApiListRestHelper' => __DIR__ . '/includes/Api/ApiListRestHelper.php',
 	'MediaWiki\\Api\\ApiLogin' => __DIR__ . '/includes/Api/ApiLogin.php',
 	'MediaWiki\\Api\\ApiLogout' => __DIR__ . '/includes/Api/ApiLogout.php',
 	'MediaWiki\\Api\\ApiMain' => __DIR__ . '/includes/Api/ApiMain.php',

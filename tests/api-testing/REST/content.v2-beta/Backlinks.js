@@ -66,10 +66,12 @@ describe( 'GET /page/{title}/backlinks', () => {
 			assert.isNull( body.pagination.next );
 		} );
 
-		// FIXME: The spec declares no response body for this endpoint, so a 200 response
-		// with a body does not satisfy it. Enable once the list handler describes the
-		// { items, pagination } envelope in getResponseBodySchema().
-		it.skip( 'should return a response that satisfies the OpenAPI spec', async () => {
+		// FIXME: The response schema should refer to the shared pagination envelope with a
+		// $ref to https://schema.wikimedia.org/repositories/mediawiki/api/fragments/pagination-v1-beta.json,
+		// but the validator can't resolve that URL yet. Until the envelope is published,
+		// the schema only names it in a comment, so this checks the items but not the
+		// envelope. Restore the $ref in the response schemas once it can be resolved.
+		it( 'should return a response that satisfies the OpenAPI spec', async () => {
 			const res = await client.get( backlinksUrl( randomPage ) );
 
 			// eslint-disable-next-line no-unused-expressions

@@ -24,7 +24,7 @@ use Wikimedia\ParamValidator\TypeDef\IntegerDef;
  *
  * @ingroup API
  */
-class ApiQueryBacklinks extends ApiQueryGeneratorBase {
+class ApiQueryBacklinks extends ApiQueryGeneratorBase implements ApiRestHybrid {
 
 	/**
 	 * @var Title
@@ -109,6 +109,14 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 		$this->bl_code = $code;
 		$this->helpUrl = $settings['helpurl'];
 		$this->virtual_domain = $settings['virtualdomain'];
+	}
+
+	public function getRestHelper(): ApiRestHelper {
+		return new class extends ApiListRestHelper {
+			public function getResponseItemSchemaFileName(): ?string {
+				return __DIR__ . '/Schema/Backlinks-item.json';
+			}
+		};
 	}
 
 	public function execute() {

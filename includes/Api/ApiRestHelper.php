@@ -2,7 +2,7 @@
 
 namespace MediaWiki\Api;
 
-use RuntimeException;
+use MediaWiki\Rest\JsonFileLoaderTrait;
 
 /**
  * Helper for action API modules that support the REST paradigm.
@@ -12,6 +12,7 @@ use RuntimeException;
  * @unstable since 1.47
  */
 abstract class ApiRestHelper {
+	use JsonFileLoaderTrait;
 
 	/**
 	 * Returns the HTTP status code that should be returned to the client along
@@ -44,25 +45,7 @@ abstract class ApiRestHelper {
 			return null;
 		}
 
-		// NOTE: Below is the same code as in Module::loadJsonFile, but we
-		//      don't want to depend on that here.
-		$json = file_get_contents( $fileName );
-		if ( $json === false ) {
-			// XXX: What kind of exception should we throw? The equivalent code in
-			// Handler uses ModuleConfigurationException, but we shouldn't depend
-			// on code from the REST framework here.
-			throw new RuntimeException( "Failed to load file `$fileName`" );
-		}
-
-		$spec = json_decode( $json, true );
-
-		if ( !is_array( $spec ) ) {
-			throw new RuntimeException(
-				"Failed to parse `$fileName` as a JSON object"
-			);
-		}
-
-		return $spec;
+		return self::loadJsonFile( $fileName );
 	}
 
 	/**
