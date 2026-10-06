@@ -199,11 +199,9 @@ class ParserOptionsTest extends MediaWikiLangTestCase {
 			'No overrides, some used' => [ true, [], [ 'dateformat', 'removeComments' ] ],
 			'In-key options are ok' => [ true, [
 				'dateformat' => 'YYYYMMDD',
-				'printable' => false,
 			] ],
 			'In-key options are ok, some used' => [ true, [
 				'dateformat' => 'YYYYMMDD',
-				'printable' => false,
 			], [ 'dateformat', 'removeComments' ] ],
 			'Non-in-key options are not ok' => [ false, [
 				'removeComments' => false,
@@ -278,7 +276,7 @@ class ParserOptionsTest extends MediaWikiLangTestCase {
 	}
 
 	public static function provideOptionsHash() {
-		$used = [ 'printable', 'skin' ];
+		$used = [ 'skin' ];
 
 		$allUsableOptions = array_diff(
 			ParserOptions::allCacheVaryingOptions(),
@@ -289,13 +287,6 @@ class ParserOptionsTest extends MediaWikiLangTestCase {
 			'Canonical options, nothing used' => [ [], 'canonical', [] ],
 			'Canonical options, used some options' => [ $used, 'canonical', [] ],
 			'Canonical options, used some more options' => [ array_merge( $used, [ 'wrapclass' ] ), 'canonical', [] ],
-			'Used some options, non-default values' => [
-				$used,
-				'printable=1',
-				[
-					'printable' => true,
-				]
-			],
 
 			'Canonical options, used all non-lazy options' => [
 				$allUsableOptions,
@@ -325,10 +316,9 @@ class ParserOptionsTest extends MediaWikiLangTestCase {
 			'Canonical options, postproc, used some options' => [ $used, 'postproc=1!skin=testskin', [], true ],
 			'Used some options, postproc, non-default values' => [
 				$used,
-				'postproc=1!printable=1!skin=testskin',
+				'postproc=1!skin=testskin',
 				[
 					'dateformat' => '@YYYYMMDD@',
-					'printable' => true,
 				],
 				true
 			],
@@ -498,12 +488,12 @@ class ParserOptionsTest extends MediaWikiLangTestCase {
 	public function testAllCacheVaryingOptions() {
 		$this->setTemporaryHook( 'ParserOptionsRegister', HookContainer::NOOP );
 		$this->assertSame( [
-			'dateformat', 'postproc', 'printable',
+			'dateformat', 'postproc',
 			'useParsoid', 'userlang',
 		], array_values( ParserOptions::allCacheVaryingOptions() ) );
 		$this->assertSame( [
 			'collapsibleSections', 'dateformat', 'enableSectionEditLinks',
-			'injectTOC', 'postproc', 'printable', 'skin',
+			'injectTOC', 'postproc', 'skin',
 			'useParsoid', 'userlang', 'variant',
 		], array_values( ParserOptions::allCacheVaryingOptions( true ) ) );
 
@@ -521,7 +511,7 @@ class ParserOptionsTest extends MediaWikiLangTestCase {
 			];
 		} );
 		$this->assertSame( [
-			'dateformat', 'foo', 'postproc', 'printable',
+			'dateformat', 'foo', 'postproc',
 			'useParsoid', 'userlang',
 		], array_values( ParserOptions::allCacheVaryingOptions() ) );
 	}

@@ -107,7 +107,6 @@ class ParserOptions {
 	 */
 	private static $initialCacheVaryingOptionsHash = [
 		'dateformat' => true,
-		'printable' => true,
 		'userlang' => true,
 		'useParsoid' => true,
 		'collapsibleSections' => true,
@@ -688,20 +687,19 @@ class ParserOptions {
 	}
 
 	/**
-	 * Parsing the printable version of the page?
+	 * @deprecated since 1.47 No longer needed per T259141
 	 * @return bool
 	 */
 	public function getIsPrintable() {
-		return $this->getOption( 'printable' );
+		wfDeprecated( __METHOD__, '1.47' );
+		return false;
 	}
 
 	/**
-	 * Parsing the printable version of the page?
-	 * @param bool|null $x New value (null is no change)
-	 * @return bool Old value
+	 * @deprecated since 1.47 No longer needed per T259141
 	 */
 	public function setIsPrintable( $x ) {
-		return $this->setOptionLegacy( 'printable', $x );
+		wfDeprecated( __METHOD__, '1.47' );
 	}
 
 	/**
@@ -1345,7 +1343,6 @@ class ParserOptions {
 				'preSaveTransform' => true,
 				'isPreview' => false,
 				'isSectionPreview' => false,
-				'printable' => false,
 				'allowUnsafeRawHtml' => true,
 				'wrapclass' => 'mw-parser-output',
 				'currentRevisionRecordCallback' => self::getDefaultRevisionCallback(),
