@@ -71,7 +71,7 @@ class UnregisteredLocalFileTest extends MediaWikiMediaTestCase {
 					'height' => 0,
 					'mimetype' => 'image/png',
 					'bitdepth' => 0,
-					'metadata' => [ '_error' => '0' ],
+					'metadata' => [],
 					'url' => 'http://localhost/thumbtest/6/6e/non-existing.png',
 					'size' => false,
 				],
