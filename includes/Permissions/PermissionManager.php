@@ -897,6 +897,24 @@ class PermissionManager {
 		if ( !$block ) {
 			return null;
 		}
+		return $this->filterBlockForAction( $block, $action, $user, $page );
+	}
+
+	/**
+	 * Remove the parts of a block that don't apply to the given action and page.
+	 *
+	 * @param AbstractBlock $block
+	 * @param string $action The action to check
+	 * @param User $user User to check
+	 * @param LinkTarget|PageReference|null $page
+	 * @return ?AbstractBlock The applicable parts of the block, or null if none apply
+	 */
+	private function filterBlockForAction(
+		AbstractBlock $block,
+		string $action,
+		User $user,
+		$page
+	): ?AbstractBlock {
 		$userIsHidden = $block->getHideName();
 
 		// Remove elements from the block that explicitly allow the action
