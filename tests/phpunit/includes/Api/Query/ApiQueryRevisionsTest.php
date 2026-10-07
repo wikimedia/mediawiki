@@ -8,6 +8,7 @@ use MediaWiki\Permissions\UltimateAuthority;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Tests\Api\ApiTestCase;
 use MediaWiki\Tests\User\TempUser\TempUserTestTrait;
+use MediaWiki\Title\Title;
 use MediaWiki\User\UserIdentityValue;
 
 /**
@@ -134,6 +135,49 @@ class ApiQueryRevisionsTest extends ApiTestCase {
 			$revRecord->getParentId(),
 			$rvDiffToNext['query']['pages'][$page->getId()]['revisions'][0]['diff']['from']
 		);
+	}
+
+	/**
+	 * @covers \MediaWiki\Api\ApiQueryRevisionsBase
+	 */
+	public function testDifftoRevisionOnUnreadablePageIsNotDiffed() {
+		$readablePage = $this->getExistingTestPage( 'Help:' . __METHOD__ . '/Readable' );
+		$restrictedPage = $this->getExistingTestPage( 'Help:' . __METHOD__ . '/Restricted' );
+		$restrictedRev = $restrictedPage->newPageUpdater( $this->getTestUser()->getUser() )
+			->setContent( SlotRecord::MAIN, new WikitextContent( 'RestrictedSecretText' ) )
+			->saveRevision( CommentStoreComment::newUnsavedComment( 'inserting restricted content' ) );
+		$params = [
+			'action' => 'query',
+			'prop' => 'revisions',
+			'revids' => $readablePage->getLatest(),
+			'rvdiffto' => $restrictedRev->getId(),
+			'errorformat' => 'raw',
+		];
+
+		// Control: while the target page is readable, its text is diffed
+		[ $readableResult ] = $this->doApiRequest( $params );
+		$this->assertStringContainsString(
+			'RestrictedSecretText',
+			$readableResult['query']['pages'][$readablePage->getId()]['revisions'][0]['diff']['body']
+		);
+
+		$restrictedTitle = $restrictedPage->getTitle();
+		$this->setTemporaryHook( 'getUserPermissionsErrors',
+			static function ( Title $page, &$user, $action, &$result ) use ( $restrictedTitle ) {
+				if ( $page->equals( $restrictedTitle ) && $action === 'read' ) {
+					$result = false;
+					return false;
+				}
+			} );
+
+		// Once the target page is unreadable, the same request must not leak its text
+		[ $restrictedResult ] = $this->doApiRequest( $params );
+		$this->assertArrayNotHasKey(
+			'diff',
+			$restrictedResult['query']['pages'][$readablePage->getId()]['revisions'][0]
+		);
+		$this->assertStringNotContainsString( 'RestrictedSecretText', json_encode( $restrictedResult ) );
+		$this->assertContains( 'difftohidden', array_column( $restrictedResult['warnings'], 'code' ) );
 	}
 
 	/**
