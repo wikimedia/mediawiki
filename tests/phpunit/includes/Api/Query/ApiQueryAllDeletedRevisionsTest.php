@@ -136,4 +136,37 @@ class ApiQueryAllDeletedRevisionsTest extends ApiTestCase {
 			],
 		];
 	}
+
+	/**
+	 * Deleted revisions all report page ID 0, so this also covers the read check
+	 * not being shared between different deleted pages.
+	 *
+	 * @covers \MediaWiki\Api\ApiQueryRevisionsBase
+	 */
+	public function testRevisionDetailsOfUnreadableDeletedPageAreHidden() {
+		$readableTitle = Title::makeTitle( NS_HELP, 'ReadablePage' );
+		$restrictedTitle = Title::makeTitle( NS_HELP, 'RestrictedPage' );
+		$sysop = $this->getTestSysop()->getAuthority();
+		$this->editPage( $readableTitle, 'Readable text', 'readable summary', NS_MAIN, $sysop );
+		$this->editPage( $restrictedTitle, 'Restricted text', 'restricted summary', NS_MAIN, $sysop );
+		$this->deletePage( $readableTitle, 'Delete', $sysop );
+		$this->deletePage( $restrictedTitle, 'Delete', $sysop );
+
+		$this->setTemporaryHook( 'getUserPermissionsErrors',
+			static function ( Title $page, &$user, $action, &$result ) use ( $restrictedTitle ) {
+				if ( $page->equals( $restrictedTitle ) && $action === 'read' ) {
+					$result = false;
+					return false;
+				}
+			} );
+
+		[ $result ] = $this->doApiRequest( [
+			'action' => 'query',
+			'list' => 'alldeletedrevisions',
+			'adrprop' => 'comment',
+		], null, false, $sysop );
+		$json = json_encode( $result );
+		$this->assertStringContainsString( 'readable summary', $json );
+		$this->assertStringNotContainsString( 'restricted summary', $json );
+	}
 }
