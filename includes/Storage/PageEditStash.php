@@ -64,7 +64,8 @@ class PageEditStash {
 	// As this is a short term stash (5 minutes) preservation
 	// across upgrades is not expected/guaranteed so long as
 	// CURRENT_FORMAT_VERSION is bumped.
-	public const OTHER_FORMAT_VERSIONS = [];
+	// Forward-compatibility with v4 (Ieb8f2cf716a6577ac113f67a6375b16cf36e7767)
+	public const OTHER_FORMAT_VERSIONS = [ 4 ];
 
 	/**
 	 * @param BagOStuff $cache
@@ -120,7 +121,6 @@ class PageEditStash {
 		// Reuse any freshly built matching edit stash cache
 		$editInfo = $this->getStashValue( $key );
 		// Forward and backward compatibility
-		// @phan-suppress-next-line PhanEmptyForeach
 		foreach ( self::OTHER_FORMAT_VERSIONS as $other_version ) {
 			if ( $editInfo !== false ) {
 				break;
@@ -243,7 +243,6 @@ class PageEditStash {
 
 		$editInfo = $this->getAndWaitForStashValue( $key );
 		// Forward and backward compatibility
-		// @phan-suppress-next-line PhanEmptyForeach
 		foreach ( self::OTHER_FORMAT_VERSIONS as $other_version ) {
 			if ( $editInfo !== false ) {
 				break;
