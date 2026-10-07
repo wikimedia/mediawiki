@@ -23,11 +23,14 @@ class PageEditStashContentsTest extends MediaWikiIntegrationTestCase {
 		$po->setCacheTime( $timestamp );
 		$po->setExtensionData( 'test1', 'test2' );
 		$po->clearParseStartTime();
+		$po2 = clone $po;
+		$po2->setContentHolderText( 'world' );
 		return [
 			'basic' => [
 				'instance' => new PageEditStashContents(
 					pstContent: new WikitextContent( 'hello' ),
 					output: $po,
+					optionsHash: null,
 					timestamp: $timestamp,
 					edits: 42,
 				),
@@ -36,9 +39,30 @@ class PageEditStashContentsTest extends MediaWikiIntegrationTestCase {
 					$testCase->assertInstanceof( WikitextContent::class, $obj->pstContent );
 					$testCase->assertInstanceof( ParserOutput::class, $obj->output );
 					$testCase->assertSame( $timestamp, $obj->output->getCacheTime() );
+					$testCase->assertSame( null, $obj->optionsHash );
 					$testCase->assertSame( $timestamp, $obj->timestamp );
 					$testCase->assertSame( 42, $obj->edits );
 					$testCase->assertSame( 'test2', $obj->output->getExtensionData( 'test1' ) );
+				},
+			],
+			'withHash' => [
+				'instance' => new PageEditStashContents(
+					pstContent: new WikitextContent( 'world' ),
+					output: $po2,
+					optionsHash: 'hash',
+					timestamp: $timestamp,
+					edits: 67,
+				),
+				'assertions' => static function ( $testCase, $obj ) use ( $timestamp ) {
+					$testCase->assertInstanceof( PageEditStashContents::class, $obj );
+					$testCase->assertInstanceof( WikitextContent::class, $obj->pstContent );
+					$testCase->assertInstanceof( ParserOutput::class, $obj->output );
+					$testCase->assertSame( $timestamp, $obj->output->getCacheTime() );
+					$testCase->assertSame( 'hash', $obj->optionsHash );
+					$testCase->assertSame( $timestamp, $obj->timestamp );
+					$testCase->assertSame( 67, $obj->edits );
+					$testCase->assertSame( 'test2', $obj->output->getExtensionData( 'test1' ) );
+					$testCase->assertSame( 'world', $obj->output->getContentHolderText() );
 				},
 			],
 		];

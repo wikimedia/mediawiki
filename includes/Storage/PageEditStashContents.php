@@ -21,6 +21,8 @@ class PageEditStashContents implements JsonCodecable {
 	public function __construct(
 		public readonly Content $pstContent,
 		public readonly ParserOutput $output,
+		/** A hash of the ParserOptions used to produce $output. (T439926) */
+		public readonly ?string $optionsHash,
 		/** TS::MW */
 		public readonly string $timestamp,
 		public readonly ?int $edits,
@@ -31,6 +33,7 @@ class PageEditStashContents implements JsonCodecable {
 		return [
 			'pstContent' => $this->pstContent,
 			'output' => $this->output,
+			'optionsHash' => $this->optionsHash,
 			'timestamp' => $this->timestamp,
 			'edits' => $this->edits,
 		];
@@ -40,6 +43,8 @@ class PageEditStashContents implements JsonCodecable {
 		return new self(
 			pstContent: $json['pstContent'],
 			output: $json['output'],
+			// Absent in v3 stash entries written before MW 1.47
+			optionsHash: $json['optionsHash'] ?? null,
 			timestamp: $json['timestamp'],
 			edits: $json['edits'] ?? null,
 		);

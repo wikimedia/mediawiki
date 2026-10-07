@@ -17,6 +17,7 @@ use MediaWiki\Page\WikiPageFactory;
 use MediaWiki\Parser\ParserOutputFlags;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Storage\Hook\ParserOutputStashForEditHook;
+use MediaWiki\Title\Title;
 use MediaWiki\User\UserEditTracker;
 use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserIdentity;
@@ -59,13 +60,13 @@ class PageEditStash {
 	// Format version 2 was added in MW 1.40 but relies on PHP serialization
 	//   of ParserOutput which was last supported in MW 1.44.
 	// Format version 3 became the default in MW 1.45
-	public const CURRENT_FORMAT_VERSION = 3;
+	// Format version 4 added the ParserOptions hash (T439926), in MW 1.47
+	public const CURRENT_FORMAT_VERSION = 4;
 	// Used for forward/backward compatibility; set to empty array to disable.
 	// As this is a short term stash (5 minutes) preservation
 	// across upgrades is not expected/guaranteed so long as
 	// CURRENT_FORMAT_VERSION is bumped.
-	// Forward-compatibility with v4 (Ieb8f2cf716a6577ac113f67a6375b16cf36e7767)
-	public const OTHER_FORMAT_VERSIONS = [ 4 ];
+	public const OTHER_FORMAT_VERSIONS = [ 3 ];
 
 	/**
 	 * @param BagOStuff $cache
@@ -137,12 +138,22 @@ class PageEditStash {
 			$output = $update->getCanonicalParserOutput(); // causes content to be parsed
 			$output->setCacheTime( $update->getRevision()->getTimestamp() );
 
+			// Record a hash of the options that were actually used
+			// for this parse, so a later consumer of this stashed
+			// output can confirm that its own ParserOptions are
+			// equivalent before reusing $output (T439926).
+			$optionsHash = $update->getCanonicalParserOptions()->optionsHash(
+				$output->getUsedOptions(),
+				Title::castFromPageIdentity( $page )
+			);
+
 			// emulate a cache value that kind of looks like a PreparedEdit, for use below
 			$editInfo = new PageEditStashContents(
-				pstContent: $update->getRawContent( SlotRecord::MAIN ),
-				output:     $output,
-				timestamp:  $output->getCacheTime(),
-				edits:      $this->userEditTracker->getUserEditCount( $user ),
+				pstContent:  $update->getRawContent( SlotRecord::MAIN ),
+				output:      $output,
+				optionsHash: $optionsHash,
+				timestamp:   $output->getCacheTime(),
+				edits:       $this->userEditTracker->getUserEditCount( $user ),
 			);
 
 			$alreadyCached = false;
@@ -205,6 +216,7 @@ class PageEditStash {
 	 * This returns a PageEditStashContents object with the following fields:
 	 *   - pstContent: the Content after pre-save-transform
 	 *   - output: the ParserOutput instance
+	 *   - optionsHash: hash of the ParserOptions used to produce output (T439926)
 	 *   - timestamp: the timestamp of the parse
 	 *   - edits: author edit count if they are logged in or NULL otherwise
 	 *
