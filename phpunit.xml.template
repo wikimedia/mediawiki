@@ -94,6 +94,9 @@ Generate a local configuration by running `composer phpunit:config`
 					<element key="stderr">
 						<boolean>true</boolean>
 					</element>
+					<element key="maximum-width">
+						<string>160</string>
+					</element>
 				</array>
 			</arguments>
 		</extension>
