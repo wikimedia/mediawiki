@@ -22,6 +22,7 @@
 
 namespace MediaWiki\Api;
 
+use MapCacheLRU;
 use MediaWiki\CommentFormatter\CommentFormatter;
 use MediaWiki\Content\Content;
 use MediaWiki\Content\IContentHandlerFactory;
@@ -32,6 +33,7 @@ use MediaWiki\Context\DerivativeContext;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Page\PageIdentity;
 use MediaWiki\Parser\Parser;
 use MediaWiki\Parser\ParserFactory;
 use MediaWiki\Parser\ParserOptions;
@@ -64,7 +66,7 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 	// Bits to indicate the results of the revdel permission check on a revision,
 	// see self::checkRevDel()
 	private const IS_DELETED = 1; // Whether the field is revision-deleted
-	private const CANNOT_VIEW = 2; // Whether the user cannot view the field due to revdel
+	private const CANNOT_VIEW = 2; // Whether the user cannot view the field due to revdel or page read rights
 
 	private const LIMIT_PARSE = 1;
 
@@ -119,6 +121,9 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 	 * @var int
 	 */
 	private $numUncachedDiffs = 0;
+
+	/** Whether the user can read a page, keyed by page reference string, see self::canReadPage() */
+	private ?MapCacheLRU $pageReadCache = null;
 
 	private RevisionStore $revisionStore;
 	private IContentHandlerFactory $contentHandlerFactory;
@@ -324,7 +329,7 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 	}
 
 	/**
-	 * Test revision deletion status
+	 * Test revision deletion status, and whether the user can read the revision's page
 	 * @param RevisionRecord $revision Revision to check
 	 * @param int $field One of the RevisionRecord::DELETED_* constants
 	 * @return int Revision deletion status flags. Bitwise OR of
@@ -336,7 +341,25 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 			$canSee = $revision->userCan( $field, $this->getAuthority() );
 			$ret |= ( $canSee ? 0 : self::CANNOT_VIEW );
 		}
+		if ( !$this->canReadPage( $revision->getPage() ) ) {
+			$ret |= self::CANNOT_VIEW;
+		}
 		return $ret;
+	}
+
+	/**
+	 * Check whether the user can read a page. The outcome is cached, since this is
+	 * checked for each field of each revision and authorizeRead() can be expensive.
+	 */
+	private function canReadPage( PageIdentity $page ): bool {
+		$this->pageReadCache ??= new MapCacheLRU( 100 );
+		$key = (string)$page;
+		$canRead = $this->pageReadCache->get( $key );
+		if ( $canRead === null ) {
+			$canRead = $this->getAuthority()->authorizeRead( 'read', $page );
+			$this->pageReadCache->set( $key, $canRead );
+		}
+		return $canRead;
 	}
 
 	/**
