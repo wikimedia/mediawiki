@@ -165,9 +165,8 @@ class PhpUnitXmlManager {
 				$seenFiles[$file] = 1;
 			}
 		}
-		$suites = $this->buildSuites( $validClasses, $groups - 1 );
+		$suites = $this->buildSuites( $validClasses, $groups );
 		$unitFile->addSplitGroups( $suites );
-		$unitFile->addSpecialCaseTests( $groups );
 		$unitFile->saveToDisk( $this->getPhpUnitXmlTarget() );
 	}
 

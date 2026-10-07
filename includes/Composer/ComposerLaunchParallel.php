@@ -74,23 +74,11 @@ class ComposerLaunchParallel extends ForkController {
 		);
 
 		/**
-		 * By default, the splitting process splits the tests into 8 groups. 7 of the groups are composed
-		 * of evenly distributed test classes extracted from the `--list-tests-xml` phpunit function. The
-		 * last group contains just the ExtensionsParserTestSuite.  We first check if
+		 * By default, the splitting process splits the tests into 8 groups.  We first check if
 		 * PHPUNIT_PARALLEL_GROUP_COUNT is set in the environment, and override the group count
 		 * if so.
 		 */
-		$splitGroupCount = self::getSplitGroupCount();
-		if ( !$this->isDatabaseRun() ) {
-			/**
-			 * In the splitting, we put ExtensionsParserTestSuite in `split_group_7` on its own. We only
-			 * need to run `split_group_7` when we run Database tests, since all Parser tests use the
-			 * database. Running `split_group_7` when no matches tests get executed results in a phpunit
-			 * error code.
-			 */
-			$splitGroupCount = $splitGroupCount - 1;
-		}
-		parent::__construct( $splitGroupCount );
+		parent::__construct( self::getSplitGroupCount() );
 	}
 
 	private function isDatabaseRun(): bool {

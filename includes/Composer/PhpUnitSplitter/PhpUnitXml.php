@@ -67,17 +67,6 @@ class PhpUnitXml {
 		throw new SuiteGenerationException( $groupId );
 	}
 
-	/**
-	 * There are some tests suites / classes where the test listing does not work because test
-	 * cases are generated dynamically. For this special cases, we need to add the classes
-	 * manually back into the suites list to ensure that they get included in a test run.
-	 * @see T345481
-	 * @throws SuiteGenerationException
-	 */
-	public function addSpecialCaseTests( int $groupCount ) {
-		/* no special cases */
-	}
-
 	public function saveToDisk( string $targetXml ) {
 		$dom = new DOMDocument( '1.0' );
 		$dom->preserveWhiteSpace = false;
