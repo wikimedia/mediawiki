@@ -581,14 +581,14 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	 * Return the names of the categories on this page.
 	 * Unlike ::getCategories(), sort keys are *not* included in the
 	 * return value.
-	 * @return array<string> The names of the categories
+	 * @return list<string> The names of the categories
 	 * @since 1.38
 	 */
 	public function getCategoryNames(): array {
 		# Note that numeric category names get converted to 'int' when
 		# stored as array keys; stringify the keys to ensure they
 		# return to original string form so as not to confuse callers.
-		return array_map( 'strval', array_keys( $this->mCategories ) );
+		return array_map( strval( ... ), array_keys( $this->mCategories ) );
 	}
 
 	/**
@@ -910,17 +910,21 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	}
 
 	/**
-	 * @return array
+	 * @return list<string>
 	 */
 	public function getModules() {
-		return array_keys( $this->mModuleSet );
+		# In case any module names are numeric, ensure they are converted
+		# back to strings.
+		return array_map( strval( ... ), array_keys( $this->mModuleSet ) );
 	}
 
 	/**
-	 * @return array
+	 * @return list<string>
 	 */
 	public function getModuleStyles() {
-		return array_keys( $this->mModuleStyleSet );
+		# In case any module style names are numeric, ensure they are converted
+		# back to strings.
+		return array_map( strval( ... ), array_keys( $this->mModuleStyleSet ) );
 	}
 
 	/**
@@ -1446,8 +1450,8 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	 * @param string[] $modules
 	 */
 	public function addModules( array $modules ): void {
-		$modules = array_fill_keys( $modules, true );
-		$this->mModuleSet = array_merge( $this->mModuleSet, $modules );
+		# Do not use array_merge(), because it renumbers numeric keys.
+		$this->mModuleSet += array_fill_keys( $modules, true );
 	}
 
 	/**
@@ -1455,8 +1459,8 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	 * @param string[] $modules
 	 */
 	public function addModuleStyles( array $modules ): void {
-		$modules = array_fill_keys( $modules, true );
-		$this->mModuleStyleSet = array_merge( $this->mModuleStyleSet, $modules );
+		# Do not use array_merge(), because it renumbers numeric keys.
+		$this->mModuleStyleSet += array_fill_keys( $modules, true );
 	}
 
 	/**
@@ -3278,8 +3282,8 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 			'InterwikiLinks' => $this->mInterwikiLinks,
 			'ExistenceLinks' => $this->existenceLinks,
 			'HeadItems' => $this->mHeadItems,
-			'Modules' => array_keys( $this->mModuleSet ),
-			'ModuleStyles' => array_keys( $this->mModuleStyleSet ),
+			'Modules' => $this->getModules(),
+			'ModuleStyles' => $this->getModuleStyles(),
 			'JsConfigVars' => $this->mJsConfigVars,
 			'Warnings' => $this->mWarnings,
 			'WarningMsgs' => $this->mWarningMsgs,

@@ -1487,6 +1487,33 @@ class ParserOutputTest extends MediaWikiLangTestCase {
 	}
 
 	/**
+	 * @covers \MediaWiki\Parser\ParserOutput::getModules
+	 * @covers \MediaWiki\Parser\ParserOutput::getModuleStyles
+	 * @covers \MediaWiki\Parser\ParserOutput::getCategoryNames
+	 * @covers \MediaWiki\Parser\ParserOutput::addModules
+	 * @covers \MediaWiki\Parser\ParserOutput::addModuleStyles
+	 * @covers \MediaWiki\Parser\ParserOutput::toJsonArray
+	 */
+	public function testNumericNamesAreStrings() {
+		$po = new ParserOutput;
+		// PHP changes numeric strings to integers when they are array keys
+		$po->addModules( [ 'a', '123' ] );
+		$po->addModuleStyles( [ '456', 'b' ] );
+		$po->addCategory( '789' );
+		$po->addCategory( 'C' );
+
+		$this->assertSame( [ 'a', '123' ], $po->getModules() );
+		$this->assertSame( [ '456', 'b' ], $po->getModuleStyles() );
+		$this->assertSame( [ 'a', '123' ], $po->getOutputStrings( ParserOutputStringSets::MODULE ) );
+		$this->assertSame( [ '789', 'C' ], $po->getCategoryNames() );
+
+		// The serialized form also has strings
+		$json = $po->toJsonArray();
+		$this->assertSame( [ 'a', '123' ], $json['Modules'] );
+		$this->assertSame( [ '456', 'b' ], $json['ModuleStyles'] );
+	}
+
+	/**
 	 * @covers \MediaWiki\Parser\ParserOutput::getCacheTime()
 	 * @covers \MediaWiki\Parser\ParserOutput::setCacheTime()
 	 */
