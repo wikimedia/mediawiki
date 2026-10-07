@@ -179,6 +179,7 @@
 	"broken-file-category": "含無效檔案連結的頁面",
 	"categoryviewer-pagedlinks": "（$1）（$2）",
 	"category-header-numerals": "$1-$2",
+	"category-header-strokes": "$1{{PLURAL:$1|畫}}",
 	"about": "關於",
 	"article": "內容頁面",
 	"newwindow": "（在新視窗開啟）",

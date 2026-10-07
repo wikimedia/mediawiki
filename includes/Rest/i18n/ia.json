@@ -325,7 +325,6 @@
 	"rest-responseheader-desc-location": "Indica un URL de destination pro duo scopos principal: redirection e identificar le loco de un ressource recentemente create.",
 	"rest-openapispec-genericerrorresponse-desc": "Responsa de error generic. Le message fornira plus detalios sur le error.",
 	"rest-openapispec-genericerrorresponse-property-desc-httpCode": "Le codice de stato HTTP del responsa de error.",
-	"rest-openapispec-genericerrorresponse-property-desc-httpMessage": "Le message de stato HTTP del responsa de error.",
 	"rest-openapispec-genericerrorresponse-property-desc-message": "Un message de error legibile per humanos, utile quando necun traduction del message es disponibile",
 	"rest-openapispec-genericerrorresponse-property-desc-messageTranslations": "Un tabella de correspondentia inter codices de lingua e messages de error legibile per humanos, pro le clientes que pote usar los."
 }

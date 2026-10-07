@@ -39,6 +39,7 @@
 			"Hijiri",
 			"Hinaloe",
 			"Hisagi",
+			"Honoka55",
 			"Hosiryuhosi",
 			"Hzy980512",
 			"Iwai.masaharu",
@@ -186,6 +187,7 @@
 	"noindex-category": "検索エンジンに収集されないページ",
 	"broken-file-category": "壊れたファイルへのリンクがあるページ",
 	"category-header-numerals": "$1～$2",
+	"category-header-strokes": "$1 {{PLURAL:$1|画}}",
 	"about": "解説",
 	"article": "コンテンツページ",
 	"newwindow": "(新しいウィンドウで開きます)",
@@ -3272,6 +3274,7 @@
 	"signature": "[[{{ns:user}}:$1|$2]] ([[{{ns:user_talk}}:$1|トーク]])",
 	"signature-temp": "[[{{#special:Contributions}}/$1|$2]] ([[{{ns:user_talk}}:$1|トーク]])",
 	"duplicate-defaultsort": "<strong>警告:</strong> 既定のソートキー「$2」が、その前に書かれている既定のソートキー「$1」を上書きしています。",
+	"categorysort-invalid": "<strong>エラー:</strong>認識されないカテゴリソートモード \" $1 \"。",
 	"duplicate-displaytitle": "<strong>警告:</strong> DISPLAYTITLE「$2」が、その前に書かれているDISPLAYTITLE「$1」を上書きしています。",
 	"restricted-displaytitle": "<strong>警告:</strong> 実際のページ名と同じではないため、「$1」の表示名は無視されました。",
 	"invalid-indicator-name": "<strong>エラー：</strong> ページ・ステータス・インディケーターの <code>name</code> 属性は空であってはいけません。",
@@ -4170,5 +4173,7 @@
 	"table-of-contents-hide-button-aria-label": "目次の非表示",
 	"diff-usergroups": "$1 {{PLURAL:$1|利用者グループ}}",
 	"languageselector-no-results": "見つかりませんでした。",
-	"languageselector-invalid-input": "「$1」は有効な言語ではありません。"
+	"languageselector-invalid-input": "「$1」は有効な言語ではありません。",
+	"mypage-disallowed-action": "セキュリティ上の理由から、ページ Special:MyPage ではアクション「 $1 」を使用できません。",
+	"import-upload-reauth-reupload": "お客様の本人確認が完了しました。インポートするファイルを再度選択して、再度送信してください。"
 }

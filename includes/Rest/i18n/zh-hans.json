@@ -401,7 +401,6 @@
 	"rest-responseheader-desc-location": "指示目标URL，主要有两个用途：重定向和标识新创建资源的位置。",
 	"rest-openapispec-genericerrorresponse-desc": "通用错误响应。该消息将提供有关错误的更多详细信息。",
 	"rest-openapispec-genericerrorresponse-property-desc-httpCode": "错误响应的HTTP状态码。",
-	"rest-openapispec-genericerrorresponse-property-desc-httpMessage": "错误响应的HTTP状态消息。",
 	"rest-openapispec-genericerrorresponse-property-desc-message": "当没有可用的消息翻译时有用的人类可读的错误消息。",
 	"rest-openapispec-genericerrorresponse-property-desc-messageTranslations": "为能够使用语言代码的客户端提供语言代码到人类可读错误消息的映射表。"
 }

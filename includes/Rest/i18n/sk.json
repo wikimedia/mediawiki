@@ -363,7 +363,6 @@
 	"rest-responseheader-desc-location": "Označuje cieľovú URL na dva hlavné účely: presmerovanie a identifikáciu umiestnenia novovytvoreného zdroja.",
 	"rest-openapispec-genericerrorresponse-desc": "Všeobecná chybová odpoveď. Správa poskytne ďalšie podrobnosti o chybe.",
 	"rest-openapispec-genericerrorresponse-property-desc-httpCode": "HTTP stavový kód chybovej odpovede.",
-	"rest-openapispec-genericerrorresponse-property-desc-httpMessage": "HTTP stavová správa chybovej odpovede.",
 	"rest-openapispec-genericerrorresponse-property-desc-message": "Chybová správa čitateľná pre človeka, užitočná, keď nie sú dostupné preklady správy",
 	"rest-openapispec-genericerrorresponse-property-desc-messageTranslations": "Mapa kódov jazykov na chybové správy čitateľné pre človeka, pre klientov, ktorí ich vedia použiť."
 }

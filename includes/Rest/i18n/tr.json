@@ -334,7 +334,6 @@
 	"rest-responseheader-desc-location": "İki temel amaç için bir hedef URL gösterir: yönlendirme ve yeni oluşturulan bir kaynağın konumunu tanımlama.",
 	"rest-openapispec-genericerrorresponse-desc": "Genel hata yanıtı. Mesaj, hata hakkında daha fazla ayrıntı sağlayacaktır.",
 	"rest-openapispec-genericerrorresponse-property-desc-httpCode": "Hata yanıtının HTTP durum kodu.",
-	"rest-openapispec-genericerrorresponse-property-desc-httpMessage": "Hata yanıtının HTTP durum mesajı.",
 	"rest-openapispec-genericerrorresponse-property-desc-message": "Mesaj çevirileri mevcut olmadığında kullanışlı, insan tarafından okunabilir bir hata mesajı",
 	"rest-openapispec-genericerrorresponse-property-desc-messageTranslations": "Bunları kullanabilen istemciler için dil kodlarından insan tarafından okunabilir hata mesajlarına bir eşleme."
 }

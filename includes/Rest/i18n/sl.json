@@ -330,7 +330,6 @@
 	"rest-responseheader-desc-location": "Označuje ciljni URL za dva glavna namena: preusmeritev in identifikacijo lokacije novo ustvarjenega vira.",
 	"rest-openapispec-genericerrorresponse-desc": "Splošni odgovor na napako. Sporočilo bo vsebovalo več podrobnosti o napaki.",
 	"rest-openapispec-genericerrorresponse-property-desc-httpCode": "Koda stanja HTTP odgovora na napako.",
-	"rest-openapispec-genericerrorresponse-property-desc-httpMessage": "Sporočilo o stanju HTTP odgovora na napako.",
 	"rest-openapispec-genericerrorresponse-property-desc-message": "Človeku berljivo sporočilo o napaki, ki je uporabno, kadar niso na voljo prevodi sporočil",
 	"rest-openapispec-genericerrorresponse-property-desc-messageTranslations": "Zemljevid jezikovnih kod v človeku berljivih sporočilih o napaki za odjemalce, ki jih lahko uporabljajo."
 }

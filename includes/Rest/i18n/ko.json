@@ -360,7 +360,6 @@
 	"rest-responseheader-desc-location": "다음의 두 가지 주요 목적으로 대상 URL을 지정합니다: 넘겨주기와 새로 생성된 리소스의 위치를 식별하는 데 사용.",
 	"rest-openapispec-genericerrorresponse-desc": "일반적인 오류 응답입니다. 메시지에는 오류에 대한 자세한 내용이 제공됩니다.",
 	"rest-openapispec-genericerrorresponse-property-desc-httpCode": "오류 응답의 HTTP 상태 코드입니다.",
-	"rest-openapispec-genericerrorresponse-property-desc-httpMessage": "오류 응답의 HTTP 상태 메시지입니다.",
 	"rest-openapispec-genericerrorresponse-property-desc-message": "번역된 메시지가 없을 때 유용한, 사람이 읽을 수 있는 오류 메시지입니다.",
 	"rest-openapispec-genericerrorresponse-property-desc-messageTranslations": "클라이언트가 사용할 수 있도록 언어 코드와 사람이 읽을 수 있는 오류 메시지 간의 변환 맵입니다."
 }

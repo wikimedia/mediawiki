@@ -92,6 +92,7 @@
 	"index-category": "Indexované stránky",
 	"noindex-category": "Neindexované stránky",
 	"broken-file-category": "Stránky s odkazy na neexistující soubory",
+	"category-header-strokes": "$1 {{PLURAL:$1|tah|tahy|tahů}}",
 	"about": "Úvod",
 	"article": "Obsahová stránka",
 	"newwindow": "(otevře se v novém okně)",

@@ -375,7 +375,6 @@
 	"rest-responseheader-desc-location": "Geeft een doel-URL aan voor twee hoofddoelen: doorverwijzing en het identificeren van de locatie van een nieuw gecreëerde bron.",
 	"rest-openapispec-genericerrorresponse-desc": "Algemene foutmelding. Het bericht bevat meer details over de fout.",
 	"rest-openapispec-genericerrorresponse-property-desc-httpCode": "De HTTP-statuscode van het foutantwoord.",
-	"rest-openapispec-genericerrorresponse-property-desc-httpMessage": "Het HTTP-statusbericht van het foutantwoord.",
 	"rest-openapispec-genericerrorresponse-property-desc-message": "Een leesbare foutmelding, handig wanneer er geen vertalingen van de foutmelding beschikbaar zijn",
 	"rest-openapispec-genericerrorresponse-property-desc-messageTranslations": "Een overzicht van taalcodes en de bijbehorende, voor mensen leesbare foutmeldingen, voor clients die deze kunnen gebruiken."
 }

@@ -57,6 +57,7 @@
 	"index-category": "Páxinas indexadas",
 	"noindex-category": "Páxinas sen indexar",
 	"broken-file-category": "Páxinas con ligazóns a ficheiros rotas",
+	"category-header-strokes": "$1 {{PLURAL:$1|trazo|trazos}}",
 	"about": "Acerca de",
 	"article": "Páxina de contido",
 	"newwindow": "(abre en xanela nova)",

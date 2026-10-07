@@ -371,7 +371,14 @@
 	"rest-responseheader-desc-location": "Indica un enderezo URL de destino para dous propósitos principais: redirección e identificación da localización dun recurso creado recentemente.",
 	"rest-openapispec-genericerrorresponse-desc": "Resposta xenérica de erro. A mensaxe proporcionará máis detalles sobre o erro.",
 	"rest-openapispec-genericerrorresponse-property-desc-httpCode": "O código de estado HTTP da resposta de erro.",
-	"rest-openapispec-genericerrorresponse-property-desc-httpMessage": "A mensaxe de estado HTTP da resposta de erro.",
 	"rest-openapispec-genericerrorresponse-property-desc-message": "Unha mensaxe de erro lexible para humanos, útil cando non están dispoñibles as traducións de mensaxes",
-	"rest-openapispec-genericerrorresponse-property-desc-messageTranslations": "Un mapa de códigos de lingua con mensaxes de erro lexibles para humanos, para que os clientes os poidan usar."
+	"rest-openapispec-genericerrorresponse-property-desc-messageTranslations": "Un mapa de códigos de lingua con mensaxes de erro lexibles para humanos, para que os clientes os poidan usar.",
+	"rest-openapispec-genericerrorresponse-v2-desc": "Resposta de erro dos módulos que empregan a versión 2.0 do formato de erros.",
+	"rest-openapispec-genericerrorresponse-restbasecompat-desc": "Resposta de erro en formato compatible con RESTBase, devolta cando a solicitude ten a cabeceira «x-restbase-compat: true».",
+	"rest-openapispec-genericerrorresponse-property-desc-httpReason": "A frase co motivo estándar do código de estado HTTP; por exemplo: «Non atopado».",
+	"rest-openapispec-genericerrorresponse-property-desc-errorKey": "A clave da mensaxe que identifica o erro. Só está presente nos erros localizados.",
+	"rest-openapispec-genericerrorresponse-property-desc-reqId": "O identificador da solicitude. Só está presente no erros do servidor; indícao ao informares do erro.",
+	"rest-openapispec-genericerrorresponse-property-desc-exception": "Detalles estruturados da excepción que causou o erro. Só están presentes cando o wiki está configurado para mostrar os detalles da excepción.",
+	"rest-openapispec-genericerrorresponse-property-desc-errorCode": "Un código lexible por máquina que identifica o erro. Só está presente nos erros localizados.",
+	"rest-openapispec-genericerrorresponse-property-desc-tracing": "Información de diagnóstico sobre a solicitude, útil ao informar do erro. Sempre contén «module» e pode conter «request_id», «method», «uri» e «url». O contido deste obxecto non forma parte do contrato da API e pode cambiar en calquera momento."
 }

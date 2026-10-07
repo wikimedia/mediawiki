@@ -2000,6 +2000,7 @@
 	"apiwarn-global-option-ignored": "تم تجاوز الخيار <var>$1</var> عالميًا. يمكنك استخدام <kbd>global=update</kbd> لتغيير الخيار عالميًا، أو <kbd>global=override</kbd> لتعيين تجاوز محلي.",
 	"apiwarn-ignoring-invalid-templated-value": "تجاهل القيمة <kbd>$2</kbd> في <var>$1</var> عند معالجة وسائط القوالب.",
 	"apiwarn-invalidcategory": "\"$1\" ليس تصنيفا.",
+	"apiwarn-invalidrange": "\" $1 \" ليس نطاقًا صالحًا.",
 	"apiwarn-invalidtitle": "\"$1\" ليس عنوانا صالحا.",
 	"apiwarn-moduleswithoutvars": "تم تعيين الخاصية <kbd>modules</kbd> ولكن ليست <kbd>jsconfigvars</kbd> أو <kbd>encodedjsconfigvars</kbd>، متغيرات التكوين ضرورية للاستخدام السليم للوحدة.",
 	"apiwarn-notfile": "\"$1\" ليس ملفا.",

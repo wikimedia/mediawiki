@@ -66,6 +66,7 @@
 	"index-category": "İndeksləşdirilmiş səhifələr",
 	"noindex-category": "İndeksləşdirilməyən səhifələr",
 	"broken-file-category": "İşləməyən fayl keçidləri olan səhifələr",
+	"category-header-strokes": "$1 {{PLURAL:$1|ştrix}}",
 	"about": "Haqqında",
 	"article": "Məzmun səhifəsi",
 	"newwindow": "(yeni pəncərədə açılır)",

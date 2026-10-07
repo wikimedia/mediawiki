@@ -256,6 +256,7 @@
 	"broken-file-category": "含有受损文件链接的页面",
 	"categoryviewer-pagedlinks": "（$1）（$2）",
 	"category-header-numerals": "$1~$2",
+	"category-header-strokes": "$1{{PLURAL:$1|画}}",
 	"about": "关于",
 	"article": "内容页面",
 	"newwindow": "（在新窗口中打开）",

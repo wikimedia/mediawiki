@@ -30,6 +30,7 @@
 	"index-category": "Maqaalada indeksed",
 	"noindex-category": "Bogag aan la tusin makiinadaha raadinta",
 	"broken-file-category": "Bog ka samaysan file aan jirin.",
+	"category-header-strokes": "$1 {{PLURAL:$1|xariiq|xariiqyo}}",
 	"about": "Ku saabsan",
 	"article": "Qoraalka bogga oo kooban",
 	"newwindow": "(dariishad cusub aa furmeeyso)",

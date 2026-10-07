@@ -374,7 +374,6 @@
 	"rest-responseheader-desc-location": "מציין כתובת URL יעד לשתי מטרות עיקריות: הפניה וזיהוי מיקום של משאב חדש שנוצר.",
 	"rest-openapispec-genericerrorresponse-desc": "תשובת שגיאה כללית. ההודעה תספק פרטים נוספים על השגיאה.",
 	"rest-openapispec-genericerrorresponse-property-desc-httpCode": "קוד המצב של HTTP של תשובת השגיאה.",
-	"rest-openapispec-genericerrorresponse-property-desc-httpMessage": "הודעות המצב של HTTP של תשובת השגיאה.",
 	"rest-openapispec-genericerrorresponse-property-desc-message": "הודעת שגיאה קריאה על־ידי בני אדם, שימושית כאשר אין תרגומי הודעות זמינים",
 	"rest-openapispec-genericerrorresponse-property-desc-messageTranslations": "מפה של קודי שפה להודעות שגיאה קריאות על־ידי בני אדם, עבור לקוחות שיכולים להשתמש בהן."
 }
