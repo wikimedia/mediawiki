@@ -2936,7 +2936,7 @@
 	"file-info-png-looped": "în buclă",
 	"file-info-png-repeat": "redat {{PLURAL:$1|o dată|de $1 ori}}",
 	"file-info-png-frames": "$1 {{PLURAL:$1|cadru|cadre}}",
-	"file-info-webp-frames": "$1 {{PLURAL:$1|imagine|imagini}}",
+	"file-info-webp-frames": "$1 {{PLURAL:$1|cadru|cadre}}",
 	"file-no-thumb-animation": "'''Notă: Din cauza unor limitări de ordin tehnic, miniaturile acestui fișier nu vor fi animate.'''",
 	"file-no-thumb-animation-gif": "'''Notă: Din cauza unor limitări de ordin tehnic, miniaturile fișierelor GIF de înaltă rezoluție, precum acesta, nu vor fi animate.'''",
 	"newimages": "Galeria de imagini noi",

@@ -563,7 +563,7 @@
 	"recentchanges-label-unpatrolled": "Ta edicëjô jesz nie òsta sprawdzónô",
 	"recentchanges-label-plusminus": "Zjinaczonô wiôlgòsc starnë (lëczba bajtów)",
 	"recentchanges-legend-heading": "<strong>Légenda:</strong>",
-	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} (òbaczë téż [[Special:NewPages|lëstã nowëch strón]])",
+	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}}\\n(òbaczë téż [[Special:NewPages|lëstã nowëch strón]])",
 	"recentchanges-legend-watchlistexpiry": "Timczasowò ùzérónô starna",
 	"rcfilters-legend-heading": "<strong>Ùżëté skrócënczi:</strong>",
 	"rcfilters-other-review-tools": "Jiné nôrzãdza przezéru zjinaków",
