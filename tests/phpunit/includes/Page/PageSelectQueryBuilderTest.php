@@ -39,7 +39,7 @@ class PageSelectQueryBuilderTest extends MediaWikiIntegrationTestCase {
 
 		return new PageStore(
 			$serviceOptions,
-			$services->getDBLoadBalancer(),
+			$services->getConnectionProvider(),
 			$services->getNamespaceInfo(),
 			$services->getTitleParser(),
 			$services->getLinkCache(),

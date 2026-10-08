@@ -10,7 +10,6 @@ use MediaWiki\Title\NamespaceInfo;
 use MediaWiki\Title\TitleParser;
 use MediaWikiUnitTestCase;
 use Wikimedia\Rdbms\LBFactory;
-use Wikimedia\Rdbms\LoadBalancer;
 use Wikimedia\Stats\StatsFactory;
 
 /**
@@ -24,10 +23,7 @@ class PageStoreFactoryTest extends MediaWikiUnitTestCase {
 			MainConfigNames::PageLanguageUseDB => true,
 		] );
 
-		$lb = $this->createNoOpMock( LoadBalancer::class );
-
-		$lbFactory = $this->createNoOpMock( LBFactory::class, [ 'getMainLB' ] );
-		$lbFactory->method( 'getMainLB' )->willReturn( $lb );
+		$lbFactory = $this->createNoOpMock( LBFactory::class );
 
 		$factory = new PageStoreFactory(
 			$options,

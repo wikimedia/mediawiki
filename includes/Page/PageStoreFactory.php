@@ -52,7 +52,7 @@ class PageStoreFactory {
 	public function getPageStore( $wikiId = WikiAwareEntity::LOCAL ): PageStore {
 		return new PageStore(
 			$this->options,
-			$this->dbLoadBalancerFactory->getMainLB( $wikiId ),
+			$this->dbLoadBalancerFactory,
 			$this->namespaceInfo,
 			$this->titleParser,
 			$wikiId !== WikiAwareEntity::LOCAL ? null : $this->linkCache,

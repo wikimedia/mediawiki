@@ -20,8 +20,8 @@ use stdClass;
 use Wikimedia\ObjectCache\MapCacheLRU;
 use Wikimedia\ObjectCache\WANObjectCache;
 use Wikimedia\Parsoid\Core\LinkTarget;
+use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\Rdbms\IDBAccessObject;
-use Wikimedia\Rdbms\ILoadBalancer;
 use Wikimedia\Rdbms\IReadableDatabase;
 
 /**
@@ -58,8 +58,8 @@ class LinkCache implements LoggerAwareInterface {
 	private $titleFormatter;
 	/** @var NamespaceInfo */
 	private $nsInfo;
-	/** @var ILoadBalancer|null */
-	private $loadBalancer;
+	/** @var IConnectionProvider|null */
+	private $dbProvider;
 	/** @var LoggerInterface */
 	private $logger;
 
@@ -75,19 +75,19 @@ class LinkCache implements LoggerAwareInterface {
 	 * @param TitleFormatter $titleFormatter
 	 * @param WANObjectCache $cache
 	 * @param NamespaceInfo $nsInfo
-	 * @param ILoadBalancer|null $loadBalancer Use null when no database is set up, for example on installation
+	 * @param IConnectionProvider|null $dbProvider Use null when no database is set up, for example on installation
 	 */
 	public function __construct(
 		TitleFormatter $titleFormatter,
 		WANObjectCache $cache,
 		NamespaceInfo $nsInfo,
-		?ILoadBalancer $loadBalancer = null
+		?IConnectionProvider $dbProvider = null
 	) {
 		$this->entries = new MapCacheLRU( self::MAX_SIZE );
 		$this->wanCache = $cache;
 		$this->titleFormatter = $titleFormatter;
 		$this->nsInfo = $nsInfo;
-		$this->loadBalancer = $loadBalancer;
+		$this->dbProvider = $dbProvider;
 		$this->logger = new NullLogger();
 	}
 
@@ -424,7 +424,7 @@ class LinkCache implements LoggerAwareInterface {
 		$callerShouldAddGoodLink = true;
 
 		if ( !( $queryFlags & IDBAccessObject::READ_LATEST ) ) {
-			$dbr = $this->loadBalancer->getConnection( DB_REPLICA );
+			$dbr = $this->dbProvider->getReplicaDatabase();
 			$wanCacheKey = $this->getPersistentCacheKey( $link );
 			if ( $wanCacheKey !== null ) {
 				// Some pages are often transcluded heavily, so use persistent caching
@@ -438,7 +438,7 @@ class LinkCache implements LoggerAwareInterface {
 				$row = $fetchCallback( $dbr, $ns, $dbkey, [] );
 			}
 		} else {
-			$dbr = $this->loadBalancer->getConnection( DB_PRIMARY );
+			$dbr = $this->dbProvider->getPrimaryDatabase();
 			$options = [];
 			if ( ( $queryFlags & IDBAccessObject::READ_EXCLUSIVE ) == IDBAccessObject::READ_EXCLUSIVE ) {
 				$options[] = 'FOR UPDATE';

@@ -1348,14 +1348,14 @@ return [
 
 	'LinkCache' => static function ( MediaWikiServices $services ): LinkCache {
 		// Database layer may be disabled, so processing without database connection
-		$dbLoadBalancer = $services->isServiceDisabled( 'DBLoadBalancer' )
+		$dbProvider = $services->isServiceDisabled( 'DBLoadBalancerFactory' )
 			? null
-			: $services->getDBLoadBalancer();
+			: $services->getConnectionProvider();
 		$linkCache = new LinkCache(
 			$services->getTitleFormatter(),
 			$services->getWANObjectCache(),
 			$services->getNamespaceInfo(),
-			$dbLoadBalancer
+			$dbProvider
 		);
 		$linkCache->setLogger( LoggerFactory::getInstance( 'LinkCache' ) );
 		return $linkCache;

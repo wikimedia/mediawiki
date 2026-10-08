@@ -14,8 +14,8 @@ use MediaWiki\Title\TitleParser;
 use stdClass;
 use Wikimedia\Assert\Assert;
 use Wikimedia\Parsoid\Core\LinkTarget as ParsoidLinkTarget;
+use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\Rdbms\IDBAccessObject;
-use Wikimedia\Rdbms\ILoadBalancer;
 use Wikimedia\Rdbms\IReadableDatabase;
 use Wikimedia\Stats\StatsFactory;
 
@@ -26,7 +26,7 @@ use Wikimedia\Stats\StatsFactory;
 class PageStore implements PageLookup {
 
 	private ServiceOptions $options;
-	private ILoadBalancer $dbLoadBalancer;
+	private IConnectionProvider $dbProvider;
 	private NamespaceInfo $namespaceInfo;
 	private TitleParser $titleParser;
 	private ?LinkCache $linkCache;
@@ -43,7 +43,7 @@ class PageStore implements PageLookup {
 
 	/**
 	 * @param ServiceOptions $options
-	 * @param ILoadBalancer $dbLoadBalancer
+	 * @param IConnectionProvider $dbProvider
 	 * @param NamespaceInfo $namespaceInfo
 	 * @param TitleParser $titleParser
 	 * @param ?LinkCache $linkCache
@@ -52,7 +52,7 @@ class PageStore implements PageLookup {
 	 */
 	public function __construct(
 		ServiceOptions $options,
-		ILoadBalancer $dbLoadBalancer,
+		IConnectionProvider $dbProvider,
 		NamespaceInfo $namespaceInfo,
 		TitleParser $titleParser,
 		?LinkCache $linkCache,
@@ -62,7 +62,7 @@ class PageStore implements PageLookup {
 		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
 
 		$this->options = $options;
-		$this->dbLoadBalancer = $dbLoadBalancer;
+		$this->dbProvider = $dbProvider;
 		$this->namespaceInfo = $namespaceInfo;
 		$this->titleParser = $titleParser;
 		$this->wikiId = $wikiId;
@@ -401,9 +401,9 @@ class PageStore implements PageLookup {
 			$flags = IDBAccessObject::READ_NORMAL;
 		} else {
 			if ( ( $dbOrFlags & IDBAccessObject::READ_LATEST ) == IDBAccessObject::READ_LATEST ) {
-				$db = $this->dbLoadBalancer->getConnection( DB_PRIMARY, [], $this->wikiId );
+				$db = $this->dbProvider->getPrimaryDatabase( $this->wikiId );
 			} else {
-				$db = $this->dbLoadBalancer->getConnection( DB_REPLICA, [], $this->wikiId );
+				$db = $this->dbProvider->getReplicaDatabase( $this->wikiId );
 			}
 			$flags = $dbOrFlags;
 		}

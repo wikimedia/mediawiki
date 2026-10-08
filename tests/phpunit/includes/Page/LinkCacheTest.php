@@ -26,7 +26,7 @@ class LinkCacheTest extends MediaWikiIntegrationTestCase {
 			$this->getServiceContainer()->getTitleFormatter(),
 			$wanCache,
 			$this->getServiceContainer()->getNamespaceInfo(),
-			$this->getServiceContainer()->getDBLoadBalancer()
+			$this->getServiceContainer()->getConnectionProvider()
 		);
 	}
 

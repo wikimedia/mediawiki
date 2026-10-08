@@ -16,9 +16,9 @@ use MediaWiki\Title\TitleValue;
 use MediaWikiIntegrationTestCase;
 use MockTitleTrait;
 use Wikimedia\Assert\PreconditionException;
+use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\IDBAccessObject;
-use Wikimedia\Rdbms\LoadBalancer;
 use Wikimedia\Stats\Metrics\MetricInterface;
 use Wikimedia\Stats\StatsFactory;
 
@@ -60,7 +60,7 @@ class PageStoreTest extends MediaWikiIntegrationTestCase {
 
 		return new PageStore(
 			$serviceOptions,
-			$params['dbLoadBalancer'] ?? $services->getDBLoadBalancer(),
+			$params['dbProvider'] ?? $services->getConnectionProvider(),
 			$services->getNamespaceInfo(),
 			$services->getTitleParser(),
 			array_key_exists( 'linkCache', $params )
@@ -244,8 +244,8 @@ class PageStoreTest extends MediaWikiIntegrationTestCase {
 		$linkCache = $this->getServiceContainer()->getLinkCache();
 		$linkCache->addBadLinkObj( $nonexistingPage );
 
-		$mockLB = $this->createNoOpMock( LoadBalancer::class );
-		$pageStore = $this->getPageStore( [], [ 'doLoadBalancer' => $mockLB ] );
+		$mockDbProvider = $this->createNoOpMock( IConnectionProvider::class );
+		$pageStore = $this->getPageStore( [], [ 'dbProvider' => $mockDbProvider ] );
 		$page = $pageStore->getPageByName( $ns, $dbkey );
 
 		$this->assertNull( $page );
@@ -279,9 +279,9 @@ class PageStoreTest extends MediaWikiIntegrationTestCase {
 		$linkCache = $this->getServiceContainer()->getLinkCache();
 		$linkCache->addGoodLinkObjFromRow( $nonexistingPage, $row );
 
-		$mockLB = $this->createNoOpMock( LoadBalancer::class );
+		$mockDbProvider = $this->createNoOpMock( IConnectionProvider::class );
 
-		$pageStore = $this->getPageStore( [], [ 'doLoadBalancer' => $mockLB ] );
+		$pageStore = $this->getPageStore( [], [ 'dbProvider' => $mockDbProvider ] );
 		$page = $pageStore->getPageByName( $ns, $dbkey );
 
 		$this->assertSame( $row->page_id, $page->getId() );
@@ -713,11 +713,10 @@ class PageStoreTest extends MediaWikiIntegrationTestCase {
 		$db = $this->createMock( IDatabase::class );
 		$db->expects( $this->atLeastOnce() )->method( 'selectRow' )->willReturn( false );
 
-		// Test that the load balancer is asked for a master connection
-		$lb = $this->createMock( LoadBalancer::class );
-		$lb->expects( $this->atLeastOnce() )
-			->method( 'getConnection' )
-			->with( DB_PRIMARY )
+		// Test that the connection provider is asked for a primary connection
+		$dbProvider = $this->createMock( IConnectionProvider::class );
+		$dbProvider->expects( $this->atLeastOnce() )
+			->method( 'getPrimaryDatabase' )
 			->willReturn( $db );
 
 		$pageStore = $this->getPageStore(
@@ -725,7 +724,7 @@ class PageStoreTest extends MediaWikiIntegrationTestCase {
 				MainConfigNames::LanguageCode => 'qxx',
 				MainConfigNames::PageLanguageUseDB => true,
 			],
-			[ 'dbLoadBalancer' => $lb ]
+			[ 'dbProvider' => $dbProvider ]
 		);
 
 		$pageStore->newSelectQueryBuilder( IDBAccessObject::READ_LATEST )

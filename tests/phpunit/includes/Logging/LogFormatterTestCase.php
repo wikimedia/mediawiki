@@ -15,7 +15,7 @@ use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
 use MediaWiki\User\UserFactory;
 use MediaWikiLangTestCase;
 use Wikimedia\IPUtils;
-use Wikimedia\Rdbms\ILoadBalancer;
+use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\Stats\StatsFactory;
 use Wikimedia\TestingAccessWrapper;
 
@@ -93,7 +93,7 @@ abstract class LogFormatterTestCase extends MediaWikiLangTestCase {
 			->onlyMethods( [ 'getPageByName' ] )
 			->setConstructorArgs( [
 				new ServiceOptions( PageStore::CONSTRUCTOR_OPTIONS, $services->getMainConfig() ),
-				$this->createNoOpMock( ILoadBalancer::class ),
+				$this->createNoOpMock( IConnectionProvider::class ),
 				$services->getNamespaceInfo(),
 				$services->getTitleParser(),
 				null,

@@ -31,23 +31,21 @@ class RevisionStoreTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @param IDatabase $db
-	 * @return MockObject|ILoadBalancer
+	 * @return MockObject|LBFactory
 	 */
-	private function installMockLoadBalancer( IDatabase $db ) {
-		$lb = $this->createNoOpMock(
-			ILoadBalancer::class,
-			[ 'getConnection', 'getLocalDomainID' ]
+	private function installMockLBFactory( IDatabase $db ) {
+		$lbf = $this->createNoOpMock(
+			LBFactory::class,
+			[ 'getMainLB', 'getLocalDomainID', 'getReplicaDatabase', 'getPrimaryDatabase' ]
 		);
-
-		$lb->method( 'getConnection' )->willReturn( $db );
-		$lb->method( 'getLocalDomainID' )->willReturn( 'fake' );
-
-		$lbf = $this->createNoOpMock( LBFactory::class, [ 'getMainLB', 'getLocalDomainID' ] );
-		$lbf->method( 'getMainLB' )->willReturn( $lb );
+		// RevisionStore still needs a load balancer, but getTitle() only queries through PageStore
+		$lbf->method( 'getMainLB' )->willReturn( $this->createNoOpMock( ILoadBalancer::class ) );
 		$lbf->method( 'getLocalDomainID' )->willReturn( 'fake' );
+		$lbf->method( 'getReplicaDatabase' )->willReturn( $db );
+		$lbf->method( 'getPrimaryDatabase' )->willReturn( $db );
 
 		$this->setService( 'DBLoadBalancerFactory', $lbf );
-		return $lb;
+		return $lbf;
 	}
 
 	/**
@@ -60,7 +58,7 @@ class RevisionStoreTest extends MediaWikiIntegrationTestCase {
 
 		$db->method( 'getDomainId' )->willReturn( 'fake' );
 
-		$this->installMockLoadBalancer( $db );
+		$this->installMockLBFactory( $db );
 		return $db;
 	}
 
@@ -232,22 +230,20 @@ class RevisionStoreTest extends MediaWikiIntegrationTestCase {
 
 	public function testGetTitle_correctFallbackAndthrowsExceptionAfterFallbacks() {
 		$db = $this->createMock( IDatabase::class );
-		$mockLoadBalancer = $this->installMockLoadBalancer( $db );
+		$mockLBFactory = $this->installMockLBFactory( $db );
 
-		// Assert that the first call uses a REPLICA and the second falls back to master
-
-		// RevisionStore getTitle uses getConnection
-		$mockLoadBalancer->expects( $this->exactly( 4 ) )
-			->method( 'getConnection' )
-			->willReturnCallback( function ( $masterOrReplica ) use ( $db ) {
-				static $callCounter = 0;
-				$callCounter++;
-				// The first call should be to a REPLICA, and the second a MASTER.
-				if ( $callCounter < 3 ) {
-					$this->assertSame( DB_REPLICA, $masterOrReplica );
-				} else {
-					$this->assertSame( DB_PRIMARY, $masterOrReplica );
-				}
+		// Assert that the first two lookups use a replica and then fall back to the primary
+		$usedPrimary = false;
+		$mockLBFactory->expects( $this->exactly( 2 ) )
+			->method( 'getReplicaDatabase' )
+			->willReturnCallback( function () use ( $db, &$usedPrimary ) {
+				$this->assertFalse( $usedPrimary, 'Replica must not be used after falling back to primary' );
+				return $db;
+			} );
+		$mockLBFactory->expects( $this->exactly( 2 ) )
+			->method( 'getPrimaryDatabase' )
+			->willReturnCallback( static function () use ( $db, &$usedPrimary ) {
+				$usedPrimary = true;
 				return $db;
 			} );
 
@@ -279,7 +275,7 @@ class RevisionStoreTest extends MediaWikiIntegrationTestCase {
 				return false;
 			} );
 
-		$store = $this->getRevisionStore( $mockLoadBalancer );
+		$store = $this->getRevisionStore();
 
 		$this->expectException( RevisionAccessException::class );
 		$store->getTitle( 1, 2, IDBAccessObject::READ_NORMAL );
