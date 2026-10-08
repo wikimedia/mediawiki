@@ -37,7 +37,7 @@ class UpdateArticleCount extends Maintenance {
 		if ( $this->hasOption( 'use-master' ) ) {
 			$dbr = $this->getPrimaryDB();
 		} else {
-			$dbr = $this->getDB( DB_REPLICA, 'vslow' );
+			$dbr = $this->getAnalyticsReplica();
 		}
 		$counter = new SiteStatsInit( $dbr );
 		$result = $counter->articles();

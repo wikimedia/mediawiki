@@ -16,7 +16,6 @@ use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Shell\Shell;
 use MediaWiki\Title\Title;
 use MediaWiki\User\User;
-use Wikimedia\Rdbms\Database;
 
 // @codeCoverageIgnoreStart
 require_once __DIR__ . '/Maintenance.php';
@@ -67,8 +66,7 @@ class CleanupSpam extends Maintenance {
 			$this->output( "Finding spam on " . count( $wgLocalDatabases ) . " wikis\n" );
 			$found = false;
 			foreach ( $wgLocalDatabases as $wikiId ) {
-				/** @var Database $dbr */
-				$dbr = $this->getDB( DB_REPLICA, [], $wikiId );
+				$dbr = $this->getReplicaDB( $wikiId );
 
 				foreach ( $protConds as $conds ) {
 					$count = $dbr->newSelectQueryBuilder()

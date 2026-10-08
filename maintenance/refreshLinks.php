@@ -68,7 +68,7 @@ class RefreshLinks extends Maintenance {
 			return;
 		}
 
-		$dbr = $this->getDB( DB_REPLICA, [ 'vslow' ] );
+		$dbr = $this->getAnalyticsReplica();
 		$builder = $dbr->newSelectQueryBuilder()
 			->from( 'page' )
 			->where( self::intervalCond( $dbr, 'page_id', $start, $end ) )
@@ -141,7 +141,7 @@ class RefreshLinks extends Maintenance {
 		$selectFields = in_array( 'page_id', $indexFields )
 			? $indexFields : [ 'page_id', ...$indexFields ];
 		$verbose = $this->hasOption( 'verbose' );
-		$dbr = $this->getDB( DB_REPLICA, [ 'vslow' ] );
+		$dbr = $this->getAnalyticsReplica();
 		do {
 			$batchCond = $dbr->buildComparison( '>', $lastIndexes );
 			$res = ( clone $builder )->select( $selectFields )
@@ -204,7 +204,7 @@ class RefreshLinks extends Maintenance {
 			$rt = $content->getRedirectTarget();
 		}
 
-		$dbw = $maint->getDB( DB_PRIMARY );
+		$dbw = $maint->getPrimaryDB();
 		if ( $rt === null ) {
 			// The page is not a redirect
 			// Delete any redirect table entry for it
@@ -268,7 +268,7 @@ class RefreshLinks extends Maintenance {
 	) {
 		$this->waitForReplication();
 		$this->output( "Deleting illegal entries from the links tables...\n" );
-		$dbr = $this->getDB( DB_REPLICA, [ 'vslow' ] );
+		$dbr = $this->getAnalyticsReplica();
 		do {
 			// Find the start of the next chunk. This is based only
 			// on existent page_ids.
@@ -333,8 +333,8 @@ class RefreshLinks extends Maintenance {
 
 		foreach ( $linksTables as $table => $field ) {
 			$domain = $domains[$table] ?? false;
-			$dbw = $this->getServiceContainer()->getConnectionProvider()->getPrimaryDatabase( $domain );
-			$dbr = $this->getServiceContainer()->getConnectionProvider()->getReplicaDatabase( $domain, 'vslow' );
+			$dbw = $this->getPrimaryDB( $domain );
+			$dbr = $this->getAnalyticsReplica( $domain );
 
 			$this->output( "    $table: 0" );
 			$tableStart = $start;

@@ -1127,6 +1127,18 @@ abstract class Maintenance {
 	}
 
 	/**
+	 * Get a replica connection meant for slow, long-running or analytics-style
+	 * queries (the "vslow" query group, which also covers "dump").
+	 *
+	 * @param string|false $virtualDomain
+	 * @return IReadableDatabase
+	 * @since 1.47
+	 */
+	protected function getAnalyticsReplica( string|false $virtualDomain = false ): IReadableDatabase {
+		return $this->getLBFactory()->getReplicaDatabase( $virtualDomain, 'vslow' );
+	}
+
+	/**
 	 * @param string|false $virtualDomain
 	 * @return IDatabase
 	 * @since 1.42

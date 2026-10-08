@@ -134,12 +134,9 @@ TEXT
 		// the hypothesis that invalid rows will be old and in all likelihood
 		// unreferenced, we should be fine to do it like this.
 		if ( isset( $tableParams['virtualDomain'] ) ) {
-			$dbr = $this->getServiceContainer()->getConnectionProvider()->getReplicaDatabase(
-				$tableParams['virtualDomain'],
-				'vslow'
-			);
+			$dbr = $this->getAnalyticsReplica( $tableParams['virtualDomain'] );
 		} else {
-			$dbr = $this->getDB( DB_REPLICA, 'vslow' );
+			$dbr = $this->getAnalyticsReplica();
 		}
 
 		$linksMigration = $this->getServiceContainer()->getLinksMigration();

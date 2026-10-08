@@ -140,7 +140,7 @@ class DumpCategoriesAsRdf extends Maintenance {
 		$this->addDumpHeader( time() );
 		fwrite( $output, $this->rdfWriter->drain() );
 
-		$dbr = $this->getDB( DB_REPLICA, [ 'vslow' ] );
+		$dbr = $this->getAnalyticsReplica();
 
 		foreach ( $this->getCategoryIterator( $dbr, __METHOD__ ) as $batch ) {
 			$pages = [];

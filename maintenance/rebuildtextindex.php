@@ -121,7 +121,7 @@ class RebuildTextIndex extends Maintenance {
 	 * (MySQL only) Drops fulltext index before populating the table.
 	 */
 	private function dropMysqlTextIndex() {
-		$dbw = $this->getDB( DB_PRIMARY );
+		$dbw = $this->getPrimaryDB();
 		$searchindex = $dbw->tableName( 'searchindex' );
 		$this->output( "Dropping index...\n" );
 		$sql = <<<SQL

@@ -129,7 +129,7 @@ SPARQLD;
 		$prefixes = preg_replace( [ '/^@/m', '/\s*[.]$/m' ], '', $prefixes );
 		fwrite( $output, $prefixes );
 
-		$dbr = $this->getDB( DB_REPLICA, [ 'vslow' ] );
+		$dbr = $this->getAnalyticsReplica();
 
 		// Deletes go first because if the page was deleted, other changes
 		// do not matter. This only gets true deletes, i.e. not pages that were restored.

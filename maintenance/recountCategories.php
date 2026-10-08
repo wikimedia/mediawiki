@@ -124,7 +124,7 @@ TEXT
 
 		// First, let's find out which categories have drifted and need to be updated.
 		// Use local database for category table (category table is not in virtual domain)
-		$dbrLocal = $this->getDB( DB_REPLICA, 'vslow' );
+		$dbrLocal = $this->getAnalyticsReplica();
 		$candidates = [];
 		$res = $dbrLocal->newSelectQueryBuilder()
 			->select( [ 'cat_id', 'cat_title', 'cat_count' => "cat_{$mode}" ] )
@@ -159,7 +159,7 @@ TEXT
 		// but this data can't be used for updating the master, so we only use it to
 		// find the drifted categories and don't write it.
 		$connectionProvider = $this->getServiceContainer()->getConnectionProvider();
-		$dbrLinks = $connectionProvider->getReplicaDatabase( CategoryLinksTable::VIRTUAL_DOMAIN, 'vslow' );
+		$dbrLinks = $this->getAnalyticsReplica( CategoryLinksTable::VIRTUAL_DOMAIN );
 		$res = $dbrLinks->newSelectQueryBuilder()
 			->select( [ 'lt_title', 'link_count' => 'COUNT(*)' ] )
 			->from( 'categorylinks' )
