@@ -15,6 +15,7 @@ use MediaWiki\User\TempUser\TempUserConfig;
 use MediaWiki\WikiMap\WikiMap;
 use RuntimeException;
 use stdClass;
+use Wikimedia\Rdbms\DBAccessObjectUtils;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\IDBAccessObject;
 use Wikimedia\Rdbms\ILBFactory;
@@ -278,11 +279,7 @@ class UserFactory implements UserRigorOptions {
 		string $confirmationCode,
 		int $flags = IDBAccessObject::READ_NORMAL
 	): ?User {
-		if ( ( $flags & IDBAccessObject::READ_LATEST ) === IDBAccessObject::READ_LATEST ) {
-			$db = $this->loadBalancer->getConnection( DB_PRIMARY );
-		} else {
-			$db = $this->loadBalancer->getConnection( DB_REPLICA );
-		}
+		$db = DBAccessObjectUtils::getDBFromRecency( $this->loadBalancerFactory, $flags );
 
 		$id = $db->newSelectQueryBuilder()
 			->select( 'user_id' )

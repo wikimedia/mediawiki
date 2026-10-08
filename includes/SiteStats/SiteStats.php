@@ -12,7 +12,7 @@ use MediaWiki\JobQueue\Exceptions\JobQueueError;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use stdClass;
-use Wikimedia\Rdbms\ILoadBalancer;
+use Wikimedia\Rdbms\ILBFactory;
 use Wikimedia\Rdbms\IReadableDatabase;
 
 /**
@@ -41,15 +41,15 @@ class SiteStats {
 	protected static function loadAndLazyInit() {
 		$config = MediaWikiServices::getInstance()->getMainConfig();
 
-		$lb = self::getLB();
-		$dbr = $lb->getConnection( DB_REPLICA );
+		$lbFactory = self::getLBFactory();
+		$dbr = $lbFactory->getReplicaDatabase();
 		wfDebug( __METHOD__ . ": reading site_stats from replica DB" );
 		$row = self::doLoadFromDB( $dbr );
 
-		if ( !self::isRowSensible( $row ) && $lb->hasOrMadeRecentPrimaryChanges() ) {
+		if ( !self::isRowSensible( $row ) && $lbFactory->hasOrMadeRecentPrimaryChanges() ) {
 			// Might have just been initialized during this request? Underflow?
 			wfDebug( __METHOD__ . ": site_stats damaged or missing on replica DB" );
-			$row = self::doLoadFromDB( $lb->getConnection( DB_PRIMARY ) );
+			$row = self::doLoadFromDB( $lbFactory->getPrimaryDatabase() );
 		}
 
 		if ( !self::isRowSensible( $row ) ) {
@@ -66,7 +66,7 @@ class SiteStats {
 				SiteStatsInit::doAllAndCommit( $dbr );
 			}
 
-			$row = self::doLoadFromDB( $lb->getConnection( DB_PRIMARY ) );
+			$row = self::doLoadFromDB( $lbFactory->getPrimaryDatabase() );
 		}
 
 		return $row;
@@ -139,7 +139,7 @@ class SiteStats {
 			$cache->makeKey( 'SiteStats', 'groupcounts', $group ),
 			$cache::TTL_HOUR,
 			static function () use ( $group, $fname ) {
-				$dbr = self::getLB()->getConnection( DB_REPLICA );
+				$dbr = self::getLBFactory()->getReplicaDatabase();
 				return (int)$dbr->newSelectQueryBuilder()
 					->select( 'COUNT(*)' )
 					->from( 'user_groups' )
@@ -190,7 +190,7 @@ class SiteStats {
 			$cache->makeKey( 'SiteStats', 'page-in-namespace', $ns ),
 			$cache::TTL_HOUR,
 			static function () use ( $ns, $fname ) {
-				$dbr = self::getLB()->getConnection( DB_REPLICA );
+				$dbr = self::getLBFactory()->getReplicaDatabase();
 				return (int)$dbr->newSelectQueryBuilder()
 					->select( 'COUNT(*)' )
 					->from( 'page' )
@@ -273,11 +273,8 @@ class SiteStats {
 		return true;
 	}
 
-	/**
-	 * @return ILoadBalancer
-	 */
-	private static function getLB() {
-		return MediaWikiServices::getInstance()->getDBLoadBalancer();
+	private static function getLBFactory(): ILBFactory {
+		return MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
 	}
 }
 

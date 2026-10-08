@@ -18,7 +18,6 @@ use MediaWiki\MediaWikiServices;
 use MediaWiki\Title\Title;
 use MediaWiki\User\UserIdentity;
 use stdClass;
-use Wikimedia\Rdbms\IDatabase;
 
 /**
  * A DatabaseBlock (unlike a SystemBlock) is stored in the database, may give
@@ -96,7 +95,9 @@ class DatabaseBlock extends AbstractBlock {
 		if ( isset( $options['decodedExpiry'] ) ) {
 			$this->setExpiry( $options['decodedExpiry'] );
 		} else {
-			$this->setExpiry( $this->getDBConnection( DB_REPLICA )->decodeExpiry( $options['expiry'] ) );
+			$dbr = MediaWikiServices::getInstance()->getConnectionProvider()
+				->getReplicaDatabase( $this->getWikiId() );
+			$this->setExpiry( $dbr->decodeExpiry( $options['expiry'] ) );
 		}
 
 		if ( $options['restrictions'] !== null ) {
@@ -644,16 +645,5 @@ class DatabaseBlock extends AbstractBlock {
 		}
 		$this->assertWiki( $user->getWikiId() );
 		$this->blocker = $user;
-	}
-
-	/**
-	 * @param int $i Specific or virtual (DB_PRIMARY/DB_REPLICA) server index
-	 * @return IDatabase
-	 */
-	private function getDBConnection( int $i ) {
-		return MediaWikiServices::getInstance()
-			->getDBLoadBalancerFactory()
-			->getMainLB( $this->getWikiId() )
-			->getConnection( $i, [], $this->getWikiId() );
 	}
 }
