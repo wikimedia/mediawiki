@@ -297,6 +297,7 @@ For notes on 1.46.x and older releases, see HISTORY.
 * Updated stylelint-config-wikimedia from 0.19.2 to 0.19.4.
 * Updated svgo from 3.3.3 to 3.3.5.
 * Updated QUnit from 2.24.1 to 3.0.0.
+* Updated jsdoc-wmf-theme from 1.3.0 to 1.3.1.
 * …
 
 ==== Removed external libraries ====
