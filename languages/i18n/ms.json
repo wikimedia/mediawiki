@@ -4040,5 +4040,6 @@
 	"benefit-3-description": "Pilihan yang membolehkan anda menyesuaikan pengalaman anda.",
 	"temp-user-unable-to-acquire": "Tidak dapat memperoleh nama pengguna akaun sementara. Sila cuba lagi.",
 	"table-of-contents-show-button-aria-label": "Tunjukkan jadual kandungan",
-	"table-of-contents-hide-button-aria-label": "Sembunyikan jadual kandungan"
+	"table-of-contents-hide-button-aria-label": "Sembunyikan jadual kandungan",
+	"mypage-disallowed-action": "Atas sebab keselamatan, tindakan \"$1\" tidak boleh digunakan pada laman \"Khas:Laman saya\"."
 }

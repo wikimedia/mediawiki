@@ -4,7 +4,8 @@
 			"Jasonzhuocn",
 			"Pleiades486",
 			"Sainbainvv",
-			"Winston Sung"
+			"Winston Sung",
+			"Villager-bloc-h"
 		]
 	},
 	"january": "1月",
@@ -48,5 +49,13 @@
 	"wednesday": "禮拜三",
 	"thursday": "禮拜四",
 	"friday": "禮拜五",
-	"saturday": "禮拜六"
+	"saturday": "禮拜六",
+	"sunday": "禮拜天",
+	"mon": "禮拜一",
+	"tue": "禮拜二",
+	"wed": "禮拜三",
+	"thu": "禮拜四",
+	"fri": "禮拜五",
+	"sat": "禮拜六",
+	"sun": "禮拜天"
 }

@@ -4094,5 +4094,6 @@
 	"benefit-3-description": "העדפות שמאפשרות לך להתאים אישית את החוויה שלך.",
 	"temp-user-unable-to-acquire": "לא ניתן לקבל שם חשבון חולף. נא לנסות שוב.",
 	"table-of-contents-show-button-aria-label": "להציג את תוכן העניינים",
-	"table-of-contents-hide-button-aria-label": "להסתיר את תוכן העניינים"
+	"table-of-contents-hide-button-aria-label": "להסתיר את תוכן העניינים",
+	"mypage-disallowed-action": "מסיבות אבטחה, לא ניתן להשתמש בפעולה \"$1\" בדף מיוחד:אקראי."
 }

@@ -3887,7 +3887,7 @@
 	"api-error-unknownerror": "Erreur inconnue : « $1 ».",
 	"rotate-comment": "Image pivotée de $1 degré{{PLURAL:$1||s}} dans le sens des aiguilles d'une montre",
 	"limitreport-title": "Données d’optimisation de l’analyseur :",
-	"limitreport-cputime": "Temps d‘utilisation du processeur",
+	"limitreport-cputime": "Temps d’utilisation du processeur",
 	"limitreport-cputime-value": "$1 {{PLURAL:$1|seconde|secondes}}",
 	"limitreport-walltime": "Temps réel d’utilisation",
 	"limitreport-walltime-value": "$1 {{PLURAL:$1|seconde|secondes}}",

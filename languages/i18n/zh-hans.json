@@ -4280,5 +4280,6 @@
 	"benefit-3-description": "参数设置，允许您定制使用体验。",
 	"temp-user-unable-to-acquire": "无法获取临时账号的用户名。请再试一次。",
 	"table-of-contents-show-button-aria-label": "显示目录",
-	"table-of-contents-hide-button-aria-label": "隐藏目录"
+	"table-of-contents-hide-button-aria-label": "隐藏目录",
+	"mypage-disallowed-action": "出于安全原因，Special:MyPage页面不能使用操作“$1”。"
 }

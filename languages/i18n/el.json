@@ -4071,5 +4071,6 @@
 	"benefit-3-description": "Προτιμήσεις που σας επιτρέπουν να προσαρμόσετε την εμπειρία σας.",
 	"temp-user-unable-to-acquire": "Δεν είναι δυνατή η απόκτηση ονόματος χρήστη προσωρινού λογαριασμού. Παρακαλούμε προσπαθήστε ξανά.",
 	"table-of-contents-show-button-aria-label": "Προβολή του Πίνακα Περιεχομένων",
-	"table-of-contents-hide-button-aria-label": "Απόκρυψη του πίνακα περιεχομένων"
+	"table-of-contents-hide-button-aria-label": "Απόκρυψη του πίνακα περιεχομένων",
+	"mypage-disallowed-action": "Για λόγους ασφαλείας, η ενέργεια «$1» δεν μπορεί να χρησιμοποιηθεί στη σελίδα Special:MyPage."
 }

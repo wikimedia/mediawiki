@@ -4121,5 +4121,6 @@
 	"benefit-3-description": "Voorkeuren, waarmee u uw account naar uw hand kunt zetten.",
 	"temp-user-unable-to-acquire": "Het is niet gelukt een gebruikersnaam voor het tijdelijke account te verkrijgen. Probeer het opnieuw.",
 	"table-of-contents-show-button-aria-label": "Inhoudsopgave weergeven",
-	"table-of-contents-hide-button-aria-label": "Inhoudsopgave verbergen"
+	"table-of-contents-hide-button-aria-label": "Inhoudsopgave verbergen",
+	"mypage-disallowed-action": "Om veiligheidsredenen kan de handeling \"$1\" niet worden gebruikt op de pagina Special:MyPage."
 }

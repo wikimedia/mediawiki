@@ -165,7 +165,9 @@
 			"Tensama0415",
 			"Cookie4782",
 			"Kanato Hinokuma",
-			"Ska101~translate"
+			"Ska101~translate",
+			"Beta empire",
+			"Honoka55"
 		]
 	},
 	"pagecategories": "{{PLURAL:$1|カテゴリ}}",
@@ -4221,5 +4223,6 @@
 	"benefit-3-description": "カスタマイズ可能な個人設定。",
 	"temp-user-unable-to-acquire": "仮アカウントの利用者名を取得できませんでした。もう一度お試しください。",
 	"table-of-contents-show-button-aria-label": "目次の表示",
-	"table-of-contents-hide-button-aria-label": "目次の非表示"
+	"table-of-contents-hide-button-aria-label": "目次の非表示",
+	"mypage-disallowed-action": "セキュリティ上の理由から、ページ Special:MyPage ではアクション「 $1 」を使用できません。"
 }

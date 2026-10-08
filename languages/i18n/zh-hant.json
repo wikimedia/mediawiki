@@ -157,7 +157,8 @@
 			"ShuQizhe",
 			"Kelly Hsueh",
 			"Peterxy",
-			"Addonian1123"
+			"Addonian1123",
+			"Ansony89"
 		]
 	},
 	"pagecategories": "{{PLURAL:$1|分類}}",
@@ -4168,5 +4169,6 @@
 	"benefit-3-description": "偏好設定，讓您自訂使用體驗。",
 	"temp-user-unable-to-acquire": "無法取得臨時帳號的使用者名稱，請再試一次。",
 	"table-of-contents-show-button-aria-label": "顯示目次",
-	"table-of-contents-hide-button-aria-label": "隱藏目次"
+	"table-of-contents-hide-button-aria-label": "隱藏目次",
+	"mypage-disallowed-action": "出於安全原因，Special:MyPage頁面不能使用操作「$1」。"
 }

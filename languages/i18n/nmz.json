@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"GastonJeremiah"
+			"GastonJeremiah",
+			"Mayéna"
 		]
 	},
 	"pagecategories": "{{PLURAL:$1|Hawu|Hawii}}",
@@ -231,7 +232,7 @@
 	"search-suggest": "Bonah b'biir nah: $1",
 	"search-interwiki-more": "(jeengu)",
 	"searchall": "Mɛngu",
-	"search-showingresults": "{{PLURAL:$4|Yuuŋb <strong>$1</strong> na <strong>$3</strong>|Yuuŋb<strong>$1 na $2</strong> jugun <strong>$3</strong>}}",
+	"search-showingresults": "{{PLURAL:$4|1=Yuuŋb <strong>$1</strong> na <strong>$3</strong>|Yuuŋb<strong>$1 na $2</strong> jugun <strong>$3</strong>}}",
 	"search-nonefound": "leedgm miim kpaɦ tuur-n gbam-bii",
 	"mypreferences": "B'sɔkla bii",
 	"group-bot": "Roboŋu",

@@ -4144,5 +4144,6 @@
 	"benefit-2-description": "Elenco permanente dei contributi che hai apportato al progetto.",
 	"temp-user-unable-to-acquire": "Impossibile acquisire il nome utente per l'utenza temporanea. Riprova.",
 	"table-of-contents-show-button-aria-label": "Mostra l'indice",
-	"table-of-contents-hide-button-aria-label": "Nascondi l'indice"
+	"table-of-contents-hide-button-aria-label": "Nascondi l'indice",
+	"mypage-disallowed-action": "Per motivi di sicurezza, l'azione \"$1\" non può essere utilizzata sulla pagina Special:MyPage."
 }

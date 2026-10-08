@@ -4064,5 +4064,6 @@
 	"benefit-3-description": "Indstillinger, der giver dig mulighed for at tilpasse din brugeroplevelse.",
 	"temp-user-unable-to-acquire": "Kunne ikke hente brugernavne for midlertidig konto. Prøv gerne på nyt.",
 	"table-of-contents-show-button-aria-label": "Vis indholdsfortegnelsen",
-	"table-of-contents-hide-button-aria-label": "Skjul indholdsfortegnelsen"
+	"table-of-contents-hide-button-aria-label": "Skjul indholdsfortegnelsen",
+	"mypage-disallowed-action": "Af sikkerhedsmæssige årsager kan handlingen \"$1\" ikke bruges på siden Special:MinSide."
 }

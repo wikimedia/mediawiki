@@ -811,7 +811,7 @@
 	"mergehistory-into": "Zilsäit:",
 	"mergehistory-list": "Versiounen, déi zesummegeluecht kënne ginn",
 	"mergehistory-merge": "Dës Versioune vun [[:$1]] kënne mat [[:$2]] zesummegeluecht ginn.\nBenotzt d'Radio-Knäppecher fir nëmmen déi Versiounen ze fusionéieren déi zu engem spezifeschen Zäitpunkt oder virdrun ugeluecht goufen.\nDenkt wgl. drun datt d'Navigatiounslinken d'Feld mam Grond eidelmaachen.",
-	"mergehistory-go": "Weis déi Versiounen, déi zesummegeluecht kënne ginn",
+	"mergehistory-go": "Versioune weisen, déi zesummegeluecht kënne ginn",
 	"mergehistory-submit": "Versioune verschmelzen",
 	"mergehistory-empty": "Et kënne keng Versioune zesummegeluecht ginn.",
 	"mergehistory-done": "{{PLURAL:$4|Eng Versioun gouf|$4 Versioune goufe}} vu(n) $1 op [[:$2]] zesummegeluecht.\n$3",
@@ -3739,5 +3739,6 @@
 	"benefit-2-description": "Eng permanent Lëscht vun de Kontributiounen, déi Dir op dësem Projet gemaach hutt.",
 	"benefit-3-description": "Astellungen, déi et Iech méiglech maache fir Är Erfarung individuell ze gestalten.",
 	"table-of-contents-show-button-aria-label": "Inhaltsverzeechnes weisen",
-	"table-of-contents-hide-button-aria-label": "Inhaltsverzeechnes verstoppen"
+	"table-of-contents-hide-button-aria-label": "Inhaltsverzeechnes verstoppen",
+	"mypage-disallowed-action": "Aus Sécherheetsgrënn kann d'Aktioun „$1“ op der Säit Special:MyPage net benotzt ginn."
 }

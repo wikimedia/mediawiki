@@ -4150,5 +4150,6 @@
 	"benefit-3-description": "ترجیحاتی که امکان سفارشی‌سازی تجربهٔ خود را برای شما فراهم می‌کند.",
 	"temp-user-unable-to-acquire": "ناتولن در اکتساب نام کاربری حساب موقت. لطفاً دوباره تلاش کنید.",
 	"table-of-contents-show-button-aria-label": "نمایش فهرست محتویات",
-	"table-of-contents-hide-button-aria-label": "نهفتن فهرست محتویات"
+	"table-of-contents-hide-button-aria-label": "نهفتن فهرست محتویات",
+	"mypage-disallowed-action": "به دلایل امنیتی، استفاده از عمل «$1» در صفحهٔ ویژه:صفحهٔ_من ممکن نیست."
 }

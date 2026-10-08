@@ -2948,7 +2948,7 @@
 	"revertmove-summary": "Revertir",
 	"delete_and_move_text": "La página de destino «[[:$1]]» ya existe.\n¿Quieres borrarla para permitir el traslado?",
 	"delete_redirect_and_move_text": "La página de destino «[[:$1]]» ya existe como redirección.\n¿Quieres borrarla para permitir el traslado?",
-	"delete_and_move_confirm": "Sí, borrar la página \"$1\"",
+	"delete_and_move_confirm": "Sí, borrar la página «$1»",
 	"delete_and_move_reason": "Borrada para permitir el traslado de \"[[$1]]\"",
 	"selfmove": "El título es el mismo;\nno se puede trasladar una página sobre sí misma.",
 	"immobile-source-namespace": "No se pueden trasladar páginas en el espacio de nombres «$1»",

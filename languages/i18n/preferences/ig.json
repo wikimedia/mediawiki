@@ -9,7 +9,8 @@
 			"Oby Ezeilo",
 			"Sylvaline39",
 			"Ucmbachu",
-			"Ukabia"
+			"Ukabia",
+			"Anastesia chi"
 		]
 	},
 	"preferences": "Nhọrọ",
@@ -17,7 +18,7 @@
 	"prefsnologintext2-for-temp-user": "Biko kepụta ndebanye gị ka i nwee ike ịgbanwe nhọrọ gị.",
 	"searchprefs": "Chọọ nhọrọ",
 	"searchprefs-noresults": "Enweghị nsonaazụ",
-	"searchprefs-results": "$1{{PLURAL:$1|Ihe fụtara|Ihe fụtara}}",
+	"searchprefs-results": "$1{{PLURAL:$1|mpụtara}}",
 	"saveprefs": "Dònye",
 	"tooltip-preferences-save": "Chekwaa nhọrọ",
 	"savedprefs": "E chekwaala nhọrọ gị.",
@@ -229,7 +230,7 @@
 	"searchlimit-label": "Ọnụọgụ nsonaazụ ọchụchọ e kwesịrị igosi na ibe ọ bụla:",
 	"searchlimit-help": "Ọnụọgụ kacha: $1",
 	"search-thumbnail-extra-namespaces-label": "Gosi obere onyonyo na Special:Search na desktọọpụ",
-	"search-thumbnail-extra-namespaces-message": " Na-egosi onyonyo nta maka nsonaazụ $1 {{PLURAL:$2|ọrụ-ogugu|ọrụ-ogugu}} n’ime peeji ọchụchọ ({#spụrụ iche: chọọ}}.",
+	"search-thumbnail-extra-namespaces-message": " Na-egosi onyonyo nta maka nsonaazụ $1 {{PLURAL:$2|namespace}} n’ime peeji ọchụchọ {{#special:chọọ}}.",
 	"prefs-advancedsearchoptions": "Nhọrọ ndị gara n’ihu",
 	"prefs-misc": "Mcheta-ma-mchetaghim",
 	"prefs-reset-intro": "Ị nwere ike iji ibe a tọgharịa ntọala gị gaa na ndabere saịtị.\nA pụghị ihichapụ nke a ma ọ bụ gbanwee ya azụ.",
