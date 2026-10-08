@@ -14,6 +14,7 @@ use MediaWikiIntegrationTestCase;
 use ReflectionMethod;
 use Wikimedia\Rdbms\Platform\ISQLPlatform;
 use Wikimedia\Stats\StatsFactory;
+use Wikimedia\Stats\UnitTestingHelper;
 
 /**
  * @covers \MediaWiki\JobQueue\Jobs\RefreshLinksJob
@@ -25,13 +26,12 @@ use Wikimedia\Stats\StatsFactory;
  * @author Addshore
  */
 class RefreshLinksJobTest extends MediaWikiIntegrationTestCase {
-	/** @var StatsFactory */
-	private $statsFactory;
+	private UnitTestingHelper $stats;
 
 	protected function setUp(): void {
 		parent::setUp();
-		$this->statsFactory = StatsFactory::newNull();
-		$this->setService( 'StatsFactory', $this->statsFactory );
+		$this->stats = StatsFactory::newUnitTestingHelper();
+		$this->setService( 'StatsFactory', $this->stats->getStatsFactory() );
 	}
 
 	/**
@@ -69,23 +69,23 @@ class RefreshLinksJobTest extends MediaWikiIntegrationTestCase {
 	public function testRunForNonexistentPage() {
 		$nonexistentPage = $this->getNonexistingTestPage();
 		$job = new RefreshLinksJob( $nonexistentPage, [] );
-		$totalFailuresCounter = $this->statsFactory->getCounter( 'refreshlinks_failures_total' );
 
 		$result = $job->run();
-
 		$this->assertFalse( $result );
-		$this->assertSame( 1, $totalFailuresCounter->getSampleCount() );
+		$this->assertSame( [
+			'mediawiki.refreshlinks_failures_total:1|c|#reason:page_not_found'
+		], $this->stats->consumeAllFormatted() );
 	}
 
 	public function testUpdateSuperseded() {
 		$page = $this->getExistingTestPage();
 		$job = new RefreshLinksJob( $page->getTitle(), [ 'rootJobTimestamp' => '20240101000000' ] );
-		$supersededUpdatesCounter = $this->statsFactory->getCounter( 'refreshlinks_superseded_updates_total' );
 
 		$result = $job->run();
-
 		$this->assertTrue( $result );
-		$this->assertSame( 1, $supersededUpdatesCounter->getSampleCount() );
+		$this->assertArrayContains( [
+			'mediawiki.refreshlinks_superseded_updates_total:1|c'
+		], $this->stats->consumeAllFormatted() );
 	}
 
 	public function testStaleRevision() {
@@ -94,13 +94,14 @@ class RefreshLinksJobTest extends MediaWikiIntegrationTestCase {
 		$this->editPage( $page, 'New content' );
 
 		$job = new RefreshLinksJob( $page->getTitle(), [ 'triggeringRevisionId' => $prevRev->getId() ] );
-		$totalFailuresCounter = $this->statsFactory->getCounter( 'refreshlinks_failures_total' );
 
 		$result = $job->run();
 
 		// We don't want to retry the job so it is returned with true.
 		$this->assertTrue( $result );
-		$this->assertSame( 1, $totalFailuresCounter->getSampleCount() );
+		$this->assertArrayContains( [
+			'mediawiki.refreshlinks_failures_total:1|c|#reason:rev_not_current'
+		], $this->stats->consumeAllFormatted() );
 		$this->assertSame( "Revision {$prevRev->getId()} is not current", $job->getLastError() );
 	}
 
@@ -109,9 +110,6 @@ class RefreshLinksJobTest extends MediaWikiIntegrationTestCase {
 			'aux',
 			CONTENT_MODEL_JAVASCRIPT
 		);
-
-		$cacheOpsCounter = $this->statsFactory->getCounter( 'refreshlinks_parsercache_operations_total' );
-
 		$mainContent = new WikitextContent( 'MAIN [[Kittens]]' );
 		$auxContent = new JavaScriptContent( 'AUX [[Category:Goats]]' );
 		$page = $this->createPage( __METHOD__, [ 'main' => $mainContent, 'aux' => $auxContent ] );
@@ -152,7 +150,7 @@ class RefreshLinksJobTest extends MediaWikiIntegrationTestCase {
 			->assertFieldValue( 'Goats' );
 
 		$this->assertTrue( $result );
-		$this->assertSame( 1, $cacheOpsCounter->getSampleCount() );
+		$this->assertSame( 1, $this->stats->count( 'refreshlinks_parsercache_operations_total' ) );
 	}
 
 	/**
