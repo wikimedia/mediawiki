@@ -57,8 +57,14 @@ class WikiTextStructure {
 		'.searchaux',
 	];
 
+	/**
+	 * @param ParserOutput $parserOutput
+	 * @param string[] $additionalExcludedSelectors CSS selectors for elements to
+	 *  remove from all text fields, on top of the built-in exclusions (since 1.47)
+	 */
 	public function __construct(
 		private readonly ParserOutput $parserOutput,
+		private readonly array $additionalExcludedSelectors = [],
 	) {
 	}
 
@@ -168,7 +174,7 @@ class WikiTextStructure {
 		$doc = DOMUtils::parseHTML( $text );
 
 		// Strip elements from the page that we never want in the search text.
-		foreach ( self::EXCLUDED_ELEMENT_SELECTORS as $selector ) {
+		foreach ( array_merge( self::EXCLUDED_ELEMENT_SELECTORS, $this->additionalExcludedSelectors ) as $selector ) {
 			foreach ( DOMCompat::querySelectorAll( $doc, $selector ) as $element ) {
 				$element->parentNode->removeChild( $element );
 			}
@@ -209,7 +215,9 @@ class WikiTextStructure {
 		}
 
 		$doc = DOMUtils::parseHTML( $text );
-		foreach ( array_merge( self::EXCLUDED_ELEMENT_SELECTORS, self::AUXILIARY_ELEMENT_SELECTORS ) as $selector ) {
+		$excludedSelectors = array_merge( self::EXCLUDED_ELEMENT_SELECTORS,
+			self::AUXILIARY_ELEMENT_SELECTORS, $this->additionalExcludedSelectors );
+		foreach ( $excludedSelectors as $selector ) {
 			foreach ( DOMCompat::querySelectorAll( $doc, $selector ) as $element ) {
 				$element->parentNode->removeChild( $element );
 			}

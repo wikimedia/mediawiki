@@ -16,13 +16,18 @@ class WikitextStructureTest extends MediaWikiLangTestCase {
 	/**
 	 * Get WikitextStructure for given text
 	 * @param string $text
+	 * @param ?array $additionalExcludes
 	 * @return WikiTextStructure
 	 */
-	private function getStructure( $text ) {
+	private function getStructure( $text, $additionalExcludes = null ) {
 		$content = new WikitextContent( $text );
 		$contentRenderer = $this->getServiceContainer()->getContentRenderer();
 		$parserOutput = $contentRenderer->getParserOutput( $content, Title::makeTitle( NS_MAIN, 'TestTitle' ) );
-		return new WikiTextStructure( $parserOutput );
+		if ( $additionalExcludes == null ) {
+			return new WikiTextStructure( $parserOutput );
+		} else {
+			return new WikiTextStructure( $parserOutput, $additionalExcludes );
+		}
 	}
 
 	public function testHeadings() {
@@ -109,5 +114,51 @@ END;
 		$text = "<dd><dl>foo</dl><dl>bar</dl></dd><p>baz</p>";
 		$struct = $this->getStructure( $text );
 		$this->assertEquals( "foo bar baz", $struct->getMainText() );
+	}
+
+	public function testAdditionalExclude() {
+		$text = <<<END
+<span class="foobar">TEST</span>
+Opening text is opening.
+<h2 class="hello">Then comes header</h2>
+Then we got more<br>text
+=== And more headers ===
+{| class="wikitable"
+|-
+! Header table
+|-
+| row in table
+|-
+| another row in table
+|}
+END;
+		$struct = $this->getStructure( $text, [ ".foobar" ] );
+		$this->assertEquals( "Opening text is opening.", $struct->getOpeningText() );
+	}
+
+	public function testAdditionalExcludeMainText() {
+		$text = <<<END
+<span class="foobar">TEST</span>
+Opening text is opening.
+<h2 class="hello">Then comes header</h2>
+Then we got more<br>text
+<span class="foobar">EXCLUDED</span>
+=== And more headers ===
+{| class="wikitable"
+|-
+! Header table
+|-
+| row in table
+|-
+| another row in table
+|}
+END;
+		$struct = $this->getStructure( $text );
+		$this->assertEquals( "TEST Opening text is opening. Then we got more text EXCLUDED",
+			$struct->getMainText() );
+
+		$struct = $this->getStructure( $text, [ ".foobar" ] );
+		$this->assertEquals( "Opening text is opening. Then we got more text",
+			$struct->getMainText() );
 	}
 }
