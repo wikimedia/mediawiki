@@ -1,6 +1,6 @@
 {
 	"config": {
-		"SiteName": "TestSite",
+		"Sitename": "TestSite",
 		"Something": "TEST",
 		"ExtensionDirectory": "/test/extensions",
 		"StyleDirectory": "/test/skins",

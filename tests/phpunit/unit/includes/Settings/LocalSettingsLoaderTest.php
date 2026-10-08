@@ -2,6 +2,7 @@
 
 namespace MediaWiki\Tests\Unit\Settings;
 
+use MediaWiki\MainConfigNames;
 use MediaWiki\Registration\ExtensionRegistry;
 use MediaWiki\Settings\Config\ArrayConfigBuilder;
 use MediaWiki\Settings\Config\PhpIniSink;
@@ -32,13 +33,13 @@ class LocalSettingsLoaderTest extends TestCase {
 
 	public static function provideLoadingFromFile() {
 		$expected = [
-			'SiteName' => 'TestSite',
-			'HttpsPort' => 443,
+			MainConfigNames::Sitename => 'TestSite',
+			MainConfigNames::HttpsPort => 443,
 			'Something' => 'TEST',
-			'StyleDirectory' => '/test/skins',
-			'ExtensionDirectory' => '/test/extensions',
-			'ForeignUploadTargets' => [ 'local', 'acme' ],
-			'ExtraLanguageCodes' => [ 'no' => 'nb', 'simple' => 'en' ],
+			MainConfigNames::StyleDirectory => '/test/skins',
+			MainConfigNames::ExtensionDirectory => '/test/extensions',
+			MainConfigNames::ForeignUploadTargets => [ 'local', 'acme' ],
+			MainConfigNames::ExtraLanguageCodes => [ 'no' => 'nb', 'simple' => 'en' ],
 			'Extra' => 'extra',
 		];
 

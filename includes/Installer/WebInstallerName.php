@@ -40,7 +40,7 @@ class WebInstallerName extends WebInstallerPage {
 		}
 
 		// Set wgMetaNamespace to something valid before we show the form.
-		// $wgMetaNamespace defaults to $wgSiteName which is 'MediaWiki'
+		// $wgMetaNamespace defaults to $wgSitename which is 'MediaWiki'
 		$metaNS = $this->getVar( 'wgMetaNamespace' );
 		$this->setVar(
 			'wgMetaNamespace',

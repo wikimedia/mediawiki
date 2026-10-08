@@ -1,6 +1,6 @@
 {
 	"config-schema": {
-		"SiteName": {
+		"Sitename": {
 			"default": false
 		},
 		"HttpsPort": {

@@ -1,5 +1,5 @@
 <?php
-$wgSiteName = 'TestSite';
+$wgSitename = 'TestSite';
 $wgSomething = 'TEST';
 $wgStyleDirectory = '/test/skins';
 $wgExtraLanguageCodes['no'] = 'nb';

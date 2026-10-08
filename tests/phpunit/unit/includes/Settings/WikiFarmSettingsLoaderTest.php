@@ -70,7 +70,7 @@ class WikiFarmSettingsLoaderTest extends MediaWikiUnitTestCase {
 				MainConfigNames::WikiFarmSettingsExtension => 'yaml',
 			],
 			'alpha',
-			[ 'SiteName' => 'Alpha Wiki' ]
+			[ MainConfigNames::Sitename => 'Alpha Wiki' ]
 		];
 		yield [
 			[
@@ -78,7 +78,7 @@ class WikiFarmSettingsLoaderTest extends MediaWikiUnitTestCase {
 				MainConfigNames::WikiFarmSettingsExtension => 'json',
 			],
 			'beta',
-			[ 'SiteName' => 'Beta Wiki' ]
+			[ MainConfigNames::Sitename => 'Beta Wiki' ]
 		];
 	}
 
