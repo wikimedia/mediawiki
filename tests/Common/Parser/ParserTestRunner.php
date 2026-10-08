@@ -1515,7 +1515,9 @@ class ParserTestRunner {
 		[ $title, $options, $revId ] = $this->setupParserOptions(
 			$test,
 			static function ( $context, $title, $revProps ) {
-				return ParserOptions::newFromContext( $context );
+				$parserOptions = ParserOptions::newFromContext( $context );
+				$parserOptions->setUseParsoid( false );
+				return $parserOptions;
 			}
 		);
 
