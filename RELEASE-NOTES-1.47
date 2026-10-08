@@ -282,6 +282,7 @@ For notes on 1.46.x and older releases, see HISTORY.
 
 ===== Changed development-only external libraries =====
 
+* Updated api-testing from 1.7.1 to 1.8.1.
 * Updated composer/spdx-licenses from 1.5.9 to 1.6.0.
 * Updated doctrine/dbal from 3.10.5 to 3.10.6.
 * Updated mediawiki/mediawiki-codesniffer from 50.0.0 to 52.0.0.
