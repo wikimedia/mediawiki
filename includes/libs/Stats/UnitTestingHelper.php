@@ -83,11 +83,19 @@ class UnitTestingHelper {
 	/**
 	 * Get all samples in dogstatsd format and clear the buffer
 	 *
+	 * @param bool $includeDuration Set to false to replace durations with a placeholder.
+	 *  Under ConvertibleTimestamp::setFakeTime() the monotonic clock advances a fixed
+	 *  step per reading, so the emitted value reflects how many times the clock was
+	 *  read. If your code involves multiple classes or multiple timers, you may want
+	 *  to ignore exact durations, because these can change outside your control.
 	 * @return string[]
 	 */
-	public function consumeAllFormatted(): array {
+	public function consumeAllFormatted( bool $includeDuration = true ): array {
 		$output = $this->getAllFormatted();
 		$this->cache->clear();
+		if ( !$includeDuration ) {
+			$output = preg_replace( '/:-?[0-9.]+\|ms/', ':<duration>|ms', $output );
+		}
 		return $output;
 	}
 

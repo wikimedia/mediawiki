@@ -23,28 +23,6 @@ use Wikimedia\Timestamp\ConvertibleTimestamp;
 class WANObjectCacheTest extends MediaWikiUnitTestCase {
 
 	/**
-	 * Replace the duration in formatted stats lines with a placeholder.
-	 *
-	 * Under ConvertibleTimestamp::setFakeTime() the monotonic clock advances a fixed
-	 * step per reading, so the emitted value reflects how many times the clock was
-	 * read, not how long anything took. Assert the names and labels instead.
-	 *
-	 * @param string[] $lines
-	 * @return string[]
-	 */
-	private static function withoutDurations( array $lines ): array {
-		return preg_replace( '/:[0-9.]+\|ms/', ':<duration>|ms', $lines );
-	}
-
-	/**
-	 * @param string $line A formatted stats line
-	 * @return float The duration it carries
-	 */
-	private static function durationOf( string $line ): float {
-		return preg_match( '/:(-?[0-9.]+)\|ms/', $line, $m ) ? (float)$m[1] : NAN;
-	}
-
-	/**
 	 * @param array $params
 	 * @return array{WANObjectCache,HashBagOStuff}
 	 */
@@ -2316,7 +2294,7 @@ class WANObjectCacheTest extends MediaWikiUnitTestCase {
 		$this->assertSame( [
 			'mediawiki.wanobjectcache_getwithset_seconds:<duration>|ms|#keygroup:example_foo,result:miss,reason:compute',
 			'mediawiki.wanobjectcache_regen_seconds:<duration>|ms|#keygroup:example_foo',
-		], self::withoutDurations( $statsHelper->consumeAllFormatted() ), 'Simple miss' );
+		], $statsHelper->consumeAllFormatted( includeDuration: false ), 'Simple miss' );
 
 		// Based on testPreemptiveRefresh
 		$asycList = [];
@@ -2345,19 +2323,19 @@ class WANObjectCacheTest extends MediaWikiUnitTestCase {
 		$this->assertSame( [
 			'mediawiki.wanobjectcache_getwithset_seconds:<duration>|ms|#keygroup:example_bar,result:miss,reason:compute',
 			'mediawiki.wanobjectcache_regen_seconds:<duration>|ms|#keygroup:example_bar',
-		], self::withoutDurations( $statsHelper->consumeAllFormatted() ), 'Miss before expiry' );
+		], $statsHelper->consumeAllFormatted( includeDuration: false ), 'Miss before expiry' );
 
 		$time += 250;
 		$builder->fetch();
 		$this->assertSame( [
 			'mediawiki.wanobjectcache_getwithset_seconds:<duration>|ms|#keygroup:example_bar,result:hit,reason:refresh',
-		], self::withoutDurations( $statsHelper->consumeAllFormatted() ), 'Cache hit before expiry' );
+		], $statsHelper->consumeAllFormatted( includeDuration: false ), 'Cache hit before expiry' );
 		$this->assertCount( 1, $asycList, 'Refresh is scheduled' );
 		$asycList[0](); // run async refresh
 		$this->assertSame( [
 			'mediawiki.wanobjectcache_getwithset_seconds:<duration>|ms|#keygroup:example_bar,result:renew,reason:compute',
 			'mediawiki.wanobjectcache_regen_seconds:<duration>|ms|#keygroup:example_bar',
-		], self::withoutDurations( $statsHelper->consumeAllFormatted() ), 'Refresh executed' );
+		], $statsHelper->consumeAllFormatted( includeDuration: false ), 'Refresh executed' );
 	}
 
 	/**
@@ -2386,17 +2364,14 @@ class WANObjectCacheTest extends MediaWikiUnitTestCase {
 			}
 		);
 
-		$formatted = $statsHelper->consumeAllFormatted();
+		// The point of the test: measured with a wall clock, these would both be -10000 ms.
+		$this->assertGreaterThan( 0, $statsHelper->last( 'wanobjectcache_getwithset_seconds' ) );
+		$this->assertGreaterThan( 0, $statsHelper->last( 'wanobjectcache_regen_seconds' ) );
+
 		$this->assertSame( [
 			'mediawiki.wanobjectcache_getwithset_seconds:<duration>|ms|#keygroup:example_foo,result:miss,reason:compute',
 			'mediawiki.wanobjectcache_regen_seconds:<duration>|ms|#keygroup:example_foo',
-		], self::withoutDurations( $formatted ) );
-
-		// The point of the test: measured with a wall clock, these would both
-		// be -10000 ms.
-		foreach ( $formatted as $line ) {
-			$this->assertGreaterThan( 0, self::durationOf( $line ), $line );
-		}
+		], $statsHelper->consumeAllFormatted( includeDuration: false ) );
 	}
 
 	public function testMakeMultiKeys() {
