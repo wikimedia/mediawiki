@@ -1017,8 +1017,15 @@ class ChangesList extends ContextSource {
 		$labelIds = explode( ',', $rc->mAttribs[ WatchlistLabelCondition::LABEL_IDS ] );
 		$labelStrings = [];
 		foreach ( $labelIds as $labelId ) {
+			// Skip label IDs which are not one of the user's labels (T440552)
+			if ( !isset( $this->userLabels[ $labelId ] ) ) {
+				continue;
+			}
 			$classes[] = SpecialWatchlist::WATCHLIST_LABEL_CSS_CLASS_PREFIX . $labelId;
 			$labelStrings[] = wfEscapeWikiText( $this->userLabels[ $labelId ]->getName() );
+		}
+		if ( !$labelStrings ) {
+			return '';
 		}
 		$labelsList = $this->msg( 'watchlistlabels-list-wrapper' )->params(
 			$this->getLanguage()->commaList( $labelStrings )

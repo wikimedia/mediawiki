@@ -1839,7 +1839,14 @@ class WatchedItemStore implements WatchedItemStoreInterface {
 			throw new LogicException( 'addLabels was called when ' .
 				'$wgEnableWatchlistLabels was false -- caller should check' );
 		}
-		$labelIds = $this->getLabelIds( $labels );
+		// Only add labels that exist and are owned by the user (T440552)
+		$labelIds = array_values( array_intersect(
+			$this->getLabelIds( $labels ),
+			array_keys( $this->labelStore->loadAllForUser( $user ) )
+		) );
+		if ( !$labelIds ) {
+			return;
+		}
 		$dbw = $this->lbFactory->getPrimaryDatabase();
 		$wlIds = $this->loadIdsForTargets( $dbw, $user, $targets );
 

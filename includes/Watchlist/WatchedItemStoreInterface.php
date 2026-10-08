@@ -405,7 +405,7 @@ interface WatchedItemStoreInterface {
 
 	/**
 	 * Add a labels to a set of watchlist items. The same labels are applied to
-	 * each item. Ignore existing labels.
+	 * each item. Ignore existing labels, and labels that the user does not own.
 	 *
 	 * @since 1.46
 	 * @param UserIdentity $user
