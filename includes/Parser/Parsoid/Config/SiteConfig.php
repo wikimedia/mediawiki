@@ -30,7 +30,6 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\Parser\MagicWordArray;
 use MediaWiki\Parser\MagicWordFactory;
 use MediaWiki\Parser\ParserFactory;
-use MediaWiki\Parser\ParserOutput;
 use MediaWiki\SpecialPage\SpecialPageFactory;
 use MediaWiki\Title\NamespaceInfo;
 use MediaWiki\Title\Title;
@@ -45,7 +44,6 @@ use Wikimedia\Parsoid\Config\SiteConfig as ISiteConfig;
 use Wikimedia\Parsoid\Core\ContentMetadataCollector;
 use Wikimedia\Parsoid\Core\LinkTarget as ParsoidLinkTarget;
 use Wikimedia\Parsoid\DOM\Document;
-use Wikimedia\Parsoid\Utils\Utils;
 use Wikimedia\Stats\PrefixingStatsdDataFactoryProxy;
 use Wikimedia\Stats\StatsFactory;
 use Wikimedia\Stats\StatsUtils;
@@ -539,6 +537,7 @@ class SiteConfig extends ISiteConfig {
 	 * @param ContentMetadataCollector $metadata
 	 * @param string $defaultTitle
 	 * @param Bcp47Code $lang
+	 * @suppress PhanPluginNeverReturnMethod
 	 */
 	public function exportMetadataToHeadBcp47(
 		Document $document,
@@ -546,25 +545,7 @@ class SiteConfig extends ISiteConfig {
 		string $defaultTitle,
 		Bcp47Code $lang
 	): void {
-		'@phan-var ParserOutput $metadata'; // @var ParserOutput $metadata
-		// Look for a displaytitle.
-		//
-		// Temporarily (while we wait for ParserCache content to expire),
-		// explicitly cast to handle titles that are numbers. A separate patch
-		// ensures that ParserOutput only contains strings for displaytitle
-		// (and other number-like string properties).
-		$displayTitle = (string)$metadata->getPageProperty( 'displaytitle' ) ?:
-			// Use the default title, properly escaped
-			Utils::escapeHtml( $defaultTitle );
-		$this->exportMetadataHelper(
-			$document,
-			$this->config->get( MainConfigNames::LoadScript ),
-			$metadata->getModules(),
-			$metadata->getModuleStyles(),
-			$metadata->getJsConfigVars(),
-			$displayTitle,
-			$lang
-		);
+		throw new \RuntimeException( 'This is no longer called from anywhere.' );
 	}
 
 	public function timezoneOffset(): int {
