@@ -19,8 +19,8 @@ use Wikimedia\Assert\PreconditionException;
 use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\IDBAccessObject;
-use Wikimedia\Stats\Metrics\MetricInterface;
 use Wikimedia\Stats\StatsFactory;
+use Wikimedia\Stats\UnitTestingHelper;
 
 /**
  * @group Database
@@ -30,14 +30,11 @@ class PageStoreTest extends MediaWikiIntegrationTestCase {
 	use MockTitleTrait;
 	use LinkCacheTestTrait;
 
-	private StatsFactory $statsFactory;
-	private MetricInterface $linkCacheAccesses;
+	private UnitTestingHelper $stats;
 
 	protected function setUp(): void {
 		parent::setUp();
-		$this->statsFactory = StatsFactory::newNull();
-
-		$this->linkCacheAccesses = $this->statsFactory->getCounter( 'pagestore_linkcache_accesses_total' );
+		$this->stats = StatsFactory::newUnitTestingHelper();
 	}
 
 	/**
@@ -66,7 +63,7 @@ class PageStoreTest extends MediaWikiIntegrationTestCase {
 			array_key_exists( 'linkCache', $params )
 				? $params['linkCache']
 				: $services->getLinkCache(),
-			$this->statsFactory,
+			$this->stats->getStatsFactory(),
 			$params['wikiId'] ?? WikiAwareEntity::LOCAL
 		);
 	}
@@ -210,7 +207,7 @@ class PageStoreTest extends MediaWikiIntegrationTestCase {
 
 		$linkCache = $this->getServiceContainer()->getLinkCache();
 		$this->assertSame( $page->getId(), $linkCache->getGoodLinkID( $page ) );
-		$this->assertSame( 0, $this->linkCacheAccesses->getSampleCount() );
+		$this->assertSame( [], $this->stats->consumeAllFormatted() );
 	}
 
 	/**
@@ -250,7 +247,9 @@ class PageStoreTest extends MediaWikiIntegrationTestCase {
 
 		$this->assertNull( $page );
 		$this->assertTrue( $linkCache->isBadLink( $nonexistingPage ) );
-		$this->assertSame( 1, $this->linkCacheAccesses->getSampleCount() );
+		$this->assertSame( [
+			'mediawiki.pagestore_linkcache_accesses_total:1|c|#reason:bad_early,status:hit'
+		], $this->stats->consumeAllFormatted() );
 	}
 
 	/**
@@ -288,7 +287,9 @@ class PageStoreTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( $row->page_namespace, $page->getNamespace() );
 		$this->assertSame( $row->page_title, $page->getDBkey() );
 		$this->assertSame( $row->page_latest, $page->getLatest() );
-		$this->assertSame( 1, $this->linkCacheAccesses->getSampleCount() );
+		$this->assertSame( [
+			'mediawiki.pagestore_linkcache_accesses_total:1|c|#reason:good,status:hit'
+		], $this->stats->consumeAllFormatted() );
 	}
 
 	/**
@@ -313,7 +314,9 @@ class PageStoreTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( 8, $page->getId() );
 		$this->assertSame( $nonexistingPage->getNamespace(), $page->getNamespace() );
 		$this->assertSame( $nonexistingPage->getDBkey(), $page->getDBkey() );
-		$this->assertSame( 1, $this->linkCacheAccesses->getSampleCount() );
+		$this->assertSame( [
+			'mediawiki.pagestore_linkcache_accesses_total:1|c|#reason:good,status:hit'
+		], $this->stats->consumeAllFormatted() );
 	}
 
 	/**
