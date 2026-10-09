@@ -6,6 +6,7 @@ use MediaWiki\Config\ServiceOptions;
 use MediaWiki\DAO\WikiAwareEntity;
 use MediaWiki\Title\NamespaceInfo;
 use MediaWiki\Title\TitleParser;
+use MediaWiki\WikiMap\WikiMap;
 use Wikimedia\Rdbms\ILBFactory;
 use Wikimedia\Stats\StatsFactory;
 
@@ -50,6 +51,13 @@ class PageStoreFactory {
 	 * @return PageStore
 	 */
 	public function getPageStore( $wikiId = WikiAwareEntity::LOCAL ): PageStore {
+		// Optimization: Normalize current wiki ID to ensure LinkCache below (T440732)
+		//
+		// FIXME: Not in tests, as RevisionStoreDbTest relies on this behaviour to simulate
+		// cross-wikiness, in absence of a better way (T261848), and that would produce ID mismatches.
+		if ( !defined( 'MW_PHPUNIT_TEST' ) && is_string( $wikiId ) && WikiMap::isCurrentWikiId( $wikiId ) ) {
+			$wikiId = WikiAwareEntity::LOCAL;
+		}
 		return new PageStore(
 			$this->options,
 			$this->dbLoadBalancerFactory,
