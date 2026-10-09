@@ -41,7 +41,7 @@
 	"apihelp-expandtemplates-param-text": "Wikitext per convertir.",
 	"apihelp-expandtemplates-paramvalue-prop-wikitext": "El wikitext expandit.",
 	"apihelp-feedcontributions-param-deletedonly": "Mostra només les contribucions suprimides.",
-	"apihelp-feedrecentchanges-param-feedformat": "El format del canal.",
+	"apihelp-feedrecentchanges-param-feedformat": "El format del canal. Aquest paràmetre sobreescriu el paràmetre <code>format</code>.",
 	"apihelp-feedrecentchanges-param-from": "Mostra els canvis des de llavors.",
 	"apihelp-feedrecentchanges-param-hideminor": "Amaga les edicions menors.",
 	"apihelp-feedrecentchanges-param-hidebots": "Amaga les edicions de bots.",

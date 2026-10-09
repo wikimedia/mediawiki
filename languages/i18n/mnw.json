@@ -1251,6 +1251,7 @@
 	"whatlinkshere-submit": "အာ",
 	"block": "ညးလွပ် မဒးကၟာတ်",
 	"unblock": "ညးလွပ် ဟွံဒးကၟာတ်",
+	"blockip": "ဗလံက် {{GENDER:$1|ညးလွပ်}}",
 	"ipbreason": "ဟိုတ်:",
 	"ipbsubmit": "စုတ် ကၟာတ်",
 	"ipbother": "အခိင် တၞဟ်:",

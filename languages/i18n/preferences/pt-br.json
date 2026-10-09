@@ -263,7 +263,7 @@
 	"prefs-searchmisc": "Geral",
 	"searchlimit-label": "Número de resultados de pesquisa mostrados em cada página:",
 	"searchlimit-help": "Número máximo: $1",
-	"search-thumbnail-extra-namespaces-label": "Mostrar miniaturas em Especial:Pesquisar nos computadores de secretária",
+	"search-thumbnail-extra-namespaces-label": "Mostrar miniaturas em Especial:Pesquisar no Desktop",
 	"search-thumbnail-extra-namespaces-message": "Apresenta miniaturas para os resultados {{PLURAL:$2|do espaço nominal|dos espaços nominais}} $1 na página {{#special:search}}",
 	"prefs-advancedsearchoptions": "Opções avançadas",
 	"prefs-misc": "Diversos",

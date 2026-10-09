@@ -105,6 +105,7 @@
 	"index-category": "Indekserede sider",
 	"noindex-category": "Ikke-indekserede sider",
 	"broken-file-category": "Sider med brudte filhenvisninger",
+	"category-header-strokes": "$1 {{PLURAL:$1|slag}}",
 	"about": "Om",
 	"article": "Indholdsside",
 	"newwindow": "(åbner i et nyt vindue)",

@@ -284,10 +284,10 @@
 		]
 	},
 	"pagecategories": "{{PLURAL:$1|Categoría|Categorías}}",
-	"category_header": "Páginas en la categoría \"$1\"",
+	"category_header": "Páginas en la categoría «$1»",
 	"subcategories": "Subcategorías",
-	"category-media-header": "Archivos multimedia en la categoría \"$1\"",
-	"category-empty": "<em>Esta categoría no contiene ninguna páginas o archivo.</em>",
+	"category-media-header": "Archivos multimedia en la categoría «$1»",
+	"category-empty": "<em>Esta categoría no contiene ninguna página o archivo.</em>",
 	"hidden-categories": "{{PLURAL:$1|Categoría oculta|Categorías ocultas}}",
 	"hidden-category-category": "Categorías ocultas",
 	"category-subcat-count": "{{PLURAL:$2|Esta categoría solo contiene la siguiente subcategoría.|Esta categoría contiene {{PLURAL:$1|la siguiente subcategoría|las siguientes $1 subcategorías}}, de un total de $2.}}",

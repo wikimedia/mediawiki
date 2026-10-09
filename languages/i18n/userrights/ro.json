@@ -14,6 +14,7 @@
 			"Paloi Sciurala",
 			"Rsocol",
 			"Strainu",
+			"Vellion Eagle",
 			"WebSourceContentRO",
 			"Wintereu",
 			"XXN"
@@ -119,8 +120,8 @@
 	"right-unblockself": "Se deblochează singur",
 	"right-protect": "Schimbă ajustările de protejare și modifică pagini protejate în cascadă",
 	"right-editalluserpages": "Modifică toate paginile utilizatorului",
-	"right-editprotected": "Modifică pagini protejate ca „{{int:restriction-level-sysop}}”",
-	"right-editsemiprotected": "Modifică pagini protejate ca „{{int:restriction-level-autoconfirmed}}”",
+	"right-editprotected": "Editați paginile protejate ({{int:restriction-level-sysop}})",
+	"right-editsemiprotected": "Editați paginile protejate ({{int:restriction-level-autoconfirmed}})",
 	"right-editcontentmodel": "Modifică modelul de conținut al unei pagini",
 	"right-editinterface": "Modifică interfața cu utilizatorul",
 	"right-editusercss": "Modifică fișierele CSS ale altor utilizatori",
