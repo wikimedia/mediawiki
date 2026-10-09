@@ -104,6 +104,10 @@ For notes on 1.46.x and older releases, see HISTORY.
   the 'sysop' group by default) can override this in the account
   creation form. Renaming an existing account to a previously existing
   username displays a warning, which can also be overridden.
+* (T391926) The CodeMirror extension, which provides syntax highlighting for
+  wikitext editing tools and an editor for non-wikitext pages like CSS, is now
+  bundled with MediaWiki and enabled by default, alongside the older Ace-based
+  CodeEditor extension.
 * (T424179) A new tag has been added called "Edited other user's CSS". It is
   automatically applied to edits to CSS pages in userspace that are not
   subpages of the user making the edit.
