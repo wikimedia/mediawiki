@@ -901,6 +901,7 @@
 	"apihelp-query+imageinfo-paramvalue-prop-sha1": "يضيف تجزئة SHA-1 للملف. لو أن الملف قد تم حذف مراجعته، فخاصية <samp>filehidden</samp> سيتم إرجاعها.",
 	"apihelp-query+imageinfo-paramvalue-prop-mime": "يضيف نوع MIME للملف. لو أن الملف قد تم حذف مراجعته، فخاصية <samp>filehidden</samp> سيتم إرجاعها.",
 	"apihelp-query+imageinfo-paramvalue-prop-thumbmime": "يضيف نوع MIME للصورة المصغرة (يتطلب مسار ووسيط $1urlwidth). لو أن الملف قد تم حذف مراجعته، فخاصية <samp>filehidden</samp> سيتم إرجاعها.",
+	"apihelp-query+imageinfo-paramvalue-prop-thumburls": "يُضيف روابط صور مصغرة للملف. في حال حذف الملف من النسخة، سيتم إرجاع خاصية <samp>filehidden</samp> .",
 	"apihelp-query+imageinfo-paramvalue-prop-mediatype": "يضيف نوع الوسائط للملف. لو أن الملف قد تم حذف مراجعته، فخاصية <samp>filehidden</samp> سيتم إرجاعها.",
 	"apihelp-query+imageinfo-paramvalue-prop-metadata": "يسرد بيانات تعريف Exif لإصدار الملف. لو أن الملف قد تم حذف مراجعته، فخاصية <samp>filehidden</samp> سيتم إرجاعها.",
 	"apihelp-query+imageinfo-paramvalue-prop-commonmetadata": "يسرد بيانات التعريف العامة لصيغة الملف لإصدار الملف. لو أن الملف قد تم حذف مراجعته، فخاصية <samp>filehidden</samp> سيتم إرجاعها.",

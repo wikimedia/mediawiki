@@ -3968,5 +3968,6 @@
 	"table-of-contents-hide-button-aria-label": "Skrýt obsah",
 	"diff-usergroups": "$1 {{PLURAL:$1|uživatelské skupiny|uživatelské skupiny|uživatelských skupin}}",
 	"languageselector-no-results": "Nenalezeny žádné výsledky.",
-	"languageselector-invalid-input": "„$1“ není platný jazyk."
+	"languageselector-invalid-input": "„$1“ není platný jazyk.",
+	"mypage-disallowed-action": "Z bezpečnostních důvodů nelze na stránku Speciální:Moje stránka použít akci „$1“."
 }

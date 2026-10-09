@@ -3977,5 +3977,6 @@
 	"table-of-contents-hide-button-aria-label": "להסתיר את תוכן העניינים",
 	"diff-usergroups": "{{PLURAL:$1|קבוצת משתמשים אחת|$1 קבוצות משתמשים}}",
 	"languageselector-no-results": "לא נמצאו תוצאות.",
-	"languageselector-invalid-input": "\"$1\" אינה שפה תקינה."
+	"languageselector-invalid-input": "\"$1\" אינה שפה תקינה.",
+	"mypage-disallowed-action": "מסיבות אבטחה, לא ניתן להשתמש בפעולה \"$1\" בדף מיוחד:אקראי."
 }

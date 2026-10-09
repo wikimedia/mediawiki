@@ -872,6 +872,7 @@
 	"apihelp-query+imageinfo-paramvalue-prop-sha1": "Adde hash SHA-1 del file. Si le versiones del file ha essite delite, un proprietate <samp>filehidden</samp> essera restituite.",
 	"apihelp-query+imageinfo-paramvalue-prop-mime": "Adde le typo MIME del file. Si le versiones del file ha essite delite, un proprietate <samp>filehidden</samp> essera restituite.",
 	"apihelp-query+imageinfo-paramvalue-prop-thumbmime": "Adde le typo MIME del miniatura del imagine (require url e le parametro $1urlwidth). Si le versiones del file ha essite delite, un proprietate <samp>filehidden</samp> essera restituite.",
+	"apihelp-query+imageinfo-paramvalue-prop-thumburls": "Adde le adresses URL del miniaturas del file. Si le versiones del file ha essite delite, un proprietate <samp>filehidden</samp> essera restituite.",
 	"apihelp-query+imageinfo-paramvalue-prop-mediatype": "Adde le typo multimedial del file. Si le versiones del file ha essite delite, un proprietate <samp>filehidden</samp> essera restituite.",
 	"apihelp-query+imageinfo-paramvalue-prop-metadata": "Lista le metadatos Exif del file. Si le versiones del file ha essite delite, un proprietate <samp>filehidden</samp> essera restituite.",
 	"apihelp-query+imageinfo-paramvalue-prop-commonmetadata": "Lista le metadatos generic sur le formato de file pro le version del file. Si le versiones del file ha essite delite, un proprietate <samp>filehidden</samp> essera restituite.",

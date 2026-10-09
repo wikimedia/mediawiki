@@ -4011,5 +4011,6 @@
 	"table-of-contents-hide-button-aria-label": "Inhoudsopgave verbergen",
 	"diff-usergroups": "$1 {{PLURAL:$1|gebruikersgroep|gebruikersgroepen}}",
 	"languageselector-no-results": "Geen resultaten gevonden.",
-	"languageselector-invalid-input": "“$1” is geen juiste taal."
+	"languageselector-invalid-input": "“$1” is geen juiste taal.",
+	"mypage-disallowed-action": "Om veiligheidsredenen kan de handeling \"$1\" niet worden gebruikt op de pagina Special:MyPage."
 }

@@ -4059,5 +4059,6 @@
 	"table-of-contents-hide-button-aria-label": "隱藏目次",
 	"diff-usergroups": "$1 個{{PLURAL:$1|使用者群組}}",
 	"languageselector-no-results": "查無結果。",
-	"languageselector-invalid-input": "「$1」不是有效的語言。"
+	"languageselector-invalid-input": "「$1」不是有效的語言。",
+	"mypage-disallowed-action": "出於安全原因，Special:MyPage頁面不能使用操作「$1」。"
 }

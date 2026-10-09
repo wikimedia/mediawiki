@@ -385,6 +385,7 @@
 	"createacct-error": "Erô inta creaçión de l'uténsa",
 	"createaccounterror": "Inposcìbile creâ l'uténsa: $1",
 	"createacct-popup-redirect-notice": "Ti saiæ rindirisòu dòppo avéi creòu 'n'uténsa...",
+	"createacct-username-policy-popover-title": "Polìtica in sciô nómme uténte",
 	"nocookieslogin": "Pe intrâ in {{SITENAME}} bezéugna avéighe i cookie ativæ. Ti ti ghe l'æ dizativæ. Pe piâxéi atîvili e prêuva tórna a intrâ.",
 	"nocookiesfornew": "L'uténsa a no l'é stæta creâ, perché n'émmo posciûo confermâ a sò vivàgna.\nAsegûite d'avéi ativòu i cookie, càrega tórna a pàgina e prêuvighe ancón.",
 	"createacct-loginerror": "L'uténsa a l'é stæta creâ coretaménte, ma no l'é stæto poscìbile fâte intrâ in mòddo outomàtico. Procêdi con l'[[Special:UserLogin|intrâ fæta a màn]].",
@@ -3905,5 +3906,6 @@
 	"table-of-contents-hide-button-aria-label": "Ascóndi l'ìndice",
 	"diff-usergroups": "$1 {{PLURAL:$1|grùppo uténte|grùppi uténte}}",
 	"languageselector-no-results": "Nisciùn rizultâto trovòu.",
-	"languageselector-invalid-input": "\"$1\" o no l'é 'n lengoàggio vàlido."
+	"languageselector-invalid-input": "\"$1\" o no l'é 'n lengoàggio vàlido.",
+	"mypage-disallowed-action": "Pe de raxoìn de seguréssa, l'açión \"$1\" a no se peu fâ inta pàgina Special:MyPage."
 }

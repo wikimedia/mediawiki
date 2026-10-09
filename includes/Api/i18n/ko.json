@@ -894,6 +894,7 @@
 	"apihelp-query+imageinfo-paramvalue-prop-sha1": "파일에 대한 SHA-1 해시를 추가합니다. 파일의 특정판이 삭제된 경우, <samp>filehidden</samp> 속성이 반환됩니다.",
 	"apihelp-query+imageinfo-paramvalue-prop-mime": "파일의 MIME 유형을 추가합니다. 파일의 특정판이 삭제된 경우, <samp>filehidden</samp> 속성이 반환됩니다.",
 	"apihelp-query+imageinfo-paramvalue-prop-thumbmime": "이미지 섬네일의 MIME 유형을 추가합니다(url 및 매개변수 $1urlwidth 필요). 파일의 특정판이 삭제된 경우, <samp>filehidden</samp> 속성이 반환됩니다.",
+	"apihelp-query+imageinfo-paramvalue-prop-thumburls": "파일의 섬네일 URL을 추가합니다. 파일의 특정판이 삭제된 경우, <samp>filehidden</samp> 속성이 반환됩니다.",
 	"apihelp-query+imageinfo-paramvalue-prop-mediatype": "파일의 미디어 유형을 추가합니다. 파일의 특정판이 삭제된 경우, <samp>filehidden</samp> 속성이 반환됩니다.",
 	"apihelp-query+imageinfo-paramvalue-prop-metadata": "파일 버전에 대한 Exif 메타데이터를 나열합니다. 파일의 특정판이 삭제된 경우, <samp>filehidden</samp> 속성이 반환됩니다.",
 	"apihelp-query+imageinfo-paramvalue-prop-commonmetadata": "파일 버전에 대한 파일 형식 일반 메타데이터를 나열합니다. 파일의 특정판이 삭제된 경우, <samp>filehidden</samp> 속성이 반환됩니다.",

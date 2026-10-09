@@ -577,7 +577,7 @@
 	"edit-slots-cannot-add": "ತಿರತ್ದ {{PLURAL:$1|slot is|slots are}} ಮುಲ್ಪ ಬೆರಿಬಲ ಇಜ್ಜಿ: $2.",
 	"edit-slots-cannot-remove": "ತಿರತ್'ದವು {{PLURAL:$1|slot is|slots are}} ಬೋಡಾಯಿನವು ಬೊಕ ದೆಪ್ಪರೆ ಆವಂದ್ : $2.",
 	"edit-slots-missing": "ತಿರತ್'ದವು{{PLURAL:$1|slot is|slots are}} ತೋಜುಜಿ: $2.",
-	"postedit-confirmation-created": "ಈ ಪುಟೊನು [[Special:Diff\n/$2|ಉಂಡು ಮಲ್ತ್ಂಡು]].",
+	"postedit-confirmation-created": "ಈ ಪುಟೊನು [[Special:Diff/$2|ಉಂಡು ಮಲ್ತ್ಂಡು]].",
 	"postedit-confirmation-restored": "ಈ ಪುಟೊ [[Special:Diff/$2|ಪಿರತಾಪನೆ]] ಆತ್ಂಡ್.",
 	"postedit-confirmation-saved": "[[Special:Diff/$2|ಇರೇನಾ ಸಂಪಾದನೆನ್]] ಒರಿಪಾತುಂಡು.",
 	"postedit-confirmation-published": "[[Special:Diff/$2|ಇರೆನ ಸಂಪೊಲಿಪು]] ಪ್ರಕಟ ಆಂಡ್.",

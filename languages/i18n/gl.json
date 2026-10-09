@@ -1566,7 +1566,7 @@
 	"unusedtemplateswlh": "outras ligazóns",
 	"randompage": "Páxina ao chou",
 	"randompage-nopages": "Non hai páxinas {{PLURAL:$2|no seguinte espazo de nomes|nos seguintes espazos de nomes}}: $1.",
-	"randompage-disallowed-action": "Por razóns de seguridade, non se pode efectuar a acción «$1» na páxina «Special:Random».",
+	"randompage-disallowed-action": "Por motivos de seguridade, non se pode efectuar a acción «$1» na páxina «Special:Random».",
 	"randomincategory": "Páxina aleatoria na categoría",
 	"randomincategory-invalidcategory": "«$1» non é un nome de categoría válido.",
 	"randomincategory-nopages": "Non hai páxinas na [[:Category:$1]].",
@@ -3954,5 +3954,6 @@
 	"table-of-contents-hide-button-aria-label": "Agochar a táboa de contidos",
 	"diff-usergroups": "$1 {{PLURAL:$1|grupo|grupos}} de usuario",
 	"languageselector-no-results": "Non se atopou ningún resultado.",
-	"languageselector-invalid-input": "«$1» non é unha lingua válida."
+	"languageselector-invalid-input": "«$1» non é unha lingua válida.",
+	"mypage-disallowed-action": "Por motivos de seguridade, non se pode efectuar a acción «$1» na páxina «Special:MyPage»."
 }

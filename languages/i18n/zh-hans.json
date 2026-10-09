@@ -4167,5 +4167,6 @@
 	"table-of-contents-hide-button-aria-label": "隐藏目录",
 	"diff-usergroups": "$1个{{PLURAL:$1|用户组}}",
 	"languageselector-no-results": "未找到结果。",
-	"languageselector-invalid-input": "“$1”不是有效的语言。"
+	"languageselector-invalid-input": "“$1”不是有效的语言。",
+	"mypage-disallowed-action": "出于安全原因，Special:MyPage页面不能使用操作“$1”。"
 }

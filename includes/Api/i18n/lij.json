@@ -874,6 +874,7 @@
 	"apihelp-query+imageinfo-paramvalue-prop-sha1": "O l'azónze l'hash SHA-1 do file. Se a versción do file a l'é stæta scancelâ, 'na propriêtæ <samp>filehidden</samp> a saiâ restitoîa.",
 	"apihelp-query+imageinfo-paramvalue-prop-mime": "O l'azónze o tîpo MIME do file. Se a versción do file a l'é stæta scancelâ, 'na propriêtæ <samp>filehidden</samp> a saiâ restitoîa.",
 	"apihelp-query+imageinfo-paramvalue-prop-thumbmime": "O l'azónze o tîpo MIME da miniatûa do file (o domànda l'URL e o paràmetro $1urlwidth). Se a versción do file a l'é stæta scancelâ, 'na propriêtæ <samp>filehidden</samp> a saiâ restitoîa.",
+	"apihelp-query+imageinfo-paramvalue-prop-thumburls": "O l'azónze l'URL a-a miniatûa do file. Se a versción do file a l'é stæta scancelâ, 'na propriêtæ <samp>filehidden</samp> a saiâ restitoîa.",
 	"apihelp-query+imageinfo-paramvalue-prop-mediatype": "O l'azónze o tîpo de media do file. Se a versción do file a l'é stæta scancelâ, 'na propriêtæ <samp>filehidden</samp> a saiâ restitoîa.",
 	"apihelp-query+imageinfo-paramvalue-prop-metadata": "O l'elénca i metadæti Exif pe-a versción do file. Se a versción do file a l'é stæta scancelâ, 'na propriêtæ <samp>filehidden</samp> a saiâ restitoîa.",
 	"apihelp-query+imageinfo-paramvalue-prop-commonmetadata": "O l'azónze i metadæti genérichi do formâto do file pe-a versción do file. Se a versción do file a l'é stæta scancelâ, 'na propriêtæ <samp>filehidden</samp> a saiâ restitoîa.",

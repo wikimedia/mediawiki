@@ -4129,5 +4129,6 @@
 	"table-of-contents-hide-button-aria-label": "Скрыть содержание",
 	"diff-usergroups": "$1 {{PLURAL:$1|группа участника|группы участника|групп участника}}",
 	"languageselector-no-results": "Ничего не найдено.",
-	"languageselector-invalid-input": "«$1» — некорректный язык."
+	"languageselector-invalid-input": "«$1» — некорректный язык.",
+	"mypage-disallowed-action": "По соображениям безопасности действие «$1» нельзя использовать на странице Special:MyPage."
 }

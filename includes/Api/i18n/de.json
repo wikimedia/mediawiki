@@ -914,6 +914,7 @@
 	"apihelp-query+imageinfo-paramvalue-prop-sha1": "Fügt die SHA-1-Prüfsumme für die Datei hinzu. Wenn die Datei versionsgelöscht wurde, wird die Eigenschaft <samp>filehidden</samp> zurückgegeben.",
 	"apihelp-query+imageinfo-paramvalue-prop-mime": "Fügt den MIME-Typ dieser Datei hinzu. Wenn die Datei versionsgelöscht wurde, wird die Eigenschaft <samp>filehidden</samp> zurückgegeben.",
 	"apihelp-query+imageinfo-paramvalue-prop-thumbmime": "Fügt den MIME-Typ der Miniaturansicht des Bildes hinzu (erfordert URL und Parameter $1urlwidth). Wenn die Datei versionsgelöscht wurde, wird eine <samp>filehidden</samp>-Eigenschaft zurückgegeben.",
+	"apihelp-query+imageinfo-paramvalue-prop-thumburls": "Fügt die URLs der Miniaturansichten der Datei hinzu. Wenn die Datei aus der Versionsgeschichte gelöscht wurde, wird die Eigenschaft <samp>filehidden</samp> zurückgegeben.",
 	"apihelp-query+imageinfo-paramvalue-prop-mediatype": "Fügt den Medientyp dieser Datei hinzu. Wenn die Datei versionsgelöscht wurde, wird die Eigenschaft <samp>filehidden</samp> zurückgegeben.",
 	"apihelp-query+imageinfo-paramvalue-prop-metadata": "Listet die Exif-Metadaten dieser Dateiversion auf. Wenn die Datei versionsgelöscht wurde, wird die Eigenschaft <samp>filehidden</samp> zurückgegeben.",
 	"apihelp-query+imageinfo-paramvalue-prop-commonmetadata": "Listet allgemeine Metadaten des Dateiformats dieser Dateiversion auf. Wenn die Datei versionsgelöscht wurde, wird die Eigenschaft <samp>filehidden</samp> zurückgegeben.",

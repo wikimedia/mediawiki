@@ -1562,7 +1562,7 @@
 	"unusedtemplateswlh": "други врски",
 	"randompage": "Случајна страница",
 	"randompage-nopages": "Нема страници во {{PLURAL:$2|следниот именски простор|следниве именски простори}}: $1.",
-	"randompage-disallowed-action": "Од безбедносни пречини „$1“не може да се користи на страницата Специјална:Случајна.",
+	"randompage-disallowed-action": "Од безбедносни пречини „$1“ не може да се користи на страницата Специјална:Случајна.",
 	"randomincategory": "Случајна страница во категоријата",
 	"randomincategory-invalidcategory": "„$1“ не претставува важечка категорија.",
 	"randomincategory-nopages": "Нема страници во [[:Category:$1]].",
@@ -3966,5 +3966,6 @@
 	"table-of-contents-hide-button-aria-label": "Скриј ја Соодржината",
 	"diff-usergroups": "$1 {{PLURAL:$1|корисничка група|кориснички групи}}",
 	"languageselector-no-results": "Не пронајдов ништо.",
-	"languageselector-invalid-input": "„$1“ не претставува важечки јазик."
+	"languageselector-invalid-input": "„$1“ не претставува важечки јазик.",
+	"mypage-disallowed-action": "Од безбедносни пречини „$1“ не може да се користи на страницата Special:MyPage."
 }

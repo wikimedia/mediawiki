@@ -894,6 +894,7 @@
 	"apihelp-query+imageinfo-paramvalue-prop-sha1": "הוספת גיבוב SHA-1 עבור הקובץ. אם הקובץ נמחק במחיקת גרסאות, יוחזר המאפיין <samp>filehidden</samp>.",
 	"apihelp-query+imageinfo-paramvalue-prop-mime": "הוספת סוג ה־MIME של הקובץ. אם הקובץ נמחק במחיקת גרסאות, יוחזר המאפיין <samp>filehidden</samp>.",
 	"apihelp-query+imageinfo-paramvalue-prop-thumbmime": "הוספת סוג ה־MIME של התמונה הממוזערת (נדרש url והפרמטר $1urlwidth). אם הקובץ נמחק במחיקת גרסאות, יוחזר המאפיין <samp>filehidden</samp>.",
+	"apihelp-query+imageinfo-paramvalue-prop-thumburls": "מוסיפה כתובות URL לתמונות ממוזערות של הקובץ. אם גרסה של הקובץ הוסתרה, יוחזר מאפיין <samp>filehidden</samp>.",
 	"apihelp-query+imageinfo-paramvalue-prop-mediatype": "הוספת סוג המדיה של הקובץ. אם הקובץ נמחק במחיקת גרסאות, יוחזר המאפיין <samp>filehidden</samp>.",
 	"apihelp-query+imageinfo-paramvalue-prop-metadata": "טעינת מטא־נתונים של Exif עבור גרסת הקובץ. אם הקובץ נמחק במחיקת גרסאות, יוחזר המאפיין <samp>filehidden</samp>.",
 	"apihelp-query+imageinfo-paramvalue-prop-commonmetadata": "רשימת מטא־נתונים כלליים על תסדיר הקובץ עבור גרסת הקובץ. אם הקובץ נמחק במחיקת גרסאות, יוחזר המאפיין <samp>filehidden</samp>.",

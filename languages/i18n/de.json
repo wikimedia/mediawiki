@@ -134,7 +134,8 @@
 			"Ziko",
 			"Zylbath",
 			"לערי ריינהארט",
-			"✓"
+			"✓",
+			"TigerZhang"
 		]
 	},
 	"pagecategories": "{{PLURAL:$1|Kategorie|Kategorien}}",
@@ -848,12 +849,12 @@
 	"undo-main-slot-only": "Die Bearbeitung konnte nicht rückgängig gemacht werden, da sie Inhalte außerhalb der Hauptspalte enthält.",
 	"undo-norev": "Die Bearbeitung konnte nicht rückgängig gemacht werden, da sie nicht vorhanden ist oder gelöscht wurde.",
 	"undo-nochange": "Anscheinend wurde diese Bearbeitung bereits rückgängig gemacht.",
-	"undo-summary": "Änderung [[Special:Diff/$1|$1]] von [[Special:Contributions/$2|$2]] ([[User talk:$2|Diskussion]]) rückgängig gemacht.",
+	"undo-summary": "Änderung [[Special:Diff/$1|$1]] von [[Special:Contributions/$2|$2]] ([[User talk:$2|Diskussion]]) rückgängig gemacht",
 	"undo-summary-anon": "Änderung [[Special:Diff/$1|$1]] von [[Special:Contributions/$2|$2]] rückgängig gemacht",
 	"undo-summary-import": "importierte Änderung [[Special:Diff/$1|$1]] von Benutzer [[:$2|$3]] rückgängig gemacht",
 	"undo-summary-import2": "Änderung importierte Version [[Special:Diff/$1|$1]] von Benutzer $2 rückgängig gemacht",
 	"undo-summary-multiple": "{{PLURAL:$1|Eine Version|$1 Versionen}} von [[Special:Diff/$2|$2]] bis [[Special:Diff/$3|$3]] rückgängig gemacht",
-	"undo-summary-username-hidden": "Änderung [[Special:Diff/$1|$1]] eines versteckten Benutzers rückgängig gemacht.",
+	"undo-summary-username-hidden": "Änderung [[Special:Diff/$1|$1]] eines versteckten Benutzers rückgängig gemacht",
 	"viewpagelogs": "Logbücher dieser Seite anzeigen",
 	"viewpagelogs-lowercase": "Logbücher dieser Seite",
 	"nohistory": "Zu dieser Seite ist keine Versionsgeschichte vorhanden.",
@@ -4030,5 +4031,6 @@
 	"table-of-contents-hide-button-aria-label": "Inhaltsverzeichnis ausblenden",
 	"diff-usergroups": "$1 {{PLURAL:$1|Benutzergruppe|Benutzergruppen}}",
 	"languageselector-no-results": "Keine Ergebnisse gefunden.",
-	"languageselector-invalid-input": "„$1“ ist keine gültige Sprache."
+	"languageselector-invalid-input": "„$1“ ist keine gültige Sprache.",
+	"mypage-disallowed-action": "Aus Sicherheitsgründen kann die Aktion „$1“ auf der Seite Spezial:MyPage nicht verwendet werden."
 }

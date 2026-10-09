@@ -3930,5 +3930,6 @@
 	"table-of-contents-hide-button-aria-label": "Sembunyikan jadual kandungan",
 	"diff-usergroups": "$1 {{PLURAL:$1|kumpulan pengguna}}",
 	"languageselector-no-results": "Tiada hasil ditemui.",
-	"languageselector-invalid-input": "\"$1\" bukannya bahasa yang sah."
+	"languageselector-invalid-input": "\"$1\" bukannya bahasa yang sah.",
+	"mypage-disallowed-action": "Atas sebab keselamatan, tindakan \"$1\" tidak boleh digunakan pada laman \"Khas:Laman saya\"."
 }

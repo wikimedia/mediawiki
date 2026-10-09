@@ -4018,5 +4018,6 @@
 	"table-of-contents-hide-button-aria-label": "Nascondi l'indice",
 	"diff-usergroups": "$1 {{PLURAL:$1|gruppo utente|gruppi utente}}",
 	"languageselector-no-results": "Nessun risultato trovato.",
-	"languageselector-invalid-input": "$1\" non è una lingua valida."
+	"languageselector-invalid-input": "$1\" non è una lingua valida.",
+	"mypage-disallowed-action": "Per motivi di sicurezza, l'azione \"$1\" non può essere utilizzata sulla pagina Special:MyPage."
 }

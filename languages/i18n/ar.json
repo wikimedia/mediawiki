@@ -2493,7 +2493,7 @@
 	"blocklist-addressblocks": "أخف منع عنوان آي بي واحد",
 	"blocklist-tempuserblocks": "إخفاء منع الحسابات المؤقتة",
 	"blocklist-type": "النوع:",
-	"blocklist-type-header": "نوع",
+	"blocklist-type-header": "النوع",
 	"blocklist-actions-header": "الإجراءات",
 	"blocklist-type-opt-all": "الكل",
 	"blocklist-type-opt-sitewide": "على مستوى الموقع",
@@ -3625,7 +3625,7 @@
 	"rightslogentry-expiry-removed": "$1 (دائمًا، كان: حتى $2)",
 	"rightslogentry-expiry-changed": "$1 (حتى $2، كان: $5)",
 	"feedback-cancel": "إلغاء",
-	"feedback-close": "نُفّذ",
+	"feedback-close": "تم",
 	"feedback-external-bug-report-button": "أرسل تقرير علة تقنية",
 	"feedback-dialog-title": "أرسل تغذية راجعة",
 	"feedback-dialog-intro": "أنت يمكنك استخدام الاستمارة السهلة بالأسفل لإرسال تعليقك. تعليقك ستتم إضافته للصفحة \"$1\"، مع اسم المستخدم الخاص بك.",
@@ -4076,5 +4076,6 @@
 	"table-of-contents-hide-button-aria-label": "إخفاء جدول المحتويات.",
 	"diff-usergroups": "$1 {{PLURAL:$1|مجموعة مستخدمين|مجموعات المستخدمين}}",
 	"languageselector-no-results": "لم يتم العثور على نتائج.",
-	"languageselector-invalid-input": "\" $1 \" ليست لغة صالحة."
+	"languageselector-invalid-input": "\" $1 \" ليست لغة صالحة.",
+	"mypage-disallowed-action": "لأسباب أمنية، لا يمكن استخدام الإجراء \" $1 \" على الصفحة Special:MyPage."
 }

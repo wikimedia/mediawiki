@@ -3958,5 +3958,6 @@
 	"table-of-contents-hide-button-aria-label": "Απόκρυψη του πίνακα περιεχομένων",
 	"diff-usergroups": "$1 {{PLURAL:$1|ομάδα χρηστών|ομάδες χρηστών}}",
 	"languageselector-no-results": "Δεν βρέθηκαν αποτελέσματα.",
-	"languageselector-invalid-input": "«$1» δεν είναι έγκυρη γλώσσα."
+	"languageselector-invalid-input": "«$1» δεν είναι έγκυρη γλώσσα.",
+	"mypage-disallowed-action": "Για λόγους ασφαλείας, η ενέργεια «$1» δεν μπορεί να χρησιμοποιηθεί στη σελίδα Special:MyPage."
 }

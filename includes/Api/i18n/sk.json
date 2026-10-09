@@ -873,6 +873,7 @@
 	"apihelp-query+imageinfo-paramvalue-prop-sha1": "Pridá SHA-1 hash súboru. Ak bol súbor skrytý pomocou vymazania revízií, vráti sa vlastnosť <samp>filehidden</samp>.",
 	"apihelp-query+imageinfo-paramvalue-prop-mime": "Pridá MIME typ súboru. Ak bol súbor skrytý pomocou vymazania revízií, vráti sa vlastnosť <samp>filehidden</samp>.",
 	"apihelp-query+imageinfo-paramvalue-prop-thumbmime": "Pridá MIME typ náhľadu obrázka (vyžaduje url a parameter $1urlwidth). Ak bol súbor skrytý pomocou vymazania revízií, vráti sa vlastnosť <samp>filehidden</samp>.",
+	"apihelp-query+imageinfo-paramvalue-prop-thumburls": "Pridá URL náhľadov súboru. Ak bol súbor skrytý pomocou vymazania revízií, vráti sa vlastnosť <samp>filehidden</samp>.",
 	"apihelp-query+imageinfo-paramvalue-prop-mediatype": "Pridá typ média súboru. Ak bol súbor skrytý pomocou vymazania revízií, vráti sa vlastnosť <samp>filehidden</samp>.",
 	"apihelp-query+imageinfo-paramvalue-prop-metadata": "Vypíše Exif metadáta verzie súboru. Ak bol súbor skrytý pomocou vymazania revízií, vráti sa vlastnosť <samp>filehidden</samp>.",
 	"apihelp-query+imageinfo-paramvalue-prop-commonmetadata": "Vypíše všeobecné metadáta formátu súboru pre verziu súboru. Ak bol súbor skrytý pomocou vymazania revízií, vráti sa vlastnosť <samp>filehidden</samp>.",

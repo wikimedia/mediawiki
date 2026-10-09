@@ -606,7 +606,7 @@
 	"missingcommenttext": "Kérjük, írj összefoglalót a szerkesztésedhez.",
 	"missingcommentheader": "<strong>Emlékeztető:</strong> Nem adtad meg a megjegyzés tárgyát.\nHa tárgy nélkül akarod elküldeni a megjegyzést, kattints újra a „$1” gombra.",
 	"summary-preview": "A szerkesztési összefoglaló előnézete:",
-	"autocomment-top": "(felül)",
+	"autocomment-top": "(bevezető)",
 	"previewerrortext": "Hiba történt a változások előnézetének megjelenítése során.",
 	"blockedtitle": "A szerkesztő blokkolva van",
 	"blockedtext": "<strong>A felhasználónevedet vagy IP-címedet blokkoltuk.</strong>\n\n{{int:blockedtext-made-by|$1}}\n{{int:blockedtext-reason-comment|$2}}\n\n*{{int:blockedtext-start-time|$8}}\n*{{int:blockedtext-expiration-time|$6}}\n*{{int:blockedtext-intended-blockee|$7}}\n\n{{int:blockedtext-contact-blocker-admin|$1}}\nAz „{{int:emailuser}}” funkciót csak akkor használhatod, ha érvényes e-mail-címet adtál meg [[Special:Preferences|fiókbeállításaidban]], és nem blokkolták a használatát.\n{{int:blockedtext-block-ip|$3}} {{int:blockedtext-block-id|$5}}\n{{int:blockedtext-include-details-queries}}",

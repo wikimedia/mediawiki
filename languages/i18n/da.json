@@ -3954,5 +3954,6 @@
 	"table-of-contents-hide-button-aria-label": "Skjul indholdsfortegnelsen",
 	"diff-usergroups": "{{PLURAL:$1|Én brugergruppe|$1 brugergrupper}}",
 	"languageselector-no-results": "Ingen resultater fundet.",
-	"languageselector-invalid-input": "\"$1\" er ikke et gyldigt sprog."
+	"languageselector-invalid-input": "\"$1\" er ikke et gyldigt sprog.",
+	"mypage-disallowed-action": "Af sikkerhedsmæssige årsager kan handlingen \"$1\" ikke bruges på siden Special:MinSide."
 }

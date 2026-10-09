@@ -166,7 +166,8 @@
 			"아라",
 			"Kanato Hinokuma",
 			"Ska101~translate",
-			"Beta empire"
+			"Beta empire",
+			"Honoka55"
 		]
 	},
 	"pagecategories": "{{PLURAL:$1|カテゴリ}}",
@@ -4104,5 +4105,6 @@
 	"table-of-contents-hide-button-aria-label": "目次の非表示",
 	"diff-usergroups": "$1 {{PLURAL:$1|利用者グループ}}",
 	"languageselector-no-results": "見つかりませんでした。",
-	"languageselector-invalid-input": "「$1」は有効な言語ではありません。"
+	"languageselector-invalid-input": "「$1」は有効な言語ではありません。",
+	"mypage-disallowed-action": "セキュリティ上の理由から、ページ Special:MyPage ではアクション「 $1 」を使用できません。"
 }

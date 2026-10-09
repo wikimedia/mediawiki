@@ -281,7 +281,9 @@
 			"គីមស៊្រុន",
 			"捍粵者",
 			"아라",
-			"Ouclie"
+			"Ouclie",
+			"Honoka55",
+			"咽頭べさ"
 		]
 	},
 	"pagecategories": "Used in the categories section of pages.\n\nFollowed by a colon and a list of categories.\n\nParameters:\n* $1 - number of categories\n{{Identical|Category}}",
@@ -1839,7 +1841,7 @@
 	"statistics-header-users": "Used in [[Special:Statistics]].\n{{Identical|User statistics}}",
 	"statistics-header-hooks": "Header of a section on [[Special:Statistics]] containing data provided by MediaWiki extensions",
 	"statistics-articles": "Used in [[Special:Statistics]].\n\nA 'content page' is a page that forms part of the purpose of the wiki. It includes the main page and pages in the main namespace and any other namespaces that are included when the wiki is customised. For example on Wikimedia Commons 'content pages' include pages in the file and category namespaces. On Wikinews 'content pages' include pages in the Portal namespace. For technical definition of 'content namespaces' see [[mw:Manual:Using_custom_namespaces#Content_namespaces|MediaWiki]].\n\nPossible alternatives to the word 'content' are 'subject matter' or 'wiki subject' or 'wiki purpose'.\n\n{{Identical|Content page}}",
-	"statistics-articles-desc": "Caption shown below ''Content pages'' on [[Special:Statistics]]",
+	"statistics-articles-desc": "[[Special:Statistics]] पिट्ठियं ''निब्बत्ति पिट्ठीनि'' अधो दस्सितं अत्थ पदं",
 	"statistics-pages": "Used in [[Special:Statistics]]\n{{Identical|Page}}",
 	"statistics-pages-desc": "Tooltip shown over ''Pages'' (or as a note below it) in [[Special:Statistics]]",
 	"statistics-files": "Used in [[Special:Statistics]].\n{{Identical|Uploaded file}}",
@@ -2475,7 +2477,7 @@
 	"blanknamespace": "Name for main namespace (blank namespace) in drop-down menus at [[Special:RecentChanges]] and other special pages. Surrounded by brackets to signal that it's only a symbolic label and not an actual namespace prefix.\n{{Identical|Main}}",
 	"contributions": "The page name of the target page.\n\nThe target page shows an overview of the most recent contributions by a user.\n\nSee also:\n* {{msg-mw|Contributions}}\n* {{msg-mw|Accesskey-t-contributions}}\n* {{msg-mw|Tooltip-t-contributions}}",
 	"tool-link-contributions": "Display name for the 'User contributions', shown in the sidebar menu of all user pages and user talk pages.\n\nParameters:\n* $1 - username\n\nSee also:\n* {{msg-mw|Contributions}}\n* {{msg-mw|Accesskey-t-contributions}}\n* {{msg-mw|Tooltip-t-contributions}}",
-	"contributions-title": "{{Gender}}\nThe page title in your browser bar, but not the page title.\n\nParameters:\n* $1 - the username wrapped in <nowiki><bdi></nowiki> to ensure correct display in RTL environments\n* $2 - the raw username, can be used for GENDER.\nSee also:\n* {{msg-mw|Contributions}}",
+	"contributions-title": "The page title of the Special:Contributions page.\n\nParameters:\n* $1 - the username wrapped in <nowiki><bdi></nowiki> to ensure correct display in RTL environments\n* $2 - the raw username, can be used for GENDER.\nSee also:\n* {{msg-mw|Contributions}}\n\n{{Gender}}",
 	"contributions-title-for-ip-when-temporary-accounts-enabled": "The page title of [[Special:Contributions]] when temporary accounts are enabled and the target is an IP address or range.\n\nParameters:\n* $1 - the username\nSee also:\n* {{msg-mw|contributions-title}} which is used when temporary accounts are not enabled.",
 	"contribute-title": "The page title of Contribute Special Page",
 	"mycontris": "Link to the current user's own contributions, in the personal account links area, at the upper right corner of the page.\n\nSee also:\n* {{msg-mw|Mycontris}}\n* {{msg-mw|Accesskey-pt-mycontris}}\n* {{msg-mw|Tooltip-pt-mycontris}}\n{{Identical|Contribution}}",

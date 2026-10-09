@@ -3865,5 +3865,6 @@
 	"table-of-contents-hide-button-aria-label": "Qari tusmada waxyaabaha ku jira",
 	"diff-usergroups": "$1 {{PLURAL:$1|koox isticmaaleyaal|kooxo isticmaaleyaal}}",
 	"languageselector-no-results": "Natiijooyin lama helin.",
-	"languageselector-invalid-input": "\"$1\" ma aha luqad sax ah."
+	"languageselector-invalid-input": "\"$1\" ma aha luqad sax ah.",
+	"mypage-disallowed-action": "Sababo amni awgood, ficilka \"$1\" laguma isticmaali karo bogga Special:MyPage."
 }

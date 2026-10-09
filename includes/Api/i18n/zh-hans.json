@@ -949,6 +949,7 @@
 	"apihelp-query+imageinfo-paramvalue-prop-sha1": "为文件加入 SHA-1 哈希值。若该文件已被删除修订，将返回<samp>filehidden</samp>属性。",
 	"apihelp-query+imageinfo-paramvalue-prop-mime": "添加文件的 MIME 类型。若该文件已被删除修订，将返回<samp>filehidden</samp>属性。",
 	"apihelp-query+imageinfo-paramvalue-prop-thumbmime": "添加图片缩略图的 MIME 类型（需要 url 和参数 $1urlwidth）。若该文件已被删除修订，将返回<samp>filehidden</samp>属性。",
+	"apihelp-query+imageinfo-paramvalue-prop-thumburls": "添加文件URL的预览。若该文件已被删除修订，将返回<samp>filehidden</samp>属性。",
 	"apihelp-query+imageinfo-paramvalue-prop-mediatype": "添加文件媒体类型。若该文件已被删除修订，将返回<samp>filehidden</samp>属性。",
 	"apihelp-query+imageinfo-paramvalue-prop-metadata": "列出这个版本的文件的 EXIF 元数据。若该文件已被删除修订，将返回<samp>filehidden</samp>属性。",
 	"apihelp-query+imageinfo-paramvalue-prop-commonmetadata": "为文件的修订版本列出文件格式通用元数据。若该文件已被删除修订，将返回<samp>filehidden</samp>属性。",

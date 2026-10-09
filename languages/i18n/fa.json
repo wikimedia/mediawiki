@@ -4034,5 +4034,6 @@
 	"table-of-contents-hide-button-aria-label": "نهفتن فهرست محتویات",
 	"diff-usergroups": "$1 {{PLURAL:$1|گروه کاربری}}",
 	"languageselector-no-results": "نتیجه‌ای یافت نشد.",
-	"languageselector-invalid-input": "«$1» زبان معتبری نیست."
+	"languageselector-invalid-input": "«$1» زبان معتبری نیست.",
+	"mypage-disallowed-action": "به دلایل امنیتی، استفاده از عمل «$1» در صفحهٔ ویژه:صفحهٔ_من ممکن نیست."
 }

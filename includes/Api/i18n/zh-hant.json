@@ -910,6 +910,7 @@
 	"apihelp-query+imageinfo-paramvalue-prop-sha1": "替檔案添加 SHA-1 雜湊值。若是已刪除修訂的檔案，會回傳 <samp>filehidden</samp> 屬性。",
 	"apihelp-query+imageinfo-paramvalue-prop-mime": "替檔案添加 MIME 類型。若是已刪除修訂的檔案，會回傳 <samp>filehidden</samp> 屬性。",
 	"apihelp-query+imageinfo-paramvalue-prop-thumbmime": "添加圖片縮圖的 MIME 類型（需要 url 與參數 $1urlwidth）。若是已刪除修訂的檔案，會回傳 <samp>filehidden</samp> 屬性。",
+	"apihelp-query+imageinfo-paramvalue-prop-thumburls": "加入該檔案的縮圖網址。若該檔案已遭版本刪除，則會回傳<samp>filehidden</samp>屬性。",
 	"apihelp-query+imageinfo-paramvalue-prop-mediatype": "添加檔案的媒體類型。若是已刪除修訂的檔案，會回傳 <samp>filehidden</samp> 屬性。",
 	"apihelp-query+imageinfo-paramvalue-prop-metadata": "列出檔案版本的 Exif 詮釋資料。若是已刪除修訂的檔案，會回傳 <samp>filehidden</samp> 屬性。",
 	"apihelp-query+imageinfo-paramvalue-prop-commonmetadata": "列出檔案版本的檔案格式通用詮釋資料。若是已刪除修訂的檔案，會回傳 <samp>filehidden</samp> 屬性。",

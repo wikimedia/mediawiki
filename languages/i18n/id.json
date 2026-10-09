@@ -116,7 +116,8 @@
 			"AF1011",
 			"Ronnie",
 			"CalER08",
-			"Iripseudocorus"
+			"Iripseudocorus",
+			"Rafka Aditia"
 		]
 	},
 	"pagecategories": "{{PLURAL:$1|Kategori}}",
@@ -3077,7 +3078,6 @@
 	"colon-separator": ":&#32;",
 	"ellipsis": "...",
 	"percent": "$1%",
-	"parentheses": "($1)",
 	"brackets": "[$1]",
 	"brackets-start": "[",
 	"brackets-end": "]",

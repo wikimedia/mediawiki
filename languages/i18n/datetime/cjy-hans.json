@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Winston Sung"
+			"Winston Sung",
+			"Villager-bloc-h"
 		]
 	},
 	"january": "1月",
@@ -45,5 +46,14 @@
 	"wednesday": "礼拜三",
 	"thursday": "礼拜四",
 	"friday": "礼拜五",
-	"saturday": "礼拜六"
+	"saturday": "礼拜六",
+	"sunday": "礼拜天",
+	"mon": "礼拜一",
+	"tue": "礼拜二",
+	"wed": "礼拜三",
+	"thu": "礼拜四",
+	"fri": "礼拜五",
+	"sat": "礼拜六",
+	"sun": "礼拜天",
+	"duration-days": "$1{{PLURAL:$1|天}}"
 }

@@ -872,6 +872,7 @@
 	"apihelp-query+imageinfo-paramvalue-prop-sha1": "Doda zgoščeno vrednost SHA-1 za datoteko. Če so bile revizije z datoteko izbrisane, bo vrnjena lastnost <samp>filehidden</samp>.",
 	"apihelp-query+imageinfo-paramvalue-prop-mime": "Doda vrsto MIME datoteke. Če so bile revizije z datoteko izbrisane, bo vrnjena lastnost <samp>filehidden</samp>.",
 	"apihelp-query+imageinfo-paramvalue-prop-thumbmime": "Doda vrsto MIME sličice slike (zahteva url in parameter $1urlwidth). Če so bile datoteke z revizijo izbrisane, bo vrnjena lastnost <samp>filehidden</samp>.",
+	"apihelp-query+imageinfo-paramvalue-prop-thumburls": "Doda URL-je sličic datoteke. Če je bila datoteka izbrisana, bo vrnjena lastnost <samp>filehidden</samp>.",
 	"apihelp-query+imageinfo-paramvalue-prop-mediatype": "Doda vrsto MIME datoteke. Če so bile revizije z datoteko izbrisane, bo vrnjena lastnost <samp>filehidden</samp>.",
 	"apihelp-query+imageinfo-paramvalue-prop-metadata": "Navede metapodatke Exif za različico datoteke. Če so bile revizije z datoteko izbrisane, bo vrnjena lastnost <samp>filehidden</samp>.",
 	"apihelp-query+imageinfo-paramvalue-prop-commonmetadata": "Navede generične podatke datotečnega formata za različico datoteke. Če je bila izbrisana različica datoteke, bo vrnjena lastnost <samp>filehidden</samp>.",

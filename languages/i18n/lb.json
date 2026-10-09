@@ -763,7 +763,7 @@
 	"rev-suppressed-no-diff": "Dir kënnt dëse Versiounsënnerscheed net gesinn, well eng vun de Versiounen <strong>ënnerdréckt</strong> gouf.",
 	"rev-deleted-unhide-diff": "Eng vun de Versioune vun dësem Ënnerscheed gouf '''geläscht'''.\nDetailer stinn am [{{fullurl:{{#Special:Log}}/delete|page={{urlencode:{{FULLPAGENAME}}}}}} Läsch-Logbuch].\nDir kënnt [$1 mat dësem Link de Versiounsënnerscheed kucke] wann Dir weiderfuere wëllt.",
 	"rev-suppressed-unhide-diff": "Eng vun de Versioune vun dësem Versiounsënnerscheed gouf <strong>ënnerdréckt</strong>.\nDetailer fannt Dir am [{{fullurl:{{#Special:Log}}/suppress|page={{urlencode:{{FULLPAGENAME}}}}}} Ënnerdréckungslogbuch].\nDir kënnt [$1 dëse Versiounsënnerscheed kucken], wann Dir weiderfuere wëllt.",
-	"rev-deleted-diff-view": "Eng Versioun vun dësem Versiounsënnerscheed gouf '''geläscht'''.\nDir kënnt dësen Ënnerscheed gesinn; méi Detailer fannt Dir am [{{fullurl:{{#Special:Log}}/delete|page={{urlencode:{{FULLPAGENAME}}}}}} Logbuch vum Läschen].",
+	"rev-deleted-diff-view": "Eng vun de Versioune vun dësem Versiounsënnerscheed gouf <strong>geläscht</strong>.\nDir kënnt dësen Ënnerscheed gesinn; méi Detailer fannt Dir am [{{fullurl:{{#Special:Log}}/delete|page={{urlencode:{{FULLPAGENAME}}}}}} Logbuch vum Läschen].",
 	"rev-suppressed-diff-view": "Eng vun de Versioune vun dësem Versiounsënnerscheed gouf <strong>ënnerdréckt</strong>.\nDir kënnt dëse Versiounsënnerscheed gesinn; Detailer fannt Dir am [{{fullurl:{{#Special:Log}}/suppress|page={{urlencode:{{FULLPAGENAME}}}}}} Ënnerdréckungslogbuch].",
 	"rev-delundel": "weisen/verstoppen",
 	"rev-showdeleted": "Weisen",
@@ -827,7 +827,7 @@
 	"mergehistory-into": "Zilsäit:",
 	"mergehistory-list": "Versiounen, déi zesummegeluecht kënne ginn",
 	"mergehistory-merge": "Déi follgend Versioune vun [[:$1]] kënne mat [[:$2]] zesummegeluecht ginn.\nBenotzt d'Kolonne mat de Radio-Knäppecher fir erauszesichen, wat fir Versiounen zesummegeluecht solle ginn.\nDenkt wgl. drun, datt d'Navigatiounslinken d'Feld mam Grond eidelmaachen.",
-	"mergehistory-go": "Weis déi Versiounen, déi zesummegeluecht kënne ginn",
+	"mergehistory-go": "Versioune weisen, déi zesummegeluecht kënne ginn",
 	"mergehistory-submit": "Versioune verschmelzen",
 	"mergehistory-empty": "Et kënne keng Versioune zesummegeluecht ginn.",
 	"mergehistory-done": "{{PLURAL:$4|Eng Versioun gouf|$4 Versioune goufe}} vu(n) $1 op [[:$2]] zesummegeluecht.\n$3",
@@ -3607,5 +3607,6 @@
 	"table-of-contents-hide-button-aria-label": "Inhaltsverzeechnes verstoppen",
 	"diff-usergroups": "$1 {{PLURAL:$1|Benotzergrupp|Benotzergruppen}}",
 	"languageselector-no-results": "Kee Resultat fonnt.",
-	"languageselector-invalid-input": "„$1“ ass keng gülteg Sprooch."
+	"languageselector-invalid-input": "„$1“ ass keng gülteg Sprooch.",
+	"mypage-disallowed-action": "Aus Sécherheetsgrënn kann d'Aktioun „$1“ op der Säit Special:MyPage net benotzt ginn."
 }
