@@ -1700,14 +1700,16 @@ class Title implements Stringable, LinkTarget, PageIdentity {
 	 * Get the other title for this page, if this is a subject page
 	 * get the talk page, if it is a subject page get the talk page
 	 *
-	 * @deprecated since 1.34, use NamespaceInfo::getAssociatedPage
+	 * @deprecated since 1.34, use NamespaceInfo::getAssociatedPage. Emits deprecation warnings since 1.47.
 	 * @since 1.25
 	 * @throws MWException If the page doesn't have an other page
 	 * @return Title
 	 */
 	public function getOtherPage() {
+		wfDeprecated( __METHOD__, '1.34' );
+
 		// NOTE: Depend on the methods in this class instead of their equivalent in NamespaceInfo,
-		//       until their semantics has become exactly the same.
+		//       as their semantics are not exactly the same.
 		//       See the discussion on T227817.
 		if ( $this->isSpecialPage() ) {
 			throw new MWException( 'Special pages cannot have other pages' );
@@ -1720,9 +1722,6 @@ class Title implements Stringable, LinkTarget, PageIdentity {
 			}
 			return $this->getTalkPage();
 		}
-		// TODO: replace the above with the code below:
-		// return self::castFromLinkTarget(
-		// MediaWikiServices::getInstance()->getNamespaceInfo()->getAssociatedPage( $this ) );
 	}
 
 	/**

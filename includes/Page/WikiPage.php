@@ -2525,10 +2525,13 @@ class WikiPage implements Stringable, Page, PageRecord {
 	public static function onArticleCreate( Title $title, $maybeIsRedirect = true ) {
 		// TODO: move this into a PageEventEmitter service
 
-		// Update existence markers on article/talk tabs...
-		$other = $title->getOtherPage();
-
 		$services = MediaWikiServices::getInstance();
+		// Update existence markers on article/talk tabs...
+		$other = PageReferenceValue::localReference(
+			$services->getNamespaceInfo()->getAssociated( $title->getNamespace() ),
+			$title->getDBkey()
+		);
+
 		$hcu = $services->getHTMLCacheUpdater();
 		$hcu->purgeTitleUrls( [ $title, $other ], $hcu::PURGE_INTENT_TXROUND_REFLECTED );
 
@@ -2563,15 +2566,18 @@ class WikiPage implements Stringable, Page, PageRecord {
 	public static function onArticleDelete( Title $title ) {
 		// TODO: move this into a PageEventEmitter service
 
+		$services = MediaWikiServices::getInstance();
 		// Update existence markers on article/talk tabs...
-		$other = $title->getOtherPage();
+		$other = PageReferenceValue::localReference(
+			$services->getNamespaceInfo()->getAssociated( $title->getNamespace() ),
+			$title->getDBkey()
+		);
 
-		$hcu = MediaWikiServices::getInstance()->getHTMLCacheUpdater();
+		$hcu = $services->getHTMLCacheUpdater();
 		$hcu->purgeTitleUrls( [ $title, $other ], $hcu::PURGE_INTENT_TXROUND_REFLECTED );
 
 		$title->touchLinks();
 
-		$services = MediaWikiServices::getInstance();
 		$services->getLinkCache()->invalidateTitle( $title );
 
 		InfoAction::invalidateCache( $title );

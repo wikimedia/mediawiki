@@ -792,6 +792,7 @@ class NamespaceInfoTest extends MediaWikiIntegrationTestCase {
 
 		$subjectTitle = Title::makeTitle( $subject, 'A' );
 		$talkTitle = Title::makeTitle( $talk, 'A' );
+		$this->hideDeprecated( Title::class . '::getOtherPage' );
 		$this->assertEquals( $talkTitle, $subjectTitle->getOtherPage() );
 		$this->assertEquals( $subjectTitle, $talkTitle->getOtherPage() );
 	}

@@ -376,6 +376,7 @@ class TitleTest extends MediaWikiIntegrationTestCase {
 		}
 
 		$title = Title::newFromText( $text );
+		$this->hideDeprecated( Title::class . '::getOtherPage' );
 		$this->assertEquals( $expected, $title->getOtherPage()->getPrefixedText() );
 	}
 
@@ -1582,6 +1583,7 @@ class TitleTest extends MediaWikiIntegrationTestCase {
 	 * @covers \MediaWiki\Title\Title::getOtherPage
 	 */
 	public function testGetOtherPage_good( Title $title, Title $expected ) {
+		$this->hideDeprecated( Title::class . '::getOtherPage' );
 		$actual = $title->getOtherPage();
 		$this->assertTrue( $expected->equals( $actual ), $title->getPrefixedDBkey() );
 	}
@@ -1592,6 +1594,7 @@ class TitleTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testGetOtherPage_bad( Title $title ) {
 		$this->expectException( MWException::class );
+		$this->hideDeprecated( Title::class . '::getOtherPage' );
 		$title->getOtherPage();
 	}
 

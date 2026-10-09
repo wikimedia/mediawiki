@@ -775,6 +775,7 @@ because of Phabricator reports.
 * The ResourceLoader module mediawiki.skinning.content.parsoid has been
   deprecated. Please remove usages.
 * Title::estimateRevisionCount() is unused and has been deprecated.
+* Title::getOtherPage(), deprecated since 1.34, now emits deprecation warnings.
 * WikiPage::shouldCheckParserCache() has been deprecated. Use
   ParserOutputAccess::shouldUseCache() instead.
 * (T436997) Passing an int bitmask as the $options parameter to
