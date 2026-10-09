@@ -169,7 +169,7 @@ class PageSelectQueryBuilder extends SelectQueryBuilder {
 		$recs = [];
 
 		foreach ( $this->fetchPageRecords() as $rec ) {
-			$recs[ $rec->getId() ] = $rec;
+			$recs[ $rec->getId( $rec->getWikiId() ) ] = $rec;
 		}
 
 		return $recs;
