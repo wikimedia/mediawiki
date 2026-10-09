@@ -31,10 +31,12 @@ class MessageParser {
 	private LanguageFactory $langFactory;
 	private LoggerInterface $logger;
 
-	/** @var Parser[] Cached Parser objects */
+	/**
+	 * @var array{parser: Parser, popts: ParserOptions}[]
+	 *   Cached Parser objects and Parser options associated with each Parser
+	 */
 	private array $parsers = [];
-	/** @var ParserOptions[] Parser options associated with each Parser */
-	private array $parserOptions = [];
+
 	/** @var int Index into $this->parsers for the active Parser */
 	private int $curParser = -1;
 
@@ -78,12 +80,13 @@ class MessageParser {
 			return $message;
 		}
 
-		$parser = $this->acquireParser();
+		[ 'parser' => $parser, 'popts' => $popts ] = $this->acquireParser(
+			$interface, $language
+		);
 		if ( !$parser ) {
 			return self::DEPTH_EXCEEDED_MESSAGE;
 		}
 
-		$popts = $this->getOptions( $interface, $language );
 		$page ??= $this->getPlaceholderTitle();
 
 		try {
@@ -118,13 +121,13 @@ class MessageParser {
 			'unwrap' => true,
 			'userLang' => $language,
 		];
-		$parser = $this->acquireParser();
+		[ 'parser' => $parser, 'popts' => $popts ] = $this->acquireParser(
+			$interface, $language
+		);
 		if ( !$parser ) {
 			return new ParserOutput( self::DEPTH_EXCEEDED_MESSAGE );
 		}
-		$popts = $this->getOptions( $interface, $language );
 		$contextPage ??= $this->getPlaceholderTitle();
-
 		try {
 			$po = $parser->parse( $text, $contextPage, $popts, $lineStart );
 			// Run the post-processing pipeline
@@ -149,11 +152,12 @@ class MessageParser {
 		$interface = false,
 		$language = null
 	): ParserOutput {
-		$parser = $this->acquireParser();
+		[ 'parser' => $parser, 'popts' => $popts ] = $this->acquireParser(
+			$interface, $language
+		);
 		if ( !$parser ) {
 			return new ParserOutput( self::DEPTH_EXCEEDED_MESSAGE );
 		}
-		$popts = $this->getOptions( $interface, $language );
 		$page ??= $this->getPlaceholderTitle();
 
 		try {
@@ -168,16 +172,14 @@ class MessageParser {
 	 *
 	 * @param bool $interface
 	 * @param Language|StubUserLang|string|null $targetLanguage
+	 * @param ?ParserOptions $popts
 	 * @return ParserOptions
 	 */
-	private function getOptions( $interface, $targetLanguage ): ParserOptions {
-		if ( $this->curParser < 0 ) {
-			throw new LogicException( 'getOptions must be called after acquireParser' );
-		}
-		if ( isset( $this->parserOptions[$this->curParser] ) ) {
-			$popts = $this->parserOptions[$this->curParser];
-		} else {
-			$popts = $this->createOptions( $this->curParser );
+	private function getOptions(
+		$interface, $targetLanguage, ?ParserOptions $popts
+	): ParserOptions {
+		if ( $popts === null ) {
+			$popts = $this->createOptions();
 		}
 		$popts->setInterfaceMessage( $interface );
 		$popts->setTargetLanguage( $this->normalizeTargetLanguage( $targetLanguage ) );
@@ -188,10 +190,9 @@ class MessageParser {
 	/**
 	 * Create and maybe cache a ParserOptions object
 	 *
-	 * @param int $cacheIndex
 	 * @return ParserOptions
 	 */
-	private function createOptions( $cacheIndex ): ParserOptions {
+	private function createOptions(): ParserOptions {
 		$context = RequestContext::getMain();
 		$user = $context->getUser();
 		$useParsoidMessages = MediaWikiServices::getInstance()->getMainConfig()->get(
@@ -218,7 +219,6 @@ class MessageParser {
 		if ( $useParsoidMessages !== null ) {
 			$po->setUseParsoid( $useParsoidMessages );
 		}
-		$this->parserOptions[$cacheIndex] = $po;
 		return $po;
 	}
 
@@ -245,22 +245,32 @@ class MessageParser {
 	 *
 	 * If a parser is returned, it must be released with releaseParser().
 	 *
-	 * @return Parser|null
+	 * @param bool $interface
+	 * @param Language|StubUserLang|string|null $targetLanguage
+	 * @return array{parser: Parser, popts: ParserOptions}|null
 	 */
-	private function acquireParser(): ?Parser {
+	private function acquireParser( $interface, $targetLanguage ): ?array {
 		$index = $this->curParser + 1;
 		if ( $index >= self::MAX_PARSER_DEPTH ) {
 			$this->logger->debug( __METHOD__ . ": Refusing to create a new parser with index {$index}" );
 			return null;
 		}
-		$parser = $this->parsers[ $index ] ?? null;
-		if ( !$parser ) {
+		$this->curParser = $index;
+
+		$cache = $this->parsers[ $index ] ?? null;
+		if ( $cache ) {
+			$cache['popts'] = $this->getOptions( $interface, $targetLanguage, $cache['popts'] );
+			return $cache;
+		} else {
 			$this->logger->debug( __METHOD__ . ": Creating a new parser with index {$index}" );
 			$parser = $this->parserFactory->create();
+			$popts = $this->getOptions( $interface, $targetLanguage, null );
+			$this->parsers[ $index ] = [
+				'parser' => $parser,
+				'popts' => $popts,
+			];
+			return $this->parsers[ $index ];
 		}
-		$this->parsers[ $index ] = $parser;
-		$this->curParser = $index;
-		return $parser;
 	}
 
 	/**
@@ -269,10 +279,11 @@ class MessageParser {
 	 * @param Parser $parser
 	 */
 	private function releaseParser( Parser $parser ) {
-		if ( $this->parsers[$this->curParser] !== $parser ) {
+		$currentParser = $this->parsers[$this->curParser]['parser'] ?? null;
+		if ( $currentParser !== $parser ) {
 			throw new LogicException( 'releaseParser called with the wrong ' .
 				"parser instance: #{$this->curParser} = " .
-				gettype( $this->parsers[$this->curParser] ) );
+				gettype( $currentParser ) );
 		}
 		$this->curParser--;
 	}
