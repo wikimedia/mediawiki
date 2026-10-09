@@ -669,6 +669,11 @@ class DataAccess extends IDataAccess {
 		}
 
 		$revId = $pageConfig->getRevisionId();
+		if ( $revId === null ) {
+			// The revision is not saved yet. Do not look up the page here,
+			// because the page row can be missing (T432762).
+			return;
+		}
 		$title = Title::newFromLinkTarget(
 			$pageConfig->getLinkTarget()
 		)->getPrefixedText();
@@ -676,7 +681,7 @@ class DataAccess extends IDataAccess {
 		$latest = $pageInfo[$title]['revId'];
 
 		// Only send the request if it the latest revision
-		if ( $revId !== null && $revId === $latest ) {
+		if ( $revId === $latest ) {
 			$this->hookRunner->onParserLogLinterData(
 				$title, $revId, $lints
 			);
