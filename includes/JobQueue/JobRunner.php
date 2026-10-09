@@ -360,7 +360,10 @@ class JobRunner {
 		// Run the job...
 		$caught = [];
 		$rssStart = $this->getMaxRssKb();
+		// A timestamp, compared below against the job's ready and root timestamps
 		$jobStartTime = microtime( true );
+		// A timer, used only to measure how long the job takes
+		$jobTimerStart = ConvertibleTimestamp::hrtime();
 		try {
 			$fnameTrxOwner = get_class( $job ) . '::run'; // give run() outer scope
 			// Flush any pending changes left over from an implicit transaction round
@@ -400,7 +403,7 @@ class JobRunner {
 			MWExceptionHandler::logException( $e );
 		}
 
-		$timeMs = intval( ( microtime( true ) - $jobStartTime ) * 1000 );
+		$timeMs = intval( ( ConvertibleTimestamp::hrtime() - $jobTimerStart ) / 1e6 );
 		$rssEnd = $this->getMaxRssKb();
 
 		// Record how long jobs wait before getting popped

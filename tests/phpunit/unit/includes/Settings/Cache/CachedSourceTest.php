@@ -54,10 +54,24 @@ class CachedSourceTest extends TestCase {
 					$this->arrayHasKey( 'value' ),
 					$this->arrayHasKey( 'expiry' ),
 					$this->arrayHasKey( 'generation' ),
-					$this->callback( function ( $item ) use ( $settings ) {
+					$this->callback( function ( $item ) use ( $settings, $ttl ) {
 						$this->assertSame( $settings, $item['value'] );
-						$this->assertGreaterThan( 0, $item['expiry'] );
+						// 'expiry' is a wall-clock timestamp: isExpired() compares it
+						// against microtime() when the entry is read back, so it must
+						// stay on the same scale and not become a monotonic reading.
+						$this->assertEqualsWithDelta(
+							microtime( true ) + $ttl,
+							$item['expiry'],
+							10,
+							'expiry must be a UNIX timestamp'
+						);
+						// 'generation' is a duration in seconds, not a timestamp.
 						$this->assertGreaterThan( 0, $item['generation'] );
+						$this->assertLessThan(
+							10,
+							$item['generation'],
+							'generation must be a duration in seconds'
+						);
 
 						return true;
 					} )

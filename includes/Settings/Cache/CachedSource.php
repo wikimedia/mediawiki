@@ -7,6 +7,7 @@ use MediaWiki\Settings\Source\SettingsIncludeLocator;
 use MediaWiki\Settings\Source\SettingsSource;
 use Stringable;
 use Wikimedia\ObjectCache\BagOStuff;
+use Wikimedia\Timestamp\ConvertibleTimestamp;
 use Wikimedia\WaitConditionLoop;
 
 /**
@@ -213,14 +214,17 @@ class CachedSource implements Stringable, SettingsSource, SettingsIncludeLocator
 	 * early expiration to help mitigate cache stampedes.
 	 */
 	private function loadWithMetadata(): array {
+		// A timestamp, because the expiry below is compared against the wall clock
 		$start = microtime( true );
+		// A timer, because the generation time is only ever used as a duration
+		$generationStart = ConvertibleTimestamp::hrtime();
 		$value = $this->source->load();
-		$finish = microtime( true );
+		$generationSeconds = ( ConvertibleTimestamp::hrtime() - $generationStart ) / 1e9;
 
 		return [
 			'value' => $value,
 			'expiry' => $start + $this->source->getExpiryTtl(),
-			'generation' => $finish - $start,
+			'generation' => $generationSeconds,
 		];
 	}
 
