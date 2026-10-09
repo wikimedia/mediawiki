@@ -31,6 +31,7 @@ use MediaWiki\RecentChanges\RecentChange;
 use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Revision\MutableRevisionSlots;
 use MediaWiki\Revision\RevisionRecord;
+use MediaWiki\Revision\RevisionStore;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Storage\DerivedPageDataUpdater;
 use MediaWiki\Storage\EditResult;
@@ -1802,6 +1803,14 @@ class DerivedPageDataUpdaterTest extends MediaWikiIntegrationTestCase {
 
 		$rev->setId( 1107 );
 		$updater->prepareUpdate( $rev );
+
+		$store = $this->createMock( RevisionStore::class );
+		$store
+			->method( 'getRevisionById' )
+			->willReturnCallback( static function ( int $id ) use ( $rev ) {
+				return ( $id === 1107 ) ? $rev : null;
+			} );
+		$this->setService( 'RevisionStore', $store );
 
 		// Force the page timestamp, so we notice whether ParserOutput::getTimestamp
 		// or ParserOutput::getCacheTime are used.

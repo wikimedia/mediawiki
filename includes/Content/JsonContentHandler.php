@@ -8,7 +8,9 @@ namespace MediaWiki\Content;
 
 use MediaWiki\Content\Renderer\ContentParseParams;
 use MediaWiki\Content\Transform\PreSaveTransformParams;
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Page\WikiPage;
 use MediaWiki\Parser\ParserOutput;
 use MediaWiki\Parser\Parsoid\ParsoidParserFactory;
 use MediaWiki\Title\TitleFactory;
@@ -118,6 +120,22 @@ class JsonContentHandler extends CodeContentHandler {
 		ParserOutput &$parserOutput
 	) {
 		'@phan-var JsonContent $content';
+
+		$textModelsToParse = MediaWikiServices::getInstance()->getMainConfig()->get(
+			MainConfigNames::TextModelsToParse
+		);
+		$parserFactory = MediaWikiServices::getInstance()->getParserFactory();
+
+		$parserOptions = WikiPage::makeParserOptionsFromTitleAndModel(
+			$cpoParams->getPage(),
+			$content->getModel(),
+			'canonical'
+		);
+		$this->collectMetadata(
+			$content, $cpoParams, $parserOutput, $textModelsToParse, $parserFactory,
+			$this->parsoidParserFactory, $parserOptions
+		);
+
 		// FIXME: WikiPage::doUserEditContent generates parser output before validation.
 		// As such, native data may be invalid (though output is discarded later in that case).
 		if ( $cpoParams->getGenerateHtml() ) {

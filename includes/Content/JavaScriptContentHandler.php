@@ -10,6 +10,7 @@ use MediaWiki\Config\Config;
 use MediaWiki\Content\Renderer\ContentParseParams;
 use MediaWiki\Content\Transform\PreSaveTransformParams;
 use MediaWiki\MainConfigNames;
+use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\WikiPage;
 use MediaWiki\Parser\ParserFactory;
 use MediaWiki\Parser\ParserOutput;
@@ -121,6 +122,7 @@ class JavaScriptContentHandler extends CodeContentHandler {
 	) {
 		'@phan-var JavaScriptContent $content';
 
+		$parsoidParserFactory = MediaWikiServices::getInstance()->getParsoidParserFactory();
 		$parserOptions = WikiPage::makeParserOptionsFromTitleAndModel(
 			$cpoParams->getPage(),
 			$content->getModel(),
@@ -128,7 +130,7 @@ class JavaScriptContentHandler extends CodeContentHandler {
 		);
 		$this->collectMetadata(
 			$content, $cpoParams, $output, $this->textModelsToParse, $this->parserFactory,
-			$parserOptions
+			$parsoidParserFactory, $parserOptions
 		);
 
 		if ( $cpoParams->getGenerateHtml() ) {
