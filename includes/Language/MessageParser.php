@@ -13,6 +13,7 @@ use MediaWiki\Parser\Parser;
 use MediaWiki\Parser\ParserFactory;
 use MediaWiki\Parser\ParserOptions;
 use MediaWiki\Parser\ParserOutput;
+use MediaWiki\Parser\Parsoid\ParsoidParser;
 use MediaWiki\StubObject\StubObject;
 use MediaWiki\StubObject\StubUserLang;
 use Psr\Log\LoggerInterface;
@@ -31,8 +32,11 @@ class MessageParser {
 	private LanguageFactory $langFactory;
 	private LoggerInterface $logger;
 
+	/** @var callable */
+	private $parsoidParserFactoryClosure;
+
 	/**
-	 * @var array{parser: Parser, popts: ParserOptions}[]
+	 * @var array{parser: Parser|ParsoidParser, popts: ParserOptions}[]
 	 *   Cached Parser objects and Parser options associated with each Parser
 	 */
 	private array $parsers = [];
@@ -51,12 +55,14 @@ class MessageParser {
 		ParserFactory $parserFactory,
 		OutputTransformPipeline $outputPipeline,
 		LanguageFactory $languageFactory,
-		LoggerInterface $logger
+		LoggerInterface $logger,
+		callable $parsoidParserFactoryClosure
 	) {
 		$this->parserFactory = $parserFactory;
 		$this->outputPipeline = $outputPipeline;
 		$this->langFactory = $languageFactory;
 		$this->logger = $logger;
+		$this->parsoidParserFactoryClosure = $parsoidParserFactoryClosure;
 	}
 
 	/**
@@ -247,7 +253,7 @@ class MessageParser {
 	 *
 	 * @param bool $interface
 	 * @param Language|StubUserLang|string|null $targetLanguage
-	 * @return array{parser: Parser, popts: ParserOptions}|null
+	 * @return array{parser: Parser|ParsoidParser, popts: ParserOptions}|null
 	 */
 	private function acquireParser( $interface, $targetLanguage ): ?array {
 		$index = $this->curParser + 1;
@@ -263,8 +269,12 @@ class MessageParser {
 			return $cache;
 		} else {
 			$this->logger->debug( __METHOD__ . ": Creating a new parser with index {$index}" );
-			$parser = $this->parserFactory->create();
 			$popts = $this->getOptions( $interface, $targetLanguage, null );
+			if ( $popts->getUseParsoid() ) {
+				$parser = ( $this->parsoidParserFactoryClosure )()->create();
+			} else {
+				$parser = $this->parserFactory->create();
+			}
 			$this->parsers[ $index ] = [
 				'parser' => $parser,
 				'popts' => $popts,
@@ -276,9 +286,9 @@ class MessageParser {
 	/**
 	 * Release a parser previously acquired by acquireParser().
 	 *
-	 * @param Parser $parser
+	 * @param Parser|ParsoidParser $parser
 	 */
-	private function releaseParser( Parser $parser ) {
+	private function releaseParser( Parser|ParsoidParser $parser ) {
 		$currentParser = $this->parsers[$this->curParser]['parser'] ?? null;
 		if ( $currentParser !== $parser ) {
 			throw new LogicException( 'releaseParser called with the wrong ' .

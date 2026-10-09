@@ -2777,7 +2777,7 @@ return [
 			'ReturnExperimentalPFragmentTypes' => [
 			],
 			'UseParsoidLinksUpdate' => true,
-			'UseParsoidMessages' => true,
+			'UseParsoidMessages' => false,
 			'UseParsoidParser' => false,
 			'SiteLookup' => [
 			],

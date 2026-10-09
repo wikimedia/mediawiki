@@ -1578,7 +1578,12 @@ return [
 			$services->getParserFactory(),
 			$services->getDefaultOutputPipeline(),
 			$services->getLanguageFactory(),
-			LoggerFactory::getInstance( 'MessageParser' )
+			LoggerFactory::getInstance( 'MessageParser' ),
+			// Use closures for these to avoid a circular dependency on ParsoidParserFactory
+			// via PermissionManager
+			static function () use ( $services ) {
+				return $services->getParsoidParserFactory();
+			}
 		);
 	},
 

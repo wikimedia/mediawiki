@@ -13762,10 +13762,11 @@ class MainConfigSchema {
 	 * A separate config will control Parsoid use for articles and link updates
 	 *
 	 * @unstable Temporary flag, likely to be replaced by a single config in ParserOptions
+	 * @experimental Using Parsoid for messages still very much experimental and untested
 	 * @since 1.47
 	 */
 	public const UseParsoidMessages = [
-		'default' => true,
+		'default' => false,
 		'type' => '?boolean'
 	];
 
