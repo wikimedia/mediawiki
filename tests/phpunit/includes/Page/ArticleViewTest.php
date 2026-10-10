@@ -333,8 +333,35 @@ class ArticleViewTest extends MediaWikiIntegrationTestCase {
 	 * @covers \MediaWiki\Output\OutputPage
 	 * @see T339164
 	 * @see T341013
+	 * @dataProvider provideViewOfCurrentRevisionDirty
 	 */
-	public function testViewOfCurrentRevisionDirty() {
+	public function testViewOfCurrentRevisionDirty( bool $savePostproc ) {
+		// Keep the ObjectCacheFactory when the config changes reset the
+		// services. Then the parser cache keeps its entries.
+		$this->setService( 'ObjectCacheFactory', $this->getServiceContainer()->getObjectCacheFactory() );
+		// Parsoid page views use the postprocessing cache. Set
+		// $wgParserCacheFilterConfig, so that this cache saves all entries
+		// or no entries. If the cache has no entry, the stale fallback uses
+		// the entry from the parser cache.
+		$minCpuTime = $savePostproc ? 0 : PHP_INT_MAX;
+		$filterConfig = $this->getServiceContainer()->getMainConfig()
+			->get( MainConfigNames::ParserCacheFilterConfig );
+		$filterConfig['postproc-pcache']['default']['minCpuTime'] = $minCpuTime;
+		$filterConfig['postproc-parsoid-pcache']['default']['minCpuTime'] = $minCpuTime;
+		$this->overrideConfigValue( MainConfigNames::ParserCacheFilterConfig, $filterConfig );
+
+		// Revision A, warm up ParserCache.
+		$revisions = [];
+		$page = $this->getPage( __METHOD__, [ 1 => 'Test A' ], $revisions );
+		$idA = $revisions[1]->getId();
+		// View revision A, to warm up the postprocessing cache (if it saves entries).
+		// Use a different context, so that this view does not change the main OutputPage.
+		$article = new Article( $page->getTitle() );
+		$context = new RequestContext();
+		$context->setTitle( $page->getTitle() );
+		$article->setContext( $context );
+		$article->view();
+
 		// Simulate full PoolCounter queue, to trigger stale fallback in ParserOutputAccess
 		$this->overrideConfigValue(
 			MainConfigNames::PoolCounterConf,
@@ -344,11 +371,6 @@ class ArticleViewTest extends MediaWikiIntegrationTestCase {
 				]
 			]
 		);
-
-		// Revision A, warm up ParserCache.
-		$revisions = [];
-		$page = $this->getPage( __METHOD__, [ 1 => 'Test A' ], $revisions );
-		$idA = $revisions[1]->getId();
 
 		// Revision B, without ParserCache, to simulate a race with a stale cache
 		$parserCacheFactory = $this->getServiceContainer()->getParserCacheFactory();
@@ -367,6 +389,11 @@ class ArticleViewTest extends MediaWikiIntegrationTestCase {
 		$this->assertStringContainsString( 'Test A', $this->getHtml( $output ) );
 		$this->assertSame( $idA, $output->getRevisionId() );
 		$this->assertSame( $revisions[1]->getTimestamp(), $output->getMetadata()->getRevisionTimestamp() );
+	}
+
+	public static function provideViewOfCurrentRevisionDirty() {
+		yield 'postprocessing cache saves entries' => [ true ];
+		yield 'postprocessing cache saves no entries' => [ false ];
 	}
 
 	public function testViewOfMissingRevision() {

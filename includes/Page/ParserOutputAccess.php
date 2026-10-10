@@ -387,6 +387,18 @@ class ParserOutputAccess implements LoggerAwareInterface {
 		$parserOutput = $this->getPrimaryCache( $parserOptions )
 			->getDirty( $page, $parserOptions );
 
+		if ( !$parserOutput && $parserOptions->getPostproc() ) {
+			// The postprocessing cache can be empty, or it can be disabled
+			// with $wgParserCacheFilterConfig. Then use the stale output
+			// from the parser cache, and postprocess it.
+			$preParserOptions = $parserOptions->clearPostproc();
+			$parserOutput = $this->getPrimaryCache( $preParserOptions )
+				->getDirty( $page, $preParserOptions );
+			if ( $parserOutput ) {
+				$parserOutput = $this->postprocess( $parserOutput, $parserOptions, $page );
+			}
+		}
+
 		if ( !$parserOutput ) {
 			$this->logger->info( 'dirty missing' );
 			return false;
