@@ -32,6 +32,14 @@ use MediaWiki\User\UserIdentityValue;
 class DifferenceEngineTest extends MediaWikiIntegrationTestCase {
 	use MockTitleTrait;
 
+	/**
+	 * A regular expression for the start of the page content.
+	 * Parsoid adds attributes and a <section> element.
+	 */
+	private const PARSER_OUTPUT_START =
+		'<div class="mw-content-ltr mw-parser-output" lang="en" dir="ltr"[^>]*>' .
+		'(<section[^>]*>)?<p[^>]*>';
+
 	/** @var RequestContext */
 	protected $context;
 
@@ -644,7 +652,7 @@ class DifferenceEngineTest extends MediaWikiIntegrationTestCase {
 				'expected' => [
 					'html' =>
 						'\(diff-empty\).*' .
-						'<div class="mw-content-ltr mw-parser-output" lang="en" dir="ltr"><p>no kittens'
+						self::PARSER_OUTPUT_START . 'no kittens'
 				],
 			],
 			'normal diff=prev' => [
@@ -657,7 +665,7 @@ class DifferenceEngineTest extends MediaWikiIntegrationTestCase {
 						'\(viewsourceold\).*' .
 						'<del class="diffchange diffchange-inline">no kittens</del>.*' .
 						'<ins class="diffchange diffchange-inline">one kitten</ins>.*' .
-						'<div class="mw-content-ltr mw-parser-output" lang="en" dir="ltr"><p>one kitten',
+						self::PARSER_OUTPUT_START . 'one kitten',
 				]
 			],
 			'normal diff=number' => [
@@ -670,7 +678,7 @@ class DifferenceEngineTest extends MediaWikiIntegrationTestCase {
 						'\(viewsourceold\).*' .
 						'<del class="diffchange diffchange-inline">no kittens</del>.*' .
 						'<ins class="diffchange diffchange-inline">one kitten</ins>.*' .
-						'<div class="mw-content-ltr mw-parser-output" lang="en" dir="ltr"><p>one kitten',
+						self::PARSER_OUTPUT_START . 'one kitten',
 				]
 			],
 			'user cannot read' => [
@@ -758,7 +766,7 @@ class DifferenceEngineTest extends MediaWikiIntegrationTestCase {
 						'\(rev-deleted-diff-view\).*' .
 						'<del class="diffchange diffchange-inline">three </del>.*' .
 						'<ins class="diffchange diffchange-inline">fnord </ins>.*' .
-						'<div class="mw-content-ltr mw-parser-output" lang="en" dir="ltr"><p>fnord kittens',
+						self::PARSER_OUTPUT_START . 'fnord kittens',
 				]
 			],
 		];

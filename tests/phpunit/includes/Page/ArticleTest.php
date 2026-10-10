@@ -68,9 +68,11 @@ class ArticleTest extends ParserCacheTestBase {
 
 		$article->showMissingArticle();
 		$output = $article->getContext()->getOutput();
+		// Compare only the text. The HTML of the legacy parser and of Parsoid
+		// is different.
 		$this->assertStringContainsString(
-			Message::newFromKey( 'uploadedimage' )->parse(),
-			$output->getHTML()
+			strip_tags( Message::newFromKey( 'uploadedimage' )->parse() ),
+			strip_tags( $output->getHTML() )
 		);
 	}
 

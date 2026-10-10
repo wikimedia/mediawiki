@@ -874,9 +874,10 @@ class HtmlOutputRendererHelperTest extends MediaWikiIntegrationTestCase {
 		} else {
 			$parserCache = $this->createNoOpMock(
 				ParserCache::class,
-				[ 'get', 'save', 'makeParserOutputKey', 'getMetadata' ]
+				[ 'get', 'getDirty', 'save', 'makeParserOutputKey', 'getMetadata' ]
 			);
 			$parserCache->method( 'get' )->willReturn( false );
+			$parserCache->method( 'getDirty' )->willReturn( false );
 			$parserCache->method( 'save' )->willReturn( null );
 			$parserCache->method( 'getMetadata' )->willReturn( null );
 			$parserCache->method( 'makeParserOutputKey' )

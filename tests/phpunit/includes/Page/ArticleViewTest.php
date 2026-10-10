@@ -789,6 +789,9 @@ class ArticleViewTest extends MediaWikiIntegrationTestCase {
 	 * hook.
 	 */
 	public function testUseParsoid() {
+		// This test changes from the legacy parser to Parsoid.
+		// The legacy parser must be the default.
+		$this->overrideConfigValue( MainConfigNames::UseParsoidParser, false );
 		// Create an appropriate test page.
 		$title = Title::makeTitle( NS_MAIN, 'UseParsoidTest' );
 		$article = new Article( $title );

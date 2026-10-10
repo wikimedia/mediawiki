@@ -68,7 +68,8 @@ class HtmlShadowOutputHelperTest extends MediaWikiIntegrationTestCase {
 		// The served document is the full document; see testGetHtml().
 		$htmlresult = $helper->getPageBundle()->html;
 
-		$this->assertStringContainsString( 'Du bist nun abgemeldet', $htmlresult );
+		// Parsoid wraps the output of a parser function in a <span>.
+		$this->assertStringContainsString( 'Du bist nun abgemeldet', strip_tags( $htmlresult ) );
 		// Check that we have a full HTML document in English
 		$this->assertStringContainsString( '<html', $htmlresult );
 		$this->assertStringContainsString( 'content="de"', $htmlresult );

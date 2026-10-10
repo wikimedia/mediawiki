@@ -312,6 +312,10 @@ class PageHTMLHandlerTest extends MediaWikiIntegrationTestCase {
 		Exception $expectedException
 	) {
 		$page = $this->getExistingTestPage( 'HtmlEndpointTestPage/with/slashes' );
+		// The page save can put Parsoid output in the parser cache. Then the
+		// handler gets the output from the cache, and does not call the mock.
+		// Disable the parser cache.
+		$this->overrideConfigValue( MainConfigNames::ParserCacheType, CACHE_NONE );
 		$request = new RequestData(
 			[ 'pathParams' => [ 'title' => $page->getTitle()->getPrefixedText() ] ]
 		);

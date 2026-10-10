@@ -252,8 +252,14 @@ class PageHandlerTest extends MediaWikiIntegrationTestCase {
 
 		$this->assertSame( $title->getPrefixedDBkey(), $data['key'] );
 		// The shadow page's message content is rendered into the HTML.
+		// Compare only the text. The HTML of the legacy parser and of Parsoid
+		// is different.
 		$msg = wfMessage( 'logouttext' )->inLanguage( 'en' )->useDatabase( false );
-		$this->assertStringContainsString( $msg->parse(), $data['html'] );
+		$normalize = static fn ( string $html ): string =>
+			trim( preg_replace( '/\s+/', ' ', strip_tags( $html ) ) );
+		$this->assertStringContainsString(
+			$normalize( $msg->parse() ), $normalize( $data['html'] )
+		);
 	}
 
 	/**

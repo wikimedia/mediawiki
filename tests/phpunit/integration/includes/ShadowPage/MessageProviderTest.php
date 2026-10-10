@@ -48,7 +48,10 @@ class MessageProviderTest extends \MediaWikiIntegrationTestCase {
 		$opt = $view->getParserOptions();
 		$this->assertNotNull( $opt );
 
-		$this->assertStringStartsWith( '<p><a href=', $out->getContentHolderText() );
+		// Parsoid puts the output in a <section> and adds attributes.
+		$this->assertMatchesRegularExpression(
+			'/^(<section[^>]*>)?<p[^>]*><a [^>]*href=/', $out->getContentHolderText()
+		);
 		$this->assertStringContainsString( 'Template:Test', $out->getContentHolderText() );
 	}
 
