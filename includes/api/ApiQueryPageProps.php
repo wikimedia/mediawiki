@@ -49,6 +49,21 @@ class ApiQueryPageProps extends ApiQueryBase {
 		$pages = $this->getPageSet()->getGoodPages();
 
 		$params = $this->extractRequestParams();
+
+		# Page properties may contain page content (e.g. the "description"
+		# property written by the Description2 extension), so only expose them
+		# for pages the current user is allowed to read. Otherwise this would
+		# bypass read restrictions such as those applied by the Lockdown
+		# extension.
+		$pages = array_filter(
+			$pages,
+			fn ( $page ) => $this->getAuthority()->authorizeRead( 'read', $page )
+		);
+		if ( count( $pages ) !== count( $this->getPageSet()->getGoodPages() ) ) {
+			# The result now depends on the current user's rights, so it must
+			# not be served by a shared cache.
+			$this->getMain()->setCacheMode( 'private' );
+		}
 		if ( $params['continue'] ) {
 			$cont = $this->parseContinueParamOrDie( $params['continue'], [ 'int' ] );
 			$continueValue = $cont[0];
