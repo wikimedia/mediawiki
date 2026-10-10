@@ -429,6 +429,14 @@ class LocalFile extends File {
 	 * Purge the file object/metadata cache
 	 */
 	public function invalidateCache() {
+		// RepoGroup::findFile() has a process cache of file existence and non-existence. Drop
+		// the entry for this file, or a later caller can get a stale result. For example, a
+		// parse of the description page before the upload caches that the file is missing.
+		$title = $this->getTitle();
+		if ( $title ) {
+			MediaWikiServices::getInstance()->getRepoGroup()->clearCache( $title );
+		}
+
 		$key = $this->getCacheKey();
 		if ( !$key ) {
 			return;
