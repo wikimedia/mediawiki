@@ -90,6 +90,7 @@ class WikitextContentHandlerIntegrationTest extends TextContentHandlerIntegratio
 				],
 				'UsedOptions' => $commonLegacyOptions,
 			],
+			'options' => [ 'useParsoid' => false ],
 		];
 		yield 'Basic render (section edit links)' => [
 			'title' => 'WikitextContentTest_testGetParserOutput',
@@ -118,6 +119,7 @@ class WikitextContentHandlerIntegrationTest extends TextContentHandlerIntegratio
 					'suppressTOC',
 				] ),
 			],
+			'options' => [ 'useParsoid' => false ],
 		];
 		yield 'Basic Parsoid render' => [
 			'title' => 'WikitextContentTest_testGetParserOutput',
@@ -277,6 +279,7 @@ class WikitextContentHandlerIntegrationTest extends TextContentHandlerIntegratio
 					],
 				],
 			],
+			'options' => [ 'useParsoid' => false ],
 		];
 	}
 
@@ -316,16 +319,25 @@ class WikitextContentHandlerIntegrationTest extends TextContentHandlerIntegratio
 		$content = $handler->makeRedirectContent( Title::newFromLinkTarget( $target ) );
 		$this->assertEquals( $expectedWT, $content->serialize() );
 
-		// Check that an appropriate redirect header was added to the
-		// ParserOutput
-		$parserOutput = $handler->getParserOutput(
-			$content,
-			new ContentParseParams( Title::newMainPage() )
-		);
-		$redirectHeader = $parserOutput->getRedirectHeader();
-		$this->assertStringContainsString( '<div class="redirectMsg"', $redirectHeader );
-		$this->assertStringContainsString( '<link rel="mw:PageProp/redirect"', $redirectHeader );
-		$this->assertMatchesRegularExpression( '!<a[^<>]+>' . $expectedTarget . '</a>!', $redirectHeader );
+		foreach ( [ false, true ] as $useParsoid ) {
+			// Check that an appropriate redirect header was added to the
+			// ParserOutput
+			$parserOptions = ParserOptions::newFromAnon();
+			$parserOptions->setUseParsoid( $useParsoid );
+			$parserOutput = $handler->getParserOutput(
+				$content,
+				new ContentParseParams( Title::newMainPage(), null, $parserOptions )
+			);
+			$redirectHeader = $parserOutput->getRedirectHeader();
+			$this->assertStringContainsString( '<div class="redirectMsg"', $redirectHeader );
+			$this->assertMatchesRegularExpression( '!<a[^<>]+>' . $expectedTarget . '</a>!', $redirectHeader );
+			// The legacy parser adds the link tag to the redirect header.
+			// Parsoid adds the link tag to the page content.
+			$this->assertStringContainsString(
+				'<link rel="mw:PageProp/redirect"',
+				$useParsoid ? $parserOutput->getContentHolderText() : $redirectHeader
+			);
+		}
 	}
 
 	public static function provideMakeRedirectContent() {

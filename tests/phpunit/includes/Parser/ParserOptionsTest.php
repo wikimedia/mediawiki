@@ -297,7 +297,22 @@ class ParserOptionsTest extends MediaWikiLangTestCase {
 				]
 			],
 
-			'Canonical options, used all non-lazy options' => [ $allUsableOptions, 'canonical', [] ],
+			'Canonical options, used all non-lazy options' => [
+				$allUsableOptions,
+				'canonical',
+				[],
+				false,
+				[ MainConfigNames::UseParsoidParser => false ],
+			],
+			'Used all non-lazy options, Parsoid is the default parser' => [
+				$allUsableOptions,
+				// The canonical value of useParsoid is false.
+				// The hash keeps the output of the two parsers apart.
+				'useParsoid=1',
+				[],
+				false,
+				[ MainConfigNames::UseParsoidParser => true ],
+			],
 			'Canonical options, nothing used, but with hooks and $wgRenderHashAppend' => [
 				[],
 				'canonical!wgRenderHashAppend!onPageRenderingHash',

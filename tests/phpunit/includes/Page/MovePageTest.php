@@ -337,6 +337,9 @@ class MovePageTest extends MediaWikiIntegrationTestCase {
 		$iwLookup = $this->createMock( InterwikiLookup::class );
 		$iwLookup->method( 'isValidInterwiki' )
 			->willReturn( true );
+		// Parsoid gets the interwiki map when it parses the page.
+		$iwLookup->method( 'getAllPrefixes' )
+			->willReturn( [] );
 
 		$this->setService( 'InterwikiLookup', $iwLookup );
 

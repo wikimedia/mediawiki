@@ -6,6 +6,7 @@ use MediaWiki\Content\JavaScriptContent;
 use MediaWiki\Content\TextContent;
 use MediaWiki\Content\WikitextContent;
 use MediaWiki\Deferred\LinksUpdate\LinksDeletionUpdate;
+use MediaWiki\MainConfigNames;
 use MediaWiki\Parser\Parser;
 use MediaWiki\Parser\ParserOptions;
 use MediaWiki\Parser\ParserOutputFlags;
@@ -272,6 +273,9 @@ just a test"
 	 * @covers \MediaWiki\Parser\ParserOptions
 	 */
 	public function testRedirectParserOption() {
+		// This test uses the InternalParseBeforeLinks hook.
+		// Only the legacy parser calls this hook.
+		$this->overrideConfigValue( MainConfigNames::UseParsoidParser, false );
 		$title = Title::makeTitle( NS_MAIN, 'TestRedirectParserOption' );
 		$contentRenderer = $this->getServiceContainer()->getContentRenderer();
 

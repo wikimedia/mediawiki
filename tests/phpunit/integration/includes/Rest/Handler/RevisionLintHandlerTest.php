@@ -46,6 +46,10 @@ class RevisionLintHandlerTest extends MediaWikiIntegrationTestCase {
 			'linting' => true
 		] );
 
+		// Create the page before you set the hook. The parser can log lints
+		// when it saves the page. This test examines only the REST request.
+		$page = $this->getExistingTestPage( 'LintEndpointTestPage/with/slashes' );
+
 		$mockHandler = $this->createMock( ParserLogLinterDataHook::class );
 		$mockHandler->expects( $this->never() )
 			->method( 'onParserLogLinterData' );
@@ -55,7 +59,6 @@ class RevisionLintHandlerTest extends MediaWikiIntegrationTestCase {
 			$mockHandler
 		);
 
-		$page = $this->getExistingTestPage( 'LintEndpointTestPage/with/slashes' );
 		$this->executeRevisionLintRequest( $page->getLatest() );
 	}
 
