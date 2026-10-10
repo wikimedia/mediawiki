@@ -18,6 +18,7 @@ use PHPUnit\Framework\MockObject\MockObject;
 use Wikimedia\Message\MessageValue;
 use Wikimedia\ObjectCache\HashBagOStuff;
 use Wikimedia\Parsoid\Core\ClientError;
+use Wikimedia\Parsoid\Core\DOMCompat;
 use Wikimedia\Parsoid\Core\ResourceLimitExceededException;
 use Wikimedia\Parsoid\Parsoid;
 use Wikimedia\Parsoid\Utils\ContentUtils;
@@ -179,7 +180,17 @@ class PageHTMLHandlerTest extends MediaWikiIntegrationTestCase {
 		$this->assertStringContainsString( 'content="de"', $htmlResponse );
 
 		$msg = wfMessage( 'logouttext' )->inLanguage( 'de' )->useDatabase( false );
-		$this->assertStringContainsString( $msg->parse(), $htmlResponse );
+
+		$textContent = static function ( string $html ): string {
+			return preg_replace(
+				'/\s+/', '',
+				DOMCompat::getBody( DOMUtils::parseHTML( $html ) )->textContent
+			);
+		};
+
+		$this->assertStringContainsString(
+			$textContent( $msg->parse() ), $textContent( $htmlResponse )
+		);
 	}
 
 	public function testExecuteWithVariant() {

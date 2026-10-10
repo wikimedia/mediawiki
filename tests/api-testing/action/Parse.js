@@ -22,7 +22,7 @@ describe( 'The parse action', () => {
 			page: pageTitle
 		} );
 
-		assert.include( result.parse.text[ '*' ], 'This is a <i>test</i>' );
+		assert.match( result.parse.text[ '*' ], /This is a <i[^>]*?>test<\/i>/ );
 		// The parsed HTML is a body fragment, not a full <html> document.
 		assert.notMatch( result.parse.text[ '*' ], /<html[\s/>]/i );
 	} );
@@ -44,7 +44,7 @@ describe( 'The parse action', () => {
 			text: 'This is another \'\'test\'\''
 		} );
 
-		assert.include( result.parse.text[ '*' ], 'another <i>test</i>' );
+		assert.match( result.parse.text[ '*' ], /another <i[^>]*>test<\/i>/ );
 	} );
 
 	describe( 'with magic words', () => {
@@ -80,7 +80,7 @@ describe( 'The parse action', () => {
 				text: 'This is {{PAGENAMEE}}'
 			} );
 
-			assert.include( result.parse.text[ '*' ], `This is ${ pageTitle }` );
+			assert.match( result.parse.text[ '*' ], new RegExp( `This is (<span[^>]*>)?${ pageTitle }(</span>)?` ) );
 		} );
 		it( 'supports {{REVISIONID}} and {{REVISIONUSER}} via parameters', async () => {
 			const result = await alice.action( 'parse', {
@@ -89,9 +89,10 @@ describe( 'The parse action', () => {
 				text: 'This is {{REVISIONID}} by {{REVISIONUSER}}'
 			} );
 
-			assert.include(
+			assert.match(
 				result.parse.text[ '*' ],
-				`This is ${ edits.pageCreation.newrevid } by ${ edits.pageCreation.param_user }`
+				new RegExp( `This is (<span[^>]*>)?${ edits.pageCreation.newrevid }(</span>)?` +
+					` by (<span[^>]*>)?${ edits.pageCreation.param_user }(</span>)?` )
 			);
 		} );
 		it( 'supports {{REVISIONID}} and {{REVISIONUSER}} of a saved revision', async () => {
@@ -105,9 +106,10 @@ describe( 'The parse action', () => {
 				page: anotherTitle
 			} );
 
-			assert.include(
+			assert.match(
 				result.parse.text[ '*' ],
-				`This is ${ anotherEdit.newrevid } by ${ anotherEdit.param_user }`
+				new RegExp( `This is (<span[^>]*>)?${ anotherEdit.newrevid }(</span>)?` +
+					` by (<span[^>]*>)?${ anotherEdit.param_user }(</span>)?` )
 			);
 		} );
 	} );
@@ -126,7 +128,7 @@ describe( 'The parse action', () => {
 				text: `Say: {{${ templateTitle }}}`
 			} );
 
-			assert.include( result.parse.text[ '*' ], 'Say: Hello world!' );
+			assert.match( result.parse.text[ '*' ], /Say: (<span[^>]*>)?Hello world!(<\/span>)?/ );
 		} );
 
 		it( 'supports positional parameters', async () => {
@@ -135,7 +137,7 @@ describe( 'The parse action', () => {
 				text: `Say: {{${ templateTitle }|you}}`
 			} );
 
-			assert.include( result.parse.text[ '*' ], 'Say: Hello you!' );
+			assert.match( result.parse.text[ '*' ], /Say: (<span[^>]*>)?Hello you!(<\/span>)?/ );
 		} );
 
 		it( 'supports named parameters', async () => {
@@ -144,7 +146,7 @@ describe( 'The parse action', () => {
 				text: `Say: {{${ templateTitle }|greeting=Ciao}}`
 			} );
 
-			assert.include( result.parse.text[ '*' ], 'Say: Ciao world!' );
+			assert.match( result.parse.text[ '*' ], /Say: (<span[^>]*>)?Ciao world!(<\/span>)?/ );
 		} );
 	} );
 
@@ -155,7 +157,10 @@ describe( 'The parse action', () => {
 				text: '{{plural:1|one|many}} or {{plural:2|one|many}}'
 			} );
 
-			assert.include( result.parse.text[ '*' ], 'one or many' );
+			assert.match(
+				result.parse.text[ '*' ],
+				/(<span[^>]*>)?one(<\/span>)? or (<span[^>]*>)?many(<\/span>)?/
+			);
 		} );
 		it( 'supports {{ns}}', async () => {
 			const result = await alice.action( 'parse', {
@@ -163,7 +168,10 @@ describe( 'The parse action', () => {
 				text: '{{ns:1}}, {{ns:2}}, {{ns:3}}'
 			} );
 
-			assert.include( result.parse.text[ '*' ], 'Talk, User, User talk' );
+			assert.match(
+				result.parse.text[ '*' ],
+				/(<span[^>]*>)?Talk(<\/span>)?, (<span[^>]*>)?User(<\/span>)?, (<span[^>]*>)?User talk(<\/span>)?/
+			);
 		} );
 		it( 'supports {{uc}} and {{lc}}', async () => {
 			const result = await alice.action( 'parse', {
@@ -171,7 +179,10 @@ describe( 'The parse action', () => {
 				text: '{{uc:Foo}} or {{lc:Foo}}'
 			} );
 
-			assert.include( result.parse.text[ '*' ], 'FOO or foo' );
+			assert.match(
+				result.parse.text[ '*' ],
+				/(<span[^>]*>)?FOO(<\/span>)? or (<span[^>]*>)?foo(<\/span>)?/
+			);
 		} );
 	} );
 

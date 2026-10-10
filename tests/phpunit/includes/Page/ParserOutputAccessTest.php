@@ -77,7 +77,9 @@ class ParserOutputAccessTest extends ParserCacheTestBase {
 			$this->assertStatusOK( $actual, 'isOK' );
 		}
 
-		$this->assertStringContainsString( $needle, $this->getHtml( $actual, $postproc ), $msg );
+		$this->assertMatchesRegularExpression(
+			'#' . $needle . '#', $this->getHtml( $actual, $postproc ), $msg
+		);
 	}
 
 	private function assertSameHtml( $expected, $actual, $msg = '', $postproc = true ) {
@@ -361,7 +363,7 @@ class ParserOutputAccessTest extends ParserCacheTestBase {
 
 		/** @var ParserOutput $output */
 		$output = $status->getValue();
-		$this->assertContainsHtml( 'Hello <i>World</i>!', $output->getContentHolderText() );
+		$this->assertContainsHtml( 'Hello <i[^>]*>World</i>!', $output->getContentHolderText() );
 
 		$this->assertStatsKeyContains( '#case:current' );
 		$this->assertStatsKeyContains( '#pool:none', 'Should count direct render' );
@@ -441,7 +443,7 @@ class ParserOutputAccessTest extends ParserCacheTestBase {
 			null,
 			[ ParserOutputAccess::OPT_POOL_COUNTER => ParserOutputAccess::POOL_COUNTER_ARTICLE_VIEW ]
 		);
-		$this->assertContainsHtml( 'Hello <i>World</i>!', $status );
+		$this->assertContainsHtml( 'Hello <i[^>]*>World</i>!', $status );
 
 		$this->assertStatsKeyContains( '#case:current' );
 		$this->assertStatsKeyContains( '#cache:primary,reason:miss,type:miss' );
@@ -465,7 +467,7 @@ class ParserOutputAccessTest extends ParserCacheTestBase {
 		// With ParserOutputAccess::OPT_LINKS_UPDATE WikiPage::triggerOpportunisticLinksUpdate can be called
 		$this->installOpportunisticUpdateHook( true );
 		$status = $access->getParserOutput( $page, $parserOptions, null, ParserOutputAccess::OPT_LINKS_UPDATE );
-		$this->assertContainsHtml( 'Hello <i>World</i>!', $status );
+		$this->assertContainsHtml( 'Hello <i[^>]*>World</i>!', $status );
 	}
 
 	/**
@@ -490,7 +492,7 @@ class ParserOutputAccessTest extends ParserCacheTestBase {
 			// keep bitmap form of options, so we keep testing that
 			ParserOutputAccess::OPT_LINKS_UPDATE | ParserOutputAccess::OPT_FOR_ARTICLE_VIEW
 		);
-		$this->assertContainsHtml( 'Hello <i>World</i>!', $status );
+		$this->assertContainsHtml( 'Hello <i[^>]*>World</i>!', $status );
 	}
 
 	/**
@@ -509,7 +511,7 @@ class ParserOutputAccessTest extends ParserCacheTestBase {
 
 		// The second call should use cached output
 		$status = $access->getParserOutput( $page, $parserOptions );
-		$this->assertContainsHtml( 'Hello <i>World</i>!', $status );
+		$this->assertContainsHtml( 'Hello <i[^>]*>World</i>!', $status );
 
 		$this->assertStatsKeyNotContains( 'parseroutputaccess_render_total' );
 	}
@@ -537,7 +539,7 @@ class ParserOutputAccessTest extends ParserCacheTestBase {
 			[ ParserOutputAccess::OPT_FORCE_PARSE => true ]
 		);
 		$this->assertNotSameHtml( $cachedOutput, $status );
-		$this->assertContainsHtml( 'Hello <i>World</i>!', $status );
+		$this->assertContainsHtml( 'Hello <i[^>]*>World</i>!', $status );
 
 		$this->assertStatsKeyContains( 'mediawiki.parseroutputaccess_render_total:1|c|#pool:none,cache:none' );
 		$this->assertStatsKeyNotContains( 'mediawiki.parseroutputaccess_render_total:1|c|#pool:articleview,cache:primary' );
@@ -590,13 +592,13 @@ class ParserOutputAccessTest extends ParserCacheTestBase {
 		$access->getParserOutput( $page, $parserOptions );
 		$output = $access->getCachedParserOutput( $page, $parserOptions );
 		$this->assertNotNull( $output );
-		$this->assertContainsHtml( 'Hello <i>World</i> second!', $output );
+		$this->assertContainsHtml( 'Hello <i[^>]*>World</i> second!', $output );
 
 		// get first revision output
 		$access->getParserOutput( $page, $parserOptions, $firstRev );
 		$output = $access->getCachedParserOutput( $page, $parserOptions, $firstRev );
 		$this->assertNotNull( $output );
-		$this->assertContainsHtml( 'Hello <i>World</i> first!', $output );
+		$this->assertContainsHtml( 'Hello <i[^>]*>World</i> first!', $output );
 	}
 
 	public function testGetCachedParserOutputForObsoleteParsoidVersion() {
@@ -1176,6 +1178,7 @@ class ParserOutputAccessTest extends ParserCacheTestBase {
 			'parserCacheFactory' => $parserCacheFactory
 		] );
 		$parserOptions0 = $this->getParserOptions();
+		$parserOptions0->setUseParsoid( false );
 		$page = $this->getNonexistingTestPage( __METHOD__ );
 		$output = $access->getCachedParserOutput( $page, $parserOptions0 );
 		$this->assertNull( $output );
@@ -1233,6 +1236,7 @@ class ParserOutputAccessTest extends ParserCacheTestBase {
 		$secondRev = $this->editPage( $page, 'Second __NOTOC__' )->getNewRevision();
 
 		$parserOptions0 = $this->getParserOptions();
+		$parserOptions0->setUseParsoid( false );
 		$status = $access->getParserOutput( $page, $parserOptions0, $firstRev );
 		$this->assertContainsHtml( 'First', $status );
 		// Check that we used the "not parsoid" revision cache
@@ -1280,6 +1284,7 @@ class ParserOutputAccessTest extends ParserCacheTestBase {
 			'parserCacheFactory' => $parserCacheFactory
 		] );
 		$parserOptions0 = $this->getParserOptions();
+		$parserOptions0->setUseParsoid( false );
 		$page = $this->getNonexistingTestPage( __METHOD__ );
 		$output = $access->getCachedParserOutput( $page, $parserOptions0 );
 		$this->assertNull( $output );
@@ -1287,6 +1292,7 @@ class ParserOutputAccessTest extends ParserCacheTestBase {
 		$this->assertCount( 1, $calls );
 
 		$parserOptions1 = $this->getParserOptions();
+		$parserOptions1->setUseParsoid( false );
 		$parserOptions1->enablePostproc();
 		$output = $access->getCachedParserOutput( $page, $parserOptions1 );
 		$this->assertNull( $output );
@@ -1759,6 +1765,7 @@ class ParserOutputAccessTest extends ParserCacheTestBase {
 		] );
 
 		$parserOptions = $this->getParserOptions();
+		$parserOptions->setUseParsoid( false );
 		$page = $this->getExistingTestPage( __METHOD__ );
 
 		// get from the legacy non-postprocessed cache
@@ -1768,6 +1775,7 @@ class ParserOutputAccessTest extends ParserCacheTestBase {
 		$parsoidParserOptions = $this->getParserOptions();
 		$parsoidParserOptions->setUseParsoid();
 		$postprocParserOptions = $this->getParserOptions();
+		$postprocParserOptions->setUseParsoid( false );
 		$postprocParserOptions->enablePostproc();
 
 		// parsoid cache and postproc cache still null

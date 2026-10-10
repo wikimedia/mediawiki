@@ -30,6 +30,6 @@ describe( 'Testing undo functionality', () => {
 	it( 'should confirm undo action', async () => {
 		const html = await alice.getHtml( title );
 
-		assert.match( html, /<p>Undo Page\n<\/p><p>Foo\n<\/p><p>Bar\n<\/p>/ );
+		assert.match( html, /<p[^>]*>Undo Page\s*<\/p>\s*<p[^>]*>Foo\s*<\/p>\s*<p[^>]*>Bar\s*<\/p>/ );
 	} );
 } );

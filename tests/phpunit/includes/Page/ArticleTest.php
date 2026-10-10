@@ -182,6 +182,8 @@ class ArticleTest extends ParserCacheTestBase {
 			MainConfigNames::ParsoidCacheConfig,
 			MainConfigSchema::getDefaultValue( MainConfigNames::ParsoidCacheConfig )
 		);
+		// Legacy string used in constructing the ParserOutput
+		$this->overrideConfigValue( MainConfigNames::UseParsoidParser, false );
 		$title = $this->getExistingTestPage()->getTitle();
 		// Run any jobs enqueued by the creation of the test page
 		$this->runJobs( [ 'minJobs' => 0 ] );
@@ -210,7 +212,10 @@ class ArticleTest extends ParserCacheTestBase {
 					return true;
 				} )
 			)
-			->willReturn( Status::newGood( new ParserOutput( 'Kittens' ) ) );
+			->willReturn(
+				// This creates a legacy content holder from a legacy string
+				Status::newGood( new ParserOutput( 'Kittens' )
+			) );
 
 		$this->setService( 'ParserOutputAccess', $parserOutputAccess );
 

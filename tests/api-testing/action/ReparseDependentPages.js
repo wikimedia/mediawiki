@@ -17,8 +17,7 @@ describe( 'Reparse of dependent pages', () => {
 		await alice.edit( title, { text: `{{${ template }}} [[${ link }]]`, createonly: true } );
 
 		const html = await alice.getHtml( title );
-
-		assert.match( html, new RegExp( `title=Template:${ template }&amp;action=edit&amp;redlink=1` ) );
+		assert.match( html, new RegExp( `title=Template(:|%3A)${ template }&amp;action=edit&amp;redlink=1` ) );
 		assert.match( html, new RegExp( `title=${ link }&amp;action=edit&amp;redlink=1` ) );
 	} );
 

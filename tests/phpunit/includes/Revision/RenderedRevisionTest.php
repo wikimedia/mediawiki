@@ -18,6 +18,7 @@ use MediaWiki\Revision\MutableRevisionSlots;
 use MediaWiki\Revision\RenderedRevision;
 use MediaWiki\Revision\RevisionArchiveRecord;
 use MediaWiki\Revision\RevisionRecord;
+use MediaWiki\Revision\RevisionStore;
 use MediaWiki\Revision\RevisionStoreRecord;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Revision\SuppressedDataException;
@@ -146,6 +147,16 @@ class RenderedRevisionTest extends MediaWikiIntegrationTestCase {
 			$mockAccess->mSlots->setContent( $role, $cnt );
 		}
 
+		if ( $id !== null ) {
+			$store = $this->createMock( RevisionStore::class );
+			$store
+				->method( 'getRevisionById' )
+				->willReturnCallback( static function ( int $mockId ) use ( $mock, $id ) {
+					return ( $mockId === $id ) ? $mock : null;
+				} );
+			$this->setService( 'RevisionStore', $store );
+		}
+
 		return $mock;
 	}
 
@@ -190,9 +201,9 @@ class RenderedRevisionTest extends MediaWikiIntegrationTestCase {
 
 		$html = $rr->getRevisionParserOutput()->getContentHolderText();
 
-		$this->assertStringContainsString( 'page:RenderTestPage!', $html );
-		$this->assertStringContainsString( 'user:Frank!', $html );
-		$this->assertStringContainsString( 'time:20180101000003!', $html );
+		$this->assertMatchesRegularExpression( '/page:(<span[^>]*>)?RenderTestPage(<\/span>)?!/', $html );
+		$this->assertMatchesRegularExpression( '/user:(<span[^>]*>)?Frank(<\/span>)?!/', $html );
+		$this->assertMatchesRegularExpression( '/time:(<span[^>]*>)?20180101000003(<\/span>)?!/', $html );
 	}
 
 	public function testGetRevisionParserOutput_previewWithSelfTransclusion() {
@@ -216,7 +227,10 @@ class RenderedRevisionTest extends MediaWikiIntegrationTestCase {
 		);
 
 		$html = $rr->getRevisionParserOutput()->getContentHolderText();
-		$this->assertStringContainsString( '(ONE)#(ONE)(TWO)#', $html );
+		$this->assertMatchesRegularExpression(
+			'/\(ONE\)(<meta[^>]*>)*#(<span[^>]*>)?\(ONE\)\(TWO\)(<\/span>)?#/',
+			preg_replace( "/ data-mw='[^']*\\\\?'/u", '', $html )
+		);
 	}
 
 	public function testGetRevisionParserOutput_current() {
@@ -241,10 +255,10 @@ class RenderedRevisionTest extends MediaWikiIntegrationTestCase {
 
 		$html = $rr->getRevisionParserOutput()->getContentHolderText();
 
-		$this->assertStringContainsString( 'page:RenderTestPage!', $html );
-		$this->assertStringContainsString( 'rev:21!', $html );
-		$this->assertStringContainsString( 'user:Frank!', $html );
-		$this->assertStringContainsString( 'time:20180101000003!', $html );
+		$this->assertMatchesRegularExpression( '/page:(<span[^>]*>)?RenderTestPage(<\/span>)?!/', $html );
+		$this->assertMatchesRegularExpression( '/rev:(<span[^>]*>)?21(<\/span>)?!/', $html );
+		$this->assertMatchesRegularExpression( '/user:(<span[^>]*>)?Frank(<\/span>)?!/', $html );
+		$this->assertMatchesRegularExpression( '/time:(<span[^>]*>)?20180101000003(<\/span>)?!/', $html );
 
 		$this->assertSame( $html, $rr->getSlotParserOutput( SlotRecord::MAIN )->getContentHolderText() );
 	}
@@ -271,10 +285,10 @@ class RenderedRevisionTest extends MediaWikiIntegrationTestCase {
 
 		$html = $rr->getRevisionParserOutput()->getContentHolderText();
 
-		$this->assertStringContainsString( 'page:RenderTestPage!', $html );
-		$this->assertStringContainsString( 'rev:11!', $html );
-		$this->assertStringContainsString( 'user:Frank!', $html );
-		$this->assertStringContainsString( 'time:20180101000003!', $html );
+		$this->assertMatchesRegularExpression( '/page:(<span[^>]*>)?RenderTestPage(<\/span>)?!/', $html );
+		$this->assertMatchesRegularExpression( '/rev:(<span[^>]*>)?11(<\/span>)?!/', $html );
+		$this->assertMatchesRegularExpression( '/user:(<span[^>]*>)?Frank(<\/span>)?!/', $html );
+		$this->assertMatchesRegularExpression( '/time:(<span[^>]*>)?20180101000003(<\/span>)?!/', $html );
 
 		$this->assertSame( $html, $rr->getSlotParserOutput( SlotRecord::MAIN )->getContentHolderText() );
 	}
@@ -302,10 +316,10 @@ class RenderedRevisionTest extends MediaWikiIntegrationTestCase {
 
 		$html = $rr->getRevisionParserOutput()->getContentHolderText();
 
-		$this->assertStringContainsString( 'page:RenderTestPage!', $html );
-		$this->assertStringContainsString( 'rev:11!', $html );
-		$this->assertStringContainsString( 'user:Frank!', $html );
-		$this->assertStringContainsString( 'time:20180101000003!', $html );
+		$this->assertMatchesRegularExpression( '/page:(<span[^>]*>)?RenderTestPage(<\/span>)?!/', $html );
+		$this->assertMatchesRegularExpression( '/rev:(<span[^>]*>)?11(<\/span>)?!/', $html );
+		$this->assertMatchesRegularExpression( '/user:(<span[^>]*>)?Frank(<\/span>)?!/', $html );
+		$this->assertMatchesRegularExpression( '/time:(<span[^>]*>)?20180101000003(<\/span>)?!/', $html );
 
 		$this->assertSame( $html, $rr->getSlotParserOutput( SlotRecord::MAIN )->getContentHolderText() );
 	}
@@ -356,10 +370,10 @@ class RenderedRevisionTest extends MediaWikiIntegrationTestCase {
 		$html = $rr->getRevisionParserOutput()->getContentHolderText();
 
 		// Suppressed content should be visible for sysops
-		$this->assertStringContainsString( 'page:RenderTestPage!', $html );
-		$this->assertStringContainsString( 'rev:11!', $html );
-		$this->assertStringContainsString( 'user:Frank!', $html );
-		$this->assertStringContainsString( 'time:20180101000003!', $html );
+		$this->assertMatchesRegularExpression( '/page:(<span[^>]*>)?RenderTestPage(<\/span>)?!/', $html );
+		$this->assertMatchesRegularExpression( '/rev:(<span[^>]*>)?11(<\/span>)?!/', $html );
+		$this->assertMatchesRegularExpression( '/user:(<span[^>]*>)?Frank(<\/span>)?!/', $html );
+		$this->assertMatchesRegularExpression( '/time:(<span[^>]*>)?20180101000003(<\/span>)?!/', $html );
 
 		$this->assertSame( $html, $rr->getSlotParserOutput( SlotRecord::MAIN )->getContentHolderText() );
 	}
@@ -389,10 +403,10 @@ class RenderedRevisionTest extends MediaWikiIntegrationTestCase {
 		$html = $rr->getRevisionParserOutput()->getContentHolderText();
 
 		// Suppressed content should be visible for sysops
-		$this->assertStringContainsString( 'page:RenderTestPage!', $html );
-		$this->assertStringContainsString( 'rev:11!', $html );
-		$this->assertStringContainsString( 'user:Frank!', $html );
-		$this->assertStringContainsString( 'time:20180101000003!', $html );
+		$this->assertMatchesRegularExpression( '/page:(<span[^>]*>)?RenderTestPage(<\/span>)?!/', $html );
+		$this->assertMatchesRegularExpression( '/rev:(<span[^>]*>)?11(<\/span>)?!/', $html );
+		$this->assertMatchesRegularExpression( '/user:(<span[^>]*>)?Frank(<\/span>)?!/', $html );
+		$this->assertMatchesRegularExpression( '/time:(<span[^>]*>)?20180101000003(<\/span>)?!/', $html );
 
 		$this->assertSame( $html, $rr->getSlotParserOutput( SlotRecord::MAIN )->getContentHolderText() );
 	}
@@ -471,13 +485,13 @@ class RenderedRevisionTest extends MediaWikiIntegrationTestCase {
 		// USeful for fake
 		$html = $rr->getRevisionParserOutput()->getContentHolderText();
 
-		$this->assertStringContainsString( 'page:RenderTestPage!', $html );
-		$this->assertStringContainsString( 'rev:!', $html );
-		$this->assertStringContainsString( 'user:!', $html );
+		$this->assertMatchesRegularExpression( '/page:(<span[^>]*>)?RenderTestPage(<\/span>)?!/', $html );
+		$this->assertMatchesRegularExpression( '/rev:(<span[^>]*>)?(<\/span>)?!/', $html );
+		$this->assertMatchesRegularExpression( '/user:(<span[^>]*>)?(<\/span>)?!/', $html );
 		// Per parser docs, if revision object does not contain a timestamp
 		// then parser uses current time. Hence don't expect time to be
 		// empty or a specific time.
-		$this->assertStringContainsString( 'time:2', $html );
+		$this->assertMatchesRegularExpression( '/time:(<span[^>]*>)?2/', $html );
 	}
 
 	public function testSetRevisionParserOutput() {
@@ -494,7 +508,11 @@ class RenderedRevisionTest extends MediaWikiIntegrationTestCase {
 			$this->combinerCallback
 		);
 
+		// This creates a legacy content holder from a legacy string
 		$output = new ParserOutput( 'Kittens' );
+		// Match the content holder
+		$options->setUseParsoid( false );
+
 		$rr->setRevisionParserOutput( $output );
 
 		$this->assertSame( $output, $rr->getRevisionParserOutput() );
@@ -548,6 +566,9 @@ class RenderedRevisionTest extends MediaWikiIntegrationTestCase {
 	public function testUpdateRevision() {
 		$page = PageIdentityValue::localIdentity( 7, NS_MAIN, 'RenderTestPage' );
 
+		$store = $this->createMock( RevisionStore::class );
+		$this->setService( 'RevisionStore', $store );
+
 		$text = "";
 		$text .= "* page:{{PAGENAME}}!\n";
 		$text .= "* rev:{{REVISIONID}}!\n";
@@ -578,6 +599,12 @@ class RenderedRevisionTest extends MediaWikiIntegrationTestCase {
 
 		$rr->updateRevision( $savedRev );
 
+		$store
+			->method( 'getRevisionById' )
+			->willReturnCallback( static function ( int $id ) use ( $savedRev ) {
+				return ( $id === 23 ) ? $savedRev : null;
+			} );
+
 		$this->assertNotSame( $mainOutput, $rr->getSlotParserOutput( SlotRecord::MAIN ), 'Reset main' );
 		$this->assertSame( $auxOutput, $rr->getSlotParserOutput( 'aux' ), 'Keep aux' );
 
@@ -585,10 +612,10 @@ class RenderedRevisionTest extends MediaWikiIntegrationTestCase {
 		$html = $updatedOutput->getContentHolderText();
 
 		$this->assertNotSame( $firstOutput, $updatedOutput, 'Reset merged' );
-		$this->assertStringContainsString( 'page:RenderTestPage!', $html );
-		$this->assertStringContainsString( 'rev:23!', $html );
-		$this->assertStringContainsString( 'user:Frank!', $html );
-		$this->assertStringContainsString( 'time:20180101000003!', $html );
+		$this->assertMatchesRegularExpression( '/page:(<span[^>]*>)?RenderTestPage(<\/span>)?!/', $html );
+		$this->assertMatchesRegularExpression( '/rev:(<span[^>]*>)?23(<\/span>)?!/', $html );
+		$this->assertMatchesRegularExpression( '/user:(<span[^>]*>)?Frank(<\/span>)?!/', $html );
+		$this->assertMatchesRegularExpression( '/time:(<span[^>]*>)?20180101000003(<\/span>)?!/', $html );
 		$this->assertStringContainsString( 'Goats', $html );
 
 		$rr->updateRevision( $savedRev ); // should do nothing

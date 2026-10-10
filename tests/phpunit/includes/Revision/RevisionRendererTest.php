@@ -21,6 +21,7 @@ use MediaWiki\Revision\MainSlotRoleHandler;
 use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionRenderer;
+use MediaWiki\Revision\RevisionStore;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Revision\SlotRoleRegistry;
 use MediaWiki\Storage\NameTableStore;
@@ -141,6 +142,14 @@ class RevisionRendererTest extends MediaWikiIntegrationTestCase {
 			->setTimestamp( '20180101000003' )
 			->setComment( CommentStoreComment::newUnsavedComment( '' ) );
 
+		$store = $this->createMock( RevisionStore::class );
+		$store
+			->method( 'getRevisionById' )
+			->willReturnCallback( static function ( int $id ) use ( $rev ) {
+				return ( $id === 9 ) ? $rev : null;
+			} );
+		$this->setService( 'RevisionStore', $store );
+
 		$options = ParserOptions::newFromAnon();
 		$rr = $renderer->getRenderedRevision( $rev, $options );
 
@@ -151,10 +160,10 @@ class RevisionRendererTest extends MediaWikiIntegrationTestCase {
 
 		$html = $rr->getRevisionParserOutput()->getContentHolderText();
 
-		$this->assertStringContainsString( 'page:' . __CLASS__, $html );
-		$this->assertStringContainsString( 'rev:101', $html ); // from speculativeRevIdCallback
-		$this->assertStringContainsString( 'user:Frank', $html );
-		$this->assertStringContainsString( 'time:20180101000003', $html );
+		$this->assertMatchesRegularExpression( '/page:(<span[^>]*>)?' . preg_quote( __CLASS__ ) . '/', $html );
+		$this->assertMatchesRegularExpression( '/rev:(<span[^>]*>)?101/', $html ); // from speculativeRevIdCallback
+		$this->assertMatchesRegularExpression( '/user:(<span[^>]*>)?Frank/', $html );
+		$this->assertMatchesRegularExpression( '/time:(<span[^>]*>)?20180101000003/', $html );
 
 		$this->assertSame( $html, $rr->getSlotParserOutput( SlotRecord::MAIN )->getContentHolderText() );
 	}
@@ -174,6 +183,14 @@ class RevisionRendererTest extends MediaWikiIntegrationTestCase {
 			->setTimestamp( '20180101000003' )
 			->setComment( CommentStoreComment::newUnsavedComment( '' ) );
 
+		$store = $this->createMock( RevisionStore::class );
+		$store
+			->method( 'getRevisionById' )
+			->willReturnCallback( static function ( int $id ) use ( $rev ) {
+				return ( $id === 21 ) ? $rev : null;
+			} );
+		$this->setService( 'RevisionStore', $store );
+
 		$options = ParserOptions::newFromAnon();
 		$rr = $renderer->getRenderedRevision( $rev, $options );
 
@@ -184,10 +201,10 @@ class RevisionRendererTest extends MediaWikiIntegrationTestCase {
 
 		$html = $rr->getRevisionParserOutput()->getContentHolderText();
 
-		$this->assertStringContainsString( 'page:' . __CLASS__, $html );
-		$this->assertStringContainsString( 'rev:21', $html );
-		$this->assertStringContainsString( 'user:Frank', $html );
-		$this->assertStringContainsString( 'time:20180101000003', $html );
+		$this->assertMatchesRegularExpression( '/page:(<span[^>]*>)?' . preg_quote( __CLASS__ ) . '/', $html );
+		$this->assertMatchesRegularExpression( '/rev:(<span[^>]*>)?21/', $html );
+		$this->assertMatchesRegularExpression( '/user:(<span[^>]*>)?Frank/', $html );
+		$this->assertMatchesRegularExpression( '/time:(<span[^>]*>)?20180101000003/', $html );
 
 		$this->assertSame( $html, $rr->getSlotParserOutput( SlotRecord::MAIN )->getContentHolderText() );
 	}
@@ -207,6 +224,14 @@ class RevisionRendererTest extends MediaWikiIntegrationTestCase {
 			->setTimestamp( '20180101000003' )
 			->setComment( CommentStoreComment::newUnsavedComment( '' ) );
 
+		$store = $this->createMock( RevisionStore::class );
+		$store
+			->method( 'getRevisionById' )
+			->willReturnCallback( static function ( int $id ) use ( $rev ) {
+				return ( $id === 21 ) ? $rev : null;
+			} );
+		$this->setService( 'RevisionStore', $store );
+
 		$options = ParserOptions::newFromAnon();
 		$rr = $renderer->getRenderedRevision( $rev, $options, null, [ 'use-master' => true ] );
 
@@ -214,7 +239,7 @@ class RevisionRendererTest extends MediaWikiIntegrationTestCase {
 
 		$html = $rr->getRevisionParserOutput()->getContentHolderText();
 
-		$this->assertStringContainsString( 'rev:21', $html );
+		$this->assertMatchesRegularExpression( '/rev:(<span[^>]*>)?21/', $html );
 
 		$this->assertSame( $html, $rr->getSlotParserOutput( SlotRecord::MAIN )->getContentHolderText() );
 	}
@@ -229,9 +254,13 @@ class RevisionRendererTest extends MediaWikiIntegrationTestCase {
 			->setTimestamp( '20180101000003' )
 			->setComment( CommentStoreComment::newUnsavedComment( '' ) );
 
+		// This creates legacy a content holder from a legacy string
 		$output = new ParserOutput( 'cached text' );
 
 		$options = ParserOptions::newFromAnon();
+		// Match the content holder
+		$options->setUseParsoid( false );
+
 		$rr = $renderer->getRenderedRevision(
 			$rev,
 			$options,
@@ -259,6 +288,14 @@ class RevisionRendererTest extends MediaWikiIntegrationTestCase {
 			->setTimestamp( '20180101000003' )
 			->setComment( CommentStoreComment::newUnsavedComment( '' ) );
 
+		$store = $this->createMock( RevisionStore::class );
+		$store
+			->method( 'getRevisionById' )
+			->willReturnCallback( static function ( int $id ) use ( $rev ) {
+				return ( $id === 11 ) ? $rev : null;
+			} );
+		$this->setService( 'RevisionStore', $store );
+
 		$options = ParserOptions::newFromAnon();
 		$rr = $renderer->getRenderedRevision( $rev, $options );
 
@@ -269,10 +306,10 @@ class RevisionRendererTest extends MediaWikiIntegrationTestCase {
 
 		$html = $rr->getRevisionParserOutput()->getContentHolderText();
 
-		$this->assertStringContainsString( 'page:' . __CLASS__, $html );
-		$this->assertStringContainsString( 'rev:11', $html );
-		$this->assertStringContainsString( 'user:Frank', $html );
-		$this->assertStringContainsString( 'time:20180101000003', $html );
+		$this->assertMatchesRegularExpression( '/page:(<span[^>]*>)?' . preg_quote( __CLASS__ ) . '/', $html );
+		$this->assertMatchesRegularExpression( '/rev:(<span[^>]*>)?11/', $html );
+		$this->assertMatchesRegularExpression( '/user:(<span[^>]*>)?Frank/', $html );
+		$this->assertMatchesRegularExpression( '/time:(<span[^>]*>)?20180101000003/', $html );
 
 		$this->assertSame( $html, $rr->getSlotParserOutput( SlotRecord::MAIN )->getContentHolderText() );
 	}
@@ -315,6 +352,14 @@ class RevisionRendererTest extends MediaWikiIntegrationTestCase {
 			->setTimestamp( '20180101000003' )
 			->setComment( CommentStoreComment::newUnsavedComment( '' ) );
 
+		$store = $this->createMock( RevisionStore::class );
+		$store
+			->method( 'getRevisionById' )
+			->willReturnCallback( static function ( int $id ) use ( $rev ) {
+				return ( $id === 11 ) ? $rev : null;
+			} );
+		$this->setService( 'RevisionStore', $store );
+
 		$options = ParserOptions::newFromAnon();
 		$sysop = $this->mockRegisteredUltimateAuthority();
 		$rr = $renderer->getRenderedRevision( $rev, $options, $sysop );
@@ -328,10 +373,10 @@ class RevisionRendererTest extends MediaWikiIntegrationTestCase {
 		$html = $rr->getRevisionParserOutput()->getContentHolderText();
 
 		// Suppressed content should be visible for sysops
-		$this->assertStringContainsString( 'page:' . __CLASS__, $html );
-		$this->assertStringContainsString( 'rev:11', $html );
-		$this->assertStringContainsString( 'user:Frank', $html );
-		$this->assertStringContainsString( 'time:20180101000003', $html );
+		$this->assertMatchesRegularExpression( '/page:(<span[^>]*>)?' . preg_quote( __CLASS__ ) . '/', $html );
+		$this->assertMatchesRegularExpression( '/rev:(<span[^>]*>)?11/', $html );
+		$this->assertMatchesRegularExpression( '/user:(<span[^>]*>)?Frank/', $html );
+		$this->assertMatchesRegularExpression( '/time:(<span[^>]*>)?20180101000003/', $html );
 
 		$this->assertSame( $html, $rr->getSlotParserOutput( SlotRecord::MAIN )->getContentHolderText() );
 	}
@@ -351,6 +396,14 @@ class RevisionRendererTest extends MediaWikiIntegrationTestCase {
 			->setUser( new UserIdentityValue( 9, 'Frank' ) )
 			->setTimestamp( '20180101000003' )
 			->setComment( CommentStoreComment::newUnsavedComment( '' ) );
+
+		$store = $this->createMock( RevisionStore::class );
+		$store
+			->method( 'getRevisionById' )
+			->willReturnCallback( static function ( int $id ) use ( $rev ) {
+				return ( $id === 11 ) ? $rev : null;
+			} );
+		$this->setService( 'RevisionStore', $store );
 
 		$options = ParserOptions::newFromAnon();
 		$rr = $renderer->getRenderedRevision(
@@ -373,10 +426,10 @@ class RevisionRendererTest extends MediaWikiIntegrationTestCase {
 		$html = $parserOutput->getContentHolderText();
 
 		// Suppressed content should be visible in raw mode
-		$this->assertStringContainsString( 'page:' . __CLASS__, $html );
-		$this->assertStringContainsString( 'rev:11', $html );
-		$this->assertStringContainsString( 'user:Frank', $html );
-		$this->assertStringContainsString( 'time:20180101000003', $html );
+		$this->assertMatchesRegularExpression( '/page:(<span[^>]*>)?' . preg_quote( __CLASS__ ) . '/', $html );
+		$this->assertMatchesRegularExpression( '/rev:(<span[^>]*>)?11/', $html );
+		$this->assertMatchesRegularExpression( '/user:(<span[^>]*>)?Frank/', $html );
+		$this->assertMatchesRegularExpression( '/time:(<span[^>]*>)?20180101000003/', $html );
 
 		$this->assertSame( $html, $rr->getSlotParserOutput( SlotRecord::MAIN )->getContentHolderText() );
 	}
@@ -388,7 +441,7 @@ class RevisionRendererTest extends MediaWikiIntegrationTestCase {
 			->setUser( new UserIdentityValue( 9, 'Frank' ) )
 			->setTimestamp( '20180101000003' )
 			->setComment( CommentStoreComment::newUnsavedComment( '' ) )
-			->setContent( 'aux', new WikitextContent( '[[Goats]]' ) );
+			->setContent( 'aux', new JavaScriptContent( '[[Goats]]' ) );
 
 		$options = ParserOptions::newFromAnon();
 		$rr = $renderer->getRenderedRevision( $rev, $options );
@@ -420,7 +473,11 @@ class RevisionRendererTest extends MediaWikiIntegrationTestCase {
 
 		// make sure output wrapping works right
 		$this->assertStringContainsString( 'class="mw-content-ltr mw-parser-output"', $mainHtml );
-		$this->assertStringContainsString( 'class="mw-content-ltr mw-parser-output"', $auxHtml );
+		// The aux slot holds JavaScript. JavaScriptContentHandler removes the wrapper div and
+		// adds the mw-js class. The remainder of the markup comes from the syntax highlighter,
+		// which an extension can replace. Do not test for it here.
+		$this->assertStringContainsString( 'mw-js', $auxHtml );
+		$this->assertStringNotContainsString( 'mw-parser-output', $auxHtml );
 		$this->assertStringContainsString( 'class="mw-content-ltr mw-parser-output"', $combinedHtml );
 
 		// there should be only one wrapper div
