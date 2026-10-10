@@ -19,9 +19,7 @@ Generate a local configuration by running `composer phpunit:config`
 		 beStrictAboutTestsThatDoNotTestAnything="true"
 		 beStrictAboutOutputDuringTests="true"
 		 verbose="false"
-		 printerClass="MediaWikiPHPUnitResultPrinter"
-		 stderr="true">
-	<!-- Output only to stderr to avoid "Headers already sent" problems -->
+		 printerClass="MediaWikiPHPUnitResultPrinter">
 	<php>
 		<ini name="memory_limit" value="-1" />
 		<ini name="max_execution_time" value="0" />
@@ -90,9 +88,6 @@ Generate a local configuration by running `composer phpunit:config`
 					</element>
 					<element key="maximum-count">
 						<integer>10</integer>
-					</element>
-					<element key="stderr">
-						<boolean>true</boolean>
 					</element>
 					<element key="maximum-width">
 						<string>160</string>

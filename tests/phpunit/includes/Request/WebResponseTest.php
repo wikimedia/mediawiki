@@ -42,6 +42,12 @@ class WebResponseTest extends MediaWikiIntegrationTestCase {
 		);
 	}
 
+	/**
+	 * @phpcs:disable
+	 * @runInSeparateProcess
+	 * @preserveGlobalState disabled
+	 * @phpcs:enable
+	 */
 	public function testStatusCode() {
 		$scopedEnable = HttpHeader::enableForTest();
 		$response = new WebResponse();

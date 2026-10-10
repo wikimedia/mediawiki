@@ -930,7 +930,10 @@ class OutputPage extends ContextSource {
 		# Not modified
 		# Give a 304 Not Modified response code and disable body output
 		wfDebug( __METHOD__ . ": NOT MODIFIED, $info", 'private' );
-		ini_set( 'zlib.output_compression', 0 );
+		if ( !defined( 'MW_PHPUNIT_TEST' ) ) {
+			// Avoid "headers already sent" warnings in tests.
+			ini_set( 'zlib.output_compression', 0 );
+		}
 		$this->getRequest()->response()->statusHeader( 304 );
 		$this->sendCacheControl();
 		$this->disable();

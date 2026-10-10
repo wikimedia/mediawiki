@@ -18,6 +18,12 @@ class HttpHeaderTest extends MediaWikiUnitTestCase {
 		$this->assertNotSame( $statusCode, http_response_code() );
 	}
 
+	/**
+	 * @phpcs:disable
+	 * @runInSeparateProcess
+	 * @preserveGlobalState disabled
+	 * @phpcs:enable
+	 */
 	public function testSendHeader__scopedEnable() {
 		$firstCode = 666;
 
