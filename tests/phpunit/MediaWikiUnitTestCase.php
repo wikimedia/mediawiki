@@ -88,6 +88,11 @@ abstract class MediaWikiUnitTestCase extends TestCase {
 		// variable. Thus we have to modify it in place.
 		self::$originalGlobals = [];
 		foreach ( $GLOBALS as $key => $_ ) {
+			if ( $key !== 'IP' && !str_starts_with( $key, 'wg' ) && !array_key_exists( $key, self::$unitGlobals ) ) {
+				// Don't touch globals not defined by MediaWiki, even if they are not part of the initial snapshot (for
+				// example, PHPUnit declares some internal globals after bootstrap). See T440794.
+				self::$unitGlobals[$key] =& $GLOBALS[$key];
+			}
 			// Stash current values
 			self::$originalGlobals[$key] =& $GLOBALS[$key];
 
