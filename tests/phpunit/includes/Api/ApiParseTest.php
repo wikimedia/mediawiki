@@ -67,6 +67,13 @@ class ApiParseTest extends ApiTestCase {
 		);
 	}
 
+	protected function setUp(): void {
+		parent::setUp();
+		// Most expected values in this test are the output of the legacy
+		// parser. The tests that examine Parsoid select it explicitly.
+		$this->overrideConfigValue( MainConfigNames::UseParsoidParser, false );
+	}
+
 	/**
 	 * Assert that the given result of calling $this->doApiRequest() with
 	 * action=parse resulted in $html, accounting for the boilerplate that the
@@ -630,6 +637,31 @@ class ApiParseTest extends ApiTestCase {
 		] );
 
 		$this->assertParsedToRegexp( $expected, $res );
+	}
+
+	/** @dataProvider provideDefaultParser */
+	public function testDefaultParser( $useParsoidParser, $expected ) {
+		$this->overrideConfigValue( MainConfigNames::UseParsoidParser, $useParsoidParser );
+		# For simplicity, ensure that [[Foo]] isn't a redlink.
+		$this->editPage( "Foo", __FUNCTION__ );
+		$res = $this->doApiRequest( [
+			'title' => 'Bar',
+			'action' => 'parse',
+			'text' => "[[Foo]]",
+			'contentmodel' => 'wikitext',
+			'disablelimitreport' => true,
+		] );
+
+		$this->assertParsedToRegexp( $expected, $res );
+	}
+
+	public static function provideDefaultParser() {
+		// If the request has no 'parser' parameter, $wgUseParsoidParser selects the parser.
+		foreach ( self::providerTestParsoid() as [ $parsoid, $existing, $expected ] ) {
+			if ( !$existing ) {
+				yield $parsoid ? 'Parsoid' : 'legacy' => [ $parsoid, $expected ];
+			}
+		}
 	}
 
 	public static function providerTestParsoid() {

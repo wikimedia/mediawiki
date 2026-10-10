@@ -973,6 +973,8 @@ class WikiPageDbTest extends MediaWikiLangTestCase {
 		$page = $this->createPage( __METHOD__, $text, $model );
 
 		$opt = $page->makeParserOptions( 'canonical' );
+		// The expected HTML is the output of the legacy parser.
+		$opt->setUseParsoid( false );
 		$po = $page->getParserOutput( $opt );
 		$pipeline = MediaWikiServices::getInstance()->getDefaultOutputPipeline();
 		$text = $pipeline->run( $po, $opt, [] )->getContentHolderText();
@@ -981,6 +983,22 @@ class WikiPageDbTest extends MediaWikiLangTestCase {
 		$text = preg_replace( '!\s*(</p>|</div>)!m', '\1', $text ); # don't let tidy confuse us
 
 		$this->assertEquals( $expectedHtml, $text );
+	}
+
+	public function testGetParserOutput_parsoid() {
+		$page = $this->createPage( __METHOD__, "hello ''world''\n", CONTENT_MODEL_WIKITEXT );
+
+		$opt = $page->makeParserOptions( 'canonical' );
+		$opt->setUseParsoid( true );
+		$po = $page->getParserOutput( $opt );
+		$pipeline = MediaWikiServices::getInstance()->getDefaultOutputPipeline();
+		$text = $pipeline->run( $po, $opt, [] )->getContentHolderText();
+
+		$this->assertMatchesRegularExpression(
+			'!^<div class="mw-content-ltr mw-parser-output" lang="en" dir="ltr"[^>]*>' .
+			'<section[^>]*><p[^>]*>hello <i[^>]*>world</i></p></section></div>$!',
+			trim( preg_replace( '/<!--.*?-->/sm', '', $text ) )
+		);
 	}
 
 	public function testGetParserOutput_nonexisting() {
