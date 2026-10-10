@@ -129,7 +129,10 @@ class HTTPFileStreamer {
 		if ( isset( $optHeaders['if-modified-since'] ) ) {
 			$modsince = preg_replace( '/;.*$/', '', $optHeaders['if-modified-since'] );
 			if ( $mtimeCT->getTimestamp( TS::UNIX ) <= strtotime( $modsince ) ) {
-				ini_set( 'zlib.output_compression', 0 );
+				if ( !defined( 'MW_PHPUNIT_TEST' ) ) {
+					// PHPUnit begins output, so avoid "headers already sent" warnings in tests.
+					ini_set( 'zlib.output_compression', 0 );
+				}
 				$headerFunc( 304 );
 				return true; // ok
 			}

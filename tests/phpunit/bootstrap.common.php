@@ -32,7 +32,3 @@ if ( getenv( 'MW_INSTALL_PATH' ) === false ) {
 }
 
 TestSetup::snapshotGlobals();
-
-// Start an output buffer to avoid headers being sent by constructors,
-// data providers, etc. (T206476)
-ob_start();

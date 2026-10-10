@@ -20,7 +20,7 @@ use MediaWiki\Registration\ExtensionRegistry;
 use PHPUnit\TextUI\CliArguments\Builder;
 
 ( static function () {
-	fwrite( STDERR, 'Using PHP ' . PHP_VERSION . "\n" );
+	echo 'Using PHP ' . PHP_VERSION . "\n";
 
 	require_once __DIR__ . '/bootstrap.common.php';
 
@@ -40,10 +40,8 @@ use PHPUnit\TextUI\CliArguments\Builder;
 		} elseif ( $envVar === 'false' || $envVar === '0' || $envVar === 'no' ) {
 			$hasIntegrationTests = false;
 		} else {
-			fwrite( STDERR,
-				"Unsupported value in MEDIAWIKI_HAS_INTEGRATION_TESTS environment variable,\n" .
-				"assuming there are integration tests (but you should fix the environment variable)\n"
-			);
+			echo "Unsupported value in MEDIAWIKI_HAS_INTEGRATION_TESTS environment variable,\n" .
+				"assuming there are integration tests (but you should fix the environment variable)\n";
 			$hasIntegrationTests = true;
 		}
 	} elseif ( $GLOBALS['argc'] === 1 ) {
@@ -78,7 +76,7 @@ use PHPUnit\TextUI\CliArguments\Builder;
 	}
 
 	if ( !$hasIntegrationTests ) {
-		fwrite( STDERR, "Running without MediaWiki settings because there are no integration tests\n" );
+		echo "Running without MediaWiki settings because there are no integration tests\n";
 		// Faking in lieu of Setup.php
 		$GLOBALS['wgAutoloadClasses'] = [];
 
@@ -147,7 +145,7 @@ use PHPUnit\TextUI\CliArguments\Builder;
 		// More faking in lieu of Setup.php
 		Profiler::init( [] );
 	} else {
-		fwrite( STDERR, "Running with MediaWiki settings because there might be integration tests\n" );
+		echo "Running with MediaWiki settings because there might be integration tests\n";
 		TestSetup::loadSettingsFiles();
 
 		$extensionRegistry = ExtensionRegistry::getInstance();
