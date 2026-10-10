@@ -674,16 +674,20 @@ class DataAccess extends IDataAccess {
 			// because the page row can be missing (T432762).
 			return;
 		}
-		$title = Title::newFromLinkTarget(
-			$pageConfig->getLinkTarget()
-		)->getPrefixedText();
-		$pageInfo = $this->getPageInfo( $pageConfig, [ $title ] );
-		$latest = $pageInfo[$title]['revId'];
+		// Do not use getPageInfo() here. It gets the Title from the
+		// Title::newFromText() cache, and it keeps page fields (for example
+		// the redirect flag) in that Title. During a save, these fields can
+		// be out of date. Other code then gets the incorrect values from
+		// the cache (T432762). Use a new Title object instead.
+		$titleObj = Title::newFromLinkTarget(
+			$pageConfig->getLinkTarget(), Title::NEW_CLONE
+		);
+		$latest = $titleObj->getLatestRevID();
 
 		// Only send the request if it the latest revision
 		if ( $revId === $latest ) {
 			$this->hookRunner->onParserLogLinterData(
-				$title, $revId, $lints
+				$titleObj->getPrefixedText(), $revId, $lints
 			);
 		}
 	}
