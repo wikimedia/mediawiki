@@ -3829,7 +3829,11 @@ class OutputPage extends ContextSource {
 			$thumbnailSize < 250 ? 'small' : 'large'
 		);
 
-		$underline = $lookupService->getOption( $user, 'underline' );
+		$underlineClass = match ( $lookupService->getIntOption( $user, 'underline', 2 ) ) {
+			0 => 'skin-underline-clientpref-never',
+			1 => 'skin-underline-clientpref-always',
+			default => 'skin-underline-clientpref-browser',
+		};
 
 		// The HTML classes MUST NOT vary by page, due to ESI constraints (T439272).
 		$htmlClass = Html::expandClassList( [
@@ -3838,13 +3842,7 @@ class OutputPage extends ContextSource {
 			Html::expandClassList( $this->mAdditionalHtmlClasses ),
 			// This uses `-clientpref-` for now to support future customization for anonymous users.
 			'skin-thumbsize-clientpref-' . $thumbValue,
-			( $underline < 2
-				// The following classes can be used here:
-				// * skin-underline-clientpref-always
-				// * skin-underline-clientpref-never
-				? 'skin-underline-clientpref-' . ( $underline ? 'always' : 'never' )
-				: 'skin-underline-clientpref-browser'
-			),
+			$underlineClass,
 		] );
 		$htmlAttribs = array_merge( $rlHtmlAtribs, $skinHtmlAttribs, [ 'class' => $htmlClass ] );
 
