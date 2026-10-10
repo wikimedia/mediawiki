@@ -58,6 +58,10 @@ trait PageDumpTestDataTrait {
 	private int $talk_namespace;
 
 	protected function addTestPages( User $sysopUser ) {
+		// addMultiSlotRevision() puts wikitext in several slots, and
+		// RevisionRenderer::combineSlotOutput() can only combine one
+		// Parsoid wikitext slot per revision. Use the legacy parser.
+		$this->overrideConfigValue( MainConfigNames::UseParsoidParser, false );
 		// be sure, titles created here using english namespace names
 		$this->setContentLang( 'en' );
 

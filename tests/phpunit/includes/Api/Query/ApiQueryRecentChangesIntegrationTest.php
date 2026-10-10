@@ -5,6 +5,7 @@ namespace MediaWiki\Tests\Api\Query;
 use MediaWiki\Api\ApiMain;
 use MediaWiki\Api\ApiQueryRecentChanges;
 use MediaWiki\CommentStore\CommentStoreComment;
+use MediaWiki\Content\JsonContent;
 use MediaWiki\Content\WikitextContent;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\Linker\LinkTarget;
@@ -456,10 +457,12 @@ class ApiQueryRecentChangesIntegrationTest extends ApiTestCase {
 	}
 
 	public function testSha1PropParameterWithMultipleSlots() {
-		// Ensure an auxiliary slot exists for the test
+		// Ensure an auxiliary slot exists for the test. Use JSON, not
+		// wikitext, since RevisionRenderer::combineSlotOutput() can only
+		// combine one Parsoid wikitext slot per revision.
 		$slotRoleRegistry = $this->getServiceContainer()->getSlotRoleRegistry();
 		if ( !$slotRoleRegistry->isDefinedRole( 'aux' ) ) {
-			$slotRoleRegistry->defineRoleWithModel( 'aux', CONTENT_MODEL_WIKITEXT );
+			$slotRoleRegistry->defineRoleWithModel( 'aux', CONTENT_MODEL_JSON );
 			$this->setService( 'SlotRoleRegistry', $slotRoleRegistry );
 		}
 
@@ -467,7 +470,7 @@ class ApiQueryRecentChangesIntegrationTest extends ApiTestCase {
 		$page = $this->getServiceContainer()->getWikiPageFactory()->newFromLinkTarget( $target );
 		$updater = $page->newPageUpdater( $this->getLoggedInTestUser() );
 		$updater->setContent( SlotRecord::MAIN, new WikitextContent( 'Main slot content' ) );
-		$updater->setContent( 'aux', new WikitextContent( 'Aux slot content' ) );
+		$updater->setContent( 'aux', new JsonContent( '"Aux slot content"' ) );
 		$updater->saveRevision( CommentStoreComment::newUnsavedComment( 'Create multi-slot revision' ) );
 
 		$result = $this->doListRecentChangesRequest( [ 'rcprop' => 'sha1', 'rctitle' => 'MultiSlotPage' ] );
@@ -477,7 +480,7 @@ class ApiQueryRecentChangesIntegrationTest extends ApiTestCase {
 		$item = $items[0];
 		$this->assertArrayHasKey( 'sha1', $item );
 		$this->assertIsString( $item['sha1'] );
-		$this->assertEquals( '2a80176c16d08b348d45687ef559028a1235780a', $item['sha1'] );
+		$this->assertEquals( 'da1bba8a55e4aef0246893215cb69e749653ec3b', $item['sha1'] );
 	}
 
 	public function testSha1PropParameterAbsentForLogs() {

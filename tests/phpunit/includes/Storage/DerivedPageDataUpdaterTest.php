@@ -7,6 +7,7 @@ use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Content\Content;
 use MediaWiki\Content\ContentHandler;
 use MediaWiki\Content\JavaScriptContent;
+use MediaWiki\Content\JsonContent;
 use MediaWiki\Content\TextContent;
 use MediaWiki\Content\TextContentHandler;
 use MediaWiki\Content\WikitextContent;
@@ -219,6 +220,10 @@ class DerivedPageDataUpdaterTest extends MediaWikiIntegrationTestCase {
 	 * @covers \MediaWiki\Storage\DerivedPageDataUpdater::getCanonicalParserOutput()
 	 */
 	public function testPrepareContent() {
+		// This tests links from a wikitext aux slot, but
+		// RevisionRenderer::combineSlotOutput() can only combine one
+		// Parsoid wikitext slot per revision. Use the legacy parser.
+		$this->overrideConfigValue( MainConfigNames::UseParsoidParser, false );
 		$slotRoleRegistry = $this->getServiceContainer()->getSlotRoleRegistry();
 		if ( !$slotRoleRegistry->isDefinedRole( 'aux' ) ) {
 			$slotRoleRegistry->defineRoleWithModel(
@@ -301,6 +306,67 @@ class DerivedPageDataUpdaterTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @covers \MediaWiki\Storage\DerivedPageDataUpdater::prepareContent()
+	 * @covers \MediaWiki\Storage\DerivedPageDataUpdater::getCanonicalParserOutput()
+	 * @covers \MediaWiki\Revision\RevisionRenderer::combineSlotOutput()
+	 * @covers \MediaWiki\OutputTransform\Stages\HydrateHeaderPlaceholders
+	 */
+	public function testPrepareContentParsoidMultiSlot() {
+		// Parsoid stores a non-main slot's HTML as a ContentHolder
+		// fragment, which HydrateHeaderPlaceholders later inserts into
+		// the final HTML along with a slot header. The aux slot is JSON
+		// since RevisionRenderer::combineSlotOutput() can only combine
+		// one Parsoid wikitext slot per revision.
+		$this->overrideConfigValue( MainConfigNames::UseParsoidParser, true );
+
+		$slotRoleRegistry = $this->getServiceContainer()->getSlotRoleRegistry();
+		if ( !$slotRoleRegistry->isDefinedRole( 'auxjson' ) ) {
+			$slotRoleRegistry->defineRoleWithModel( 'auxjson', CONTENT_MODEL_JSON );
+		}
+
+		$sysop = $this->getTestUser( [ 'sysop' ] )->getUser();
+		$updater = $this->getDerivedPageDataUpdater( __METHOD__ );
+
+		$mainContent = new WikitextContent( 'first [[main]]' );
+		$auxContent = new JsonContent( '"aux content"' );
+
+		$update = new RevisionSlotsUpdate();
+		$update->modifyContent( SlotRecord::MAIN, $mainContent );
+		$update->modifyContent( 'auxjson', $auxContent );
+
+		$updater->prepareContent( $sysop, $update, false );
+
+		$mainOutput = $updater->getSlotParserOutput( SlotRecord::MAIN );
+		$this->assertStringContainsString( 'first', $mainOutput->getContentHolderText() );
+
+		$auxOutput = $updater->getSlotParserOutput( 'auxjson' );
+		$this->assertStringContainsString( 'aux content', $auxOutput->getContentHolderText() );
+
+		// The aux slot isn't hydrated yet
+		$canonicalOutput = $updater->getCanonicalParserOutput();
+		$this->assertStringNotContainsString(
+			'aux content',
+			$canonicalOutput->getContentHolderText(),
+			'aux slot should not be hydrated yet'
+		);
+
+		$pipeline = $this->getServiceContainer()->getDefaultOutputPipeline();
+		$combinedHtml = $pipeline->run(
+			$canonicalOutput,
+			$updater->getCanonicalParserOptions(),
+			[]
+		)->getContentHolderText();
+
+		$this->assertStringContainsString( 'first', $combinedHtml );
+		$this->assertStringContainsString( 'aux content', $combinedHtml );
+		$this->assertStringContainsString(
+			'<h1 class="mw-slot-header">auxjson</h1>',
+			$combinedHtml,
+			'slot header'
+		);
+	}
+
+	/**
+	 * @covers \MediaWiki\Storage\DerivedPageDataUpdater::prepareContent()
 	 * @covers \MediaWiki\Storage\DerivedPageDataUpdater::pageExisted()
 	 * @covers \MediaWiki\Storage\DerivedPageDataUpdater::isCreation()
 	 * @covers \MediaWiki\Storage\DerivedPageDataUpdater::isChange()
@@ -336,7 +402,8 @@ class DerivedPageDataUpdaterTest extends MediaWikiIntegrationTestCase {
 		$this->assertStringNotContainsString( $sysopName, $html, '{{REVISIONUSER}}' );
 		$this->assertStringNotContainsString( '{{REVISIONUSER}}', $html, '{{REVISIONUSER}}' );
 		$this->assertStringNotContainsString( '~~~', $html, 'signature ~~~' );
-		$this->assertStringContainsString( '(' . $userName . ')', $html, '{{REVISIONUSER}}' );
+		// Parsoid wraps the output of a template in a <span>.
+		$this->assertStringContainsString( '(' . $userName . ')', strip_tags( $html ), '{{REVISIONUSER}}' );
 		$this->assertStringContainsString( '>' . $userName . '<', $html, 'signature ~~~' );
 
 		// prepare forced dummy revision
@@ -561,7 +628,8 @@ class DerivedPageDataUpdaterTest extends MediaWikiIntegrationTestCase {
 		$this->assertNotSame( $canonicalOutput, $updater->getCanonicalParserOutput() );
 
 		$html = $updater->getCanonicalParserOutput()->getContentHolderText();
-		$this->assertStringContainsString( '--' . $rev->getId() . '--', $html );
+		// Parsoid wraps the output of a template in a <span>.
+		$this->assertStringContainsString( '--' . $rev->getId() . '--', strip_tags( $html ) );
 
 		// TODO: MCR: ensure that when the main slot uses {{REVISIONID}} but another slot is
 		// updated, the main slot is still re-rendered!
@@ -1105,6 +1173,9 @@ class DerivedPageDataUpdaterTest extends MediaWikiIntegrationTestCase {
 		$revisionVisibility,
 		$isCountable
 	) {
+		// Parsoid would try to load this nonexistent revision from the
+		// database, so use the legacy parser.
+		$this->overrideConfigValue( MainConfigNames::UseParsoidParser, false );
 		$this->overrideConfigValue( MainConfigNames::ArticleCountMethod, $articleCountMethod );
 		$title = $this->getTitle( 'Main_Page' );
 		$content = new WikitextContent( $wikitextContent );
@@ -1121,6 +1192,9 @@ class DerivedPageDataUpdaterTest extends MediaWikiIntegrationTestCase {
 	 * @covers \MediaWiki\Storage\DerivedPageDataUpdater::isCountable
 	 */
 	public function testIsCountableNoModifiedSlots() {
+		// Parsoid would try to load this nonexistent revision from the
+		// database, so use the legacy parser.
+		$this->overrideConfigValue( MainConfigNames::UseParsoidParser, false );
 		$page = $this->getPage( __METHOD__ );
 		$content = [ SlotRecord::MAIN => new WikitextContent( '[[Test]]' ) ];
 		$rev = $this->createRevision( $page, 'first', $content );
@@ -1142,6 +1216,10 @@ class DerivedPageDataUpdaterTest extends MediaWikiIntegrationTestCase {
 		bool $simulateNullEdit,
 		bool $simulatePageCreation
 	) {
+		// This tests links from a wikitext aux slot, but
+		// RevisionRenderer::combineSlotOutput() can only combine one
+		// Parsoid wikitext slot per revision. Use the legacy parser.
+		$this->overrideConfigValue( MainConfigNames::UseParsoidParser, false );
 		$page = $this->getPage( __METHOD__ );
 
 		$content = [ SlotRecord::MAIN => new WikitextContent( 'current [[main]]' ) ];
@@ -1605,6 +1683,10 @@ class DerivedPageDataUpdaterTest extends MediaWikiIntegrationTestCase {
 	 * @covers \MediaWiki\Storage\DerivedPageDataUpdater::doParserCacheUpdate()
 	 */
 	public function testDoParserCacheUpdate() {
+		// The lookups below use legacy-parser ParserOptions, so make the
+		// legacy parser the default too; saveRevision() then caches under
+		// the same key.
+		$this->overrideConfigValue( MainConfigNames::UseParsoidParser, false );
 		$this->overrideConfigValue(
 			MainConfigNames::ParsoidCacheConfig,
 			[

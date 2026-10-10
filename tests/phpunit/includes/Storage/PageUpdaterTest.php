@@ -727,6 +727,10 @@ class PageUpdaterTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testEventEmission_derived() {
+		// 'derivedslot' is wikitext (see setUp()), and
+		// RevisionRenderer::combineSlotOutput() can only combine one
+		// Parsoid wikitext slot per revision. Use the legacy parser.
+		$this->overrideConfigValue( MainConfigNames::UseParsoidParser, false );
 		$page = $this->getExistingTestPage();
 		$user = $this->getTestUser()->getUserIdentity();
 
@@ -1444,6 +1448,10 @@ class PageUpdaterTest extends MediaWikiIntegrationTestCase {
 	 * @covers \MediaWiki\Storage\PageUpdater::updateRevision()
 	 */
 	public function testUpdatingDerivedSlot() {
+		// 'derivedslot' is wikitext (see setUp()), and
+		// RevisionRenderer::combineSlotOutput() can only combine one
+		// Parsoid wikitext slot per revision. Use the legacy parser.
+		$this->overrideConfigValue( MainConfigNames::UseParsoidParser, false );
 		$user = $this->getTestUser()->getUserIdentity();
 		$title = $this->getDummyTitle( __METHOD__ );
 		$page = $this->getServiceContainer()->getWikiPageFactory()->newFromTitle( $title );
@@ -1480,6 +1488,10 @@ class PageUpdaterTest extends MediaWikiIntegrationTestCase {
 	 * @covers \MediaWiki\Storage\PageUpdater::updateRevision()
 	 */
 	public function testUpdatingDerivedSlotCurrentRevision() {
+		// 'derivedslot' is wikitext (see setUp()), and
+		// RevisionRenderer::combineSlotOutput() can only combine one
+		// Parsoid wikitext slot per revision. Use the legacy parser.
+		$this->overrideConfigValue( MainConfigNames::UseParsoidParser, false );
 		$user = $this->getTestUser()->getUserIdentity();
 		$title = $this->getDummyTitle( __METHOD__ );
 		$page = $this->getServiceContainer()->getWikiPageFactory()->newFromTitle( $title );

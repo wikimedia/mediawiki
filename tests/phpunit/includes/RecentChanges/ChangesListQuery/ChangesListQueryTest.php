@@ -4,6 +4,7 @@ namespace MediaWiki\Tests\RecentChanges\ChangesListQuery;
 
 use MediaWiki\ChangeTags\ChangeTagsStore;
 use MediaWiki\Config\ServiceOptions;
+use MediaWiki\Content\JsonContent;
 use MediaWiki\Content\WikitextContent;
 use MediaWiki\DAO\WikiAwareEntity;
 use MediaWiki\Logger\LoggerFactory;
@@ -115,7 +116,10 @@ class ChangesListQueryTest extends \MediaWikiIntegrationTestCase {
 		ConvertibleTimestamp::setFakeTime( '20250105000000' );
 		$roleRegistry = $this->getServiceContainer()->getSlotRoleRegistry();
 		if ( !$roleRegistry->isDefinedRole( 'aux' ) ) {
-			$roleRegistry->defineRoleWithModel( 'aux', CONTENT_MODEL_WIKITEXT );
+			// Use JSON, not wikitext, since
+			// RevisionRenderer::combineSlotOutput() can only combine one
+			// Parsoid wikitext slot per revision.
+			$roleRegistry->defineRoleWithModel( 'aux', CONTENT_MODEL_JSON );
 		}
 	}
 
@@ -138,7 +142,7 @@ class ChangesListQueryTest extends \MediaWikiIntegrationTestCase {
 		$this->enableAutoCreateTempUser();
 		$services->getActorStore()->setAllowCreateIpActors( true );
 		$services->getSlotRoleRegistry()
-			->defineRoleWithModel( 'aux', CONTENT_MODEL_WIKITEXT );
+			->defineRoleWithModel( 'aux', CONTENT_MODEL_JSON );
 
 		// The data provider runs before addDBDataOnce so we can't set the IDs
 		// here and use them in the provider. But we can assert that the IDs
@@ -251,9 +255,11 @@ class ChangesListQueryTest extends \MediaWikiIntegrationTestCase {
 		$services = $this->getServiceContainer();
 		$title = $services->getTitleFactory()->newFromTextThrow( $titleText );
 		$content ??= (string)( self::$content++ );
+		// The aux slot uses JSON; see setUp()
+		$slotContent = $slotRole === 'aux' ? new JsonContent( $content ) : new WikitextContent( $content );
 		$services->getPageUpdaterFactory()
 			->newPageUpdater( $title, $user )
-			->setContent( $slotRole ?? SlotRecord::MAIN, new WikitextContent( $content ) )
+			->setContent( $slotRole ?? SlotRecord::MAIN, $slotContent )
 			->saveRevision( '', $flags );
 		return $title;
 	}

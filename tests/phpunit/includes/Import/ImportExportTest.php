@@ -25,6 +25,10 @@ class ImportExportTest extends MediaWikiLangTestCase {
 
 	protected function setUp(): void {
 		parent::setUp();
+		// Some fixture dumps have wikitext in several slots, and
+		// RevisionRenderer::combineSlotOutput() can only combine one
+		// Parsoid wikitext slot per revision. Use the legacy parser.
+		$this->overrideConfigValue( MainConfigNames::UseParsoidParser, false );
 
 		$slotRoleRegistry = $this->getServiceContainer()->getSlotRoleRegistry();
 
