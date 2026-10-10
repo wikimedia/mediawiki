@@ -428,3 +428,5 @@ $wgAutoloadClasses += [
 	# tests/suites
 	'ParserTestFileTrait' => "$testDir/phpunit/ParserTestFileTrait.php",
 ];
+
+unset( $testDir );

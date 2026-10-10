@@ -80,6 +80,7 @@ if ( $logDir ) {
 			$logFileNames[$key] = "$logDir/$logFileName.log";
 		}
 	}
+	unset( $key, $logFileName );
 
 	if ( MW_ENTRY_POINT === 'cli' ) {
 		$wgDebugLogFile = $logFileNames['debug-cli'];
@@ -91,7 +92,7 @@ if ( $logDir ) {
 	$wgDebugLogGroups['error'] = $logFileNames['error'];
 	$wgDebugLogGroups['exception'] = $logFileNames['error'];
 }
-unset( $logDir );
+unset( $logDir, $logFileNames, $splitGroupLogId );
 
 /**
  * Make testing possible (or easier)
@@ -108,7 +109,9 @@ foreach ( $wgRateLimits as $right => &$limit ) {
 	foreach ( $limit as $group => &$groupLimit ) {
 		$groupLimit[0] = PHP_INT_MAX;
 	}
+	unset( $group, $groupLimit );
 }
+unset( $right, $limit );
 
 // Enable Special:JavaScriptTest and allow `npm run qunit` to work
 // https://www.mediawiki.org/wiki/Manual:JavaScript_unit_testing
