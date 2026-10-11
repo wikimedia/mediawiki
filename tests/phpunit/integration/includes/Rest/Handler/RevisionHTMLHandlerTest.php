@@ -20,7 +20,6 @@ use MediaWiki\Utils\MWTimestamp;
 use MediaWikiIntegrationTestCase;
 use ReflectionClass;
 use Wikimedia\Message\MessageValue;
-use Wikimedia\ObjectCache\HashBagOStuff;
 use Wikimedia\Parsoid\Core\ClientError;
 use Wikimedia\Parsoid\Core\ResourceLimitExceededException;
 use Wikimedia\Parsoid\Parsoid;
@@ -40,16 +39,8 @@ class RevisionHTMLHandlerTest extends MediaWikiIntegrationTestCase {
 
 	private const HTML = '>World<';
 
-	private HashBagOStuff $parserCacheBagOStuff;
-
 	/** @var int */
 	private static $uuidCounter = 0;
-
-	protected function setUp(): void {
-		parent::setUp();
-
-		$this->parserCacheBagOStuff = new HashBagOStuff();
-	}
 
 	private function newHandler(): RevisionHTMLHandler {
 		$services = $this->getServiceContainer();
