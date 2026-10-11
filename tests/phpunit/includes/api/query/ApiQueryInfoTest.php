@@ -315,4 +315,40 @@ class ApiQueryInfoTest extends ApiTestCase {
 		);
 	}
 
+	public static function provideDisplayTitlePageProperty() {
+		yield 'Safe HTML' => [ '<i>Foo</i> &amp; bar', '<i>Foo</i> &amp; bar' ];
+		yield 'Unsafe HTML' => [
+			'<img src="x" onerror="alert(1)"><script>alert(2)</script>',
+			'&lt;img src="x" onerror="alert(1)"&gt;&lt;script&gt;alert(2)&lt;/script&gt;'
+		];
+		yield 'Unsafe attribute' => [ '<i onclick="alert(1)">Foo</i>', '<i>Foo</i>' ];
+	}
+
+	/**
+	 * @dataProvider provideDisplayTitlePageProperty
+	 */
+	public function testDisplayTitlePageProperty( string $property, string $expected ) {
+		$page = $this->getExistingTestPage( 'ApiQueryInfoTest_DisplayTitle' );
+		$this->getDb()->newInsertQueryBuilder()
+			->insertInto( 'page_props' )
+			->row( [
+				'pp_page' => $page->getId(),
+				'pp_propname' => 'displaytitle',
+				'pp_value' => $property,
+				'pp_sortkey' => null,
+			] )
+			->caller( __METHOD__ )
+			->execute();
+
+		[ $data ] = $this->doApiRequest( [
+			'action' => 'query',
+			'prop' => 'info',
+			'inprop' => 'displaytitle',
+			'titles' => $page->getTitle()->getPrefixedText(),
+		] );
+
+		$info = $data['query']['pages'][$page->getId()];
+		$this->assertSame( $expected, $info['displaytitle'] );
+	}
+
 }

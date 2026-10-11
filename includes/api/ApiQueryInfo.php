@@ -34,6 +34,7 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageReference;
 use MediaWiki\ParamValidator\TypeDef\TitleDef;
+use MediaWiki\Parser\Sanitizer;
 use MediaWiki\Permissions\PermissionStatus;
 use MediaWiki\Permissions\RestrictionStore;
 use MediaWiki\Revision\RevisionLookup;
@@ -151,7 +152,7 @@ class ApiQueryInfo extends ApiQueryBase {
 	private $talkids;
 	/** @var int[][] */
 	private $subjectids;
-	/** @var string[][] */
+	/** @var string[] */
 	private $displaytitles;
 	/** @var string[][] */
 	private $variantTitles;
@@ -783,7 +784,8 @@ class ApiQueryInfo extends ApiQueryBase {
 		$res = $this->select( __METHOD__ );
 
 		foreach ( $res as $row ) {
-			$this->displaytitles[$row->pp_page] = $row->pp_value;
+			// Nothing enforces that the page property is safe HTML, so sanitize it
+			$this->displaytitles[$row->pp_page] = Sanitizer::removeSomeTags( $row->pp_value );
 		}
 	}
 

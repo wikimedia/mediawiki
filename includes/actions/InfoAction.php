@@ -296,7 +296,9 @@ class InfoAction extends FormlessAction {
 		$pageInfo['header-basic'] = [];
 
 		// Display title
-		$displayTitle = $pageProperties['displaytitle'] ??
+		// Nothing enforces that the page property is safe HTML, so sanitize it
+		$displayTitle = isset( $pageProperties['displaytitle'] ) ?
+			Sanitizer::removeSomeTags( $pageProperties['displaytitle'] ) :
 			htmlspecialchars( $title->getPrefixedText(), ENT_NOQUOTES );
 
 		$pageInfo['header-basic'][] = [
