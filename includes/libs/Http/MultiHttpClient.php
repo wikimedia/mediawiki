@@ -430,7 +430,7 @@ class MultiHttpClient implements LoggerAwareInterface {
 		curl_setopt( $ch, CURLOPT_HEADERFUNCTION,
 			static function ( $ch, $header ) use ( &$req ) {
 				if ( !empty( $req['flags']['relayResponseHeaders'] ) && trim( $header ) !== '' ) {
-					header( $header );
+					HttpHeader::send( $header );
 				}
 				$length = strlen( $header );
 				$matches = [];

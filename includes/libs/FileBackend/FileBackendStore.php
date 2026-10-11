@@ -25,6 +25,7 @@ use Wikimedia\FileBackend\FileOps\MoveFileOp;
 use Wikimedia\FileBackend\FileOps\NullFileOp;
 use Wikimedia\FileBackend\FileOps\StoreFileOp;
 use Wikimedia\FileBackend\FSFile\FSFile;
+use Wikimedia\Http\HttpHeader;
 use Wikimedia\LockManager\LockManager;
 use Wikimedia\ObjectCache\BagOStuff;
 use Wikimedia\ObjectCache\EmptyBagOStuff;
@@ -1025,7 +1026,7 @@ abstract class FileBackendStore extends FileBackend {
 		$params['headers'] ??= [];
 
 		// Don't stream it out as text/html if there was a PHP error
-		if ( ( empty( $params['headless'] ) || $params['headers'] ) && headers_sent() ) {
+		if ( ( empty( $params['headless'] ) || $params['headers'] ) && HttpHeader::headersSent() ) {
 			print "Headers already sent, terminating.\n";
 			$status->fatal( 'backend-fail-stream', $params['src'] );
 			return $status;

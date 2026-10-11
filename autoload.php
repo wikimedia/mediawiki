@@ -4451,6 +4451,7 @@ $wgAutoloadLocalClasses = [
 	'Wikimedia\\HtmlArmor\\HtmlArmor' => __DIR__ . '/includes/libs/HtmlArmor/HtmlArmor.php',
 	'Wikimedia\\Http\\HttpAcceptNegotiator' => __DIR__ . '/includes/libs/Http/HttpAcceptNegotiator.php',
 	'Wikimedia\\Http\\HttpAcceptParser' => __DIR__ . '/includes/libs/Http/HttpAcceptParser.php',
+	'Wikimedia\\Http\\HttpHeader' => __DIR__ . '/includes/libs/Http/HttpHeader.php',
 	'Wikimedia\\Http\\HttpStatus' => __DIR__ . '/includes/libs/Http/HttpStatus.php',
 	'Wikimedia\\Http\\MultiHttpClient' => __DIR__ . '/includes/libs/Http/MultiHttpClient.php',
 	'Wikimedia\\Http\\TelemetryHeadersInterface' => __DIR__ . '/includes/libs/Http/TelemetryHeadersInterface.php',

@@ -4,6 +4,7 @@ namespace MediaWiki\Registration;
 
 use Exception;
 use MediaWiki\Html\TemplateParser;
+use Wikimedia\Http\HttpHeader;
 use Wikimedia\Http\HttpStatus;
 use Wikimedia\ObjectCache\EmptyBagOStuff;
 
@@ -49,9 +50,9 @@ class MissingExtensionException extends Exception {
 	 * We don't bother translating, as the user may not have even set lang yet.
 	 */
 	private function renderHtml() {
-		if ( !headers_sent() ) {
+		if ( !HttpHeader::headersSent() ) {
 			HttpStatus::header( 500 );
-			header( 'Content-Type: text/html; charset=UTF-8' );
+			HttpHeader::send( 'Content-Type: text/html; charset=UTF-8' );
 		}
 
 		$templateParser = new TemplateParser( null, new EmptyBagOStuff() );

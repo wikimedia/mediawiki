@@ -12,6 +12,7 @@ use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use UnexpectedValueException;
+use Wikimedia\Http\HttpHeader;
 
 /**
  * Handle sending Content-Security-Policy headers
@@ -692,6 +693,6 @@ class ContentSecurityPolicy {
 		// default-src of 'self' for favicon and whatnot. This doesn't include
 		// default-src data or style-src 'unsafe-inline', which would be fairly
 		// safe, but we are trying to be minimal here.
-		header( "Content-Security-Policy: default-src 'self'; script-src 'none'; object-src 'none'" );
+		HttpHeader::send( "Content-Security-Policy: default-src 'self'; script-src 'none'; object-src 'none'" );
 	}
 }

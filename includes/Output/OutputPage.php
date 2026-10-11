@@ -3022,7 +3022,7 @@ class OutputPage extends ContextSource {
 				wfDebug( __METHOD__ .
 					": local proxy caching; {$this->mLastModified} **", 'private' );
 				# start with a shorter timeout for initial testing
-				# header( "Cache-Control: s-maxage=2678400, must-revalidate, max-age=0" );
+				# HttpHeader::send( "Cache-Control: s-maxage=2678400, must-revalidate, max-age=0" );
 				$response->header( 'Cache-Control: ' .
 					"s-maxage={$this->mCdnMaxage}, must-revalidate, max-age=0" );
 			} else {

@@ -120,7 +120,7 @@ class HttpStatus {
 	 * @param int $code Status code
 	 */
 	public static function header( $code ) {
-		if ( headers_sent() ) {
+		if ( HttpHeader::headersSent() ) {
 			if ( self::$headersSentCallback ) {
 				( self::$headersSentCallback )();
 				return;
@@ -131,7 +131,7 @@ class HttpStatus {
 		}
 
 		try {
-			header( self::getHeader( $code ) );
+			HttpHeader::send( self::getHeader( $code ) );
 		} catch ( InvalidArgumentException ) {
 			trigger_error( "Unknown HTTP status code $code", E_USER_WARNING );
 		}

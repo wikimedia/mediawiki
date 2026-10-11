@@ -14,6 +14,7 @@ use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use RuntimeException;
+use Wikimedia\Http\HttpHeader;
 use Wikimedia\Http\HttpStatus;
 use Wikimedia\LightweightObjectStore\ExpirationAwareness;
 use Wikimedia\Timestamp\ConvertibleTimestamp;
@@ -65,9 +66,9 @@ class WebResponse {
 
 		\MediaWiki\Request\HeaderCallback::warnIfHeadersSent();
 		if ( $http_response_code ) {
-			header( $string, $replace, $http_response_code );
+			HttpHeader::send( $string, $replace, $http_response_code );
 		} else {
-			header( $string, $replace );
+			HttpHeader::send( $string, $replace );
 		}
 	}
 
@@ -119,7 +120,7 @@ class WebResponse {
 	 * @return bool
 	 */
 	public function headersSent() {
-		return headers_sent();
+		return HttpHeader::headersSent();
 	}
 
 	/**

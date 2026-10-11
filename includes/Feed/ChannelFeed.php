@@ -15,6 +15,7 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Output\OutputPage;
 use MediaWiki\Request\WebRequest;
+use Wikimedia\Http\HttpHeader;
 
 /**
  * Class to support the outputting of syndication feeds in Atom and RSS format.
@@ -89,7 +90,7 @@ abstract class ChannelFeed extends FeedItem {
 		# We take over from $wgOut, excepting its cache header info
 		$output->disable();
 		$mimetype = $this->contentType( $output->getRequest() );
-		header( "Content-type: $mimetype; charset=UTF-8" );
+		HttpHeader::send( "Content-type: $mimetype; charset=UTF-8" );
 		// @todo Maybe set a CSP header here at some point as defense in depth.
 		// need to figure out how that interacts with browser display of article
 		// snippets.
@@ -97,7 +98,7 @@ abstract class ChannelFeed extends FeedItem {
 		// Set a sensible filename
 		$mimeAnalyzer = MediaWikiServices::getInstance()->getMimeAnalyzer();
 		$ext = $mimeAnalyzer->getExtensionFromMimeTypeOrNull( $mimetype ) ?? 'xml';
-		header( "Content-Disposition: inline; filename=\"feed.{$ext}\"" );
+		HttpHeader::send( "Content-Disposition: inline; filename=\"feed.{$ext}\"" );
 
 		if ( $varyOnXFP ) {
 			$output->addVaryHeader( 'X-Forwarded-Proto' );
