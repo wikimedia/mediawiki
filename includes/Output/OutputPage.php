@@ -732,10 +732,13 @@ class OutputPage extends ContextSource {
 	}
 
 	/**
-	 * Add a class to the <html> element. This should rarely be used.
-	 * Instead use OutputPage::addBodyClasses() if possible.
+	 * Add a user-specific class to the <html> element.
 	 *
-	 * @unstable Experimental since 1.35. Prefer OutputPage::addBodyClasses()
+	 * User-specific classes MUST NOT vary by page, due to ESI constraints (T439272).
+	 *
+	 * Whenever possible, use OutputPage::addBodyClasses() instead.
+	 *
+	 * @since 1.35
 	 * @param string|string[] $classes One or more classes to add
 	 */
 	public function addHtmlClasses( $classes ) {
@@ -789,6 +792,9 @@ class OutputPage extends ContextSource {
 
 	/**
 	 * Add a class to the <body> element
+	 *
+	 * Body classes MUST NOT vary by user, due to ESI constraints (T439272).
+	 * Add user-specific classes via OutputPage::addHtmlClasses instead.
 	 *
 	 * @since 1.30
 	 * @param string|string[] $classes One or more classes to add
@@ -3741,8 +3747,9 @@ class OutputPage extends ContextSource {
 	}
 
 	/**
-	 * Returns an array of attributes for the body tag.
-	 * The list of body attributes MUST not vary by user.
+	 * Return an array of attributes for the body tag.
+	 *
+	 * The body attributes MUST NOT vary by user, due to ESI constraints (T439272).
 	 *
 	 * @param Skin $sk
 	 * @return array
@@ -3750,38 +3757,46 @@ class OutputPage extends ContextSource {
 	final public function getBodyAttributes( Skin $sk ): array {
 		$services = MediaWikiServices::getInstance();
 		$lookupService = $services->getUserOptionsLookup();
-		$sitedir = $services->getContentLanguage()->getDir();
 		$user = $this->getUser();
-		$userdir = $this->getLanguage()->getDir();
 		$skinOptions = $sk->getOptions();
-		$bodyClasses = array_merge( $this->mAdditionalBodyClasses, $skinOptions['bodyClasses'] );
-		$bodyClasses[] = 'mediawiki';
 
-		# Classes for LTR/RTL directionality support
-		$bodyClasses[] = $userdir;
-		$bodyClasses[] = "sitedir-$sitedir";
+		$bodyClasses = [
+			'mediawiki',
 
-		// See Article:showDiffPage for class to support article diff styling
+			// Classes for LTR/RTL directionality support
+			// * ltr
+			// * rtl
+			// * sitedir-ltr
+			// * sitedir-rtl
+			$this->getLanguage()->getDir(),
+			'sitedir-' . $services->getContentLanguage()->getDir(),
 
-		// Parser feature migration class
-		// The idea is that this will eventually be removed, after the wikitext
-		// which requires it is cleaned up.
-		$bodyClasses[] = 'mw-hide-empty-elt';
+			// Parser feature migration class
+			// The idea is that this will eventually be removed, after the wikitext
+			// which requires it is cleaned up.
+			'mw-hide-empty-elt',
 
-		$bodyClasses[] = $sk->getPageClasses( $this->getTitle() );
-		$bodyClasses[] = 'skin-' . Sanitizer::escapeClass( $sk->getSkinName() );
-		$bodyClasses[] =
-			'action-' . Sanitizer::escapeClass( $this->getContext()->getActionName() );
+			'action-' . Sanitizer::escapeClass( $this->getContext()->getActionName() ),
+
+			// This adds mw-article-diff via Article:showDiffPage
+			...$this->mAdditionalBodyClasses,
+
+			'skin-' . Sanitizer::escapeClass( $sk->getSkinName() ),
+			// FIXME: This still varies by user (T439272)
+			$sk->getPageClasses( $this->getTitle() ),
+
+			...$skinOptions['bodyClasses'],
+		];
 
 		if ( $sk->isResponsive() ) {
 			$bodyClasses[] = 'skin--responsive';
 		}
 
-		$bodyAttrs = [];
-		// While the expandClassList() is not strictly needed, it's used for backwards compatibility
-		// (this used to be built as a string and hooks likely still expect that).
-		$bodyAttrs['class'] = Html::expandClassList( $bodyClasses );
-
+		$bodyAttrs = [
+			// While Html::element allows class to be an array, we convert it to a string
+			// for compatibility with the hook
+			'class' => Html::expandClassList( $bodyClasses ),
+		];
 		$this->getHookRunner()->onOutputPageBodyAttributes( $this, $sk, $bodyAttrs );
 		return $bodyAttrs;
 	}
@@ -3789,46 +3804,40 @@ class OutputPage extends ContextSource {
 	/**
 	 * @param Skin $sk The given Skin
 	 * @param bool $includeStyle Unused
-	 * @return string The doctype, opening "<html>", and head element.
+	 * @return string The doctype, opening `<html>`, head element, and opening `<body>`
 	 */
 	public function headElement( Skin $sk, $includeStyle = true ) {
-		$config = $this->getConfig();
 		$services = MediaWikiServices::getInstance();
+		$config = $this->getConfig();
+		$user = $this->getUser();
+		$lookupService = $services->getUserOptionsLookup();
 
 		$rlHtmlAtribs = $this->getRlClient()->getDocumentAttributes();
 		$skinHtmlAttribs = $sk->getHtmlElementAttributes();
 
-		$lookupService = $services->getUserOptionsLookup();
-		$user = $this->getUser();
 		$thumbnailIndex = $lookupService->getOption( $user, 'thumbsize' );
 		$thumbnailSize = $config->get( MainConfigNames::ThumbLimits )[$thumbnailIndex] ?? 250;
 		$thumbValue = $thumbnailSize === 250 ? 'standard' : (
 			$thumbnailSize < 250 ? 'small' : 'large'
 		);
 
-		// Combine the classes from different sources, and convert to a string, which is needed below
-		$htmlClassList = [
+		$underline = $lookupService->getOption( $user, 'underline' );
+
+		// The HTML classes MUST NOT vary by page, due to ESI constraints (T439272).
+		$htmlClass = Html::expandClassList( [
 			Html::expandClassList( $rlHtmlAtribs['class'] ?? [] ),
 			Html::expandClassList( $skinHtmlAttribs['class'] ?? [] ),
 			Html::expandClassList( $this->mAdditionalHtmlClasses ),
 			// This uses `-clientpref-` for now to support future customization for anonymous users.
 			'skin-thumbsize-clientpref-' . $thumbValue,
-		];
-		$underline = $lookupService->getOption( $user, 'underline' );
-		if ( $underline < 2 ) {
-			// The following classes can be used here:
-			// * mw-underline-always
-			// * mw-underline-never
-			$htmlClassList[] = 'skin-underline-clientpref-' . ( $underline ? 'always' : 'never' );
-		} else {
-			$htmlClassList[] = 'skin-underline-clientpref-browser';
-		}
-
-		$htmlClass = Html::expandClassList( $htmlClassList );
-
-		if ( $htmlClass === '' ) {
-			$htmlClass = null;
-		}
+			( $underline < 2
+				// The following classes can be used here:
+				// * skin-underline-clientpref-always
+				// * skin-underline-clientpref-never
+				? 'skin-underline-clientpref-' . ( $underline ? 'always' : 'never' )
+				: 'skin-underline-clientpref-browser'
+			),
+		] );
 		$htmlAttribs = array_merge( $rlHtmlAtribs, $skinHtmlAttribs, [ 'class' => $htmlClass ] );
 
 		$pieces = [];

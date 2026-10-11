@@ -578,8 +578,10 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 		$op->addBodyClasses( [ 'd', 'e' ] );
 		$op->addBodyClasses( 'a' );
 
-		$this->assertStringContainsString( '<body class="a mediawiki b c d e ',
-			'' . $op->headElement( $op->getContext()->getSkin() ) );
+		$this->assertStringContainsString(
+			'<body class="mediawiki ltr sitedir-ltr mw-hide-empty-elt action-view a b c d e skin-fallback ns-0 ns-subject mw-editable page-My_test_page rootpage-My_test_page"',
+			(string)$op->headElement( $op->getContext()->getSkin() )
+		);
 	}
 
 	public function testArticleBodyOnly() {

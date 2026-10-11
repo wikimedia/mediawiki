@@ -14,15 +14,17 @@ use MediaWiki\Skin\Skin;
  */
 interface OutputPageBodyAttributesHook {
 	/**
-	 * This hook is called when OutputPage::headElement is creating the
-	 * body tag to allow for extensions to add attributes to the body of the page they
-	 * might need. Or to allow building extensions to add body classes that aren't of
-	 * high enough demand to be included in core.
+	 * Add classes or other attributes to the body element.
+	 *
+	 * The body classes and attributes MUST NOT vary by user, due to ESI constraints (T439272).
+	 * Add user-specific classes to the html element via OutputPage::addHtmlClasses instead,
+	 * for example from a BeforePageDisplayHook.
+	 *
+	 * This hook is called from OutputPage::headElement.
 	 *
 	 * @since 1.35
-	 *
-	 * @param OutputPage $out OutputPage which called the hook, can be used to get the real title
-	 * @param Skin $sk Skin that called OutputPage::headElement
+	 * @param OutputPage $out OutputPage
+	 * @param Skin $sk Skin
 	 * @param string[] &$bodyAttrs Array of attributes for the body tag passed to Html::openElement
 	 * @return void This hook must not abort, it must return no value
 	 */
