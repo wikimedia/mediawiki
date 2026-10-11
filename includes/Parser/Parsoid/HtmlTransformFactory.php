@@ -47,7 +47,8 @@ class HtmlTransformFactory {
 			$this->parsoidSettings,
 			$this->siteConfig,
 			$this->configFactory,
-			$this->contentHandlerFactory
+			$this->contentHandlerFactory,
+			$this->languageFactory
 		);
 	}
 

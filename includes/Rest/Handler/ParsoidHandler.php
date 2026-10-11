@@ -536,18 +536,27 @@ abstract class ParsoidHandler extends Handler {
 			( $attribs['opts']['format'] ?? '' ) === ParsoidFormatHelper::FORMAT_LINT
 		);
 
+		// Note: Parsoid by design isn't supposed to use the user
+		// context right now, and all user state is expected to be
+		// introduced as a post-parse transform.  So although we pass a
+		// User here, it only currently affects the output in obscure
+		// corner cases; see PageConfigFactory::create() for more.
+		$parserOptions = ParserOptions::newFromUser( $user );
+		$parserOptions->setUseParsoid();
+		if ( $pagelanguageOverride ) {
+			$parserOptions->setTargetLanguage(
+				MediaWikiServices::getInstance()->getLanguageFactory()
+					->getLanguage( $pagelanguageOverride )
+			);
+		}
+
 		try {
-			// Note: Parsoid by design isn't supposed to use the user
-			// context right now, and all user state is expected to be
-			// introduced as a post-parse transform.  So although we pass a
-			// User here, it only currently affects the output in obscure
-			// corner cases; see PageConfigFactory::create() for more.
 			// @phan-suppress-next-line PhanUndeclaredMethod method defined in subtype
 			$pageConfig = $this->pageConfigFactory->createFromParserOptions(
-				ParserOptions::newFromUser( $user ),
+				$parserOptions,
 				$title,
 				$revisionRecord ?? $revId,
-				$pagelanguageOverride,
+				null,
 				$ensureAccessibleContent,
 				$checkAuthority
 			);

@@ -1214,7 +1214,8 @@ class HtmlInputTransformHelperTest extends MediaWikiIntegrationTestCase {
 				MainConfigSchema::getDefaultValue( MainConfigNames::ParsoidSettings ),
 				$this->getServiceContainer()->getParsoidSiteConfig(),
 				$this->getServiceContainer()->getParsoidPageConfigFactory(),
-				$this->getServiceContainer()->getContentHandlerFactory()
+				$this->getServiceContainer()->getContentHandlerFactory(),
+				$this->getServiceContainer()->getLanguageFactory()
 			] )
 			->getMock();
 

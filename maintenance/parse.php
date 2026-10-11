@@ -82,6 +82,7 @@ class CLIParser extends Maintenance {
 	public function render( $wikitext ) {
 		$options = ParserOptions::newFromAnon();
 		$options->setOption( 'enableLimitReport', false );
+		$options->setUseParsoid( $this->hasOption( 'parsoid' ) );
 		$po = $this->parser->parse(
 			$wikitext,
 			$this->getTitle(),

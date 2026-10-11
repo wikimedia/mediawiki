@@ -80,9 +80,11 @@ class LintErrorChecker {
 				new WikitextContent( $revision )
 			);
 		}
+		$parserOptions = ParserOptions::newFromAnon();
+		$parserOptions->setUseParsoid();
 		return $this->parsoid->wikitext2lint(
 			$this->pageConfigFactory->createFromParserOptions(
-				ParserOptions::newFromAnon(),
+				$parserOptions,
 				$revision->getPage(),
 				$revision
 			),

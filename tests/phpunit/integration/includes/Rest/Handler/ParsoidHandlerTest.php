@@ -317,9 +317,11 @@ class ParsoidHandlerTest extends MediaWikiIntegrationTestCase {
 			$rev = $revIdOrText;
 		}
 
+		$parserOptions = ParserOptions::newFromAnon();
+		$parserOptions->setUseParsoid();
 		return $this->getServiceContainer()->getParsoidPageConfigFactory()
 			->createFromParserOptions(
-				ParserOptions::newFromAnon(), $page, $rev
+				$parserOptions, $page, $rev
 			);
 	}
 
@@ -1386,7 +1388,8 @@ class ParsoidHandlerTest extends MediaWikiIntegrationTestCase {
 			[],
 			$this->getServiceContainer()->getParsoidSiteConfig(),
 			$this->getPageConfigFactory( $page ),
-			$this->getServiceContainer()->getContentHandlerFactory()
+			$this->getServiceContainer()->getContentHandlerFactory(),
+			$this->getServiceContainer()->getLanguageFactory()
 		) );
 
 		// Use an HtmlInputTransformHelper that uses the fake HtmlTransformFactory, so it ends up

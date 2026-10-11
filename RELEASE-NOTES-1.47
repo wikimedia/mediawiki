@@ -781,6 +781,13 @@ because of Phabricator reports.
 * (T436997) Passing an int bitmask as the $options parameter to
   ParserOutputAccess::getParserOutput() and ::getCachedParserOutput() is
   deprecated and emits deprecation warnings. Pass an options array instead.
+* Calling PageConfigFactory::createFromParserOptions() with ParserOptions
+  that do not have the 'useParsoid' option set is deprecated and emits
+  warnings.
+* Calling PageConfigFactory::createFromParserOptions() with the
+  $pageLanguageOverride parameter is deprecated and emits warnings;
+  instead use ::setTargetLanguage() on the ParserOptions passed to the
+  method.
 * …
 
 === Other changes in 1.47 ===

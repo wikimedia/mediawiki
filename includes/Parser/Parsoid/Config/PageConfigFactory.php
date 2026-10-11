@@ -75,10 +75,16 @@ class PageConfigFactory extends \Wikimedia\Parsoid\Config\PageConfigFactory {
 			$user
 			? ParserOptions::newFromUser( $user )
 			: ParserOptions::newFromAnon();
+		$parserOptions->setUseParsoid();
+		if ( $pageLanguageOverride ) {
+			$parserOptions->setTargetLanguage(
+				$this->languageFactory->getLanguage( $pageLanguageOverride )
+			);
+		}
 
 		return $this->createFromParserOptions(
 			$parserOptions, $pageId, $revision,
-			$pageLanguageOverride, $ensureAccessibleContent
+			null, $ensureAccessibleContent
 		);
 	}
 
@@ -91,11 +97,20 @@ class PageConfigFactory extends \Wikimedia\Parsoid\Config\PageConfigFactory {
 	 * in background job parsing, although there are corner cases during
 	 * extension processing where a non-null $user could affect the output.
 	 *
+	 * The page language comes from the ParserOptions, as in
+	 * Parser::getTargetLanguage(): the target language if it is set, else the
+	 * user language for an interface message, else the page language of the
+	 * title. To override the page language, set the target language in the
+	 * ParserOptions before you call this method. This method does not change
+	 * the ParserOptions.
+	 *
 	 * @param ParserOptions $parserOptions (See note above about user identity
-	 *   in the parser options.)
+	 *   in the parser options.) Set the 'useParsoid' option. Since 1.47,
+	 *   a call without 'useParsoid' set is deprecated.
 	 * @param PageIdentity $pageId The page represented by the PageConfig.
 	 * @param int|RevisionRecord|null $revision Revision id or a revision record
-	 * @param ?Bcp47Code $pageLanguageOverride
+	 * @param ?Bcp47Code $pageLanguageOverride Deprecated since 1.47; set the
+	 *   target language in $parserOptions instead.
 	 * @param bool $ensureAccessibleContent If true, ensures that we can get content
 	 *   from the newly constructed pageConfig's RevisionRecord and throws a
 	 *   RevisionAccessException if not.
@@ -178,17 +193,36 @@ class PageConfigFactory extends \Wikimedia\Parsoid\Config\PageConfigFactory {
 			throw new SuppressedDataException( 'Not an available content version.' );
 		}
 
-		// Parsoid parser options should always have useParsoid set
-		$parserOptions->setUseParsoid();
+		$cloned = false;
+		if ( !$parserOptions->getUseParsoid() ) {
+			wfDeprecated( __METHOD__ . ' without useParsoid set', '1.47' );
+			// Do not change the ParserOptions of the caller.
+			$parserOptions = clone $parserOptions;
+			$cloned = true;
+			$parserOptions->setUseParsoid();
+		}
+
+		if ( $pageLanguageOverride ) {
+			wfDeprecated( __METHOD__ . ' with $pageLanguageOverride', '1.47' );
+			// Do not change the ParserOptions of the caller.
+			if ( !$cloned ) {
+				$parserOptions = clone $parserOptions;
+				$cloned = true;
+			}
+			$parserOptions->setTargetLanguage(
+				$this->languageFactory->getLanguage( $pageLanguageOverride )
+			);
+		}
 
 		$slotRoleHandler = $this->slotRoleRegistry->getRoleHandler( SlotRecord::MAIN );
 
-		if ( $pageLanguageOverride ) {
-			$pageLanguage = $this->languageFactory->getLanguage( $pageLanguageOverride );
-			$parserOptions->setTargetLanguage( $pageLanguage );
-		} else {
-			$pageLanguage = $title->getPageLanguage();
+		// Use the same page language as Parser::getTargetLanguage(), so that
+		// Parsoid and the legacy parser (in DataAccess) agree.
+		$pageLanguage = $parserOptions->getTargetLanguage();
+		if ( $pageLanguage === null && $parserOptions->getInterfaceMessage() ) {
+			$pageLanguage = $parserOptions->getUserLangObj();
 		}
+		$pageLanguage ??= $title->getPageLanguage();
 
 		$pageConfig = new PageConfig(
 			$parserOptions,

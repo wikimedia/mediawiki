@@ -2355,8 +2355,10 @@ class ParserTestRunner {
 					$revRecord = $runner->createRevRecord( $title, $user, $revProps );
 				}
 				$page = MediaWikiServices::getInstance()->getTitleFactory()->newFromLinkTarget( $title );
+				$parserOptions = ParserOptions::newFromUser( $user );
+				$parserOptions->setUseParsoid();
 				$pageConfig = $pageConfigFactory->createFromParserOptions(
-					ParserOptions::newFromUser( $user ),
+					$parserOptions,
 					$page,
 					$revRecord
 				);

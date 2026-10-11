@@ -65,7 +65,8 @@ class HtmlToContentTransformTest extends MediaWikiIntegrationTestCase {
 			MainConfigSchema::getDefaultValue( MainConfigNames::ParsoidSettings ),
 			$this->getServiceContainer()->getParsoidSiteConfig(),
 			$this->getServiceContainer()->getParsoidPageConfigFactory(),
-			$this->getServiceContainer()->getContentHandlerFactory()
+			$this->getServiceContainer()->getContentHandlerFactory(),
+			$this->getServiceContainer()->getLanguageFactory()
 		);
 	}
 
@@ -394,8 +395,10 @@ class HtmlToContentTransformTest extends MediaWikiIntegrationTestCase {
 			$this->getServiceContainer()->getParsoidSiteConfig(),
 			$this->getServiceContainer()->getParsoidDataAccess()
 		);
+		$parserOptions = ParserOptions::newFromAnon();
+		$parserOptions->setUseParsoid();
 		$pageConfig = $this->getServiceContainer()->getParsoidPageConfigFactory()
-			->createFromParserOptions( ParserOptions::newFromAnon(), $rev->getPage(), $rev );
+			->createFromParserOptions( $parserOptions, $rev->getPage(), $rev );
 		$pb = $parsoid->wikitext2html( $pageConfig, [ 'pageBundle' => true ] );
 
 		$transform = $this->createHtmlToContentTransform( $pb->html );

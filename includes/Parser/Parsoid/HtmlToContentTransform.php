@@ -8,6 +8,7 @@ use LogicException;
 use MediaWiki\Content\Content;
 use MediaWiki\Content\ContentHandler;
 use MediaWiki\Content\IContentHandlerFactory;
+use MediaWiki\Language\LanguageFactory;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Parser\ParserOptions;
 use MediaWiki\Parser\Parsoid\Config\PageConfigFactory;
@@ -64,6 +65,7 @@ class HtmlToContentTransform {
 		private readonly SiteConfig $siteConfig,
 		private readonly PageConfigFactory $pageConfigFactory,
 		private readonly IContentHandlerFactory $contentHandlerFactory,
+		private readonly LanguageFactory $languageFactory,
 	) {
 		$this->modifiedPageBundle = new HtmlPageBundle( $modifiedHTML );
 		$this->originalPageBundle = new HtmlPageBundle( '' );
@@ -231,12 +233,19 @@ class HtmlToContentTransform {
 				$revision = $this->originalRevision ?: $this->oldid;
 			}
 
+			$parserOptions = ParserOptions::newFromAnon();
+			$parserOptions->setUseParsoid();
+			if ( $this->contentLanguage ) {
+				$parserOptions->setTargetLanguage(
+					$this->languageFactory->getLanguage( $this->contentLanguage )
+				);
+			}
 			try {
 				$this->pageConfig = $this->pageConfigFactory->createFromParserOptions(
-					ParserOptions::newFromAnon(),
+					$parserOptions,
 					$this->page,
 					$revision,
-					$this->contentLanguage,
+					null,
 					false,
 					is_int( $revision )
 				);

@@ -35,6 +35,7 @@ class ParsoidParserTest extends MediaWikiIntegrationTestCase {
 		if ( ( $args[2] ?? null ) === null ) {
 			// Make default ParserOptions if none are provided
 			$args[2] = ParserOptions::newFromAnon();
+			$args[2]->setUseParsoid();
 		}
 		$output = $parsoidParser->parse( ...$args );
 		$html = $output->getContentHolderText();
@@ -82,6 +83,7 @@ class ParsoidParserTest extends MediaWikiIntegrationTestCase {
 		$parsoidParser = $this->getServiceContainer()
 			->getParsoidParserFactory()->create();
 		$opts = ParserOptions::newFromAnon();
+		$opts->setUseParsoid();
 		$output = $parsoidParser->parse(
 			$helloWorld,
 			$pageTitle,
@@ -114,5 +116,41 @@ class ParsoidParserTest extends MediaWikiIntegrationTestCase {
 		] );
 		$output = $pipeline->run( $output, $opts, [] );
 		$this->assertArrayEquals( $usedOptions, $output->getUsedOptions() );
+	}
+
+	public function testSelectiveUpdateSampleKeepsOptionsSafeToCache() {
+		// Always run the selective update sample code
+		$this->overrideConfigValue(
+			MainConfigNames::ParsoidSelectiveUpdateSampleRate, 1
+		);
+		$page = $this->getNonexistingTestPage( 'Test' );
+		$firstRev = $this->editPage( $page, 'first' )->getNewRevision();
+		$secondRev = $this->editPage( $page, 'second' )->getNewRevision();
+
+		$parsoidParser = $this->getServiceContainer()
+			->getParsoidParserFactory()->create();
+		$previousOpts = ParserOptions::newFromAnon();
+		$previousOpts->setUseParsoid();
+		$previousOutput = $parsoidParser->parse(
+			'second', $page, $previousOpts,
+			true, true, $secondRev->getId()
+		);
+		// The parser cache sets this value
+		$previousOutput->setCacheRevisionId( $secondRev->getId() );
+
+		$opts = ParserOptions::newFromAnon();
+		$opts->setUseParsoid();
+		$this->assertTrue( $opts->isSafeToCache() );
+		$output = $parsoidParser->parse(
+			'first', $page, $opts,
+			true, true, $firstRev->getId(), $previousOutput
+		);
+		$this->assertNull( $opts->getTargetLanguage() );
+		$this->assertTrue( $opts->isSafeToCache() );
+
+		// The output records the options that later code uses
+		$this->assertNotContains( 'dateformat', $output->getUsedOptions() );
+		$opts->getDateFormat();
+		$this->assertContains( 'dateformat', $output->getUsedOptions() );
 	}
 }
