@@ -1287,19 +1287,24 @@ class ParserCacheTest extends ParserCacheTestBase {
 	public function testJsonEncodeUnicode() {
 		$unicodeCharacter = "Э";
 
-		$bag = new HashBagOStuff();
-		$parserCache = $this->makeParserCache( $bag );
 		$parserOutput = $this->createDummyParserOutput();
 		$parserOutput->setContentHolderText( $unicodeCharacter );
+
+		$options = ParserOptions::newFromAnon();
+		$options->registerWatcher( $parserOutput->recordOption( ... ) );
+		$options->getUseParsoid();
+
+		$bag = new HashBagOStuff();
+		$parserCache = $this->makeParserCache( $bag );
 		$parserCache->save(
 			$parserOutput,
 			$this->page,
-			ParserOptions::newFromAnon()
+			$options
 		);
 
 		$key = $parserCache->makeParserOutputKey(
 			$this->page,
-			ParserOptions::newFromAnon()
+			$options
 		);
 		$json = $bag->get( $key );
 		$this->assertStringNotContainsString(
