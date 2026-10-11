@@ -940,6 +940,30 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
+	 * @covers \MediaWiki\Output\OutputPage::getDisplayTitleParts
+	 * @covers \MediaWiki\Output\OutputPage::getUnprefixedDisplayTitle
+	 */
+	public function testDisplayTitlePartsAreSanitized() {
+		$op = $this->newInstance();
+		$op->setTitle( Title::makeTitle( NS_TALK, 'Foo' ) );
+		$evil = 'Foo<span onmouseover="alert(1)">x</span><script>alert(2)</script>';
+		$safe = 'Foo<span>x</span>&lt;script&gt;alert(2)&lt;/script&gt;';
+
+		$op->setDisplayTitleParts(
+			new HtmlArmor( '<b onclick="alert(3)">Talk</b>' ), ':', new HtmlArmor( $evil )
+		);
+		$this->assertSame(
+			[ '<b>Talk</b>', ':', $safe ],
+			array_map( HtmlArmor::getHtml( ... ), $op->getDisplayTitleParts() )
+		);
+		$this->assertSame( $safe, $op->getUnprefixedDisplayTitle() );
+
+		// Unsplit fallback
+		$op->setDisplayTitle( "Talk:$evil" );
+		$this->assertSame( $safe, $op->getUnprefixedDisplayTitle() );
+	}
+
+	/**
 	 * The display title of the page is separate from the title text in
 	 * the metadata: a ParserOutput does not change it.
 	 *
