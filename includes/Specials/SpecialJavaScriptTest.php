@@ -15,6 +15,7 @@ use MediaWiki\Request\FauxRequest;
 use MediaWiki\ResourceLoader as RL;
 use MediaWiki\ResourceLoader\ResourceLoader;
 use MediaWiki\SpecialPage\SpecialPage;
+use Wikimedia\Http\HttpHeader;
 
 /**
  * @ingroup SpecialPage
@@ -162,8 +163,8 @@ class SpecialJavaScriptTest extends SpecialPage {
 JAVASCRIPT
 		);
 
-		header( 'Content-Type: text/javascript; charset=utf-8' );
-		header( 'Cache-Control: private, no-cache, must-revalidate' );
+		HttpHeader::send( 'Content-Type: text/javascript; charset=utf-8' );
+		HttpHeader::send( 'Cache-Control: private, no-cache, must-revalidate' );
 		echo $code;
 	}
 
@@ -189,7 +190,7 @@ JAVASCRIPT
 			Html::linkedScript( $scriptUrl ),
 		] );
 
-		header( 'Content-Type: text/html; charset=utf-8' );
+		HttpHeader::send( 'Content-Type: text/html; charset=utf-8' );
 		echo <<<HTML
 <!DOCTYPE html>
 <title>QUnit</title>

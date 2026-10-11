@@ -8,6 +8,8 @@
 
 namespace MediaWiki;
 
+use Wikimedia\Http\HttpHeader;
+
 /**
  * Check PHP Version, as well as for composer dependencies in entry points,
  * and display something vaguely comprehensible in the event of a totally
@@ -234,9 +236,9 @@ HTML;
 	private function outputHTMLHeader() {
 		$protocol = isset( $_SERVER['SERVER_PROTOCOL'] ) ? $_SERVER['SERVER_PROTOCOL'] : 'HTTP/1.0';
 
-		header( "$protocol 500 MediaWiki configuration Error" );
+		HttpHeader::send( "$protocol 500 MediaWiki configuration Error" );
 		// Don't cache error pages! They cause no end of trouble...
-		header( 'Cache-Control: no-cache' );
+		HttpHeader::send( 'Cache-Control: no-cache' );
 	}
 
 	/**
@@ -255,7 +257,7 @@ HTML;
 		$introHtml = htmlspecialchars( $introText );
 		$longTitleHtml = htmlspecialchars( $longTitle );
 
-		header( 'Content-type: text/html; charset=UTF-8' );
+		HttpHeader::send( 'Content-type: text/html; charset=UTF-8' );
 
 		$mwVersion = self::MW_VERSION;
 		$finalOutput = <<<HTML

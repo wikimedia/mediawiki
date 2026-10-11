@@ -16,6 +16,7 @@ use MediaWiki\Deferred\DeferredUpdates;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Output\OutputHandler;
 use MediaWiki\Settings\SettingsBuilder;
+use Wikimedia\Http\HttpHeader;
 use Wikimedia\Http\HttpStatus;
 
 # T17461: Make IE8 turn off content sniffing. Everybody else should ignore this
@@ -95,8 +96,8 @@ if ( isset( $_SERVER['REQUEST_METHOD'] ) && $_SERVER['REQUEST_METHOD'] === 'POST
 if ( !defined( 'MW_API' ) && !defined( 'MW_REST_API' ) &&
 	RequestContext::getMain()->getRequest()->getHeader( 'Promise-Non-Write-API-Action' )
 ) {
-	header( 'Cache-Control: no-cache' );
-	header( 'Content-Type: text/html; charset=utf-8' );
+	HttpHeader::send( 'Cache-Control: no-cache' );
+	HttpHeader::send( 'Content-Type: text/html; charset=utf-8' );
 	HttpStatus::header( 400 );
 	$errorHtml = wfMessage( 'nonwrite-api-promise-error' )
 		->useDatabase( false )
@@ -112,7 +113,7 @@ $errorHtml
 </html>
 
 HTML;
-	header( 'Content-Length: ' . strlen( $content ) );
+	HttpHeader::send( 'Content-Length: ' . strlen( $content ) );
 	echo $content;
 	die();
 }

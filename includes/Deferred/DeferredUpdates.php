@@ -11,6 +11,7 @@ use MediaWiki\Exception\ErrorPageError;
 use MediaWiki\Exception\MWExceptionHandler;
 use MediaWiki\Logger\LoggerFactory;
 use Throwable;
+use Wikimedia\Http\HttpHeader;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\ScopedCallback;
 use Wikimedia\Timestamp\ConvertibleTimestamp;
@@ -308,7 +309,7 @@ class DeferredUpdates {
 		// callers should check permissions *before* enqueueing updates. If the main transaction
 		// round actions succeed but some deferred updates fail due to permissions errors then
 		// there is a risk that some secondary data was not properly updated.
-		if ( $guiError && $stage === self::PRESEND && !headers_sent() ) {
+		if ( $guiError && $stage === self::PRESEND && !HttpHeader::headersSent() ) {
 			throw $guiError;
 		}
 	}

@@ -26,6 +26,7 @@ use StatusValue;
 use Wikimedia\FileBackend\FSFile\FSFile;
 use Wikimedia\FileBackend\FSFile\TempFSFile;
 use Wikimedia\FileBackend\FSFile\TempFSFileFactory;
+use Wikimedia\Http\HttpHeader;
 use Wikimedia\LockManager\LockManager;
 use Wikimedia\LockManager\NullLockManager;
 use Wikimedia\LockManager\ScopedLock;
@@ -216,7 +217,7 @@ abstract class FileBackend implements LoggerAwareInterface {
 			? (int)$config['concurrency']
 			: 50;
 		$this->obResetFunc = $config['obResetFunc'] ?? self::resetOutputBufferTheDefaultWay( ... );
-		$this->headerFunc = $config['headerFunc'] ?? header( ... );
+		$this->headerFunc = $config['headerFunc'] ?? HttpHeader::send( ... );
 		$this->asyncHandler = $config['asyncHandler'] ?? null;
 		$this->streamerOptions = [
 			'obResetFunc' => $this->obResetFunc,

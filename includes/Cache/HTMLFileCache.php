@@ -16,6 +16,7 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\CacheKeyHelper;
 use MediaWiki\Page\PageIdentity;
+use Wikimedia\Http\HttpHeader;
 
 /**
  * Page view caching in the file system.
@@ -141,12 +142,12 @@ class HTMLFileCache extends FileCacheBase {
 		}
 
 		$context->getOutput()->sendCacheControl();
-		header( "Content-Type: {$this->options->get( MainConfigNames::MimeType )}; charset=UTF-8" );
-		header( 'Content-Language: ' .
+		HttpHeader::send( "Content-Type: {$this->options->get( MainConfigNames::MimeType )}; charset=UTF-8" );
+		HttpHeader::send( 'Content-Language: ' .
 			MediaWikiServices::getInstance()->getContentLanguage()->getHtmlCode() );
 		if ( $this->useGzip() ) {
 			if ( wfClientAcceptsGzip() ) {
-				header( 'Content-Encoding: gzip' );
+				HttpHeader::send( 'Content-Encoding: gzip' );
 				readfile( $filename );
 			} else {
 				/* Send uncompressed */
@@ -198,7 +199,7 @@ class HTMLFileCache extends FileCacheBase {
 		// gzip output to buffer as needed and set headers...
 		// @todo Ugly wfClientAcceptsGzip() function - use context!
 		if ( $this->useGzip() && wfClientAcceptsGzip() ) {
-			header( 'Content-Encoding: gzip' );
+			HttpHeader::send( 'Content-Encoding: gzip' );
 
 			return $compressed;
 		}

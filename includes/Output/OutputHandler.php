@@ -11,6 +11,7 @@ namespace MediaWiki\Output;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
+use Wikimedia\Http\HttpHeader;
 
 /**
  * @since 1.31
@@ -120,7 +121,7 @@ class OutputHandler {
 			wfDebug( __METHOD__ . "() skipping compression (gzencode unavailable)" );
 			return $s;
 		}
-		if ( headers_sent() ) {
+		if ( HttpHeader::headersSent() ) {
 			wfDebug( __METHOD__ . "() skipping compression (headers already sent)" );
 			return $s;
 		}
@@ -143,13 +144,13 @@ class OutputHandler {
 
 		if ( wfClientAcceptsGzip() ) {
 			wfDebug( __METHOD__ . "() is compressing output" );
-			header( 'Content-Encoding: gzip' );
+			HttpHeader::send( 'Content-Encoding: gzip' );
 			$s = gzencode( $s, 6 );
 		}
 
 		// Set vary header if it hasn't been set already
 		if ( !preg_grep( '/^Vary:/i', headers_list() ) ) {
-			header( 'Vary: Accept-Encoding' );
+			HttpHeader::send( 'Vary: Accept-Encoding' );
 		}
 		return $s;
 	}
@@ -170,7 +171,7 @@ class OutputHandler {
 	 * @param int $length
 	 */
 	private static function emitContentLength( $length ) {
-		if ( headers_sent() ) {
+		if ( HttpHeader::headersSent() ) {
 			wfDebug( __METHOD__ . "() headers already sent" );
 			return;
 		}
@@ -179,7 +180,7 @@ class OutputHandler {
 			in_array( http_response_code(), [ 200, 404 ], true ) ||
 			( $_SERVER['SERVER_PROTOCOL'] ?? null ) === 'HTTP/1.0'
 		) {
-			header( "Content-Length: $length" );
+			HttpHeader::send( "Content-Length: $length" );
 		}
 	}
 }

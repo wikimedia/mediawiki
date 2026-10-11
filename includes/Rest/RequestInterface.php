@@ -100,7 +100,7 @@ interface RequestInterface {
 	 *     // Emit headers iteratively:
 	 *     foreach ($message->getHeaders() as $name => $values) {
 	 *         foreach ($values as $value) {
-	 *             header(sprintf('%s: %s', $name, $value), false);
+	 *             HttpHeader::send(sprintf('%s: %s', $name, $value), false);
 	 *         }
 	 *     }
 	 *

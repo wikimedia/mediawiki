@@ -6,6 +6,7 @@ use MediaWiki\Debug\MWDebug;
 use MediaWiki\Http\Telemetry;
 use MediaWiki\Logger\LoggerFactory;
 use RuntimeException;
+use Wikimedia\Http\HttpHeader;
 
 /**
  * @since 1.29
@@ -35,6 +36,7 @@ class HeaderCallback {
 			class_exists( WebRequest::class );
 			class_exists( LoggerFactory::class );
 			class_exists( Telemetry::class );
+			class_exists( HttpHeader::class );
 		}
 
 		header_register_callback( self::callback( ... ) );
@@ -65,8 +67,8 @@ class HeaderCallback {
 			if ( !preg_match( '/(?:^|,)\s*(?:private|no-cache|no-store)\s*(?:$|,)/i',
 				$cacheControl )
 			) {
-				header( 'Expires: Thu, 01 Jan 1970 00:00:00 GMT' );
-				header( 'Cache-Control: private, max-age=0, s-maxage=0' );
+				HttpHeader::send( 'Expires: Thu, 01 Jan 1970 00:00:00 GMT' );
+				HttpHeader::send( 'Cache-Control: private, max-age=0, s-maxage=0' );
 				LoggerFactory::getInstance( 'cache-cookies' )->warning(
 					'Cookies set on {url} with Cache-Control "{cache-control}"', [
 						'url' => WebRequest::getGlobalRequestURL(),
@@ -82,7 +84,7 @@ class HeaderCallback {
 		// FIXME this is not an ideal place to do it, but the most reliable for now.
 		foreach ( $telemetryHeaders as $header => $value ) {
 			if ( !isset( $headers[strtolower( $header )] ) ) {
-				header( "$header: $value" );
+				HttpHeader::send( "$header: $value" );
 			}
 		}
 
@@ -97,7 +99,7 @@ class HeaderCallback {
 	 * @since 1.29
 	 */
 	public static function warnIfHeadersSent() {
-		if ( !self::$messageSent && headers_sent( $filename, $line ) ) {
+		if ( !self::$messageSent && HttpHeader::headersSent( $filename, $line ) ) {
 			self::$messageSent = true;
 			MWDebug::warning( 'Headers already sent, should send headers earlier than ' .
 				wfGetCaller( 3 ) );

@@ -17,6 +17,7 @@ use MediaWiki\Message\Message;
 use MediaWiki\Request\ContentSecurityPolicy;
 use MediaWiki\Request\WebRequest;
 use Throwable;
+use Wikimedia\Http\HttpHeader;
 use Wikimedia\Http\HttpStatus;
 use Wikimedia\Message\MessageParam;
 use Wikimedia\Message\MessageSpecifier;
@@ -67,7 +68,7 @@ class MWExceptionRenderer {
 	 */
 	public static function output( Throwable $e, $mode, ?Throwable $eNew = null ) {
 		$showExceptionDetails = self::shouldShowExceptionDetails();
-		if ( $e instanceof RequestTimeoutException && headers_sent() ) {
+		if ( $e instanceof RequestTimeoutException && HttpHeader::headersSent() ) {
 			// Excimer's flag check happens on function return, so, a timeout
 			// can be thrown after exiting, say, `doPostOutputShutdown`, where
 			// headers are sent.  In which case, it's probably fine not to
@@ -358,8 +359,8 @@ class MWExceptionRenderer {
 	 * @param string $header
 	 */
 	private static function header( $header ) {
-		if ( !headers_sent() ) {
-			header( $header );
+		if ( !HttpHeader::headersSent() ) {
+			HttpHeader::send( $header );
 		}
 	}
 
@@ -367,7 +368,7 @@ class MWExceptionRenderer {
 	 * @param int $code
 	 */
 	private static function statusHeader( $code ) {
-		if ( !headers_sent() ) {
+		if ( !HttpHeader::headersSent() ) {
 			HttpStatus::header( $code );
 		}
 	}
@@ -436,7 +437,7 @@ class MWExceptionRenderer {
 	}
 
 	private static function cspHeader(): void {
-		if ( !headers_sent() ) {
+		if ( !HttpHeader::headersSent() ) {
 			ContentSecurityPolicy::sendRestrictiveHeader();
 		}
 	}

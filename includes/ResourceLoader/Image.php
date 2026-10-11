@@ -17,6 +17,7 @@ use MediaWiki\MediaWikiServices;
 use MediaWiki\Shell\Shell;
 use RuntimeException;
 use Wikimedia\FileBackend\FileBackend;
+use Wikimedia\Http\HttpHeader;
 use Wikimedia\Minify\CSSMin;
 
 /**
@@ -333,10 +334,10 @@ class Image {
 		$mime = $this->getMimeType( $format );
 		$filename = $this->getName() . '.' . $this->getExtension( $format );
 
-		header( 'Content-Type: ' . $mime );
-		header( 'Content-Disposition: ' .
+		HttpHeader::send( 'Content-Type: ' . $mime );
+		HttpHeader::send( 'Content-Disposition: ' .
 			FileBackend::makeContentDisposition( 'inline', $filename ) );
-		header( 'Access-Control-Allow-Origin: *' );
+		HttpHeader::send( 'Access-Control-Allow-Origin: *' );
 	}
 
 	/**

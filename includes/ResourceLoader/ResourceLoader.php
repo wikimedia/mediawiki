@@ -36,6 +36,7 @@ use RuntimeException;
 use stdClass;
 use Throwable;
 use UnexpectedValueException;
+use Wikimedia\Http\HttpHeader;
 use Wikimedia\Http\HttpStatus;
 use Wikimedia\Minify\CSSMin;
 use Wikimedia\Minify\IdentityMinifierState;
@@ -833,24 +834,24 @@ class ResourceLoader implements LoggerAwareInterface {
 		if ( $context->getImageObj() ) {
 			// Output different headers if we're outputting textual errors.
 			if ( $errors ) {
-				header( 'Content-Type: text/plain; charset=utf-8' );
+				HttpHeader::send( 'Content-Type: text/plain; charset=utf-8' );
 			} else {
 				$context->getImageObj()->sendResponseHeaders( $context );
 			}
 		} elseif ( $context->isSourceMap() ) {
-			header( 'Content-Type: application/json' );
+			HttpHeader::send( 'Content-Type: application/json' );
 		} elseif ( $context->getOnly() === 'styles' ) {
-			header( 'Content-Type: text/css; charset=utf-8' );
-			header( 'Access-Control-Allow-Origin: *' );
+			HttpHeader::send( 'Content-Type: text/css; charset=utf-8' );
+			HttpHeader::send( 'Access-Control-Allow-Origin: *' );
 		} else {
-			header( 'Content-Type: text/javascript; charset=utf-8' );
+			HttpHeader::send( 'Content-Type: text/javascript; charset=utf-8' );
 		}
 		// See RFC 2616 § 14.19 ETag
 		// https://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.19
-		header( 'ETag: ' . $etag );
+		HttpHeader::send( 'ETag: ' . $etag );
 		if ( $context->getDebug() ) {
 			// Do not cache debug responses
-			header( 'Cache-Control: private, no-cache, must-revalidate' );
+			HttpHeader::send( 'Cache-Control: private, no-cache, must-revalidate' );
 		} else {
 			// T132418: When a resource expires mid-way a browsing session, prefer to renew it in
 			// the background instead of blocking the next page load (eg. startup module, or CSS).
@@ -858,12 +859,12 @@ class ResourceLoader implements LoggerAwareInterface {
 				? ", stale-while-revalidate=" . min( 60, intval( $maxage / 2 ) )
 				: ''
 			);
-			header( "Cache-Control: public, max-age=$maxage, s-maxage=$maxage" . $staleDirective );
-			header( 'Expires: ' . ConvertibleTimestamp::convert( TS::RFC2822, time() + $maxage ) );
+			HttpHeader::send( "Cache-Control: public, max-age=$maxage, s-maxage=$maxage" . $staleDirective );
+			HttpHeader::send( 'Expires: ' . ConvertibleTimestamp::convert( TS::RFC2822, time() + $maxage ) );
 		}
 
 		foreach ( $this->extraHeaders as $header ) {
-			header( $header );
+			HttpHeader::send( $header );
 		}
 	}
 
@@ -922,8 +923,8 @@ class ResourceLoader implements LoggerAwareInterface {
 	 */
 	private function sendSourceMapVersionMismatch( $currentVersion ) {
 		HttpStatus::header( 404 );
-		header( 'Content-Type: text/plain; charset=utf-8' );
-		header( 'X-Content-Type-Options: nosniff' );
+		HttpHeader::send( 'Content-Type: text/plain; charset=utf-8' );
+		HttpHeader::send( 'X-Content-Type-Options: nosniff' );
 		echo "Can't deliver a source map for the requested version " .
 			"since the version is now '$currentVersion'\n";
 	}
@@ -934,8 +935,8 @@ class ResourceLoader implements LoggerAwareInterface {
 	 */
 	private function sendSourceMapTypeNotImplemented() {
 		HttpStatus::header( 404 );
-		header( 'Content-Type: text/plain; charset=utf-8' );
-		header( 'X-Content-Type-Options: nosniff' );
+		HttpHeader::send( 'Content-Type: text/plain; charset=utf-8' );
+		HttpHeader::send( 'X-Content-Type-Options: nosniff' );
 		echo "Can't make a source map for this content type\n";
 	}
 
