@@ -1279,9 +1279,11 @@ class OutputPage extends ContextSource {
 	 * @see Parser::splitPageTitle()
 	 */
 	public function getDisplayTitleParts(): array {
+		// Sanitize like ::getDisplayTitle(), since callers output the parts
+		// unescaped and nothing guarantees that the stored HTML is safe.
 		if ( ( $this->displayTitleParts[0] ?? null ) !== null ) {
 			return array_map(
-				static fn ( string $s ) => new HtmlArmor( $s ),
+				static fn ( string $s ) => new HtmlArmor( Sanitizer::removeSomeTags( $s ) ),
 				array_slice( $this->displayTitleParts, 0, 3 ),
 			);
 		}
@@ -1298,7 +1300,7 @@ class OutputPage extends ContextSource {
 			// to maintain ParserCache compatibility with the past two LTS
 			// releases, this can be removed in MW >= 1.52.
 			return Parser::splitPageTitle(
-				new HtmlArmor( $displayTitle ),
+				new HtmlArmor( Sanitizer::removeSomeTags( $displayTitle ) ),
 				$this->getTitle(),
 				$converter,
 			);
