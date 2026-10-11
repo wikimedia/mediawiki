@@ -34,9 +34,9 @@ class PageBundleParserOutputConverterIntegrationTest extends MediaWikiIntegratio
 			html: 'html content',
 			parsoid: [],
 			mw: [],
-			version: '1.x',
 			headers: [ 'content-language' => null ]
 		);
+		$pageBundle->setContentVersion( '1.x' );
 
 		$defaultExpiration = $this->getServiceContainer()->getMainConfig()->get(
 			MainConfigNames::ParserCacheExpireTime
@@ -185,12 +185,13 @@ class PageBundleParserOutputConverterIntegrationTest extends MediaWikiIntegratio
 			null,
 			null,
 		);
+		$pb = new HtmlPageBundle(
+			html: 'hello world',
+			headers: [ 'content-language' => 'zh-Hant-TW' ],
+		);
+		$pb->setContentVersion( Parsoid::defaultHTMLVersion() );
 		$po = $pageBundleParserOutputConverter->parserOutputFromPageBundle(
-			new HtmlPageBundle(
-				html: 'hello world',
-				headers: [ 'content-language' => 'zh-Hant-TW' ],
-				version: Parsoid::defaultHTMLVersion(),
-			),
+			$pb,
 			isParsoidContent: true,
 		);
 		$po->setTitle( new TitleValue( NS_MAIN, 'Test_Page' ) );
