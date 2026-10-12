@@ -51,7 +51,13 @@ class SiteExporter {
 
 		fwrite( $this->sink, Xml::openElement( 'sites', $attributes ) . "\n" );
 
+		$orderedSites = [];
 		foreach ( $sites as $site ) {
+			$orderedSites[$site->getGlobalId()] = $site;
+		}
+		ksort( $orderedSites );
+
+		foreach ( $orderedSites as $site ) {
 			$this->exportSite( $site );
 		}
 
