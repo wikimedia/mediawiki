@@ -40,6 +40,14 @@ use Wikimedia\Parsoid\Parsoid;
  * - apierror-imagelimitexceeded
  */
 class ParsoidParser /* eventually this will extend \Parser */ {
+	/**
+	 * Extension data key. It is set on the ParserOutput of a parse
+	 * whose lints were not sent to the ParserLogLinterData hook,
+	 * because the revision ID was not known.
+	 * @internal For use by the Linter extension until T393717 is done.
+	 */
+	public const LINTS_NOT_LOGGED = 'core:parsoid-lints-not-logged';
+
 	public function __construct(
 		private Parsoid $parsoid,
 		private readonly PageConfigFactory $pageConfigFactory,
@@ -178,6 +186,15 @@ class ParsoidParser /* eventually this will extend \Parser */ {
 
 		$parserOutput->recordTimeProfile();
 		$this->dataAccess->makeLimitReport( $pageConfig, $options, $parserOutput );
+
+		if ( $this->siteConfig->linterEnabled() && $pageConfig->getRevisionId() === null ) {
+			// DataAccess::logLinterData() does not send the lints of a parse
+			// without a revision ID. Core can reuse this output after it saves
+			// the revision, for example from an edit stash. Record that the
+			// lints were not sent, so that the Linter extension can lint the
+			// saved revision.
+			$parserOutput->setExtensionData( self::LINTS_NOT_LOGGED, true );
+		}
 
 		// T371713: Collect statistics on parsing time -vs- presence of
 		// $previousOutput

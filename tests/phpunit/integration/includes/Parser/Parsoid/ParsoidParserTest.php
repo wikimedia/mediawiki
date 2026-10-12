@@ -6,6 +6,7 @@ namespace MediaWiki\Tests\Parser\Parsoid;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Parser\ParserOptions;
+use MediaWiki\Parser\Parsoid\ParsoidParser;
 use MediaWiki\Title\Title;
 use MediaWikiIntegrationTestCase;
 
@@ -116,6 +117,26 @@ class ParsoidParserTest extends MediaWikiIntegrationTestCase {
 		] );
 		$output = $pipeline->run( $output, $opts, [] );
 		$this->assertArrayEquals( $usedOptions, $output->getUsedOptions() );
+	}
+
+	public function testLintsNotLogged() {
+		$this->overrideConfigValue( MainConfigNames::ParsoidSettings, [ 'linting' => true ] );
+		$page = $this->getExistingTestPage();
+		$parsoidParser = $this->getServiceContainer()
+			->getParsoidParserFactory()->create();
+		$opts = ParserOptions::newFromAnon();
+		$opts->setUseParsoid();
+
+		// Without a revision ID, the lints are not sent.
+		$output = $parsoidParser->parse( '<b>Hello', $page, $opts );
+		$this->assertTrue( $output->getExtensionData( ParsoidParser::LINTS_NOT_LOGGED ) );
+
+		// With a revision ID, the lints are sent.
+		$output = $parsoidParser->parse(
+			$page->getContent()->getText(), $page, $opts,
+			true, true, $page->getLatest()
+		);
+		$this->assertNull( $output->getExtensionData( ParsoidParser::LINTS_NOT_LOGGED ) );
 	}
 
 	public function testSelectiveUpdateSampleKeepsOptionsSafeToCache() {
