@@ -4,7 +4,8 @@
 			"Ankry",
 			"Kaszeba",
 			"Kirsan",
-			"Orbitminis"
+			"Orbitminis",
+			"Terrus38"
 		]
 	},
 	"editinguser": "Zmiana karnów {{GENDER:$1|brëkòwnika|brëkòwniczczi}} <strong>[[User:$1|$1]]</strong> $2",
@@ -41,18 +42,18 @@
 	"right-movefile": "Przenoszenié lopków",
 	"right-suppressredirect": "Przenoszenié starnów bez ùsôdzania przeczérowaniów na placu stôregò miona",
 	"right-upload": "Wladënk lopków",
-	"right-reupload": "Nadpisëwanié egzystëjących lopków",
-	"right-reupload-own": "Nadpisëwanié egzystëjącegò, rëchli przez se wësłonegò, lopka",
-	"right-reupload-shared": "Môlowé nadpisëwanié egzystëjącegò lopka, we wespóldzelnych dostónkach",
+	"right-reupload": "Nadpisowanié jistniejącëch lopków",
+	"right-reupload-own": "Nadpisowanié rëchli przez se przesłónégò lopka",
+	"right-reupload-shared": "Lokalné nadpisowanié lopka jistniejącégò w repòzytorium mediów",
 	"right-upload_by_url": "Wladënk lopka z adresë URL",
 	"right-purge": "Czëszczenié pòdrãczny pamiãcë starnë",
 	"right-autoconfirmed": "Bez ògrańczeniów przez òpiartë na adresë IP limitë",
 	"right-bot": "Nacéchòwanié edicëjó jakno aùtomatnych",
-	"action-edit": "editëje nã starnã",
+	"action-edit": "editowac tã starnã",
 	"action-createaccount": "ùsôdzaniô négò kònta brëkòwnika",
 	"action-move": "przeczérowania ti starnë",
 	"action-delete": "Rëmôj",
 	"action-undelete": "Doprowadzë nazôd",
-	"action-protect": "Zazychrëjë",
+	"action-protect": "zmianë nastawù zazychrowaniégò ti starnë",
 	"listgrouprights-members": "(lësta nôlëżników karna)"
 }

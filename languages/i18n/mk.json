@@ -51,6 +51,7 @@
 	"index-category": "Индексирани страници",
 	"noindex-category": "Неиндексирани страници",
 	"broken-file-category": "Страници со прекинати врски до податотеки",
+	"category-header-strokes": "$1 {{PLURAL:$1|потег|потези}}",
 	"about": "За {{SITENAME}}",
 	"article": "Статија",
 	"newwindow": "(се отвора во нов прозорец)",

@@ -57,6 +57,7 @@
 	"index-category": "Indekseeritud leheküljed",
 	"noindex-category": "Indekseerimata leheküljed",
 	"broken-file-category": "Katkiste pildilinkidega leheküljed",
+	"category-header-strokes": "$1 {{PLURAL:$1|kriips|kriipsu}}",
 	"about": "Tiitelandmed",
 	"article": "artikkel",
 	"newwindow": "(avaneb uues aknas)",
@@ -86,6 +87,7 @@
 	"search-close": "Sule otsidialoog",
 	"search-ignored-headings": " #<!-- Jäta see rida muutmata kujule. --> <pre>\n# Pealkirjad, mida otsingus eiratakse.\n# Muudatused jõustuvad kohe, kui vastava pealkirjaga lehekülg on indekseeritud.\n# Saad teha tühimuudatuse, selleks et sundida lehekülg uuesti indekseerimisele.\n# Süntaks on järgmine:\n#   * Kõik alates märgist \"#\" kuni rea lõpuni on kommentaar.\n#   * Iga rida, mis ei ole tühi, on eiratava pealkirja täpne tõstutundlik kuju.\nViited\nVälislingid\nVaata ka\n #</pre> <!-- Jäta see rida muutmata kujule. -->",
 	"searchbutton": "Otsi",
+	"searchsuggest-redirected-from": "(ümbersuunamine leheküljelt \"$1\")",
 	"searchsuggest-containing-html": "Otsi lehekülgi, kus sisaldub <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>",
 	"search-loader": "Otsisoovituste laadimine",
 	"go": "Mine",
@@ -137,7 +139,7 @@
 	"categorypage": "Vaata kategooria lehekülge",
 	"viewtalkpage": "Vaata arutelulehekülge",
 	"otherlanguages": "Teistes keeltes",
-	"redirectedfrom": "(ümber suunatud leheküljelt \"$1\")",
+	"redirectedfrom": "(ümber suunatud leheküljelt $1)",
 	"redirectpagesub": "Ümbersuunamisleht",
 	"redirectto": "Ümber suunatud lehekülje:",
 	"lastmodifiedat": "Selle lehekülje viimane muutmine: $1, kell $2.",
@@ -3994,5 +3996,7 @@
 	"table-of-contents-hide-button-aria-label": "Peida sisukord",
 	"diff-usergroups": "$1 {{PLURAL:$1|kasutajarühm|kasutajarühma}}",
 	"languageselector-no-results": "Tulemusi ei leitud.",
-	"languageselector-invalid-input": "\"$1\" ei ole kehtiv keel."
+	"languageselector-invalid-input": "\"$1\" ei ole kehtiv keel.",
+	"mypage-disallowed-action": "Turbekaalutlusel ei ole toiming \"$1\" leheküljel Special:MyPage lubatud.",
+	"import-upload-reauth-reupload": "Sinu identiteet on tõendatud. Palun vali imporditav fail ja saada uuesti."
 }

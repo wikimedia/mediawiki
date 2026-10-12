@@ -271,6 +271,7 @@
 	"rest-endpoint-desc-post-page": "Crea unha páxina.",
 	"rest-endpoint-desc-post-move": "Traslada (renomea) unha páxina.",
 	"rest-endpoint-desc-post-move-title": "Traslada (renomea) unha páxina polo título.",
+	"rest-endpoint-desc-get-page-title-backlinks": "Lista as páxinas que ligan cara a unha páxina.",
 	"rest-endpoint-desc-get-page-title": "Devolve información sobre unha páxina, incluído o código fonte da páxina, normalmente en texto wiki.",
 	"rest-endpoint-desc-put-page-title": "Edita unha páxina segundo o identificador de revisión máis recente da páxina ou crea unha páxina se non se proporciona ningún identificador de revisión. Se hai un conflito de fusión, a API intenta resolver o conflito automaticamente. Se o conflito de edición non se pode resolver, a API devolve un erro 409.",
 	"rest-endpoint-desc-get-page-title-html": "Devolve o contido dunha páxina en HTML.",

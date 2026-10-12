@@ -275,6 +275,7 @@
 	"rest-endpoint-desc-post-page": "Maakt een pagina aan.",
 	"rest-endpoint-desc-post-move": "Hernoemt een pagina.",
 	"rest-endpoint-desc-post-move-title": "Hernoemt een pagina op basis van titel.",
+	"rest-endpoint-desc-get-page-title-backlinks": "Geeft een lijst met pagina’s die een koppeling naar een bepaalde pagina bevatten.",
 	"rest-endpoint-desc-get-page-title": "Geeft informatie over een pagina, waaronder de broncode van de pagina, doorgaans in wikitekst.",
 	"rest-endpoint-desc-put-page-title": "Bewerkt een pagina op basis van de ID van de nieuwste versie van de pagina, of maakt een pagina aan als er geen versie-ID is opgegeven. Als er een samenvoegingsconflict optreedt, probeert de API dat automatisch op te lossen. Als het bewerkingsconflict niet kan worden opgelost, retourneert de API een fout 409.",
 	"rest-endpoint-desc-get-page-title-html": "Retourneert de inhoud van een pagina in HTML.",
@@ -376,5 +377,13 @@
 	"rest-openapispec-genericerrorresponse-desc": "Algemene foutmelding. Het bericht bevat meer details over de fout.",
 	"rest-openapispec-genericerrorresponse-property-desc-httpCode": "De HTTP-statuscode van het foutantwoord.",
 	"rest-openapispec-genericerrorresponse-property-desc-message": "Een leesbare foutmelding, handig wanneer er geen vertalingen van de foutmelding beschikbaar zijn",
-	"rest-openapispec-genericerrorresponse-property-desc-messageTranslations": "Een overzicht van taalcodes en de bijbehorende, voor mensen leesbare foutmeldingen, voor clients die deze kunnen gebruiken."
+	"rest-openapispec-genericerrorresponse-property-desc-messageTranslations": "Een overzicht van taalcodes en de bijbehorende, voor mensen leesbare foutmeldingen, voor clients die deze kunnen gebruiken.",
+	"rest-openapispec-genericerrorresponse-v2-desc": "Foutmelding van modules die versie 2.0 van het foutenformaat gebruiken.",
+	"rest-openapispec-genericerrorresponse-restbasecompat-desc": "Foutmelding in de met RESTBase compatibele opmaak, geretourneerd wanneer in het verzoek de header “x-restbase-compat: true” staat.",
+	"rest-openapispec-genericerrorresponse-property-desc-httpReason": "De standaardreden die bij een HTTP-statuscode wordt aangegeven, bijvoorbeeld “Niet gevonden”.",
+	"rest-openapispec-genericerrorresponse-property-desc-errorKey": "De berichtsleutel die de fout identificeert. Alleen aanwezig bij gelokaliseerde fouten.",
+	"rest-openapispec-genericerrorresponse-property-desc-reqId": "De ID van het verzoek. Alleen aanwezig bij serverfouten; graag vermelden als u de fout rapporteert.",
+	"rest-openapispec-genericerrorresponse-property-desc-exception": "Gestructureerde details over het geval dat de fout heeft veroorzaakt. Alleen zichtbaar als de wiki is geconfigureerd om details over uitzonderlijke gevallen weer te geven.",
+	"rest-openapispec-genericerrorresponse-property-desc-errorCode": "Een door machines leesbare code die de fout identificeert. Alleen aanwezig bij vertaalde foutmeldingen.",
+	"rest-openapispec-genericerrorresponse-property-desc-tracing": "Diagnostische gegevens over het verzoek die nuttig zijn bij het melden van de fout. Bevat altijd “module” en kan “request_id”, “method”, “uri” en “url” bevatten. De inhoud van dit object is niet in de API-voorschriften vastgelegd en kan altijd veranderen."
 }

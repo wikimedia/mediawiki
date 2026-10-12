@@ -27,6 +27,7 @@
 			"Kaganer",
 			"Keo010122",
 			"KhangND",
+			"Lakejason0",
 			"Leducthn",
 			"Leduyquang753",
 			"Macofe",
@@ -104,6 +105,7 @@
 	"index-category": "Trang hiển thị trên bộ máy tìm kiếm",
 	"noindex-category": "Trang không hiển thị trên bộ máy tìm kiếm",
 	"broken-file-category": "Trang có sử dụng tập tin không tồn tại",
+	"category-header-strokes": "$1 {{PLURAL:$1|nét}}",
 	"about": "Giới thiệu",
 	"article": "Trang nội dung",
 	"newwindow": "(mở trong cửa sổ mới)",
@@ -133,6 +135,7 @@
 	"search-close": "Đóng hộp thoại tìm kiếm",
 	"search-ignored-headings": " #<!-- để yên dòng này --> <pre>\n# Công cụ tìm kiếm sẽ bỏ qua các đề mục này.\n# Các thay đổi trong danh sách này sẽ có hiệu lực ngay khi trang chứa đề mục được đưa vào chỉ mục.\n# Để bắt buộc trang phải được đưa trở lại vào chỉ mục, hãy thực hiện một sửa đổi rỗng.\n# Cú pháp:\n#   * Tất cả mọi thứ từ ký hiệu “#” đến cuối dòng là chú thích.\n#   * Mỗi dòng có nội dung là bản sao của tên đề mục cần bỏ qua, phân biệt chữ hoa/thường.\nTham khảo\nChú thích\nLiên kết ngoài\nXem thêm\nĐọc thêm\n #</pre> <!-- để yên dòng này -->",
 	"searchbutton": "Tìm kiếm",
+	"searchsuggest-redirected-from": "(Đổi hướng từ $1)",
 	"searchsuggest-containing-html": "Tìm kiếm trang chứa <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>",
 	"search-loader": "Đang tải gợi ý tìm kiếm",
 	"go": "Xem",
@@ -4065,5 +4068,7 @@
 	"table-of-contents-hide-button-aria-label": "Ẩn mục lục",
 	"diff-usergroups": "$1 {{PLURAL:$1|nhóm người dùng}}",
 	"languageselector-no-results": "Không tìm thấy kết quả.",
-	"languageselector-invalid-input": "“$1” không phải là mã ngôn ngữ hợp lệ."
+	"languageselector-invalid-input": "“$1” không phải là mã ngôn ngữ hợp lệ.",
+	"mypage-disallowed-action": "Vì lý do bảo mật, bạn không thể thực hiện tác vụ “$1” trên Special:MyPage.",
+	"import-upload-reauth-reupload": "Thông tin của bạn đã được xác minh. Vui lòng chọn và gửi lại tệp cần nhập của bạn."
 }

@@ -1,13 +1,14 @@
 {
 	"@metadata": {
 		"authors": [
+			"Albinfo",
 			"Gion",
 			"Gion-andri",
 			"Kazu89",
 			"Vlad5250"
 		]
 	},
-	"userrights": "Administraziun da dretgs d'utilisaders",
+	"userrights": "Dretgs d'utilisaders",
 	"userrights-lookup-user": "Administrar gruppas d'utilisaders",
 	"userrights-user-editname": "Inditgescha in num d'utilisader:",
 	"editusergroup": "Modifitgar las gruppas d'utilisaders",
