@@ -1313,7 +1313,15 @@ class DerivedPageDataUpdaterTest extends MediaWikiIntegrationTestCase {
 		$this->assertIsObject( $cached );
 		$expected = $updater->getCanonicalParserOutput();
 		$expected->clearParseStartTime();
-		$this->assertEquals( $expected, $cached );
+		// Compare the serialized forms, which is what the parser cache
+		// stores. With Parsoid, the ContentHolder of $expected can keep
+		// an empty document from an earlier DOM conversion. This document
+		// is not serialized, so it is not in $cached.
+		$jsonCodec = $this->getServiceContainer()->getJsonCodec();
+		$this->assertEquals(
+			$jsonCodec->toJsonArray( $expected ),
+			$jsonCodec->toJsonArray( $cached )
+		);
 
 		// site stats
 		$stats = $this->getDb()->newSelectQueryBuilder()
