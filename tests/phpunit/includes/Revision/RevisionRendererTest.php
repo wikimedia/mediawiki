@@ -594,4 +594,32 @@ class RevisionRendererTest extends MediaWikiIntegrationTestCase {
 		$this->assertStringContainsString( '123', $auxHtml );
 	}
 
+	public function testPreviousOutputWithoutSlot() {
+		$renderer = $this->newRevisionRenderer();
+
+		$options = ParserOptions::newFromAnon();
+		$options->setUseParsoid();
+
+		// The previous revision has only the main slot
+		$oldRev = MutableRevisionRecord::newFromContent(
+			$this->fakePage, new WikitextContent( '[[Test]]' )
+		);
+		$previousOutput = $renderer->getRenderedRevision( $oldRev, $options )
+			->getRevisionParserOutput();
+
+		// The new revision adds a slot
+		$rev = MutableRevisionRecord::newFromContent(
+			$this->fakePage, new WikitextContent( '[[Test]]' )
+		)->setContent( 'aux', new JavaScriptContent( 'test = 123;' ) );
+		$rr = $renderer->getRenderedRevision( $rev, $options, null, [
+			'previous-output' => $previousOutput,
+		] );
+
+		$mainHtml = $rr->getRevisionParserOutput()->getContentHolderText();
+		$this->assertStringContainsString( 'Test', $mainHtml );
+
+		$auxHtml = $rr->getSlotParserOutput( 'aux' )->getContentHolderText();
+		$this->assertStringContainsString( '123', $auxHtml );
+	}
+
 }

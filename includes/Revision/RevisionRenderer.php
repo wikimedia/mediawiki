@@ -404,6 +404,8 @@ class RevisionRenderer implements LoggerAwareInterface {
 			);
 		}
 
-		return $slotOutput;
+		// The previous output can lack a slot of this revision, for
+		// example when this revision adds the slot.
+		return $slotOutput + array_fill_keys( $revslots->getSlotRoles(), null );
 	}
 }
