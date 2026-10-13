@@ -149,10 +149,11 @@ class PNGHandler extends BitmapHandler {
 		$info = [];
 		$info[] = $original;
 
-		if ( $metadata['loopCount'] == 0 ) {
+		$loopCount = (int)( $metadata['loopCount'] ?? 0 );
+		if ( !$loopCount ) {
 			$info[] = wfMessage( 'file-info-png-looped' )->inLanguage( $lang )->parse();
-		} elseif ( $metadata['loopCount'] > 1 ) {
-			$info[] = wfMessage( 'file-info-png-repeat' )->numParams( $metadata['loopCount'] )
+		} elseif ( $loopCount > 1 ) {
+			$info[] = wfMessage( 'file-info-png-repeat' )->numParams( $loopCount )
 				->inLanguage( $lang )->parse();
 		}
 
