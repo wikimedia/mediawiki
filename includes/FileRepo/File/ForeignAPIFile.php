@@ -325,25 +325,6 @@ class ForeignAPIFile extends File {
 		return isset( $this->mInfo['url'] ) ? strval( $this->mInfo['url'] ) : null;
 	}
 
-	/**
-	 * Get short description URL for a file based on the foreign API response,
-	 * or if unavailable, the short URL is constructed from the foreign page ID.
-	 *
-	 * @return null|string
-	 * @since 1.27
-	 */
-	public function getDescriptionShortUrl() {
-		if ( isset( $this->mInfo['descriptionshorturl'] ) ) {
-			return $this->mInfo['descriptionshorturl'];
-		} elseif ( isset( $this->mInfo['pageid'] ) ) {
-			$url = $this->repo->makeUrl( [ 'curid' => $this->mInfo['pageid'] ] );
-			if ( $url !== false ) {
-				return $url;
-			}
-		}
-		return null;
-	}
-
 	public function getUploader( int $audience = self::FOR_PUBLIC, ?Authority $performer = null ): ?UserIdentity {
 		if ( isset( $this->mInfo['user'] ) ) {
 			return UserIdentityValue::newExternal( $this->getRepoName(), $this->mInfo['user'] );
@@ -409,6 +390,26 @@ class ForeignAPIFile extends File {
 	 */
 	public function getDescriptionUrl() {
 		return $this->mInfo['descriptionurl'] ?? false;
+	}
+
+	/**
+	 * Get short description URL for a file based on the foreign API response,
+	 * or if unavailable, the short URL is constructed from the foreign page ID.
+	 *
+	 * @return null|string
+	 * @since 1.27
+	 */
+	public function getDescriptionShortUrl() {
+		if ( isset( $this->mInfo['descriptionshorturl'] ) ) {
+			return $this->mInfo['descriptionshorturl'];
+		} elseif ( isset( $this->mInfo['pageid'] ) ) {
+			// T122439: For remote wikis < 1.27
+			$url = $this->repo->makeUrl( [ 'curid' => $this->mInfo['pageid'] ] );
+			if ( $url !== false ) {
+				return $url;
+			}
+		}
+		return null;
 	}
 
 	/**

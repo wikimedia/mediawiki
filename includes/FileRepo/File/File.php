@@ -460,17 +460,6 @@ abstract class File implements MediaHandlerState {
 	}
 
 	/**
-	 * Get short description URL for a files based on the page ID
-	 * @stable to override
-	 *
-	 * @return string|null
-	 * @since 1.27
-	 */
-	public function getDescriptionShortUrl() {
-		return null;
-	}
-
-	/**
 	 * Return a fully-qualified URL to the file.
 	 * Upload URL paths _may or may not_ be fully qualified, so
 	 * we check. Local paths are assumed to belong on $wgServer.
@@ -2343,6 +2332,17 @@ abstract class File implements MediaHandlerState {
 		} else {
 			return false;
 		}
+	}
+
+	/**
+	 * Get short description URL for a files based on the page ID
+	 * @stable to override
+	 *
+	 * @return string|null
+	 * @since 1.27
+	 */
+	public function getDescriptionShortUrl() {
+		return null;
 	}
 
 	/**
