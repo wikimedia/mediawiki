@@ -2692,7 +2692,7 @@
 	"blocklist-indefblocks": "أخف عمليات المنع غير المحددة",
 	"blocklist-addressblocks": "أخف منع عنوان آي بي واحد",
 	"blocklist-type": "النوع:",
-	"blocklist-type-header": "نوع",
+	"blocklist-type-header": "النوع",
 	"blocklist-type-opt-all": "الكل",
 	"blocklist-type-opt-sitewide": "على مستوى الموقع",
 	"blocklist-type-opt-partial": "جزئي",
@@ -3833,7 +3833,7 @@
 	"rightsnone": "(لا شيء)",
 	"rightslogentry-temporary-group": "$1 (مؤقت، حتى $2)",
 	"feedback-cancel": "إلغاء",
-	"feedback-close": "نُفّذ",
+	"feedback-close": "تم",
 	"feedback-external-bug-report-button": "أرسل تقرير علة تقنية",
 	"feedback-dialog-title": "أرسل تغذية راجعة",
 	"feedback-dialog-intro": "أنت يمكنك استخدام الاستمارة السهلة بالأسفل لإرسال تعليقك. تعليقك ستتم إضافته للصفحة \"$1\"، مع اسم المستخدم الخاص بك.",
@@ -4281,5 +4281,6 @@
 	"benefit-3-description": "تفضيلات تسمح لك بتخصيص تجربتك.",
 	"temp-user-unable-to-acquire": "تعذر الحصول على اسم مستخدم مؤقت للحساب. يرجى المحاولة مرة أخرى.",
 	"table-of-contents-show-button-aria-label": "إظهار جدول المحتويات",
-	"table-of-contents-hide-button-aria-label": "إخفاء جدول المحتويات."
+	"table-of-contents-hide-button-aria-label": "إخفاء جدول المحتويات.",
+	"mypage-disallowed-action": "لأسباب أمنية، لا يمكن استخدام الإجراء \" $1 \" على الصفحة Special:MyPage."
 }

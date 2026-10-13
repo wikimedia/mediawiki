@@ -181,7 +181,7 @@
 	"categorypage": "Vaata kategooria lehekülge",
 	"viewtalkpage": "Vaata arutelulehekülge",
 	"otherlanguages": "Teistes keeltes",
-	"redirectedfrom": "(ümber suunatud leheküljelt \"$1\")",
+	"redirectedfrom": "(ümber suunatud leheküljelt $1)",
 	"redirectpagesub": "Ümbersuunamisleht",
 	"redirectto": "Ümber suunatud lehekülje:",
 	"lastmodifiedat": "Selle lehekülje viimane muutmine: $1, kell $2.",
@@ -4075,5 +4075,6 @@
 	"benefit-3-description": "Eelistused, mille abil saad kasutajakogemust kohandada.",
 	"temp-user-unable-to-acquire": "Ei õnnestunud ajutise konto kasutajanime hankida. Palun proovi uuesti.",
 	"table-of-contents-show-button-aria-label": "Näita sisukorda",
-	"table-of-contents-hide-button-aria-label": "Peida sisukord"
+	"table-of-contents-hide-button-aria-label": "Peida sisukord",
+	"mypage-disallowed-action": "Turbekaalutlusel ei ole toiming \"$1\" leheküljel Special:MyPage lubatud."
 }

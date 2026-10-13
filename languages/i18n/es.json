@@ -336,10 +336,10 @@
 	"period-am": "a. m.",
 	"period-pm": "p. m.",
 	"pagecategories": "{{PLURAL:$1|Categoría|Categorías}}",
-	"category_header": "Páginas en la categoría \"$1\"",
+	"category_header": "Páginas en la categoría «$1»",
 	"subcategories": "Subcategorías",
-	"category-media-header": "Archivos multimedia en la categoría \"$1\"",
-	"category-empty": "<em>Esta categoría no contiene ninguna páginas o archivo.</em>",
+	"category-media-header": "Archivos multimedia en la categoría «$1»",
+	"category-empty": "<em>Esta categoría no contiene ninguna página o archivo.</em>",
 	"hidden-categories": "{{PLURAL:$1|Categoría oculta|Categorías ocultas}}",
 	"hidden-category-category": "Categorías ocultas",
 	"category-subcat-count": "{{PLURAL:$2|Esta categoría solo contiene la siguiente subcategoría.|Esta categoría contiene {{PLURAL:$1|la siguiente subcategoría|las siguientes $1 subcategorías}}, de un total de $2.}}",
@@ -406,7 +406,7 @@
 	"newpage": "Página nueva",
 	"newpage-desc": "Inicia una nueva página para un tema que se ha solicitado.",
 	"view-missing-pages": "Mostrar páginas faltantes",
-	"talkpagelinktext": "Hablar",
+	"talkpagelinktext": "discusión",
 	"specialpage": "Página especial",
 	"personaltools": "Herramientas personales",
 	"talk": "Discusión",
@@ -4327,5 +4327,6 @@
 	"benefit-3-description": "Y preferencias que te ayudan a personalizar tu experiencia.",
 	"temp-user-unable-to-acquire": "No se puede adquirir un nombre de usuario para una cuenta temporal. Por favor, inténtalo de nuevo.",
 	"table-of-contents-show-button-aria-label": "Mostrar índice",
-	"table-of-contents-hide-button-aria-label": "Ocultar la tabla de contenidos"
+	"table-of-contents-hide-button-aria-label": "Ocultar la tabla de contenidos",
+	"mypage-disallowed-action": "Por razones de seguridad, la acción \"$1\" no se puede utilizar en la página Special:MyPage."
 }

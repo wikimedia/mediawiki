@@ -1790,7 +1790,7 @@
 	"wantedpages-summary": "Lëscht vun de Säiten, déi et nach net gëtt, mat de meeschte Linken drop, ouni d'Säiten op déi nëmme Viruleedunge linken. Fir eng Lëscht vun de Säiten, déi et nach net gëtt, op déi Viruleedunge linken kuckt wgl. [[{{#special:BrokenRedirects}}|d'Lëscht vun de futtisse Viruleedungen]].",
 	"wantedpages-badtitle": "Net valabelen Titel am Resultat: $1",
 	"wantedfiles": "Gewënscht Fichieren",
-	"wantedfiletext-cat": "Dës Fichiere gi benotzt awer et gëtt se net. Fichiere aus frieme Repositorie kënnen hei gewise ginn och wann et se gëtt. All sou falsch Positiver ginn <del>duerchgestrach</del>. Zousätzlech gi Säiten an deene Fichieren dra sinn déi et net gëtt op [[:$1]] gewisen.",
+	"wantedfiletext-cat": "Dës Fichiere gi benotzt awer et gëtt se net op dëser Wiki. Fichieren aus frieme Repositoire kënnen hei gewise ginn och wann et se gëtt. All sou falsch Positiver ginn <del>duerchgestrach</del>. Zousätzlech gi Säiten an deene Fichieren dra sinn déi et net gëtt op [[:$1]] gewisen.",
 	"wantedfiletext-cat-noforeign": "Dëse Fichiere gi benotzt awer et gëtt se net. Zousätzlech ginn Säiten op deene Fichiere stinn déi et net gëtt op der Lëscht [[:$1]] gewisen.",
 	"wantedfiletext-nocat": "Dës Fichiere gi benotzt existéieren awer net. Fichieren aus frieme Repertoiren kënnen trotzdeem opgelëscht ginn. All dës positiv Fichiere ginn <del>duergestrach</del>.",
 	"wantedfiletext-nocat-noforeign": "Dës Fichiere gi benotzt awer et gëtt se net.",
