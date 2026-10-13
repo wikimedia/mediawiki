@@ -536,11 +536,15 @@ abstract class ParsoidHandler extends Handler {
 		$hasOldId = ( $revId !== null );
 		$ensureAccessibleContent = !$html2WtMode || $hasOldId;
 
-		// When transforming for lint, we aren't going to go through a ParserOutputAccess
+		$format = $attribs['opts']['format'] ?? '';
+		if ( $format === '' ) {
+			LoggerFactory::getInstance( 'ParsoidHandler' )->warning( "Empty format in {}", [ __METHOD__ ] );
+		}
+
+		// When transforming for HTML or PageBundle, we are going through a ParserOutputAccess
 		// to checkPreconditions
-		$checkAuthority = (
-			( $attribs['opts']['format'] ?? '' ) === ParsoidFormatHelper::FORMAT_LINT
-		);
+		$checkAuthority = $format !== ParsoidFormatHelper::FORMAT_HTML
+			&& $format !== ParsoidFormatHelper::FORMAT_PAGEBUNDLE;
 
 		try {
 			// Note: Parsoid by design isn't supposed to use the user
