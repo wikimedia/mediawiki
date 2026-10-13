@@ -98,7 +98,7 @@ unset( $logDir, $logFileNames, $splitGroupLogId );
  * Make testing possible (or easier)
  */
 
-global $wgRateLimits, $wgEnableJavaScriptTest, $wgRestAPIAdditionalRouteFiles,
+global $wgRateLimits, $wgEnableJavaScriptTest,
 	$wgPasswordAttemptThrottle, $wgForceDeferredUpdatesPreSend,
 	$wgParsoidSettings, $wgMaxArticleSize;
 
