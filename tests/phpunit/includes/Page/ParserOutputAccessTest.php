@@ -521,6 +521,30 @@ class ParserOutputAccessTest extends ParserCacheTestBase {
 	}
 
 	/**
+	 * Tests that output saved with saveToCache() replaces output that
+	 * an earlier getParserOutput() call put in the local cache.
+	 */
+	public function testSaveToCacheReplacesLocalCache() {
+		$access = $this->getParserOutputAccessWithCache();
+
+		$parserOptions = $this->getParserOptions();
+		$page = $this->getNonexistingTestPage( __METHOD__ );
+		$this->editPage( $page, 'Hello \'\'World\'\'!' );
+
+		// Puts the output in the local cache
+		$access->getParserOutput( $page, $parserOptions );
+
+		// Save new output for the same revision, e.g. after a template changed
+		$newOutput = new ParserOutput( 'Updated Text' );
+		$access->saveToCache(
+			$parserOptions, $newOutput, $page, $page->getRevisionRecord(), []
+		);
+
+		$status = $access->getParserOutput( $page, $parserOptions );
+		$this->assertContainsHtml( 'Updated Text', $status );
+	}
+
+	/**
 	 * Tests that cached output in the ParserCache will not be used
 	 * for the latest revision if the FORCE_PARSE option is given.
 	 */

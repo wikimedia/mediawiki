@@ -846,6 +846,8 @@ class ParserOutputAccess implements LoggerAwareInterface {
 			if ( $useCache === self::CACHE_PRIMARY ) {
 				$primaryCache = $this->getPrimaryCache( $parserOptions );
 				$primaryCache->save( $output, $page, $parserOptions, $cacheTime, $revision->getId() );
+				// Don't let a local cache entry for this revision shadow the output just saved
+				$this->localCache->clear( $primaryCache->makeParserOutputKey( $page, $parserOptions ) );
 			} elseif ( $useCache === self::CACHE_SECONDARY ) {
 				$secondaryCache = $this->getSecondaryCache( $parserOptions );
 				$secondaryCache->save( $output, $revision, $parserOptions, $cacheTime );
