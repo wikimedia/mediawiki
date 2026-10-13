@@ -89,10 +89,6 @@ class HTMLTimezoneField extends HTMLSelectOrOtherField {
 	 */
 	private function getTimeZoneList(): array {
 		$identifiers = DateTimeZone::listIdentifiers();
-		'@phan-var array|false $identifiers'; // See phan issue #3162
-		if ( $identifiers === false ) {
-			return [];
-		}
 		sort( $identifiers );
 
 		$tzRegions = [
