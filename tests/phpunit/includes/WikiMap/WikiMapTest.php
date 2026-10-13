@@ -89,6 +89,45 @@ class WikiMapTest extends MediaWikiLangTestCase {
 		$this->assertEquals( $expected, WikiMap::getWiki( $wikiId ) );
 	}
 
+	/**
+	 * Regression test for T440997
+	 *
+	 * Generally it would not make sense for LocalSettings.php to both set
+	 * a setting via $wgConf, and also set it manually to something
+	 * different for the same wiki.
+	 *
+	 * But, auth.wikimedia.org is an example where this happens.
+	 */
+	public function testGetWiki_withGlobalsDifferentFromWgConf() {
+		global $wgConf;
+		$wgConf->suffixes = [ 'wiki' ];
+		$wgConf->settings = [
+			'wgServer' => [
+				'enwiki' => 'http://en.differ.test',
+				'thiswiki' => 'https://this.differ.test',
+			],
+			'wgCanonicalServer' => [
+				'enwiki' => 'http://en.differ.test',
+				'thiswiki' => 'https://this.differ.test',
+			],
+			'wgArticlePath' => [
+				'default' => '/wiki/$1',
+			],
+		];
+		$this->overrideConfigValues( [
+			MainConfigNames::LocalDatabases => [ 'enwiki', 'thiswiki' ],
+
+			MainConfigNames::DBname => 'thiswiki',
+			MainConfigNames::DBprefix => '',
+			MainConfigNames::Server => 'https://proxy.test',
+			MainConfigNames::CanonicalServer => 'https://proxy.test',
+			MainConfigNames::ArticlePath => '/thiswiki/wiki/$1',
+		] );
+
+		$expected = new WikiReference( 'https://this.differ.test', '/wiki/$1', 'https://this.differ.test' );
+		$this->assertEquals( $expected, WikiMap::getWiki( WikiMap::getCurrentWikiId() ) );
+	}
+
 	public static function provideGetWiki_withSites() {
 		$current = new WikiReference( 'https://this.wiki.org', '/wiki/$1', '//this.wiki.org' );
 		$enwiki = new WikiReference( 'https://en.wikipedia.org', '/wiki/$1' );

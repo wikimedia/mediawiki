@@ -25,14 +25,17 @@ class WikiMap {
 	 * @return WikiReference|null WikiReference object or null if the wiki was not found
 	 */
 	public static function getWiki( $wikiID ) {
-		if ( $wikiID === self::getCurrentWikiId() ) {
-			global $wgCanonicalServer, $wgArticlePath, $wgServer;
-			return new WikiReference( $wgCanonicalServer, $wgArticlePath, $wgServer );
-		}
-
+		// T440997: We MUST check $wgConf before getCurrentWikiId to support auth.wikimedia.org,
+		// which mutates $wgCanonicalServer and $wgArticlePath for "most" code, but then relies
+		// on WikiMap (through $wgConf) to get the regular values back in certain case.
 		$wikiReference = self::getWikiReferenceFromWgConf( $wikiID );
 		if ( $wikiReference ) {
 			return $wikiReference;
+		}
+
+		if ( $wikiID === self::getCurrentWikiId() ) {
+			global $wgCanonicalServer, $wgArticlePath, $wgServer;
+			return new WikiReference( $wgCanonicalServer, $wgArticlePath, $wgServer );
 		}
 
 		// Try sites, if $wgConf failed
