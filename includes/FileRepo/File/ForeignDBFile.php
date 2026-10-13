@@ -70,6 +70,37 @@ class ForeignDBFile extends LocalFile {
 	}
 
 	/**
+	 * Get short description URL for a file based on the page ID.
+	 *
+	 * @return string|null
+	 * @throws DBUnexpectedError
+	 * @since 1.27
+	 */
+	public function getDescriptionShortUrl() {
+		$dbr = $this->repo->getReplicaDB();
+		$pageId = $dbr->newSelectQueryBuilder()
+			->select( 'page_id' )
+			->from( 'page' )
+			->where( [ 'page_namespace' => NS_FILE, 'page_title' => $this->title->getDBkey() ] )
+			->caller( __METHOD__ )->fetchField();
+
+		if ( $pageId !== false ) {
+			// NOTE: FileRepo supports a "articleUrl" field that would let
+			// us form pretty URLs in theory. But, consumers like Wikimedia
+			// Commons don't set this field today, and we have no method
+			// to make these URLs. The closest we have is FileRepo::getDescriptionUrl
+			// but that hardcodes the Image-namespace.
+			// TODO: Consider using WikiMap in ForeignDBViaLBRepo or setting
+			// in articleUrl in wmf-config.
+			$url = $this->repo->makeUrl( [ 'curid' => $pageId ] );
+			if ( $url !== false ) {
+				return $url;
+			}
+		}
+		return null;
+	}
+
+	/**
 	 * @param Language $lang Language to fetch description in.
 	 * @return string|false
 	 */
@@ -114,30 +145,6 @@ class ForeignDBFile extends LocalFile {
 				return $res ?? false;
 			}
 		);
-	}
-
-	/**
-	 * Get short description URL for a file based on the page ID.
-	 *
-	 * @return string|null
-	 * @throws DBUnexpectedError
-	 * @since 1.27
-	 */
-	public function getDescriptionShortUrl() {
-		$dbr = $this->repo->getReplicaDB();
-		$pageId = $dbr->newSelectQueryBuilder()
-			->select( 'page_id' )
-			->from( 'page' )
-			->where( [ 'page_namespace' => NS_FILE, 'page_title' => $this->title->getDBkey() ] )
-			->caller( __METHOD__ )->fetchField();
-
-		if ( $pageId !== false ) {
-			$url = $this->repo->makeUrl( [ 'curid' => $pageId ] );
-			if ( $url !== false ) {
-				return $url;
-			}
-		}
-		return null;
 	}
 
 }

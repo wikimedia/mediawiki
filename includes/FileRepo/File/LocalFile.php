@@ -1148,29 +1148,6 @@ class LocalFile extends File {
 	}
 
 	/**
-	 * Get short description URL for a file based on the page ID.
-	 * @stable to override
-	 *
-	 * @return string|null
-	 * @since 1.27
-	 */
-	public function getDescriptionShortUrl() {
-		if ( !$this->title ) {
-			return null; // Avoid hard failure when the file does not exist. T221812
-		}
-
-		$pageId = $this->title->getArticleID();
-
-		if ( $pageId ) {
-			$url = $this->repo->makeUrl( [ 'curid' => $pageId ] );
-			if ( $url !== false ) {
-				return $url;
-			}
-		}
-		return null;
-	}
-
-	/**
 	 * Get handler-specific metadata as a serialized string
 	 *
 	 * @deprecated since 1.37 use getMetadataArray() or getMetadataItems()
@@ -2629,6 +2606,29 @@ class LocalFile extends File {
 	public function getDescriptionUrl() {
 		// Avoid hard failure when the file does not exist. T221812
 		return $this->title ? $this->title->getLocalURL() : false;
+	}
+
+	/**
+	 * Get short description URL for a file based on the page ID.
+	 * @stable to override
+	 *
+	 * @return string|null
+	 * @since 1.27
+	 */
+	public function getDescriptionShortUrl() {
+		if ( !$this->title ) {
+			return null; // Avoid hard failure when the file does not exist. T221812
+		}
+
+		$pageId = $this->title->getArticleID();
+
+		if ( $pageId ) {
+			$url = $this->repo->makeUrl( [ 'curid' => $pageId ] );
+			if ( $url !== false ) {
+				return $url;
+			}
+		}
+		return null;
 	}
 
 	/**
