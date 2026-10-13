@@ -244,7 +244,7 @@ class WANGetWithSetCallbackBuilderTest extends MediaWikiUnitTestCase {
 			return $cache->buildGetWithSetCallback()
 				->key( 'test-group' )
 				->lifetime( 10 )
-				->keepStaleFor( 60 )
+				->allowStale( 60 )
 				->callback(
 					static function ( $oldValue ) use ( &$seen ) {
 						$seen[] = [

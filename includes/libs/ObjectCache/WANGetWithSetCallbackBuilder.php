@@ -253,7 +253,7 @@ class WANGetWithSetCallbackBuilder {
 	 * regeneration lock already. If a value is used within a short interval after expiry,
 	 * it is assumed the key has a high enough access rate to justify avoiding a stampede.
 	 *
-	 * This automatically sets keepStaleFor() to the same number of seconds, unless you set
+	 * This automatically sets "staleTTL" to the same number of seconds, unless you set
 	 * it to a higher value.
 	 *
 	 * The expiry is determined by TTL of this key (self::lifetime), check keys (self::invalidatedByKey),
@@ -285,24 +285,6 @@ class WANGetWithSetCallbackBuilder {
 	 */
 	public function busyValue( $value ) {
 		$this->options['busyValue'] = $value;
-
-		return $this;
-	}
-
-	/**
-	 * Keep an expired value around for this many seconds
-	 *
-	 * On a miss, the callback can access the expired value via the $oldValue parameter, to
-	 * allow for cheap verification or renewal without full regeneration.
-	 *
-	 * NOTE: If you set allowStale(), then setting keepStaleFor() is redundant unless you
-	 * set it to something higher.
-	 *
-	 * @param int $seconds
-	 * @return $this
-	 */
-	public function keepStaleFor( int $seconds ) {
-		$this->options['staleTTL'] = $seconds;
 
 		return $this;
 	}

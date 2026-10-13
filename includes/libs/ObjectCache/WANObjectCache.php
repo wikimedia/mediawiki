@@ -1487,6 +1487,8 @@ class WANObjectCache implements
 	 *   - staleTTL: Keep an expired value around for this many seconds.
 	 *      On a miss, the callback can access the expired value via the $oldValue parameter, to
 	 *      allow for cheap verification or renewal without full regeneration.
+	 *      If you set "lockTSE", then setting "staleTTL" is redundant unless you set it to
+	 *      something higher.
 	 *      Default: WANObjectCache::STALE_TTL_NONE
 	 *   - touchedCallback: A callback that takes the current value and returns a UNIX timestamp
 	 *      indicating the last time a dynamic dependency changed. Null can be returned if there
