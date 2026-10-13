@@ -20,6 +20,8 @@ use MediaWiki\Registration\ExtensionRegistry;
 use PHPUnit\TextUI\CliArguments\Builder;
 
 ( static function () {
+	fwrite( STDERR, 'Using PHP ' . PHP_VERSION . "\n" );
+
 	require_once __DIR__ . '/bootstrap.common.php';
 
 	// Try to determine if this entry point is being used to run integration tests (possibly together with

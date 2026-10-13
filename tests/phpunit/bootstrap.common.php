@@ -4,8 +4,6 @@ if ( ( PHP_SAPI !== 'cli' && PHP_SAPI !== 'phpdbg' ) || defined( 'MEDIAWIKI' ) )
 	exit( 'This file is only meant to be executed indirectly by PHPUnit\'s bootstrap process' );
 }
 
-fwrite( STDERR, 'Using PHP ' . PHP_VERSION . "\n" );
-
 define( 'MEDIAWIKI', true );
 define( 'MW_ENTRY_POINT', 'cli' );
 // Set a flag which can be used to detect when other scripts have been entered
