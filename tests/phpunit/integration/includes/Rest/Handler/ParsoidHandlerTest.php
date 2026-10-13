@@ -1495,6 +1495,9 @@ class ParsoidHandlerTest extends MediaWikiIntegrationTestCase {
 		$page = $this->getNonexistingTestPage();
 		$this->editPage( $page, $origContent );
 		$expectedWikitext = $wikitext ?? $origContent;
+		$attribs['opts'] ??= [];
+		$attribs['opts'] += [ "format" => "wikitext" ];
+
 		$pageConfig = $this->newParsoidHandler()->tryToCreatePageConfig( $attribs, $wikitext, $html2WtMode );
 
 		$this->assertSame(
@@ -1558,22 +1561,25 @@ class ParsoidHandlerTest extends MediaWikiIntegrationTestCase {
 			),
 		];
 
-		yield 'PageConfig for deleted revision when linting' => [
-			[
-				'oldid' => 1,
-				'pageName' => '',
-				'opts' => [ 'format' => 'lint' ],
-			],
-			'wikitext' => null,
-			'html2WtMode' => false,
-			'expected' => new LocalizedHttpException(
-				new MessageValue(
-					"rest-permission-denied-revision",
-					[ 'Not an available content version.' ]
+		foreach ( ParsoidFormatHelper::VALID_PAGE as $format ) {
+			if ( $format === ParsoidFormatHelper::FORMAT_PAGEBUNDLE || $format === ParsoidFormatHelper::FORMAT_HTML ) {
+				continue;
+			}
+			yield "PageConfig for deleted revision when accessing $format" => [
+				[
+					'oldid' => 1,
+					'pageName' => '',
+					'opts' => [ 'format' => $format ],
+				],
+				'wikitext' => null,
+				'html2WtMode' => false,
+				'expected' => new LocalizedHttpException(
+					new MessageValue(
+						"rest-permission-denied-revision", [ 'Not an available content version.' ]
+					), 403
 				),
-				403
-			),
-		];
+			];
+		}
 	}
 
 	/**
@@ -1593,6 +1599,8 @@ class ParsoidHandlerTest extends MediaWikiIntegrationTestCase {
 		$this->revisionDelete( $firstRev );
 
 		try {
+			$attribs['opts'] ??= [];
+			$attribs['opts'] += [ "format" => "html" ];
 			$this->newParsoidHandler()->tryToCreatePageConfig( $attribs, $wikitext, $html2WtMode );
 			$this->fail( 'Expected exception: ' . get_class( $expected ) );
 		} catch ( HttpException $e ) {
@@ -1849,7 +1857,8 @@ class ParsoidHandlerTest extends MediaWikiIntegrationTestCase {
 		array $expectedHeaders
 	) {
 		$handler = $this->newParsoidHandler();
-
+		$attribs['opts'] ??= [];
+		$attribs['opts'] += [ "format" => "html" ];
 		$pageConfig = $handler->tryToCreatePageConfig( $attribs, null, true );
 		$response = $handler->languageConversion( $pageConfig, $attribs, $revision );
 
