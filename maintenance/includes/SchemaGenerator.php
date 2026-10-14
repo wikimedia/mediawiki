@@ -123,9 +123,22 @@ class SchemaGenerator {
 			// Example/bar -> bar
 			$canonicalJsonPath = explode( '/', $canonicalJsonPath, 2 )[1];
 		} else {
+			// For a skin, or an extension that realpath() resolved to outside
+			// $wgExtensionDirectory (e.g. a symlink to a clone elsewhere), strip
+			// the directory of the nearest extension.json or skin.json
+			// /path/to/clones/Example/bar               -> bar
 			// For mediawiki/core we strip MW_INSTALL_PATH
 			// /path/to/mediawiki/foo/bar                -> foo/bar
-			$canonicalJsonPath = str_replace( "$installPath/", '', $jsonPath );
+			$rootPath = $installPath;
+			$dir = dirname( $jsonPath );
+			while ( $dir !== $installPath && $dir !== dirname( $dir ) ) {
+				if ( is_file( "$dir/extension.json" ) || is_file( "$dir/skin.json" ) ) {
+					$rootPath = $dir;
+					break;
+				}
+				$dir = dirname( $dir );
+			}
+			$canonicalJsonPath = str_replace( "$rootPath/", '', $jsonPath );
 		}
 
 		return $canonicalJsonPath;

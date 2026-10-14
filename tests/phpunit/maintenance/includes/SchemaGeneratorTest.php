@@ -90,4 +90,48 @@ class SchemaGeneratorTest extends MediaWikiIntegrationTestCase {
 		];
 	}
 
+	public static function provideNormalizePathOutsideExtensionDirectory() {
+		// ($expected, $jsonSchema relative to the temporary directory)
+		return [
+			'Extension symlinked into wgExtensionDirectory, symlink path' => [
+				'db_patches/patch.json',
+				'core/extensions/FooExt/db_patches/patch.json',
+			],
+			'Extension symlinked into wgExtensionDirectory, resolved path' => [
+				'db_patches/patch.json',
+				'clones/FooExt/db_patches/patch.json',
+			],
+			'Skin under core root' => [
+				'sql/patch.json',
+				'core/skins/FooSkin/sql/patch.json',
+			],
+			'Core patch under core root' => [
+				'sql/patch.json',
+				'core/sql/patch.json',
+			],
+		];
+	}
+
+	/**
+	 * @dataProvider provideNormalizePathOutsideExtensionDirectory
+	 */
+	public function testNormalizePathOutsideExtensionDirectory( string $expected, string $jsonSchema ) {
+		$dir = $this->getNewTempDirectory();
+		mkdir( "$dir/core/extensions", 0777, true );
+		foreach ( [ 'clones/FooExt/db_patches', 'core/skins/FooSkin/sql', 'core/sql' ] as $subdir ) {
+			mkdir( "$dir/$subdir", 0777, true );
+			touch( "$dir/$subdir/patch.json" );
+		}
+		touch( "$dir/clones/FooExt/extension.json" );
+		touch( "$dir/core/skins/FooSkin/skin.json" );
+		if ( !@symlink( "$dir/clones/FooExt", "$dir/core/extensions/FooExt" ) ) {
+			$this->markTestSkipped( 'Cannot create a symlink' );
+		}
+
+		$this->assertSame(
+			$expected,
+			SchemaGenerator::normalizePath( "$dir/$jsonSchema", "$dir/core", "$dir/core/extensions" )
+		);
+	}
+
 }
