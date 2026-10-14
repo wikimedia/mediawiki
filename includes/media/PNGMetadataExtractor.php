@@ -178,55 +178,56 @@ class PNGMetadataExtractor {
 					$duration += $fctldur['delay_num'] / $fctldur['delay_den'];
 				}
 			} elseif ( $chunk_type === "iTXt" ) {
-				// Extracts iTXt chunks, uncompressing if necessary.
-				$items = [];
-				if ( preg_match(
-					'/^([^\x00]{1,79})\x00(\x00|\x01)\x00([^\x00]*)(.)[^\x00]*\x00(.*)$/Ds',
-					$buf, $items )
+				// Layout: keyword \0 compression flag, compression method, language tag \0 translated keyword \0 text
+				[ $keyword, $rest ] = array_pad( explode( "\x00", $buf, 2 ), 2, '' );
+				$compressionFlag = substr( $rest, 0, 1 );
+				$compressionMethod = substr( $rest, 1, 1 );
+				$fields = explode( "\x00", substr( $rest, 2 ), 3 );
+
+				if (
+					$keyword == '' ||
+					!in_array( $compressionFlag, [ "\x00", "\x01" ], true ) ||
+					count( $fields ) < 3 ||
+					strlen( $keyword ) > 79
 				) {
-					/* $items[1] = text chunk name, $items[2] = compressed flag,
-					 * $items[3] = lang code (or ""), $items[4]= compression type.
-					 * $items[5] = content
-					 */
+					wfDebug( __METHOD__ . ": Invalid iTXt chunk" );
+					continue;
+				}
 
-					// Theoretically should be case-sensitive, but in practise...
-					$items[1] = strtolower( $items[1] );
-					if ( !isset( self::$textChunks[$items[1]] ) ) {
-						// Only extract textual chunks on our list.
-						continue;
-					}
+				$keyword = strtolower( $keyword );
+				if ( !isset( self::$textChunks[$keyword] ) ) {
+					// Only extract textual chunks on our list.
+					continue;
+				}
 
-					$items[3] = strtolower( $items[3] );
-					if ( $items[3] == '' ) {
-						// if no lang specified use x-default like in xmp.
-						$items[3] = 'x-default';
-					}
+				$lang = strtolower( $fields[0] );
+				if ( $lang == '' ) {
+					// if no lang specified use x-default like in xmp.
+					$lang = 'x-default';
+				}
+				$content = $fields[2];
 
-					// if compressed
-					if ( $items[2] === "\x01" ) {
-						if ( function_exists( 'gzuncompress' ) && $items[4] === "\x00" ) {
-							AtEase::suppressWarnings();
-							$items[5] = gzuncompress( $items[5] );
-							AtEase::restoreWarnings();
+				// if compressed
+				if ( $compressionFlag === "\x01" ) {
+					if ( function_exists( 'gzuncompress' ) && $compressionMethod === "\x00" ) {
+						AtEase::suppressWarnings();
+						$content = gzuncompress( $content );
+						AtEase::restoreWarnings();
 
-							if ( $items[5] === false ) {
-								// decompression failed
-								wfDebug( __METHOD__ . ' Error decompressing iTxt chunk - ' . $items[1] );
-								continue;
-							}
-						} else {
-							wfDebug( __METHOD__ . ' Skipping compressed png iTXt chunk due to lack of zlib,'
-								. " or potentially invalid compression method" );
+						if ( $content === false ) {
+							// decompression failed
+							wfDebug( __METHOD__ . ' Error decompressing iTxt chunk - ' . $keyword );
 							continue;
 						}
+					} else {
+						wfDebug( __METHOD__ . ' Skipping compressed png iTXt chunk due to lack of zlib,'
+							. " or potentially invalid compression method" );
+						continue;
 					}
-					$finalKeyword = self::$textChunks[$items[1]];
-					$text[$finalKeyword][$items[3]] = $items[5];
-					$text[$finalKeyword]['_type'] = 'lang';
-				} else {
-					// Error reading iTXt chunk
-					wfDebug( __METHOD__ . ": Invalid iTXt chunk" );
 				}
+				$finalKeyword = self::$textChunks[$keyword];
+				$text[$finalKeyword][$lang] = $content;
+				$text[$finalKeyword]['_type'] = 'lang';
 			} elseif ( $chunk_type === 'tEXt' ) {
 				// In case there is no \x00 which will make explode fail.
 				if ( strpos( $buf, "\x00" ) === false ) {

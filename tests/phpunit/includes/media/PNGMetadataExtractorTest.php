@@ -170,4 +170,56 @@ class PNGMetadataExtractorTest extends MediaWikiIntegrationTestCase {
 		$this->assertLessThan( 100000, strlen( serialize( $meta ) ) );
 	}
 
+	/**
+	 * Create a temp png file with extra itxt chunks
+	 *
+	 * @param string[] $chunks iTXt chunk data
+	 * @return string Path of the temp file
+	 */
+	private function makePngWithItxtChunks( array $chunks ) {
+		$path = $this->getNewTempFile();
+		$png = file_get_contents( self::FILE_PATH . '1bit-png.png' );
+		$extra = '';
+		foreach ( $chunks as $data ) {
+			$extra .= pack( 'N', strlen( $data ) ) . 'iTXt' . $data . pack( 'N', crc32( 'iTXt' . $data ) );
+		}
+		// IEND is always the last 12 bytes
+		file_put_contents( $path, substr( $png, 0, -12 ) . $extra . substr( $png, -12 ) );
+		return $path;
+	}
+
+	/**
+	 * @requires extension zlib
+	 */
+	public function testItxtMetadata() {
+		$meta = PNGMetadataExtractor::getMetadata( $this->makePngWithItxtChunks( [
+			// Layout: keyword \0 compression flag, compression method, language tag \0 translated keyword \0 text
+			"Author\x00\x00\x00en-US\x00\x00Foo Bar",
+			"Comment\x00\x00\x00\x00\x00Ünïcödé comment",
+			"Title\x00\x01\x00de\x00\x00" . gzcompress( 'Compressed title' ),
+		] ) );
+
+		$this->assertSame( [ 'en-us' => 'Foo Bar', '_type' => 'lang' ], $meta['text']['Artist'] );
+		$this->assertSame( [ 'x-default' => 'Ünïcödé comment', '_type' => 'lang' ], $meta['text']['PNGFileComment'] );
+		$this->assertSame( [ 'de' => 'Compressed title', '_type' => 'lang' ], $meta['text']['ObjectName'] );
+	}
+
+	public function testItxtMetadataMalformed() {
+		$meta = PNGMetadataExtractor::getMetadata( $this->makePngWithItxtChunks( [
+			// Missing null after the translated keyword
+			"Author\x00\x00\x00en-US\x00Jane Doe",
+			// Keyword longer than 79 bytes
+			str_repeat( 'k', 80 ) . "\x00\x00\x00\x00\x00text",
+			// Invalid compression flag
+			"Comment\x00\x02\x00\x00\x00text",
+			// Invalid compressed data
+			"Copyright\x00\x01\x00\x00\x00not-zlib",
+			// Keyword not on the list
+			"foo\x00\x00\x00\x00\x00bar",
+		] ) );
+
+		$this->assertSame( 50, $meta['width'] );
+		$this->assertSame( 50, $meta['height'] );
+		$this->assertSame( [], $meta['text'] );
+	}
 }
