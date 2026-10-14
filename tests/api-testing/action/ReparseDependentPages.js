@@ -16,9 +16,15 @@ describe( 'Reparse of dependent pages', () => {
 	it( 'should create a page with missing template and link', async () => {
 		await alice.edit( title, { text: `{{${ template }}} [[${ link }]]`, createonly: true } );
 
+		// The legacy parser links to $wgScript?title=…, but Parsoid adds the query
+		// to the article path, which may be /index.php?title=$1 or /wiki/$1
+		const redlink = ( page ) => new RegExp(
+			`(title=${ page }&amp;|/${ page }\\?)action=edit&amp;redlink=1`
+		);
+
 		const html = await alice.getHtml( title );
-		assert.match( html, new RegExp( `title=Template(:|%3A)${ template }&amp;action=edit&amp;redlink=1` ) );
-		assert.match( html, new RegExp( `title=${ link }&amp;action=edit&amp;redlink=1` ) );
+		assert.match( html, redlink( `Template(:|%3A)${ template }` ) );
+		assert.match( html, redlink( link ) );
 	} );
 
 	it( 'should create missing template and link', async () => {
