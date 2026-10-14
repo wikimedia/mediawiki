@@ -260,9 +260,9 @@ For notes on 1.46.x and older releases, see HISTORY.
 
 ==== New external libraries ====
 
-* Added symfony/polyfill-php86 at 1.43.0.
 * Added symfony/mailer at 7.4.19.
 * Added symfony/mime at 7.4.19.
+* Added symfony/polyfill-php86 at 1.43.0.
 * …
 
 ===== New development-only external libraries =====
@@ -273,47 +273,45 @@ For notes on 1.46.x and older releases, see HISTORY.
 
 ==== Changed external libraries ====
 
+* Updated codex, codex-design-tokens and codex-icons
+  from v2.5.1 to v2.7.0.
 * Updated composer/semver from 3.4.4 to 3.5.1.
 * Updated guzzlehttp/guzzle from 7.12.3 to 7.15.5.
 * Updated mck89/peast from 1.17.5 to 1.18.0.
 * Updated monolog/monolog from 2.11.0 to 3.12.0.
+* Updated OOUI from v0.53.2 to v0.54.2
+* Updated @pinia/testing from 0.0.12 to 1.0.3.
+* Updated pinia from 2.0.16 to 3.0.4.
 * Updated psr/log from 1.1.4 to 3.0.2.
 * Updated symfony/polyfill-php84 from 1.36.0 to 1.43.0.
 * Updated symfony/polyfill-php85 from 1.36.0 to 1.43.0.
 * Updated symfony/yaml from 7.4.6 to 7.4.20.
 * Updated wikimedia/cldr-plural-rule-parser from 3.0.1 to 3.0.2.
+* Updated wikimedia/codex (Codex PHP) from 0.7.1 to 0.8.0.
 * Updated wikimedia/cssjanus from 2.3.0 to 2.3.1.
-* Updated wikimedia/object-factory from 6.0.0 to 7.0.0.
 * Updated wikimedia/json-codec from 4.0.0 to 5.0.0.
 * Updated wikimedia/language-data from 1.1.13 to 1.1.14.
 * Updated wikimedia/minify from 2.10.0 to 2.12.0.
-* Updated codex, codex-design-tokens and codex-icons
-  from v2.5.1 to v2.6.2.
-* Updated OOUI from v0.53.2 to v0.54.2
-* Updated pinia from 2.0.16 to 3.0.4.
-* Updated @pinia/testing from 0.0.12 to 1.0.3.
+* Updated wikimedia/object-factory from 6.0.0 to 7.0.0.
 * Updated wikimedia/shellbox from 4.4.0 to 4.5.2.
-* Updated wikimedia/codex (Codex PHP) from 0.7.1 to 0.8.0.
-* Updated codex, codex-design-tokens and codex-icons
-  from v2.6.2 to v2.7.0.
 * …
 
 ===== Changed development-only external libraries =====
 
+* Updated @wdio/* from 9.23.2 to 9.32.0.
 * Updated api-testing from 1.7.1 to 1.8.1.
 * Updated composer/spdx-licenses from 1.5.9 to 1.6.0.
 * Updated doctrine/dbal from 3.10.5 to 3.10.6.
+* Updated eslint-config-wikimedia from 0.32.3 to 0.32.6.
 * Updated ergebnis/phpunit-slow-test-detector from 2.24.0 to 2.26.0.
+* Updated grunt from 1.6.2 to 1.6.3.
+* Updated jsdoc-wmf-theme from 1.3.0 to 1.3.1.
 * Updated mediawiki/mediawiki-codesniffer from 52.0.0 to 52.0.1.
 * Updated phpunit/phpunit from 9.6.34 to 9.6.38.
+* Updated QUnit from 2.24.1 to 3.0.0.
 * Updated seld/jsonlint from 1.11.0 to 1.12.1.
-* Updated @wdio/* from 9.23.2 to 9.32.0.
-* Updated eslint-config-wikimedia from 0.32.3 to 0.32.6.
-* Updated grunt from 1.6.2 to 1.6.3.
 * Updated stylelint-config-wikimedia from 0.19.2 to 0.19.4.
 * Updated svgo from 3.3.3 to 3.3.5.
-* Updated QUnit from 2.24.1 to 3.0.0.
-* Updated jsdoc-wmf-theme from 1.3.0 to 1.3.1.
 * …
 
 ==== Removed external libraries ====
