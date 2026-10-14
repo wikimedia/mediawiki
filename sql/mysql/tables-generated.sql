@@ -218,6 +218,7 @@ CREATE TABLE /*_*/file (
   file_deleted SMALLINT UNSIGNED NOT NULL,
   UNIQUE INDEX file_name (file_name),
   INDEX file_latest (file_latest),
+  INDEX file_type_name (file_type, file_name),
   PRIMARY KEY(file_id)
 ) /*$wgDBTableOptions*/;
 

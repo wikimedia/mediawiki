@@ -1,0 +1,157 @@
+{
+	"before": {
+		"name": "file",
+		"comment": "Uploaded images and other files.",
+		"columns": [
+			{
+				"name": "file_id",
+				"comment": "primary key",
+				"type": "bigint",
+				"options": {
+					"unsigned": true,
+					"notnull": true,
+					"autoincrement": true
+				}
+			},
+			{
+				"name": "file_name",
+				"comment": "Name of the file",
+				"type": "binary",
+				"options": {
+					"length": 255,
+					"notnull": true
+				}
+			},
+			{
+				"name": "file_latest",
+				"comment": "FK to fr_id",
+				"type": "bigint",
+				"options": {
+					"unsigned": true,
+					"notnull": true
+				}
+			},
+			{
+				"name": "file_type",
+				"comment": "FK to filetypes.ft_id",
+				"type": "smallint",
+				"options": {
+					"unsigned": true,
+					"notnull": true
+				}
+			},
+			{
+				"name": "file_deleted",
+				"comment": "Whether the file is deleted",
+				"type": "smallint",
+				"options": {
+					"unsigned": true,
+					"notnull": true
+				}
+			}
+		],
+		"indexes": [
+			{
+				"name": "file_name",
+				"comment": "To find files based on their name",
+				"columns": [
+					"file_name"
+				],
+				"unique": true
+			},
+			{
+				"name": "file_latest",
+				"comment": "To allow join with filerevision table",
+				"columns": [
+					"file_latest"
+				],
+				"unique": false
+			}
+		],
+		"pk": [
+			"file_id"
+		]
+	},
+	"after": {
+		"name": "file",
+		"comment": "Uploaded images and other files.",
+		"columns": [
+			{
+				"name": "file_id",
+				"comment": "primary key",
+				"type": "bigint",
+				"options": {
+					"unsigned": true,
+					"notnull": true,
+					"autoincrement": true
+				}
+			},
+			{
+				"name": "file_name",
+				"comment": "Name of the file",
+				"type": "binary",
+				"options": {
+					"length": 255,
+					"notnull": true
+				}
+			},
+			{
+				"name": "file_latest",
+				"comment": "FK to fr_id",
+				"type": "bigint",
+				"options": {
+					"unsigned": true,
+					"notnull": true
+				}
+			},
+			{
+				"name": "file_type",
+				"comment": "FK to filetypes.ft_id",
+				"type": "smallint",
+				"options": {
+					"unsigned": true,
+					"notnull": true
+				}
+			},
+			{
+				"name": "file_deleted",
+				"comment": "Whether the file is deleted",
+				"type": "smallint",
+				"options": {
+					"unsigned": true,
+					"notnull": true
+				}
+			}
+		],
+		"indexes": [
+			{
+				"name": "file_name",
+				"comment": "To find files based on their name",
+				"columns": [
+					"file_name"
+				],
+				"unique": true
+			},
+			{
+				"name": "file_latest",
+				"comment": "To allow join with filerevision table",
+				"columns": [
+					"file_latest"
+				],
+				"unique": false
+			},
+			{
+				"name": "file_type_name",
+				"comment": "To filter files by type",
+				"columns": [
+					"file_type",
+					"file_name"
+				],
+				"unique": false
+			}
+		],
+		"pk": [
+			"file_id"
+		]
+	}
+}

@@ -216,6 +216,8 @@ CREATE UNIQUE INDEX file_name ON /*_*/file (file_name);
 
 CREATE INDEX file_latest ON /*_*/file (file_latest);
 
+CREATE INDEX file_type_name ON /*_*/file (file_type, file_name);
+
 
 CREATE TABLE /*_*/filearchive (
   fa_id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,

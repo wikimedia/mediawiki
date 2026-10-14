@@ -242,6 +242,8 @@ CREATE UNIQUE INDEX file_name ON file (file_name);
 
 CREATE INDEX file_latest ON file (file_latest);
 
+CREATE INDEX file_type_name ON file (file_type, file_name);
+
 
 CREATE TABLE filearchive (
   fa_id SERIAL NOT NULL,

@@ -1301,6 +1301,15 @@
 					"file_latest"
 				],
 				"unique": false
+			},
+			{
+				"name": "file_type_name",
+				"comment": "To filter files by type",
+				"columns": [
+					"file_type",
+					"file_name"
+				],
+				"unique": false
 			}
 		],
 		"pk": [
