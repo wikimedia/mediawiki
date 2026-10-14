@@ -183,6 +183,9 @@ class SanitizerTest extends MediaWikiIntegrationTestCase {
 					'data-/invalid' => 'disallow XSS',
 					'data->invalid' => 'disallow XSS',
 					'data-=invalid' => 'disallow XSS',
+					"data-x\nonload" => 'disallow XSS',
+					"data-x\012onload" => 'disallow XSS',
+					"data-x\fonload" => 'disallow XSS',
 				],
 				[
 					'data-wikitext' => 'wikitext',
