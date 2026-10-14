@@ -368,6 +368,7 @@ class UndoIntegrationTest extends MediaWikiIntegrationTestCase {
 		$context->setUser( $this->getTestUser()->getUser() );
 		$revisionIds = $this->setUpPageForTesting( $revisions );
 		$article = Article::newFromTitle( Title::newFromText( self::PAGE_NAME ), $context );
+		$context->setTitle( $article->getTitle() );
 
 		$mcrUndoAction = $this->makeNewMcrUndoAction(
 			$context,
