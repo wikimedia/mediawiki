@@ -17,6 +17,12 @@ class WikiBirthdayTest extends MaintenanceBaseTestCase {
 		return WikiBirthday::class;
 	}
 
+	protected function setUp(): void {
+		parent::setUp();
+		// Test the default format, which handlers of this hook (e.g. in the cldr extension) may replace
+		$this->clearHook( 'GetHumanTimestamp' );
+	}
+
 	public function testExecuteForOneRevision() {
 		// Create a fake revision with a set timestamp
 		ConvertibleTimestamp::setFakeTime( '20230405060708' );
