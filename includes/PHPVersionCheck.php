@@ -31,7 +31,7 @@ class PHPVersionCheck {
 	 *
 	 * @internal
 	 */
-	const MW_VERSION = '1.47';
+	const MW_VERSION = '1.48';
 
 	/**
 	 * @var string[] A mapping of PHP functions to PHP extensions.
