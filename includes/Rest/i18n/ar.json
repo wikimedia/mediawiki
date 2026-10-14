@@ -274,6 +274,7 @@
 	"rest-endpoint-desc-post-page": "إنشاء صفحة.",
 	"rest-endpoint-desc-post-move": "ينقل (يعيد تسمية) صفحة.",
 	"rest-endpoint-desc-post-move-title": "ينقل (يعيد تسمية) صفحة حسب عنوانها.",
+	"rest-endpoint-desc-get-page-title-backlinks": "يعرض هذا القسم الصفحات التي ترتبط بصفحة معينة.",
 	"rest-endpoint-desc-get-page-title": "يقوم بإرجاع معلومات حول صفحة ما، بما في ذلك مصدر الصفحة، عادةً في wikitext.",
 	"rest-endpoint-desc-put-page-title": "يُحرِّر الصفحة بناءً على مُعرِّف آخر مراجعة لها، أو يُنشئ صفحةً إذا لم يُحدَّد مُعرِّف مراجعة. في حال وجود تعارض في الدمج، تُحاول واجهة برمجة التطبيقات حلَّ التعارض تلقائيًا. إذا تعذَّر حلُّ تعارض التحرير، تُعيد واجهة برمجة التطبيقات خطأ 409.",
 	"rest-endpoint-desc-get-page-title-html": "إرجاع محتوى الصفحة بصيغة HTML.",
