@@ -303,7 +303,10 @@ For notes on 1.46.x and older releases, see HISTORY.
 * Updated api-testing from 1.7.1 to 1.8.1.
 * Updated composer/spdx-licenses from 1.5.9 to 1.6.0.
 * Updated doctrine/dbal from 3.10.5 to 3.10.6.
-* Updated mediawiki/mediawiki-codesniffer from 50.0.0 to 52.0.0.
+* Updated ergebnis/phpunit-slow-test-detector from 2.24.0 to 2.26.0.
+* Updated mediawiki/mediawiki-codesniffer from 52.0.0 to 52.0.1.
+* Updated phpunit/phpunit from 9.6.34 to 9.6.38.
+* Updated seld/jsonlint from 1.11.0 to 1.12.1.
 * Updated @wdio/* from 9.23.2 to 9.32.0.
 * Updated eslint-config-wikimedia from 0.32.3 to 0.32.6.
 * Updated grunt from 1.6.2 to 1.6.3.
