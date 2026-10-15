@@ -13,7 +13,7 @@ use MediaWiki\CommentStore\CommentStore;
 use MediaWiki\Logging\LogEventsList;
 use MediaWiki\Logging\LogFormatterFactory;
 use MediaWiki\Logging\LogPage;
-use Mediawiki\MainConfigNames;
+use MediaWiki\MainConfigNames;
 use MediaWiki\Page\PageReferenceValue;
 use MediaWiki\ParamValidator\TypeDef\UserDef;
 use MediaWiki\RecentChanges\ChangesList;

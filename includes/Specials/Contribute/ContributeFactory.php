@@ -14,7 +14,7 @@ use MediaWiki\Skin\Skin;
 use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Specials\Contribute\Card\ContributeCard;
 use MediaWiki\Specials\Contribute\Card\ContributeCardActionLink;
-use Mediawiki\Title\Title;
+use MediaWiki\Title\Title;
 use MediaWiki\User\UserIdentity;
 
 class ContributeFactory {
