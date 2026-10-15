@@ -2,6 +2,7 @@
 
 namespace MediaWiki\Tests\Api;
 
+use MediaWiki\Api\ApiUsageException;
 use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MainConfigSchema;
@@ -341,5 +342,40 @@ class ApiUserrightsTest extends ApiTestCase {
 			'permissiondenied',
 			[ 'user' => 'SomeUser@remotewiki' ]
 		);
+	}
+
+	/**
+	 * Test that querying a hidden user by #<id> does not leak
+	 * the hidden username in 'nosuchuser' error to callers without 'hideuser'.
+	 */
+	public function testUserrights_hiddenUserId_withoutHideuser() {
+		$hiddenUser = $this->getMutableTestUser()->getUser();
+		$sysop = $this->getTestSysop()->getUser();
+
+		$blockStore = $this->getServiceContainer()->getDatabaseBlockStore();
+		$block = new DatabaseBlock( [
+			'expiry' => 'infinity',
+			'hideName' => true,
+		] );
+		$block->setTarget( $hiddenUser );
+		$block->setBlocker( $sysop );
+		$blockStore->insertBlock( $block );
+
+		// Ensure sysop does NOT have 'hideuser'
+		$this->setGroupPermissions( 'sysop', 'hideuser', false );
+
+		try {
+			$this->doApiRequest( [
+				'action' => 'userrights',
+				'user' => '#' . $hiddenUser->getId(),
+				'add' => 'bot',
+				'token' => 'invalidtoken',
+			], null, false, $sysop );
+			$this->fail( 'Expected ApiUsageException was not thrown' );
+		} catch ( ApiUsageException $e ) {
+			$this->assertApiErrorCode( 'nosuchuser', $e );
+			$this->assertStringNotContainsString( $hiddenUser->getName(), $e->getMessage() );
+			$this->assertStringContainsString( 'Unknown user', $e->getMessage() );
+		}
 	}
 }

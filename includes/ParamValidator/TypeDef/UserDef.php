@@ -2,6 +2,7 @@
 
 namespace MediaWiki\ParamValidator\TypeDef;
 
+use MediaWiki\Api\ApiBase;
 use MediaWiki\Title\MalformedTitleException;
 use MediaWiki\Title\TitleParser;
 use MediaWiki\User\ExternalUserNames;
@@ -86,7 +87,7 @@ class UserDef extends TypeDef {
 	public function validate( $name, $value, array $settings, array $options ) {
 		$this->failIfNotString( $name, $value, $settings, $options );
 
-		[ $type, $user ] = $this->processUser( $value );
+		[ $type, $user ] = $this->processUser( $value, $options );
 
 		if ( !$user || !in_array( $type, $settings[self::PARAM_ALLOWED_USER_TYPES], true ) ) {
 			// Message used: paramvalidator-baduser
@@ -162,10 +163,11 @@ class UserDef extends TypeDef {
 	/**
 	 * Process $value to a UserIdentity, if possible
 	 * @param string $value
+	 * @param array $options Options from validate()
 	 * @return array [ string $type, UserIdentity|null $user ]
 	 * @phan-return array{0:string,1:UserIdentity|null}
 	 */
-	private function processUser( string $value ): array {
+	private function processUser( string $value, array $options = [] ): array {
 		// A user ID?
 		if ( preg_match( '/^#(\d+)$/D', $value, $m ) ) {
 			// This used to use the IP address of the current request if the
@@ -177,7 +179,19 @@ class UserDef extends TypeDef {
 			$userId = (int)$m[1];
 			if ( $userId !== 0 ) {
 				// Check the database.
-				$userIdentity = $this->userIdentityLookup->getUserIdentityByUserId( $userId );
+				$query = $this->userIdentityLookup->newSelectQueryBuilder()
+					->whereUserIds( $userId )
+					->caller( __METHOD__ );
+
+				$module = $options['module'] ?? null;
+				// Stop-gap for T441029 and T441032: hide hidden users from callers without 'hideuser'.
+				// Parameter validation is not the ideal layer for this fix.  See T441617.
+				// Outside the Action API, we do not know who is asking. Fail closed.
+				if ( !( $module instanceof ApiBase && $module->getAuthority()->isAllowed( 'hideuser' ) ) ) {
+					$query->hidden( false );
+				}
+
+				$userIdentity = $query->fetchUserIdentity();
 				if ( $userIdentity ) {
 					return [ 'id', $userIdentity ];
 				}

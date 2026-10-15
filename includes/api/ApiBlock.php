@@ -109,7 +109,14 @@ class ApiBlock extends ApiBase {
 		if ( $params['user'] !== null ) {
 			$target = $params['user'];
 		} else {
-			$target = $this->userIdentityLookup->getUserIdentityByUserId( $params['userid'] );
+			$query = $this->userIdentityLookup->newSelectQueryBuilder()
+				->whereUserIds( $params['userid'] )
+				->caller( __METHOD__ );
+			if ( !$this->getAuthority()->isAllowed( 'hideuser' ) ) {
+				// T441029: a hidden user must look like a missing user
+				$query->hidden( false );
+			}
+			$target = $query->fetchUserIdentity();
 			if ( !$target ) {
 				$this->dieWithError( [ 'apierror-nosuchuserid', $params['userid'] ], 'nosuchuserid' );
 			}

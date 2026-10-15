@@ -3,6 +3,7 @@
 namespace MediaWiki\Tests\Api;
 
 use LogEntryBase;
+use MediaWiki\Api\ApiUsageException;
 use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\Block\Restriction\ActionRestriction;
 use MediaWiki\Block\Restriction\NamespaceRestriction;
@@ -359,5 +360,73 @@ class ApiBlockTest extends ApiTestCase {
 
 		$this->assertArrayHasKey( 'userID', $blockResult );
 		$this->assertSame( $userId, $blockResult['userID'] );
+	}
+
+	/**
+	 * Test that attempting to block a hidden user by user=#<id>
+	 * without 'hideuser' right does not leak the hidden username in 'alreadyblocked'.
+	 */
+	public function testBlock_hiddenUserId_withoutHideuser() {
+		$hiddenUser = $this->getMutableTestUser()->getUser();
+		$sysop = $this->getTestSysop()->getUser();
+
+		// Apply initial block hiding the user
+		$block = new DatabaseBlock( [
+			'expiry' => 'infinity',
+			'hideName' => true,
+		] );
+		$block->setTarget( $hiddenUser );
+		$block->setBlocker( $sysop );
+		$this->blockStore->insertBlock( $block );
+
+		// Admin without 'hideuser'
+		$adminWithoutHideuser = $this->getMutableTestUser( [ 'sysop' ] )->getUser();
+		$this->setGroupPermissions( 'sysop', 'hideuser', false );
+
+		try {
+			$this->doApiRequestWithToken( [
+				'action' => 'block',
+				'user' => '#' . $hiddenUser->getId(),
+				'reason' => 'Testing user=#id without hideuser',
+			], null, $adminWithoutHideuser );
+			$this->fail( 'Expected ApiUsageException was not thrown' );
+		} catch ( ApiUsageException $e ) {
+			$this->assertApiErrorCode( 'nosuchuser', $e );
+			$this->assertStringNotContainsString( $hiddenUser->getName(), $e->getMessage() );
+		}
+	}
+
+	/**
+	 * Test that attempting to block a hidden user by userid=<id>
+	 * without 'hideuser' right does not leak the hidden username in 'alreadyblocked'.
+	 */
+	public function testBlock_hiddenUser_byUserid_withoutHideuser() {
+		$hiddenUser = $this->getMutableTestUser()->getUser();
+		$sysop = $this->getTestSysop()->getUser();
+
+		// Apply initial block hiding the user
+		$block = new DatabaseBlock( [
+			'expiry' => 'infinity',
+			'hideName' => true,
+		] );
+		$block->setTarget( $hiddenUser );
+		$block->setBlocker( $sysop );
+		$this->blockStore->insertBlock( $block );
+
+		// Admin without 'hideuser'
+		$adminWithoutHideuser = $this->getMutableTestUser( [ 'sysop' ] )->getUser();
+		$this->setGroupPermissions( 'sysop', 'hideuser', false );
+
+		try {
+			$this->doApiRequestWithToken( [
+				'action' => 'block',
+				'userid' => $hiddenUser->getId(),
+				'reason' => 'Testing userid without hideuser',
+			], null, $adminWithoutHideuser );
+			$this->fail( 'Expected ApiUsageException was not thrown' );
+		} catch ( ApiUsageException $e ) {
+			$this->assertApiErrorCode( 'nosuchuserid', $e );
+			$this->assertStringNotContainsString( $hiddenUser->getName(), $e->getMessage() );
+		}
 	}
 }

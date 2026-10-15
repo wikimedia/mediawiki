@@ -2,12 +2,15 @@
 
 namespace MediaWiki\Tests\ParamValidator\TypeDef;
 
+use MediaWiki\Api\ApiBase;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\ParamValidator\TypeDef\UserDef;
+use MediaWiki\Permissions\Authority;
 use MediaWiki\Tests\Unit\DummyServicesTrait;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityLookup;
 use MediaWiki\User\UserIdentityValue;
+use MediaWiki\User\UserSelectQueryBuilder;
 use Wikimedia\Message\DataMessageValue;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\ParamValidator\SimpleCallbacks;
@@ -31,24 +34,38 @@ class UserDefTest extends TypeDefUnitTestCase {
 			'Emma' => 5,
 			'*Unregistered 1' => 100,
 		];
-		$userIdentityLookup = $this->createMock( UserIdentityLookup::class );
-		$userIdentityLookup->method( 'getUserIdentityByName' )->willReturnCallback(
-			static function ( $name, $flags ) use ( $namesToIds ) {
-				if ( isset( $namesToIds[$name] ) ) {
-					return new UserIdentityValue( $namesToIds[$name], $name );
+		$userIdentityLookup = $options['userIdentityLookup'] ?? null;
+		if ( !$userIdentityLookup ) {
+			$userIdentityLookup = $this->createMock( UserIdentityLookup::class );
+			$userIdentityLookup->method( 'getUserIdentityByName' )->willReturnCallback(
+				static function ( $name, $flags ) use ( $namesToIds ) {
+					if ( isset( $namesToIds[$name] ) ) {
+						return new UserIdentityValue( $namesToIds[$name], $name );
+					}
+					return null;
 				}
-				return null;
-			}
-		);
-		$userIdentityLookup->method( 'getUserIdentityByUserId' )->willReturnCallback(
-			static function ( $id, $flags ) use ( $namesToIds ) {
-				$idsToNames = array_flip( $namesToIds );
-				if ( isset( $idsToNames[$id] ) ) {
-					return new UserIdentityValue( $id, $idsToNames[$id] );
+			);
+			$selectedId = null;
+			$query = $this->createMock( UserSelectQueryBuilder::class );
+			$query->method( 'caller' )->willReturnSelf();
+			$query->method( 'whereUserIds' )->willReturnCallback(
+				static function ( $id ) use ( &$selectedId, $query ) {
+					$selectedId = $id;
+					return $query;
 				}
-				return null;
-			}
-		);
+			);
+			$query->method( 'hidden' )->willReturnSelf();
+			$idsToNames = array_flip( $namesToIds );
+			$query->method( 'fetchUserIdentity' )->willReturnCallback(
+				static function () use ( &$selectedId, $idsToNames ) {
+					if ( isset( $idsToNames[$selectedId] ) ) {
+						return new UserIdentityValue( $selectedId, $idsToNames[$selectedId] );
+					}
+					return null;
+				}
+			);
+			$userIdentityLookup->method( 'newSelectQueryBuilder' )->willReturn( $query );
+		}
 
 		// DummyServicesTrait will call $this->createHookContainer() if we didn't pass
 		// one, but that method is only available from MediaWikiTestCaseTrait - just
@@ -481,6 +498,106 @@ class UserDefTest extends TypeDefUnitTestCase {
 		);
 
 		$this->assertUserIdentity( $res, 0, $userName );
+	}
+
+	/**
+	 * Test that querying a hidden user ID in the Action API without 'hideuser'
+	 * right filters hidden users with hidden(false) and returns "Unknown user" (id 0).
+	 */
+	public function testProcessUser_hiddenUser_withoutPermission() {
+		$authority = $this->createMock( Authority::class );
+		$authority->method( 'isAllowed' )->with( 'hideuser' )->willReturn( false );
+		$module = $this->createMock( ApiBase::class );
+		$module->method( 'getAuthority' )->willReturn( $authority );
+
+		$query = $this->createMock( UserSelectQueryBuilder::class );
+		$query->method( 'caller' )->willReturnSelf();
+		$query->expects( $this->once() )->method( 'whereUserIds' )->with( 7 )->willReturnSelf();
+		$query->expects( $this->once() )->method( 'hidden' )->with( false )->willReturnSelf();
+		$query->method( 'fetchUserIdentity' )->willReturn( null );
+
+		$lookup = $this->createMock( UserIdentityLookup::class );
+		$lookup->method( 'newSelectQueryBuilder' )->willReturn( $query );
+
+		$userDef = $this->getInstance(
+			new SimpleCallbacks( [] ),
+			[ 'userIdentityLookup' => $lookup ]
+		);
+		$res = $userDef->validate(
+			'',
+			'#7',
+			[
+				UserDef::PARAM_ALLOWED_USER_TYPES => [ 'id' ],
+				UserDef::PARAM_RETURN_OBJECT => true,
+			],
+			[ 'module' => $module ]
+		);
+		$this->assertUserIdentity( $res, 0, 'Unknown user' );
+	}
+
+	/**
+	 * Test that querying a hidden user ID outside the Action API fails closed
+	 * with hidden(false) and returns "Unknown user" (id 0) when caller authority is unknown.
+	 */
+	public function testProcessUser_hiddenUser_outsideApi() {
+		$query = $this->createMock( UserSelectQueryBuilder::class );
+		$query->method( 'caller' )->willReturnSelf();
+		$query->expects( $this->once() )->method( 'whereUserIds' )->with( 7 )->willReturnSelf();
+		$query->expects( $this->once() )->method( 'hidden' )->with( false )->willReturnSelf();
+		$query->method( 'fetchUserIdentity' )->willReturn( null );
+
+		$lookup = $this->createMock( UserIdentityLookup::class );
+		$lookup->method( 'newSelectQueryBuilder' )->willReturn( $query );
+
+		$userDef = $this->getInstance(
+			new SimpleCallbacks( [] ),
+			[ 'userIdentityLookup' => $lookup ]
+		);
+		$res = $userDef->validate(
+			'',
+			'#7',
+			[
+				UserDef::PARAM_ALLOWED_USER_TYPES => [ 'id' ],
+				UserDef::PARAM_RETURN_OBJECT => true,
+			],
+			[] // No module provided
+		);
+		$this->assertUserIdentity( $res, 0, 'Unknown user' );
+	}
+
+	/**
+	 * Test that querying a hidden user ID in the Action API with 'hideuser'
+	 * right does not filter hidden users and resolves the user identity.
+	 */
+	public function testProcessUser_hiddenUser_withPermission() {
+		$authority = $this->createMock( Authority::class );
+		$authority->method( 'isAllowed' )->with( 'hideuser' )->willReturn( true );
+		$module = $this->createMock( ApiBase::class );
+		$module->method( 'getAuthority' )->willReturn( $authority );
+
+		$query = $this->createMock( UserSelectQueryBuilder::class );
+		$query->method( 'caller' )->willReturnSelf();
+		$query->expects( $this->once() )->method( 'whereUserIds' )->with( 7 )->willReturnSelf();
+		$query->expects( $this->never() )->method( 'hidden' );
+		$query->method( 'fetchUserIdentity' )->willReturn( new UserIdentityValue( 7, 'Hidden User' ) );
+
+		$lookup = $this->createMock( UserIdentityLookup::class );
+		$lookup->method( 'newSelectQueryBuilder' )->willReturn( $query );
+
+		$userDef = $this->getInstance(
+			new SimpleCallbacks( [] ),
+			[ 'userIdentityLookup' => $lookup ]
+		);
+		$res = $userDef->validate(
+			'',
+			'#7',
+			[
+				UserDef::PARAM_ALLOWED_USER_TYPES => [ 'id' ],
+				UserDef::PARAM_RETURN_OBJECT => true,
+			],
+			[ 'module' => $module ]
+		);
+		$this->assertUserIdentity( $res, 7, 'Hidden User' );
 	}
 
 }
