@@ -79,10 +79,17 @@ For notes on 1.46.x and older releases, see HISTORY.
 * (T432760) Added $wgUseParsoidParser, $wgUseParsoidLinksUpdate,
   and $wgUseParsoidMessages to control the use of Parsoid for wikitext parsing.
   $wgUseParsoidParser is enabled by default, meaning articles will be rendered
-  by Parsoid. $wgUseParsoidLinksUpdate is set to null, meaning that it will
+  by Parsoid. $wgUseParsoidLinksUpdate selects the parser for the parses on
+  edit, purge and in jobs which update the links tables and other derived page
+  metadata. It is set to null, meaning that it will
   take the same value as $wgUseParsoidParser. $wgUseParsoidMessages is
   disabled by default. Using Parsoid for parsing messages is still considered
-  experimental.
+  experimental.  These variables are temporary, and intended to allow
+  controlled transition to the new default parser.
+  Content handlers which override ContentHandler::getParserOutputForIndexing()
+  may wish to examine $wgUseParsoidLinksUpdate, to ensure the parser options
+  used for indexing your content match those used for links updates and
+  indexing of wikitext content.
 * …
 
 ==== Changed configuration ====

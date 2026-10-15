@@ -396,6 +396,28 @@ class ContentHandlerTest extends MediaWikiIntegrationTestCase {
 		$this->assertStringContainsString( 'one who smiths', $out->getContentHolderText() );
 	}
 
+	public static function provideParserOutputForIndexingParser() {
+		yield 'links update forced to legacy' => [ true, false, false ];
+		yield 'links update forced to Parsoid' => [ false, true, true ];
+	}
+
+	/**
+	 * @dataProvider provideParserOutputForIndexingParser
+	 */
+	public function testParserOutputForIndexingUsesLinksUpdateParser(
+		bool $useParsoidParser, bool $useParsoidLinksUpdate, bool $expected
+	) {
+		$this->overrideConfigValues( [
+			MainConfigNames::UseParsoidParser => $useParsoidParser,
+			MainConfigNames::UseParsoidLinksUpdate => $useParsoidLinksUpdate,
+		] );
+		$title = Title::makeTitle( NS_MAIN, 'Smithee' );
+		$page = $this->getServiceContainer()->getWikiPageFactory()->newFromTitle( $title );
+
+		$out = $page->getContentHandler()->getParserOutputForIndexing( $page );
+		$this->assertSame( $expected, $out->getContentHolder()->isParsoidContent() );
+	}
+
 	public function testGetContentModelsHook() {
 		$this->setTemporaryHook( 'GetContentModels', static function ( &$models ) {
 			$models[] = 'Ferrari';

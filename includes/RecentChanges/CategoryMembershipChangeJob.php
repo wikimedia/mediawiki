@@ -273,6 +273,7 @@ class CategoryMembershipChangeJob extends Job {
 	private function getCategoriesAtRev( WikiPage $page, RevisionRecord $rev, $parseTimestamp ) {
 		$services = MediaWikiServices::getInstance();
 		$options = $page->makeParserOptions( 'canonical' );
+		$options->setUseParsoidForLinksUpdate();
 		$options->setTimestamp( $parseTimestamp );
 		$options->setRenderReason( 'CategoryMembershipChangeJob' );
 

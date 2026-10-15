@@ -10,6 +10,7 @@ use MediaWiki\Content\JavaScriptContent;
 use MediaWiki\Content\Renderer\ContentRenderer;
 use MediaWiki\Content\WikitextContent;
 use MediaWiki\HookContainer\HookContainer;
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageIdentityValue;
@@ -279,6 +280,42 @@ class RevisionRendererTest extends MediaWikiIntegrationTestCase {
 		$this->assertMatchesRegularExpression( '/time:(<span[^>]*>)?20180101000003/', $html );
 
 		$this->assertSame( $html, $rr->getSlotParserOutput( SlotRecord::MAIN )->getContentHolderText() );
+	}
+
+	public static function provideGetRenderedRevision_forLinksUpdate() {
+		// useParsoidParser, useParsoidLinksUpdate, for-links-update hint, expected useParsoid
+		yield 'no hint follows UseParsoidParser' => [ true, false, false, true ];
+		yield 'hint, forced legacy' => [ true, false, true, false ];
+		yield 'hint, forced Parsoid' => [ false, true, true, true ];
+		yield 'hint, null follows UseParsoidParser' => [ true, null, true, true ];
+	}
+
+	/**
+	 * @dataProvider provideGetRenderedRevision_forLinksUpdate
+	 */
+	public function testGetRenderedRevision_forLinksUpdate(
+		bool $useParsoidParser, ?bool $useParsoidLinksUpdate, bool $forLinksUpdate, bool $expected
+	) {
+		$this->overrideConfigValues( [
+			MainConfigNames::UseParsoidParser => $useParsoidParser,
+			MainConfigNames::UseParsoidLinksUpdate => $useParsoidLinksUpdate,
+		] );
+		$renderer = $this->newRevisionRenderer( 100 );
+
+		$rev = MutableRevisionRecord::newFromContent( $this->fakePage, new WikitextContent( 'text' ) )
+			->setId( 21 )
+			->setUser( new UserIdentityValue( 9, 'Frank' ) )
+			->setTimestamp( '20180101000003' )
+			->setComment( CommentStoreComment::newUnsavedComment( '' ) );
+
+		$rr = $renderer->getRenderedRevision(
+			$rev,
+			null,
+			null,
+			[ 'for-links-update' => $forLinksUpdate ]
+		);
+
+		$this->assertSame( $expected, $rr->getOptions()->getUseParsoid() );
 	}
 
 	public function testGetRenderedRevision_suppressed() {

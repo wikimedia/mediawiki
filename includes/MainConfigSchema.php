@@ -13731,11 +13731,17 @@ class MainConfigSchema {
 	];
 
 	/**
-	 * Force Parsoid/legacy parser use in RefreshLinksJob
+	 * Force Parsoid/legacy parser use for links updates
+	 *
+	 * This covers every parse whose output updates the links tables and
+	 * other derived page metadata (page properties, categories, search
+	 * index): the canonical rendering done on edit, null edit, purge with
+	 * forcelinkupdate and other secondary data updates, RefreshLinksJob,
+	 * CategoryMembershipChangeJob, and ContentHandler::getParserOutputForIndexing().
 	 *
 	 * When null, this follows the default canonical ParserOptions.
-	 * If set to true, will force Parsoid use for RefreshLinksJob, and
-	 * if set to false will force legacy parser use for RefreshLinksJob,
+	 * If set to true, will force Parsoid use for these parses, and
+	 * if set to false will force legacy parser use for these parses,
 	 * independent of the default canonical ParserOptions used elsewhere
 	 * in MediaWiki.
 	 *

@@ -84,7 +84,7 @@ class RevisionRenderer implements LoggerAwareInterface {
 	 * @param Authority|null $forPerformer User for privileged access. Default is unprivileged
 	 *   (public) access, unless the 'audience' hint is set to something else RevisionRecord::RAW.
 	 * @phpcs:ignore Generic.Files.LineLength.TooLong
-	 * @param array{use-master?:bool,audience?:int,known-revision-output?:ParserOutput,known-revision-options?:ParserOptions,causeAction?:?string,previous-output?:?ParserOutput} $hints
+	 * @param array{use-master?:bool,audience?:int,known-revision-output?:ParserOutput,known-revision-options?:ParserOptions,for-links-update?:bool,causeAction?:?string,previous-output?:?ParserOutput} $hints
 	 *   Hints given as an associative array. Known keys:
 	 *   - 'use-master' Use primary DB when rendering for the parser cache during save.
 	 *     Default is to use a replica.
@@ -97,6 +97,10 @@ class RevisionRenderer implements LoggerAwareInterface {
 	 *     for the time until caches have been changed to store RenderedRevision states instead
 	 *     of ParserOutput objects.
 	 *   - 'known-revision-options' ParserOptions object associated with the known-revision-output
+	 *   - 'for-links-update' whether the output will be used to update the links tables
+	 *     and other derived page data. If $options is null and there is no
+	 *     known-revision-output, the parser is then selected by $wgUseParsoidLinksUpdate.
+	 *     Default is false.
 	 *   - 'previous-output' A previously-rendered ParserOutput for this page. This
 	 *     can be used by Parsoid for selective updates.
 	 *   - 'causeAction' the reason for rendering. This should be informative, for used for
@@ -140,6 +144,8 @@ class RevisionRenderer implements LoggerAwareInterface {
 				$options->setUseParsoid(
 					$hints['known-revision-output']->getContentHolder()->isParsoidContent()
 				);
+			} elseif ( $hints['for-links-update'] ?? false ) {
+				$options->setUseParsoidForLinksUpdate();
 			}
 		}
 
