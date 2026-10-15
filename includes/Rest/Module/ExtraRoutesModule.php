@@ -268,7 +268,6 @@ class ExtraRoutesModule extends MatcherBasedModule {
 		return $info;
 	}
 
-	/** @inheritDoc */
 	public function getOpenApiContact(): array {
 		$contact = [
 			'name' => $this->options->get( MainConfigNames::Sitename ),
