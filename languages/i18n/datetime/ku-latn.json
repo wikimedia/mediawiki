@@ -70,7 +70,7 @@
 	"months": "{{PLURAL:$1|mehekê|$1 mehan}}",
 	"weeks": "{{PLURAL:$1|hefteyekê|$1 hefteyan}}",
 	"days": "{{PLURAL:$1|rojekî|$1 rojan}}",
-	"hours": "{{PLURAL:$1|saetekê|$1 saetan}}",
+	"hours": "{{PLURAL:$1|$1 saet}}",
 	"minutes": "{{PLURAL: $1|deqeyekê|$1 deqeyan}}",
 	"seconds": "{{PLURAL:$1|saniyeyekê|$1 saniyeyan}}",
 	"days-abbrev": "$1 r",

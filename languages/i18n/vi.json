@@ -85,7 +85,8 @@
 			"YeBoy371",
 			"Ttra2607",
 			"SussyRed2000",
-			"Veritas Sapientiae"
+			"Veritas Sapientiae",
+			"Lakejason0"
 		]
 	},
 	"pagecategories": "{{PLURAL:$1|Thể loại}}",
@@ -4117,5 +4118,6 @@
 	"benefit-3-description": "Tùy chọn cho phép bạn tùy chỉnh trải nghiệm của mình.",
 	"temp-user-unable-to-acquire": "Không thể lấy tên người dùng tài khoản tạm thời. Vui lòng thử lại.",
 	"table-of-contents-show-button-aria-label": "Hiển thị mục lục",
-	"table-of-contents-hide-button-aria-label": "Ẩn mục lục"
+	"table-of-contents-hide-button-aria-label": "Ẩn mục lục",
+	"mypage-disallowed-action": "Vì lý do bảo mật, bạn không thể thực hiện tác vụ “$1” trên Special:MyPage."
 }

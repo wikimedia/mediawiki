@@ -6,7 +6,8 @@
 			"Iriman",
 			"Lakzon",
 			"Mjbmr",
-			"Process cq"
+			"Process cq",
+			"Huji"
 		]
 	},
 	"preferences": "تمارزووەل(ترجیحات)",
@@ -145,7 +146,7 @@
 	"prefs-watchlist-edits-max": "حداکثر تعداد: ۱۰۰۰",
 	"prefs-advancedwatchlist": "گزینه‌های پیشرفته",
 	"tog-extendwatchlist": " کؤل رزگ-فئرست الؤن(آلشت)کریال-تغیرات نیشان دۀ،نۀ هر تنیا دؤمائنۀل",
-	"tog-watchlistunwatchlinks": "افزودن پیوندهای مستقیم خروج از پی‌گیری به فهرست پی‌گیری (جاواسکریپت ممکن است نیاز شود)",
+	"tog-watchlistunwatchlinks": "افزودن پیوندهای مستقیم خروج از پیگیری به فهرست پیگیری (جاواسکریپت ممکن است نیاز شود)",
 	"tog-watchlisthideminor": "دسکاریۀل گؤجۀر ئژ فئرست سئرکردن بشارآ",
 	"tog-watchlisthidebots": "دسکاریۀل ربات ئژ فئرست سئرکردن بشآرا",
 	"tog-watchlisthideown": "دسکاریۀل ووژم ئژ فئرست سئرکردن بشارآ",
