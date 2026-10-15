@@ -3,11 +3,10 @@
 'use strict';
 
 const { action, assert, REST, utils } = require( 'api-testing' );
+const useModuleSpec = require( '../useModuleSpec.js' );
 
 const chai = require( 'chai' );
 const expect = chai.expect;
-
-const chaiResponseValidator = require( 'chai-openapi-response-validator' ).default;
 
 const domino = require( 'domino' );
 const should = require( 'chai' ).should();
@@ -109,7 +108,7 @@ describe( '/transform/ and related endpoints', () => {
 	const redirPage = utils.title( 'TransformRedirectSource_' );
 	const redirPageEncoded = encodeURIComponent( redirPage );
 	const redirPageContent = `#REDIRECT [[${ page }]]`;
-	let revid, openApiSpec;
+	let revid;
 
 	before( async function () {
 		this.timeout( 30000 );
@@ -130,11 +129,7 @@ describe( '/transform/ and related endpoints', () => {
 		} );
 		edit.result.should.equal( 'Success' );
 
-		const { status, text } = await client.get( '/specs/v0/module/-' );
-		assert.deepEqual( status, 200 );
-
-		openApiSpec = JSON.parse( text );
-		chai.use( chaiResponseValidator( openApiSpec ) );
+		await useModuleSpec( '-' );
 	} );
 
 	describe( 'formats', () => {

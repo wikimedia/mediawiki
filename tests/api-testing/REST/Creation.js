@@ -1,18 +1,17 @@
 'use strict';
 
 const { action, assert, REST, utils } = require( 'api-testing' );
+const useModuleSpec = require( '../useModuleSpec.js' );
 const supertest = require( 'supertest' );
 
 const chai = require( 'chai' );
 const expect = chai.expect;
 
-const chaiResponseValidator = require( 'chai-openapi-response-validator' ).default;
-
 const pathPrefix = '/v1';
 const specModule = '/-';
 
 describe( 'POST /page', () => {
-	let client, mindy, anon, anonToken, openApiSpec;
+	let client, mindy, anon, anonToken;
 
 	beforeEach( async () => {
 		// Reset the client and token before each test
@@ -23,12 +22,7 @@ describe( 'POST /page', () => {
 		anon = await action.getAnon();
 		anonToken = await anon.token();
 
-		const specPath = '/specs/v0/module' + specModule;
-		const { status, text } = await client.get( specPath );
-		assert.deepEqual( status, 200, text );
-
-		openApiSpec = JSON.parse( text );
-		chai.use( chaiResponseValidator( openApiSpec ) );
+		await useModuleSpec( specModule );
 
 	} );
 

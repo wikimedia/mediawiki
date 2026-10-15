@@ -1,29 +1,23 @@
 'use strict';
 
 const { action, assert, REST, utils } = require( 'api-testing' );
+const useModuleSpec = require( '../useModuleSpec.js' );
 
 const chai = require( 'chai' );
 const expect = chai.expect;
-
-const chaiResponseValidator = require( 'chai-openapi-response-validator' ).default;
 
 const pathPrefix = '/v1';
 const specModule = '/-';
 
 describe( 'PUT /page/{title}', () => {
-	let client, mindy, mindyToken, openApiSpec;
+	let client, mindy, mindyToken;
 
 	before( async () => {
 		mindy = await action.mindy();
 		client = new REST( 'rest.php', mindy );
 		mindyToken = await mindy.token();
 
-		const specPath = '/specs/v0/module' + specModule;
-		const { status, text } = await client.get( specPath );
-		assert.deepEqual( status, 200 );
-
-		openApiSpec = JSON.parse( text );
-		chai.use( chaiResponseValidator( openApiSpec ) );
+		await useModuleSpec( specModule );
 	} );
 
 	const checkEditResponse = function ( title, reqBody, body ) {

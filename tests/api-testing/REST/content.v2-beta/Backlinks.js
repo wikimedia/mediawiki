@@ -1,11 +1,10 @@
 'use strict';
 
 const { action, assert, REST, utils } = require( 'api-testing' );
+const useModuleSpec = require( '../../useModuleSpec.js' );
 
 const chai = require( 'chai' );
 const expect = chai.expect;
-
-const chaiResponseValidator = require( 'chai-openapi-response-validator' ).default;
 
 const pathPrefix = '/content/v2-beta';
 const specModule = '/content/v2-beta';
@@ -28,11 +27,7 @@ describe( 'GET /pages/{title}/backlinks', () => {
 		bob = await action.bob();
 		client = new REST( 'rest.php', bob );
 
-		const specPath = '/specs/v0/module' + specModule;
-		const { status, text } = await client.get( specPath );
-		assert.deepEqual( status, 200 );
-
-		chai.use( chaiResponseValidator( JSON.parse( text ) ) );
+		await useModuleSpec( specModule );
 
 		const randomPageText = `I'm guessing you came here from ${ linksToEsther1 } or ${ linksToEsther2 }.`;
 		const linkText = `All I do is link to [[${ randomPage }|Page]]`;

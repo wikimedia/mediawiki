@@ -1,13 +1,12 @@
 'use strict';
 
 const { action, assert, REST, utils } = require( 'api-testing' );
+const useModuleSpec = require( '../useModuleSpec.js' );
 const chai = require( 'chai' );
 const expect = chai.expect;
 
-const chaiResponseValidator = require( 'chai-openapi-response-validator' ).default;
-
 describe( 'Page media links', () => {
-	let client, mindy, openApiSpec;
+	let client, mindy;
 	const baseEditText = "''Edit 1'' and '''Edit 2'''";
 	const page = utils.title( 'PageMediaLinks_' );
 
@@ -16,11 +15,7 @@ describe( 'Page media links', () => {
 		await mindy.edit( page, { text: baseEditText } );
 		client = new REST( 'rest.php' );
 
-		const { status, text } = await client.get( '/specs/v0/module/-' );
-		assert.deepEqual( status, 200, text );
-
-		openApiSpec = JSON.parse( text );
-		chai.use( chaiResponseValidator( openApiSpec ) );
+		await useModuleSpec( '-' );
 
 	} );
 

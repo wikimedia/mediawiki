@@ -1,10 +1,9 @@
 'use strict';
 
 const { action, assert, REST, utils } = require( 'api-testing' );
+const useModuleSpec = require( '../useModuleSpec.js' );
 const chai = require( 'chai' );
 const expect = chai.expect;
-
-const chaiResponseValidator = require( 'chai-openapi-response-validator' ).default;
 
 const pathPrefix = '/v1';
 const specModule = '/-';
@@ -13,7 +12,7 @@ describe( 'Revision', () => {
 	const page = utils.title( 'Revision' );
 	let client;
 	let mindy;
-	let newrevid, pageid, param_summary, openApiSpec;
+	let newrevid, pageid, param_summary;
 
 	before( async () => {
 		client = new REST( 'rest.php' );
@@ -25,12 +24,7 @@ describe( 'Revision', () => {
 		} );
 		( { newrevid, pageid, param_summary } = resp );
 
-		const specPath = '/specs/v0/module' + specModule;
-		const { status, text } = await client.get( specPath );
-		assert.deepEqual( status, 200 );
-
-		openApiSpec = JSON.parse( text );
-		chai.use( chaiResponseValidator( openApiSpec ) );
+		await useModuleSpec( specModule );
 	} );
 
 	describe( 'GET /revision/{id}', () => {

@@ -1,11 +1,10 @@
 'use strict';
 
 const { action, assert, REST, utils } = require( 'api-testing' );
+const useModuleSpec = require( '../useModuleSpec.js' );
 const url = require( 'url' );
 const chai = require( 'chai' );
 const expect = chai.expect;
-
-const chaiResponseValidator = require( 'chai-openapi-response-validator' ).default;
 
 const pathPrefix = '/v1';
 const specModule = '/-';
@@ -49,7 +48,6 @@ describe( 'Page Source', () => {
 
 	let client;
 	let mindy;
-	let openApiSpec;
 	const baseEditText = "''Edit 1'' and '''Edit 2'''";
 
 	before( async () => {
@@ -68,12 +66,7 @@ describe( 'Page Source', () => {
 			token
 		}, true );
 
-		const specPath = '/specs/v0/module' + specModule;
-		const { status, text } = await client.get( specPath );
-		assert.deepEqual( status, 200 );
-
-		openApiSpec = JSON.parse( text );
-		chai.use( chaiResponseValidator( openApiSpec ) );
+		await useModuleSpec( specModule );
 	} );
 
 	describe( 'GET /page/{title}', () => {

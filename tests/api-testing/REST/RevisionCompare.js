@@ -1,24 +1,19 @@
 'use strict';
 
 const { action, assert, REST, utils } = require( 'api-testing' );
+const useModuleSpec = require( '../useModuleSpec.js' );
 
 const chai = require( 'chai' );
 const expect = chai.expect;
 
-const chaiResponseValidator = require( 'chai-openapi-response-validator' ).default;
-
 describe( 'Revision Compare', () => {
 	const client = new REST( 'rest.php' );
-	let mindy, openApiSpec;
+	let mindy;
 
 	before( async () => {
 		mindy = await action.mindy();
 
-		const { status, text } = await client.get( '/specs/v0/module/-' );
-		assert.deepEqual( status, 200 );
-
-		openApiSpec = JSON.parse( text );
-		chai.use( chaiResponseValidator( openApiSpec ) );
+		await useModuleSpec( '-' );
 	} );
 
 	describe( 'GET /revision/{from}/compare/{to}', () => {

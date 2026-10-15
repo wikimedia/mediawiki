@@ -1,6 +1,7 @@
 'use strict';
 
 const { assert, REST } = require( 'api-testing' );
+const useModuleSpec = require( '../../../useModuleSpec.js' );
 const SwaggerParser = require( '@apidevtools/swagger-parser' );
 const request = require( 'superagent' );
 
@@ -10,8 +11,7 @@ describe( 'Self-Documentation', () => {
 	describe( 'OpenAPI module specs', () => {
 		it( 'Conforms to the OpenAPI schema', async () => {
 			// NOTE: the module prefix "-" can be used to get a spec for the empty prefix
-			const { status, body, text } = await client.get( '/module/-' );
-			assert.deepEqual( status, 200, text );
+			const body = await useModuleSpec( '-' );
 
 			try {
 				await SwaggerParser.validate( body, {

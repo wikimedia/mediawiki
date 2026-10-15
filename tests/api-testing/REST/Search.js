@@ -1,13 +1,12 @@
 'use strict';
 
 const { action, assert, REST, utils, wiki } = require( 'api-testing' );
+const useModuleSpec = require( '../useModuleSpec.js' );
 const superagent = require( 'superagent' );
 const xml2js = require( 'xml2js' );
 
 const chai = require( 'chai' );
 const expect = chai.expect;
-
-const chaiResponseValidator = require( 'chai-openapi-response-validator' ).default;
 
 describe( 'Search', () => {
 	const client = new REST( 'rest.php' );
@@ -19,7 +18,6 @@ describe( 'Search', () => {
 	const searchTerm2 = utils.uniq();
 	let alice;
 	let mindy;
-	let openApiSpec;
 
 	before( async () => {
 		alice = await action.alice();
@@ -29,11 +27,7 @@ describe( 'Search', () => {
 		await alice.edit( pageWithOwnTitle, { text: pageWithOwnTitle } );
 		await wiki.runAllJobs();
 
-		const { status, text } = await client.get( '/specs/v0/module/-' );
-		assert.deepEqual( status, 200 );
-
-		openApiSpec = JSON.parse( text );
-		chai.use( chaiResponseValidator( openApiSpec ) );
+		await useModuleSpec( '-' );
 	} );
 
 	describe( 'GET /search/page?q={term}', () => {
