@@ -14,7 +14,6 @@ use Wikimedia\Message\MessageSpecifier;
  * @internal
  */
 abstract class ErrorFormatter {
-	use JsonFileLoaderTrait;
 
 	/**
 	 * @param ITextFormatter[] $textFormatters
@@ -128,9 +127,14 @@ abstract class ErrorFormatter {
 	}
 
 	/**
-	 * OpenAPI 3.0 Schema Object describing the error bodies this formatter produces.
-	 * Descriptions should be given as x-i18n-description message keys, which are
-	 * resolved when the spec is generated.
+	 * Base URL of the error schemas published from the api-platform-schemas repository.
+	 * Tests use the local copies in external-schemas/.
+	 */
+	public const SCHEMA_BASE_URL = 'https://schema.wikimedia.org/repositories/mediawiki/api/';
+
+	/**
+	 * OpenAPI 3.0 Schema Object describing the error bodies this formatter produces,
+	 * typically a $ref to the published schema.
 	 *
 	 * @see ResponseFactory::getResponseComponents()
 	 */

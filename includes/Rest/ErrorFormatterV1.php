@@ -38,7 +38,7 @@ class ErrorFormatterV1 extends ErrorFormatter {
 	}
 
 	public function getOpenApiSchema(): array {
-		return self::loadJsonFile( __DIR__ . '/Handler/Schema/ErrorResponseV1.json' );
+		return [ '$ref' => self::SCHEMA_BASE_URL . 'fragments/error-v1.json' ];
 	}
 
 }
