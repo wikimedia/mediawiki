@@ -231,8 +231,14 @@ class RefreshLinks extends Maintenance {
 	/**
 	 * Run LinksUpdate for all links on a given page_id
 	 * @param int $id The page_id
+	 * @param string|false|null $freshness forces an update if the
+	 *     last update was before the given timestamp, even if the
+	 *     page and its dependencies didn't change since then.  If `null`
+	 *     (the default) uses the current time.  Set to `false` to update
+	 *     only pages which have changed since their last update.
+	 * @see DerivedPageDataUpdater::doSecondaryDataUpdates()
 	 */
-	public static function fixLinksFromArticle( $id ) {
+	public static function fixLinksFromArticle( $id, $freshness = null ) {
 		$services = MediaWikiServices::getInstance();
 		$page = $services->getWikiPageFactory()->newFromID( $id );
 
@@ -248,6 +254,7 @@ class RefreshLinks extends Maintenance {
 			'defer' => DeferredUpdates::POSTSEND,
 			'causeAction' => 'refresh-links-maintenance',
 			'recursive' => false,
+			'freshness' => $freshness ?? wfTimestampNow(),
 		] );
 		DeferredUpdates::doUpdates();
 	}
