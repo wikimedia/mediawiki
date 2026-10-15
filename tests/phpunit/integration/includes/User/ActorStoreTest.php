@@ -141,7 +141,7 @@ class ActorStoreTest extends ActorStoreTestBase {
 	 * @param UserIdentity $expected
 	 */
 	public function testSequentialCacheRetrieval( UserIdentity $expected ) {
-		if ( $expected->getId() === 0 ) {
+		if ( !$expected->isRegistered() ) {
 			$this->disableAutoCreateTempUser();
 		}
 		// ensure UserIdentity is cached
@@ -491,7 +491,7 @@ class ActorStoreTest extends ActorStoreTestBase {
 	public function testAcquireActorId( callable $userCallback ) {
 		/** @var UserIdentity $user */
 		$user = $userCallback( $this->getServiceContainer() );
-		if ( $user->getId() === 0 ) {
+		if ( !$user->isRegistered() ) {
 			$this->disableAutoCreateTempUser();
 		}
 		$actorId = $this->getStore()->acquireActorId( $user, $this->getDb() );
@@ -650,7 +650,7 @@ class ActorStoreTest extends ActorStoreTestBase {
 	 * @dataProvider provideAcquireActorId_existing
 	 */
 	public function testAcquireActorId_existing( UserIdentityValue $actor, int $expected ) {
-		if ( $actor->getId() === 0 ) {
+		if ( !$actor->isRegistered() ) {
 			$this->disableAutoCreateTempUser();
 		}
 		$this->assertSame( $expected, $this->getStore()->acquireActorId( $actor, $this->getDb() ) );

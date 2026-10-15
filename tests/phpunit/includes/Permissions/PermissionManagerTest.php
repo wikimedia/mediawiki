@@ -156,7 +156,7 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 		if ( !isset( $this->userUser ) || !( $this->userUser instanceof User ) ) {
 			$this->userUser = User::newFromName( $this->userName );
 
-			if ( !$this->userUser->getId() ) {
+			if ( !$this->userUser->isRegistered() ) {
 				$this->userUser = User::createNew( $this->userName, [
 					"email" => "test@example.com",
 					"real_name" => "Test User" ] );
@@ -164,7 +164,7 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 			}
 
 			$this->altUser = User::newFromName( $altUserName );
-			if ( !$this->altUser->getId() ) {
+			if ( !$this->altUser->isRegistered() ) {
 				$this->altUser = User::createNew( $altUserName, [
 					"email" => "alttest@example.com",
 					"real_name" => "Test User Alt" ] );

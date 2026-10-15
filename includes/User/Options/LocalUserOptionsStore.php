@@ -23,7 +23,7 @@ class LocalUserOptionsStore implements UserOptionsStore {
 		int $recency
 	): array {
 		// In core, only users with local accounts may have preferences
-		if ( !$user->getId() ) {
+		if ( !$user->isRegistered() ) {
 			return [];
 		}
 
@@ -71,7 +71,7 @@ class LocalUserOptionsStore implements UserOptionsStore {
 	/** @inheritDoc */
 	public function store( UserIdentity $user, array $updates ) {
 		// In core, only users with local accounts may have preferences
-		if ( !$user->getId() ) {
+		if ( !$user->isRegistered() ) {
 			return false;
 		}
 

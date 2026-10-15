@@ -443,8 +443,8 @@ abstract class SessionProvider implements Stringable, SessionProviderInterface {
 	 * The intention is that the named account will never again be usable for
 	 * normal login (i.e. there is no way to undo the prevention of access).
 	 *
-	 * Note that the passed user name might not exist locally (i.e.
-	 * UserIdentity::getId() === 0); the name should still be
+	 * Note that the passed user name might not exist locally, i.e.
+	 * !UserIdentity::isRegistered(); the name should still be
 	 * prevented, if applicable.
 	 *
 	 * @stable to override

@@ -369,7 +369,7 @@ class InfoAction extends FormlessAction {
 
 		if ( $title->inNamespace( NS_USER ) ) {
 			$pageUser = $this->userFactory->newFromName( $title->getRootText() );
-			if ( $pageUser && $pageUser->getId() && !$pageUser->isHidden() ) {
+			if ( $pageUser?->isRegistered() && !$pageUser->isHidden() ) {
 				$pageInfo['header-basic'][] = [
 					$this->msg( 'pageinfo-user-id' ),
 					$pageUser->getId()

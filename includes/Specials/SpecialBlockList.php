@@ -271,7 +271,7 @@ class SpecialBlockList extends SpecialPage {
 		}
 		if ( $target instanceof UserBlockTarget ) {
 			$user = $target->getUserIdentity();
-			if ( $user->getId() ) {
+			if ( $user->isRegistered() ) {
 				return [
 					'bt_user' => $user->getId(),
 					'bt_auto' => 0

@@ -200,7 +200,7 @@ class BlockErrorFormatter {
 
 		$language = $this->getLanguage();
 
-		if ( $blocker->getId() === 0 ) {
+		if ( !$blocker->isRegistered() ) {
 			// Foreign user
 			// TODO what about blocks placed by IPs? Shouldn't we check based on
 			// $blocker's wiki instead? This is just matching the code before the

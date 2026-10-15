@@ -1904,7 +1904,7 @@ class DerivedPageDataUpdaterTest extends MediaWikiIntegrationTestCase {
 		$user = $userFactory->newFromName( $name );
 		if ( !$user ) {
 			$user = $userFactory->newAnonymous( $name );
-		} elseif ( !$user->getId() ) {
+		} elseif ( !$user->isRegistered() ) {
 			$user->addToDatabase();
 		}
 

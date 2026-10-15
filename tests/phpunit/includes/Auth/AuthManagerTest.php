@@ -2246,7 +2246,7 @@ class AuthManagerTest extends MediaWikiIntegrationTestCase {
 		$this->initializeManager( true );
 
 		$user = User::newFromName( 'UTBlockee' );
-		if ( $user->getId() == 0 ) {
+		if ( !$user->isRegistered() ) {
 			$user->addToDatabase();
 			TestUser::setPasswordForUser( $user, 'UTBlockeePassword' );
 			$user->saveSettings();
@@ -2356,7 +2356,7 @@ class AuthManagerTest extends MediaWikiIntegrationTestCase {
 		$this->initializeManager( true );
 
 		$user = User::newFromName( 'UTBlockee' );
-		if ( $user->getId() == 0 ) {
+		if ( !$user->isRegistered() ) {
 			$user->addToDatabase();
 			TestUser::setPasswordForUser( $user, 'UTBlockeePassword' );
 			$user->saveSettings();
@@ -2389,7 +2389,7 @@ class AuthManagerTest extends MediaWikiIntegrationTestCase {
 		$i = 0;
 		do {
 			$username = "UTAuthManagerTestAccountCreation" . $uniq . ++$i;
-		} while ( User::newFromName( $username )->getId() !== 0 );
+		} while ( User::newFromName( $username )->isRegistered() );
 		return $username;
 	}
 

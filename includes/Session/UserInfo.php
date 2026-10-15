@@ -154,7 +154,7 @@ final class UserInfo implements Stringable {
 	 * @see User::getToken()
 	 */
 	public function getToken() {
-		return $this->user === null || $this->user->getId() === 0 ? '' : $this->user->getToken( false );
+		return $this->user?->isRegistered() ? $this->user->getToken( false ) : '';
 	}
 
 	/**

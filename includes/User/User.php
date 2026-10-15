@@ -452,7 +452,7 @@ class User implements Stringable, Authority, UserIdentity, UserEmailContact {
 
 				if ( !$userIdentity ) {
 					$this->loadDefaults( $this->mFrom === 'name' ? $this->mName : false );
-				} elseif ( $userIdentity->getId() ) {
+				} elseif ( $userIdentity->isRegistered() ) {
 					$this->mId = $userIdentity->getId();
 					$this->loadFromId( $flags );
 				} else {
@@ -2079,7 +2079,8 @@ class User implements Stringable, Authority, UserIdentity, UserEmailContact {
 	}
 
 	/**
-	 * Get whether the user is anonymous
+	 * Get whether the user is anonymous, i.e. not registered.
+	 * Please prefer {@link UserIdentity::isRegistered} from the more narrow interface if possible.
 	 * @return bool
 	 */
 	public function isAnon() {

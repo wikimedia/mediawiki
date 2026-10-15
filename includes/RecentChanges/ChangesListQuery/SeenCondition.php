@@ -27,11 +27,7 @@ class SeenCondition extends ChangesListConditionBase {
 	}
 
 	public function setUser( UserIdentity $user ) {
-		if ( $user->getId() ) {
-			$this->user = $user;
-		} else {
-			$this->user = null;
-		}
+		$this->user = $user->isRegistered() ? $user : null;
 	}
 
 	/** @inheritDoc */

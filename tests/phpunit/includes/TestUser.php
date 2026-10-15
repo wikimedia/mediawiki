@@ -113,7 +113,7 @@ class TestUser {
 	 * database directly.
 	 */
 	public static function setPasswordForUser( User $user, string $password ): void {
-		if ( !$user->getId() ) {
+		if ( !$user->isRegistered() ) {
 			throw new InvalidArgumentException( "Passed User has not been added to the database yet!" );
 		}
 

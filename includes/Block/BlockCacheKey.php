@@ -31,7 +31,7 @@ class BlockCacheKey implements Stringable {
 		$this->requestRef = $request ? WeakReference::create( $request ) : null;
 		$this->hasRequest = (bool)$request;
 		$this->userRef = WeakReference::create( $user );
-		$this->isAnon = $user->getId() === 0;
+		$this->isAnon = !$user->isRegistered();
 		$this->fromPrimary = $fromPrimary;
 	}
 

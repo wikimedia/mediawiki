@@ -2280,7 +2280,7 @@ class AuthManager implements LoggerAwareInterface {
 			if ( !$status->isOK() ) {
 				// Double-check for a race condition (T70012). We make use of the fact that when
 				// addToDatabase fails due to the user already existing, the user object gets loaded.
-				if ( $user->getId() ) {
+				if ( $user->isRegistered() ) {
 					$this->logger->info( __METHOD__ . ': {username} already exists locally (race)', [
 						'username' => $username,
 					] );
