@@ -1,0 +1,99 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "error-restbase-compat.json",
+  "title": "MediaWiki REST API error response (RESTBase compatibility)",
+  "description": "Error response in the RESTBase-compatible format, returned when the request has the header \"x-restbase-compat: true\". Extends the v1 (legacy) shape with fields mirroring RESTBase's own error format.",
+  "type": "object",
+  "properties": {
+    "httpCode": {
+      "type": "integer",
+      "minimum": 400,
+      "maximum": 599,
+      "description": "The HTTP status code of the error response.",
+      "examples": [
+        404
+      ]
+    },
+    "httpReason": {
+      "type": "string",
+      "description": "The standard reason phrase of the HTTP status code, for example \"Not Found\".",
+      "examples": [
+        "Not Found"
+      ]
+    },
+    "message": {
+      "type": "string",
+      "description": "A human-readable error message, useful when no message translations are available.",
+      "examples": [
+        "The specified page does not exist"
+      ]
+    },
+    "messageTranslations": {
+      "type": "object",
+      "description": "A map of language codes to human-readable error messages, for clients that can use them.",
+      "additionalProperties": {
+        "type": "string"
+      },
+      "examples": [
+        {
+          "en": "The specified page does not exist"
+        }
+      ]
+    },
+    "errorKey": {
+      "type": "string",
+      "description": "The message key identifying the error. Only present for localized errors.",
+      "examples": [
+        "rest-nonexistent-title"
+      ]
+    },
+    "reqId": {
+      "type": "string",
+      "description": "The ID of the request. Only present for server errors; include it when reporting the error."
+    },
+    "exception": {
+      "type": "object",
+      "description": "Structured details of the exception that caused the error. Only present when the wiki is configured to show exception details."
+    },
+    "type": {
+      "type": "string",
+      "description": "RESTBase-style error type.",
+      "examples": [
+        "MediaWikiError/Not_Found"
+      ]
+    },
+    "title": {
+      "type": "string",
+      "description": "Message key, mirroring RESTBase's \"title\" field.",
+      "examples": [
+        "rest-nonexistent-title"
+      ]
+    },
+    "method": {
+      "type": "string",
+      "description": "Lowercased HTTP method of the request.",
+      "examples": [
+        "get"
+      ]
+    },
+    "detail": {
+      "type": "string",
+      "description": "Human-readable error text.",
+      "examples": [
+        "The specified page does not exist"
+      ]
+    },
+    "uri": {
+      "type": "string",
+      "description": "Path and query of the request.",
+      "examples": [
+        "/w/rest.php/v1/page/Foo"
+      ]
+    }
+  },
+  "required": [
+    "httpCode",
+    "httpReason"
+  ],
+  "additionalProperties": true
+}
