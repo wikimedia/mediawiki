@@ -1163,7 +1163,7 @@ class Article implements Page {
 			}
 		}
 
-		if ( $this->mPage->getId() === 0 || $this->getOldID() ) {
+		if ( !$this->mPage->exists() || $this->getOldID() ) {
 			# Non-articles (special pages etc), and old revisions
 			return [
 				'index' => 'noindex',

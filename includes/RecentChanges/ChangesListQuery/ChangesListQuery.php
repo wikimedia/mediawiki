@@ -1437,7 +1437,7 @@ class ChangesListQuery implements QueryBackend, JoinDependencyProvider {
 		PageIdentity $page,
 		string $linkTable
 	): bool {
-		if ( !$page->getId() ) {
+		if ( !$page->exists() ) {
 			// No links from a non-existent page
 			return false;
 		}
@@ -1468,7 +1468,7 @@ class ChangesListQuery implements QueryBackend, JoinDependencyProvider {
 		PageIdentity $page,
 		string $linkTable
 	): bool {
-		if ( !$page->getId() ) {
+		if ( !$page->exists() ) {
 			// No links from a non-existent page
 			return false;
 		}

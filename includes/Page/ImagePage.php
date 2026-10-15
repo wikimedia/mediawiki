@@ -153,7 +153,7 @@ class ImagePage extends Article {
 		}
 
 		# No need to display noarticletext, we use our own message, output in openShowImage()
-		if ( $this->getPage()->getId() ) {
+		if ( $this->getPage()->exists() ) {
 			$out->addHTML( Html::openElement( 'div', [ 'id' => 'mw-imagepage-content' ] ) );
 			// NS_FILE pages render mostly in the user language (like special pages),
 			// except the editable wikitext content, which is rendered in the page content
@@ -750,7 +750,7 @@ class ImagePage extends Article {
 			}
 		} else {
 			# Image does not exist
-			if ( !$this->getPage()->getId() ) {
+			if ( !$this->getPage()->exists() ) {
 				$dbr = $this->dbProvider->getReplicaDatabase();
 
 				# No article exists either
@@ -787,7 +787,7 @@ class ImagePage extends Article {
 			// by Article::View().
 			$out->setRobotPolicy( 'noindex,nofollow' );
 			$out->wrapWikiMsg( "<div id='mw-imagepage-nofile' class='plainlinks'>\n$1\n</div>", $nofile );
-			if ( !$this->getPage()->getId() && $send404Code ) {
+			if ( !$this->getPage()->exists() && $send404Code ) {
 				// If there is no image, no shared image, and no description page,
 				// output a 404, to be consistent with Article::showMissingArticle.
 				$request->response()->statusHeader( 404 );
@@ -885,7 +885,7 @@ class ImagePage extends Article {
 		$descText = $this->getFile()->getDescriptionText( $this->getContext()->getLanguage() );
 
 		/* Add canonical to head if there is no local page for this shared file */
-		if ( $descUrl && !$this->getPage()->getId() ) {
+		if ( $descUrl && !$this->getPage()->exists() ) {
 			$out->setCanonicalUrl( $descUrl );
 		}
 

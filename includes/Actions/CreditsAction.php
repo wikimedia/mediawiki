@@ -56,7 +56,7 @@ class CreditsAction extends FormlessAction {
 			'mediawiki.action.styles',
 		] );
 
-		if ( $this->getWikiPage()->getId() === 0 ) {
+		if ( !$this->getWikiPage()->exists() ) {
 			$s = $this->msg( 'nocredits' )->parse();
 		} else {
 			$s = $this->getCredits( -1 );

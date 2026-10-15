@@ -690,7 +690,7 @@ class EditPage implements IEditObject {
 				return;
 			}
 
-			if ( $this->page->getId() ) {
+			if ( $this->page->exists() ) {
 				$this->getHookRunner()->onEditFormInitialText( $this );
 			}
 		}
