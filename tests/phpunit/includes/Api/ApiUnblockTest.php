@@ -160,6 +160,16 @@ class ApiUnblockTest extends ApiTestCase {
 		$this->doUnblock( [ 'userid' => $this->blockee->getId() ] );
 	}
 
+	/**
+	 * Test that attempting to unblock a hidden user by userid=<id>
+	 * without 'hideuser' right does not leak the hidden username and returns 'nosuchuserid'.
+	 */
+	public function testUnblock_hiddenUser_byUserid_withoutHideuser() {
+		$this->insertBlock( [ 'hideName' => true ] );
+		$this->expectApiErrorCode( 'nosuchuserid' );
+		$this->doUnblock( [ 'userid' => $this->blockee->getId() ] );
+	}
+
 	public function testUnblockByInvalidUserId() {
 		$this->expectApiErrorCode( 'nosuchuserid' );
 		$this->doUnblock( [ 'userid' => 1234567890 ] );

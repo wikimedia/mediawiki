@@ -125,4 +125,41 @@ class ApiRollbackTest extends ApiTestCase {
 			'user' => $user->getName(),
 		] )[0];
 	}
+
+	/**
+	 * Test that when a caller lacks the 'hideuser' right and specifies user=#<id>
+	 * for a hidden user, the 'alreadyrolled' error refers to 'Unknown user' instead of the hidden name.
+	 */
+	public function testRollback_hiddenUserId_withoutHideuser() {
+		$hiddenUser = $this->getMutableTestUser()->getUser();
+		$sysop = $this->getTestSysop()->getUser();
+
+		$blockStore = $this->getServiceContainer()->getDatabaseBlockStore();
+		$blockStore->insertBlockWithParams( [
+			'targetUser' => $hiddenUser,
+			'by' => $sysop,
+			'expiry' => 'infinity',
+			'hideName' => true,
+		] );
+
+		// User with rollback rights (sysop) but without 'hideuser'
+		$rollbacker = $this->getMutableTestUser( [ 'sysop' ] )->getUser();
+		$this->setGroupPermissions( 'sysop', 'hideuser', false );
+
+		$title = Title::makeTitle( NS_MAIN, 'ApiRollbackTest::testRollbackHiddenUser' );
+		$this->editPage( $title, 'Initial text', '', NS_MAIN, $sysop );
+
+		try {
+			$this->doApiRequestWithToken( [
+				'action' => 'rollback',
+				'title' => $title->getPrefixedText(),
+				'user' => '#' . $hiddenUser->getId(),
+			], null, $rollbacker );
+			$this->fail( 'Expected ApiUsageException was not thrown' );
+		} catch ( ApiUsageException $e ) {
+			$this->assertApiErrorCode( 'alreadyrolled', $e );
+			$this->assertStringNotContainsString( $hiddenUser->getName(), $e->getMessage() );
+			$this->assertStringContainsString( 'Unknown user', $e->getMessage() );
+		}
+	}
 }
