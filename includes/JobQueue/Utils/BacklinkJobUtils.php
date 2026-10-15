@@ -7,6 +7,8 @@
 namespace MediaWiki\JobQueue\Utils;
 
 use MediaWiki\JobQueue\Job;
+use MediaWiki\JobQueue\Jobs\HTMLCacheUpdateJob;
+use MediaWiki\JobQueue\Jobs\RefreshLinksJob;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageIdentity;
 
@@ -67,13 +69,13 @@ class BacklinkJobUtils {
 	 * $opts includes:
 	 *   - params : extra job parameters to include in each job
 	 *
-	 * @param Job $job
+	 * @param RefreshLinksJob|HTMLCacheUpdateJob $job
 	 * @param int $bSize BacklinkCache partition size; usually $wgUpdateRowsPerJob
 	 * @param int $cSize Max titles per leaf job; Usually 1 or a modest value
 	 * @param array $opts Optional parameter map
 	 * @return Job[]
 	 */
-	public static function partitionBacklinkJob( Job $job, $bSize, $cSize, $opts = [] ) {
+	public static function partitionBacklinkJob( RefreshLinksJob|HTMLCacheUpdateJob $job, $bSize, $cSize, $opts = [] ) {
 		$class = get_class( $job );
 		$title = $job->getTitle();
 		$params = $job->getParams();
