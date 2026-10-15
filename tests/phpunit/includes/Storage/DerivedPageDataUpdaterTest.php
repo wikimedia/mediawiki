@@ -184,6 +184,138 @@ class DerivedPageDataUpdaterTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( $rev->getId(), $currentRev->getId() );
 	}
 
+	public static function provideCanonicalRenderParser() {
+		yield 'follows UseParsoidParser (Parsoid)' => [ true, null, true ];
+		yield 'follows UseParsoidParser (legacy)' => [ false, null, false ];
+		yield 'links update forced to legacy' => [ true, false, false ];
+		yield 'links update forced to Parsoid' => [ false, true, true ];
+	}
+
+	/**
+	 * @dataProvider provideCanonicalRenderParser
+	 * @covers \MediaWiki\Storage\DerivedPageDataUpdater::prepareContent()
+	 * @covers \MediaWiki\Storage\DerivedPageDataUpdater::getCanonicalParserOptions()
+	 * @covers \MediaWiki\Revision\RevisionRenderer::getRenderedRevision()
+	 * @covers \MediaWiki\Parser\ParserOptions::setUseParsoidForLinksUpdate()
+	 */
+	public function testPrepareContentUsesLinksUpdateParser(
+		bool $useParsoidParser, ?bool $useParsoidLinksUpdate, bool $expected
+	) {
+		$this->overrideConfigValues( [
+			MainConfigNames::UseParsoidParser => $useParsoidParser,
+			MainConfigNames::UseParsoidLinksUpdate => $useParsoidLinksUpdate,
+		] );
+		$user = $this->getTestUser()->getUser();
+		$updater = $this->getDerivedPageDataUpdater( __METHOD__ );
+
+		$update = new RevisionSlotsUpdate();
+		$update->modifyContent( SlotRecord::MAIN, new WikitextContent( 'Lorem [[ipsum]]' ) );
+		$updater->prepareContent( $user, $update, false );
+
+		$this->assertSame( $expected, $updater->getCanonicalParserOptions()->getUseParsoid() );
+		$this->assertSame(
+			$expected,
+			$updater->getCanonicalParserOutput()->getContentHolder()->isParsoidContent()
+		);
+	}
+
+	/**
+	 * @dataProvider provideCanonicalRenderParser
+	 * @covers \MediaWiki\Storage\DerivedPageDataUpdater::prepareUpdate()
+	 * @covers \MediaWiki\Storage\DerivedPageDataUpdater::getCanonicalParserOptions()
+	 * @covers \MediaWiki\Revision\RevisionRenderer::getRenderedRevision()
+	 */
+	public function testPrepareUpdateUsesLinksUpdateParser(
+		bool $useParsoidParser, ?bool $useParsoidLinksUpdate, bool $expected
+	) {
+		$page = $this->getPage( __METHOD__ );
+		$rev = $this->createRevision( $page, 'Lorem [[ipsum]]' );
+
+		$this->overrideConfigValues( [
+			MainConfigNames::UseParsoidParser => $useParsoidParser,
+			MainConfigNames::UseParsoidLinksUpdate => $useParsoidLinksUpdate,
+		] );
+		// As WikiPage::doSecondaryDataUpdates() does, e.g. for a purge
+		$updater = $this->getDerivedPageDataUpdater( $page, $rev );
+		$updater->prepareUpdate( $rev );
+
+		$this->assertSame( $expected, $updater->getCanonicalParserOptions()->getUseParsoid() );
+		$this->assertSame(
+			$expected,
+			$updater->getCanonicalParserOutput()->getContentHolder()->isParsoidContent()
+		);
+	}
+
+	/**
+	 * @dataProvider provideCanonicalRenderParser
+	 * @covers \MediaWiki\Storage\DerivedPageDataUpdater::prepareUpdate()
+	 * @covers \MediaWiki\Revision\RevisionRenderer::getRenderedRevision()
+	 */
+	public function testPrepareUpdateNotForLinksUpdate(
+		bool $useParsoidParser, ?bool $useParsoidLinksUpdate
+	) {
+		$page = $this->getPage( __METHOD__ );
+		$rev = $this->createRevision( $page, 'Lorem [[ipsum]]' );
+
+		$this->overrideConfigValues( [
+			MainConfigNames::UseParsoidParser => $useParsoidParser,
+			MainConfigNames::UseParsoidLinksUpdate => $useParsoidLinksUpdate,
+		] );
+		$updater = $this->getDerivedPageDataUpdater( $page, $rev );
+		$updater->prepareUpdate( $rev, [ 'for-links-update' => false ] );
+
+		// $wgUseParsoidLinksUpdate is ignored; the default canonical parser is used
+		$this->assertSame( $useParsoidParser, $updater->getCanonicalParserOptions()->getUseParsoid() );
+		$this->assertSame(
+			$useParsoidParser,
+			$updater->getCanonicalParserOutput()->getContentHolder()->isParsoidContent()
+		);
+	}
+
+	/**
+	 * Page properties set by legacy parser hooks, as PageImages does, must
+	 * survive edits and purges when Parsoid is the default parser but links
+	 * updates use the legacy parser (T441345).
+	 *
+	 * @covers \MediaWiki\Storage\DerivedPageDataUpdater::prepareContent()
+	 * @covers \MediaWiki\Storage\DerivedPageDataUpdater::prepareUpdate()
+	 * @covers \MediaWiki\Storage\DerivedPageDataUpdater::doSecondaryDataUpdates()
+	 */
+	public function testLegacyPagePropertySurvivesWithParsoidDefault() {
+		$this->overrideConfigValues( [
+			MainConfigNames::UseParsoidParser => true,
+			MainConfigNames::UseParsoidLinksUpdate => false,
+		] );
+		// Parsoid does not run this hook
+		$this->setTemporaryHook( 'ParserAfterTidy', static function ( $parser ) {
+			$parser->getOutput()->setPageProperty( 'test_legacy_prop', 'yes' );
+		} );
+		$assertPageProp = function ( WikiPage $page ) {
+			$this->newSelectQueryBuilder()
+				->select( 'pp_value' )
+				->from( 'page_props' )
+				->where( [ 'pp_page' => $page->getId(), 'pp_propname' => 'test_legacy_prop' ] )
+				->assertFieldValue( 'yes' );
+		};
+
+		$page = $this->getPage( __METHOD__ );
+		$this->editPage( $page, 'first' );
+		$this->editPage( $page, 'second' );
+		$this->runDeferredUpdates();
+		$assertPageProp( $page );
+
+		// As ApiPurge does with forcelinkupdate
+		$this->getDb()->newDeleteQueryBuilder()
+			->deleteFrom( 'page_props' )
+			->where( [ 'pp_page' => $page->getId() ] )
+			->caller( __METHOD__ )
+			->execute();
+		$page = $this->getPage( $page->getTitle() );
+		$page->doSecondaryDataUpdates( [ 'recursive' => false ] );
+		$this->runDeferredUpdates();
+		$assertPageProp( $page );
+	}
+
 	/**
 	 * @covers \MediaWiki\Storage\DerivedPageDataUpdater::grabLatestRevision()
 	 * @covers \MediaWiki\Storage\DerivedPageDataUpdater::pageExisted()

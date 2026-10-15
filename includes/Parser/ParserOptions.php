@@ -741,6 +741,24 @@ class ParserOptions {
 	}
 
 	/**
+	 * Select the parser configured by $wgUseParsoidLinksUpdate, for a parse
+	 * whose output updates the links tables and other derived page metadata.
+	 * When that setting is null, the useParsoid option is left unchanged.
+	 *
+	 * @see MainConfigSchema::UseParsoidLinksUpdate
+	 * @internal Temporary, for use while $wgUseParsoidLinksUpdate exists
+	 * @since 1.47
+	 */
+	public function setUseParsoidForLinksUpdate(): void {
+		$useParsoidLinksUpdate = MediaWikiServices::getInstance()->getMainConfig()->get(
+			MainConfigNames::UseParsoidLinksUpdate
+		);
+		if ( $useParsoidLinksUpdate !== null ) {
+			$this->setUseParsoid( $useParsoidLinksUpdate );
+		}
+	}
+
+	/**
 	 * Date format index
 	 * @return string
 	 */

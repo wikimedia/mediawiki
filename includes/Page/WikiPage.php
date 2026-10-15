@@ -1944,7 +1944,14 @@ class WikiPage implements Stringable, Page, PageRecord {
 	 *     matched the $rev and $options. This mechanism is intended as a temporary stop-gap,
 	 *     for the time until caches have been changed to store RenderedRevision states instead
 	 *     of ParserOutput objects. (default: null) (since 1.33)
-	 *   - known-revision-options: ParserOptions object associated with the known-revision-output
+	 *   - known-revision-options: ParserOptions object associated with the known-revision-output.
+	 *     If known-revision-options is not supplied, the options are selected
+	 *     to match the known-revision-output.  If that is also missing, then
+	 *     the value of for-links-update will be used to generate options.
+	 *   - for-links-update: whether the canonical rendering is for a links update, in which
+	 *     case if no known-revision-output or known-revision-options are given the parser
+	 *     is selected by $wgUseParsoidLinksUpdate. Otherwise canonical options
+	 *     are used. (default: true) (since 1.47)
 	 * @since 1.32
 	 */
 	public function doSecondaryDataUpdates( array $options = [] ) {
