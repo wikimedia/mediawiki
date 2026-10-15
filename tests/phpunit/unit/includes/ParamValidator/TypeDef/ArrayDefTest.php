@@ -85,9 +85,18 @@ class ArrayDefTest extends TypeDefUnitTestCase {
 			[ ArrayDef::PARAM_SCHEMA => [ 'type' => [ 'object' ], 'required' => [ 'key1' ] ] ]
 		];
 		$missingSchemaSettings = [ ArrayDef::PARAM_SCHEMA => [ 'type' => [ 'object' ], 'required' => [ 'required' ] ] ];
-		$schemaValidationFailed = self::makeValidationException(
-			$missingSchemaSettings, 'required', '/required', 'The property required is required', 'required'
-		);
+
+		// TODO: cleanup after the migration of json-schema to v6 is done (T412876)
+		if ( class_exists( \JsonSchema\ConstraintError::class ) ) {
+			$schemaValidationFailed = self::makeValidationException(
+				$missingSchemaSettings, 'required', '/required', 'The property required is required',
+				[ 'name' => 'required', 'params' => [ 'property' => 'required' ] ]
+			);
+		} else {
+			$schemaValidationFailed = self::makeValidationException(
+				$missingSchemaSettings, 'required', '/required', 'The property required is required', 'required'
+			);
+		}
 
 		yield 'empty object is not valid' => [
 			[],
