@@ -5,7 +5,7 @@ namespace MediaWiki\Tests\OutputTransform;
 
 use MediaWiki\Context\RequestContext;
 use MediaWiki\MainConfigNames;
-use Mediawiki\MediaWikiServices;
+use MediaWiki\MediaWikiServices;
 use MediaWiki\OutputTransform\OutputTransformStage;
 use MediaWiki\Parser\ParserOptions;
 use MediaWiki\Parser\ParserOutput;
