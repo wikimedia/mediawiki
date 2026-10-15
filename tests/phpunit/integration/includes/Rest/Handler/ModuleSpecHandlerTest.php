@@ -388,12 +388,10 @@ class ModuleSpecHandlerTest extends MediaWikiIntegrationTestCase {
 		$data = json_decode( (string)$response->getBody(), true );
 
 		$this->assertWellFormedOAS( $data );
-		$expected = ( new $formatterClass( [], false, [] ) )->getOpenApiSchema();
-		$actual = $data['components']['schemas']['GenericErrorResponseModel'];
-		$this->assertSame( $expected['required'], $actual['required'] );
-		$this->assertSame( array_keys( $expected['properties'] ), array_keys( $actual['properties'] ) );
-		$this->assertArrayHasKey( 'description', $actual );
-		$this->assertStringNotContainsString( 'x-i18n-', json_encode( $data['components'] ) );
+		$this->assertSame(
+			( new $formatterClass( [], false, [] ) )->getOpenApiSchema(),
+			$data['components']['schemas']['GenericErrorResponseModel']
+		);
 	}
 
 	public function testGetInfoSpecOmitsTermsOfService(): void {

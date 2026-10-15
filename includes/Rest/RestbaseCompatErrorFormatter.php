@@ -58,6 +58,6 @@ class RestbaseCompatErrorFormatter extends ErrorFormatterV1 {
 	}
 
 	public function getOpenApiSchema(): array {
-		return self::loadJsonFile( __DIR__ . '/Handler/Schema/ErrorResponseRestbaseCompat.json' );
+		return [ '$ref' => self::SCHEMA_BASE_URL . 'fragments/error-restbase-compat.json' ];
 	}
 }

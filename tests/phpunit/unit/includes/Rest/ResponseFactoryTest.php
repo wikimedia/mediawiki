@@ -6,7 +6,6 @@ use ArrayIterator;
 use Exception;
 use InvalidArgumentException;
 use JsonSchemaAssertionTrait;
-use MediaWiki\Rest\ErrorFormatter;
 use MediaWiki\Rest\ErrorFormatterV1;
 use MediaWiki\Rest\ErrorFormatterV2;
 use MediaWiki\Rest\HttpException;
@@ -25,6 +24,15 @@ use Wikimedia\TestingAccessWrapper;
 class ResponseFactoryTest extends MediaWikiUnitTestCase {
 	use DummyServicesTrait;
 	use JsonSchemaAssertionTrait;
+
+	/** Data a handler attaches to its exception, as the parameter validator does */
+	private const ERROR_DATA = [
+		'error' => 'parameter-validation-failed',
+		'name' => 'title',
+		'value' => '',
+		'failureCode' => 'missingparam',
+		'failureData' => null,
+	];
 
 	public static function provideEncodeJson() {
 		return [
@@ -294,39 +302,40 @@ class ResponseFactoryTest extends MediaWikiUnitTestCase {
 		);
 	}
 
-	public static function provideErrorBodies(): iterable {
+	public static function provideErrorResponses(): iterable {
 		$entryPoints = [
 			// "error" is supplied by the caller, as in Module::executeHandler()
-			'formatErrorBody' => static fn ( ErrorFormatter $ef ) =>
-				$ef->formatErrorBody( 403, [ 'error' => 'rest-read-denied' ] ),
-			'formatException' => static fn ( ErrorFormatter $ef ) =>
-				$ef->formatException( 500, new RuntimeException( 'boom' ) ),
-			'formatHttpException' => static fn ( ErrorFormatter $ef ) =>
-				$ef->formatHttpException( 403, new HttpException( 'denied', 403 ) ),
-			'formatLocalizedHttpException' => static fn ( ErrorFormatter $ef ) =>
-				$ef->formatLocalizedHttpException(
-					404, new LocalizedHttpException( new MessageValue( 'rest-test-key' ), 404 )
+			'createHttpError' => static fn ( ResponseFactory $rf ) =>
+				$rf->createHttpError( 403, [ 'error' => 'rest-read-denied' ] ),
+			'createFromException, Throwable' => static fn ( ResponseFactory $rf ) =>
+				$rf->createFromException( new RuntimeException( 'boom' ) ),
+			'createFromException, HttpException' => static fn ( ResponseFactory $rf ) =>
+				$rf->createFromException( new HttpException( 'denied', 403, self::ERROR_DATA ) ),
+			'createFromException, LocalizedHttpException' => static fn ( ResponseFactory $rf ) =>
+				$rf->createFromException(
+					new LocalizedHttpException( new MessageValue( 'rest-test-key' ), 400, self::ERROR_DATA )
 				),
-			'formatLocalizedHttpError' => static fn ( ErrorFormatter $ef ) =>
-				$ef->formatLocalizedHttpError( 404, new MessageValue( 'rest-test-key' ) ),
+			'createLocalizedHttpError' => static fn ( ResponseFactory $rf ) =>
+				$rf->createLocalizedHttpError( 404, new MessageValue( 'rest-test-key' ) ),
 		];
 		// Every error format the Router can select
 		foreach ( TestingAccessWrapper::constant( Router::class, 'ERROR_FORMATTERS' ) as $version => $spec ) {
-			foreach ( $entryPoints as $entryPoint => $format ) {
-				yield "$version, $entryPoint" => [ $spec['class'], $format ];
+			foreach ( $entryPoints as $entryPoint => $createResponse ) {
+				yield "$version, $entryPoint" => [ $spec['class'], $createResponse ];
 			}
 		}
 	}
 
 	/**
-	 * Each formatter's OpenAPI schema must describe what the formatter actually emits.
+	 * Error responses, including the data handlers attach to exceptions, must match
+	 * the published schema of the error format (local copy).
 	 *
-	 * @dataProvider provideErrorBodies
+	 * @dataProvider provideErrorResponses
 	 * @covers \MediaWiki\Rest\ErrorFormatterV1
 	 * @covers \MediaWiki\Rest\ErrorFormatterV2
 	 * @covers \MediaWiki\Rest\RestbaseCompatErrorFormatter
 	 */
-	public function testErrorResponseSchemaMatchesFormatterOutput( string $formatterClass, callable $format ) {
+	public function testErrorResponseMatchesSchema( string $formatterClass, callable $createResponse ) {
 		$tracingData = [
 			'module' => 'mediawiki',
 			'method' => 'get',
@@ -341,15 +350,19 @@ class ResponseFactoryTest extends MediaWikiUnitTestCase {
 		];
 
 		foreach ( $variants as $variant => $ef ) {
-			$schema = $ef->getOpenApiSchema();
-			$body = $format( $ef );
-			$this->assertMatchesJsonSchema( $schema, $body, [], $variant );
+			$localCopy = str_replace( 'https://', MW_INSTALL_PATH . '/external-schemas/', $ef->getOpenApiSchema()['$ref'] );
+			$schema = json_decode( file_get_contents( $localCopy ), true );
+			$json = (string)$createResponse( new ResponseFactory( [], $ef ) )->getBody();
+			$this->assertMatchesJsonSchema( $schema, $json, [], $variant );
+			$body = json_decode( $json, true );
 
 			// The schemas keep additionalProperties open for handler-supplied data, so
 			// validation alone would not notice a formatter renaming or leaking a field.
 			$this->assertSame(
 				[],
-				array_values( array_diff( array_keys( $body ), array_keys( $schema['properties'] ), [ 'error' ] ) ),
+				array_values( array_diff(
+					array_keys( $body ), array_keys( $schema['properties'] ), array_keys( self::ERROR_DATA )
+				) ),
 				"$variant: keys not declared in the schema"
 			);
 			if ( isset( $body['tracing'] ) ) {
