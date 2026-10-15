@@ -1,0 +1,64 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "error-v1.json",
+  "title": "MediaWiki REST API error response (v1, legacy)",
+  "description": "Default error shape emitted by REST modules that don't opt in to errorSchemaVersion 2.0. Additional properties are allowed since handlers may attach extra data.",
+  "type": "object",
+  "properties": {
+    "httpCode": {
+      "type": "integer",
+      "minimum": 400,
+      "maximum": 599,
+      "description": "The HTTP status code of the error response.",
+      "examples": [
+        404
+      ]
+    },
+    "httpReason": {
+      "type": "string",
+      "description": "The standard reason phrase of the HTTP status code, for example \"Not Found\".",
+      "examples": [
+        "Not Found"
+      ]
+    },
+    "message": {
+      "type": "string",
+      "description": "A human-readable error message, useful when no message translations are available.",
+      "examples": [
+        "The specified page does not exist"
+      ]
+    },
+    "messageTranslations": {
+      "type": "object",
+      "description": "A map of language codes to human-readable error messages, for clients that can use them.",
+      "additionalProperties": {
+        "type": "string"
+      },
+      "examples": [
+        {
+          "en": "The specified page does not exist"
+        }
+      ]
+    },
+    "errorKey": {
+      "type": "string",
+      "description": "The message key identifying the error. Only present for localized errors.",
+      "examples": [
+        "rest-nonexistent-title"
+      ]
+    },
+    "reqId": {
+      "type": "string",
+      "description": "The ID of the request. Only present for server errors; include it when reporting the error."
+    },
+    "exception": {
+      "type": "object",
+      "description": "Structured details of the exception that caused the error. Only present when the wiki is configured to show exception details."
+    }
+  },
+  "required": [
+    "httpCode",
+    "httpReason"
+  ],
+  "additionalProperties": true
+}

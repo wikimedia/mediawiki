@@ -4270,6 +4270,7 @@ $wgAutoloadLocalClasses = [
 	'SwiftFileBackendFileList' => __DIR__ . '/includes/libs/FileBackend/FileIteration/SwiftFileBackendFileList.php',
 	'SwiftFileBackendList' => __DIR__ . '/includes/libs/FileBackend/FileIteration/SwiftFileBackendList.php',
 	'SwiftFileOpHandle' => __DIR__ . '/includes/libs/FileBackend/FileOpHandle/SwiftFileOpHandle.php',
+	'SyncExternalSchemas' => __DIR__ . '/maintenance/syncExternalSchemas.php',
 	'TableCleanup' => __DIR__ . '/maintenance/TableCleanup.php',
 	'TableDiffFormatter' => __DIR__ . '/includes/libs/Diff/TableDiffFormatter.php',
 	'TablePager' => __DIR__ . '/includes/Pager/TablePager.php',
