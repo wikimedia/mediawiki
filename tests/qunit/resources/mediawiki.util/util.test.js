@@ -637,16 +637,16 @@ QUnit.module( 'mediawiki.util', QUnit.newMwEnvironment( {
 			resizedUrl: '/wiki/images/thumb/8/80/Wikipedia-logo-v2.svg/langde-1000px-Wikipedia-logo-v2.svg.png'
 		},
 		'Width-like filename component': {
-			url: '/wiki/images/thumb/1/10/Little_Bobby_Tables-100px-file.jpg/qlow-100px-Little_Bobby_Tables-100px-file.jpg',
+			url: '/wiki/images/thumb/1/10/Little_Bobby_Tables-100px-file.jpg/100px-Little_Bobby_Tables-100px-file.jpg',
 			name: 'Little Bobby Tables-100px-file.jpg',
 			width: 100,
-			resizedUrl: '/wiki/images/thumb/1/10/Little_Bobby_Tables-100px-file.jpg/qlow-1000px-Little_Bobby_Tables-100px-file.jpg'
+			resizedUrl: '/wiki/images/thumb/1/10/Little_Bobby_Tables-100px-file.jpg/1000px-Little_Bobby_Tables-100px-file.jpg'
 		},
 		'Width-like filename component in non-ASCII filename': {
-			url: '/wiki/images/thumb/1/10/Little_Bobby%22%3B_Tables-100px-file.jpg/qlow-100px-Little_Bobby%22%3B_Tables-100px-file.jpg',
+			url: '/wiki/images/thumb/1/10/Little_Bobby%22%3B_Tables-100px-file.jpg/100px-Little_Bobby%22%3B_Tables-100px-file.jpg',
 			name: 'Little Bobby"; Tables-100px-file.jpg',
 			width: 100,
-			resizedUrl: '/wiki/images/thumb/1/10/Little_Bobby%22%3B_Tables-100px-file.jpg/qlow-1000px-Little_Bobby%22%3B_Tables-100px-file.jpg'
+			resizedUrl: '/wiki/images/thumb/1/10/Little_Bobby%22%3B_Tables-100px-file.jpg/1000px-Little_Bobby%22%3B_Tables-100px-file.jpg'
 		},
 
 		'Commons thumbnail': {

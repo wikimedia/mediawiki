@@ -133,10 +133,6 @@ abstract class TransformationalImageHandler extends ImageHandler {
 			'interlace' => $params['interlace'] ?? false,
 		];
 
-		if ( isset( $params['quality'] ) && $params['quality'] === 'low' ) {
-			$scalerParams['quality'] = 30;
-		}
-
 		// For subclasses that might be paged.
 		if ( $image->isMultipage() && isset( $params['page'] ) ) {
 			$scalerParams['page'] = (int)$params['page'];
@@ -157,7 +153,6 @@ abstract class TransformationalImageHandler extends ImageHandler {
 		if ( !$image->mustRender() &&
 			$scalerParams['physicalWidth'] == $scalerParams['srcWidth']
 			&& $scalerParams['physicalHeight'] == $scalerParams['srcHeight']
-			&& !isset( $scalerParams['quality'] )
 		) {
 			# normaliseParams (or the user) wants us to return the unscaled image
 			wfDebug( __METHOD__ . ": returning unscaled image" );

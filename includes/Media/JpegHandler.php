@@ -28,74 +28,6 @@ class JpegHandler extends ExifBitmapHandler {
 	private const SRGB_ICC_PROFILE_DESCRIPTION = 'sRGB IEC61966-2.1';
 
 	/** @inheritDoc */
-	public function normaliseParams( $image, &$params ) {
-		if ( !parent::normaliseParams( $image, $params ) ) {
-			return false;
-		}
-		if ( isset( $params['quality'] ) && !self::validateQuality( $params['quality'] ) ) {
-			return false;
-		}
-		return true;
-	}
-
-	/** @inheritDoc */
-	public function validateParam( $name, $value ) {
-		if ( $name === 'quality' ) {
-			return is_string( $value ) && self::validateQuality( $value );
-		}
-		return parent::validateParam( $name, $value );
-	}
-
-	/** Validate and normalize quality value to be between 1 and 100 (inclusive).
-	 * @param string $value Quality value, will be converted to integer or 0 if invalid
-	 * @return bool True if the value is valid
-	 */
-	private static function validateQuality( $value ) {
-		return $value === 'low';
-	}
-
-	/** @inheritDoc */
-	public function makeParamString( $params ) {
-		// Prepend quality as "qValue-". This has to match parseParamString() below
-		$res = parent::makeParamString( $params );
-		if ( $res && isset( $params['quality'] ) ) {
-			$res = "q{$params['quality']}-$res";
-		}
-		return $res;
-	}
-
-	/** @inheritDoc */
-	public function parseParamString( $str ) {
-		// $str contains "qlow-200px" or "200px" strings because thumb.php would strip the filename
-		// first - check if the string begins with "qlow-", and if so, treat it as quality.
-		// Pass the first portion, or the whole string if "qlow-" not found, to the parent
-		// The parsing must match the makeParamString() above
-		$res = false;
-		$m = false;
-		if ( preg_match( '/q([^-]+)-(.*)$/', $str, $m ) ) {
-			$v = $m[1];
-			if ( self::validateQuality( $v ) ) {
-				$res = parent::parseParamString( $m[2] );
-				if ( $res ) {
-					$res['quality'] = $v;
-				}
-			}
-		} else {
-			$res = parent::parseParamString( $str );
-		}
-		return $res;
-	}
-
-	/** @inheritDoc */
-	protected function getScriptParams( $params ) {
-		$res = parent::getScriptParams( $params );
-		if ( isset( $params['quality'] ) ) {
-			$res['quality'] = $params['quality'];
-		}
-		return $res;
-	}
-
-	/** @inheritDoc */
 	public function getSizeAndMetadata( $state, $filename ) {
 		try {
 			$meta = BitmapMetadataHandler::Jpeg( $filename );
@@ -169,16 +101,6 @@ class JpegHandler extends ExifBitmapHandler {
 		return true;
 	}
 
-	/** @inheritDoc */
-	public function sanitizeParamsForBucketing( $params ) {
-		$params = parent::sanitizeParamsForBucketing( $params );
-
-		// Quality needs to be cleared for bucketing. Buckets need to be default quality
-		unset( $params['quality'] );
-
-		return $params;
-	}
-
 	/**
 	 * @inheritDoc
 	 */
@@ -207,13 +129,6 @@ class JpegHandler extends ExifBitmapHandler {
 			 */
 			$colorSpaces = [ self::SRGB_EXIF_COLOR_SPACE, '-' ];
 			$profiles = [ self::SRGB_ICC_PROFILE_DESCRIPTION ];
-
-			// we'll also add TinyRGB profile to images lacking a profile, but
-			// only if they're not low quality (which are meant to save bandwidth
-			// and we don't want to increase the filesize by adding a profile)
-			if ( isset( $params['quality'] ) && $params['quality'] > 30 ) {
-				$profiles[] = '-';
-			}
 
 			$this->swapICCProfile(
 				$params['dstPath'],

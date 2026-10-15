@@ -174,8 +174,7 @@ class BitmapHandler extends TransformationalImageHandler {
 		$subsampling = [];
 
 		if ( $params['mimeType'] === 'image/jpeg' ) {
-			$qualityVal = isset( $params['quality'] ) ? (string)$params['quality'] : null;
-			$quality = [ '-quality', $qualityVal ?: (string)$jpegQuality ]; // 80% by default
+			$quality = [ '-quality', (string)$jpegQuality ]; // 80% by default
 			if ( $params['interlace'] ) {
 				$animation_post = [ '-interlace', 'JPEG' ];
 			}
