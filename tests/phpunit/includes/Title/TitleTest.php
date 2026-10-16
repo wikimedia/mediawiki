@@ -28,20 +28,22 @@ class TitleTest extends MediaWikiIntegrationTestCase {
 	use DummyServicesTrait;
 	use LinkCacheTestTrait;
 
+	private const int NS_TEST = 12302;
+
 	protected function setUp(): void {
 		parent::setUp();
 
 		$this->mergeMwGlobalArrayValue(
 			'wgExtraNamespaces',
 			[
-				12302 => 'TEST-JS',
-				12303 => 'TEST-JS_TALK',
+				self::NS_TEST => 'TEST-JS',
+				self::NS_TEST + 1 => 'TEST-JS_TALK',
 			]
 		);
 		$this->mergeMwGlobalArrayValue(
 			'wgNamespaceContentModels',
 			[
-				12302 => CONTENT_MODEL_JAVASCRIPT,
+				self::NS_TEST => CONTENT_MODEL_JAVASCRIPT,
 			]
 		);
 
@@ -93,14 +95,11 @@ class TitleTest extends MediaWikiIntegrationTestCase {
 
 	public static function provideInNamespace() {
 		return [
-			[ 'Main Page', NS_MAIN, true ],
-			[ 'Main Page', NS_TALK, false ],
-			[ 'Main Page', NS_USER, false ],
-			[ 'User:Foo', NS_USER, true ],
-			[ 'User:Foo', NS_USER_TALK, false ],
-			[ 'User:Foo', NS_TEMPLATE, false ],
-			[ 'User_talk:Foo', NS_USER_TALK, true ],
-			[ 'User_talk:Foo', NS_USER, false ],
+			[ NS_MAIN, 'Main Page', NS_TALK ],
+			[ NS_MAIN, 'Main Page', NS_USER ],
+			[ NS_USER, 'Foo', NS_USER_TALK ],
+			[ NS_USER, 'Foo', NS_TEMPLATE ],
+			[ NS_USER_TALK, 'Foo', NS_USER ],
 		];
 	}
 
@@ -108,9 +107,10 @@ class TitleTest extends MediaWikiIntegrationTestCase {
 	 * @dataProvider provideInNamespace
 	 * @covers \MediaWiki\Title\Title::inNamespace
 	 */
-	public function testInNamespace( $title, $ns, $expectedBool ) {
-		$title = Title::newFromText( $title );
-		$this->assertEquals( $expectedBool, $title->inNamespace( $ns ) );
+	public function testInNamespace( int $ns, string $title, int $otherNs ) {
+		$title = Title::makeTitle( $ns, $title );
+		$this->assertTrue( $title->inNamespace( $ns ) );
+		$this->assertFalse( $title->inNamespace( $otherNs ) );
 	}
 
 	/**
@@ -137,14 +137,11 @@ class TitleTest extends MediaWikiIntegrationTestCase {
 
 	public static function provideHasSubjectNamespace() {
 		return [
-			[ 'Main Page', NS_MAIN, true ],
-			[ 'Main Page', NS_TALK, true ],
-			[ 'Main Page', NS_USER, false ],
-			[ 'User:Foo', NS_USER, true ],
-			[ 'User:Foo', NS_USER_TALK, true ],
-			[ 'User:Foo', NS_TEMPLATE, false ],
-			[ 'User_talk:Foo', NS_USER_TALK, true ],
-			[ 'User_talk:Foo', NS_USER, true ],
+			[ NS_MAIN, 'Main Page', NS_TALK, true ],
+			[ NS_MAIN, 'Main Page', NS_USER, false ],
+			[ NS_USER, 'Foo', NS_USER_TALK, true ],
+			[ NS_USER, 'Foo', NS_TEMPLATE, false ],
+			[ NS_USER_TALK, 'Foo', NS_USER, true ],
 		];
 	}
 
@@ -152,33 +149,34 @@ class TitleTest extends MediaWikiIntegrationTestCase {
 	 * @dataProvider provideHasSubjectNamespace
 	 * @covers \MediaWiki\Title\Title::hasSubjectNamespace
 	 */
-	public function testHasSubjectNamespace( $title, $ns, $expectedBool ) {
-		$title = Title::newFromText( $title );
-		$this->assertEquals( $expectedBool, $title->hasSubjectNamespace( $ns ) );
+	public function testHasSubjectNamespace( int $ns, string $title, int $otherNs, bool $expected ) {
+		$title = Title::makeTitle( $ns, $title );
+		$this->assertTrue( $title->hasSubjectNamespace( $ns ) );
+		$this->assertSame( $expected, $title->hasSubjectNamespace( $otherNs ) );
 	}
 
 	public static function provideGetContentModel() {
 		return [
-			[ 'Help:Foo', CONTENT_MODEL_WIKITEXT ],
-			[ 'Help:Foo.js', CONTENT_MODEL_WIKITEXT ],
-			[ 'Help:Foo/bar.js', CONTENT_MODEL_WIKITEXT ],
-			[ 'User:Foo', CONTENT_MODEL_WIKITEXT ],
-			[ 'User:Foo.js', CONTENT_MODEL_WIKITEXT ],
-			[ 'User:Foo/bar.js', CONTENT_MODEL_JAVASCRIPT ],
-			[ 'User:Foo/bar.css', CONTENT_MODEL_CSS ],
-			[ 'User talk:Foo/bar.css', CONTENT_MODEL_WIKITEXT ],
-			[ 'User:Foo/bar.js.xxx', CONTENT_MODEL_WIKITEXT ],
-			[ 'User:Foo/bar.xxx', CONTENT_MODEL_WIKITEXT ],
-			[ 'MediaWiki:Foo.js', CONTENT_MODEL_JAVASCRIPT ],
-			[ 'MediaWiki:Foo.css', CONTENT_MODEL_CSS ],
-			[ 'MediaWiki:Foo/bar.css', CONTENT_MODEL_CSS ],
-			[ 'MediaWiki:Foo.JS', CONTENT_MODEL_WIKITEXT ],
-			[ 'MediaWiki:Foo.CSS', CONTENT_MODEL_WIKITEXT ],
-			[ 'MediaWiki:Foo.css.xxx', CONTENT_MODEL_WIKITEXT ],
-			[ 'TEST-JS:Foo', CONTENT_MODEL_JAVASCRIPT ],
-			[ 'TEST-JS:Foo.js', CONTENT_MODEL_JAVASCRIPT ],
-			[ 'TEST-JS:Foo/bar.js', CONTENT_MODEL_JAVASCRIPT ],
-			[ 'TEST-JS_TALK:Foo.js', CONTENT_MODEL_WIKITEXT ],
+			[ NS_HELP, 'Foo' ],
+			[ NS_HELP, 'Foo.js' ],
+			[ NS_HELP, 'Foo/bar.js' ],
+			[ NS_USER, 'Foo' ],
+			[ NS_USER, 'Foo.js' ],
+			[ NS_USER, 'Foo/bar.js', CONTENT_MODEL_JAVASCRIPT ],
+			[ NS_USER, 'Foo/bar.css', CONTENT_MODEL_CSS ],
+			[ NS_USER_TALK, 'Foo/bar.css' ],
+			[ NS_USER, 'Foo/bar.js.xxx' ],
+			[ NS_USER, 'Foo/bar.xxx' ],
+			[ NS_MEDIAWIKI, 'Foo.js', CONTENT_MODEL_JAVASCRIPT ],
+			[ NS_MEDIAWIKI, 'Foo.css', CONTENT_MODEL_CSS ],
+			[ NS_MEDIAWIKI, 'Foo/bar.css', CONTENT_MODEL_CSS ],
+			[ NS_MEDIAWIKI, 'Foo.JS' ],
+			[ NS_MEDIAWIKI, 'Foo.CSS' ],
+			[ NS_MEDIAWIKI, 'Foo.css.xxx' ],
+			[ self::NS_TEST, 'Foo', CONTENT_MODEL_JAVASCRIPT ],
+			[ self::NS_TEST, 'Foo.js', CONTENT_MODEL_JAVASCRIPT ],
+			[ self::NS_TEST, 'Foo/bar.js', CONTENT_MODEL_JAVASCRIPT ],
+			[ self::NS_TEST + 1, 'Foo.js' ],
 		];
 	}
 
@@ -186,46 +184,46 @@ class TitleTest extends MediaWikiIntegrationTestCase {
 	 * @dataProvider provideGetContentModel
 	 * @covers \MediaWiki\Title\Title::getContentModel
 	 */
-	public function testGetContentModel( $title, $expectedModelId ) {
-		$title = Title::newFromText( $title );
-		$this->assertEquals( $expectedModelId, $title->getContentModel() );
+	public function testGetContentModel( int $ns, string $title, string $expected = CONTENT_MODEL_WIKITEXT ) {
+		$title = Title::makeTitle( $ns, $title );
+		$this->assertSame( $expected, $title->getContentModel() );
 	}
 
 	/**
 	 * @dataProvider provideGetContentModel
 	 * @covers \MediaWiki\Title\Title::hasContentModel
 	 */
-	public function testHasContentModel( $title, $expectedModelId ) {
-		$title = Title::newFromText( $title );
-		$this->assertTrue( $title->hasContentModel( $expectedModelId ) );
+	public function testHasContentModel( int $ns, string $title, string $expected = CONTENT_MODEL_WIKITEXT ) {
+		$title = Title::makeTitle( $ns, $title );
+		$this->assertTrue( $title->hasContentModel( $expected ) );
 	}
 
 	public static function provideIsSiteConfigPage() {
 		return [
-			[ 'Help:Foo', false ],
-			[ 'Help:Foo.js', false ],
-			[ 'Help:Foo/bar.js', false ],
-			[ 'User:Foo', false ],
-			[ 'User:Foo.js', false ],
-			[ 'User:Foo/bar.js', false ],
-			[ 'User:Foo/bar.json', false ],
-			[ 'User:Foo/bar.css', false ],
-			[ 'User:Foo/bar.JS', false ],
-			[ 'User:Foo/bar.JSON', false ],
-			[ 'User:Foo/bar.CSS', false ],
-			[ 'User talk:Foo/bar.css', false ],
-			[ 'User:Foo/bar.js.xxx', false ],
-			[ 'User:Foo/bar.xxx', false ],
-			[ 'MediaWiki:Foo.js', 'javascript' ],
-			[ 'MediaWiki:Foo.json', 'json' ],
-			[ 'MediaWiki:Foo.css', 'css' ],
-			[ 'MediaWiki:Foo.JS', false ],
-			[ 'MediaWiki:Foo.JSON', false ],
-			[ 'MediaWiki:Foo.CSS', false ],
-			[ 'MediaWiki:Foo/bar.css', 'css' ],
-			[ 'MediaWiki:Foo.css.xxx', false ],
-			[ 'TEST-JS:Foo', false ],
-			[ 'TEST-JS:Foo.js', false ],
+			[ NS_HELP, 'Foo', false ],
+			[ NS_HELP, 'Foo.js', false ],
+			[ NS_HELP, 'Foo/bar.js', false ],
+			[ NS_USER, 'Foo', false ],
+			[ NS_USER, 'Foo.js', false ],
+			[ NS_USER, 'Foo/bar.js', false ],
+			[ NS_USER, 'Foo/bar.json', false ],
+			[ NS_USER, 'Foo/bar.css', false ],
+			[ NS_USER, 'Foo/bar.JS', false ],
+			[ NS_USER, 'Foo/bar.JSON', false ],
+			[ NS_USER, 'Foo/bar.CSS', false ],
+			[ NS_USER_TALK, 'Foo/bar.css', false ],
+			[ NS_USER, 'Foo/bar.js.xxx', false ],
+			[ NS_USER, 'Foo/bar.xxx', false ],
+			[ NS_MEDIAWIKI, 'Foo.js', 'javascript' ],
+			[ NS_MEDIAWIKI, 'Foo.json', 'json' ],
+			[ NS_MEDIAWIKI, 'Foo.css', 'css' ],
+			[ NS_MEDIAWIKI, 'Foo.JS', false ],
+			[ NS_MEDIAWIKI, 'Foo.JSON', false ],
+			[ NS_MEDIAWIKI, 'Foo.CSS', false ],
+			[ NS_MEDIAWIKI, 'Foo/bar.css', 'css' ],
+			[ NS_MEDIAWIKI, 'Foo.css.xxx', false ],
+			[ self::NS_TEST, 'Foo', false ],
+			[ self::NS_TEST, 'Foo.js', false ],
 		];
 	}
 
@@ -236,8 +234,8 @@ class TitleTest extends MediaWikiIntegrationTestCase {
 	 * @covers \MediaWiki\Title\Title::isSiteJsonConfigPage
 	 * @covers \MediaWiki\Title\Title::isSiteCssConfigPage
 	 */
-	public function testSiteConfigPage( $title, $expected ) {
-		$title = Title::newFromText( $title );
+	public function testSiteConfigPage( int $ns, string $title, string|false $expected ) {
+		$title = Title::makeTitle( $ns, $title );
 
 		// $expected is either false or the relevant type ('javascript', 'json', 'css')
 		$this->assertSame(
@@ -260,29 +258,29 @@ class TitleTest extends MediaWikiIntegrationTestCase {
 
 	public static function provideIsUserConfigPage() {
 		return [
-			[ 'Help:Foo', false ],
-			[ 'Help:Foo.js', false ],
-			[ 'Help:Foo/bar.js', false ],
-			[ 'User:Foo', false ],
-			[ 'User:Foo.js', false ],
-			[ 'User:Foo/bar.js', 'javascript' ],
-			[ 'User:Foo/bar.JS', false ],
-			[ 'User:Foo/bar.json', 'json' ],
-			[ 'User:Foo/bar.JSON', false ],
-			[ 'User:Foo/bar.css', 'css' ],
-			[ 'User:Foo/bar.CSS', false ],
-			[ 'User talk:Foo/bar.css', false ],
-			[ 'User:Foo/bar.js.xxx', false ],
-			[ 'User:Foo/bar.xxx', false ],
-			[ 'MediaWiki:Foo.js', false ],
-			[ 'MediaWiki:Foo.json', false ],
-			[ 'MediaWiki:Foo.css', false ],
-			[ 'MediaWiki:Foo.JS', false ],
-			[ 'MediaWiki:Foo.JSON', false ],
-			[ 'MediaWiki:Foo.CSS', false ],
-			[ 'MediaWiki:Foo.css.xxx', false ],
-			[ 'TEST-JS:Foo', false ],
-			[ 'TEST-JS:Foo.js', false ],
+			[ NS_HELP, 'Foo', false ],
+			[ NS_HELP, 'Foo.js', false ],
+			[ NS_HELP, 'Foo/bar.js', false ],
+			[ NS_USER, 'Foo', false ],
+			[ NS_USER, 'Foo.js', false ],
+			[ NS_USER, 'Foo/bar.js', 'javascript' ],
+			[ NS_USER, 'Foo/bar.JS', false ],
+			[ NS_USER, 'Foo/bar.json', 'json' ],
+			[ NS_USER, 'Foo/bar.JSON', false ],
+			[ NS_USER, 'Foo/bar.css', 'css' ],
+			[ NS_USER, 'Foo/bar.CSS', false ],
+			[ NS_USER_TALK, 'Foo/bar.css', false ],
+			[ NS_USER, 'Foo/bar.js.xxx', false ],
+			[ NS_USER, 'Foo/bar.xxx', false ],
+			[ NS_MEDIAWIKI, 'Foo.js', false ],
+			[ NS_MEDIAWIKI, 'Foo.json', false ],
+			[ NS_MEDIAWIKI, 'Foo.css', false ],
+			[ NS_MEDIAWIKI, 'Foo.JS', false ],
+			[ NS_MEDIAWIKI, 'Foo.JSON', false ],
+			[ NS_MEDIAWIKI, 'Foo.CSS', false ],
+			[ NS_MEDIAWIKI, 'Foo.css.xxx', false ],
+			[ self::NS_TEST, 'Foo', false ],
+			[ self::NS_TEST, 'Foo.js', false ],
 		];
 	}
 
@@ -293,8 +291,8 @@ class TitleTest extends MediaWikiIntegrationTestCase {
 	 * @covers \MediaWiki\Title\Title::isUserJsonConfigPage
 	 * @covers \MediaWiki\Title\Title::isUserCssConfigPage
 	 */
-	public function testIsUserConfigPage( $title, $expected ) {
-		$title = Title::newFromText( $title );
+	public function testIsUserConfigPage( int $ns, string $title, string|false $expected ) {
+		$title = Title::makeTitle( $ns, $title );
 
 		// $expected is either false or the relevant type ('javascript', 'json', 'css')
 		$this->assertSame(
@@ -317,29 +315,29 @@ class TitleTest extends MediaWikiIntegrationTestCase {
 
 	public static function provideIsWikitextPage() {
 		return [
-			[ 'Help:Foo', true ],
-			[ 'Help:Foo.js', true ],
-			[ 'Help:Foo/bar.js', true ],
-			[ 'User:Foo', true ],
-			[ 'User:Foo.js', true ],
-			[ 'User:Foo/bar.js', false ],
-			[ 'User:Foo/bar.json', false ],
-			[ 'User:Foo/bar.css', false ],
-			[ 'User talk:Foo/bar.css', true ],
-			[ 'User:Foo/bar.js.xxx', true ],
-			[ 'User:Foo/bar.xxx', true ],
-			[ 'MediaWiki:Foo.js', false ],
-			[ 'User:Foo/bar.JS', true ],
-			[ 'User:Foo/bar.JSON', true ],
-			[ 'User:Foo/bar.CSS', true ],
-			[ 'MediaWiki:Foo.json', false ],
-			[ 'MediaWiki:Foo.css', false ],
-			[ 'MediaWiki:Foo.JS', true ],
-			[ 'MediaWiki:Foo.JSON', true ],
-			[ 'MediaWiki:Foo.CSS', true ],
-			[ 'MediaWiki:Foo.css.xxx', true ],
-			[ 'TEST-JS:Foo', false ],
-			[ 'TEST-JS:Foo.js', false ],
+			[ NS_HELP, 'Foo', true ],
+			[ NS_HELP, 'Foo.js', true ],
+			[ NS_HELP, 'Foo/bar.js', true ],
+			[ NS_USER, 'Foo', true ],
+			[ NS_USER, 'Foo.js', true ],
+			[ NS_USER, 'Foo/bar.js', false ],
+			[ NS_USER, 'Foo/bar.json', false ],
+			[ NS_USER, 'Foo/bar.css', false ],
+			[ NS_USER_TALK, 'Foo/bar.css', true ],
+			[ NS_USER, 'Foo/bar.js.xxx', true ],
+			[ NS_USER, 'Foo/bar.xxx', true ],
+			[ NS_MEDIAWIKI, 'Foo.js', false ],
+			[ NS_USER, 'Foo/bar.JS', true ],
+			[ NS_USER, 'Foo/bar.JSON', true ],
+			[ NS_USER, 'Foo/bar.CSS', true ],
+			[ NS_MEDIAWIKI, 'Foo.json', false ],
+			[ NS_MEDIAWIKI, 'Foo.css', false ],
+			[ NS_MEDIAWIKI, 'Foo.JS', true ],
+			[ NS_MEDIAWIKI, 'Foo.JSON', true ],
+			[ NS_MEDIAWIKI, 'Foo.CSS', true ],
+			[ NS_MEDIAWIKI, 'Foo.css.xxx', true ],
+			[ self::NS_TEST, 'Foo', false ],
+			[ self::NS_TEST, 'Foo.js', false ],
 		];
 	}
 
@@ -347,9 +345,9 @@ class TitleTest extends MediaWikiIntegrationTestCase {
 	 * @dataProvider provideIsWikitextPage
 	 * @covers \MediaWiki\Title\Title::isWikitextPage
 	 */
-	public function testIsWikitextPage( $title, $expectedBool ) {
-		$title = Title::newFromText( $title );
-		$this->assertEquals( $expectedBool, $title->isWikitextPage() );
+	public function testIsWikitextPage( int $ns, string $title, bool $expected ) {
+		$title = Title::makeTitle( $ns, $title );
+		$this->assertSame( $expected, $title->isWikitextPage() );
 	}
 
 	/**
@@ -952,7 +950,7 @@ class TitleTest extends MediaWikiIntegrationTestCase {
 	 * @covers \MediaWiki\Title\Title::getFullSubpageText
 	 */
 	public function testGetFullSubpageText( string $title, string $expected ) {
-		$title = Title::newFromText( $title );
+		$title = Title::makeTitle( NS_MAIN, $title );
 		$this->assertSame( $expected, $title->getFullSubpageText() );
 	}
 
@@ -1945,22 +1943,8 @@ class TitleTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testIsMainPage() {
 		$this->assertTrue( Title::newMainPage()->isMainPage() );
-	}
-
-	/**
-	 * @covers \MediaWiki\Title\Title::isMainPage
-	 * @covers \MediaWiki\Title\Title::equals
-	 * @dataProvider provideMainPageTitles
-	 */
-	public function testIsNotMainPage( Title $title, $expected ) {
-		$this->assertSame( $expected, $title->isMainPage() );
-	}
-
-	public static function provideMainPageTitles() {
-		return [
-			[ Title::makeTitle( NS_MAIN, 'Test' ), false ],
-			[ Title::makeTitle( NS_CATEGORY, 'mw:Category' ), false ],
-		];
+		$this->assertFalse( Title::makeTitle( NS_MAIN, 'Test' )->isMainPage() );
+		$this->assertFalse( Title::makeTitle( NS_CATEGORY, 'mw:Category' )->isMainPage() );
 	}
 
 	/**
