@@ -24,7 +24,7 @@ CREATE TABLE /*_*/categorylinks (
   cl_timestamp DATETIME NOT NULL,
   cl_collation BLOB DEFAULT '' NOT NULL,
   cl_type TEXT DEFAULT 'page' NOT NULL,
-  PRIMARY KEY(cl_from, cl_to)
+  PRIMARY KEY (cl_from, cl_to)
 );
 
 INSERT INTO /*_*/categorylinks (

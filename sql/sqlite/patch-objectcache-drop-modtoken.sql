@@ -16,7 +16,7 @@ CREATE TABLE /*_*/objectcache (
   keyname BLOB DEFAULT '' NOT NULL,
   value BLOB DEFAULT NULL,
   exptime BLOB NOT NULL,
-  PRIMARY KEY(keyname)
+  PRIMARY KEY (keyname)
 );
 
 INSERT INTO /*_*/objectcache (keyname, value, exptime)

@@ -4,7 +4,7 @@ namespace Wikimedia\Tests\Rdbms\DBAL;
 
 use Doctrine\DBAL\Platforms\AbstractPlatform;
 use Doctrine\DBAL\Platforms\MySQLPlatform;
-use Doctrine\DBAL\Platforms\SqlitePlatform;
+use Doctrine\DBAL\Platforms\SQLitePlatform;
 use MediaWikiUnitTestCase;
 use Wikimedia\Rdbms\DBAL\DoctrineSchemaChangeBuilder;
 use Wikimedia\Rdbms\DBAL\MWPostgreSqlPlatform;
@@ -27,7 +27,7 @@ class DoctrineSchemaChangeBuilderTest extends MediaWikiUnitTestCase {
 		$actual = implode( ";\n", $builder->getSchemaChangeSql( $schemaChange ) ) . ";\n";
 
 		// sqlite hacks
-		if ( $platform instanceof SqlitePlatform ) {
+		if ( $platform instanceof SQLitePlatform ) {
 			// Doctrine prepends __temp__ to the table name and we set the table with
 			// the schema prefix causing invalid sqlite.
 			$actual = preg_replace( '/__temp__\s*\/\*_\*\//', '/*_*/__temp__', $actual );
@@ -50,7 +50,7 @@ class DoctrineSchemaChangeBuilderTest extends MediaWikiUnitTestCase {
 		];
 
 		yield 'SQLite schema tables' => [
-			new SqlitePlatform,
+			new SQLitePlatform,
 			'/data/db/sqlite/patch-drop-ct_tag.sql'
 		];
 	}

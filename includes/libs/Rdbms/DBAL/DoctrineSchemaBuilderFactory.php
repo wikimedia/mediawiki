@@ -3,7 +3,7 @@
 namespace Wikimedia\Rdbms\DBAL;
 
 use Doctrine\DBAL\Platforms\AbstractPlatform;
-use Doctrine\DBAL\Platforms\SqlitePlatform;
+use Doctrine\DBAL\Platforms\SQLitePlatform;
 use Doctrine\DBAL\Types\Type;
 use InvalidArgumentException;
 
@@ -37,7 +37,7 @@ class DoctrineSchemaBuilderFactory {
 		$platformObject = match ( $platform ) {
 			'mysql' => new MWMySQLPlatform(),
 			'postgres' => new MWPostgreSqlPlatform(),
-			'sqlite' => new SqlitePlatform(),
+			'sqlite' => new SQLitePlatform(),
 			default => throw new InvalidArgumentException( "Unknown platform: $platform" )
 		};
 

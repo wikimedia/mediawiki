@@ -5,11 +5,11 @@
 DROP INDEX si_page;
 
 ALTER TABLE searchindex
-  ALTER si_title
-  DROP DEFAULT;
+  ALTER si_title TYPE TEXT;
 
 ALTER TABLE searchindex
-  ALTER si_title TYPE TEXT;
+  ALTER si_title
+  DROP DEFAULT;
 
 ALTER TABLE searchindex
   ADD PRIMARY KEY (si_page);

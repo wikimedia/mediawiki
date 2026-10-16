@@ -20,7 +20,6 @@ DROP TABLE /*_*/categorylinks;
 
 CREATE TABLE /*_*/categorylinks (
   cl_from INTEGER UNSIGNED DEFAULT 0 NOT NULL,
-  cl_target_id BIGINT UNSIGNED NOT NULL,
   cl_to BLOB DEFAULT '' NOT NULL,
   cl_sortkey BLOB DEFAULT '' NOT NULL,
   cl_sortkey_prefix BLOB DEFAULT '' NOT NULL,
@@ -28,7 +27,8 @@ CREATE TABLE /*_*/categorylinks (
   cl_collation BLOB DEFAULT '' NOT NULL,
   cl_type TEXT DEFAULT 'page' NOT NULL,
   cl_collation_id SMALLINT UNSIGNED DEFAULT 0 NOT NULL,
-  PRIMARY KEY(cl_from, cl_target_id)
+  cl_target_id BIGINT UNSIGNED NOT NULL,
+  PRIMARY KEY (cl_from, cl_target_id)
 );
 
 INSERT INTO /*_*/categorylinks (

@@ -98,6 +98,7 @@ For notes on 1.47.x and older releases, see HISTORY.
 
 ===== Changed development-only external libraries =====
 
+* Updated doctrine/dbal from 3.10.6 to 4.5.0.
 * …
 
 ==== Removed external libraries ====

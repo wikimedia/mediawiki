@@ -6,7 +6,7 @@ CREATE TABLE /*_*/actor (
   actor_id BIGINT UNSIGNED NOT NULL,
   actor_user INTEGER UNSIGNED NOT NULL,
   actor_name VARCHAR(255) NOT NULL,
-  PRIMARY KEY(actor_id)
+  PRIMARY KEY (actor_id)
 );
 
 CREATE UNIQUE INDEX actor_user ON /*_*/actor (actor_user);

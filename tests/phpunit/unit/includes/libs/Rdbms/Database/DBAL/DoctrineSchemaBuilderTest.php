@@ -3,7 +3,7 @@
 namespace Wikimedia\Tests\Rdbms\DBAL;
 
 use Doctrine\DBAL\Platforms\AbstractPlatform;
-use Doctrine\DBAL\Platforms\SqlitePlatform;
+use Doctrine\DBAL\Platforms\SQLitePlatform;
 use MediaWikiUnitTestCase;
 use Wikimedia\Rdbms\DBAL\DoctrineSchemaBuilder;
 use Wikimedia\Rdbms\DBAL\MWMySQLPlatform;
@@ -49,7 +49,7 @@ class DoctrineSchemaBuilderTest extends MediaWikiUnitTestCase {
 		];
 
 		yield 'SQLite schema tables' => [
-			new SqlitePlatform,
+			new SQLitePlatform,
 			'/data/db/sqlite/tables-generated.sql'
 		];
 	}

@@ -81,7 +81,7 @@
 			},
 			{
 				"name": "si_title",
-				"type": "string",
+				"type": "text",
 				"comment": "Munged version of title",
 				"options": {
 					"length": 16777215,

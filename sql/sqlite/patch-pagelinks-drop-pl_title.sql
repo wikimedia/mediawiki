@@ -14,9 +14,9 @@ DROP TABLE /*_*/pagelinks;
 
 CREATE TABLE /*_*/pagelinks (
   pl_from INTEGER UNSIGNED DEFAULT 0 NOT NULL,
-  pl_target_id BIGINT UNSIGNED NOT NULL,
   pl_from_namespace INTEGER DEFAULT 0 NOT NULL,
-  PRIMARY KEY(pl_from, pl_target_id)
+  pl_target_id BIGINT UNSIGNED NOT NULL,
+  PRIMARY KEY (pl_from, pl_target_id)
 );
 
 INSERT INTO /*_*/pagelinks (

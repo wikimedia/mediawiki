@@ -16,7 +16,7 @@ CREATE TABLE /*_*/iwlinks (
   iwl_from INTEGER UNSIGNED DEFAULT 0 NOT NULL,
   iwl_prefix BLOB DEFAULT '' NOT NULL,
   iwl_title BLOB DEFAULT '' NOT NULL,
-  PRIMARY KEY(iwl_from, iwl_prefix, iwl_title)
+  PRIMARY KEY (iwl_from, iwl_prefix, iwl_title)
 );
 
 INSERT INTO /*_*/iwlinks (iwl_from, iwl_prefix, iwl_title)

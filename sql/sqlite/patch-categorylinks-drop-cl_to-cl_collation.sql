@@ -24,7 +24,7 @@ CREATE TABLE /*_*/categorylinks (
   cl_timestamp DATETIME NOT NULL,
   cl_type TEXT DEFAULT 'page' NOT NULL,
   cl_collation_id SMALLINT UNSIGNED DEFAULT 0 NOT NULL,
-  PRIMARY KEY(cl_from, cl_target_id)
+  PRIMARY KEY (cl_from, cl_target_id)
 );
 
 INSERT INTO /*_*/categorylinks (

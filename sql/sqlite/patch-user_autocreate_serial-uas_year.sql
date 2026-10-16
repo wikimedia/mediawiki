@@ -13,9 +13,9 @@ DROP TABLE /*_*/user_autocreate_serial;
 
 CREATE TABLE /*_*/user_autocreate_serial (
   uas_shard INTEGER UNSIGNED NOT NULL,
-  uas_year SMALLINT UNSIGNED NOT NULL,
   uas_value INTEGER UNSIGNED NOT NULL,
-  PRIMARY KEY(uas_shard, uas_year)
+  uas_year SMALLINT UNSIGNED NOT NULL,
+  PRIMARY KEY (uas_shard, uas_year)
 );
 
 INSERT INTO /*_*/user_autocreate_serial (uas_shard, uas_value)

@@ -6,5 +6,5 @@ CREATE TABLE /*_*/user_editcount (
   uec_user INTEGER UNSIGNED NOT NULL,
   uec_shard SMALLINT UNSIGNED DEFAULT 0 NOT NULL,
   uec_count INTEGER UNSIGNED DEFAULT 0 NOT NULL,
-  PRIMARY KEY(uec_user, uec_shard)
+  PRIMARY KEY (uec_user, uec_shard)
 );

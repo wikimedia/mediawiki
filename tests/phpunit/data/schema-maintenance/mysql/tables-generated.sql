@@ -8,5 +8,5 @@ CREATE TABLE /*_*/actor (
   actor_name VARCHAR(255) NOT NULL,
   UNIQUE INDEX actor_user (actor_user),
   UNIQUE INDEX actor_name (actor_name),
-  PRIMARY KEY(actor_id)
+  PRIMARY KEY (actor_id)
 ) /*$wgDBTableOptions*/;

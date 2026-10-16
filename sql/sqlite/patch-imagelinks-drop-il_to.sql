@@ -5,8 +5,8 @@
 CREATE TEMPORARY TABLE /*_*/__temp__imagelinks AS
 SELECT
   il_from,
-  il_target_id,
-  il_from_namespace
+  il_from_namespace,
+  il_target_id
 FROM /*_*/imagelinks;
 
 DROP TABLE /*_*/imagelinks;
@@ -14,18 +14,18 @@ DROP TABLE /*_*/imagelinks;
 
 CREATE TABLE /*_*/imagelinks (
   il_from INTEGER UNSIGNED DEFAULT 0 NOT NULL,
-  il_target_id BIGINT UNSIGNED NOT NULL,
   il_from_namespace INTEGER DEFAULT 0 NOT NULL,
-  PRIMARY KEY(il_from, il_target_id)
+  il_target_id BIGINT UNSIGNED NOT NULL,
+  PRIMARY KEY (il_from, il_target_id)
 );
 
 INSERT INTO /*_*/imagelinks (
-  il_from, il_target_id, il_from_namespace
+  il_from, il_from_namespace, il_target_id
 )
 SELECT
   il_from,
-  il_target_id,
-  il_from_namespace
+  il_from_namespace,
+  il_target_id
 FROM /*_*/__temp__imagelinks;
 
 DROP TABLE /*_*/__temp__imagelinks;

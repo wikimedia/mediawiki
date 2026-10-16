@@ -6,5 +6,5 @@ CREATE TABLE /*_*/user_editcount (
   uec_user INT UNSIGNED NOT NULL,
   uec_shard TINYINT(4) UNSIGNED DEFAULT 0 NOT NULL,
   uec_count INT UNSIGNED DEFAULT 0 NOT NULL,
-  PRIMARY KEY(uec_user, uec_shard)
+  PRIMARY KEY (uec_user, uec_shard)
 ) /*$wgDBTableOptions*/;

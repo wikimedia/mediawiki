@@ -84,7 +84,7 @@ CREATE TABLE /*_*/bot_passwords (
   bp_token BLOB DEFAULT '' NOT NULL,
   bp_restrictions BLOB NOT NULL,
   bp_grants BLOB NOT NULL,
-  PRIMARY KEY(bp_user, bp_app_id)
+  PRIMARY KEY (bp_user, bp_app_id)
 );
 
 
@@ -108,7 +108,7 @@ CREATE TABLE /*_*/categorylinks (
   cl_timestamp DATETIME NOT NULL,
   cl_type TEXT DEFAULT 'page' NOT NULL,
   cl_collation_id SMALLINT UNSIGNED DEFAULT 0 NOT NULL,
-  PRIMARY KEY(cl_from, cl_target_id)
+  PRIMARY KEY (cl_from, cl_target_id)
 );
 
 CREATE INDEX cl_sortkey_id ON /*_*/categorylinks (
@@ -186,12 +186,9 @@ CREATE UNIQUE INDEX model_name ON /*_*/content_models (model_name);
 
 CREATE TABLE /*_*/device_bound_session (
   dbs_id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
-  dbs_session BLOB NOT NULL,
-  dbs_origin BLOB NOT NULL,
-  dbs_subject BLOB NOT NULL,
-  dbs_user_token BLOB DEFAULT '' NOT NULL,
-  dbs_binding BLOB NOT NULL,
-  dbs_created BLOB NOT NULL,
+  dbs_session BLOB NOT NULL, dbs_origin BLOB NOT NULL,
+  dbs_subject BLOB NOT NULL, dbs_user_token BLOB DEFAULT '' NOT NULL,
+  dbs_binding BLOB NOT NULL, dbs_created BLOB NOT NULL,
   dbs_expires BLOB NOT NULL
 );
 
@@ -207,7 +204,7 @@ CREATE INDEX dbs_expires ON /*_*/device_bound_session (dbs_expires);
 CREATE TABLE /*_*/existencelinks (
   exl_from INTEGER UNSIGNED DEFAULT 0 NOT NULL,
   exl_target_id BIGINT UNSIGNED NOT NULL,
-  PRIMARY KEY(exl_from, exl_target_id)
+  PRIMARY KEY (exl_from, exl_target_id)
 );
 
 CREATE INDEX exl_target_id ON /*_*/existencelinks (exl_target_id, exl_from);
@@ -319,7 +316,7 @@ CREATE TABLE /*_*/image (
   img_actor BIGINT UNSIGNED NOT NULL,
   img_timestamp BLOB NOT NULL,
   img_sha1 BLOB DEFAULT '' NOT NULL,
-  PRIMARY KEY(img_name)
+  PRIMARY KEY (img_name)
 );
 
 CREATE INDEX img_actor_timestamp ON /*_*/image (img_actor, img_timestamp);
@@ -337,9 +334,9 @@ CREATE INDEX img_media_mime ON /*_*/image (
 
 CREATE TABLE /*_*/imagelinks (
   il_from INTEGER UNSIGNED DEFAULT 0 NOT NULL,
-  il_target_id BIGINT UNSIGNED NOT NULL,
   il_from_namespace INTEGER DEFAULT 0 NOT NULL,
-  PRIMARY KEY(il_from, il_target_id)
+  il_target_id BIGINT UNSIGNED NOT NULL,
+  PRIMARY KEY (il_from, il_target_id)
 );
 
 CREATE INDEX il_target_id ON /*_*/imagelinks (il_target_id, il_from);
@@ -357,7 +354,7 @@ CREATE TABLE /*_*/interwiki (
   iw_wikiid VARCHAR(64) NOT NULL,
   iw_local SMALLINT NOT NULL,
   iw_trans SMALLINT DEFAULT 0 NOT NULL,
-  PRIMARY KEY(iw_prefix)
+  PRIMARY KEY (iw_prefix)
 );
 
 
@@ -365,7 +362,7 @@ CREATE TABLE /*_*/ip_changes (
   ipc_rev_id INTEGER UNSIGNED DEFAULT 0 NOT NULL,
   ipc_rev_timestamp BLOB NOT NULL,
   ipc_hex BLOB DEFAULT '' NOT NULL,
-  PRIMARY KEY(ipc_rev_id)
+  PRIMARY KEY (ipc_rev_id)
 );
 
 CREATE INDEX ipc_rev_timestamp ON /*_*/ip_changes (ipc_rev_timestamp);
@@ -377,7 +374,7 @@ CREATE TABLE /*_*/ipblocks_restrictions (
   ir_ipb_id INTEGER UNSIGNED NOT NULL,
   ir_type SMALLINT NOT NULL,
   ir_value INTEGER UNSIGNED NOT NULL,
-  PRIMARY KEY(ir_ipb_id, ir_type, ir_value)
+  PRIMARY KEY (ir_ipb_id, ir_type, ir_value)
 );
 
 CREATE INDEX ir_type_value ON /*_*/ipblocks_restrictions (ir_type, ir_value);
@@ -387,7 +384,7 @@ CREATE TABLE /*_*/iwlinks (
   iwl_from INTEGER UNSIGNED DEFAULT 0 NOT NULL,
   iwl_prefix BLOB DEFAULT '' NOT NULL,
   iwl_title BLOB DEFAULT '' NOT NULL,
-  PRIMARY KEY(iwl_from, iwl_prefix, iwl_title)
+  PRIMARY KEY (iwl_from, iwl_prefix, iwl_title)
 );
 
 CREATE INDEX iwl_prefix_title_from ON /*_*/iwlinks (iwl_prefix, iwl_title, iwl_from);
@@ -422,7 +419,7 @@ CREATE TABLE /*_*/l10n_cache (
   lc_lang BLOB NOT NULL,
   lc_key VARCHAR(255) NOT NULL,
   lc_value BLOB NOT NULL,
-  PRIMARY KEY(lc_lang, lc_key)
+  PRIMARY KEY (lc_lang, lc_key)
 );
 
 
@@ -430,7 +427,7 @@ CREATE TABLE /*_*/langlinks (
   ll_from INTEGER UNSIGNED DEFAULT 0 NOT NULL,
   ll_lang BLOB DEFAULT '' NOT NULL,
   ll_title BLOB DEFAULT '' NOT NULL,
-  PRIMARY KEY(ll_from, ll_lang)
+  PRIMARY KEY (ll_from, ll_lang)
 );
 
 CREATE INDEX ll_lang ON /*_*/langlinks (ll_lang, ll_title);
@@ -448,7 +445,7 @@ CREATE TABLE /*_*/log_search (
   ls_field BLOB NOT NULL,
   ls_value VARCHAR(255) NOT NULL,
   ls_log_id INTEGER UNSIGNED DEFAULT 0 NOT NULL,
-  PRIMARY KEY(ls_field, ls_value, ls_log_id)
+  PRIMARY KEY (ls_field, ls_value, ls_log_id)
 );
 
 CREATE INDEX ls_log_id ON /*_*/log_search (ls_log_id);
@@ -491,7 +488,7 @@ CREATE TABLE /*_*/objectcache (
   keyname BLOB DEFAULT '' NOT NULL,
   value BLOB DEFAULT NULL,
   exptime BLOB NOT NULL,
-  PRIMARY KEY(keyname)
+  PRIMARY KEY (keyname)
 );
 
 CREATE INDEX exptime ON /*_*/objectcache (exptime);
@@ -553,7 +550,7 @@ CREATE TABLE /*_*/page_props (
   pp_propname BLOB NOT NULL,
   pp_value BLOB NOT NULL,
   pp_sortkey DOUBLE PRECISION DEFAULT NULL,
-  PRIMARY KEY(pp_page, pp_propname)
+  PRIMARY KEY (pp_page, pp_propname)
 );
 
 CREATE UNIQUE INDEX pp_propname_page ON /*_*/page_props (pp_propname, pp_page);
@@ -579,9 +576,9 @@ CREATE INDEX pr_cascade ON /*_*/page_restrictions (pr_cascade);
 
 CREATE TABLE /*_*/pagelinks (
   pl_from INTEGER UNSIGNED DEFAULT 0 NOT NULL,
-  pl_target_id BIGINT UNSIGNED NOT NULL,
   pl_from_namespace INTEGER DEFAULT 0 NOT NULL,
-  PRIMARY KEY(pl_from, pl_target_id)
+  pl_target_id BIGINT UNSIGNED NOT NULL,
+  PRIMARY KEY (pl_from, pl_target_id)
 );
 
 CREATE INDEX pl_target_id ON /*_*/pagelinks (pl_target_id, pl_from);
@@ -600,7 +597,7 @@ CREATE TABLE /*_*/protected_titles (
   pt_timestamp BLOB NOT NULL,
   pt_expiry BLOB NOT NULL,
   pt_create_perm BLOB NOT NULL,
-  PRIMARY KEY(pt_namespace, pt_title)
+  PRIMARY KEY (pt_namespace, pt_title)
 );
 
 CREATE INDEX pt_timestamp ON /*_*/protected_titles (pt_timestamp);
@@ -618,7 +615,7 @@ CREATE INDEX qc_type ON /*_*/querycache (qc_type, qc_value);
 CREATE TABLE /*_*/querycache_info (
   qci_type BLOB DEFAULT '' NOT NULL,
   qci_timestamp BLOB DEFAULT '19700101000000' NOT NULL,
-  PRIMARY KEY(qci_type)
+  PRIMARY KEY (qci_type)
 );
 
 
@@ -691,7 +688,7 @@ CREATE TABLE /*_*/redirect (
   rd_title BLOB DEFAULT '' NOT NULL,
   rd_interwiki VARCHAR(32) DEFAULT NULL,
   rd_fragment BLOB DEFAULT NULL,
-  PRIMARY KEY(rd_from)
+  PRIMARY KEY (rd_from)
 );
 
 CREATE INDEX rd_ns_title ON /*_*/redirect (rd_namespace, rd_title, rd_from);
@@ -723,7 +720,7 @@ CREATE TABLE /*_*/searchindex (
   si_page INTEGER UNSIGNED NOT NULL,
   si_title CLOB NOT NULL,
   si_text CLOB NOT NULL,
-  PRIMARY KEY(si_page)
+  PRIMARY KEY (si_page)
 );
 
 CREATE INDEX si_title ON /*_*/searchindex (si_title);
@@ -735,7 +732,7 @@ CREATE TABLE /*_*/site_identifiers (
   si_type BLOB NOT NULL,
   si_key BLOB NOT NULL,
   si_site INTEGER UNSIGNED NOT NULL,
-  PRIMARY KEY(si_type, si_key)
+  PRIMARY KEY (si_type, si_key)
 );
 
 CREATE INDEX si_site ON /*_*/site_identifiers (si_site);
@@ -753,7 +750,7 @@ CREATE TABLE /*_*/site_stats (
   ss_images BIGINT UNSIGNED DEFAULT NULL,
   ss_temp_users BIGINT UNSIGNED DEFAULT NULL,
   ss_active_temp_users BIGINT UNSIGNED DEFAULT NULL,
-  PRIMARY KEY(ss_row_id)
+  PRIMARY KEY (ss_row_id)
 );
 
 
@@ -787,7 +784,7 @@ CREATE TABLE /*_*/slots (
   slot_role_id SMALLINT UNSIGNED NOT NULL,
   slot_content_id BIGINT UNSIGNED NOT NULL,
   slot_origin BIGINT UNSIGNED NOT NULL,
-  PRIMARY KEY(slot_revision_id, slot_role_id)
+  PRIMARY KEY (slot_revision_id, slot_role_id)
 );
 
 CREATE INDEX slot_revision_origin_role ON /*_*/slots (
@@ -797,9 +794,9 @@ CREATE INDEX slot_revision_origin_role ON /*_*/slots (
 
 CREATE TABLE /*_*/templatelinks (
   tl_from INTEGER UNSIGNED DEFAULT 0 NOT NULL,
-  tl_target_id BIGINT UNSIGNED NOT NULL,
   tl_from_namespace INTEGER DEFAULT 0 NOT NULL,
-  PRIMARY KEY(tl_from, tl_target_id)
+  tl_target_id BIGINT UNSIGNED NOT NULL,
+  PRIMARY KEY (tl_from, tl_target_id)
 );
 
 CREATE INDEX tl_target_id ON /*_*/templatelinks (tl_target_id, tl_from);
@@ -819,7 +816,7 @@ CREATE TABLE /*_*/text (
 CREATE TABLE /*_*/updatelog (
   ul_key VARCHAR(255) NOT NULL,
   ul_value BLOB DEFAULT NULL,
-  PRIMARY KEY(ul_key)
+  PRIMARY KEY (ul_key)
 );
 
 
@@ -878,7 +875,7 @@ CREATE TABLE /*_*/user_autocreate_serial (
   uas_shard INTEGER UNSIGNED NOT NULL,
   uas_year SMALLINT UNSIGNED NOT NULL,
   uas_value INTEGER UNSIGNED NOT NULL,
-  PRIMARY KEY(uas_shard, uas_year)
+  PRIMARY KEY (uas_shard, uas_year)
 );
 
 
@@ -886,14 +883,14 @@ CREATE TABLE /*_*/user_editcount (
   uec_user INTEGER UNSIGNED NOT NULL,
   uec_shard SMALLINT UNSIGNED DEFAULT 0 NOT NULL,
   uec_count INTEGER UNSIGNED DEFAULT 0 NOT NULL,
-  PRIMARY KEY(uec_user, uec_shard)
+  PRIMARY KEY (uec_user, uec_shard)
 );
 
 
 CREATE TABLE /*_*/user_former_groups (
   ufg_user INTEGER UNSIGNED DEFAULT 0 NOT NULL,
   ufg_group BLOB DEFAULT '' NOT NULL,
-  PRIMARY KEY(ufg_user, ufg_group)
+  PRIMARY KEY (ufg_user, ufg_group)
 );
 
 
@@ -901,7 +898,7 @@ CREATE TABLE /*_*/user_groups (
   ug_user INTEGER UNSIGNED DEFAULT 0 NOT NULL,
   ug_group BLOB DEFAULT '' NOT NULL,
   ug_expiry BLOB DEFAULT NULL,
-  PRIMARY KEY(ug_user, ug_group)
+  PRIMARY KEY (ug_user, ug_group)
 );
 
 CREATE INDEX ug_group ON /*_*/user_groups (ug_group);
@@ -923,7 +920,7 @@ CREATE TABLE /*_*/user_properties (
   up_user INTEGER UNSIGNED NOT NULL,
   up_property BLOB NOT NULL,
   up_value BLOB DEFAULT NULL,
-  PRIMARY KEY(up_user, up_property)
+  PRIMARY KEY (up_user, up_property)
 );
 
 CREATE INDEX up_property ON /*_*/user_properties (up_property);
@@ -948,7 +945,7 @@ CREATE INDEX wl_user_notificationtimestamp ON /*_*/watchlist (
 CREATE TABLE /*_*/watchlist_expiry (
   we_item INTEGER UNSIGNED NOT NULL,
   we_expiry BLOB NOT NULL,
-  PRIMARY KEY(we_item)
+  PRIMARY KEY (we_item)
 );
 
 CREATE INDEX we_expiry ON /*_*/watchlist_expiry (we_expiry);
@@ -966,7 +963,7 @@ CREATE UNIQUE INDEX wll_user_name ON /*_*/watchlist_label (wll_user, wll_name);
 CREATE TABLE /*_*/watchlist_label_member (
   wlm_label INTEGER UNSIGNED NOT NULL,
   wlm_item INTEGER UNSIGNED NOT NULL,
-  PRIMARY KEY(wlm_label, wlm_item)
+  PRIMARY KEY (wlm_label, wlm_item)
 );
 
 CREATE INDEX wlm_item ON /*_*/watchlist_label_member (wlm_item);
