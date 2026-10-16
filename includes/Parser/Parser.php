@@ -347,10 +347,11 @@ class Parser implements MessageLocalizer {
 	private ?MapCacheLRU $currentRevisionCache = null;
 
 	/**
-	 * @var bool|string Recursive call protection.
+	 * Recursive call protection. Holds an exception created when the lock was
+	 * acquired, to provide the lock owner's backtrace.
 	 * @internal
 	 */
-	private $mInParse = false;
+	private ?RuntimeException $lockObject = null;
 
 	private SectionProfiler $mProfiler;
 	private ?LinkRenderer $mLinkRenderer = null;
@@ -479,7 +480,7 @@ class Parser implements MessageLocalizer {
 	 * Allow extensions to clean up when the parser is cloned
 	 */
 	public function __clone() {
-		$this->mInParse = false;
+		$this->lockObject = null;
 
 		$this->mPreprocessor = clone $this->mPreprocessor;
 		$this->mPreprocessor->resetParser( $this );
@@ -6455,7 +6456,7 @@ class Parser implements MessageLocalizer {
 	 */
 	#[\NoDiscard]
 	protected function lock(): ScopedCallback {
-		if ( $this->mInParse ) {
+		if ( $this->lockObject ) {
 			$message = 'Parser state cleared while parsing. Did you call Parser::parse recursively?';
 			$xdebugMode = ini_get( 'xdebug.mode' );
 			if ( $xdebugMode !== false && str_contains( $xdebugMode, 'develop' ) ) {
@@ -6469,17 +6470,17 @@ class Parser implements MessageLocalizer {
 				}
 				$message .= "disabling xdebug.";
 			}
-			$message .= PHP_EOL . 'lock is held by: ' . $this->mInParse;
+			$message .= PHP_EOL . 'lock is held by: ' . $this->lockObject->getTraceAsString();
 			throw new LogicException( $message );
 		}
 
 		// Save the backtrace when locking, so that if some code tries locking again,
-		// we can print the lock owner's backtrace for easier debugging
-		$e = new RuntimeException;
-		$this->mInParse = $e->getTraceAsString();
+		// we can print the lock owner's backtrace for easier debugging. Formatting the
+		// trace is slow, and this is called for every parse, so only do it when needed.
+		$this->lockObject = new RuntimeException;
 
 		$recursiveCheck = new ScopedCallback( function () {
-			$this->mInParse = false;
+			$this->lockObject = null;
 		} );
 
 		return $recursiveCheck;
@@ -6493,7 +6494,7 @@ class Parser implements MessageLocalizer {
 	 * @return bool
 	 */
 	public function isLocked() {
-		return (bool)$this->mInParse;
+		return $this->lockObject !== null;
 	}
 
 	/**
