@@ -193,12 +193,12 @@ class ExtensionProcessor implements Processor {
 	 *
 	 * Keyed by the name of the extension that it belongs to
 	 *
-	 * @var callable[]
+	 * @var array<string,callable>
 	 */
 	protected $callbacks = [];
 
 	/**
-	 * @var array
+	 * @var array<string,array<string,mixed>> Indexed by extension name and self::CREDIT_ATTRIBS
 	 */
 	protected $credits = [];
 
@@ -207,7 +207,7 @@ class ExtensionProcessor implements Processor {
 	 * Each element is an array of strings.
 	 * 'files' is just a list, 'classes' and 'namespaces' are associative.
 	 *
-	 * @var string[][]
+	 * @var array{files: string[], classes: array<string,string>, namespaces: array<string,string>}
 	 */
 	protected $autoload = [
 		'files' => [],
@@ -219,7 +219,7 @@ class ExtensionProcessor implements Processor {
 	 * Autoloader information for development.
 	 * Same structure as $autoload.
 	 *
-	 * @var string[][]
+	 * @var array{files: string[], classes: array<string,string>, namespaces: array<string,string>}
 	 */
 	protected $autoloadDev = [
 		'files' => [],
@@ -239,7 +239,7 @@ class ExtensionProcessor implements Processor {
 	 * Extension attributes, keyed by name =>
 	 *  settings.
 	 *
-	 * @var array
+	 * @var array<string,array>
 	 */
 	protected $extAttributes = [];
 
@@ -1015,7 +1015,7 @@ class ExtensionProcessor implements Processor {
 	 *
 	 * @param bool $includeDev
 	 *
-	 * @return array[] The autoload info.
+	 * @return array{files: string[], classes: array<string,string>, namespaces: array<string,string>}
 	 */
 	public function getExtractedAutoloadInfo( bool $includeDev = false ): array {
 		$autoload = $this->autoload;
