@@ -2775,7 +2775,7 @@
 	"tooltip-ca-addsection": "הוספת פסקה חדשה",
 	"tooltip-ca-viewsource": "דף זה מוגן.\nבאפשרותך לצפות בקוד המקור שלו",
 	"tooltip-ca-history": "גרסאות קודמות של דף זה",
-	"tooltip-ca-share": "שיתוף דף זה",
+	"tooltip-ca-share": "שיתוף הדף הזה",
 	"tooltip-ca-protect": "הפעלת הגנה על דף זה",
 	"tooltip-ca-unprotect": "שינוי ההגנה על הדף הזה",
 	"tooltip-ca-delete": "מחיקת הדף הזה",
@@ -4045,6 +4045,6 @@
 	"diff-usergroups": "{{PLURAL:$1|קבוצת משתמשים אחת|$1 קבוצות משתמשים}}",
 	"languageselector-no-results": "לא נמצאו תוצאות.",
 	"languageselector-invalid-input": "\"$1\" אינה שפה תקינה.",
-	"mypage-disallowed-action": "מסיבות אבטחה, לא ניתן להשתמש בפעולה \"$1\" בדף מיוחד:אקראי.",
-	"import-upload-reauth-reupload": "זהותך אומתה. אנא בחר שוב את קובץ הייבוא ושלח אותו שוב."
+	"mypage-disallowed-action": "מסיבות אבטחה, לא ניתן להשתמש בפעולה \"$1\" בדף Special:MyPage.",
+	"import-upload-reauth-reupload": "זהותך אומתה. נא לבחור שוב את קובץ היבוא ולשלוח אותו מחדש."
 }
