@@ -2,6 +2,10 @@
 
 namespace MediaWiki\Tests\SpecialPage;
 
+use ErrorPageError;
+use LogicException;
+use MediaWiki\Auth\AuthManager;
+use MediaWiki\Context\RequestContext;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Request\FauxRequest;
 use MediaWiki\SpecialPage\SpecialPage;
@@ -169,5 +173,88 @@ class SpecialPageTest extends MediaWikiIntegrationTestCase {
 
 		// no exception thrown, so the test passes.
 		$this->assertTrue( true );
+	}
+
+	public static function provideRunChecksLoginSecurityLevel() {
+		return [
+			'reauthentication not needed' => [ AuthManager::SEC_OK, true, '' ],
+			'reauthentication needed' => [ AuthManager::SEC_REAUTH, false, 'Special:UserLogin' ],
+		];
+	}
+
+	/**
+	 * @dataProvider provideRunChecksLoginSecurityLevel
+	 */
+	public function testRunChecksLoginSecurityLevel(
+		string $securityStatus, bool $expectExecuted, string $expectedRedirect
+	) {
+		$this->setTemporaryHook(
+			'SecuritySensitiveOperationStatus',
+			static function ( &$status ) use ( $securityStatus ) {
+				$status = $securityStatus;
+			}
+		);
+		$user = $this->getTestUser()->getUser();
+		$context = RequestContext::getMain();
+		$context->getRequest()->getSession()->setUser( $user );
+		$context->setUser( $user );
+
+		$specialPage = new class() extends SpecialPage {
+			public bool $executed = false;
+
+			public function __construct() {
+				parent::__construct( 'ChangeEmail' );
+			}
+
+			protected function getLoginSecurityLevel() {
+				return $this->getName();
+			}
+
+			public function execute( $subPage ) {
+				parent::execute( $subPage );
+				$this->executed = true;
+			}
+		};
+		$specialPage->setContext( $context );
+		$context->setTitle( $specialPage->getPageTitle() );
+		$specialPage->run( null );
+
+		$this->assertSame( $expectExecuted, $specialPage->executed );
+		if ( $expectedRedirect === '' ) {
+			$this->assertSame( '', $context->getOutput()->getRedirect() );
+		} else {
+			$this->assertStringContainsString( $expectedRedirect, $context->getOutput()->getRedirect() );
+		}
+	}
+
+	public function testRunThrowsIfLoginSecurityLevelCannotBeMet() {
+		$this->setTemporaryHook(
+			'SecuritySensitiveOperationStatus',
+			static function ( &$status ) {
+				$status = AuthManager::SEC_FAIL;
+			}
+		);
+		$user = $this->getTestUser()->getUser();
+		$context = RequestContext::getMain();
+		$context->getRequest()->getSession()->setUser( $user );
+		$context->setUser( $user );
+
+		$specialPage = new class() extends SpecialPage {
+			public function __construct() {
+				parent::__construct( 'ChangeEmail' );
+			}
+
+			protected function getLoginSecurityLevel() {
+				return $this->getName();
+			}
+
+			public function execute( $subPage ) {
+				throw new LogicException( 'execute() should not be called' );
+			}
+		};
+		$specialPage->setContext( $context );
+
+		$this->expectException( ErrorPageError::class );
+		$specialPage->run( null );
 	}
 }
