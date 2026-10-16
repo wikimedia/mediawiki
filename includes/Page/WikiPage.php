@@ -2167,7 +2167,7 @@ class WikiPage implements Stringable, Page, PageRecord {
 				$dbw->newReplaceQueryBuilder()
 					->table( 'protected_titles' )
 					->uniqueIndexFields( [ 'pt_namespace', 'pt_title' ] )
-					->rows( [
+					->row( [
 						'pt_namespace' => $this->mTitle->getNamespace(),
 						'pt_title' => $this->mTitle->getDBkey(),
 						'pt_create_perm' => $limit['create'],
