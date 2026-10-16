@@ -13,7 +13,8 @@
 			"SF-Language",
 			"Urhixidur",
 			"Vlad5250",
-			"아라"
+			"아라",
+			"Sanderpel713"
 		]
 	},
 	"pagecategories": "{{PLURAL:$1|Wàll |Wàll }}",
@@ -180,6 +181,8 @@
 	"perfcachedts": "Njoxe yii di toftal ab duppitu nëbbitu dàttub njoxe bi la, te yeesalam gu mujj mi ngi am ci: $1. A maximum of {{PLURAL:$4|one result is|$4 results are}} available in the cache.",
 	"querypage-no-updates": "Yeesal yu xët wii dañ leen a doxadil fi mu ne nii. Xibaar yi ne fii ci suuf beesuñu.",
 	"viewsource": "Xool gongikuwaayam",
+	"skin-action-viewsource": "Wone gongikuwaay bi",
+	"viewsource-title": "Xalaat ci $1",
 	"actionthrottled": "Jëf jees digal",
 	"actionthrottledtext": "Ngir xeex spam yi, jëf ji nga namm a def dañ kaa digal ci yoon yoo ko man ci benn diir bu gatt. Te mel na ne romb nga boobu dig. Jéemaatal fii aki simili.",
 	"protectedpagetext": "Wii xët dañ koo aar ngir bañ ag coppiteem.",

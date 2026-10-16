@@ -136,7 +136,7 @@
 	"categorypage": "Vaata kategooria lehekülge",
 	"viewtalkpage": "Vaata arutelulehekülge",
 	"otherlanguages": "Teistes keeltes",
-	"redirectedfrom": "(ümber suunatud leheküljelt \"$1\")",
+	"redirectedfrom": "(ümber suunatud leheküljelt $1)",
 	"redirectpagesub": "Ümbersuunamisleht",
 	"redirectto": "Ümber suunatud lehekülje:",
 	"lastmodifiedat": "Selle lehekülje viimane muutmine: $1, kell $2.",
@@ -3928,5 +3928,6 @@
 	"table-of-contents-hide-button-aria-label": "Peida sisukord",
 	"diff-usergroups": "$1 {{PLURAL:$1|kasutajarühm|kasutajarühma}}",
 	"languageselector-no-results": "Tulemusi ei leitud.",
-	"languageselector-invalid-input": "\"$1\" ei ole kehtiv keel."
+	"languageselector-invalid-input": "\"$1\" ei ole kehtiv keel.",
+	"mypage-disallowed-action": "Turbekaalutlusel ei ole toiming \"$1\" leheküljel Special:MyPage lubatud."
 }

@@ -11,7 +11,8 @@
 			"Monicapozo03",
 			"No se",
 			"JorgeElias2302",
-			"A.jalate"
+			"A.jalate",
+			"Luigi Nakano"
 		]
 	},
 	"rest-prefix-mismatch": "La ruta solicitada ($1) no estaba en la ruta base de la API REST ($2)",

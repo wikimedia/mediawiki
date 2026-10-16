@@ -30,6 +30,7 @@
 	"botpasswords-bad-appid": "Nama bot \"$1\" adalah tidak sah.",
 	"botpasswords-toolong-restrictions": "Terlalu banyak alamat atau julat IP dimasukkan.",
 	"botpasswords-toolong-grants": "Terlalu banyak geran dipilih.",
+	"botpasswords-too-many": "Anda telah mencapai had maksimum $1 {{PLURAL:$1|kata laluan bot}}. Sila padamkan beberapa kata laluan bot sedia ada sebelum mencipta kata laluan baharu.",
 	"botpasswords-insert-failed": "Gagal untuk menambah nama bot \"$1\". Adakah ia telah digunakan?",
 	"botpasswords-update-failed": "Gagal untuk mengemas kini nama bot \"$1\". Adakah ia telah dipadam?",
 	"botpasswords-created-title": "Kata laluan bot telah dicipta",

@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Kaszeba"
+			"Kaszeba",
+			"Terrus38"
 		]
 	},
 	"config-desc": "Jinstalownik MediaWiki",
@@ -21,14 +22,14 @@
 	"config-page-upgrade": "Zaktualnienié jinstalacëji",
 	"config-page-dbsettings": "Nastôw bazë pòdôwków",
 	"config-page-name": "Miono",
-	"config-page-options": "Òptacëje",
-	"config-page-install": "Wjinstalëjë",
+	"config-page-options": "Òpcje",
+	"config-page-install": "Instaluj",
 	"config-page-complete": "Fardich!",
 	"config-page-restart": "Zrëszë jinstalacëjã znowa",
 	"config-page-releasenotes": "Wëdowiédzô ò wersëji",
 	"config-page-copying": "Kòpérowanié",
 	"config-page-upgradedoc": "Zaktualnienié",
-	"config-page-existingwiki": "Egyzstëjącô wiki",
+	"config-page-existingwiki": "Jistniejącô wiki",
 	"config-restart": "Jo, zrëszë znowa",
 	"config-env-php": "PHP $1 je wjinastalowóné",
 	"config-memory-raised": "Paraméter PHP <code>memory_limit</code> $1 òstôł zwikszony do $2.",
@@ -45,10 +46,10 @@
 	"config-admin-password-confirm": "Pòwtórzë parolã:",
 	"config-admin-name-blank": "Wpiszë miono brëkòwnika, chtëren bãdze sprôwnikã.",
 	"config-admin-email": "E-mailowô adresa:",
-	"config-license-none": "Felënk stopczi z licencëją",
+	"config-license-none": "Felënk stópczi z licencją",
 	"config-email-settings": "Nastôwë e-mail",
 	"config-skins": "Wëzdrzatk",
-	"config-skins-use-as-default": "Ùżëjë tegò wëzdrzatkù za domëslny",
+	"config-skins-use-as-default": "Ùżij te wëzdrzatkù jakno domëslnégò",
 	"config-install-step-done": "fardich",
 	"config-install-step-failed": "nie dzrzëło sã",
 	"config-help": "pòmòc",

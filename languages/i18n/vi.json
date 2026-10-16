@@ -85,7 +85,8 @@
 			"YeBoy371",
 			"Ttra2607",
 			"SussyRed2000",
-			"Veritas Sapientiae"
+			"Veritas Sapientiae",
+			"Lakejason0"
 		]
 	},
 	"pagecategories": "{{PLURAL:$1|Thể loại}}",
@@ -4000,5 +4001,6 @@
 	"table-of-contents-hide-button-aria-label": "Ẩn mục lục",
 	"diff-usergroups": "$1 {{PLURAL:$1|nhóm người dùng}}",
 	"languageselector-no-results": "Không tìm thấy kết quả.",
-	"languageselector-invalid-input": "“$1” không phải là mã ngôn ngữ hợp lệ."
+	"languageselector-invalid-input": "“$1” không phải là mã ngôn ngữ hợp lệ.",
+	"mypage-disallowed-action": "Vì lý do bảo mật, bạn không thể thực hiện tác vụ “$1” trên Special:MyPage."
 }

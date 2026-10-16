@@ -8,10 +8,11 @@
 			"Mitternachtvega",
 			"Ninawauwau",
 			"Re demz",
-			"Sixaxis"
+			"Sixaxis",
+			"Fúlvio"
 		]
 	},
-	"rest-prefix-mismatch": "O caminho pedido ($1) não estava no interior do caminho raiz da API REST ($2)",
+	"rest-prefix-mismatch": "O caminho pedido ($1) não estava no interior do caminho base da API REST ($2)",
 	"rest-bad-prefix": "O caminho do ponto de terminação ($1) não contém um prefixo de módulo válido",
 	"rest-wrong-method": "O método pedido ($1) não era {{PLURAL:$3|o método permitido para este caminho|um dos métodos permitidos para este caminho}} ($2)",
 	"rest-no-match": "O caminho relativo pedido ($1) não corresponde a nenhuma rotina de tratamento conhecida",
@@ -80,6 +81,6 @@
 	"rest-unsupported-transform-input": "Entrada não suportada: $1",
 	"rest-bad-etag": "ETag incorreta: $1",
 	"rest-module": "Módulo",
-	"rest-module-content.v1-title": "Conteúdo da página",
+	"rest-module-content.v1-title": "API de conteúdo",
 	"rest-module-site.v1-title": "API do site"
 }
