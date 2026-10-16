@@ -50,7 +50,7 @@ class HookContainer implements SalvageableService {
 	 * - the second is a list of handlers
 	 * - each handler is an associative array with some well known keys, as returned by normalizeHandler()
 	 * @var array<array>
-	 * @phan-var array<string,array<string|int,array{callback:callable,functionName:string}>>
+	 * @phan-var array<string,array<string|int,array{callback:callable,functionName?:string}>>
 	 */
 	private $handlers = [];
 
@@ -129,7 +129,7 @@ class HookContainer implements SalvageableService {
 			// Handler returned false, signal abort to caller
 			if ( $return === false ) {
 				if ( !$abortable ) {
-					throw new UnexpectedValueException( "Handler {$handler['functionName']}" .
+					throw new UnexpectedValueException( 'Handler ' . self::getHandlerName( $handler ) .
 						" return false for unabortable $hook." );
 				}
 
@@ -137,7 +137,7 @@ class HookContainer implements SalvageableService {
 			} elseif ( $return !== null && $return !== true ) {
 				throw new UnexpectedValueException(
 					"Hook handlers can only return null or a boolean. Got an unexpected value from " .
-					"handler {$handler['functionName']} for $hook" );
+					'handler ' . self::getHandlerName( $handler ) . " for $hook" );
 			}
 		}
 
@@ -236,8 +236,9 @@ class HookContainer implements SalvageableService {
 	 *
 	 * @return array|false
 	 *  - callback: (callable) Executable handler function
-	 *  - functionName: (string) Handler name for passing to wfDeprecated() or Exceptions thrown
-	 * @phan-return array{callback:callable,functionName:string}|false
+	 *  - functionName: (string, optional) Handler name for passing to wfDeprecated() or
+	 *    Exceptions thrown. Use getHandlerName() instead, which computes it if not set.
+	 * @phan-return array{callback:callable,functionName?:string}|false
 	 */
 	private function normalizeHandler( string $hook, $handler, array $options = [] ) {
 		// 1 - Class instance with `on$hook` method.
@@ -259,7 +260,6 @@ class HookContainer implements SalvageableService {
 		if ( self::mayBeCallable( $handler ) ) {
 			return [
 				'callback' => $handler,
-				'functionName' => self::callableToString( $handler ),
 			];
 		}
 
@@ -277,7 +277,6 @@ class HookContainer implements SalvageableService {
 			$callback = $this->makeExtensionHandlerCallback( $hook, $handler, $options );
 			return [
 				'callback' => $callback,
-				'functionName' => self::callableToString( $callback ),
 			];
 		}
 
@@ -382,7 +381,7 @@ class HookContainer implements SalvageableService {
 	 * @param array $options Handler options, which may include:
 	 *   - noServices: Do not allow hook handlers with service dependencies
 	 * @return array[] A list of handler entries
-	 * @phan-return array<string|int,array{callback:callable,functionName:string}>
+	 * @phan-return array<string|int,array{callback:callable,functionName?:string}>
 	 */
 	private function getHandlers( string $hook, array $options = [] ): array {
 		if ( !isset( $this->handlers[$hook] ) ) {
@@ -474,7 +473,16 @@ class HookContainer implements SalvageableService {
 		}
 
 		$handler = $this->normalizeHandler( $hook, $handler );
-		return $handler ? $handler['functionName'] : null;
+		return $handler ? self::getHandlerName( $handler ) : null;
+	}
+
+	/**
+	 * @param array $handler A normalized handler, as returned by normalizeHandler()
+	 * @phan-param array{callback:callable,functionName?:string} $handler
+	 * @return string
+	 */
+	private static function getHandlerName( array $handler ): string {
+		return $handler['functionName'] ?? self::callableToString( $handler['callback'] );
 	}
 
 	/**
