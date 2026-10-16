@@ -53,7 +53,7 @@ class ContentRenderer {
 		$contentHandler = $this->contentHandlerFactory->getContentHandler( $content->getModel() );
 		$cpoParams = new ContentParseParams(
 			$page,
-			$revId,
+			$revision,
 			$parserOptions,
 			$hints['generate-html'] ?? true,
 			$hints['previous-output'] ?? null

@@ -17,6 +17,7 @@ use MediaWiki\Parser\ParserOutputFlags;
 use MediaWiki\Parser\Parsoid\Config\DataAccess;
 use MediaWiki\Parser\Parsoid\Config\PageConfigFactory;
 use MediaWiki\Revision\MutableRevisionRecord;
+use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Title\NamespaceInfo;
 use MediaWiki\Title\Title;
@@ -287,10 +288,10 @@ class ParsoidParser /* eventually this will extend \Parser */ {
 	 * @param ParserOptions $options
 	 * @param bool $linestart
 	 * @param bool $clearState
-	 * @param int|null $revId ID of the revision being rendered. This is used to render
-	 *  REVISION* magic words. 0 means that any current revision will be used. Null means
-	 *  that {{REVISIONID}}/{{REVISIONUSER}} will be empty and {{REVISIONTIMESTAMP}} will
-	 *  use the current timestamp.
+	 * @param int|RevisionRecord|null $revision Revision (or ID of) being rendered.
+	 *  This is used to render REVISION* magic words. 0 means that any current revision
+	 *  will be used. Null means that {{REVISIONID}}/{{REVISIONUSER}} will be empty and
+	 *  {{REVISIONTIMESTAMP}} will use the current timestamp.
 	 * @param ?ParserOutput $previousOutput The (optional) result of a
 	 *  previous parse of this page, which can be used for selective update.
 	 * @return ParserOutput
@@ -299,23 +300,26 @@ class ParsoidParser /* eventually this will extend \Parser */ {
 	 */
 	public function parse(
 		$text, PageReference $page, ParserOptions $options,
-		bool $linestart = true, bool $clearState = true, ?int $revId = null,
+		bool $linestart = true, bool $clearState = true,
+		int|RevisionRecord|null $revision = null,
 		?ParserOutput $previousOutput = null
 	): ParserOutput {
 		Assert::invariant( $linestart, '$linestart=false is not yet supported' );
 		Assert::invariant( $clearState, '$clearState=false is not yet supported' );
 		$title = Title::newFromPageReference( $page );
-		$pageConfig = $revId === null || $revId === 0 ? null : $this->pageConfigFactory->createFromParserOptions(
+		$pageConfig = ( $revision ) ? $this->pageConfigFactory->createFromParserOptions(
 			$options, // T392113: transfers current revision record callback
 			$title,
-			$revId
-		);
+			$revision
+		) : null;
+
 		$content = null;
 		if ( $text instanceof TextContent ) {
 			$content = $text;
 			$text = $content->getText();
 		}
 		if ( !( $pageConfig && $pageConfig->getPageMainContent() === $text ) ) {
+			$revId = ( $revision instanceof RevisionRecord ) ? $revision->getId() : $revision;
 			// This is a bit awkward! But we really need to parse $text, which
 			// may or may not correspond to the $revId provided!
 			// T332928 suggests one solution: splitting the "have revid"

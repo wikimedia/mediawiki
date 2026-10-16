@@ -586,7 +586,7 @@ class Parser implements MessageLocalizer {
 	 * @param ParserOptions $options
 	 * @param bool $linestart
 	 * @param bool $clearState
-	 * @param int|null $revid ID of the revision being rendered. This is used to render
+	 * @param int|RevisionRecord|null $revid ID of the revision being rendered. This is used to render
 	 *  REVISION* magic words. 0 means that any current revision will be used. Null means
 	 *  that {{REVISIONID}}/{{REVISIONUSER}} will be empty and {{REVISIONTIMESTAMP}} will
 	 *  use the current timestamp.
@@ -598,6 +598,10 @@ class Parser implements MessageLocalizer {
 		$text, PageReference $page, ParserOptions $options,
 		$linestart = true, $clearState = true, $revid = null
 	) {
+		if ( $revid instanceof RevisionRecord ) {
+			// Consider setting mRevisionRecordObject with this as well?
+			$revid = $revid->getId();
+		}
 		if ( $clearState ) {
 			// We use U+007F DELETE to construct strip markers, so we have to make
 			// sure that this character does not occur in the input text.

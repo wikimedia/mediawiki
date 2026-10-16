@@ -334,6 +334,7 @@ class WikitextContentHandler extends TextContentHandler {
 		'@phan-var WikitextContent $content';
 		$title = $this->titleFactory->newFromPageReference( $cpoParams->getPage() );
 		$parserOptions = $cpoParams->getParserOptions();
+		$revision = $cpoParams->getRevision();
 		$revId = $cpoParams->getRevId();
 
 		[ $redir, $contentWithoutRedirect ] = $this->extractRedirectTargetAndText( $content );
@@ -358,7 +359,7 @@ class WikitextContentHandler extends TextContentHandler {
 		$parseStart = ConvertibleTimestamp::hrtime();
 
 		$parserOutput = $parser
-			->parse( $text, $title, $parserOptions, true, true, $revId, ...$extraArgs );
+			->parse( $text, $title, $parserOptions, true, true, $revision ?? $revId, ...$extraArgs );
 		$time = ( ConvertibleTimestamp::hrtime() - $parseStart ) / 1e9;
 
 		// Timing hack
