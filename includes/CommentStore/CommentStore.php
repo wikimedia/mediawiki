@@ -320,7 +320,7 @@ class CommentStore {
 	 *  field being fetched.
 	 * @param string|Message|CommentStoreComment|null $comment As for `self::createComment()`
 	 * @param array|null $data As for `self::createComment()`
-	 * @return array Fields for the insert or update
+	 * @return array<string,int> Fields for the insert or update
 	 * @return-taint none
 	 */
 	public function insert( IDatabase $dbw, $key, $comment = null, $data = null ) {
