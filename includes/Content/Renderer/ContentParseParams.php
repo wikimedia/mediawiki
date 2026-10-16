@@ -4,6 +4,7 @@ namespace MediaWiki\Content\Renderer;
 use MediaWiki\Page\PageReference;
 use MediaWiki\Parser\ParserOptions;
 use MediaWiki\Parser\ParserOutput;
+use MediaWiki\Revision\RevisionRecord;
 
 /**
  * @internal
@@ -14,7 +15,7 @@ class ContentParseParams {
 
 	public function __construct(
 		private readonly PageReference $page,
-		private readonly ?int $revId = null,
+		private readonly int|RevisionRecord|null $revision = null,
 		?ParserOptions $parserOptions = null,
 		private readonly bool $generateHtml = true,
 		private readonly ?ParserOutput $previousOutput = null,
@@ -27,7 +28,8 @@ class ContentParseParams {
 	}
 
 	public function getRevId(): ?int {
-		return $this->revId;
+		return ( $this->revision instanceof RevisionRecord ) ?
+			$this->revision->getId() : $this->revision;
 	}
 
 	public function getParserOptions(): ParserOptions {
@@ -40,5 +42,9 @@ class ContentParseParams {
 
 	public function getPreviousOutput(): ?ParserOutput {
 		return $this->previousOutput;
+	}
+
+	public function getRevision(): ?RevisionRecord {
+		return ( $this->revision instanceof RevisionRecord ) ? $this->revision : null;
 	}
 }

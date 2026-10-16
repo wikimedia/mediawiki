@@ -21,7 +21,6 @@ use MediaWiki\Parser\ParserOptions;
 use MediaWiki\Parser\ParserOutput;
 use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Revision\RevisionRecord;
-use MediaWiki\Revision\RevisionStore;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Storage\RevisionSlotsUpdate;
 use MediaWiki\Tests\ExpectCallbackTrait;
@@ -235,14 +234,6 @@ class WikiPageDbTest extends MediaWikiLangTestCase {
 			->setId( 9989 )
 			->setMinorEdit( true )
 			->setComment( $comment );
-
-		$store = $this->createMock( RevisionStore::class );
-		$store
-			->method( 'getRevisionById' )
-			->willReturnCallback( static function ( int $id ) use ( $revRecord ) {
-				return ( $id === 9989 ) ? $revRecord : null;
-			} );
-		$this->setService( 'RevisionStore', $store );
 
 		$page->doEditUpdates( $revRecord, $user );
 

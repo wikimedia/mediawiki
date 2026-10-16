@@ -21,7 +21,6 @@ use MediaWiki\Revision\MainSlotRoleHandler;
 use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionRenderer;
-use MediaWiki\Revision\RevisionStore;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Revision\SlotRoleRegistry;
 use MediaWiki\Storage\NameTableStore;
@@ -142,14 +141,6 @@ class RevisionRendererTest extends MediaWikiIntegrationTestCase {
 			->setTimestamp( '20180101000003' )
 			->setComment( CommentStoreComment::newUnsavedComment( '' ) );
 
-		$store = $this->createMock( RevisionStore::class );
-		$store
-			->method( 'getRevisionById' )
-			->willReturnCallback( static function ( int $id ) use ( $rev ) {
-				return ( $id === 9 ) ? $rev : null;
-			} );
-		$this->setService( 'RevisionStore', $store );
-
 		$options = ParserOptions::newFromAnon();
 		$rr = $renderer->getRenderedRevision( $rev, $options );
 
@@ -183,14 +174,6 @@ class RevisionRendererTest extends MediaWikiIntegrationTestCase {
 			->setTimestamp( '20180101000003' )
 			->setComment( CommentStoreComment::newUnsavedComment( '' ) );
 
-		$store = $this->createMock( RevisionStore::class );
-		$store
-			->method( 'getRevisionById' )
-			->willReturnCallback( static function ( int $id ) use ( $rev ) {
-				return ( $id === 21 ) ? $rev : null;
-			} );
-		$this->setService( 'RevisionStore', $store );
-
 		$options = ParserOptions::newFromAnon();
 		$rr = $renderer->getRenderedRevision( $rev, $options );
 
@@ -223,14 +206,6 @@ class RevisionRendererTest extends MediaWikiIntegrationTestCase {
 			->setUser( new UserIdentityValue( 9, 'Frank' ) )
 			->setTimestamp( '20180101000003' )
 			->setComment( CommentStoreComment::newUnsavedComment( '' ) );
-
-		$store = $this->createMock( RevisionStore::class );
-		$store
-			->method( 'getRevisionById' )
-			->willReturnCallback( static function ( int $id ) use ( $rev ) {
-				return ( $id === 21 ) ? $rev : null;
-			} );
-		$this->setService( 'RevisionStore', $store );
 
 		$options = ParserOptions::newFromAnon();
 		$rr = $renderer->getRenderedRevision( $rev, $options, null, [ 'use-master' => true ] );
@@ -288,14 +263,6 @@ class RevisionRendererTest extends MediaWikiIntegrationTestCase {
 			->setTimestamp( '20180101000003' )
 			->setComment( CommentStoreComment::newUnsavedComment( '' ) );
 
-		$store = $this->createMock( RevisionStore::class );
-		$store
-			->method( 'getRevisionById' )
-			->willReturnCallback( static function ( int $id ) use ( $rev ) {
-				return ( $id === 11 ) ? $rev : null;
-			} );
-		$this->setService( 'RevisionStore', $store );
-
 		$options = ParserOptions::newFromAnon();
 		$rr = $renderer->getRenderedRevision( $rev, $options );
 
@@ -352,14 +319,6 @@ class RevisionRendererTest extends MediaWikiIntegrationTestCase {
 			->setTimestamp( '20180101000003' )
 			->setComment( CommentStoreComment::newUnsavedComment( '' ) );
 
-		$store = $this->createMock( RevisionStore::class );
-		$store
-			->method( 'getRevisionById' )
-			->willReturnCallback( static function ( int $id ) use ( $rev ) {
-				return ( $id === 11 ) ? $rev : null;
-			} );
-		$this->setService( 'RevisionStore', $store );
-
 		$options = ParserOptions::newFromAnon();
 		$sysop = $this->mockRegisteredUltimateAuthority();
 		$rr = $renderer->getRenderedRevision( $rev, $options, $sysop );
@@ -396,14 +355,6 @@ class RevisionRendererTest extends MediaWikiIntegrationTestCase {
 			->setUser( new UserIdentityValue( 9, 'Frank' ) )
 			->setTimestamp( '20180101000003' )
 			->setComment( CommentStoreComment::newUnsavedComment( '' ) );
-
-		$store = $this->createMock( RevisionStore::class );
-		$store
-			->method( 'getRevisionById' )
-			->willReturnCallback( static function ( int $id ) use ( $rev ) {
-				return ( $id === 11 ) ? $rev : null;
-			} );
-		$this->setService( 'RevisionStore', $store );
 
 		$options = ParserOptions::newFromAnon();
 		$rr = $renderer->getRenderedRevision(

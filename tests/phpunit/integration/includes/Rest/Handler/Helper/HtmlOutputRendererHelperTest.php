@@ -639,13 +639,12 @@ class HtmlOutputRendererHelperTest extends MediaWikiIntegrationTestCase {
 				ParserOptions $parserOpts,
 				bool $linestart = true,
 				bool $clearState = true,
-				?int $revId = null
+				int|RevisionRecord|null $revision = null
 			) use ( $fakePage, $fakeRevision ) {
 				self::assertTrue( $page->isSamePageAs( $fakePage ), '$page and $fakePage should be the same' );
-				self::assertSame( $revId, $fakeRevision->getId(), '$rev and $fakeRevision should be the same' );
-
-				$html = $this->getMockHtml( $fakeRevision );
-				$pout = $this->makeParserOutput( $parserOpts, $html, $fakeRevision, $page );
+				self::assertSame( $revision, $fakeRevision, '$revision and $fakeRevision should be the same' );
+				$html = $this->getMockHtml( $revision );
+				$pout = $this->makeParserOutput( $parserOpts, $html, $revision, $page );
 				return $pout;
 			} );
 		$options['ParsoidParser'] = $pp;
