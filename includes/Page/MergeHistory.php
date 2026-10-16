@@ -529,8 +529,8 @@ class MergeHistory {
 		if ( !$contentHandler->supportsRedirects() || (
 			// Do not create redirects for wikitext message overrides (T376399).
 			// Maybe one day they will have a custom content model and this special case won't be needed.
-			$legacySourceTitle->getNamespace() === NS_MEDIAWIKI &&
-			$legacySourceTitle->getContentModel() === CONTENT_MODEL_WIKITEXT
+			$legacySourceTitle->inNamespace( NS_MEDIAWIKI ) &&
+			$legacySourceTitle->hasContentModel( CONTENT_MODEL_WIKITEXT )
 		) ) {
 			$deleteSource = true;
 			$newContent = $contentHandler->makeEmptyContent();

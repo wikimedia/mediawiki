@@ -555,8 +555,8 @@ class MergeHistoryTest extends MediaWikiIntegrationTestCase {
 		if ( !$contentHandler->supportsRedirects() || (
 				// Do not create redirects for wikitext message overrides (T376399).
 				// Maybe one day they will have a custom content model and this special case won't be needed.
-				$old->getNamespace() === NS_MEDIAWIKI &&
-				$old->getContentModel() === CONTENT_MODEL_WIKITEXT
+				$old->inNamespace( NS_MEDIAWIKI ) &&
+				$old->hasContentModel( CONTENT_MODEL_WIKITEXT )
 			) ) {
 			$deleteSource = true;
 		}

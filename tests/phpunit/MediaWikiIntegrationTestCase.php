@@ -368,7 +368,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 				$title = Title::newFromText( $title );
 			}
 		}
-		if ( $title->getContentModel() !== CONTENT_MODEL_WIKITEXT ) {
+		if ( !$title->hasContentModel( CONTENT_MODEL_WIKITEXT ) ) {
 			throw new LogicException( "Requested page {$title->getPrefixedText()} isn't in the wikitext content model." );
 		}
 		$page = $this->getServiceContainer()->getWikiPageFactory()->newFromTitle( $title );

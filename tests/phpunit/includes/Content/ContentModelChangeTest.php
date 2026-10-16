@@ -57,7 +57,7 @@ class ContentModelChangeTest extends MediaWikiIntegrationTestCase {
 	public function testChangeNeeded() {
 		$wikipage = $this->getExistingTestPage( 'ExistingPage' );
 		$this->assertSame(
-			'wikitext',
+			CONTENT_MODEL_WIKITEXT,
 			$wikipage->getTitle()->getContentModel(),
 			'`ExistingPage` should be wikitext'
 		);
@@ -65,7 +65,7 @@ class ContentModelChangeTest extends MediaWikiIntegrationTestCase {
 		$change = $this->newContentModelChange(
 			$this->mockRegisteredAuthorityWithPermissions( [ 'editcontentmodel' ] ),
 			$wikipage,
-			'wikitext'
+			CONTENT_MODEL_WIKITEXT
 		);
 		$status = $change->doContentModelChange(
 			RequestContext::getMain(),
@@ -88,7 +88,7 @@ class ContentModelChangeTest extends MediaWikiIntegrationTestCase {
 			EDIT_UPDATE | EDIT_SUPPRESS_RC
 		);
 		$this->assertSame(
-			'wikitext',
+			CONTENT_MODEL_WIKITEXT,
 			$wikipage->getTitle()->getContentModel(),
 			'`PageWithTextThatIsNotValidJSON` should be wikitext at first'
 		);
@@ -96,7 +96,7 @@ class ContentModelChangeTest extends MediaWikiIntegrationTestCase {
 		$change = $this->newContentModelChange(
 			$this->mockRegisteredAuthorityWithPermissions( [ 'editcontentmodel' ] ),
 			$wikipage,
-			'json'
+			CONTENT_MODEL_JSON
 		);
 		$status = $change->doContentModelChange(
 			RequestContext::getMain(),
@@ -116,7 +116,7 @@ class ContentModelChangeTest extends MediaWikiIntegrationTestCase {
 	public function testEditFilterMergedContent( $customMessage, $expectedMessage ) {
 		$wikipage = $this->getExistingTestPage( 'ExistingPage' );
 		$this->assertSame(
-			'wikitext',
+			CONTENT_MODEL_WIKITEXT,
 			$wikipage->getTitle()->getContentModel( IDBAccessObject::READ_LATEST ),
 			'`ExistingPage` should be wikitext'
 		);
@@ -133,7 +133,7 @@ class ContentModelChangeTest extends MediaWikiIntegrationTestCase {
 		$change = $this->newContentModelChange(
 			$this->mockRegisteredAuthorityWithPermissions( [ 'editcontentmodel' ] ),
 			$wikipage,
-			'text'
+			CONTENT_MODEL_TEXT
 		);
 		$status = $change->doContentModelChange(
 			RequestContext::getMain(),
@@ -162,7 +162,7 @@ class ContentModelChangeTest extends MediaWikiIntegrationTestCase {
 			EDIT_UPDATE | EDIT_SUPPRESS_RC
 		);
 		$this->assertSame(
-			'wikitext',
+			CONTENT_MODEL_WIKITEXT,
 			$wikipage->getTitle()->getContentModel( IDBAccessObject::READ_LATEST ),
 			'`ExistingPage` should be wikitext'
 		);
@@ -177,7 +177,7 @@ class ContentModelChangeTest extends MediaWikiIntegrationTestCase {
 		$change = $this->newContentModelChange(
 			$this->mockRegisteredAuthorityWithPermissions( [ 'editcontentmodel' ] ),
 			$wikipage,
-			'text'
+			CONTENT_MODEL_TEXT
 		);
 		$status = $change->doContentModelChange(
 			RequestContext::getMain(),
@@ -214,7 +214,7 @@ class ContentModelChangeTest extends MediaWikiIntegrationTestCase {
 		$change = $this->newContentModelChange(
 			$this->mockRegisteredAuthorityWithPermissions( [ 'editcontentmodel' ] ),
 			$wikipage,
-			'text'
+			CONTENT_MODEL_TEXT
 		);
 		$status = $change->doContentModelChange(
 			RequestContext::getMain(),
@@ -233,7 +233,7 @@ class ContentModelChangeTest extends MediaWikiIntegrationTestCase {
 		$change = $this->newContentModelChange(
 			$this->mockRegisteredAuthorityWithoutPermissions( [ 'applychangetags' ] ),
 			$this->getExistingTestPage( 'ExistingPage' ),
-			'text'
+			CONTENT_MODEL_TEXT
 		);
 		$status = $change->setTags( [ 'edit content model tag' ] );
 		$this->assertStatusError(
@@ -246,10 +246,10 @@ class ContentModelChangeTest extends MediaWikiIntegrationTestCase {
 		$wikipage = $this->getExistingTestPage( 'ExistingPage' );
 		$title = $wikipage->getTitle();
 		$currentContentModel = $title->getContentModel( IDBAccessObject::READ_LATEST );
-		$newContentModel = 'text';
+		$newContentModel = CONTENT_MODEL_TEXT;
 
 		$this->assertSame(
-			'wikitext',
+			CONTENT_MODEL_WIKITEXT,
 			$currentContentModel,
 			'`ExistingPage` should be wikitext'
 		);
@@ -325,7 +325,7 @@ class ContentModelChangeTest extends MediaWikiIntegrationTestCase {
 		$change = $this->newContentModelChange(
 			$user,
 			$this->getNonexistingTestPage( 'NonExistingPage' ),
-			'text'
+			CONTENT_MODEL_TEXT
 		);
 
 		$status = $change->authorizeChange();
@@ -340,7 +340,7 @@ class ContentModelChangeTest extends MediaWikiIntegrationTestCase {
 	public function testNewPageWithDefaultModel() {
 		$wikipage = $this->getNonexistingTestPage( 'NewPageWithDefaultModel' );
 		$this->assertSame(
-			'wikitext',
+			CONTENT_MODEL_WIKITEXT,
 			$wikipage->getTitle()->getContentModel(),
 			'The new page should use wikitext as default'
 		);
@@ -348,7 +348,7 @@ class ContentModelChangeTest extends MediaWikiIntegrationTestCase {
 		$change = $this->newContentModelChange(
 			$this->mockRegisteredAuthorityWithPermissions( [ 'editcontentmodel' ] ),
 			$wikipage,
-			'wikitext'
+			CONTENT_MODEL_WIKITEXT
 		);
 
 		$status = $change->doContentModelChange(

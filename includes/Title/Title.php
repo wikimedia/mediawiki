@@ -1078,11 +1078,11 @@ class Title implements Stringable, LinkTarget, PageIdentity {
 	/**
 	 * Convenience method for checking a title's content model name
 	 *
-	 * @param string $id The content model ID (use the CONTENT_MODEL_XXX constants).
-	 * @return bool True if $this->getContentModel() == $id
+	 * @param string ...$id Content model id, one ore more of the global CONTENT_MODEL_XXX constants
+	 * @return bool True if one of the content model ids matches
 	 */
-	public function hasContentModel( $id ) {
-		return $this->getContentModel() == $id;
+	public function hasContentModel( string ...$id ): bool {
+		return in_array( $this->getContentModel(), $id, true );
 	}
 
 	/**
@@ -1114,7 +1114,7 @@ class Title implements Stringable, LinkTarget, PageIdentity {
 	/**
 	 * If the content model field is not frozen then update it with a retrieved value
 	 *
-	 * @param string|bool $model CONTENT_MODEL_XXX constant or false
+	 * @param string|false $model One of the global CONTENT_MODEL_XXX constants
 	 */
 	private function lazyFillContentModel( $model ) {
 		if ( !$this->mForcedContentModel ) {

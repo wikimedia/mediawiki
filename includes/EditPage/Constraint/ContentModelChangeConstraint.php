@@ -36,7 +36,7 @@ class ContentModelChangeConstraint extends EditConstraint {
 	}
 
 	public function checkConstraint(): PageEditStatus {
-		if ( $this->newContentModel === $this->title->getContentModel() ) {
+		if ( $this->title->hasContentModel( $this->newContentModel ) ) {
 			return PageEditStatus::newGood();
 		}
 

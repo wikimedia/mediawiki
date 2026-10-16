@@ -144,7 +144,7 @@ class PageEdit implements IEditObject {
 		$page = $this->wikiPageFactory->newFromTitle( $this->inputs->getPage() );
 
 		$changingContentModel = false;
-		if ( $this->inputs->getContentModel() !== $page->getTitle()->getContentModel() ) {
+		if ( !$page->getTitle()->hasContentModel( $this->inputs->getContentModel() ) ) {
 			$changingContentModel = true;
 			$oldContentModel = $page->getTitle()->getContentModel();
 		}

@@ -915,10 +915,9 @@ hello
 		$this->setTemporaryHook( 'getUserPermissionsErrors',
 			static function ( Title $page, $user, $action, &$result ) {
 				if ( $action === 'editcontentmodel' &&
-					$page->getContentModel() === CONTENT_MODEL_WIKITEXT
+					$page->hasContentModel( CONTENT_MODEL_WIKITEXT )
 				) {
 					$result = false;
-
 					return false;
 				}
 			} );
@@ -947,7 +946,7 @@ hello
 	public function testShouldPreventChangingContentModelWhenUserCannotEditTargetTitle() {
 		$this->setTemporaryHook( 'getUserPermissionsErrors',
 			static function ( Title $page, $user, $action, &$result ) {
-				if ( $action === 'edit' && $page->getContentModel() === CONTENT_MODEL_WIKITEXT ) {
+				if ( $action === 'edit' && $page->hasContentModel( CONTENT_MODEL_WIKITEXT ) ) {
 					$result = false;
 					return false;
 				}

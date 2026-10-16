@@ -196,6 +196,9 @@ class TitleTest extends MediaWikiIntegrationTestCase {
 	public function testHasContentModel( int $ns, string $title, string $expected = CONTENT_MODEL_WIKITEXT ) {
 		$title = Title::makeTitle( $ns, $title );
 		$this->assertTrue( $title->hasContentModel( $expected ) );
+		$this->assertFalse( $title->hasContentModel( 'invalid' ), 'mismatch' );
+		$this->assertTrue( $title->hasContentModel( 'invalid', $expected ), 'two arguments' );
+		$this->assertFalse( $title->hasContentModel(), 'zero arguments' );
 	}
 
 	public static function provideIsSiteConfigPage() {

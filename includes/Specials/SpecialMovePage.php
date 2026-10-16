@@ -239,8 +239,8 @@ class SpecialMovePage extends UnlistedSpecialPage {
 		$createRedirect = $handler->supportsRedirects() && !(
 			// Do not create redirects for wikitext message overrides (T376399).
 			// Maybe one day they will have a custom content model and this special case won't be needed.
-			$this->oldTitle->getNamespace() === NS_MEDIAWIKI &&
-			$this->oldTitle->getContentModel() === CONTENT_MODEL_WIKITEXT
+			$this->oldTitle->inNamespace( NS_MEDIAWIKI ) &&
+			$this->oldTitle->hasContentModel( CONTENT_MODEL_WIKITEXT )
 		);
 
 		if ( $this->getConfig()->get( MainConfigNames::FixDoubleRedirects ) ) {
@@ -995,8 +995,8 @@ class SpecialMovePage extends UnlistedSpecialPage {
 		if ( !$handler->supportsRedirects() || (
 			// Do not create redirects for wikitext message overrides (T376399).
 			// Maybe one day they will have a custom content model and this special case won't be needed.
-			$ot->getNamespace() === NS_MEDIAWIKI &&
-			$ot->getContentModel() === CONTENT_MODEL_WIKITEXT
+			$ot->inNamespace( NS_MEDIAWIKI ) &&
+			$ot->hasContentModel( CONTENT_MODEL_WIKITEXT )
 		) ) {
 			$createRedirect = false;
 		} elseif ( $this->permManager->userHasRight( $user, 'suppressredirect' ) ) {
