@@ -103,14 +103,14 @@
 						},
 						"callback": {
 							"type": [ "string", "array" ],
-							"description": "A PHP method to call for the file contents"
+							"description": "A PHP method which will return either a FilePath or the file contents as a string or as an array that's JSON-serializable. Called from FileModule with the arguments ( Context $context, Config $config, $callbackParam )."
 						},
 						"callbackParam": {
 							"description": "A value to be passed as the third parameter to the callback and versionCallback"
 						},
 						"versionCallback": {
 							"type": [ "string", "array" ],
-							"description": "A PHP method which will return either a FilePath or the definition summary for the file"
+							"description": "A PHP method which will return either a FilePath or definition summary for the file (ideally an array of hashes, see Module::getDefinitionSummary). Called from FileModule with the arguments ( Context $context, Config $config, $callbackParam )."
 						},
 						"config": {
 							"type": "array",
@@ -1122,7 +1122,7 @@
 				"array",
 				"string"
 			],
-			"description": "A function to be called right after MediaWiki processes this file"
+			"description": "A function to be called right after MediaWiki's ExtensionRegistry processes this extension.json file. Will be called with the arguments ( array $credits, SettingsBuilder $settings )."
 		},
 		"config": {
 			"type": "object",
