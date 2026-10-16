@@ -186,11 +186,6 @@ abstract class FormSpecialPage extends SpecialPage {
 		// This will throw exceptions if there's a problem
 		$this->checkExecutePermissions( $this->getUser() );
 
-		$securityLevel = $this->getLoginSecurityLevel();
-		if ( $securityLevel !== false && !$this->checkLoginSecurityLevel( $securityLevel ) ) {
-			return;
-		}
-
 		$form = $this->getForm();
 		// GET forms can be set as includable
 		if ( !$this->including() ) {
