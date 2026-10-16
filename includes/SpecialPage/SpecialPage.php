@@ -426,6 +426,10 @@ abstract class SpecialPage implements MessageLocalizer {
 	 * Tells if the special page does something security-sensitive and needs extra defense against
 	 * a stolen account (e.g. a reauthentication). What exactly that will mean is decided by the
 	 * authentication framework.
+	 *
+	 * This is called after beforeExecute() but before execute(). If the check fails, execute() is
+	 * not called.
+	 *
 	 * @stable to override
 	 * @return string|false False or the argument for AuthManager::securitySensitiveOperationStatus().
 	 *   Typically, a special page needing elevated security would return its name here.
@@ -687,6 +691,11 @@ abstract class SpecialPage implements MessageLocalizer {
 		if ( $this->beforeExecute( $subPage ) === false ) {
 			return;
 		}
+		$securityLevel = $this->getLoginSecurityLevel();
+		if ( $securityLevel !== false && !$this->checkLoginSecurityLevel( $securityLevel ) ) {
+			return;
+		}
+
 		$this->execute( $subPage );
 		$this->afterExecute( $subPage );
 
@@ -696,6 +705,9 @@ abstract class SpecialPage implements MessageLocalizer {
 	/**
 	 * Gets called before {@link execute}.
 	 * Return false to prevent calling execute() (since 1.27+).
+	 *
+	 * Note that checkLoginSecurityLevel() is called after this method, so this method can be called
+	 * even if reauthentication is required.
 	 *
 	 * @stable to override
 	 * @since 1.20
@@ -739,10 +751,6 @@ abstract class SpecialPage implements MessageLocalizer {
 	public function execute( $subPage ) {
 		$this->setHeaders();
 		$this->checkPermissions();
-		$securityLevel = $this->getLoginSecurityLevel();
-		if ( $securityLevel !== false && !$this->checkLoginSecurityLevel( $securityLevel ) ) {
-			return;
-		}
 		$this->outputHeader();
 	}
 
