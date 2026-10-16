@@ -233,7 +233,7 @@ TEXT
 	/** @inheritDoc */
 	public function initProgress( $history = WikiExporter::FULL ) {
 		parent::initProgress( $history );
-		$this->timeOfCheckpoint = $this->startTime;
+		$this->checkpointTimer = $this->startTimer;
 	}
 
 	/** @inheritDoc */
@@ -292,14 +292,18 @@ TEXT
 
 		if ( $this->reporting ) {
 			$now = ConvertibleTimestamp::now( TS::DB );
-			$nowts = microtime( true );
-			$deltaAll = $nowts - $this->startTime;
-			$deltaPart = $nowts - $this->lastTime;
+			$nowTimer = ConvertibleTimestamp::hrtime();
+			$deltaAll = ( $nowTimer - $this->startTimer ) / 1e9;
+			$deltaPart = ( $nowTimer - $this->lastTimer ) / 1e9;
 			$this->pageCountPart = $this->pageCount - $this->pageCountLast;
 			$this->revCountPart = $this->revCount - $this->revCountLast;
 
 			if ( $deltaAll ) {
 				$portion = $this->revCount / $this->maxCount;
+				// The ETA is rendered as a date, so it has to be built from the
+				// wall clock rather than the timer. If the system clock is
+				// adjusted while this runs, the ETA shifts with it; the deltas
+				// and rates are measured with the timer and are unaffected.
 				$eta = $this->startTime + $deltaAll / $portion;
 				$etats = wfTimestamp( TS::DB, intval( $eta ) );
 				if ( $this->fetchCount ) {
@@ -338,7 +342,7 @@ TEXT
 				$pageRatePart, $this->revCount, $revRate, $revRatePart,
 				$fetchRate, $fetchRatePart, $etats, $this->maxCount
 			) );
-			$this->lastTime = $nowts;
+			$this->lastTimer = $nowTimer;
 			$this->revCountLast = $this->revCount;
 			$this->prefetchCountLast = $this->prefetchCount;
 			$this->fetchCountLast = $this->fetchCount;
@@ -351,7 +355,7 @@ TEXT
 
 	private function checkIfTimeExceeded(): bool {
 		if ( $this->maxTimeAllowed
-			&& ( $this->lastTime - $this->timeOfCheckpoint > $this->maxTimeAllowed )
+			&& ( ( $this->lastTimer - $this->checkpointTimer ) / 1e9 > $this->maxTimeAllowed )
 		) {
 			return true;
 		}
@@ -970,7 +974,7 @@ TEXT
 				$this->egress->closeRenameAndReopen( $newFilenames );
 				$this->buffer = $this->xmlwriterobj->openStream();
 				$this->timeExceeded = false;
-				$this->timeOfCheckpoint = $this->lastTime;
+				$this->checkpointTimer = $this->lastTimer;
 				$this->firstPageWritten = false;
 				$this->checkpointJustWritten = true;
 			} else {
