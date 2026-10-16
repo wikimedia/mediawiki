@@ -765,14 +765,16 @@ abstract class ParserCacheSerializationTestCases {
 				),
 				'assertions' => static function ( MediaWikiIntegrationTestCase $testCase, ParserOutput $object ) {
 					$testCase->assertTrue( $object->getContentHolder()->isParsoidContent() );
-					$testCase->assertEqualsCanonicalizing(
-						$object->getContentHolder()->getBasePageBundle(),
-						new BasePageBundle(
-							parsoid: [ 'ids' => [ 'mwAA' => [ 'dsr' => [ 0, 5, 0, 0 ] ] ] ],
-							mw: [ 'ids' => [] ],
-							counters: [ 'nodedata' => 0, 'annotation' => 0, 'transclusion' => 1 ],
-						)
-					);
+					// The page bundle version ("v") depends on the version
+					// of Parsoid which wrote the page bundle; ignore it.
+					$expected = ( new BasePageBundle(
+						parsoid: [ 'ids' => [ 'mwAA' => [ 'dsr' => [ 0, 5, 0, 0 ] ] ] ],
+						mw: [ 'ids' => [] ],
+						counters: [ 'nodedata' => 0, 'annotation' => 0, 'transclusion' => 1 ],
+					) )->toJsonArray();
+					$actual = $object->getContentHolder()->getBasePageBundle()->toJsonArray();
+					unset( $expected['v'], $actual['v'] );
+					$testCase->assertEqualsCanonicalizing( $expected, $actual );
 					$testCase->assertEquals( "<p id=\"mwAA\">hello</p>", $object->getContentHolderText() );
 				}
 			],
