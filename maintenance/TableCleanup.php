@@ -9,6 +9,7 @@
 
 use MediaWiki\Maintenance\Maintenance;
 use MediaWiki\WikiMap\WikiMap;
+use Wikimedia\Timestamp\ConvertibleTimestamp;
 use Wikimedia\Timestamp\TimestampFormat as TS;
 
 // @codeCoverageIgnoreStart
@@ -37,8 +38,9 @@ class TableCleanup extends Maintenance {
 	protected int $processed;
 	protected int $updated;
 	protected int $count;
-	protected float $startTime;
 	protected string $table;
+	/** @var int|float Timer reading, used only to measure elapsed time */
+	private $startTimer;
 
 	public function __construct() {
 		parent::__construct();
@@ -65,7 +67,7 @@ class TableCleanup extends Maintenance {
 		$this->processed = 0;
 		$this->updated = 0;
 		$this->count = $count;
-		$this->startTime = microtime( true );
+		$this->startTimer = ConvertibleTimestamp::hrtime();
 		$this->table = $table;
 	}
 
@@ -82,9 +84,12 @@ class TableCleanup extends Maintenance {
 		$updateRate = $this->updated / $this->processed;
 
 		$now = microtime( true );
-		$delta = $now - $this->startTime;
+		$delta = ( ConvertibleTimestamp::hrtime() - $this->startTimer ) / 1e9;
 		$estimatedTotalTime = $delta / $portion;
-		$eta = $this->startTime + $estimatedTotalTime;
+		// The ETA is rendered as a date, so it is the current wall clock plus
+		// the time still to go. The remaining time comes from the timer, so a
+		// system clock adjustment cannot distort it.
+		$eta = $now + ( $estimatedTotalTime - $delta );
 
 		$this->output(
 			sprintf( "%s %s: %6.2f%% done on %s; ETA %s [%d/%d] %.2f/sec <%.2f%% updated>\n",

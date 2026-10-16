@@ -28,6 +28,7 @@ use MediaWiki\Specials\SpecialUpload;
 use MediaWiki\User\User;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\SelectQueryBuilder;
+use Wikimedia\Timestamp\ConvertibleTimestamp;
 use Wikimedia\Timestamp\TimestampFormat as TS;
 
 /**
@@ -56,8 +57,8 @@ class ImageBuilder extends Maintenance {
 	/** @var int */
 	private $count;
 
-	/** @var float */
-	private $startTime;
+	/** @var int|float Timer reading, used only to measure elapsed time */
+	private $startTimer;
 
 	/** @var string */
 	private $table;
@@ -121,7 +122,7 @@ class ImageBuilder extends Maintenance {
 		$this->processed = 0;
 		$this->updated = 0;
 		$this->count = $count;
-		$this->startTime = microtime( true );
+		$this->startTimer = ConvertibleTimestamp::hrtime();
 		$this->table = $table;
 	}
 
@@ -135,9 +136,12 @@ class ImageBuilder extends Maintenance {
 		$updateRate = $this->updated / $this->processed;
 
 		$now = microtime( true );
-		$delta = $now - $this->startTime;
+		$delta = ( ConvertibleTimestamp::hrtime() - $this->startTimer ) / 1e9;
 		$estimatedTotalTime = $delta / $portion;
-		$eta = $this->startTime + $estimatedTotalTime;
+		// The ETA is rendered as a date, so it is the current wall clock plus
+		// the time still to go. The remaining time comes from the timer, so a
+		// system clock adjustment cannot distort it.
+		$eta = $now + ( $estimatedTotalTime - $delta );
 		$rate = $this->processed / $delta;
 
 		$this->output( sprintf( "%s: %6.2f%% done on %s; ETA %s [%d/%d] %.2f/sec <%.2f%% updated>\n",

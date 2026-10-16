@@ -83,8 +83,8 @@ abstract class BackupDumper extends Maintenance {
 	protected $schemaVersion = null;
 	/** @var DumpMultiWriter|DumpOutput|null Output filters */
 	protected $sink = null;
-	/** @var float */
-	protected $lastTime = 0;
+	/** @var int|float Timer reading of the previous report, not a timestamp */
+	protected $lastTimer = 0;
 	/** @var int */
 	protected $pageCountLast = 0;
 	/** @var int */
@@ -98,8 +98,11 @@ abstract class BackupDumper extends Maintenance {
 	/** @var int */
 	protected $ID = 0;
 
-	/** @var float */
+	/** @var float UNIX timestamp, used as the basis for the reported ETA */
 	protected $startTime;
+
+	/** @var int|float Timer reading taken at the same moment as $startTime */
+	protected $startTimer;
 	/** @var int */
 	protected $pageCountPart;
 	/** @var int */
@@ -107,7 +110,7 @@ abstract class BackupDumper extends Maintenance {
 	/** @var int */
 	protected $maxCount;
 	/** @var float */
-	protected $timeOfCheckpoint;
+	protected $checkpointTimer;
 	/** @var ExportProgressFilter */
 	protected $egress;
 	/** @var string */
@@ -385,7 +388,8 @@ abstract class BackupDumper extends Maintenance {
 			->from( $table )
 			->caller( __METHOD__ )->fetchField();
 		$this->startTime = microtime( true );
-		$this->lastTime = $this->startTime;
+		$this->startTimer = ConvertibleTimestamp::hrtime();
+		$this->lastTimer = $this->startTimer;
 		$this->ID = getmypid();
 	}
 
@@ -438,14 +442,18 @@ abstract class BackupDumper extends Maintenance {
 	public function showReport() {
 		if ( $this->reporting ) {
 			$now = ConvertibleTimestamp::now( TS::DB );
-			$nowts = microtime( true );
-			$deltaAll = $nowts - $this->startTime;
-			$deltaPart = $nowts - $this->lastTime;
+			$nowTimer = ConvertibleTimestamp::hrtime();
+			$deltaAll = ( $nowTimer - $this->startTimer ) / 1e9;
+			$deltaPart = ( $nowTimer - $this->lastTimer ) / 1e9;
 			$this->pageCountPart = $this->pageCount - $this->pageCountLast;
 			$this->revCountPart = $this->revCount - $this->revCountLast;
 
 			if ( $deltaAll ) {
 				$portion = $this->revCount / $this->maxCount;
+				// The ETA is rendered as a date, so it has to be built from the
+				// wall clock rather than the timer. If the system clock is
+				// adjusted while this runs, the ETA shifts with it; the deltas
+				// and rates are measured with the timer and are unaffected.
 				$eta = $this->startTime + $deltaAll / $portion;
 				$etats = wfTimestamp( TS::DB, intval( $eta ) );
 				$pageRate = $this->pageCount / $deltaAll;
@@ -471,7 +479,7 @@ abstract class BackupDumper extends Maintenance {
 				$pageRatePart, $this->revCount, $revRate, $revRatePart, $etats,
 				$this->maxCount
 			) );
-			$this->lastTime = $nowts;
+			$this->lastTimer = $nowTimer;
 			$this->revCountLast = $this->revCount;
 		}
 	}
