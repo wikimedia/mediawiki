@@ -192,40 +192,17 @@ function wfRandomString( $length = 32 ) {
  *
  * ;:@$!*(),/~
  *
- * However, IIS7 redirects fail when the url contains a colon (see T24709),
- * so no fancy : for IIS7.
- *
  * %2F in the page titles seems to fatally break for some reason.
  *
  * @param string $s
  * @return string
  */
 function wfUrlencode( $s ) {
-	static $needle;
-
-	if ( $s === null ) {
-		// Reset $needle for testing.
-		$needle = null;
-		return '';
-	}
-
-	if ( $needle === null ) {
-		$needle = [ '%3B', '%40', '%24', '%21', '%2A', '%28', '%29', '%2C', '%2F', '%7E' ];
-		if ( !isset( $_SERVER['SERVER_SOFTWARE'] ) ||
-			!str_contains( $_SERVER['SERVER_SOFTWARE'], 'Microsoft-IIS/7' )
-		) {
-			$needle[] = '%3A';
-		}
-	}
-
-	$s = urlencode( $s );
-	$s = str_ireplace(
-		$needle,
+	return str_ireplace(
+		[ '%3B', '%40', '%24', '%21', '%2A', '%28', '%29', '%2C', '%2F', '%7E', '%3A' ],
 		[ ';', '@', '$', '!', '*', '(', ')', ',', '/', '~', ':' ],
-		$s
+		urlencode( $s )
 	);
-
-	return $s;
 }
 
 /**
