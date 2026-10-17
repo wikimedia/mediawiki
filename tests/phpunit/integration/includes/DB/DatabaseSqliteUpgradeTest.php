@@ -167,6 +167,7 @@ class DatabaseSqliteUpgradeTest extends \MediaWikiIntegrationTestCase {
 			[ '1.44' ],
 			[ '1.45' ],
 			[ '1.46' ],
+			[ '1.47' ],
 		];
 	}
 
