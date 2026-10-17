@@ -2,10 +2,7 @@
 -- Source: sql/abstractSchemaChanges/patch-user_autocreate_serial-uas_year.json
 -- Do not modify this file directly.
 -- See https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Schema_changes
-DROP INDEX `primary` ON /*_*/user_autocreate_serial;
-
 ALTER TABLE /*_*/user_autocreate_serial
-  ADD uas_year SMALLINT UNSIGNED NOT NULL;
-
-ALTER TABLE /*_*/user_autocreate_serial
+  ADD uas_year SMALLINT UNSIGNED NOT NULL,
+  DROP PRIMARY KEY,
   ADD PRIMARY KEY (uas_shard, uas_year);

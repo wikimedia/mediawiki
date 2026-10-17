@@ -2,10 +2,7 @@
 -- Source: sql/abstractSchemaChanges/patch-imagelinks-pk.json
 -- Do not modify this file directly.
 -- See https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Schema_changes
-DROP INDEX `primary` ON /*_*/imagelinks;
-
 ALTER TABLE /*_*/imagelinks
-  CHANGE il_target_id il_target_id BIGINT UNSIGNED NOT NULL;
-
-ALTER TABLE /*_*/imagelinks
+  CHANGE il_target_id il_target_id BIGINT UNSIGNED NOT NULL,
+  DROP PRIMARY KEY,
   ADD PRIMARY KEY (il_from, il_target_id);

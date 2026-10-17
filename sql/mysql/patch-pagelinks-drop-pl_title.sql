@@ -6,12 +6,9 @@ DROP INDEX pl_namespace ON /*_*/pagelinks;
 
 DROP INDEX pl_backlinks_namespace ON /*_*/pagelinks;
 
-DROP INDEX `primary` ON /*_*/pagelinks;
-
 ALTER TABLE /*_*/pagelinks
   DROP pl_namespace,
   DROP pl_title,
-  CHANGE pl_target_id pl_target_id BIGINT UNSIGNED NOT NULL;
-
-ALTER TABLE /*_*/pagelinks
+  CHANGE pl_target_id pl_target_id BIGINT UNSIGNED NOT NULL,
+  DROP PRIMARY KEY,
   ADD PRIMARY KEY (pl_from, pl_target_id);

@@ -4,6 +4,7 @@ namespace Wikimedia\Rdbms\DBAL;
 
 use Doctrine\DBAL\Platforms\AbstractPlatform;
 use Doctrine\DBAL\Schema\Comparator;
+use Doctrine\DBAL\Schema\ComparatorConfig;
 use Doctrine\DBAL\Schema\Schema;
 
 /**
@@ -33,7 +34,10 @@ class DoctrineSchemaChangeBuilder implements SchemaChangeBuilder {
 	}
 
 	public function getSchemaChangeSql( array $schemaChangeSpec ): array {
-		$comparator = new Comparator( $this->platform );
+		$comparator = new Comparator(
+			$this->platform,
+			( new ComparatorConfig() )->withReportModifiedIndexes( false )
+		);
 		$schemaDiff = $comparator->compareSchemas(
 			$this->getTableSchema( $schemaChangeSpec['before'] ),
 			$this->getTableSchema( $schemaChangeSpec['after'] )

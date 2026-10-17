@@ -2,10 +2,7 @@
 -- Source: sql/abstractSchemaChanges/patch-categorylinks-pk.json
 -- Do not modify this file directly.
 -- See https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Schema_changes
-DROP INDEX `primary` ON /*_*/categorylinks;
-
 ALTER TABLE /*_*/categorylinks
-  CHANGE cl_target_id cl_target_id BIGINT UNSIGNED NOT NULL;
-
-ALTER TABLE /*_*/categorylinks
+  CHANGE cl_target_id cl_target_id BIGINT UNSIGNED NOT NULL,
+  DROP PRIMARY KEY,
   ADD PRIMARY KEY (cl_from, cl_target_id);
