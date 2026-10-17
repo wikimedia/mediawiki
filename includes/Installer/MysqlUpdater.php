@@ -10,11 +10,8 @@
 
 namespace MediaWiki\Installer;
 
-use FixInconsistentRedirects;
 use FixWrongPasswordPrefixes;
 use MediaWiki\Maintenance\FixAutoblockLogTitles;
-use MigrateExternallinks;
-use MigrateRevisionCommentTemp;
 use PopulateUserIsTemp;
 
 /**
@@ -28,20 +25,6 @@ class MysqlUpdater extends DatabaseUpdater {
 	/** @inheritDoc */
 	protected function getCoreUpdateList() {
 		return [
-			// 1.41
-			[ 'addField', 'user', 'user_is_temp', 'patch-user-user_is_temp.sql' ],
-			[ 'runMaintenance', MigrateRevisionCommentTemp::class ],
-			[ 'dropTable', 'revision_comment_temp' ],
-			[ 'runMaintenance', MigrateExternallinks::class ],
-			[ 'modifyField', 'externallinks', 'el_to', 'patch-externallinks-el_to_default.sql' ],
-			[ 'addField', 'pagelinks', 'pl_target_id', 'patch-pagelinks-target_id.sql' ],
-			[ 'dropField', 'externallinks', 'el_to', 'patch-externallinks-drop-el_to.sql' ],
-			[ 'runMaintenance', FixInconsistentRedirects::class ],
-			[ 'modifyField', 'image', 'img_size', 'patch-image-img_size_to_bigint.sql' ],
-			[ 'modifyField', 'filearchive', 'fa_size', 'patch-filearchive-fa_size_to_bigint.sql' ],
-			[ 'modifyField', 'oldimage', 'oi_size', 'patch-oldimage-oi_size_to_bigint.sql' ],
-			[ 'modifyField', 'uploadstash', 'us_size', 'patch-uploadstash-us_size_to_bigint.sql' ],
-
 			// 1.42
 			[ 'addField', 'user_autocreate_serial', 'uas_year', 'patch-user_autocreate_serial-uas_year.sql' ],
 			[ 'addTable', 'block_target', 'patch-block_target.sql' ],

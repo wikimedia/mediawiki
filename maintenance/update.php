@@ -180,13 +180,13 @@ class UpdateMediaWiki extends Maintenance {
 		$updater = DatabaseUpdater::newForDB( $db, $shared, $this );
 		$updater->logApplied = $this->hasOption( 'log-applied' );
 
-		// Avoid upgrading from versions older than 1.40
-		// Using an implicit marker (el_to_path was introduced in 1.40)
+		// Avoid upgrading from versions older than 1.41
+		// Using an implicit marker (user_is_temp was introduced in 1.41)
 		// TODO: Use an explicit marker
 		// See T259771
-		if ( !$updater->fieldExists( 'externallinks', 'el_to_path' ) ) {
+		if ( !$updater->fieldExists( 'user', 'user_is_temp' ) ) {
 			$this->fatalError(
-				"Can not upgrade from versions older than 1.40, please upgrade to that version or later first."
+				"Can not upgrade from versions older than 1.41, please upgrade to that version or later first."
 			);
 		}
 
