@@ -1275,66 +1275,66 @@ class WebRequest {
 	public function getIP(): string {
 		global $wgUsePrivateIPs;
 
-		# Return cached result
+		// Cache hit
 		if ( $this->ip !== null ) {
 			return $this->ip;
 		}
 
-		# collect the originating IPs
 		$ip = $this->getRawIP();
 		if ( !$ip ) {
 			throw new MWException( 'Unable to determine IP.' );
 		}
 
 		$services = MediaWikiServices::getInstance();
-		# Append XFF
 		$forwardedFor = $this->getHeader( 'X-Forwarded-For' );
 		if ( $forwardedFor !== false ) {
 			$proxyLookup = $services->getProxyLookup();
 			$isConfigured = $proxyLookup->isConfiguredProxy( $ip );
+
+			// XFF is a chain from the alleged client to us, e.g. "X-Forwarded-For: client, proxy1, proxy2"
+			// Loop in reverse to verify the last entry, and then consider the IP before it.
 			$ipchain = array_map( 'trim', explode( ',', $forwardedFor ) );
 			$ipchain = array_reverse( $ipchain );
 			array_unshift( $ipchain, $ip );
-
-			# Step through XFF list and find the last address in the list which is a
-			# trusted server. Set $ip to the IP address given by that trusted server,
-			# unless the address is not sensible (e.g. private). However, prefer private
-			# IP addresses over proxy servers controlled by this site (more sensible).
-			# Note that some XFF values might be "unknown" with Squid/Varnish.
 			foreach ( $ipchain as $i => $curIP ) {
 				$curIP = IPUtils::sanitizeIP(
-					IPUtils::canonicalize(
-						self::canonicalizeIPv6LoopbackAddress( $curIP )
-					)
+					IPUtils::canonicalize( self::canonicalizeIPv6LoopbackAddress( $curIP ) )
 				);
-				if ( !$curIP || !isset( $ipchain[$i + 1] ) || $ipchain[$i + 1] === 'unknown'
+				$nextIP = $ipchain[$i + 1] ?? null;
+				if ( !$curIP
+					// Some XFF values are set to "unknown" by Squid/Varnish
+					|| $nextIP === null || $nextIP === 'unknown'
 					|| !$proxyLookup->isTrustedProxy( $curIP )
 				) {
-					break; // IP is not valid/trusted or does not point to anything
+					// Reject: Current IP is invalid, untrusted, or failed to point to a next IP
+					break;
 				}
+
 				if (
-					IPUtils::isPublic( $ipchain[$i + 1] ) ||
-					$wgUsePrivateIPs ||
-					// T50919; treat IP as valid
-					$proxyLookup->isConfiguredProxy( $curIP )
+					!IPUtils::isPublic( $nextIP ) &&
+					!$wgUsePrivateIPs &&
+					!$proxyLookup->isConfiguredProxy( $curIP )
 				) {
-					$nextIP = $ipchain[$i + 1];
-
-					// Follow the next IP according to the proxy
-					$nextIP = IPUtils::canonicalize(
-						self::canonicalizeIPv6LoopbackAddress( $nextIP )
-					);
-					if ( !$nextIP && $isConfigured ) {
-						// We have not yet made it past CDN/proxy servers of this site,
-						// so either they are misconfigured or there is some IP spoofing.
-						throw new MWException( "Invalid IP given in XFF '$forwardedFor'." );
-					}
-					$ip = $nextIP;
-
-					// keep traversing the chain
-					continue;
+					// Reject: Next IP is private
+					// unless $wgUsePrivateIPs is enabled (intranet users may have a private IP)
+					// or the current IP is our internal CDN proxy. We reject private IPs if
+					// referred from a trusted external proxy, but we prefer to keep resolving to
+					// a later private IP if pointed to by our own internal proxy (T50919).
+					break;
 				}
-				break;
+
+				// Either:
+				// * Current is a private IP from an internal CDN, and must have a next one
+				// * Current is a public IP from a trusted proxy, accept and optionally keep going
+				// * Current is a private IP from an intranet, accept and let !isTrustedProxy break above
+				$nextIP = IPUtils::canonicalize( self::canonicalizeIPv6LoopbackAddress( $nextIP ) );
+				if ( !$nextIP && $isConfigured ) {
+					// Misconfigured proxy or there is some IP spoofing
+					throw new MWException( "Invalid IP given in XFF '$forwardedFor'." );
+				}
+
+				// Accept and keep traversing the chain
+				$ip = $nextIP;
 			}
 		}
 
