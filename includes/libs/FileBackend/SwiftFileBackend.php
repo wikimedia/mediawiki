@@ -1809,6 +1809,7 @@ class SwiftFileBackend extends FileBackendStore {
 				// Retry if any request failed with 401 "not authorized"
 				foreach ( $reqs as $req ) {
 					if ( $req['response']['code'] === 401 ) {
+						$this->rewindHandles( $req );
 						$auth = $this->swiftAuthProvider->refreshAuthentication();
 						continue 2;
 					}
@@ -1817,6 +1818,22 @@ class SwiftFileBackend extends FileBackendStore {
 			break;
 		}
 		return $reqs;
+	}
+
+	/**
+	 * Rewind any stream handle in the request array so that the request can be retried
+	 *
+	 * @param array &$req
+	 */
+	private function rewindHandles( &$req ) {
+		// phpcs:ignore MediaWiki.Usage.ForbiddenFunctions.is_resource
+		if ( isset( $req['body'] ) && is_resource( $req['body'] ) ) {
+			rewind( $req['body'] );
+		}
+		if ( isset( $req['stream'] ) ) {
+			rewind( $req['stream'] );
+			ftruncate( $req['stream'], 0 );
+		}
 	}
 
 	/**
