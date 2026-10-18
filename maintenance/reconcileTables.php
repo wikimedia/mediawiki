@@ -132,6 +132,7 @@ class ReconcileTables extends Maintenance {
 					}
 				}
 			}
+
 			if ( $dry ) {
 				$this->output( "Batch done up to $lastKey. " .
 					"Would insert $inserted rows, delete $deleted rows, update $updated rows.\n" );
@@ -139,7 +140,17 @@ class ReconcileTables extends Maintenance {
 				$this->output( "Batch done up to $lastKey. " .
 					"Inserted $inserted rows, deleted $deleted rows, updated $updated rows.\n" );
 			}
-			$this->commitTransactionRound( __METHOD__ );
+
+			// Don't write the next batch while replicas are still behind; remote
+			// datacenter replicas, which we can't wait for, would fall behind even further.
+			$waitSucceeded = $this->commitTransactionRound( __METHOD__ );
+			for ( $retry = 0; !$waitSucceeded && $retry < 10; $retry++ ) {
+				$this->output( "Replication wait timed out, waiting again...\n" );
+				$waitSucceeded = $lbFactory->waitForReplication( [ 'timeout' => 30 ] );
+			}
+			if ( !$waitSucceeded ) {
+				$this->fatalError( "Replicas did not catch up. Resume with --start=$lastKey later.\n" );
+			}
 
 			if ( $sleep > 0 ) {
 				sleep( $sleep );
