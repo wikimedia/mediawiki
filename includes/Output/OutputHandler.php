@@ -9,8 +9,6 @@
 namespace MediaWiki\Output;
 
 use MediaWiki\Logger\LoggerFactory;
-use MediaWiki\MainConfigNames;
-use MediaWiki\MediaWikiServices;
 use Wikimedia\Http\HttpHeader;
 
 /**
@@ -28,8 +26,12 @@ class OutputHandler {
 	 * @return string
 	 */
 	public static function handle( $s, $phase ) {
-		$config = MediaWikiServices::getInstance()->getMainConfig();
-		$disableOutputCompression = $config->get( MainConfigNames::DisableOutputCompression );
+		// NOTE: Use global instead of MediaWikiServices::getMainConfig which is unsafe
+		// during Setup.php before reaching MediaWikiServices::allowGlobalInstance.
+		// For example, when serving ExtensionDependencyError after loading an extension
+		// with a missing dependency.
+		global $wgDisableOutputCompression;
+
 		// Don't send headers if output is being discarded (T278579)
 		if ( ( $phase & PHP_OUTPUT_HANDLER_CLEAN ) === PHP_OUTPUT_HANDLER_CLEAN ) {
 			$logger = LoggerFactory::getInstance( 'output' );
@@ -58,7 +60,7 @@ class OutputHandler {
 			// Compression is not disabled by the application entry point
 			!defined( 'MW_NO_OUTPUT_COMPRESSION' ) &&
 			// Compression is not disabled by site configuration
-			!$disableOutputCompression
+			!$wgDisableOutputCompression
 		) {
 			$s = self::handleGzip( $s );
 		}
