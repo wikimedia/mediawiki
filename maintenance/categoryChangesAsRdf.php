@@ -4,6 +4,7 @@
  */
 
 use MediaWiki\Category\CategoriesRdf;
+use MediaWiki\Deferred\LinksUpdate\CategoryLinksTable;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Maintenance\Maintenance;
 use MediaWiki\RecentChanges\RecentChange;
@@ -164,19 +165,18 @@ SPARQLD;
 
 	/**
 	 * Get SPARQL for updating set of categories
-	 * @param IReadableDatabase $dbr
 	 * @param string[] $deleteUrls List of URIs to be deleted, with <>
 	 * @param string[] $pages List of categories: id => title
 	 * @param string $mark Marks which operation requests the query
 	 * @return string SPARQL query
 	 */
-	private function getCategoriesUpdate( IReadableDatabase $dbr, $deleteUrls, $pages, $mark ) {
+	private function getCategoriesUpdate( $deleteUrls, $pages, $mark ) {
 		if ( !$deleteUrls ) {
 			return "";
 		}
 
 		if ( $pages ) {
-			$this->writeParentCategories( $dbr, $pages );
+			$this->writeParentCategories( $pages );
 		}
 
 		return "# $mark\n" . sprintf( self::SPARQL_DELETE, implode( ' ', $deleteUrls ) ) .
@@ -186,11 +186,11 @@ SPARQLD;
 	/**
 	 * Write parent data for a set of categories.
 	 * The list has the child categories.
-	 * @param IReadableDatabase $dbr
 	 * @param string[] $pages List of child categories: id => title
 	 */
-	private function writeParentCategories( IReadableDatabase $dbr, $pages ) {
-		foreach ( $this->getCategoryLinksIterator( $dbr, array_keys( $pages ), __METHOD__ ) as $row ) {
+	private function writeParentCategories( $pages ) {
+		$dbrLinks = $this->getAnalyticsReplica( CategoryLinksTable::VIRTUAL_DOMAIN );
+		foreach ( $this->getCategoryLinksIterator( $dbrLinks, array_keys( $pages ), __METHOD__ ) as $row ) {
 			$this->categoriesRdf->writeCategoryLinkData( $pages[$row->cl_from], $row->lt_title );
 		}
 	}
@@ -426,7 +426,7 @@ SPARQL;
 				$deleteUrls[] = '<' . $this->categoriesRdf->labelToUrl( $row->rc_title ) . '>';
 				$this->processed[$row->rc_cur_id] = true;
 			}
-			fwrite( $output, $this->getCategoriesUpdate( $dbr, $deleteUrls, [], "Deletes" ) );
+			fwrite( $output, $this->getCategoriesUpdate( $deleteUrls, [], "Deletes" ) );
 		}
 	}
 
@@ -469,7 +469,7 @@ SPARQL;
 				$this->processed[$row->rc_cur_id] = true;
 			}
 
-			fwrite( $output, $this->getCategoriesUpdate( $dbr, $deleteUrls, $pages, "Moves" ) );
+			fwrite( $output, $this->getCategoriesUpdate( $deleteUrls, $pages, "Moves" ) );
 		}
 	}
 
@@ -497,7 +497,7 @@ SPARQL;
 				continue;
 			}
 
-			$this->writeParentCategories( $dbr, $pages );
+			$this->writeParentCategories( $pages );
 
 			fwrite( $output, $this->getInsertRdf() );
 		}
@@ -526,7 +526,7 @@ SPARQL;
 				continue;
 			}
 
-			$this->writeParentCategories( $dbr, $pages );
+			$this->writeParentCategories( $pages );
 			fwrite( $output, $this->getInsertRdf() );
 		}
 	}
@@ -558,7 +558,7 @@ SPARQL;
 				$deleteUrls[] = '<' . $this->categoriesRdf->labelToUrl( $row->rc_title ) . '>';
 			}
 
-			fwrite( $output, $this->getCategoriesUpdate( $dbr, $deleteUrls, $pages, "Edits" ) );
+			fwrite( $output, $this->getCategoriesUpdate( $deleteUrls, $pages, "Edits" ) );
 		}
 	}
 
@@ -657,7 +657,7 @@ SPARQL;
 				}
 			}
 
-			fwrite( $output, $this->getCategoriesUpdate( $dbr, $deleteUrls, $pages, "Changes" ) );
+			fwrite( $output, $this->getCategoriesUpdate( $deleteUrls, $pages, "Changes" ) );
 		}
 	}
 }
