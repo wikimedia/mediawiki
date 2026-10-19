@@ -2265,6 +2265,13 @@ class Title implements Stringable, LinkTarget, PageIdentity {
 					$url = "{$wgScript}?title={$dbkey}&{$query}";
 				}
 			}
+			// A title starting with "/" gives "//title" when a path template such as
+			// $wgArticlePath = '/$1' puts the title first. Browsers and UrlUtils::expand()
+			// read "//" as a protocol-relative URL, i.e. a different host, so encode the
+			// leading slash to keep the URL local (T432180).
+			if ( str_starts_with( $url, '//' ) ) {
+				$url = '/%2F' . substr( $url, 2 );
+			}
 			$hookRunner->onGetLocalURL__Internal( $this, $url, $query );
 		}
 

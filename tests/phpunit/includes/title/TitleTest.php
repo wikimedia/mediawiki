@@ -2069,6 +2069,31 @@ class TitleTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
+	 * A title beginning with "/" must never produce a protocol-relative URL
+	 * ("//foo"), which browsers read as a different host (T432180).
+	 *
+	 * @covers \MediaWiki\Title\Title::getLocalURL
+	 * @dataProvider provideGetLocalURLLeadingSlash
+	 */
+	public function testGetLocalURLLeadingSlash( string $articlePath, string $text, string $expected ) {
+		$this->overrideConfigValue( MainConfigNames::ArticlePath, $articlePath );
+
+		$title = Title::newFromText( $text );
+
+		$this->assertSame( $expected, $title->getLocalURL() );
+	}
+
+	public static function provideGetLocalURLLeadingSlash() {
+		return [
+			'root-style article path, leading slash is encoded' => [ '/$1', '/foo', '/%2Ffoo' ],
+			'root-style article path, normal title is unchanged' => [ '/$1', 'Foo', '/Foo' ],
+			'root-style article path, inner slash is unchanged' => [ '/$1', 'Foo/bar', '/Foo/bar' ],
+			'/wiki/$1 article path is unchanged' => [ '/wiki/$1', '/foo', '/wiki//foo' ],
+			'/index.php/$1 article path is unchanged' => [ '/index.php/$1', '/foo', '/index.php//foo' ],
+		];
+	}
+
+	/**
 	 * @covers \MediaWiki\Title\Title::isMainPage
 	 * @covers \MediaWiki\Title\Title::equals
 	 */
