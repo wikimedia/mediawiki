@@ -80,6 +80,7 @@
 	"index-category": "דפים המופיעים במנועי חיפוש",
 	"noindex-category": "דפים המוסתרים ממנועי חיפוש",
 	"broken-file-category": "דפים עם קישורים שבורים לקבצים",
+	"category-header-strokes": "{{PLURAL:$1|קו אחד|$1 קווים}}",
 	"about": "אודות",
 	"article": "דף תוכן",
 	"newwindow": "(נפתח בחלון חדש)",
