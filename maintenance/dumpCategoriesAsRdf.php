@@ -4,6 +4,7 @@
  */
 
 use MediaWiki\Category\CategoriesRdf;
+use MediaWiki\Deferred\LinksUpdate\CategoryLinksTable;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Maintenance\Maintenance;
 use MediaWiki\Utils\BatchRowIterator;
@@ -141,6 +142,7 @@ class DumpCategoriesAsRdf extends Maintenance {
 		fwrite( $output, $this->rdfWriter->drain() );
 
 		$dbr = $this->getAnalyticsReplica();
+		$dbrLinks = $this->getAnalyticsReplica( CategoryLinksTable::VIRTUAL_DOMAIN );
 
 		foreach ( $this->getCategoryIterator( $dbr, __METHOD__ ) as $batch ) {
 			$pages = [];
@@ -156,7 +158,7 @@ class DumpCategoriesAsRdf extends Maintenance {
 				}
 			}
 
-			foreach ( $this->getCategoryLinksIterator( $dbr, array_keys( $pages ), __METHOD__ ) as $row ) {
+			foreach ( $this->getCategoryLinksIterator( $dbrLinks, array_keys( $pages ), __METHOD__ ) as $row ) {
 				$this->categoriesRdf->writeCategoryLinkData( $pages[$row->cl_from], $row->lt_title );
 			}
 			fwrite( $output, $this->rdfWriter->drain() );
