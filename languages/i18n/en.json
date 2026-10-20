@@ -365,6 +365,8 @@
 	"createacct-loggedin": "You are already logged in as {{GENDER:$1|$1}}.",
 	"createacct-loggedin-continue-as": "Continue as {{GENDER:$1|$1}}",
 	"createacct-loggedin-heading": "Create another account",
+	"createacct-ipblocked-text": "This IP address has been blocked from creating an account on {{SITENAME}}. This does not affect your ability to read {{SITENAME}} pages or log in to an already existing account.",
+	"createacct-ipblocked-details": "Most people who see this message have done nothing wrong. [$1 Find out more] about this block and how you can ask for assistance to have it removed.",
 	"createacct-permerror-login": "Log in to another account",
 	"createacct-permerror-return": "Continue without an account",
 	"createacct-emailrequired": "Email address",
