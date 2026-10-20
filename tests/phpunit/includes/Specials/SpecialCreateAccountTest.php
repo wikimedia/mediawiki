@@ -59,6 +59,37 @@ class SpecialCreateAccountTest extends SpecialPageTestBase {
 		$this->fail( 'ErrorPageError exception was not thrown' );
 	}
 
+	/** @dataProvider provideCheckPermissionsWhenIpBlocked */
+	public function testCheckPermissionsWhenIpBlocked( bool $createAccount, bool $expectError ): void {
+		$this->setGroupPermissions( '*', 'createaccount', true );
+		$this->getServiceContainer()->getDatabaseBlockStore()
+			->insertBlockWithParams( [
+				'address' => RequestContext::getMain()->getRequest()->getIP(),
+				'by' => $this->getTestSysop()->getUser(),
+				'expiry' => 'infinity',
+				'createAccount' => $createAccount,
+			] );
+		$testLogger = new TestLogger( true, null, true );
+		$this->setLogger( 'authevents', $testLogger );
+
+		$specialPage = $this->newSpecialPage();
+		try {
+			$specialPage->checkPermissions();
+		} catch ( ErrorPageError ) {
+			$this->assertTrue( $expectError, 'ErrorPageError exception was thrown' );
+			$this->assertEquals( 'blockedtext', $testLogger->getBuffer()[0][2]['status'] );
+			return;
+		}
+		$this->assertFalse( $expectError, 'ErrorPageError exception was not thrown' );
+	}
+
+	public static function provideCheckPermissionsWhenIpBlocked(): array {
+		return [
+			'Block prevents account creation' => [ true, true ],
+			'Block allows account creation' => [ false, false ],
+		];
+	}
+
 	/**
 	 * Regression test for T360717 -- missing hidden fields from Special:CreateAccount
 	 */
