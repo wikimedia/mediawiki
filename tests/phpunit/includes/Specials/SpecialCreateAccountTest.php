@@ -97,9 +97,83 @@ class SpecialCreateAccountTest extends SpecialPageTestBase {
 			] );
 	}
 
-	public function testExecuteShowsErrorPageWithButtons(): void {
+	public function testExecuteShowsBlockedPageWhenIpBlocked(): void {
 		$this->setUserLang( 'qqx' );
 		$this->blockCurrentIpFromAccountCreation( [ 'returnto' => 'Some page', 'returntoquery' => 'foo=bar' ] );
+
+		$specialPage = $this->newSpecialPage();
+		$specialPage->execute( null );
+		$output = $specialPage->getOutput();
+		$html = $output->getHTML();
+		$doc = DOMUtils::parseHTML( $html );
+
+		$this->assertNull( DOMCompat::querySelector( $doc, 'form' ) );
+		$this->assertNotNull( DOMCompat::querySelector( $doc, '.mw-createaccount-ipblocked' ) );
+		$this->assertStringContainsString( '(createacct-ipblocked-text)', $html );
+		$this->assertStringNotContainsString( '(blockedtext', $html );
+
+		$links = $this->assertActionButtons( $html );
+		$this->assertStringContainsString( 'returnto=Some+page', $links[0]->getAttribute( 'href' ) );
+		$this->assertStringContainsString( 'Some_page', $links[1]->getAttribute( 'href' ) );
+		$this->assertStringContainsString( 'foo=bar', $links[1]->getAttribute( 'href' ) );
+
+		$this->assertStringContainsString( '(createacct-ipblocked-details: ', $html );
+		$this->assertStringContainsString( 'blockdetails=1', $html );
+	}
+
+	/** @dataProvider provideBlockTargets */
+	public function testExecuteShowsBlockedPageOnlyForIpBlocks(
+		array $targets, bool $expectBlockedPage
+	): void {
+		$this->setGroupPermissions( '*', 'createaccount', true );
+		RequestContext::getMain()->setRequest( new FauxRequest() );
+		$user = $this->getTestUser()->getUser();
+		if ( in_array( 'user', $targets, true ) ) {
+			RequestContext::getMain()->setUser( $user );
+		}
+		$this->setUserLang( 'qqx' );
+		$blockStore = $this->getServiceContainer()->getDatabaseBlockStore();
+		foreach ( $targets as $target ) {
+			$block = $blockStore->insertBlockWithParams( [
+				'address' => $target === 'autoblock' ? $this->getTestUser( 'other' )->getUser()->getName() :
+					( $target === 'user' ? $user->getName() : $target ),
+				'by' => $this->getTestSysop()->getUser(),
+				'expiry' => 'infinity',
+				'createAccount' => true,
+				'enableAutoblock' => $target === 'autoblock',
+			] );
+			if ( $target === 'autoblock' ) {
+				$blockStore->doAutoblock( $block, '127.0.0.1' );
+			}
+		}
+
+		$specialPage = $this->newSpecialPage();
+		$specialPage->execute( null );
+		$html = $specialPage->getOutput()->getHTML();
+		if ( $expectBlockedPage ) {
+			$this->assertStringContainsString( '(createacct-ipblocked-text)', $html );
+		} else {
+			$this->assertStringNotContainsString( '(createacct-ipblocked-text)', $html );
+			$this->assertStringContainsString( '(blockedtext', $html );
+		}
+		$this->assertActionButtons( $html );
+	}
+
+	public static function provideBlockTargets(): array {
+		return [
+			'IP block' => [ [ '127.0.0.1' ], true ],
+			'IP range block' => [ [ '127.0.0.0/24' ], true ],
+			'Autoblock' => [ [ 'autoblock' ], true ],
+			'User block' => [ [ 'user' ], false ],
+			'User block and IP block' => [ [ 'user', '127.0.0.1' ], false ],
+		];
+	}
+
+	public function testExecuteShowsErrorPageWithButtons(): void {
+		$this->setUserLang( 'qqx' );
+		$this->blockCurrentIpFromAccountCreation( [
+			'returnto' => 'Some page', 'returntoquery' => 'foo=bar', 'blockdetails' => '1'
+		] );
 
 		$specialPage = $this->newSpecialPage();
 		$specialPage->execute( null );
@@ -109,6 +183,7 @@ class SpecialCreateAccountTest extends SpecialPageTestBase {
 		$this->assertSame( '(createacct-error)', $output->getPageTitle() );
 		$this->assertNull( DOMCompat::querySelector( DOMUtils::parseHTML( $html ), 'form' ) );
 		$this->assertStringContainsString( '(blockedtext', $html );
+		$this->assertStringNotContainsString( '(createacct-ipblocked-text)', $html );
 		$this->assertStringNotContainsString( 'mw-returnto', $html );
 
 		$links = $this->assertActionButtons( $html );

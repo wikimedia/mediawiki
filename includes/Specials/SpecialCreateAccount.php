@@ -7,10 +7,12 @@
 namespace MediaWiki\Specials;
 
 use MediaWiki\Auth\AuthManager;
+use MediaWiki\Block\Block;
 use MediaWiki\Exception\ErrorPageError;
 use MediaWiki\Html\Html;
 use MediaWiki\Language\FormatterFactory;
 use MediaWiki\Logger\LoggerFactory;
+use MediaWiki\Permissions\PermissionStatus;
 use MediaWiki\SpecialPage\LoginSignupSpecialPage;
 use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Title\Title;
@@ -73,6 +75,14 @@ class SpecialCreateAccount extends LoginSignupSpecialPage {
 	/** @inheritDoc */
 	protected function checkPermissionsOrShowError(): bool {
 		$status = $this->authorizeAccountCreation();
+		if (
+			$status instanceof PermissionStatus &&
+			$this->isBlockedOnlyByIp( $status ) &&
+			!$this->getRequest()->getBool( 'blockdetails' )
+		) {
+			$this->showIpBlockedPage();
+			return false;
+		}
 		if ( !$status->isGood() ) {
 			$this->showPermissionErrorPage( $status );
 			return false;
@@ -271,6 +281,27 @@ class SpecialCreateAccount extends LoginSignupSpecialPage {
 	}
 
 	/**
+	 * Check if all blocks that prevent account creation target an IP address or an IP range,
+	 * including autoblocks (which also target IPs).
+	 */
+	private function isBlockedOnlyByIp( PermissionStatus $status ): bool {
+		$block = $status->getBlock();
+		if ( !$block ) {
+			return false;
+		}
+		foreach ( $block->toArray() as $originalBlock ) {
+			if ( !in_array(
+				$originalBlock->getType(),
+				[ Block::TYPE_IP, Block::TYPE_RANGE, Block::TYPE_AUTO ],
+				true
+			) ) {
+				return false;
+			}
+		}
+		return true;
+	}
+
+	/**
 	 * Show the full error message. This is the same as the page for {@see ErrorPageError},
 	 * but it has buttons instead of the "Return to" link.
 	 */
@@ -283,6 +314,25 @@ class SpecialCreateAccount extends LoginSignupSpecialPage {
 		$out->setPageTitleMsg( $this->msg( 'createacct-error' ) );
 		$out->addJsConfigVars( 'wgErrorPageMessageKey', $message->getKey() );
 		$out->addHTML( $message->parseAsBlock() . $this->getPermissionErrorActionButtonsHtml() );
+	}
+
+	/**
+	 * Show a short explanation instead of the form when the user cannot create an
+	 * account because of an IP block. A link opens the page with the full block message.
+	 */
+	private function showIpBlockedPage(): void {
+		$detailsUrl = $this->getPageTitle()->getFullURL(
+			[ 'blockdetails' => 1 ] + $this->getPreservedParams()
+		);
+
+		$out = $this->getOutput();
+		$out->prepareErrorPage();
+		$out->setPageTitleMsg( $this->msg( 'createaccount' ) );
+		$out->addHTML( Html::rawElement( 'div', [ 'class' => 'mw-createaccount-ipblocked' ],
+			$this->msg( 'createacct-ipblocked-text' )->parseAsBlock() .
+			$this->getPermissionErrorActionButtonsHtml() .
+			$this->msg( 'createacct-ipblocked-details' )->params( $detailsUrl )->parseAsBlock()
+		) );
 	}
 
 	/**
