@@ -175,7 +175,7 @@
 	"cactions": "Lagi",
 	"tool-link-userrights": "Tukar kumpulan {{GENDER:$1|pengguna}}",
 	"tool-link-userrights-readonly": "Lihat kumpulan {{GENDER:$1|pengguna}}",
-	"tool-link-emailuser": "Email {{GENDER:$1|pengguna}} ini",
+	"tool-link-emailuser": "E-mel {{GENDER:$1|pengguna}} ini",
 	"imagepage": "Lihat laman fail",
 	"mediawikipage": "Lihat laman pesanan",
 	"templatepage": "Lihat laman templat",
