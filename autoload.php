@@ -3948,7 +3948,6 @@ $wgAutoloadLocalClasses = [
 	'PreferencesFormOOUI' => __DIR__ . '/includes/Specials/Forms/PreferencesFormOOUI.php',
 	'Preprocessor' => __DIR__ . '/includes/Parser/Preprocessor.php',
 	'Preprocessor_Hash' => __DIR__ . '/includes/Parser/Preprocessor_Hash.php',
-	'PrewarmParsoidParserCache' => __DIR__ . '/maintenance/prewarmParsoidParserCache.php',
 	'Processor' => __DIR__ . '/includes/Registration/Processor.php',
 	'Profiler' => __DIR__ . '/includes/Profiler/Profiler.php',
 	'ProfilerExcimer' => __DIR__ . '/includes/Profiler/ProfilerExcimer.php',

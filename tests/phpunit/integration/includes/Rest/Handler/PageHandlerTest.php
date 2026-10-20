@@ -46,8 +46,6 @@ class PageHandlerTest extends MediaWikiIntegrationTestCase {
 
 	private function newHandler(): PageHandler {
 		// ParserOutputAccess has a localCache which can return stale content.
-		// Resetting ensures that ParsoidCachePrewarmJob gets a fresh copy
-		// of ParserOutputAccess without these problems!
 		$this->resetServices();
 
 		return $this->newPageHandler();
