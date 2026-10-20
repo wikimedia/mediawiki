@@ -21,7 +21,7 @@ class SpecialUnlinkAccounts extends AuthManagerSpecialPage {
 	private SessionManager $sessionManager;
 
 	public function __construct( AuthManager $authManager, SessionManager $sessionManager ) {
-		parent::__construct( 'UnlinkAccounts' );
+		parent::__construct( 'UnlinkAccounts', 'editmyprivateinfo' );
 		$this->setAuthManager( $authManager );
 		$this->sessionManager = $sessionManager;
 	}
@@ -62,6 +62,7 @@ class SpecialUnlinkAccounts extends AuthManagerSpecialPage {
 	/** @inheritDoc */
 	public function execute( $subPage ) {
 		$this->setHeaders();
+		$this->checkPermissions();
 		$this->loadAuth( $subPage );
 
 		if ( !$this->isActionAllowed( $this->authAction ) ) {

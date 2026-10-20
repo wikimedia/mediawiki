@@ -65,6 +65,7 @@ class SpecialChangeCredentials extends AuthManagerSpecialPage {
 	/** @inheritDoc */
 	public function execute( $subPage ) {
 		$this->setHeaders();
+		$this->checkPermissions();
 		$this->outputHeader();
 
 		$this->loadAuth( $subPage );
