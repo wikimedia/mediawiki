@@ -7,6 +7,7 @@ use MediaWiki\Auth\AuthenticationRequest;
 use MediaWiki\Auth\AuthenticationResponse;
 use MediaWiki\Auth\AuthManager;
 use MediaWiki\Exception\ErrorPageError;
+use MediaWiki\Exception\PermissionsError;
 use MediaWiki\HTMLForm\HTMLForm;
 use MediaWiki\MainConfigNames;
 use MediaWiki\SpecialPage\AuthManagerSpecialPage;
@@ -54,9 +55,11 @@ class SpecialLinkAccounts extends AuthManagerSpecialPage {
 	/**
 	 * @param null|string $subPage
 	 * @throws ErrorPageError
+	 * @throws PermissionsError
 	 */
 	public function execute( $subPage ) {
 		$this->setHeaders();
+		$this->checkPermissions();
 		$this->loadAuth( $subPage );
 
 		if ( !$this->isActionAllowed( $this->authAction ) ) {
