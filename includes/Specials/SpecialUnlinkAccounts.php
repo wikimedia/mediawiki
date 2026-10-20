@@ -63,6 +63,7 @@ class SpecialUnlinkAccounts extends AuthManagerSpecialPage {
 	/** @inheritDoc */
 	public function execute( $subPage ) {
 		$this->setHeaders();
+		$this->checkPermissions();
 		$this->loadAuth( $subPage );
 
 		if ( !$this->isActionAllowed( $this->authAction ) ) {
