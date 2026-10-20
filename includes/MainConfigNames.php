@@ -702,12 +702,6 @@ class MainConfigNames {
 	public const MaxAnimatedWebPArea = 'MaxAnimatedWebPArea';
 
 	/**
-	 * Name constant for the WebPThumbnailType setting, for use with Config::get()
-	 * @see MainConfigSchema::WebPThumbnailType
-	 */
-	public const WebPThumbnailType = 'WebPThumbnailType';
-
-	/**
 	 * Name constant for the TiffThumbnailType setting, for use with Config::get()
 	 * @see MainConfigSchema::TiffThumbnailType
 	 */

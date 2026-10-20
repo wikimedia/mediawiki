@@ -37,7 +37,8 @@ For notes on 1.47.x and older releases, see HISTORY.
 * …
 
 ==== Removed configuration ====
-
+* $wgWebPThumbnailType has been removed. WebP images are served as WebP
+  thumbnails unconditionally.
 * …
 
 === New user-facing features in 1.48 ===

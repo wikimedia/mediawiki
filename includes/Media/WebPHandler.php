@@ -375,12 +375,6 @@ class WebPHandler extends BitmapHandler {
 	/** @inheritDoc */
 	public function canAnimateThumbnail( $file ) {
 		$mainConfig = MediaWikiServices::getInstance()->getMainConfig();
-		[ $thumbExt ] = $mainConfig->get( MainConfigNames::WebPThumbnailType );
-		if ( $thumbExt !== 'webp' ) {
-			// Non-WebP thumbnail output can't be animated.
-			return false;
-		}
-
 		$maxAnimatedWebPArea = $mainConfig->get( MainConfigNames::MaxAnimatedWebPArea );
 
 		return $this->getImageArea( $file ) <= $maxAnimatedWebPArea;
@@ -388,8 +382,7 @@ class WebPHandler extends BitmapHandler {
 
 	/** @inheritDoc */
 	public function getThumbType( $ext, $mime, $params = null ) {
-		return MediaWikiServices::getInstance()->getMainConfig()
-			->get( MainConfigNames::WebPThumbnailType );
+		return [ 'webp', 'image/webp' ];
 	}
 
 	/** @inheritDoc */

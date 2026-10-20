@@ -248,10 +248,6 @@ return [
 			'MaxImageArea' => 12500000,
 			'MaxAnimatedGifArea' => 12500000,
 			'MaxAnimatedWebPArea' => 12500000,
-			'WebPThumbnailType' => [
-				'webp',
-				'image/webp',
-			],
 			'TiffThumbnailType' => [
 			],
 			'ThumbnailEpoch' => '20030516000000',
@@ -2871,7 +2867,6 @@ return [
 				'integer',
 				'boolean',
 			],
-			'WebPThumbnailType' => 'array',
 			'TiffThumbnailType' => 'array',
 			'GenerateThumbnailOnParse' => 'boolean',
 			'EnableAutoRotation' => [
@@ -3335,7 +3330,6 @@ return [
 			'SiteLookup' => 'object',
 		],
 		'mergeStrategy' => [
-			'WebPThumbnailType' => 'replace',
 			'TiffThumbnailType' => 'replace',
 			'LBFactoryConf' => 'replace',
 			'InterwikiCache' => 'replace',

@@ -687,12 +687,6 @@ $wgMaxAnimatedGifArea = null;
 $wgMaxAnimatedWebPArea = null;
 
 /**
- * Config variable stub for the WebPThumbnailType setting, for use by phpdoc and IDEs.
- * @see MediaWiki\MainConfigSchema::WebPThumbnailType
- */
-$wgWebPThumbnailType = null;
-
-/**
  * Config variable stub for the TiffThumbnailType setting, for use by phpdoc and IDEs.
  * @see MediaWiki\MainConfigSchema::TiffThumbnailType
  */

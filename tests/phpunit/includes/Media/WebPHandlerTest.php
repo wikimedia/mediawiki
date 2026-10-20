@@ -377,8 +377,7 @@ class WebPHandlerTest extends MediaWikiMediaTestCase {
 	 * @dataProvider provideTestCanAnimateThumbnail
 	 * @covers \MediaWiki\Media\WebPHandler::canAnimateThumbnail
 	 */
-	public function testCanAnimateThumbnail( $webpThumbnailType, $maxAnimatedWebPArea, $expected ) {
-		$this->overrideConfigValue( MainConfigNames::WebPThumbnailType, $webpThumbnailType );
+	public function testCanAnimateThumbnail( $maxAnimatedWebPArea, $expected ) {
 		$this->overrideConfigValue( MainConfigNames::MaxAnimatedWebPArea, $maxAnimatedWebPArea );
 		// webp_animated.webp is 300x225 with 100 frames, so its image area is 6,750,000
 		$file = $this->dataFile( 'webp_animated.webp', 'image/webp' );
@@ -388,27 +387,8 @@ class WebPHandlerTest extends MediaWikiMediaTestCase {
 
 	public static function provideTestCanAnimateThumbnail() {
 		return [
-			'webp output, under area limit' => [ [ 'webp', 'image/webp' ], 12_500_000, true ],
-			'webp output, over area limit' => [ [ 'webp', 'image/webp' ], 1_000_000, false ],
-			'png output, under area limit' => [ [ 'png', 'image/png' ], 12_500_000, false ],
-			'png output, over area limit' => [ [ 'png', 'image/png' ], 1_000_000, false ],
-		];
-	}
-
-	/**
-	 * @dataProvider provideTestGetThumbType
-	 * @covers \MediaWiki\Media\WebPHandler::getThumbType
-	 */
-	public function testGetThumbType( $webpThumbnailType ) {
-		$this->overrideConfigValue( MainConfigNames::WebPThumbnailType, $webpThumbnailType );
-		$handler = new WebPHandler();
-		$this->assertSame( $webpThumbnailType, $handler->getThumbType( 'webp', 'image/webp' ) );
-	}
-
-	public static function provideTestGetThumbType() {
-		return [
-			'webp' => [ [ 'webp', 'image/webp' ] ],
-			'png' => [ [ 'png', 'image/png' ] ],
+			'under area limit' => [ 12_500_000, true ],
+			'over area limit' => [ 1_000_000, false ],
 		];
 	}
 }
