@@ -142,8 +142,11 @@ class ArticleViewTest extends MediaWikiIntegrationTestCase {
 		$article = new Article( $page->getTitle(), 0 );
 		$article->getContext()->getOutput()->setTitle( $page->getTitle() );
 
-		$cache = $this->getServiceContainer()->getParserCache();
-		$cache->save( $po, $page, $article->getParserOptions() );
+		$parserOptions = $article->getParserOptions();
+
+		$parserOutputAccess = $this->getServiceContainer()->getParserOutputAccess();
+		$cache = $parserOutputAccess->getPrimaryCache( $parserOptions );
+		$cache->save( $po, $page, $parserOptions );
 
 		$article->view();
 
