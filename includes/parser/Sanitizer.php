@@ -728,7 +728,7 @@ class Sanitizer {
 				| image\s*\(
 				| image-set\s*\(
 				| attr\s*\([^)]+[\s,]+url
-			!ix', $value ) ) {
+			!ix', $value ) || preg_last_error() !== PREG_NO_ERROR ) {
 			return '/* insecure input */';
 		}
 		return $value;
