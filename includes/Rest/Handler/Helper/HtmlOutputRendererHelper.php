@@ -394,6 +394,7 @@ class HtmlOutputRendererHelper implements HtmlOutputHelper {
 			$this->setFlavor( $parameters['flavor'] ?? 'view' );
 		}
 		$this->parserOptions ??= ParserOptions::newFromAnon();
+		$this->parserOptions->setUseParsoid();
 	}
 
 	/**
@@ -949,10 +950,6 @@ class HtmlOutputRendererHelper implements HtmlOutputHelper {
 			}
 		}
 
-		$contentModel = $revision->getMainContentModel();
-		if ( $this->parsoidSiteConfig->supportsContentModel( $contentModel ) ) {
-			$this->parserOptions->setUseParsoid();
-		}
 		if ( $this->isCacheable ) {
 			// phan can't tell that we must have used the block above to
 			// resolve $pageRecord to a PageRecord if we've made it to this block.
