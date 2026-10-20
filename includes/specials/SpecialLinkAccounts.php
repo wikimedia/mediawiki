@@ -10,6 +10,7 @@ use MediaWiki\Auth\AuthManager;
 use MediaWiki\HTMLForm\HTMLForm;
 use MediaWiki\MainConfigNames;
 use MediaWiki\SpecialPage\AuthManagerSpecialPage;
+use PermissionsError;
 use StatusValue;
 
 /**
@@ -30,7 +31,7 @@ class SpecialLinkAccounts extends AuthManagerSpecialPage {
 	 * @param AuthManager $authManager
 	 */
 	public function __construct( AuthManager $authManager ) {
-		parent::__construct( 'LinkAccounts' );
+		parent::__construct( 'LinkAccounts', 'editmyprivateinfo' );
 		$this->setAuthManager( $authManager );
 	}
 
@@ -54,9 +55,11 @@ class SpecialLinkAccounts extends AuthManagerSpecialPage {
 	/**
 	 * @param null|string $subPage
 	 * @throws ErrorPageError
+	 * @throws PermissionsError
 	 */
 	public function execute( $subPage ) {
 		$this->setHeaders();
+		$this->checkPermissions();
 		$this->loadAuth( $subPage );
 
 		if ( !$this->isActionAllowed( $this->authAction ) ) {
