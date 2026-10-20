@@ -5,6 +5,7 @@ namespace MediaWiki\Tests\Specials;
 use MediaWiki\Context\DerivativeContext;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\Exception\PermissionsError;
+use MediaWiki\MainConfigNames;
 use MediaWiki\Request\FauxRequest;
 use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Tests\ChangeTags\RestrictedTagTestTrait;
@@ -121,6 +122,33 @@ class SpecialUndeleteTest extends SpecialPageTestBase {
 		$this->assertStringContainsString( 'deleted page content', $html );
 		// The footer must not show the deleted revision as the last edit
 		$this->assertNull( $context->getOutput()->getMetadata()->getRevisionTimestamp() );
+	}
+
+	/**
+	 * Regression test for T441347: Parsoid could not look up the archived
+	 * revision by ID, so the preview was silently dropped.
+	 */
+	public function testPreviewRendersDeletedRevisionWithParsoid(): void {
+		$this->overrideConfigValue( MainConfigNames::UseParsoidParser, true );
+		$this->setGroupPermissions( [ '*' => [ 'read' => true, 'deletedtext' => true, 'deletedhistory' => true ] ] );
+
+		$title = $this->getNonexistingTestPage()->getTitle();
+		$user = $this->getTestUser()->getUser();
+		$revRecord = $this->editPage( $title, "'''deleted bold'''", '', NS_MAIN, $user )->getNewRevision();
+		$this->deletePage( $title );
+
+		$request = new FauxRequest( [
+			'target' => $title->getPrefixedText(),
+			'timestamp' => $revRecord->getTimestamp(),
+			'preview' => '1',
+			'wpEditToken' => $user->getEditToken(),
+		], true );
+
+		[ $html ] = $this->executeSpecialPage( '', $request, 'qqx', $user );
+
+		// The source textarea holds escaped wikitext; only the rendered preview has a <b> element
+		$this->assertMatchesRegularExpression( '/<b[^>]*>deleted bold<\/b>/', $html );
+		$this->assertStringContainsString( 'data-mw-parsoid-version', $html );
 	}
 
 	public static function provideShowDiff(): array {
