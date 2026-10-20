@@ -66,7 +66,7 @@ class SpecialCreateAccount extends LoginSignupSpecialPage {
 
 		$status = $this->mPosted ?
 			$authManager->authorizeCreateAccount( $performer ) :
-			$authManager->probablyCanCreateAccount( $performer );
+			$authManager->definitelyCanCreateAccount( $performer );
 
 		if ( !$status->isGood() ) {
 			$formatter = $this->formatterFactory->getStatusFormatter( $this->getContext() );

@@ -1352,8 +1352,8 @@ class AuthManager implements LoggerAwareInterface {
 	 * Check whether $creator can create accounts.
 	 *
 	 * @note this method does not guarantee full permissions check, so it should only
-	 * be used to to decide whether to show a form. To authorize the account creation
-	 * action use {@link self::authorizeCreateAccount} instead.
+	 * be used to decide whether to e.g., show links to the signup page. To authorize
+	 * the account creation action use {@link self::authorizeCreateAccount} instead.
 	 *
 	 * @since 1.39
 	 * @param Authority $creator
@@ -1373,11 +1373,36 @@ class AuthManager implements LoggerAwareInterface {
 	}
 
 	/**
+	 * Check whether $creator can create accounts, including blocks.
+	 *
+	 * @note this method uses replica data and does not count against rate limits,
+	 * so it can be used to decide whether to show a form. To authorize the account
+	 * creation action use {@link self::authorizeCreateAccount} instead.
+	 *
+	 * @since 1.48
+	 * @param Authority $creator
+	 * @return StatusValue
+	 */
+	public function definitelyCanCreateAccount( Authority $creator ): StatusValue {
+		return $this->authorizeInternal(
+			static function (
+				string $action,
+				PageIdentity $target,
+				PermissionStatus $status
+			) use ( $creator ) {
+				return $creator->definitelyCan( $action, $target, $status );
+			},
+			'createaccount'
+		);
+	}
+
+	/**
 	 * Authorize the account creation by $creator
 	 *
 	 * @note this method should be used right before the account is created.
 	 * To check whether a current performer has the potential to create accounts,
-	 * use {@link self::probablyCanCreateAccount} instead.
+	 * use {@link self::probablyCanCreateAccount} or
+	 * {@link self::definitelyCanCreateAccount} instead.
 	 *
 	 * @since 1.39
 	 * @param Authority $creator

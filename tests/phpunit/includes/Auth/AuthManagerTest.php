@@ -2169,6 +2169,40 @@ class AuthManagerTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
+	 * @covers \MediaWiki\Auth\AuthManager::definitelyCanCreateAccount()
+	 */
+	public function testDefinitelyCanCreateAccount() {
+		$this->setGroupPermissions( '*', 'createaccount', true );
+		$this->initializeManager( true );
+		$this->assertEquals(
+			StatusValue::newGood(),
+			$this->manager->definitelyCanCreateAccount( new User )
+		);
+	}
+
+	/**
+	 * @covers \MediaWiki\Auth\AuthManager::definitelyCanCreateAccount()
+	 */
+	public function testDefinitelyCanCreateAccount_ipBlocked() {
+		$this->getServiceContainer()->getDatabaseBlockStore()
+			->insertBlockWithParams( [
+				'address' => RequestContext::getMain()->getRequest()->getIP(),
+				'by' => $this->getTestSysop()->getUser(),
+				'reason' => __METHOD__,
+				'expiry' => 'infinity',
+				'createAccount' => true,
+			] );
+		$this->setGroupPermissions( '*', 'createaccount', true );
+		$this->initializeManager( true );
+
+		$this->assertStatusGood( $this->manager->probablyCanCreateAccount( new User ) );
+		$this->assertStatusError(
+			'blockedtext',
+			$this->manager->definitelyCanCreateAccount( new User )
+		);
+	}
+
+	/**
 	 * @covers \MediaWiki\Auth\AuthManager::authorizeCreateAccount()
 	 */
 	public function testAuthorizeCreateAccount_anon() {
