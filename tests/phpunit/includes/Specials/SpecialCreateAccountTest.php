@@ -16,6 +16,7 @@ use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Specials\SpecialCreateAccount;
 use TestLogger;
 use Wikimedia\Parsoid\DOM\Document;
+use Wikimedia\Parsoid\DOM\Element;
 use Wikimedia\Parsoid\Utils\DOMCompat;
 use Wikimedia\Parsoid\Utils\DOMUtils;
 
@@ -81,6 +82,61 @@ class SpecialCreateAccountTest extends SpecialPageTestBase {
 			return;
 		}
 		$this->assertFalse( $expectError, 'ErrorPageError exception was not thrown' );
+	}
+
+	private function blockCurrentIpFromAccountCreation( array $query = [] ): void {
+		$this->setGroupPermissions( '*', 'createaccount', true );
+		$request = new FauxRequest( $query );
+		RequestContext::getMain()->setRequest( $request );
+		$this->getServiceContainer()->getDatabaseBlockStore()
+			->insertBlockWithParams( [
+				'address' => $request->getIP(),
+				'by' => $this->getTestSysop()->getUser(),
+				'expiry' => 'infinity',
+				'createAccount' => true,
+			] );
+	}
+
+	public function testExecuteShowsErrorPageWithButtons(): void {
+		$this->setUserLang( 'qqx' );
+		$this->blockCurrentIpFromAccountCreation( [ 'returnto' => 'Some page', 'returntoquery' => 'foo=bar' ] );
+
+		$specialPage = $this->newSpecialPage();
+		$specialPage->execute( null );
+		$output = $specialPage->getOutput();
+		$html = $output->getHTML();
+
+		$this->assertSame( '(createacct-error)', $output->getPageTitle() );
+		$this->assertNull( DOMCompat::querySelector( DOMUtils::parseHTML( $html ), 'form' ) );
+		$this->assertStringContainsString( '(blockedtext', $html );
+		$this->assertStringNotContainsString( 'mw-returnto', $html );
+
+		$links = $this->assertActionButtons( $html );
+		$this->assertStringContainsString( 'returnto=Some+page', $links[0]->getAttribute( 'href' ) );
+		$this->assertStringContainsString( 'Some_page', $links[1]->getAttribute( 'href' ) );
+		$this->assertStringContainsString( 'foo=bar', $links[1]->getAttribute( 'href' ) );
+	}
+
+	/**
+	 * Check that the page has the "Log in" and "Continue" buttons. Expects the qqx language.
+	 *
+	 * @param string $html
+	 * @return Element[] The links of the buttons
+	 */
+	private function assertActionButtons( string $html ): array {
+		$links = DOMCompat::querySelectorAll(
+			DOMUtils::parseHTML( $html ), '.mw-createaccount-permissionerror-actions a'
+		);
+		$this->assertCount( 2, $links );
+
+		$this->assertSame( '(createacct-permerror-login)', $links[0]->textContent );
+		$this->assertStringContainsString( 'Special:UserLogin', $links[0]->getAttribute( 'href' ) );
+		$this->assertStringContainsString( 'cdx-button--action-progressive', $links[0]->getAttribute( 'class' ) );
+
+		$this->assertSame( '(createacct-permerror-return)', $links[1]->textContent );
+		$this->assertStringNotContainsString( 'cdx-button--action-progressive', $links[1]->getAttribute( 'class' ) );
+
+		return $links;
 	}
 
 	public static function provideCheckPermissionsWhenIpBlocked(): array {

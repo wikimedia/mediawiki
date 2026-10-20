@@ -365,6 +365,8 @@
 	"createacct-loggedin": "You are already logged in as {{GENDER:$1|$1}}.",
 	"createacct-loggedin-continue-as": "Continue as {{GENDER:$1|$1}}",
 	"createacct-loggedin-heading": "Create another account",
+	"createacct-permerror-login": "Log in to another account",
+	"createacct-permerror-return": "Continue without an account",
 	"createacct-emailrequired": "Email address",
 	"createacct-email-ph": "Enter your email address",
 	"createacct-another-email-ph": "Enter email address",

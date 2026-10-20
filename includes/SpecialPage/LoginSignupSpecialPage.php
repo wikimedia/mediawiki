@@ -288,6 +288,19 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 	}
 
 	/**
+	 * Make sure that the user can use this page. Subclasses can override this method
+	 * to show a custom error page instead of an exception.
+	 *
+	 * @stable to override
+	 * @since 1.48
+	 * @return bool False if the method shows an error page and the page must stop
+	 */
+	protected function checkPermissionsOrShowError(): bool {
+		$this->checkPermissions();
+		return true;
+	}
+
+	/**
 	 * @param string|null $subPage
 	 */
 	public function execute( $subPage ) {
@@ -327,7 +340,9 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 		}
 
 		$this->setHeaders();
-		$this->checkPermissions();
+		if ( !$this->checkPermissionsOrShowError() ) {
+			return;
+		}
 
 		// Make sure the system configuration allows log in / sign up
 		if ( !$this->isSignup() && !$authManager->canAuthenticateNow() ) {

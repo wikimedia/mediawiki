@@ -58,7 +58,35 @@ class SpecialCreateAccount extends LoginSignupSpecialPage {
 		return true;
 	}
 
+	/** @inheritDoc */
 	public function checkPermissions() {
+		$status = $this->authorizeAccountCreation();
+		if ( !$status->isGood() ) {
+			$formatter = $this->formatterFactory->getStatusFormatter( $this->getContext() );
+			throw new ErrorPageError(
+				'createacct-error',
+				$formatter->getMessage( $status )
+			);
+		}
+	}
+
+	/** @inheritDoc */
+	protected function checkPermissionsOrShowError(): bool {
+		$status = $this->authorizeAccountCreation();
+		if ( !$status->isGood() ) {
+			$this->showPermissionErrorPage( $status );
+			return false;
+		}
+		return true;
+	}
+
+	/**
+	 * Check if the user can create an account, and log the failure if they cannot.
+	 *
+	 * Depending on whether the form was posted or not, uses {@see AuthManager::authorizeCreateAccount()}
+	 * or {@see AuthManager::definitelyCanCreateAccount()}.
+	 */
+	private function authorizeAccountCreation(): StatusValue {
 		parent::checkPermissions();
 
 		$performer = $this->getAuthority();
@@ -69,7 +97,6 @@ class SpecialCreateAccount extends LoginSignupSpecialPage {
 			$authManager->definitelyCanCreateAccount( $performer );
 
 		if ( !$status->isGood() ) {
-			$formatter = $this->formatterFactory->getStatusFormatter( $this->getContext() );
 			$messages = [];
 			foreach ( $status->getMessages() as $message ) {
 				$messages[] = $message->getKey();
@@ -78,11 +105,8 @@ class SpecialCreateAccount extends LoginSignupSpecialPage {
 				false, $performer->getUser(),
 				implode( '|', $messages )
 			);
-			throw new ErrorPageError(
-				'createacct-error',
-				$formatter->getMessage( $status )
-			);
 		}
+		return $status;
 	}
 
 	/** @inheritDoc */
@@ -244,6 +268,55 @@ class SpecialCreateAccount extends LoginSignupSpecialPage {
 			'accountType' => $this->identityUtils->getShortUserTypeInternal( $performer ),
 			'status' => strval( $status )
 		] + $this->getRequest()->getSecurityLogContext( $performer ) );
+	}
+
+	/**
+	 * Show the full error message. This is the same as the page for {@see ErrorPageError},
+	 * but it has buttons instead of the "Return to" link.
+	 */
+	private function showPermissionErrorPage( StatusValue $status ): void {
+		$message = $this->formatterFactory->getStatusFormatter( $this->getContext() )
+			->getMessage( $status );
+
+		$out = $this->getOutput();
+		$out->prepareErrorPage();
+		$out->setPageTitleMsg( $this->msg( 'createacct-error' ) );
+		$out->addJsConfigVars( 'wgErrorPageMessageKey', $message->getKey() );
+		$out->addHTML( $message->parseAsBlock() . $this->getPermissionErrorActionButtonsHtml() );
+	}
+
+	/**
+	 * Get the buttons to log in or to go back to the previous page. They are shown
+	 * when the user cannot create an account.
+	 */
+	private function getPermissionErrorActionButtonsHtml(): string {
+		$this->getOutput()->addModuleStyles( [
+			'mediawiki.htmlform.codex.styles',
+			'mediawiki.special.userlogin.signup.styles',
+		] );
+		$buttonClasses = 'cdx-button cdx-button--fake-button cdx-button--fake-button--enabled '
+			. 'mw-authentication-popup-link';
+
+		$loginButton = Html::element( 'a',
+			[
+				'class' => $buttonClasses . ' cdx-button--action-progressive cdx-button--weight-primary',
+				'href' => SpecialPage::getTitleFor( 'Userlogin' )
+					->getLocalURL( $this->getPreservedParams( [ 'reset' => true ] ) ),
+			],
+			$this->msg( 'createacct-permerror-login' )->text()
+		);
+		$returnButton = Html::element( 'a',
+			[
+				'class' => $buttonClasses,
+				'href' => ( Title::newFromText( $this->mReturnTo ) ?: Title::newMainPage() )
+					->createFragmentTarget( $this->mReturnToAnchor )->getLinkURL( $this->mReturnToQuery ),
+			],
+			$this->msg( 'createacct-permerror-return' )->text()
+		);
+
+		return Html::rawElement( 'div', [ 'class' => 'mw-createaccount-permissionerror-actions' ],
+			$loginButton . $returnButton
+		);
 	}
 }
 
