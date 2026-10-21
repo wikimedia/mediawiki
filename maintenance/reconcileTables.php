@@ -31,7 +31,7 @@ class ReconcileTables extends Maintenance {
 			true
 		);
 		$this->addOption( 'dry', 'Dry mode' );
-		$this->setBatchSize( 500 );
+		$this->setBatchSize( 200 );
 	}
 
 	public function execute() {
