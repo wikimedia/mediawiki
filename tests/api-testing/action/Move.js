@@ -2,7 +2,7 @@
 
 const { action, assert, utils } = require( 'api-testing' );
 
-// NOTE: There is a corresponding REST endpoint, content/v2-beta/page:move,
+// NOTE: There is a corresponding REST endpoint, content/v2-beta/pages:move,
 //       see REST/content.v2-beta/Move.js for tests.
 describe( 'Move action', () => {
 	const userPage = utils.title( 'MoveWith_' );

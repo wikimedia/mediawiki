@@ -18,6 +18,7 @@ use Wikimedia\Assert\Assert;
  * - /revision/{id}           (prop: source)
  * - /revision/{id}/bare      (prop: none)
  * - /revision/{id}/with_html (prop: html)
+ * - content/v2-beta/revisions/{id} (prop as a query param)
  *
  * This replaces RevisionSourceHandler. RevisionHTMLHandler stays, but is only
  * used for top-level HTML output. The with_html mode is absorbed by
@@ -53,14 +54,12 @@ class RevisionHandler extends PageRevisionContentHandler {
 	}
 
 	private function constructHtmlUrl( RevisionRecord $rev ): string {
-		// TODO: once legacy "v1" routes are removed, just use the path prefix from the module.
-		$pathPrefix = $this->getModule()->getPathPrefix();
-		if ( $pathPrefix === '' ) {
-			$pathPrefix = 'v1';
-		}
+		// The HTML route is this handler's route up to the ID,
+		// e.g. /v1/revision/{id}/bare links to /v1/revision/{id}/html.
+		$path = explode( '{id}', $this->getRoutePath(), 2 )[0] . '{id}/html';
 
 		return $this->getRouter()->getRouteUrl(
-			'/' . $pathPrefix . '/revision/{id}/html',
+			$path,
 			[ 'id' => $rev->getId() ]
 		);
 	}

@@ -10,9 +10,9 @@ const chaiResponseValidator = require( 'chai-openapi-response-validator' ).defau
 let pathPrefix = '/content/v2-beta';
 let specModule = '/content/v2-beta';
 
-// NOTE: This page:move endpoint corresponds to the action=move in the action API,
+// NOTE: This pages:move endpoint corresponds to the action=move in the action API,
 //       see action/Move.js for tests.
-describe( 'POST /page:move', () => {
+describe( 'POST /pages:move', () => {
 	let client, mindy, mindyToken, openApiSpec;
 
 	before( async () => {
@@ -43,7 +43,7 @@ describe( 'POST /page:move', () => {
 				reason: 'tästing the move endpoint'
 			};
 
-			const res = await client.post( `${ pathPrefix }/page:move`, reqBody );
+			const res = await client.post( `${ pathPrefix }/pages:move`, reqBody );
 			const { status: moveStatus, body: moveBody, header: moveHeader } = res;
 
 			assert.equal( moveStatus, 200 );
@@ -85,7 +85,7 @@ describe( 'POST /page:move', () => {
 				reason: 'move by id'
 			};
 
-			const res = await client.post( `${ pathPrefix }/page:move`, reqBody );
+			const res = await client.post( `${ pathPrefix }/pages:move`, reqBody );
 			assert.equal( res.status, 200 );
 			assert.nestedPropertyVal( res.body, 'to', to );
 
@@ -115,7 +115,7 @@ describe( 'POST /page:move', () => {
 				movesubpages: true
 			};
 
-			const res = await client.post( `${ pathPrefix }/page:move`, reqBody );
+			const res = await client.post( `${ pathPrefix }/pages:move`, reqBody );
 			const { status, body } = res;
 
 			assert.equal( status, 200 );
@@ -150,7 +150,7 @@ describe( 'POST /page:move', () => {
 				noredirect: true
 			};
 
-			const res = await client.post( `${ pathPrefix }/page:move`, reqBody );
+			const res = await client.post( `${ pathPrefix }/pages:move`, reqBody );
 			assert.equal( res.status, 200 );
 			// The action API preserves the field as `false` (rather than
 			// omitting it) when no redirect was created.
@@ -175,7 +175,7 @@ describe( 'POST /page:move', () => {
 				reason: 'missing source'
 			};
 
-			const res = await client.post( `${ pathPrefix }/page:move`, reqBody );
+			const res = await client.post( `${ pathPrefix }/pages:move`, reqBody );
 
 			// requireOnlyOneParameter throws 'missingparam' → unmapped → 400
 			assert.equal( res.status, 400 );
@@ -193,7 +193,7 @@ describe( 'POST /page:move', () => {
 				reason: 'missing target'
 			};
 
-			const res = await client.post( `${ pathPrefix }/page:move`, reqBody );
+			const res = await client.post( `${ pathPrefix }/pages:move`, reqBody );
 			assert.equal( res.status, 400 );
 			expect( res.body ).to.satisfySchemaInApiSpec( 'GenericErrorResponseModel' );
 		} );
@@ -212,7 +212,7 @@ describe( 'POST /page:move', () => {
 				reason: 'no token'
 			};
 
-			const res = await client.post( `${ pathPrefix }/page:move`, reqBody );
+			const res = await client.post( `${ pathPrefix }/pages:move`, reqBody );
 
 			// A missing token surfaces as the 'missingparam' Action API error,
 			// which is not in the hardcoded REST status map, so it falls
@@ -235,7 +235,7 @@ describe( 'POST /page:move', () => {
 				reason: 'bad token'
 			};
 
-			const res = await client.post( `${ pathPrefix }/page:move`, reqBody );
+			const res = await client.post( `${ pathPrefix }/pages:move`, reqBody );
 			assert.equal( res.status, 401 );
 			expect( res.body ).to.satisfySchemaInApiSpec( 'GenericErrorResponseModel' );
 		} );
@@ -253,7 +253,7 @@ describe( 'POST /page:move', () => {
 				reason: 'source missing'
 			};
 
-			const res = await client.post( `${ pathPrefix }/page:move`, reqBody );
+			const res = await client.post( `${ pathPrefix }/pages:move`, reqBody );
 
 			// missingtitle → 404 per the hardcoded mapping
 			assert.equal( res.status, 404 );
@@ -270,7 +270,7 @@ describe( 'POST /page:move', () => {
 				reason: 'fromid missing'
 			};
 
-			const res = await client.post( `${ pathPrefix }/page:move`, reqBody );
+			const res = await client.post( `${ pathPrefix }/pages:move`, reqBody );
 
 			// nosuchpageid → 404 per the hardcoded mapping
 			assert.equal( res.status, 404 );
@@ -278,7 +278,7 @@ describe( 'POST /page:move', () => {
 		} );
 	} );
 
-	// The /page:move/{from} route backs the same action=move module as /page:move,
+	// The /pages:move/{from} route backs the same action=move module as /pages:move,
 	// but takes the source title from the path instead of the request body.
 	describe( 'using the {from} path parameter', () => {
 		it( 'should move an existing page identified by the path segment', async () => {
@@ -293,7 +293,7 @@ describe( 'POST /page:move', () => {
 				reason: 'tästing the path-based move endpoint'
 			};
 
-			const res = await client.post( `${ pathPrefix }/page:move/${ from }`, reqBody );
+			const res = await client.post( `${ pathPrefix }/pages:move/${ from }`, reqBody );
 			const { status: moveStatus, body: moveBody, header: moveHeader } = res;
 
 			assert.equal( moveStatus, 200 );
@@ -330,7 +330,7 @@ describe( 'POST /page:move', () => {
 				reason: 'missing target'
 			};
 
-			const res = await client.post( `${ pathPrefix }/page:move/${ from }`, reqBody );
+			const res = await client.post( `${ pathPrefix }/pages:move/${ from }`, reqBody );
 			assert.equal( res.status, 400 );
 			expect( res.body ).to.satisfySchemaInApiSpec( 'GenericErrorResponseModel' );
 		} );
@@ -345,7 +345,7 @@ describe( 'POST /page:move', () => {
 				reason: 'source missing'
 			};
 
-			const res = await client.post( `${ pathPrefix }/page:move/${ from }`, reqBody );
+			const res = await client.post( `${ pathPrefix }/pages:move/${ from }`, reqBody );
 
 			// missingtitle → 404 per the hardcoded mapping
 			assert.equal( res.status, 404 );

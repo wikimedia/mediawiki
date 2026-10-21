@@ -62,13 +62,29 @@ class PageHandlerTest extends MediaWikiIntegrationTestCase {
 		$htmlUrl = 'https://wiki.example.com/rest/mock/page/Talk%3ASourceEndpointTestPage%2Fwith%2Fslashes/html';
 
 		$handler = $this->newHandler();
-		$config = [ 'prop' => [] ];
+		$config = [ 'prop' => [], 'path' => '/page/{title}/bare' ];
 		$data = $this->executeHandlerAndGetBodyData( $handler, $request, $config );
 
 		$this->assertResponseData( $page, $data );
 		$this->assertSame( $htmlUrl, $data['html_url'] );
 		$this->assertArrayNotHasKey( 'source', $data );
 		$this->assertArrayNotHasKey( 'html', $data );
+	}
+
+	public function testHtmlUrlFollowsTheRoute() {
+		$page = $this->getExistingTestPage( 'Talk:SourceEndpointTestPage/with/slashes' );
+		$request = new RequestData(
+			[ 'pathParams' => [ 'title' => $page->getTitle()->getPrefixedText() ] ]
+		);
+
+		$handler = $this->newHandler();
+		$config = [ 'prop' => [], 'path' => '/pages/{title}' ];
+		$data = $this->executeHandlerAndGetBodyData( $handler, $request, $config );
+
+		$this->assertSame(
+			'https://wiki.example.com/rest/mock/pages/Talk%3ASourceEndpointTestPage%2Fwith%2Fslashes/html',
+			$data['html_url']
+		);
 	}
 
 	public function testExecuteSource() {

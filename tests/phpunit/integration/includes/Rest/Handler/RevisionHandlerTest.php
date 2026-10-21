@@ -115,13 +115,31 @@ class RevisionHandlerTest extends MediaWikiIntegrationTestCase {
 		$htmlUrl = "https://wiki.example.com/rest/mock/revision/{$firstRev->getId()}/html";
 
 		$handler = $this->newHandler();
-		$config = [ 'prop' => [] ];
+		$config = [ 'prop' => [], 'path' => '/revision/{id}/bare' ];
 		$data = $this->executeHandlerAndGetBodyData( $handler, $request, $config );
 
 		$this->assertResponseData( $firstRev, $data );
 		$this->assertSame( $htmlUrl, $data['html_url'] );
 		$this->assertArrayNotHasKey( 'source', $data );
 		$this->assertArrayNotHasKey( 'html', $data );
+	}
+
+	public function testHtmlUrlFollowsTheRoute() {
+		[ , $revisions ] = $this->getExistingPageWithRevisions( __METHOD__ );
+
+		$firstRev = $revisions['first'];
+		$request = new RequestData(
+			[ 'pathParams' => [ 'id' => $firstRev->getId() ] ]
+		);
+
+		$handler = $this->newHandler();
+		$config = [ 'prop' => [], 'path' => '/revisions/{id}' ];
+		$data = $this->executeHandlerAndGetBodyData( $handler, $request, $config );
+
+		$this->assertSame(
+			"https://wiki.example.com/rest/mock/revisions/{$firstRev->getId()}/html",
+			$data['html_url']
+		);
 	}
 
 	public function testExecuteSource() {

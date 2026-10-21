@@ -4,7 +4,7 @@
 	"errorSchemaVersion": "2.0",
 	"info": {
 		"version": "1.0.0",
-		"title": "Content API",
+		"title": "Content API (Beta)",
 		"x-i18n-title": "rest-module-content.v2-title",
 		"x-i18n-description": "rest-module-content.v2-desc"
 	},
@@ -13,9 +13,10 @@
 		"url": "https://www.mediawiki.org/wiki/API:REST_API"
 	},
 	"paths": {
-		"/page/{title}": {
+		"/pages/{title}": {
 			"get": {
 				"x-i18n-description": "rest-endpoint-desc-get-page-title",
+				"x-i18n-summary": "rest-endpoint-summ-content.v2-get-page-title",
 				"handler": {
 					"class": "MediaWiki\\Rest\\Handler\\PageHandler",
 					"services": [
@@ -25,9 +26,10 @@
 				}
 			}
 		},
-		"/page/{title}/html": {
+		"/pages/{title}/html": {
 			"get": {
 				"x-i18n-description": "rest-endpoint-desc-get-page-title-html",
+				"x-i18n-summary": "rest-endpoint-summ-content.v2-get-page-title-html",
 				"handler": {
 					"class": "MediaWiki\\Rest\\Handler\\PageHTMLHandler",
 					"services": [
@@ -36,9 +38,10 @@
 				}
 			}
 		},
-		"/revision/{id}": {
+		"/revisions/{id}": {
 			"get": {
 				"x-i18n-description": "rest-endpoint-desc-get-revision-id",
+				"x-i18n-summary": "rest-endpoint-summ-content.v2-get-revision-id",
 				"handler": {
 					"class": "MediaWiki\\Rest\\Handler\\RevisionHandler",
 					"services": [
@@ -47,9 +50,10 @@
 				}
 			}
 		},
-		"/revision/{id}/html": {
+		"/revisions/{id}/html": {
 			"get": {
 				"x-i18n-description": "rest-endpoint-desc-get-revision-id-html",
+				"x-i18n-summary": "rest-endpoint-summ-content.v2-get-revision-id-html",
 				"handler": {
 					"class": "MediaWiki\\Rest\\Handler\\RevisionHTMLHandler",
 					"services": [
@@ -58,9 +62,10 @@
 				}
 			}
 		},
-		"/page:move/{from}": {
+		"/pages:move/{from}": {
 			"post": {
 				"x-i18n-description": "rest-endpoint-desc-post-move-title",
+				"x-i18n-summary": "rest-endpoint-summ-content.v2-post-move-title",
 				"handler": {
 					"adapter": {
 						"type": "action",
@@ -70,9 +75,10 @@
 				}
 			}
 		},
-		"/page:move": {
+		"/pages:move": {
 			"post": {
 				"x-i18n-description": "rest-endpoint-desc-post-move",
+				"x-i18n-summary": "rest-endpoint-summ-content.v2-post-move",
 				"handler": {
 					"adapter": {
 						"type": "action",
@@ -81,9 +87,10 @@
 				}
 			}
 		},
-		"/page/{title}/backlinks": {
+		"/pages/{title}/backlinks": {
 			"get": {
 				"x-i18n-description": "rest-endpoint-desc-get-page-title-backlinks",
+				"x-i18n-summary": "rest-endpoint-summ-content.v2-get-page-title-backlinks",
 				"handler": {
 					"adapter": {
 						"type": "list",

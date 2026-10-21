@@ -79,10 +79,10 @@ describe( 'content/v2-beta Page', () => {
 		chai.use( chaiResponseValidator( openApiSpec ) );
 	} );
 
-	describe( 'GET /page/{title} with prop', () => {
+	describe( 'GET /pages/{title} with prop', () => {
 		it( 'Should return metadata and a link to the HTML when no prop is given', async () => {
 			// This is what /page/{title}/bare returns in v1.
-			const res = await client.get( `${ pathPrefix }/page/${ page }` );
+			const res = await client.get( `${ pathPrefix }/pages/${ page }` );
 			const { status, body, text, headers } = res;
 			assert.deepEqual( status, 200, text );
 			assert.match( headers[ 'content-type' ], /^application\/json/ );
@@ -95,7 +95,7 @@ describe( 'content/v2-beta Page', () => {
 			// The link stays inside this module, it does not point back into v1.
 			assert.match(
 				body.html_url,
-				new RegExp( `${ pathPrefix }/page/${ encodeURIComponent( utils.dbkey( page ) ) }/html$` )
+				new RegExp( `${ pathPrefix }/pages/${ encodeURIComponent( utils.dbkey( page ) ) }/html$` )
 			);
 			// eslint-disable-next-line no-unused-expressions
 			expect( res ).to.satisfyApiSpec;
@@ -103,7 +103,7 @@ describe( 'content/v2-beta Page', () => {
 
 		it( 'Should return page source for prop=source', async () => {
 			// This is what /page/{title} returns in v1.
-			const res = await client.get( `${ pathPrefix }/page/${ page }`, { prop: 'source' } );
+			const res = await client.get( `${ pathPrefix }/pages/${ page }`, { prop: 'source' } );
 			const { status, body, text, headers } = res;
 			assert.deepEqual( status, 200, text );
 			assert.match( headers[ 'content-type' ], /^application\/json/ );
@@ -121,7 +121,7 @@ describe( 'content/v2-beta Page', () => {
 		it( 'Should return page HTML for prop=html', async () => {
 			// This is what /page/{title}/with_html returns in v1. The HTML is
 			// embedded, so no html_url link is emitted alongside it.
-			const res = await client.get( `${ pathPrefix }/page/${ page }`, { prop: 'html' } );
+			const res = await client.get( `${ pathPrefix }/pages/${ page }`, { prop: 'html' } );
 			const { status, body, text, headers } = res;
 			assert.deepEqual( status, 200, text );
 			assert.match( headers[ 'content-type' ], /^application\/json/ );
@@ -136,7 +136,7 @@ describe( 'content/v2-beta Page', () => {
 
 		it( 'Should return both source and HTML for prop=source|html', async () => {
 			// Combining properties has no equivalent among the v1 suffixes.
-			const res = await client.get( `${ pathPrefix }/page/${ page }`, { prop: 'source|html' } );
+			const res = await client.get( `${ pathPrefix }/pages/${ page }`, { prop: 'source|html' } );
 			const { status, body, text, headers } = res;
 			assert.deepEqual( status, 200, text );
 			assert.match( headers[ 'content-type' ], /^application\/json/ );
@@ -150,9 +150,9 @@ describe( 'content/v2-beta Page', () => {
 		} );
 
 		it( 'Should vary the ETag by the requested prop', async () => {
-			const htmlEtag = ( await client.get( `${ pathPrefix }/page/${ page }`, { prop: 'html' } ) )
+			const htmlEtag = ( await client.get( `${ pathPrefix }/pages/${ page }`, { prop: 'html' } ) )
 				.headers.etag;
-			const bothEtag = ( await client.get( `${ pathPrefix }/page/${ page }`, { prop: 'source|html' } ) )
+			const bothEtag = ( await client.get( `${ pathPrefix }/pages/${ page }`, { prop: 'source|html' } ) )
 				.headers.etag;
 
 			assert.isOk( htmlEtag, 'etag' );
@@ -161,7 +161,7 @@ describe( 'content/v2-beta Page', () => {
 
 		it( 'Should return 400 for an unknown prop value', async () => {
 			const { status, body, text } = await client.get(
-				`${ pathPrefix }/page/${ page }`,
+				`${ pathPrefix }/pages/${ page }`,
 				{ prop: 'bogus' }
 			);
 			assert.deepEqual( status, 400, text );
@@ -172,7 +172,7 @@ describe( 'content/v2-beta Page', () => {
 		it( 'Should return 404 error for non-existent page', async () => {
 			const dummyPageTitle = utils.title( 'DummyPage_' );
 			const { status, body } = await client.get(
-				`${ pathPrefix }/page/${ dummyPageTitle }`,
+				`${ pathPrefix }/pages/${ dummyPageTitle }`,
 				{ prop: 'source' }
 			);
 			assert.deepEqual( status, 404 );
@@ -190,13 +190,13 @@ describe( 'content/v2-beta Page', () => {
 		// into a 403 on /v1/page/{title} is a breaking API change.
 		it( 'Should return 404 error for invalid titles', async () => {
 			const badTitle = '::X::';
-			const { status } = await client.get( `${ pathPrefix }/page/${ badTitle }` );
+			const { status } = await client.get( `${ pathPrefix }/pages/${ badTitle }` );
 			assert.deepEqual( status, 404 );
 		} );
 
 		it( 'Should return 404 error for special pages', async () => {
 			const badTitle = 'Special:Blankpage';
-			const { status } = await client.get( `${ pathPrefix }/page/${ badTitle }` );
+			const { status } = await client.get( `${ pathPrefix }/pages/${ badTitle }` );
 			assert.deepEqual( status, 404 );
 		} );
 
@@ -207,7 +207,7 @@ describe( 'content/v2-beta Page', () => {
 			const msg = 'MediaWiki:Newpage-desc';
 			for ( const prop of [ null, 'source', 'html', 'source|html' ] ) {
 				const { status, text } = await client.get(
-					`${ pathPrefix }/page/${ msg }`,
+					`${ pathPrefix }/pages/${ msg }`,
 					prop ? { prop } : null
 				);
 				assert.deepEqual( status, 404, `prop=${ prop }: ${ text }` );
@@ -215,12 +215,12 @@ describe( 'content/v2-beta Page', () => {
 		} );
 
 		it( 'Should have appropriate response headers', async () => {
-			const preEditResponse = await client.get( `${ pathPrefix }/page/${ page }`, { prop: 'source' } );
+			const preEditResponse = await client.get( `${ pathPrefix }/pages/${ page }`, { prop: 'source' } );
 			const preEditDate = new Date( preEditResponse.body.latest.timestamp );
 			const preEditEtag = preEditResponse.headers.etag;
 
 			await mindy.edit( page, { text: "'''Edit 3'''" } );
-			const postEditResponse = await client.get( `${ pathPrefix }/page/${ page }`, { prop: 'source' } );
+			const postEditResponse = await client.get( `${ pathPrefix }/pages/${ page }`, { prop: 'source' } );
 			const postEditDate = new Date( postEditResponse.body.latest.timestamp );
 			const postEditHeaders = postEditResponse.headers;
 			const postEditEtag = postEditResponse.headers.etag;
@@ -237,7 +237,7 @@ describe( 'content/v2-beta Page', () => {
 		it( 'Should perform variant conversion for prop=html', async () => {
 			await mindy.edit( variantPage, { text: '<p>test language conversion</p>' } );
 			const { headers, body } = await client.get(
-				`${ pathPrefix }/page/${ variantPage }`,
+				`${ pathPrefix }/pages/${ variantPage }`,
 				{ prop: 'html' },
 				{ 'accept-language': 'en-x-piglatin' }
 			);
@@ -251,11 +251,11 @@ describe( 'content/v2-beta Page', () => {
 		} );
 	} );
 
-	describe( 'GET /page/{title} with prop and x-restbase-compat', () => {
+	describe( 'GET /pages/{title} with prop and x-restbase-compat', () => {
 		it( 'Should successfully return restbase-compatible revision meta-data', async () => {
 			// Restbase mode overrides the prop selection entirely.
 			const { status, body, text, headers } = await client
-				.get( `${ pathPrefix }/page/${ page }`, { prop: 'source' } )
+				.get( `${ pathPrefix }/pages/${ page }`, { prop: 'source' } )
 				.set( 'x-restbase-compat', 'true' );
 			assert.deepEqual( status, 200, text );
 			assert.match( headers[ 'content-type' ], /^application\/json/ );
@@ -269,18 +269,18 @@ describe( 'content/v2-beta Page', () => {
 		} );
 	} );
 
-	describe( 'GET /page/{title} redirects with prop', () => {
+	describe( 'GET /pages/{title} redirects with prop', () => {
 		it( 'Title normalization should return permanent redirect (301) keeping prop', async () => {
 			const redirectDbKey = utils.dbkey( redirectPage );
 			const { status, text, headers } = await client.get(
-				`${ pathPrefix }/page/${ redirectPage }`,
+				`${ pathPrefix }/pages/${ redirectPage }`,
 				{ prop: 'source' }
 			);
 			const { host, search, pathname } = parseURL( headers.location );
 			assert.include( search, 'prop=source' );
 			assert.notInclude( search, 'redirect=no' );
 			assert.deepEqual( host, '' );
-			assert.include( pathname, `${ pathPrefix }/page/${ redirectDbKey }` );
+			assert.include( pathname, `${ pathPrefix }/pages/${ redirectDbKey }` );
 			assert.deepEqual( status, 301, text );
 		} );
 
@@ -288,7 +288,7 @@ describe( 'content/v2-beta Page', () => {
 			const redirectPageDbkey = utils.dbkey( redirectPage );
 			const redirectedPageDbKey = utils.dbkey( redirectedPage );
 			const res = await client.get(
-				`${ pathPrefix }/page/${ redirectPageDbkey }`,
+				`${ pathPrefix }/pages/${ redirectPageDbkey }`,
 				{ prop: 'source' }
 			);
 			const { status, body: { redirect_target }, text, headers } = res;
@@ -298,7 +298,7 @@ describe( 'content/v2-beta Page', () => {
 			// The target stays on this route and keeps the requested prop, so
 			// following it returns the same representation of the target page.
 			const { pathname, search } = parseURL( redirect_target );
-			assert.deepEqual( pathname.endsWith( `${ pathPrefix }/page/${ encodeURIComponent( redirectedPageDbKey ) }` ), true, pathname );
+			assert.deepEqual( pathname.endsWith( `${ pathPrefix }/pages/${ encodeURIComponent( redirectedPageDbKey ) }` ), true, pathname );
 			assert.include( search, 'prop=source' );
 			assert.include( search, 'redirect=no' );
 			// eslint-disable-next-line no-unused-expressions
@@ -309,13 +309,13 @@ describe( 'content/v2-beta Page', () => {
 			const redirectPageDbkey = utils.dbkey( redirectPage );
 			const redirectedPageDbkey = utils.dbkey( redirectedPage );
 			const { status, text, headers } = await client.get(
-				`${ pathPrefix }/page/${ redirectPageDbkey }`,
+				`${ pathPrefix }/pages/${ redirectPageDbkey }`,
 				{ prop: 'html' }
 			);
 			const { host, pathname, search } = parseURL( headers.location );
 			assert.include( search, 'prop=html' );
 			assert.include( search, 'redirect=no' );
-			assert.include( pathname, `${ pathPrefix }/page/${ redirectedPageDbkey }` );
+			assert.include( pathname, `${ pathPrefix }/pages/${ redirectedPageDbkey }` );
 			assert.deepEqual( host, '' );
 			assert.deepEqual( status, 307, text );
 		} );
@@ -324,20 +324,20 @@ describe( 'content/v2-beta Page', () => {
 			const agepayDbkey = utils.dbkey( agepay );
 			const atinlayAgepayDbkey = utils.dbkey( atinlayAgepay );
 			const { status, text, headers } = await client.get(
-				`${ pathPrefix }/page/${ agepayDbkey }`,
+				`${ pathPrefix }/pages/${ agepayDbkey }`,
 				{ prop: 'html' }
 			);
 			const { host, pathname, search } = parseURL( headers.location );
 			assert.include( search, 'redirect=no' );
 			assert.deepEqual( host, '' );
-			assert.include( pathname, `${ pathPrefix }/page/${ atinlayAgepayDbkey }` );
+			assert.include( pathname, `${ pathPrefix }/pages/${ atinlayAgepayDbkey }` );
 			assert.deepEqual( status, 307, text );
 		} );
 
 		it( 'Should return 404 for a page that only exists as a variant when HTML is not requested', async () => {
 			const agepayDbkey = utils.dbkey( agepay );
 			const { status } = await client.get(
-				`${ pathPrefix }/page/${ agepayDbkey }`,
+				`${ pathPrefix }/pages/${ agepayDbkey }`,
 				{ prop: 'source' }
 			);
 			assert.deepEqual( status, 404 );
@@ -347,13 +347,13 @@ describe( 'content/v2-beta Page', () => {
 			const redirectPageDbkey = utils.dbkey( redirectPage );
 			const redirectedPageDbKey = utils.dbkey( redirectedPage );
 			const res = await client.get(
-				`${ pathPrefix }/page/${ redirectPageDbkey }`,
+				`${ pathPrefix }/pages/${ redirectPageDbkey }`,
 				{ prop: 'html', redirect: 'no' }
 			);
 			const { status, body: { redirect_target, html }, text, headers } = res;
 			assert.deepEqual( status, 200, text );
 			assert.match( headers[ 'content-type' ], /^application\/json/ );
-			assert.match( redirect_target, new RegExp( `/page/${ encodeURIComponent( redirectedPageDbKey ) }` ) );
+			assert.match( redirect_target, new RegExp( `/pages/${ encodeURIComponent( redirectedPageDbKey ) }` ) );
 			assert.match( html, /<html\b/ );
 			// eslint-disable-next-line no-unused-expressions
 			expect( res ).to.satisfyApiSpec;
@@ -362,7 +362,7 @@ describe( 'content/v2-beta Page', () => {
 		it( 'Bypass variant redirects with query param redirect=no', async () => {
 			const agepayDbkey = utils.dbkey( agepay );
 			const { status, headers } = await client.get(
-				`${ pathPrefix }/page/${ agepayDbkey }`,
+				`${ pathPrefix }/pages/${ agepayDbkey }`,
 				{ prop: 'html', redirect: 'no' }
 			);
 			assert.deepEqual( status, 404 );
@@ -371,9 +371,9 @@ describe( 'content/v2-beta Page', () => {
 		} );
 	} );
 
-	describe( 'GET /page/{title}/html', () => {
+	describe( 'GET /pages/{title}/html', () => {
 		it( 'Should successfully return page HTML', async () => {
-			const res = await client.get( `${ pathPrefix }/page/${ page }/html` );
+			const res = await client.get( `${ pathPrefix }/pages/${ page }/html` );
 			const { status, headers, text } = res;
 			assert.deepEqual( status, 200, text );
 			assert.match( headers[ 'content-type' ], /^text\/html/ );
@@ -384,10 +384,10 @@ describe( 'content/v2-beta Page', () => {
 		} );
 
 		it( 'Should ignore prop, which is not a parameter of this route', async () => {
-			// Output selection belongs to /page/{title}; the top-level HTML route
+			// Output selection belongs to /pages/{title}; the top-level HTML route
 			// always returns a bare HTML document.
 			const { status, headers, text } = await client.get(
-				`${ pathPrefix }/page/${ page }/html`,
+				`${ pathPrefix }/pages/${ page }/html`,
 				{ prop: 'source' }
 			);
 			assert.deepEqual( status, 200, text );
@@ -397,7 +397,7 @@ describe( 'content/v2-beta Page', () => {
 
 		it( 'Should return 404 error for non-existent page', async () => {
 			const dummyPageTitle = utils.title( 'DummyPage_' );
-			const { status } = await client.get( `${ pathPrefix }/page/${ dummyPageTitle }/html` );
+			const { status } = await client.get( `${ pathPrefix }/pages/${ dummyPageTitle }/html` );
 			assert.deepEqual( status, 404 );
 		} );
 	} );

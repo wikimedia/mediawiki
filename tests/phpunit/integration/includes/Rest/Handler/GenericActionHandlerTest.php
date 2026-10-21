@@ -10,6 +10,7 @@ use MediaWiki\Api\ApiRestHelper;
 use MediaWiki\Api\ApiRestHybrid;
 use MediaWiki\Api\ApiUsageException;
 use MediaWiki\Api\IApiMessage;
+use MediaWiki\MainConfigNames;
 use MediaWiki\Request\FauxResponse;
 use MediaWiki\Rest\Handler;
 use MediaWiki\Rest\Handler\GenericActionHandler;
@@ -238,9 +239,9 @@ class GenericActionHandlerTest extends MediaWikiIntegrationTestCase {
 			'queryParams' => [
 				'from' => 'SourceOne',
 				'to' => 'Target',
-				// maxlag is an ApiMain param the adapter deliberately allows
+				// smaxage is an ApiMain param the adapter deliberately allows
 				// through; requestid is one it suppresses.
-				'maxlag' => 17,
+				'smaxage' => 17,
 				'requestid' => 'abc',
 			],
 			'parsedBody' => [ 'from' => 'SourceTwo', 'extra' => 123 ],
@@ -260,7 +261,7 @@ class GenericActionHandlerTest extends MediaWikiIntegrationTestCase {
 		$mainParams = $data['MAIN_PARAMETERS'];
 
 		// test filtered parameters
-		$this->assertSame( 17, $mainParams['maxlag'], 'Allowed ApiMain parameter should reach ApiMain' );
+		$this->assertSame( 17, $mainParams['smaxage'], 'Allowed ApiMain parameter should reach ApiMain' );
 		$this->assertNull( $mainParams['requestid'], 'Suppressed ApiMain parameter should be dropped' );
 		$this->assertSame( 'fakeaction', $mainParams['action'] );
 		$this->assertSame( 'json', $mainParams['format'] );
@@ -379,7 +380,7 @@ class GenericActionHandlerTest extends MediaWikiIntegrationTestCase {
 			'parsedBody' => [
 				'to' => 'YY', // should overrid query param
 				'reason' => 'test', // should be set
-				'maxlag' => '123', // allowed ApiMain param, should be passed through
+				'smaxage' => '123', // allowed ApiMain param, should be passed through
 				'requestid' => 'abc', // suppressed ApiMain param, should be stripped
 				'format' => 'xml'   // suppressed; ActionModuleBasedHandler forces 'json'
 			],
@@ -387,7 +388,7 @@ class GenericActionHandlerTest extends MediaWikiIntegrationTestCase {
 
 		$params = $handler->getActionModuleParameters();
 
-		$this->assertSame( '123', $params['maxlag'], 'Allowed ApiMain param should be passed through' );
+		$this->assertSame( '123', $params['smaxage'], 'Allowed ApiMain param should be passed through' );
 		$this->assertArrayNotHasKey( 'requestid', $params, 'Suppressed ApiMain param should be stripped' );
 		$this->assertArrayNotHasKey( 'format', $params, 'Suppressed ApiMain param should be stripped' );
 		$this->assertSame( 'test', $params['reason'], 'Body param should be used' );
@@ -666,6 +667,18 @@ class GenericActionHandlerTest extends MediaWikiIntegrationTestCase {
 			new MessageValue( 'apihelp-move-param-to',
 				[ new ScalarParam( ParamType::NUM, 10 ) ] ),
 		];
+		// Help messages with wikitext links are replaced by their Markdown version...
+		yield 'help message with a Markdown version' => [
+			[ ParamValidator::PARAM_TYPE => 'string', ApiBase::PARAM_HELP_MSG => 'api-help-param-continue' ],
+			[ ParamValidator::PARAM_TYPE => 'string' ],
+			new MessageValue( 'api-help-param-continue.md' ),
+		];
+		// ...which keep the params.
+		yield 'help message with a Markdown version and params' => [
+			[ ParamValidator::PARAM_TYPE => 'string', ApiBase::PARAM_HELP_MSG => [ 'api-help-param-token', 'csrf' ] ],
+			[ ParamValidator::PARAM_TYPE => 'string' ],
+			new MessageValue( 'api-help-param-token.md', [ 'csrf' ] ),
+		];
 	}
 
 	/**
@@ -692,6 +705,41 @@ class GenericActionHandlerTest extends MediaWikiIntegrationTestCase {
 		// falsy defaults distinct (false vs 0 vs '' vs '0' vs null).
 		unset( $spec[Handler::PARAM_SOURCE], $spec[Handler::PARAM_DESCRIPTION] );
 		$this->assertSame( $expectedCore, $spec );
+	}
+
+	public static function provideMarkdownHelpMessages() {
+		$messages = TestingAccessWrapper::constant(
+			GenericActionHandler::class, 'MARKDOWN_HELP_MESSAGES'
+		);
+		foreach ( $messages as $helpMsg ) {
+			yield $helpMsg => [ $helpMsg, "$helpMsg.md" ];
+		}
+	}
+
+	/**
+	 * @dataProvider provideMarkdownHelpMessages
+	 */
+	public function testMarkdownHelpMessages( string $helpMsg, string $markdownMsg ) {
+		// Use a protocol-relative server, as WMF wikis do, to show that
+		// links still get full URLs.
+		$this->overrideConfigValues( [
+			MainConfigNames::Server => '//example.org',
+			MainConfigNames::CanonicalServer => 'https://example.org',
+			MainConfigNames::ArticlePath => '/wiki/$1',
+		] );
+
+		$this->assertTrue( wfMessage( $helpMsg )->exists(), "$helpMsg exists" );
+		$this->assertTrue( wfMessage( $markdownMsg )->exists(), "$markdownMsg exists" );
+
+		$text = wfMessage( $markdownMsg, 'csrf' )->inLanguage( 'en' )->text();
+
+		$this->assertStringNotContainsString( '[[', $text, 'no wikitext links' );
+		$this->assertStringNotContainsString( '<', $text, 'no HTML' );
+		preg_match_all( '/\]\(([^)]*)\)/', $text, $urls );
+		$this->assertNotEmpty( $urls[1], 'has a Markdown link' );
+		foreach ( $urls[1] as $url ) {
+			$this->assertStringStartsWith( 'https://', $url, 'full URL' );
+		}
 	}
 
 	public static function provideBooleanParameters() {
@@ -888,8 +936,8 @@ class GenericActionHandlerTest extends MediaWikiIntegrationTestCase {
 			// ApiMain parameters deliberately left available to REST clients.
 			// New parameters need to be added either here or to
 			// GenericActionHandler::SUPPRESSED_ACTION_PARAMS.
-			'maxlag', 'smaxage', 'maxage', 'assert', 'assertuser',
-			'origin', 'crossorigin', 'uselang', 'variant',
+			'smaxage', 'maxage', 'assert', 'assertuser',
+			'origin', 'crossorigin', 'variant',
 		];
 
 		$actual = array_keys( $specs );

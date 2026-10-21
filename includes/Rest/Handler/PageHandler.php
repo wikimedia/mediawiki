@@ -22,7 +22,7 @@ use Wikimedia\Assert\Assert;
  * - v1/page/{title}            (prop: [ "source" ])
  * - v1/page/{title}/bare       (prop: [])
  * - v1/page/{title}/with_html  (prop: [ "html" ])
- * - content/v2/page/{title}    (prop as a query param)
+ * - content/v2-beta/pages/{title} (prop as a query param)
  *
  * @internal
  */
@@ -79,14 +79,12 @@ class PageHandler extends PageRevisionContentHandler {
 	}
 
 	private function constructHtmlUrl( PageReference $page ): string {
-		// TODO: once legacy "v1" routes are removed, just use the path prefix from the module.
-		$pathPrefix = $this->getModule()->getPathPrefix();
-		if ( $pathPrefix === '' ) {
-			$pathPrefix = 'v1';
-		}
+		// The HTML route is this handler's route up to the title,
+		// e.g. /v1/page/{title}/bare links to /v1/page/{title}/html.
+		$path = explode( '{title}', $this->getRoutePath(), 2 )[0] . '{title}/html';
 
 		return $this->getRouter()->getRouteUrl(
-			'/' . $pathPrefix . '/page/{title}/html',
+			$path,
 			[ 'title' => $this->titleFormatter->getPrefixedDBkey( $page ) ]
 		);
 	}

@@ -280,9 +280,9 @@ class GenericListHandlerTest extends MediaWikiIntegrationTestCase {
 				// the REST API uses the name without prefix, the module sees "tllimit"
 				'limit' => 7,
 				'title' => 'Foo',
-				// maxlag is an ApiMain param the adapter deliberately allows
+				// smaxage is an ApiMain param the adapter deliberately allows
 				// through; requestid is one it suppresses.
-				'maxlag' => 17,
+				'smaxage' => 17,
 				'requestid' => 'abc',
 			],
 		] );
@@ -300,7 +300,7 @@ class GenericListHandlerTest extends MediaWikiIntegrationTestCase {
 		// check main parameters
 		$mainParams = $data['items']['MAIN_PARAMETERS'];
 
-		$this->assertSame( 17, $mainParams['maxlag'], 'Allowed ApiMain parameter should reach ApiMain' );
+		$this->assertSame( 17, $mainParams['smaxage'], 'Allowed ApiMain parameter should reach ApiMain' );
 		$this->assertNull( $mainParams['requestid'], 'Suppressed ApiMain parameter should be dropped' );
 		$this->assertSame( 'query', $mainParams['action'] );
 	}
@@ -336,7 +336,7 @@ class GenericListHandlerTest extends MediaWikiIntegrationTestCase {
 				'method' => 'GET',
 				'queryParams' => [
 					'limit' => '7', // list module param, should get the module prefix
-					'maxlag' => '3', // allowed ApiMain param, should not get a prefix
+					'smaxage' => '3', // allowed ApiMain param, should not get a prefix
 				],
 			] ),
 		] );
@@ -345,7 +345,7 @@ class GenericListHandlerTest extends MediaWikiIntegrationTestCase {
 
 		$this->assertSame( '7', $params['tllimit'], 'List module param should be prefixed' );
 		$this->assertArrayNotHasKey( 'limit', $params, 'Unprefixed list module param should be gone' );
-		$this->assertSame( '3', $params['maxlag'], 'ApiMain param should not be prefixed' );
+		$this->assertSame( '3', $params['smaxage'], 'ApiMain param should not be prefixed' );
 		$this->assertSame( 'query', $params['action'] );
 		$this->assertSame( 'testlist', $params['list'] );
 	}
@@ -377,7 +377,7 @@ class GenericListHandlerTest extends MediaWikiIntegrationTestCase {
 			'Explicit help message should be retained'
 		);
 
-		$this->assertArrayHasKey( 'maxlag', $specs, 'Allowed ApiMain param should be included' );
+		$this->assertArrayHasKey( 'smaxage', $specs, 'Allowed ApiMain param should be included' );
 		$this->assertArrayNotHasKey( 'requestid', $specs, 'Suppressed ApiMain param should be excluded' );
 	}
 

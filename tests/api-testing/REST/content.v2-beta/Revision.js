@@ -37,10 +37,10 @@ describe( 'content/v2-beta Revision', () => {
 		chai.use( chaiResponseValidator( openApiSpec ) );
 	} );
 
-	describe( 'GET /revision/{id} with prop', () => {
+	describe( 'GET /revisions/{id} with prop', () => {
 		it( 'Should return metadata and a link to the HTML when no prop is given', async () => {
 			// This is what /revision/{id}/bare returns in v1.
-			const res = await client.get( `${ pathPrefix }/revision/${ newrevid }` );
+			const res = await client.get( `${ pathPrefix }/revisions/${ newrevid }` );
 			const { status, body, text, headers } = res;
 
 			assert.strictEqual( status, 200, text );
@@ -61,7 +61,7 @@ describe( 'content/v2-beta Revision', () => {
 
 		it( 'Should return revision source for prop=source', async () => {
 			// This is what /revision/{id} returns in v1.
-			const res = await client.get( `${ pathPrefix }/revision/${ newrevid }`, { prop: 'source' } );
+			const res = await client.get( `${ pathPrefix }/revisions/${ newrevid }`, { prop: 'source' } );
 			const { status, body, text, headers } = res;
 
 			assert.strictEqual( status, 200, text );
@@ -80,7 +80,7 @@ describe( 'content/v2-beta Revision', () => {
 
 		it( 'Should return revision HTML for prop=html', async () => {
 			// This is what /revision/{id}/with_html returns in v1.
-			const res = await client.get( `${ pathPrefix }/revision/${ newrevid }`, { prop: 'html' } );
+			const res = await client.get( `${ pathPrefix }/revisions/${ newrevid }`, { prop: 'html' } );
 			const { status, body, text, headers } = res;
 
 			assert.strictEqual( status, 200, text );
@@ -103,7 +103,7 @@ describe( 'content/v2-beta Revision', () => {
 
 		it( 'Should return both source and HTML for prop=source|html', async () => {
 			// Combining properties has no equivalent among the v1 suffixes.
-			const res = await client.get( `${ pathPrefix }/revision/${ newrevid }`, { prop: 'source|html' } );
+			const res = await client.get( `${ pathPrefix }/revisions/${ newrevid }`, { prop: 'source|html' } );
 			const { status, body, text, headers } = res;
 
 			assert.strictEqual( status, 200, text );
@@ -118,9 +118,9 @@ describe( 'content/v2-beta Revision', () => {
 		} );
 
 		it( 'Should vary the ETag by the requested prop', async () => {
-			const htmlEtag = ( await client.get( `${ pathPrefix }/revision/${ newrevid }`, { prop: 'html' } ) )
+			const htmlEtag = ( await client.get( `${ pathPrefix }/revisions/${ newrevid }`, { prop: 'html' } ) )
 				.headers.etag;
-			const bothEtag = ( await client.get( `${ pathPrefix }/revision/${ newrevid }`, { prop: 'source|html' } ) )
+			const bothEtag = ( await client.get( `${ pathPrefix }/revisions/${ newrevid }`, { prop: 'source|html' } ) )
 				.headers.etag;
 
 			assert.isOk( htmlEtag, 'etag' );
@@ -129,7 +129,7 @@ describe( 'content/v2-beta Revision', () => {
 
 		it( 'Should return 400 for an unknown prop value', async () => {
 			const { status, body, text } = await client.get(
-				`${ pathPrefix }/revision/${ newrevid }`,
+				`${ pathPrefix }/revisions/${ newrevid }`,
 				{ prop: 'bogus' }
 			);
 			assert.deepEqual( status, 400, text );
@@ -139,7 +139,7 @@ describe( 'content/v2-beta Revision', () => {
 
 		it( 'Should return 404 for revision that does not exist', async () => {
 			const { status, body } = await client.get(
-				`${ pathPrefix }/revision/99999999`,
+				`${ pathPrefix }/revisions/99999999`,
 				{ prop: 'source' }
 			);
 			assert.strictEqual( status, 404 );
@@ -148,7 +148,7 @@ describe( 'content/v2-beta Revision', () => {
 
 		it( 'Should perform variant conversion for prop=html', async () => {
 			const { headers, body, text } = await client.get(
-				`${ pathPrefix }/revision/${ newrevid }`,
+				`${ pathPrefix }/revisions/${ newrevid }`,
 				{ prop: 'html' },
 				{ 'accept-language': 'en-x-piglatin' }
 			);
@@ -163,11 +163,11 @@ describe( 'content/v2-beta Revision', () => {
 		} );
 	} );
 
-	describe( 'GET /revision/{id} with prop and x-restbase-compat', () => {
+	describe( 'GET /revisions/{id} with prop and x-restbase-compat', () => {
 		it( 'Should successfully return restbase-compatible revision meta-data', async () => {
 			// Restbase mode overrides the prop selection entirely.
 			const { status, body, text, headers } = await client
-				.get( `${ pathPrefix }/revision/${ newrevid }`, { prop: 'source' } )
+				.get( `${ pathPrefix }/revisions/${ newrevid }`, { prop: 'source' } )
 				.set( 'x-restbase-compat', 'true' );
 			assert.deepEqual( status, 200, text );
 			assert.match( headers[ 'content-type' ], /^application\/json/ );
@@ -181,9 +181,9 @@ describe( 'content/v2-beta Revision', () => {
 		} );
 	} );
 
-	describe( 'GET /revision/{id}/html', () => {
+	describe( 'GET /revisions/{id}/html', () => {
 		it( 'Should successfully return revision HTML', async () => {
-			const res = await client.get( `${ pathPrefix }/revision/${ newrevid }/html` );
+			const res = await client.get( `${ pathPrefix }/revisions/${ newrevid }/html` );
 			const { status, text, headers } = res;
 
 			assert.strictEqual( status, 200, text );
@@ -195,7 +195,7 @@ describe( 'content/v2-beta Revision', () => {
 		} );
 
 		it( 'Should return 404 for revision that does not exist', async () => {
-			const { status } = await client.get( `${ pathPrefix }/revision/99999999/html` );
+			const { status } = await client.get( `${ pathPrefix }/revisions/99999999/html` );
 			assert.strictEqual( status, 404 );
 		} );
 	} );

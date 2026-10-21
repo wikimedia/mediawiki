@@ -12,7 +12,7 @@ const specModule = '/content/v2-beta';
 
 // NOTE: This page/{title}/backlinks endpoint corresponds to list=backlinks in the
 //       action API, see action/Backlinks.js for tests.
-describe( 'GET /page/{title}/backlinks', () => {
+describe( 'GET /pages/{title}/backlinks', () => {
 	const randomPage = utils.title( 'Esther' );
 	const redirectToEsther = utils.title( 'RedirectToEsther' );
 	const linksToEsther1 = utils.title( 'LinksToEsther1' );
@@ -21,7 +21,7 @@ describe( 'GET /page/{title}/backlinks', () => {
 
 	let client, bob;
 
-	const backlinksUrl = ( title ) => `${ pathPrefix }/page/${ utils.dbkey( title ) }/backlinks`;
+	const backlinksUrl = ( title ) => `${ pathPrefix }/pages/${ utils.dbkey( title ) }/backlinks`;
 	const titles = ( body ) => body.items.map( ( item ) => item.title );
 
 	before( async () => {
@@ -173,7 +173,7 @@ describe( 'GET /page/{title}/backlinks', () => {
 
 	describe( 'failure', () => {
 		it( 'should reject an invalid title', async () => {
-			const { status } = await client.get( `${ pathPrefix }/page/${ encodeURIComponent( '<invalid>' ) }/backlinks` );
+			const { status } = await client.get( `${ pathPrefix }/pages/${ encodeURIComponent( '<invalid>' ) }/backlinks` );
 
 			assert.equal( status, 400 );
 		} );
