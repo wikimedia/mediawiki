@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\Maintenance\LoggedUpdateMaintenance;
+use MediaWiki\Maintenance\LoggedUpdateOutcome;
 use Wikimedia\IPUtils;
 use Wikimedia\Rdbms\IMaintainableDatabase;
 
@@ -42,7 +43,7 @@ class MigrateBlocks extends LoggedUpdateMaintenance {
 	}
 
 	/** @inheritDoc */
-	protected function doDBUpdates() {
+	protected function doDBUpdates(): LoggedUpdateOutcome {
 		$this->dbw = $this->getDB( DB_PRIMARY );
 		if (
 			!$this->dbw->tableExists( 'block', __METHOD__ ) ||
@@ -52,7 +53,7 @@ class MigrateBlocks extends LoggedUpdateMaintenance {
 		}
 		if ( !$this->dbw->tableExists( 'ipblocks', __METHOD__ ) ) {
 			$this->output( "No ipblocks table, skipping migration to block_target.\n" );
-			return true;
+			return LoggedUpdateOutcome::COMPLETE;
 		}
 
 		$this->output( "Populating the block and block_target tables\n" );
@@ -67,7 +68,7 @@ class MigrateBlocks extends LoggedUpdateMaintenance {
 
 		$this->output( "Completed migration of $migratedCount ipblocks to block and block_target.\n" );
 
-		return true;
+		return LoggedUpdateOutcome::COMPLETE;
 	}
 
 	/**

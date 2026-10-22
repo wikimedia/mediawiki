@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\Maintenance\LoggedUpdateMaintenance;
+use MediaWiki\Maintenance\LoggedUpdateOutcome;
 
 require_once __DIR__ . '/TableCleanup.php';
 
@@ -21,7 +22,7 @@ class CleanupWatchlistLabelMember extends LoggedUpdateMaintenance {
 	}
 
 	/** @inheritDoc */
-	protected function doDBUpdates() {
+	protected function doDBUpdates(): LoggedUpdateOutcome {
 		$dbw = $this->getServiceContainer()->getConnectionProvider()->getPrimaryDatabase();
 		$batchNum = 1;
 		while ( true ) {
@@ -66,7 +67,7 @@ class CleanupWatchlistLabelMember extends LoggedUpdateMaintenance {
 			}
 			if ( !$data ) {
 				$this->output( $batchNum === 1 ? "Nothing to fix.\n" : "Done.\n" );
-				return true;
+				return LoggedUpdateOutcome::COMPLETE;
 			}
 			$this->output(
 				'Fixing labels on talk pages for ' . count( $data ) . ' watchlist items (batch ' . $batchNum . ").\n"

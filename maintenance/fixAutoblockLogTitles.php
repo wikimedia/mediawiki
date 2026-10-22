@@ -23,7 +23,7 @@ class FixAutoblockLogTitles extends LoggedUpdateMaintenance {
 	}
 
 	/** @inheritDoc */
-	protected function doDBUpdates() {
+	protected function doDBUpdates(): LoggedUpdateOutcome {
 		$this->output( "Fixing log entries with log_title starting with 'User:#'\n" );
 
 		$dbr = $this->getReplicaDB();
@@ -91,7 +91,7 @@ class FixAutoblockLogTitles extends LoggedUpdateMaintenance {
 		}
 		$this->output( "\n" );
 
-		return true;
+		return LoggedUpdateOutcome::COMPLETE;
 	}
 
 	/** @inheritDoc */

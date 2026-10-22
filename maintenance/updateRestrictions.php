@@ -30,7 +30,7 @@ class UpdateRestrictions extends LoggedUpdateMaintenance {
 	}
 
 	/** @inheritDoc */
-	public function doDBUpdates() {
+	public function doDBUpdates(): LoggedUpdateOutcome {
 		$dbw = $this->getDB( DB_PRIMARY );
 		$batchSize = $this->getBatchSize();
 
@@ -40,7 +40,7 @@ class UpdateRestrictions extends LoggedUpdateMaintenance {
 
 		if ( !$dbw->fieldExists( 'page', 'page_restrictions', __METHOD__ ) ) {
 			$this->output( "Migration is not needed.\n" );
-			return true;
+			return LoggedUpdateOutcome::COMPLETE;
 		}
 
 		$encodedExpiry = $dbw->getInfinity();
@@ -118,7 +118,7 @@ class UpdateRestrictions extends LoggedUpdateMaintenance {
 		} while ( $batchMaxPageId < $maxPageId );
 
 		$this->output( "...Done!\n" );
-		return true;
+		return LoggedUpdateOutcome::COMPLETE;
 	}
 
 	/**

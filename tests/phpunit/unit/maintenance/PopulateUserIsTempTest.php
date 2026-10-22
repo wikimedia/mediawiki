@@ -2,6 +2,7 @@
 
 namespace MediaWiki\Tests\Unit\Maintenance;
 
+use MediaWiki\Maintenance\LoggedUpdateOutcome;
 use MediaWiki\User\TempUser\TempUserConfig;
 use MediaWikiUnitTestCase;
 use PopulateUserIsTemp;
@@ -34,10 +35,11 @@ class PopulateUserIsTempTest extends MediaWikiUnitTestCase {
 			->getMock();
 		$objectUnderTest = TestingAccessWrapper::newFromObject( $objectUnderTest );
 		$objectUnderTest->tempUserConfig = $mockTempUserConfig;
-		// Call the doDBUpdates method and assert that it returns true.
-		$this->assertTrue(
+		// Call the doDBUpdates method and assert that it reports completion.
+		$this->assertSame(
+			LoggedUpdateOutcome::COMPLETE,
 			$objectUnderTest->doDBUpdates(),
-			'The doDBUpdates method did not return true as expected.'
+			'The doDBUpdates method did not return COMPLETE as expected.'
 		);
 	}
 }

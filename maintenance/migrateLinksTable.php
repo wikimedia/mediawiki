@@ -5,6 +5,7 @@ require_once __DIR__ . '/Maintenance.php';
 // @codeCoverageIgnoreEnd
 
 use MediaWiki\Maintenance\LoggedUpdateMaintenance;
+use MediaWiki\Maintenance\LoggedUpdateOutcome;
 use MediaWiki\Title\TitleValue;
 
 /**
@@ -45,26 +46,26 @@ class MigrateLinksTable extends LoggedUpdateMaintenance {
 	}
 
 	/** @inheritDoc */
-	protected function doDBUpdates() {
+	protected function doDBUpdates(): LoggedUpdateOutcome {
 		$dbw = $this->getDB( DB_PRIMARY );
 		$mapping = \MediaWiki\Linker\LinksMigration::$mapping;
 		$table = $this->getOption( 'table', '' );
 		if ( !isset( $mapping[$table] ) ) {
 			$this->output( "Mapping for this table doesn't exist yet.\n" );
-			return false;
+			return LoggedUpdateOutcome::FAILED;
 		}
 		$targetColumn = $mapping[$table]['target_id'];
 		if ( !$dbw->fieldExists( $table, $mapping[$table]['title'], __METHOD__ ) ) {
 			$this->output( "Old fields don't exist. There is no need to run this script\n" );
-			return true;
+			return LoggedUpdateOutcome::COMPLETE;
 		}
 		if ( !$dbw->fieldExists( $table, $targetColumn, __METHOD__ ) ) {
 			$this->output( "Run update.php to create the $targetColumn column.\n" );
-			return false;
+			return LoggedUpdateOutcome::FAILED;
 		}
 		if ( !$dbw->tableExists( 'linktarget', __METHOD__ ) ) {
 			$this->output( "Run update.php to create the linktarget table.\n" );
-			return true;
+			return LoggedUpdateOutcome::COMPLETE;
 		}
 
 		$this->output( "Populating the $targetColumn column\n" );
@@ -78,7 +79,7 @@ class MigrateLinksTable extends LoggedUpdateMaintenance {
 			->fetchField();
 		if ( !$highestPageId ) {
 			$this->output( "Page table is empty.\n" );
-			return true;
+			return LoggedUpdateOutcome::COMPLETE;
 		}
 		$pageId = 0;
 		while ( $pageId <= $highestPageId ) {
@@ -91,7 +92,7 @@ class MigrateLinksTable extends LoggedUpdateMaintenance {
 
 		$this->output( "Completed normalization of $table, {$this->totalUpdated} rows updated.\n" );
 
-		return true;
+		return LoggedUpdateOutcome::COMPLETE;
 	}
 
 	private function handlePageBatch( int $lowPageId, array $mapping, string $table ) {

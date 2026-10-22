@@ -6,6 +6,7 @@
  */
 
 use MediaWiki\Maintenance\LoggedUpdateMaintenance;
+use MediaWiki\Maintenance\LoggedUpdateOutcome;
 use Wikimedia\Rdbms\IExpression;
 use Wikimedia\Rdbms\LikeValue;
 
@@ -32,7 +33,7 @@ class FixWrongPasswordPrefixes extends LoggedUpdateMaintenance {
 	}
 
 	/** @inheritDoc */
-	protected function doDBUpdates() {
+	protected function doDBUpdates(): LoggedUpdateOutcome {
 		$dbw = $this->getPrimaryDB();
 		$batchSize = $this->getBatchSize();
 		$minUserId = 0;
@@ -70,7 +71,7 @@ class FixWrongPasswordPrefixes extends LoggedUpdateMaintenance {
 		}
 
 		$this->output( "Wrongly prefixed user password hashes, if present, have been fixed.\n" );
-		return true;
+		return LoggedUpdateOutcome::COMPLETE;
 	}
 }
 

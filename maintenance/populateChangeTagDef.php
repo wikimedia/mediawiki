@@ -4,6 +4,7 @@
  */
 
 use MediaWiki\Maintenance\LoggedUpdateMaintenance;
+use MediaWiki\Maintenance\LoggedUpdateOutcome;
 
 // @codeCoverageIgnoreStart
 require_once __DIR__ . '/Maintenance.php';
@@ -31,7 +32,7 @@ class PopulateChangeTagDef extends LoggedUpdateMaintenance {
 	}
 
 	/** @inheritDoc */
-	protected function doDBUpdates() {
+	protected function doDBUpdates(): LoggedUpdateOutcome {
 		$this->setBatchSize( $this->getOption( 'batch-size', $this->getBatchSize() ) );
 
 		$dbw = $this->getDB( DB_PRIMARY );
@@ -43,7 +44,7 @@ class PopulateChangeTagDef extends LoggedUpdateMaintenance {
 		) {
 			if ( $this->hasOption( 'set-user-tags-only' ) ) {
 				$this->setUserDefinedTags();
-				return true;
+				return $this->hasOption( 'dry-run' ) ? LoggedUpdateOutcome::SIMULATED : LoggedUpdateOutcome::COMPLETE;
 			}
 			if ( !$this->hasOption( 'populate-only' ) ) {
 				$this->updateCountTag();
@@ -57,7 +58,7 @@ class PopulateChangeTagDef extends LoggedUpdateMaintenance {
 		// TODO: Implement
 		// $this->cleanZeroCountRows();
 
-		return true;
+		return $this->hasOption( 'dry-run' ) ? LoggedUpdateOutcome::SIMULATED : LoggedUpdateOutcome::COMPLETE;
 	}
 
 	private function setUserDefinedTags() {

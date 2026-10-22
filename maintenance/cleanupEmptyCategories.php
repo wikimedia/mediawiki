@@ -9,6 +9,7 @@
 
 use MediaWiki\Category\Category;
 use MediaWiki\Maintenance\LoggedUpdateMaintenance;
+use MediaWiki\Maintenance\LoggedUpdateOutcome;
 
 // @codeCoverageIgnoreStart
 require_once __DIR__ . '/Maintenance.php';
@@ -68,14 +69,14 @@ TEXT
 	}
 
 	/** @inheritDoc */
-	protected function doDBUpdates() {
+	protected function doDBUpdates(): LoggedUpdateOutcome {
 		$mode = $this->getOption( 'mode', 'both' );
 		$begin = $this->getOption( 'begin', '' );
 		$throttle = $this->getOption( 'throttle', 0 );
 
 		if ( !in_array( $mode, [ 'add', 'remove', 'both' ] ) ) {
 			$this->output( "--mode must be 'add', 'remove', or 'both'.\n" );
-			return false;
+			return LoggedUpdateOutcome::FAILED;
 		}
 
 		$dbw = $this->getPrimaryDB();
@@ -172,7 +173,7 @@ TEXT
 
 		$this->output( "Category cleanup complete.\n" );
 
-		return true;
+		return LoggedUpdateOutcome::COMPLETE;
 	}
 }
 

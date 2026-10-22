@@ -8,6 +8,7 @@
  */
 
 use MediaWiki\Maintenance\LoggedUpdateMaintenance;
+use MediaWiki\Maintenance\LoggedUpdateOutcome;
 use MediaWiki\User\TempUser\TempUserConfig;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\IExpression;
@@ -41,12 +42,12 @@ class PopulateUserIsTemp extends LoggedUpdateMaintenance {
 	}
 
 	/** @inheritDoc */
-	protected function doDBUpdates() {
+	protected function doDBUpdates(): LoggedUpdateOutcome {
 		$this->initServices();
 
 		if ( !$this->tempUserConfig->isKnown() ) {
 			// If temporary user auto-creation is not known, then just return early as there will be no rows to update.
-			return true;
+			return LoggedUpdateOutcome::COMPLETE;
 		}
 
 		// Generate a SelectQueryBuilder that selects all temporary users (based on the configured match patterns)
@@ -75,7 +76,7 @@ class PopulateUserIsTemp extends LoggedUpdateMaintenance {
 			}
 		} while ( count( $batch ) >= ( $this->getBatchSize() ?? 200 ) );
 
-		return true;
+		return LoggedUpdateOutcome::COMPLETE;
 	}
 
 	/**
