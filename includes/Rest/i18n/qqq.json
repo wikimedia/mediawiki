@@ -400,5 +400,10 @@
 	"rest-openapispec-genericerrorresponse-property-desc-reqId": "Description of the reqId (request ID) property in the error response.",
 	"rest-openapispec-genericerrorresponse-property-desc-exception": "Description of the exception property (structured exception details) in the error response.",
 	"rest-openapispec-genericerrorresponse-property-desc-errorCode": "Description of the errorCode property in the version 2.0 error response.",
-	"rest-openapispec-genericerrorresponse-property-desc-tracing": "Description of the tracing property in the version 2.0 error response. The quoted words are field names and must not be translated."
+	"rest-openapispec-genericerrorresponse-property-desc-tracing": "Description of the tracing property in the version 2.0 error response. The quoted words are field names and must not be translated.",
+	"rest-item-single-value": "Error message for REST API debugging, shown when a path parameter of an endpoint returning a single item contains several values. Parameters:\n* $1 - The name of the parameter.",
+	"rest-item-not-found": "Error message for REST API debugging, shown when the item requested from an endpoint returning a single item does not exist. Parameters:\n* $1 - The value(s) identifying the item, from the request path.",
+	"rest-item-invalid": "Error message for REST API debugging, shown when the item requested from an endpoint returning a single item is invalid, e.g. because its name is malformed. Parameters:\n* $1 - The value(s) identifying the item, from the request path.",
+	"rest-item-unavailable": "Error message for REST API debugging, shown when the item requested from an endpoint returning a single item cannot be returned for another reason. Parameters:\n* $1 - The value(s) identifying the item, from the request path.",
+	"rest-item-multiple-results": "Error message for REST API debugging, shown when an endpoint returning a single item gets several items from the underlying action API module, which means the endpoint is misconfigured."
 }

@@ -49,6 +49,16 @@
 				}
 			}
 		},
+		"/ModuleTest/get-item/{name}": {
+			"get": {
+				"handler": {
+					"adapter": {
+						"type": "item",
+						"list": "users"
+					}
+				}
+			}
+		},
 		"/ModuleTest/throw": {
 			"get": {
 				"handler": {

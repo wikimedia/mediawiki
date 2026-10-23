@@ -7,6 +7,7 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\Rest\BasicAccess\StaticBasicAuthorizer;
 use MediaWiki\Rest\ErrorFormatterV1;
 use MediaWiki\Rest\Handler\GenericActionHandler;
+use MediaWiki\Rest\Handler\GenericItemHandler;
 use MediaWiki\Rest\JsonLocalizer;
 use MediaWiki\Rest\Module\ModuleFormatException;
 use MediaWiki\Rest\Module\SpecBasedModule;
@@ -295,6 +296,21 @@ class SpecBasedModuleTest extends \MediaWikiUnitTestCase {
 		$this->assertSame(
 			'move',
 			TestingAccessWrapper::newFromObject( $handler )->actionName
+		);
+	}
+
+	public function testApiItemHandler() {
+		$request = new RequestData( [
+			'uri' => new Uri( '/rest/test.v1/ModuleTest/get-item/Foo' ),
+		] );
+		$module = $this->createOpenApiModule( $request );
+
+		$handler = $module->getHandlerForPath( '/ModuleTest/get-item/Foo', $request );
+
+		$this->assertInstanceOf( GenericItemHandler::class, $handler );
+		$this->assertSame(
+			'users',
+			TestingAccessWrapper::newFromObject( $handler )->moduleName
 		);
 	}
 

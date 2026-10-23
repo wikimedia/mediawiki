@@ -82,4 +82,21 @@ class ApiListRestHelper extends ApiRestHelper {
 		return $this->responseItemSchemaFileName;
 	}
 
+	/**
+	 * Returns the HTTP status code that GenericItemHandler should return for
+	 * the given item. A status of 400 or above causes an error response,
+	 * any other non-zero status returns the item.
+	 *
+	 * If 0 is returned, it is left to GenericItemHandler to determine the
+	 * status code: 400 if the item is marked as invalid, 404 if it is marked
+	 * as missing but not as known, and 200 otherwise.
+	 *
+	 * @stable to override
+	 * @param array $item A single item, as returned by the module
+	 * @return int
+	 */
+	public function getItemStatus( array $item ): int {
+		return 0;
+	}
+
 }

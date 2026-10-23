@@ -2914,6 +2914,7 @@ $wgAutoloadLocalClasses = [
 	'MediaWiki\\Rest\\Handler\\EditHandler' => __DIR__ . '/includes/Rest/Handler/EditHandler.php',
 	'MediaWiki\\Rest\\Handler\\FragmentHandler' => __DIR__ . '/includes/Rest/Handler/FragmentHandler.php',
 	'MediaWiki\\Rest\\Handler\\GenericActionHandler' => __DIR__ . '/includes/Rest/Handler/GenericActionHandler.php',
+	'MediaWiki\\Rest\\Handler\\GenericItemHandler' => __DIR__ . '/includes/Rest/Handler/GenericItemHandler.php',
 	'MediaWiki\\Rest\\Handler\\GenericListHandler' => __DIR__ . '/includes/Rest/Handler/GenericListHandler.php',
 	'MediaWiki\\Rest\\Handler\\Helper\\HtmlInputTransformHelper' => __DIR__ . '/includes/Rest/Handler/Helper/HtmlInputTransformHelper.php',
 	'MediaWiki\\Rest\\Handler\\Helper\\HtmlOutputHelper' => __DIR__ . '/includes/Rest/Handler/Helper/HtmlOutputHelper.php',
