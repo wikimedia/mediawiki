@@ -5455,16 +5455,16 @@
         },
         {
             "name": "wikimedia/smash-pig",
-            "version": "v1.2.7",
+            "version": "v1.2.7.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/wikimedia/wikimedia-fundraising-SmashPig.git",
-                "reference": "b8542b493a8df4c36f60298d9adb493d400e251c"
+                "reference": "f2ef5a6917b6681bddabcf92555343a2794a7123"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/wikimedia/wikimedia-fundraising-SmashPig/zipball/b8542b493a8df4c36f60298d9adb493d400e251c",
-                "reference": "b8542b493a8df4c36f60298d9adb493d400e251c",
+                "url": "https://api.github.com/repos/wikimedia/wikimedia-fundraising-SmashPig/zipball/f2ef5a6917b6681bddabcf92555343a2794a7123",
+                "reference": "f2ef5a6917b6681bddabcf92555343a2794a7123",
                 "shasum": ""
             },
             "require": {
@@ -5553,9 +5553,9 @@
                 "payments"
             ],
             "support": {
-                "source": "https://github.com/wikimedia/wikimedia-fundraising-SmashPig/tree/v1.2.7"
+                "source": "https://github.com/wikimedia/wikimedia-fundraising-SmashPig/tree/v1.2.7.4"
             },
-            "time": "2026-10-06T17:21:48+00:00"
+            "time": "2026-10-21T01:16:54+00:00"
         },
         {
             "name": "wikimedia/timestamp",
