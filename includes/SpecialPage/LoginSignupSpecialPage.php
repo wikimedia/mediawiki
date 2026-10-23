@@ -1059,7 +1059,6 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 						'submit' )->text(),
 					'name' => 'wpCreateaccount',
 					'id' => 'wpCreateaccount',
-					'size' => 'large',
 					'weight' => 100,
 				],
 			];
@@ -1131,7 +1130,6 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 							'pt-login-' . $continuePart . 'button'
 						)->text(),
 					'id' => 'wpLoginAttempt',
-					'size' => 'large',
 					'weight' => 100,
 				],
 				'linkcontainer' => [
