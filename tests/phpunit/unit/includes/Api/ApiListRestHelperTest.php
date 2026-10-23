@@ -102,6 +102,11 @@ class ApiListRestHelperTest extends MediaWikiUnitTestCase {
 		$this->newHelper()->getResponseBodySchema();
 	}
 
+	public function testGetItemStatus_defersToHandlerByDefault() {
+		// 0 means "let GenericItemHandler decide".
+		$this->assertSame( 0, $this->newHelper()->getItemStatus( [ 'name' => 'Foo', 'missing' => true ] ) );
+	}
+
 	public function testGetResponseBodySchema_envelopeWithoutItemsIsLeftAlone() {
 		$helper = $this->newHelper(
 			itemSchemaFile: self::DATA_PREFIX . 'item.json',
