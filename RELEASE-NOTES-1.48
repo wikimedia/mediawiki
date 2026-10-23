@@ -93,6 +93,8 @@ For notes on 1.47.x and older releases, see HISTORY.
 
 === Breaking changes in 1.48 ===
 
+* MediaWikiIntegrationTestCase::assertSelect(), deprecated since 1.47,
+  has been removed.
 * …
 
 === Deprecations in 1.48 ===

@@ -2314,64 +2314,6 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	}
 
 	/**
-	 * Asserts that the given database query yields the rows given by $expectedRows.
-	 * The expected rows should be given as indexed (not associative) arrays, with
-	 * the values given in the order of the columns in the $fields parameter.
-	 * Note that the rows are sorted by the columns given in $fields.
-	 *
-	 * This method requires database support, which can be enabled with "@group Database".
-	 *
-	 * @since 1.20
-	 * @deprecated Since 1.47 Use $this->newSelectQueryBuilder()->...->assertResultSet() instead
-	 *
-	 * @param string|array $table The table(s) to query
-	 * @param string|array $fields The columns to include in the result (and to sort by)
-	 * @param string|array $condition "where" condition(s)
-	 * @param array $expectedRows An array of arrays giving the expected rows.
-	 * @param array $options Options for the query
-	 * @param array $join_conds Join conditions for the query
-	 */
-	protected function assertSelect(
-		$table, $fields, $condition, array $expectedRows, array $options = [], array $join_conds = []
-	) {
-		wfDeprecated( __METHOD__, '1.47' );
-		if ( !self::needsDB() ) {
-			throw new LogicException( 'When testing database state, the test must use @group Database.' );
-		}
-
-		$dbr = MediaWikiServices::getInstance()->getConnectionProvider()->getReplicaDatabase();
-		$tables = is_array( $table ) ? $table : [ $table ];
-		$conds = $condition === '' || $condition === '*' ? [] : $condition;
-
-		$res = $dbr->newSelectQueryBuilder()
-			->tables( $tables )
-			->fields( $fields )
-			->conds( $conds )
-			->caller( wfGetCaller() )
-			->options( $options )
-			->orderBy( $fields )
-			->joinConds( $join_conds )
-			->fetchResultSet();
-
-		$i = 0;
-
-		foreach ( $expectedRows as $expected ) {
-			$r = $res->fetchRow();
-			self::stripStringKeys( $r );
-
-			$i++;
-			$this->assertNotFalse( $r, "row #$i missing" );
-
-			$this->assertEquals( $expected, $r, "row #$i mismatches" );
-		}
-
-		$r = $res->fetchRow();
-		self::stripStringKeys( $r );
-
-		$this->assertFalse( $r, "found extra row (after #$i)" );
-	}
-
-	/**
 	 * Get a SelectQueryBuilder with additional assert methods.
 	 *
 	 * This method requires database support, which can be enabled with "@group Database".
