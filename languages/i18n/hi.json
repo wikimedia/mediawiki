@@ -2078,7 +2078,7 @@
 	"watchlist-filters-labels-list-title": "ध्यानसूची लेबल्स",
 	"watchlist-filters-tag-prefix-labels-inverted": "=$1 <strong>नहीं</strong>",
 	"watchlist-filters-view-labels-tooltip": "ध्यानसूची लेबल्स की मदद से परिणाम छाँटें",
-	"enotif_reset": "सभी पृष्ठ देखे हुए दर्शाएँ",
+	"enotif_reset": "सभी पृष्ठ देखे हुए चिह्नित करें",
 	"enotif_impersonal_salutation": "{{SITENAME}} सदस्य",
 	"enotif_subject_deleted": "{{SITENAME}} पृष्ठ $1 को {{GENDER:$2|$2}} ने हटा दिया है",
 	"enotif_subject_created": "{{SITENAME}} पृष्ठ $1 को {{GENDER:$2|$2}} ने बना दिया है",
@@ -3962,7 +3962,7 @@
 	"blockedtext-contact-blocker-admin": "आप अवरोध के बारे में चर्चा करने के लिए $1 या किसी अन्य [[{{MediaWiki:Grouppage-sysop}}|प्रबंधक]] से संपर्क कर सकते हैं।",
 	"blockedtext-block-ip": "आपका वर्तमान IP पता $1 है।",
 	"blockedtext-block-id": "अवरोध ID #$1।",
-	"blockedtext-include-details-queries": "कृपया अपने किसी भी प्रश्न में उपरोक्त सभी विवरण शामिल करें।",
+	"blockedtext-include-details-queries": "कृपया अपनी सभी क्वेरियों में उपरोक्त सभी विवरण शामिल करें।",
 	"renameuser": "सदस्यनाम बदलें",
 	"renameuser-linkoncontribs": "{{GENDER:$1|सदस्य}} का नाम बदलें",
 	"renameuser-linkoncontribs-text": "इस {{GENDER:$1|सदस्य}} का नाम बदलें",
@@ -3998,6 +3998,7 @@
 	"renameuser-move-log": "{{GENDER:$2|सदस्य}} \"[[User:$1|$1]]\" का नाम \"[[User:$2|$2]]\" में बदलते समय पृष्ठ स्वचालित रूप से स्थानांतरित कर दिया गया",
 	"renameuser-renamed-notice": "इस {{GENDER:$1|सदस्य}} का नाम बदल दिया गया है।\nसंदर्भ के लिए नीचे नाम बदलने का लॉग है।",
 	"log-unknown-action": "[[$1]] पर अज्ञात क्रिया \"$2\" की",
+	"log-unsafe-logentry": "(यह लॉग प्रविष्टि नहीं दिखाई जा सकी क्योंकि इसके पैरामीटरों में असुरक्षित क्रमबद्ध डेटा शामिल है।)",
 	"createacct-benefit-heading-temp-user": "{{SITENAME}} में योगदान करने के लिए धन्यवाद।\nएक खाता बनाकर आप और भी सुविधाओं का लाभ उठा पाएँगे।",
 	"createacct-benefit-subheading-temp-user": "{{SITENAME}} आप जैसे लोगों द्वारा बनाई जाती है। एक खाते के साथ आपके पास एक स्थायी व सुरक्षित पहचान और निम्न जैसी सुविधाओं तक पहुँच होगी:",
 	"benefit-1-description": "ध्यानसूचियाँ जो आपको उन पृष्ठों पर नज़र रखने देंगी जिन में आपकी रुचि हो।",
@@ -4008,5 +4009,6 @@
 	"table-of-contents-hide-button-aria-label": "विषयसूची छिपाएँ",
 	"diff-usergroups": "$1 {{PLURAL:$1|सदस्य समूह}}",
 	"languageselector-no-results": "कोई परिणाम नहीं मिला।",
-	"languageselector-invalid-input": "\"$1\" मान्य भाषा नहीं है।"
+	"languageselector-invalid-input": "\"$1\" मान्य भाषा नहीं है।",
+	"mypage-disallowed-action": "सुरक्षा के कारणों से \"$1\" क्रिया का उपयोग Special:MyPage पृष्ठ पर नहीं किया जा सकता।"
 }

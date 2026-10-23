@@ -1,20 +1,35 @@
 {
 	"@metadata": {
 		"authors": [
-			"Saraiki"
+			"Saraiki",
+			"Tauqeerkhansurani"
 		]
 	},
+	"cdx-breadcrumb-navigation-label": "بریڈکرمب",
+	"cdx-breadcrumb-overflow-label": "راہنمائی دے ٻئے آپشن",
 	"cdx-chip-input-chip-added": "چِپ $1 شامل کیتی ڳئی ہائی۔",
 	"cdx-chip-input-chip-removed": "چِپ $1 ہٹا ݙتی ڳئی۔",
+	"cdx-input-chip-aria-description": "ترمیم کرݨ کیتے Enter دباؤ یا ہٹاوݨ کیتے Delete دباؤ۔",
 	"cdx-dialog-close-button-label": "بند کرو",
+	"cdx-label-optional-flag": "(اختیاری)",
 	"cdx-message-dismiss-button-label": "بند کرو",
+	"cdx-popover-close-button-label": "بند کرو",
 	"cdx-search-input-search-button-label": "ڳولو",
+	"cdx-table-select-all-label": "ساریاں قطاراں چݨو",
+	"cdx-table-select-row-label": "$2 وچوں $1 قطار چݨو",
+	"cdx-table-sort-caption": "$1 (بٹن آلے کالم سرخیاں ترتیب ݙتی ونڄ سڳدن)۔",
 	"cdx-typeahead-search-search-results-label": "ڳولݨ دے نتیجے",
 	"cdx-table-pager-button-first-page": "پہلا ورقہ",
 	"cdx-table-pager-button-last-page": "چھیکڑی ورقہ",
 	"cdx-table-pager-button-next-page": "اڳلا ورقہ",
 	"cdx-table-pager-button-prev-page": "پچھلا ورقہ",
-	"cdx-table-pager-items-per-page-current": "{{PLURAL:$1|$1 قطار|$1 قطاراں}}",
+	"cdx-table-pager-items-per-page-current": "{{PLURAL:$1|$1 شے|$1 شیاں}}",
 	"cdx-table-pager-items-per-page-default": "فی ورقہ نتیجے",
-	"cdx-table-pagination-status-message-pending": "نتیجے لوڈ تھیندے پئے ہن۔۔۔"
+	"cdx-table-pagination-status-message-determinate-long": "$3 وچوں $1–$2 نتیجے ݙکھائے ویندے پئے ہن۔",
+	"cdx-table-pagination-status-message-determinate-short": "$3 وچوں $1–$2",
+	"cdx-table-pagination-status-message-indeterminate-long": "بہوں سارے نتیجیاں وچوں $1–$2 نتیجے ݙکھائے ویندے پئے ہن۔",
+	"cdx-table-pagination-status-message-indeterminate-short": "بہوں سارے نتیجیاں وچوں $1–$2",
+	"cdx-table-pagination-status-message-indeterminate-final": "آخری {{PLURAL:$1|$1 نتیجہ|$1 نتیجے}} ݙکھائے ویندے پئے ہن۔",
+	"cdx-table-pagination-status-message-pending": "نتیجے لوڈ تھیندے پئے ہن۔۔۔",
+	"cdx-table-no-data-message": "کوئی ݙیٹا دستیاب کائنی۔"
 }

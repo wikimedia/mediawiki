@@ -2086,6 +2086,7 @@
 	"ipb-blocklist": "vidi postojeća blokiranja",
 	"ipb-blocklist-contribs": "doprinosi {{GENDER:$1|suradnika|suradnice}} $1",
 	"ipb-blocklist-duration-left": "preostalo: $1",
+	"block-updated-message": "Blokada je promijenjena",
 	"block-actions": "Vrsta blokade",
 	"block-change-visibility": "Promijeni vidljivost",
 	"block-details": "Pojedinosti blokade",

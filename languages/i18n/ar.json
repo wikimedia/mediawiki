@@ -4073,7 +4073,7 @@
 	"benefit-3-description": "تفضيلات تسمح لك بتخصيص تجربتك.",
 	"temp-user-unable-to-acquire": "تعذر الحصول على اسم مستخدم مؤقت للحساب. يرجى المحاولة مرة أخرى.",
 	"table-of-contents-show-button-aria-label": "إظهار جدول المحتويات",
-	"table-of-contents-hide-button-aria-label": "إخفاء جدول المحتويات.",
+	"table-of-contents-hide-button-aria-label": "إخفاء جدول المحتويات",
 	"diff-usergroups": "$1 {{PLURAL:$1|مجموعة مستخدمين|مجموعات المستخدمين}}",
 	"languageselector-no-results": "لم يتم العثور على نتائج.",
 	"languageselector-invalid-input": "\" $1 \" ليست لغة صالحة.",

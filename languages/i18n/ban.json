@@ -3960,5 +3960,6 @@
 	"table-of-contents-hide-button-aria-label": "Engkebang lis daging sasuratan",
 	"diff-usergroups": "$1 {{PLURAL:$1|sekaa anganggé}}",
 	"languageselector-no-results": "Nénten wénten asil katemuin.",
-	"languageselector-invalid-input": "\"$1\" nénten ja basa sané patut."
+	"languageselector-invalid-input": "\"$1\" nénten ja basa sané patut.",
+	"mypage-disallowed-action": "Majalaran antuk kaamanan, parilaksana \"$1\" nénten dados kaanggén ring kaca Khusus:Ulah-aluh."
 }

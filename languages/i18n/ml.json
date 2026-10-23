@@ -40,7 +40,8 @@
 			"Ævar Arnfjörð Bjarmason <avarab@gmail.com>",
 			"לערי ריינהארט",
 			"아라",
-			"Shem.iz"
+			"Shem.iz",
+			"Vis M"
 		]
 	},
 	"pagecategories": "{{PLURAL:$1|വർഗ്ഗം|വർഗ്ഗങ്ങൾ}}",
@@ -676,8 +677,8 @@
 	"edit-slots-missing": "ഇനിപ്പറയുന്ന {{PLURAL:$1| സ്ലോട്ട്|സ്ലോട്ടുകൾ}} കാണുന്നില്ല: $2 .",
 	"postedit-confirmation-created": "ഈ താൾ [[Special:Diff/ $2 |സൃഷ്ടിച്ചു]].",
 	"postedit-confirmation-restored": "ഈ താൾ [[Special:Diff/ $2 | പുനഃസ്ഥാപിച്ചു]].",
-	"postedit-confirmation-saved": "[[Special:Diff/ $2 |താങ്കളുടെ തിരുത്ത്]] സേവ് ചെയ്‌തു.",
-	"postedit-confirmation-published": "[[Special:Diff/ $2 |നിങ്ങളുടെ തിരുത്ത്]] പ്രസിദ്ധീകരിച്ചു.",
+	"postedit-confirmation-saved": "[[Special:Diff/$2|താങ്കളുടെ തിരുത്ത്]] സേവ് ചെയ്‌തു.",
+	"postedit-confirmation-published": "[[Special:Diff/$2|നിങ്ങളുടെ തിരുത്ത്]] പ്രസിദ്ധീകരിച്ചു.",
 	"postedit-temp-created-label": "താത്കാലിക അംഗത്വം",
 	"edit-already-exists": "പുതിയ താൾ സൃഷ്ടിക്കാൻ കഴിഞ്ഞില്ല.\nതാൾ ഇപ്പോൾ തന്നെ നിലവിലുണ്ട്.",
 	"defaultmessagetext": "സ്വതേയുള്ള സന്ദേശ എഴുത്ത്",

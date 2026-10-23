@@ -112,6 +112,7 @@
 	"right-blockemail": "Blokkere eller avblokkere brukere fra å sende e-post",
 	"right-hideuser": "Blokkere eller avblokkere et brukernavn og skjule det fra det offentlige",
 	"right-ipblock-exempt": "Kan redigere fra blokkerte IP-adresser",
+	"right-logentryimport": "Importere loggoppføringer",
 	"right-unblockself": "Avblokkere seg selv",
 	"right-protect": "Endre beskyttelsesinnstillinger og redigere beskyttede sider",
 	"right-editprotected": "Redigere beskyttede sider ({{int:restriction-level-sysop}})",

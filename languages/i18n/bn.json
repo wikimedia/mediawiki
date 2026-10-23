@@ -1968,6 +1968,8 @@
 	"watchlistlabels-form-name-exists": "লেবেলের নাম \"$1\" ইতিমধ্যেই ব্যবহৃত হচ্ছে।",
 	"watchlistlabels-form-submit-new": "তৈরি করুন",
 	"watchlistlabels-form-submit-edit": "সংরক্ষণ করুন",
+	"watchlistlabels-limit-reached": "লেবেল সংরক্ষণ করা যায়নি: আপনি নজরতালিকায় সর্বোচ্চ $1টি লেবেল তৈরির সীমায় পৌঁছে গেছেন।",
+	"watchlistlabels-delete-header": "{{PLURAL:$1|এই লেবেলটি|এই লেবেলগুলি}} মুছবেন?",
 	"watchlistlabels-onboarding-prev": "পূর্ববর্তী",
 	"watchlistlabels-onboarding-next": "পরবর্তী",
 	"watchlistlabels-onboarding-final": "বুঝেছি!",

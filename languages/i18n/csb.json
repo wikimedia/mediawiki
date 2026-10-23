@@ -542,6 +542,7 @@
 	"search-result-category-size": "{{PLURAL:$1|1 element|$1 elementë|$1 elementów}} ({{PLURAL:$2|1 kategòriô|$2 kategòrie|$2 kategòriów}}, {{PLURAL:$3|1 lopk|$3 lopczi|$3 lopków}})",
 	"search-redirect": "(przeczérowanié z $1)",
 	"search-section": "(dzél $1)",
+	"search-category": "(kategòriô $1)",
 	"search-file-match": "(pasëje do zamkłoscë lopka)",
 	"search-suggest": "Të mëszlôł ò: $1",
 	"search-interwiki-more": "(wicy)",

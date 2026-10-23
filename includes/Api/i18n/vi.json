@@ -244,5 +244,6 @@
 	"api-help-param-multi-separate": "Phân tách các giá trị bằng <kbd>|</kbd>.",
 	"api-help-param-default-empty": "Mặc định: <span class=\"apihelp-empty\">(trống)</span>",
 	"api-help-examples": "{{PLURAL:$1|Ví dụ|Các ví dụ}}:",
+	"apierror-exceptioncaughttype": "[$1] đã gặp ngoại lệ thuộc kiểu $2",
 	"api-credits-header": "Ghi công"
 }

@@ -1,0 +1,9 @@
+{
+	"@metadata": {
+		"authors": [
+			"Anand.orkhon"
+		]
+	},
+	"converter-manual-rule-error": "ᠮᠧᠬᠠᠨᠢᠭ ᠬᠡᠯᠡ ᠬᠥᠷᠪᠡᠭᠦᠯᠬᠦ ᠳᠦᠷᠢᠮ᠎ᠳᠦ ᠠᠯᠳᠠᠭ᠎ᠠ ᠢᠯᠡᠷᠡᠯ᠎ᠡ",
+	"language-converter-depth-warning": "ᠬᠡᠯᠡ ᠬᠥᠷᠪᠡᠭᠦᠯᠦᠭᠴᠢ᠎ᠶᠢᠨ ᠯᠢᠮᠢ᠎ᠳᠤ ᠬᠡᠲᠦᠷᠡᠭᠰᠡᠨ ($1)"
+}
