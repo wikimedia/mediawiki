@@ -1445,7 +1445,6 @@ class DifferenceEngine extends ContextSource {
 		$key = false;
 		$services = MediaWikiServices::getInstance();
 		$cache = $services->getMainWANObjectCache();
-		$stats = $services->getStatsdDataFactory();
 		if ( $this->mOldid && $this->mNewid ) {
 			$key = $cache->makeKey( ...$this->getDiffBodyCacheKeyParams() );
 
