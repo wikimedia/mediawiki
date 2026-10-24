@@ -93,6 +93,9 @@ For notes on 1.47.x and older releases, see HISTORY.
 
 === Breaking changes in 1.48 ===
 
+* LanguageQqx::getMessage(), deprecated since 1.41, has been removed
+  along with the LanguageQqx class. Use
+  LanguageFactory::getLanguage( 'qqx' ) instead.
 * MediaWikiIntegrationTestCase::assertSelect(), deprecated since 1.47,
   has been removed.
 * PrefixSearch, StringPrefixSearch and TitlePrefixSearch, deprecated
