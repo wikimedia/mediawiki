@@ -47,7 +47,7 @@ class LoadMonitor implements ILoadMonitor {
 	private const VERSION = 3;
 
 	/** Target time-till-refresh for DB server states */
-	private const STATE_TARGET_TTL = 10;
+	private const STATE_TARGET_TTL = 15;
 	/** Seconds to persist DB server states on cache (fresh or stale) */
 	private const STATE_PRESERVE_TTL = 60;
 
