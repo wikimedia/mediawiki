@@ -103,6 +103,8 @@ For notes on 1.47.x and older releases, see HISTORY.
   LanguageFactory::getLanguage( 'qqx' ) instead.
 * SpecialEmailUser::getTarget(), deprecated since 1.42, has been
   removed.
+* The $request parameter of EditPage::importFormData(),
+  hard-deprecated since 1.47, has been removed.
 * MediaWikiIntegrationTestCase::assertSelect(), deprecated since 1.47,
   has been removed.
 * SpecialVersion::getExtensionTypeName(), deprecated since 1.47, has

@@ -1096,14 +1096,10 @@ class EditPage implements IEditObject {
 
 	/**
 	 * This function collects the form data and uses it to populate various member variables.
-	 * @param WebRequest|null $request Supplying this parameter is deprecated since 1.47.
 	 * @throws ErrorPageError
 	 */
-	public function importFormData( $request = null ) {
-		if ( $request !== null ) {
-			wfDeprecated( __METHOD__ . ' with non-null $request', '1.47' );
-		}
-		$request ??= $this->getContext()->getRequest();
+	public function importFormData() {
+		$request = $this->getContext()->getRequest();
 
 		# Section edit can come from either the form or a link
 		$this->section = $request->getVal( 'wpSection', $request->getVal( 'section', '' ) );
