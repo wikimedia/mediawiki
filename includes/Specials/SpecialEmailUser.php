@@ -10,7 +10,6 @@ use MediaWiki\Exception\ErrorPageError;
 use MediaWiki\HTMLForm\HTMLForm;
 use MediaWiki\Mail\EmailUserFactory;
 use MediaWiki\MainConfigNames;
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Permissions\PermissionStatus;
 use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Status\Status;
@@ -159,35 +158,6 @@ class SpecialEmailUser extends SpecialPage {
 		$target = $par ?? $request->getVal( 'wpTarget', $request->getVal( 'target', '' ) );
 		// @phan-suppress-next-line PhanTypeMismatchArgumentNullable Defaults to empty string
 		$this->userForm( $target );
-	}
-
-	/**
-	 * Validate target User
-	 *
-	 * @param string $target Target user name
-	 * @param User $sender User sending the email
-	 * @return User|string User object on success or a string on error
-	 * @deprecated since 1.42 Use UserFactory::newFromName() and EmailUser::validateTarget();
-	 *   hard-deprecated since 1.47
-	 */
-	public static function getTarget( $target, User $sender ) {
-		wfDeprecated( __METHOD__, '1.47' );
-
-		$targetObject = MediaWikiServices::getInstance()->getUserFactory()->newFromName( $target );
-		if ( !$targetObject instanceof User ) {
-			return 'notarget';
-		}
-
-		$status = MediaWikiServices::getInstance()->getEmailUserFactory()
-			->newEmailUser( $sender )
-			->validateTarget( $targetObject );
-		if ( !$status->isGood() ) {
-			$msg = $status->getMessages()[0]->getKey();
-			$ret = $msg === 'emailnotarget' ? 'notarget' : preg_replace( '/text$/', '', $msg );
-		} else {
-			$ret = $targetObject;
-		}
-		return $ret;
 	}
 
 	/**

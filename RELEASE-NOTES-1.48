@@ -101,6 +101,8 @@ For notes on 1.47.x and older releases, see HISTORY.
 * LanguageQqx::getMessage(), deprecated since 1.41, has been removed
   along with the LanguageQqx class. Use
   LanguageFactory::getLanguage( 'qqx' ) instead.
+* SpecialEmailUser::getTarget(), deprecated since 1.42, has been
+  removed.
 * MediaWikiIntegrationTestCase::assertSelect(), deprecated since 1.47,
   has been removed.
 * SpecialVersion::getExtensionTypeName(), deprecated since 1.47, has
