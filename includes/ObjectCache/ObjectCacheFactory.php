@@ -256,8 +256,7 @@ class ObjectCacheFactory {
 	}
 
 	private function prepareMultiWriteBagOStuffFromParams( array &$params ): void {
-		// Phan warns about foreach with non-array because it
-		// thinks any key can be Closure|IBufferingStatsdDataFactory
+		// Phan warns about foreach with non-array
 		'@phan-var array{caches:array[]} $params';
 		foreach ( $params['caches'] ?? [] as $i => $cacheInfo ) {
 			// Ensure logger, keyspace, asyncHandler, etc are injected just as if
