@@ -17,7 +17,6 @@ use MediaWiki\Title\Title;
  * An utility class to rescore search results by looking for an exact match
  * in the db and add the page found to the first position.
  *
- * NOTE: extracted from TitlePrefixSearch
  * @ingroup Search
  */
 class SearchExactMatchRescorer {
@@ -38,7 +37,7 @@ class SearchExactMatchRescorer {
 	 */
 	public function rescore( $search, $namespaces, $srchres, $limit ) {
 		$this->replacedRedirect = null;
-		// Pick namespace (based on PrefixSearch::defaultSearchBackend)
+		// Pick namespace
 		$ns = in_array( NS_MAIN, $namespaces ) ? NS_MAIN : reset( $namespaces );
 		$t = Title::newFromText( $search, $ns );
 		if ( !$t || !$t->exists() ) {

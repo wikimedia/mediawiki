@@ -95,6 +95,9 @@ For notes on 1.47.x and older releases, see HISTORY.
 
 * MediaWikiIntegrationTestCase::assertSelect(), deprecated since 1.47,
   has been removed.
+* PrefixSearch, StringPrefixSearch and TitlePrefixSearch, deprecated
+  since 1.27, have been removed. Use SearchEngine::completionSearch()
+  instead.
 * …
 
 === Deprecations in 1.48 ===

@@ -292,7 +292,6 @@ class SearchEngineTest extends MediaWikiLangTestCase {
 	 * Guard against regressions like T208255
 	 * @dataProvider provideCompletionSearchMustRespectCapitalLinkOverrides
 	 * @covers \MediaWiki\Search\SearchEngine::completionSearch
-	 * @covers \MediaWiki\Search\PrefixSearch::defaultSearchBackend
 	 * @param string $search
 	 * @param string $expectedSuggestion
 	 * @param int[] $namespaces
