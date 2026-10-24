@@ -105,8 +105,7 @@ trait MetricTrait {
 
 	/** @inheritDoc */
 	public function copyToStatsdAt( $statsdNamespaces ) {
-		// TODO: After https://gerrit.wikimedia.org/r/c/operations/mediawiki-config/+/1346336
-		// trigger_error( 'Use of copyToStatsdAt is deprecated since 1.45.', E_USER_DEPRECATED );
+		trigger_error( 'Use of copyToStatsdAt is deprecated since 1.45.', E_USER_DEPRECATED );
 		return $this;
 	}
 
