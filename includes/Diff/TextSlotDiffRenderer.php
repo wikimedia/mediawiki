@@ -27,7 +27,6 @@ use MediaWiki\Status\Status;
 use MediaWiki\Title\Title;
 use OOUI\FieldLayout;
 use OOUI\ToggleSwitchWidget;
-use Wikimedia\Stats\IBufferingStatsdDataFactory;
 use Wikimedia\Stats\StatsFactory;
 
 /**
@@ -96,16 +95,6 @@ class TextSlotDiffRenderer extends SlotDiffRenderer {
 			->getSlotDiffRenderer( RequestContext::getMain(), $options );
 		'@phan-var TextSlotDiffRenderer $slotDiffRenderer';
 		return $slotDiffRenderer->getTextDiff( $oldText, $newText );
-	}
-
-	/**
-	 * This has no effect since MW 1.43.
-	 *
-	 * @internal Use ContentHandler::createTextSlotDiffRenderer instead
-	 * @param IBufferingStatsdDataFactory $statsdDataFactory
-	 */
-	public function setStatsdDataFactory( IBufferingStatsdDataFactory $statsdDataFactory ) {
-		wfDeprecated( __METHOD__, '1.43' );
 	}
 
 	/**

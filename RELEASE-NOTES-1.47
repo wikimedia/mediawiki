@@ -581,6 +581,8 @@ For notes on 1.46.x and older releases, see HISTORY.
 * ConfigRepository class and MediaWikiServices::getConfigRepository(),
   deprecated since 1.42, have been removed.
 * ApiBase::makeMessage(), deprecated since 1.43, has been removed.
+* TextSlotDiffRenderer::setStatsdDataFactory(), deprecated since 1.43,
+  has been removed.
 
 === Deprecations in 1.47 ===
 
