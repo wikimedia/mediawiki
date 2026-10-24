@@ -582,6 +582,7 @@ For notes on 1.46.x and older releases, see HISTORY.
   deprecated since 1.42, have been removed.
 * ApiBase::makeMessage(), deprecated since 1.43, has been removed.
 * SamplingStatsdClient, deprecated since 1.43, has been removed.
+* StatsdAwareInterface, deprecated since 1.45, has been removed.
 * StatsFactory::withStatsdDataFactory(), deprecated since 1.35,
   has been removed.
 * MediaWikiServices::getPerDbNameStatsdDataFactory(), deprecated since 1.44,
