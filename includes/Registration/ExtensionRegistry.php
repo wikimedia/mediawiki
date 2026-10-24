@@ -710,23 +710,6 @@ class ExtensionRegistry implements DomainEventSubscriber {
 	}
 
 	/**
-	 * Fully expand autoloader paths
-	 *
-	 * @param string $dir
-	 * @param string[] $files
-	 *
-	 * @return array
-	 */
-	protected static function processAutoLoader( $dir, array $files ) {
-		// Make paths absolute, relative to the JSON file
-		foreach ( $files as &$file ) {
-			$file = "$dir/$file";
-		}
-
-		return $files;
-	}
-
-	/**
 	 * @internal for use by Setup. Hopefully in the future, we find a better way.
 	 *
 	 * @param SettingsBuilder $settingsBuilder
