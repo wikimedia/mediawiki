@@ -1697,34 +1697,6 @@ class Title implements Stringable, LinkTarget, PageIdentity {
 	}
 
 	/**
-	 * Get the other title for this page, if this is a subject page
-	 * get the talk page, if it is a subject page get the talk page
-	 *
-	 * @deprecated since 1.34, use NamespaceInfo::getAssociatedPage. Emits deprecation warnings since 1.47.
-	 * @since 1.25
-	 * @throws MWException If the page doesn't have an other page
-	 * @return Title
-	 */
-	public function getOtherPage() {
-		wfDeprecated( __METHOD__, '1.34' );
-
-		// NOTE: Depend on the methods in this class instead of their equivalent in NamespaceInfo,
-		//       as their semantics are not exactly the same.
-		//       See the discussion on T227817.
-		if ( $this->isSpecialPage() ) {
-			throw new MWException( 'Special pages cannot have other pages' );
-		}
-		if ( $this->isTalkPage() ) {
-			return $this->getSubjectPage();
-		} else {
-			if ( !$this->canHaveTalkPage() ) {
-				throw new MWException( "{$this->getPrefixedText()} does not have an other page" );
-			}
-			return $this->getTalkPage();
-		}
-	}
-
-	/**
 	 * Get the Title fragment (i.e.\ the bit after the #) in text form
 	 *
 	 * Use Title::hasFragment to check for a fragment
@@ -3043,33 +3015,6 @@ class Title implements Stringable, LinkTarget, PageIdentity {
 	}
 
 	/**
-	 * Get the approximate revision count of this page.
-	 *
-	 * @deprecated since 1.47
-	 *
-	 * @return int
-	 */
-	public function estimateRevisionCount() {
-		wfDeprecated( __METHOD__, '1.47' );
-
-		if ( !$this->exists() ) {
-			return 0;
-		}
-
-		if ( $this->mEstimateRevisions === null ) {
-			$dbr = $this->getDbProvider()->getReplicaDatabase();
-			$this->mEstimateRevisions = $dbr->newSelectQueryBuilder()
-				->select( '*' )
-				->from( 'revision' )
-				->where( [ 'rev_page' => $this->getArticleID() ] )
-				->caller( __METHOD__ )
-				->estimateRowCount();
-		}
-
-		return $this->mEstimateRevisions;
-	}
-
-	/**
 	 * Compares with another Title.
 	 *
 	 * A Title object is considered equal to another Title if it has the same text,
@@ -3130,26 +3075,6 @@ class Title implements Stringable, LinkTarget, PageIdentity {
 		$exists = $this->getArticleID( $flags ) != 0;
 		( new HookRunner( MediaWikiServices::getInstance()->getHookContainer() ) )->onTitleExists( $this, $exists );
 		return $exists;
-	}
-
-	/**
-	 * Should links to this title be shown as potentially viewable (i.e. as
-	 * "bluelinks"), even if there's no record by this title in the page
-	 * table?
-	 *
-	 * (ISSUE: Most of these checks are cheap, but the file existence check
-	 * can potentially be quite expensive.  Including it here fixes a lot of
-	 * existing code, but we might want to add an optional parameter to skip
-	 * it and any other expensive checks.)
-	 *
-	 * @deprecated since 1.47, use LinkAlwaysKnownLookup
-	 * @return bool
-	 */
-	public function isAlwaysKnown() {
-		wfDeprecated( __METHOD__, '1.47' );
-
-		$services = MediaWikiServices::getInstance();
-		return $services->getLinkAlwaysKnownLookup()->isAlwaysKnown( $this );
 	}
 
 	/**

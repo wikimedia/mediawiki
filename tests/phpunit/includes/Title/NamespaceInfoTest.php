@@ -774,7 +774,6 @@ class NamespaceInfoTest extends MediaWikiIntegrationTestCase {
 	 * @dataProvider provideSubjectTalk
 	 * @covers \MediaWiki\Title\NamespaceInfo::getAssociated
 	 * @covers \MediaWiki\Title\NamespaceInfo::getAssociatedPage
-	 * @covers \MediaWiki\Title\Title::getOtherPage
 	 *
 	 * @param int $subject
 	 * @param int $talk
@@ -789,12 +788,6 @@ class NamespaceInfoTest extends MediaWikiIntegrationTestCase {
 		// Object will not be the same
 		$this->assertEquals( $talkTitle, $obj->getAssociatedPage( $subjectTitle ) );
 		$this->assertEquals( $subjectTitle, $obj->getAssociatedPage( $talkTitle ) );
-
-		$subjectTitle = Title::makeTitle( $subject, 'A' );
-		$talkTitle = Title::makeTitle( $talk, 'A' );
-		$this->hideDeprecated( Title::class . '::getOtherPage' );
-		$this->assertEquals( $talkTitle, $subjectTitle->getOtherPage() );
-		$this->assertEquals( $subjectTitle, $talkTitle->getOtherPage() );
 	}
 
 	public static function provideSubjectTalk() {

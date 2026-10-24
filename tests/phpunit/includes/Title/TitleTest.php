@@ -352,34 +352,6 @@ class TitleTest extends MediaWikiIntegrationTestCase {
 		$this->assertEquals( $expectedBool, $title->isWikitextPage() );
 	}
 
-	public static function provideGetOtherPage() {
-		return [
-			[ 'Main Page', 'Talk:Main Page' ],
-			[ 'Talk:Main Page', 'Main Page' ],
-			[ 'Help:Main Page', 'Help talk:Main Page' ],
-			[ 'Help talk:Main Page', 'Help:Main Page' ],
-			[ 'Special:FooBar', null ],
-			[ 'Media:File.jpg', null ],
-		];
-	}
-
-	/**
-	 * @dataProvider provideGetOtherpage
-	 * @covers \MediaWiki\Title\Title::getOtherPage
-	 *
-	 * @param string $text
-	 * @param string|null $expected
-	 */
-	public function testGetOtherPage( $text, $expected ) {
-		if ( $expected === null ) {
-			$this->expectException( MWException::class );
-		}
-
-		$title = Title::newFromText( $text );
-		$this->hideDeprecated( Title::class . '::getOtherPage' );
-		$this->assertEquals( $expected, $title->getOtherPage()->getPrefixedText() );
-	}
-
 	/**
 	 * @covers \MediaWiki\Title\Title::clearCaches
 	 */
@@ -984,36 +956,6 @@ class TitleTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( $expected, $title->getFullSubpageText() );
 	}
 
-	public static function provideIsAlwaysKnown() {
-		return [
-			[ 'Some nonexistent page' . wfRandomString(), false ],
-			[ 'Some existent page', false, true ],
-			[ '#test', true ],
-			[ 'Special:BlankPage', true ],
-			[ 'Special:SomeNonexistentSpecialPage', false ],
-			[ 'MediaWiki:Parentheses', true ],
-			[ 'MediaWiki:Some nonexistent message', false ],
-		];
-	}
-
-	/**
-	 * @covers \MediaWiki\Title\Title::isAlwaysKnown
-	 * @covers \MediaWiki\Page\LinkAlwaysKnownLookup
-	 * @dataProvider provideIsAlwaysKnown
-	 * @param string $page
-	 * @param bool $isKnown
-	 * @param bool $createIfNotExists
-	 */
-	public function testIsAlwaysKnown( $page, $isKnown, bool $createIfNotExists = false ) {
-		$this->expectDeprecationAndContinue( '/Title::isAlwaysKnown/' );
-
-		if ( $createIfNotExists ) {
-			$this->getExistingTestPage( $page );
-		}
-		$title = Title::newFromText( $page );
-		$this->assertEquals( $isKnown, $title->isAlwaysKnown() );
-	}
-
 	public static function provideIsValid() {
 		return [
 			[ Title::makeTitle( NS_MAIN, '' ), false ],
@@ -1105,16 +1047,6 @@ class TitleTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testCanExist( Title $title, $canExist ) {
 		$this->assertEquals( $canExist, $title->canExist(), $title->getFullText() );
-	}
-
-	/**
-	 * @covers \MediaWiki\Title\Title::isAlwaysKnown
-	 */
-	public function testIsAlwaysKnownOnInterwiki() {
-		$this->expectDeprecationAndContinue( '/Title::isAlwaysKnown/' );
-
-		$title = Title::makeTitle( NS_MAIN, 'Interwiki link', '', 'externalwiki' );
-		$this->assertTrue( $title->isAlwaysKnown() );
 	}
 
 	public static function provideGetSkinFromConfigSubpage() {
@@ -1497,13 +1429,6 @@ class TitleTest extends MediaWikiIntegrationTestCase {
 		];
 	}
 
-	public static function provideGetOtherPage_good() {
-		return [
-			[ Title::makeTitle( NS_MAIN, 'Test' ), Title::makeTitle( NS_TALK, 'Test' ) ],
-			[ Title::makeTitle( NS_TALK, 'Test' ), Title::makeTitle( NS_MAIN, 'Test' ) ],
-		];
-	}
-
 	/**
 	 * @dataProvider provideCanHaveTalkPage
 	 * @covers \MediaWiki\Title\Title::canHaveTalkPage
@@ -1576,26 +1501,6 @@ class TitleTest extends MediaWikiIntegrationTestCase {
 	public function testGetSubjectPage_good( Title $title, Title $expected ) {
 		$actual = $title->getSubjectPage();
 		$this->assertTrue( $expected->equals( $actual ), $title->getPrefixedDBkey() );
-	}
-
-	/**
-	 * @dataProvider provideGetOtherPage_good
-	 * @covers \MediaWiki\Title\Title::getOtherPage
-	 */
-	public function testGetOtherPage_good( Title $title, Title $expected ) {
-		$this->hideDeprecated( Title::class . '::getOtherPage' );
-		$actual = $title->getOtherPage();
-		$this->assertTrue( $expected->equals( $actual ), $title->getPrefixedDBkey() );
-	}
-
-	/**
-	 * @dataProvider provideGetTalkPage_bad
-	 * @covers \MediaWiki\Title\Title::getOtherPage
-	 */
-	public function testGetOtherPage_bad( Title $title ) {
-		$this->expectException( MWException::class );
-		$this->hideDeprecated( Title::class . '::getOtherPage' );
-		$title->getOtherPage();
 	}
 
 	public static function provideIsMovable() {
