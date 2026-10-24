@@ -14,7 +14,6 @@ use Less_Environment;
 use Less_Parser;
 use MediaWiki\CommentStore\CommentStore;
 use MediaWiki\Config\Config;
-use MediaWiki\Context\RequestContext;
 use MediaWiki\Exception\MWExceptionHandler;
 use MediaWiki\Exception\MWExceptionRenderer;
 use MediaWiki\HookContainer\HookContainer;
@@ -1748,30 +1747,6 @@ MESSAGE;
 			}
 		}
 		return $retval;
-	}
-
-	/**
-	 * Determine whether debug mode is on.
-	 *
-	 * Order of priority is:
-	 * - 1) Request parameter,
-	 * - 2) Cookie,
-	 * - 3) Site configuration.
-	 *
-	 * @deprecated since 1.47
-	 * @return int
-	 */
-	public static function inDebugMode() {
-		wfDeprecated( __METHOD__, '1.47' );
-		if ( self::$debugMode === null ) {
-			$resourceLoaderDebug = MediaWikiServices::getInstance()->getMainConfig()->get(
-				MainConfigNames::ResourceLoaderDebug );
-			$request = RequestContext::getMain()->getRequest();
-			$str = $request->getRawVal( 'debug' ) ??
-				$request->getCookie( 'resourceLoaderDebug', '', $resourceLoaderDebug ? 'true' : '' );
-			self::$debugMode = Context::debugFromString( $str );
-		}
-		return self::$debugMode;
 	}
 
 	/**

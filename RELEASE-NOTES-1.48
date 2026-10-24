@@ -93,6 +93,8 @@ For notes on 1.47.x and older releases, see HISTORY.
 
 === Breaking changes in 1.48 ===
 
+* ResourceLoader::inDebugMode(), deprecated since 1.47, has been
+  removed.
 * LanguageQqx::getMessage(), deprecated since 1.41, has been removed
   along with the LanguageQqx class. Use
   LanguageFactory::getLanguage( 'qqx' ) instead.
