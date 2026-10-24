@@ -8,7 +8,6 @@ namespace MediaWiki\EditPage;
 
 use MediaWiki\Html\Html;
 use MediaWiki\Page\PageIdentity;
-use MediaWiki\Parser\Sanitizer;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Permissions\RestrictionStore;
 use MediaWiki\Title\Title;
@@ -43,24 +42,6 @@ class TextboxBuilder {
 			return $wikitext . "\n";
 		}
 		return $wikitext;
-	}
-
-	/**
-	 * @param string[] $classes
-	 * @param mixed[] $attribs
-	 * @return mixed[]
-	 * @deprecated since 1.44, use Html::addClass() instead; hard-deprecated since 1.47
-	 */
-	public function mergeClassesIntoAttributes( array $classes, array $attribs ) {
-		wfDeprecated( __METHOD__, '1.47' );
-		if ( $classes === [] ) {
-			return $attribs;
-		}
-
-		return Sanitizer::mergeAttributes(
-			$attribs,
-			[ 'class' => implode( ' ', $classes ) ]
-		);
 	}
 
 	/**

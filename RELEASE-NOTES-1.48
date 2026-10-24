@@ -102,6 +102,8 @@ For notes on 1.47.x and older releases, see HISTORY.
   has been removed.
 * SpecialVersion::getExtensionTypeName(), deprecated since 1.47, has
   been removed.
+* TextboxBuilder::mergeClassesIntoAttributes(), deprecated since 1.44,
+  has been removed.
 * PrefixSearch, StringPrefixSearch and TitlePrefixSearch, deprecated
   since 1.27, have been removed. Use SearchEngine::completionSearch()
   instead.
