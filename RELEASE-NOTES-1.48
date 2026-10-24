@@ -111,6 +111,7 @@ For notes on 1.47.x and older releases, see HISTORY.
 
 === Deprecations in 1.48 ===
 
+* Xml::escapeTagsOnly() is unused and has been deprecated.
 * …
 
 === Other changes in 1.48 ===

@@ -173,10 +173,13 @@ class Xml {
 	 * Replace " > and < with their respective HTML entities ( &quot;,
 	 * &gt;, &lt;)
 	 *
+	 * @deprecated since 1.48
+	 *
 	 * @param string $in Text that might contain HTML tags.
 	 * @return string Escaped string
 	 */
 	public static function escapeTagsOnly( $in ) {
+		wfDeprecated( __METHOD__, '1.48' );
 		return str_replace(
 			[ '"', '>', '<' ],
 			[ '&quot;', '&gt;', '&lt;' ],

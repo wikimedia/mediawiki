@@ -31,6 +31,7 @@ class XmlTest extends MediaWikiUnitTestCase {
 	}
 
 	public function testEscapeTagsOnly() {
+		$this->hideDeprecated( Xml::class . '::escapeTagsOnly' );
 		$this->assertEquals( '&quot;&gt;&lt;', Xml::escapeTagsOnly( '"><' ),
 			'replace " > and < with their HTML entities'
 		);
