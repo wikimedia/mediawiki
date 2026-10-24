@@ -67,6 +67,7 @@ For notes on 1.47.x and older releases, see HISTORY.
 * …
 
 ==== Changed external libraries ====
+* Updated justinrainbow/json-schema from 5.3.4 to 6.14.0.
 
 * …
 
