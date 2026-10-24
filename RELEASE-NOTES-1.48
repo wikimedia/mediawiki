@@ -116,6 +116,8 @@ For notes on 1.47.x and older releases, see HISTORY.
   hard-deprecated since 1.47, has been removed.
 * MediaWikiIntegrationTestCase::assertSelect(), deprecated since 1.47,
   has been removed.
+* MediaWikiIntegrationTestCase::assertArraySubmapSame(), deprecated since 1.47,
+  has been removed.
 * The EditPageBeforeConflictDiff hook, deprecated since 1.47, has
   been removed.
 * SpecialVersion::getExtensionTypeName(), deprecated since 1.47, has

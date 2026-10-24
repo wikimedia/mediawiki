@@ -2328,28 +2328,6 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	}
 
 	/**
-	 * Assert that an associative array contains the subset of an expected array.
-	 *
-	 * The internal key order does not matter.
-	 * Values are compared with strict equality.
-	 *
-	 * @since 1.35
-	 * @deprecated Since 1.47 Use $this->assertArrayContains() instead
-	 *
-	 * @param array $expected
-	 * @param array $actual
-	 * @param string $message
-	 */
-	protected function assertArraySubmapSame(
-		array $expected,
-		array $actual,
-		$message = ''
-	) {
-		wfDeprecated( __METHOD__, '1.47' );
-		$this->assertArrayContains( $expected, $actual, $message );
-	}
-
-	/**
 	 * Utility method taking an array of elements and wrapping
 	 * each element in its own array. Useful for data providers
 	 * that only return a single argument.
