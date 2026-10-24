@@ -456,21 +456,19 @@ class LocalFileDeleteBatch {
 			}
 		}
 
-		if ( !$repo->hasSha1Storage() ) {
-			// Removes non-existent file from the batch, so we don't get errors.
-			// This also handles files in the 'deleted' zone deleted via revision deletion.
-			$checkStatus = $this->removeNonexistentFiles( $this->deletionBatch );
-			if ( !$checkStatus->isGood() ) {
-				$status->merge( $checkStatus );
-				return $status;
-			}
-			$this->deletionBatch = $checkStatus->value;
+		// Removes non-existent file from the batch, so we don't get errors.
+		// This also handles files in the 'deleted' zone deleted via revision deletion.
+		$checkStatus = $this->removeNonexistentFiles( $this->deletionBatch );
+		if ( !$checkStatus->isGood() ) {
+			$status->merge( $checkStatus );
+			return $status;
+		}
+		$this->deletionBatch = $checkStatus->value;
 
-			// Execute the file deletion batch
-			$status = $this->file->repo->deleteBatch( $this->deletionBatch );
-			if ( !$status->isGood() ) {
-				$status->merge( $status );
-			}
+		// Execute the file deletion batch
+		$status = $this->file->repo->deleteBatch( $this->deletionBatch );
+		if ( !$status->isGood() ) {
+			$status->merge( $status );
 		}
 
 		if ( !$status->isOK() ) {

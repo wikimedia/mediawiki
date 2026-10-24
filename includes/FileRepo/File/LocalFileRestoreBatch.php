@@ -324,27 +324,25 @@ class LocalFileRestoreBatch {
 			$status->error( 'undelete-missing-filearchive', $id );
 		}
 
-		if ( !$repo->hasSha1Storage() ) {
-			// Remove missing files from batch, so we don't get errors when undeleting them
-			$checkStatus = $this->removeNonexistentFiles( $storeBatch );
-			if ( !$checkStatus->isGood() ) {
-				$status->merge( $checkStatus );
-				return $status;
-			}
-			$storeBatch = $checkStatus->value;
+		// Remove missing files from batch, so we don't get errors when undeleting them
+		$checkStatus = $this->removeNonexistentFiles( $storeBatch );
+		if ( !$checkStatus->isGood() ) {
+			$status->merge( $checkStatus );
+			return $status;
+		}
+		$storeBatch = $checkStatus->value;
 
-			// Run the store batch
-			// Use the OVERWRITE_SAME flag to smooth over a common error
-			$storeStatus = $this->file->repo->storeBatch( $storeBatch, FileRepo::OVERWRITE_SAME );
-			$status->merge( $storeStatus );
+		// Run the store batch
+		// Use the OVERWRITE_SAME flag to smooth over a common error
+		$storeStatus = $this->file->repo->storeBatch( $storeBatch, FileRepo::OVERWRITE_SAME );
+		$status->merge( $storeStatus );
 
-			if ( !$status->isGood() ) {
-				// Even if some files could be copied, fail entirely as that is the
-				// easiest thing to do without data loss
-				$this->cleanupFailedBatch( $storeStatus, $storeBatch );
-				$status->setOK( false );
-				return $status;
-			}
+		if ( !$status->isGood() ) {
+			// Even if some files could be copied, fail entirely as that is the
+			// easiest thing to do without data loss
+			$this->cleanupFailedBatch( $storeStatus, $storeBatch );
+			$status->setOK( false );
+			return $status;
 		}
 
 		// Run the DB updates
@@ -412,7 +410,7 @@ class LocalFileRestoreBatch {
 		}
 
 		// If store batch is empty (all files are missing), deletion is to be considered successful
-		if ( $status->successCount > 0 || !$storeBatch || $repo->hasSha1Storage() ) {
+		if ( $status->successCount > 0 || !$storeBatch ) {
 			if ( !$exists ) {
 				wfDebug( __METHOD__ . " restored {$status->successCount} items, creating a new current" );
 

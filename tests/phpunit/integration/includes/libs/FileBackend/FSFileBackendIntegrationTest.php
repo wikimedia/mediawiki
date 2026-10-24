@@ -21,7 +21,6 @@ use Wikimedia\FileBackend\FSFileBackend;
  * @covers \Wikimedia\FileBackend\FileIteration\FSFileBackendFileList
  * @covers \Wikimedia\FileBackend\FileIteration\FSFileBackendList
  * @covers \Wikimedia\FileBackend\FileOpHandle\FSFileOpHandle
- * @covers \MediaWiki\FileRepo\FileBackendDBRepoWrapper
  * @covers \Wikimedia\FileBackend\FileBackendError
  * @covers \MediaWiki\FileBackend\FileBackendGroup
  * @covers \Wikimedia\FileBackend\FileBackendMultiWrite

@@ -4,7 +4,6 @@ use MediaWiki\FileRepo\File\LocalFile;
 use MediaWiki\FileRepo\File\OldLocalFile;
 use MediaWiki\FileRepo\LocalRepo;
 use MediaWiki\MainConfigNames;
-use MediaWiki\Status\Status;
 use MediaWiki\Title\Title;
 use MediaWiki\WikiMap\WikiMap;
 use Wikimedia\ObjectCache\EmptyBagOStuff;
@@ -26,23 +25,6 @@ class LocalRepoTest extends MediaWikiIntegrationTestCase {
 			'name' => 'local',
 			'backend' => 'local-backend',
 		] );
-	}
-
-	/**
-	 * @param array $extraInfo To pass to constructor
-	 * @param bool $expected
-	 * @dataProvider provideHasSha1Storage
-	 */
-	public function testHasSha1Storage( array $extraInfo, $expected ) {
-		$this->assertSame( $expected, $this->newRepo( $extraInfo )->hasSha1Storage() );
-	}
-
-	public static function provideHasSha1Storage() {
-		return [
-			[ [], false ],
-			[ [ 'storageLayout' => 'sha256' ], false ],
-			[ [ 'storageLayout' => 'sha1' ], true ],
-		];
 	}
 
 	/**
@@ -112,13 +94,6 @@ class LocalRepoTest extends MediaWikiIntegrationTestCase {
 		$file = $this->newRepo()->newFromArchiveName( $page, 'b' );
 		$this->assertInstanceOf( OldLocalFile::class, $file );
 		$this->assertSame( 'Test_file', $file->getName() );
-	}
-
-	// TODO cleanupDeletedBatch, deletedFileHasKey, hiddenFileHasKey
-
-	public function testCleanupDeletedBatch_sha1Storage() {
-		$this->assertEquals( Status::newGood(),
-			$this->newRepo( [ 'storageLayout' => 'sha1' ] )->cleanupDeletedBatch( [] ) );
 	}
 
 	/**
@@ -316,26 +291,6 @@ class LocalRepoTest extends MediaWikiIntegrationTestCase {
 			[ 'articleUrl' ],
 			[ 'fetchDescription' ],
 			[ 'descriptionCacheExpiry' ],
-		];
-	}
-
-	/**
-	 * @dataProvider provideSkipWriteOperationIfSha1
-	 */
-	public function testSkipWriteOperationIfSha1( $method, ...$args ) {
-		$repo = $this->newRepo( [ 'storageLayout' => 'sha1' ] );
-		$this->assertEquals( Status::newGood(), $repo->$method( ...$args ) );
-	}
-
-	public static function provideSkipWriteOperationIfSha1() {
-		return [
-			[ 'store', '', '', '' ],
-			[ 'storeBatch', [ '' ] ],
-			[ 'cleanupBatch', [ '' ] ],
-			[ 'publish', '', '', '' ],
-			[ 'publishBatch', [ '' ] ],
-			[ 'delete', '', '' ],
-			[ 'deleteBatch', [ '' ] ],
 		];
 	}
 }

@@ -6,7 +6,6 @@
 
 namespace MediaWiki\FileRepo;
 
-use Closure;
 use InvalidArgumentException;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\FileRepo\File\File;
@@ -84,17 +83,7 @@ class LocalRepo extends FileRepo {
 
 		$this->dbDomain = WikiMap::getCurrentWikiDbDomain()->getId();
 		$this->hasAccessibleSharedCache = true;
-
-		$this->hasSha1Storage = ( $info['storageLayout'] ?? null ) === 'sha1';
 		$this->dbProvider = MediaWikiServices::getInstance()->getConnectionProvider();
-
-		if ( $this->hasSha1Storage() ) {
-			$this->backend = new FileBackendDBRepoWrapper( [
-				'backend'         => $this->backend,
-				'repoName'        => $this->name,
-				'dbHandleFactory' => $this->getDBFactory()
-			] );
-		}
 
 		foreach (
 			[
@@ -151,11 +140,6 @@ class LocalRepo extends FileRepo {
 	 * @return Status
 	 */
 	public function cleanupDeletedBatch( array $storageKeys ) {
-		if ( $this->hasSha1Storage() ) {
-			wfDebug( __METHOD__ . ": skipped because storage uses sha1 paths" );
-			return Status::newGood();
-		}
-
 		$backend = $this->backend; // convenience
 		$root = $this->getZonePath( 'deleted' );
 		$dbw = $this->getPrimaryDB();
@@ -527,21 +511,6 @@ class LocalRepo extends FileRepo {
 	}
 
 	/**
-	 * Get a callback to get a DB handle given an index (DB_REPLICA/DB_PRIMARY)
-	 * @return Closure
-	 */
-	protected function getDBFactory() {
-		// TODO: DB_REPLICA/DB_PRIMARY shouldn't be passed around
-		return static function ( $index ) {
-			if ( $index === DB_PRIMARY ) {
-				return MediaWikiServices::getInstance()->getConnectionProvider()->getPrimaryDatabase();
-			} else {
-				return MediaWikiServices::getInstance()->getConnectionProvider()->getReplicaDatabase();
-			}
-		};
-	}
-
-	/**
 	 * Check whether the repo has a shared cache, accessible from the current site context
 	 *
 	 * @return bool
@@ -578,65 +547,6 @@ class LocalRepo extends FileRepo {
 				},
 				__METHOD__
 			);
-		}
-	}
-
-	/** @inheritDoc */
-	public function store( $srcPath, $dstZone, $dstRel, $flags = 0 ) {
-		return $this->skipWriteOperationIfSha1( __FUNCTION__, func_get_args() );
-	}
-
-	/** @inheritDoc */
-	public function storeBatch( array $triplets, $flags = 0 ) {
-		return $this->skipWriteOperationIfSha1( __FUNCTION__, func_get_args() );
-	}
-
-	/** @inheritDoc */
-	public function cleanupBatch( array $files, $flags = 0 ) {
-		return $this->skipWriteOperationIfSha1( __FUNCTION__, func_get_args() );
-	}
-
-	/** @inheritDoc */
-	public function publish(
-		$src,
-		$dstRel,
-		$archiveRel,
-		$flags = 0,
-		array $options = []
-	) {
-		return $this->skipWriteOperationIfSha1( __FUNCTION__, func_get_args() );
-	}
-
-	/** @inheritDoc */
-	public function publishBatch( array $ntuples, $flags = 0 ) {
-		return $this->skipWriteOperationIfSha1( __FUNCTION__, func_get_args() );
-	}
-
-	/** @inheritDoc */
-	public function delete( $srcRel, $archiveRel ) {
-		return $this->skipWriteOperationIfSha1( __FUNCTION__, func_get_args() );
-	}
-
-	/** @inheritDoc */
-	public function deleteBatch( array $sourceDestPairs ) {
-		return $this->skipWriteOperationIfSha1( __FUNCTION__, func_get_args() );
-	}
-
-	/**
-	 * Skips the write operation if storage is sha1-based, executes it normally otherwise
-	 *
-	 * @param string $function
-	 * @param array $args
-	 * @return Status
-	 */
-	protected function skipWriteOperationIfSha1( $function, array $args ) {
-		$this->assertWritableRepo(); // fail out if read-only
-
-		if ( $this->hasSha1Storage() ) {
-			wfDebug( __METHOD__ . ": skipped because storage uses sha1 paths" );
-			return Status::newGood();
-		} else {
-			return parent::$function( ...$args );
 		}
 	}
 

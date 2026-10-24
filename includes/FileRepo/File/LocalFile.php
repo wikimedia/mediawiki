@@ -13,7 +13,6 @@ use MediaWiki\Deferred\AutoCommitUpdate;
 use MediaWiki\Deferred\DeferredUpdates;
 use MediaWiki\Deferred\LinksUpdate\LinksUpdate;
 use MediaWiki\Deferred\SiteStatsUpdate;
-use MediaWiki\FileRepo\FileBackendDBRepoWrapper;
 use MediaWiki\FileRepo\FileRepo;
 use MediaWiki\FileRepo\LocalRepo;
 use MediaWiki\JobQueue\Jobs\HTMLCacheUpdateJob;
@@ -2362,31 +2361,13 @@ class LocalFile extends File {
 			$archiveRel = $this->getArchiveRel( $archiveName );
 		}
 
-		if ( $repo->hasSha1Storage() ) {
-			$sha1 = FileRepo::isVirtualUrl( $srcPath )
-				? $repo->getFileSha1( $srcPath )
-				: FSFile::getSha1Base36FromPath( $srcPath );
-			/** @var FileBackendDBRepoWrapper $wrapperBackend */
-			$wrapperBackend = $repo->getBackend();
-			'@phan-var FileBackendDBRepoWrapper $wrapperBackend';
-			$dst = $wrapperBackend->getPathForSHA1( $sha1 );
-			$status = $repo->quickImport( $src, $dst );
-			if ( $flags & File::DELETE_SOURCE ) {
-				unlink( $srcPath );
-			}
+		$flags = $flags & File::DELETE_SOURCE ? LocalRepo::DELETE_SOURCE : 0;
+		$status = $repo->publish( $srcPath, $dstRel, $archiveRel, $flags, $options );
 
-			if ( $this->exists() ) {
-				$status->value = $archiveName;
-			}
+		if ( $status->value == 'new' ) {
+			$status->value = '';
 		} else {
-			$flags = $flags & File::DELETE_SOURCE ? LocalRepo::DELETE_SOURCE : 0;
-			$status = $repo->publish( $srcPath, $dstRel, $archiveRel, $flags, $options );
-
-			if ( $status->value == 'new' ) {
-				$status->value = '';
-			} else {
-				$status->value = $archiveName;
-			}
+			$status->value = $archiveName;
 		}
 
 		$this->releaseFileLock();

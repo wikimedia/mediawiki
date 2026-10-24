@@ -266,36 +266,34 @@ class LocalFileMoveBatch {
 			return $statusDb;
 		}
 
-		if ( !$repo->hasSha1Storage() ) {
-			// Copy the files into their new location.
-			// If a prior process fataled copying or cleaning up files we tolerate any
-			// of the existing files if they are identical to the ones being stored.
-			$statusMove = $repo->storeBatch( $triplets, FileRepo::OVERWRITE_SAME );
+		// Copy the files into their new location.
+		// If a prior process fataled copying or cleaning up files we tolerate any
+		// of the existing files if they are identical to the ones being stored.
+		$statusMove = $repo->storeBatch( $triplets, FileRepo::OVERWRITE_SAME );
+
+		$this->logger->debug(
+			'Moved files for {fileName}: {successCount} successes, {failCount} failures',
+			[
+				'fileName' => $this->file->getName(),
+				'successCount' => $statusMove->successCount,
+				'failCount' => $statusMove->failCount,
+			]
+		);
+
+		if ( !$statusMove->isGood() ) {
+			// Delete any files copied over (while the destination is still locked)
+			$this->cleanupTarget( $triplets );
 
 			$this->logger->debug(
-				'Moved files for {fileName}: {successCount} successes, {failCount} failures',
-				[
-					'fileName' => $this->file->getName(),
-					'successCount' => $statusMove->successCount,
-					'failCount' => $statusMove->failCount,
-				]
+				'Error in moving files: {error}',
+				[ 'error' => $statusMove->getWikiText( false, false, 'en' ) ]
 			);
 
-			if ( !$statusMove->isGood() ) {
-				// Delete any files copied over (while the destination is still locked)
-				$this->cleanupTarget( $triplets );
+			$statusMove->setOK( false );
 
-				$this->logger->debug(
-					'Error in moving files: {error}',
-					[ 'error' => $statusMove->getWikiText( false, false, 'en' ) ]
-				);
-
-				$statusMove->setOK( false );
-
-				return $statusMove;
-			}
-			$status->merge( $statusMove );
+			return $statusMove;
 		}
+		$status->merge( $statusMove );
 
 		// Rename the file versions metadata in the DB.
 		$this->doDBUpdates();

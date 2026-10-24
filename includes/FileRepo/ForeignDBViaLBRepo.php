@@ -6,7 +6,6 @@
 
 namespace MediaWiki\FileRepo;
 
-use Closure;
 use LogicException;
 use MediaWiki\FileRepo\File\ForeignDBFile;
 use MediaWiki\MediaWikiServices;
@@ -42,19 +41,6 @@ class ForeignDBViaLBRepo extends LocalRepo implements IForeignRepoWithDB {
 	/** @inheritDoc */
 	public function getReplicaDB() {
 		return $this->getDbProvider()->getReplicaDatabase( $this->dbDomain );
-	}
-
-	/**
-	 * @return Closure
-	 */
-	protected function getDBFactory() {
-		return function ( $index ) {
-			if ( $index == DB_PRIMARY ) {
-				return $this->getDbProvider()->getPrimaryDatabase( $this->dbDomain );
-			} else {
-				return $this->getDbProvider()->getReplicaDatabase( $this->dbDomain );
-			}
-		};
 	}
 
 	protected function getDbProvider(): IConnectionProvider {

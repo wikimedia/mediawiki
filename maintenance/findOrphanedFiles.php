@@ -30,10 +30,6 @@ class FindOrphanedFiles extends Maintenance {
 		$verbose = $this->hasOption( 'verbose' );
 
 		$repo = $this->getServiceContainer()->getRepoGroup()->getLocalRepo();
-		if ( $repo->hasSha1Storage() ) {
-			$this->fatalError( "Local repo uses SHA-1 file storage names; aborting." );
-		}
-
 		$directory = $repo->getZonePath( 'public' );
 		if ( $subdir != '' ) {
 			$directory .= "/$subdir/";
