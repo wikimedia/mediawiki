@@ -37,8 +37,6 @@ class StatsFactory {
 	private EmitterInterface $emitter;
 	private LoggerInterface $logger;
 
-	private ?IBufferingStatsdDataFactory $statsdDataFactory = null;
-
 	/**
 	 * StatsFactory builds, configures, and caches Metrics.
 	 */
@@ -63,18 +61,7 @@ class StatsFactory {
 	 * @return StatsFactory
 	 */
 	public function withComponent( string $component ): StatsFactory {
-		$statsFactory = new StatsFactory( $this->cache, $this->emitter, $this->logger, $component );
-		return $statsFactory->withStatsdDataFactory( $this->statsdDataFactory );
-	}
-
-	/**
-	 * This function existed to support the Graphite->Prometheus transition and is no longer needed.
-	 * @deprecated since 1.45, see: https://www.mediawiki.org/wiki/Manual:Stats
-	 */
-	public function withStatsdDataFactory( ?IBufferingStatsdDataFactory $statsdDataFactory ): StatsFactory {
-		// TODO: remove this and all other copyToStatsdAt() usage and implementation
-		//$this->statsdDataFactory = $statsdDataFactory;
-		return $this;
+		return new StatsFactory( $this->cache, $this->emitter, $this->logger, $component );
 	}
 
 	/**
@@ -191,7 +178,7 @@ class StatsFactory {
 		}
 		if ( $metric === null ) {
 			$baseMetric = new BaseMetric( $this->component, $name );
-			$metric = new $className( $baseMetric->withStatsdDataFactory( $this->statsdDataFactory ), $this->logger );
+			$metric = new $className( $baseMetric, $this->logger );
 			$this->cache->set( $this->component, $name, $metric );
 		}
 		return $metric->fresh();

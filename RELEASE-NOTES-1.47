@@ -581,6 +581,8 @@ For notes on 1.46.x and older releases, see HISTORY.
 * ConfigRepository class and MediaWikiServices::getConfigRepository(),
   deprecated since 1.42, have been removed.
 * ApiBase::makeMessage(), deprecated since 1.43, has been removed.
+* StatsFactory::withStatsdDataFactory(), deprecated since 1.35,
+  has been removed.
 * MediaWikiServices::getPerDbNameStatsdDataFactory(), deprecated since 1.44,
   has been removed. Use StatsFactory with wiki ID from
   WikiMap::getCurrentWikiId() as label instead.

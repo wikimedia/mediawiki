@@ -49,10 +49,6 @@ class CounterMetric implements MetricInterface {
 			return;
 		}
 
-		foreach ( $this->baseMetric->getStatsdNamespaces() as $namespace ) {
-			$this->baseMetric->getStatsdDataFactory()->updateCount( $namespace, $value );
-		}
-
 		try {
 			$labelValues = $this->baseMetric->getLabelValues();
 			if ( $this->bucket ) {

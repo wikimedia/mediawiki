@@ -36,10 +36,6 @@ class GaugeMetric implements MetricInterface {
 	 * @return void
 	 */
 	public function set( float $value ): void {
-		foreach ( $this->baseMetric->getStatsdNamespaces() as $namespace ) {
-			$this->baseMetric->getStatsdDataFactory()->gauge( $namespace, $value );
-		}
-
 		try {
 			$this->baseMetric->addSample( new Sample( $this->baseMetric->getLabelValues(), $value ) );
 		} catch ( IllegalOperationException $ex ) {

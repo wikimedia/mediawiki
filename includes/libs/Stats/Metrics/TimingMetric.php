@@ -152,10 +152,6 @@ class TimingMetric implements MetricInterface {
 	}
 
 	private function addSample( float $milliseconds ): void {
-		foreach ( $this->baseMetric->getStatsdNamespaces() as $namespace ) {
-			$this->baseMetric->getStatsdDataFactory()->timing( $namespace, $milliseconds );
-		}
-
 		try {
 			$this->baseMetric->addSample( new Sample( $this->baseMetric->getLabelValues(), $milliseconds ) );
 		} catch ( IllegalOperationException $ex ) {

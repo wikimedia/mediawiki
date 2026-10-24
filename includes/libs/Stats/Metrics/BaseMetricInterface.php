@@ -8,7 +8,6 @@ declare( strict_types=1 );
 
 namespace Wikimedia\Stats\Metrics;
 
-use Wikimedia\Stats\IBufferingStatsdDataFactory;
 use Wikimedia\Stats\Sample;
 
 /**
@@ -121,33 +120,4 @@ interface BaseMetricInterface {
 	 * @return void
 	 */
 	public function clearLabels(): void;
-
-	/**
-	 * Gets StatsD Data Factory instance or null.
-	 */
-	public function getStatsdDataFactory();
-
-	/**
-	 * Validates and sets legacy StatsD namespaces.
-	 *
-	 * @param string|string[] $statsdNamespaces
-	 * @return void
-	 */
-	public function setStatsdNamespaces( $statsdNamespaces ): void;
-
-	/**
-	 * Returns the configured legacy StatsD namespaces.
-	 *
-	 * @return string[]
-	 */
-	public function getStatsdNamespaces(): array;
-
-	/**
-	 * StatsD Data Factory instance to copy metrics to.
-	 *
-	 * @param IBufferingStatsdDataFactory|null $statsdDataFactory
-	 *
-	 * @return $this
-	 */
-	public function withStatsdDataFactory( ?IBufferingStatsdDataFactory $statsdDataFactory );
 }

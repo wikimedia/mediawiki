@@ -8,10 +8,8 @@ declare( strict_types=1 );
 
 namespace Wikimedia\Stats\Metrics;
 
-use InvalidArgumentException;
 use Wikimedia\Stats\Exceptions\IllegalOperationException;
 use Wikimedia\Stats\Exceptions\InvalidConfigurationException;
-use Wikimedia\Stats\IBufferingStatsdDataFactory;
 use Wikimedia\Stats\Sample;
 use Wikimedia\Stats\StatsUtils;
 
@@ -39,11 +37,6 @@ class BaseMetric implements BaseMetricInterface {
 
 	/** @var Sample[] */
 	private array $samples = [];
-
-	private ?IBufferingStatsdDataFactory $statsdDataFactory = null;
-
-	/** @var string[] */
-	private array $statsdNamespaces = [];
 
 	/** @inheritDoc */
 	public function __construct( string $component, string $name ) {
@@ -104,40 +97,6 @@ class BaseMetric implements BaseMetricInterface {
 
 		StatsUtils::validateLabelValue( $value );
 		$this->workingLabels[$key] = StatsUtils::normalizeString( $value );
-	}
-
-	/** @inheritDoc */
-	public function getStatsdDataFactory() {
-		return $this->statsdDataFactory;
-	}
-
-	/** @inheritDoc */
-	public function withStatsdDataFactory( $statsdDataFactory ): BaseMetricInterface {
-		$this->statsdDataFactory = $statsdDataFactory;
-		return $this;
-	}
-
-	/** @inheritDoc */
-	public function setStatsdNamespaces( $statsdNamespaces ): void {
-		if ( $this->statsdDataFactory === null ) {
-			return;
-		}
-		$statsdNamespaces = is_array( $statsdNamespaces ) ? $statsdNamespaces : [ $statsdNamespaces ];
-
-		foreach ( $statsdNamespaces as $namespace ) {
-			if ( $namespace === '' ) {
-				throw new InvalidArgumentException( 'StatsD namespace cannot be empty.' );
-			}
-			if ( !is_string( $namespace ) ) {
-				throw new InvalidArgumentException( 'StatsD namespace must be a string.' );
-			}
-		}
-		$this->statsdNamespaces = $statsdNamespaces;
-	}
-
-	/** @inheritDoc */
-	public function getStatsdNamespaces(): array {
-		return $this->statsdNamespaces;
 	}
 
 	/** @inheritDoc */
