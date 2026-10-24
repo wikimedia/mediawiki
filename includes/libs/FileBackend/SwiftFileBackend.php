@@ -1124,7 +1124,7 @@ class SwiftFileBackend extends FileBackendStore {
 	}
 
 	/** @inheritDoc */
-	protected function doGetFileSha1base36( array $params ) {
+	protected function doGetFileSha1Base36( array $params ) {
 		// Avoid using stat entries from file listings, which never include the SHA-1 hash.
 		// Also, recompute the hash if it's not part of the metadata headers for some reason.
 		$params['requireSHA1'] = true;
