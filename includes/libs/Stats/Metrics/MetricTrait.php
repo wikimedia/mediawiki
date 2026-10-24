@@ -105,13 +105,7 @@ trait MetricTrait {
 
 	/** @inheritDoc */
 	public function copyToStatsdAt( $statsdNamespaces ) {
-		try {
-			$this->baseMetric->setStatsdNamespaces( $statsdNamespaces );
-		} catch ( InvalidArgumentException $ex ) {
-			// Log the condition and give the caller something that will absorb calls.
-			trigger_error( "Stats: ({$this->getName()}) {$ex->getMessage()}", E_USER_WARNING );
-			return new NullMetric;
-		}
+		trigger_error( 'Use of copyToStatsdAt is deprecated since 1.45.', E_USER_DEPRECATED );
 		return $this;
 	}
 

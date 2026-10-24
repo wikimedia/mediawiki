@@ -5,7 +5,6 @@ namespace Wikimedia\Tests\Stats;
 use MediaWikiCoversValidator;
 use PHPUnit\Framework\TestCase;
 use Psr\Log\NullLogger;
-use Wikimedia\Stats\IBufferingStatsdDataFactory;
 use Wikimedia\Stats\OutputFormats;
 use Wikimedia\Stats\StatsCache;
 use Wikimedia\Stats\StatsFactory;
@@ -21,9 +20,6 @@ class StatsEmitterTest extends TestCase {
 	use MediaWikiCoversValidator;
 
 	public function testSendMetrics() {
-		// set up a mock statsd data factory
-		$statsd = $this->createMock( IBufferingStatsdDataFactory::class );
-
 		// initialize cache
 		$cache = new StatsCache();
 
@@ -69,9 +65,6 @@ class StatsEmitterTest extends TestCase {
 		// initialize metrics factory
 		$m = new StatsFactory( $cache, $emitter, new NullLogger, 'test' );
 
-		// inject statsd factory
-		$m->withStatsdDataFactory( $statsd );
-
 		// simple counter
 		$m->getCounter( 'foo' )
 			->increment();
@@ -82,7 +75,6 @@ class StatsEmitterTest extends TestCase {
 			->setLabels( [
 				'mykey' => 'value1'
 			] )
-			->copyToStatsdAt( 'test.old_bar' )
 			->increment();
 
 		$metric = $m->getCounter( 'bar' )->setLabels( [
@@ -94,7 +86,6 @@ class StatsEmitterTest extends TestCase {
 
 		// timer with statsd copy
 		$m->getTiming( 'baz' )
-			->copyToStatsdAt( 'test.old_baz' )
 			->observeSeconds( 0.00314 );
 
 		// setting a bucket manages the 'le' label
@@ -107,7 +98,6 @@ class StatsEmitterTest extends TestCase {
 			->set( 42 );
 
 		$m->getGauge( 'quux' )
-			->copyToStatsdAt( 'test.old_quux' )
 			->set( 1 );
 
 		$histo = $m->getHistogram( 'zot', [ 1, 10 ] );
@@ -149,5 +139,4 @@ class StatsEmitterTest extends TestCase {
 		// send metrics
 		$m->flush();
 	}
-
 }
