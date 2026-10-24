@@ -324,8 +324,7 @@ class WANObjectCache implements
 	 * @param array $params
 	 *   - cache    : BagOStuff object for a persistent cache
 	 *   - logger   : LoggerInterface object
-	 *   - stats    : StatsFactory object. Since 1.43, constructing a WANObjectCache object
-	 *       with an IBufferingStatsdDataFactory stats collector will emit a warning.
+	 *   - stats    : StatsFactory object
 	 *   - asyncHandler : A function that takes a callback and runs it later. If supplied,
 	 *       whenever a preemptive refresh would be triggered in getWithSetCallback(), the
 	 *       current cache value is still used instead. However, the async-handler function
