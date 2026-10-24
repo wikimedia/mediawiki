@@ -338,8 +338,6 @@ use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\Rdbms\ReadOnlyMode;
 use Wikimedia\RequestTimeout\CriticalSectionProvider;
 use Wikimedia\RequestTimeout\RequestTimeout;
-use Wikimedia\Stats\IBufferingStatsdDataFactory;
-use Wikimedia\Stats\NullStatsdDataFactory;
 use Wikimedia\Stats\OutputFormats;
 use Wikimedia\Stats\StatsCache;
 use Wikimedia\Stats\StatsFactory;
@@ -2024,7 +2022,6 @@ return [
 			$parsoidSettings,
 			$services->getObjectFactory(),
 			$services->getContentLanguage(),
-			$services->getStatsdDataFactory(),
 			$services->getStatsFactory(),
 			$services->getMagicWordFactory(),
 			$services->getNamespaceInfo(),
@@ -2715,10 +2712,6 @@ return [
 			$services->getHookContainer(),
 			$services->getStatsFactory(),
 		);
-	},
-
-	'StatsdDataFactory' => static function ( MediaWikiServices $services ): IBufferingStatsdDataFactory {
-		return new NullStatsdDataFactory();
 	},
 
 	'StatsFactory' => static function ( MediaWikiServices $services ): StatsFactory {

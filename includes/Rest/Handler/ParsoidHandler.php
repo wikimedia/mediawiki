@@ -9,7 +9,6 @@ namespace MediaWiki\Rest\Handler;
 
 use Composer\Semver\Semver;
 use InvalidArgumentException;
-use Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface;
 use LogicException;
 use MediaWiki\Content\WikitextContent;
 use MediaWiki\Context\RequestContext;
@@ -71,9 +70,6 @@ abstract class ParsoidHandler extends Handler {
 
 	protected readonly ExtensionRegistry $extensionRegistry;
 
-	/** @var ?StatsdDataFactoryInterface A statistics aggregator */
-	protected ?StatsdDataFactoryInterface $metrics;
-
 	/** @var array */
 	private $requestAttributes;
 
@@ -97,7 +93,6 @@ abstract class ParsoidHandler extends Handler {
 		private readonly PageBundleParserOutputConverter $pageBundleParserOutputConverter,
 	) {
 		$this->extensionRegistry = ExtensionRegistry::getInstance();
-		$this->metrics = $siteConfig->metrics();
 	}
 
 	public function getSupportedRequestTypes(): array {
@@ -924,10 +919,6 @@ abstract class ParsoidHandler extends Handler {
 		}
 		$attribs['envOptions']['inputContentVersion'] = $vOriginal;
 		'@phan-var array<string,array|string> $attribs'; // @var array<string,array|string> $attribs
-
-		$this->metrics->increment(
-			'pb2pb.original.version.' . $attribs['envOptions']['inputContentVersion']
-		);
 
 		if ( !empty( $opts['updates'] ) ) {
 			// FIXME: Handling missing revisions uniformly for all update types

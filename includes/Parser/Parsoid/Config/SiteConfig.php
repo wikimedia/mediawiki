@@ -10,7 +10,6 @@ declare( strict_types = 1 );
 
 namespace MediaWiki\Parser\Parsoid\Config;
 
-use Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface;
 use MediaWiki\Config\Config;
 use MediaWiki\Config\MutableConfig;
 use MediaWiki\Config\ServiceOptions;
@@ -44,7 +43,6 @@ use Wikimedia\Parsoid\Config\SiteConfig as ISiteConfig;
 use Wikimedia\Parsoid\Core\ContentMetadataCollector;
 use Wikimedia\Parsoid\Core\LinkTarget as ParsoidLinkTarget;
 use Wikimedia\Parsoid\DOM\Document;
-use Wikimedia\Stats\PrefixingStatsdDataFactoryProxy;
 use Wikimedia\Stats\StatsFactory;
 use Wikimedia\Stats\StatsUtils;
 
@@ -96,7 +94,6 @@ class SiteConfig extends ISiteConfig {
 		private readonly array $parsoidSettings,
 		private readonly ObjectFactory $objectFactory,
 		private readonly Language $contLang,
-		private readonly StatsdDataFactoryInterface $stats,
 		private readonly StatsFactory $statsFactory,
 		private readonly MagicWordFactory $magicWordFactory,
 		private readonly NamespaceInfo $namespaceInfo,
@@ -162,17 +159,6 @@ class SiteConfig extends ISiteConfig {
 			$component = rtrim( $component, '.' );
 		}
 		return $component;
-	}
-
-	public function metrics(): ?StatsdDataFactoryInterface {
-		// TODO: inject
-		static $prefixedMetrics = null;
-		$prefixedMetrics ??= new PrefixingStatsdDataFactoryProxy(
-			// Our stats will also get prefixed with 'MediaWiki.'
-			$this->stats,
-			$this->getStatsPrefix()
-		);
-		return $prefixedMetrics;
 	}
 
 	/**

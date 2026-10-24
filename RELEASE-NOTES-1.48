@@ -104,7 +104,8 @@ For notes on 1.47.x and older releases, see HISTORY.
   WikiMap::getCurrentWikiId() as label instead.
 * TextSlotDiffRenderer::setStatsdDataFactory(), deprecated since 1.43,
   has been removed.
-* StatsFactory::withStatsdDataFactory(), deprecated since 1.35,
+* MediaWikiServices::getStatsFactory() and
+  StatsFactory::withStatsdDataFactory(), deprecated since 1.45,
   has been removed.
 * LanguageQqx::getMessage(), deprecated since 1.41, has been removed
   along with the LanguageQqx class. Use
