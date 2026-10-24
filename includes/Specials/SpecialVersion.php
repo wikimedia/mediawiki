@@ -439,23 +439,6 @@ class SpecialVersion extends SpecialPage {
 	}
 
 	/**
-	 * Returns the internationalized name for an extension type.
-	 *
-	 * @deprecated since 1.47
-	 * @since 1.17
-	 *
-	 * @param string $type
-	 *
-	 * @return string
-	 */
-	public static function getExtensionTypeName( $type ) {
-		wfDeprecated( __METHOD__, '1.47' );
-		$types = self::getExtensionTypes();
-
-		return $types[$type] ?? $types['other'];
-	}
-
-	/**
 	 * Generate HTML showing the name, URL, author and description of each extension.
 	 *
 	 * @param array $credits
