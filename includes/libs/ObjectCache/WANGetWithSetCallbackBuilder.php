@@ -253,8 +253,7 @@ class WANGetWithSetCallbackBuilder {
 	 * regeneration lock already. If a value is used within a short interval after expiry,
 	 * it is assumed the key has a high enough access rate to justify avoiding a stampede.
 	 *
-	 * This automatically sets "staleTTL" to the same number of seconds, unless you set
-	 * it to a higher value.
+	 * This option stores the value for up to `lifetime+allowStale` instead of `lifetime`.
 	 *
 	 * The expiry is determined by TTL of this key (self::lifetime), check keys (self::invalidatedByKey),
 	 * "touchedCallback" (self::lastModifiedCallback), and purges (WANObjectCache::delete or

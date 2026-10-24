@@ -447,14 +447,14 @@ class WANObjectCacheTest extends MediaWikiUnitTestCase {
 		$wasSet = 0;
 		$key = wfRandomString();
 		$v = $cache->getWithSetCallback(
-			$key, 30, $checkFunc, [ 'staleTTL' => 50 ] + $extOpts );
+			$key, 30, $checkFunc, [ 'lockTSE' => 50 ] + $extOpts );
 		$this->assertSame( 'xxx1', $v, "Value returned" );
 		$this->assertSame( false, $oldValReceived, "Callback got no stale value" );
 		$this->assertSame( null, $oldAsOfReceived, "Callback got no stale value" );
 
 		$mockWallClock += 40;
 		$v = $cache->getWithSetCallback(
-			$key, 30, $checkFunc, [ 'staleTTL' => 50 ] + $extOpts );
+			$key, 30, $checkFunc, [ 'lockTSE' => 50 ] + $extOpts );
 		$this->assertSame( 'xxx2', $v, "Value still returned after expired" );
 		$this->assertSame( 2, $wasSet, "Value recalculated while expired" );
 		$this->assertSame( 'xxx1', $oldValReceived, "Callback got stale value" );
@@ -462,7 +462,7 @@ class WANObjectCacheTest extends MediaWikiUnitTestCase {
 
 		$mockWallClock += 260;
 		$v = $cache->getWithSetCallback(
-			$key, 30, $checkFunc, [ 'staleTTL' => 50 ] + $extOpts );
+			$key, 30, $checkFunc, [ 'lockTSE' => 50 ] + $extOpts );
 		$this->assertSame( 'xxx3', $v, "Value still returned after expired" );
 		$this->assertSame( 3, $wasSet, "Value recalculated while expired" );
 		$this->assertSame( false, $oldValReceived, "Callback got no stale value" );

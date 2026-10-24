@@ -209,8 +209,6 @@ class WANObjectCache implements
 	/** Idiom for getWithSetCallback() meaning "no cache stampede mutex" */
 	private const TSE_NONE = -1;
 
-	/** Idiom for set()/getWithSetCallback() meaning "no post-expiration persistence" */
-	public const STALE_TTL_NONE = 0;
 	/** Idiom for delete()/touchCheckKey() meaning "no hold-off period" */
 	public const HOLDOFF_TTL_NONE = 0;
 
@@ -769,12 +767,6 @@ class WANObjectCache implements
 	 *   - WANObjectCache::TTL_INDEFINITE: Cache forever (default)
 	 *   - WANObjectCache::TTL_UNCACHEABLE: Do not cache (if the key exists, it is not deleted)
 	 * @param array $opts Options map:
-	 *   - staleTTL: Seconds to keep the key around if it is stale. The get()/getMulti()
-	 *      methods return such stale values with a $curTTL of 0, and getWithSetCallback()
-	 *      will call the generation callback in such cases, passing in the old value
-	 *      and its as-of time to the callback. This is useful if adaptiveTTL() is used
-	 *      on the old value's as-of time when it is verified as still being correct.
-	 *      Default: WANObjectCache::STALE_TTL_NONE
 	 *   - segmentable: Allow partitioning of the value if it is a large string.
 	 *      Default: false.
 	 *   - creating: Optimize for the case where the key does not already exist.
@@ -782,8 +774,7 @@ class WANObjectCache implements
 	 *   - version: Integer version number signifying the format of the value.
 	 *      Default: null
 	 * @phpcs:ignore Generic.Files.LineLength
-	 * @phan-param array{staleTTL?:int,creating?:bool,version?:int,segmentable?:bool} $opts
-	 * @note Options added in 1.28: staleTTL
+	 * @phan-param array{creating?:bool,version?:int,segmentable?:bool} $opts
 	 * @note Options added in 1.33: creating
 	 * @note Options added in 1.40: segmentable
 	 * @return bool Success
@@ -800,7 +791,7 @@ class WANObjectCache implements
 			$value,
 			$ttl,
 			$opts['version'] ?? null,
-			$opts['staleTTL'] ?? self::STALE_TTL_NONE,
+			self::TSE_NONE,
 			$opts['segmentable'] ?? false,
 			$opts['creating'] ?? false
 		);
@@ -818,7 +809,7 @@ class WANObjectCache implements
 	 * @param mixed $value
 	 * @param int|float $ttl
 	 * @param int|null $version
-	 * @param int $staleTTL
+	 * @param int $lockTSE
 	 * @param bool $segmentable
 	 * @param bool $creating
 	 * @return bool Success
@@ -828,7 +819,7 @@ class WANObjectCache implements
 		$value,
 		$ttl,
 		?int $version,
-		int $staleTTL,
+		int $lockTSE,
 		bool $segmentable,
 		bool $creating
 	) {
@@ -865,8 +856,12 @@ class WANObjectCache implements
 
 		// Wrap that value with time/TTL/version metadata
 		$wrapped = $this->wrap( $value, $ttl, $version, $now );
-		// Don't add staleTTL to TTL_INDEFINITE (0), which would shorten and break it
-		$storeTTL = $ttl === self::TTL_INDEFINITE ? $ttl : ( $ttl + $staleTTL );
+		// If lockTSE is enabled, increase storage retention by that amount to allow use of
+		// $oldValue in the callback and to allow returning stale values.
+		// Don't add lockTSE to TTL_INDEFINITE (0), which would shorten and break it
+		$storeTTL = $lockTSE !== self::TSE_NONE && $ttl !== self::TTL_INDEFINITE
+			? ( $ttl + $lockTSE )
+			: $ttl;
 
 		$flags = $this->cache::WRITE_BACKGROUND;
 		if ( $segmentable ) {
@@ -1046,7 +1041,7 @@ class WANObjectCache implements
 	 * @code
 	 *     $value = $cache->getWithSetCallback(
 	 *         $cache->makeGlobalKey( 'wikibase-item', $id ),
-	 *         self::INITIAL_TTV, // initial time-till-verify
+	 *         WANObjectCache::TTL_DAY, // initial time-till-verify
 	 *         function ( $oldValue, &$ttv, &$setOpts, $oldAsOf ) use ( $checkKeys, $cache ) {
 	 *             $now = time();
 	 *             // Use $oldValue if it passes max ultimate age and "check" key comparisons
@@ -1074,7 +1069,7 @@ class WANObjectCache implements
 	 *
 	 *             return $value;
 	 *         },
-	 *         [ 'staleTTL' => $cache::TTL_DAY ] // keep around to verify and re-save
+	 *         [ 'lockTSE' => WANObjectCache::TTL_WEEK ]
 	 *     );
 	 * @endcode
 	 *
@@ -1424,8 +1419,7 @@ class WANObjectCache implements
 	 *      This enables use of a regeneration lock if the value expired less than the given
 	 *      number of seconds ago, and returns the stale value if another thread holds the
 	 *      regeneration lock already.
-	 *      This automatically sets "staleTTL" to the same number of seconds, unless you have set
-	 *      it to a higher value.
+	 *      This option stores the value for up to `$ttl+$lockTSE` instead of `$ttl`.
 	 *      Default: WANObjectCache::TSE_NONE.
 	 *   - busyValue: Specify a placeholder value to use when no value exists and another thread
 	 *      is currently regenerating it. This assures that cache stampedes cannot happen if the
@@ -1483,12 +1477,6 @@ class WANObjectCache implements
 	 *      Set `hotTTR: 0` to disable this feature. Setting ageNew to zero does not disable
 	 *      the hotTTR feature.
 	 *      Default: WANObjectCache::AGE_NEW.
-	 *   - staleTTL: Keep an expired value around for this many seconds.
-	 *      On a miss, the callback can access the expired value via the $oldValue parameter, to
-	 *      allow for cheap verification or renewal without full regeneration.
-	 *      If you set "lockTSE", then setting "staleTTL" is redundant unless you set it to
-	 *      something higher.
-	 *      Default: WANObjectCache::STALE_TTL_NONE
 	 *   - touchedCallback: A callback that takes the current value and returns a UNIX timestamp
 	 *      indicating the last time a dynamic dependency changed. Null can be returned if there
 	 *      are no relevant dependency changes to check. This can be used to check against things
@@ -1502,7 +1490,7 @@ class WANObjectCache implements
 	 *
 	 * @param array $cbParams Custom field/value map to pass to the callback (since 1.35)
 	 * @phpcs:ignore Generic.Files.LineLength
-	 * @phan-param array{checkKeys?:string[],lockTSE?:int,busyValue?:mixed,pcTTL?:int,pcGroup?:string,version?:int,minAsOf?:float|int,hotTTR?:int,lowTTL?:int,ageNew?:int,staleTTL?:int,touchedCallback?:callable,segmentable?:bool} $opts
+	 * @phan-param array{checkKeys?:string[],lockTSE?:int,busyValue?:mixed,pcTTL?:int,pcGroup?:string,version?:int,minAsOf?:float|int,hotTTR?:int,lowTTL?:int,ageNew?:int,touchedCallback?:callable,segmentable?:bool} $opts
 	 * @return mixed Value found or written to the key
 	 * @note Options added in 1.28: version, busyValue, hotTTR, ageNew, pcGroup, minAsOf
 	 * @note Options added in 1.33: touchedCallback
@@ -1652,7 +1640,6 @@ class WANObjectCache implements
 
 		$lockTSE = $opts['lockTSE'] ?? self::TSE_NONE;
 		$busyValue = $opts['busyValue'] ?? null;
-		$staleTTL = max( $lockTSE, $opts['staleTTL'] ?? self::STALE_TTL_NONE );
 		$segmentable = $opts['segmentable'] ?? false;
 		$version = $opts['version'] ?? null;
 
@@ -1752,7 +1739,7 @@ class WANObjectCache implements
 					$value,
 					$ttl,
 					$version,
-					$staleTTL,
+					$lockTSE,
 					$segmentable,
 					( $curValue === false )
 				);
@@ -2359,15 +2346,15 @@ class WANObjectCache implements
 	 *     $query = "<some complex query>";
 	 *     $idListFromComplexQuery = $cache->getWithSetCallback(
 	 *         $cache->makeKey( 'complex-graph-query', $hashOfQuery ),
-	 *         GraphQueryClass::STARTING_TTL,
+	 *         WANObjectCache::TTL_HOUR,
 	 *         function ( $oldValue, &$ttl, array &$setOpts, $oldAsOf ) use ( $query, $cache ) {
 	 *             $gdb = $this->getReplicaGraphDbConnection();
 	 *
 	 *             $newList = iterator_to_array( $gdb->query( $query ) );
 	 *             sort( $newList, SORT_NUMERIC ); // normalize
 	 *
-	 *             $minTTL = GraphQueryClass::MIN_TTL;
-	 *             $maxTTL = GraphQueryClass::MAX_TTL;
+	 *             $minTTL = WANObjectCache::TTL_HOUR;
+	 *             $maxTTL = WANObjectCache::TTL_WEEK;
 	 *             if ( $oldValue !== false ) {
 	 *                 // Note that $oldAsOf is the last time this callback ran
 	 *                 $ttl = ( $newList === $oldValue )
@@ -2382,7 +2369,7 @@ class WANObjectCache implements
 	 *        [
 	 *             // Keep stale values around for doing comparisons for TTL calculations.
 	 *             // High values improve long-tail keys hit-rates, though might waste space.
-	 *             'staleTTL' => GraphQueryClass::STALE_TTL
+	 *             'lockTSE' => WANObjectCache::TTL_WEEK
 	 *        ]
 	 *     );
 	 * @endcode
