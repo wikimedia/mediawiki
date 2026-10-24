@@ -116,6 +116,8 @@ For notes on 1.47.x and older releases, see HISTORY.
 * PrefixSearch, StringPrefixSearch and TitlePrefixSearch, deprecated
   since 1.27, have been removed. Use SearchEngine::completionSearch()
   instead.
+* The PagerTools class, deprecated since 1.47, has been removed. Use
+  the ChangeToolsFactory service instead.
 * SamplingStatsdClient, deprecated since 1.43, has been removed.
 * StatsdAwareInterface, deprecated since 1.45, has been removed.
 * …
