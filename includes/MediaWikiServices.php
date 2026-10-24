@@ -252,7 +252,6 @@ use Wikimedia\RequestTimeout\CriticalSectionProvider;
 use Wikimedia\Services\NoSuchServiceException;
 use Wikimedia\Services\SalvageableService;
 use Wikimedia\Services\ServiceContainer;
-use Wikimedia\Stats\IBufferingStatsdDataFactory;
 use Wikimedia\Stats\StatsFactory;
 use Wikimedia\Telemetry\TracerInterface;
 use Wikimedia\UUID\GlobalIdGenerator;
@@ -2204,13 +2203,6 @@ class MediaWikiServices extends ServiceContainer {
 	 */
 	public function getSpecialPageFactory(): SpecialPageFactory {
 		return $this->getService( 'SpecialPageFactory' );
-	}
-
-	/**
-	 * @since 1.27
-	 */
-	public function getStatsdDataFactory(): IBufferingStatsdDataFactory {
-		return $this->getService( 'StatsdDataFactory' );
 	}
 
 	/**

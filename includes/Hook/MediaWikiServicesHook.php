@@ -63,7 +63,7 @@ interface MediaWikiServicesHook {
 	 *     );
 	 *
 	 *     $services->redefineService(
-	 *         'StatsdDataFactory',
+	 *         'MyCoolService',
 	 *         function ( MediaWikiServices $container ) {
 	 *             // ...
 	 *         }

@@ -28,7 +28,6 @@ use MediaWiki\Utils\UrlUtils;
 use MediaWikiUnitTestCase;
 use UnexpectedValueException;
 use Wikimedia\Bcp47Code\Bcp47CodeValue;
-use Wikimedia\Stats\NullStatsdDataFactory;
 use Wikimedia\Stats\StatsFactory;
 use Wikimedia\TestingAccessWrapper;
 
@@ -105,7 +104,6 @@ class SiteConfigTest extends MediaWikiUnitTestCase {
 			$parsoidSettings,
 			$this->createSimpleObjectFactory(),
 			$this->createMockOrOverride( Language::class, $serviceOverrides ),
-			new NullStatsdDataFactory(),
 			$this->statsFactory,
 			$this->createMockOrOverride( MagicWordFactory::class, $serviceOverrides ),
 			$this->createMockOrOverride( NamespaceInfo::class, $serviceOverrides ),
