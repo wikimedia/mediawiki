@@ -98,6 +98,7 @@ For notes on 1.47.x and older releases, see HISTORY.
 * PrefixSearch, StringPrefixSearch and TitlePrefixSearch, deprecated
   since 1.27, have been removed. Use SearchEngine::completionSearch()
   instead.
+* SamplingStatsdClient, deprecated since 1.43, has been removed.
 * …
 
 === Deprecations in 1.48 ===
