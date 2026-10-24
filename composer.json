@@ -35,7 +35,7 @@
 		"ext-xml": "*",
 		"ext-xmlreader": "*",
 		"guzzlehttp/guzzle": "7.15.2",
-		"justinrainbow/json-schema": "5.3.1",
+		"justinrainbow/json-schema": "5.3.4",
 		"liuggio/statsd-php-client": "1.0.18",
 		"mck89/peast": "1.17.4",
 		"monolog/monolog": "2.9.3",
