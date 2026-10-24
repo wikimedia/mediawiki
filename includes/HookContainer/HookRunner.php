@@ -171,7 +171,6 @@ class HookRunner implements
 	\MediaWiki\Hook\EditPage__showEditForm_initialHook,
 	\MediaWiki\Hook\EditPage__showReadOnlyForm_initialHook,
 	\MediaWiki\Hook\EditPage__showStandardInputs_optionsHook,
-	\MediaWiki\Hook\EditPageBeforeConflictDiffHook,
 	\MediaWiki\Hook\EditPageBeforeEditButtonsHook,
 	\MediaWiki\Hook\EditPageBeforeEditToolbarHook,
 	\MediaWiki\Hook\EditPageCopyrightWarningHook,
@@ -1662,14 +1661,6 @@ class HookRunner implements
 		return $this->container->run(
 			'EditFormPreloadText',
 			[ &$text, $title ]
-		);
-	}
-
-	/** @inheritDoc */
-	public function onEditPageBeforeConflictDiff( $editor, $out ) {
-		return $this->container->run(
-			'EditPageBeforeConflictDiff',
-			[ $editor, $out ]
 		);
 	}
 

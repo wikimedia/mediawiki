@@ -3161,12 +3161,8 @@ class EditPage implements IEditObject {
 	 * If you want to use another entry point to this function, be careful.
 	 */
 	private function showConflict(): void {
-		$out = $this->context->getOutput();
-		if ( $this->getHookRunner()->onEditPageBeforeConflictDiff( $this, $out ) ) {
-			$this->incrementConflictStats();
-
-			$this->getEditConflictHelper()->showEditFormTextAfterFooters();
-		}
+		$this->incrementConflictStats();
+		$this->getEditConflictHelper()->showEditFormTextAfterFooters();
 	}
 
 	private function incrementConflictStats(): void {
