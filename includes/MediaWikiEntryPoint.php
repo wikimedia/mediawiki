@@ -33,7 +33,6 @@ use Wikimedia\Rdbms\ChronologyProtector;
 use Wikimedia\Rdbms\LBFactory;
 use Wikimedia\Rdbms\ReadOnlyMode;
 use Wikimedia\ScopedCallback;
-use Wikimedia\Stats\IBufferingStatsdDataFactory;
 use Wikimedia\Stats\StatsFactory;
 use Wikimedia\Telemetry\SpanInterface;
 use Wikimedia\Telemetry\TracerState;
@@ -839,10 +838,6 @@ abstract class MediaWikiEntryPoint {
 
 	protected function getStatsFactory(): StatsFactory {
 		return $this->mediaWikiServices->getStatsFactory();
-	}
-
-	protected function getStatsdDataFactory(): IBufferingStatsdDataFactory {
-		return $this->mediaWikiServices->getStatsdDataFactory();
 	}
 
 	protected function getJobQueueGroupFactory(): JobQueueGroupFactory {
