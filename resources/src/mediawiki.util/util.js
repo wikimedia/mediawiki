@@ -1092,19 +1092,20 @@ const util = {
 				// /<hash prefix>/<name>/[<options>-]<width>-<name*>[.<ext>]
 				// where <name*> could be the filename, 'thumbnail.<ext>' (for long filenames)
 				// or the base-36 SHA1 of the filename.
+				// Tolerate two dashes after width, because TimedMediaHandler (T442324).
 
-				/\/[\da-f]\/[\da-f]{2}\/([^\s/]+)\/(?:[^\s/]+-)?(\d+)px-(?:\1|thumbnail|[a-z\d]{31})(?:\.[^\s/?]+)?(?:\?[^\s]+)?$/,
+				/\/[\da-f]\/[\da-f]{2}\/([^\s/]+)\/(?:[^\s/]+-)?(\d+)px--?(?:\1|thumbnail|[a-z\d]{31})(?:\.[^\s/?]+)?(?:\?[^\s]+)?$/,
 
-				// Full size images
+				// Original files
 				// /<hash prefix>/<name>
 				/\/[\da-f]\/[\da-f]{2}\/([^\s/?]+)(?:\?[^\s]+)?$/,
 
-				// Thumbnails in non-hashed upload directories
+				// Thumbnails in non-hashed directories
 				// /<name>/[<options>-]<width>-<name*>[.<ext>]
 
 				/\/([^\s/]+)\/(?:[^\s/]+-)?(\d+)px-(?:\1|thumbnail|[a-z\d]{31})[^\s/?]*(?:\?[^\s]+)?$/,
 
-				// Full-size images in non-hashed upload directories
+				// Orignal files in non-hashed directories
 				// /<name>
 				/\/([^\s/?]+)(?:\?[^\s]+)?$/
 			];

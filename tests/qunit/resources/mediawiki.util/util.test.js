@@ -292,16 +292,18 @@ QUnit.module( 'mediawiki.util', QUnit.newMwEnvironment( {
 
 	QUnit.test( 'messageBox', ( assert ) => {
 		const message = util.messageBox( 'test' );
-		const errSpan = document.createElement( 'span' );
-		errSpan.textContent = 'error';
-		const errorMessage = util.messageBox( errSpan, 'error' );
 		assert.strictEqual( message.querySelector( '.cdx-message__content' ).textContent, 'test' );
 		assert.strictEqual( message.getAttribute( 'aria-live' ), 'polite' );
 		assert.false( message.hasAttribute( 'role' ) );
+
+		const errSpan = document.createElement( 'span' );
+		errSpan.textContent = 'error';
+		const errorMessage = util.messageBox( errSpan, 'error' );
 		assert.strictEqual( errorMessage.querySelector( '.cdx-message__content span' ).textContent, 'error' );
 		assert.strictEqual( errorMessage.getAttribute( 'role' ), 'alert' );
 		assert.false( errorMessage.hasAttribute( 'aria-live' ) );
 		assert.true( errorMessage.classList.contains( 'cdx-message--error' ) );
+
 		const fragment = document.createDocumentFragment();
 		fragment.appendChild( document.createTextNode( 'hello ' ) );
 		fragment.appendChild( document.createTextNode( 'world!' ) );
@@ -648,15 +650,32 @@ QUnit.module( 'mediawiki.util', QUnit.newMwEnvironment( {
 			width: 100,
 			resizedUrl: '/wiki/images/thumb/1/10/Little_Bobby%22%3B_Tables-100px-file.jpg/1000px-Little_Bobby%22%3B_Tables-100px-file.jpg'
 		},
-
-		'Commons thumbnail': {
+		'Commons SVG thumbnail': {
 			url: '//upload.wikimedia.org/wikipedia/commons/thumb/8/80/Wikipedia-logo-v2.svg/150px-Wikipedia-logo-v2.svg.png',
 			name: 'Wikipedia-logo-v2.svg',
 			width: 150,
 			resizedUrl: '//upload.wikimedia.org/wikipedia/commons/thumb/8/80/Wikipedia-logo-v2.svg/1000px-Wikipedia-logo-v2.svg.png'
 		},
-		'Full image': {
-			url: '/wiki/images/9/91/Anticlockwise_heliotrope%27s.jpg',
+		'Commons SVG thumbnail with shortened path': {
+			url: 'https://thumb.wikimedia.org/wikipedia/commons/thumb/8/84/Example.svg/500px-thumbnail.svg.png',
+			name: 'Example.svg',
+			width: 500,
+			resizedUrl: 'https://thumb.wikimedia.org/wikipedia/commons/thumb/8/84/Example.svg/1000px-thumbnail.svg.png'
+		},
+		'Commons video thumbnail': {
+			url: 'https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c0/Big_Buck_Bunny_4K.webm/500px--Big_Buck_Bunny_4K.webm.jpg',
+			name: 'Big Buck Bunny 4K.webm',
+			width: 500,
+			resizedUrl: 'https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c0/Big_Buck_Bunny_4K.webm/1000px--Big_Buck_Bunny_4K.webm.jpg'
+		},
+		'Commons video thumbnail with shortened path': {
+			url: 'https://thumb.wikimedia.org/wikipedia/commons/thumb/7/7b/2021-06-14_20_35_53_Slow-motion_video_of_cloud-to-cloud_lightning_within_cumulonimbus_clouds_viewed_from_Tranquility_Court_in_the_Franklin_Farm_section_of_Oak_Hill%2C_Fairfax_County%2C_Virginia.webm/500px--thumbnail.webm.jpg',
+			name: '2021-06-14 20 35 53 Slow-motion video of cloud-to-cloud lightning within cumulonimbus clouds viewed from Tranquility Court in the Franklin Farm section of Oak Hill, Fairfax County, Virginia.webm',
+			width: 500,
+			resizedUrl: 'https://thumb.wikimedia.org/wikipedia/commons/thumb/7/7b/2021-06-14_20_35_53_Slow-motion_video_of_cloud-to-cloud_lightning_within_cumulonimbus_clouds_viewed_from_Tranquility_Court_in_the_Franklin_Farm_section_of_Oak_Hill%2C_Fairfax_County%2C_Virginia.webm/1000px--thumbnail.webm.jpg'
+		},
+		'Original file': {
+			url: '/w/images/9/91/Anticlockwise_heliotrope%27s.jpg',
 			name: 'Anticlockwise heliotrope\'s.jpg',
 			width: null
 		},
@@ -678,20 +697,20 @@ QUnit.module( 'mediawiki.util', QUnit.newMwEnvironment( {
 			width: 180,
 			resizedUrl: 'http://localhost/thumb.php?f=Stuffless_Figaro%27s.jpg&width=1000'
 		},
-		'Commons unhashed thumbnail': {
+		'Unhashed thumbnail': {
 			url: '/wikipedia/commons/thumb/Wikipedia-logo-v2.svg/150px-Wikipedia-logo-v2.svg.png',
 			name: 'Wikipedia-logo-v2.svg',
 			width: 150,
 			resizedUrl: '/wikipedia/commons/thumb/Wikipedia-logo-v2.svg/1000px-Wikipedia-logo-v2.svg.png'
 		},
-		'Commons unhashed thumbnail with complex thumbnail parameters': {
+		'Unhashed thumbnail with complex thumbnail parameters': {
 			url: '/wikipedia/commons/thumb/Wikipedia-logo-v2.svg/langde-150px-Wikipedia-logo-v2.svg.png',
 			name: 'Wikipedia-logo-v2.svg',
 			width: 150,
 			resizedUrl: '/wikipedia/commons/thumb/Wikipedia-logo-v2.svg/langde-1000px-Wikipedia-logo-v2.svg.png'
 		},
 		'Unhashed local file': {
-			url: '/wiki/images/Anticlockwise_heliotrope%27s.jpg',
+			url: '/w/images/Anticlockwise_heliotrope%27s.jpg',
 			name: 'Anticlockwise heliotrope\'s.jpg',
 			width: null
 		},
