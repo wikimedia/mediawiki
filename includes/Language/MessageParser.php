@@ -27,16 +27,11 @@ class MessageParser {
 	private const DEPTH_EXCEEDED_MESSAGE =
 		'<span class="error">Message parse depth limit exceeded</span>';
 
-	private ParserFactory $parserFactory;
-	private OutputTransformPipeline $outputPipeline;
-	private LanguageFactory $langFactory;
-	private LoggerInterface $logger;
-
 	/** @var callable */
 	private $parsoidParserFactoryClosure;
 
 	/**
-	 * @var array{parser: Parser|ParsoidParser, popts: ParserOptions}[]
+	 * @var array<int,array{parser: Parser|ParsoidParser, popts: ParserOptions}>
 	 *   Cached Parser objects and Parser options associated with each Parser
 	 */
 	private array $parsers = [];
@@ -52,16 +47,12 @@ class MessageParser {
 	private const MAX_PARSER_DEPTH = 5;
 
 	public function __construct(
-		ParserFactory $parserFactory,
-		OutputTransformPipeline $outputPipeline,
-		LanguageFactory $languageFactory,
-		LoggerInterface $logger,
+		private readonly ParserFactory $parserFactory,
+		private readonly OutputTransformPipeline $outputPipeline,
+		private readonly LanguageFactory $languageFactory,
+		private readonly LoggerInterface $logger,
 		callable $parsoidParserFactoryClosure
 	) {
-		$this->parserFactory = $parserFactory;
-		$this->outputPipeline = $outputPipeline;
-		$this->langFactory = $languageFactory;
-		$this->logger = $logger;
 		$this->parsoidParserFactoryClosure = $parsoidParserFactoryClosure;
 	}
 
@@ -86,9 +77,7 @@ class MessageParser {
 			return $message;
 		}
 
-		[ 'parser' => $parser, 'popts' => $popts ] = $this->acquireParser(
-			$interface, $language
-		);
+		$parser = $this->acquireParser( $interface, $language );
 		if ( !$parser ) {
 			return self::DEPTH_EXCEEDED_MESSAGE;
 		}
@@ -96,10 +85,12 @@ class MessageParser {
 		$page ??= $this->getPlaceholderTitle();
 
 		try {
-			return $parser->transformMsg( $message, $popts, $page );
+			$text = $parser['parser']->transformMsg( $message, $parser['popts'], $page );
 		} finally {
 			$this->releaseParser( $parser );
 		}
+		// @phan-suppress-next-line PhanPossiblyUndeclaredVariable False positive
+		return $text;
 	}
 
 	/**
@@ -118,6 +109,11 @@ class MessageParser {
 		bool $interface = false,
 		$language = null
 	): ParserOutput {
+		$parser = $this->acquireParser( $interface, $language );
+		if ( !$parser ) {
+			return new ParserOutput( self::DEPTH_EXCEEDED_MESSAGE );
+		}
+
 		$options = [
 			'allowTOC' => false,
 			// Wrapping messages in an extra <div> is probably not expected. If
@@ -127,20 +123,17 @@ class MessageParser {
 			'unwrap' => true,
 			'userLang' => $language,
 		];
-		[ 'parser' => $parser, 'popts' => $popts ] = $this->acquireParser(
-			$interface, $language
-		);
-		if ( !$parser ) {
-			return new ParserOutput( self::DEPTH_EXCEEDED_MESSAGE );
-		}
 		$contextPage ??= $this->getPlaceholderTitle();
+
 		try {
-			$po = $parser->parse( $text, $contextPage, $popts, $lineStart );
+			$parserOutput = $parser['parser']->parse( $text, $contextPage, $parser['popts'], $lineStart );
 			// Run the post-processing pipeline
-			return $this->outputPipeline->run( $po, $popts, $options );
+			$parserOutput = $this->outputPipeline->run( $parserOutput, $parser['popts'], $options );
 		} finally {
 			$this->releaseParser( $parser );
 		}
+		// @phan-suppress-next-line PhanPossiblyUndeclaredVariable False positive
+		return $parserOutput;
 	}
 
 	/**
@@ -158,19 +151,20 @@ class MessageParser {
 		$interface = false,
 		$language = null
 	): ParserOutput {
-		[ 'parser' => $parser, 'popts' => $popts ] = $this->acquireParser(
-			$interface, $language
-		);
+		$parser = $this->acquireParser( $interface, $language );
 		if ( !$parser ) {
 			return new ParserOutput( self::DEPTH_EXCEEDED_MESSAGE );
 		}
+
 		$page ??= $this->getPlaceholderTitle();
 
 		try {
-			return $parser->parse( $text, $page, $popts, $lineStart );
+			$parserOutput = $parser['parser']->parse( $text, $page, $parser['popts'], $lineStart );
 		} finally {
 			$this->releaseParser( $parser );
 		}
+		// @phan-suppress-next-line PhanPossiblyUndeclaredVariable False positive
+		return $parserOutput;
 	}
 
 	/**
@@ -184,9 +178,7 @@ class MessageParser {
 	private function getOptions(
 		$interface, $targetLanguage, ?ParserOptions $popts
 	): ParserOptions {
-		if ( $popts === null ) {
-			$popts = $this->createOptions();
-		}
+		$popts ??= $this->createOptions();
 		$popts->setInterfaceMessage( $interface );
 		$popts->setTargetLanguage( $this->normalizeTargetLanguage( $targetLanguage ) );
 		$popts->setSuppressSectionEditLinks();
@@ -195,8 +187,6 @@ class MessageParser {
 
 	/**
 	 * Create and maybe cache a ParserOptions object
-	 *
-	 * @return ParserOptions
 	 */
 	private function createOptions(): ParserOptions {
 		$context = RequestContext::getMain();
@@ -234,7 +224,7 @@ class MessageParser {
 	 */
 	private function normalizeTargetLanguage( $lang ): ?Language {
 		if ( is_string( $lang ) ) {
-			return $this->langFactory->getLanguage( $lang );
+			return $this->languageFactory->getLanguage( $lang );
 		} elseif ( $lang !== null ) {
 			StubObject::unstub( $lang );
 		}
@@ -263,34 +253,34 @@ class MessageParser {
 		}
 		$this->curParser = $index;
 
-		$cache = $this->parsers[ $index ] ?? null;
-		if ( $cache ) {
-			$cache['popts'] = $this->getOptions( $interface, $targetLanguage, $cache['popts'] );
-			return $cache;
-		} else {
+		$cache = $this->parsers[$index] ?? [];
+		// Refresh ParserOptions in case we are reusing a cached Parser instance
+		$popts = $this->getOptions( $interface, $targetLanguage, $cache['popts'] ?? null );
+
+		if ( !$cache ) {
 			$this->logger->debug( __METHOD__ . ": Creating a new parser with index {$index}" );
-			$popts = $this->getOptions( $interface, $targetLanguage, null );
 			if ( $popts->getUseParsoid() ) {
 				$parser = ( $this->parsoidParserFactoryClosure )()->create();
 			} else {
 				$parser = $this->parserFactory->create();
 			}
-			$this->parsers[ $index ] = [
-				'parser' => $parser,
-				'popts' => $popts,
-			];
-			return $this->parsers[ $index ];
+			$this->parsers[$index] = [ 'parser' => $parser, 'popts' => $popts ];
 		}
+
+		return [
+			'parser' => $this->parsers[$index]['parser'],
+			'popts' => $popts,
+		];
 	}
 
 	/**
 	 * Release a parser previously acquired by acquireParser().
 	 *
-	 * @param Parser|ParsoidParser $parser
+	 * @param array{parser: Parser|ParsoidParser} $parser according to {@link acquireParser}
 	 */
-	private function releaseParser( Parser|ParsoidParser $parser ) {
+	private function releaseParser( array $parser ) {
 		$currentParser = $this->parsers[$this->curParser]['parser'] ?? null;
-		if ( $currentParser !== $parser ) {
+		if ( $currentParser !== $parser['parser'] ) {
 			throw new LogicException( 'releaseParser called with the wrong ' .
 				"parser instance: #{$this->curParser} = " .
 				gettype( $currentParser ) );
