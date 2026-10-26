@@ -19,9 +19,10 @@ require_once __DIR__ . '/../includes/Benchmarker.php';
 // @codeCoverageIgnoreEnd
 
 /**
+ * @see BenchmarkLCStore
  * @ingroup Benchmark
  */
-class BenchmarkLCStoreStaticArray extends Benchmarker {
+class BenchmarkRebuildLocalisationCache extends Benchmarker {
 	/** @inheritDoc */
 	protected $defaultCount = 5;
 
@@ -126,6 +127,6 @@ class BenchmarkLCStoreStaticArray extends Benchmarker {
 }
 
 // @codeCoverageIgnoreStart
-$maintClass = BenchmarkLCStoreStaticArray::class;
+$maintClass = BenchmarkRebuildLocalisationCache::class;
 require_once RUN_MAINTENANCE_IF_MAIN;
 // @codeCoverageIgnoreEnd
