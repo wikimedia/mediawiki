@@ -202,6 +202,12 @@ abstract class Skin extends ContextSource {
 		];
 
 		$components = $this->componentRegistry->getComponents();
+		$usesFooterMenu = $this->supportsMenu( 'footer-places' ) || $this->supportsMenu( 'footer-info' ) ||
+			$this->supportsMenu( 'footer-icons' );
+		// Don't generate footer data if it is provided in the menu definition.
+		if ( $usesFooterMenu ) {
+			unset( $components['footer'] );
+		}
 		foreach ( $components as $componentName => $component ) {
 			$data['data-' . $componentName] = $component->getTemplateData();
 		}
@@ -2466,6 +2472,9 @@ abstract class Skin extends ContextSource {
 				'variants',
 				'personal',
 				// Opt-in menus
+				// * 'footer-info'
+				// * 'footer-places'
+				// * 'footer-icons'
 				// * 'associated-pages'
 				// * 'notifications'
 				// * 'user-interface-preferences',

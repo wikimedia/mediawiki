@@ -2671,7 +2671,11 @@ return [
 			'args' => [
 				[
 					'name' => 'json',
-					'menus' => [],
+					'menus' => [
+						'footer-info',
+						'footer-icons',
+						'footer-places'
+					],
 					'styles' => [],
 					'format' => 'json',
 					'templateDirectory' => dirname( __DIR__ ) . '/resources/templates/skins/apioutput',
