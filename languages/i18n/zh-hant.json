@@ -520,6 +520,8 @@
 	"createacct-loggedin": "您已經以{{GENDER:$1|$1}}的身分登入。",
 	"createacct-loggedin-continue-as": "以{{GENDER:$1|$1}}的身分繼續",
 	"createacct-loggedin-heading": "建立另一個帳號",
+	"createacct-permerror-login": "登入另一個帳號",
+	"createacct-permerror-return": "不使用帳號繼續",
 	"createacct-emailrequired": "電子郵件地址",
 	"createacct-email-ph": "輸入您的電子郵件地址",
 	"createacct-another-email-ph": "輸入電子郵件地址",

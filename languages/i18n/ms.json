@@ -400,6 +400,8 @@
 	"createacct-loggedin": "Anda sudah log masuk sebagai {{GENDER:$1|$1}}.",
 	"createacct-loggedin-continue-as": "Teruskan sebagai {{GENDER:$1|$1}}",
 	"createacct-loggedin-heading": "Buka satu lagi akaun",
+	"createacct-permerror-login": "Log masuk ke akaun lain",
+	"createacct-permerror-return": "Teruskan tanpa akaun",
 	"createacct-emailrequired": "Alamat e-mel",
 	"createacct-email-ph": "Masukkan alamat e-mel anda",
 	"createacct-another-email-ph": "Masukkan alamat e-mel",

@@ -434,6 +434,8 @@
 	"createacct-loggedin": "Již jste {{GENDER:$1|přihlášen|přihlášena}} jako $1.",
 	"createacct-loggedin-continue-as": "Pokračovat jako $1",
 	"createacct-loggedin-heading": "Vytvořit jiný účet",
+	"createacct-permerror-login": "Přihlásit se k jinému účtu",
+	"createacct-permerror-return": "Pokračovat bez účtu",
 	"createacct-emailrequired": "E-mailová adresa",
 	"createacct-email-ph": "Zadejte svou e-mailovou adresu",
 	"createacct-another-email-ph": "Zadejte e-mailovou adresu",

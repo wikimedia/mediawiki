@@ -371,6 +371,8 @@
 	"createacct-loggedin": "Waxaad horey ugu soo gashay sida {{GENDER:$1|$1}}.",
 	"createacct-loggedin-continue-as": "Sii wad sida {{GENDER:$1|$1}}",
 	"createacct-loggedin-heading": "Samee akoon kale",
+	"createacct-permerror-login": "Ku gal akoon kale",
+	"createacct-permerror-return": "Sii wad adigoon akoon lahayn",
 	"createacct-emailrequired": "Cinwaanka iimaylka",
 	"createacct-email-ph": "Gali Ciwaankaada e-mail-ka",
 	"createacct-another-email-ph": "Geli cinwaanka iimaylka",

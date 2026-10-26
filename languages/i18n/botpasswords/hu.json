@@ -29,6 +29,7 @@
 	"botpasswords-bad-appid": "A(z) „$1” botnév érvénytelen.",
 	"botpasswords-toolong-restrictions": "Túl sok IP-cím vagy -tartomány van megadva.",
 	"botpasswords-toolong-grants": "Túl sok jogosultság van kiválasztva.",
+	"botpasswords-too-many": "Elérted a(z) $1 {{PLURAL:$1|botjelszó}} maximális számát. Új létrehozása előtt törölj néhány meglévő botjelszót.",
 	"botpasswords-insert-failed": "A(z) „$1” botnév hozzáadása sikertelen. Nem lehet, hogy már hozzá lett adva?",
 	"botpasswords-update-failed": "A(z) „$1” nevű botfiók frissítése sikertelen. Lehet, hogy törölted?",
 	"botpasswords-created-title": "Botjelszó létrehozva",

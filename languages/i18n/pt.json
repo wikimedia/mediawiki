@@ -1929,6 +1929,7 @@
 	"removedwatchtext": "\"[[:$1]]\" e a respetiva página de discussão foram removidas da sua lista de [[Special:Watchlist|páginas vigiadas]].",
 	"removedwatchtext-talk": "\"[[:$1]]\" e a respetiva página associada foram removidas da sua lista de [[Special:Watchlist|páginas vigiadas]].",
 	"removedwatchtext-short": "A página \"$1\" foi removida das suas páginas vigiadas.",
+	"watchstar-popup-undo": "Desfazer",
 	"watch": "Vigiar",
 	"watchthispage": "Vigiar esta página",
 	"unwatch": "Deixar de vigiar",

@@ -398,6 +398,8 @@
 	"createacct-loggedin": "Xa iniciaches sesión como {{GENDER:$1|$1}}.",
 	"createacct-loggedin-continue-as": "Continuar como {{GENDER:$1|$1}}",
 	"createacct-loggedin-heading": "Crear outra conta",
+	"createacct-permerror-login": "Iniciar sesión noutra conta",
+	"createacct-permerror-return": "Continuar sen conta",
 	"createacct-emailrequired": "Enderezo de correo electrónico",
 	"createacct-email-ph": "Escribe o teu enderezo de correo electrónico",
 	"createacct-another-email-ph": "Escribe o enderezo de correo electrónico",

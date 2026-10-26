@@ -446,6 +446,8 @@
 	"createacct-loggedin": "Olet jo kirjautunut sisään tunnuksella {{GENDER:$1|$1}}.",
 	"createacct-loggedin-continue-as": "Jatka tunnuksella {{GENDER:$1|$1}}",
 	"createacct-loggedin-heading": "Luo toinen tunnus",
+	"createacct-permerror-login": "Kirjaudu toiselle tilille",
+	"createacct-permerror-return": "Jatka ilman tiliä",
 	"createacct-emailrequired": "Sähköpostiosoite",
 	"createacct-email-ph": "Kirjoita sähköpostiosoitteesi",
 	"createacct-another-email-ph": "Lisää sähköpostiosoite",

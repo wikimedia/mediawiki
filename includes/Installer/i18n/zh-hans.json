@@ -2,6 +2,7 @@
 	"@metadata": {
 		"authors": [
 			"A Chinese Wikipedian",
+			"Anterdc99",
 			"Anthony Fok",
 			"Byfserag",
 			"Cwek",
@@ -129,7 +130,7 @@
 	"config-db-username": "数据库用户名：",
 	"config-db-password": "数据库密码：",
 	"config-db-install-username": "请输入在安装过程中用于连接数据库的用户名。请勿输入MediaWiki账号的用户名。请输入您数据库的用户名。",
-	"config-db-install-password": "请输入在安装过程中用于连接数据库的密码。请勿输入MediaWiki帐号的密码，请输入您数据库的密码。",
+	"config-db-install-password": "请输入在安装过程中用于连接数据库的密码。请勿输入MediaWiki账号的密码，请输入您数据库的密码。",
 	"config-db-install-help": "请输入在安装过程中用于连接数据库的用户名和密码。",
 	"config-db-account-lock": "在普通操作中使用相同的用户名和密码",
 	"config-db-wiki-account": "用于普通操作的用户账号",

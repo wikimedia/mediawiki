@@ -2,6 +2,7 @@
 	"@metadata": {
 		"authors": [
 			"Alkmen-Alesia",
+			"Allylly",
 			"Bananax47",
 			"Derugon",
 			"Escargot bleu",
@@ -75,6 +76,7 @@
 	"rest-badtoken": "Le jeton CSRF fourni n’est pas valide.",
 	"rest-badtoken-missing": "Le paramètre <var>token</var> est obligatoire à moins d’utiliser une méthode d’authentification sécurisée contre les attaques CSRF.",
 	"rest-badtoken-nosession": "Erreur CSRF — aucune session.",
+	"rest-csrf-token-description": "CSRF token.\n**Requis** si l'authentification se fait via les cookies MediaWiki-Session-CookieSessionProvider.\n**Non requis** si vous utilisez un mécanisme sécurisé par la CSRF comme OAuth2.0.",
 	"rest-mock-error": "Erreur de simulation.",
 	"rest-specified-revision-unavailable": "La modification spécifiée est supprimée ou masquée.",
 	"rest-previous-revision-unavailable": "Impossible de trouver la version précédente. La page a-t-elle été verrouillée ou supprimée ?",
@@ -110,6 +112,7 @@
 	"rest-module-default": "Module par défaut",
 	"rest-module-extra-routes-title": "API REST de MédiaWiki",
 	"rest-module-extra-routes-desc": "Points de terminaison REST non associés à un module",
+	"rest-sandbox-recommend-test-server": "Attention: par défaut l'environnement de test bac à sable REST exécute les requêtes sur la base de données de production. Pour éviter toutes modifications involontaires du contenu en production, sélectionnez le serveur de test bac à sable ($1) depuis le menu déroulant du serveur avant de faire des demandes de POST, PUT, PATCH ou DELETE.",
 	"rest-sandbox-server-production": "(Production)",
 	"rest-sandbox-server-sandbox": "(Bac à sable)",
 	"rest-module-specs.v0-title": "Interface de programmation (API) des spécifications",

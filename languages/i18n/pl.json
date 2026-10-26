@@ -485,6 +485,8 @@
 	"createacct-loggedin": "Zalogowano już jako {{GENDER:$1|$1}}.",
 	"createacct-loggedin-continue-as": "Kontynuuj jako {{GENDER:$1|$1}}",
 	"createacct-loggedin-heading": "Załóż nowe konto",
+	"createacct-permerror-login": "Zaloguj się na inne konto",
+	"createacct-permerror-return": "Kontynuuj bez konta",
 	"createacct-emailrequired": "Adres e‐mail",
 	"createacct-email-ph": "Wpisz swój adres e-mail",
 	"createacct-another-email-ph": "Podaj adres e-mail",

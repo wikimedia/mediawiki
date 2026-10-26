@@ -531,6 +531,8 @@
 	"createacct-loggedin": "Você já está {{GENDER:$1|autenticado|autenticada|autenticado(a)}} como $1.",
 	"createacct-loggedin-continue-as": "Continuar como {{GENDER:$1|$1}}",
 	"createacct-loggedin-heading": "Criar uma outra conta",
+	"createacct-permerror-login": "Entrar em outra conta",
+	"createacct-permerror-return": "Continuar sem criar nova conta",
 	"createacct-emailrequired": "Endereço de e-mail",
 	"createacct-email-ph": "Confirme seu endereço de e-mail",
 	"createacct-another-email-ph": "Forneça o endereço de e-mail",

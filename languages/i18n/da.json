@@ -446,6 +446,8 @@
 	"createacct-loggedin": "Du er allerede logget ind som {{GENDER:$1|$1}}.",
 	"createacct-loggedin-continue-as": "Fortsæt som {{GENDER:$1|$1}}",
 	"createacct-loggedin-heading": "Opret en anden konto",
+	"createacct-permerror-login": "Log ind på en anden konto",
+	"createacct-permerror-return": "Fortsæt uden en konto",
 	"createacct-emailrequired": "E-mailadresse",
 	"createacct-email-ph": "Indtast din e-mailadresse",
 	"createacct-another-email-ph": "Indtast e-mailadresse",

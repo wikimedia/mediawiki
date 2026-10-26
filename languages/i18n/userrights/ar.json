@@ -61,7 +61,7 @@
 	"userrights-expiry-none": "غير منتهية",
 	"userrights-expiry-for": "تاريخ انتهاء الصلاحية لـ \"$1\":",
 	"userrights-expiry-existing": "حتى $3، $2",
-	"userrights-expiry-othertime": "c",
+	"userrights-expiry-othertime": "وقت انتهاء آخر",
 	"userrights-expiry-options": "ينتهي خلال يوم واحد: 1 day, ينتهي خلال أسبوع واحد: 1 week, ينتهي خلال شهر واحد: 1 month, ينتهي خلال 3 أشهر: 3 months, ينتهي خلال 6 أشهر: 6 months, ينتهي خلال سنة واحدة: 1 year",
 	"userrights-invalid-expiry": "تاريخ انتهاء المجموعة \"$1\" غير صحيح.",
 	"userrights-expiry-in-past": "تاريخ انتهاء المجموعة \"$1\" هو في الماضي.",

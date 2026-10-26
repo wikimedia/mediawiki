@@ -409,6 +409,8 @@
 	"createacct-loggedin": "Siz artıq {{GENDER:$1|$1}} kimi daxil olmusunuz.",
 	"createacct-loggedin-continue-as": "{{GENDER:$1|$1}} kimi davam et",
 	"createacct-loggedin-heading": "Başqa hesab yarat",
+	"createacct-permerror-login": "Başqa hesaba daxil ol",
+	"createacct-permerror-return": "Hesabsız davam et",
 	"createacct-emailrequired": "E-poçt ünvanı",
 	"createacct-email-ph": "E-poçt ünvanınızı daxil edin",
 	"createacct-another-email-ph": "E-poçt ünvanını daxil edin",

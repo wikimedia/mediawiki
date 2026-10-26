@@ -369,6 +369,8 @@
 	"createacct-loggedin": "Dir sidd schonn als {{GENDER:$1|$1}} ageloggt.",
 	"createacct-loggedin-continue-as": "Als {{GENDER:$1|$1}} virufueren",
 	"createacct-loggedin-heading": "En anere Kont opmaachen",
+	"createacct-permerror-login": "Mat engem anere Kont aloggen",
+	"createacct-permerror-return": "Ouni Kont virufueren",
 	"createacct-emailrequired": "E-Mail-Adress",
 	"createacct-email-ph": "Gitt Är E-Mail-Adress an",
 	"createacct-another-email-ph": "E-Mail-Adress aginn",
