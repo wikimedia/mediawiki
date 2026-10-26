@@ -163,18 +163,15 @@ class LCStoreStaticArray extends LCStore {
 	}
 
 	/**
-	 * Decode something that was encoded with 'encode'
+	 * Decode an array that was encoded with 'encode'
 	 *
-	 * @param mixed $encoded
+	 * Scalar values are stored unencoded, so callers must check is_array() first.
+	 *
+	 * @param array $encoded
 	 * @return array|mixed
 	 * @throws RuntimeException
 	 */
-	public static function decode( $encoded ) {
-		if ( !is_array( $encoded ) ) {
-			// Unwrapped scalar value
-			return $encoded;
-		}
-
+	public static function decode( array $encoded ) {
 		[ $type, $data ] = $encoded;
 
 		switch ( $type ) {
@@ -185,7 +182,7 @@ class LCStoreStaticArray extends LCStore {
 				return unserialize( $data );
 			case 'a':
 				// Support: MediaWiki 1.34 and earlier (older file format)
-				return array_map( self::decode( ... ), $data );
+				return array_map( static fn ( $value ) => is_array( $value ) ? self::decode( $value ) : $value, $data );
 			default:
 				throw new RuntimeException(
 					'Unable to decode ' . var_export( $encoded, true ) );
@@ -216,40 +213,35 @@ class LCStoreStaticArray extends LCStore {
 		rename( $tmpFileName, $fileName );
 	}
 
-	protected function getMessageKey( string $key ): ?string {
-		if ( str_starts_with( $key, self::MESSAGES_PREFIX ) ) {
-			return substr( $key, strlen( self::MESSAGES_PREFIX ) );
-		}
-		return null;
-	}
-
 	/** @inheritDoc */
 	public function get( $code, $key ) {
-		if ( !$this->loadLanguage( $code ) ) {
-			return null;
-		}
-		$data =& $this->data[$code];
-
-		$value = $data[$key] ?? null;
-
-		if ( $value === null ) {
-			// Reassembled split keys are new in 1.46, reducing redundancy in the files.
-			if ( str_starts_with( $key, self::MESSAGES_PREFIX ) ) {
-				$message = $this->getMessageKey( $key );
-				$value = $data['messages'][$message] ?? null;
+		// Optimization: Skip function call in hot path for every message lookup, and each fallback language
+		$data = $this->data[$code] ?? null;
+		if ( $data === null ) {
+			if ( !$this->loadLanguage( $code ) ) {
+				return null;
 			}
+			$data = $this->data[$code];
 		}
 
-		$value = $this->decode( $value );
-
-		if ( $key === 'list' ) {
-			if ( !isset( $value['messages'] ) ) {
+		if ( str_starts_with( $key, self::MESSAGES_PREFIX ) ) {
+			// Reassembled split keys are new in MediaWiki 1.46, reducing redundancy in the files.
+			$messageKey = substr( $key, strlen( self::MESSAGES_PREFIX ) );
+			$value = $data['messages'][$messageKey]
+				?? $data[$key]
+				?? null;
+		} else {
+			$value = $data[$key] ?? null;
+			if ( $key === 'list' ) {
+				$value = is_array( $value ) ? self::decode( $value ) : [];
 				// No need to store per-language, we have the list
-				$value['messages'] = array_keys( $data['messages'] ?? [] );
+				$value['messages'] ??= array_keys( $data['messages'] ?? [] );
+				return $value;
 			}
 		}
 
-		return $value;
+		// Most values are unencoded scalars, see encode()
+		return is_array( $value ) ? self::decode( $value ) : $value;
 	}
 
 	private function loadLanguage( string $code ): bool {
