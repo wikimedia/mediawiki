@@ -322,6 +322,11 @@ For notes on 1.46.x and older releases, see HISTORY.
 * Removed wikimedia/php-session-serializer, no longer used (T431315).
 * …
 
+===== Removed development-only external libraries =====
+
+* Removed wikimedia/langconv.
+* …
+
 === Bug fixes in 1.47 ===
 
 * (T74768) Fix an issue in 'mediawiki.Upload.js' where 'watchlist' is set to an
