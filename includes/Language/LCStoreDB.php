@@ -20,7 +20,7 @@ use Wikimedia\ScopedCallback;
  *
  * @ingroup Language
  */
-class LCStoreDB implements LCStore {
+class LCStoreDB extends LCStore {
 	/** @var string|null Language code */
 	private $code;
 	/** @var array Server configuration map */

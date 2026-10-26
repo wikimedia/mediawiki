@@ -25,7 +25,7 @@ use RuntimeException;
  *
  * @ingroup Language
  */
-class LCStoreCDB implements LCStore {
+class LCStoreCDB extends LCStore {
 
 	/** @var Reader[]|false[] */
 	private $readers;

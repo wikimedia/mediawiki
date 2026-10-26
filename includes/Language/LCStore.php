@@ -7,7 +7,7 @@
 namespace MediaWiki\Language;
 
 /**
- * Interface for the persistence layer of LocalisationCache.
+ * Base class for the persistence layer of LocalisationCache.
  *
  * The persistence layer is a two-level hierarchical cache. The first level
  * is the language, the second level is the item or subitem.
@@ -16,7 +16,8 @@ namespace MediaWiki\Language;
  * to have a fast and atomic method for deleting or replacing all the
  * current data for a given language. The interface reflects this bulk update
  * operation. Callers writing to the cache must first call startWrite(), then
- * will call set() a couple of thousand times, then will call finishWrite()
+ * will call set() a couple of thousand times (or setMessages() once for all
+ * messages), then will call finishWrite()
  * to commit the operation. When finishWrite() is called, the cache is
  * expected to delete all data previously stored for that language.
  *
@@ -25,7 +26,7 @@ namespace MediaWiki\Language;
  *
  * @ingroup Language
  */
-interface LCStore {
+abstract class LCStore {
 
 	/**
 	 * Get a value.
@@ -33,19 +34,19 @@ interface LCStore {
 	 * @param string $code Language code
 	 * @param string $key Cache key
 	 */
-	public function get( $code, $key );
+	abstract public function get( $code, $key );
 
 	/**
 	 * Start a cache write transaction.
 	 *
 	 * @param string $code Language code
 	 */
-	public function startWrite( $code );
+	abstract public function startWrite( $code );
 
 	/**
 	 * Finish a cache write transaction.
 	 */
-	public function finishWrite();
+	abstract public function finishWrite();
 
 	/**
 	 * Set a key to a given value. startWrite() must be called before this
@@ -54,7 +55,7 @@ interface LCStore {
 	 * @param string $key
 	 * @param mixed $value
 	 */
-	public function set( $key, $value );
+	abstract public function set( $key, $value );
 
 	/**
 	 * Can this cache type delay fallback lookups to read time?
@@ -71,7 +72,23 @@ interface LCStore {
 	 * keep the classic behavior of pre-filling all the fallback
 	 * chains for each language.
 	 */
-	public function lateFallback(): bool;
+	abstract public function lateFallback(): bool;
+
+	/**
+	 * Set all messages at once. startWrite() must be called before this
+	 * is called, and finishWrite() must be called after.
+	 *
+	 * This is equivalent to calling set( "messages:$key", $value ) for each
+	 * message. Subclasses can override this to avoid the per-message overhead.
+	 *
+	 * @since 1.48
+	 * @param array $messages Message values by message key
+	 */
+	public function setMessages( array $messages ): void {
+		foreach ( $messages as $key => $value ) {
+			$this->set( "messages:$key", $value );
+		}
+	}
 }
 
 /** @deprecated class alias since 1.46 */
