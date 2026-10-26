@@ -56,15 +56,13 @@ class FileDependency extends CacheDependency {
 		if ( $this->timestamp === null ) {
 			# Dependency on a non-existent file stores "false"
 			# This is a valid concept!
-			// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged
-			$this->timestamp = @filemtime( $this->filename );
+			$this->timestamp = self::getMTime( $this->filename );
 		}
 	}
 
 	/** @inheritDoc */
 	public function isExpired( $callback = null ) {
-		// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged
-		$lastmod = @filemtime( $this->filename );
+		$lastmod = self::getMTime( $this->filename );
 		if ( $lastmod === false ) {
 			if ( $this->timestamp === false ) {
 				# Still nonexistent
@@ -92,5 +90,18 @@ class FileDependency extends CacheDependency {
 
 		# Not modified
 		return false;
+	}
+
+	/**
+	 * Like filemtime(), but returns false without a warning if the file does not exist.
+	 *
+	 * Optimization: Avoid error handling overhead during RebuildLocalisationCache for many files
+	 * expected to be missing. Warnings suppressed with the silence operator are still handled.
+	 *
+	 * @param string $filename
+	 * @return int|false
+	 */
+	private static function getMTime( string $filename ) {
+		return is_file( $filename ) ? filemtime( $filename ) : false;
 	}
 }
