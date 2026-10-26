@@ -11,7 +11,7 @@ namespace MediaWiki\Language;
  *
  * @ingroup Language
  */
-class LCStoreNull implements LCStore {
+class LCStoreNull extends LCStore {
 
 	/** @inheritDoc */
 	public function get( $code, $key ) {

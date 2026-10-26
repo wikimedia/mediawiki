@@ -52,7 +52,7 @@ use Wikimedia\StaticArrayWriter;
  * @since 1.26
  * @ingroup Language
  */
-class LCStoreStaticArray implements LCStore {
+class LCStoreStaticArray extends LCStore {
 
 	/** Individual message subkeys have this prefix in the raw queries */
 	private const MESSAGES_PREFIX = 'messages:';
@@ -104,6 +104,15 @@ class LCStoreStaticArray implements LCStore {
 			$data['messages'][$message] = $encoded;
 		} else {
 			$data[$key] = $encoded;
+		}
+	}
+
+	/** @inheritDoc */
+	public function setMessages( array $messages ): void {
+		// Optimization: Avoid a set() call per message, and encode() for plain strings
+		$data =& $this->data[$this->currentLang];
+		foreach ( $messages as $key => $value ) {
+			$data['messages'][$key] = is_string( $value ) ? $value : self::encode( $value );
 		}
 	}
 

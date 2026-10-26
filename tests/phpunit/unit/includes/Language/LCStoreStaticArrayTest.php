@@ -108,6 +108,22 @@ class LCStoreStaticArrayTest extends MediaWikiUnitTestCase {
 		);
 	}
 
+	public function testSetMessages() {
+		$dir = $this->prepareDir();
+		$cache = new LCStoreStaticArray( [ 'directory' => $dir ] );
+		$cache->startWrite( 'en' );
+		$cache->setMessages( [] );
+		$cache->setMessages( [ 'foo' => 'Foo', 'bar' => [ 'Bar' ] ] );
+		$cache->finishWrite();
+
+		$this->assertEquals(
+			[ 'messages' => [ 'foo' => 'Foo', 'bar' => [ 'v', [ 'Bar' ] ] ] ],
+			require $dir . '/en.l10n.php'
+		);
+		$this->assertSame( 'Foo', $cache->get( 'en', 'messages:foo' ) );
+		$this->assertSame( [ 'Bar' ], $cache->get( 'en', 'messages:bar' ) );
+	}
+
 	public function testDecodeMw132Value() {
 		$dir = $this->prepareDir();
 		$this->prepareFile( $dir, 'en', [

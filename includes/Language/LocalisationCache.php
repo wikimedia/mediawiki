@@ -1401,10 +1401,8 @@ class LocalisationCache {
 		# Save to the persistent cache
 		$this->store->startWrite( $code );
 		foreach ( $allData as $key => $value ) {
-			if ( in_array( $key, self::SPLIT_KEYS ) ) {
-				foreach ( $value as $subkey => $subvalue ) {
-					$this->store->set( "$key:$subkey", $subvalue );
-				}
+			if ( $key === 'messages' ) {
+				$this->store->setMessages( $value );
 			} else {
 				$this->store->set( $key, $value );
 			}
