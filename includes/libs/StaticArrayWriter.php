@@ -13,6 +13,16 @@ namespace Wikimedia;
  */
 class StaticArrayWriter {
 	/**
+	 * Flag for write() and writeClass(): Skip formatting the array according
+	 * to our coding conventions (short array syntax, tab indentation) and use
+	 * the output of var_export() as-is. This is much faster for large arrays,
+	 * and meant for generated files that are not read by humans, such as caches.
+	 *
+	 * @since 1.48
+	 */
+	public const UNFORMATTED = 1;
+
+	/**
 	 * @param array $data Array with keys/values to export
 	 * @param string $header
 	 * @return string PHP code
@@ -25,14 +35,16 @@ class StaticArrayWriter {
 	 * Create a PHP file that returns the array.
 	 *
 	 * @since 1.35
+	 * @since 1.48 Added $flags parameter
 	 * @param array $data Array with keys/values to export
 	 * @param string $header
+	 * @param int $flags Bitfield of StaticArrayWriter::UNFORMATTED
 	 * @return string PHP code
 	 */
-	public static function write( array $data, $header ) {
+	public static function write( array $data, $header, int $flags = 0 ) {
 		$code = "<?php\n"
 			. "// " . implode( "\n// ", explode( "\n", $header ) ) . "\n"
-			. "return " . self::encodeArray( $data ) . ";\n";
+			. "return " . self::encode( $data, "\t", $flags ) . ";\n";
 		return $code;
 	}
 
@@ -43,19 +55,33 @@ class StaticArrayWriter {
 	 * from the file path.
 	 *
 	 * @since 1.37
+	 * @since 1.48 Added $flags parameter
 	 * @param array $data
 	 * @param array{header:string,namespace:string,class:string,const:string} $layout
+	 * @param int $flags Bitfield of StaticArrayWriter::UNFORMATTED
 	 * @return string PHP code
 	 */
-	public static function writeClass( array $data, array $layout ) {
+	public static function writeClass( array $data, array $layout, int $flags = 0 ) {
 		$code = "<?php\n"
 			. "// " . implode( "\n// ", explode( "\n", $layout['header'] ) ) . "\n"
 			. "\n"
 			. "namespace {$layout['namespace']};\n"
 			. "\n"
 			. "class {$layout['class']} {\n"
-			. "\tpublic const {$layout['const']} = " . self::encodeArray( $data, "\t\t" ) . ";\n}\n";
+			. "\tpublic const {$layout['const']} = " . self::encode( $data, "\t\t", $flags ) . ";\n}\n";
 		return $code;
+	}
+
+	/**
+	 * @param array $data
+	 * @param string $tabs Indentation level
+	 * @param int $flags
+	 * @return string PHP code
+	 */
+	private static function encode( array $data, string $tabs, int $flags ): string {
+		return ( $flags & self::UNFORMATTED )
+			? var_export( $data, true )
+			: self::encodeArray( $data, $tabs );
 	}
 
 	/**
