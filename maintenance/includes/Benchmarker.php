@@ -188,7 +188,7 @@ abstract class Benchmarker extends Maintenance {
 	 * @param int|float $bytes
 	 * @return string Formatted in using IEC bytes (multiples of 1024)
 	 */
-	private function formatSize( $bytes ): string {
+	protected function formatSize( $bytes ): string {
 		if ( $bytes >= ( 1024 ** 3 ) ) {
 			return number_format( $bytes / ( 1024 ** 3 ), 2 ) . ' GiB';
 		}

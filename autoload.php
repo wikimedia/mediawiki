@@ -187,6 +187,7 @@ $wgAutoloadLocalClasses = [
 	'BenchmarkHooks' => __DIR__ . '/maintenance/benchmarks/benchmarkHooks.php',
 	'BenchmarkJsValidate' => __DIR__ . '/maintenance/benchmarks/benchmarkJsValidate.php',
 	'BenchmarkJsonCodec' => __DIR__ . '/maintenance/benchmarks/benchmarkJsonCodec.php',
+	'BenchmarkLCStoreStaticArray' => __DIR__ . '/maintenance/benchmarks/benchmarkLCStoreStaticArray.php',
 	'BenchmarkLruHash' => __DIR__ . '/maintenance/benchmarks/benchmarkLruHash.php',
 	'BenchmarkParse' => __DIR__ . '/maintenance/benchmarks/benchmarkParse.php',
 	'BenchmarkPurge' => __DIR__ . '/maintenance/benchmarks/benchmarkPurge.php',
