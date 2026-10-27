@@ -665,6 +665,8 @@ because of Phabricator reports.
 * The "MainWANObjectCache" service and MediaWikiServices::getMainWANObjectCache
   method have been deprecated. Inject the "WANObjectCache" service name
   or call MediaWikiServices::getWANObjectCache instead.
+* MetricInterface::copyToStatsdAt(), deprecated since 1.45, now emits
+  deprecation warnings.
 * OutputPage::setPrintable, OutputPage::isPrintable, and
   OutputPage::transformCssMedia are no longer needed per T259141 and have been
   deprecated without replacement.
