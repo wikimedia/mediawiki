@@ -3234,7 +3234,7 @@ abstract class Database implements Stringable, IDatabaseForOwner, IMaintainableD
 	 * not restored on unserialize.
 	 * @return never
 	 */
-	public function __sleep(): never {
+	public function __serialize(): never {
 		throw new RuntimeException( 'Database serialization may cause problems, since ' .
 			'the connection is not restored on wakeup' );
 	}
