@@ -10,7 +10,7 @@ use Wikimedia\Message\MessageValue;
 
 /**
  * @internal
- * @since 1.47
+ * @since 1.48
  */
 class EditStatusFormatter {
 
