@@ -546,19 +546,13 @@ class PageEdit implements IEditObject {
 			: $page->getRevisionRecord();
 		$forceEditSummary = $this->shouldForceEditSummary();
 
-		return new EditConstraintRunner(
+		$runner = new EditConstraintRunner(
 			$this->constraintFactory->newEditFilterMergedContentHookConstraint(
 				$content,
 				$this->inputs->getContext(),
 				$this->inputs->getSummary(),
 				$markAsMinor,
 				$pstUser
-			),
-			new NewSectionMissingSubjectConstraint(
-				$this->section,
-				$this->inputs->getSectiontitle() ?? '',
-				$forceEditSummary,
-				$this->inputs->getAttemptState(),
 			),
 			new MissingCommentConstraint( $this->section, $this->textbox1 ),
 			new ExistingSectionEditConstraint(
@@ -590,6 +584,19 @@ class PageEdit implements IEditObject {
 				),
 			),
 		);
+
+		if ( !$this->inputs->shouldIgnoreMissingSubject() ) {
+			$runner->addConstraint(
+				new NewSectionMissingSubjectConstraint(
+					$this->section,
+					$this->inputs->getSectiontitle() ?? '',
+					$forceEditSummary,
+					$this->inputs->getAttemptState(),
+				),
+			);
+		}
+
+		return $runner;
 	}
 
 	/**

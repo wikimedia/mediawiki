@@ -208,9 +208,6 @@ class EditPage implements IEditObject {
 
 	private readonly PageEditAttemptState $editAttemptState;
 
-	/** @var ?Title */
-	private $problematicRedirectTarget = null;
-
 	private bool $ignoreProblematicRedirects = false;
 
 	private string $autoSumm = '';
@@ -1988,10 +1985,7 @@ class EditPage implements IEditObject {
 				->setValue( self::AS_SPAM_ERROR );
 		}
 
-		if ( $this->nosummary && $this->section === 'new' ) {
-			// TODO This should be handled differently, e.g. by passing a flag to PageEditInputs
-			$this->editAttemptState->setAllowBlankSummary( true );
-		}
+		$ignoreMissingSubject = $this->nosummary && $this->section === 'new';
 
 		$inputs = ( new PageEditInputs(
 			authority: $this->getAuthority(),
@@ -2009,6 +2003,7 @@ class EditPage implements IEditObject {
 			->setEdittime( $this->edittime )
 			->setEditRevId( $this->editRevId )
 			->setEnableApiEditOverride( $this->enableApiEditOverride )
+			->setIgnoreMissingSubject( $ignoreMissingSubject )
 			->setIgnoreProblematicRedirects( $this->ignoreProblematicRedirects )
 			->setMarkAsBot( $this->markAsBot )
 			->setMarkAsMinor( $this->minoredit )

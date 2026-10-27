@@ -24,6 +24,7 @@ class PageEditInputs {
 	private ?string $edittime = null;
 	private ?int $editRevId = null;
 	private bool $enableApiEditOverride = false;
+	private bool $ignoreMissingSubject = false;
 	private bool $ignoreProblematicRedirects = false;
 	private bool $markAsBot = false;
 	private bool $markAsMinor = false;
@@ -145,6 +146,15 @@ class PageEditInputs {
 
 	public function setEnableApiEditOverride( bool $enableApiEditOverride ): self {
 		$this->enableApiEditOverride = $enableApiEditOverride;
+		return $this;
+	}
+
+	public function shouldIgnoreMissingSubject(): bool {
+		return $this->ignoreMissingSubject;
+	}
+
+	public function setIgnoreMissingSubject( bool $ignoreMissingSubject ): self {
+		$this->ignoreMissingSubject = $ignoreMissingSubject;
 		return $this;
 	}
 
