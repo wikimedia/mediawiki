@@ -165,6 +165,7 @@
 	"rest-param-desc-media-links-array": "مجموعة الوسائط المستخدمة في الصفحة",
 	"rest-param-desc-module-spec-module": "مواصفات الوحدة الوحدة",
 	"rest-param-desc-module-spec-version": "إصدار مواصفات الوحدة",
+	"rest-param-desc-module-spec-lang": "رمز اللغة الذي سيتم من خلاله إرجاع مواصفات OpenAPI",
 	"rest-param-desc-opensearch-ctype": "افتح وصف البحث ctype",
 	"rest-param-desc-pagehistory-count-title": "عنوان الصفحة. لتنسيق العنوان، استبدل المسافات بشرطات سفلية، ثم قم بترميز عنوان URL للنتيجة (مثال: Steller%27s_jay). في بيئة اختبار واجهة برمجة التطبيقات، استبدل المسافات بشرطات سفلية، ولكن لا تقم بترميز عنوان URL (مثال: Steller's_jay).",
 	"rest-param-desc-pagehistory-count-type": "نوع العد (مجهول، روبوت، محررون، تعديلات، طفيفة، مُعاد)",

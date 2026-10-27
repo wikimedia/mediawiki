@@ -2,6 +2,7 @@
 	"@metadata": {
 		"authors": [
 			"Addonian1123",
+			"Anterdc99",
 			"August.C",
 			"Kly",
 			"LowensteinYang",
@@ -69,7 +70,7 @@
 	"rest-badtoken": "提供的 CSRF 權杖無效。",
 	"rest-badtoken-missing": "除非是使用 CSRF 安全身份驗證方法，否則 <var>token</var> 參數為必填。",
 	"rest-badtoken-nosession": "CSRF 錯誤 - 沒有 session。",
-	"rest-csrf-token-description": "CSRF權杖。\n若透過MediaWiki-Session-CookieSessionProvider Cookie進行身分驗證，則**必須提供**。\n若採用可防範CSRF的驗證機制（例如OAuth 2.0），則**無須提供**。",
+	"rest-csrf-token-description": "CSRF權杖。若透過MediaWiki-Session-CookieSessionProvider Cookie進行身分驗證，則**必須提供**。若採用可防範CSRF的驗證機制（例如OAuth 2.0），則**無須提供**。",
 	"rest-mock-error": "模擬錯誤。",
 	"rest-specified-revision-unavailable": "指定的修訂已被刪除或遮蔽。",
 	"rest-previous-revision-unavailable": "找不到先前的修訂。該頁面是否已被鎖定或刪除？",
