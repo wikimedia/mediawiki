@@ -6,14 +6,20 @@
 			"Kandar",
 			"Mssetiadi",
 			"RXerself",
-			"Uchup19"
+			"Uchup19",
+			"Rafka Aditia"
 		]
 	},
 	"preferences": "Préferénsi",
 	"prefsnologintext2": "Mangga asup log pikeun ngarobah préferénsi anjeun.",
+	"prefsnologintext2-for-temp-user": "Mangga jieun akun pikeun ngarobah préferénsi.",
+	"searchprefs": "Préferénsi paluruhan",
+	"searchprefs-noresults": "Teu aya hasil",
+	"searchprefs-results": "$1 {{PLURAL:$1|hasil}}",
 	"saveprefs": "Simpen préferénsi",
 	"tooltip-preferences-save": "Simpen préferénsi",
 	"savedprefs": "Préferénsi anjeun geus disimpen.",
+	"prefs-back-title": "Balik ka préferénsi",
 	"prefs-personal": "Data pamaké",
 	"prefs-info": "Émbaran dasar",
 	"username": "{{GENDER:$1|Sandiasma}}:",

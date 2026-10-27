@@ -4124,5 +4124,6 @@
 	"benefit-3-description": "Nastavenia, ktorými si prispôsobíte svoje prostredie.",
 	"temp-user-unable-to-acquire": "Nepodarilo sa získať používateľské meno dočasného účtu. Skúste to znova.",
 	"table-of-contents-show-button-aria-label": "Zobraziť obsah",
-	"table-of-contents-hide-button-aria-label": "Skryť obsah"
+	"table-of-contents-hide-button-aria-label": "Skryť obsah",
+	"mypage-disallowed-action": "Z bezpečnostných dôvodov nemožno na stránke Special:MyPage použiť akciu „$1“."
 }

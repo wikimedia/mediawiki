@@ -15,7 +15,8 @@
 			"Илья Драконов",
 			"Некто участник",
 			"ОйЛ",
-			"아라"
+			"아라",
+			"Oujon"
 		]
 	},
 	"sunday": "нєдѣлꙗ",
@@ -70,7 +71,7 @@
 	"dec": "дє҃к",
 	"period-am": "до полоудьни",
 	"period-pm": "по полоудьни",
-	"pagecategories": "{{PLURAL:$1|Катигорїꙗ|Катигорїи|Катигорїѩ|Катигорїѩ}}",
+	"pagecategories": "{{PLURAL:$1|Катигорїꙗ|Катигорїи}}",
 	"category_header": "катигорїѩ ⁖ $1 ⁖ страницѧ",
 	"subcategories": "подъкатигорїѩ",
 	"category-media-header": "катигорїѩ ⁖ $1 ⁖ дѣла",
@@ -397,6 +398,7 @@
 	"rcshowhidebots-show": "каꙁаниѥ",
 	"rcshowhidebots-hide": "съкрꙑтиѥ",
 	"rcshowhideliu": "$1 польꙃєватєлъ · ѩжє съꙁижьдє сѥ мѣсто · мѣнъ",
+	"rcshowhideliu-show": "виждь",
 	"rcshowhideliu-hide": "съкрꙑтиѥ",
 	"rcshowhideanons": "$1 анѡнѷмьнъ польꙃєватєлъ мѣнъ",
 	"rcshowhideanons-show": "каꙁаниѥ",
@@ -737,7 +739,7 @@
 	"logentry-upload-upload": "$1 {{GENDER:$2|положишє}} $3",
 	"feedback-cancel": "отъмѣтаниѥ",
 	"searchsuggest-search": "{{SITENAME}} : исканиѥ",
-	"searchsuggest-containing": "сѥ дрьжащи···",
+	"searchsuggest-containing": "Ищи листы съдрьжаще",
 	"api-error-unknownerror": "нєвѣдома блаꙁна : ⁖ $1 ⁖",
 	"duration-seconds": "$1 {{PLURAL:$1|дєѵтєролєпто|дєѵтєролєпта|дєѵтєролєптъ}}",
 	"duration-minutes": "$1 {{PLURAL:$1|лєпто|лєпта|лєптъ}}",

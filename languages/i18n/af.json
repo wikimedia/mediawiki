@@ -37,7 +37,8 @@
 			"Winstonza",
 			"Xethron",
 			"පසිඳු කාවින්ද",
-			"아라"
+			"아라",
+			"Pyn3tv"
 		]
 	},
 	"sunday": "Sondag",
@@ -1141,6 +1142,7 @@
 	"rcfilters-filter-categorization-description": "Wys kategorisering van bladsye.",
 	"rcfilters-filter-logactions-label": "Geregistreerde aksies",
 	"rcfilters-filter-logactions-description": "Administratiewe aksies, nuwe rekeninge, bladsyverwyderings, oplaaie…",
+	"rcfilters-filter-accountcreations-label": "Rekeningskeppings",
 	"rcfilters-filtergroup-lastrevision": "Nuutste weergawes",
 	"rcfilters-filter-lastrevision-label": "Nuutste weergawe",
 	"rcfilters-filter-lastrevision-description": "Slegs die mees onlangse wysigings aan die bladsy.",
@@ -1769,6 +1771,7 @@
 	"delete-edit-reasonlist": "Wysig skrap redes",
 	"delete-toobig": "Die bladsy het 'n lang wysigingsgeskiedenis, meer as $1 {{PLURAL:$1|weergawe|weergawes}}.\nVerwydering van die soort blaaie is beperk om ontwrigting van {{SITENAME}} te voorkom.",
 	"delete-warning-toobig": "Hierdie bladsy het 'n lang wysigingsgeskiedenis; meer as $1 {{PLURAL:$1|wysiging|wysigings}}.\nDeur weg te doen met hierdie bladsy mag dalk die werking van {{SITENAME}} versteur;\nTree asseblief versigtig op.",
+	"deleting-backlinks-warning": "<strong>Waarskuwing:</strong> [[Special:WhatLinksHere/{{FULLPAGENAME}}|Ander bladsye]] skakel na of sluit die bladsy wat jy op die punt staan om te verwyder, in.",
 	"rollback": "Rol veranderinge terug",
 	"rollbacklink": "rol terug",
 	"rollbacklinkcount": "rol {{PLURAL:$1|een wysiging|$1 wysigings}} terug",
@@ -2582,6 +2585,7 @@
 	"tag-filter": "[[Special:Tags|Etiketfilter]]:",
 	"tag-filter-submit": "Filter",
 	"tag-list-wrapper": "[[Special:Tags|{{PLURAL:$1|Etiket|Etikette}}]]: $2",
+	"tag-mw-manual-revert": "Handmatige terugrol",
 	"tag-mw-reverted": "Teruggerol",
 	"tags-title": "Etikette",
 	"tags-intro": "Hierdie bladsy bevat die etikette waarmee die sagteware wysigings mee kan merk, en hul betekenis.",
@@ -2834,6 +2838,7 @@
 	"skin-action-undelete": "Ontskrap",
 	"skin-action-delete": "Skrap",
 	"skin-action-move": "Skuif",
+	"newpages-showhide-patrolled": "$1 gekontroleerde wysigings",
 	"blockedtext-made-by": "Die blokkade is deur $1 uitgevoer.",
 	"blockedtext-reason-comment": "Die rede verskaf is <em>$1</em>.",
 	"blockedtext-start-time": "Begin van blokkade: $1",

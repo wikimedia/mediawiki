@@ -4231,5 +4231,6 @@
 	"benefit-3-description": "Nastavitve, ki vam omogočajo prilagajanje vaše izkušnje.",
 	"temp-user-unable-to-acquire": "Ni mogoče pridobiti začasnega uporabniškega imena za račun. Prosimo, poskusite znova.",
 	"table-of-contents-show-button-aria-label": "Prikaži vsebinsko kazalo",
-	"table-of-contents-hide-button-aria-label": "Skrij vsebinsko kazalo"
+	"table-of-contents-hide-button-aria-label": "Skrij vsebinsko kazalo",
+	"mypage-disallowed-action": "Iz varnostnih razlogov dejanja »$1« ni mogoče uporabiti na strani Special:MyPage."
 }

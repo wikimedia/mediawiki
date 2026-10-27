@@ -174,7 +174,7 @@
 	"editfont-monospace": "قلم با فاصلهٔ ثابت",
 	"editfont-sansserif": "قلم بدون گوشه",
 	"editfont-serif": "قلم گوشه‌دار",
-	"tog-minordefault": "همهٔ ویرایش‌های جزئی به طور پیش‌فرض نشانه‌گذاری شود",
+	"tog-minordefault": "همهٔ ویرایش‌ها به‌طور پیش‌فرض جزئی نشانه‌گذاری شوند",
 	"tog-forceeditsummary": "هنگامی که یک خلاصهٔ ویرایش را خالی وارد کردم فوری به من یادآوری کن (یا خلاصهٔ ویرایش پیش‌فرض را واگردان)",
 	"tog-editrecovery": "فعال‌سازی ویژگی [[Special:EditRecovery|{{int:editrecovery}}]]",
 	"tog-editrecovery-help": "می‌توانید در [$1 صفحهٔ بحث پروژه] بازخورد خود را ارائه دهید.",
