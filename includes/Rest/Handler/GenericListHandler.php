@@ -3,6 +3,7 @@ namespace MediaWiki\Rest\Handler;
 
 use MediaWiki\Api\ApiBase;
 use MediaWiki\Api\ApiRestHelper;
+use MediaWiki\Api\ApiRestHelperContext;
 use MediaWiki\Api\ApiRestHybrid;
 use UnexpectedValueException;
 use Wikimedia\ParamValidator\ParamValidator;
@@ -19,6 +20,13 @@ use Wikimedia\ParamValidator\ParamValidator;
 class GenericListHandler extends GenericActionHandler {
 
 	private ?ApiBase $listModule = null;
+
+	/**
+	 * The list module's REST helper.
+	 * Not to be confused with the action module's REST helper tracked
+	 * by the parent class.
+	 */
+	private ?ApiRestHelper $apiRestHelper = null;
 
 	public function __construct(
 		protected readonly string $moduleName,
@@ -117,8 +125,8 @@ class GenericListHandler extends GenericActionHandler {
 	 * @return ?ApiRestHelper
 	 */
 	protected function getApiRestHelper(): ?ApiRestHelper {
-		$module = $this->getApiListModule();
-		return $module instanceof ApiRestHybrid ? $module->getRestHelper() : null;
+		$this->getApiListModule();
+		return $this->apiRestHelper;
 	}
 
 	/**
@@ -146,16 +154,35 @@ class GenericListHandler extends GenericActionHandler {
 		];
 	}
 
+	/**
+	 * Returns the query module that will be called by this handler, based on
+	 * the 'list' parameter returned by getActionModuleParameters().
+	 *
+	 * If that module implements ApiRestHybrid, this method calls initRestMode()
+	 * on it.
+	 *
+	 * @return ApiBase
+	 */
 	private function getApiListModule(): ApiBase {
 		if ( !$this->listModule ) {
-			// NOTE: use the module manager from ApiQuery (which is returned by getApiActionModule())
-			$this->listModule = $this->getApiActionModule()->getModuleManager()
+			// NOTE: use the module manager from ApiQuery (which is returned by getActionModule())
+			$this->listModule = $this->getActionModule()->getModuleManager()
 				?->getModule( $this->moduleName, 'list' );
 
 			if ( !$this->listModule ) {
 				throw new UnexpectedValueException( "Unknown list module: {$this->moduleName}" );
 			}
+
+			if ( $this->listModule instanceof ApiRestHybrid ) {
+				// NOTE: This is the list module's ApiRestHelper.
+				// The parent class captures the main action's ApiRestHelper,
+				// which in our case would be the one for ApiQuery (which is probably null).
+				$this->apiRestHelper = $this->listModule->initRestMode(
+					new ApiRestHelperContext( $this->adapterConfig, $this->getConfig() )
+				);
+			}
 		}
+
 		return $this->listModule;
 	}
 

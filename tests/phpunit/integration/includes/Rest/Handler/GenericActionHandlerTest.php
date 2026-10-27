@@ -2,11 +2,14 @@
 
 namespace MediaWiki\Tests\Rest\Handler;
 
+use Closure;
 use Exception;
+use LogicException;
 use MediaWiki\Api\ApiBase;
 use MediaWiki\Api\ApiMain;
 use MediaWiki\Api\ApiMessage;
 use MediaWiki\Api\ApiRestHelper;
+use MediaWiki\Api\ApiRestHelperContext;
 use MediaWiki\Api\ApiRestHybrid;
 use MediaWiki\Api\ApiUsageException;
 use MediaWiki\Api\IApiMessage;
@@ -107,26 +110,39 @@ class GenericActionHandlerTest extends MediaWikiIntegrationTestCase {
 		string $actionName = 'test',
 		?ApiRestHelper $helper = null,
 		?Exception $throwException = null,
-		array $resultData = []
+		array $resultData = [],
+		?Closure $onInitRestMode = null
 	): ApiRestHybrid&ApiBase {
-		$helper ??= new class extends ApiRestHelper {
-		};
+		$helper ??= new ApiRestHelper( new ApiRestHelperContext( [], [] ) );
 
 		/** @var ApiRestHybrid & ApiBase $module */
-		$module = new class( $this->apiMain, $actionName, $helper, $resultData, $throwException )
+		$module = new class( $this->apiMain, $actionName, $helper, $resultData, $throwException, $onInitRestMode )
 			extends ApiBase implements ApiRestHybrid
 		{
+			private ?ApiRestHelperContext $context = null;
+
 			public function __construct(
 				ApiMain $main,
 				string $name,
 				private ApiRestHelper $helper,
 				private array $resultData,
-				private ?Exception $throwException
+				private ?Exception $throwException,
+				private ?Closure $onInitRestMode
 			) {
 				parent::__construct( $main, $name );
 			}
 
+			/**
+			 * The handler must inject the context before it uses the module in any way.
+			 */
+			private function assertRestModeInitialized(): void {
+				if ( !$this->context ) {
+					throw new LogicException( 'The module was used before initRestMode() was called' );
+				}
+			}
+
 			public function execute() {
+				$this->assertRestModeInitialized();
 				if ( $this->throwException ) {
 					throw $this->throwException;
 				}
@@ -148,11 +164,16 @@ class GenericActionHandlerTest extends MediaWikiIntegrationTestCase {
 				);
 			}
 
-			public function getRestHelper(): ApiRestHelper {
+			public function initRestMode( ApiRestHelperContext $context ): ApiRestHelper {
+				$this->context = $context;
+				if ( $this->onInitRestMode ) {
+					( $this->onInitRestMode )( $context );
+				}
 				return $this->helper;
 			}
 
 			protected function getAllowedParams() {
+				$this->assertRestModeInitialized();
 				// Examples taken from ApiMove
 				return [
 					'from' => null,
@@ -202,6 +223,55 @@ class GenericActionHandlerTest extends MediaWikiIntegrationTestCase {
 		$session->method( 'getToken' )->willReturn( $token );
 
 		return $session;
+	}
+
+	public function testInitRestMode_receivesAdapterAndHandlerConfig() {
+		$contexts = [];
+		$module = $this->newHybridModule(
+			onInitRestMode: static function ( ApiRestHelperContext $context ) use ( &$contexts ) {
+				$contexts[] = $context;
+			}
+		);
+		$adapterConfig = [ GenericActionHandler::SUPPRESSED_PARAMS_KEY => [ 'movetalk' ] ];
+		$handler = $this->newHandler( [
+			'module' => $module,
+			'adapterConfig' => $adapterConfig,
+			'init' => true,
+			'config' => [ 'method' => 'GET', 'path' => '/test/path' ],
+		] );
+
+		// Anything that needs the module triggers the injection.
+		$handler->getParamSettings();
+
+		$this->assertCount( 1, $contexts );
+		// The essential assertions: the context carries the route's adapter spec,
+		// and the handler's own config, which is the route config.
+		$this->assertSame( $adapterConfig, $contexts[0]->getAdapterConfig() );
+		$this->assertSame( $handler->getConfig(), $contexts[0]->getRouteConfig() );
+		$this->assertSame( '/test/path', $contexts[0]->getRouteConfig()['path'] );
+	}
+
+	public function testInitRestMode_calledOnceBeforeTheModuleIsUsed() {
+		$contexts = [];
+		$module = $this->newHybridModule(
+			actionName: 'fakeaction',
+			onInitRestMode: static function ( ApiRestHelperContext $context ) use ( &$contexts ) {
+				$contexts[] = $context;
+			}
+		);
+		$handler = $this->newHandler( [ 'module' => $module ] );
+		$request = new RequestData( [
+			'method' => 'POST',
+			// 'to' is required by the fake action module.
+			'parsedBody' => [ 'from' => 'A', 'to' => 'B' ],
+		] );
+
+		// The module throws if the handler uses it before injecting the context
+		// (to declare parameters, to validate the request, or to execute), so
+		// executing successfully is the essential assertion.
+		$this->executeHandlerAndGetBodyData( $handler, $request );
+
+		$this->assertCount( 1, $contexts, 'The context should be injected once, not per use' );
 	}
 
 	public function testPost() {
@@ -341,7 +411,7 @@ class GenericActionHandlerTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testExecuteUsesHelperForUnmappedCode() {
-		$helper = new class extends ApiRestHelper {
+		$helper = new class ( new ApiRestHelperContext( [], [] ) ) extends ApiRestHelper {
 			public function getStatusForErrorMessage( IApiMessage $msg ): int {
 				return $msg->getApiCode() === 'fileexists-sharedrepo-perm' ? 403 : 0;
 			}
@@ -529,8 +599,10 @@ class GenericActionHandlerTest extends MediaWikiIntegrationTestCase {
 		$module = $this->newHybridModule();
 		$handler = $this->newHandler( [ 'module' => $module, 'init' => true ] );
 
-		$moduleParams = $module->getFinalParams();
+		// The handler injects the REST context into the module, which may
+		// change the module's parameters, so ask the handler first.
 		$handlerParams = $handler->getParamSettings();
+		$moduleParams = $module->getFinalParams();
 
 		// All parameters must be looped through
 		foreach ( array_keys( $moduleParams ) as $name ) {
@@ -843,11 +915,12 @@ class GenericActionHandlerTest extends MediaWikiIntegrationTestCase {
 			],
 		];
 
-		$helper = new class( $bodySchema ) extends ApiRestHelper {
-			public function __construct( private array $bodySchema ) {
+		$helper = new class ( new ApiRestHelperContext( [], [] ), $bodySchema ) extends ApiRestHelper {
+			public function __construct( ApiRestHelperContext $context, private array $bodySchema ) {
+				parent::__construct( $context );
 			}
 
-			public function getResponseBodySchema(): ?array {
+			public function getResponseBodySchema(): array {
 				return $this->bodySchema;
 			}
 		};
@@ -885,11 +958,7 @@ class GenericActionHandlerTest extends MediaWikiIntegrationTestCase {
 			__DIR__ . '/GenericActionHandlerTest.schema.json'
 		), true );
 
-		$helper = new class() extends ApiRestHelper {
-			public function getResponseBodySchemaFileName(): string {
-				return __DIR__ . '/GenericActionHandlerTest.schema.json';
-			}
-		};
+		$helper = new ApiRestHelper( new ApiRestHelperContext( [], [] ), __DIR__ . '/GenericActionHandlerTest.schema.json' );
 
 		$module = $this->newHybridModule( helper: $helper );
 		$handler = $this->newHandler( [
@@ -953,7 +1022,7 @@ class GenericActionHandlerTest extends MediaWikiIntegrationTestCase {
 	 * decision about whether it belongs in a REST endpoint.
 	 */
 	public function testGetActionModuleParamSpecs() {
-		$handler = $this->newHandler( [ 'module' => $this->newHybridModule() ] );
+		$handler = $this->newHandler( [ 'module' => $this->newHybridModule(), 'init' => true ] );
 
 		$specs = TestingAccessWrapper::newFromObject( $handler )
 			->getActionModuleParamSpecs();

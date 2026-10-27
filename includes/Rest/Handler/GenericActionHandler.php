@@ -4,6 +4,7 @@ namespace MediaWiki\Rest\Handler;
 use MediaWiki\Api\ApiBase;
 use MediaWiki\Api\ApiMain;
 use MediaWiki\Api\ApiRestHelper;
+use MediaWiki\Api\ApiRestHelperContext;
 use MediaWiki\Api\ApiRestHybrid;
 use MediaWiki\Api\IApiMessage;
 use MediaWiki\Api\Validator\SubmoduleDef;
@@ -82,6 +83,10 @@ class GenericActionHandler extends ActionModuleBasedHandler {
 		'submodule' => 'string',
 	];
 
+	private ?ApiBase $actionModule = null;
+
+	private ?ApiRestHelper $apiRestHelper = null;
+
 	/**
 	 * Parameter settings that only the action API understands. The REST
 	 * framework rejects unknown settings, so they are removed.
@@ -149,10 +154,25 @@ class GenericActionHandler extends ActionModuleBasedHandler {
 	 * Returns the module that will be called by this handler, based on
 	 * the 'action' parameter returned by getActionModuleParameters().
 	 *
+	 * If that module implements ApiRestHybrid, this method calls initRestMode()
+	 * on it.
+	 *
 	 * @return ApiBase
 	 */
-	protected function getApiActionModule(): ApiBase {
-		return $this->getApiMain()->initModule( $this->actionName );
+	protected function getActionModule(): ApiBase {
+		if ( $this->actionModule ) {
+			return $this->actionModule;
+		}
+
+		$this->actionModule = $this->getApiMain()->initModule( $this->actionName );
+
+		if ( $this->actionModule instanceof ApiRestHybrid ) {
+			$this->apiRestHelper = $this->actionModule->initRestMode(
+				new ApiRestHelperContext( $this->adapterConfig, $this->getConfig() )
+			);
+		}
+
+		return $this->actionModule;
 	}
 
 	/**
@@ -160,12 +180,8 @@ class GenericActionHandler extends ActionModuleBasedHandler {
 	 * @return ?ApiRestHelper
 	 */
 	protected function getApiRestHelper(): ?ApiRestHelper {
-		$module = $this->getApiActionModule();
-		if ( $module instanceof ApiRestHybrid ) {
-			return $module->getRestHelper();
-		}
-
-		return null;
+		$this->getActionModule();
+		return $this->apiRestHelper;
 	}
 
 	/**
@@ -197,7 +213,7 @@ class GenericActionHandler extends ActionModuleBasedHandler {
 		// against CSRF attacks, then make the action module happy by
 		// supplying a valid token. The action API validates the token
 		// unconditionally, it has no exemption for CSRF-safe providers.
-		if ( $this->getApiActionModule()->needsToken() && !isset( $params['token'] ) ) {
+		if ( $this->getActionModule()->needsToken() && !isset( $params['token'] ) ) {
 			if ( $this->getSession()->getProvider()->safeAgainstCsrf() ) {
 				$sessionToken = null;
 				if ( $this->getSession()->getUser()->isAnon() ) {
@@ -283,7 +299,7 @@ class GenericActionHandler extends ActionModuleBasedHandler {
 	 */
 	protected function getActionModuleParamSpecs(): array {
 		return $this->filterSupportedParams(
-			$this->getApiActionModule()->getFinalParams()
+			$this->getActionModule()->getFinalParams()
 				+ $this->getMainParamSpecs()
 		);
 	}

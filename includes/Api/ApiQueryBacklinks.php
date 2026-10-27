@@ -111,12 +111,8 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase implements ApiRestHybrid {
 		$this->virtual_domain = $settings['virtualdomain'];
 	}
 
-	public function getRestHelper(): ApiRestHelper {
-		return new class extends ApiListRestHelper {
-			public function getResponseItemSchemaFileName(): ?string {
-				return __DIR__ . '/Schema/Backlinks-item.json';
-			}
-		};
+	public function initRestMode( ApiRestHelperContext $context ): ApiRestHelper {
+		return new ApiListRestHelper( $context, __DIR__ . '/Schema/Backlinks-item.json' );
 	}
 
 	public function execute() {

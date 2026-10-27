@@ -5,6 +5,7 @@ namespace MediaWiki\Tests\Api\Query;
 use MediaWiki\Api\ApiMain;
 use MediaWiki\Api\ApiQuery;
 use MediaWiki\Api\ApiQueryBacklinks;
+use MediaWiki\Api\ApiRestHelperContext;
 use MediaWiki\Request\FauxRequest;
 use MediaWiki\Tests\Api\ApiTestCase;
 
@@ -22,7 +23,7 @@ class ApiQueryBacklinksTest extends ApiTestCase {
 	}
 
 	public function testGetRestHelper_declaresListResponseSchema() {
-		$schema = $this->newBacklinksModule()->getRestHelper()->getResponseBodySchema();
+		$schema = $this->newBacklinksModule()->initRestMode( new ApiRestHelperContext( [], [] ) )->getResponseBodySchema();
 
 		// The response is a page of items: find the schema of the "items" array.
 		$itemsSchema = null;

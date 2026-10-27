@@ -956,6 +956,7 @@ $wgAutoloadLocalClasses = [
 	'MediaWiki\\Api\\ApiRemoveAuthenticationData' => __DIR__ . '/includes/Api/ApiRemoveAuthenticationData.php',
 	'MediaWiki\\Api\\ApiResetPassword' => __DIR__ . '/includes/Api/ApiResetPassword.php',
 	'MediaWiki\\Api\\ApiRestHelper' => __DIR__ . '/includes/Api/ApiRestHelper.php',
+	'MediaWiki\\Api\\ApiRestHelperContext' => __DIR__ . '/includes/Api/ApiRestHelperContext.php',
 	'MediaWiki\\Api\\ApiRestHybrid' => __DIR__ . '/includes/Api/ApiRestHybrid.php',
 	'MediaWiki\\Api\\ApiResult' => __DIR__ . '/includes/Api/ApiResult.php',
 	'MediaWiki\\Api\\ApiRevisionDelete' => __DIR__ . '/includes/Api/ApiRevisionDelete.php',
