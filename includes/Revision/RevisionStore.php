@@ -1071,7 +1071,7 @@ class RevisionStore implements RevisionFactory, RevisionLookup, LoggerAwareInter
 	 *
 	 * @param RevisionRecord $rev
 	 * @param int $flags (optional) $flags include:
-	 *      IDBAccessObject::READ_LATEST: Select the data from the primary DB
+	 *  - IDBAccessObject::READ_LATEST: Select the data from the primary DB
 	 *
 	 * @return null|RecentChange
 	 */
@@ -1184,8 +1184,8 @@ class RevisionStore implements RevisionFactory, RevisionLookup, LoggerAwareInter
 	 * MCR migration note: this replaced Revision::newFromId
 	 *
 	 * $flags include:
-	 *      IDBAccessObject::READ_LATEST: Select the data from the primary DB
-	 *      IDBAccessObject::READ_LOCKING : Select & lock the data from the primary DB
+	 * - IDBAccessObject::READ_LATEST: Select the data from the primary DB
+	 * - IDBAccessObject::READ_LOCKING: Select & lock the data from the primary DB
 	 *
 	 * @param int $id
 	 * @param int $flags (optional)
@@ -1283,8 +1283,8 @@ class RevisionStore implements RevisionFactory, RevisionLookup, LoggerAwareInter
 	 * MCR migration note: this replaced Revision::newFromTitle
 	 *
 	 * $flags include:
-	 *      IDBAccessObject::READ_LATEST: Select the data from the primary DB
-	 *      IDBAccessObject::READ_LOCKING : Select & lock the data from the primary DB
+	 * - IDBAccessObject::READ_LATEST: Select the data from the primary DB
+	 * - IDBAccessObject::READ_LOCKING: Select & lock the data from the primary DB
 	 *
 	 * @param LinkTarget|PageReference $page Calling with LinkTarget is deprecated since 1.36
 	 * @param int $revId (optional)
@@ -1331,8 +1331,8 @@ class RevisionStore implements RevisionFactory, RevisionLookup, LoggerAwareInter
 	 * MCR migration note: this replaced Revision::newFromPageId
 	 *
 	 * $flags include:
-	 *      IDBAccessObject::READ_LATEST: Select the data from the primary DB (since 1.20)
-	 *      IDBAccessObject::READ_LOCKING : Select & lock the data from the primary DB
+	 * - IDBAccessObject::READ_LATEST: Select the data from the primary DB (since 1.20)
+	 * - IDBAccessObject::READ_LOCKING: Select & lock the data from the primary DB
 	 *
 	 * @param int $pageId
 	 * @param int $revId (optional)
@@ -1373,9 +1373,9 @@ class RevisionStore implements RevisionFactory, RevisionLookup, LoggerAwareInter
 	 * @param LinkTarget|PageReference $page Calling with LinkTarget is deprecated since 1.36
 	 * @param string $timestamp
 	 * @param int $flags Bitfield (optional) include:
-	 *      IDBAccessObject::READ_LATEST: Select the data from the primary DB
-	 *      IDBAccessObject::READ_LOCKING: Select & lock the data from the primary DB
-	 *      Default: IDBAccessObject::READ_NORMAL
+	 *  - IDBAccessObject::READ_LATEST: Select the data from the primary DB
+	 *  - IDBAccessObject::READ_LOCKING: Select & lock the data from the primary DB
+	 *  - Default: IDBAccessObject::READ_NORMAL
 	 * @return RevisionRecord|null
 	 */
 	public function getRevisionByTimestamp(
@@ -1639,10 +1639,8 @@ class RevisionStore implements RevisionFactory, RevisionLookup, LoggerAwareInter
 	 * @since 1.35
 	 *
 	 * @param stdClass $row
-	 * @param null|stdClass[]|RevisionSlots $slots
-	 *  - Database rows generated from a query based on getSlotsQueryInfo
-	 *    with the 'content' flag set. Or
-	 *  - RevisionSlots instance
+	 * @param null|stdClass[]|RevisionSlots $slots Database rows generated from a query based on
+	 *   getSlotsQueryInfo with the 'content' flag set, or a RevisionSlots instance
 	 * @param int $queryFlags
 	 * @param PageIdentity|null $page
 	 * @param array $overrides associative array with fields of $row to override. This may be
@@ -1715,10 +1713,8 @@ class RevisionStore implements RevisionFactory, RevisionLookup, LoggerAwareInter
 	 * @see newFromRevisionRow()
 	 *
 	 * @param stdClass $row A database row generated from a query based on RevisionSelectQueryBuilder
-	 * @param null|stdClass[]|RevisionSlots $slots
-	 *  - Database rows generated from a query based on getSlotsQueryInfo
-	 *    with the 'content' flag set. Or
-	 *  - RevisionSlots instance
+	 * @param null|stdClass[]|RevisionSlots $slots Database rows generated from a query based on
+	 *   getSlotsQueryInfo with the 'content' flag set, or a RevisionSlots instance
 	 * @param int $queryFlags
 	 * @param PageIdentity|null $page
 	 * @param bool $fromCache if true, the returned RevisionRecord will ensure that no stale
@@ -1923,14 +1919,14 @@ class RevisionStore implements RevisionFactory, RevisionLookup, LoggerAwareInter
 	 *
 	 * @param IResultWrapper|\stdClass[] $rows the rows to construct revision records from
 	 * @param array $options Supports the following options:
-	 *               'slots' - whether metadata about revision slots should be
-	 *               loaded immediately. Supports falsy or truthy value as well
-	 *               as an explicit list of slot role names. The main slot will
-	 *               always be loaded.
-	 *               'content' - whether the actual content of the slots should be
-	 *               preloaded.
-	 *               'archive' - whether the rows where generated using getArchiveQueryInfo(),
-	 *                           rather than getQueryInfo.
+	 *  - 'slots' - whether metadata about revision slots should be
+	 *    loaded immediately. Supports falsy or truthy value as well
+	 *    as an explicit list of slot role names. The main slot will
+	 *    always be loaded.
+	 *  - 'content' - whether the actual content of the slots should be
+	 *    preloaded.
+	 *  - 'archive' - whether the rows where generated using getArchiveQueryInfo(),
+	 *    rather than getQueryInfo.
 	 * @param int $queryFlags
 	 * @param PageIdentity|null $page The page to which all the revision rows belong, if there
 	 *        is such a page and the caller has it handy, so we don't have to look it up again.
@@ -2140,11 +2136,11 @@ class RevisionStore implements RevisionFactory, RevisionLookup, LoggerAwareInter
 	 * @param Traversable|array $rowsOrIds list of revision ids, or revision or archive rows
 	 *        from a db query.
 	 * @param array{slots?: string[], blobs?: bool} $options Supports the following options:
-	 *               'slots' - a list of slot role names to fetch. If omitted or true or null,
-	 *                         all slots are fetched
-	 *               'blobs' - whether the serialized content of each slot should be loaded.
-	 *                        If true, the serialized content will be present in the slot row
-	 *                        in the blob_data field.
+	 *  - 'slots' - a list of slot role names to fetch. If omitted or true or null,
+	 *    all slots are fetched
+	 *  - 'blobs' - whether the serialized content of each slot should be loaded.
+	 *    If true, the serialized content will be present in the slot row
+	 *    in the blob_data field.
 	 * @param int $queryFlags
 	 *
 	 * @return StatusValue<array<int,array<string,stdClass>>>
@@ -2761,7 +2757,7 @@ class RevisionStore implements RevisionFactory, RevisionLookup, LoggerAwareInter
 	 *
 	 * @param RevisionRecord $rev
 	 * @param int $flags (optional) $flags include:
-	 *      IDBAccessObject::READ_LATEST: Select the data from the primary DB
+	 *  - IDBAccessObject::READ_LATEST: Select the data from the primary DB
 	 *
 	 * @return RevisionRecord|null
 	 */
@@ -2777,7 +2773,7 @@ class RevisionStore implements RevisionFactory, RevisionLookup, LoggerAwareInter
 	 *
 	 * @param RevisionRecord $rev
 	 * @param int $flags (optional) $flags include:
-	 *      IDBAccessObject::READ_LATEST: Select the data from the primary DB
+	 *  - IDBAccessObject::READ_LATEST: Select the data from the primary DB
 	 * @return RevisionRecord|null
 	 */
 	public function getNextRevision( RevisionRecord $rev, $flags = IDBAccessObject::READ_NORMAL ) {
@@ -3132,9 +3128,9 @@ class RevisionStore implements RevisionFactory, RevisionLookup, LoggerAwareInter
 	 * @param RevisionRecord|null $new New revision.
 	 *  If null is provided, count until the last revision (inclusive).
 	 * @param string|array $options Single option, or an array of options:
-	 *     RevisionStore::INCLUDE_OLD Include $old in the range; $new is excluded.
-	 *     RevisionStore::INCLUDE_NEW Include $new in the range; $old is excluded.
-	 *     RevisionStore::INCLUDE_BOTH Include both $old and $new in the range.
+	 *  - RevisionStore::INCLUDE_OLD Include $old in the range; $new is excluded.
+	 *  - RevisionStore::INCLUDE_NEW Include $new in the range; $old is excluded.
+	 *  - RevisionStore::INCLUDE_BOTH Include both $old and $new in the range.
 	 * @return array
 	 */
 	private function getRevisionLimitConditions(
@@ -3184,14 +3180,14 @@ class RevisionStore implements RevisionFactory, RevisionLookup, LoggerAwareInter
 	 * @param int|null $max Limit of Revisions to count, will be incremented by
 	 *  one to detect truncations.
 	 * @param string|array $options Single option, or an array of options:
-	 *     RevisionStore::INCLUDE_OLD Include $old in the range; $new is excluded.
-	 *     RevisionStore::INCLUDE_NEW Include $new in the range; $old is excluded.
-	 *     RevisionStore::INCLUDE_BOTH Include both $old and $new in the range.
+	 *  - RevisionStore::INCLUDE_OLD Include $old in the range; $new is excluded.
+	 *  - RevisionStore::INCLUDE_NEW Include $new in the range; $old is excluded.
+	 *  - RevisionStore::INCLUDE_BOTH Include both $old and $new in the range.
 	 * @param string|null $order The direction in which the revisions should be sorted.
 	 *  Possible values:
-	 *   - RevisionStore::ORDER_OLDEST_TO_NEWEST
-	 *   - RevisionStore::ORDER_NEWEST_TO_OLDEST
-	 *   - null for no specific ordering (default value)
+	 *  - RevisionStore::ORDER_OLDEST_TO_NEWEST
+	 *  - RevisionStore::ORDER_NEWEST_TO_OLDEST
+	 *  - null for no specific ordering (default value)
 	 * @param int $flags
 	 * @throws InvalidArgumentException in case either revision is unsaved or
 	 *  the revisions do not belong to the same page or unknown option is passed.
@@ -3218,7 +3214,7 @@ class RevisionStore implements RevisionFactory, RevisionLookup, LoggerAwareInter
 		// No DB query needed if old and new are the same revision.
 		// Can't check for consecutive revisions with 'getParentId' for a similar
 		// optimization as edge cases exist when there are revisions between
-		// a revision and it's parent. See T185167 for more details.
+		// a revision and its parent. See T185167 for more details.
 		if ( $old && $new && $new->getId( $this->wikiId ) === $old->getId( $this->wikiId ) ) {
 			return $includeOld || $includeNew ? [ $new->getId( $this->wikiId ) ] : [];
 		}
@@ -3259,9 +3255,9 @@ class RevisionStore implements RevisionFactory, RevisionLookup, LoggerAwareInter
 	 * @param Authority|null $performer the user whose access rights to apply
 	 * @param int|null $max Limit of Revisions to count, will be incremented to detect truncations.
 	 * @param string|array $options Single option, or an array of options:
-	 *     RevisionStore::INCLUDE_OLD Include $old in the range; $new is excluded.
-	 *     RevisionStore::INCLUDE_NEW Include $new in the range; $old is excluded.
-	 *     RevisionStore::INCLUDE_BOTH Include both $old and $new in the range.
+	 *  - RevisionStore::INCLUDE_OLD Include $old in the range; $new is excluded.
+	 *  - RevisionStore::INCLUDE_NEW Include $new in the range; $old is excluded.
+	 *  - RevisionStore::INCLUDE_BOTH Include both $old and $new in the range.
 	 * @throws InvalidArgumentException in case either revision is unsaved or
 	 *  the revisions do not belong to the same page or unknown option is passed.
 	 * @return UserIdentity[] Names of revision authors in the range
@@ -3281,7 +3277,7 @@ class RevisionStore implements RevisionFactory, RevisionLookup, LoggerAwareInter
 		// No DB query needed if old and new are the same revision.
 		// Can't check for consecutive revisions with 'getParentId' for a similar
 		// optimization as edge cases exist when there are revisions between
-		//a revision and it's parent. See T185167 for more details.
+		// a revision and its parent. See T185167 for more details.
 		if ( $old && $new && $new->getId( $this->wikiId ) === $old->getId( $this->wikiId ) ) {
 			if ( !$options ) {
 				return [];
@@ -3338,9 +3334,9 @@ class RevisionStore implements RevisionFactory, RevisionLookup, LoggerAwareInter
 	 * @param Authority|null $performer the user whose access rights to apply
 	 * @param int|null $max Limit of Revisions to count, will be incremented to detect truncations.
 	 * @param string|array $options Single option, or an array of options:
-	 *     RevisionStore::INCLUDE_OLD Include $old in the range; $new is excluded.
-	 *     RevisionStore::INCLUDE_NEW Include $new in the range; $old is excluded.
-	 *     RevisionStore::INCLUDE_BOTH Include both $old and $new in the range.
+	 *  - RevisionStore::INCLUDE_OLD Include $old in the range; $new is excluded.
+	 *  - RevisionStore::INCLUDE_NEW Include $new in the range; $old is excluded.
+	 *  - RevisionStore::INCLUDE_BOTH Include both $old and $new in the range.
 	 * @throws InvalidArgumentException in case either revision is unsaved or
 	 *  the revisions do not belong to the same page or unknown option is passed.
 	 * @return int Number of revisions authors in the range.
@@ -3371,14 +3367,12 @@ class RevisionStore implements RevisionFactory, RevisionLookup, LoggerAwareInter
 	 *  If null is provided, count until the last revision (inclusive).
 	 * @param int|null $max Limit of Revisions to count, will be incremented to detect truncations.
 	 * @param string|array $options Single option, or an array of options:
-	 *     RevisionStore::INCLUDE_OLD Include $old in the range; $new is excluded.
-	 *     RevisionStore::INCLUDE_NEW Include $new in the range; $old is excluded.
-	 *     RevisionStore::INCLUDE_BOTH Include both $old and $new in the range.
-	 *     RevisionStore::INCLUDE_DELETED_REVISIONS Include revisions that have been
-	 *     revision deleted.
-	 *
-	 *     If no options are selected, the first revision, last revision, and revision
-	 *     deleted revisions will not be included.
+	 *  - RevisionStore::INCLUDE_OLD Include $old in the range; $new is excluded.
+	 *  - RevisionStore::INCLUDE_NEW Include $new in the range; $old is excluded.
+	 *  - RevisionStore::INCLUDE_BOTH Include both $old and $new in the range.
+	 *  - RevisionStore::INCLUDE_DELETED_REVISIONS Include revisions that have been revision deleted.
+	 *  If no options are selected, the first revision, last revision, and revision
+	 *  deleted revisions will not be included.
 	 * @throws InvalidArgumentException in case either revision is unsaved or
 	 *  the revisions do not belong to the same page.
 	 * @return int Number of revisions between these revisions.
@@ -3396,7 +3390,7 @@ class RevisionStore implements RevisionFactory, RevisionLookup, LoggerAwareInter
 		// No DB query needed if old and new are the same revision.
 		// Can't check for consecutive revisions with 'getParentId' for a similar
 		// optimization as edge cases exist when there are revisions between
-		//a revision and it's parent. See T185167 for more details.
+		// a revision and its parent. See T185167 for more details.
 		if ( $old && $new && $new->getId( $this->wikiId ) === $old->getId( $this->wikiId ) ) {
 			return 0;
 		}
