@@ -170,6 +170,7 @@ use MediaWiki\Search\SearchEngineFactory;
 use MediaWiki\Search\SearchResultThumbnailProvider;
 use MediaWiki\Search\TitleMatcher;
 use MediaWiki\Session\DeviceBoundSessionManager;
+use MediaWiki\Session\DeviceBoundSessionReporter;
 use MediaWiki\Session\DeviceBoundSessionStore;
 use MediaWiki\Session\SessionManagerInterface;
 use MediaWiki\Session\SessionStore;
@@ -1203,6 +1204,14 @@ class MediaWikiServices extends ServiceContainer {
 	 */
 	public function getDeviceBoundSessionManager(): DeviceBoundSessionManager {
 		return $this->getService( 'DeviceBoundSessionManager' );
+	}
+
+	/**
+	 * @since 1.48
+	 * @unstable until 1.49
+	 */
+	public function getDeviceBoundSessionReporter(): DeviceBoundSessionReporter {
+		return $this->getService( 'DeviceBoundSessionReporter' );
 	}
 
 	/**

@@ -3162,6 +3162,16 @@ class OutputPage extends ContextSource {
 			$response->header( "Feature-Policy-Report-Only: $featurePolicyReportOnly" );
 		}
 
+		// DBSC report-only: offer a binding once per session to measure how many
+		// browsers could establish one. Covers sessions created by a session
+		// provider, which never pass through AuthManager.
+		if ( $config->get( MainConfigNames::DeviceBoundSessions )
+			&& $config->get( MainConfigNames::DeviceBoundSessionsReportOnly )
+		) {
+			MediaWikiServices::getInstance()->getDeviceBoundSessionReporter()
+				->offerOnce( $request->getSession(), $request, $response );
+		}
+
 		if ( $this->mArticleBodyOnly ) {
 			$response->header( 'Content-type: ' . $config->get( MainConfigNames::MimeType ) . '; charset=UTF-8' );
 			if ( $this->cspOutputMode === self::CSP_HEADERS ) {

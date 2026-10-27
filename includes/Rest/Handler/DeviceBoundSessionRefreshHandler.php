@@ -2,6 +2,7 @@
 
 namespace MediaWiki\Rest\Handler;
 
+use MediaWiki\MainConfigNames;
 use MediaWiki\Rest\Response;
 use ReportUri\Dbsc\Exception\DbscException;
 use ReportUri\Dbsc\Exception\RetryableRefreshException;
@@ -24,6 +25,11 @@ class DeviceBoundSessionRefreshHandler extends DeviceBoundSessionHandlerBase {
 
 	/** @inheritDoc */
 	protected function handle( RequestContext $ctx ): Response {
+		if ( $this->config->get( MainConfigNames::DeviceBoundSessionsReportOnly ) ) {
+			// No bindings exist in report-only mode, so there is nothing to refresh.
+			return $this->getResponseFactory()->createHttpError(
+				404, [ 'reason' => 'device bound sessions are in report-only mode' ] );
+		}
 		$server = $this->manager->server();
 		if ( $server->getBinding( $ctx ) === null ) {
 			// Terminal non-403 4xx so the UA ends the device bound session;

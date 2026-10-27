@@ -57,8 +57,11 @@ class DeviceBoundSessionHandlersTest extends MediaWikiUnitTestCase {
 		);
 	}
 
-	private function config( bool $enabled = true ): HashConfig {
-		return new HashConfig( [ MainConfigNames::DeviceBoundSessions => $enabled ] );
+	private function config( bool $enabled = true, bool $reportOnly = false ): HashConfig {
+		return new HashConfig( [
+			MainConfigNames::DeviceBoundSessions => $enabled,
+			MainConfigNames::DeviceBoundSessionsReportOnly => $reportOnly,
+		] );
 	}
 
 	private function mwSession( bool $registered = true ): Session {
@@ -102,6 +105,17 @@ class DeviceBoundSessionHandlersTest extends MediaWikiUnitTestCase {
 
 		$this->assertNull( $manager->buildContext( $this->mwSession(), [], [] ),
 			'the shared anonymous identifier must never key a binding' );
+	}
+
+	public function testReportOnlyClosesTheRefreshEndpoint() {
+		$handler = new DeviceBoundSessionRefreshHandler(
+			$this->newManager(), $this->config( enabled: true, reportOnly: true ) );
+
+		$response = $this->executeHandler(
+			$handler, self::post( [ 'Sec-Secure-Session-Id' => 'anything' ] ),
+			[], [], [], [], null, $this->mwSession() );
+
+		$this->assertSame( 404, $response->getStatusCode() );
 	}
 
 	public function testRegisterIsDisabledByDefault() {

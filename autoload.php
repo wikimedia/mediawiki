@@ -3126,6 +3126,7 @@ $wgAutoloadLocalClasses = [
 	'MediaWiki\\Session\\CsrfTokenSet' => __DIR__ . '/includes/Session/CsrfTokenSet.php',
 	'MediaWiki\\Session\\CsrfTokenSetProvider' => __DIR__ . '/includes/Session/CsrfTokenSetProvider.php',
 	'MediaWiki\\Session\\DeviceBoundSessionManager' => __DIR__ . '/includes/Session/DeviceBoundSessionManager.php',
+	'MediaWiki\\Session\\DeviceBoundSessionReporter' => __DIR__ . '/includes/Session/DeviceBoundSessionReporter.php',
 	'MediaWiki\\Session\\DeviceBoundSessionStore' => __DIR__ . '/includes/Session/DeviceBoundSessionStore.php',
 	'MediaWiki\\Session\\Hook\\SessionCheckInfoHook' => __DIR__ . '/includes/Session/Hook/SessionCheckInfoHook.php',
 	'MediaWiki\\Session\\Hook\\SessionMetadataHook' => __DIR__ . '/includes/Session/Hook/SessionMetadataHook.php',

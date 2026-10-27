@@ -9975,6 +9975,19 @@ class MainConfigSchema {
 	];
 
 	/**
+	 * Restrict DBSC to measurement: offer registration once per session, log
+	 * whether the browser could complete it, then refuse. No binding is
+	 * stored and the refresh endpoint stays disabled. Turn this off only when
+	 * enforcing device binding for real.
+	 *
+	 * @since 1.48
+	 */
+	public const DeviceBoundSessionsReportOnly = [
+		'default' => true,
+		'type' => 'boolean',
+	];
+
+	/**
 	 * Name of the device-bound credential cookie set alongside the session
 	 * cookie for DBSC-registered sessions.
 	 *

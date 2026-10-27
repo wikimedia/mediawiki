@@ -236,6 +236,7 @@ use MediaWiki\Search\SearchEventIngress;
 use MediaWiki\Search\SearchResultThumbnailProvider;
 use MediaWiki\Search\TitleMatcher;
 use MediaWiki\Session\DeviceBoundSessionManager;
+use MediaWiki\Session\DeviceBoundSessionReporter;
 use MediaWiki\Session\DeviceBoundSessionStore;
 use MediaWiki\Session\MultiBackendSessionStore;
 use MediaWiki\Session\SessionManager;
@@ -984,6 +985,15 @@ return [
 		);
 		$manager->setLogger( LoggerFactory::getInstance( 'session' ) );
 		return $manager;
+	},
+
+	'DeviceBoundSessionReporter' => static function ( MediaWikiServices $s ): DeviceBoundSessionReporter {
+		return new DeviceBoundSessionReporter(
+			$s->getDeviceBoundSessionManager(),
+			$s->getDeviceBoundSessionStore(),
+			LoggerFactory::getInstance( 'session' ),
+			$s->getMainConfig()->get( MainConfigNames::SecretKey )
+		);
 	},
 
 	'DeviceBoundSessionStore' => static function ( MediaWikiServices $s ): DeviceBoundSessionStore {

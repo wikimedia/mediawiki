@@ -6243,6 +6243,15 @@ config-schema:
             Experimental: the specification is a draft and this is not ready for
             third-party use.
             @since 1.48
+    DeviceBoundSessionsReportOnly:
+        default: true
+        type: boolean
+        description: |-
+            Restrict DBSC to measurement: offer registration once per session, log
+            whether the browser could complete it, then refuse. No binding is
+            stored and the refresh endpoint stays disabled. Turn this off only when
+            enforcing device binding for real.
+            @since 1.48
     DeviceBoundSessionCookieName:
         default: __Host-dbsc
         type: string

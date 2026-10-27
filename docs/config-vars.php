@@ -3298,6 +3298,12 @@ $wgCookieSetOnIpBlock = null;
 $wgDeviceBoundSessions = null;
 
 /**
+ * Config variable stub for the DeviceBoundSessionsReportOnly setting, for use by phpdoc and IDEs.
+ * @see MediaWiki\MainConfigSchema::DeviceBoundSessionsReportOnly
+ */
+$wgDeviceBoundSessionsReportOnly = null;
+
+/**
  * Config variable stub for the DeviceBoundSessionCookieName setting, for use by phpdoc and IDEs.
  * @see MediaWiki\MainConfigSchema::DeviceBoundSessionCookieName
  */

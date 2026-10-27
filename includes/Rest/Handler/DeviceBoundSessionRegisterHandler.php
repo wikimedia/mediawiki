@@ -2,6 +2,8 @@
 
 namespace MediaWiki\Rest\Handler;
 
+use MediaWiki\MainConfigNames;
+use MediaWiki\MediaWikiServices;
 use MediaWiki\Rest\Response;
 use ReportUri\Dbsc\Exception\DbscException;
 use ReportUri\Dbsc\RequestContext;
@@ -23,6 +25,14 @@ class DeviceBoundSessionRegisterHandler extends DeviceBoundSessionHandlerBase {
 		if ( $jwt === null ) {
 			return $this->getResponseFactory()->createHttpError(
 				400, [ 'reason' => 'missing registration proof' ] );
+		}
+		if ( $this->config->get( MainConfigNames::DeviceBoundSessionsReportOnly ) ) {
+			// Measure only: no binding is stored, so the user agent drops the
+			// session attempt on this 4xx.
+			MediaWikiServices::getInstance()->getDeviceBoundSessionReporter()
+				->recordAttempt( $this->getSession(), $this->getSession()->getRequest(), $jwt );
+			return $this->getResponseFactory()->createHttpError(
+				400, [ 'reason' => 'device bound sessions are in report-only mode' ] );
 		}
 		try {
 			return $this->applyDbscResponse( $this->manager->server()->register( $jwt, $ctx ) );

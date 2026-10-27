@@ -34,7 +34,8 @@ For notes on 1.47.x and older releases, see HISTORY.
   Credentials (DBSC) support; disabled by default. Related new settings:
   $wgDeviceBoundSessionCookieName, $wgDeviceBoundSessionCredentialTTL,
   $wgDeviceBoundSessionChallengeTTL, $wgDeviceBoundSessionBindingTTL,
-  and $wgDeviceBoundSessionScopeExcludes.
+  $wgDeviceBoundSessionScopeExcludes and $wgDeviceBoundSessionsReportOnly,
+  which restricts DBSC to a "report-only mode" and is enabled by default.
 * …
 
 ==== Changed configuration ====

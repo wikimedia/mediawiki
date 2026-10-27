@@ -3313,6 +3313,12 @@ class MainConfigNames {
 	public const DeviceBoundSessions = 'DeviceBoundSessions';
 
 	/**
+	 * Name constant for the DeviceBoundSessionsReportOnly setting, for use with Config::get()
+	 * @see MainConfigSchema::DeviceBoundSessionsReportOnly
+	 */
+	public const DeviceBoundSessionsReportOnly = 'DeviceBoundSessionsReportOnly';
+
+	/**
 	 * Name constant for the DeviceBoundSessionCookieName setting, for use with Config::get()
 	 * @see MainConfigSchema::DeviceBoundSessionCookieName
 	 */
