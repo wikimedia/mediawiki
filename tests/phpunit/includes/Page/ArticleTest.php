@@ -46,7 +46,7 @@ class ArticleTest extends ParserCacheTestBase {
 	}
 
 	/**
-	 * @covers \MediaWiki\Page\Article::__sleep
+	 * @covers \MediaWiki\Page\Article::__serialize
 	 */
 	public function testSerialization_fails() {
 		$article = new Article( Title::newMainPage() );
