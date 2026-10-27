@@ -1179,20 +1179,16 @@ class RevisionStore implements RevisionFactory, RevisionLookup, LoggerAwareInter
 
 	/**
 	 * Load a page revision from a given revision ID number.
-	 * Returns null if no such revision can be found.
 	 *
 	 * MCR migration note: this replaced Revision::newFromId
 	 *
-	 * $flags include:
-	 * - IDBAccessObject::READ_LATEST: Select the data from the primary DB
-	 * - IDBAccessObject::READ_LOCKING: Select & lock the data from the primary DB
-	 *
 	 * @param int $id
 	 * @param int $flags (optional)
+	 *        IDBAccessObject::READ_LATEST: Select the data from the primary DB
+	 *        IDBAccessObject::READ_LOCKING: Select & lock the data from the primary DB
 	 * @param PageIdentity|null $page The page the revision belongs to.
 	 *        Providing the page may improve performance.
-	 *
-	 * @return RevisionRecord|null
+	 * @return RevisionRecord|null Returns null if no such revision can be found.
 	 */
 	public function getRevisionById( $id, $flags = 0, ?PageIdentity $page = null ) {
 		return $this->newRevisionFromConds( [ 'rev_id' => intval( $id ) ], $flags, $page );
@@ -1211,7 +1207,6 @@ class RevisionStore implements RevisionFactory, RevisionLookup, LoggerAwareInter
 	 * @param int $flags Supports IDBAccessObject::READ_LATEST to use the primary DB.
 	 * @param PageIdentity|null $page The page all revisions belong to.
 	 *        Providing the page may improve performance.
-	 *
 	 * @return array<int,RevisionRecord|null> Map keyed by revision ID.
 	 *         Missing or failed revisions have null values.
 	 */
@@ -2307,17 +2302,18 @@ class RevisionStore implements RevisionFactory, RevisionLookup, LoggerAwareInter
 	/**
 	 * Given a set of conditions, fetch a revision
 	 *
-	 * This method should be used if we are pretty sure the revision exists.
-	 * Unless $flags has READ_LATEST set, this method will first try to find the revision
-	 * on a replica before hitting the primary database.
+	 * This method should only be called if we are pretty sure the revision exists,
+	 * because it includes a fallback to the primary DB if the replica DB doesn't
+	 * have the revision ID. Otherwise call loadRevisionFromConds instead.
 	 *
 	 * MCR migration note: this corresponded to Revision::newFromConds
 	 *
 	 * @param array $conditions
-	 * @param int $flags (optional)
+	 * @param int $flags (optional) By default this method will first try a
+	 *  a replica and fallback to a primary database. Set READ_LATEST to read
+	 *  direclty from a primary database.
 	 * @param PageIdentity|null $page (optional)
 	 * @param array $options (optional) additional query options
-	 *
 	 * @return RevisionRecord|null
 	 */
 	private function newRevisionFromConds(
@@ -2345,8 +2341,7 @@ class RevisionStore implements RevisionFactory, RevisionLookup, LoggerAwareInter
 	}
 
 	/**
-	 * Given a set of conditions, fetch a revision from
-	 * the given database connection.
+	 * Given a set of conditions, fetch a revision from a given database connection.
 	 *
 	 * MCR migration note: this corresponded to Revision::loadFromConds
 	 *
