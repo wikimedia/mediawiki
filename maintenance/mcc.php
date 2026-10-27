@@ -103,20 +103,12 @@ class Mcc extends Maintenance {
 					break;
 
 				case 'server':
-					if ( $mcc->_single_sock !== null ) {
-						print $mcc->_single_sock . "\n";
-						break;
-					}
-					$res = $mcc->get( $args[0] );
-					if ( $mcc->_buckets === null ) {
+					$hosts = $mcc->get_hosts_for_key( $args[0], 3 );
+					if ( !$hosts ) {
 						print "No servers configured\n";
 						break;
 					}
-					$hv = $mcc->_hashfunc( $args[0] );
-					for ( $i = 0; $i < 3; $i++ ) {
-						print $mcc->_buckets[$hv % $mcc->_bucketcount] . "\n";
-						$hv += $mcc->_hashfunc( $i . $args[0] );
-					}
+					print implode( "\n", $hosts ) . "\n";
 					break;
 
 				case 'set':

@@ -166,6 +166,10 @@ For notes on 1.47.x and older releases, see HISTORY.
   - isAlwaysKnown (deprecated since 1.47)
 * The hook CategoryViewer__generateLinkHook, deprecated in 1.47, has been
   removed. Use the hook CategoryViewerGenerateLinkHook instead.
+* MemcachedClient properties and helper methods that were documented as
+  private are now actually private. Use get_last_cmd_status() instead of
+  reading $_last_cmd_status, and get_hosts_for_key() to find which servers
+  a key maps to.
 * …
 
 === Deprecations in 1.48 ===

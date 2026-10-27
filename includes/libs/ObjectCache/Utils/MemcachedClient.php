@@ -40,28 +40,27 @@
  * +---------------------------------------------------------------------------+
  *
  * @file
- * $TCAnet$
  */
 
 /**
  * This is a PHP client for memcached - a distributed memory cache daemon.
  *
- * More information is available at http://www.danga.com/memcached/
+ * More information is available at https://memcached.org/
  *
  * Usage example:
  *
- *     $mc = new MemcachedClient(array(
- *         'servers' => array(
+ *     $mc = new MemcachedClient( [
+ *         'servers' => [
  *             '127.0.0.1:10000',
- *             array( '192.0.0.1:10010', 2 ),
+ *             [ '192.0.0.1:10010', 2 ],
  *             '127.0.0.1:10020'
- *         ),
- *         'debug'   => false,
+ *         ],
+ *         'debug' => false,
  *         'compress_threshold' => 10240,
  *         'persistent' => true
- *     ));
+ *     ] );
  *
- *     $mc->add( 'key', array( 'some', 'array' ) );
+ *     $mc->add( 'key', [ 'some', 'array' ] );
  *     $mc->replace( 'key', 'some random string' );
  *     $val = $mc->get( 'key' );
  *
@@ -81,183 +80,148 @@ use Wikimedia\ObjectCache\BagOStuff;
  * @ingroup Cache
  */
 class MemcachedClient {
-	// {{{ properties
-	// {{{ public
-
-	// {{{ constants
-	// {{{ flags
-
 	/**
 	 * Flag: indicates data is serialized
 	 */
-	const SERIALIZED = 1;
+	public const SERIALIZED = 1;
 
 	/**
 	 * Flag: indicates data is compressed
 	 */
-	const COMPRESSED = 2;
+	public const COMPRESSED = 2;
 
 	/**
 	 * Flag: indicates data is an integer
 	 */
-	const INTVAL = 4;
-
-	// }}}
+	public const INTVAL = 4;
 
 	/**
 	 * Minimum savings to store data compressed
 	 */
-	const COMPRESSION_SAVINGS = 0.20;
-
-	// }}}
+	public const COMPRESSION_SAVINGS = 0.20;
 
 	/**
 	 * Command statistics
 	 *
 	 * @var array
-	 * @access public
 	 */
 	public $stats;
-
-	// }}}
-	// {{{ private
 
 	/**
 	 * Cached Sockets that are connected
 	 *
 	 * @var array
-	 * @access private
 	 */
-	public $_cache_sock;
+	private $_cache_sock;
 
 	/**
 	 * Current debug status; 0 - none to 9 - profiling
 	 *
 	 * @var bool
-	 * @access private
 	 */
-	public $_debug;
+	private $_debug;
 
 	/**
 	 * Dead hosts, assoc array, 'host'=>'unixtime when ok to check again'
 	 *
 	 * @var array
-	 * @access private
 	 */
-	public $_host_dead;
+	private $_host_dead;
 
 	/**
 	 * Is compression available?
 	 *
 	 * @var bool
-	 * @access private
 	 */
-	public $_have_zlib;
+	private $_have_zlib;
 
 	/**
 	 * Do we want to use compression?
 	 *
 	 * @var bool
-	 * @access private
 	 */
-	public $_compress_enable;
+	private $_compress_enable;
 
 	/**
 	 * At how many bytes should we compress?
 	 *
 	 * @var int
-	 * @access private
 	 */
-	public $_compress_threshold;
+	private $_compress_threshold;
 
 	/**
 	 * Are we using persistent links?
 	 *
 	 * @var bool
-	 * @access private
 	 */
-	public $_persistent;
+	private $_persistent;
 
 	/**
 	 * If only using one server; contains ip:port to connect to
 	 *
 	 * @var string|null
-	 * @access private
 	 */
-	public $_single_sock;
+	private $_single_sock;
 
 	/**
-	 * Array containing ip:port or array(ip:port, weight)
+	 * Array containing ip:port or [ ip:port, weight ]
 	 *
 	 * @var array
-	 * @access private
 	 */
-	public $_servers;
+	private $_servers;
 
 	/**
 	 * Our bit buckets
 	 *
 	 * @var array|null
-	 * @access private
 	 */
-	public $_buckets;
+	private $_buckets;
 
 	/**
 	 * Total # of bit buckets we have
 	 *
 	 * @var int
-	 * @access private
 	 */
-	public $_bucketcount;
+	private $_bucketcount;
 
 	/**
 	 * # of total servers we have
 	 *
 	 * @var int
-	 * @access private
 	 */
-	public $_active;
+	private $_active;
 
 	/**
 	 * Stream timeout in seconds. Applies for example to fread()
 	 *
 	 * @var int
-	 * @access private
 	 */
-	public $_timeout_seconds;
+	private $_timeout_seconds;
 
 	/**
 	 * Stream timeout in microseconds
 	 *
 	 * @var int
-	 * @access private
 	 */
-	public $_timeout_microseconds;
+	private $_timeout_microseconds;
 
 	/**
 	 * Connect timeout in seconds
 	 */
-	public $_connect_timeout;
+	private $_connect_timeout;
 
 	/**
 	 * Number of connection attempts for each server
 	 */
-	public $_connect_attempts;
+	private $_connect_attempts;
 
 	/** @var int BagOStuff:ERR_* constant of the last cache command */
-	public $_last_cmd_status = BagOStuff::ERR_NONE;
+	private $_last_cmd_status = BagOStuff::ERR_NONE;
 
 	/**
 	 * @var LoggerInterface
 	 */
 	private $_logger;
-
-
-	// }}}
-	// }}}
-	// {{{ methods
-	// {{{ public functions
-	// {{{ memcached()
 
 	/**
 	 * Memcache initializer
@@ -265,16 +229,16 @@ class MemcachedClient {
 	 * @param array $args Associative array of settings
 	 */
 	public function __construct( $args ) {
-		$this->set_servers( $args['servers'] ?? array() );
+		$this->set_servers( $args['servers'] ?? [] );
 		$this->_debug = $args['debug'] ?? false;
-		$this->stats = array();
+		$this->stats = [];
 		$this->_compress_threshold = $args['compress_threshold'] ?? 0;
 		$this->_persistent = $args['persistent'] ?? false;
 		$this->_compress_enable = true;
 		$this->_have_zlib = function_exists( 'gzcompress' );
 
-		$this->_cache_sock = array();
-		$this->_host_dead = array();
+		$this->_cache_sock = [];
+		$this->_host_dead = [];
 
 		$this->_timeout_seconds = 0;
 		$this->_timeout_microseconds = $args['timeout'] ?? 500_000;
@@ -285,7 +249,12 @@ class MemcachedClient {
 		$this->_logger = $args['logger'] ?? new NullLogger();
 	}
 
-	// }}}
+	/**
+	 * @return int BagOStuff::ERR_* constant of the last cache command
+	 */
+	public function get_last_cmd_status() {
+		return $this->_last_cmd_status;
+	}
 
 	/**
 	 * @param mixed $value
@@ -302,8 +271,6 @@ class MemcachedClient {
 	public function unserialize( $value ) {
 		return unserialize( $value );
 	}
-
-	// {{{ add()
 
 	/**
 	 * Adds a key/value to the memcache server if one isn't already set with
@@ -325,9 +292,6 @@ class MemcachedClient {
 		return $this->_set( 'add', $key, $val, $exp );
 	}
 
-	// }}}
-	// {{{ decr()
-
 	/**
 	 * Decrease a value stored on the memcache server
 	 *
@@ -341,9 +305,6 @@ class MemcachedClient {
 
 		return $this->_incrdecr( 'decr', $key, $amt );
 	}
-
-	// }}}
-	// {{{ delete()
 
 	/**
 	 * Deletes a key from the server, optionally after $time
@@ -435,9 +396,6 @@ class MemcachedClient {
 		return false;
 	}
 
-	// }}}
-	// {{{ disconnect_all()
-
 	/**
 	 * Disconnects all connected sockets
 	 */
@@ -446,11 +404,8 @@ class MemcachedClient {
 			fclose( $sock );
 		}
 
-		$this->_cache_sock = array();
+		$this->_cache_sock = [];
 	}
-
-	// }}}
-	// {{{ enable_compress()
 
 	/**
 	 * Enable / Disable compression
@@ -461,18 +416,12 @@ class MemcachedClient {
 		$this->_compress_enable = $enable;
 	}
 
-	// }}}
-	// {{{ forget_dead_hosts()
-
 	/**
 	 * Forget about all of the dead hosts
 	 */
 	public function forget_dead_hosts() {
-		$this->_host_dead = array();
+		$this->_host_dead = [];
 	}
-
-	// }}}
-	// {{{ get()
 
 	/**
 	 * Retrieves the value associated with the key from the memcache server
@@ -526,7 +475,7 @@ class MemcachedClient {
 			return false;
 		}
 
-		$val = array();
+		$val = [];
 		if ( !$this->_load_items( $sock, $val, $casToken ) ) {
 			$this->_last_cmd_status = BagOStuff::ERR_NO_RESPONSE;
 		}
@@ -545,9 +494,6 @@ class MemcachedClient {
 		return $value;
 	}
 
-	// }}}
-	// {{{ get_multi()
-
 	/**
 	 * Get multiple keys from the server(s)
 	 *
@@ -561,7 +507,7 @@ class MemcachedClient {
 		if ( !$this->_active ) {
 			$this->_last_cmd_status = BagOStuff::ERR_UNEXPECTED;
 
-			return array();
+			return [];
 		}
 
 		if ( isset( $this->stats['get_multi'] ) ) {
@@ -569,8 +515,8 @@ class MemcachedClient {
 		} else {
 			$this->stats['get_multi'] = 1;
 		}
-		$sock_keys = array();
-		$socks = array();
+		$sock_keys = [];
+		$socks = [];
 		foreach ( $keys as $key ) {
 			$sock = $this->get_sock( $key );
 			if ( !$sock ) {
@@ -581,13 +527,13 @@ class MemcachedClient {
 			$sockValue = intval( $sock );
 
 			if ( !isset( $sock_keys[$sockValue] ) ) {
-				$sock_keys[$sockValue] = array();
+				$sock_keys[$sockValue] = [];
 				$socks[] = $sock;
 			}
 			$sock_keys[$sockValue][] = $key;
 		}
 
-		$gather = array();
+		$gather = [];
 		// Send out the requests
 		foreach ( $socks as $sock ) {
 			$cmd = 'get';
@@ -604,7 +550,7 @@ class MemcachedClient {
 		}
 
 		// Parse responses
-		$val = array();
+		$val = [];
 		foreach ( $gather as $sock ) {
 			if ( !$this->_load_items( $sock, $val ) ) {
 				$this->_last_cmd_status = BagOStuff::ERR_NO_RESPONSE;
@@ -620,9 +566,6 @@ class MemcachedClient {
 		return $val;
 	}
 
-	// }}}
-	// {{{ incr()
-
 	/**
 	 * Increments $key (optionally) by $amt
 	 *
@@ -636,9 +579,6 @@ class MemcachedClient {
 	public function incr( $key, $amt = 1 ) {
 		return $this->_incrdecr( 'incr', $key, $amt );
 	}
-
-	// }}}
-	// {{{ replace()
 
 	/**
 	 * Overwrites an existing value for key; only works if key is already set
@@ -657,9 +597,6 @@ class MemcachedClient {
 		return $this->_set( 'replace', $key, $value, $exp );
 	}
 
-	// }}}
-	// {{{ run_command()
-
 	/**
 	 * Passes through $cmd to the memcache server connected by $sock; returns
 	 * output as an array (null array if no output)
@@ -671,14 +608,14 @@ class MemcachedClient {
 	 */
 	public function run_command( $sock, $cmd ) {
 		if ( !$sock ) {
-			return array();
+			return [];
 		}
 
 		if ( !$this->_fwrite( $sock, $cmd ) ) {
-			return array();
+			return [];
 		}
 
-		$ret = array();
+		$ret = [];
 		while ( true ) {
 			$res = $this->_fgets( $sock );
 			$ret[] = $res;
@@ -691,9 +628,6 @@ class MemcachedClient {
 		}
 		return $ret;
 	}
-
-	// }}}
-	// {{{ set()
 
 	/**
 	 * Unconditionally sets a key to a given value in the memcache.  Returns true
@@ -712,9 +646,6 @@ class MemcachedClient {
 	public function set( $key, $value, $exp = 0 ) {
 		return $this->_set( 'set', $key, $value, $exp );
 	}
-
-	// }}}
-	// {{{ cas()
 
 	/**
 	 * Sets a key to a given value in the memcache if the current value still corresponds
@@ -735,9 +666,6 @@ class MemcachedClient {
 		return $this->_set( 'cas', $key, $value, $exp, $casToken );
 	}
 
-	// }}}
-	// {{{ set_compress_threshold()
-
 	/**
 	 * Set the compression threshold
 	 *
@@ -746,9 +674,6 @@ class MemcachedClient {
 	public function set_compress_threshold( $thresh ) {
 		$this->_compress_threshold = $thresh;
 	}
-
-	// }}}
-	// {{{ set_debug()
 
 	/**
 	 * Set the debug flag
@@ -759,9 +684,6 @@ class MemcachedClient {
 	public function set_debug( $dbg ) {
 		$this->_debug = $dbg;
 	}
-
-	// }}}
-	// {{{ set_servers()
 
 	/**
 	 * Set the server list to distribute key gets and puts between
@@ -792,26 +714,16 @@ class MemcachedClient {
 		$this->_timeout_microseconds = $microseconds;
 	}
 
-	// }}}
-	// }}}
-	// {{{ private methods
-	// {{{ _close_sock()
-
 	/**
 	 * Close the specified socket
 	 *
 	 * @param resource $sock Socket to close
-	 *
-	 * @access private
 	 */
-	function _close_sock( $sock ) {
+	private function _close_sock( $sock ) {
 		$host = array_search( $sock, $this->_cache_sock );
 		fclose( $this->_cache_sock[$host] );
 		unset( $this->_cache_sock[$host] );
 	}
-
-	// }}}
-	// {{{ _connect_sock()
 
 	/**
 	 * Connects $sock to $host, timing out after $timeout
@@ -820,9 +732,8 @@ class MemcachedClient {
 	 * @param string $host Host:IP to connect to
 	 *
 	 * @return bool
-	 * @access private
 	 */
-	function _connect_sock( &$sock, $host ) {
+	private function _connect_sock( &$sock, $host ) {
 		$port = null;
 		$hostAndPort = IPUtils::splitHostAndPort( $host );
 		if ( $hostAndPort ) {
@@ -861,17 +772,12 @@ class MemcachedClient {
 		return true;
 	}
 
-	// }}}
-	// {{{ _dead_sock()
-
 	/**
 	 * Marks a host as dead until 30-40 seconds in the future
 	 *
 	 * @param resource $sock Socket to mark as dead
-	 *
-	 * @access private
 	 */
-	function _dead_sock( $sock ) {
+	private function _dead_sock( $sock ) {
 		$host = array_search( $sock, $this->_cache_sock );
 		$this->_dead_host( $host );
 	}
@@ -879,7 +785,7 @@ class MemcachedClient {
 	/**
 	 * @param string $host
 	 */
-	function _dead_host( $host ) {
+	private function _dead_host( $host ) {
 		$hostAndPort = IPUtils::splitHostAndPort( $host );
 		if ( $hostAndPort ) {
 			$ip = $hostAndPort[0];
@@ -891,18 +797,14 @@ class MemcachedClient {
 		unset( $this->_cache_sock[$host] );
 	}
 
-	// }}}
-	// {{{ get_sock()
-
 	/**
 	 * get_sock
 	 *
 	 * @param string $key Key to retrieve value for;
 	 *
 	 * @return resource|false Resource on success, false on failure
-	 * @access private
 	 */
-	function get_sock( $key ) {
+	public function get_sock( $key ) {
 		if ( !$this->_active ) {
 			return false;
 		}
@@ -911,25 +813,12 @@ class MemcachedClient {
 			return $this->sock_to_host( $this->_single_sock );
 		}
 
+		$buckets = $this->_get_buckets();
 		$hv = is_array( $key ) ? intval( $key[0] ) : $this->_hashfunc( $key );
-		if ( $this->_buckets === null ) {
-			$bu = array();
-			foreach ( $this->_servers as $v ) {
-				if ( is_array( $v ) ) {
-					for ( $i = 0; $i < $v[1]; $i++ ) {
-						$bu[] = $v[0];
-					}
-				} else {
-					$bu[] = $v;
-				}
-			}
-			$this->_buckets = $bu;
-			$this->_bucketcount = count( $bu );
-		}
 
 		$realkey = is_array( $key ) ? $key[1] : $key;
 		for ( $tries = 0; $tries < 20; $tries++ ) {
-			$host = $this->_buckets[$hv % $this->_bucketcount];
+			$host = $buckets[$hv % $this->_bucketcount];
 			$sock = $this->sock_to_host( $host );
 			if ( $sock ) {
 				return $sock;
@@ -940,8 +829,60 @@ class MemcachedClient {
 		return false;
 	}
 
-	// }}}
-	// {{{ _hashfunc()
+	/**
+	 * Get the hosts that $key maps to, in the order get_sock() tries them
+	 *
+	 * @param string|array $key
+	 * @param int $limit Maximum number of hosts to return
+	 * @return string[]
+	 */
+	public function get_hosts_for_key( $key, $limit = 1 ) {
+		if ( !$this->_active ) {
+			return [];
+		}
+
+		if ( $this->_single_sock !== null ) {
+			return [ $this->_single_sock ];
+		}
+
+		$buckets = $this->_get_buckets();
+		$hv = is_array( $key ) ? intval( $key[0] ) : $this->_hashfunc( $key );
+
+		$realkey = is_array( $key ) ? $key[1] : $key;
+		$hosts = [];
+		for ( $tries = 0; $tries < $limit; $tries++ ) {
+			$hosts[] = $buckets[$hv % $this->_bucketcount];
+			$hv = $this->_hashfunc( $hv . $realkey );
+		}
+
+		return $hosts;
+	}
+
+	/**
+	 * Get the weighted list of servers that keys are hashed onto
+	 *
+	 * @return string[]
+	 */
+	private function _get_buckets() {
+		if ( $this->_buckets !== null ) {
+			return $this->_buckets;
+		}
+
+		$bu = [];
+		foreach ( $this->_servers as $v ) {
+			if ( is_array( $v ) ) {
+				for ( $i = 0; $i < $v[1]; $i++ ) {
+					$bu[] = $v[0];
+				}
+			} else {
+				$bu[] = $v;
+			}
+		}
+		$this->_buckets = $bu;
+		$this->_bucketcount = count( $bu );
+
+		return $bu;
+	}
 
 	/**
 	 * Creates a hash integer based on the $key
@@ -949,17 +890,13 @@ class MemcachedClient {
 	 * @param string $key Key to hash
 	 *
 	 * @return int Hash value
-	 * @access private
 	 */
-	function _hashfunc( $key ) {
+	private function _hashfunc( $key ) {
 		# Hash function must be in [0,0x7ffffff]
 		# We take the first 31 bits of the MD5 hash, which unlike the hash
 		# function used in a previous version of this client, works
 		return hexdec( substr( md5( $key ), 0, 8 ) ) & 0x7fffffff;
 	}
-
-	// }}}
-	// {{{ _incrdecr()
 
 	/**
 	 * Perform increment/decrement on $key
@@ -969,9 +906,8 @@ class MemcachedClient {
 	 * @param int $amt Amount to adjust
 	 *
 	 * @return int|null New value of $key, null on failure
-	 * @access private
 	 */
-	function _incrdecr( $cmd, $key, $amt = 1 ) {
+	private function _incrdecr( $cmd, $key, $amt = 1 ) {
 		$this->_last_cmd_status = BagOStuff::ERR_NONE;
 
 		if ( !$this->_active ) {
@@ -1004,7 +940,7 @@ class MemcachedClient {
 			$this->_debugprint( "$cmd($key): $line" );
 		}
 
-		$match = array();
+		$match = [];
 		if ( !preg_match( '/^(\d+)/', $line, $match ) ) {
 			$this->_last_cmd_status = BagOStuff::ERR_NO_RESPONSE;
 
@@ -1014,9 +950,6 @@ class MemcachedClient {
 		return (int)$match[1];
 	}
 
-	// }}}
-	// {{{ _load_items()
-
 	/**
 	 * Load items into $ret from $sock
 	 *
@@ -1024,13 +957,11 @@ class MemcachedClient {
 	 * @param array $ret returned values
 	 * @param float $casToken [optional]
 	 * @return bool True for success, false for failure
-	 *
-	 * @access private
 	 */
-	function _load_items( $sock, &$ret, &$casToken = null ) {
-		$results = array();
+	private function _load_items( $sock, &$ret, &$casToken = null ) {
+		$results = [];
 
-		while ( 1 ) {
+		while ( true ) {
 			$decl = $this->_fgets( $sock );
 
 			if ( $decl === false ) {
@@ -1047,13 +978,13 @@ class MemcachedClient {
 				 * to make sure that we don't leave our client in a state where it's
 				 * output is not yet fully read.
 				 */
-				$results[] = array(
+				$results[] = [
 					$match[1], // rkey
 					$match[2], // flags
 					$match[3], // len
 					$match[4] ?? null, // casToken (appears with "gets" but not "get")
 					$this->_fread( $sock, (int)$match[3] + 2 ), // data
-				);
+				];
 			} elseif ( $decl == "END" ) {
 				/**
 				 * All data has been read, time to process the data and build
@@ -1096,9 +1027,6 @@ class MemcachedClient {
 		}
 	}
 
-	// }}}
-	// {{{ _set()
-
 	/**
 	 * Performs the requested storage operation to the memcache server
 	 *
@@ -1113,9 +1041,8 @@ class MemcachedClient {
 	 * @param float $casToken [optional]
 	 *
 	 * @return bool
-	 * @access private
 	 */
-	function _set( $cmd, $key, $val, $exp, $casToken = null ) {
+	private function _set( $cmd, $key, $val, $exp, $casToken = null ) {
 		$this->_last_cmd_status = BagOStuff::ERR_NONE;
 
 		if ( !$this->_active ) {
@@ -1197,18 +1124,14 @@ class MemcachedClient {
 		return false;
 	}
 
-	// }}}
-	// {{{ sock_to_host()
-
 	/**
 	 * Returns the socket for the host
 	 *
 	 * @param string $host Host:IP to get socket for
 	 *
 	 * @return resource|false IO Stream or false
-	 * @access private
 	 */
-	function sock_to_host( $host ) {
+	private function sock_to_host( $host ) {
 		if ( isset( $this->_cache_sock[$host] ) ) {
 			return $this->_cache_sock[$host];
 		}
@@ -1242,14 +1165,14 @@ class MemcachedClient {
 	/**
 	 * @param string $text
 	 */
-	function _debugprint( $text ) {
+	private function _debugprint( $text ) {
 		$this->_logger->debug( $text );
 	}
 
 	/**
 	 * @param string $text
 	 */
-	function _error_log( $text ) {
+	private function _error_log( $text ) {
 		$this->_logger->error( "Memcached error: $text" );
 	}
 
@@ -1260,7 +1183,7 @@ class MemcachedClient {
 	 * @param string $buf The string to write
 	 * @return bool True on success, false on failure
 	 */
-	function _fwrite( $sock, $buf ) {
+	private function _fwrite( $sock, $buf ) {
 		$bytesWritten = 0;
 		$bufSize = strlen( $buf );
 		while ( $bytesWritten < $bufSize ) {
@@ -1287,7 +1210,7 @@ class MemcachedClient {
 	 * @param Resource $sock
 	 * @param string $msg
 	 */
-	function _handle_error( $sock, $msg ) {
+	private function _handle_error( $sock, $msg ) {
 		$peer = stream_socket_get_name( $sock, true /** remote **/ );
 		if ( strval( $peer ) === '' ) {
 			$peer = array_search( $sock, $this->_cache_sock );
@@ -1308,7 +1231,7 @@ class MemcachedClient {
 	 * @param int $len The number of bytes to read
 	 * @return string|false The string on success, false on failure.
 	 */
-	function _fread( $sock, $len ) {
+	private function _fread( $sock, $len ) {
 		$buf = '';
 		while ( $len > 0 ) {
 			$result = fread( $sock, $len );
@@ -1339,7 +1262,7 @@ class MemcachedClient {
 	 * @param Resource $sock The socket
 	 * @return string|bool The string on success, false on failure
 	 */
-	function _fgets( $sock ) {
+	private function _fgets( $sock ) {
 		$result = fgets( $sock );
 		// fgets() may return a partial line if there is a select timeout after
 		// a successful recv(), so we have to check for a timeout even if we
@@ -1368,11 +1291,11 @@ class MemcachedClient {
 	 * Flush the read buffer of a stream
 	 * @param Resource $f
 	 */
-	function _flush_read_buffer( $f ) {
+	private function _flush_read_buffer( $f ) {
 		if ( !$f ) {
 			return;
 		}
-		$r = array( $f );
+		$r = [ $f ];
 		$w = null;
 		$e = null;
 		$n = stream_select( $r, $w, $e, 0, 0 );
@@ -1380,14 +1303,10 @@ class MemcachedClient {
 			// Discard whatever is left in the buffer
 			// @phan-suppress-next-line PhanPluginUseReturnValueInternalKnown
 			fread( $f, 1024 );
-			$r = array( $f );
+			$r = [ $f ];
 			$w = null;
 			$e = null;
 			$n = stream_select( $r, $w, $e, 0, 0 );
 		}
 	}
-
-	// }}}
-	// }}}
-	// }}}
 }
