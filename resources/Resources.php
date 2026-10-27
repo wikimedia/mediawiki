@@ -660,17 +660,18 @@ return [
 				'name' => 'resources/lib/pinia/pinia.js',
 				'callback' => static function ( Context $context, Config $config ) {
 					// Use the development version if development mode is enabled, or if we're in debug mode
-					$developmentMode = $config->get( MainConfigNames::VueDevelopmentMode ) || $context->getDebug();
-					$prefix = $developmentMode ?
-						'var Vue=require("vue");var devtoolsApi=require("./vue-devtools-api.js");' :
-						'var Vue=require("vue");';
-					$file = $developmentMode ?
+					$file = $config->get( MainConfigNames::VueDevelopmentMode ) || $context->getDebug() ?
 						'resources/lib/pinia/pinia.iife.js' :
 						'resources/lib/pinia/pinia.iife.prod.js';
 					// The file shipped by Pinia does var Pinia = ...;, but doesn't export it
 					// Add module.exports = Pinia; programmatically, and import Vue
-					return $prefix .
-						file_get_contents( MW_INSTALL_PATH . "/$file" ) .
+					// Pinia 4 uses ES2022 Object.hasOwn, but our browser baseline is ES2019
+					return 'var Vue=require("vue");' .
+						str_replace(
+							'Object.hasOwn(',
+							'Object.prototype.hasOwnProperty.call(',
+							file_get_contents( MW_INSTALL_PATH . "/$file" )
+						) .
 						'module.exports=Pinia;';
 				},
 				'versionCallback' => static function ( Context $context, Config $config ) {
@@ -678,25 +679,6 @@ return [
 						'resources/lib/pinia/pinia.iife.js' :
 						'resources/lib/pinia/pinia.iife.prod.js';
 					return new FilePath( $file );
-				},
-			],
-			[
-				'name' => 'resources/lib/pinia/vue-devtools-api.js',
-				'callback' => static function ( Context $context, Config $config ) {
-					// Vue DevTools is only required in DEBUG mode with ES2020+ browsers, stub out otherwise
-					if ( !$config->get( MainConfigNames::VueDevelopmentMode ) && !$context->getDebug() ) {
-						return 'module.exports={};';
-					}
-
-					// The file shipped by VueDevToolsApi does var VueDevToolsApi = ...;, but doesn't export it
-					// Add module.exports = VueDevToolsApi; programmatically
-					return file_get_contents(
-							MW_INSTALL_PATH . '/resources/lib/vue-devtools-api/vue-devtools-api.global.js'
-						) .
-						'module.exports=VueDevToolsApi;';
-				},
-				'versionCallback' => static function ( Context $context, Config $config ) {
-					return new FilePath( 'resources/lib/vue-devtools-api/vue-devtools-api.global.js' );
 				},
 			],
 		],

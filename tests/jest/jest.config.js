@@ -1,5 +1,12 @@
 'use strict';
 
+// ESM-only dependencies that need to be transpiled to CommonJS for Jest
+const esmOnlyModules = [
+	'pinia',
+	'@pinia/testing',
+	'nostics'
+].join( '|' );
+
 /*
  * For a detailed explanation regarding each configuration property, visit:
  * https://jestjs.io/docs/configuration
@@ -84,6 +91,7 @@ module.exports = {
 	moduleFileExtensions: [
 		'js',
 		'json',
+		'mjs',
 		'vue'
 	],
 
@@ -194,14 +202,18 @@ module.exports = {
 
 	// A map from regular expressions to paths to transformers
 	transform: {
-		'^.+\\.vue$': '<rootDir>/node_modules/@vue/vue3-jest'
-	}
+		'^.+\\.vue$': '<rootDir>/node_modules/@vue/vue3-jest',
+		[ `/node_modules/(${ esmOnlyModules })/.+\\.m?js$` ]: [
+			'babel-jest',
+			{ presets: [ [ '@babel/preset-env', { targets: { node: 'current' } } ] ] }
+		]
+	},
 
 	// An array of regexp pattern strings that are matched against all source file paths, matched files will skip transformation
-	// transformIgnorePatterns: [
-	//   '/node_modules/',
-	//   '\\.pnp\\.[^\\/]+$'
-	// ],
+	transformIgnorePatterns: [
+		`/node_modules/(?!(${ esmOnlyModules })/)`,
+		'\\.pnp\\.[^\\/]+$'
+	]
 
 	// An array of regexp pattern strings that are matched against all modules before the module loader will automatically return a mock for them
 	// unmockedModulePathPatterns: undefined,

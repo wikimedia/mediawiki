@@ -362,11 +362,11 @@ pinia:
   license: MIT
   homepage: https://pinia.vuejs.org
   authors: Eduardo San Martin Morote
-  version: 3.0.4
-  purl: pkg:npm/pinia@3.0.4
+  version: 4.1.0
+  purl: pkg:npm/pinia@4.1.0
   type: tar
-  src: https://registry.npmjs.org/pinia/-/pinia-3.0.4.tgz
-  integrity: sha512-l7pqLUFTI/+ESXn6k3nu30ZIzW5E2WZF/LaHJEpoq6ElcLD+wduZoB2kBN19du6K/4FDpPMazY2wJr+IndBtQw==
+  src: https://registry.npmjs.org/pinia/-/pinia-4.1.0.tgz
+  integrity: sha512-+5/HMuVjYQfKlCD5xQ7zfXn1xUzYFEa7pd0DQK5SaMfZCaFRTHlaH/c02N1FoGOdlzSiwf5EOPgJx//1QDw6gw==
   dest:
     package/README.md:
     package/LICENSE:
@@ -414,20 +414,6 @@ vue:
     package/LICENSE:
     package/dist/vue.global.js:
     package/dist/vue.global.prod.js:
-
-vue-devtools-api:
-  license: MIT
-  homepage: https://github.com/vuejs/devtools#readme
-  authors: webfansplz
-  version: 8.1.3
-  purl: pkg:npm/@vue/devtools-api@8.1.3
-  type: tar
-  src: https://registry.npmjs.org/@vue/devtools-api/-/devtools-api-8.1.3.tgz
-  integrity: sha512-73NMCvxXh8Hyozc/jiwqTFWVcCMyi11U1zmrq4DoukQJnuo8JHt6FsNu4HdeUDa8SpIp5vb7Q22GWgIq0efsXg==
-  dest:
-    package/LICENSE:
-    package/README.md:
-    package/dist/vue-devtools-api.global.js:
 
 vue-test-utils:
    license: MIT

@@ -2,7 +2,7 @@
 	"$schema": "http://cyclonedx.org/schema/bom-1.6.schema.json",
 	"bomFormat": "CycloneDX",
 	"specVersion": "1.6",
-	"serialNumber": "urn:uuid:972bd0ae-30b8-4810-a3ad-3de2bff16967",
+	"serialNumber": "urn:uuid:0b2321e1-fa8a-425b-a8af-b2ba9ae476e1",
 	"version": 1,
 	"components": [
 		{
@@ -398,7 +398,7 @@
 		{
 			"type": "library",
 			"name": "pinia",
-			"version": "3.0.4",
+			"version": "4.1.0",
 			"licenses": [
 				{
 					"license": {
@@ -406,7 +406,7 @@
 					}
 				}
 			],
-			"purl": "pkg:npm/pinia@3.0.4",
+			"purl": "pkg:npm/pinia@4.1.0",
 			"authors": [
 				{
 					"name": "Eduardo San Martin Morote"
@@ -485,30 +485,6 @@
 			"externalReferences": [
 				{
 					"url": "https://vuejs.org/",
-					"type": "website"
-				}
-			]
-		},
-		{
-			"type": "library",
-			"name": "vue-devtools-api",
-			"version": "8.1.3",
-			"licenses": [
-				{
-					"license": {
-						"id": "MIT"
-					}
-				}
-			],
-			"purl": "pkg:npm/@vue/devtools-api@8.1.3",
-			"authors": [
-				{
-					"name": "webfansplz"
-				}
-			],
-			"externalReferences": [
-				{
-					"url": "https://github.com/vuejs/devtools#readme",
 					"type": "website"
 				}
 			]
