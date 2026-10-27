@@ -2,14 +2,25 @@
 
 namespace MediaWiki\Api;
 
+use RuntimeException;
+
 /**
  * Helper for action API list modules that support the REST paradigm.
  * This is used as glue by the ActionModuleBasedHandler in the REST framework
  * to help with translating an action API result to a REST response.
  *
- * @unstable since 1.47
+ * @unstable since 1.47, will become stable to extend
  */
-abstract class ApiListRestHelper extends ApiRestHelper {
+class ApiListRestHelper extends ApiRestHelper {
+	public function __construct(
+		ApiRestHelperContext $context,
+		protected readonly ?string $responseItemSchemaFileName = null
+	) {
+		parent::__construct(
+			$context,
+			__DIR__ . '/Schema/List-response.json'
+		);
+	}
 
 	/**
 	 * Returns an OpenAPI Schema Object specification structure as an associative array.
@@ -20,23 +31,19 @@ abstract class ApiListRestHelper extends ApiRestHelper {
 	 * REST Handlers can (though probably shouldn't either).
 	 *
 	 * @stable to override
-	 * @return ?array
+	 * @return array
 	 */
-	public function getResponseBodySchema(): ?array {
+	public function getResponseBodySchema(): array {
 		$spec = parent::getResponseBodySchema();
+		$itemSpec = $this->getResponseItemSchema();
 
-		$fileName = $this->getResponseItemSchemaFileName();
-		if ( $fileName !== null ) {
-			$itemSpec = self::loadJsonFile( $fileName );
-
-			// Inject the item spec into the response spec in the appropriate location.
-			// The slot is an empty schema, which is falsy, so test for the key instead.
-			foreach ( $spec['allOf'] ?? [] as $index => $subSpec ) {
-				if ( isset( $subSpec['properties']['items'] )
-					&& array_key_exists( 'items', $subSpec['properties']['items'] )
-				) {
-					$spec['allOf'][$index]['properties']['items']['items'] = $itemSpec;
-				}
+		// Inject the item spec into the response spec in the appropriate location.
+		// The slot is an empty schema, which is falsy, so test for the key instead.
+		foreach ( $spec['allOf'] ?? [] as $index => $subSpec ) {
+			if ( isset( $subSpec['properties']['items'] )
+				&& array_key_exists( 'items', $subSpec['properties']['items'] )
+			) {
+				$spec['allOf'][$index]['properties']['items']['items'] = $itemSpec;
 			}
 		}
 
@@ -44,30 +51,35 @@ abstract class ApiListRestHelper extends ApiRestHelper {
 	}
 
 	/**
-	 * Returns the absolute path of a JSON file containing an OpenAPI Schema
-	 * Object specification structure describing the items of the returned
-	 * by the module.
+	 * Returns an OpenAPI Schema Object specification structure describing
+	 * a single item returned by the module, as an associative array.
 	 *
-	 * @see \MediaWiki\Rest\Handler::getResponseBodySchema() for details.
-	 * @return ?string
+	 * @stable to override
+	 * @return array
 	 */
-	public function getResponseItemSchemaFileName(): ?string {
-		return null;
+	public function getResponseItemSchema(): array {
+		$fileName = $this->getResponseItemSchemaFileName();
+		return self::loadJsonFile( $fileName );
 	}
 
 	/**
 	 * Returns the absolute path of a JSON file containing an OpenAPI Schema
-	 * Object specification structure describing the response body
-	 * envelope for list responses.
-	 *
-	 * The schema loaded from getResponseItemSchemaFileName() will be injected
-	 * into this schema.
+	 * Object specification structure describing the items returned by the
+	 * module.
 	 *
 	 * @see \MediaWiki\Rest\Handler::getResponseBodySchema() for details.
-	 * @return ?string
+	 *
+	 * @stable to override
+	 * @return string
 	 */
-	public function getResponseBodySchemaFileName(): ?string {
-		return __DIR__ . '/Schema/List-response.json';
+	public function getResponseItemSchemaFileName(): string {
+		if ( $this->responseItemSchemaFileName === null ) {
+			throw new RuntimeException(
+				'No $responseItemSchemaFileName passed to the constructor, please override' .
+				' getResponseItemSchemaFileName() or getResponseItemSchema()'
+			);
+		}
+		return $this->responseItemSchemaFileName;
 	}
 
 }

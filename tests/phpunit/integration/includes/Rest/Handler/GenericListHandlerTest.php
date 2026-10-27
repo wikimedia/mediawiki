@@ -2,16 +2,20 @@
 
 namespace MediaWiki\Tests\Rest\Handler;
 
+use Closure;
 use Exception;
+use LogicException;
 use MediaWiki\Api\ApiBase;
 use MediaWiki\Api\ApiMain;
 use MediaWiki\Api\ApiMessage;
 use MediaWiki\Api\ApiQuery;
 use MediaWiki\Api\ApiQueryBase;
 use MediaWiki\Api\ApiRestHelper;
+use MediaWiki\Api\ApiRestHelperContext;
 use MediaWiki\Api\ApiRestHybrid;
 use MediaWiki\Api\ApiUsageException;
 use MediaWiki\Api\IApiMessage;
+use MediaWiki\Rest\Handler\GenericActionHandler;
 use MediaWiki\Rest\Handler\GenericListHandler;
 use MediaWiki\Rest\RequestData;
 use MediaWikiIntegrationTestCase;
@@ -155,27 +159,40 @@ class GenericListHandlerTest extends MediaWikiIntegrationTestCase {
 		?ApiRestHelper $helper = null,
 		?Exception $throwException = null,
 		array $resultData = [],
-		?string $continue = null
+		?string $continue = null,
+		?Closure $onInitRestMode = null
 	): ApiRestHybrid&ApiQueryBase {
-		$helper ??= new class extends ApiRestHelper {
-		};
+		$helper ??= new ApiRestHelper( new ApiRestHelperContext( [], [] ) );
 
 		/** @var ApiRestHybrid & ApiQueryBase $module */
-		$module = new class( $this->getApiQuery(), $listName, $helper, $resultData, $throwException, $continue )
-			extends ApiQueryBase implements ApiRestHybrid
-		{
+		$module = new class(
+			$this->getApiQuery(), $listName, $helper, $resultData, $throwException, $continue, $onInitRestMode
+		) extends ApiQueryBase implements ApiRestHybrid {
+			private ?ApiRestHelperContext $context = null;
+
 			public function __construct(
 				ApiQuery $query,
 				string $name,
 				private ApiRestHelper $helper,
 				private array $resultData,
 				private ?Exception $throwException,
-				private ?string $continue
+				private ?string $continue,
+				private ?Closure $onInitRestMode
 			) {
 				parent::__construct( $query, $name, 'tl' );
 			}
 
+			/**
+			 * The handler must inject the context before it uses the module in any way.
+			 */
+			private function assertRestModeInitialized(): void {
+				if ( !$this->context ) {
+					throw new LogicException( 'The module was used before initRestMode() was called' );
+				}
+			}
+
 			public function execute() {
+				$this->assertRestModeInitialized();
 				if ( $this->throwException ) {
 					throw $this->throwException;
 				}
@@ -194,11 +211,16 @@ class GenericListHandlerTest extends MediaWikiIntegrationTestCase {
 				}
 			}
 
-			public function getRestHelper(): ApiRestHelper {
+			public function initRestMode( ApiRestHelperContext $context ): ApiRestHelper {
+				$this->context = $context;
+				if ( $this->onInitRestMode ) {
+					( $this->onInitRestMode )( $context );
+				}
 				return $this->helper;
 			}
 
 			protected function getAllowedParams() {
+				$this->assertRestModeInitialized();
 				return [
 					'title' => [
 						ParamValidator::PARAM_TYPE => 'string',
@@ -216,6 +238,51 @@ class GenericListHandlerTest extends MediaWikiIntegrationTestCase {
 		};
 
 		return $module;
+	}
+
+	public function testInitRestMode_receivesAdapterAndHandlerConfig() {
+		$contexts = [];
+		$module = $this->newHybridModule(
+			onInitRestMode: static function ( ApiRestHelperContext $context ) use ( &$contexts ) {
+				$contexts[] = $context;
+			}
+		);
+		$adapterConfig = [ GenericActionHandler::SUPPRESSED_PARAMS_KEY => [ 'dir' ] ];
+		$handler = $this->newHandler( [
+			'module' => $module,
+			'adapterConfig' => $adapterConfig,
+			'init' => true,
+			'config' => [ 'method' => 'GET', 'path' => '/test/path' ],
+		] );
+
+		// Anything that needs the list module triggers the injection.
+		$handler->getParamSettings();
+
+		// The list module is the one that gets the context, not ApiQuery, which
+		// is the module the handler wraps and isn't an ApiRestHybrid.
+		$this->assertCount( 1, $contexts );
+		// The essential assertions: the context carries the route's adapter spec,
+		// and the handler's own config, which is the route config.
+		$this->assertSame( $adapterConfig, $contexts[0]->getAdapterConfig() );
+		$this->assertSame( $handler->getConfig(), $contexts[0]->getRouteConfig() );
+		$this->assertSame( '/test/path', $contexts[0]->getRouteConfig()['path'] );
+	}
+
+	public function testInitRestMode_calledOnceBeforeTheModuleIsUsed() {
+		$contexts = [];
+		$module = $this->newHybridModule(
+			onInitRestMode: static function ( ApiRestHelperContext $context ) use ( &$contexts ) {
+				$contexts[] = $context;
+			}
+		);
+		$handler = $this->newHandler( [ 'module' => $module ] );
+
+		// The module throws if the handler uses it before injecting the context
+		// (to declare parameters, to validate the request, or to execute), so
+		// executing successfully is the essential assertion.
+		$this->executeHandlerAndGetBodyData( $handler, new RequestData( [ 'method' => 'GET' ] ) );
+
+		$this->assertCount( 1, $contexts, 'The context should be injected once, not per use' );
 	}
 
 	public function testGet() {
@@ -306,7 +373,7 @@ class GenericListHandlerTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testExecuteUsesListModuleHelper() {
-		$helper = new class extends ApiRestHelper {
+		$helper = new class ( new ApiRestHelperContext( [], [] ) ) extends ApiRestHelper {
 			public function getStatusForErrorMessage( IApiMessage $msg ): int {
 				return $msg->getApiCode() === 'list-specific-code' ? 403 : 0;
 			}
@@ -353,6 +420,7 @@ class GenericListHandlerTest extends MediaWikiIntegrationTestCase {
 	public function testGetActionModuleParamSpecs() {
 		$handler = $this->newHandler( [
 			'module' => $this->newHybridModule(),
+			'init' => true,
 		] );
 
 		$specs = TestingAccessWrapper::newFromObject( $handler )->getActionModuleParamSpecs();

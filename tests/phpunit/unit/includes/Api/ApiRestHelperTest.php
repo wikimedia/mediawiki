@@ -3,9 +3,11 @@
 namespace MediaWiki\Tests\Unit\Api;
 
 use MediaWiki\Api\ApiRestHelper;
+use MediaWiki\Api\ApiRestHelperContext;
 use MediaWiki\Api\IApiMessage;
 use MediaWiki\Rest\PathTemplateMatcher\ModuleConfigurationException;
 use MediaWikiUnitTestCase;
+use RuntimeException;
 
 /**
  * @group API
@@ -20,14 +22,7 @@ class ApiRestHelperTest extends MediaWikiUnitTestCase {
 	 * exercise the base class.
 	 */
 	private function newHelper( ?string $schemaFile = null ): ApiRestHelper {
-		return new class( $schemaFile ) extends ApiRestHelper {
-			public function __construct( private readonly ?string $schemaFile ) {
-			}
-
-			public function getResponseBodySchemaFileName(): ?string {
-				return $this->schemaFile;
-			}
-		};
+		return new ApiRestHelper( new ApiRestHelperContext( [], [] ), $schemaFile );
 	}
 
 	public function testGetStatusForErrorMessage_defersToHandlerByDefault() {
@@ -41,7 +36,8 @@ class ApiRestHelperTest extends MediaWikiUnitTestCase {
 	}
 
 	public function testGetResponseBodySchema_noFile() {
-		$this->assertNull( $this->newHelper()->getResponseBodySchema() );
+		$this->expectException( RuntimeException::class );
+		$this->newHelper()->getResponseBodySchemaFileName();
 	}
 
 	public function testGetResponseBodySchema_loadsFile() {

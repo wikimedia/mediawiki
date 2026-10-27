@@ -3,7 +3,9 @@
 namespace MediaWiki\Tests\Unit\Api;
 
 use MediaWiki\Api\ApiListRestHelper;
+use MediaWiki\Api\ApiRestHelperContext;
 use MediaWikiUnitTestCase;
+use RuntimeException;
 
 /**
  * @group API
@@ -29,16 +31,13 @@ class ApiListRestHelperTest extends MediaWikiUnitTestCase {
 	): ApiListRestHelper {
 		return new class( $itemSchemaFile, $envelopeFile ) extends ApiListRestHelper {
 			public function __construct(
-				private readonly ?string $itemSchemaFile,
+				?string $itemSchemaFile,
 				private readonly ?string $envelopeFile
 			) {
+				parent::__construct( new ApiRestHelperContext( [], [] ), $itemSchemaFile );
 			}
 
-			public function getResponseItemSchemaFileName(): ?string {
-				return $this->itemSchemaFile;
-			}
-
-			public function getResponseBodySchemaFileName(): ?string {
+			public function getResponseBodySchemaFileName(): string {
 				return $this->envelopeFile ?? parent::getResponseBodySchemaFileName();
 			}
 		};
@@ -57,7 +56,7 @@ class ApiListRestHelperTest extends MediaWikiUnitTestCase {
 	}
 
 	public function testGetResponseBodySchema_usesListEnvelopeByDefault() {
-		$schema = $this->newHelper()->getResponseBodySchema();
+		$schema = $this->newHelper( itemSchemaFile: self::DATA_PREFIX . 'item.json' )->getResponseBodySchema();
 
 		// The default envelope describes "items" as an array, with the schema
 		// of the entries left open for the module to fill in.
@@ -85,6 +84,22 @@ class ApiListRestHelperTest extends MediaWikiUnitTestCase {
 		$items = $this->getItemsSchema( $helper->getResponseBodySchema() );
 
 		$this->assertSame( self::ITEM_SCHEMA, $items['items'] );
+	}
+
+	public function testGetResponseItemSchema_noFile() {
+		$this->expectException( RuntimeException::class );
+		$this->newHelper()->getResponseItemSchema();
+	}
+
+	public function testGetResponseItemSchema_loadsFile() {
+		$helper = $this->newHelper( itemSchemaFile: self::DATA_PREFIX . 'item.json' );
+
+		$this->assertSame( self::ITEM_SCHEMA, $helper->getResponseItemSchema() );
+	}
+
+	public function testGetResponseBodySchema_noItemSchemaFile() {
+		$this->expectException( RuntimeException::class );
+		$this->newHelper()->getResponseBodySchema();
 	}
 
 	public function testGetResponseBodySchema_envelopeWithoutItemsIsLeftAlone() {
