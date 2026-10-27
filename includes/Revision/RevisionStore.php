@@ -1204,7 +1204,7 @@ class RevisionStore implements RevisionFactory, RevisionLookup, LoggerAwareInter
 	 * Unless $flags has READ_LATEST set, this method will first try to find revisions
 	 * on a replica before looking up any missing revisions on the primary database.
 	 *
-	 * @since 1.46
+	 * @since 1.48
 	 *
 	 * @param (int|string)[] $ids Revision IDs to load. Passing numbers as strings is allowed
 	 *        for convenient passing of results from DB queries.
