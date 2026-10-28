@@ -179,6 +179,22 @@ class MultiHttpClientTest extends MediaWikiIntegrationTestCase {
 		}
 	}
 
+	/**
+	 * Regression test for T441514
+	 */
+	public function testMultiHttpClientRequestHeadersAreStrings() {
+		$httpRequest = $this->getHttpRequest( StatusValue::newGood( 200 ), 200 );
+		$httpRequest->expects( $this->atLeastOnce() )
+			->method( 'setHeader' )
+			->with( $this->isType( IsType::TYPE_STRING ), $this->isType( IsType::TYPE_STRING ) );
+		$this->setService( 'HttpRequestFactory', $this->mockHttpRequestFactory( $httpRequest ) );
+
+		$this->createClient()->run( [
+			'method' => 'PURGE',
+			'url' => 'http://example.test',
+		] );
+	}
+
 	public static function provideMultiHttpTimeout() {
 		return [
 			'default 10/30' => [
