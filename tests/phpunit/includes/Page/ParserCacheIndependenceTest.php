@@ -71,9 +71,9 @@ class ParserCacheIndependenceTest extends ParserCacheTestBase {
 		$access->getParserOutput( $page, $parserOptions, $page->getRevisionRecord() );
 		$this->assertArrayEquals( [
 			[ "postproc-{$infix}pcache", false ],
-			[ "postproc-{$infix}pcache", false ], // selective update sample
+			// T442669: [ "postproc-{$infix}pcache", false ], // selective update sample
 			[ "{$infix}pcache", false ],
-			[ "{$infix}pcache", false ] // selective update sample
+			// T442669: [ "{$infix}pcache", false ] // selective update sample
 		], $this->trackerWrapper->calls );
 
 		// Second access: postproc cache hits
@@ -93,7 +93,7 @@ class ParserCacheIndependenceTest extends ParserCacheTestBase {
 		$access->getParserOutput( $page, $parserOptions, $page->getRevisionRecord() );
 		$this->assertArrayEquals( [
 			[ "postproc-{$infix}pcache", false ], // miss on postproc
-			[ "postproc-{$infix}pcache", false ], // selective update check
+			// T442669: [ "postproc-{$infix}pcache", false ], // selective update check
 			[ "{$infix}pcache", true ] // found it in primary!
 		], $this->trackerWrapper->calls );
 
@@ -118,9 +118,9 @@ class ParserCacheIndependenceTest extends ParserCacheTestBase {
 		$access->getParserOutput( $page, $parserOptions, $page->getRevisionRecord() );
 		$this->assertArrayEquals( [
 			[ "postproc-{$infix}pcache", false ], // miss on postproc
-			[ "postproc-{$infix}pcache", false ], // selective update check
+			// T442669: [ "postproc-{$infix}pcache", false ], // selective update check
 			[ "{$infix}pcache", false ], // miss on primary
-			[ "{$infix}pcache", false ] // selective update check
+			// T442669: [ "{$infix}pcache", false ] // selective update check
 		], $this->trackerWrapper->calls );
 
 		// now primary has been regenerated
@@ -139,7 +139,7 @@ class ParserCacheIndependenceTest extends ParserCacheTestBase {
 		$access->getParserOutput( $page, $parserOptions, $page->getRevisionRecord() );
 		$this->assertArrayEquals( [
 			[ "postproc-{$infix}pcache", false ], // miss on postproc
-			[ "postproc-{$infix}pcache", false ], // selective update check
+			// T442669: [ "postproc-{$infix}pcache", false ], // selective update check
 			[ "{$infix}pcache", true ], // hit on primary
 		], $this->trackerWrapper->calls );
 
@@ -160,9 +160,9 @@ class ParserCacheIndependenceTest extends ParserCacheTestBase {
 		$access->getParserOutput( $page, $parserOptions, $page->getRevisionRecord() );
 		$this->assertArrayEquals( [
 			[ "postproc-{$infix}pcache", false ], // miss on postproc
-			[ "postproc-{$infix}pcache", true ], // selective update check
+			// T442669: [ "postproc-{$infix}pcache", true ], // selective update check
 			[ "{$infix}pcache", false ], // miss on primary
-			[ "{$infix}pcache", true ] // selective update check
+			// T442669: [ "{$infix}pcache", true ] // selective update check
 		], $this->trackerWrapper->calls );
 	}
 

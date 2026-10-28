@@ -394,7 +394,8 @@ class RefreshLinksJob extends Job {
 		// Parsoid can do selective updates, so it is always worth the I/O
 		// to check for a previous parse. For the legacy parser, we only
 		// check the cache if we think it is likely to be up-to-date.
-		$force = $parserOptions->getUseParsoid();
+		// T442669: Disabled for now because of the memory footprint
+		$force = false; /* $parserOptions->getUseParsoid(); */
 		$cachedOutput = $this->maybeGetParserOutputFromCache(
 			$parserOptions, $parserOutputAccess, $page, $force
 		);
@@ -420,6 +421,7 @@ class RefreshLinksJob extends Job {
 			MainConfigNames::ParsoidSelectiveUpdateSampleRate
 		);
 		$doSample = $sampleRate && mt_rand( 1, $sampleRate ) === 1;
+		// @phan-suppress-next-line PhanImpossibleCondition
 		if ( $doSample && !$force && $cachedOutput === null ) {
 			// In order to collect accurate statistics, check for
 			// a dirty copy in the cache even if we wouldn't have
