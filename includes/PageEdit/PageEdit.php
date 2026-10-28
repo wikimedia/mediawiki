@@ -515,7 +515,6 @@ class PageEdit implements IEditObject {
 				$this->shadowPageLoader,
 				$this->inputs->getPage(),
 				$this->textbox1,
-				$this->getSubmitButtonLabel(),
 				$this->inputs->getAttemptState(),
 			),
 
