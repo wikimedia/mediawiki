@@ -398,8 +398,7 @@ class SvgHandler extends ImageHandler {
 				wfDebug( __METHOD__ . ": $cmd" );
 				$err = Shell::command()->unsafeCommand( $cmd )->execute();
 				$retval = $err->getExitCode();
-				$err = $err->getStderr();
-				$err = $err === null ? '' : $err;
+				$err = $err->getStderr() ?? '';
 			}
 		}
 		$removed = $this->removeBadFile( $dstPath, (int)$retval );

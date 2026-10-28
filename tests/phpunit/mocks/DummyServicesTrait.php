@@ -576,7 +576,7 @@ trait DummyServicesTrait {
 				return false;
 			}
 			$dataKey = $this->getWatchedItemStoreKey( $user, $target );
-			$this->watchedItemStoreData[ $dataKey ] = ( $expiry === null ? true : $expiry );
+			$this->watchedItemStoreData[ $dataKey ] = $expiry ?? true;
 			return true;
 		} );
 		$mock->method( 'removeWatch' )->willReturnCallback( function ( $user, $target ) {

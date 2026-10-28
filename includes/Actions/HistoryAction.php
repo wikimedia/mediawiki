@@ -453,7 +453,7 @@ class HistoryAction extends FormlessAction {
 		$rev = $revisionStore->newRevisionFromRow( $row, 0, $this->getTitle() );
 		$prevRev = $revisionStore->getPreviousRevision( $rev );
 
-		$revComment = $rev->getComment() === null ? null : $rev->getComment()->text;
+		$revComment = $rev->getComment()?->text;
 		if ( $revComment === null ) {
 			// If rev->getComment() returns null, which it'll do when it's rev-deleted for example
 			// (thanks to the default FOR_PUBLIC audience), also redact the formatted comment gotten from

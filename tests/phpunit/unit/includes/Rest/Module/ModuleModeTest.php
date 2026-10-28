@@ -16,7 +16,7 @@ class ModuleModeTest extends \MediaWikiUnitTestCase {
 		$is = ModuleMode::getModuleMode( $ad );
 
 		// The default message is unhelpful in identifying which test case failed
-		$msg = "Failure for audience designation " . ( $ad === null ? 'null' : $ad->name );
+		$msg = "Failure for audience designation " . ( $ad?->name ?? 'null' );
 		$this->assertSame( $expected, $is, $msg );
 	}
 

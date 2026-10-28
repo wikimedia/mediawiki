@@ -137,7 +137,7 @@ final class UserInfo implements Stringable {
 	 * @return int
 	 */
 	public function getId() {
-		return $this->user === null ? 0 : $this->user->getId();
+		return $this->user?->getId() ?? 0;
 	}
 
 	/**
@@ -145,7 +145,7 @@ final class UserInfo implements Stringable {
 	 * @return string|null
 	 */
 	public function getName() {
-		return $this->user === null ? null : $this->user->getName();
+		return $this->user?->getName();
 	}
 
 	/**

@@ -52,7 +52,7 @@ class ApiQuerySiteinfoTest extends ApiTestCase {
 		$this->assertArrayNotHasKey( 'warnings', $res[0] );
 		$this->assertCount( 1, $res[0]['query'] );
 
-		return $res[0]['query'][$siprop === null ? 'general' : $siprop];
+		return $res[0]['query'][$siprop ?? 'general'];
 	}
 
 	public function testGeneral() {
