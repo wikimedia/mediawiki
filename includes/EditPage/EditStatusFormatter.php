@@ -22,6 +22,7 @@ class EditStatusFormatter {
 		'edit-constraint-doubleredirect-warning',
 		'edit-constraint-invalidredirecttarget-warning',
 		'edit-constraint-defaulttext-blank-warning',
+		'edit-constraint-defaulttext-default-warning',
 	];
 
 	public function __construct(

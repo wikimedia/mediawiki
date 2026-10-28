@@ -850,6 +850,7 @@
 	"edit-constraint-warning-wrapper-save-deleted-revision": "Wrapper for a deleted revision warning. Displayed when saving a page.\n\nParameters:\n*$1 - The label of the save button – one of {{msg-mw|savearticle}} or {{msg-mw|savechanges}} on save-labelled wiki, or {{msg-mw|publishpage}} or {{msg-mw|publishchanges}} on publish-labelled wikis.\n* $2 - Explanation of the warning - {{msg-mw|rev-deleted-text-view}}",
 	"edit-constraint-newsectionmissingsubject-warning": "Warning displayed if you enable \"Prompt me when entering a blank summary\" and add a new section without headline to a talk page.\n\n\"Subject\" is {{msg-mw|subject}}.\n\nSee also:\n* {{msg-mw|Missingsummary}}\n* {{msg-mw|Savearticle}}",
 	"edit-constraint-defaulttext-blank-warning": "Warning displayed once after the user tries to create an empty page.",
+	"edit-constraint-defaulttext-default-warning": "Warning displayed once after the user tries to create a page with the default content.",
 	"missingcommenttext": "This message is shown when the user tries to save a textbox created by the new section links, and the textbox is empty. \"Comment\" refers to the content that is supposed to be posted in the new section, usually a talk page comment.",
 	"summary-preview": "Preview of the edit summary, shown under the edit summary itself.\nShould match: {{msg-mw|summary}}.",
 	"autocomment-top": "Displayed as part of the edit summary when the edit only touched the top / lede / beginning section of the page. See also {{msg-mw|vector-toc-beginning}}",

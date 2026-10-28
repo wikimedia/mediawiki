@@ -566,6 +566,7 @@
 	"edit-constraint-warning-wrapper-save-deleted-revision": "<strong>Warning:</strong> $2\n\nIf you want to continue anyway, click \"$1\" again, but this will publish the contents of the deleted revision.",
 	"edit-constraint-newsectionmissingsubject-warning": "You have not provided a subject for this comment.",
 	"edit-constraint-defaulttext-blank-warning": "You are creating a blank page.",
+	"edit-constraint-defaulttext-default-warning": "You are creating this page with its default content.",
 	"missingcommenttext": "Please enter a comment.",
 	"summary-preview": "Preview of edit summary:",
 	"autocomment-top": "(top)",

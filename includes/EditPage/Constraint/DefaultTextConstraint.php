@@ -36,10 +36,13 @@ class DefaultTextConstraint extends EditConstraint {
 		$defaultText = $defaultContent?->serialize() ?? '';
 		if ( !$this->editAttemptState->shouldAllowBlankArticle() && $this->userProvidedText === $defaultText ) {
 			$this->editAttemptState->setAllowBlankArticle( true );
+			$warning = $defaultText === ''
+				? 'edit-constraint-defaulttext-blank-warning'
+				: 'edit-constraint-defaulttext-default-warning';
 			return PageEditStatus::newGood( self::AS_BLANK_ARTICLE )
 				->setOK( false )
 				->setCanResubmit( true )
-				->warning( 'edit-constraint-defaulttext-blank-warning' );
+				->warning( $warning );
 		}
 		return PageEditStatus::newGood();
 	}
