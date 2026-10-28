@@ -263,8 +263,6 @@ abstract class ParsoidHandler extends Handler {
 			// by the parsoid extension. Will be null for core endpoints.
 			'domain' => $request->getPathParam( 'domain' ),
 			'pageName' => $attribs['pageName'],
-			'cookie' => $request->getHeaderLine( 'Cookie' ),
-			'reqId' => $request->getHeaderLine( 'X-Request-Id' ),
 			'userAgent' => $request->getHeaderLine( 'User-Agent' ),
 			// Used in pb2pb variant updates and wtLint
 			'htmlVariantLanguage' => $acceptLanguage,
@@ -853,14 +851,8 @@ abstract class ParsoidHandler extends Handler {
 			// GET for wikitext parsing
 			// XXX: can we just refuse to do wikitext parsing in a GET request?
 			$response->setHeader( ResponseHeaders::CACHE_CONTROL, 'private,no-cache,s-maxage=0' );
-		} elseif ( $oldid !== null ) {
-			// XXX: can this go away? Parsoid's PageContent class doesn't expose suppressed revision content.
-			if ( $request->getHeaderLine( 'Cookie' ) ||
-				$request->getHeaderLine( 'Authorization' ) ) {
-				// Don't cache requests with a session.
-				$response->setHeader( ResponseHeaders::CACHE_CONTROL, 'private,no-cache,s-maxage=0' );
-			}
 		}
+
 		return $response;
 	}
 
