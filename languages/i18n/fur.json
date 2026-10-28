@@ -333,7 +333,6 @@
 	"anoneditwarning": "<strong>Atenzion:</strong>No tu sês jentrât cuntun non utent. La to direzion IP e vignarà regjistrade tal storic di cheste pagjine. -se tu <strong>[$1 jentris]</strong> o <strong>[$2 tu ti regjistris]</strong>, lis tôs modifichis a saran atribuidis al to non utent, adun ad altris beneficis.",
 	"missingsummary": "'''Atenzion:''' no tu âs specificât un ogjet par chest cambiament. Se tu tornis a fracâ su \"Salve la pagjine\", il cambiament al vignarà salvât cuntun ogjet vueit.",
 	"missingcommenttext": "Inserìs un coment ca sot.",
-	"missingcommentheader": "'''Atenzion:''' no tu âs specificât un ogjet/intestazion par chest coment. Se tu tornis a fracâ su \"Salve la pagjine\", il to cambiament al vignarà salvât cuntune intestazion vueide.",
 	"summary-preview": "Anteprime dal somari de modifiche:",
 	"blockedtitle": "Utent blocât",
 	"blockedtext": "<strong>Chest non utent o direzion IP a son stâts blocâts.</strong>\n\n{{int:blockedtext-made-by|$1}}\n{{int:blockedtext-reason-comment|$2}}\n\n*{{int:blockedtext-start-time|$8}}\n*{{int:blockedtext-expiration-time|$6}}\n*{{int:blockedtext-intended-blockee|$7}}\n\n{{int:blockedtext-contact-blocker-admin|$1}}\nVisiti che no tu puedis doprâ la funzion \"{{int:emailuser}}\" se no tu âs specificât une direzion di pueste eletroniche valide tes [[Special:Preferences|preferencis]] e se no tu sês stât blocât al ûs di cheste funzion.\n{{int:blockedtext-block-ip|$3}} {{int:blockedtext-block-id|$5}}\n{{int:blockedtext-include-details-queries}}",

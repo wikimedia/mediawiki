@@ -433,7 +433,6 @@
 	"anonpreviewwarning": "<em>ߌ ߜߊ߲߬ߞߎ߲߬ߣߍ߲߬ ߕߍ߫. ߟߊ߬ߥߊ߲߬ߞߊ߬ߟߌ ߘߴߌ ߟߊ߫ IP ߛߊ߲߬ߓߊ߬ߕߐ߮ ߟߊߡߙߊ߬ ߞߐߜߍ ߣߌ߲߬ ߡߊ߬ߦߟߍ߬ߡߊ߲߬ߠߌ߲ ߘߐ߬ߝߐ ߘߐ߫</em>",
 	"missingsummary": "<strong>ߖߊ߲߬ߓߌ߬ߟߊ߬ߟߌ:</strong> ߌ ߡߊ߫ ߡߊ߬ߦߟߍ߬ߡߊ߲߬ߠߌ߲ ߟߊ߬ߘߛߏ߬ߟߌ߫ ߛߌ߫ ߡߊߛߐ߫.\nߣߴߌ ߞߊ߬  \"$1\" ߛߐ߲߬ߞߌ߲߫ ߏ߬ ߞߐ߫߸ ߌ ߟߊ߫ ߡߊ߬ߦߟߍ߬ߡߊ߲߬ߠߌ߲ ߘߌ߫ ߟߊߥߊ߲߬ߞߊ߫ ߞߵߊ߬ ߕߘߍ߬ ߝߏߦߌ߬ ߕߴߊ߬ ߘߐ߫.",
 	"missingcommenttext": "ߞߊ߲߬ߞߎߡߊ ߘߏ߫ ߟߊߘߏ߲߬ ߖߊ߰ߣߌ߲߬.",
-	"missingcommentheader": "<strong>ߖߊ߲߬ߓߌ߬ߟߊ߬ߟߌ:</strong> ߌ ߡߊ߫ ߝߐߡߊ߫ ߛߌ߫ ߡߊߛߐ߫ ߞߊ߲߬ߞߎߡߊ ߣߌ߲߬ ߘߐ߫.ߣߴߌ ߞߊ߬ \"$1\" ߛߐ߲߬ߞߌ߲߬ ߕߎ߲߯ߣߌ߲߫߸ ߌ ߟߊ߫ ߡߊ߬ߦߟߍ߬ߡߊ߲߬ߠߌ߲ ߘߌ߫ ߟߊߞߎ߲߬ߘߎ߫ ߞߵߊ߬ ߕߘߍ߬ ߝߋ߲߫ ߕߴߊ߬ ߞߣߐ߫.",
 	"summary-preview": "ߟߊ߬ߘߛߏ߬ߟߌ ߡߊ߬ߦߟߍ߬ߡߊ߲߬ߠߌ߲ ߢߍߦߋߟߌ:",
 	"blockedtitle": "ߟߊ߬ߓߊ߰ߙߊ߬ߟߊ ߓߊ߬ߟߊ߲߬ߣߍ߲߫ ߠߋ߬",
 	"blockedtext": "<strong>ߌ ߟߊ߫ ߟߊ߬ߓߊ߰ߙߊ߬ ߕߐ߮ ߥߟߊ߫ IP ߛߊ߲߬ߓߊ߬ߕߐ߮ ߓߘߊ߫ ߓߊ߬ߟߊ߲߬߸</strong>\n\n{{int:blockedtext-made-by|$1}}\n{{int:blockedtext-reason-comment|$2}}\n\n*{{int:blockedtext-start-time|$8}}\n*{{int:blockedtext-expiration-time|$6}}\n*{{int:blockedtext-intended-blockee|$7}}\n\n{{int:blockedtext-contact-blocker-admin|$1}}\nߌ ߘߴߛߋ߫ ߗߋߘߊ߫ \"{{int:emailuser}}\" ߟߊߓߊ߯ߙߊ߫ ߟߊ߫߸ ߣߌ߫ ߢ:ߞߏ߲ߘߏ߫ ߞߙߍߞߙߍߣߍ߲ ߓߍ߲߬ߣߍ߲ ߞߍߘߴߌ ߟߊ߫ [[Special:Preferences|ߦߟߌߡߊߛߙߋ ߟߎ߬]] ߘߐ߫߸ ߌ ߘߏ߲߬ ߓߊ߬ߟߌ߬ߣߍ߲߫ ߕߴߊ߬ ߟߊߓߊ߯ߙߊ ߡߊ߬. \n{{int:blockedtext-block-ip|$3}} {{int:blockedtext-block-id|$5}}\n{{int:blockedtext-include-details-queries}}",

@@ -407,7 +407,6 @@
 	"anonpreviewwarning": "<em>Jy bint neet anmelded. Döär de bewarking uut te geaven wördt juw IP-adres in de sydgeskydenisse seakerd.</em>",
 	"missingsummary": "'''Herinnering:''' je hebben gien samenvatting op-egeven veur de bewarking. A'j noen weer op ''Opslaon'' klikken wörden de bewarking zonder samenvatting op-esleugen.",
 	"missingcommenttext": "Skryv een upmarking.",
-	"missingcommentheader": "<strong>Waorschuwing:</strong> je hebben der gien onderwarptitel bie ezet. A'j noen weer op \"$1\" klikken, dan wörden de bewarking op-esleugen zonder onderwarptitel.",
 	"summary-preview": "Samenvatting nåkyken:",
 	"blockedtitle": "Gebruker is eblokkeerd",
 	"blockedtext": "<strong>Juw gebrukersname of IP-adres is blokkeerd.</strong>\n\nJy bint blokkeerd döär $1.\nDe upgeaven readen is <em>$2</em>.\n\n* Blokkeerd vanaf: $8\n* Blokkeerd tot: $6\n* Bedoold üm te blokkeren: $7\n\nJy künnet kontakt upneamen mid $1 of en andere [[{{MediaWiki:Grouppage-sysop}}|beheyrder]] üm de blokkade te bepråten.\nJy künnet de funkty \"{{int:emailuser}}\" neet gebruken, behalven as jy en geldig e-postadres in juw [[Special:Preferences|instellingen]] upgeaven hebbet en et gebruuk van disse funkty neet blokkeerd is.\nEt IP-adres wat jy nu gebruket is $3, en et blokkadenummer is #$5.\nVermeld de gegeavens dee hyrboaven ståt as jy argens up disse blokkade reageret.",

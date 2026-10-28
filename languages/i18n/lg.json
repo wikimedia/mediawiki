@@ -294,7 +294,6 @@
 	"anonpreviewwarning": "''Okola toyingidde sisitemu. Bw'on'okaza by'okola nga sisitemu ewandika n'endagiriro yo eya IP mu lukalala lw'enkyukakyuka lw'olupapula luno.''",
 	"missingsummary": "'''Okujjukiza:''' Towandise ebinnyonyola enkyukakyuka z'okoze.<br />\nBw'oddamu okunyiga \"$1\", by'okoze tebijjakubaako okunnyonyola.",
 	"missingcommenttext": "Wandika ebigambo byo wano awaddako.",
-	"missingcommentheader": "'''Okujjukiza:''' Ebigambo byo tobiwadde omutwe.<br />\nBw'oddamu okunyiga \"$1\", by'okoze tebijjakubaako omutwe ogubyanjula.",
 	"summary-preview": "Kuno kwe kunnyonyola kwo:",
 	"blockedtitle": "Ono agaanidwa",
 	"blockedtext": "'''Ebikolebwa mu linnya lyo ery'obwa memba, oba okuva ku ndagiriro yo eya 'IP', bisibidwa.'''\n\n$1 y'ataddewo natti eyo.<br />\nEnsonga gy'awadde eri nti ''$2''.\n\n* Natti eyo yateeredwako ku: $8 <br />\n* Ekoma ku: $6 <br />\n* Natti eteredwawo ekole ku: $7\n\nOsobola okubyogerako ne $1 oba [[{{MediaWiki:Grouppage-sysop}}|omutesitesi]] omulala.<br />\nEkya 'Memba ono musindikire e-mail' toosobole okukikozesa okugyako nga mu [[Special:Preferences|nteekateeka]] ey'akawunti yo mulimu e-mail ennamu era nga yo teriko natti.<br />\nKakano endagiriro eya 'IP' gy'oliko eri $3, yo ennamba eya natti gyebakusibye eri #$5.<br />\nGw'ogenda okwogera naye ku natti mutegeeze ennamba oba endagiriro eyo, oba byombi.",

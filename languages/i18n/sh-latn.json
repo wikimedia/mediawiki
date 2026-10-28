@@ -549,7 +549,6 @@
 	"edit-constraint-brokenredirect-warning": "Preusmjeravate ovu stranicu na stranicu koja ne postoji.\nMožda ste naveli pogrešno odredište preusmjerenja.",
 	"edit-constraint-doubleredirect-warning": "Pokušavate preusmjeriti ovu stranicu na drugo preusmjerenje, stvarajući dvostruko preusmjerenje.\nOdredišna stranica trenutno preusmjerava na [[$1]].\n\nIzmijenite sadržaj ovog preusmjerenja na sljedeći način:\n$2",
 	"missingcommenttext": "Unesite komentar.",
-	"missingcommentheader": "<strong>Podsjetnik:</strong> Niste napisali temu za ovaj komentar.\nAko ponovo kliknete na \"$1\", izmjena će biti objavljena bez teme/naslova.",
 	"summary-preview": "Pregled sažetka izmjene:",
 	"autocomment-top": "(vrh)",
 	"previewerrortext": "Došlo je do greške pri pokušaju prikazivanja izmjena.",

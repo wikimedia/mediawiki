@@ -681,7 +681,6 @@
 	"edit-constraint-invalidredirecttarget-warning": "U probeert een doorverwijzing te maken naar een pagina die geen geldig doorverwijzingsdoel is. Overweeg of dit het gewenste resultaat is.",
 	"edit-constraint-warning-wrapper-save-deleted-revision": "<strong>Waarschuwing:</strong> $2 \n\nAls u toch wilt doorgaan, klik dan nogmaals op \"$1\", maar hiermee wordt de inhoud van de verwijderde versie gepubliceerd.",
 	"missingcommenttext": "Plaats uw reactie.",
-	"missingcommentheader": "<strong>Let op:</strong> u hebt geen onderwerp/kop voor deze opmerking opgegeven.\nAls u opnieuw op \"$1\" klikt, wordt uw wijziging zonder een onderwerp/kop gepubliceerd.",
 	"summary-preview": "Voorvertoning van de bewerkingssamenvatting:",
 	"autocomment-top": "(boven)",
 	"previewerrortext": "Er is een fout opgetreden tijdens het weergeven van uw wijzigingen.",

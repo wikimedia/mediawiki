@@ -648,7 +648,6 @@
 	"edit-constraint-invalidredirecttarget-warning": "Bạn đang đổi hướng trang này đến một trang không hợp lệ. Vui lòng kiểm tra lại đích đến của đổi hướng.",
 	"edit-constraint-warning-wrapper-save-deleted-revision": "<strong>Cảnh báo:</strong> $2 \n\nNếu bạn vẫn muốn tiếp tục, hãy nhấp vào \"$1\" một lần nữa, nhưng thao tác này sẽ xuất bản nội dung của phiên bản đã bị xóa.",
 	"missingcommenttext": "Xin hãy nhập bình luận vào đây.",
-	"missingcommentheader": "<strong>Nhắc nhở:</strong> Bạn chưa ghi chủ đề/tiêu đề cho thảo luận này.\nNếu bạn nhấn nút “$1” lần nữa, sửa đổi của bạn sẽ được xuất bản mà không có đề mục.",
 	"summary-preview": "Xem trước dòng tóm lược sửa đổi:",
 	"autocomment-top": "(đầu)",
 	"previewerrortext": "Có lỗi xảy ra khi xem trước những thay đổi của bạn.",

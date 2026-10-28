@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Anterdc99",
 			"Eleassar",
 			"SaldırganSincap"
 		]
@@ -1199,7 +1200,7 @@
 	"apihelp-query+revisions+base-param-expandtemplates": "Namesto tega uporabite <kbd>[[Special:ApiHelp/expandtemplates|action=expandtemplates]]</kbd>. Razširite predloge v vsebino redakcij (zahteva $1prop=content).",
 	"apihelp-query+revisions+base-param-generatexml": "Namesto tega uporabite <kbd>[[Special:ApiHelp/expandtemplates|action=expandtemplates]]</kbd> ali <kbd>[[Special:ApiHelp/parse|action=parse]]</kbd>. Ustvarite drevo razčlenjevanja XML za vsebino redakcij (zahteva $1prop=content).",
 	"apihelp-query+revisions+base-param-parse": "Namesto tega uporabite <kbd>[[Special:ApiHelp/parse|action=parse]]</kbd>. Razčleni vsebino redakcije (zahteva <var>$2prop=content</var>). Če je uporabljena ta možnost, se zaradi učinkovitosti pri $1 uveljavi vrednost <var>$2limit</var>.",
-	"apihelp-query+revisions+base-param-section": "Pridobitev samo vsebine razdelka s tem identifikatorjem. Identifikator razdelka je bodisi celoštevilčna številka razdelka (0 = uvod, 1 = razdelek, ki se začne s prvim podnaslovom itd.) bodisi niz, kot je T-1, v tem primeru se številka razdelka šteje, kot da bi bila stran vključena (npr. razdelek, ovit v <code><includeonly></code>, je mogoče prepoznati samo v tem načinu).",
+	"apihelp-query+revisions+base-param-section": "Pridobitev samo vsebine razdelka s tem identifikatorjem. Identifikator razdelka je bodisi celoštevilčna številka razdelka (0 = uvod, 1 = razdelek, ki se začne s prvim podnaslovom itd.) bodisi niz, kot je T-1, v tem primeru se številka razdelka šteje, kot da bi bila stran vključena (npr. razdelek, ovit v <code>&lt;includeonly&gt;</code>, je mogoče prepoznati samo v tem načinu).",
 	"apihelp-query+revisions+base-param-diffto": "Namesto tega uporabi <kbd>[[Special:ApiHelp/compare|action=compare]]</kbd>. ID redakcije za razlikovanje vsake redakcije. Za predhodno, naslednjo in trenutn redakcijo uporabite <kbd>prev</kbd>, <kbd>next</kbd> in <kbd>cur</kbd>. Če je uporabljena ta možnost, se zaradi učinkovitosti pri $1 uveljavi vrednost <var>$2limit</var>.",
 	"apihelp-query+revisions+base-param-difftotext": "Namesto tega uporabi <kbd>[[Special:ApiHelp/compare|action=compare]]</kbd>. Besedilo za razlikovanje posameznih redakcij. Razlikuje le omejeno število redakcij. Preglasi <var>$2diffto</var>. Če je nastavljeno <var>$2section</var>, se bo glede na to besedilo razlikoval samo ta razdelek. Če je uporabljena ta možnost, se zaradi učinkovitosti pri $1 uveljavi vrednost <var>$2limit</var>.",
 	"apihelp-query+revisions+base-param-difftotextpst": "Namesto tega uporabite <kbd>[[Special:ApiHelp/compare|action=compare]]</kbd>. Pred razlikovanjem izvedite predshranjevalno transformacijo besedila. Veljavno samo, če se uporablja z <var>$1difftotext</var>.",

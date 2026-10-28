@@ -837,7 +837,6 @@
 	"edit-constraint-invalidredirecttarget-warning": "Estás intentando redirigir esta página a una página que no es un destino de redirección válido. Por favor, reconsidera tu decisión.",
 	"edit-constraint-warning-wrapper-save-deleted-revision": "<strong>Advertencia:</strong> $2\n\nSi deseas continuar de todas formas, haz clic en \"$1\" de nuevo. Esto publicará el contenido de la revisión eliminada.",
 	"missingcommenttext": "Escribe un comentario.",
-	"missingcommentheader": "<strong>Atención:</strong> no has escrito un asunto para este comentario.\nSi haces clic nuevamente en \"$1\" tu edición se grabará sin él.",
 	"summary-preview": "Previsualización del resumen de edición:",
 	"autocomment-top": "(arriba)",
 	"previewerrortext": "Se ha producido un error al intentar previsualizar tus cambios.",

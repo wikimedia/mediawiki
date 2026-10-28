@@ -576,7 +576,6 @@
 	"edit-constraint-brokenredirect-warning": "Vu esas ridirektanta ca pagino ad altra, qua ne existas.\nPosible vu informis nekorekte la emo por ridirekto",
 	"edit-constraint-doubleredirect-warning": "Vu probas ridirektar ca pagino a sekunda pagino ridirektita, do kreanta duopla ridirekto. Vua emo-pagino nun ridirektesas a [[$1]].\n\nVoluntez konsiderar la revizo di kontenajo di ca ridirektado, qualeː $2",
 	"missingcommenttext": "Voluntez skribar komento.",
-	"missingcommentheader": "<strong>Atencez:</strong> Vu ne furnisis titulo por ica komento.\nSe vu itere kliktos \"$1\", vua redakto salveskos sen irga titulo.",
 	"summary-preview": "Previdado di la rezumo:",
 	"autocomment-top": "(supera)",
 	"previewerrortext": "Eventis eroro kande on probis krear previdado pri vua modifikuri.",

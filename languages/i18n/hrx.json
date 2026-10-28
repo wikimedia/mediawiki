@@ -381,7 +381,6 @@
 	"anonpreviewwarning": "<em>Du bist net aangemeld. Beim Fereffentliche werd dein IP-Adress in de Vërsionsgeschicht uffgezeichd.</em>",
 	"missingsummary": "'''Hinweis:''' Du host ken Zusammerfassung oongeb. Wenn du erneit uff \"$1\" klicke tust, weard dein Ännrung ohne Zusammerfassung üwernomm.",
 	"missingcommenttext": "Dein Abschnitt enthält ken Text.",
-	"missingcommentheader": "'''Achtung:''' Du host ken Betreff/Üwerschrift ingeb. Wenn du erneit uff \"$1\" klicke tust, weard dein Beoorbeitung ohne Üwerschrift gespeichert.",
 	"summary-preview": "Voarschau von der Zusammerfassungszeil:",
 	"blockedtitle": "Benutzer ist gesperrt",
 	"blockedtext": "<strong>Dein Benutzernaame odder dein IP-Adress waar gesperrd.</strong>\n\n{{int:blockedtext-made-by|$1}}\n{{int:blockedtext-reason-comment|$2}}\n\n*{{int:blockedtext-start-time|$8}}\n*{{int:blockedtext-expiration-time|$6}}\n*{{int:blockedtext-intended-blockee|$7}}\n\n{{int:blockedtext-contact-blocker-admin|$1}}\nDu kannst die \"{{int:emailuser}}-Funkzion nutze, wenn en gellende E-Mail-Adress in dein [[Special:Preferences|Benutzerkonto-Instellunge]] ingedraa is odder die Funkzion fer dich net gesperrd waar.\n{{int:blockedtext-block-ip|$3}} {{int:blockedtext-block-id|$5}}\n{{int:blockedtext-include-details-queries}}",

@@ -263,7 +263,6 @@
 	"anoneditwarning": "'''警告:'''倷哈冇登入，个页𠮶编写历史会记到倷𠮶IP。",
 	"missingsummary": "'''提示:''' 倷冇提供编写摘要。要系倷再按系保存𠮶话，倷保存𠮶编辑就会冇编辑摘要。",
 	"missingcommenttext": "请到底下评论。",
-	"missingcommentheader": "''提示:''' 汝𠮶评论冇提供标题。若系汝捺过到$1𠮶话，汝保存𠮶编辑就会冇标题。",
 	"summary-preview": "摘要预览:",
 	"blockedtitle": "用户封到嘞",
 	"blockedtext": "倷𠮶用户名或IP地址拖$1封到嘞。\n\n个道封锁系$1封𠮶。个中原因系''$2''。\n\n* 个回封锁𠮶开始时间系：$8\n* 个回封锁𠮶到期时间系：$6\n* 对于拖查封𠮶人：$7\n\n倷联系得正$1或别𠮶[[{{MediaWiki:Grouppage-sysop}}|管理员]]，讨论个回封锁。除非倷到倷𠮶[[Special:Preferences|帐号参数设置]]里度设正嘞有效𠮶email，伓然𠮶话倷系用伓正“email到个只用户”𠮶功能。设正嘞有效𠮶email后，个只功能系伓会拖封到𠮶。倷𠮶IP地址系$3，许拖封到𠮶ID系 #$5。请倷到全部𠮶查询里度注明个只地址同／或查封ID。",

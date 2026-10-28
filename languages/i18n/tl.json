@@ -509,7 +509,6 @@
 	"anonpreviewwarning": "''Hindi ka nakalagda. Itatala sa inyong pagtatala ang inyong direksiyong IP sa kasaysayan ng pagbabago ng pahinang ito.''",
 	"missingsummary": "<strong>Paalala:</strong> Hindi ka nagbigay ng buod ng pagbabago.\nKapag pinindot mo uli ang \"$1\", masasagip ang pagbabago mo na wala nito.",
 	"missingcommenttext": "Maaaring magbigay ng komento.",
-	"missingcommentheader": "<strong>Paalala:</strong> Hindi ka nagbigay ng isang paksa/paulo para sa punang ito.\nKapag pinindot mo uli ang \"$1\", mailathala ang pagbabago mo na wala nito.",
 	"summary-preview": "Pasilip sa buod:",
 	"blockedtitle": "Hinarang ang tagagamit",
 	"blockedtext": "<strong>Hinaharangan ang username o IP address mo.</strong>\n\n{{int:blockedtext-made-by|$1}}\n{{int:blockedtext-reason-comment|$2}}\n\n*{{int:blockedtext-start-time|$8}}\n*{{int:blockedtext-expiration-time|$6}}\n*{{int:blockedtext-intended-blockee|$7}}\n\n{{int:blockedtext-contact-blocker-admin|$1}}\nPwede mong gamitin ang \"{{int:emailuser}}\" feature kung may tinukoy kang valid na email address sa [[Special:Preferences|preferences]]  at hindi ka hinaharangan sa paggamit nito.\n{{int:blockedtext-block-ip|$3}} {{int:blockedtext-block-id|$5}}\n{{int:blockedtext-include-details-queries}}",

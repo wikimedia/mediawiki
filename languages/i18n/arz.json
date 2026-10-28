@@ -415,7 +415,6 @@
 	"anoneditwarning": "<strong>تحذير:'</strong> انت ما عملتش لوجين. عنوان الاى بى بتاعك هايتسجل ف تاريخ الصفحه. لو <strong>[$1 عملت لوجين ]</strong> او <strong>[$2 فتحت حساب ]</strong>, اليوزرنيم بتاعك هايتسجل ف تاريخ الصفحه.",
 	"missingsummary": "<strong>خد بالك:</strong> انت ما كتبتش ملخص للتعديل.\nلو دوست على \"$1\" مرة تانية التعديل بتاعك ح يتحفظ من غير ملخص.",
 	"missingcommenttext": "لو سمحت اكتب تعليق تحت.",
-	"missingcommentheader": "<strong>خد بالك:</strong> انت ما كتبتش عنوان\\موضوع للتعليق دا\nلو دوست على $1 مرة تانيه، تعليقك ح يتحفظ من غير عنوان.",
 	"summary-preview": "بروفه للملخص:",
 	"blockedtitle": "اليوزر ممنوع",
 	"blockedtext": "<strong>تم حظر اسم اليوزر أو عنوان IP الخاص بك.</strong>\n\n{{int:blockedtext-made-by|$1}}\n{{int:blockedtext-reason-comment|$2}}\n\n*{{int:blockedtext-start-time|$8}}\n*{{int:blockedtext-expiration-time|$6}}\n*{{int:blockedtext-intended-blockee|$7}}\n\n{{int:blockedtext-contact-blocker-admin|$1}}\nيمكنك استخدام ميزة \"{{int:emailuser}}\" إذا تم تحديد عنوان بريد إلكتروني صالح في [[Special:Preferences|التفضيلات]] ولم يتم منعك من استخدامها.\n{{int:blockedtext-block-ip|$3}} {{int:blockedtext-block-id|$5}}\n{{int:blockedtext-include-details-queries}}",

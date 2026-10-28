@@ -586,7 +586,6 @@
 	"edit-constraint-invalidredirecttarget-warning": "Þú ert að reyna að beina þessari síðu á síðu sem ekki er hægt að gera tilvísun á. Vinsamlegast endurskoðaðu það sem þú ert að gera.",
 	"edit-constraint-warning-wrapper-save-deleted-revision": "<strong>Viðvörun:</strong> $2 \n\nEf þú vilt samt halda áfram, smelltu aftur á „$1“ en þá birtist innihald eyddu útgáfunnar.",
 	"missingcommenttext": "Gerðu svo vel og skrifaðu athugasemd.",
-	"missingcommentheader": "<strong>Áminning:</strong> Þú hefur ekki tilgreint efni fyrir svarið. Ef þú smellir á \"$1\" aftur verður breytingin þín vistuð án þess.",
 	"summary-preview": "Forskoða breytingarágrip:",
 	"autocomment-top": "(efst)",
 	"previewerrortext": "Óvænt villa kom upp þegar reynt var að forskoða breytingarnar þínar.",

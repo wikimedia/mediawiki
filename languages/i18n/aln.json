@@ -293,7 +293,6 @@
 	"anonpreviewwarning": "''Nuk jeni i kyçun. Regjistrimi ka me marrë shenim IP adresën tuej në histori të faqes.''",
 	"missingsummary": "'''Vini re:''' Nuk keni specifikue përmbledhje të redaktimit.\nNëse klikoni prap në regjistro, redaktimi do të ruhet pa tê.",
 	"missingcommenttext": "Ju lutemi shtoni nji koment mâ poshtë.",
-	"missingcommentheader": "'''Vini re:''' Nuk keni dhânë temë/kryetitull për këtë koment.\nNëse klikoni në regjistro prap, redaktimi juej do të ruhet pa tê.",
 	"summary-preview": "Parapamja e përmbledhjes:",
 	"blockedtitle": "Përdoruesi âsht i bllokuem",
 	"blockedtext": "<strong>Llogaria e juaj apo adresa IP është bllokuar.</strong>\n\n{{int:blockedtext-made-by|$1}}\n{{int:blockedtext-reason-comment|$2}}\n\n*{{int:blockedtext-start-time|$8}}\n*{{int:blockedtext-expiration-time|$6}}\n*{{int:blockedtext-intended-blockee|$7}}\n\n{{int:blockedtext-contact-blocker-admin|$1}}\n\nJu mund të kontaktoni $1 ose ndonjë [[{{MediaWiki:Grouppage-sysop}}|administrator]] për ta diskutuar bllokimin.\nNuk mund ta shfrytëzoni funksionin 'dërgo email këtij përdoruesi' përveç nëse keni specifikuar adresë emaili në [[Special:Preferences|parapëlqimet e llogarisë]] dhe nuk jeni bllokuar.\n{{int:blockedtext-block-ip|$3}} {{int:blockedtext-block-id|$5}}\n{{int:blockedtext-include-details-queries}}",

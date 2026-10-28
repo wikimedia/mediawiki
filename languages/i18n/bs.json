@@ -508,7 +508,6 @@
 	"anonpreviewwarning": "''Niste prijavljeni. Nakon spremanja izmjena vaša IP adresa će biti zapisana u historiji uređivanja ove stranice.''",
 	"missingsummary": "<strong>Napomena:</strong> Niste unijeli sažetak izmjene.\nAko ponovo kliknete na \"$1\", Vaša izmjena će biti sačuvana bez sažetka.",
 	"missingcommenttext": "Unesite komentar.",
-	"missingcommentheader": "<strong>Napomena:</strong> Niste napisali naslov ovog komentara.\nAko ponovo kliknete na \"$1\", Vaša izmjena će biti sačuvana bez naslova.",
 	"summary-preview": "Pregled sažetka:",
 	"previewerrortext": "Došlo je do greške pri pokušaju pregleda izmjena.",
 	"blockedtitle": "Korisnik je blokiran",

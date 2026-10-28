@@ -453,7 +453,6 @@
 	"anonpreviewwarning": "<em>가입하고있지 않습니다. 문서를 보관하면 당신의 IP 주소가 문서의 편집 력사에 남게 됩니다.</em>",
 	"missingsummary": "'''알림:''' 편집 요약을 적지 않았습니다.\n《$1》 단추를 다시 찰칵하면 편집 요약 없이 편집이 보관됩니다.",
 	"missingcommenttext": "대답을 입력해주십시오.",
-	"missingcommentheader": "<strong>알림:</strong> 이 소견에 제목을 입력하지 않았습니다.\n《$1》 단추를 다시 찰칵하면 제목 없이 편집이 보관됩니다.",
 	"summary-preview": "편집 요약 미리 보기:",
 	"previewerrortext": "변경사항을 미리보기하는 도중 오유가 발생했습니다.",
 	"blockedtitle": "사용자가 차단됨",

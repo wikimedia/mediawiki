@@ -365,7 +365,6 @@
 	"anoneditwarning": "<strong>Warning:</strong> '''Attinzioni:''' Intradda nò effettuadda. I' la cronologia di la pàgina sarà rigisthraddu l'indirizzu IP tóiu si tu fai modìfichi.\nSi <strong>[$1 fai l'intradda]</strong> oppuru <strong>[$2 si tu crii una pàgina d'utenti]</strong>, li tó modìfichi sarani assignaddi a l'innommu d'utenti tóiu.",
 	"missingsummary": "<strong>Promimória:</strong> Nò hai ippizzificaddu l'oggettu di la mudìfigga. Turrendi à incalchà \"$1\" lu mudìfigga sarà saivvadda cun l'oggettu bioddu.",
 	"missingcommenttext": "Pè piazèri insiri un cummentu.",
-	"missingcommentheader": "'''Promimória:''' Nò hai ippizzificaddu l'intisthazioni di chisthu cummentu. Turrendi à incalchà \"$1\" lu mudìfigga sarà saivvadda chena intisthazioni.",
 	"summary-preview": "Antiprimma oggettu di la mudìfiga:",
 	"blockedtitle": "Utenti broccaddu.",
 	"blockedtext": "'''Chisth'innòmmu utenti o indirizzu IP so isthaddi broccaddi.'''\n\nLu broccu è isthaddu dizzisu da $1. La rasgioni frunidda è: ''$2''.\n\n* Prinzìpiu di lu broccu: $8\n* Ischadènzia: $6\n* Duradda: $7\n\nPói ciamà $1 o un'althru [[{{MediaWiki:Grouppage-sysop}}|amministhradore]] pa ciaramiddà di lu broccu.\n\nAttinzioni chi la funzioni '''Ischribì a l'utenti''' nò è attiba si nò è isthaddu rigisthraddu un'indirizzu di postha erettrònica variddu i' li [[Special:Preferences|prifirenzi]].\n\nSi vói ciaramiddanne, pa piazeri prizzisa sempri lu nùmaru di lu broccu (ID #$5) e l'indirizzu IP tóiu ($3).",

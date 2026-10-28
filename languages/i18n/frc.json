@@ -296,7 +296,6 @@
 	"anoneditwarning": "'''Attention:''' Vous êtes pas connecté. Votre adresse IP vas être sauvée dans la liste des changements pour cette page.",
 	"missingsummary": "'''Attention:'''  Vous avez pas mis de description.  Si vous cliquez le bouton \"Sauver\" encore, votre changement va être sauvé sans description.",
 	"missingcommenttext": "Mettez donc un commentaire en bas.",
-	"missingcommentheader": "'''Attention :''' Vous avez pas mis de sujet pour ce commentaire. Si vous cliquez le bouton \"Sauver\" encore, votre changement va être sauvé sans sujet.",
 	"summary-preview": "Vue d'avance de la description:",
 	"previewerrortext": "Une erreur est survenue pendant la tentative pour visualiser tes modifications.",
 	"blockedtitle": "L'useur est bloqué",

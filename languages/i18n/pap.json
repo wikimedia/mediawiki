@@ -422,7 +422,6 @@
 	"temp-user-banner-tooltip-title": "Kuenta temporal",
 	"anoneditwarning": "<strong>Aviso:</strong> Bo no ta outentiká. Bo IP adrès lo ta visibel pa públiko ku kualke redakshon bo hasi. Si <strong>[$1 bo seshon a inisiá]</strong> òf <strong>[$2 bo krea un kuenta]</strong>, bo redakshonnan lo ta atribuí na bo nòmber di usadó, banda di otro benifisionan.",
 	"edit-constraint-warning-wrapper": "<strong>Aviso:</strong> $1",
-	"missingcommentheader": "<strong>Pone tinu:</strong> Bo no a proveé un tema/titular pa e ramarka aki.\nSi bo bolbe klek \"$1\", bo kambio lo wòrdu publiká sin un tema/titular.",
 	"autocomment-top": "(tòp)",
 	"blockedtitle": "Usadó ta blokiá",
 	"blockedtext": "<strong>Bo nòmber di usadó òf IP adrès a wòrdu blokiá.</strong>\n\n{{int:blockedtext-made-by|$1}}\n{{int:blockedtext-reason-comment|$2}}\n\n* {{int:blockedtext-start-time|$8}}\n* {{int:blockedtext-expiration-time|$6}}\n* {{int:blockedtext-intended-blockee|$7}}\n\n{{int:blockedtext-contact-blocker-admin|$1}}\nBo por usá e funshon \"{{int:emailuser}}\" si un email adrès bálido ta spesifiká deb bo [[Special:Preferences|preferensianan]] i bo no a wòrdu blokiá di usé.\n{{int:blockedtext-block-ip|$3}} {{int:blockedtext-block-id|$5}}\n{{int:blockedtext-include-details-queries}}",

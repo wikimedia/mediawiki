@@ -585,7 +585,6 @@
 	"edit-constraint-invalidredirecttarget-warning": "Покушавате преусмерити ову страницу на одредиште које није валидно. Молимо размислите још једном.",
 	"edit-constraint-warning-wrapper-save-deleted-revision": "<strong>Упозорење:</strong> $2\n\nАко желите наставити, кликнете још једном „$1”, али овим ће те објавити садржај обрисане измене.",
 	"missingcommenttext": "Унесите коментар.",
-	"missingcommentheader": "<strong>Подсетник:</strong> Нисте навели назив теме овог коментара.\nАко поново кликнете на „$1”, измена ће бити објављена без њега.",
 	"summary-preview": "Претпреглед описа измене:",
 	"autocomment-top": "(врх)",
 	"previewerrortext": "Дошло је до грешке при покушају прегледа измена.",

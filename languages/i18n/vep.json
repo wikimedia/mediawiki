@@ -509,7 +509,6 @@
 	"autocreate-preview-warning": "<em>Sinä ed tulend sistemaha. Konz sinä teged hot' miččen-se vajehtusen, sinun täht linneb tehtud kesk'aigaine lehtpol'. [[{{MediaWiki:tempuser-helppage}}|Luge enamba]].</em>",
 	"missingsummary": "<strong>Muštatez:</strong> Sinä ed andand vajehtusen lühüdad sel'genzoitust.\nKu sinä painad völ kerdan \"$1\", sinun vajehtuz ei linne kaitud.",
 	"missingcommenttext": "Ole hüvä, jäta ičeiž sel'genzoituz.",
-	"missingcommentheader": "<strong>Muštatez:</strong> Sinä ed kirjutand temad necen mel'pidon täht.\nKu sinä möst painad \"$1\", sinun vajehtuz linneb paindud ilman sidä.",
 	"summary-preview": "Tehtud vajehtusiden ezikacund:",
 	"previewerrortext": "Tegihe viga sinun vajehtusiden kacundan aigan.",
 	"blockedtitle": "Kävutai om saubatud",

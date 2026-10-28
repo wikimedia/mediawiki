@@ -258,7 +258,6 @@
 	"anoneditwarning": "'''Kapiadian:''' Eka maka-login. Mitala ya ing kekang IP address king amlat pamanalili (edit history) ning bulung a ini.",
 	"missingsummary": "'''Kapabaluan:''' Ala kang binieng sampulung (summary) da reng me-edit.\nNung i-click meng pasibayu ing Save, ma-save ya ing kekang in-edit a alang anti kaniti.",
 	"missingcommenttext": "Pakisulat me ing kekang komentu/puna king lalam.",
-	"missingcommentheader": "'''Kapabaluan:''' Ala kang binieng paksa/pamagat para kaniting komentu.\nNung i-click meng pasibayu ing Save, ma-save ya ing kekang i-edit a yalang anti kaniti.",
 	"summary-preview": "Preview ning sampulung (summary preview):",
 	"blockedtitle": "Ing talagamit mesabat ya",
 	"blockedtext": "'''Mesabat ya ing kekang lagiung talagamit (user name) o IP address.'''\n\nI $1 ing menyabat. Ini ing binie nang sangkan ''$2''.\n\n* Umpisa ning pamaniabat: $8\n* Angganan ning pamaniabat: $6\n* Ing talagamit a sabatan: $7\n\nMalyari meng pabaluan i $1 o deng aliwang [[{{MediaWiki:Grouppage-sysop}}|talapanibala]] ba yeng pisabian ing pangasabat.\nE me malyaring gamitan ing 'e-mail this user' feature liban namu nung ating mababanggit a e-mail address a gagana ketang kekang[[Special:Preferences|account preferences]], at e ka mesabat king pamangamit kaniti.\nIng salukuyan mung IP address $3 ya, at ing blocked ID #$5 ya. Pakibanggit me ing sanu man kareti o detang adua kareng kekang kutang a maniad pamipalino.",

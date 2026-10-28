@@ -579,7 +579,6 @@
 	"edit-constraint-invalidredirecttarget-warning": "Ovu stranicu pokušavate preusmjeriti na neodgovarajuću stranicu. Provjerite što ste upisali.",
 	"edit-constraint-warning-wrapper-save-deleted-revision": "<strong>Upozorenje:</strong> $2\n\nAko svejedno želite nastaviti, ponovno kliknite na \"$1\", ali time ćete objaviti sadržaj izbrisane izmjene.",
 	"missingcommenttext": "Molim unesite komentar.",
-	"missingcommentheader": "<strong>Podsjetnik:</strong> Niste napisali naslov ovoga komentara. Ako ponovno stisnete »$1«, Vaš će komentar biti objavljen bez naslova.",
 	"summary-preview": "Pregled polja Sažetak:",
 	"autocomment-top": "(vrh)",
 	"previewerrortext": "Došlo je do pogreške u prikazu pretpregleda Vaših promjena.",

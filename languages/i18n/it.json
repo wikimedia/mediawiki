@@ -715,7 +715,6 @@
 	"edit-constraint-invalidredirecttarget-warning": "Stai tentando di reindirizzare questa pagina a una pagina che non è un target di reindirizzamento valido. Ti preghiamo di riconsiderare la tua decisione.",
 	"edit-constraint-warning-wrapper-save-deleted-revision": "<strong>Attenzione:</strong> $2 \n\nSe vuoi continuare comunque, clicca di nuovo su \"$1\", ma questo pubblicherà il contenuto della versione cancellata.",
 	"missingcommenttext": "Inserisci un commento.",
-	"missingcommentheader": "<strong>Attenzione:</strong> non è stato specificato l'oggetto di questo commento. Premendo di nuovo \"$1\" la modifica verrà pubblicata senza.",
 	"summary-preview": "Anteprima dell'oggetto della modifica:",
 	"autocomment-top": "(inizio)",
 	"previewerrortext": "Si è verificato un errore durante il tentativo di mostrare l'anteprima delle tue modifiche.",

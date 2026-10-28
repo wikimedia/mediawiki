@@ -483,7 +483,6 @@
 	"autocreate-preview-warning": "<em>Et ole piässyh sistiemah. Jälles sinun luajittuu kohendustu, sinule luajitah väliaigaine käyttäjäntunnus. [[{{MediaWiki:tempuser-helppage}}|Ližiä tieduo]]</em>",
 	"missingsummary": "<strong>Mustoitus:</strong> Et ole kirjutannuh yhtehveduo. \nKu painaldannet $1, sinun muutokset jullatah sellityksittäh.",
 	"missingcommenttext": "Ole hyvä, kirjuta sellitys.",
-	"missingcommentheader": "<strong>Mustoitus:</strong> Et ole kirjutannuh aiheoččikkuo täh sellitykseh niškoi. Ku painaldanet uvvessah $1, sinun kohendus jullatah ilmai sidä.",
 	"summary-preview": "Yhtehvevon ezikaččelu:",
 	"previewerrortext": "Sinun kohenduksien ezikaččelun ozuttamizes rodih haireh.",
 	"blockedtitle": "Käyttäi on lukittu",

@@ -461,7 +461,6 @@
 	"anonpreviewwarning": "''شما سیستما مان نہ بیتگ اِت شمئی آیپیءِ ڈس اے تاکءِ ٹگلانءِ گوستانکءِ تۏکا سمتءَ بیت۔''",
 	"missingsummary": "'''وھمانی:''' شما ٹگلءِ کمݔنءِ جاھا ھچی نہ لککتگ۔\nاگہ شما پدا $1 ءِ سرا مݔن بہ دئ اِت شمئی ٹگل سپتءَ بئ اَنت۔",
 	"missingcommenttext": "چݔرا یک گپے بہ لکک اِت۔",
-	"missingcommentheader": "'''وھمانی:'' شما پہ اے گپا سرگالے نہ لککتگ\nاگہ پدا «$1» ءِ بٹنا مݔن بہ دئ اِت شمئی ٹگل بے سرگالا سپتءَ بئ اَنت۔",
 	"summary-preview": "پداچاریءِ کمݔن:",
 	"blockedtitle": "کاربر محدود بوتت",
 	"blockedtext": "<strong>شمئی دسترسی پہ شمئی کارزیرۏکی سابا بندگ بیتگ یا شما آیپی بند کنگ ءُ بلاک کنگ بیتگ۔</strong>\n\n{{int:blockedtext-made-by|$1}}\n{{int:blockedtext-reason-comment|$2}}\n\n*{{int:blockedtext-start-time|$8}}\n*{{int:blockedtext-expiration-time|$6}}\n*{{int:blockedtext-intended-blockee|$7}}\n\n{{int:blockedtext-contact-blocker-admin|$1}}\nاگہ شما یک پدلݔن ایمئیلی وتی [[Special:Preferences|واھشتان]] تۏکا سپت کُتگ ءُ شمئی دسترسی پہ ایمئیلءِ کارمرز کنگا بند نہ بیتگ شما تۏن اِت چہ «{{int:emailuser}}» ئا کارمرز بہ کن اِت۔\n{{int:blockedtext-block-ip|$3}} {{int:blockedtext-block-id|$5}}\n{{int:blockedtext-include-details-queries}}",

@@ -376,7 +376,6 @@
 	"anonpreviewwarning": "<em>Niy je żeś wlogowany(ŏ). Spamiyntanie zmian zapisze twoja adresa IP we historyji edycyji tyj strōny.</em>",
 	"missingsummary": "'''Pozůr:''' Ńy wprowadźůł żeś uopisu pomjyńań. Kej go ńy chcesz wprowadzać, naćiś knefel Spamjyntej jeszcze roz.",
 	"missingcommenttext": "Wkludź kōmyntŏrz niżyj.",
-	"missingcommentheader": "'''Dej pozůr:''' Treść nagłůwka je blank - uzupełńij go! Jeli tego ńy zrobisz, Twůj kůmyntorz bydźe naszkryflony bez nagłůwka.",
 	"summary-preview": "Podglůnd uopisu:",
 	"blockedtitle": "Użytkowńik je zawarty uod sprowjyń",
 	"blockedtext": "<strong>Twoje kōnto abo adresa IP sōm zaszperowane.</strong>\n\nSzpera uostała nałożōnŏ ôd $1.\nPodany powōd to: <em>$2</em>.\n\n* Zaczōntek szpery: $8\n* Przedŏwniynie blokady: $6\n* Zaszperowany uostoł: $7\n\nCoby wyklarować prziczyny szpery, mogesz sie skōntaktować ze $1 abo inkszym [[{{MediaWiki:Grouppage-sysop}}|administratorym]].\nNiy mogesz użyć funkcyje „{{int:emailuser}}”, jeźli niy mŏsz nŏleżnyj adresy e-mail we swojich [[Special:Preferences|preferyncyjach]] abo jeźli takŏ możliwość bōła Ci ôdkŏzanŏ.\nTwoja terŏźnŏ adresa IP to $3, a numer idyntyfikacyjny szpery to #$5.\nProszymy ô podanie ôbōch tych informacyji przi klarowaniu szpery.",

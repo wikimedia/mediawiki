@@ -574,7 +574,6 @@
 	"edit-constraint-invalidredirecttarget-warning": "Ginatinguhaan mo nga i-redirect ini nga pahina sa isa ka pahina nga indi isa ka balido nga target sa pag-redirect. Palihog binagbinaga liwat ang imo ginahimo.",
 	"edit-constraint-warning-wrapper-save-deleted-revision": "<strong>Paandam:</strong> $2\n\nKon luyag mo magpadayon, i-klik liwat ang \"$1\", apang ini magabalhag sang mga kaundan sang ginpanas nga rebisyon.",
 	"missingcommenttext": "Palihog magsulod sang komento.",
-	"missingcommentheader": "<strong>Pahanumdom:</strong> Wala ka naghatag sang topiko para sa sini nga komento.\nKon i-klik mo liwat ang \" $1 \", ang imo pag-edit igabalhag nga wala sing isa.",
 	"summary-preview": "Preview sang edit summary:",
 	"autocomment-top": "(ibabaw)",
 	"previewerrortext": "May natabo nga sayop samtang ginatinguhaan nga tan-awon ang imo mga pagbag-o.",

@@ -549,7 +549,6 @@
 	"autocreate-preview-warning": "<em>Vi ne estas ensalutinta. Post kiam vi redaktos, provizora konto estos kreita por vi. [[{{MediaWiki:tempuser-helppage}}|Lernu pli]].</em>",
 	"missingsummary": "<strong>Memorigo:</strong> vi ne provizis redaktan resumon.\nSe vi alklakos denove \"$1\", via redakto estos publikigita sen resumo.",
 	"missingcommenttext": "Bonvolu entajpi komenton.",
-	"missingcommentheader": "<strong>Memorigo:</strong> Vi ne provizis temon por ĉi tiu komento.\nSe vi alklakos \"$1\" denove, via redakto estos publikigita sen ĝi.",
 	"summary-preview": "Resuma antaŭrigardo:",
 	"previewerrortext": "Dum provo antaŭrigardi viajn ŝanĝojn okazis eraro.",
 	"blockedtitle": "La uzanto estas forbarita.",

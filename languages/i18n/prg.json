@@ -318,7 +318,6 @@
 	"anoneditwarning": "<strong>Nōda:</strong> Tū ni assei engūbun. Twajā IP adressi wīrst būwusi perōnewingi widāminan ik tu wīrst segīwuns ainuntan kitawīdinsnan. Ik Tu wīrst <strong>[$1 engūbuns]</strong> adder <strong>[$2 teīkuns rekkenan]</strong>, twajjas redigīsnas wīrst būwušas preipeisātan prei twajjan tērpautajas pabilīsnan, ēmpiri sen kittans tērpans.",
 	"missingsummary": "'''Nōda:''' Ni assei enwedduns ebpeisāsenin stēisan kitawīdinsnan.\nIk tū ni kwaitēi din enwestun, gnetteis etkūmps knuppan \"Enpeisāis\".",
 	"missingcommenttext": "Madli, enpeisāis kumentāran zemmais.",
-	"missingcommentheader": "'''Nōda:''' Kumentāras tītels ast pāustan.\nKaddan tū wīrst gnettuns(si) \"Enpeisāis\" etkūmps, twājs kumentārs wīrst būwuns enpeisātan šlāit tītelin.",
 	"summary-preview": "Ebpeisāsenes pirmādira:",
 	"blockedtitle": "Tērpautajs ast blōkitan",
 	"blockedtext": "<strong>Twajā tērpautajas pabilisnā anga IP adressi pastāi blōkitan.</strong>\n\n{{int:blockedtext-made-by|$1}}\n{{int:blockedtext-reason-comment|$2}}\n\n*{{int:blockedtext-start-time|$8}}\n*{{int:blockedtext-expiration-time|$6}}\n*{{int:blockedtext-intended-blockee|$7}}\n\n{{int:blockedtext-contact-blocker-admin|$1}}\nTū mazzi tērpautun \"{{int:emailuser}}\" mazīngiskwan, ik tikrōmiska e-mail adressi ast padātan en twajāmans [[Special:Preferences|rekkenas pirminiskwans]] be ik šī mazīngisku ni ast blōkitan.\n{{int:blockedtext-block-ip|$3}} {{int:blockedtext-block-id|$5}}\n{{int:blockedtext-include-details-queries}}",

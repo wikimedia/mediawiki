@@ -446,7 +446,6 @@
 	"anonpreviewwarning": "''Du büst nich anmellt. Wenn du nu afspiekerst, dükert dien IP-Adress in de Versionsgeschicht op.''",
 	"missingsummary": "'''Wohrschau:''' Du hest keen Tosamenfaten angeven, wat du ännert hest. Wenn du nu Spiekern klickst, warrt de Siet ahn Tosamenfaten spiekert.",
 	"missingcommenttext": "Geev ünnen en Tosamenfaten in.",
-	"missingcommentheader": "'''Wohrschau:''' Du hest keen Överschrift in dat Feld „{{int:Subject}}“ ingeven.\nWenn du noch wedder op „{{int:Savearticle}}“ klickst, denn warrt dien Ännern ahn Överschrift spiekert.",
 	"summary-preview": "Vörschau vun’t Tosamenfaten:",
 	"blockedtitle": "Bruker is blockt",
 	"blockedtext": "<strong>Dien Brukernaam oder diene IP-Adress blockt worrn.</strong>\n\n{{int:blockedtext-made-by|$1}}\n{{int:blockedtext-reason-comment|$2}}\n\n*{{int:blockedtext-start-time|$8}}\n*{{int:blockedtext-expiration-time|$6}}\n*{{int:blockedtext-intended-blockee|$7}}\n\n{{int:blockedtext-contact-blocker-admin|$1}}\nDu kanns de \"{{int:emailuser}}\"-Funkschoon bruken, wenn Du een Emailadress indragen is in dien [[Special:Preferences|preferences]] un du nich sparrt büst de to bruken.\n{{int:blockedtext-block-ip|$3}} {{int:blockedtext-block-id|$5}}\n{{int:blockedtext-include-details-queries}}",

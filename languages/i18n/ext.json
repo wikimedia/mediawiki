@@ -394,7 +394,6 @@
 	"anoneditwarning": "<strong>Avisu:</strong> Non á prencipiau sessión. La tu dereción IP es púbrica si hazi qualisquiera muación. Si <strong>[$1 prencipia sessión]</strong> o <strong>[$2 crías una cuenta]</strong>, las tus adicionis sedrán atribuías al tu nombri d'esuariu, amás d'otrus beneficius.",
 	"missingsummary": "'''Atención:''' Nu as escrebiu una síntesis al tentu la tu eición. Si pursas otra vezi sobri «$1» la tu eición s´emburacará sin él.",
 	"missingcommenttext": "Pol favol, escrebi un testu embahu.",
-	"missingcommentheader": "'''Atención:''' Nu as escrebiu un entítulu pal tu comentáriu. Si güervis a pursal sobri \"Emburacal\", s'emburacará sin él.",
 	"summary-preview": "Previsoreal síntesis:",
 	"blockedtitle": "Esti esuariu está atarugau",
 	"blockedtext": "<strong>El tu nombri d'esuariu o la tu dereción IP está atarugau/á.</strong>\n\n{{int:blockedtext-made-by|$1}}\n{{int:blockedtext-reason-comment|$2}}\n\n*{{int:blockedtext-start-time|$8}}\n*{{int:blockedtext-expiration-time|$6}}\n*{{int:blockedtext-intended-blockee|$7}}\n\n{{int:blockedtext-contact-blocker-admin|$1}}\nPuei gastal la hunción \"{{int:emailuser}}\" si ás registrau un correu letrónicu corretu enas tus [[Special:Preferences|preferencias]] i no ás síu atarugau pa gasta-las.\n{{int:blockedtext-block-ip|$3}} {{int:blockedtext-block-id|$5}}\n{{int:blockedtext-include-details-queries}}",

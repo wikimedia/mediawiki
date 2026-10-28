@@ -402,7 +402,6 @@
 	"anonpreviewwarning": "''Njejsy pśizjawjony. Składowanje pśenosujo twóju IP-adresu do wobźěłowańskeje historije toś togo boka.''",
 	"missingsummary": "'''Pokazka:''' Njejsy žedno zespominanje zapódał. Gaž kliknjoš na \"Składowaś\" składujo se bok bźez zespominanja.",
 	"missingcommenttext": "Pšosym zespominanje zapódaś.",
-	"missingcommentheader": "'''Glědaj:''' Njejsy temu/ nadpismo za toś ten komentar pódał. Gaž kliknjoš na \"$1\" znowego, składujo se twójo wobźěłanje mimo temy/nadpisma.",
 	"summary-preview": "Pśeglěd zespominanja:",
 	"blockedtitle": "Wužywaŕ jo se blokěrował",
 	"blockedtext": "'''Twójo wužywarske mě abo IP-adresa stej se blokěrowałej.'''\n\nBlokěrowanje pśez $1.\nPódana pśicyna: ''$2''.\n\n* Zachopjeńk blokěrowanja: $8\n* Kóńc blokěrowanja: $6\n* Blokěrowany wužywaŕ: $7\n\nMóžoš $1 abo drugego [[{{MediaWiki:Grouppage-sysop}}|administratora]] kontaktěrowaś, aby wó blokěrowanju diskutěrował.\nNjamóžoš funkciju 'Toś tomu wužywarjeju e-mail pósłaś' wužywaś, snaźkuli płaśiwa e-mailowa adresa jo pódana w swójich kontowych [[Special:Preferences|nastajenjach]] a njeblokěrujos se ju wužywaś.\nTwója IP-adresa jo $3, a ID blokěrowanja jo #$5.\nPšosym zapśimjej wše górjejcne drobonosći do napšašowanjo, kótarež cyniš.",

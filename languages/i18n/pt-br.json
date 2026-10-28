@@ -731,7 +731,6 @@
 	"edit-constraint-invalidredirecttarget-warning": "Você está tentando redirecionar essa página para uma página que não é um alvo válido de redirecionamento. Por favor reconsidere o que você está fazendo.",
 	"edit-constraint-warning-wrapper-save-deleted-revision": "<strong>Aviso:</strong> $2\n\nSe você quer continuar mesmo assim, aperte em \"$1\" de novo, mas isso vai publicar os conteúdos da revisão excluída.",
 	"missingcommenttext": "Por favor, digite um comentário.",
-	"missingcommentheader": "<strong>'''Lembrete:</strong>''' Você não introduziu um assunto/título para este comentário.\nSe você clicar novamente \"$1\", a sua edição será publicada sem um título.",
 	"summary-preview": "Previsão do resumo de edição:",
 	"autocomment-top": "(topo)",
 	"previewerrortext": "Ocorreu um erro ao tentar pré-visualizar suas alterações.",

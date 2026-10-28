@@ -646,7 +646,6 @@
 	"edit-constraint-invalidredirecttarget-warning": "Du forsøger at omdirigere denne side til en side, der ikke er et gyldigt omdirigeringsmål. Genovervej venligst, hvad du gør.",
 	"edit-constraint-warning-wrapper-save-deleted-revision": "<strong>Advarsel:</strong> $2 \n\nHvis du alligevel vil fortsætte, skal du klikke på \"$1\" igen, men dette vil offentliggøre indholdet af den slettede sideversion.",
 	"missingcommenttext": "Skriv venligst en kommentar.",
-	"missingcommentheader": "<strong>Bemærk:</strong> Du har ikke angivet en emne for denne kommentar. Hvis du trykker \"$1\" én gang til, gemmes dine ændringer uden emne.",
 	"summary-preview": "Forhåndsvisning af redigeringsopsummering:",
 	"autocomment-top": "(top)",
 	"previewerrortext": "Der opstod en fejl under forsøget på at lave en forhåndsvisning af dine ændringer.",

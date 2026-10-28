@@ -481,7 +481,6 @@
 	"autocreate-preview-warning": "<em>Tu no es autenticida. Pos cuando tu fa un edita, on va crea un conta tempora per tu. [[{{MediaWiki:tempuser-helppage}}|Aprende plu]].</em>",
 	"missingsummary": "<strong>Avisa:</strong> Tu no ia furni un resoma de la edita.\nSi tu clica \"$1\" denova, tua edita va es fisada sin resoma.",
 	"missingcommenttext": "Presenta un comenta, per favore.",
-	"missingcommentheader": "<strong>Avisa:</strong> Tu no ia furni un tema per esta comenta.\nSi tu clica \"$1\" denova, tua edita va es fisada sin tema.",
 	"summary-preview": "Previde de resoma:",
 	"previewerrortext": "Un era ia aveni en atenta previde tua cambias.",
 	"blockedtitle": "Usor es impedida",

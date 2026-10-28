@@ -556,7 +556,6 @@
 	"autocreate-preview-warning": "<em>Jūs nesate prisijungę. Atlikus keitimą jums bus sukurta laikina paskyra. [[{{MediaWiki:tempuser-helppage}}|Sužinokite daugiau]].</em>",
 	"missingsummary": "<strong>Priminimas:</strong> Jūs nepateikėte redagavimų santraukos. Jei dar kartą spustelėsite „$1“, jūsų redagavimas bus išsaugotas be jos.",
 	"missingcommenttext": "Prašome įvesti komentarą.",
-	"missingcommentheader": "<strong>Priminimas:</strong> Jūs nenurodėte šio komentaro antraštės.\nJei vėl paspausite „$1“, jūsų keitimas bus paskelbtas be jo.",
 	"summary-preview": "Keitimo santraukos peržiūra:",
 	"previewerrortext": "Įvyko klaida bandant peržiūrėti jūsų pakeitimus.",
 	"blockedtitle": "Naudotojas yra užblokuotas",

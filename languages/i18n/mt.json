@@ -501,7 +501,6 @@
 	"autocreate-preview-warning": "<em>M'intix illoggjat/a. Ladarba tagħmel modifika, se jinħoloq kont temporanju għalik. [[{{MediaWiki:tempuser-helppage}}|Sir af aktar]].</em>",
 	"missingsummary": "'''Twissija:''' Ma pprovdejt l-ebda tagħrif fil-qosor dwar il-modifika tiegħek.\nJekk terġa' tagħfas Ippublika l-modifiki, l-modifika se tiġi salvata mingħajr tagħrif fil-qosor dwar il-kontribuzzjoni tiegħek.",
 	"missingcommenttext": "Jekk jogħġbok ħalli kumment.",
-	"missingcommentheader": "'''Twissija:''' Ma ġie speċifikat l-ebda suġġett/titlu għal dan il-kumment.\nJekk terġa' tagħfas \"$1\", il-modifika tiegħek se tiġi salvata mingħajr wieħed.",
 	"summary-preview": "Dehra proviżorja tat-taqsira:",
 	"previewerrortext": "Kien hemm żball waqt tentattiv biex tintwera previżżjoni tal-bidliet",
 	"blockedtitle": "L-utent ġie bblokkjat",

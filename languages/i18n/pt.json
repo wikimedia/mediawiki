@@ -621,7 +621,6 @@
 	"autocreate-preview-warning": "<em>Não está autenticado. Quando fizer uma edição, será criada para si uma conta temporária. [[{{MediaWiki:tempuser-helppage}}|Mais informações]].</em>",
 	"missingsummary": "<strong>Atenção:</strong> não introduziu um resumo da edição.\nSe clicar novamente \"$1\", a sua edição será publicada sem resumo.",
 	"missingcommenttext": "Introduza um comentário, por favor.",
-	"missingcommentheader": "<strong>Atenção:</strong> não introduziu um assunto para este comentário.\nSe clicar novamente \"$1\", a sua edição será publicada sem assunto.",
 	"summary-preview": "Antevisão do resumo de edição:",
 	"previewerrortext": "Ocorreu um erro enquanto tentava antever as suas alterações.",
 	"blockedtitle": "O utilizador está bloqueado",

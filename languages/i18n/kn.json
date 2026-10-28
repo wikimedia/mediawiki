@@ -473,7 +473,6 @@
 	"anonpreviewwarning": "<em>ನೀವು ಲಾಗ್ ಇನ್ ಆಗಿಲ್ಲ. ಈ ಪುಟದ ಸಂಪಾದನೆ ಇತಿಹಾಸದಲ್ಲಿ ನಿಮ್ಮ IP ವಿಳಾಸವನ್ನು ಪ್ರಕಟಿಸುವುದು ದಾಖಲಿಸುತ್ತದೆ.</em>",
 	"missingsummary": "<strong>ಜ್ಞಾಪನೆ:</strong> ನೀವು ಸಂಪಾದನೆಯ ಸಾರಾಂಶವನ್ನು ಒದಗಿಸಿಲ್ಲ.\nನೀವು \" $1 \" ಅನ್ನು ಮತ್ತೊಮ್ಮೆ ಕ್ಲಿಕ್ ಮಾಡಿದರೆ, ನಿಮ್ಮ ಸಂಪಾದನೆಯು ಒಂದಿಲ್ಲದೇ ಪ್ರಕಟವಾಗುತ್ತದೆ.",
 	"missingcommenttext": "ದಯವಿಟ್ಟು ಒಂದು ಟಿಪ್ಪಣಿಯನ್ನು ನಮೂದಿಸಿ.",
-	"missingcommentheader": "<strong>ಗಮನಿಸಿ:</strong> ನಿಮ್ಮ ಸಂಪಾದನೆಯ ಸಾರಾಂಶವನ್ನು ನೀವು ನೀಡಿಲ್ಲ. ಮತ್ತೊಮ್ಮೆ \"$1\" ಅನ್ನು ಒತ್ತಿದರೆ, ಸಾರಾಂಶವಿಲ್ಲದೆಯೇ ನಿಮ್ಮ ಸಂಪಾದನೆಯನ್ನು ಉಳಿಸಲಾಗುವುದು.",
 	"summary-preview": "ತಾತ್ಪರ್ಯ ಮುನ್ನೋಟ:",
 	"blockedtitle": "ಈ ಸದಸ್ಯರನ್ನು ತಡೆ ಹಿಡಿಯಲಾಗಿದೆ.",
 	"blockedtext": "ನಿಮ್ಮ IP ವಿಳಾಸವನ್ನು ಸ್ವಯಂಚಾಲಿತವಾಗಿ ನಿರ್ಬಂಧಿಸಲಾಗಿದೆ ಏಕೆಂದರೆ ಅದನ್ನು ಇನ್ನೊಬ್ಬ ಬಳಕೆದಾರರು ಬಳಸಿದ್ದಾರೆ, ಅವರನ್ನು $1 ನಿಂದ ನಿರ್ಬಂಧಿಸಲಾಗಿದೆ.\nನೀಡಿದ ಕಾರಣ:\n\n{{int:blockedtext-made-by|$1}}\n{{int:blockedtext-reason-comment|$2}}\n\n*{{int:blockedtext-start-time|$8}}\n*{{int:blockedtext-expiration-time|$6}}\n*{{int:blockedtext-intended-blockee|$7}}\n\n{{int:blockedtext-contact-blocker-admin|$1}} \nನಿಮ್ಮ [[Special:Preferences|ಪ್ರಾಶಸ್ತ್ಯಗಳು]] ನಲ್ಲಿ ಮಾನ್ಯವಾದ ಇಮೇಲ್ ವಿಳಾಸವನ್ನು ನಿರ್ದಿಷ್ಟಪಡಿಸಿದರೆ ಮತ್ತು ಅದನ್ನು ಬಳಸದಂತೆ ನಿಮ್ಮನ್ನು ನಿರ್ಬಂಧಿಸದೇ ಇದ್ದಲ್ಲಿ ನೀವು \"{{int:emailuser}}\" ವೈಶಿಷ್ಟ್ಯವನ್ನು ಬಳಸಬಹುದು. .\n{{int:blockedtext-block-ip|$3}} {{int:blockedtext-block-id|$5}}.\n{{int:blockedtext-include-details-queries}}",

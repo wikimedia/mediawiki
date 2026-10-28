@@ -344,7 +344,6 @@
 	"anoneditwarning": "<strong>Hoiatus:</strong> Sa olõ-õi nimega sisse lännüq. Suq puutri võrgoaadrõs om kõigilõ nätäq, ku muutmiisi tiit. Ku <strong>[$1 läät nimega sisse]</strong> vai <strong>[$2 tiit hindäle pruukjanime]</strong>, sis, päält muu kasuligu, näüdätäs su toimõnduisi su pruukjanime perrä.",
 	"missingsummary": "'''Miildetulõtus:''' sa olõ-i kirotanuq uma toimõndamisõ kokkovõtõt. Ku klõpsahtat viil kõrra nuppi $1, sis pästetäs su toimõndus ilma kokkovõttõldaq.",
 	"missingcommenttext": "Olõq hää, kirodaq uma sõnnom.",
-	"missingcommentheader": "<strong>Miildetulõtus:</strong> Sa olõ-i andnuq umalõ sõnnomalõ päälkirjä. Ku klõpsahtat nuppi $1, pästetäs ilma päälkiräldä.",
 	"summary-preview": "Kokkovõttõ proovikaehus:",
 	"blockedtitle": "Pruukja om kinniq peet",
 	"blockedtext": "<strong>Su pruukjanimi vai puutri võrgoaadrõs om kinniq pant.</strong>\n\nKinniqpandja om $1.\nTimä põhjõndus om sääne: ''$2''.\n\n* Kinniqpandmisõ algus: $8\n* Kinniqpandmisõ lõpp: $6\n* Kinnipandja: $7\n\nKüsümüst saat arotaq $1 vai mõnõ tõõsõ [[{{MediaWiki:Grouppage-sysop}}|kõrraldajaga]].\nPanõq tähele, et sa saa-i taalõ pruukjalõ sõnomit saataq, ku sa olõ-i kirjä pandnuq umma [[Special:Preferences|säädmislehe]] e-posti aadrõssit.\nSuq puutri võrgoaadrõs om $3 ja kinnipandmistunnus om #$5. Panõq naaq kõiki perräküsümiisi manoq, midä tiit.",

@@ -300,7 +300,6 @@
 	"anonpreviewwarning": "\"Du bäst nit ounmälded. Bie dät Spiekerjen wäd dien IP-Adrässe in ju Versionsgeskichte apteekend.\"",
 	"missingsummary": "'''Waiwiesenge:''' Du hääst neen Touhoopefoatenge anroat. Wan du fonnäien ap „Siede spiekerje“ klikst, wäd dien Annerenge sunner Touhoopefoatenge uurnuumen.",
 	"missingcommenttext": "Reek jädden ne Touhoopefoatenge ien.",
-	"missingcommentheader": "'''OACHTENGE:''' Du hääst neen Uurskrift in dät Fäild „Beträft:“ ienroat. Wan du fonnäien ap „$1“ klikst, wäd dien Beoarbaidenge sunner Uurskrift spiekerd.",
 	"summary-preview": "Foarbekiek fon ju Touhoopefoatengsriege:",
 	"blockedtitle": "Benutser is blokkierd",
 	"blockedtext": "'''Din Benutsernoome of dien IP-Adrässe wuud  speerd.'''\n\nJu Speerenge wuud fon $1 truchfierd.\nAs Gruund wuud \"$2\" ounroat.\n\n* Begin fon ju Speere: $8\n* Eende fon ju Speere: $6\n* Speere betr\"ft: $7\n\n\nDu koast $1 of aan fon do uur [[{{MediaWiki:Grouppage-sysop}}|Administratore]] kontaktierje, uum uur ju Speere tou diskutierjen.\n\nDu koast ju „E-Mail an dissen Benutser“-Funktion nit nutsje, soloange neen gultige E-Mail-Adresse in dien [[Special:Preferences|Benutserkonto-Ienstaalengen]] iendrain is, of disse Funktion foar die speerd wuude.\nDien aktuelle IP-Adresse is $3, und ju Speer-ID is $5.\nFöich alle Informatione fon älke Anfroage bietou, ju du stoalst.",

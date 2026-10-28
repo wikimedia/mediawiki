@@ -82,7 +82,6 @@
 	"changeemail-header": "更改電子郵件帳戶",
 	"changeemail-oldemail": "當前電郵地址：",
 	"missingsummary": "'''提示:''' 汝無提供一隻編寫摘要。假使汝再次單擊「$1」，汝嘅編寫將毋帶編寫摘要保存。",
-	"missingcommentheader": "'''提示:''' 汝還無為邇條評論提供一隻標題。假使汝再次單擊「$1」，您嘅編寫將毋帶標題保存。",
 	"blockedtitle": "用戶分查封",
 	"confirmedittext": "在編寫邇頁之前汝必須確認汝嘅郵箱地址。請通過[[Special:Preferences|偏好設定]]設定並驗證汝嘅郵箱地址。",
 	"userpage-userdoesnotexist": "用戶帳號“$1：還吂註冊。\n請在建立/編寫邇隻頁面前先檢查一下。",

@@ -305,7 +305,6 @@
 	"anonpreviewwarning": "''Sez sistemada terkälmädegez.Sezneñ taraftan eşlängän barlıq üzgärtülär dä sezneñ IP-yullamağıznı saqlawğa kiterä.''",
 	"missingsummary": "'''İskärtü.''' Sez üzgärtügä qısqaça taswirlaw yazmadığız. Sez «Bitne saqlaw» töymäsenä tağın ber tapqır bassağız, üzgärtülär taswirlamasız saqlanaçaq.",
 	"missingcommenttext": "Asqa taswirlama yazuığız sorala.",
-	"missingcommentheader": "''İskärtü:''' Sez taswirlamağa isem birmädegez.\n«$1» töymäsenä qabat bassağız, üzgärtülär isemsez yazılaçaq.",
 	"summary-preview": "Taswirlamanı aldan qaraw:",
 	"blockedtitle": "Qullanuçı tıyıldı",
 	"blockedtext": "'''Sezneñ xisap yazmağız yäki IP adresığız tıyılğan.'''\n\nTıyuçı idaräçe: $1.\nKürsätelgän säbäp: ''$2''.\n\n* Tıyu başlanğan waqıt: $8\n* Tıyu axırı: $6\n* Tıyılular sanı: $7\n\nSez $1 yäki başqa [[{{MediaWiki:Grouppage-sysop}}|idaräçegä]] tıyu buyınça sorawlarığıznı cibärä alasız.\nİsegezdä totığız: ägär sez terkälmägän häm elektron poçta adresığıznı dälillämägän bulsağız ([[Special:Preferences|dälilläw öçen şäxsi köyläwlär monda]]), idaräçegä xat cibärä almıysız. Şulay uq tıyu waqıtında sezneñ xat cibärü mömkinlegegezne çiklägän bulırğa da mömkinnär.\nSezneñ IP adresı — $3, tıyu identifikatorı — #$5.\nXatlarda bu mäğlümatnı kürsätergä onıtmağız.",

@@ -400,7 +400,6 @@
 	"anonpreviewwarning": "<em>راك مامكونيكطيش دابا. سّيستيم د صّوڤڭارد غادي يسجل لآيپي ديالك ف تّاريخ ديال تّبدال د هاد صّفحة.</em>",
 	"missingsummary": "<strong>عنداك:</strong> ماكتبتيش ملخص د التعديل.\nإلا بركتي مرة خرة على \"$1\"، غادي يتسجًل التعديل ديالك بلا ملخص.",
 	"missingcommenttext": "عافاك دخل تعليق لتحت",
-	"missingcommentheader": "<strong>تنبيه:</strong>  ماعطيتييش عنوان لهاد التعليق.\nإلا بركتي على \"$1\" عاوتاني، غادي يتسجل التعليق ديالك بلا عنوان.",
 	"summary-preview": "معاينة د لملخص:",
 	"blockedtitle": "هاد لخدايمي تبلوكا",
 	"blockedtext": "<strong>سمية د لخدايمي ؤلا لادريسة د لايپي ديال راهوم تبلوكاو.</strong>\n\n{{int:blockedtext-made-by|$1}}\n{{int:blockedtext-reason-comment|$2}}\n\n*{{int:blockedtext-start-time|$8}}\n*{{int:blockedtext-expiration-time|$6}}\n*{{int:blockedtext-intended-blockee|$7}}\n\n{{int:blockedtext-contact-blocker-admin|$1}}\n\nما يمكنش ليك تخدّم خاصية \"{{int:emailuser}}\" إلا ف حالت ما كنتي حطيتي أدريسة د ليمييل صحيحة [[Special:Preferences|ف تفضيلات لكونط]] و ما تمنعتيش من تّخدام ديالها.\n{{int:blockedtext-block-ip|$3}} {{int:blockedtext-block-id|$5}}\n{{int:blockedtext-include-details-queries}}",

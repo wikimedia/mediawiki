@@ -597,7 +597,6 @@
 	"edit-constraint-invalidredirecttarget-warning": "Proovid suunata seda lehekülge ümber leheküljele, mis ei sobi ümbersuunamise sihtleheküljeks. Palun mõtle järele, mida teed.",
 	"edit-constraint-warning-wrapper-save-deleted-revision": "<strong>Hoiatus:</strong> $2\n\nKui soovid jätkata sellegipoolest, klõpsa uuesti nuppu \"$1\". Sellega avaldatakse kustutatud redaktsiooni sisu.",
 	"missingcommenttext": "Palun sisesta kommentaar.",
-	"missingcommentheader": "<strong>Meeldetuletus:</strong> Sa pole kirjutanud kommentaarile teemat.\nKui klõpsad uuesti nuppu \"$1\", siis avaldatakse kommentaar ilma teemata.",
 	"summary-preview": "Resümee eelvaade:",
 	"autocomment-top": "(algus)",
 	"previewerrortext": "Sinu muudatuste eelvaatluse juures esines tõrge.",

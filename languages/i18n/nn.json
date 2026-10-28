@@ -501,7 +501,6 @@
 	"autocreate-preview-warning": "<em>Du er ikkje innlogga. Endringa di vil bli godskreven til eit [[{{MediaWiki:tempuser-helppage}}|automatisk generert namn]], og IP-adressa di vil verta synleg for administratorar.</em>",
 	"missingsummary": "<strong>Påminning:</strong> Du har ikkje skrive noko endringssamandrag. Dersom du trykkjer «Lagre» ein gong til, vert endringa di lagra utan.",
 	"missingcommenttext": "Ver venleg og skriv ein kommentar nedanfor.",
-	"missingcommentheader": "<strong>Påminning:</strong> Du har ikkje oppgjeve noko overskrift for denne kommentaren.\nDersom du trykkjer «$1» ein gong til, vert endringa di lagra utan.",
 	"summary-preview": "Førehandsvising av endringssamandraget:",
 	"autocomment-top": "(topp)",
 	"previewerrortext": "Det oppstod ein feil mens endringane dine skulle verta forhandsviste.",

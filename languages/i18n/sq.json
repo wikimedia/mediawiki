@@ -549,7 +549,6 @@
 	"anonpreviewwarning": "<em>S’jeni i futur në llogari. Publikimi do të regjistrojë adresën tuaj IP në historikun e përpunimeve të kësaj faqeje.</em>",
 	"missingsummary": "<strong>Kujtues:</strong> S’keni dhënë përmbledhje të përpunimit.\nNëse klikoni sërish mbi \"$1\", përpunimi juaj do të publikohet pa një të tillë.",
 	"missingcommenttext": "Ju lutemi bëni një koment.",
-	"missingcommentheader": "<strong>Kujtues:</strong> S’keni dhënë një titull për këtë koment.\nNëse klikoni sërish \"$1\", përpunimi juaj do të ruhet pa titull.",
 	"summary-preview": "Parapamje e përmbledhjes së redaktimit:",
 	"previewerrortext": "Ndodhi një gabim gjatë përpjekjes për të parashfaqur ndryshimet e tua.",
 	"blockedtitle": "Përdoruesi është bllokuar",

@@ -621,7 +621,6 @@
 	"edit-constraint-invalidredirecttarget-warning": "ניסית להפנות את הדף הזה לדף שאינו יעד הפניה תקין. נא לשקול מחדש את הפעולה שלך.",
 	"edit-constraint-warning-wrapper-save-deleted-revision": "<strong>אזהרה:</strong> $2 \n\nאם ברצונך להמשיך בכל זאת, נא ללחוץ שוב על \"$1\", אבל זה יפרסם את תוכן הגרסה שנמחקה.",
 	"missingcommenttext": "יש להקליד תוכן.",
-	"missingcommentheader": "<strong>תזכורת:</strong> לא הזנת נושא להודעה הזאת.\nלחיצה חוזרת על הכפתור \"$1\" תגרום לעריכה שלך להתפרסם ללא נושא.",
 	"summary-preview": "תצוגה מקדימה של תקציר העריכה:",
 	"autocomment-top": "(פרק פתיחה)",
 	"previewerrortext": "אירעה שגיאה בעת הניסיון להציג תצוגה מקדימה של השינויים שלך.",

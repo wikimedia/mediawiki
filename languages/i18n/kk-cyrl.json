@@ -543,7 +543,6 @@
 	"missingsummary": "<strong>Ескерту:</strong> өңдеме түйінін бермедіңіз.\n«$1» дегенді қайта бассаңыз, өңдемеңіз түйінсіз жарияланады.",
 	"edit-constraint-warning-wrapper": "<strong>Ескерту:</strong> $1",
 	"missingcommenttext": "Пікір енгізіңіз.",
-	"missingcommentheader": "<strong>Ескерту:</strong> бұл пікірге тақырып бермедіңіз.\n«$1» дегенді қайта бассаңыз, өңдемеңіз тақырыпсыз жарияланады.",
 	"summary-preview": "Өңдеме түйінін алдын ала көру:",
 	"autocomment-top": "(үсті)",
 	"previewerrortext": "Өзгерістеріңізді алдын ала көргенде, қате орын алды.",

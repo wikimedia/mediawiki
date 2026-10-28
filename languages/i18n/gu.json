@@ -435,7 +435,6 @@
 	"anonpreviewwarning": "તમે સભ્યનામથી પ્રવેશ કર્યો નથી,આ પાનું ઈતિહાસમાંતમારા IP સરનામાના નામે સાચવવામાં આવશે",
 	"missingsummary": "<strong>ચેતવણી:</strong> તમે ફેરફારોનો સારાંશ આપ્યો નથી.\nજો તમે \"$1\"  પર ફરી ક્લિક કરશો તો, તમારા ફેરફારો સારાંશ વગર સાચવવામાં આવશે.",
 	"missingcommenttext": "કૃપા કરીને ટીપ્પણી ઉમેરો.",
-	"missingcommentheader": "<strong>ચેતવણી:</strong> તમે તમારી ટિપ્પણી ને શીર્ષક/મથાળુ આપ્યું નથી.\nજો તમે  \"$1\" પર ફરીથી ક્લિક કરશો, તો તમારા ફેરફારો મથાળા વગર સચવાશે.",
 	"summary-preview": "સંપાદન સારાંશ પૂર્વાવલોકન:",
 	"blockedtitle": "સભ્ય પ્રતિબંધિત છે",
 	"blockedtext": "<strong>આપનાં સભ્ય નામ અથવા આઇ.પી. સરનામા પર પ્રતિબંધ મુકવામાં આવ્યો છે.</strong>\n\n{{int:blockedtext-made-by|$1}}\n{{int:blockedtext-reason-comment|$2}}\n\n*{{int:blockedtext-start-time|$8}}\n*{{int:blockedtext-expiration-time|$6}}\n*{{int:blockedtext-intended-blockee|$7}}\n\n{{int:blockedtext-contact-blocker-admin|$1}}\nજો તમે તમારી [[Special:Preferences|પ્રાથમિકતાઓ]]માં માન્ય ઇ-મેલ સરનામું આપ્યું હશે તો તમે \"{{int:emailuser}}\" વાપરી શકશો અને તમને તેના ઉપયોગ પર પ્રતિબંધ નથી.\n{{int:blockedtext-block-ip|$3}} {{int:blockedtext-block-id|$5}}\n{{int:blockedtext-include-details-queries}}",

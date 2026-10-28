@@ -527,7 +527,6 @@
 	"edit-constraint-invalidredirecttarget-warning": "انته جاي تحاول تحول هاي الصفحه ما تصلح هدف تحويل. راجع اللي تسويه.",
 	"edit-constraint-warning-wrapper-save-deleted-revision": "<strong>دير بالك:</strong> $2\n\nاذا تريد تكمل على كل حال، دوس \"$1\" مره ثانيه، بس هالشي راح ينشر محتوى المراجعه المحذوفه.",
 	"missingcommenttext": "من فضلك اكتب تعليق.",
-	"missingcommentheader": "<strong>تذكير:</strong>  ما كتبت عنوان موضوع لهاذ التعليق.\nإذا دست على \"$1\" مره ثانيه، راح ننشر تعليقك بدون عنوان.",
 	"summary-preview": "معاينة ملخص تحرير:",
 	"previewerrortext": "صار خطأ أثناء محاولة معاينة تغييراتك.",
 	"blockedtitle": "المستخدم ممنوع",

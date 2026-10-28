@@ -625,7 +625,6 @@
 	"edit-constraint-invalidredirecttarget-warning": "Du forsøker å omdirigere denne siden til en side som ikke er et gyldig omdirigeringsmål. Vennligst vurder hva du gjør på nytt.",
 	"edit-constraint-warning-wrapper-save-deleted-revision": "<strong>Advarsel:</strong> $2\n\nTrykk på «$1» igjen hvis du likevel ønsker å fortsette, men dette vil publisere innholdet i den slettede sideversjonen.",
 	"missingcommenttext": "Skriv inn en kommentar.",
-	"missingcommentheader": "<strong>Husk:</strong> Du har ikke angitt et emne for denne kommentaren.\nHvis du trykker «$1» igjen blir redigeringen din publisert uten forklaring.",
 	"summary-preview": "Forhåndsvisning av redigeringsforklaring:",
 	"autocomment-top": "(topp)",
 	"previewerrortext": "En feil oppsto mens endringene dine skulle forhåndsvises.",

@@ -206,7 +206,6 @@
 	"anoneditwarning": "'''Adahi:''' Ti ma log-in hao.\nMausa iyo-mu IP address sempre para tumulaika i historian påhina este.",
 	"missingsummary": "'''Nina'hasso:''' Tåya' iyo-mu sumaria tinilaika.\nAn un yemme' Såtba ta'lo, para u såtba i tinilaika-mu sin sumaria.",
 	"missingcommenttext": "Nå'ye kommentu gi papa'.",
-	"missingcommentheader": "'''Nina'hasso:''' Ti un tuge' suhetu/titulon må'gas para i kommentu.\nYanggen un yemme' \"Såtba\" ta'lo, masåtba tinilaika-mu sin titulo.",
 	"summary-preview": "Ripasun sumaria:",
 	"blockedtitle": "Machoma' i muna'sesetbi",
 	"blockedtext": "'''Machomma' i na'an-mu muna'sesetbi pat IP-mu.'''\n\nManchomma' as $1.\nPot i rason: ''$2''.\n\n* Matutuhon manchomma' gi: $8\n* Para u funhayan manchomma' gi: $6\n* Håyi para u chomma': $7\n\nSiña un kuentusi si $1 pat otru na [[{{MediaWiki:Grouppage-sysop}}|administradot]] para un diskuti i chinemma'.\nTi siña un usa i ramientan 'e-mail i muna'sesetbi,' solo guåha e-mail address minaolek gi i [[Special:Preferences|priferensia i kuenta-mu]] ya ti machomma' hao manu'usa ha'.\nPå'go, $3 iyo-mu IP, ya machomma' i ID #$5.\nPot fabot, na'hålom i infotmasion gi sanhilo' gi i finaisen-mu siha.",

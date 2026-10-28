@@ -541,7 +541,6 @@
 	"missingsummary": "<strong>Sylwer:</strong> Nid ydych wedi rhoi crynodeb golygu.\nOs pwyswch eto ar \"$1\", caiff y golygiad ei gadw heb grynodeb.",
 	"edit-constraint-warning-wrapper": "<strong>Rhybudd:</strong> $1",
 	"missingcommenttext": "Ysgrifennwch sylw.",
-	"missingcommentheader": "<strong>Nodyn atgoffa:</strong> Nid oes pwnc ar gyfer eich sylw.\nOs ydych chi'n clicio \"$1\" eto, bydd eich golygiad yn cael ei gyhoeddi heb un.",
 	"summary-preview": "Rhagolwg o'r crynodeb:",
 	"autocomment-top": "(brig)",
 	"previewerrortext": "Cafwyd nam tra'n ceisio creu rhagolwg o'r newidiadau.",

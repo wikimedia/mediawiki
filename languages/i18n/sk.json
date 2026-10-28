@@ -620,7 +620,6 @@
 	"edit-constraint-invalidredirecttarget-warning": "Pokúšate sa presmerovať túto stránku na stránku, ktorá nie je platným cieľom presmerovania. Zvážte prosím, čo robíte.",
 	"edit-constraint-warning-wrapper-save-deleted-revision": "<strong>Upozornenie:</strong> $2\n\nAk chcete aj tak pokračovať, kliknite znova na „$1“, tým sa však publikuje obsah odstránenej revízie.",
 	"missingcommenttext": "Prosím, vložte komentár.",
-	"missingcommentheader": "<strong>Pripomienka:</strong> Neuviedli ste predmet tohto komentára.\nAk znova kliknete na tlačidlo $1, Vaša úprava sa uloží bez neho.",
 	"summary-preview": "Náhľad zhrnutia:",
 	"autocomment-top": "(úvod)",
 	"previewerrortext": "Pri pokuse o zobrazenie náhľadu došlo k chybe.",

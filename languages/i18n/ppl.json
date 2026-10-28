@@ -312,7 +312,6 @@
 	"anonpreviewwarning": "''Te tikalaktuk tik mucuentaj. Su tikana, yawi muana ne mudireccion IP tik ne historiaj pal ini iswat.''",
 	"missingsummary": "'''Shikelnamiki:''' Te tiktajkwilujtuk se resumen. Su tikchiwa klik senpa tik \"$1\" yawi muana ne mutekiw sema ijkiuni.",
 	"missingcommenttext": "Shiktajkwilu se comentarioj katani.",
-	"missingcommentheader": "'''Shikelnamiki:''' Te titajkwilujtuk se temaj o se titular. Su tikpachua \"$1\" senpa, muanas tay tikpatatuk ijkiunisan.",
 	"summary-preview": "Achtutachialis ipal ne kututaneshtilis:",
 	"blockedtext": "<strong>Ne mukal IP tzaktuk.</strong>\n\n{{int:blockedtext-made-by|$1}}\n{{int:blockedtext-reason-comment|$2}}\n\n*{{int:blockedtext-start-time|$8}}\n*{{int:blockedtext-expiration-time|$6}}\n*{{int:blockedtext-intended-blockee|$7}}\n\n{{int:blockedtext-contact-blocker-admin|$1}}\nTaja tiweli tiaw ka \"{{int:emailuser}}\" Su tikpia ukse kal ejekawmatat[[Special:Preferences|preferences]] Ka né tesu tzaktuk.\n{{int:blockedtext-block-ip|$3}} {{int:blockedtext-block-id|$5}}\n{{int:blockedtext-include-details-queries}}",
 	"nosuchsectiontitle": "Te weli muajsi ne takutun",

@@ -482,7 +482,6 @@
 	"anonpreviewwarning": "''سىز تېخى تىزىمغا كىرمىدىڭىز. سىزنىڭ IP ئادرېسىڭىز بۇ بەتنىڭ تەھرىرلەش تارىخىغا خاتىرىلىنىدۇ.''",
 	"missingsummary": "'''ئەسكەرتىش:''' سىز تەھرىرلەش ئۈزۈندىسى تەمىنلىمىدىڭىز. .\nئەگەر ساقلانى يەنە بىر قېتىم چەكسىڭىز، تەھرىرلىگىنىڭىزنى ئۈزۈندە يوق ھالەتتە ساقلايدۇ.",
 	"missingcommenttext": "باھا كىرگۈزۈڭ.",
-	"missingcommentheader": "'''ئەسكەرتىش:''' سىز ئىزاھاتقا ماۋزۇ تەمىنلىمىدىڭىز.\nئەگەر \"$1\"نى يەنە بىر قېتىم چەكسىڭىز، تەھرىرلىگىنىڭىزنى ماۋزۇسىز ھالەتتە ساقلايدۇ.",
 	"summary-preview": "ئۈزۈندىنى ئالدىن كۆزىتىش:",
 	"blockedtitle": "ئىشلەتكۈچى چەكلەنگەن",
 	"blockedtext": "<strong>ئىشلەتكۈچى ئاتىڭىز ياكى IP ئادرېسىڭىز چەكلەنگەن.</strong>\n\n{{int:blockedtext-made-by|$1}}\n{{int:blockedtext-reason-comment|$2}}\n\n*{{int:blockedtext-start-time|$8}}\n*{{int:blockedtext-expiration-time|$6}}\n*{{int:blockedtext-intended-blockee|$7}}\n\n{{int:blockedtext-contact-blocker-admin|$1}}\n\nئەگەر سىز [[Special:Preferences|مايىللىق]] تەڭشىكىدە ئىناۋەتلىك ئېلخەت ئادرېسى بەلگىلىگەن بولسىڭىز، بۇ «{{int:emailuser}}» ئىقتىدارنى ئىشلىتەلەيسىز ۋە ئۇ ئىقتىدارنى ئىشلىتىشىڭىز چەكلەنمەيدۇ.\n{{int:blockedtext-block-ip|$3}} {{int:blockedtext-block-id|$5}}\n{{int:blockedtext-include-details\n-queries}}",

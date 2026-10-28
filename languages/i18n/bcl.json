@@ -460,7 +460,6 @@
 	"anonpreviewwarning": "<em>Dai ka nakalog-in. An pagpublikar matala kan saimong IP address sa kasaysayan kan edit sa pahinang ini.</em>",
 	"missingsummary": "<strong>Pagirumdom:</strong> Dai ka pa nagtau nin edit summary. Kun iki-click mo an \"$1\" giraray, an saimong edit mapupublikar nin daing summary.",
 	"missingcommenttext": "Magkaag nin komento sa ibaba.",
-	"missingcommentheader": "\n<strong>Pagirumdom:</strong>Dai ka pa nagtau nin subject para sa komentong ini.\nKun iki-click mo giraray an \"$1\", an saimong edit maipupublikar na dai nin subject.",
 	"summary-preview": "Paenot na patanawkang sumaryo kan pagliwat:",
 	"blockedtitle": "An paragamit pinagbagat",
 	"blockedtext": "<strong>Nabagat an saimong pangaran nin paragamit o IP address.</strong>\n\n{{int:blockedtext-made-by|$1}}\n{{int:blockedtext-reason-comment|$2}}\n\n* {{int:blockedtext-start-time|$8}}\n* {{int:blockedtext-expiration-time|$6}}\n* {{int:blockedtext-intended-blockee|$7}}\n\n{{int:blockedtext-contact-blocker-admin|$1}}\nPwede mong gamiton an tampok na \"{{int:emailuser}}\" kun sarong balidong adres nin e-koreo an nakatagama sa saimong [[Special:Preferences|mga kagustuhan]] asin dae ka naharang sa paggamit kaini.\n{{int:blockedtext-block-ip|$3}} {{int:blockedtext-block-id|$5}}\n{{int:blockedtext-include-details-queries}}",

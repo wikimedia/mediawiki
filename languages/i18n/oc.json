@@ -506,7 +506,6 @@
 	"autocreate-preview-warning": "<em>Sètz pas connectar. La vòstra modificacion serà atribuïda a un [[{{MediaWiki:tempuser-helppage}}|nom autogenerat]] e la vòstra adreiça IP serà visibla per leis administrators.</em>",
 	"missingsummary": "<strong>Atencion :</strong> avètz pas escrich de resumit de la vòstra modificacion.\nSe clicatz encara sus \"$1\", la vòstra publicacion serà publicada sensa resumit.",
 	"missingcommenttext": "Mercé de metre un comentari.",
-	"missingcommentheader": "<strong>Rapèl :</strong> Avètz pas provesit cap de subjècte per aqueste comentari.\nSe clicatz tornamai sus \"$1\", vòstra modificacion serà enregistrada sens subjècte.",
 	"summary-preview": "Previsualizacion del resumit de modificacion:",
 	"previewerrortext": "S'es produsida una error quand ensagèretz  de previsualizar los cambiaments.",
 	"blockedtitle": "L'utilizaire es blocat",

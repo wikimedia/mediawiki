@@ -272,7 +272,6 @@
 	"anoneditwarning": "<strong>Woarnung:</strong> Du biest nee oagemeldet. Deine IP-Atresse werd bei Beoarbeetunga effentlich sichtbar. <strong>[$1 Melde diech oa]</strong> oder <strong>[$2 erstelle a Benutzerkonto]</strong>, damit Beoarbeetunga deinem Benutzernoama zugeordnet warn. A eegenes Benutzerkonto hoat anne goanze Reihe vu Vurteela.",
 	"missingsummary": "'''Hinweis:''' Du host kenne Zusommafassung oagegahn. Wenn du erneut uff „Seyte speichern“ klickst, werd denne Änderung ohne Zusommafassung iebernumma.",
 	"missingcommenttext": "Bitte gib anne Zusommafassung a.",
-	"missingcommentheader": "'''OCHTICHE:''' Du host kenne Ieberschrift eim Feld „Betreff:“ eingegeben. Wenn du erneut uff „Seyte speichern“ klickst, werd denne Beoarbeetung ohne Ieberschrift gespeichert.",
 	"summary-preview": "Vurschau dar Zusoammafoassungszeile:",
 	"blockedtitle": "Benutzer ies gesperrt",
 	"blockedtext": "<strong>Dei Benutzernoame oder deine IP-Atresse wurde gesparrt.</strong>\n\n{{int:blockedtext-made-by|$1}}\n{{int:blockedtext-reason-comment|$2}}\n\n*{{int:blockedtext-start-time|$8}}\n*{{int:blockedtext-expiration-time|$6}}\n*{{int:blockedtext-intended-blockee|$7}}\n\n{{int:blockedtext-contact-blocker-admin|$1}}\nDu koanst de „{{int:emailuser}}“-Funktion nutza, wenn anne gültige E-Mail-Atresse ei deina [[Special:Preferences|Benutzerkonto-Eistellunga]] eigetroan ies und diese Funktion fer diech nee gesparrt wurde.\n{{int:blockedtext-block-ip|$3}} {{int:blockedtext-block-id|$5}}\n{{int:blockedtext-include-details-queries}}",

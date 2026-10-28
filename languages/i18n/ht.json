@@ -352,7 +352,6 @@
 	"anonpreviewwarning": "<em>Ou pa konekte. Piliye ap kenbe adrès IP ou a nan istorik paj sa a.</em>",
 	"missingsummary": "<strong>Rapèl :</strong> ou poko bay rezime modifikasyon ou fè an.\nSi ou klike sou ankò sou bouton « $1 », modifikasyon w yo ap pibliye san rezime.",
 	"missingcommenttext": "Tanpri antre yon kòmantè.",
-	"missingcommentheader": "<strong>Rapèl:</strong> Ou pa bay yon sijè pou kòmantè sa a.\nSi w klike sou \" $1 \" ankò,  modifikasyon w yo ap pibliye san sijè.",
 	"summary-preview": "Previzyalizasyon rezime :",
 	"blockedtitle": "Itilizatè a bloke",
 	"blockedtext": "<strong>Kont itilizatè ou an oubyen adrès IP ou an bloke.</strong>\n\n{{int:blockedtext-made-by|$1}}\n{{int:blockedtext-reason-comment|$2}}\n\n*{{int:blockedtext-start-time|$8}}\n*{{int:blockedtext-expiration-time|$6}}\n*{{int:blockedtext-intended-blockee|$7}}\n\n{{int:blockedtext-contact-blocker-admin|$1}}\nOu kapab itilize fonksyon « {{int:emailuser}} » si ou mete yon adrès imèl nan paj [[Special:Preferences|preferans ou an]] epi ou pa anpeche w itilize li.\n{{int:blockedtext-block-ip|$3}} {{int:blockedtext-block-id|$5}}\n{{int:blockedtext-include-details-queries}}",

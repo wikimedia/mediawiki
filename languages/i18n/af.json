@@ -473,7 +473,6 @@
 	"anonpreviewwarning": "''U is nie aangeteken nie.''\n''As u die bladsy stoor sal u IP-adres in die bladsy se geskeidenis aangeteken word.''",
 	"missingsummary": "'''Neem kennis''': Geen opsomming van die wysiging is verskaf nie. As \"Stoor\" weer gekliek word, word die wysiging sonder 'n opsomming gestoor.",
 	"missingcommenttext": "Tik asb. die opmerking.",
-	"missingcommentheader": "'''Let op:''' U het geen onderwerp/opskrif vir die opmerking verskaf nie. As u weer op \"$1\" klik, sal u wysiging sonder die onderwerp/opskrif gestoor word.",
 	"summary-preview": "Voorskou van wysigingopsomming:",
 	"blockedtitle": "Gebruiker is geblokkeer",
 	"blockedtext": "<strong>U gebruikernaam of IP-adres is geblokkeer.</strong>\n\n{{int:blockedtext-made-by|$1}}\n{{int:blockedtext-reason-comment|$2}}\n\n*{{int:blockedtext-start-time|$8}}\n*{{int:blockedtext-expiration-time|$6}}\n*{{int:blockedtext-intended-blockee|$7}}\n\n{{int:blockedtext-contact-blocker-admin|$1}}\nU kan die \"{{int:emailuser}}\"-funksie gebruik as 'n geldige e-posadres in u [[Special:Preferences|voorkeure]] gespesifiseer word en u kan dit nie gebruik nie.\n{{int:blockedtext-block-ip|$3}} {{int:blockedtext-block-id|$5}}\n{{int:blockedtext-include-details-queries}}",

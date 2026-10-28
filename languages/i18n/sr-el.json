@@ -543,7 +543,6 @@
 	"autocreate-preview-warning": "<em>Niste prijavljeni. Vaše izmene će biti pripisane automatski generisanom nalogu. [[{{MediaWiki:tempuser-helppage}}|Saznajte više]].</em>",
 	"missingsummary": "<strong>Podsetnik:</strong> Opis izmene nije naveden.\nAko ponovo kliknete na „$1”, izmena će biti objavljena bez njega.",
 	"missingcommenttext": "Unesite komentar.",
-	"missingcommentheader": "<strong>Podsetnik:</strong> Niste naveli naziv teme ovog komentara.\nAko ponovo kliknete na „$1”, izmena će biti objavljena bez njega.",
 	"summary-preview": "Pretpregled opisa izmene:",
 	"previewerrortext": "Došlo je do greške pri pokušaju pregleda izmena.",
 	"blockedtitle": "Korisnik je blokiran",

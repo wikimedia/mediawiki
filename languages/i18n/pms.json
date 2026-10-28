@@ -548,7 +548,6 @@
 	"edit-constraint-invalidredirecttarget-warning": "A l'é an camin ch'a riandirissa costa pàgina a na pàgina che a l'é pa un bërsaj ëd riandirissament bon. Ch'a-j pensa bin a lòn ch'a fà.",
 	"edit-constraint-warning-wrapper-save-deleted-revision": "<strong>Atension:</strong> $2\n\nSe a veul continué istess, ch'a sgnaca torna dzor «$1», ma an costa manera a sarà publicà 'l contnù dla revision eliminà.",
 	"missingcommenttext": "Për piasì, buta un coment sì-sota.",
-	"missingcommentheader": "'''Nòta:''' A l'ha pa dàit un soget për cost coment.\nSe a sgnaca torna «$1», soa modìfica a sarà publicà sensa gnun-a intestassion.",
 	"summary-preview": "Preuva dla compilassion dël resumé:",
 	"autocomment-top": "(superior)",
 	"previewerrortext": "A l'é rivaje n'eror durant ël tentativ ëd previsualisassion ëd soe modìfiche.",

@@ -570,7 +570,6 @@
 	"anonpreviewwarning": "<em>Ez duzu saioa hasi. Argitaratuz gero, zure IP helbidea grabatuko da orri honi lotutako historia-orrian.</em>",
 	"missingsummary": "</strong>Gogoratu:</strong> ez duzu egindako aldaketen laburpenik zehaztu. Berriz ere \"$1\"  sakatuz gero, zure edizioa laburpenik gabe argitaratuko da.",
 	"missingcommenttext": "Mesedez, iruzkin bat sartu.",
-	"missingcommentheader": "<strong>Oharra:</strong> Ez duzu iruzkin honetarako inolako gairik ezarri. Berriro ere \"$1\" sakatuz gero, zure edizioa gairik gabe gordeko da.",
 	"summary-preview": "Laburpenaren aurreikuspena:",
 	"autocomment-top": "(gora)",
 	"previewerrortext": "Errore bat gertatu da aldaketak aurrezten saiatzean.",

@@ -674,7 +674,6 @@
 	"edit-constraint-invalidredirecttarget-warning": "Anda mencoba mengalihkan halaman ini ke halaman yang bukan target pengalihan yang valid. Silakan pertimbangkan kembali apa yang Anda lakukan.",
 	"edit-constraint-warning-wrapper-save-deleted-revision": "<strong>Peringatan:</strong> $2 \n\nJika Anda tetap ingin melanjutkan, klik \" $1 \" kembali, tetapi ini akan menerbitkan isi revisi yang dihapus.",
 	"missingcommenttext": "Tolong masukkan komentar.",
-	"missingcommentheader": "'''Peringatan:''' Anda belum memberikan subjek atau judul untuk komentar Anda. Jika Anda kembali menekan \"$1\", suntingan Anda akan diterbitkan tanpa judul tersebut.",
 	"summary-preview": "Pratayang ringkasan suntingan:",
 	"autocomment-top": "(atas)",
 	"previewerrortext": "Kesalahan terjadi saat mencoba memperlihatkan pratayang perubahan Anda.",

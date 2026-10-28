@@ -628,7 +628,6 @@
 	"edit-constraint-invalidredirecttarget-warning": "Încercați să redirecționați această pagină spre o pagină care nu este o țință de redirecționare validă. Vă rugăm să reconsiderați ceea ce faceți.",
 	"edit-constraint-warning-wrapper-save-deleted-revision": "<strong>Avertizare:</strong> $2\n\nDacă doriți să continuați oricum, apăsați „$1” din nou, dar așa se va publica conținutul dintr-o variantă ștearsă.",
 	"missingcommenttext": "Vă rugăm să introduceți un comentariu.",
-	"missingcommentheader": "<strong>Amintire:</strong> Nu ați oferit un subiect pentru acest comentariu. Dacă apăsați din nou butonul „$1”, modificarea dvs. va fi publicată fără unul.",
 	"summary-preview": "Previzualizare descriere:",
 	"autocomment-top": "(sus)",
 	"previewerrortext": "A survenit o eroare ca urmare a tentativei de previzualizare a modificărilor dumneavoastră.",

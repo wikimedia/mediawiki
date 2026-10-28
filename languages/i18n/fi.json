@@ -645,7 +645,6 @@
 	"edit-constraint-invalidredirecttarget-warning": "Olet yrittämässä uudelleenohjata tämän sivun sivuun, joka ei ole kelvollinen ohjaussivun kohde. Mieti uudelleen, mitä olet tekemässä.",
 	"edit-constraint-warning-wrapper-save-deleted-revision": "<strong>Varoitus:</strong> $2\n\nJos haluat jatkaa joka tapauksessa, napsauta ”$1” uudelleen ja poistetun version sisältö julkaistaan.",
 	"missingcommenttext": "Kirjoita kommentti.",
-	"missingcommentheader": "<strong>Muistutus:</strong> Et ole antanut aiheotsikkoa tälle kommentille. Napsauta ”$1”, jos haluat julkaista kommenttisi ilman sellaista.",
 	"summary-preview": "Yhteenvedon esikatselu:",
 	"autocomment-top": "(alku)",
 	"previewerrortext": "Muokkaustesi esikatselun toteuttamisessa on tapahtunut virhe.",

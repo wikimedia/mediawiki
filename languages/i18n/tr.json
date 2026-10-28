@@ -682,7 +682,6 @@
 	"edit-constraint-invalidredirecttarget-warning": "Bu sayfayı geçerli bir yönlendirme hedefi olmayan bir sayfaya yönlendirmeye çalışıyorsunuz. Lütfen yaptığınızı yeniden gözden geçirin.",
 	"edit-constraint-warning-wrapper-save-deleted-revision": "<strong>Uyarı:</strong> $2 \n\nYine de devam etmek istiyorsanız, yeniden \"$1\" seçeneğine tıklayın, ancak bu, silinen revizyonun içeriğini yayımlayacaktır.",
 	"missingcommenttext": "Lütfen bir yorum yazın.",
-	"missingcommentheader": "<strong>Uyarı:</strong> Bu yorum için bir konu girmediniz.\nEğer \"$1\" seçeneğine tekrar tıklarsanız, düzenlemeniz konu olmadan kaydedilecektir.",
 	"summary-preview": "Değişiklik özetinin önizlemesi:",
 	"autocomment-top": "(giriş)",
 	"previewerrortext": "Yaptığınız değişikliklerin önizlemesi sırasında bir hata oluştu.",

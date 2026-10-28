@@ -551,7 +551,6 @@
 	"edit-constraint-invalidredirecttarget-warning": "Vy probujete prěnapraviti tutu stranicu na stranicu, ktora ne jest pravilny cělj prěnapravjenij. Prosimo, razmyslite, čto vy dělajete.",
 	"edit-constraint-warning-wrapper-save-deleted-revision": "<strong>Prěduprědženje:</strong> $2\n\nAko vy vse jedno hočete prodolžiti, nakliknite «$1» ješče raz, ale imajte v vidu, že tym sposobom vy publikujete odstranjenu versiju.",
 	"missingcommenttext": "Prosimo, vvedite komentar.",
-	"missingcommentheader": "<strong>Pripominajemo</strong>, že ne jeste podali zaglavje tutogo komentara.\nAko ješče raz kliknite na «$1», vaša pravka bude publikovana bez zaglavja.",
 	"summary-preview": "Prědgled opisa izměn:",
 	"autocomment-top": "(početok)",
 	"previewerrortext": "Došlo k pogrěškě pri izobraženju prědgleda vaših izměn.",

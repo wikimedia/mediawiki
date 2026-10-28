@@ -378,7 +378,6 @@
 	"anonpreviewwarning": "<em>Ti n'es betg t'annunzià. Cun memorisar vegn perquai tia adressa IP registrada en la cronologia da la pagina.</em>",
 	"missingsummary": "<strong>Avis:</strong> Ti has betg inditgà ina resumaziun. \nSche ti cliccas danovamain \"$1\" vegn tia midada memorisada senza ina tala.",
 	"missingcommenttext": "Endatescha per plaschair in commentari.",
-	"missingcommentheader": "<strong>Avis:</strong> Ti n'has betg inditgà in subject/titel per quest commentari.\nSche ti cliccas anc ina giada sin \"$1\" vegn il commentari memorisà senza in tal.",
 	"summary-preview": "Prevista da la resumaziun:",
 	"blockedtitle": "Utilisader è bloccà",
 	"blockedtext": "<strong>Tes num d'utilisader u tia adressa dad IP èn vegnidas bloccadas.</strong>\n\n{{int:blockedtext-made-by|$1}}\n{{int:blockedtext-reason-comment|$2}}\n\n* {{int:blockedtext-start-time|$8}}\n* {{int:blockedtext-expiration-time|$6}}\n* {{int:blockedtext-intended-blockee|$7}}\n\n{{int:blockedtext-contact-blocker-admin|$1}}\n\n{{#FORMAL:Ti pos|Vus pudais}} utilisar la funcziun \"{{int:emailuser}}\", sch'igl è {{#FORMAL:arcunà en tias|arcunada en Vossas}} cofiguraziuns da [[Special:Preferences|preferenzas]] in'adressa dad e-mail valaivla e sche {{#FORMAL:tes|Voss}} access a la funcziun n'è betg vegni bloccà.\n\n{{int:blockedtext-block-ip|$3}} {{int:blockedtext-block-id|$5}}\n{{int:blockedtext-include-details-queries}}",

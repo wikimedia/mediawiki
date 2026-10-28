@@ -802,7 +802,6 @@
 	"edit-constraint-invalidredirecttarget-warning": "Vous tentez de rediriger cette page vers une page qui n'est pas une cible de redirection valide. Veuillez reconsidérer votre action.",
 	"edit-constraint-warning-wrapper-save-deleted-revision": "<strong>Avertissement :</strong> $2 \n\nSi vous souhaitez continuer malgré tout, cliquez à nouveau sur « $1 », mais cela publiera le contenu de la version supprimée.",
 	"missingcommenttext": "Veuillez saisir un commentaire.",
-	"missingcommentheader": "<strong>Rappel :</strong> vous n’avez pas fourni de sujet pour ce commentaire.\nSi vous cliquez de nouveau sur « $1 », votre modification sera publiée sans sujet.",
 	"summary-preview": "Aperçu du résumé des modifications :",
 	"autocomment-top": "Début",
 	"previewerrortext": "Une erreur s’est produite lors de la tentative de prévisualisation de vos modifications.",

@@ -602,7 +602,6 @@
 	"autocreate-preview-warning": "<em>No heu iniciat sessió. Quan feu una modificació se us crearà un compte temporal. Vegeu [[{{MediaWiki:tempuser-helppage}}|més informació]].</em>",
 	"missingsummary": "<strong>Recordatori:</strong> Heu deixat en blanc el resum de l'edició. \nSi torneu a clicar al botó de \"$1\", l'edició es guardarà sense resum.",
 	"missingcommenttext": "Introduïu un comentari.",
-	"missingcommentheader": "<strong>Recordatori:</strong> No heu proporcionat cap tema per a aquest comentari. \nSi torneu a fer clic a \"$1\", la vostra edició es publicarà sense tema.",
 	"summary-preview": "Previsualització del resum de modificació:",
 	"previewerrortext": "S'ha produït un error quan es provava de previsualitzar els canvis.",
 	"blockedtitle": "L'usuari està blocat",

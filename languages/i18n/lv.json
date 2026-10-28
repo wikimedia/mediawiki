@@ -497,7 +497,6 @@
 	"anonpreviewwarning": "''Tu neesi ienācis. Saglabājot lapu, Tava IP adrese tiks ierakstīta šīs lapas hronoloģijā.''",
 	"missingsummary": "'''Atgādinājums''': Tu neesi norādījis izmaiņu kopsavilkumu. Vēlreiz klikšķinot uz \"Saglabāt lapu\", Tavas izmaiņas tiks saglabātas bez kopsavilkuma.",
 	"missingcommenttext": "Lūdzu, ievadi komentāru.",
-	"missingcommentheader": "<strong>Atgādinājums:</strong> Šim komentāram nav norādīts temats.\nVēlreiz spiežot uz \"$1\", tavs labojums tiks saglabāts bez tā.",
 	"summary-preview": "Labojuma kopsavilkuma priekšskatījums:",
 	"blockedtitle": "Dalībnieks ir bloķēts.",
 	"blockedtext": "<strong>Tavs lietotāja vārds vai IP adrese ir nobloķēta.</strong>\n\n{{int:blockedtext-made-by|$1}}\n{{int:blockedtext-reason-comment|$2}}\n\n*{{int:blockedtext-start-time|$8}}\n*{{int:blockedtext-expiration-time|$6}}\n*{{int:blockedtext-intended-blockee|$7}}\n\n{{int:blockedtext-contact-blocker-admin|$1}}\nTu varēsi izmantot iespēju \"{{int:emailuser}}\", ja norādīsi derīgu e-pasta adresi [[Special:Preferences|konta izvēlēs]] un tev šī iespēja nebūs bloķēta.\n{{int:blockedtext-block-ip|$3}} {{int:blockedtext-block-id|$5}}\n{{int:blockedtext-include-details-queries}}",

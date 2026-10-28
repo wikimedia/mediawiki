@@ -584,7 +584,6 @@
 	"edit-constraint-invalidredirecttarget-warning": "To stran poskušate preusmeriti na stran, ki ni veljaven preusmeritveni cilj. Prosimo, premislite, kaj počnete.",
 	"edit-constraint-warning-wrapper-save-deleted-revision": "<strong>Opozorilo:</strong> $2 \n\nČe želite vseeno nadaljevati, znova kliknite »$1«, vendar bo s tem objavljena vsebina izbrisane redakcije.",
 	"missingcommenttext": "Prosimo, vnesite komentar.",
-	"missingcommentheader": "<strong>Opozorilo:</strong> Niste vnesli zadeve za ta komentar.\nČe boste znova kliknili »$1«, bo vaše urejanje objavljeno brez nje.",
 	"summary-preview": "Povzetek urejanja:",
 	"autocomment-top": "(vrh)",
 	"previewerrortext": "Pri poskusu prikaza predogleda vaših sprememb je prišlo do napake.",

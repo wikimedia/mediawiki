@@ -573,7 +573,6 @@
 	"edit-constraint-invalidredirecttarget-warning": "Tu tenta rediriger iste pagina a un pagina que non es un destination de redirection valide. Per favor reconsidera lo que tu face.",
 	"edit-constraint-warning-wrapper-save-deleted-revision": "<strong>Attention:</strong> $2\n\nSi tu vole continuar in despecto de isto, clicca sur “$1” de novo, ma isto publicara le contento del version delite.",
 	"missingcommenttext": "Per favor entra un commento.",
-	"missingcommentheader": "<strong>Rememoration:</strong> Tu non ha fornite un subjecto pro iste commento.\nSi tu clicca sur “$1” de novo, le modification essera publicate sin subjecto.",
 	"summary-preview": "Previsualisation del summario de modification:",
 	"autocomment-top": "(initio)",
 	"previewerrortext": "Un error ha occurrite durante le tentativa de previsualisar le cambiamentos.",

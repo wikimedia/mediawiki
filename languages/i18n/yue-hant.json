@@ -576,7 +576,6 @@
 	"edit-constraint-warning-wrapper": "<strong>警告：</strong> $1",
 	"edit-constraint-warning-wrapper-save": "<strong>警告：</strong> $2\n\n如果你再㩒「$1」，個跳轉版會照開。",
 	"missingcommenttext": "請打評語。",
-	"missingcommentheader": "<strong>提醒：</strong>呢個留言你未畀主題／標題。如果你再撳多下「$1」嘅話，咁你發佈嘅編輯就會冇標題。",
 	"summary-preview": "睇睇編輯摘要:",
 	"autocomment-top": "（頂）",
 	"previewerrortext": "預覽你嘅修改嗰陣出錯。",

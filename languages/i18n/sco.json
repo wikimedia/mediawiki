@@ -457,7 +457,6 @@
 	"anonpreviewwarning": "<em>Ye'r nae loggit in. Hainin will record yer IP address in this page's edit history.</em>",
 	"missingsummary": "<strong>Mind:</strong> Ye hivnae gien an edit summar.\nGin ye sneck \"$1\" again, yer edit will be hained withoot ane.",
 	"missingcommenttext": "Please enter ae comment.",
-	"missingcommentheader": "<strong>Mynd:</strong> Ye hivnae gien a subject fur this comment.\nIf ye sneck \"$1\" again, yer edit will be hained withoot ane.",
 	"summary-preview": "Preview o eedit summary:",
 	"previewerrortext": "An error occurred while attemptin tae preview yer chynges.",
 	"blockedtitle": "Uiser is blockit",

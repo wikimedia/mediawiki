@@ -515,7 +515,6 @@
 	"autocreate-preview-warning": "<em>Te seet minga andà dent in del sistema. La toa modifica la sarà atribuida a on [[{{MediaWiki:tempuser-helppage}}|nom auto-insgsnerad]] e 'l to adress IP el sarà visibil per i aministrador.</em>",
 	"missingsummary": "<strong>Atenzion:</strong> l'è sta no specificad el sunt de 'sta modifega. Cont el schiscià de noeuv \"$1\" la modifica la vegnarà publicada senza el sunt.",
 	"missingcommenttext": "Per piasè, met dent on coment",
-	"missingcommentheader": "<strong>Atenzione:</strong> l'è stad minga specificad l'oget de quell coment chì. Cont el schiscà de noeuv in su \"$1\" la modifica la vegnarà publicada senza nissuna descrizzion.",
 	"summary-preview": "Proeuva di modifiche che te seet adree a fà",
 	"previewerrortext": "A l'è capità un eror in del cors del tentativ de previsualizazzion di to cambiament.",
 	"blockedtitle": "Utenza blocada",

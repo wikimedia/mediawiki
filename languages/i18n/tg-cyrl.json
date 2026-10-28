@@ -484,7 +484,6 @@
 	"anonpreviewwarning": "<em>Шумо вориди нашудаед. Интишор нишонии IP шуморо дар таърихчаи виройиши ин сафҳа сабт мекунад.</em>",
 	"missingsummary": "'''Ёдоварӣ:''' Шумо хулосаи вироишатонро нанавиштаед.\nАгар дубора $1-ро пахш кунед, вироиши шумо бе он нашр мешавад.",
 	"missingcommenttext": "Лутфан як назар бинависед.",
-	"missingcommentheader": "<strong>Ёдоварӣ:</strong>Шумо мавзӯъе барои шарҳ пешниҳод накардед.\nАгар дубора \"$1\" пахш кунед, вироишатон бидуни он нашр хоҳад шуд.",
 	"summary-preview": "Пешнамоиши хулосаи вироиш:",
 	"blockedtitle": "Корбар баста шудааст",
 	"blockedtext": "<strong>Номи корбарӣ ё суроғаи IP-и шумо баста шуд.</strong>\n\n{{int:blockedtext-made-by|$1}}\n{{int:blockedtext-reason-comment|$2}}\n\n*{{int:blockedtext-start-time|$8}}\n*{{int:blockedtext-expiration-time|$6}}\n*{{int:blockedtext-intended-blockee|$7}}\n\n{{int:blockedtext-contact-blocker-admin|$1}}\nТаваҷҷӯҳ кунед, ки аз қобилияти \"{{int:emailuser}}\" 'фиристодаи почтаи электронӣ ба ин корбар' наметавоне истифода кард, магар ин ки як нишони мӯътабари почтаи электронӣ дар [[Special:Preferences|тарҷиҳоти корбарии]] худ сабт карда бошед ва аз корбурди он манъ нашуда бошед.\n{{int:blockedtext-block-ip|$3}} {{int:blockedtext-block-id|$5}}\n{{int:blockedtext-include-details-queries}}",

@@ -434,7 +434,6 @@
 	"anonpreviewwarning": "''Awu ko poinsuang log. Popogompi do sinuratan koponurat do kinoyonon IPnu id bobolikon susuyan niditan.''",
 	"missingsummary": "'''Panansarahan:''' Awu nu nosuratan hilo id koinibaan niditan.\nNung todosonnu \"$1\" kawagu, kogompi niditannu nga ingaa koinibaan.",
 	"missingcommenttext": "Mangai gia posuango pason id siriba.",
-	"missingcommentheader": "'''Panansarahan:''' Awu nu nokosuang ahal/tuluhon montok pason diti.\nNung todosonnu \"$1\" kawagu, kogompi niditannu nga ingaa aha//tuluhon.",
 	"summary-preview": "Pongitanan koinibaan:",
 	"blockedtitle": "Nantaban momoguno",
 	"blockedtext": "<strong>Ngaran momoguno nu toi ko' kinoyonon IP nantaban.</strong>\n\n{{int:blockedtext-made-by|$1}}\n{{int:blockedtext-reason-comment|$2}}\n\n*{{int:blockedtext-start-time|$8}}\n*{{int:blockedtext-expiration-time|$6}}\n*{{int:blockedtext-intended-blockee|$7}}\n\n{{int:blockedtext-contact-blocker-admin|$1}}\nMilo ko momoguno do \"{{int:emailuser}}\" sokiro alamat emel sah pinatantu id suang do [[Special:Preferences|preferences]] om amu ko nantaban do momoguno.\n{{int:blockedtext-block-ip|$3}} {{int:blockedtext-block-id|$5}}\n{{int:blockedtext-include-details-queries}}",

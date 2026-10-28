@@ -328,7 +328,6 @@
 	"anonpreviewwarning": "''No s'ha identificau con una cuenta d'usuario. A suya adreza IP quedará rechistrada en l'historial d'edicions d'ista pachina.\"",
 	"missingsummary": "'''Pare cuenta:''' No ha escrito garra resumen d'edición. Si puncha de nuevas en «$1» a suya edición se grabará sin resumen.",
 	"missingcommenttext": "Por favor, escriba o texto astí baixo.",
-	"missingcommentheader": "'''Recordanza:''' No ha garra títol ta iste comentario. Si puncha de nuevas en \"$1\", a suya edición se grabará sin garra títol.",
 	"summary-preview": "Veyer anvista previa d'o resumen:",
 	"blockedtitle": "L'usuario ye bloqueyato",
 	"blockedtext": "<strong>O suyo nombre d'usuario u adreza IP ye bloqueyau.</strong>\n\nO bloqueyo lo fació $1.\nA razón dada ye <em>$2</em>.\n\n* Prencipio d'o bloqueyo: $8\n* Fin d'o bloqueyo: $6\n* Indentificación bloqueyada: $7\n\nPuede contactar con $1 u con atro [[{{MediaWiki:Grouppage-sysop}}|administrador]] ta letigar sobre o bloqueyo.\nPuede fer servir a función \"{{int:emailuser}}\" si ya ha rechistrau una adreza conforme de correu electronico en as suyas [[Special:Preferences|preferencias]] y si no se l'ha vedau d'emplegar-la. \nA suya adreza IP actual ye $3, y o identificador d'o bloqueyo ye #$5. Por favor incluiga ixos datos quan faiga qualsiquier consulta.",
