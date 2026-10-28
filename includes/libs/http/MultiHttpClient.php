@@ -703,7 +703,7 @@ class MultiHttpClient implements LoggerAwareInterface {
 
 			if ( !isset( $req['body'] ) ) {
 				$req['body'] = '';
-				$req['headers']['content-length'] = 0;
+				$req['headers']['content-length'] = '0';
 			}
 			// Redact some headers we know to have tokens before logging them
 			$logHeaders = $req['headers'];
