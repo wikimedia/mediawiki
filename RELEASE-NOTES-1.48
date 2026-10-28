@@ -73,6 +73,7 @@ For notes on 1.47.x and older releases, see HISTORY.
 * Updated guzzlehttp/guzzle from 7.15.5 to 7.16.1.
 * Updated monolog/monolog from 3.12.0 to 3.12.1.
 * Updated vue and vue-compiler-dom from 3.5.17 to 3.5.43.
+* Updated wikimedia/xmp-reader from 0.10.3 to 0.11.0.
 * …
 
 ===== Changed development-only external libraries =====
