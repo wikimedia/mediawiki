@@ -260,8 +260,8 @@ For notes on 1.46.x and older releases, see HISTORY.
 
 ==== New external libraries ====
 
-* Added symfony/mailer at 7.4.19.
-* Added symfony/mime at 7.4.19.
+* Added symfony/mailer at 7.4.22.
+* Added symfony/mime at 7.4.22.
 * Added symfony/polyfill-php86 at 1.43.0.
 * …
 
