@@ -83,14 +83,14 @@ class FileModule extends Module {
 	protected $packageFiles = null;
 
 	/**
-	 * @var array Expanded versions of $packageFiles, lazy-computed by expandPackageFiles();
-	 *  keyed by context hash
+	 * @var array<string,array> Expanded versions of $packageFiles, lazy-computed by
+	 *   {@link expandPackageFiles}; keyed by context hash
 	 */
 	private $expandedPackageFiles = [];
 
 	/**
-	 * @var array Further expanded versions of $expandedPackageFiles, lazy-computed by
-	 *   getPackageFiles(); keyed by context hash
+	 * @var array<string,array> Further expanded versions of $expandedPackageFiles, lazy-computed by
+	 *   {@link getPackageFiles}; keyed by context hash
 	 */
 	private $fullyExpandedPackageFiles = [];
 
@@ -413,7 +413,7 @@ class FileModule extends Module {
 
 	/**
 	 * @param Context $context
-	 * @return string[][] Lists of URLs by media type
+	 * @return array<string,string[]> Lists of URLs by media type
 	 */
 	public function getStyleURLsForDebug( Context $context ) {
 		if ( $this->hasGeneratedStyles ) {
@@ -450,7 +450,7 @@ class FileModule extends Module {
 	 *
 	 * @param string|null $blob JSON, or null if module has no declared messages
 	 * @param string[] $allowed
-	 * @return array
+	 * @return array<string,string>
 	 */
 	private function pluckFromMessageBlob( $blob, array $allowed ): array {
 		$data = $blob ? json_decode( $blob, true ) : [];
@@ -808,7 +808,7 @@ class FileModule extends Module {
 	 *
 	 * @param array $list List of file paths in any combination of index/path
 	 *     or path/options pairs
-	 * @return string[][] List of collated file paths
+	 * @return array<string,string[]> List of collated file paths
 	 */
 	private static function collateStyleFilesByMedia( array $list ) {
 		$collatedFiles = [];
@@ -828,7 +828,7 @@ class FileModule extends Module {
 	/**
 	 * Get a list of element that match a key, optionally using a fallback key.
 	 *
-	 * @param array[] $list List of lists to select from
+	 * @param array<string,array> $list List of lists to select from
 	 * @param string $key Key to look for in $list
 	 * @param string|null $fallback Key to look for in $list if $key doesn't exist
 	 * @return array List of elements from $list which matched $key or $fallback,
@@ -850,7 +850,7 @@ class FileModule extends Module {
 	 * Get script file paths for this module, in order of proper execution.
 	 *
 	 * @param Context $context
-	 * @return array An array of file info arrays as returned by expandFileInfo()
+	 * @return array<string,array> An array of file info arrays as returned by expandFileInfo()
 	 */
 	private function getScriptFiles( Context $context ): array {
 		// List in execution order: scripts, languageScripts, skinScripts, debugScripts.
@@ -961,7 +961,7 @@ class FileModule extends Module {
 	 * the skin.
 	 *
 	 * @param string $skinName The name of the skin
-	 * @return array A list of file paths collated by media type
+	 * @return array<string,string[]> A list of file paths collated by media type
 	 */
 	protected function getSkinStyleFiles( $skinName ) {
 		return self::collateStyleFilesByMedia(
@@ -973,7 +973,7 @@ class FileModule extends Module {
 	 * Get a list of file paths for all skin style files in the module,
 	 * for all available skins.
 	 *
-	 * @return array A list of file paths collated by media type
+	 * @return array<string,string[]> A list of file paths collated by media type
 	 */
 	protected function getAllSkinStyleFiles() {
 		$skinFactory = MediaWikiServices::getInstance()->getSkinFactory();
@@ -995,7 +995,7 @@ class FileModule extends Module {
 	/**
 	 * Get all style files and all skin style files used by this module.
 	 *
-	 * @return array
+	 * @return string[]
 	 */
 	public function getAllStyleFiles() {
 		$collatedStyleFiles = array_merge_recursive(
@@ -1247,9 +1247,9 @@ class FileModule extends Module {
 	 * If-None-Match headers for a HTTP 304 response.
 	 *
 	 * @param Context $context
-	 * @return array|null Array of arrays as returned by expandFileInfo(), with the key being
-	 *   the file name, or null if this is not a package file module.
-	 * @phan-return array{main:?string,files:array[]}|null
+	 * @return array{main: ?string, files: array<string,array>}|null The 'files' element is an array
+	 *   of arrays as returned by {@link expandFileInfo}, with the key being the file name.
+	 *   Returns null if this is not a package file module.
 	 */
 	private function expandPackageFiles( Context $context ) {
 		$hash = $context->getHash();

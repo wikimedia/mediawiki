@@ -119,7 +119,7 @@ class ResourceLoader implements LoggerAwareInterface {
 	 */
 	protected $extraHeaders = [];
 	/**
-	 * @var array Styles that are skin-specific and supplement or replace the
+	 * @var array<string,array> Styles that are skin-specific and supplement or replace the
 	 * default skinStyles of a FileModule. See $wgResourceModuleSkinStyles.
 	 */
 	private $moduleSkinStyles = [];
@@ -233,7 +233,7 @@ class ResourceLoader implements LoggerAwareInterface {
 
 	/**
 	 * @internal For use by ServiceWiring.php
-	 * @param array $moduleSkinStyles
+	 * @param array<string,array> $moduleSkinStyles
 	 */
 	public function setModuleSkinStyles( array $moduleSkinStyles ) {
 		$this->moduleSkinStyles = $moduleSkinStyles;

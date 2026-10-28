@@ -25,8 +25,6 @@ use Wikimedia\ObjectCache\WANObjectCache;
  * @since 1.17
  */
 class MessageBlobStore implements LoggerAwareInterface {
-	/** @var ResourceLoader */
-	private $resourceloader;
 
 	/** @var LoggerInterface */
 	protected $logger;
@@ -34,17 +32,11 @@ class MessageBlobStore implements LoggerAwareInterface {
 	/** @var WANObjectCache */
 	protected $wanCache;
 
-	/**
-	 * @param ResourceLoader $rl
-	 * @param LoggerInterface|null $logger
-	 * @param WANObjectCache|null $wanObjectCache
-	 */
 	public function __construct(
-		ResourceLoader $rl,
+		private readonly ResourceLoader $resourceLoader,
 		?LoggerInterface $logger,
 		?WANObjectCache $wanObjectCache
 	) {
-		$this->resourceloader = $rl;
 		$this->logger = $logger ?? new NullLogger();
 
 		// NOTE: when changing this assignment, make sure the code in the instantiator for
@@ -56,7 +48,6 @@ class MessageBlobStore implements LoggerAwareInterface {
 
 	/**
 	 * @since 1.27
-	 * @param LoggerInterface $logger
 	 */
 	public function setLogger( LoggerInterface $logger ): void {
 		$this->logger = $logger;
@@ -79,9 +70,9 @@ class MessageBlobStore implements LoggerAwareInterface {
 	 * Get the message blobs for a set of modules
 	 *
 	 * @since 1.27
-	 * @param Module[] $modules Array of module objects keyed by name
+	 * @param array<string,Module> $modules Array of module objects keyed by name
 	 * @param string $lang Language code
-	 * @return string[] An array mapping module names to message blobs
+	 * @return array<string,string> An array mapping module names to message blobs
 	 */
 	public function getBlobs( array $modules, $lang ) {
 		// Each cache key for a message blob by module name and language code also has a generic
@@ -170,7 +161,7 @@ class MessageBlobStore implements LoggerAwareInterface {
 	 * @param string $key Message key
 	 */
 	public function updateMessage( $key ): void {
-		$moduleNames = $this->resourceloader->getModulesByMessage( $key );
+		$moduleNames = $this->resourceLoader->getModulesByMessage( $key );
 		foreach ( $moduleNames as $moduleName ) {
 			// Use the default holdoff TTL to account for database replica DB lag
 			// which can affect MessageCache.
@@ -184,7 +175,7 @@ class MessageBlobStore implements LoggerAwareInterface {
 	 * Used by LocalisationCache, DatabaseUpdater and purgeMessageBlobStore.php script
 	 * after regenerating l10n cache.
 	 */
-	public static function clearGlobalCacheEntry( WANObjectCache $cache ) {
+	public static function clearGlobalCacheEntry( WANObjectCache $cache ): void {
 		// Disable holdoff TTL because:
 		// - LocalisationCache is populated by messages on-disk and don't have DB lag,
 		//   thus there is no need for hold off. We only clear it after new localisation

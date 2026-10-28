@@ -53,13 +53,13 @@ abstract class Module implements LoggerAwareInterface {
 	/** @var string[]|null Skin names */
 	protected $skins = null;
 
-	/** @var array Map of (variant => indirect file dependencies) */
+	/** @var array<string,string[]> Map of (variant => indirect file dependencies) */
 	protected $fileDeps = [];
-	/** @var array Map of (language => in-object cache for message blob) */
+	/** @var array<string,string> Map of (language => in-object cache for message blob) */
 	protected $msgBlobs = [];
-	/** @var array Map of (context hash => cached module version hash) */
+	/** @var array<string,string> Map of (context hash => cached module version hash) */
 	protected $versionHash = [];
-	/** @var array Map of (context hash => cached module content) */
+	/** @var array<string,array> Map of (context hash => cached module content) */
 	protected $contents = [];
 
 	/** @var HookRunner|null */
@@ -137,7 +137,7 @@ abstract class Module implements LoggerAwareInterface {
 	 *
 	 * @since 1.37
 	 * @see $wgResourceModuleSkinStyles
-	 * @param array $moduleSkinStyles
+	 * @param array<string,array> $moduleSkinStyles
 	 */
 	public function setSkinStylesOverride( array $moduleSkinStyles ): void {
 		// Stub, only supported by FileModule currently.
@@ -229,7 +229,7 @@ abstract class Module implements LoggerAwareInterface {
 	 * Takes named templates by the module and returns an array mapping.
 	 *
 	 * @stable to override
-	 * @return string[] Array of templates mapping template alias to content
+	 * @return array<string,string> Array of templates mapping template alias to content
 	 */
 	public function getTemplates() {
 		// Stub, override expected.
@@ -333,7 +333,7 @@ abstract class Module implements LoggerAwareInterface {
 	 *
 	 * @stable to override
 	 * @param Context $context
-	 * @return array [ mediaType => [ URL1, URL2, ... ], ... ]
+	 * @return array<string,string[]> [ mediaType => [ URL1, URL2, ... ], ... ]
 	 */
 	public function getStyleURLsForDebug( Context $context ) {
 		$resourceLoader = $context->getResourceLoader();
@@ -544,8 +544,8 @@ abstract class Module implements LoggerAwareInterface {
 	 * becoming stale or incorrect when MediaWiki is moved or upgraded (T111481).
 	 *
 	 * @since 1.27
-	 * @param array $filePaths
-	 * @return array
+	 * @param string[] $filePaths
+	 * @return string[]
 	 */
 	public static function getRelativePaths( array $filePaths ) {
 		global $IP;
@@ -558,8 +558,8 @@ abstract class Module implements LoggerAwareInterface {
 	 * Expand directories relative to $IP.
 	 *
 	 * @since 1.27
-	 * @param array $filePaths
-	 * @return array
+	 * @param string[] $filePaths
+	 * @return string[]
 	 */
 	public static function expandRelativePaths( array $filePaths ) {
 		global $IP;
@@ -674,7 +674,7 @@ abstract class Module implements LoggerAwareInterface {
 	 * @stable to override
 	 * @since 1.30
 	 * @param Context $context
-	 * @return array Keyed by url, values must be an array containing
+	 * @return array<string,array<string,string>> Keyed by url, values must be an array containing
 	 *  at least an 'as' key. Optionally a 'media' key as well.
 	 */
 	protected function getPreloadLinks( Context $context ) {
@@ -698,7 +698,8 @@ abstract class Module implements LoggerAwareInterface {
 	 *
 	 * @since 1.26
 	 * @param Context $context
-	 * @return array
+	 * @phpcs:ignore Generic.Files.LineLength
+	 * @return array{scripts:array, styles:array, messagesBlob?:string, templates?:array, headers?:string[], deprecationWarning?:string}
 	 */
 	public function getModuleContent( Context $context ) {
 		$contextHash = $context->getHash();
@@ -715,7 +716,8 @@ abstract class Module implements LoggerAwareInterface {
 	 *
 	 * @since 1.26
 	 * @param Context $context
-	 * @return array
+	 * @phpcs:ignore Generic.Files.LineLength
+	 * @return array{scripts:array, styles:array, messagesBlob?:string, templates?:array, headers?:string[], deprecationWarning?:string}
 	 */
 	final protected function buildContent( Context $context ) {
 		$statsFactory = MediaWikiServices::getInstance()->getStatsFactory();
