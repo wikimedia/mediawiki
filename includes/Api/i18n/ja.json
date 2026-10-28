@@ -215,7 +215,7 @@
 	"apihelp-feedcontributions-param-namespace": "この名前空間への投稿記録に絞り込む。",
 	"apihelp-feedcontributions-param-year": "この年以前。",
 	"apihelp-feedcontributions-param-month": "この月以前。",
-	"apihelp-feedcontributions-param-tagfilter": "このタグが付与された投稿記録に絞り込む。",
+	"apihelp-feedcontributions-param-tagfilter": "このタグが付与された投稿記録のみ表示する。",
 	"apihelp-feedcontributions-param-deletedonly": "削除された投稿記録のみ表示します。",
 	"apihelp-feedcontributions-param-toponly": "最新版の編集のみ表示します。",
 	"apihelp-feedcontributions-param-newonly": "ページ作成を伴う編集のみを表示します。",

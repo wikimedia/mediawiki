@@ -110,6 +110,7 @@
 	"right-blockemail": "felhasználók e-mail-küldési lehetőségének blokkolása és a blokkok feloldása",
 	"right-hideuser": "felhasználónév blokkolása és elrejtése a külvilág elől, vagy blokk feloldása és a külvilág számára láthatóvá tétel",
 	"right-ipblock-exempt": "IP-, auto- és tartományblokkok megkerülése",
+	"right-logentryimport": "Naplóbejegyzések importálása",
 	"right-unblockself": "saját felhasználói fiók blokkjának feloldása",
 	"right-protect": "védelmi beállítások megváltoztatása és kaszkádolt védelemmel rendelkező lapok szerkesztése",
 	"right-editalluserpages": "az összes felhasználói lap szerkesztése",

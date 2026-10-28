@@ -4,7 +4,8 @@
 			"Dinkawiki",
 			"Kumkumuk",
 			"Matěj Suchánek",
-			"Mawanmuortat"
+			"Mawanmuortat",
+			"Sanderpel713"
 		]
 	},
 	"pagecategories": "{{PLURAL:$1|Bekätakthook|Bekätakthuɔk}}",
@@ -78,6 +79,7 @@
 	"retrievedfrom": "Cïdhuk në \"$1\"",
 	"editsection": "cokic",
 	"editold": "cokic",
+	"viewsourceold": "ɣoi tënëyök",
 	"editlink": "cokic",
 	"viewsourcelink": "ɣoi tënëyök",
 	"editsectionhint": "Cokic akut: $1",
@@ -98,6 +100,8 @@
 	"badtitle": "Rin awäc",
 	"badtitletext": "Këjiɛmë ca thiëëcë acïï lɔcök, tëdɛ̈ ka cïn kë tɔ̈u thïn, tëdɛ̈ ka këjiɛmë de thuɔkmɛ̈t wälä de wikimɛ̈t aa këcëkɛ nyiɛc nuet apath. Tëkdɛ̈ kä nɔŋic cït cïï lëu bïke luööi në käjiɛmëkeyiic.",
 	"viewsource": "Ɣoi tënëyök",
+	"skin-action-viewsource": "Ɣoië tënëyökic",
+	"viewsource-title": "Ɣoië tënëyökic $1",
 	"yourname": "Rinduloi:",
 	"userlogin-yourname": "Rinduloi",
 	"userlogin-yourname-ph": "Tɔ̈ɔ̈u rinduloiku",

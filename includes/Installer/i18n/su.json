@@ -3,7 +3,8 @@
 		"authors": [
 			"Kandar",
 			"Pppery",
-			"Uchup19"
+			"Uchup19",
+			"Rafka Aditia"
 		]
 	},
 	"config-desc": "Panginstal MediaWiki",
@@ -15,6 +16,7 @@
 	"config-localsettings-badkey": "Sandi anu diasupkeun salah.",
 	"config-restart": "Nya, hirupkeun ulang",
 	"config-profile-fishbowl": "Husus éditor kadaptar",
+	"config-logo-preview-main": "Tepas",
 	"mainpagetext": "<strong>MediaWiki geus réngsé diinstal.</strong>",
 	"mainpagedocfooter": "Mangga tingal ''[https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources documentation on customizing the interface]'' jeung [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents Tungtunan Pamaké] pikeun pitulung maké jeung konfigurasi."
 }

@@ -66,6 +66,15 @@
 	"period-am": "Berî Nîvro",
 	"period-pm": "PN",
 	"timezone-local": "Herêmî",
+	"hijri-calendar-m1": "Muherem",
+	"hijri-calendar-m2": "Sefer",
+	"hijri-calendar-m3": "Rebî'ulewel",
+	"hijri-calendar-m7": "Receb",
+	"hijri-calendar-m8": "Şe'ban",
+	"hijri-calendar-m9": "Remezan",
+	"hijri-calendar-m10": "Şewal",
+	"hijri-calendar-m11": "Rebî'ulewel",
+	"hijri-calendar-m12": "Zîlhice",
 	"years": "{{PLURAL:$1|salekê|$1 salan}}",
 	"months": "{{PLURAL:$1|mehekê|$1 mehan}}",
 	"weeks": "{{PLURAL:$1|hefteyekê|$1 hefteyan}}",
@@ -92,5 +101,6 @@
 	"yesterday-at": "Doh di $1 de",
 	"hours-ago": "berî {{PLURAL:$1|saetekê|$1 saetan}}",
 	"minutes-ago": "Berî {{PLURAL: $1|deqeyekê|$1 deqeyan}}",
+	"seconds-ago": "Berî $1 {{PLURAL:$1|saniyê|saniyan}}",
 	"just-now": "hê nûka"
 }

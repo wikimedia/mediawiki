@@ -85,6 +85,7 @@
 	"index-category": "Indekserte sider",
 	"noindex-category": "Ikke-indekserte sider",
 	"broken-file-category": "Sider med brutte fillenker",
+	"category-header-strokes": "$1 {{PLURAL:$1|strøk}}",
 	"about": "Om",
 	"article": "Innholdsside",
 	"newwindow": "(åpnes i et nytt vindu)",

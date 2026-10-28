@@ -144,5 +144,6 @@
 	"rest-endpoint-summ-get-file-title": "Получить файл",
 	"rest-endpoint-summ-put-page-title": "Обновить страницу",
 	"rest-endpoint-summ-post-page": "Создать страницу",
-	"rest-requestbody-desc-create-page": "Страница для создания"
+	"rest-requestbody-desc-create-page": "Страница для создания",
+	"rest-requestbody-desc-update-page": "Страница для обновления или создания"
 }

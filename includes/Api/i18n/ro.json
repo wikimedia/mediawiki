@@ -38,7 +38,7 @@
 	"apihelp-mergehistory-param-toid": "ID-ul paginii în al cărui istoric vor fi aduse versiunile. Nu poate fi folosit împreună cu <var>$1to</var>.",
 	"apihelp-mergehistory-param-timestamp": "Timestampul momentului până la care versiunile vor fi mutate din istoricul paginii sursă în istoricul paginii destinație. Dacă nu este preecizat, atunci întregul istoric al paginii sursă va fi trecut la pagina destinație. Se poate specifica \"timestamp|revid\" pentru a diviza două versiuni cu același timestamp.",
 	"apihelp-mergehistory-param-starttimestamp": "Timestampul momentului de la care se vor muta versiunile din istoricul paginii sursă în cel al paginii destinație. Dacă se omite, toate versiunile dinainte de parametrul timestamp (sau întregul istoric dacă niciunul nu este specificat) va fi unit în pagina destinație. Poate specifica \"timestamp|revid\" pentru a diviza două versiuni cu același timestamp.",
-	"apihelp-mergehistory-param-reason": "Motivul pentru unirea istoricului",
+	"apihelp-mergehistory-param-reason": "Motivul pentru unirea istoricului.",
 	"apihelp-mergehistory-example-merge": "Unirea întregului istoric din pagina <kbd>Oldpage</kbd> către istoricul paginii <kbd>Newpage</kbd>",
 	"apihelp-mergehistory-example-merge-timestamp": "Mută versiunile din istoricul paginii <kbd>Oldpage</kbd> de până la <kbd>2015-12-31T04:37:41Z</kbd> în cel al paginii <kbd>Newpage</kbd>.",
 	"apihelp-query+extlinks-param-protocol": "Protocolul URL-ului. Dacă este gol și <var>$1query</var> este setat, protocolul este <kbd>http</kbd> și <kbd>https</kbd>. Lăsați atât aceasta, cât și <var>$1query</var> goale pentru a lista toate legăturile externe.",
