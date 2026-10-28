@@ -598,10 +598,7 @@ class WatchlistManager {
 	 * @return array Watchlist labels, indexed by label ID.
 	 */
 	private function loadWatchlistLabelsForUser( UserIdentity $user ): array {
-		if ( !isset( $this->watchlistLabels[$user->getId()] ) ) {
-			$this->watchlistLabels[$user->getId()] = $this->watchlistLabelStore->loadAllForUser( $user );
-		}
-
+		$this->watchlistLabels[$user->getId()] ??= $this->watchlistLabelStore->loadAllForUser( $user );
 		return $this->watchlistLabels[$user->getId()];
 	}
 }

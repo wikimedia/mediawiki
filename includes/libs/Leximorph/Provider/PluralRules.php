@@ -105,9 +105,7 @@ class PluralRules {
 	 * @return array<int, string> The compiled plural rules.
 	 */
 	public function compileRulesFor( string $code ): array {
-		if ( self::$pluralData === null ) {
-			self::$pluralData = self::loadPluralFiles();
-		}
+		self::$pluralData ??= self::loadPluralFiles();
 		$data = self::$pluralData[$code] ?? null;
 		$rules = $data ? array_column( $data, 'rule' ) : null;
 
@@ -236,9 +234,7 @@ class PluralRules {
 	 * @return array<int, string> The plural rule types.
 	 */
 	public function getPluralRuleTypes(): array {
-		if ( self::$pluralData === null ) {
-			self::$pluralData = self::loadPluralFiles();
-		}
+		self::$pluralData ??= self::loadPluralFiles();
 		$data = self::$pluralData[$this->langCode] ?? [];
 		if ( count( $data ) === 0 ) {
 			foreach ( $this->provider->getLanguageFallbacksProvider()->getFallbacks() as $fallbackCode ) {

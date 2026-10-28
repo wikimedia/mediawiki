@@ -278,10 +278,7 @@ class Article implements Page {
 	 *         context's WebRequest.
 	 */
 	public function getOldID() {
-		if ( $this->mOldId === null ) {
-			$this->mOldId = $this->getOldIDFromRequest();
-		}
-
+		$this->mOldId ??= $this->getOldIDFromRequest();
 		return $this->mOldId;
 	}
 

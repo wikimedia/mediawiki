@@ -254,9 +254,7 @@ class TempUserCreator implements TempUserConfig {
 	}
 
 	private function getSerialProvider(): SerialProvider {
-		if ( !isset( $this->serialProvider ) ) {
-			$this->serialProvider = $this->createSerialProvider();
-		}
+		$this->serialProvider ??= $this->createSerialProvider();
 		return $this->serialProvider;
 	}
 
@@ -285,9 +283,7 @@ class TempUserCreator implements TempUserConfig {
 	}
 
 	private function getSerialMapping(): SerialMapping {
-		if ( !isset( $this->serialMapping ) ) {
-			$this->serialMapping = $this->createSerialMapping();
-		}
+		$this->serialMapping ??= $this->createSerialMapping();
 		return $this->serialMapping;
 	}
 

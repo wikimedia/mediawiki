@@ -273,10 +273,7 @@ class StartUpModule extends Module {
 			return null;
 		}
 
-		if ( !array_key_exists( $groupName, $this->groupIds ) ) {
-			$this->groupIds[$groupName] = count( $this->groupIds );
-		}
-
+		$this->groupIds[$groupName] ??= count( $this->groupIds );
 		return $this->groupIds[$groupName];
 	}
 

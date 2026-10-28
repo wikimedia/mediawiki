@@ -573,10 +573,7 @@ class DatabaseSqlite extends Database {
 	 * @return string Version information from the database
 	 */
 	public function getServerVersion() {
-		if ( $this->version === null ) {
-			$this->version = $this->getBindingHandle()->getAttribute( PDO::ATTR_SERVER_VERSION );
-		}
-
+		$this->version ??= (string)$this->getBindingHandle()->getAttribute( PDO::ATTR_SERVER_VERSION );
 		return $this->version;
 	}
 

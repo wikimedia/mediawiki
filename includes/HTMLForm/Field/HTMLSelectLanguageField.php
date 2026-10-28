@@ -43,8 +43,8 @@ class HTMLSelectLanguageField extends HTMLSelectField {
 		// Note: The injection should not happen, the list should consist site languages,
 		// but just in case for the OOUI fallback, we keep it here.
 		// For Codex component we skip this injection.
-		if ( !$this->useCodex && !array_key_exists( $languageCode, $this->languages ) ) {
-			$this->languages[$languageCode] = $languageCode;
+		if ( !$this->useCodex ) {
+			$this->languages[$languageCode] ??= $languageCode;
 		}
 
 		ksort( $this->languages );

@@ -28,14 +28,9 @@ class FileContentsHasher {
 
 	/**
 	 * Get the singleton instance of this class.
-	 *
-	 * @return FileContentsHasher
 	 */
-	public static function singleton() {
-		if ( !self::$instance ) {
-			self::$instance = new self;
-		}
-
+	public static function singleton(): self {
+		self::$instance ??= new self();
 		return self::$instance;
 	}
 

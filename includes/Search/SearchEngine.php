@@ -917,9 +917,7 @@ abstract class SearchEngine {
 	 * @return HookRunner
 	 */
 	protected function getHookRunner(): HookRunner {
-		if ( !$this->hookRunner ) {
-			$this->hookRunner = new HookRunner( $this->getHookContainer() );
-		}
+		$this->hookRunner ??= new HookRunner( $this->getHookContainer() );
 		return $this->hookRunner;
 	}
 

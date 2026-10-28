@@ -65,10 +65,7 @@ class MaintenanceRunner {
 	}
 
 	private function getConfig(): Config {
-		if ( $this->config === null ) {
-			$this->config = $this->getServiceContainer()->getMainConfig();
-		}
-
+		$this->config ??= $this->getServiceContainer()->getMainConfig();
 		return $this->config;
 	}
 

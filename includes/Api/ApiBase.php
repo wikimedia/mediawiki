@@ -760,12 +760,9 @@ abstract class ApiBase extends ContextSource {
 	 * Get a HookContainer, for running extension hooks or for hook metadata.
 	 *
 	 * @since 1.35
-	 * @return HookContainer
 	 */
-	protected function getHookContainer() {
-		if ( !$this->hookContainer ) {
-			$this->hookContainer = MediaWikiServices::getInstance()->getHookContainer();
-		}
+	protected function getHookContainer(): HookContainer {
+		$this->hookContainer ??= MediaWikiServices::getInstance()->getHookContainer();
 		return $this->hookContainer;
 	}
 
@@ -775,12 +772,9 @@ abstract class ApiBase extends ContextSource {
 	 * @internal This is for use by core only. Hook interfaces may be removed
 	 *  without notice.
 	 * @since 1.35
-	 * @return ApiHookRunner
 	 */
-	protected function getHookRunner() {
-		if ( !$this->hookRunner ) {
-			$this->hookRunner = new ApiHookRunner( $this->getHookContainer() );
-		}
+	protected function getHookRunner(): ApiHookRunner {
+		$this->hookRunner ??= new ApiHookRunner( $this->getHookContainer() );
 		return $this->hookRunner;
 	}
 

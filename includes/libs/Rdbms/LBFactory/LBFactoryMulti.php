@@ -224,11 +224,7 @@ class LBFactoryMulti extends LBFactory {
 	public function getMainLB( $domain = false ): ILoadBalancer {
 		$domainInstance = $this->resolveDomainInstance( $domain );
 		$section = $this->getSectionFromDatabase( $domainInstance->getDatabase() );
-
-		if ( !isset( $this->mainLBs[$section] ) ) {
-			$this->mainLBs[$section] = $this->newMainLB( $domain );
-		}
-
+		$this->mainLBs[$section] ??= $this->newMainLB( $domain );
 		return $this->mainLBs[$section];
 	}
 

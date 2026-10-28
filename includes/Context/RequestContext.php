@@ -527,9 +527,7 @@ class RequestContext implements IContextSource, MutableContext {
 	 * @return string
 	 */
 	public function getSkinName() {
-		if ( $this->skinName === null ) {
-			$this->skinName = $this->fetchSkinName();
-		}
+		$this->skinName ??= $this->fetchSkinName();
 		return $this->skinName;
 	}
 

@@ -219,10 +219,7 @@ class HookContainer implements SalvageableService {
 				"but this hook does not allow it." );
 		}
 
-		if ( !isset( $this->handlerObjects[$name] ) ) {
-			$this->handlerObjects[$name] = $this->objectFactory->createObject( $spec );
-		}
-
+		$this->handlerObjects[$name] ??= $this->objectFactory->createObject( $spec );
 		$obj = $this->handlerObjects[$name];
 		$method = $this->getHookMethodName( $hook );
 

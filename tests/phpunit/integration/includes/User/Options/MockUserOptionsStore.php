@@ -34,9 +34,7 @@ class MockUserOptionsStore implements UserOptionsStore {
 	/** @inheritDoc */
 	public function store( UserIdentity $user, array $updates ) {
 		$userName = $user->getName();
-		if ( !isset( $this->data[$userName] ) ) {
-			$this->data[$userName] = [];
-		}
+		$this->data[$userName] ??= [];
 		$userData =& $this->data[$userName];
 		$changed = false;
 		foreach ( $updates as $key => $value ) {

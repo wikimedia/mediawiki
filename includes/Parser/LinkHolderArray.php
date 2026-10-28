@@ -58,11 +58,8 @@ class LinkHolderArray {
 	public function merge( $other ) {
 		foreach ( $other->internals as $ns => $entries ) {
 			$this->size += count( $entries );
-			if ( !isset( $this->internals[$ns] ) ) {
-				$this->internals[$ns] = $entries;
-			} else {
-				$this->internals[$ns] += $entries;
-			}
+			$this->internals[$ns] ??= [];
+			$this->internals[$ns] += $entries;
 		}
 		$this->interwikis += $other->interwikis;
 	}

@@ -111,9 +111,7 @@ class TempFSFile extends FSFile {
 	public function bind( $object ) {
 		if ( is_object( $object ) ) {
 			// Use a WeakMap to avoid dynamic property creation (T324894)
-			if ( self::$references === null ) {
-				self::$references = new WeakMap;
-			}
+			self::$references ??= new WeakMap();
 			self::$references[$object] = $this;
 		}
 

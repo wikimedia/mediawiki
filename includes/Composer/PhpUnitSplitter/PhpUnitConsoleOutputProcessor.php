@@ -139,9 +139,7 @@ class PhpUnitConsoleOutputProcessor {
 	}
 
 	private function handleDotChartLine( string $inputLine ) {
-		if ( $this->dotChart === null ) {
-			$this->dotChart = "";
-		}
+		$this->dotChart ??= '';
 		$this->dotChart .= $inputLine . PHP_EOL;
 		if ( preg_match( "/^.* \(100%\)$/", $inputLine ) ) {
 			$this->state = self::STATE_EXPECT_TEST_SUMMARY;

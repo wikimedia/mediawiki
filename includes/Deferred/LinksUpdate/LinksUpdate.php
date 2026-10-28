@@ -493,10 +493,7 @@ class LinksUpdate extends DataUpdate implements TransactionRoundAwareUpdate {
 	 * @return IDatabase
 	 */
 	protected function getDB() {
-		if ( !$this->db ) {
-			$this->db = $this->dbProvider->getPrimaryDatabase();
-		}
-
+		$this->db ??= $this->dbProvider->getPrimaryDatabase();
 		return $this->db;
 	}
 

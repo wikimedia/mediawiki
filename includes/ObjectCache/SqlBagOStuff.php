@@ -1628,9 +1628,8 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 	}
 
 	private function getLoadBalancer(): ILoadBalancer {
-		if ( !$this->loadBalancer ) {
-			$this->loadBalancer = ( $this->loadBalancerCallback )();
-		}
+		$this->loadBalancer ??= ( $this->loadBalancerCallback )();
+		// @phan-suppress-next-line PhanTypeMismatchReturnNullable
 		return $this->loadBalancer;
 	}
 

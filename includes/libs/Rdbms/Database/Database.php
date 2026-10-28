@@ -3294,9 +3294,7 @@ abstract class Database implements Stringable, IDatabaseForOwner, IMaintainableD
 		// FIXME: A lot of tests disable constructor leading to trx manager being
 		// null and breaking, this is unacceptable but hopefully this should
 		// happen less by moving these functions to the transaction manager class.
-		if ( !$this->transactionManager ) {
-			$this->transactionManager = new TransactionManager( new NullLogger() );
-		}
+		$this->transactionManager ??= new TransactionManager( new NullLogger() );
 		return $this->transactionManager->trxLevel();
 	}
 

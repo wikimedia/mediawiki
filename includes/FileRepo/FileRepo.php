@@ -226,15 +226,9 @@ class FileRepo {
 		// Give defaults for the basic zones...
 		$this->zones = $info['zones'] ?? [];
 		foreach ( [ 'public', 'thumb', 'transcoded', 'temp', 'deleted' ] as $zone ) {
-			if ( !isset( $this->zones[$zone]['container'] ) ) {
-				$this->zones[$zone]['container'] = "{$this->name}-{$zone}";
-			}
-			if ( !isset( $this->zones[$zone]['directory'] ) ) {
-				$this->zones[$zone]['directory'] = '';
-			}
-			if ( !isset( $this->zones[$zone]['urlsByExt'] ) ) {
-				$this->zones[$zone]['urlsByExt'] = [];
-			}
+			$this->zones[$zone]['container'] ??= "{$this->name}-{$zone}";
+			$this->zones[$zone]['directory'] ??= '';
+			$this->zones[$zone]['urlsByExt'] ??= [];
 		}
 
 		$this->supportsSha1URLs = !empty( $info['supportsSha1URLs'] );

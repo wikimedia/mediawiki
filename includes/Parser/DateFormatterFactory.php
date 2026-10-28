@@ -5,18 +5,13 @@ namespace MediaWiki\Parser;
 use MediaWiki\Language\Language;
 
 class DateFormatterFactory {
-	/** @var DateFormatter[] */
-	private $instances;
 
-	/**
-	 * @param Language $lang
-	 * @return DateFormatter
-	 */
-	public function get( Language $lang ) {
+	/** @var array<string,DateFormatter> */
+	private array $instances;
+
+	public function get( Language $lang ): DateFormatter {
 		$code = $lang->getCode();
-		if ( !isset( $this->instances[$code] ) ) {
-			$this->instances[$code] = new DateFormatter( $lang );
-		}
+		$this->instances[$code] ??= new DateFormatter( $lang );
 		return $this->instances[$code];
 	}
 }

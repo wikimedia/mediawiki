@@ -87,11 +87,7 @@ class FilePath {
 	 * @param string $remoteBasePath
 	 */
 	public function initBasePaths( string $localBasePath, string $remoteBasePath ) {
-		if ( $this->localBasePath === null ) {
-			$this->localBasePath = $localBasePath;
-		}
-		if ( $this->remoteBasePath === null ) {
-			$this->remoteBasePath = $remoteBasePath;
-		}
+		$this->localBasePath ??= $localBasePath;
+		$this->remoteBasePath ??= $remoteBasePath;
 	}
 }

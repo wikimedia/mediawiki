@@ -536,13 +536,10 @@ abstract class File implements MediaHandlerState {
 				->getTiming( 'media_thumbnail_generate_fetchoriginal_seconds' )
 				->start();
 
-			$this->fsFile = $this->repo->getLocalReference( $this->getPath() );
+			// null => false; cache negative hits
+			$this->fsFile = $this->repo->getLocalReference( $this->getPath() ) ?? false;
 
 			$timer->stop();
-
-			if ( !$this->fsFile ) {
-				$this->fsFile = false; // null => false; cache negative hits
-			}
 		}
 
 		return ( $this->fsFile )
@@ -930,10 +927,7 @@ abstract class File implements MediaHandlerState {
 	 * @return bool
 	 */
 	public function canRender() {
-		if ( $this->canRender === null ) {
-			$this->canRender = $this->getHandler() && $this->handler->canRender( $this ) && $this->exists();
-		}
-
+		$this->canRender ??= $this->getHandler() && $this->handler->canRender( $this ) && $this->exists();
 		return $this->canRender;
 	}
 
@@ -983,10 +977,7 @@ abstract class File implements MediaHandlerState {
 	 * @return bool
 	 */
 	public function isSafeFile() {
-		if ( $this->isSafeFile === null ) {
-			$this->isSafeFile = $this->getIsSafeFileUncached();
-		}
-
+		$this->isSafeFile ??= $this->getIsSafeFileUncached();
 		return $this->isSafeFile;
 	}
 
@@ -2567,10 +2558,7 @@ abstract class File implements MediaHandlerState {
 	 */
 	protected function getRedirectedTitle() {
 		if ( $this->redirected !== null ) {
-			if ( !$this->redirectTitle ) {
-				$this->redirectTitle = Title::makeTitle( NS_FILE, $this->redirected );
-			}
-
+			$this->redirectTitle ??= Title::makeTitle( NS_FILE, $this->redirected );
 			return $this->redirectTitle;
 		}
 

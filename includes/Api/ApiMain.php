@@ -1360,12 +1360,8 @@ class ApiMain extends ApiBase {
 		$response->header( $out->getVaryHeader() );
 
 		// If nobody called setCacheMaxAge(), use the (s)maxage parameters
-		if ( !isset( $this->mCacheControl['s-maxage'] ) ) {
-			$this->mCacheControl['s-maxage'] = $this->getParameter( 'smaxage' );
-		}
-		if ( !isset( $this->mCacheControl['max-age'] ) ) {
-			$this->mCacheControl['max-age'] = $this->getParameter( 'maxage' );
-		}
+		$this->mCacheControl['s-maxage'] ??= $this->getParameter( 'smaxage' );
+		$this->mCacheControl['max-age'] ??= $this->getParameter( 'maxage' );
 
 		if ( !$this->mCacheControl['s-maxage'] && !$this->mCacheControl['max-age'] ) {
 			// Public cache not requested
@@ -2628,10 +2624,7 @@ class ApiMain extends ApiBase {
 	 * @return bool
 	 */
 	public function canApiHighLimits() {
-		if ( $this->mCanApiHighLimits === null ) {
-			$this->mCanApiHighLimits = $this->getAuthority()->isAllowed( 'apihighlimits' );
-		}
-
+		$this->mCanApiHighLimits ??= $this->getAuthority()->isAllowed( 'apihighlimits' );
 		return $this->mCanApiHighLimits;
 	}
 

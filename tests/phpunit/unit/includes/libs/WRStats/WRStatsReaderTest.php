@@ -33,10 +33,8 @@ class WRStatsReaderTest extends TestCase {
 		$this->assertSame( 60, $latest->getDuration() );
 	}
 
-	private function getStore() {
-		if ( $this->store === null ) {
-			$this->store = new ArrayStatsStore;
-		}
+	private function getStore(): ArrayStatsStore {
+		$this->store ??= new ArrayStatsStore();
 		return $this->store;
 	}
 

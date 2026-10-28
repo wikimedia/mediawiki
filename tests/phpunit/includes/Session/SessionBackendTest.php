@@ -85,9 +85,7 @@ class SessionBackendTest extends MediaWikiIntegrationTestCase {
 			);
 		}
 
-		if ( !$this->provider ) {
-			$this->provider = new DummySessionProvider();
-		}
+		$this->provider ??= new DummySessionProvider();
 		$this->initProvider( $this->provider, null, $this->config, $this->manager, $hookContainer );
 
 		$info = new SessionInfo( SessionInfo::MIN_PRIORITY, [

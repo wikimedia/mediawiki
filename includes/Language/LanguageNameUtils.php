@@ -180,9 +180,7 @@ class LanguageNameUtils {
 		}
 		$cacheKey = $inLanguage === self::AUTONYMS ? 'null' : $inLanguage;
 		$cacheKey .= ":$include";
-		if ( !$this->languageNameCache ) {
-			$this->languageNameCache = new HashBagOStuff( [ 'maxKeys' => 20 ] );
-		}
+		$this->languageNameCache ??= new HashBagOStuff( [ 'maxKeys' => 20 ] );
 
 		return $this->languageNameCache->getWithSetCallback(
 			$cacheKey,

@@ -850,14 +850,14 @@ class WebRequest {
 		$sessionId = $this->getSessionId();
 		$sessionManager = MediaWikiServices::getInstance()->getSessionManager();
 
-		// Destroy the old session if someone has set a new session ID
-		if ( $this->session && $sessionId && $this->session->getId() !== $sessionId->getId() ) {
-			$this->session = null;
-		}
+		if ( $sessionId ) {
+			// Destroy the old session if someone has set a new session ID
+			if ( $this->session && $this->session->getId() !== $sessionId->getId() ) {
+				$this->session = null;
+			}
 
-		// Look up session by ID if provided
-		if ( !$this->session && $sessionId ) {
-			$this->session = $sessionManager->getSessionById( $sessionId->getId(), true, $this );
+			// Look up session by ID if provided
+			$this->session ??= $sessionManager->getSessionById( $sessionId->getId(), true, $this );
 		}
 
 		// If it was not provided, or a session with that ID doesn't exist, create a new one
@@ -1112,9 +1112,7 @@ class WebRequest {
 	 */
 	public function response(): WebResponse {
 		/* Lazy initialization of response object for this request */
-		if ( !$this->response ) {
-			$this->response = new WebResponse();
-		}
+		$this->response ??= new WebResponse();
 		return $this->response;
 	}
 

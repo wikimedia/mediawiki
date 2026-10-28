@@ -24,10 +24,8 @@ class LazyLocalizationContext implements LocalizationContext {
 	}
 
 	private function resolve(): LocalizationContext {
-		if ( !$this->context ) {
-			$this->context = ( $this->instantiator )();
-		}
-
+		$this->context ??= ( $this->instantiator )();
+		// @phan-suppress-next-line PhanTypeMismatchReturnNullable
 		return $this->context;
 	}
 

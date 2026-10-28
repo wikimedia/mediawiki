@@ -432,9 +432,7 @@ class SpecialUploadStash extends UnlistedSpecialPage {
 	}
 
 	private function getStash(): UploadStash {
-		if ( !$this->stash ) {
-			$this->stash = $this->localRepo->getUploadStash( $this->getUser() );
-		}
+		$this->stash ??= $this->localRepo->getUploadStash( $this->getUser() );
 		return $this->stash;
 	}
 

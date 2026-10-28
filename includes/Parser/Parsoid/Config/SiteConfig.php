@@ -142,9 +142,7 @@ class SiteConfig extends ISiteConfig {
 	/** @inheritDoc */
 	public function getLogger(): LoggerInterface {
 		// TODO: inject
-		if ( $this->logger === null ) {
-			$this->logger = LoggerFactory::getInstance( 'Parsoid' );
-		}
+		$this->logger ??= LoggerFactory::getInstance( 'Parsoid' );
 		return $this->logger;
 	}
 

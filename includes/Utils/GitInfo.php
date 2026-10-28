@@ -156,13 +156,9 @@ class GitInfo {
 
 	/**
 	 * Get the singleton for the repo at MW_INSTALL_PATH
-	 *
-	 * @return GitInfo
 	 */
-	public static function repo() {
-		if ( self::$repo === null ) {
-			self::$repo = new self( MW_INSTALL_PATH );
-		}
+	public static function repo(): self {
+		self::$repo ??= new self( MW_INSTALL_PATH );
 		return self::$repo;
 	}
 

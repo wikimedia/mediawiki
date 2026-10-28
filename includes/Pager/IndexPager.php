@@ -189,9 +189,7 @@ abstract class IndexPager extends ContextSource implements Pager {
 
 		$this->mIsBackwards = ( $this->mRequest->getRawVal( 'dir' ) === 'prev' );
 		// Let the subclass set the DB here; otherwise use a replica DB for the current wiki
-		if ( !$this->mDb ) {
-			$this->mDb = MediaWikiServices::getInstance()->getConnectionProvider()->getReplicaDatabase();
-		}
+		$this->mDb ??= MediaWikiServices::getInstance()->getConnectionProvider()->getReplicaDatabase();
 
 		$index = $this->getIndexField(); // column to sort on
 		$extraSort = $this->getExtraSortFields(); // extra columns to sort on for query planning
@@ -1033,12 +1031,9 @@ abstract class IndexPager extends ContextSource implements Pager {
 
 	/**
 	 * @since 1.34
-	 * @return LinkRenderer
 	 */
-	protected function getLinkRenderer() {
-		if ( $this->linkRenderer === null ) {
-			$this->linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
-		}
+	protected function getLinkRenderer(): LinkRenderer {
+		$this->linkRenderer ??= MediaWikiServices::getInstance()->getLinkRenderer();
 		return $this->linkRenderer;
 	}
 }

@@ -129,9 +129,7 @@ class LoginHelper extends ContextSource {
 	 * @return string 'page' or 'popup'
 	 */
 	public function getDisplayMode(): string {
-		if ( $this->displayMode === null ) {
-			$this->displayMode = $this->computeDisplayMode();
-		}
+		$this->displayMode ??= $this->computeDisplayMode();
 		return $this->displayMode;
 	}
 

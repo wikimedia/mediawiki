@@ -544,17 +544,15 @@ class TransactionProfiler implements LoggerAwareInterface {
 		if ( $this->silenced[$event] > 0 || str_starts_with( $fname, 'Wikimedia\\Rdbms\\' ) ) {
 			return false;
 		}
+
 		$limit = $this->expect[$event][self::FLD_LIMIT];
 		if ( $limit === INF ) {
 			// expectation disabled, skip collecting function names
 			return false;
 		}
-		if ( !isset( $this->hitsFName[$event][$fname] ) ) {
-			$this->hitsFName[$event][$fname] = 0;
-		}
 
+		$this->hitsFName[$event][$fname] ??= 0;
 		$newValue = ++$this->hitsFName[$event][$fname];
-
 		return $newValue > $limit;
 	}
 

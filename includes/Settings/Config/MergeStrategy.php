@@ -4,7 +4,6 @@ namespace MediaWiki\Settings\Config;
 
 use MediaWiki\Settings\SettingsBuilderException;
 use Wikimedia\ArrayUtils\ArrayUtils;
-use function array_key_exists;
 
 class MergeStrategy {
 
@@ -32,9 +31,7 @@ class MergeStrategy {
 	 * @return self
 	 */
 	public static function newFromName( string $name ): self {
-		if ( !array_key_exists( $name, self::$strategies ) ) {
-			self::$strategies[$name] = new MergeStrategy( $name );
-		}
+		self::$strategies[$name] ??= new MergeStrategy( $name );
 		return self::$strategies[$name];
 	}
 
@@ -96,9 +93,7 @@ class MergeStrategy {
 	 * @return MergeStrategy
 	 */
 	public function reverse(): self {
-		if ( !array_key_exists( $this->name, self::$reversedStrategies ) ) {
-			self::$reversedStrategies[$this->name] = new self( $this->name, !$this->reversed );
-		}
+		self::$reversedStrategies[$this->name] ??= new self( $this->name, !$this->reversed );
 		return self::$reversedStrategies[$this->name];
 	}
 }

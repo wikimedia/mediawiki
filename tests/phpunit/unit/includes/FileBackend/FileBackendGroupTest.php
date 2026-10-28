@@ -23,9 +23,7 @@ class FileBackendGroupTest extends MediaWikiUnitTestCase {
 	}
 
 	private function getLocalServerCache(): BagOStuff {
-		if ( !$this->srvCache ) {
-			$this->srvCache = new EmptyBagOStuff;
-		}
+		$this->srvCache ??= new EmptyBagOStuff;
 		return $this->srvCache;
 	}
 
@@ -48,9 +46,7 @@ class FileBackendGroupTest extends MediaWikiUnitTestCase {
 	}
 
 	private function getTempFSFileFactory(): TempFSFileFactory {
-		if ( !$this->tmpFileFactory ) {
-			$this->tmpFileFactory = $this->createNoOpMock( TempFSFileFactory::class );
-		}
+		$this->tmpFileFactory ??= $this->createNoOpMock( TempFSFileFactory::class );
 		return $this->tmpFileFactory;
 	}
 

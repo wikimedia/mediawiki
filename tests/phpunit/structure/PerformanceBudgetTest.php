@@ -249,7 +249,7 @@ class PerformanceBudgetTest extends MediaWikiIntegrationTestCase {
 			$dependenciesExpanded = $this->expandWithModuleDependencies( $dependencies, $ignore );
 			foreach ( $dependenciesExpanded as $dependencyName ) {
 				if ( !isset( $this->dependencyOf[ $dependencyName ] ) ) {
-					$this->dependencyOf[ $dependencyName ] = [];
+					$this->dependencyOf[$dependencyName] = [];
 				}
 				$this->dependencyOf[ $dependencyName ][] = $moduleName;
 				if ( !in_array( $dependencyName, $expandedModules ) ) {

@@ -92,10 +92,7 @@ abstract class MatcherBasedModule extends Module {
 
 		foreach ( $methods as $method ) {
 			$method = strtoupper( $method );
-
-			if ( !isset( $this->matchers[$method] ) ) {
-				$this->matchers[$method] = new PathMatcher;
-			}
+			$this->matchers[$method] ??= new PathMatcher();
 
 			$info['config']['method'] = $method;
 			$this->matchers[$method]->add( $path, $info );

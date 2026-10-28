@@ -150,10 +150,7 @@ class CleanupImages extends TableCleanup {
 	 * @return string
 	 */
 	private function filePath( $name ) {
-		if ( $this->repo === null ) {
-			$this->repo = $this->getServiceContainer()->getRepoGroup()->getLocalRepo();
-		}
-
+		$this->repo ??= $this->getServiceContainer()->getRepoGroup()->getLocalRepo();
 		return $this->repo->getRootDirectory() . '/' . $this->repo->getHashPath( $name ) . $name;
 	}
 

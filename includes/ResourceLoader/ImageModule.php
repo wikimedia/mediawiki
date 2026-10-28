@@ -252,9 +252,7 @@ class ImageModule extends Module {
 		}
 		if ( !isset( $this->imageObjects[$skin] ) ) {
 			$this->imageObjects[$skin] = [];
-			if ( !isset( $this->images[$skin] ) ) {
-				$this->images[$skin] = $this->images['default'] ?? [];
-			}
+			$this->images[$skin] ??= $this->images['default'] ?? [];
 			foreach ( $this->images[$skin] as $name => $options ) {
 				$fileDescriptor = is_array( $options ) ? $options['file'] : $options;
 
@@ -300,9 +298,7 @@ class ImageModule extends Module {
 		}
 		if ( !isset( $this->globalVariants[$skin] ) ) {
 			$this->globalVariants[$skin] = [];
-			if ( !isset( $this->variants[$skin] ) ) {
-				$this->variants[$skin] = $this->variants['default'] ?? [];
-			}
+			$this->variants[$skin] ??= $this->variants['default'] ?? [];
 			foreach ( $this->variants[$skin] as $name => $config ) {
 				if ( $config['global'] ?? false ) {
 					$this->globalVariants[$skin][] = $name;

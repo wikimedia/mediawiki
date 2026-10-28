@@ -1217,9 +1217,7 @@ class DerivedPageDataUpdater implements LoggerAwareInterface, PreparedUpdate {
 
 		// NOTE: in case we have a User object, don't override with a UserIdentity.
 		// We already checked that $revision->getUser() matches $this->user;
-		if ( !$this->user ) {
-			$this->user = $revision->getUser( RevisionRecord::RAW );
-		}
+		$this->user ??= $revision->getUser( RevisionRecord::RAW );
 
 		// Prune any output that depends on the revision ID.
 		if ( $this->renderedRevision ) {

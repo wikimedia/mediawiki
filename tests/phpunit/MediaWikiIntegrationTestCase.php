@@ -1325,9 +1325,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	 */
 	public static function installMockMwServices( $configOverrides = null ) {
 		// Make sure we have the original service locator
-		if ( !self::$originalServices ) {
-			self::$originalServices = MediaWikiServices::getInstance();
-		}
+		self::$originalServices ??= MediaWikiServices::getInstance();
 
 		if ( $configOverrides === null ) {
 			// Only use the default overrides if $configOverrides is not given.

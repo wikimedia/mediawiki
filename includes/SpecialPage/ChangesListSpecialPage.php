@@ -878,10 +878,7 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 	 * @return FormOptions
 	 */
 	public function getOptions() {
-		if ( $this->rcOptions === null ) {
-			$this->rcOptions = $this->setup( $this->rcSubpage );
-		}
-
+		$this->rcOptions ??= $this->setup( $this->rcSubpage );
 		return $this->rcOptions;
 	}
 

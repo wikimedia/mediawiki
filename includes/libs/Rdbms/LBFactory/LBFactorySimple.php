@@ -94,10 +94,7 @@ class LBFactorySimple extends LBFactory {
 
 	/** @inheritDoc */
 	public function getExternalLB( $cluster ): ILoadBalancer {
-		if ( !isset( $this->externalLBs[$cluster] ) ) {
-			$this->externalLBs[$cluster] = $this->newExternalLB( $cluster );
-		}
-
+		$this->externalLBs[$cluster] ??= $this->newExternalLB( $cluster );
 		return $this->externalLBs[$cluster];
 	}
 

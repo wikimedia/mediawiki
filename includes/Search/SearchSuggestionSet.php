@@ -21,9 +21,9 @@ class SearchSuggestionSet {
 	private $suggestions = [];
 
 	/**
-	 * @var array
+	 * @var array<int,true>
 	 */
-	private $pageMap = [];
+	private array $pageMap = [];
 
 	/**
 	 * @var bool Are more results available?
@@ -46,8 +46,8 @@ class SearchSuggestionSet {
 		$this->hasMoreResults = $hasMoreResults;
 		foreach ( $suggestions as $suggestion ) {
 			$pageID = $suggestion->getSuggestedTitleID();
-			if ( $pageID && empty( $this->pageMap[$pageID] ) ) {
-				$this->pageMap[$pageID] = true;
+			if ( $pageID ) {
+				$this->pageMap[$pageID] ??= true;
 			}
 			$this->suggestions[] = $suggestion;
 		}
@@ -208,7 +208,7 @@ class SearchSuggestionSet {
 	 * Build an array of true with the page ids present in $suggestion as keys.
 	 *
 	 * @param array $suggestions
-	 * @return array<int,bool>
+	 * @return array<int,true>
 	 */
 	private static function buildPageMap( array $suggestions ): array {
 		$pageMap = [];

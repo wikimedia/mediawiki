@@ -106,10 +106,7 @@ class DBSiteStore implements SiteStore {
 	 * @since 1.25
 	 */
 	public function getSite( string $globalId ): ?Site {
-		if ( $this->sites === null ) {
-			$this->sites = $this->getSites();
-		}
-
+		$this->sites ??= $this->getSites();
 		return $this->sites->hasSite( $globalId ) ? $this->sites->getSite( $globalId ) : null;
 	}
 

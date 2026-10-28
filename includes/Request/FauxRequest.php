@@ -85,9 +85,7 @@ class FauxRequest extends WebRequest {
 
 	public function response(): FauxResponse {
 		/* Lazy initialization of response object for this request */
-		if ( !$this->response ) {
-			$this->response = new FauxResponse();
-		}
+		$this->response ??= new FauxResponse();
 		return $this->response;
 	}
 

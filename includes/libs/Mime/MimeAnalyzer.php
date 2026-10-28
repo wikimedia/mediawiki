@@ -309,9 +309,7 @@ class MimeAnalyzer implements LoggerAwareInterface {
 
 			$m = preg_split( '/\s+/', $s, -1, PREG_SPLIT_NO_EMPTY );
 
-			if ( !isset( $this->mediaTypes[$mtype] ) ) {
-				$this->mediaTypes[$mtype] = [];
-			}
+			$this->mediaTypes[$mtype] ??= [];
 
 			foreach ( $m as $mime ) {
 				$mime = trim( $mime );

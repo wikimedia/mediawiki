@@ -250,10 +250,7 @@ abstract class SpecialPage implements MessageLocalizer {
 	 * @return string
 	 */
 	public function getLocalName() {
-		if ( $this->mLocalName === null ) {
-			$this->mLocalName = $this->getSpecialPageFactory()->getLocalNameFor( $this->mName );
-		}
-
+		$this->mLocalName ??= $this->getSpecialPageFactory()->getLocalNameFor( $this->mName );
 		return $this->mLocalName;
 	}
 
@@ -1158,9 +1155,7 @@ abstract class SpecialPage implements MessageLocalizer {
 	 * @return HookContainer
 	 */
 	protected function getHookContainer() {
-		if ( !$this->hookContainer ) {
-			$this->hookContainer = MediaWikiServices::getInstance()->getHookContainer();
-		}
+		$this->hookContainer ??= MediaWikiServices::getInstance()->getHookContainer();
 		return $this->hookContainer;
 	}
 
@@ -1171,9 +1166,7 @@ abstract class SpecialPage implements MessageLocalizer {
 	 * @return HookRunner
 	 */
 	protected function getHookRunner() {
-		if ( !$this->hookRunner ) {
-			$this->hookRunner = new HookRunner( $this->getHookContainer() );
-		}
+		$this->hookRunner ??= new HookRunner( $this->getHookContainer() );
 		return $this->hookRunner;
 	}
 

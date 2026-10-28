@@ -658,10 +658,7 @@ abstract class Maintenance {
 	 * @return Config
 	 */
 	public function getConfig() {
-		if ( $this->config === null ) {
-			$this->config = $this->getServiceContainer()->getMainConfig();
-		}
-
+		$this->config ??= $this->getServiceContainer()->getMainConfig();
 		return $this->config;
 	}
 

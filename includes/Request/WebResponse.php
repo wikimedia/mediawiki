@@ -212,8 +212,8 @@ class WebResponse {
 
 		// If this cookie name was in the request, fake an entry in
 		// self::$setCookies for it so the deleting check works right.
-		if ( isset( $_COOKIE[$prefixedName] ) && !array_key_exists( $key, self::$setCookies ) ) {
-			self::$setCookies[$key] = [];
+		if ( isset( $_COOKIE[$prefixedName] ) ) {
+			self::$setCookies[$key] ??= [];
 		}
 
 		// PHP deletes if value is the empty string; also, a past expiry is deleting

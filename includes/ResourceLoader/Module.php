@@ -269,9 +269,7 @@ abstract class Module implements LoggerAwareInterface {
 	 * @return LoggerInterface
 	 */
 	protected function getLogger(): LoggerInterface {
-		if ( !$this->logger ) {
-			$this->logger = new NullLogger();
-		}
+		$this->logger ??= new NullLogger();
 		return $this->logger;
 	}
 

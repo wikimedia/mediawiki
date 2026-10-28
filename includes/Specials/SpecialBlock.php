@@ -738,11 +738,8 @@ class SpecialBlock extends FormSpecialPage {
 				$fields['Expiry']['default'] = $this->codexFormData[ 'blockExpiryDefault' ] = 'infinite';
 			} else {
 				$fields['Expiry']['default'] = wfTimestamp( TS::RFC2822, $block->getExpiry() );
-
 				// Don't overwrite if expiry was specified in the URL
-				if ( !isset( $this->codexFormData[ 'blockExpiryPreset' ] ) ) {
-					$this->codexFormData[ 'blockExpiryPreset' ] = $this->formatExpiryForHtml( $block->getExpiry() );
-				}
+				$this->codexFormData['blockExpiryPreset'] ??= $this->formatExpiryForHtml( $block->getExpiry() );
 			}
 
 			if ( !$block->isSitewide() ) {

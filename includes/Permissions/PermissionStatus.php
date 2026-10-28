@@ -64,9 +64,7 @@ class PermissionStatus extends StatusValue {
 					$this->block = CompositeBlock::createFromBlocks( $this->block, $other->block );
 				}
 			}
-			if ( $this->permission === null ) {
-				$this->permission = $other->permission;
-			}
+			$this->permission ??= $other->permission;
 			if ( $other->rateLimitExceeded !== null ) {
 				$this->rateLimitExceeded = $this->rateLimitExceeded || $other->rateLimitExceeded;
 			}

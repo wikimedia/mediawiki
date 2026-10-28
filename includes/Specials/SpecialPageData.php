@@ -46,9 +46,7 @@ class SpecialPageData extends UnlistedSpecialPage {
 	 * In particular, this initializes $this->requestHandler
 	 */
 	protected function initDependencies() {
-		if ( $this->requestHandler === null ) {
-			$this->requestHandler = $this->newDefaultRequestHandler();
-		}
+		$this->requestHandler ??= $this->newDefaultRequestHandler();
 	}
 
 	/**

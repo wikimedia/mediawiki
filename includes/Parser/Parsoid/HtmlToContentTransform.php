@@ -195,9 +195,7 @@ class HtmlToContentTransform {
 
 		// Modified data-mw is going to be the same as original data-mw,
 		// unless specified otherwise.
-		if ( $this->modifiedPageBundle->mw === null ) {
-			$this->modifiedPageBundle->mw = $originalDataMW;
-		}
+		$this->modifiedPageBundle->mw ??= $originalDataMW;
 	}
 
 	public function setOriginalDataParsoid( array $originalDataParsoid ): void {

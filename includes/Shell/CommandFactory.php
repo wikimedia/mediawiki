@@ -75,10 +75,7 @@ class CommandFactory {
 	 * @return bool|string
 	 */
 	protected function findFirejail() {
-		if ( $this->firejail === null ) {
-			$this->firejail = ExecutableFinder::findInDefaultPaths( 'firejail' );
-		}
-
+		$this->firejail ??= ExecutableFinder::findInDefaultPaths( 'firejail' );
 		return $this->firejail;
 	}
 

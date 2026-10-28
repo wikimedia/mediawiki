@@ -52,9 +52,7 @@ class LocalPasswordPrimaryAuthenticationProviderTest extends MediaWikiIntegratio
 	 */
 	protected function getProvider( $loginOnly = false ) {
 		$mwServices = $this->getServiceContainer();
-		if ( !$this->config ) {
-			$this->config = new HashConfig();
-		}
+		$this->config ??= new HashConfig();
 		$config = new MultiConfig( [
 			$this->config,
 			$mwServices->getMainConfig()

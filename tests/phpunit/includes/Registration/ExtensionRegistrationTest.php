@@ -90,11 +90,7 @@ class ExtensionRegistrationTest extends MediaWikiIntegrationTestCase {
 
 	private function setExtensionRegistry( ExtensionRegistry $registry ) {
 		$staticExtReg = TestingAccessWrapper::newFromClass( ExtensionRegistry::class );
-
-		if ( !$this->originalExtensionRegistry ) {
-			$this->originalExtensionRegistry = $staticExtReg->instance;
-		}
-
+		$this->originalExtensionRegistry ??= $staticExtReg->instance;
 		$staticExtReg->instance = $registry;
 	}
 

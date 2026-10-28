@@ -38,9 +38,7 @@ class LogCapturingSpi implements Spi {
 
 	/** @inheritDoc */
 	public function getLogger( $channel ) {
-		if ( !isset( $this->singletons[$channel] ) ) {
-			$this->singletons[$channel] = $this->createLogger( $channel );
-		}
+		$this->singletons[$channel] ??= $this->createLogger( $channel );
 		return $this->singletons[$channel];
 	}
 

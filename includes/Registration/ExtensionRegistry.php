@@ -166,16 +166,12 @@ class ExtensionRegistry implements DomainEventSubscriber {
 
 	/**
 	 * @codeCoverageIgnore
-	 * @return ExtensionRegistry
 	 */
-	public static function getInstance() {
+	public static function getInstance(): self {
 		if ( self::$accessDisabledForUnitTests ) {
 			throw new RuntimeException( 'Access is disabled in unit tests' );
 		}
-		if ( self::$instance === null ) {
-			self::$instance = new self();
-		}
-
+		self::$instance ??= new self();
 		return self::$instance;
 	}
 
@@ -719,10 +715,7 @@ class ExtensionRegistry implements DomainEventSubscriber {
 	}
 
 	private function getSettingsBuilder(): SettingsBuilder {
-		if ( $this->settingsBuilder === null ) {
-			$this->settingsBuilder = SettingsBuilder::getInstance();
-		}
-
+		$this->settingsBuilder ??= SettingsBuilder::getInstance();
 		return $this->settingsBuilder;
 	}
 }

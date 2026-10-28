@@ -156,9 +156,7 @@ class PathMatcher {
 		// This will produce an empty part before any leading slash and after any trailing slash
 		$parts = explode( '/', $template );
 		$length = count( $parts );
-		if ( !isset( $this->treesByLength[$length] ) ) {
-			$this->treesByLength[$length] = [];
-		}
+		$this->treesByLength[$length] ??= [];
 		$tree =& $this->treesByLength[$length];
 
 		// Disallow empty path parts within the path (but not leading or trailing).

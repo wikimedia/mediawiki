@@ -101,9 +101,7 @@ class HTMLFormFieldCloner extends HTMLFormField {
 	 * @return HTMLFormField[]
 	 */
 	protected function getFieldsForKey( $key ) {
-		if ( !isset( $this->mFields[$key] ) ) {
-			$this->mFields[$key] = $this->createFieldsForKey( $key );
-		}
+		$this->mFields[$key] ??= $this->createFieldsForKey( $key );
 		return $this->mFields[$key];
 	}
 

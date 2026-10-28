@@ -321,9 +321,7 @@ class ArchivedFile {
 			// old row, populate from key
 			$this->sha1 = LocalRepo::getHashFromKey( $this->key );
 		}
-		if ( !$this->title ) {
-			$this->title = Title::makeTitleSafe( NS_FILE, $row->fa_name );
-		}
+		$this->title ??= Title::makeTitleSafe( NS_FILE, $row->fa_name );
 		$this->exists = $row->fa_archive_name !== '';
 	}
 
@@ -623,10 +621,7 @@ class ArchivedFile {
 	 * @return MediaHandler
 	 */
 	private function getHandler() {
-		if ( !$this->handler ) {
-			$this->handler = MediaHandler::getHandler( $this->getMimeType() );
-		}
-
+		$this->handler ??= MediaHandler::getHandler( $this->getMimeType() );
 		return $this->handler;
 	}
 

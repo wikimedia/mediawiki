@@ -142,9 +142,7 @@ class ParserFactory {
 	 * @return Parser
 	 */
 	public function getMainInstance() {
-		if ( $this->mainInstance === null ) {
-			$this->mainInstance = $this->create();
-		}
+		$this->mainInstance ??= $this->create();
 		return $this->mainInstance;
 	}
 

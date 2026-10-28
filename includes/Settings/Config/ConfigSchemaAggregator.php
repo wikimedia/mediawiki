@@ -456,9 +456,7 @@ class ConfigSchemaAggregator implements ConfigSchema {
 			return $status;
 		}
 
-		if ( !$this->validator ) {
-			$this->validator = new Validator();
-		}
+		$this->validator ??= new Validator();
 
 		$types = isset( $schema['type'] ) ? (array)$schema['type'] : [];
 

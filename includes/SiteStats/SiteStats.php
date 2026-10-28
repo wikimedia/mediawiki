@@ -29,10 +29,8 @@ class SiteStats {
 		self::$row = null;
 	}
 
-	protected static function load() {
-		if ( self::$row === null ) {
-			self::$row = self::loadAndLazyInit();
-		}
+	protected static function load(): void {
+		self::$row ??= self::loadAndLazyInit();
 	}
 
 	/**

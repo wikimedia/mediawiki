@@ -43,9 +43,7 @@ class Pbkdf2PasswordUsingOpenSSL extends AbstractPbkdf2Password {
 	];
 
 	protected function getDigestAlgo( string $algo ): ?string {
-		if ( self::$digestAlgos === null ) {
-			self::$digestAlgos = array_intersect( self::DIGEST_ALGOS, openssl_get_md_methods() );
-		}
+		self::$digestAlgos ??= array_intersect( self::DIGEST_ALGOS, openssl_get_md_methods() );
 		return self::$digestAlgos[$algo] ?? null;
 	}
 

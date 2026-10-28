@@ -220,9 +220,7 @@ abstract class Action implements MessageLocalizer {
 	 * @internal since 1.37
 	 */
 	protected function getHookContainer(): HookContainer {
-		if ( !$this->hookContainer ) {
-			$this->hookContainer = MediaWikiServices::getInstance()->getHookContainer();
-		}
+		$this->hookContainer ??= MediaWikiServices::getInstance()->getHookContainer();
 		return $this->hookContainer;
 	}
 
@@ -232,9 +230,7 @@ abstract class Action implements MessageLocalizer {
 	 *   without notice.
 	 */
 	protected function getHookRunner(): HookRunner {
-		if ( !$this->hookRunner ) {
-			$this->hookRunner = new HookRunner( $this->getHookContainer() );
-		}
+		$this->hookRunner ??= new HookRunner( $this->getHookContainer() );
 		return $this->hookRunner;
 	}
 

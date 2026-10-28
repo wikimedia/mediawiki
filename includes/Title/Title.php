@@ -502,13 +502,8 @@ class Title implements Stringable, LinkTarget, PageIdentity {
 		}
 	}
 
-	/**
-	 * @return MapCacheLRU
-	 */
-	private static function getTitleCache() {
-		if ( self::$titleCache === null ) {
-			self::$titleCache = new MapCacheLRU( self::CACHE_MAX );
-		}
+	private static function getTitleCache(): MapCacheLRU {
+		self::$titleCache ??= new MapCacheLRU( self::CACHE_MAX );
 		return self::$titleCache;
 	}
 

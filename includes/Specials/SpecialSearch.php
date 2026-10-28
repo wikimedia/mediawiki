@@ -768,14 +768,9 @@ class SpecialSearch extends SpecialPage {
 
 	/**
 	 * @since 1.18
-	 *
-	 * @return SearchEngine
 	 */
-	public function getSearchEngine() {
-		if ( $this->searchEngine === null ) {
-			$this->searchEngine = $this->searchEngineFactory->create( $this->searchEngineType );
-		}
-
+	public function getSearchEngine(): SearchEngine {
+		$this->searchEngine ??= $this->searchEngineFactory->create( $this->searchEngineType );
 		return $this->searchEngine;
 	}
 

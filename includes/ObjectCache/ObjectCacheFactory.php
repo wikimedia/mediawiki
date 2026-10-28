@@ -145,10 +145,7 @@ class ObjectCacheFactory {
 	 * @return BagOStuff
 	 */
 	public function getInstance( $id ): BagOStuff {
-		if ( !isset( $this->instances[$id] ) ) {
-			$this->instances[$id] = $this->newFromId( $id );
-		}
-
+		$this->instances[$id] ??= $this->newFromId( $id );
 		return $this->instances[$id];
 	}
 

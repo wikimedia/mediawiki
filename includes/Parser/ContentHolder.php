@@ -418,9 +418,7 @@ class ContentHolder implements JsonCodecable {
 			// the page bundle.
 			$this->convertDomToHtml();
 		}
-		if ( $this->pageBundle === null ) {
-			$this->pageBundle = new BasePageBundle();
-		}
+		$this->pageBundle ??= new BasePageBundle();
 		return $this->pageBundle;
 	}
 

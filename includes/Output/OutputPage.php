@@ -2832,9 +2832,7 @@ class OutputPage extends ContextSource {
 	 * @param string $header Header name
 	 */
 	public function addVaryHeader( $header ) {
-		if ( !array_key_exists( $header, $this->mVaryHeader ) ) {
-			$this->mVaryHeader[$header] = null;
-		}
+		$this->mVaryHeader[$header] ??= null;
 	}
 
 	/**

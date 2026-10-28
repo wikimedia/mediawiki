@@ -37,9 +37,7 @@ class LegacySpi implements Spi {
 	 * @return \Psr\Log\LoggerInterface Logger instance
 	 */
 	public function getLogger( $channel ) {
-		if ( !isset( $this->singletons[$channel] ) ) {
-			$this->singletons[$channel] = new LegacyLogger( $channel );
-		}
+		$this->singletons[$channel] ??= new LegacyLogger( $channel );
 		return $this->singletons[$channel];
 	}
 

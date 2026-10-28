@@ -152,9 +152,7 @@ class SpecBasedModule extends MatcherBasedModule {
 	 * Get last modification times of the module definition file.
 	 */
 	private function getRouteFileTimestamp(): int {
-		if ( $this->routeFileTimestamp === null ) {
-			$this->routeFileTimestamp = filemtime( $this->definitionFile );
-		}
+		$this->routeFileTimestamp ??= filemtime( $this->definitionFile );
 		return $this->routeFileTimestamp;
 	}
 

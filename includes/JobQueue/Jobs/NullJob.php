@@ -42,13 +42,11 @@ class NullJob extends Job implements GenericParameterJob {
 	 * @param array $params Job parameters (lives, usleep)
 	 */
 	public function __construct( array $params ) {
+		$params += [
+			'lives' => 1,
+			'usleep' => 0,
+		];
 		parent::__construct( 'null', $params );
-		if ( !isset( $this->params['lives'] ) ) {
-			$this->params['lives'] = 1;
-		}
-		if ( !isset( $this->params['usleep'] ) ) {
-			$this->params['usleep'] = 0;
-		}
 		$this->removeDuplicates = !empty( $this->params['removeDuplicates'] );
 	}
 

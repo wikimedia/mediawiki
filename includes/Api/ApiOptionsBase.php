@@ -271,10 +271,7 @@ abstract class ApiOptionsBase extends ApiBase {
 	 * Get the user from the primary, or null if the user is anonymous
 	 */
 	protected function getUserFromPrimaryOrNull(): ?User {
-		if ( !$this->userFromPrimary ) {
-			$this->userFromPrimary = $this->getUser()->getInstanceFromPrimary();
-		}
-
+		$this->userFromPrimary ??= $this->getUser()->getInstanceFromPrimary();
 		return $this->userFromPrimary;
 	}
 

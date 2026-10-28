@@ -357,9 +357,7 @@ TEXT
 			return;
 		}
 		$length = strlen( $key );
-		if ( !isset( $this->sizeHistogram[$length] ) ) {
-			$this->sizeHistogram[$length] = 0;
-		}
+		$this->sizeHistogram[$length] ??= 0;
 		$this->sizeHistogram[$length]++;
 	}
 

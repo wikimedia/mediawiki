@@ -142,18 +142,14 @@ class RedisConnectionPool implements LoggerAwareInterface {
 	 *   - password       : The authentication password, will be sent to Redis in clear text.
 	 *                      Optional, if it is unspecified, no AUTH command will be sent.
 	 *   - serializer     : Set to "php", "igbinary", or "none". Default is "php".
-	 * @return RedisConnectionPool
 	 */
-	public static function singleton( array $options ) {
+	public static function singleton( array $options ): self {
 		$options = self::applyDefaultConfig( $options );
 		// Map the options to a unique hash...
 		ksort( $options ); // normalize to avoid pool fragmentation
 		$id = sha1( serialize( $options ) );
 		// Initialize the object at the hash as needed...
-		if ( !isset( self::$instances[$id] ) ) {
-			self::$instances[$id] = new self( $options, $id );
-		}
-
+		self::$instances[$id] ??= new self( $options, $id );
 		return self::$instances[$id];
 	}
 

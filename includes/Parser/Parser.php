@@ -1129,10 +1129,7 @@ class Parser implements MessageLocalizer {
 	 */
 	public function getLinkRenderer() {
 		// XXX We make the LinkRenderer with current options and then cache it forever
-		if ( !$this->mLinkRenderer ) {
-			$this->mLinkRenderer = $this->linkRendererFactory->create();
-		}
-
+		$this->mLinkRenderer ??= $this->linkRendererFactory->create();
 		return $this->mLinkRenderer;
 	}
 
@@ -3512,9 +3509,7 @@ class Parser implements MessageLocalizer {
 	 */
 	public function fetchCurrentRevisionRecordOfTitle( LinkTarget $link ) {
 		$cacheKey = CacheKeyHelper::getKeyForPage( $link );
-		if ( !$this->currentRevisionCache ) {
-			$this->currentRevisionCache = new MapCacheLRU( 100 );
-		}
+		$this->currentRevisionCache ??= new MapCacheLRU( 100 );
 		if ( !$this->currentRevisionCache->has( $cacheKey ) ) {
 			$title = Title::newFromLinkTarget( $link ); // hook signature compat
 			$revisionRecord =

@@ -199,9 +199,7 @@ class SectionProfiler {
 		$real = $this->getTime( 'wall' );
 		$memory = memory_get_usage();
 
-		if ( $this->start === null ) {
-			$this->start = [ 'cpu' => $cpu, 'real' => $real, 'memory' => $memory ];
-		}
+		$this->start ??= [ 'cpu' => $cpu, 'real' => $real, 'memory' => $memory ];
 
 		$this->workStack[] = [
 			$functionname,

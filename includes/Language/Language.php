@@ -97,7 +97,7 @@ class Language implements Bcp47Code {
 	protected $namespaceAliases;
 
 	/**
-	 * @var ReplacementArray[]
+	 * @var array<string,ReplacementArray>
 	 * @noVarDump
 	 */
 	private $transformData = [];
@@ -3318,10 +3318,7 @@ class Language implements Bcp47Code {
 	 * @return string
 	 */
 	protected function transformUsingPairFile( string $dataClass, string $input ): string {
-		if ( !isset( $this->transformData[$dataClass] ) ) {
-			$this->transformData[$dataClass] = new ReplacementArray( $dataClass::PAIRS );
-		}
-
+		$this->transformData[$dataClass] ??= new ReplacementArray( $dataClass::PAIRS );
 		return $this->transformData[$dataClass]->replace( $input );
 	}
 

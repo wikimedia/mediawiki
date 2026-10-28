@@ -79,10 +79,8 @@ class PreparedEdit {
 	 * @return ParserOutput Canonical parser output
 	 */
 	public function getOutput() {
-		if ( !$this->canonicalOutput ) {
-			$this->canonicalOutput = ( $this->parserOutputCallback )();
-		}
-
+		$this->canonicalOutput ??= ( $this->parserOutputCallback )();
+		// @phan-suppress-next-line PhanTypeMismatchReturnNullable
 		return $this->canonicalOutput;
 	}
 

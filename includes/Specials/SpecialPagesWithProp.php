@@ -237,9 +237,7 @@ class SpecialPagesWithProp extends QueryPage {
 	}
 
 	public function getExistingPropNames(): array {
-		if ( $this->existingPropNames === null ) {
-			$this->existingPropNames = $this->queryExistingProps();
-		}
+		$this->existingPropNames ??= $this->queryExistingProps();
 		return $this->existingPropNames;
 	}
 

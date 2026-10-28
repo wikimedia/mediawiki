@@ -23,9 +23,7 @@ class ArrayStatsStore implements StatsStore {
 	/** @inheritDoc */
 	public function incr( array $values, $ttl ) {
 		foreach ( $values as $key => $value ) {
-			if ( !isset( $this->data[$key] ) ) {
-				$this->data[$key] = [ 0, $ttl ];
-			}
+			$this->data[$key] ??= [ 0, $ttl ];
 			$this->data[$key][0] += $value;
 		}
 	}

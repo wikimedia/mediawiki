@@ -146,9 +146,7 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 	 * @return LoginHelper
 	 */
 	private function getLoginHelper(): LoginHelper {
-		if ( $this->loginHelper === null ) {
-			$this->loginHelper = new LoginHelper( $this->getContext() );
-		}
+		$this->loginHelper ??= new LoginHelper( $this->getContext() );
 		return $this->loginHelper;
 	}
 

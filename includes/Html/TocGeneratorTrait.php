@@ -26,9 +26,7 @@ trait TocGeneratorTrait {
 	private int $tocSubSection = 0;
 
 	protected function getTocData(): TOCData {
-		if ( $this->tocData === null ) {
-			$this->tocData = new TOCData();
-		}
+		$this->tocData ??= new TOCData();
 		return $this->tocData;
 	}
 

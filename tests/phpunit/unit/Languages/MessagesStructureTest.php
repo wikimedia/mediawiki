@@ -67,9 +67,7 @@ class MessagesStructureTest extends MediaWikiUnitTestCase {
 	}
 
 	private function getEnData() {
-		if ( self::$enData === null ) {
-			self::$enData = $this->readFile( MW_INSTALL_PATH . '/languages/messages/MessagesEn.php' );
-		}
+		self::$enData ??= $this->readFile( MW_INSTALL_PATH . '/languages/messages/MessagesEn.php' );
 		return self::$enData;
 	}
 

@@ -95,9 +95,7 @@ class FauxResponse extends WebResponse {
 	}
 
 	private function getCookieConfig(): Config {
-		if ( !$this->cookieConfig ) {
-			$this->cookieConfig = MediaWikiServices::getInstance()->getMainConfig();
-		}
+		$this->cookieConfig ??= MediaWikiServices::getInstance()->getMainConfig();
 		return $this->cookieConfig;
 	}
 

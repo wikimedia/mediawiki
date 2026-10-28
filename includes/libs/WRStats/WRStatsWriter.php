@@ -66,9 +66,7 @@ class WRStatsWriter {
 
 			$ttl = $seqSpec->hardExpiry;
 
-			if ( !isset( $this->queuedValues[$ttl][$key] ) ) {
-				$this->queuedValues[$ttl][$key] = 0;
-			}
+			$this->queuedValues[$ttl][$key] ??= 0;
 			$this->queuedValues[$ttl][$key] += (int)round( $scaledValue );
 		}
 	}
