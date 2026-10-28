@@ -320,8 +320,11 @@ class SpecialUserRights extends SpecialPage {
 			return false;
 		}
 
-		$targetParts = explode( $interwikiDelimiter, $target );
+		$targetParts = explode( $interwikiDelimiter, trim( $target ) );
 		[ $user, $remoteWikiId ] = $targetParts;
+
+		$remoteWikiId = trim( $remoteWikiId );
+		$user = trim( $user );
 
 		if ( WikiMap::isCurrentWikiId( $remoteWikiId ) ) {
 			// No need for redirect

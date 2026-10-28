@@ -2,7 +2,10 @@
 
 use MediaWiki\MainConfigNames;
 use MediaWiki\Request\FauxRequest;
+use MediaWiki\Site\HashSiteStore;
+use MediaWiki\Site\MediaWikiSite;
 use MediaWiki\Specials\SpecialUserRights;
+use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
 use MediaWiki\Tests\User\TempUser\TempUserTestTrait;
 use MediaWiki\User\UserIdentityValue;
 use MediaWiki\WikiMap\WikiMap;
@@ -13,6 +16,7 @@ use MediaWiki\WikiMap\WikiMap;
  */
 class SpecialUserRightsTest extends SpecialPageTestBase {
 
+	use MockAuthorityTrait;
 	use TempUserTestTrait;
 
 	/**
@@ -229,20 +233,54 @@ class SpecialUserRightsTest extends SpecialPageTestBase {
 		);
 	}
 
-	public function testRedirectForInterwikiView() {
-		$externalDB = $this->getExternalDBname();
-		if ( $externalDB === null ) {
-			$this->markTestSkipped( 'There is no external DB' );
-		}
+	/** @dataProvider provideRedirectForInterwikiView */
+	public function testRedirectForInterwikiView( string $target, string $expectedTargetInRedirectUrl ) {
+		// CentralAuthUser::queryAttached needs the database name used for unit tests to be a registered
+		// wiki ID. Therefore, mock it using the SiteLookup service.
+		$currentSite = new MediaWikiSite();
+		$currentSite->setGlobalId( WikiMap::getCurrentWikiId() );
+		$currentSite->setPath( MediaWikiSite::PATH_PAGE, 'https://en.example.com/wiki/$1' );
+
+		$otherSite = new MediaWikiSite();
+		$otherSite->setGlobalId( 'otherwiki' );
+		$otherSite->setPath( MediaWikiSite::PATH_PAGE, 'https://de.example.com/wiki/$1' );
+
+		$this->setService( 'SiteLookup', new HashSiteStore( [ $currentSite, $otherSite ] ) );
 
 		$authority = $this->mockAnonNullAuthority();
 
 		[ $_, $response ] = $this->executeSpecialPage(
-			'User@' . $externalDB,
+			$target,
 			performer: $authority
 		);
+
 		/** @type $response WebResponse */
-		$this->assertNotNull( $response->getHeader( 'Location' ) );
+		$this->assertSame(
+			'https://de.example.com/wiki/Special:UserRights?user=' . urlencode( $expectedTargetInRedirectUrl ),
+			$response->getHeader( 'Location' )
+		);
+	}
+
+	public static function provideRedirectForInterwikiView(): array {
+		return [
+			'User on other wiki' => [ 'target' => 'User@otherwiki', 'expectedTargetInRedirectUrl' => 'User' ],
+			'User on other wiki with spaces in username' => [
+				'target' => 'User Name@otherwiki',
+				'expectedTargetInRedirectUrl' => 'User Name',
+			],
+			'User on other wiki trailing space after wiki ID' => [
+				'target' => 'User Name@otherwiki ',
+				'expectedTargetInRedirectUrl' => 'User Name',
+			],
+			'User on other wiki trailing space before wiki ID' => [
+				'target' => 'User Name@ otherwiki',
+				'expectedTargetInRedirectUrl' => 'User Name',
+			],
+			'User on other wiki trailing space after username' => [
+				'target' => 'User Name @otherwiki',
+				'expectedTargetInRedirectUrl' => 'User Name',
+			],
+		];
 	}
 
 	public function testNoRedirectForInterwikiEdit() {
