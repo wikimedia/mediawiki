@@ -83,7 +83,7 @@ class RevertedTagUpdate implements DeferrableUpdate {
 			$this->getOldestRevertedRevision(),
 			$this->getNewestRevertedRevision(),
 			$maxDepth,
-			RevisionStore::INCLUDE_BOTH
+			[ RevisionStore::INCLUDE_BOTH, RevisionStore::INCLUDE_DELETED_REVISIONS ]
 		);
 
 		if ( count( $revertedRevisionIds ) > $maxDepth ) {
