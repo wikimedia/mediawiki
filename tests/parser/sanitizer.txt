@@ -538,3 +538,27 @@ parsoid=wt2html
 </p><p>&lt;s.foo&gt;s
 </p>
 !! end
+
+!! test
+Don't allow ESI tags in HTML (T436137)
+!! wikitext
+<esi:include src="/w/rest.php/fragments/v0-internal/user_bar" />
+<esi:remove>
+  <!-- fallback HTML for clients that bypass Varnish -->
+  <a href="/w/index.php?title=Special:UserLogin&returnto=Main+Page">Log in</a>
+</esi:remove>
+!! html/php
+<p>&lt;esi:include src="/w/rest.php/fragments/v0-internal/user_bar" /&gt;
+&lt;esi:remove&gt;
+</p>
+<pre> &lt;a href="/w/index.php?title=Special:UserLogin&amp;returnto=Main+Page"&gt;Log in&lt;/a&gt;
+</pre>
+<p>&lt;/esi:remove&gt;
+</p>
+!! html/parsoid
+<p>&lt;esi:include src="/w/rest.php/fragments/v0-internal/user_bar" />
+&lt;esi:remove></p>
+  <!-- fallback HTML for clients that bypass Varnish -->
+<pre> &lt;a href="/w/index.php?title=Special:UserLogin&amp;returnto=Main+Page">Log in&lt;/a></pre>
+<p>&lt;/esi:remove></p>
+!! end

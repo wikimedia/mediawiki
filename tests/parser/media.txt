@@ -2672,7 +2672,7 @@ File:Foobar.jpg|</ref>
 !! test
 Gallery (with showfilename option)
 !! wikitext
-<gallery showfilename="">
+<gallery showfilename>
 File:Nonexistent.jpg|caption
 File:Nonexistent.jpg
 File:Foobar.jpg|some '''caption''' [[Main Page]]
@@ -2927,7 +2927,7 @@ File:Foobar.jpg|foo
 !! test
 Gallery in slideshow mode
 !! wikitext
-<gallery mode="slideshow" showthumbnails="">
+<gallery mode="slideshow" showthumbnails>
 File:Foobar.jpg
 </gallery>
 !! html/php
@@ -4173,6 +4173,21 @@ images=Foobar.jpg
 </p>
 !! end
 
+!! test
+Collect media metadata for missing files and media links
+!! options
+showmedia
+!! wikitext
+[[Media:Missing-media.jpg]] [[Media:Foobar.jpg]] [[File:Missing-file.jpg|123]]
+!! metadata
+images=Missing-media.jpg, Foobar.jpg, Missing-file.jpg
+!! html/php
+<p><a href="/index.php?title=Special:Upload&amp;wpDestFile=Missing-media.jpg" class="new" title="Missing-media.jpg">Media:Missing-media.jpg</a> <a href="http://example.com/images/3/3a/Foobar.jpg" class="internal" title="Foobar.jpg">Media:Foobar.jpg</a> <span class="mw-default-size" typeof="mw:Error mw:File"><a href="/index.php?title=Special:Upload&amp;wpDestFile=Missing-file.jpg" class="new" title="File:Missing-file.jpg"><span class="mw-file-element mw-broken-media">123</span></a></span>
+</p>
+!! html/parsoid
+<p><a rel="mw:MediaLink" href="./Special:Upload?wpDestFile=Missing-media.jpg" title="Missing-media.jpg" resource="./Media:Missing-media.jpg" typeof="mw:Error" data-mw='{"errors":[{"key":"apierror-filedoesnotexist","message":"This image does not exist."}]}'>Media:Missing-media.jpg</a> <a rel="mw:MediaLink" href="http://example.com/images/3/3a/Foobar.jpg" title="Foobar.jpg" resource="./Media:Foobar.jpg">Media:Foobar.jpg</a> <span class="mw-default-size" typeof="mw:Error mw:File" data-mw='{"caption":"123","errors":[{"key":"apierror-filedoesnotexist","message":"This image does not exist."}]}'><a href="./Special:Upload?wpDestFile=Missing-file.jpg" class="new" title="File:Missing-file.jpg"><span class="mw-file-element mw-broken-media" resource="./File:Missing-file.jpg">123</span></a></span></p>
+!! end
+
 # Parsoid currently includes the fragment in the resource attribute, but
 # this may change in the future: T374893
 !! test
@@ -4466,7 +4481,33 @@ showflags
 [[File:Foobar.jpg| one ]] [[File:File_&_file.jpg| two ]] [[File:Foobar.svg| three ]] [[File:RedFile.svg| threePointOne ]] [[File:Foobar.jpg| four ]]
 !! metadata/parsoid+standalone
 cat=Pages_where_media_limit_was_reached sort=
+cat=Pages_with_broken_file_links sort=
 flags=prevent-selective-update
 !! html/parsoid+standalone
-<p><span class="mw-default-size" data-mw='{"caption":" one "}' typeof="mw:File"><a class="mw-file-description" href="./File:Foobar.jpg" title="one"><img alt="one" class="mw-file-element" data-file-height="220" data-file-type="bitmap" data-file-width="1941" decoding="async" loading="lazy" height="220" resource="./File:Foobar.jpg" src="http://example.com/images/3/3a/Foobar.jpg" width="1941"/></a></span> <span class="mw-default-size" data-mw='{"caption":" two "}' typeof="mw:File"><a class="mw-file-description" href="./File:File_&amp;_file.jpg" title="two"><img alt="two" class="mw-file-element" data-file-height="220" data-file-type="bitmap" data-file-width="1941" decoding="async" loading="lazy" height="220" resource="./File:File_&amp;_file.jpg" src="http://example.com/images/1/1f/File_%26_file.jpg" width="1941"/></a></span> <span class="mw-default-size" data-mw='{"caption":" three ","errors":[{"key":"apierror-imagelimitexceeded","message":"Image is not rendered due to image limit was exceeded"}]}' typeof="mw:Error mw:File"><a class="mw-file-description" href="./File:Foobar.svg" title="three"><span class="mw-file-element mw-broken-media" resource="./File:Foobar.svg">three</span></a></span> <span class="mw-default-size" data-mw='{"caption":" threePointOne ","errors":[{"key":"apierror-imagelimitexceeded","message":"Image is not rendered due to image limit was exceeded"}]}' typeof="mw:Error mw:File"><a class="new" href="./Special:Upload?wpDestFile=RedFile.svg" title="File:RedFile.svg"><span class="mw-file-element mw-broken-media" resource="./File:RedFile.svg">threePointOne</span></a></span> <span class="mw-default-size" data-mw='{"caption":" four "}' typeof="mw:File"><a class="mw-file-description" href="./File:Foobar.jpg" title="four"><img alt="four" class="mw-file-element" data-file-height="220" data-file-type="bitmap" data-file-width="1941" decoding="async" loading="lazy" height="220" resource="./File:Foobar.jpg" src="http://example.com/images/3/3a/Foobar.jpg" width="1941"/></a></span></p>
+<p><span class="mw-default-size" data-mw='{"caption":" one "}' typeof="mw:File"><a class="mw-file-description" href="./File:Foobar.jpg" title="one"><img alt="one" class="mw-file-element" data-file-height="220" data-file-type="bitmap" data-file-width="1941" decoding="async" height="220" loading="lazy" resource="./File:Foobar.jpg" src="http://example.com/images/3/3a/Foobar.jpg" width="1941"/></a></span> <span class="mw-default-size" data-mw='{"caption":" two "}' typeof="mw:File"><a class="mw-file-description" href="./File:File_&amp;_file.jpg" title="two"><img alt="two" class="mw-file-element" data-file-height="220" data-file-type="bitmap" data-file-width="1941" decoding="async" height="220" loading="lazy" resource="./File:File_&amp;_file.jpg" src="http://example.com/images/1/1f/File_%26_file.jpg" width="1941"/></a></span> <span class="mw-default-size" data-mw='{"caption":" three ","errors":[{"key":"apierror-imagelimitexceeded","message":"Image is not rendered due to image limit was exceeded"}]}' typeof="mw:Error mw:File"><a class="mw-file-description" href="./File:Foobar.svg" title="three"><span class="mw-file-element mw-broken-media" resource="./File:Foobar.svg">three</span></a></span> <span class="mw-default-size" data-mw='{"caption":" threePointOne ","errors":[{"key":"apierror-filedoesnotexist","message":"This image does not exist."},{"key":"apierror-imagelimitexceeded","message":"Image is not rendered due to image limit was exceeded"}]}' typeof="mw:Error mw:File"><a class="new" href="./Special:Upload?wpDestFile=RedFile.svg" title="File:RedFile.svg"><span class="mw-file-element mw-broken-media" resource="./File:RedFile.svg">threePointOne</span></a></span> <span class="mw-default-size" data-mw='{"caption":" four ","errors":[{"key":"apierror-imagelimitexceeded","message":"Image is not rendered due to image limit was exceeded"}]}' typeof="mw:Error mw:File"><a class="mw-file-description" href="./File:Foobar.jpg" title="four"><span class="mw-file-element mw-broken-media" resource="./File:Foobar.jpg">four</span></a></span></p>
+!! end
+
+!! test
+Gallery does not prioritize images in limit
+!! config
+wgParsoidMaximumImages=2
+!! options
+cat
+showflags
+!! wikitext
+[[File:Foobar.jpg| one ]] [[File:File_&_file.jpg| two ]]
+<gallery>
+File:Foobar.svg
+</gallery>
+!! metadata/parsoid+standalone
+cat=Pages_where_media_limit_was_reached sort=
+flags=prevent-selective-update
+!! html/parsoid+standalone
+<p><span class="mw-default-size" data-mw='{"caption":" one "}' typeof="mw:File"><a class="mw-file-description" href="./File:Foobar.jpg" title="one"><img alt="one" class="mw-file-element" data-file-height="220" data-file-type="bitmap" data-file-width="1941" decoding="async" height="220" loading="lazy" resource="./File:Foobar.jpg" src="http://example.com/images/3/3a/Foobar.jpg" width="1941"/></a></span> <span class="mw-default-size" data-mw='{"caption":" two "}' typeof="mw:File"><a class="mw-file-description" href="./File:File_&amp;_file.jpg" title="two"><img alt="two" class="mw-file-element" data-file-height="220" data-file-type="bitmap" data-file-width="1941" decoding="async" height="220" loading="lazy" resource="./File:File_&amp;_file.jpg" src="http://example.com/images/1/1f/File_%26_file.jpg" width="1941"/></a></span></p>
+<ul class="gallery mw-gallery-traditional" data-mw='{"name":"gallery","attrs":{},"body":{}}' typeof="mw:Extension/gallery">
+<li class="gallerybox" style="width: 155px;">
+<div class="thumb" style="height: 150px;"><span data-mw='{"errors":[{"key":"apierror-imagelimitexceeded","message":"Image is not rendered due to image limit was exceeded"}]}' typeof="mw:Error mw:File"><a class="mw-file-description" href="./File:Foobar.svg"><span class="mw-file-element mw-broken-media" data-height="120" data-width="120" resource="./File:Foobar.svg">File:Foobar.svg</span></a></span></div>
+<div class="gallerytext"></div>
+</li>
+</ul>
 !! end

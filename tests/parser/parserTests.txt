@@ -10600,3 +10600,15 @@ Nested nowiki tag using the #tag parser function
 !! html/parsoid+integrated
 <p><span data-mw='{"parts":[{"template":{"target":{"wt":"#tag:nowiki","function":"tag"},"params":{"1":{"wt":"&lt;nowiki>hi&lt;/nowiki>"}},"i":0}}]}' typeof="mw:Nowiki mw:Transclusion">hi</span></p>
 !! end
+
+!! test
+U+00A0 in extension attribute data-mw serializes as &nbsp;
+!! html/parsoid
+<pre typeof="mw:Extension/tag" about="#mwt1" data-parsoid='{"dsr":[0,35,25,6]}' data-mw='{"name":"tag","attrs":{"details":"S. 1"},"body":{"extsrc":"Test"}}'>'Test'
+array (
+  'details' => 'S. 1',
+)
+</pre>
+!! wikitext
+<tag details="S.&nbsp;1">Test</tag>
+!! end
