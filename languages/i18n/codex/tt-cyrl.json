@@ -1,0 +1,23 @@
+{
+	"@metadata": {
+		"authors": [
+			"Ильгиз"
+		]
+	},
+	"cdx-breadcrumb-overflow-label": "Навигациянең башка көйләнмәләре",
+	"cdx-dialog-close-button-label": "Ябу",
+	"cdx-label-optional-flag": "(мәҗбүри түгел)",
+	"cdx-message-dismiss-button-label": "Ябу",
+	"cdx-popover-close-button-label": "Ябу",
+	"cdx-search-input-search-button-label": "Эзләү",
+	"cdx-table-select-all-label": "Барлык юлларны сайлау",
+	"cdx-table-select-row-label": "$1/$2 юлны сайлау",
+	"cdx-typeahead-search-search-results-label": "Эзләү нәтиҗәләре",
+	"cdx-table-pager-button-first-page": "Беренче бит",
+	"cdx-table-pager-button-last-page": "Ахыргы бит",
+	"cdx-table-pager-button-next-page": "Киләсе бит",
+	"cdx-table-pager-button-prev-page": "Алдагы бит",
+	"cdx-table-pager-items-per-page-default": "Бер бит өчен нәтиҗәләре саны",
+	"cdx-table-pagination-status-message-pending": "Нәтиҗәләрне йөкләү...",
+	"cdx-table-no-data-message": "Мәгълүматлар юк."
+}

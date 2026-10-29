@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Svetko",
-			"ОйЛ"
+			"ОйЛ",
+			"Oujon"
 		]
 	},
 	"january": "їаноуарїи",
@@ -57,10 +58,13 @@
 	"sun": "н҃д",
 	"period-am": "до полоудьни",
 	"period-pm": "по полоудьни",
+	"timezone-local": "мѣстьнъ",
+	"ago": "$1 прѣжде",
 	"duration-millennia": "$1 {{PLURAL:$1|тꙑсѫщєлѣтиѥ|тꙑсѫщєлѣтиꙗ|тꙑсѫщєлѣтии}}",
 	"duration-centuries": "$1 {{PLURAL:$1|вѣкъ|вѣка|вѣкъ}}",
 	"duration-decades": "$1 {{PLURAL:$1|дєсѧтилѣтиѥ|дєсѧтилѣтиꙗ|дєсѧтилѣтии}}",
 	"duration-years": "$1 {{PLURAL:$1|лѣто|лѣта|лѣтъ}}",
+	"duration-months": "$1 {{PLURAL:$1|мѣсѧць|мѣсѧци}}",
 	"duration-weeks": "$1 {{PLURAL:$1|сєдмица|сєдмици|сєдмицѧ}}",
 	"duration-days": "$1 {{PLURAL:$1|дьнь|дьнꙗ|дьнь}}",
 	"duration-hours": "$1 {{PLURAL:$1|чѧсъ|чѧса|чѧсъ}}",

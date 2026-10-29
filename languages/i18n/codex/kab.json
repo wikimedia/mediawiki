@@ -1,0 +1,11 @@
+{
+	"@metadata": {
+		"authors": [
+			"ButterflyOfFire"
+		]
+	},
+	"cdx-dialog-close-button-label": "Mdel",
+	"cdx-message-dismiss-button-label": "Mdel",
+	"cdx-popover-close-button-label": "Mdel",
+	"cdx-table-pagination-status-message-determinate-short": "$1–$2 seg $3"
+}

@@ -237,7 +237,9 @@
 			"AhmedG612",
 			"Maxime2024",
 			"Crowwhailord",
-			"NClara"
+			"NClara",
+			"Allylly",
+			"Disturbingthepeaaaaace"
 		]
 	},
 	"pagecategories": "{{PLURAL:$1|Catégorie|Catégories}}",
@@ -3826,7 +3828,7 @@
 	"logentry-rights-rights-granted": "{{GENDER:$2|}}Ajout de $1",
 	"logentry-rights-rights-revoked": "{{GENDER:$2|}}retrait de $1",
 	"logentry-rights-rights-expiry-changed": "{{GENDER:$2|}}Expiration des droits $1",
-	"logentry-rights-rights-kept": "{{GENDER:$2|Mantien}} de $1",
+	"logentry-rights-rights-kept": "{{GENDER:$2|Maintien}} $1 maintenu",
 	"logentry-rights-rights-legacy": "$1{{GENDER:$2|}} a modifié l’appartenance aux groupes pour $3",
 	"logentry-rights-autopromote": "Les groupes de $1 ont été {{GENDER:$2|}}mis à jour automatiquement : $7",
 	"logentry-rights-autopromote-granted": "{{GENDER:$2|}}Droit obtenu $1",
@@ -4306,5 +4308,6 @@
 	"benefit-3-description": "Préférences qui vous permettent de personnaliser votre expérience.",
 	"temp-user-unable-to-acquire": "Impossible d'acquérir un nom d'utilisateur temporaire. S'il vous plaît, réessayez.",
 	"table-of-contents-show-button-aria-label": "Afficher le sommaire",
-	"table-of-contents-hide-button-aria-label": "Masquer la table des matières"
+	"table-of-contents-hide-button-aria-label": "Masquer la table des matières",
+	"mypage-disallowed-action": "Pour des raisons de sécurité, l'action \"$1\" ne peut pas être utilisé sur la page Special:MyPage"
 }
