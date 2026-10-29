@@ -4216,7 +4216,7 @@ Templates: Wiki Tables: 8. Fosterable meta-tags should get fostered
 <tbody><tr>
 
 <td>foo
-<span class="mw-empty-elt"><meta typeof="mw:Includes/OnlyInclude/End"/></span></td></tr>
+<meta typeof="mw:Includes/OnlyInclude/End"/></td></tr>
 </tbody></table>
 
 <meta typeof="mw:Includes/NoInclude" data-parsoid='{"src":"&lt;noinclude>"}'/>
@@ -9825,7 +9825,7 @@ Empty list item with rendering transparent tag
 <li class="mw-empty-elt"></li></ul>
 !! html/parsoid
 <ul about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"1x","href":"./Template:1x"},"params":{"1":{"wt":"*hmm\n*[[category:123]]"}},"i":0}}]}'><li>hmm</li>
-<li class="mw-empty-elt"><span class="mw-empty-elt"><link rel="mw:PageProp/Category" href="./Category:123"/></span></li></ul>
+<li class="mw-empty-elt"><link rel="mw:PageProp/Category" href="./Category:123"/></li></ul>
 !! end
 
 !! test
@@ -10599,4 +10599,16 @@ Nested nowiki tag using the #tag parser function
 </p>
 !! html/parsoid+integrated
 <p><span data-mw='{"parts":[{"template":{"target":{"wt":"#tag:nowiki","function":"tag"},"params":{"1":{"wt":"&lt;nowiki>hi&lt;/nowiki>"}},"i":0}}]}' typeof="mw:Nowiki mw:Transclusion">hi</span></p>
+!! end
+
+!! test
+U+00A0 in extension attribute data-mw serializes as &nbsp;
+!! html/parsoid
+<pre typeof="mw:Extension/tag" about="#mwt1" data-parsoid='{"dsr":[0,35,25,6]}' data-mw='{"name":"tag","attrs":{"details":"S. 1"},"body":{"extsrc":"Test"}}'>'Test'
+array (
+  'details' => 'S. 1',
+)
+</pre>
+!! wikitext
+<tag details="S.&nbsp;1">Test</tag>
 !! end

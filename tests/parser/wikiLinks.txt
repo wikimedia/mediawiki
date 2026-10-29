@@ -2051,15 +2051,15 @@ Fragment in a parent (or grandparent) of a subpage
 subpage title=[[Subpage test/L1/L2/L3]]
 parsoid=wt2html
 !! wikitext
-[[../#foo]]
-[[../../#foo]]
+[[../#foo bar]]
+[[../../#foo_bar]]
 !! html/php
-<p><a href="/wiki/Subpage_test/L1/L2#foo" title="Subpage test/L1/L2">Subpage test/L1/L2#foo</a>
-<a href="/wiki/Subpage_test/L1#foo" title="Subpage test/L1">Subpage test/L1#foo</a>
+<p><a href="/wiki/Subpage_test/L1/L2#foo_bar" title="Subpage test/L1/L2">Subpage test/L1/L2#foo bar</a>
+<a href="/wiki/Subpage_test/L1#foo_bar" title="Subpage test/L1">Subpage test/L1#foo_bar</a>
 </p>
 !! html/parsoid
-<p><a rel="mw:WikiLink" href="./Subpage_test/L1/L2#foo" title="Subpage test/L1/L2">Subpage test/L1/L2#foo</a>
-<a rel="mw:WikiLink" href="./Subpage_test/L1#foo" title="Subpage test/L1">Subpage test/L1#foo</a></p>
+<p><a rel="mw:WikiLink" href="./Subpage_test/L1/L2#foo_bar" title="Subpage test/L1/L2">Subpage test/L1/L2#foo bar</a>
+<a rel="mw:WikiLink" href="./Subpage_test/L1#foo_bar" title="Subpage test/L1">Subpage test/L1#foo_bar</a></p>
 !! end
 
 !! test

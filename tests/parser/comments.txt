@@ -302,3 +302,12 @@ parsoid=html2wt
 !! wikitext
 <div class="<!-- test -->123">hi ho</div>
 !! end
+
+!! test
+Don't allow ESI comments in HTML (T436137)
+!! wikitext
+<!--esi test-->
+!! html/php
+!! html/parsoid
+<!--&#x65;si test-->
+!! end
