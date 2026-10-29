@@ -293,6 +293,7 @@ For notes on 1.46.x and older releases, see HISTORY.
 * Updated wikimedia/language-data from 1.1.13 to 1.1.14.
 * Updated wikimedia/minify from 2.10.0 to 2.12.0.
 * Updated wikimedia/object-factory from 6.0.0 to 7.0.0.
+* Updated wikimedia/parsoid from 0.23.0 to 0.24.0.
 * Updated wikimedia/shellbox from 4.4.0 to 4.5.2.
 * …
 
