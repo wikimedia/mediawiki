@@ -89,8 +89,12 @@ class RawAction extends FormlessAction {
 		$contentType = $this->getContentType();
 
 		$maxage = $request->getInt( 'maxage', $config->get( MainConfigNames::CdnMaxAge ) );
+		if ( $maxage < 0 ) {
+			// Cache-Control does not allow negative values (T345609), so use the default
+			$maxage = $config->get( MainConfigNames::CdnMaxAge );
+		}
 		$smaxage = $request->getIntOrNull( 'smaxage' );
-		if ( $smaxage === null ) {
+		if ( $smaxage === null || $smaxage < 0 ) {
 			if (
 				$contentType === 'text/css' ||
 				$contentType === 'application/json' ||
