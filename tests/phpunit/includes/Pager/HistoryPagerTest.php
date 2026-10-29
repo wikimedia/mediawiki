@@ -25,7 +25,7 @@ class HistoryPagerTest extends MediaWikiIntegrationTestCase {
 	 * @param array $requestOpts Options for FauxRequest
 	 * @return HistoryPager
 	 */
-	private function getHistoryPager( array $results, array $requestOpts = [] ) {
+	private function getHistoryPager( array $results, array $requestOpts = [], array $messages = [] ) {
 		$wikiPageMock = $this->createMock( WikiPage::class );
 		$contextMock = $this->getMockBuilder( RequestContext::class )
 			->disableOriginalConstructor()
@@ -51,7 +51,7 @@ class HistoryPagerTest extends MediaWikiIntegrationTestCase {
 			] )
 			->onlyMethods( [] )
 			->getMock();
-		$actionMock->message = [
+		$actionMock->message = $messages + [
 			'cur' => 'cur',
 			'last' => 'last',
 			'tooltip-cur' => '',
@@ -228,5 +228,40 @@ class HistoryPagerTest extends MediaWikiIntegrationTestCase {
 			'There is exactly one header if the date is the same for all edits' );
 		$this->assertSame( 1, substr_count( $html, '<ul' ),
 			'There is exactly one list if the date is the same for all edits' );
+	}
+
+	/**
+	 * T440114: The cached messages are already escaped, so they must not be escaped again
+	 * when the "cur" and "last" labels are not links.
+	 * @covers \MediaWiki\Actions\Pager\HistoryPager::getBody
+	 */
+	public function testGetBodyMessagesWithApostropheAreNotDoubleEscaped() {
+		$pagerData = [
+			'rev_page' => 'title',
+			'rev_deleted' => false,
+			'rev_minor_edit' => false,
+			'ts_tags' => '',
+			'rev_parent_id' => 1,
+			'user_name' => 'Jdlrobson',
+			'rev_comment_data' => '{}',
+			'rev_comment_cid' => '1',
+			'rev_comment_text' => 'Fixed typo',
+		];
+		$pager = $this->getHistoryPager(
+			[
+				$pagerData + [
+					'rev_id' => 2,
+					'rev_timestamp' => '20220301001111',
+				],
+			],
+			[],
+			[
+				'cur' => htmlspecialchars( "iada'a", ENT_QUOTES ),
+				'last' => htmlspecialchars( "anse'o", ENT_QUOTES ),
+			]
+		);
+		$html = $pager->getBody();
+		$this->assertStringContainsString( '>anse&#039;o</span>', $html );
+		$this->assertStringNotContainsString( '&amp;#039;', $html );
 	}
 }
