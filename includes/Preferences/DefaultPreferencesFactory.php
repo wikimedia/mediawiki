@@ -942,22 +942,11 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 				'options' => $this->generateSkinOptions( $user, $context, $validSkinNames ),
 				'section' => 'rendering/skin',
 			];
-			$hideCond = [ 'AND' ];
-			foreach ( $validSkinNames as $skinName => $_ ) {
-				$options = $this->skinFactory->getSkinOptions( $skinName );
-				if ( $options['responsive'] ?? false ) {
-					$hideCond[] = [ '!==', 'skin', $skinName ];
-				}
-			}
-			if ( $hideCond === [ 'AND' ] ) {
-				$hideCond = [];
-			}
 			$defaultPreferences['skin-responsive'] = [
 				'type' => 'check',
 				'label-message' => 'prefs-skin-responsive',
 				'section' => 'rendering/skin/skin-prefs',
 				'help-message' => 'prefs-help-skin-responsive',
-				'hide-if' => $hideCond,
 			];
 		}
 
