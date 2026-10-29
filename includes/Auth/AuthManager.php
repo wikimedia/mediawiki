@@ -1911,7 +1911,9 @@ class AuthManager implements LoggerAwareInterface {
 				DeferredUpdates::addUpdate( SiteStatsUpdate::factory( [ 'users' => 1 ] ) );
 
 				// Watch user's userpage and talk page
-				$this->watchlistManager->addWatchIgnoringRights( $user, $user->getUserPage() );
+				if ( $this->config->get( MainConfigNames::WatchUserPageOnAccountCreation ) ) {
+					$this->watchlistManager->addWatchIgnoringRights( $user, $user->getUserPage() );
+				}
 
 				// Inform the provider
 				// @phan-suppress-next-line PhanPossiblyUndeclaredVariable
@@ -2324,7 +2326,7 @@ class AuthManager implements LoggerAwareInterface {
 		// Update user count
 		DeferredUpdates::addUpdate( SiteStatsUpdate::factory( [ 'users' => 1 ] ) );
 		// Watch user's userpage and talk page (except temp users)
-		if ( !$user->isTemp() ) {
+		if ( !$user->isTemp() && $this->config->get( MainConfigNames::WatchUserPageOnAccountCreation ) ) {
 			DeferredUpdates::addCallableUpdate( function () use ( $user ) {
 				$this->watchlistManager->addWatchIgnoringRights( $user, $user->getUserPage() );
 			} );

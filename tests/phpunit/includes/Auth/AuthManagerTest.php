@@ -39,6 +39,7 @@ use MediaWiki\Config\Config;
 use MediaWiki\Config\HashConfig;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Context\RequestContext;
+use MediaWiki\Deferred\DeferredUpdates;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\StaticHookRegistry;
 use MediaWiki\Language\Language;
@@ -220,6 +221,7 @@ class AuthManagerTest extends MediaWikiIntegrationTestCase {
 			'POST' => [],
 			'PostSend-POST' => [],
 		] );
+		$this->config->set( MainConfigNames::WatchUserPageOnAccountCreation, true );
 	}
 
 	/**
@@ -3310,6 +3312,65 @@ class AuthManagerTest extends MediaWikiIntegrationTestCase {
 			[ true, 'foobar' ],
 			[ false, null ],
 			[ false, 'byemail' ],
+		];
+	}
+
+	/**
+	 * @dataProvider provideWatchUserPageOnAccountCreation
+	 */
+	public function testAccountCreation_watchUserPageOnAccountCreation( bool $watch ) {
+		$username = self::usernameForCreation();
+
+		$mock = $this->createMock( AbstractPrimaryAuthenticationProvider::class );
+		$mock->method( 'getUniqueId' )
+			->willReturn( 'primary' );
+		$mock->method( 'testUserForCreation' )
+			->willReturn( StatusValue::newGood() );
+		$mock->method( 'testForAccountCreation' )
+			->willReturn( StatusValue::newGood() );
+		$mock->method( 'accountCreationType' )
+			->willReturn( PrimaryAuthenticationProvider::TYPE_CREATE );
+		$mock->method( 'testUserExists' )
+			->willReturn( false );
+		$mock->method( 'beginPrimaryAccountCreation' )
+			->willReturn( AuthenticationResponse::newPass( $username ) );
+
+		$this->primaryauthMocks = [ $mock ];
+		$this->logger = new NullLogger();
+		$this->initializeManager( true );
+		$this->config->set( MainConfigNames::WatchUserPageOnAccountCreation, $watch );
+
+		$userReq = new UsernameAuthenticationRequest;
+		$userReq->username = $username;
+		$ret = $this->manager->beginAccountCreation( new User, [ $userReq ], 'http://localhost/' );
+		$this->assertSame( AuthenticationResponse::PASS, $ret->status );
+
+		$user = User::newFromName( $username );
+		$this->assertSame( $watch, $this->watchlistManager->isWatched( $user, $user->getUserPage() ) );
+		$this->assertSame( $watch, $this->watchlistManager->isWatched( $user, $user->getTalkPage() ) );
+	}
+
+	/**
+	 * @dataProvider provideWatchUserPageOnAccountCreation
+	 */
+	public function testAutoAccountCreation_watchUserPageOnAccountCreation( bool $watch ) {
+		$this->logger = new NullLogger();
+		$this->initializeManager( true );
+		$this->config->set( MainConfigNames::WatchUserPageOnAccountCreation, $watch );
+
+		$user = User::newFromName( self::usernameForCreation() );
+		$ret = $this->manager->autoCreateUser( $user, AuthManager::AUTOCREATE_SOURCE_SESSION, false, true );
+		$this->assertStatusGood( $ret );
+		DeferredUpdates::doUpdates();
+
+		$this->assertSame( $watch, $this->watchlistManager->isWatched( $user, $user->getUserPage() ) );
+		$this->assertSame( $watch, $this->watchlistManager->isWatched( $user, $user->getTalkPage() ) );
+	}
+
+	public static function provideWatchUserPageOnAccountCreation() {
+		return [
+			'enabled' => [ true ],
+			'disabled' => [ false ],
 		];
 	}
 

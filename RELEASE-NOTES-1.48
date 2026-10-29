@@ -36,6 +36,9 @@ For notes on 1.47.x and older releases, see HISTORY.
   $wgDeviceBoundSessionChallengeTTL, $wgDeviceBoundSessionBindingTTL,
   $wgDeviceBoundSessionScopeExcludes and $wgDeviceBoundSessionsReportOnly,
   which restricts DBSC to a "report-only mode" and is enabled by default.
+* $wgWatchUserPageOnAccountCreation controls whether newly created accounts
+  watch their own user page and user talk page. Defaults to true (the previous
+  behavior).
 * …
 
 ==== Changed configuration ====

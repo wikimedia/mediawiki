@@ -4223,6 +4223,12 @@ class MainConfigNames {
 	public const NewUserLog = 'NewUserLog';
 
 	/**
+	 * Name constant for the WatchUserPageOnAccountCreation setting, for use with Config::get()
+	 * @see MainConfigSchema::WatchUserPageOnAccountCreation
+	 */
+	public const WatchUserPageOnAccountCreation = 'WatchUserPageOnAccountCreation';
+
+	/**
 	 * Name constant for the PageCreationLog setting, for use with Config::get()
 	 * @see MainConfigSchema::PageCreationLog
 	 */

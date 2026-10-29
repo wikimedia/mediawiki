@@ -4208,6 +4208,12 @@ $wgActionFilteredLogs = null;
 $wgNewUserLog = null;
 
 /**
+ * Config variable stub for the WatchUserPageOnAccountCreation setting, for use by phpdoc and IDEs.
+ * @see MediaWiki\MainConfigSchema::WatchUserPageOnAccountCreation
+ */
+$wgWatchUserPageOnAccountCreation = null;
+
+/**
  * Config variable stub for the PageCreationLog setting, for use by phpdoc and IDEs.
  * @see MediaWiki\MainConfigSchema::PageCreationLog
  */

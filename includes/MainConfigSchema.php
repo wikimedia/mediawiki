@@ -12644,6 +12644,20 @@ class MainConfigSchema {
 	];
 
 	/**
+	 * Whether newly created accounts should watch their own user page and
+	 * user talk page.
+	 *
+	 * This applies to both regular and automatic account creation.
+	 * Temporary accounts never watch their user page.
+	 *
+	 * @since 1.48
+	 */
+	public const WatchUserPageOnAccountCreation = [
+		'default' => true,
+		'type' => 'boolean',
+	];
+
+	/**
 	 * Maintain a log of page creations at Special:Log/create?
 	 *
 	 * @since 1.32
