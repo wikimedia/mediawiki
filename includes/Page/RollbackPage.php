@@ -448,7 +448,7 @@ class RollbackPage {
 			$target,
 			$current,
 			1000,
-			RevisionStore::INCLUDE_NEW
+			[ RevisionStore::INCLUDE_NEW, RevisionStore::INCLUDE_DELETED_REVISIONS ]
 		);
 		$currentEditorForPublic = $current->getUser( RevisionRecord::FOR_PUBLIC );
 		if ( $this->summary === '' ) {
