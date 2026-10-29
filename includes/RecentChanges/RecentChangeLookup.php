@@ -45,7 +45,7 @@ interface RecentChangeLookup {
 	 *
 	 * @param RevisionRecord $rev
 	 * @param int $flags (optional) $flags include:
-	 *      IDBAccessObject::READ_LATEST: Select the data from the primary DB
+	 *  - IDBAccessObject::READ_LATEST: Select the data from the primary DB
 	 *
 	 * @return null|RecentChange
 	 * @throws PreconditionException If the revision is not from the local wiki

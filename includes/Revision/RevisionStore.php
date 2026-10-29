@@ -1184,8 +1184,8 @@ class RevisionStore implements RevisionFactory, RevisionLookup, LoggerAwareInter
 	 *
 	 * @param int $id
 	 * @param int $flags (optional)
-	 *        IDBAccessObject::READ_LATEST: Select the data from the primary DB
-	 *        IDBAccessObject::READ_LOCKING: Select & lock the data from the primary DB
+	 *  - IDBAccessObject::READ_LATEST: Select the data from the primary DB
+	 *  - IDBAccessObject::READ_LOCKING: Select & lock the data from the primary DB
 	 * @param PageIdentity|null $page The page the revision belongs to.
 	 *        Providing the page may improve performance.
 	 * @return RevisionRecord|null Returns null if no such revision can be found.
@@ -2311,7 +2311,7 @@ class RevisionStore implements RevisionFactory, RevisionLookup, LoggerAwareInter
 	 * @param array $conditions
 	 * @param int $flags (optional) By default this method will first try a
 	 *  a replica and fallback to a primary database. Set READ_LATEST to read
-	 *  direclty from a primary database.
+	 *  directly from a primary database.
 	 * @param PageIdentity|null $page (optional)
 	 * @param array $options (optional) additional query options
 	 * @return RevisionRecord|null

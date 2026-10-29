@@ -764,9 +764,9 @@ class WikiPage implements Stringable, Page, PageRecord {
 	 * Get the content of the latest revision. No side-effects...
 	 *
 	 * @param int $audience One of:
-	 *   RevisionRecord::FOR_PUBLIC       to be displayed to all users
-	 *   RevisionRecord::FOR_THIS_USER    to be displayed to the given user
-	 *   RevisionRecord::RAW              get the text regardless of permissions
+	 *   - RevisionRecord::FOR_PUBLIC:    to be displayed to all users
+	 *   - RevisionRecord::FOR_THIS_USER: to be displayed to the given user
+	 *   - RevisionRecord::RAW:           get the text regardless of permissions
 	 * @param Authority|null $performer object to check for, only if FOR_THIS_USER is passed
 	 *   to the $audience parameter
 	 * @return Content|null The content of the latest revision
@@ -804,9 +804,9 @@ class WikiPage implements Stringable, Page, PageRecord {
 
 	/**
 	 * @param int $audience One of:
-	 *   RevisionRecord::FOR_PUBLIC       to be displayed to all users
-	 *   RevisionRecord::FOR_THIS_USER    to be displayed to the given user
-	 *   RevisionRecord::RAW              get the text regardless of permissions
+	 *   - RevisionRecord::FOR_PUBLIC:    to be displayed to all users
+	 *   - RevisionRecord::FOR_THIS_USER: to be displayed to the given user
+	 *   - RevisionRecord::RAW:           get the text regardless of permissions
 	 * @param Authority|null $performer object to check for, only if FOR_THIS_USER is passed
 	 *   to the $audience parameter (since 1.36, if using FOR_THIS_USER and not specifying
 	 *   a user no fallback is provided and the RevisionRecord method will throw an error)
@@ -825,9 +825,9 @@ class WikiPage implements Stringable, Page, PageRecord {
 	/**
 	 * Get the User object of the user who created the page
 	 * @param int $audience One of:
-	 *   RevisionRecord::FOR_PUBLIC       to be displayed to all users
-	 *   RevisionRecord::FOR_THIS_USER    to be displayed to the given user
-	 *   RevisionRecord::RAW              get the text regardless of permissions
+	 *   - RevisionRecord::FOR_PUBLIC:    to be displayed to all users
+	 *   - RevisionRecord::FOR_THIS_USER: to be displayed to the given user
+	 *   - RevisionRecord::RAW:           get the text regardless of permissions
 	 * @param Authority|null $performer object to check for, only if FOR_THIS_USER is passed
 	 *   to the $audience parameter (since 1.36, if using FOR_THIS_USER and not specifying
 	 *   a user no fallback is provided and the RevisionRecord method will throw an error)
@@ -844,9 +844,9 @@ class WikiPage implements Stringable, Page, PageRecord {
 
 	/**
 	 * @param int $audience One of:
-	 *   RevisionRecord::FOR_PUBLIC       to be displayed to all users
-	 *   RevisionRecord::FOR_THIS_USER    to be displayed to the given user
-	 *   RevisionRecord::RAW              get the text regardless of permissions
+	 *   - RevisionRecord::FOR_PUBLIC:    to be displayed to all users
+	 *   - RevisionRecord::FOR_THIS_USER: to be displayed to the given user
+	 *   - RevisionRecord::RAW:           get the text regardless of permissions
 	 * @param Authority|null $performer object to check for, only if FOR_THIS_USER is passed
 	 *   to the $audience parameter (since 1.36, if using FOR_THIS_USER and not specifying
 	 *   a user no fallback is provided and the RevisionRecord method will throw an error)
@@ -864,9 +864,9 @@ class WikiPage implements Stringable, Page, PageRecord {
 
 	/**
 	 * @param int $audience One of:
-	 *   RevisionRecord::FOR_PUBLIC       to be displayed to all users
-	 *   RevisionRecord::FOR_THIS_USER    to be displayed to the given user
-	 *   RevisionRecord::RAW              get the text regardless of permissions
+	 *   - RevisionRecord::FOR_PUBLIC:      to be displayed to all users
+	 *   - RevisionRecord::FOR_THIS_USER:   to be displayed to the given user
+	 *   - RevisionRecord::RAW:             get the text regardless of permissions
 	 * @param Authority|null $performer object to check for, only if FOR_THIS_USER is passed
 	 *   to the $audience parameter (since 1.36, if using FOR_THIS_USER and not specifying
 	 *   a user no fallback is provided and the RevisionRecord method will throw an error)

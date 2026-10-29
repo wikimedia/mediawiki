@@ -86,10 +86,8 @@ abstract class UserOptionsLookup {
 	 *
 	 * @param UserIdentity $user The user to get the option for
 	 * @param int $flags Bitwise combination of:
-	 *   UserOptionsManager::EXCLUDE_DEFAULTS  Exclude user options that are set
-	 *                                         to the default value. Options
-	 *                                         that are set to their conditionally
-	 *                                         default value are not excluded.
+	 *   - UserOptionsManager::EXCLUDE_DEFAULTS: Exclude user options that are set to the default
+	 *     value. Options that are set to their conditionally default value are not excluded.
 	 * @param int $queryFlags A bit field composed of READ_XXX flags
 	 * @return array
 	 */

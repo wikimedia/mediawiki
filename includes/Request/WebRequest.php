@@ -1143,9 +1143,8 @@ class WebRequest {
 	 *
 	 * @param string $name Case-insensitive header name
 	 * @param int $flags Bitwise combination of:
-	 *   WebRequest::GETHEADER_LIST  Treat the header as a comma-separated list
-	 *                               of values, as described in RFC 2616 § 4.2.
-	 *                               (since 1.26).
+	 *  - WebRequest::GETHEADER_LIST: Treat the header as a comma-separated list
+	 *    of values, as described in RFC 2616 § 4.2. (since 1.26).
 	 * @return string|string[]|false False if header is unset; otherwise the
 	 *  header value(s) as either a string (the default) or an array, if
 	 *  WebRequest::GETHEADER_LIST flag was set.

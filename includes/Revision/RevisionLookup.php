@@ -79,9 +79,9 @@ interface RevisionLookup {
 	 * @param LinkTarget|PageReference $page Calling with LinkTarget is deprecated since 1.36
 	 * @param string $timestamp
 	 * @param int $flags Bitfield (optional) include:
-	 *      IDBAccessObject::READ_LATEST: Select the data from the primary DB
-	 *      IDBAccessObject::READ_LOCKING: Select & lock the data from the primary DB
-	 *      Default: IDBAccessObject::READ_NORMAL
+	 *  - IDBAccessObject::READ_LATEST: Select the data from the primary DB
+	 *  - IDBAccessObject::READ_LOCKING: Select & lock the data from the primary DB
+	 *  - Default: IDBAccessObject::READ_NORMAL
 	 * @return RevisionRecord|null
 	 */
 	public function getRevisionByTimestamp(
@@ -97,7 +97,7 @@ interface RevisionLookup {
 	 *
 	 * @param RevisionRecord $rev
 	 * @param int $flags (optional) $flags include:
-	 *      IDBAccessObject::READ_LATEST: Select the data from the primary DB
+	 *  - IDBAccessObject::READ_LATEST: Select the data from the primary DB
 	 *
 	 * @return RevisionRecord|null
 	 */
@@ -110,7 +110,7 @@ interface RevisionLookup {
 	 *
 	 * @param RevisionRecord $rev
 	 * @param int $flags (optional) $flags include:
-	 *      IDBAccessObject::READ_LATEST: Select the data from the primary DB
+	 *  - IDBAccessObject::READ_LATEST: Select the data from the primary DB
 	 *
 	 * @return RevisionRecord|null
 	 */
