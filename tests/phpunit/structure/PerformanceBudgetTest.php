@@ -88,6 +88,7 @@ class PerformanceBudgetTest extends MediaWikiIntegrationTestCase {
 		$context->setOutput( $outputPage );
 		$skin->setContext( $context );
 		$outputPage->setTitle( $title );
+		$outputPage->setArticleFlag( true );
 		$outputPage->output( true );
 		return $skin;
 	}
