@@ -3183,6 +3183,9 @@ class RevisionStore implements RevisionFactory, RevisionLookup, LoggerAwareInter
 	 *  - RevisionStore::INCLUDE_OLD Include $old in the range; $new is excluded.
 	 *  - RevisionStore::INCLUDE_NEW Include $new in the range; $old is excluded.
 	 *  - RevisionStore::INCLUDE_BOTH Include both $old and $new in the range.
+	 *  - RevisionStore::INCLUDE_DELETED_REVISIONS Include revisions that have been revision deleted.
+	 *  If no options are selected, the first revision, last revision, and revision
+	 *  deleted revisions will not be included.
 	 * @param string|null $order The direction in which the revisions should be sorted.
 	 *  Possible values:
 	 *  - RevisionStore::ORDER_OLDEST_TO_NEWEST
@@ -3223,11 +3226,12 @@ class RevisionStore implements RevisionFactory, RevisionLookup, LoggerAwareInter
 		$queryBuilder = $db->newSelectQueryBuilder()
 			->select( 'rev_id' )
 			->from( 'revision' )
-			->where( [
-				'rev_page' => $pageId,
-				$db->bitAnd( 'rev_deleted', RevisionRecord::DELETED_TEXT ) . ' = 0'
-			] )
+			->where( [ 'rev_page' => $pageId ] )
 			->andWhere( $this->getRevisionLimitConditions( $db, $old, $new, $options ) );
+
+		if ( !in_array( self::INCLUDE_DELETED_REVISIONS, $options ) ) {
+			$queryBuilder->where( $db->bitAnd( 'rev_deleted', RevisionRecord::DELETED_TEXT ) . ' = 0' );
+		}
 
 		if ( $order !== null ) {
 			$queryBuilder->orderBy( [ 'rev_timestamp', 'rev_id' ], $order );
@@ -3395,10 +3399,9 @@ class RevisionStore implements RevisionFactory, RevisionLookup, LoggerAwareInter
 			return 0;
 		}
 
+		$options = (array)$options;
 		$dbr = $this->getReplicaConnection();
 		$where = [ 'rev_page' => $pageId ];
-		// If $options is a string, convert it to an array
-		$options = (array)$options;
 		if ( !in_array( self::INCLUDE_DELETED_REVISIONS, $options ) ) {
 			$where[] = $dbr->bitAnd( 'rev_deleted', RevisionRecord::DELETED_TEXT ) . " = 0";
 		}
