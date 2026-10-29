@@ -7,7 +7,7 @@
 	// If a rollback was successful, RollbackAction.php will export wgRollbackSuccess
 	const wgRollbackSuccess = mw.config.get( 'wgRollbackSuccess' );
 	if ( wgRollbackSuccess ) {
-		mw.loader.using( 'mediawiki.action.view.postEdit', () => {
+		mw.loader.using( 'mediawiki.action.view.postEdit', ( require ) => {
 			// wgCurRevisionId is set to the revision of the rollback
 			// in OutputPage::getJSVars. wgRevisionId is 0, since we're looking at
 			// the success page for the rollback and not the content of the page.
@@ -15,7 +15,12 @@
 			// implementations of the postEdit hook, but for now we just want to
 			// enable code that relies on postEdit firing to know that an edit
 			// was made.
-			mw.hook( 'postEdit' ).fire();
+			const { fireHook, SAVED } = require( 'mediawiki.action.view.postEdit' );
+
+			fireHook( SAVED, {
+				revisionId: mw.config.get( 'wgCurRevisionId' ),
+				isRollback: true
+			} );
 		} );
 	}
 

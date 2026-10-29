@@ -2,31 +2,74 @@
 	'use strict';
 
 	/**
+	 * @module ~mediawiki.action.view.postEdit
+	 */
+
+	/**
+	 * @enum {string}
+	 * @memberof module:mediawiki.action.view.postEdit
+	 */
+	const ACTION = {
+		SAVED: 'saved',
+		CREATED: 'created',
+		RESTORED: 'restored',
+		PUBLISHED: 'published'
+	};
+
+	/**
+	 * @typedef {Object} Context Optional context that can be passed to
+	 *  {@link module:mediawiki.action.view.postEdit.fireHook} or
+	 *  {@link module:mediawiki.action.view.postEdit.fireHookOnPageReload}
+	 * @property {string|jQuery|Array} [message] The message that listeners should use when
+	 *  displaying post-edit notifications. String for plain text, or use array or jQuery object to
+	 *  pass DOM nodes
+	 * @property {boolean} [tempUserCreated=false] Whether a temporary account was created during
+	 *  the edit
+	 * @property {string} [editorName] The machine-readable name of the editor that was used to make
+	 *  the edit
+	 * @property {number} [revisionId=wgRevisionId] The revision ID of the page being edited
+	 * @property {number} [curRevisionId=wgCurRevisionId] The latest revision ID of the page being
+	 *  edited
+	 * @property {boolean} [isRollback=false] Whether the edit was a rollback
+	 *
+	 * @memberof module:mediawiki.action.view.postEdit
+	 */
+
+	/**
+	 * @typedef {Object} Payload Optional payload that can be passed when firing the `postEdit` hook
+	 * @property {string|jQuery|Array} message The message that listeners should use when
+	 *  displaying post-edit notifications. String for plain text, or use array or jQuery object to
+	 *  pass DOM nodes
+	 * @property {boolean} tempUserCreated Whether a temporary account was created during
+	 *  the edit
+	 * @property {number} revisionId The revision ID of the page being edited
+	 * @property {number} curRevisionId The latest revision ID of the page being
+	 *  edited
+	 * @property {string} [editorName] The machine-readable name of the editor that was used to make
+	 *  the edit
+	 * @property {boolean} isRollback Whether the edit was a rollback
+	 *
+	 * @memberof module:mediawiki.action.view.postEdit
+	 */
+
+	const VALID_ACTIONS = Object.values( ACTION );
+
+	/**
 	 * Fired after an edit was successfully saved.
 	 *
-	 * Does not fire for null edits.
+	 * This hook should not be fired for null edits.
 	 *
-	 * Code that fires the postEdit hook should first set `wgRevisionId` and `wgCurRevisionId`
-	 * to the revision associated with the edit that triggered the postEdit hook, then fire
-	 * the postEdit hook.
+	 * This hook shouldn't be fired directly. Instead, it should be fired using
+	 * {@link module:mediawiki.action.view.postEdit.fireHook} or
+	 * {@link module:mediawiki.action.view.postEdit.fireHookOnPageReload}.
 	 *
 	 * @example
-	 * mw.config.set( {
-	 *    wgCurRevisionId: data.newrevid,
-	 *    wgRevisionId: data.newrevid
-	 * } );
-	 * // Now fire the hook.
-	 * mw.hook( 'postEdit' ).fire();
+	 * const { fireHook, SAVED } = require( 'mediawiki.action.view.postEdit' );
+	 * fireHook( SAVED );
 	 *
 	 * @event ~'postEdit'
 	 * @memberof Hooks
-	 * @param {Object} [data] Optional data
-	 * @param {string|jQuery|Array} [data.message] Message that listeners
-	 *  should use when displaying notifications. String for plain text,
-	 *  use array or jQuery object to pass actual nodes.
-	 * @param {string|mw.user} [data.user=mw.user] User that made the edit.
-	 * @param {boolean} [data.tempUserCreated] Whether a temporary user account
-	 *  was created.
+	 * @param {module:mediawiki.action.view.postEdit.Payload} [payload]
 	 */
 
 	/**
@@ -37,7 +80,16 @@
 	 * @memberof Hooks
 	 */
 
-	const config = require( './config.json' );
+	/**
+	 * @typedef {Object} Config
+	 * @property {boolean} EditSubmitButtonLabelPublish
+	 *
+	 * @memberof module:mediawiki.action.view.postEdit
+	 */
+
+	/** @type {module:mediawiki.action.view.postEdit.Config} */
+	let config = require( './config.json' );
+
 	const storageKey = 'mw-PostEdit' + mw.config.get( 'wgPageName' );
 
 	/**
@@ -121,99 +173,205 @@
 
 		// Check storage and cookie (set server-side)
 		let action = mw.storage.session.get( storageKey ) || mw.config.get( 'wgPostEdit' );
-		if ( action ) {
-			let tempUserCreated = false;
+
+		if ( !action ) {
+			return;
+		}
+
+		let context;
+
+		try {
+			context = JSON.parse( action );
+		} catch ( e ) {
+			// Old-style value? It's either $action or $action+tempuser
 			const plusPos = action.indexOf( '+' );
+			let tempUserCreated = false;
 			if ( plusPos > -1 ) {
 				action = action.slice( 0, plusPos );
 				tempUserCreated = true;
 			}
 
-			// Set 'wgPostEdit' when displaying a message requested via storage, to allow CampaignEvents
-			// to override post-edit behavior for some page creations performed using VisualEditor, which
-			// shows a message via storage when creating new pages (T240041#8148006):
-			// https://gerrit.wikimedia.org/g/mediawiki/extensions/CampaignEvents/+/e380af0c69b17ecb05fc3258f92c9df625a35449/resources/ext.campaignEvents.eventpage/index.js#187
-			// https://gerrit.wikimedia.org/g/mediawiki/extensions/VisualEditor/+/192c1051120c8dd331f00b9024b5beadab1cb89a/modules/ve-mw/init/targets/ve.init.mw.ArticleTarget.js#656
-			// TODO: We should provide a better API for this that doesn't require extensions to parse the
-			// 'action' value themselves, and doesn't require accessing 'wgPostEdit' from mw.config.
-			mw.config.set( 'wgPostEdit', action );
-
-			module.exports.fireHook( action, tempUserCreated );
+			context = {
+				action,
+				tempUserCreated
+			};
 		}
+
+		// Set wgPostEdit when displaying a message requested via fireHookOnPageReload() to
+		// maintain compatibility with existing extensions. See
+		// https://codesearch.wmcloud.org/things/?q=get%5C%28+%5B%27%22%5DwgPostEdit%5B%22%27%5D&files=%5C.js%24
+		// for a list of extensions that expect wgPostEdit to be set. See also T240041#8148006 for
+		// some context as to why those extensions require it to be set.
+		//
+		// TODO: T437414: Tidy up the uses of wgPostEdit in extensions.
+		mw.config.set( 'wgPostEdit', context.action );
+
+		module.exports.fireHook( context.action, context );
 
 		// Clear storage (cookie is cleared server-side)
 		mw.storage.session.remove( storageKey );
 	}
 
 	/**
-	 * Show post-edit messages.
+	 * @param {Object} context
+	 * @return {module:mediawiki.action.view.postEdit.Context}
 	 *
-	 * @example
-	 * var postEdit = require( 'mediawiki.action.view.postEdit' );
-	 * postEdit.fireHook( 'saved' );
-	 *
-	 * @class mw.plugin.action.view.postEdit
-	 * @singleton
 	 * @ignore
 	 */
-	module.exports = {
+	function getAllowedContext( context ) {
+		const result = {};
 
+		[
+			'message',
+			'tempUserCreated',
+			'editorName',
+			'revisionId',
+			'curRevisionId',
+			'isRollback'
+		].forEach( ( prop ) => {
+			if ( Object.prototype.hasOwnProperty.call( context, prop ) ) {
+				result[ prop ] = context[ prop ];
+			}
+		} );
+
+		return result;
+	}
+
+	/**
+	 * Show post-edit messages and notify other modules that the user made an edit.
+	 *
+	 * @example
+	 * const { fireHook, SAVED } = require( 'mediawiki.action.view.postEdit' );
+	 * fireHook( SAVED );
+	 *
+	 * @property {module:mediawiki.action.view.postEdit.ACTION} SAVED
+	 * @property {module:mediawiki.action.view.postEdit.ACTION} CREATED
+	 * @property {module:mediawiki.action.view.postEdit.ACTION} RESTORED
+	 * @property {module:mediawiki.action.view.postEdit.ACTION} PUBLISHED
+	 */
+	module.exports = {
 		/**
-		 * Show a post-edit message now.
+		 * Fire the `postEdit` hook and show a post-edit message now.
 		 *
-		 * This is just a shortcut for firing mw.hook#postEdit.
+		 * @param {module:mediawiki.action.view.postEdit.ACTION} [action="saved"]
+		 * @param {boolean|module:mediawiki.action.view.postEdit.Context} [context] Either a boolean
+		 *  representing whether a temporary account was created during this edit or a context
+		 *  object that describes the edit
 		 *
-		 * @ignore
-		 * @param {string} [action] One of 'saved', 'created', 'restored'
-		 * @param {boolean} [tempUserCreated] Whether a temporary account was created during this edit
+		 * @memberof module:mediawiki.action.view.postEdit
 		 */
-		fireHook: ( action, tempUserCreated ) => {
+		fireHook( action, context ) {
 			if ( !action ) {
-				action = 'saved';
+				action = ACTION.SAVED;
 			}
-			if ( action === 'saved' && config.EditSubmitButtonLabelPublish ) {
-				action = 'published';
+			if ( action === ACTION.SAVED && config.EditSubmitButtonLabelPublish ) {
+				action = ACTION.PUBLISHED;
 			}
-			mw.hook( 'postEdit' ).fire( {
+
+			let data = {
+				tempUserCreated: undefined,
+				action,
+				revisionId: mw.config.get( 'wgRevisionId' ),
+				curRevisionId: mw.config.get( 'wgCurRevisionId' ),
+				isRollback: false,
+				editorName: 'unknown'
+			};
+
+			if ( typeof context === 'boolean' ) {
+				data.tempUserCreated = context;
+			} else if ( typeof context === 'object' ) {
+				data = Object.assign( data, getAllowedContext( context ) );
+			}
+
+			if ( !VALID_ACTIONS.includes( data.action ) ) {
+				mw.log.warn( `postEdit.fireHook: Invalid action ${ data.action }` );
+
+				return;
+			}
+
+			if ( !data.message ) {
 				// The following messages can be used here:
 				// * postedit-confirmation-published
 				// * postedit-confirmation-saved
 				// * postedit-confirmation-created
 				// * postedit-confirmation-restored
-				message: mw.message(
-					'postedit-confirmation-' + action,
+				data.message = mw.message(
+					'postedit-confirmation-' + data.action,
 					mw.user,
-					mw.config.get( 'wgRevisionId' )
-				),
-				tempUserCreated: tempUserCreated
-			} );
+					data.revisionId
+				);
+			}
+
+			mw.hook( 'postEdit' ).fire( data );
 		},
 
 		/**
-		 * Show a post-edit message on the next page load.
+		 * Fire the `postEdit` hook and show a post-edit message on the next page load.
 		 *
-		 * The necessary data is stored in session storage for up to 20 minutes, and cleared when the
-		 * page is loaded again.
+		 * The necessary data is stored in session storage for up to 20 minutes, and cleared on the
+		 * next page load.
 		 *
-		 * @ignore
-		 * @param {string} [action] One of 'saved', 'created', 'restored'
-		 * @param {boolean} [tempUserCreated] Whether a temporary account was created during this edit
+		 * @param {module:mediawiki.action.view.postEdit.ACTION} [action="saved"]
+		 * @param {boolean|module:mediawiki.action.view.postEdit.Context} [context] Either a boolean
+		 *  representing whether a temporary account was created during this edit or a context
+		 *  object that describes the edit
+		 *
+		 * @memberof module:mediawiki.action.view.postEdit
 		 */
-		fireHookOnPageReload: ( action, tempUserCreated ) => {
+		fireHookOnPageReload( action, context ) {
 			if ( !action ) {
-				action = 'saved';
+				action = ACTION.SAVED;
 			}
-			if ( tempUserCreated ) {
-				action += '+tempuser';
+
+			let data = {
+				action,
+				isRollback: false
+			};
+
+			if ( typeof context === 'boolean' ) {
+				data.tempUserCreated = context;
+			} else if ( typeof context === 'object' ) {
+				data = Object.assign( data, getAllowedContext( context ) );
 			}
+
+			if ( !VALID_ACTIONS.includes( data.action ) ) {
+				mw.log.warn( `postEdit.fireHookOnPageReload: Invalid action ${ data.action }` );
+
+				return;
+			}
+
+			// TODO: Add support to show custom post-edit messages on the next page load.
+			delete data.message;
+
 			mw.storage.session.set(
 				storageKey,
-				action,
+				JSON.stringify( data ),
 				1200 // same duration as EditPage::POST_EDIT_COOKIE_DURATION
 			);
-		}
+		},
+
+		SAVED: ACTION.SAVED,
+		CREATED: ACTION.CREATED,
+		RESTORED: ACTION.RESTORED,
+		PUBLISHED: ACTION.PUBLISHED
 	};
 
-	init();
+	if ( window.QUnit ) {
+		const oldConfig = Object.assign( {}, config );
 
+		module.exports.init = init;
+
+		/**
+		 * @param {module:mediawiki.action.view.postEdit.Config} newConfig
+		 */
+		module.exports.setConfig = function ( newConfig ) {
+			config = newConfig;
+		};
+
+		module.exports.resetConfig = function () {
+			config = oldConfig;
+		};
+	} else {
+		init();
+	}
 }() );
