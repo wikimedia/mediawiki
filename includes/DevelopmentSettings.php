@@ -153,8 +153,8 @@ $wgTempAccountNameAcquisitionThrottle = [];
  * (Must reference a Phabricator ticket)
  */
 
-global $wgSQLMode, $wgDBStrictWarnings, $wgLocalisationCacheConf, $wgCiteCitationTypeAutoNames,
-	$wgCiteSubReferencing, $wgCacheDirectory, $wgEnableUploads, $wgUsePigLatinVariant,
+global $wgSQLMode, $wgDBStrictWarnings, $wgLocalisationCacheConf, $wgCiteSubReferencing,
+	$wgCacheDirectory, $wgEnableUploads, $wgUsePigLatinVariant,
 	$wgVisualEditorEnableWikitext, $wgDefaultUserOptions, $wgAutoCreateTempUser;
 
 // Enable MariaDB/MySQL strict mode (T108255)
@@ -163,9 +163,6 @@ $wgDBStrictWarnings = true;
 
 // Localisation Cache to StaticArray (T218207)
 $wgLocalisationCacheConf['store'] = 'array';
-
-// Autnames feature in Cite (T439542)
-$wgCiteCitationTypeAutoNames = true;
 
 // Experimental sub-referencing feature in Cite (T236255)
 $wgCiteSubReferencing = true;
