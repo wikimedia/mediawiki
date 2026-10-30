@@ -266,8 +266,13 @@ class LoggedInUserCacheabilityTest extends MediaWikiIntegrationTestCase {
 			$sysopUser->getUserIdentity()
 		);
 		// Perform an edit since this might result in changes to user-specific state.
-		$testPage = $this->getNonexistingTestPage();
-		$status = $this->editPage( $testPage, 'Hello World!', 'Hello World!', NS_MAIN, $loggedinUserExtended );
+		// Explicitly use the wikitext namespace: getNonexistingTestPage() defaults to
+		// NS_MAIN, which some extensions (e.g. WikiLambda) repurpose for non-wikitext
+		// content, so 'Hello World!' would fail to unserialize as that content model.
+		$testPage = $this->getNonexistingTestPage(
+			Title::newFromText( 'Test page ' . wfRandomString(), $this->getDefaultWikitextNS() )
+		);
+		$status = $this->editPage( $testPage, 'Hello World!', 'Hello World!', $this->getDefaultWikitextNS(), $loggedinUserExtended );
 		$cascade = false; // map to variable to pass by reference.
 		$testPage->doUpdateRestrictions(
 			[ 'edit' => 'sysop' ],
