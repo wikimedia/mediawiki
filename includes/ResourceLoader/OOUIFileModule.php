@@ -17,7 +17,7 @@ class OOUIFileModule extends FileModule {
 	use OOUIModule;
 
 	/** @var array<string,string|FilePath> */
-	private $themeStyles = [];
+	private array $themeStyles = [];
 
 	public function __construct( array $options = [] ) {
 		if ( isset( $options['themeScripts'] ) ) {

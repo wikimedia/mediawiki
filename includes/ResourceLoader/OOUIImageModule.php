@@ -80,7 +80,7 @@ class OOUIImageModule extends ImageModule {
 	 *
 	 * @since 1.34
 	 * @param string $theme
-	 * @param string $module
+	 * @param string $module Possibly empty, for backwards-compatibility
 	 * @return array|false
 	 * @suppress PhanTypeArraySuspiciousNullable
 	 */
@@ -117,17 +117,18 @@ class OOUIImageModule extends ImageModule {
 
 		// Expand the paths to images (since they are relative to the JSON file that defines them, not
 		// our base directory)
-		$fixPath = static function ( &$path ) use ( $dataPath ) {
-			if ( $dataPath instanceof FilePath ) {
+		$fixPath = $dataPath instanceof FilePath ?
+			static function ( &$path ) use ( $dataPath ) {
 				$path = new FilePath(
 					dirname( $dataPath->getPath() ) . '/' . $path,
 					$dataPath->getLocalBasePath(),
 					$dataPath->getRemoteBasePath()
 				);
-			} else {
+			} :
+			static function ( &$path ) use ( $dataPath ) {
 				$path = dirname( $dataPath ) . '/' . $path;
-			}
-		};
+			};
+
 		// @phan-suppress-next-line PhanTypeArraySuspiciousNullable
 		array_walk( $data['images'], static function ( &$value ) use ( $fixPath ) {
 			if ( is_string( $value['file'] ) ) {

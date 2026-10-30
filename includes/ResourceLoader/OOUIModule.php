@@ -16,12 +16,22 @@ use MediaWiki\Registration\ExtensionRegistry;
  * @internal
  */
 trait OOUIModule {
+
 	/** @var string[] */
-	protected static $knownScriptsModules = [ 'core' ];
+	private const array KNOWN_SCRIPTS_MODULES = [
+		'core',
+	];
+
 	/** @var string[] */
-	protected static $knownStylesModules = [ 'core', 'widgets', 'toolbars', 'windows' ];
+	private const array KNOWN_STYLES_MODULES = [
+		'core',
+		'toolbars',
+		'widgets',
+		'windows',
+	];
+
 	/** @var string[] */
-	protected static $knownImagesModules = [
+	protected const array KNOWN_IMAGES_MODULES = [
 		'indicators',
 		// Extra icons
 		'icons-accessibility',
@@ -29,8 +39,8 @@ trait OOUIModule {
 		'icons-content',
 		'icons-editing-advanced',
 		'icons-editing-citation',
-		'icons-editing-functions',
 		'icons-editing-core',
+		'icons-editing-functions',
 		'icons-editing-list',
 		'icons-editing-styling',
 		'icons-interactions',
@@ -43,13 +53,13 @@ trait OOUIModule {
 		'icons-wikimedia',
 	];
 
-	/** @var string[] Note that keys must be lowercase, values TitleCase. */
-	protected static $builtinSkinThemeMap = [
+	/** @var array<string,string> Note that keys must be lowercase, values TitleCase. */
+	private const array BUILTIN_SKIN_THEME_MAP = [
 		'default' => 'WikimediaUI',
 	];
 
-	/** @var string[][] Note that keys must be TitleCase. */
-	protected static $builtinThemePaths = [
+	/** @var array<string,array<string,string>> Note that keys must be TitleCase. */
+	private const array BUILTIN_THEME_PATHS = [
 		'WikimediaUI' => [
 			'scripts' => 'resources/lib/ooui/oojs-ui-wikimediaui.js',
 			'styles' => 'resources/lib/ooui/oojs-ui-{module}-wikimediaui.css',
@@ -69,7 +79,7 @@ trait OOUIModule {
 	 * @return string[]
 	 */
 	public static function getSkinThemeMap() {
-		$themeMap = self::$builtinSkinThemeMap;
+		$themeMap = self::BUILTIN_SKIN_THEME_MAP;
 		$themeMap += ExtensionRegistry::getInstance()->getAttribute( 'SkinOOUIThemes' );
 		return $themeMap;
 	}
@@ -85,7 +95,7 @@ trait OOUIModule {
 	 * @return array<string,array<string,string|FilePath>>
 	 */
 	protected static function getThemePaths() {
-		$themePaths = self::$builtinThemePaths;
+		$themePaths = self::BUILTIN_THEME_PATHS;
 		$themePaths += ExtensionRegistry::getInstance()->getAttribute( 'OOUIThemePaths' );
 
 		[ $defaultLocalBasePath, $defaultRemoteBasePath ] =
@@ -114,23 +124,22 @@ trait OOUIModule {
 	 *
 	 * @param string $theme OOUI theme name, for example 'WikimediaUI' or 'Apex'
 	 * @param string $kind Kind of the module: 'scripts', 'styles', or 'images'
-	 * @param string $module Module name, for valid values see $knownScriptsModules,
-	 *     $knownStylesModules, $knownImagesModules
+	 * @param string $module Module name, for valid values see {@link KNOWN_SCRIPTS_MODULES},
+	 *     {@link KNOWN_STYLES_MODULES}, {@link KNOWN_IMAGES_MODULES}
 	 * @return string|FilePath
 	 */
 	protected function getThemePath( $theme, $kind, $module ) {
-		$paths = self::getThemePaths();
-		$path = $paths[$theme][$kind];
+		$path = self::getThemePaths()[$theme][$kind];
+
 		if ( $path instanceof FilePath ) {
-			$path = new FilePath(
+			return new FilePath(
 				str_replace( '{module}', $module, $path->getPath() ),
 				$path->getLocalBasePath(),
 				$path->getRemoteBasePath()
 			);
-		} else {
-			$path = str_replace( '{module}', $module, $path );
 		}
-		return $path;
+
+		return str_replace( '{module}', $module, $path );
 	}
 
 	/**
@@ -139,7 +148,7 @@ trait OOUIModule {
 	 * @return string|FilePath
 	 */
 	protected function getThemeScriptsPath( $theme, $module ) {
-		if ( !in_array( $module, self::$knownScriptsModules ) ) {
+		if ( !in_array( $module, self::KNOWN_SCRIPTS_MODULES ) ) {
 			throw new InvalidArgumentException( "Invalid OOUI scripts module '$module'" );
 		}
 		return $this->getThemePath( $theme, 'scripts', $module );
@@ -151,7 +160,7 @@ trait OOUIModule {
 	 * @return string|FilePath
 	 */
 	protected function getThemeStylesPath( $theme, $module ) {
-		if ( !in_array( $module, self::$knownStylesModules ) ) {
+		if ( !in_array( $module, self::KNOWN_STYLES_MODULES ) ) {
 			throw new InvalidArgumentException( "Invalid OOUI styles module '$module'" );
 		}
 		return $this->getThemePath( $theme, 'styles', $module );
@@ -163,7 +172,7 @@ trait OOUIModule {
 	 * @return string|FilePath
 	 */
 	protected function getThemeImagesPath( $theme, $module ) {
-		if ( !in_array( $module, self::$knownImagesModules ) ) {
+		if ( !in_array( $module, self::KNOWN_IMAGES_MODULES ) ) {
 			throw new InvalidArgumentException( "Invalid OOUI images module '$module'" );
 		}
 		return $this->getThemePath( $theme, 'images', $module );
