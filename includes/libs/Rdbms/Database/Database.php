@@ -770,7 +770,11 @@ abstract class Database implements Stringable, IDatabaseForOwner, IMaintainableD
 		$cStatement = $this->makeCommentedSql( $sql->getSQL(), $fname );
 		// Start profile section
 		$ps = $this->profiler ? ( $this->profiler )( $generalizedSql->stringify() ) : null;
-		$startTime = microtime( true );
+		// Wall clock, because it is handed to the transaction profiler, which
+		// compares it against its own clock and against other queries
+		$startTimestamp = microtime( true );
+		// Monotonic, because it only ever measures this query's duration
+		$queryTimer = ConvertibleTimestamp::hrtime();
 
 		// Clear any overrides from a prior "query method". Note that this does not affect
 		// any such methods that are currently invoking query() itself since those query
@@ -801,13 +805,14 @@ abstract class Database implements Stringable, IDatabaseForOwner, IMaintainableD
 		$status = $this->doSingleStatementQuery( $cStatement );
 
 		// End profile section
-		$endTime = microtime( true );
-		$queryRuntime = max( $endTime - $startTime, 0.0 );
+		// Wall clock, because it becomes lastPing and lastWriteTime
+		$endTimestamp = microtime( true );
+		$queryRuntime = ( ConvertibleTimestamp::hrtime() - $queryTimer ) / 1e9;
 		unset( $ps );
 		$span->end();
 
 		if ( $status->res !== false ) {
-			$this->lastPing = $endTime;
+			$this->lastPing = $endTimestamp;
 			$span->setSpanStatus( SpanInterface::SPAN_STATUS_OK );
 		} else {
 			$span->setSpanStatus( SpanInterface::SPAN_STATUS_ERROR )
@@ -834,7 +839,7 @@ abstract class Database implements Stringable, IDatabaseForOwner, IMaintainableD
 					$this->transactionManager->transactionWritingIn(
 						$this->getServerName(),
 						$this->getDomainID(),
-						$startTime
+						$startTimestamp
 					);
 					$this->transactionManager->updateTrxWriteQueryReport(
 						$sql->getSQL(),
@@ -843,14 +848,14 @@ abstract class Database implements Stringable, IDatabaseForOwner, IMaintainableD
 						$fname
 					);
 				} else {
-					$this->lastWriteTime = $endTime;
+					$this->lastWriteTime = $endTimestamp;
 				}
 			}
 		}
 
 		$this->transactionManager->recordQueryCompletion(
 			$generalizedSql,
-			$startTime,
+			$startTimestamp,
 			$isPermWrite,
 			$isPermWrite ? $affectedRowCount : $returnedRowCount,
 			$this->getServerName(),
@@ -2355,16 +2360,15 @@ abstract class Database implements Stringable, IDatabaseForOwner, IMaintainableD
 		$this->assertHasConnectionHandle();
 
 		$cs = $this->commenceCriticalSection( __METHOD__ );
-		$timeStart = ConvertibleTimestamp::hrtime();
+		$beginTimer = ConvertibleTimestamp::hrtime();
 		try {
 			$this->doBegin( $fname );
 		} catch ( DBError $e ) {
 			$this->completeCriticalSection( __METHOD__, $cs );
 			throw $e;
 		}
-		$timeEnd = ConvertibleTimestamp::hrtime();
 		// Treat "BEGIN" as a trivial query to gauge the RTT delay
-		$rtt = ( $timeEnd - $timeStart ) / 1e9;
+		$rtt = ( ConvertibleTimestamp::hrtime() - $beginTimer ) / 1e9;
 		$this->transactionManager->onBeginInCriticalSection( $mode, $fname, $rtt );
 		$this->replicationReporter->resetReplicationLagStatus( $this );
 		$this->completeCriticalSection( __METHOD__, $cs );
