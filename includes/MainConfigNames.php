@@ -1776,12 +1776,6 @@ class MainConfigNames {
 	public const CdnMaxageSubstitute = 'CdnMaxageSubstitute';
 
 	/**
-	 * Name constant for the ForcedRawSMaxage setting, for use with Config::get()
-	 * @see MainConfigSchema::ForcedRawSMaxage
-	 */
-	public const ForcedRawSMaxage = 'ForcedRawSMaxage';
-
-	/**
 	 * Name constant for the CdnServers setting, for use with Config::get()
 	 * @see MainConfigSchema::CdnServers
 	 */

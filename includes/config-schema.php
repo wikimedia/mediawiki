@@ -620,7 +620,6 @@ return [
 			'CdnMaxageStale' => 10,
 			'CdnReboundPurgeDelay' => 0,
 			'CdnMaxageSubstitute' => 60,
-			'ForcedRawSMaxage' => 300,
 			'CdnServers' => [
 			],
 			'CdnServersNoPurge' => [

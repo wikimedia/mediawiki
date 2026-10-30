@@ -745,13 +745,18 @@ class ActionEntryPoint extends MediaWikiEntryPoint {
 				$trxProfiler->setExpectations( $trxLimits['POST-nonwrite'], __METHOD__ );
 			}
 
-			// Let CDN cache things if we can purge them.
-			// Also unconditionally cache page views.
 			if ( $this->getConfig( MainConfigNames::UseCdn ) ) {
 				$htmlCacheUpdater = $services->getHTMLCacheUpdater();
+				// Let CDN cache things if we can purge them.
+				// E.g. canonical URLs for the pageview and for action=history
+				//
+				// NOTE: This has (almost) no effect on canonical URLs for action=raw,
+				// because RawAction does not use OutputPage for HTTP 200 responses.
 				if ( $request->matchURLForCDN( $htmlCacheUpdater->getUrls( $requestTitle ) ) ) {
 					$output->setCdnMaxage( $this->getConfig( MainConfigNames::CdnMaxAge ) );
 				} elseif ( $action instanceof ViewAction ) {
+					// T309063: Unconditionally cache non-canonical pageview URLs for 1h
+					// E.g. oldid, diff, or garbage query params.
 					$output->setCdnMaxage( 3600 );
 				}
 			}
