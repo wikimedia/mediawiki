@@ -183,6 +183,21 @@ class ParserCache {
 	}
 
 	/**
+	 * Forget the metadata for $page held in the in-process cache, so that
+	 * the next lookup reads it from the persistent cache. Use this when
+	 * another process may have saved new output for the page since this
+	 * process last looked, for example after waiting on PoolCounter.
+	 *
+	 * @internal For use by ParserOutputAccess
+	 * @since 1.48
+	 * @param PageRecord $page
+	 */
+	public function clearProcessCache( PageRecord $page ): void {
+		$page->assertWiki( PageRecord::LOCAL );
+		$this->metadataProcCache->delete( $this->makeMetadataKey( $page ) );
+	}
+
+	/**
 	 * Retrieve the ParserOutput from ParserCache, even if it's outdated.
 	 * @param PageRecord $page
 	 * @param ParserOptions $popts

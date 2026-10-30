@@ -161,7 +161,8 @@ class ParserOutputAccessTest extends ParserCacheTestBase {
 				'getDirty',
 				'makeParserOutputKey',
 				'getMetadata',
-				'save'
+				'save',
+				'clearProcessCache',
 			]
 		);
 
@@ -196,7 +197,7 @@ class ParserOutputAccessTest extends ParserCacheTestBase {
 	/**
 	 * @param ParserCache|null $parserCache
 	 * @param RevisionOutputCache|null $revisionOutputCache
-	 * @param int|bool $maxRenderCalls
+	 * @param int|false $maxRenderCalls
 	 *
 	 * @return ParserOutputAccess
 	 * @throws Exception
@@ -251,7 +252,7 @@ class ParserOutputAccessTest extends ParserCacheTestBase {
 		}
 
 		$revRenderer = $this->getServiceContainer()->getRevisionRenderer();
-		if ( $maxRenderCalls ) {
+		if ( is_int( $maxRenderCalls ) ) {
 			$realRevRenderer = $revRenderer;
 
 			$revRenderer =
@@ -1182,6 +1183,153 @@ class ParserOutputAccessTest extends ParserCacheTestBase {
 		// The fallback output must have the postprocessing applied.
 		$this->assertContainsHtml(
 			'<span class="mw-editsection">', $cachedResult, 'postprocessed', false
+		);
+	}
+
+	public static function provideOutputSavedDuringPoolCounterAcquire() {
+		return [
+			// Another process did the work (acquire returns DONE), so
+			// doCachedWork() reads the entry. We already read the
+			// outdated metadata for that entry when we first looked
+			// in the cache.
+			'canonical request, canonical entry, acquire returns DONE' => [
+				false, false, PoolCounter::DONE,
+			],
+			'postproc request, postproc entry, acquire returns DONE' => [
+				true, true, PoolCounter::DONE,
+			],
+			// We get the lock (acquire returns LOCKED), so
+			// renderRevision() reads the canonical entry, which
+			// another request can have saved (an API request, say, or
+			// a postproc request with another skin). There is no
+			// postproc entry, so the stale fallback is what read the
+			// outdated canonical metadata.
+			'postproc request, canonical entry, acquire returns LOCKED' => [
+				true, false, PoolCounter::LOCKED,
+			],
+			// This test asserts that a reparse will not happen, but cases like
+			//   "postproc request, postproc entry, acquire returned LOCKED"
+			// result in an *acceptable* reparse: either because
+			// workers > 1, or because of the gap between check and
+			// lock acquire, it's possible that we reparse even if valid
+			// contents could have been present in the cache. If we decide to
+			// change that behavior in the future (ie, by adding an
+			// additional cache check after the lock has been acquired)
+			// these cases could be added to this provider.
+		];
+	}
+
+	/**
+	 * Another host saves output for the latest revision while we are
+	 * acquiring the PoolCounter lock. We must use that output, and
+	 * not render the page and write to the parser cache again, even
+	 * though this process has already read the metadata of the entry
+	 * for the previous revision.
+	 *
+	 * This test is only necessary because of the existence of
+	 * process-local ParserCache::metadataProcCache and could be
+	 * removed if it was.
+	 *
+	 * @dataProvider provideOutputSavedDuringPoolCounterAcquire
+	 * @param bool $requestIsPostproc Whether we request postprocessed output
+	 * @param bool $entryIsPostproc Whether the other host saves postprocessed
+	 *   output, rather than canonical output
+	 * @param int $acquireResult What the blocking acquire returns
+	 */
+	public function testUseOutputSavedDuringPoolCounterAcquire(
+		bool $requestIsPostproc,
+		bool $entryIsPostproc,
+		int $acquireResult
+	) {
+		// Separate caches, as in production: if the fallback found
+		// the entry in the postproc cache, it would never read the
+		// canonical one.
+		$canonicalBag = new HashBagOStuff();
+		$postprocBag = new HashBagOStuff();
+		$canonicalCache = $this->getParserCache( 'test', $canonicalBag );
+		$postprocCache = $this->getParserCache( 'test', $postprocBag );
+		$parserCacheFactory = $this->createMock( ParserCacheFactory::class );
+		$parserCacheFactory->method( 'getParserCache' )
+			->willReturnCallback(
+				static fn ( $cacheName ) => str_starts_with(
+					$cacheName, ParserOutputAccess::POSTPROC_CACHE_PREFIX
+				) ? $postprocCache : $canonicalCache
+			);
+
+		$page = $this->getExistingTestPage( __METHOD__ );
+		$entryBag = $entryIsPostproc ? $postprocBag : $canonicalBag;
+		$entryOptions = $this->getParserOptions();
+		if ( $entryIsPostproc ) {
+			$entryOptions->enablePostproc();
+		}
+
+		// Simulate a concurrent parse from another host by creating
+		// separate cache objects that share our same backing storage.
+		$otherHostCache = $this->getParserCache( 'test', $entryBag );
+		$otherHostSave = static function ( string $text ) use ( $otherHostCache, $page, $entryOptions ) {
+			$otherHostCache->save( new ParserOutput( $text ), $page, $entryOptions );
+		};
+
+		// This entry is outdated by the time this process looks in the cache
+		$otherHostSave( 'from the previous revision' );
+		$this->editPage( $page, 'new text' );
+
+		$poolCounter = new class( $acquireResult, $otherHostSave ) extends MockPoolCounterFailing {
+			public function __construct(
+				private readonly int $acquireResult,
+				private readonly Closure $otherHostSave
+			) {
+				parent::__construct( [
+					// With fastStale, PoolCounterWork tries the stale
+					// fallback before the blocking acquire. Only the
+					// LOCKED case needs this.
+					'fastStale' => true,
+					// mockAcquire is for acquireForMe(): if
+					// doCachedWork() does not find the output after
+					// DONE, we get the lock and render the page.
+					'mockAcquire' => Status::newGood( PoolCounter::LOCKED ),
+				], 'ArticleView', 'test-key' );
+			}
+
+			/** @inheritDoc */
+			public function acquireForAnyone( $timeout = null ) {
+				if ( $timeout === 0 ) {
+					return Status::newGood( PoolCounter::TIMEOUT );
+				}
+				( $this->otherHostSave )( 'from the other host' );
+				return Status::newGood( $this->acquireResult );
+			}
+		};
+
+		// The client recently edited, so the fallback reads the outdated
+		// output but declines it, and we go on to the blocking acquire.
+		$chronologyProtector = $this->createNoOpMock(
+			ChronologyProtector::class, [ 'getTouched' ],
+		);
+		$chronologyProtector->method( 'getTouched' )->willReturn( true );
+
+		$access = $this->getParserOutputAccess( [
+			'poolCounterFactory' => $this->makePoolCounterFactory( $poolCounter ),
+			'parserCacheFactory' => $parserCacheFactory,
+			'chronologyProtector' => $chronologyProtector,
+			'maxRenderCalls' => 0,
+		] );
+
+		$parserOptions = $this->getParserOptions();
+		if ( $requestIsPostproc ) {
+			$parserOptions->enablePostproc();
+		}
+		$status = $access->getParserOutput( $page, $parserOptions, null, [
+			ParserOutputAccess::OPT_POOL_COUNTER => ParserOutputAccess::POOL_COUNTER_ARTICLE_VIEW,
+			ParserOutputAccess::OPT_POOL_COUNTER_FALLBACK => true,
+		] );
+
+		$this->assertStatusGood( $status );
+		$this->assertContainsHtml( 'from the other host', $status, 'not rendered again', false );
+		$this->assertSame(
+			'from the other host',
+			$this->getParserCache( 'test', $entryBag )->get( $page, $entryOptions )->getContentHolderText(),
+			'not saved again'
 		);
 	}
 

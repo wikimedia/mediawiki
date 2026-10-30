@@ -392,8 +392,12 @@ class ParserOutputAccess implements LoggerAwareInterface {
 			// with $wgParserCacheFilterConfig. Then use the stale output
 			// from the parser cache, and postprocess it.
 			$preParserOptions = $parserOptions->clearPostproc();
-			$parserOutput = $this->getPrimaryCache( $preParserOptions )
-				->getDirty( $page, $preParserOptions );
+			$preParserCache = $this->getPrimaryCache( $preParserOptions );
+			$parserOutput = $preParserCache->getDirty( $page, $preParserOptions );
+			// If we go on to wait for the lock and render the page, this
+			// outdated entry must not hide the output that the lock holder
+			// saves in the meantime.
+			$preParserCache->clearProcessCache( $page );
 			if ( $parserOutput ) {
 				$parserOutput = $this->postprocess( $parserOutput, $parserOptions, $page );
 			}
@@ -742,6 +746,9 @@ class ParserOutputAccess implements LoggerAwareInterface {
 
 				$callbacks['doCachedWork'] =
 					static function () use ( $primaryCache, $page, $parserOptions ) {
+						// The process we waited for saved new output. Don't let the
+						// metadata we read before waiting hide it.
+						$primaryCache->clearProcessCache( $page );
 						$parserOutput = $primaryCache->get( $page, $parserOptions );
 						return $parserOutput ? Status::newGood( $parserOutput ) : false;
 					};
