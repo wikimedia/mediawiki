@@ -364,6 +364,10 @@ class AuthPopup {
 						return;
 					}
 
+					// We received a success message. Close the popup window and check if the user
+					// is logged in. But first, remove the focus listener, otherwise it will also
+					// fire and we'll check checkLoggedIn twice.
+					window.removeEventListener( 'focus', onFocus );
 					if ( w ) {
 						w.close();
 					}
