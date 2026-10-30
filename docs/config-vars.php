@@ -1761,12 +1761,6 @@ $wgCdnReboundPurgeDelay = null;
 $wgCdnMaxageSubstitute = null;
 
 /**
- * Config variable stub for the ForcedRawSMaxage setting, for use by phpdoc and IDEs.
- * @see MediaWiki\MainConfigSchema::ForcedRawSMaxage
- */
-$wgForcedRawSMaxage = null;
-
-/**
  * Config variable stub for the CdnServers setting, for use by phpdoc and IDEs.
  * @see MediaWiki\MainConfigSchema::CdnServers
  */

@@ -2974,11 +2974,6 @@ config-schema:
             Cache timeout for the CDN when a response is known to be wrong or incomplete (due to load)
             @see self::CdnMaxAge
             @since 1.27
-    ForcedRawSMaxage:
-        default: 300
-        description: |-
-            Default maximum age for raw CSS/JS accesses
-            300 seconds = 5 minutes.
     CdnServers:
         default: {  }
         type: object
@@ -3874,6 +3869,7 @@ config-schema:
               - versioned
               - unversioned
             @see \MediaWiki\ResourceLoader\ResourceLoader::__construct
+            @see \MediaWiki\Actions\RawAction
             @since 1.35
     ResourceLoaderDebug:
         default: false

@@ -41,6 +41,17 @@ use Wikimedia\Timestamp\TimestampFormat as TS;
  */
 class RawAction extends FormlessAction {
 
+	/**
+	 * Let browsers cache unconditionally for 5 minutes.
+	 *
+	 * After 5 minutes, browsers must revalidate the resource and get either a quick
+	 * HTTP 304 response and renew for another 5min, or a fresh HTTP 200 download.
+	 *
+	 * This is designed to match ResourceLoader ($wgResourceLoaderMaxage)
+	 * where changes also propagate within 5 minutes via the unversioned startup module.
+	 */
+	private const CLIENT_CACHE_TTL = 300;
+
 	public function __construct(
 		Article $article,
 		IContextSource $context,
@@ -79,56 +90,75 @@ class RawAction extends FormlessAction {
 		$response = $request->response();
 		$config = $this->context->getConfig();
 
-		if ( $this->getOutput()->checkLastModified(
-			$this->getWikiPage()->getTouched()
-		) ) {
+		// Handle If-Not-Modified HTTP 304 response, same as ViewAction::show on pageviews
+		//
+		// FIXME: When OutputPage::checkLastModified responds with HTTP 304, it sets a
+		// different Cache-Control value than RawAction does for HTTP 200 responses.
+		//
+		// RawAction is called from ActionEntryPoint::performAction, which uses
+		// OutputPage::setCdnMaxage to set `s-maxage=$wgCdnMaxAge` on canonical CSS/JSON/JS
+		// action=raw URLs that we purge after edit. RawAction uses OutputPage::disable and
+		// makes its own HTTP response which ignores OutputPage::setCdnMaxage.
+		// Except... we reuse OutputPage::checkLastModified here,
+		// which brings it back to live for the HTTP 304 response (when $wgUseCdn is on),
+		// or worse replace it with CC:private (when $wgUseCdn is off).
+		if ( $this->getOutput()->checkLastModified( $this->getWikiPage()->getTouched() ) ) {
 			// Client cache fresh and headers sent, nothing more to do.
 			return null;
 		}
 
 		$contentType = $this->getContentType();
+		$title = $this->getTitle();
 
-		$maxage = $request->getInt( 'maxage', $config->get( MainConfigNames::CdnMaxAge ) );
-		if ( $maxage < 0 ) {
-			// Cache-Control does not allow negative values (T345609), so use the default
-			$maxage = $config->get( MainConfigNames::CdnMaxAge );
-		}
-		$smaxage = $request->getIntOrNull( 'smaxage' );
-		if ( $smaxage === null || $smaxage < 0 ) {
-			if (
-				$contentType === 'text/css' ||
-				$contentType === 'application/json' ||
-				$contentType === 'text/javascript'
-			) {
-				// CSS/JSON/JS raw content has its own CDN max age configuration.
-				// Note: HTMLCacheUpdater::getUrls() includes action=raw for css/json/js
-				// pages, so if using the canonical url, this will get HTCP purges.
-				$smaxage = intval( $config->get( MainConfigNames::ForcedRawSMaxage ) );
-			} else {
-				// No CDN cache for anything else
-				$smaxage = 0;
+		// Basic CDN caching for action=raw to reduce server load (T279120)
+		//
+		// including:
+		// * action=raw on CSS/JSON/JS pages with a non-canonical URL,
+		//   such by having a oldid or curid param, or any unknown param noise.
+		// * action=raw for wikitext and pages
+		//   These don't have canonical URLs anyway, and are never purged
+		//   by HTMLCacheUpdater::getUrls
+		//
+		// This is designed to match the CDN maxage for non-canonical pageview URLs,
+		// as set by ActionEntryPoint::performAction.
+		$smaxage = 3600;
+		if (
+			$contentType === 'text/css' ||
+			$contentType === 'application/json' ||
+			$contentType === 'text/javascript'
+		) {
+			// Enable full CDN caching for canonical URLs (T279120).
+			// same as ActionEntryPoint::performAction on pageviews. These are purged on edit.
+			if ( $config->get( MainConfigNames::UseCdn ) ) {
+				$htmlCacheUpdater = MediaWikiServices::getInstance()->getHTMLCacheUpdater();
+				if ( $request->matchURLForCDN( $htmlCacheUpdater->getUrls( $title ) ) ) {
+					$smaxage = $config->get( MainConfigNames::CdnMaxAge );
+				}
 			}
 		}
+
+		$maxage = self::CLIENT_CACHE_TTL;
 
 		// Set standard Vary headers so cache varies on cookies and such (T125283)
 		$response->header( $this->getOutput()->getVaryHeader() );
 
-		// Output may contain user-specific data;
-		// vary generated content for open sessions on private wikis
-		$privateCache = !$this->permissionManager->isEveryoneAllowed( 'read' ) &&
-			( $smaxage === 0 || $request->getSession()->isPersistent() );
-		// Don't accidentally cache cookies if the user is registered (T55032)
-		$privateCache = $privateCache || $this->getUser()->isRegistered();
-		$mode = $privateCache ? 'private' : 'public';
-		$response->header(
-			'Cache-Control: ' . $mode . ', s-maxage=' . $smaxage . ', max-age=' . $maxage
+		$privateCache = (
+			// Disable CDN cache on private wikis if the request has any session
+			( !$this->permissionManager->isEveryoneAllowed( 'read' ) && $request->getSession()->isPersistent() )
+			// Disable CDN cache for all logged-in users even on public wikis,
+			// to avoid accidentally caching personal session cookies (T55032)
+			|| $this->getUser()->isRegistered()
 		);
+		if ( $privateCache ) {
+			$response->header( "Cache-Control: private, must-revalidate, max-age=$maxage" );
+		} else {
+			$response->header( "Cache-Control: public, s-maxage=$smaxage, max-age=$maxage" );
+		}
 
 		// In the event of user JS, don't allow loading a user JS/CSS/Json
 		// subpage that has no registered user associated with, as
 		// someone could register the account and take control of the
 		// JS/CSS/Json page.
-		$title = $this->getTitle();
 		if ( $title->isUserConfigPage() && $contentType !== 'text/x-wiki' ) {
 			// not using getRootText() as we want this to work
 			// even if subpages are disabled.
