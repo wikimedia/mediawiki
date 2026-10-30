@@ -45,9 +45,18 @@ class TestSelectQueryBuilder extends SelectQueryBuilder {
 		Assert::assertFalse( $r, "found extra row (after #$i)" );
 	}
 
-	public function assertEmptyResult() {
+	/**
+	 * Execute the query and assert that return set is empty
+	 *
+	 * @param string $message
+	 * @return void
+	 */
+	public function assertEmptyResult( string $message = '' ) {
 		$res = $this->fetchResultSet();
-		Assert::assertSame( 0, $res->numRows(), "Result set should be empty" );
+		Assert::assertSame(
+			0,
+			$res->numRows(),
+			$message === '' ? "Result set should be empty" : $message );
 	}
 
 	/**
@@ -57,8 +66,9 @@ class TestSelectQueryBuilder extends SelectQueryBuilder {
 	 * Unlike fetchField(), LIMIT 1 is not automatically added.
 	 *
 	 * @param mixed $expectedValue
+	 * @param string $message
 	 */
-	public function assertFieldValue( $expectedValue ) {
+	public function assertFieldValue( $expectedValue, string $message = '' ) {
 		$res = $this->fetchResultSet();
 		Assert::assertSame( 1, $res->numRows(),
 			"There should be one row in the result set" );
@@ -67,7 +77,7 @@ class TestSelectQueryBuilder extends SelectQueryBuilder {
 			"There should be one field in the result set" );
 		$value = reset( $row );
 		Assert::assertEquals( $expectedValue, $value,
-			"The field value should match" );
+			$message === '' ? "The field value should match" : $message );
 	}
 
 	/**
@@ -77,9 +87,10 @@ class TestSelectQueryBuilder extends SelectQueryBuilder {
 	 *
 	 * @since 1.43
 	 * @param array $expectedValues
+	 * @param string $message
 	 */
-	public function assertFieldValues( array $expectedValues ) {
-		Assert::assertSame( $expectedValues, $this->fetchFieldValues() );
+	public function assertFieldValues( array $expectedValues, string $message = '' ) {
+		Assert::assertSame( $expectedValues, $this->fetchFieldValues(), $message );
 	}
 
 	/**
@@ -89,12 +100,14 @@ class TestSelectQueryBuilder extends SelectQueryBuilder {
 	 *
 	 * @since 1.43
 	 * @param array $expectedRow
+	 * @param string $message
 	 */
-	public function assertRowValue( array $expectedRow ) {
+	public function assertRowValue( array $expectedRow, string $message = '' ) {
 		$res = $this->fetchResultSet();
 		Assert::assertSame( 1, $res->numRows(), "There should be one row in the result set" );
 		$row = $res->fetchRow();
 		MediaWikiIntegrationTestCase::stripStringKeys( $row );
-		Assert::assertEquals( $expectedRow, $row, "The row should match" );
+		$message = $message === '' ? "The row should match" : $message;
+		Assert::assertEquals( $expectedRow, $row, $message );
 	}
 }
