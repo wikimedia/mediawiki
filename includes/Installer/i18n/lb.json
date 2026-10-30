@@ -98,7 +98,7 @@
 	"config-db-web-create": "De Kont uleeë wann et e net scho gëtt",
 	"config-mysql-innodb": "InnoDB (recommandéiert)",
 	"config-site-name": "Numm vun der Wiki:",
-	"config-site-name-help": "Dësen daucht an der Titelleescht vum Browser an op verschiddenen anere Plazen op.",
+	"config-site-name-help": "Dësen taucht an der Titelleescht vum Browser an op verschiddenen anere Plazen op.",
 	"config-site-name-blank": "Gitt den Numm vum Site un.",
 	"config-project-namespace": "Projet Nummraum:",
 	"config-ns-generic": "Projet",
