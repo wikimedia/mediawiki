@@ -25,6 +25,7 @@ class EditStatusFormatter {
 		'edit-constraint-defaulttext-default-warning',
 		'edit-constraint-confirmrecreate-warning',
 		'edit-constraint-confirmrecreate-noreason-warning',
+		'edit-constraint-missingsummary-warning',
 	];
 
 	public function __construct(

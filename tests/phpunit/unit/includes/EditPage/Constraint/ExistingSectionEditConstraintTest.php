@@ -9,7 +9,6 @@ namespace MediaWiki\Tests\Unit\EditPage\Constraint;
 use MediaWiki\Content\Content;
 use MediaWiki\EditPage\Constraint\EditConstraint;
 use MediaWiki\EditPage\Constraint\ExistingSectionEditConstraint;
-use MediaWiki\Language\RawMessage;
 use MediaWiki\PageEdit\PageEditAttemptState;
 use MediaWikiUnitTestCase;
 
@@ -40,7 +39,6 @@ class ExistingSectionEditConstraintTest extends MediaWikiUnitTestCase {
 			true,
 			$newContent,
 			$originalContent,
-			new RawMessage( '' ),
 			new PageEditAttemptState(),
 		);
 		$this->assertConstraintPassed( $constraint );
@@ -54,7 +52,6 @@ class ExistingSectionEditConstraintTest extends MediaWikiUnitTestCase {
 			true,
 			$this->createNoOpMock( Content::class ),
 			null,
-			new RawMessage( '' ),
 			new PageEditAttemptState(),
 		);
 		$this->assertConstraintPassed( $constraint );
@@ -78,12 +75,12 @@ class ExistingSectionEditConstraintTest extends MediaWikiUnitTestCase {
 			true,
 			$newContent,
 			$originalContent,
-			new RawMessage( '' ),
 			$editAttemptState,
 		);
 		$status = $this->assertConstraintFailed( $constraint, EditConstraint::AS_SUMMARY_NEEDED );
 		$this->assertTrue( $editAttemptState->shouldAllowBlankSummary() );
 		$this->assertTrue( $status->canResubmit() );
+		$this->assertStatusMessage( 'edit-constraint-missingsummary-warning', $status );
 	}
 
 }

@@ -9,7 +9,6 @@ namespace MediaWiki\EditPage\Constraint;
 use MediaWiki\Content\Content;
 use MediaWiki\PageEdit\PageEditAttemptState;
 use MediaWiki\PageEdit\PageEditStatus;
-use Wikimedia\Message\MessageSpecifier;
 
 /**
  * To simplify the logic in EditPage, this constraint may be created even if the section being
@@ -42,7 +41,6 @@ class ExistingSectionEditConstraint extends EditConstraint {
 		private readonly bool $forceEditSummary,
 		private readonly Content $newContent,
 		private readonly ?Content $originalContent,
-		private readonly MessageSpecifier $submitButtonLabel,
 		private readonly PageEditAttemptState $editAttemptState,
 	) {
 	}
@@ -64,10 +62,7 @@ class ExistingSectionEditConstraint extends EditConstraint {
 			return PageEditStatus::newGood()
 				->setResult( false, self::AS_SUMMARY_NEEDED )
 				->setCanResubmit( true )
-				->warning(
-					'missingsummary',
-					$this->submitButtonLabel,
-				);
+				->warning( 'edit-constraint-missingsummary-warning' );
 		}
 
 		return PageEditStatus::newGood();

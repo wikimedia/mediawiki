@@ -566,7 +566,6 @@ class PageEdit implements IEditObject {
 					$this->inputs->getContentModel(),
 					$this->section,
 				),
-				$this->getSubmitButtonLabel(),
 				$this->inputs->getAttemptState(),
 			),
 			new RevisionDeletedConstraint(
