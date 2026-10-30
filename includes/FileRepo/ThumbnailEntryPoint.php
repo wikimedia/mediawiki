@@ -168,13 +168,16 @@ class ThumbnailEntryPoint extends MediaWikiEntryPoint {
 			// Format is <timestamp>!<name>
 			$bits = explode( '!', $fileName, 2 );
 			if ( count( $bits ) != 2 ) {
-				$this->thumbError( 404, $this->getContext()->msg( 'badtitletext' )->parse() );
+				$this->thumbErrorText(
+					404,
+					"The archived file name '$fileName' is not in the expected '<timestamp>!<name>' format."
+				);
 				return;
 			}
 			$archiveTimestamp = $bits[0];
 			$title = Title::makeTitleSafe( NS_FILE, $bits[1] );
 			if ( !$title ) {
-				$this->thumbError( 404, $this->getContext()->msg( 'badtitletext' )->parse() );
+				$this->thumbErrorText( 404, "The source file name '$fileName' is not a valid title." );
 				return;
 			}
 			$img = $localRepo->newFromArchiveName( $title, $fileName );
@@ -184,7 +187,7 @@ class ThumbnailEntryPoint extends MediaWikiEntryPoint {
 
 		// Check the source file title
 		if ( !$img ) {
-			$this->thumbError( 404, $this->getContext()->msg( 'badtitletext' )->parse() );
+			$this->thumbErrorText( 404, "The source file name '$fileName' is not a valid title." );
 			return;
 		}
 

@@ -680,21 +680,21 @@ class ThumbnailEntryPointTest extends MediaWikiIntegrationTestCase {
 		);
 
 		$this->assertStringContainsString(
-			'(badtitletext)',
+			"The source file name '___' is not a valid title.",
 			$output
 		);
 	}
 
 	public static function provideOldFileWithBadTitle() {
-		yield 'invalid title' => [ '_/_' ];
-		yield 'valid title without timestamp' => [ 'Test.png' ];
-		yield 'invalid title with timestamp' => [ '20200101002233!_/_' ];
+		yield 'invalid title' => [ '_/_', 'is not in the expected' ];
+		yield 'valid title without timestamp' => [ 'Test.png', 'is not in the expected' ];
+		yield 'invalid title with timestamp' => [ '20200101002233!_/_', 'is not a valid title.' ];
 	}
 
 	/**
 	 * @dataProvider provideOldFileWithBadTitle
 	 */
-	public function testOldFileWithBadTitle( $badTitle ) {
+	public function testOldFileWithBadTitle( $badTitle, $expectedError ) {
 		$env = $this->makeEnvironment( [
 			'f' => $badTitle,
 			'width' => 12,
@@ -711,10 +711,7 @@ class ThumbnailEntryPointTest extends MediaWikiIntegrationTestCase {
 			'Content-Type'
 		);
 
-		$this->assertStringContainsString(
-			'(badtitletext)',
-			$output
-		);
+		$this->assertStringContainsString( $expectedError, $output );
 	}
 
 	public function testTooMuchWidth() {
