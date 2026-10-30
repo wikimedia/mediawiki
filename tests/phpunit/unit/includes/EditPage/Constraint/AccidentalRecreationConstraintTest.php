@@ -8,8 +8,9 @@ namespace MediaWiki\Tests\Unit\EditPage\Constraint;
 
 use MediaWiki\EditPage\Constraint\AccidentalRecreationConstraint;
 use MediaWiki\EditPage\Constraint\EditConstraint;
-use MediaWiki\Language\RawMessage;
+use MediaWiki\Logging\LogFormatter;
 use MediaWiki\Logging\LogFormatterFactory;
+use MediaWiki\Logging\LogPage;
 use MediaWiki\PageEdit\PageEditAttemptState;
 use MediaWiki\Title\Title;
 use MediaWikiUnitTestCase;
@@ -33,17 +34,14 @@ class AccidentalRecreationConstraintTest extends MediaWikiUnitTestCase {
 			$this->createMock( Title::class ),
 			new PageEditAttemptState(),
 			null,
-			new RawMessage( '' ),
 		);
 		$this->assertConstraintPassed( $constraint );
 	}
 
 	public function testFailure() {
-		// We don't need the full row since the formatting code won't be called if we pass null
-		// as $submitButtonLabel
+		// This is a very incomplete mock, just enough not to access any global state on a narrow code path
 		$row = (object)[
-			'actor_name' => '',
-			'log_deleted' => false,
+			'log_deleted' => LogPage::DELETED_USER,
 			'log_timestamp' => '20260113104445',
 		];
 
@@ -52,6 +50,11 @@ class AccidentalRecreationConstraintTest extends MediaWikiUnitTestCase {
 		$connectionProvider = $this->createMock( IConnectionProvider::class );
 		$connectionProvider->method( 'getReplicaDatabase' )->willReturn( $replicaDatabase );
 
+		$logFormatter = $this->createMock( LogFormatter::class );
+		$logFormatter->method( 'getComment' )->willReturn( '' );
+		$logFormatterFactory = $this->createMock( LogFormatterFactory::class );
+		$logFormatterFactory->method( 'newFromEntry' )->willReturn( $logFormatter );
+
 		$title = $this->createMock( Title::class );
 		$title->method( 'exists' )->willReturn( false );
 		$title->method( 'hasDeletedEdits' )->willReturn( true );
@@ -59,12 +62,11 @@ class AccidentalRecreationConstraintTest extends MediaWikiUnitTestCase {
 		$editAttemptState = new PageEditAttemptState();
 		$constraint = new AccidentalRecreationConstraint(
 			$connectionProvider,
-			$this->createMock( LogFormatterFactory::class ),
+			$logFormatterFactory,
 			$title,
 			$editAttemptState,
 			// must be less than log_timestamp
 			'20260113100000',
-			null
 		);
 		$status = $this->assertConstraintFailed(
 			$constraint,
@@ -72,6 +74,7 @@ class AccidentalRecreationConstraintTest extends MediaWikiUnitTestCase {
 		);
 		$this->assertTrue( $editAttemptState->shouldAllowRecreation() );
 		$this->assertTrue( $status->canResubmit() );
+		$this->assertStatusMessage( 'edit-constraint-confirmrecreate-noreason-warning', $status );
 	}
 
 }

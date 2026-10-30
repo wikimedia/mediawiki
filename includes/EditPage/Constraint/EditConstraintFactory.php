@@ -22,7 +22,6 @@ use MediaWiki\Title\Title;
 use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserIdentity;
 use Psr\Log\LoggerInterface;
-use Wikimedia\Message\MessageSpecifier;
 use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\Rdbms\ReadOnlyMode;
 
@@ -162,7 +161,6 @@ class EditConstraintFactory {
 		Title $title,
 		PageEditAttemptState $editAttemptState,
 		?string $startTime,
-		?MessageSpecifier $submitButtonLabel = null,
 	): AccidentalRecreationConstraint {
 		return new AccidentalRecreationConstraint(
 			$this->connectionProvider,
@@ -170,7 +168,6 @@ class EditConstraintFactory {
 			$title,
 			$editAttemptState,
 			$startTime,
-			$submitButtonLabel,
 		);
 	}
 

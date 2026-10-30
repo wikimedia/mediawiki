@@ -497,7 +497,6 @@ class PageEdit implements IEditObject {
 				$title,
 				$this->inputs->getAttemptState(),
 				$this->inputs->getStarttime(),
-				$this->getSubmitButtonLabel(),
 			)
 		);
 	}

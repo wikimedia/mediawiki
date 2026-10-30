@@ -2607,7 +2607,7 @@ class EditPage implements IEditObject {
 				),
 			);
 
-			// No call to $this->handleFailedConstraint() here to avoid setting wpRedirect
+			// No need to call $this->handleFailedConstraint() here
 			$out->addHTML( $this->editStatusFormatter->formatStatus( $constraintRunner->checkAllConstraints() ) );
 		}
 

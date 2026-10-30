@@ -23,6 +23,8 @@ class EditStatusFormatter {
 		'edit-constraint-invalidredirecttarget-warning',
 		'edit-constraint-defaulttext-blank-warning',
 		'edit-constraint-defaulttext-default-warning',
+		'edit-constraint-confirmrecreate-warning',
+		'edit-constraint-confirmrecreate-noreason-warning',
 	];
 
 	public function __construct(

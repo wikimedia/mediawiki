@@ -13,7 +13,6 @@ use MediaWiki\Message\Message;
 use MediaWiki\PageEdit\PageEditAttemptState;
 use MediaWiki\PageEdit\PageEditStatus;
 use MediaWiki\Title\Title;
-use Wikimedia\Message\MessageSpecifier;
 use Wikimedia\Message\MessageValue;
 use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\Rdbms\SelectQueryBuilder;
@@ -33,7 +32,6 @@ class AccidentalRecreationConstraint extends EditConstraint {
 		private readonly Title $title,
 		private readonly PageEditAttemptState $editAttemptState,
 		private readonly ?string $startTime,
-		private readonly ?MessageSpecifier $submitButtonLabel,
 	) {
 	}
 
@@ -44,30 +42,22 @@ class AccidentalRecreationConstraint extends EditConstraint {
 		$deletion = $this->getDeletionSinceLastEdit();
 		if ( $deletion ) {
 			$this->editAttemptState->setAllowRecreation( true );
-			if ( $this->submitButtonLabel ) {
-				$logFormatter = $this->logFormatterFactory->newFromEntry( $deletion );
-				$username = $deletion->isDeleted( LogPage::DELETED_USER )
-					? MessageValue::new( 'rev-deleted-user' )
-					: $deletion->getPerformerIdentity()->getName();
-				$commentHtml = $logFormatter->getComment();
+			$logFormatter = $this->logFormatterFactory->newFromEntry( $deletion );
+			$username = $deletion->isDeleted( LogPage::DELETED_USER )
+				? MessageValue::new( 'rev-deleted-user' )
+				: $deletion->getPerformerIdentity()->getName();
+			$commentHtml = $logFormatter->getComment();
 
-				return PageEditStatus::newGood( self::AS_ARTICLE_WAS_DELETED )
-					->setOK( false )
-					->setCanResubmit( true )
-					->warning(
-						$commentHtml === ''
-							? 'edit-constraint-confirmrecreate-noreason'
-							: 'edit-constraint-confirmrecreate',
-						$username,
-						Message::rawParam( $commentHtml ),
-						$this->submitButtonLabel,
-					);
-			} else {
-				return PageEditStatus::newGood( self::AS_ARTICLE_WAS_DELETED )
-					->setOK( false )
-					->setCanResubmit( true )
-					->warning( 'deletedwhileediting' );
-			}
+			return PageEditStatus::newGood( self::AS_ARTICLE_WAS_DELETED )
+				->setOK( false )
+				->setCanResubmit( true )
+				->warning(
+					$commentHtml === ''
+						? 'edit-constraint-confirmrecreate-noreason-warning'
+						: 'edit-constraint-confirmrecreate-warning',
+					$username,
+					Message::rawParam( $commentHtml ),
+				);
 		}
 		return PageEditStatus::newGood();
 	}
