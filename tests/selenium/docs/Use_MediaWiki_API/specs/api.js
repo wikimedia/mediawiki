@@ -1,7 +1,6 @@
 // Example code for Selenium/How-to/Use MediaWiki API
 // https://www.mediawiki.org/wiki/Selenium/How-to/Use_MediaWiki_API
 
-import assert from 'assert';
 import { createApiClient } from 'wdio-mediawiki/Api.js';
 
 // baseUrl is required for our continuous integration.
@@ -25,7 +24,7 @@ describe( 'API', () => {
 		// console.log( response.query );
 		// { pages: { '3': { pageid: 3, ns: 0, title: 'Main Page', revisions: [Array] } } }
 
-		assert.strictEqual( Object.values( response.query.pages )[ 0 ].pageid > 0, true );
+		expect( Object.values( response.query.pages )[ 0 ].pageid ).toBeGreaterThan( 0 );
 
 	} );
 
@@ -38,7 +37,7 @@ describe( 'API', () => {
 		// console.log( response.query );
 		// { pages: { '-1': { ns: 0, title: 'Missing Page', missing: '' } } }
 
-		assert.strictEqual( response.query.pages[ '-1' ].missing, '' );
+		expect( response.query.pages[ '-1' ].missing ).toBe( '' );
 
 	} );
 
