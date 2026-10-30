@@ -1083,8 +1083,7 @@ class FileModule extends Module {
 		if ( $this->getFlip( $context ) ) {
 			$style = CSSJanus::transform(
 				$style,
-				/* $swapLtrRtlInURL = */ true,
-				/* $swapLeftRightInURL = */ false
+				[ 'transformDirInUrl' => true ]
 			);
 			$this->hasGeneratedStyles = true;
 		}
