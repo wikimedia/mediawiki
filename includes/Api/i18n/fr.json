@@ -58,7 +58,9 @@
 			"Zetud",
 			"Alkmen-Alesia",
 			"Jules88!!",
-			"Network traveller"
+			"Network traveller",
+			"Allylly",
+			"NClara"
 		]
 	},
 	"apihelp-main-param-action": "Action à effectuer. Ce paramètre doit être envoyé comme partie de l'URL de la requête (et non dans le corps du POST) pour en faciliter l'utilisation lors du débogage, l'analyse, ou pour le routage ou le filtrage des requêtes.",

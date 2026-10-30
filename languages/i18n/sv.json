@@ -631,7 +631,7 @@
 	"anoneditwarning": "<strong>Varning:</strong> Du är inte inloggad. Din IP-adress kommer att vara publikt synlig om du gör några redigeringar. Om du <strong>[$1 loggar in]</strong> eller <strong>[$2 skapar ett konto]</strong> kommer dina redigeringar att tillskrivas ditt användarnamn, tillsammans med andra fördelar.",
 	"autocreate-edit-warning": "<strong>Varning:</strong> Du är inte inloggad. När du gör en redigering kommer ett tillfälligt konto skapas åt dig. [[{{MediaWiki:tempuser-helppage}}|Läs mer]]. <strong>[$1 Logga in]</strong> eller <strong>[$2 skapa ett konto]</strong> för att fortsätta få aviseringar efter detta konto upphör att gälla samt för att komma åt andra funktioner.",
 	"anonpreviewwarning": "<em>Du är inte inloggad. Om du publicerar kommer din IP-adress registreras på denna sidas redigeringshistorik.</em>",
-	"autocreate-preview-warning": "<em>Du är inte inloggad. När du gör en redigering kommer ett tillfälliga konto skapas åt dig. [[{{MediaWiki:tempuser-helppage}}|Läs mer]].</em>",
+	"autocreate-preview-warning": "<em>Du är inte inloggad. När du gör en redigering kommer ett tillfälligt konto skapas åt dig. [[{{MediaWiki:tempuser-helppage}}|Läs mer]].</em>",
 	"missingsummary": "<strong>Påminnelse:</strong> Du har inte skrivit någon redigeringskommentar.\nOm du klickar på ”$1” igen kommer din redigering att publiceras utan en sådan.",
 	"edit-constraint-warning-wrapper": "<strong>Varning:</strong> $1",
 	"edit-constraint-warning-wrapper-save": "<strong>Varning:</strong> $2\n\nOm du klickar på \"$1\" igen kommer omdirigeringen skapas ändå.",

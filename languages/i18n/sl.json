@@ -3971,5 +3971,6 @@
 	"table-of-contents-hide-button-aria-label": "Skrij vsebinsko kazalo",
 	"diff-usergroups": "$1 {{PLURAL:$1|uporabniška skupina|uporabniške skupine}}",
 	"languageselector-no-results": "Ni najdenih zadetkov.",
-	"languageselector-invalid-input": "»$1« ni veljaven jezik."
+	"languageselector-invalid-input": "»$1« ni veljaven jezik.",
+	"mypage-disallowed-action": "Iz varnostnih razlogov dejanja »$1« ni mogoče uporabiti na strani Special:MyPage."
 }

@@ -221,7 +221,7 @@
 	"apihelp-feedrecentchanges-param-hideanons-temp": "نهفتن تغییرات اعمال‌شده توسط کاربران ناشناس و حساب‌های موقت.",
 	"apihelp-feedrecentchanges-param-hideliu": "پنهان کردن ویرایش‌های کاربران ثبت‌نام کرده.",
 	"apihelp-feedrecentchanges-param-hidepatrolled": "پنهان کردن ویرایش گشت‌زن‌ها.",
-	"apihelp-feedrecentchanges-param-hidemyself": "پنهان کردن ویرایش‌های کاربر فعلی.",
+	"apihelp-feedrecentchanges-param-hidemyself": "نهفتن تغییرات ایجادشده توسط کاربر کنونی.",
 	"apihelp-feedrecentchanges-param-tagfilter": "فیلتر کردن براساس برچسب",
 	"apihelp-feedrecentchanges-param-target": "فقط نمایش ویرایش‌هایی که پیوند دارند به این صفحه.",
 	"apihelp-feedrecentchanges-param-showlinkedto": "نمایش ویرایش‌ها بر روی صفحه‌های پیوند داده شده به صفحه‌های انتخاب شده.",

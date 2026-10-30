@@ -251,7 +251,7 @@
 	"pool-servererror": "Der Poolzählerdienst ist nicht verfügbar ($1).",
 	"poolcounter-usage-error": "Benutzungsfehler: $1",
 	"aboutsite": "Über {{SITENAME}}",
-	"aboutpage": "Project:Über_{{SITENAME}}",
+	"aboutpage": "Project:Über",
 	"copyright-footer": "Der Inhalt ist verfügbar unter der Lizenz $1, sofern nicht anders angegeben.",
 	"copyrightpage": "{{ns:project}}:Urheberrechte",
 	"currentevents": "Aktuelle Ereignisse",

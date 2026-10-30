@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Eleassar",
-			"SaldırganSincap"
+			"SaldırganSincap",
+			"Anterdc99"
 		]
 	},
 	"apihelp-main-param-action": "Katero dejanje izvesti. Ta parameter je treba poslati kot del URL-ja zahtevka (ne telesa POST) za lažjo uporabo pri odpravljanju napak, analitiki in usmerjanju ali filtriranju zahtevkov.",

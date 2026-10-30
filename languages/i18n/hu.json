@@ -3947,5 +3947,6 @@
 	"table-of-contents-hide-button-aria-label": "Tartalomjegyzék elrejtése",
 	"diff-usergroups": "$1 {{PLURAL:$1|felhasználói csoport}}",
 	"languageselector-no-results": "Nincs találat.",
-	"languageselector-invalid-input": "„$1” érvénytelen nyelvkód."
+	"languageselector-invalid-input": "„$1” érvénytelen nyelvkód.",
+	"mypage-disallowed-action": "Biztonsági okokból a(z) „$1” művelet nem használható a Special:MyPage oldalon."
 }

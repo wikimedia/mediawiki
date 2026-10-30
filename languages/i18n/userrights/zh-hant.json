@@ -344,7 +344,7 @@
 	"listgrouprights-namespaceprotection-restrictedto": "允許使用者編輯的權限",
 	"restrictedgroups-autodemotion-log-reason": "自動從{{PLURAL:$2受限群組}}中移除{{GENDER:$1|user}}",
 	"listgrants": "授權清單",
-	"listgrants-summary": "以下為與使用者權限相關連的授權清單。使用者可以授權應用程式使用他們自己的帳號，但限於使用者授予應用程式的權限。同時，應用程式亦不能使用使用者本身沒有的權限。\n您可能可以在[[{{MediaWiki:Listgrouprights-helppage}}|這裡]]取得個別權限的額外資料。",
+	"listgrants-summary": "以下為與使用者權限相關連的授權清單。使用者可以授權應用程式使用他們自己的帳號，但限於使用者授予應用程式的權限。同時，應用程式亦不能使用使用者本身沒有的權限。您可能可以在[[{{MediaWiki:Listgrouprights-helppage}}|這裡]]取得個別權限的額外資料。",
 	"listgrants-grant": "授權",
 	"listgrants-rights": "權限"
 }

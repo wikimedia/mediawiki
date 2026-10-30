@@ -14,7 +14,8 @@
 			"Xzonn",
 			"Yfdyh000",
 			"沈澄心",
-			"范"
+			"范",
+			"Anterdc99"
 		]
 	},
 	"interwiki": "查看和编辑跨wiki数据",
@@ -39,7 +40,7 @@
 	"interwiki_1": "是",
 	"interwiki_0": "否",
 	"interwiki_error": "错误：跨wiki表为空，或发生了其它错误。",
-	"interwiki-cached": "跨维基数据是缓存的。缓存不能被修改。",
+	"interwiki-cached": "跨wiki数据是缓存的。缓存不能被修改。",
 	"interwiki_edit": "编辑",
 	"interwiki_reasonfield": "原因：",
 	"interwiki_deleting": "您正在删除前缀“$1”。",

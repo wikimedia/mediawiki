@@ -1451,6 +1451,7 @@
 	"uploadstash-header-thumb": "Miniatură",
 	"uploadstash-header-dimensions": "Dimensiuni",
 	"uploadstash-pager-submit": "Arată lista de fișiere",
+	"uploadstash-pager-tryagain": "Începeți încărcarea cu acest fișier",
 	"uploadstash-bad-path": "Calea nu există.",
 	"uploadstash-bad-path-invalid": "Calea nu este validă.",
 	"uploadstash-bad-path-unknown-type": "Tip necunoscut „$1”",

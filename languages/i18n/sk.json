@@ -4013,5 +4013,6 @@
 	"table-of-contents-hide-button-aria-label": "Skryť obsah",
 	"diff-usergroups": "$1 {{PLURAL:$1|skupina používateľov|skupiny používateľov|skupín používateľov}}",
 	"languageselector-no-results": "Nenašli sa žiadne výsledky.",
-	"languageselector-invalid-input": "„$1“ nie je platný jazyk."
+	"languageselector-invalid-input": "„$1“ nie je platný jazyk.",
+	"mypage-disallowed-action": "Z bezpečnostných dôvodov nemožno na stránke Special:MyPage použiť akciu „$1“."
 }

@@ -1558,7 +1558,7 @@
 	"protect-expiring-local": " تكمل $1",
 	"protect-expiry-indefinite": "لا محدود",
 	"protect-dropdown": "* أسباب الحماية الشائعة\n** تخريب مفرط\n** سبام (رسائل مزعجة) مفرط\n** حرب تعديلات\n** صفحة تع زيارات عالية",
-	"protect-expiry-options": "ساعه وحده:ساعه وحده،نهار واحد:نهار واحد،سبوع واحد:سبوع واحد،زوج سمانات:زوج سمانات،شهر واحد:شهر واحد،3 شهور:3 شهور،6 شهور:6 شهور،عام واحد:عام واحد،بلا نهايه:بلا نهايه",
+	"protect-expiry-options": "1 ساعة:1 hour,1 يوم:1 day,1 أسبوع:1 week,2 أسبوع:2 weeks,1 شهر:1 month,3 شهر:3 months,6 شهر:6 months,1 سنة:1 year,لا نهائي:infinite",
 	"restriction-type": "إذن:",
 	"pagesize": "(بايت)",
 	"restriction-edit": "عدّل",
