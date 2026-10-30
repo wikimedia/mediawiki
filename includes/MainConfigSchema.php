@@ -4816,15 +4816,6 @@ class MainConfigSchema {
 	];
 
 	/**
-	 * Default maximum age for raw CSS/JS accesses
-	 *
-	 * 300 seconds = 5 minutes.
-	 */
-	public const ForcedRawSMaxage = [
-		'default' => 300,
-	];
-
-	/**
 	 * List of proxy servers to purge on changes; default port is 80. Use IP addresses.
 	 *
 	 * When MediaWiki is running behind a proxy, it will trust X-Forwarded-For
@@ -6167,6 +6158,7 @@ class MainConfigSchema {
 	 *   - unversioned
 	 *
 	 * @see \MediaWiki\ResourceLoader\ResourceLoader::__construct
+	 * @see \MediaWiki\Actions\RawAction
 	 * @since 1.35
 	 */
 	public const ResourceLoaderMaxage = [

@@ -22,119 +22,104 @@ class RawActionTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public static function provideCacheControl() {
-		yield [
+		yield 'Import JS canonical (CDN on)' => [
+			// Enable full CDN caching for canonical URLs (T279120).
 			'/w/index.php?title=MediaWiki:Foo.js&action=raw&ctype=text/javascript',
 			[],
 			true,
 			200,
-			'public, s-maxage=300, max-age=604800'
+			'public, s-maxage=604800, max-age=300'
 		];
-		yield [
+		yield 'Import JS canonical (If-Modified-Since matches, CDN on)' => [
 			'/w/index.php?title=MediaWiki:Foo.js&action=raw&ctype=text/javascript',
 			[ 'If-Modified-Since' => '2011-04-01T09:00:00Z' ],
 			true,
 			304,
 			's-maxage=604800, must-revalidate, max-age=0'
 		];
-		yield [
-			'/w/index.php?title=MediaWiki:Foo.js&action=raw&ctype=text/javascript',
-			[],
-			false,
-			200,
-			'public, s-maxage=300, max-age=604800'
-		];
-		yield [
+		yield 'Import JS canonical (If-Modified-Since matches, CDN off)' => [
 			'/w/index.php?title=MediaWiki:Foo.js&action=raw&ctype=text/javascript',
 			[ 'If-Modified-Since' => '2011-04-01T09:00:00Z' ],
 			false,
 			304,
 			'private, must-revalidate, max-age=0'
 		];
-		yield [
+		yield 'Import JS canonical (If-Modified-Since too old, CDN on)' => [
+			'/w/index.php?title=MediaWiki:Foo.js&action=raw&ctype=text/javascript',
+			[ 'If-Modified-Since' => '2011-04-01T08:00:00Z' ],
+			true,
+			200,
+			'public, s-maxage=604800, max-age=300'
+		];
+		yield 'Import JS canonical (If-Modified-Since too old, CDN off)' => [
+			'/w/index.php?title=MediaWiki:Foo.js&action=raw&ctype=text/javascript',
+			[ 'If-Modified-Since' => '2011-04-01T08:00:00Z' ],
+			false,
+			200,
+			'public, s-maxage=3600, max-age=300'
+		];
+		yield 'Import JS canonical (CDN off)' => [
+			'/w/index.php?title=MediaWiki:Foo.js&action=raw&ctype=text/javascript',
+			[],
+			false,
+			200,
+			'public, s-maxage=3600, max-age=300'
+		];
+		yield 'Import JS oldid (CDN on)' => [
 			'/w/index.php?title=MediaWiki:Foo.js&action=raw&ctype=text/javascript&oldid=1',
 			[],
 			true,
 			200,
-			'public, s-maxage=300, max-age=604800'
+			'public, s-maxage=3600, max-age=300'
 		];
-		yield [
+		yield 'Import JS oldid (CDN off)' => [
 			'/w/index.php?title=MediaWiki:Foo.js&action=raw&ctype=text/javascript&oldid=1',
 			[],
 			false,
 			200,
-			'public, s-maxage=300, max-age=604800'
+			'public, s-maxage=3600, max-age=300'
 		];
-		// Customize smaxage and maxage
-		yield [
-			'/w/index.php?title=MediaWiki:Foo.js&action=raw&ctype=text/javascript&smaxage=600&maxage=60',
-			[],
-			true,
-			200,
-			'public, s-maxage=600, max-age=60'
-		];
-		yield [
-			'/w/index.php?title=MediaWiki:Foo.js&action=raw&ctype=text/javascript&smaxage=600&maxage=60',
-			[],
-			false,
-			200,
-			'public, s-maxage=600, max-age=60'
-		];
-		// T345609: Cache-Control does not allow negative values
-		yield [
-			'/w/index.php?title=MediaWiki:Foo.js&action=raw&ctype=text/javascript&maxage=-42',
-			[],
-			true,
-			200,
-			'public, s-maxage=300, max-age=604800'
-		];
-		yield [
-			'/w/index.php?title=MediaWiki:Foo.js&action=raw&ctype=text/javascript&smaxage=-42',
-			[],
-			true,
-			200,
-			'public, s-maxage=300, max-age=604800'
-		];
-		yield [
+		yield 'Import JS whatever (CDN on)' => [
 			'/w/index.php?title=MediaWiki:Foo.js&action=raw&ctype=text/javascript&whatever=1',
 			[],
 			true,
 			200,
-			'public, s-maxage=300, max-age=604800'
+			'public, s-maxage=3600, max-age=300'
 		];
-		yield [
+		yield 'Import JS whatever (CDN off)' => [
 			'/w/index.php?title=MediaWiki:Foo.js&action=raw&ctype=text/javascript&whatever=1',
 			[],
 			false,
 			200,
-			'public, s-maxage=300, max-age=604800'
+			'public, s-maxage=3600, max-age=300'
 		];
-		yield [
+		yield 'Import JS without ctype (CDN on)' => [
 			'/w/index.php?title=MediaWiki:Foo.js&action=raw',
 			[],
 			true,
 			200,
-			'public, s-maxage=0, max-age=604800'
+			'public, s-maxage=3600, max-age=300'
 		];
-		yield [
+		yield 'Import JS without ctype (CDN off)' => [
 			'/w/index.php?title=MediaWiki:Foo.js&action=raw',
 			[],
 			false,
 			200,
-			'public, s-maxage=0, max-age=604800'
+			'public, s-maxage=3600, max-age=300'
 		];
-		yield [
+		yield 'Regular page (CDN on)' => [
 			'/w/index.php?title=Help:RawActionTest&action=raw',
 			[],
 			true,
 			404,
-			'public, s-maxage=0, max-age=604800'
+			'public, s-maxage=3600, max-age=300'
 		];
-		yield [
+		yield 'Regular page (CDN off)' => [
 			'/w/index.php?title=Help:RawActionTest&action=raw',
 			[],
 			false,
 			404,
-			'public, s-maxage=0, max-age=604800'
+			'public, s-maxage=3600, max-age=300'
 		];
 	}
 
