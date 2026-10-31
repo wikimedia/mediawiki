@@ -385,7 +385,7 @@ class SpecialMediaStatistics extends QueryPage {
 				// mediastatistics-header-video, mediastatistics-header-multimedia,
 				// mediastatistics-header-office, mediastatistics-header-text,
 				// mediastatistics-header-executable, mediastatistics-header-archive,
-				// mediastatistics-header-3d,
+				// mediastatistics-header-3d, mediastatistics-header-total,
 				$this->msg( 'mediastatistics-header-' . strtolower( $mediaType ) )->text()
 			)
 		);

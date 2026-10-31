@@ -734,7 +734,7 @@ class ImagePage extends Article {
 				// customize it on a per file-type basis
 				// (aka say things like use format X instead).
 				// additionally have a specific message for
-				// file-no-thumb-animation-gif
+				// file-no-thumb-animation-gif and file-no-thumb-animation-webp
 				$ext = $this->displayImg->getExtension();
 				$out->wrapWikiMsg(
 					Html::element( 'div', [ 'class' => 'mw-noanimatethumb' ], '$1' ),
