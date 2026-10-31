@@ -8,7 +8,6 @@ use MediaWiki\Permissions\Authority;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionStoreRecord;
 use MediaWiki\Title\Title;
-use Wikimedia\Message\MessageValue;
 
 /**
  * This constraint is used to display an error if the user loses access to the revision while
@@ -26,7 +25,6 @@ class RevisionDeletedConstraint extends EditConstraint {
 		private readonly string $section,
 		private readonly Title $title,
 		private readonly Authority $authority,
-		private readonly ?MessageValue $warningMessageWrapper = null,
 	) {
 	}
 
@@ -46,17 +44,9 @@ class RevisionDeletedConstraint extends EditConstraint {
 				// Let sysop know that this will make private content public if saved
 				$status = PageEditStatus::newGood( self::AS_REVISION_WAS_DELETED )
 					->setOK( $this->editAttemptState->shouldIgnoreRevisionDeletedWarning() );
-				$warningMessage = MessageValue::new(
-					'rev-deleted-text-view',
-					[ $this->title->getPrefixedURL() ]
-				);
-				// When saving the edit, explain the user how to proceed by wrapping the warning in another message
-				if ( $this->warningMessageWrapper !== null ) {
-					$warningMessage = $this->warningMessageWrapper->params( $warningMessage );
-				}
 				$this->editAttemptState->setIgnoreRevisionDeletedWarning( true );
 				return $status
-					->warning( $warningMessage )
+					->warning( 'rev-deleted-text-view', $this->title->getPrefixedURL() )
 					->setCanResubmit( true );
 			}
 		} elseif ( $this->title->exists() ) {

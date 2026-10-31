@@ -46,8 +46,6 @@ use MediaWiki\User\UserIdentity;
 use MediaWiki\Watchlist\WatchedItemStoreInterface;
 use MediaWiki\Watchlist\WatchlistManager;
 use Psr\Log\LoggerInterface;
-use Wikimedia\Message\MessageSpecifier;
-use Wikimedia\Message\MessageValue;
 use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\Rdbms\IDBAccessObject;
 
@@ -575,10 +573,6 @@ class PageEdit implements IEditObject {
 				$this->section,
 				$page->getTitle(),
 				$this->inputs->getAuthority(),
-				MessageValue::new(
-					'edit-constraint-warning-wrapper-save-deleted-revision',
-					[ $this->getSubmitButtonLabel() ],
-				),
 			),
 		);
 
@@ -804,11 +798,6 @@ class PageEdit implements IEditObject {
 		);
 
 		$this->watchedItemStore->maybeEnqueueWatchlistExpiryJob();
-	}
-
-	private function getSubmitButtonLabel(): MessageSpecifier {
-		return $this->inputs->getSubmitButtonLabel() ??
-			new MessageValue( $this->pageEditingHelper->getSubmitButtonLabel( $this->inputs->getPage() ) );
 	}
 
 	/**

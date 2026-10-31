@@ -7,7 +7,6 @@ use MediaWiki\Page\PageReference;
 use MediaWiki\Page\ProperPageIdentity;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\User\UserIdentity;
-use Wikimedia\Message\MessageSpecifier;
 
 /**
  * @internal
@@ -33,7 +32,6 @@ class PageEditInputs {
 	private string $section = '';
 	private ?string $sectiontitle = null;
 	private ?string $starttime = null;
-	private ?MessageSpecifier $submitButtonLabel = null;
 	private int $undidRev = 0;
 	private int $undoAfter = 0;
 	private ?UserIdentity $userForPreview = null;
@@ -241,15 +239,6 @@ class PageEditInputs {
 
 	public function setStarttime( ?string $starttime ): self {
 		$this->starttime = $starttime;
-		return $this;
-	}
-
-	public function getSubmitButtonLabel(): ?MessageSpecifier {
-		return $this->submitButtonLabel;
-	}
-
-	public function setSubmitButtonLabel( ?MessageSpecifier $submitButtonLabel ): self {
-		$this->submitButtonLabel = $submitButtonLabel;
 		return $this;
 	}
 

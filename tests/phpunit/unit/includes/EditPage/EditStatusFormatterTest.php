@@ -74,6 +74,14 @@ class EditStatusFormatterTest extends MediaWikiUnitTestCase {
 					->warning( 'edit-constraint-newsectionmissingsubject-warning' ),
 				MessageValue::new( 'submit-button-label' ),
 			],
+			[
+				Html::warningBox( '(edit-constraint-resubmittable-deleted-revision-warning: ' .
+					'(rev-deleted-text-view), (submit-button-label))' ),
+				PageEditStatus::newGood()
+					->warning( 'rev-deleted-text-view' )
+					->setCanResubmit( true ),
+				MessageValue::new( 'submit-button-label' ),
+			]
 		];
 	}
 

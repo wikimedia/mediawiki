@@ -26,6 +26,15 @@ class EditStatusFormatter {
 		'edit-constraint-confirmrecreate-warning',
 		'edit-constraint-confirmrecreate-noreason-warning',
 		'edit-constraint-missingsummary-warning',
+		'rev-deleted-text-view',
+	];
+
+	/**
+	 * Warning messages which will use a different wrapper message than the default one.
+	 */
+	private const array ALTERNATIVE_WRAPPER_MESSAGES = [
+		// Warn the user about publishing a deleted revision when bypassing the warning
+		'rev-deleted-text-view' => 'edit-constraint-resubmittable-deleted-revision-warning',
 	];
 
 	public function __construct(
@@ -65,7 +74,7 @@ class EditStatusFormatter {
 				return $msg;
 			}
 			return MessageValue::new(
-				'edit-constraint-resubmittable-warning',
+				self::ALTERNATIVE_WRAPPER_MESSAGES[$msg->getKey()] ?? 'edit-constraint-resubmittable-warning',
 				[
 					$msg,
 					$submitButtonLabel,
