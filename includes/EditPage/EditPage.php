@@ -1142,13 +1142,8 @@ class EditPage implements IEditObject {
 			}
 		}
 
-		if ( $request !== $this->getContext()->getRequest() ) {
-			// TODO Remove this once the $request parameter has been removed from this method
-			$this->oldid = $request->getInt( 'oldid' );
-		} else {
-			// Article::getOldID falls back to the request if no oldid is set
-			$this->oldid = $this->mArticle->getOldID();
-		}
+		// Article::getOldID falls back to the request if no oldid is set
+		$this->oldid = $this->mArticle->getOldID();
 		$this->parentRevId = $request->getInt( 'parentRevId' );
 
 		$this->markAsBot = $request->getBool( 'bot', true );
