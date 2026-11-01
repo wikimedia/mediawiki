@@ -20,78 +20,16 @@ class PopulateChangeTagDef extends LoggedUpdateMaintenance {
 		parent::__construct();
 		$this->addDescription( 'Populate and improve accuracy of change_tag_def statistics' );
 		$this->addOption( 'dry-run', 'Print debug info instead of actually deleting' );
-		$this->setBatchSize( 1000 );
-		$this->addOption(
-			'sleep',
-			'Sleep time (in seconds) between every batch, defaults to zero',
-			false,
-			true
-		);
-		$this->addOption( 'populate-only', 'Do not update change_tag_def table' );
-		$this->addOption( 'set-user-tags-only', 'Only update ctd_user_defined from valid_tag table' );
 	}
 
 	/** @inheritDoc */
 	protected function doDBUpdates(): LoggedUpdateOutcome {
-		$this->setBatchSize( $this->getOption( 'batch-size', $this->getBatchSize() ) );
-
-		$dbw = $this->getDB( DB_PRIMARY );
-		if ( $dbw->fieldExists(
-				'change_tag',
-				'ct_tag',
-				__METHOD__
-			)
-		) {
-			if ( $this->hasOption( 'set-user-tags-only' ) ) {
-				$this->setUserDefinedTags();
-				return $this->hasOption( 'dry-run' ) ? LoggedUpdateOutcome::SIMULATED : LoggedUpdateOutcome::COMPLETE;
-			}
-			if ( !$this->hasOption( 'populate-only' ) ) {
-				$this->updateCountTag();
-			}
-			$this->backpopulateChangeTagId();
-			$this->setUserDefinedTags();
-		} else {
-			$this->updateCountTagId();
-		}
+		$this->updateCountTagId();
 
 		// TODO: Implement
 		// $this->cleanZeroCountRows();
 
 		return $this->hasOption( 'dry-run' ) ? LoggedUpdateOutcome::SIMULATED : LoggedUpdateOutcome::COMPLETE;
-	}
-
-	private function setUserDefinedTags() {
-		$dbw = $this->getDB( DB_PRIMARY );
-
-		$userTags = null;
-		if ( $dbw->tableExists( 'valid_tag', __METHOD__ ) ) {
-			$userTags = $dbw->newSelectQueryBuilder()
-				->select( 'vt_tag' )
-				->from( 'valid_tag' )
-				->caller( __METHOD__ )->fetchFieldValues();
-		}
-
-		if ( !$userTags ) {
-			$this->output( "No user defined tags to set, moving on...\n" );
-			return;
-		}
-
-		if ( $this->hasOption( 'dry-run' ) ) {
-			$this->output(
-				'These tags will have ctd_user_defined=1 : ' . implode( ', ', $userTags ) . "\n"
-			);
-			return;
-		}
-
-		$dbw->newUpdateQueryBuilder()
-			->update( 'change_tag_def' )
-			->set( [ 'ctd_user_defined' => 1 ] )
-			->where( [ 'ctd_name' => $userTags ] )
-			->caller( __METHOD__ )
-			->execute();
-		$this->waitForReplication();
-		$this->output( "Finished setting user defined tags in change_tag_def table\n" );
 	}
 
 	private function updateCountTagId() {
@@ -124,102 +62,6 @@ class PopulateChangeTagDef extends LoggedUpdateMaintenance {
 				->execute();
 		}
 		$this->waitForReplication();
-	}
-
-	private function updateCountTag() {
-		$dbr = $this->getReplicaDB();
-
-		// This query can be pretty expensive, don't run it on master
-		$res = $dbr->newSelectQueryBuilder()
-			->select( [ 'ct_tag', 'hitcount' => 'count(*)' ] )
-			->from( 'change_tag' )
-			->groupBy( 'ct_tag' )
-			->caller( __METHOD__ )->fetchResultSet();
-
-		$dbw = $this->getPrimaryDB();
-
-		foreach ( $res as $row ) {
-			// Hygiene check
-			if ( !$row->ct_tag ) {
-				continue;
-			}
-
-			if ( $this->hasOption( 'dry-run' ) ) {
-				$this->output( 'This row will be updated: ' . $row->ct_tag . $row->hitcount . "\n" );
-				continue;
-			}
-			$dbw->newInsertQueryBuilder()
-				->insertInto( 'change_tag_def' )
-				->row( [
-					'ctd_name' => $row->ct_tag,
-					'ctd_user_defined' => 0,
-					'ctd_count' => $row->hitcount
-				] )
-				->onDuplicateKeyUpdate()
-				->uniqueIndexFields( [ 'ctd_name' ] )
-				->set( [ 'ctd_count' => $row->hitcount ] )
-				->caller( __METHOD__ )->execute();
-		}
-		$this->waitForReplication();
-	}
-
-	private function backpopulateChangeTagId() {
-		$dbr = $this->getReplicaDB();
-		$changeTagDefs = $dbr->newSelectQueryBuilder()
-			->select( [ 'ctd_name', 'ctd_id' ] )
-			->from( 'change_tag_def' )
-			->orderBy( 'ctd_id' )
-			->caller( __METHOD__ )->fetchResultSet();
-
-		foreach ( $changeTagDefs as $row ) {
-			$this->backpopulateChangeTagPerTag( $row->ctd_name, $row->ctd_id );
-		}
-	}
-
-	private function backpopulateChangeTagPerTag( string $tagName, int $tagId ) {
-		$dbr = $this->getReplicaDB();
-		$dbw = $this->getPrimaryDB();
-		$sleep = (int)$this->getOption( 'sleep', 0 );
-		$lastId = 0;
-		$this->output( "Starting to add ct_tag_id = {$tagId} for ct_tag = {$tagName}\n" );
-		while ( true ) {
-			// Given that indexes might not be there, it's better to use replica
-			$ids = $dbr->newSelectQueryBuilder()
-				->select( 'ct_id' )
-				->from( 'change_tag' )
-				->where( [ 'ct_tag' => $tagName, 'ct_tag_id' => null, $dbr->expr( 'ct_id', '>', $lastId ) ] )
-				->orderBy( 'ct_id' )
-				->limit( $this->getBatchSize() )
-				->caller( __METHOD__ )->fetchFieldValues();
-
-			if ( !$ids ) {
-				break;
-			}
-			$lastId = end( $ids );
-
-			if ( $this->hasOption( 'dry-run' ) ) {
-				$this->output(
-					"These ids will be changed to have \"{$tagId}\" as tag id: " . implode( ', ', $ids ) . "\n"
-				);
-				continue;
-			} else {
-				$this->output( "Updating ct_tag_id = {$tagId} up to row ct_id = {$lastId}\n" );
-			}
-
-			$dbw->newUpdateQueryBuilder()
-				->update( 'change_tag' )
-				->set( [ 'ct_tag_id' => $tagId ] )
-				->where( [ 'ct_id' => $ids ] )
-				->caller( __METHOD__ )
-				->execute();
-
-			$this->waitForReplication();
-			if ( $sleep > 0 ) {
-				sleep( $sleep );
-			}
-		}
-
-		$this->output( "Finished adding ct_tag_id = {$tagId} for ct_tag = {$tagName}\n" );
 	}
 
 	/** @inheritDoc */
