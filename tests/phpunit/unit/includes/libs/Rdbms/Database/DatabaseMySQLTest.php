@@ -519,17 +519,29 @@ class DatabaseMySQLTest extends TestCase {
 		);
 	}
 
+	public static function provideMaxExecutionTime() {
+		yield 'MariaDB' => [
+			'10.11.6-MariaDB-log',
+			"SET STATEMENT max_statement_time=0.001 FOR SELECT  img_metadata  FROM `image`     "
+		];
+		yield 'MySQL' => [
+			'8.0.36',
+			"SELECT /*+ MAX_EXECUTION_TIME(1)*/  img_metadata  FROM `image`     "
+		];
+	}
+
 	/**
 	 * @covers \Wikimedia\Rdbms\DatabaseMySQL
 	 * @covers \Wikimedia\Rdbms\Platform\SQLPlatform
 	 * @covers \Wikimedia\Rdbms\Platform\MySQLPlatform
+	 * @dataProvider provideMaxExecutionTime
 	 */
-	public function testMaxExecutionTime() {
+	public function testMaxExecutionTime( $version, $expected ) {
 		$db = $this->getMockBuilder( DatabaseMySQL::class )
 			->disableOriginalConstructor()
 			->onlyMethods( [ 'getServerVersion', 'dbSchema', 'tablePrefix' ] )
 			->getMock();
-		$db->method( 'getServerVersion' )->willReturn( '10.4.28-MariaDB-log' );
+		$db->method( 'getServerVersion' )->willReturn( $version );
 		$wdb = TestingAccessWrapper::newFromObject( $db );
 		$wdb->platform = new MySQLPlatform( new AddQuoterMock() );
 
@@ -540,10 +552,7 @@ class DatabaseMySQLTest extends TestCase {
 			[ 'MAX_EXECUTION_TIME' => 1 ]
 		);
 
-		$this->assertSameSql(
-			"SET STATEMENT max_statement_time=0.001 FOR SELECT  img_metadata  FROM `image`     ",
-			$sql
-		);
+		$this->assertSameSql( $expected, $sql );
 	}
 
 	/**

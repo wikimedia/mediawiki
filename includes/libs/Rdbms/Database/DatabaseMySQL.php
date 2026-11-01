@@ -665,11 +665,11 @@ class DatabaseMySQL extends Database {
 		// https://mariadb.com/kb/en/library/aborting-statements/
 		$timeoutMsec = intval( $options['MAX_EXECUTION_TIME'] ?? 0 );
 		if ( $timeoutMsec > 0 ) {
-			[ $vendor, $number ] = $this->getMySqlServerVariant();
-			if ( $vendor === 'MariaDB' && version_compare( $number, '10.1.2', '>=' ) ) {
+			[ $vendor ] = $this->getMySqlServerVariant();
+			if ( $vendor === 'MariaDB' ) {
 				$timeoutSec = $timeoutMsec / 1000;
 				$sql = "SET STATEMENT max_statement_time=$timeoutSec FOR $sql";
-			} elseif ( $vendor === 'MySQL' && version_compare( $number, '5.7.0', '>=' ) ) {
+			} elseif ( $vendor === 'MySQL' ) {
 				$sql = preg_replace(
 					'/^SELECT(?=\s)/',
 					"SELECT /*+ MAX_EXECUTION_TIME($timeoutMsec)*/",
