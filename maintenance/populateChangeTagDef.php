@@ -3,8 +3,7 @@
  * @license GPL-2.0-or-later
  */
 
-use MediaWiki\Maintenance\LoggedUpdateMaintenance;
-use MediaWiki\Maintenance\LoggedUpdateOutcome;
+use MediaWiki\Maintenance\Maintenance;
 
 // @codeCoverageIgnoreStart
 require_once __DIR__ . '/Maintenance.php';
@@ -15,7 +14,7 @@ require_once __DIR__ . '/Maintenance.php';
  *
  * @ingroup Maintenance
  */
-class PopulateChangeTagDef extends LoggedUpdateMaintenance {
+class PopulateChangeTagDef extends Maintenance {
 	public function __construct() {
 		parent::__construct();
 		$this->addDescription( 'Populate and improve accuracy of change_tag_def statistics' );
@@ -23,13 +22,11 @@ class PopulateChangeTagDef extends LoggedUpdateMaintenance {
 	}
 
 	/** @inheritDoc */
-	protected function doDBUpdates(): LoggedUpdateOutcome {
+	public function execute() {
 		$this->updateCountTagId();
 
 		// TODO: Implement
 		// $this->cleanZeroCountRows();
-
-		return $this->hasOption( 'dry-run' ) ? LoggedUpdateOutcome::SIMULATED : LoggedUpdateOutcome::COMPLETE;
 	}
 
 	private function updateCountTagId() {
@@ -62,11 +59,6 @@ class PopulateChangeTagDef extends LoggedUpdateMaintenance {
 				->execute();
 		}
 		$this->waitForReplication();
-	}
-
-	/** @inheritDoc */
-	protected function getUpdateKey() {
-		return __CLASS__;
 	}
 }
 
