@@ -3439,6 +3439,7 @@ class EditPage implements IEditObject {
 	 * @deprecated since 1.48; always returns null
 	 */
 	public static function getEditToolbar(): ?string {
+		wfDeprecated( __METHOD__, '1.48' );
 		return null;
 	}
 
