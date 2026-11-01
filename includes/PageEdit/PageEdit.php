@@ -263,8 +263,7 @@ class PageEdit implements IEditObject {
 			}
 
 			if ( $this->isConflict ) {
-				return PageEditStatus::newGood( self::AS_CONFLICT_DETECTED )
-					->fatal( 'editconflict', (string)$this->inputs->getContextPage() );
+				return PageEditStatus::newGood( self::AS_CONFLICT_DETECTED )->fatal( 'edit-conflict' );
 			}
 
 			$pageUpdater = $page->newPageUpdater( $pstUser )

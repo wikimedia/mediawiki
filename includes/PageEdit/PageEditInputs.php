@@ -3,7 +3,6 @@
 namespace MediaWiki\PageEdit;
 
 use MediaWiki\Context\IContextSource;
-use MediaWiki\Page\PageReference;
 use MediaWiki\Page\ProperPageIdentity;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\User\UserIdentity;
@@ -19,7 +18,6 @@ class PageEditInputs {
 	/** @var string[] */
 	private array $changeTags = [];
 	private ?string $contentFormat = null;
-	private ?PageReference $contextPage = null;
 	private ?string $edittime = null;
 	private ?int $editRevId = null;
 	private bool $enableApiEditOverride = false;
@@ -109,15 +107,6 @@ class PageEditInputs {
 
 	public function getContext(): IContextSource {
 		return $this->context;
-	}
-
-	public function getContextPage(): PageReference {
-		return $this->contextPage ?? $this->getPage();
-	}
-
-	public function setContextPage( ?PageReference $contextPage ): self {
-		$this->contextPage = $contextPage;
-		return $this;
 	}
 
 	public function getEdittime(): ?string {

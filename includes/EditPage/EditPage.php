@@ -1999,7 +1999,6 @@ class EditPage implements IEditObject {
 			->setAutoSumm( $this->autoSumm )
 			->setChangeTags( $this->changeTags )
 			->setContentFormat( $this->contentFormat )
-			->setContextPage( $this->mContextTitle )
 			->setEdittime( $this->edittime )
 			->setEditRevId( $this->editRevId )
 			->setEnableApiEditOverride( $this->enableApiEditOverride )
