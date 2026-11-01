@@ -1623,7 +1623,6 @@ $wgAutoloadLocalClasses = [
 	'MediaWiki\\Hook\\EditFormInitialTextHook' => __DIR__ . '/includes/Hook/EditFormInitialTextHook.php',
 	'MediaWiki\\Hook\\EditFormPreloadTextHook' => __DIR__ . '/includes/Hook/EditFormPreloadTextHook.php',
 	'MediaWiki\\Hook\\EditPageBeforeEditButtonsHook' => __DIR__ . '/includes/Hook/EditPageBeforeEditButtonsHook.php',
-	'MediaWiki\\Hook\\EditPageBeforeEditToolbarHook' => __DIR__ . '/includes/Hook/EditPageBeforeEditToolbarHook.php',
 	'MediaWiki\\Hook\\EditPageCopyrightWarningHook' => __DIR__ . '/includes/Hook/EditPageCopyrightWarningHook.php',
 	'MediaWiki\\Hook\\EditPageGetCheckboxesDefinitionHook' => __DIR__ . '/includes/Hook/EditPageGetCheckboxesDefinitionHook.php',
 	'MediaWiki\\Hook\\EditPageGetDiffContentHook' => __DIR__ . '/includes/Hook/EditPageGetDiffContentHook.php',

@@ -2403,10 +2403,6 @@ class EditPage implements IEditObject {
 			$this->textbox1 = $currentText;
 		}
 
-		if ( !$this->getTitle()->isUserConfigPage() ) {
-			$out->addHTML( self::getEditToolbar() ?? '' );
-		}
-
 		// If certain edit constraints fail, they can be bypassed by resubmitting the edit.
 		// Therefore, add the values of the current edit attempt state as hidden fields to the HTML.
 		foreach ( $this->getEditAttemptStateValues() as $key => $value ) {
@@ -3439,17 +3435,11 @@ class EditPage implements IEditObject {
 
 	/**
 	 * Allow extensions to provide a toolbar.
+	 *
+	 * @deprecated since 1.48; always returns null
 	 */
 	public static function getEditToolbar(): ?string {
-		$startingToolbar = '<div id="toolbar"></div>';
-		$toolbar = $startingToolbar;
-
-		$hookRunner = new HookRunner( MediaWikiServices::getInstance()->getHookContainer() );
-		if ( !$hookRunner->onEditPageBeforeEditToolbar( $toolbar ) ) {
-			return null;
-		}
-		// Don't add a pointless `<div>` to the page unless a hook caller populated it
-		return ( $toolbar === $startingToolbar ) ? null : $toolbar;
+		return null;
 	}
 
 	/**

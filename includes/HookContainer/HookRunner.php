@@ -172,7 +172,6 @@ class HookRunner implements
 	\MediaWiki\Hook\EditPage__showReadOnlyForm_initialHook,
 	\MediaWiki\Hook\EditPage__showStandardInputs_optionsHook,
 	\MediaWiki\Hook\EditPageBeforeEditButtonsHook,
-	\MediaWiki\Hook\EditPageBeforeEditToolbarHook,
 	\MediaWiki\Hook\EditPageCopyrightWarningHook,
 	\MediaWiki\Hook\EditPageGetCheckboxesDefinitionHook,
 	\MediaWiki\Hook\EditPageGetDiffContentHook,
@@ -1662,14 +1661,6 @@ class HookRunner implements
 		return $this->container->run(
 			'EditPageBeforeEditButtons',
 			[ $editpage, &$buttons, &$tabindex ]
-		);
-	}
-
-	/** @inheritDoc */
-	public function onEditPageBeforeEditToolbar( &$toolbar ) {
-		return $this->container->run(
-			'EditPageBeforeEditToolbar',
-			[ &$toolbar ]
 		);
 	}
 
