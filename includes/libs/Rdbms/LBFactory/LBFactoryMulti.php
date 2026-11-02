@@ -309,7 +309,10 @@ class LBFactoryMulti extends LBFactory {
 			$this->baseLoadBalancerParams(),
 			[
 				'servers' => $this->makeServerConfigArrays( $serverTemplate, $loads ),
-				'loadMonitor' => $this->loadMonitorConfig,
+				'loadMonitor' => array_merge(
+					$this->loadMonitorConfig,
+					$serverTemplate['loadMonitor'] ?? []
+				),
 				'readOnlyReason' => $readOnlyReason,
 				'clusterName' => $clusterName
 			]
