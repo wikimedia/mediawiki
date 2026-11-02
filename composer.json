@@ -21,7 +21,7 @@
 	},
 	"prefer-stable": true,
 	"require": {
-		"composer/semver": "3.5.2",
+		"composer/semver": "3.6.0",
 		"ext-calendar": "*",
 		"ext-ctype": "*",
 		"ext-dom": "*",
