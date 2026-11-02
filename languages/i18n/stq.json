@@ -1518,7 +1518,6 @@
 	"scarytranscludedisabled": "[Interwiki-Ienbiendenge is deaktivierd]",
 	"scarytranscludefailed": "[Foarloagenienbiendenge foar $1 is misglukked]",
 	"scarytranscludetoolong": "[URL is tou loang]",
-	"deletedwhileediting": "Oachtenge: Disse Siede wuude al läsked, ätter dät du anfangd hiedest, hier tou beoarbaidjen!\nKiekje in dät [{{fullurl:Special:Log|type=delete&page=}}{{FULLPAGENAMEE}} Läsk-Logbouk] ätter,\nwieruum ju Siede läsked wuude. Wan du ju Siede spiekerst, wäd ju näi anlaid.",
 	"confirm_purge_button": "OK",
 	"confirm-purge-top": "Dän Cache fon disse Siede loosmoakje?",
 	"confirm-purge-bottom": "Moaket dän Cache fon ne Siede loos un twingt tou dät Anwiesen fon ju aktuelle Version.",

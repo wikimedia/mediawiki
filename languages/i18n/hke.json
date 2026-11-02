@@ -199,7 +199,6 @@
 	"preview": "Nshondotsi",
 	"showpreview": "Bwerekya byobyametenga",
 	"showdiff": "Bwerekya bobyoshabihingwa",
-	"blankarticle": "<strong>Munakohya:</strong> Akashashali hautangira katalimo kindu. \nUkebandu ku \"$1\" kandi, ni ukatangira kashashali katemo kindu",
 	"anoneditwarning": "<strong>Kohya:</strong> Utali kwa rezo. Weba ukehingya bindu, amuancho IP wawe ni exungwako kyenene. <strong>[$1 ukeba kwa rezo]</strong> neri <strong>[$2 ukebohola muancho]</strong>, byorokahingya ni bikaba kwe tsina r'amuancho wawe, ni ukabonekya na indi minguruko.",
 	"blockedtext": "<strong>Akonte yawe eni IP address ikikiritsibwe.</strong>\n\n{{int:blockedtext-made-by|$1}}\n{{int:blockedtext-reason-comment|$2}}\n\n*{{int:blockedtext-start-time|$8}}\n*{{int:blockedtext-expiration-time|$6}}\n*{{int:blockedtext-intended-blockee|$7}}\n\n{{int:blockedtext-contact-blocker-admin|$1}}\nWangakolesa \"{{int:emailuser}}\" iri hali adrese meli ya kuli mwa [[Special:Preferences|preferences]] nayo iri utahangirwe neri utakikiritsibwe kwekolesaro.\n\n{{int:blockedtext-block-ip|$3}} {{int:blockedtext-block-id|$5}}\n{{int:blockedtext-include-details-queries}}",
 	"loginreqlink": "Ingira",

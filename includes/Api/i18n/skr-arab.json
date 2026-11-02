@@ -1863,5 +1863,8 @@
 	"apierror-mustpostparams": "ہیٹھلے {{PLURAL:$2|پیرامیٹر}} $1 کوئری سٹرنگ وچ لبھے ڳئے ہن، پر اوہ POST body وچ ہووݨے چاہیدن۔",
 	"apierror-noapiwrite": "ایں وکی وچ API دے ذریعے ترمیم غیر فعال ہے۔",
 	"apierror-nochanges": "کوئی تبدیلی دی درخواست کائنی کیتی ڳئی۔",
-	"apierror-nodeleteablefile": "فائل دا کوئی پرانا نسخہ کائنی۔"
+	"apierror-nodeleteablefile": "فائل دا کوئی پرانا نسخہ کائنی۔",
+	"apierror-permissiondenied-generic": "اجازت دا انکار تھی ڳیا۔",
+	"apierror-unknownerror-nocode": "نامعلوم غلطی۔",
+	"api-credits-header": "کریڈٹس"
 }

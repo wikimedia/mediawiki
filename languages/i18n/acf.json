@@ -175,7 +175,6 @@
 	"preview": "Preview",
 	"showpreview": "Moutwé preview",
 	"showdiff": "Moutwé sé chanjman",
-	"blankarticle": "<strong>Antansyon:</strong> Paj-la ou ka kwéyé sé vid.\nSi ou kliké \"$1\" ankò, sa kay kwéyé paj-la épi pyès kontni.",
 	"anoneditwarning": "<strong>Avètisman:</strong> Ou pa enwègistwé. Tout moun kay wè IP address'w si ou fè sé chanjman. Si ou <strong>[$1 konèkté]</strong> ou <strong>[$2 kwéyé an kont]</strong>, sé chanjman'w kay yé anba non itilizatè'w, épi lòt bennféfis.",
 	"blockedtext": "<strong>Non itilizatè'w ou adwésé IP'w té blòké.</strong>\n\n{{int:blockedtext-made-by|$1}}\n{{int:blockedtext-reason-comment|$2}}\n\n*{{int:blockedtext-start-time|$8}}\n*{{int:blockedtext-expiration-time|$6}}\n*{{int:blockedtext-intended-blockee|$7}}\n\n{{int:blockedtext-contact-blocker-admin|$1}}\nOu sa itlizé fonksyon \"{{int:emailuser}}\" si yon adwésé email sé adan [[Special:Preferences|pwéféwans]]'w èk ou pa té blòké kont itilizé'y. \n\n{{int:blockedtext-block-ip|$3}} {{int:blockedtext-block-id|$5}}\n{{int:blockedtext-include-details-queries}}",
 	"loginreqlink": "konèkté",

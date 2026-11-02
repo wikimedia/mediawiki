@@ -1244,7 +1244,6 @@
 	"confirmemail_body": "Aliquis (haud scimus an tute ipse, ex loco IP $1)\nusori \"$2\" nomen imposuit apud {{grammar:accusative|{{SITENAME}}}} data hac inscriptione electronica.\n\nUt confirmes te ipsum tibi hoc nomen imposuisse utque communicatio electronica tractetur, sicut instituta est apud {{grammar:accusative|{{SITENAME}}}}, hunc nexum aperi in navigatro interretiali:\n\n$3\n\nSi *alius* hoc fecit ac tu, hunc nexum sequere\nad confirmationem inscriptionis electronicae abrogandam:\n\n$5\n\nHaec confirmandi facultas valebit usque ad $4.",
 	"confirmemail_invalidated": "Adfirmatio inscriptionis electronicae abrogata est",
 	"invalidateemail": "Adfimationem inscriptionis electronicae abrogare",
-	"deletedwhileediting": "'''Monitio:''' Haec pagina deleta est postquam inceperis eam recensere!",
 	"confirm_purge_button": "Licet",
 	"imgmultipageprev": "← pagina superior",
 	"imgmultipagenext": "pagina proxima →",

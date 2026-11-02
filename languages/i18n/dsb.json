@@ -1860,7 +1860,6 @@
 	"scarytranscludefailed": "[Zapśěgnjenje pśedłogi za $1 njejo se raźiło]",
 	"scarytranscludefailed-httpstatus": "[Wótwołanje pśedłogi za $1 njejo se raźiło: HTTP $2]",
 	"scarytranscludetoolong": "[URL jo pśedłujki]",
-	"deletedwhileediting": "'''Warnowanje''': Toś ten bok se wulašujo, gaž zachopijoš jen wobźěłaś!",
 	"confirm_purge_button": "W pórědku.",
 	"confirm-purge-top": "Wulašowaś cache togo boka?",
 	"confirm-purge-bottom": "Wuproznijo cache a wunuzijo zwobraznjenje aktualneje wersije.",

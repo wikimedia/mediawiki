@@ -4,6 +4,7 @@
 			"Pikne"
 		]
 	},
+	"cdx-label-optional-flag": "(valikuline)",
 	"cdx-popover-close-button-label": "Sule",
 	"cdx-table-pager-items-per-page-current": "{{PLURAL:$1|$1 üksus|$1 üksust}}",
 	"cdx-table-pagination-status-message-pending": "Tulemuste laadimine...",

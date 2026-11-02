@@ -348,6 +348,8 @@
 	"rest-endpoint-summ-put-page-title": "Pagina bijwerken",
 	"rest-endpoint-summ-post-page": "Pagina aanmaken",
 	"rest-endpoint-summ-post-transform-wikitext-to-lint": "Lint-foutmeldingen teruggeven voor wikitekst",
+	"rest-endpoint-desc-post-dbsc-register": "Registreert een [apparaatgebonden sessie](https://w3c.github.io/webappsec-dbsc/) (DBSC) voor de huidige sessie",
+	"rest-endpoint-summ-post-dbsc-register": "Een apparaatgebonden sessie registreren",
 	"rest-endpoint-summ-post-transform-wikitext-to-html": "Wikitekst in HTML omzetten",
 	"rest-endpoint-summ-post-transform-html-to-wikitext": "HTML in wikitekst omzetten",
 	"rest-endpoint-summ-specs-discovery": "Beschikbare REST API-modules ophalen",

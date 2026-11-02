@@ -2159,7 +2159,6 @@
 	"scarytranscludefailed": "[Olèhé njupuk cithakan $1 gagal]",
 	"scarytranscludefailed-httpstatus": "[Panjupukan cithakan $1 gagal: HTTP $2]",
 	"scarytranscludetoolong": "[URL-é kedawan]",
-	"deletedwhileediting": "<strong>Pélik:</strong> Kaca iki wis dibusak kawit pisanan panjenengan mbesut!",
 	"confirm-purge-title": "Buwang kaca iki",
 	"confirm_purge_button": "OK",
 	"confirm-purge-top": "Resiki cache kaca iki?",

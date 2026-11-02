@@ -1843,7 +1843,6 @@
 	"scarytranscludefailed": "[$1-paq plantillataqa manam chaskiyta atinchu]",
 	"scarytranscludefailed-httpstatus": "[$1-paq plantillataqa manam chaskiyta atinchu: HTTP $2]",
 	"scarytranscludetoolong": "[URL tiyayqa nisyu hatunmi]",
-	"deletedwhileediting": "'''Paqtataq''': Kay p'anqataqa qullurqankum qam llamk'apuyta qallarirqaptiyki.",
 	"confirm_purge_button": "Arí niy",
 	"confirm-purge-top": "Kay p'anqap ''cache'' nisqa pakasqa hallch'an ch'usaqchasqa kachunchu?",
 	"confirm-purge-bottom": "P'anqa pichayqa pakasqa hallch'atam ch'usaqchan, qayna musuqchasqatataqmi rikch'achin.",

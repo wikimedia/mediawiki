@@ -39,6 +39,7 @@
 			"Vlad5250",
 			"Volkov",
 			"WindEwriX",
+			"Yurina Tatiana",
 			"Əkrəm",
 			"Александр Сигачёв"
 		]
@@ -142,8 +143,8 @@
 	"prefs-custom-js": "Собственный JavaScript",
 	"prefs-custom-cssjs-safemode": "В настоящее время пользовательские CSS/JavaScript недоступны при включении безопасного режима. Пожалуйста, [[#mw-input-wpforcesafemode|отключите безопасный режим]], чтобы использовать CSS/JavaScript.",
 	"prefs-skin-prefs": "Настройки темы",
-	"prefs-skin-responsive": "Включить адаптивный режим",
-	"prefs-help-skin-responsive": "Адаптирует макет страницы к размеру экрана мобильного устройства.",
+	"prefs-skin-responsive": "Предпочитать мобильную версию сайта, если доступна",
+	"prefs-help-skin-responsive": "Если возможно, адаптирует макет страницы к размеру экрана мобильного устройства.",
 	"prefs-dateformat": "Формат даты",
 	"datedefault": "По умолчанию",
 	"prefs-timeoffset": "Смещение поясного времени",

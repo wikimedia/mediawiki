@@ -1846,7 +1846,6 @@
 	"scarytranscludefailed": "[Voarloocheeinbinnung für $1 ist gescheitert]",
 	"scarytranscludefailed-httpstatus": "[Voarloocheabruf fehlgeschlooht für $1: HTTP  $2]",
 	"scarytranscludetoolong": "[URL ist zu lang]",
-	"deletedwhileediting": "Achtung: Die Seit woard abgewischt, nohdem du oongefang host sie zu beoorbeite!\nIm [{{fullurl:{{#special:Log}}|type=delete&page={{FULLPAGENAMEE}}}}Abwusch-Logbuch] finnst du den Grund für die Abwischung. Wenn du die Seit speicherst, weard die nei oongeleht.",
 	"confirm_purge_button": "OK",
 	"confirm-purge-top": "Die Seit aus dem Server-Cache abwische?",
 	"confirm-purge-bottom": "Leert den Cache en Seit und erzwingt die Oonzeiche von der aktuelle Version.",
