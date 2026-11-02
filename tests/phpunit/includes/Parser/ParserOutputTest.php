@@ -1167,6 +1167,16 @@ class ParserOutputTest extends MediaWikiLangTestCase {
 		];
 		yield 'same speculative rev id' => [ $a, $b, [ 'getSpeculativeRevIdUsed' => 9 ] ];
 
+		// revision used sha1 ------------
+		yield 'only right revision sha1' => [
+			[], [ 'revisionUsedSha1Base36' => 'abc' ], [ 'getRevisionUsedSha1Base36' => 'abc' ]
+		];
+		yield 'mismatched revision sha1' => [
+			[ 'revisionUsedSha1Base36' => 'abc' ],
+			[ 'revisionUsedSha1Base36' => 'def' ],
+			[ 'getRevisionUsedSha1Base36' => '' ]
+		];
+
 		// limit report (recursive max) ------------
 		$a = [
 			'limitReportData' => [
@@ -1275,7 +1285,25 @@ class ParserOutputTest extends MediaWikiLangTestCase {
 		if ( isset( $spec['speculativeRevIdUsed'] ) ) {
 			$po->setSpeculativeRevIdUsed( $spec['speculativeRevIdUsed'] );
 		}
+		if ( isset( $spec['revisionUsedSha1Base36'] ) ) {
+			$po->setRevisionUsedSha1Base36( $spec['revisionUsedSha1Base36'] );
+		}
 		return $po;
+	}
+
+	/**
+	 * @covers \MediaWiki\Parser\ParserOutput::collectMetadata
+	 */
+	public function testCollectMetadataRevisionUsedSha1() {
+		$source = new ParserOutput();
+		$source->setOutputFlag( ParserOutputFlags::VARY_REVISION_SHA1 );
+		$source->setRevisionUsedSha1Base36( 'abc' );
+		$target = new ParserOutput();
+
+		$source->collectMetadata( $target );
+
+		$this->assertTrue( $target->getOutputFlag( ParserOutputFlags::VARY_REVISION_SHA1 ) );
+		$this->assertSame( 'abc', $target->getRevisionUsedSha1Base36() );
 	}
 
 	/**
