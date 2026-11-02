@@ -123,7 +123,7 @@ trait FactoryArgTestTrait {
 	 */
 	protected function assertInstanceReceivedParam( $instance, $name, $val ) {
 		foreach ( ( new ReflectionObject( $instance ) )->getProperties() as $prop ) {
-			if ( $prop->getValue( $instance ) === $val ) {
+			if ( $prop->isInitialized( $instance ) && $prop->getValue( $instance ) === $val ) {
 				$this->assertTrue( true );
 				return;
 			}
