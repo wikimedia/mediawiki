@@ -69,7 +69,6 @@ abstract class TitleLinksTable extends LinksTable {
 	 *
 	 * @param int $setType
 	 * @return iterable<PageReferenceValue>
-	 * @phan-return \Traversable
 	 */
 	public function getPageReferenceIterator( $setType ) {
 		$linkIds = $this->getDeduplicatedLinkIds( $setType );

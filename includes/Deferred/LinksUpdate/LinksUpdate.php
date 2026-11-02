@@ -446,7 +446,6 @@ class LinksUpdate extends DataUpdate implements TransactionRoundAwareUpdate {
 	 *   - LinksTable::OLD: The old set of links, loaded before the update
 	 *   - LinksTable::NEW: The new set of links from the ParserOutput
 	 * @return iterable<PageReferenceValue>
-	 * @phan-return \Traversable
 	 */
 	public function getPageReferenceIterator( $tableName, $setType ) {
 		$table = $this->tableFactory->get( $tableName );
