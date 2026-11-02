@@ -11,43 +11,51 @@ use Wikimedia\StaticArrayWriter;
 
 /**
  * Localisation cache storage based on PHP files and static arrays.
+ *
  * This is meant to leverage the PHP opcache and may require increasing
- * memory sizes on a production site that handles many languages routinely.
+ * opcache memory on production sites that load many extensions with
+ * extra interface messages and/or serves requests with many different
+ * languages (content languages or user languages).
  *
- * These `php.ini` settings are sufficient for some local testing, but
- * would be rather too small for Wikimedia production which has many
- * localised extensions installed.
+ * The below `php.ini` settings should suffice for local testing, but would
+ * be too small for Wikimedia Foundation production, where more extension
+ * messages and languages are loaded.
  *
- * - `opcache.memory_consumption=1024`
- * - `opcache.interned_strings_buffer=256`
- *
+ * ```
+ * ; Default: 128M
+ * opcache.memory_consumption=1024
+ * ; Default: 8M
+ * opcache.interned_strings_buffer=256
+ * ```
  *
  * As of MediaWiki 1.46, this cache backend does two important things
  * differently from the CDB backend:
  *
  * - Late fallback: tells LocalisationCache to do late fallback/merge
  *   logic at read time, reducing redundant data in the `.l10n.php` files
- *   for a slight, hard to measure runtime cost in looking up a few more
- *   arrays.
+ *   in exchange for a few more array lookups at runtime (immeasurable cost).
  *
- *   This gives a massive reduction in both disk usage and opcode cache
+ *   This gives a massive reduction in both disk usage and opcache memory
  *   usage versus pre-merging all the fallbacks: strings are already
  *   deduplicated in the opcache's string interning but const array
  *   hashmap data is not!
  *
- * - Re-assembly of split keys: the `messages` array is reconstructed
- *   to avoid duplicating the prefix 'messages:' thousands of times and
- *   make the key list cheap to load.
+ * - Drop redundant 'preload' and 'preloadMessages' data from the cache files,
+ *   because regular reads in LCStoreStaticArray are so fast that we can query
+ *   the messages individually without preloading.
  *
- * Additionally, LCStoreStaticArray silently drops the 'preload' and
- * 'preloadMessages' data duplication in each language, as it's cheap
- * to query the messages individually.
+ * - Drop redundant 'message:' prefix from message keys. Instead store messages in a
+ *   'messages' array and re-assemble the split key at read time to avoid duplicating
+ *   the 'messages:' prefix thousands of times.
  *
- * The resulting cache files are about ~80% smaller than under 1.45
+ * - Drop redundant 'list' data. This is cheaply computed by reading the keys
+ *   of the 'messages' array instead.
+ *
+ * The resulting cache files are about ~80% smaller than under MediaWiki 1.45
  * due to the drop in redundant data, and compress very well for delta
  * copies.
  *
- * Older cached data from before 1.46 is backwards-compatible on read.
+ * Older caches from MediaWiki 1.45 and older are backwards-compatible on read.
  *
  * @since 1.26
  * @ingroup Language
@@ -89,21 +97,23 @@ class LCStoreStaticArray extends LCStore {
 
 	/** @inheritDoc */
 	public function set( $key, $value ) {
+		// Optimization: Omit from storage. Cheap to recreate in get() from the keys.
 		if ( $key === 'list' ) {
-			// We will recreate this on read from the actual keys
 			unset( $value['messages'] );
 		}
+		// Optimization: Omit from storage. Preload batch not needed for array reads.
+		// Store an empty value instead of omitting the key, because
+		// LocalisationCache::initLanguage must distinguish it from a missing file.
 		if ( $key === 'preload' || $key === 'preloadedMessages' ) {
-			// We don't need this, it's cheap to query the cache.
 			$value = [];
 		}
 		$encoded = self::encode( $value );
-		$data =& $this->data[$this->currentLang];
+		// Optimization: Split key to reduce redundancy and thus file size, since MediaWiki 1.46.
 		if ( str_starts_with( $key, self::MESSAGES_PREFIX ) ) {
 			$message = substr( $key, strlen( self::MESSAGES_PREFIX ) );
-			$data['messages'][$message] = $encoded;
+			$this->data[$this->currentLang]['messages'][$message] = $encoded;
 		} else {
-			$data[$key] = $encoded;
+			$this->data[$this->currentLang][$key] = $encoded;
 		}
 	}
 
@@ -225,16 +235,15 @@ class LCStoreStaticArray extends LCStore {
 		}
 
 		if ( str_starts_with( $key, self::MESSAGES_PREFIX ) ) {
-			// Reassembled split keys are new in MediaWiki 1.46, reducing redundancy in the files.
 			$messageKey = substr( $key, strlen( self::MESSAGES_PREFIX ) );
 			$value = $data['messages'][$messageKey]
+				// Support: MediaWiki 1.45 and earlier (message keys not yet split)
 				?? $data[$key]
 				?? null;
 		} else {
 			$value = $data[$key] ?? null;
 			if ( $key === 'list' ) {
 				$value = is_array( $value ) ? self::decode( $value ) : [];
-				// No need to store per-language, we have the list
 				$value['messages'] ??= array_keys( $data['messages'] ?? [] );
 				return $value;
 			}
@@ -250,11 +259,7 @@ class LCStoreStaticArray extends LCStore {
 			if ( !is_file( $fname ) ) {
 				return false;
 			}
-			$data = require $fname;
-			if ( !is_array( $data ) ) {
-				return false;
-			}
-			$this->data[$code] = $data;
+			$this->data[$code] = require $fname;
 		}
 		return true;
 	}
