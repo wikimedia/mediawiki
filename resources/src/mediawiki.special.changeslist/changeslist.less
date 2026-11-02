@@ -53,3 +53,13 @@
 	.cdx-mixin-css-icon( @cdx-icon-merge );
 	padding: 0 2px;
 }
+
+@media only screen and ( max-width: @max-width-breakpoint-mobile ) {
+	// T443369: Widen the "show" button on mobile so it is easier to tap.
+	.mw-recentchanges-table {
+		.mw-input [ type='submit' ] {
+			margin-top: @spacing-50;
+			min-width: 80%;
+		}
+	}
+}
