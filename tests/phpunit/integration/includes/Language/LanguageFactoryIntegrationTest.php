@@ -45,6 +45,8 @@ class LanguageFactoryIntegrationTest extends MediaWikiIntegrationTestCase {
 			[ 'zh', 'zh', 'zh' ],
 			# Variant codes
 			[ 'zh-hans', 'zh-Hans', 'zh' ],
+			# Do not simply strip out the subcode
+			[ 'ike-cans', 'ike-Cans', 'iu' ],
 			# Non standard codes
 			# Unlike deprecated codes, this *are* valid internal codes and
 			# will be returned from Language::getCode()
