@@ -19,7 +19,6 @@ interface SpecialWhatLinksHereQueryHook {
 	 * of this hook.
 	 *
 	 * @since 1.43
-	 * @deprecated since 1.48, use SpecialWhatLinksHereBacklinkQueryHook instead
 	 *
 	 * @param string $table table name
 	 * @param array $data Data submitted from the form, as processed by `HTMLForm`
