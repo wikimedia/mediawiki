@@ -70,12 +70,12 @@ class DatabaseMySQL extends Database {
 	 * @param array $params
 	 */
 	public function __construct( array $params ) {
-		foreach ( [ 'KeyPath', 'CertPath', 'CAFile', 'CAPath', 'Ciphers' ] as $name ) {
-			$var = "ssl{$name}";
-			if ( isset( $params[$var] ) ) {
-				$this->$var = $params[$var];
-			}
-		}
+		$this->sslKeyPath = $params['sslKeyPath'] ?? null;
+		$this->sslCertPath = $params['sslCertPath'] ?? null;
+		$this->sslCAFile = $params['sslCAFile'] ?? null;
+		$this->sslCAPath = $params['sslCAPath'] ?? null;
+		$this->sslCiphers = $params['sslCiphers'] ?? null;
+
 		$this->utf8Mode = !empty( $params['utf8Mode'] );
 		parent::__construct( $params );
 		$this->platform = new MySQLPlatform(
