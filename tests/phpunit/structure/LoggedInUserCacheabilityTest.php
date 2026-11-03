@@ -71,6 +71,13 @@ class LoggedInUserCacheabilityTest extends MediaWikiIntegrationTestCase {
 		'growthexperiments-homepage-enable',
 	];
 
+	protected function setUp(): void {
+		parent::setUp();
+
+		// Avoid failures if CentralAuth is loaded and configured to use SUL3
+		$this->clearHook( 'AuthManagerFilterProviders' );
+	}
+
 	private static function getNonDefaultPreference( string $name, string $default = '' ): string {
 		switch ( $default ) {
 			case '1':
