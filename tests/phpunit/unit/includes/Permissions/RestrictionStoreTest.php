@@ -18,6 +18,8 @@ use MediaWiki\Page\PageStore;
 use MediaWiki\Permissions\RestrictionStore;
 use MediaWiki\Tests\Unit\DummyServicesTrait;
 use MediaWiki\Title\Title;
+use MediaWiki\User\UserIdentity;
+use MediaWiki\User\UserIdentityValue;
 use MediaWikiUnitTestCase;
 use MockTitleTrait;
 use ReflectionClass;
@@ -196,16 +198,19 @@ class RestrictionStoreTest extends MediaWikiUnitTestCase {
 				if ( $param->isOptional() ) {
 					break;
 				}
-				switch ( $param->getType()->getName() ) {
+				$type = $param->getType()->getName();
+				switch ( $type ) {
 					case 'string':
 						$ret[$method->getName()][] = 'x';
 						break;
 					case 'array':
 						$ret[$method->getName()][] = [];
 						break;
+					case UserIdentity::class:
+						$ret[$method->getName()][] = new UserIdentityValue( 1, 'Test user' );
+						break;
 					default:
-						throw new UnexpectedValueException(
-							"{$param->getType()->getName} type not supported" );
+						throw new UnexpectedValueException( "$type type not supported" );
 				}
 			}
 		}

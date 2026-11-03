@@ -218,4 +218,45 @@ class RestrictionStoreTest extends MediaWikiIntegrationTestCase {
 			$wrapper->cache[$cacheKey]
 		);
 	}
+
+	public function testSetCreateProtection() {
+		$store = $this->getServiceContainer()->getRestrictionStore();
+		$page = Title::makeTitle( NS_MAIN, 'Title protection storage test' );
+		$user = $this->getTestUser()->getUser();
+		$this->assertNull( $store->getCreateProtection( $page ) );
+		$this->assertSame( [], $store->getRestrictions( $page, 'create' ) );
+		$this->assertSame( 'infinity', $store->getRestrictionExpiry( $page, 'create' ) );
+
+		$store->setCreateProtection( $page, 'sysop', 'infinity', 'initial reason', $user );
+		$protection = $store->getCreateProtection( $page );
+		$this->assertSame( 'editprotected', $protection['permission'] );
+		$this->assertSame( 'infinity', $protection['expiry'] );
+		$this->assertSame( 'initial reason', $protection['reason'] );
+		$this->assertSame( $user->getId(), (int)$protection['user'] );
+		$this->assertSame( [ 'sysop' ], $store->getRestrictions( $page, 'create' ) );
+		$this->assertSame( 'infinity', $store->getRestrictionExpiry( $page, 'create' ) );
+
+		$expiry = wfTimestamp( TS_MW, time() + 86400 );
+		$store->setCreateProtection( $page, 'autoconfirmed', $expiry, 'updated reason', $user );
+		$protection = $store->getCreateProtection( $page );
+		$this->assertSame( 'editsemiprotected', $protection['permission'] );
+		$this->assertSame( $expiry, $protection['expiry'] );
+		$this->assertSame( 'updated reason', $protection['reason'] );
+		$this->assertSame( [ 'autoconfirmed' ], $store->getRestrictions( $page, 'create' ) );
+		$this->assertSame( $expiry, $store->getRestrictionExpiry( $page, 'create' ) );
+
+		$store->setCreateProtection( $page, '', '', '', $user );
+		$this->assertNull( $store->getCreateProtection( $page ) );
+		$this->assertSame( [], $store->getRestrictions( $page, 'create' ) );
+		$this->assertSame( 'infinity', $store->getRestrictionExpiry( $page, 'create' ) );
+		$this->assertFalse( $page->exists() );
+	}
+
+	public function testSetCreateProtectionRejectsExistingPage() {
+		$page = $this->getExistingTestPage();
+		$this->expectException( \InvalidArgumentException::class );
+		$this->getServiceContainer()->getRestrictionStore()->setCreateProtection(
+			$page, 'sysop', 'infinity', '', $this->getTestUser()->getUser()
+		);
+	}
 }

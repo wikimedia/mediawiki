@@ -2165,43 +2165,26 @@ class WikiPage implements Stringable, Page, PageRecord {
 					];
 				}
 			}
+
+			$restrictionStore->flushRestrictions( $this->mTitle );
+
 		} else { // Protection of non-existing page (also known as "title protection")
 			// Cascade protection is meaningless in this case
 			$cascade = false;
 
+			$restrictionStore->setCreateProtection(
+				$this->mTitle, $limit['create'], $expiry['create'], $reason, $user
+			);
 			if ( $limit['create'] != '' ) {
-				$commentFields = $services->getCommentStore()->insert( $dbw, 'pt_reason', $reason );
-				$dbw->newReplaceQueryBuilder()
-					->table( 'protected_titles' )
-					->uniqueIndexFields( [ 'pt_namespace', 'pt_title' ] )
-					->row( [
-						'pt_namespace' => $this->mTitle->getNamespace(),
-						'pt_title' => $this->mTitle->getDBkey(),
-						'pt_create_perm' => $limit['create'],
-						'pt_timestamp' => $dbw->timestamp(),
-						'pt_expiry' => $dbw->encodeExpiry( $expiry['create'] ),
-						'pt_user' => $user->getId(),
-					] + $commentFields )
-					->caller( __METHOD__ )->execute();
 				$logParamsDetails[] = [
 					'type' => 'create',
 					'level' => $limit['create'],
 					'expiry' => $expiry['create'],
 				];
-			} else {
-				$dbw->newDeleteQueryBuilder()
-					->deleteFrom( 'protected_titles' )
-					->where( [
-						'pt_namespace' => $this->mTitle->getNamespace(),
-						'pt_title' => $this->mTitle->getDBkey()
-					] )
-					->caller( __METHOD__ )->execute();
 			}
 		}
 
 		$this->getHookRunner()->onArticleProtectComplete( $this, $legacyUser, $limit, $reason );
-
-		$restrictionStore->flushRestrictions( $this->mTitle );
 
 		InfoAction::invalidateCache( $this->mTitle );
 

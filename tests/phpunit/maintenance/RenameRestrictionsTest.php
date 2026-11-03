@@ -29,16 +29,21 @@ class RenameRestrictionsTest extends MaintenanceBaseTestCase {
 			[ 'create' => 'autoconfirmedb' ], [ 'create' => 'infinity' ], $cascade, 'Test',
 			$this->getTestUser()->getUserIdentity()
 		);
+
 		// Run the maintenance script to rename 'autoconfirmedb' to 'autoconfirmed'
 		$this->maintenance->setArg( 'oldlevel', 'autoconfirmedb' );
 		$this->maintenance->setArg( 'newlevel', 'autoconfirmed' );
 		$this->maintenance->execute();
+
 		// Verify that the protection restriction has been appropriately renamed.
 		$restrictionStore = $this->getServiceContainer()->getRestrictionStore();
 		$this->assertArrayEquals(
 			[ 'autoconfirmed' ],
 			$restrictionStore->getRestrictions( $existingTestPage, 'edit' )
 		);
+		// RestrictionStore::setCreateProtection() populates the create protection cache,
+		// which doesn't clear or update since the maintenance script writes to the DB directly.
+		$restrictionStore->flushRestrictions( $nonExistingTestPage );
 		$this->assertArrayEquals(
 			[ 'autoconfirmed' ],
 			$restrictionStore->getRestrictions( $nonExistingTestPage, 'create' )
