@@ -211,20 +211,19 @@ class LanguageFactory {
 				$this->parentLangCache[$code] = null;
 				return null;
 			}
-			// Optimization: Avoid creating all converters just to find the parent (T443175)
 			$codeBase = explode( '-', $code )[0];
+			// Optimization: Avoid creating all converters just to find the parent (T443175)
+			//
+			// We must intersect for historical reasons, because there is a discrepancy:
+			// * getParentLanguage considers languages with a converter as their own parent,
+			//   but languages without converters as having no parent.
+			// * LanguageConverter::getLanguageConverter always returns a converter,
+			//   defaulting to TrivialLanguageConverter where TrivialLanguageConverter::hasVariant
+			//   considers the language as always having itself as a variant.
 			$fallbacks = array_intersect( [
 				// Example: "uz-latn" to "uz", which isn't a registered language on its own
 				$codeBase,
 				// Example: "ike-cans" to "iu"
-				//
-				// For historical reasons there is a discrepancy where:
-				// * getParentLanguage considers languages with converters their own parent,
-				//   but languages without converters as having no parent.
-				// * LanguageConverter::getLanguageConverter always returns a converter,
-				//   defaulting to TrivialLanguageConverter where
-				//   TrivialLanguageConverter::hasVariant considers the language as always
-				//   having itself as a variant.
 				...$this->langFallback->getAll( $code )
 			], LanguageConverter::$languagesWithVariants );
 			foreach ( $fallbacks as $fallbackCode ) {
