@@ -13,7 +13,7 @@ namespace MediaWiki\ChangeTags\Event;
  * event type 'LogTagsUpdated', see LogTagsUpdatedEvent::TYPE.
  *
  * @see LogTagsUpdatedEvent
- * @since 1.47
+ * @since 1.48
  * @unstable
  */
 interface LogTagsUpdatedListener {

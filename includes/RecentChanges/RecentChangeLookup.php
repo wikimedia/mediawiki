@@ -41,7 +41,7 @@ interface RecentChangeLookup {
 	 *
 	 * MCR migration note: this replaced Revision::getRecentChange
 	 *
-	 * @since 1.47
+	 * @since 1.48
 	 *
 	 * @param RevisionRecord $rev
 	 * @param int $flags (optional) $flags include:

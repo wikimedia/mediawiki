@@ -38,7 +38,7 @@ use Wikimedia\Timestamp\ConvertibleTimestamp;
  *
  * @see ChangeTagsStore::updateTags()
  *
- * @since 1.47
+ * @since 1.48
  * @unstable
  */
 abstract class EntityTagsUpdatedEvent extends DomainEvent {

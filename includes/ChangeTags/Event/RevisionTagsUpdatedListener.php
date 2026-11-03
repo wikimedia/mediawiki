@@ -13,7 +13,7 @@ namespace MediaWiki\ChangeTags\Event;
  * event type 'RevisionTagsUpdated', see RevisionTagsUpdatedEvent::TYPE.
  *
  * @see RevisionTagsUpdatedEvent
- * @since 1.47
+ * @since 1.48
  * @unstable
  */
 interface RevisionTagsUpdatedListener {

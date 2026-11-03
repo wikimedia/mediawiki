@@ -1041,7 +1041,7 @@ class RevisionStore implements RevisionFactory, RevisionLookup, LoggerAwareInter
 	/**
 	 * MCR migration note: this replaced Revision::isUnpatrolled
 	 *
-	 * @deprecated since 1.47, use RecentChangeLookup::getRecentChangeByRevision() and check rc_patrolled instead
+	 * @deprecated since 1.48, use RecentChangeLookup::getRecentChangeByRevision() and check rc_patrolled instead
 	 *
 	 * @param RevisionRecord $rev
 	 *
@@ -1065,8 +1065,8 @@ class RevisionStore implements RevisionFactory, RevisionLookup, LoggerAwareInter
 	 *
 	 * MCR migration note: this replaced Revision::getRecentChange
 	 *
-	 * @deprecated since 1.47, use RecentChangeLookup::getRecentChangeByRevision() instead
-	 * @todo This should be safe to remove in 1.48.
+	 * @deprecated since 1.48, use RecentChangeLookup::getRecentChangeByRevision() instead
+	 * @todo This should be safe to remove in 1.49.
 	 *   MediaWikiServices::getInstance()->getRecentChangeLookup() is acceptable as a transitional compromise.
 	 *
 	 * @param RevisionRecord $rev
@@ -1076,7 +1076,7 @@ class RevisionStore implements RevisionFactory, RevisionLookup, LoggerAwareInter
 	 * @return null|RecentChange
 	 */
 	public function getRecentChange( RevisionRecord $rev, $flags = 0 ) {
-		wfDeprecated( __METHOD__, '1.47' );
+		wfDeprecated( __METHOD__, '1.48' );
 
 		if ( $this->wikiId !== RevisionRecord::LOCAL ) {
 			throw new PreconditionException( 'RecentChangeLookup is only available for the local wiki' );
