@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\FileRepo\File\File;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Media\WebPHandler;
 
@@ -7,6 +8,11 @@ use MediaWiki\Media\WebPHandler;
  * @covers \MediaWiki\Media\WebPHandler
  */
 class WebPHandlerTest extends MediaWikiMediaTestCase {
+
+	/** @inheritDoc */
+	protected function createsThumbnails() {
+		return true;
+	}
 
 	/**
 	 * @dataProvider provideTestExtractMetaData
@@ -353,6 +359,24 @@ class WebPHandlerTest extends MediaWikiMediaTestCase {
 				[ __DIR__ . '/../../data/media/2_webp_ll.webp' ],
 				[ __DIR__ . '/../../data/media/webp_animated.webp' ],
 		];
+	}
+
+	public function testGdThumbnailIsWebP() {
+		if ( !function_exists( 'imagewebp' ) ) {
+			$this->markTestSkipped( 'GD has no WebP support' );
+		}
+		$this->overrideConfigValues( [
+			MainConfigNames::UseImageMagick => false,
+			MainConfigNames::CustomConvertCommand => false,
+		] );
+
+		$file = $this->dataFile( '2_webp_a.webp', 'image/webp' );
+		$thumb = $file->transform( [ 'width' => 100 ], File::RENDER_NOW | File::RENDER_FORCE );
+		$this->assertFalse( $thumb->isError() );
+
+		$header = file_get_contents( $thumb->getLocalCopyPath(), false, null, 0, 12 );
+		$this->assertSame( 'RIFF', substr( $header, 0, 4 ) );
+		$this->assertSame( 'WEBP', substr( $header, 8, 4 ) );
 	}
 
 	/**
