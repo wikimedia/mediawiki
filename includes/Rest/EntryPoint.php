@@ -70,11 +70,16 @@ class EntryPoint extends MediaWikiEntryPoint {
 
 		// NOTE: Use preferred language, see getTextFormatters().
 		$defaultTextFormatter = array_first( $textFormatters );
+		$articleUrl = $services->getUrlUtils()->expand( $conf->get( MainConfigNames::ArticlePath ) );
+		Assert::postcondition( $articleUrl !== null, 'ArticlePath setting must produce a valid URL' );
+
+		$markdownTextFormatter = new MarkdownFormatter( $defaultTextFormatter, $articleUrl );
+		$jsonLocalizer = new JsonLocalizer( $markdownTextFormatter );
 		$moduleManager = new ModuleManager(
 			new ServiceOptions( ModuleManager::CONSTRUCTOR_OPTIONS, $conf ),
 			ExtensionRegistry::getInstance()->getAttribute( 'RestModuleFiles' ),
 			$services->getLocalServerObjectCache(),
-			new JsonLocalizer( $defaultTextFormatter )
+			$jsonLocalizer
 		);
 
 		return ( new Router(
@@ -92,6 +97,7 @@ class EntryPoint extends MediaWikiEntryPoint {
 			$services->getHookContainer(),
 			$context->getRequest()->getSession(),
 			$services->getUrlUtils(),
+			$jsonLocalizer,
 		) )
 			->setCors( $cors )
 			->setStats( $stats );
