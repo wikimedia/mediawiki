@@ -7835,7 +7835,7 @@ config-schema:
             The same as above, but here values are class names or ObjectFactory specifications,
             not messages. The specification must resolve to a LogFormatter subclass,
             and will receive the LogEntry object as its first constructor argument.
-            The type can be specified as '*' (e.g. 'block/*') to handle all types.
+            The type can be specified as '*' (e.g. `block/*`) to handle all types.
             @see \MediaWiki\Logging\LogPage::actionText
             @see \MediaWiki\Logging\LogFormatter
     ActionFilteredLogs:
@@ -8537,7 +8537,7 @@ config-schema:
                 ],
               ],
             ];
-            @encdode
+            @endcode
             @since 1.44
     UseLeximorph:
         default: false
