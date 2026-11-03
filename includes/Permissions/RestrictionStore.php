@@ -18,6 +18,7 @@ use MediaWiki\Page\PageIdentityValue;
 use MediaWiki\Page\PageStore;
 use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleValue;
+use MediaWiki\User\UserIdentity;
 use stdClass;
 use Wikimedia\ObjectCache\WANObjectCache;
 use Wikimedia\Rdbms\DBAccessObjectUtils;
@@ -167,6 +168,52 @@ class RestrictionStore {
 			}
 		}
 		return $protection;
+	}
+
+	/**
+	 * Store title protection for a page without a page row, including shadow pages.
+	 * The caller is responsible for authorization, validation and logging.
+	 *
+	 * @since 1.47
+	 * @param PageIdentity $page Must be local and not exist in the page table
+	 * @param string $level Protection level, or an empty string to remove protection
+	 * @param string $expiry 14-digit timestamp or 'infinity'
+	 * @param string $reason Reason for protection
+	 * @param UserIdentity $user User applying the protection
+	 */
+	public function setCreateProtection(
+		PageIdentity $page, string $level, string $expiry, string $reason, UserIdentity $user
+	): void {
+		$page->assertWiki( PageIdentity::LOCAL );
+		if ( !$page->canExist() || $page->exists() ) {
+			throw new \InvalidArgumentException( 'Title protection requires a non-existing page' );
+		}
+		if ( $level === '' ) {
+			$this->deleteCreateProtection( $page );
+		} else {
+			$dbw = $this->loadBalancerFactory->getPrimaryDatabase();
+			$commentFields = $this->commentStore->insert( $dbw, 'pt_reason', $reason );
+			$dbw->newReplaceQueryBuilder()
+				->table( 'protected_titles' )
+				->uniqueIndexFields( [ 'pt_namespace', 'pt_title' ] )
+				->row( [
+					'pt_namespace' => $page->getNamespace(),
+					'pt_title' => $page->getDBkey(),
+					'pt_create_perm' => $level,
+					'pt_timestamp' => $dbw->timestamp(),
+					'pt_expiry' => $dbw->encodeExpiry( $expiry ),
+					'pt_user' => $user->getId(),
+				] + $commentFields )
+				->caller( __METHOD__ )->execute();
+		}
+		$this->cache[CacheKeyHelper::getKeyForPage( $page )] = [
+			'create_protection' => $level === '' ? null : [
+				'user' => $user->getId(),
+				'expiry' => $expiry,
+				'permission' => $level,
+				'reason' => $reason
+			]
+		];
 	}
 
 	/**
