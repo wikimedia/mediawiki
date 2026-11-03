@@ -1658,6 +1658,9 @@ class Article implements Page {
 
 		$this->getHookRunner()->onShowMissingArticle( $this );
 
+		$oldid = $this->getOldID();
+		$shadowPage = $oldid ? null : $this->shadowPageLoader->get( $title );
+
 		# Show delete and move logs if there were any such events.
 		# The logging query can DOS the site when bots/crawlers cause 404 floods,
 		# so be careful showing this. 404 pages must be cheap as they are hard to cache.
@@ -1666,7 +1669,9 @@ class Article implements Page {
 		$isRegistered = $contextUser->isRegistered();
 		$sessionExists = $context->getRequest()->getSession()->isPersistent();
 
-		if ( $isRegistered || $dbCache->get( $key ) || $sessionExists ) {
+		if ( ( !$shadowPage || $shadowPage->shouldShowLogExtract() )
+			&& ( $isRegistered || $dbCache->get( $key ) || $sessionExists )
+		) {
 			$logTypes = [ 'delete', 'move', 'protect', 'merge' ];
 
 			$dbr = $this->dbProvider->getReplicaDatabase();
@@ -1709,9 +1714,8 @@ class Article implements Page {
 		}
 
 		// Try shadow page
-		$oldid = $this->getOldID();
-		if ( !$oldid ) {
-			$view = $this->shadowPageLoader->get( $this->getTitle() )?->getView( $this->getParserOptions() );
+		if ( $shadowPage ) {
+			$view = $shadowPage->getView( $this->getParserOptions() );
 			if ( $view ) {
 				$outputPage->addParserOutputContent(
 					$view->getParserOutput(), $view->getParserOptions() );

@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\Context\RequestContext;
+use MediaWiki\Logging\ManualLogEntry;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MainConfigSchema;
 use MediaWiki\Message\Message;
@@ -10,6 +11,8 @@ use MediaWiki\Parser\ParserCacheFactory;
 use MediaWiki\Parser\ParserOptions;
 use MediaWiki\Parser\ParserOutput;
 use MediaWiki\Request\FauxRequest;
+use MediaWiki\ShadowPage\BaseShadowPage;
+use MediaWiki\ShadowPage\ShadowPageLoader;
 use MediaWiki\Status\Status;
 use MediaWiki\Tests\Parser\ParserCacheTestBase;
 use MediaWiki\Title\Title;
@@ -74,6 +77,49 @@ class ArticleTest extends ParserCacheTestBase {
 			strip_tags( Message::newFromKey( 'uploadedimage' )->parse() ),
 			strip_tags( $output->getHTML() )
 		);
+	}
+
+	/**
+	 * @covers \MediaWiki\Page\Article::showMissingArticle
+	 * @covers \MediaWiki\ShadowPage\BaseShadowPage::shouldShowLogExtract
+	 * @dataProvider provideShadowPageLogExtract
+	 */
+	public function testShadowPageLogExtract( ?bool $showLog, bool $oldRevision, bool $expected ) {
+		$title = Title::makeTitle( NS_MAIN, 'Shadow page log test' );
+		$shadowPage = $showLog === null ? null : $this->createMock( BaseShadowPage::class );
+		if ( $shadowPage ) {
+			$shadowPage->method( 'shouldShowLogExtract' )->willReturn( $showLog );
+		}
+		$loader = $this->createMock( ShadowPageLoader::class );
+		$loader->method( 'get' )->willReturn( $shadowPage );
+		$this->setService( 'ShadowPageLoader', $loader );
+		$log = new ManualLogEntry( 'protect', 'unprotect' );
+		$log->setTarget( $title );
+		$log->setPerformer( $this->getTestSysop()->getUser() );
+		$log->setComment( 'Shadow page log comment' );
+		$log->insert();
+		$article = $this->newArticle( $title );
+		if ( $oldRevision ) {
+			$article->getContext()->setRequest( new FauxRequest( [ 'oldid' => 123456789 ] ) );
+		}
+		$logHookCalled = false;
+		$this->setTemporaryHook( 'Article::MissingArticleConditions', static function () use ( &$logHookCalled ) {
+			$logHookCalled = true;
+		} );
+		$article->showMissingArticle();
+		$this->assertSame( $expected, $logHookCalled );
+		$this->assertSame( $expected,
+			str_contains( $article->getContext()->getOutput()->getHTML(), 'Shadow page log comment' ) );
+		$this->assertTrue( ( new BaseShadowPage() )->shouldShowLogExtract() );
+	}
+
+	public static function provideShadowPageLogExtract() {
+		return [
+			'no shadow page' => [ null, false, true ],
+			'shadow page with log extract' => [ true, false, true ],
+			'shadow page without log extract' => [ false, false, false ],
+			'missing revision still shows logs' => [ false, true, true ],
+		];
 	}
 
 	/**

@@ -32,6 +32,10 @@ class BaseShadowPage implements ShadowPage {
 		return null;
 	}
 
+	public function shouldShowLogExtract(): bool {
+		return true;
+	}
+
 	public function getView( ParserOptions $parserOptions ): ?ShadowPageView {
 		return null;
 	}
