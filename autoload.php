@@ -2975,6 +2975,7 @@ $wgAutoloadLocalClasses = [
 	'MediaWiki\\Rest\\JsonFileLoaderTrait' => __DIR__ . '/includes/Rest/JsonFileLoaderTrait.php',
 	'MediaWiki\\Rest\\JsonLocalizer' => __DIR__ . '/includes/Rest/JsonLocalizer.php',
 	'MediaWiki\\Rest\\LocalizedHttpException' => __DIR__ . '/includes/Rest/LocalizedHttpException.php',
+	'MediaWiki\\Rest\\MarkdownFormatter' => __DIR__ . '/includes/Rest/MarkdownFormatter.php',
 	'MediaWiki\\Rest\\Module\\AudienceDesignation' => __DIR__ . '/includes/Rest/Module/AudienceDesignation.php',
 	'MediaWiki\\Rest\\Module\\ExtraRoutesModule' => __DIR__ . '/includes/Rest/Module/ExtraRoutesModule.php',
 	'MediaWiki\\Rest\\Module\\MatcherBasedModule' => __DIR__ . '/includes/Rest/Module/MatcherBasedModule.php',

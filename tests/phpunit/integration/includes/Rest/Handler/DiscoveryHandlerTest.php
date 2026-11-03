@@ -7,6 +7,7 @@ use MediaWiki\Config\ServiceOptions;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Rest\BasicAccess\StaticBasicAuthorizer;
 use MediaWiki\Rest\Handler\DiscoveryHandler;
+use MediaWiki\Rest\JsonLocalizer;
 use MediaWiki\Rest\Module\ModuleAvailability;
 use MediaWiki\Rest\Reporter\MWErrorReporter;
 use MediaWiki\Rest\RequestData;
@@ -88,6 +89,7 @@ class DiscoveryHandlerTest extends MediaWikiIntegrationTestCase {
 			$services->getHookContainer(),
 			$this->getSession( true ),
 			$services->getUrlUtils(),
+			new JsonLocalizer( $formatter ),
 		) );
 	}
 

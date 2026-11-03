@@ -23,7 +23,10 @@ interface ITextFormatter {
 	/**
 	 * Convert a MessageSpecifier to text.
 	 *
-	 * The result is not safe for use as raw HTML.
+	 * The result is generally not safe for use as raw HTML.
+	 * It could be wikitext, a plain string, raw HTML, or something else,
+	 * depending on the semantics associated with the given message spec
+	 * and the concrete implementation of this method.
 	 *
 	 * @param MessageSpecifier $message
 	 * @return string

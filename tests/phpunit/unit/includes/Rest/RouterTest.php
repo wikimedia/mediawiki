@@ -75,6 +75,7 @@ class RouterTest extends MediaWikiUnitTestCase {
 		$config = [
 			MainConfigNames::CanonicalServer => self::CANONICAL_SERVER,
 			MainConfigNames::InternalServer => self::INTERNAL_SERVER,
+			MainConfigNames::ArticlePath => '/wiki/$1',
 			MainConfigNames::RestPath => '/rest',
 			MainConfigNames::ScriptPath => '/w'
 		];

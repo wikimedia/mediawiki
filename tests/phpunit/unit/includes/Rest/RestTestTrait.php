@@ -162,6 +162,7 @@ trait RestTestTrait {
 		$config = ( $params['config'] ?? [] ) + [
 			MainConfigNames::CanonicalServer => 'https://wiki.example.com',
 			MainConfigNames::InternalServer => 'http://api.local:8080',
+			MainConfigNames::ArticlePath => '/wiki/$1',
 			MainConfigNames::RestPath => '/rest',
 			MainConfigNames::ScriptPath => '/w',
 			MainConfigNames::RightsUrl => 'https://rights.url',
@@ -193,7 +194,8 @@ trait RestTestTrait {
 			$params['session'] ?? $this->getSession( true ),
 			$params['urlUtils'] ?? new UrlUtils( [
 				UrlUtils::SERVER => $config[MainConfigNames::CanonicalServer] ?? 'https://wiki.example.com',
-			] )
+			] ),
+			$params['jsonLocalizer'] ?? new JsonLocalizer( array_first( $textFormatters ) )
 		);
 	}
 

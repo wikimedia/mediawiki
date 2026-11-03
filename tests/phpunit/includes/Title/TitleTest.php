@@ -1628,6 +1628,7 @@ class TitleTest extends MediaWikiIntegrationTestCase {
 	public static function provideGetFragmentForURL() {
 		return [
 			[ 'Foo', '' ],
+			[ 'Foo#bar#baz', '#bar#baz' ],
 			[ 'Foo#ümlåût', '#ümlåût' ],
 			[ 'de:Foo#Bå®', '#Bå®' ],
 			[ 'zz:Foo#тест', '#.D1.82.D0.B5.D1.81.D1.82' ],

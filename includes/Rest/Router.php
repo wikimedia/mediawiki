@@ -105,6 +105,7 @@ class Router {
 	 * @param HookContainer $hookContainer
 	 * @param Session $session
 	 * @param UrlUtils $urlUtils
+	 * @param JsonLocalizer $jsonLocalizer Used to localize the spec of the modules it instantiates.
 	 * @internal
 	 */
 	public function __construct(
@@ -122,6 +123,7 @@ class Router {
 		private readonly HookContainer $hookContainer,
 		private readonly Session $session,
 		private readonly UrlUtils $urlUtils,
+		private readonly JsonLocalizer $jsonLocalizer,
 	) {
 		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
 
@@ -661,18 +663,12 @@ class Router {
 	}
 
 	private function instantiateModule( array $info, string $name ): Module {
-		// NOTE: $this->textFormatters are in the order of preference.
-		//       See EntryPoint::getTextFormaters().
-		//       Use the first one.
-		$defaultFormatter = array_first( $this->textFormatters );
-		$jsonLocalizer = new JsonLocalizer( $defaultFormatter );
-
 		if ( $info['class'] === SpecBasedModule::class ) {
 			$module = new SpecBasedModule(
 				$info['specFile'],
 				$this,
 				$info['pathPrefix'] ?? $name,
-				$jsonLocalizer,
+				$this->jsonLocalizer,
 				$this->basicAuth,
 				$this->objectFactory,
 				$this->restValidator,
@@ -684,7 +680,7 @@ class Router {
 				$info['routeFiles'] ?? [],
 				$info['extraRoutes'] ?? [],
 				$this,
-				$jsonLocalizer,
+				$this->jsonLocalizer,
 				$this->basicAuth,
 				$this->objectFactory,
 				$this->restValidator,

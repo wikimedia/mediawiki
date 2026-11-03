@@ -10,6 +10,7 @@ use MediaWiki\Rest\ErrorFormatterV1;
 use MediaWiki\Rest\ErrorFormatterV2;
 use MediaWiki\Rest\Handler;
 use MediaWiki\Rest\Handler\ModuleSpecHandler;
+use MediaWiki\Rest\JsonLocalizer;
 use MediaWiki\Rest\LocalizedHttpException;
 use MediaWiki\Rest\Module\Module;
 use MediaWiki\Rest\Module\ModuleAvailability;
@@ -77,6 +78,7 @@ class ModuleSpecHandlerTest extends MediaWikiIntegrationTestCase {
 			$services->getHookContainer(),
 			$this->getSession( true ),
 			$services->getUrlUtils(),
+			new JsonLocalizer( $formatter ),
 		) );
 	}
 
