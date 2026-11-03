@@ -42,6 +42,13 @@ interface ShadowPage {
 	public function getDiffTitleMessage(): ?MessageSpecifier;
 
 	/**
+	 * Whether to show the missing-page log extract above this shadow page's view.
+	 * Return false when the shadow page provides its own content and the standard
+	 * notice that the page does not exist would be misleading.
+	 */
+	public function shouldShowLogExtract(): bool;
+
+	/**
 	 * Get page view content, or null to decline to provide such content.
 	 */
 	public function getView( ParserOptions $parserOptions ): ?ShadowPageView;
