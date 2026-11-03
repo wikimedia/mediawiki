@@ -41,7 +41,8 @@
 			"Olimasy",
 			"Samuel Kiongo",
 			"Mindofluqman",
-			"Fredrick Kafuka"
+			"Fredrick Kafuka",
+			"PrinceAzuka134"
 		]
 	},
 	"sunday": "Jumapili",
@@ -1706,6 +1707,7 @@
 	"contributions-title": "Michango ya mtumiaji $1",
 	"mycontris": "Michango",
 	"anoncontribs": "Michango",
+	"contributions-edit-count": "Mtumiaji wa {{GENDER:$1|}} mwenye $2 {{PLURAL:$2|hariri|marekebisho}}.",
 	"nocontribs": "Hakuna mabadiliko yaliyopatikana yanayolingana na vigezo hivi.",
 	"uctop": "ya kisasa",
 	"month": "Kutoka mwezi (na zamani zaidi):",

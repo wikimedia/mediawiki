@@ -4411,5 +4411,5 @@
 	"temp-user-unable-to-acquire": "Impossible d'acquérir un nom d'utilisateur temporaire. S'il vous plaît, réessayez.",
 	"table-of-contents-show-button-aria-label": "Afficher le sommaire",
 	"table-of-contents-hide-button-aria-label": "Masquer la table des matières",
-	"mypage-disallowed-action": "Pour des raisons de sécurité, l'action \"$1\" ne peut pas être utilisé sur la page Special:MyPage"
+	"mypage-disallowed-action": "Pour des raisons de sécurité, l'action « $1 » ne peut pas être utilisé sur la page Special:MyPage"
 }

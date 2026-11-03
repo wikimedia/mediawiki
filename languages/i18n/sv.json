@@ -4141,5 +4141,6 @@
 	"benefit-3-description": "Inställningar som låter dig anpassa din upplevelse.",
 	"temp-user-unable-to-acquire": "Kunde inte skaffa ett användarnamn för det tillfälliga kontot. Var god försök igen.",
 	"table-of-contents-show-button-aria-label": "Visa innehållsförteckningen",
-	"table-of-contents-hide-button-aria-label": "Dölj innehållsförteckningen"
+	"table-of-contents-hide-button-aria-label": "Dölj innehållsförteckningen",
+	"mypage-disallowed-action": "Av säkerhetsskäl kan åtgärden \"$1\" inte användas på sidan Special:MyPage."
 }
