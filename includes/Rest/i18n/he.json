@@ -274,6 +274,7 @@
 	"rest-endpoint-desc-post-page": "יוצרת דף.",
 	"rest-endpoint-desc-post-move": "מעבירה את (משנה את השם של) הדף.",
 	"rest-endpoint-desc-post-move-title": "מעבירה את (משנה את השם של) הדף לפי כותרת.",
+	"rest-endpoint-desc-get-page-title-backlinks": "רושמת את הדפים שמקשרים לדף הזה",
 	"rest-endpoint-desc-get-page-title": "מחזירה מידע על דף, כולל מקור הדף, בדרך כלל בקוד ויקי.",
 	"rest-endpoint-desc-put-page-title": "עורכת דף על סמך מזהה הגרסה האחרון של הדף, או יוצרת דף אם לא ניתן מזהה גרסה. אם ישנה התנגשות מיזוג, ה־API מנסה לפתור את ההתנגשות באופן אוטומטי. אם לא ניתן לפתור את התנגשות העריכה, ה־API מחזיר שגיאת 409.",
 	"rest-endpoint-desc-get-page-title-html": "מחזירה את התוכן של דף ב־HTML.",
@@ -375,5 +376,13 @@
 	"rest-openapispec-genericerrorresponse-desc": "תשובת שגיאה כללית. ההודעה תספק פרטים נוספים על השגיאה.",
 	"rest-openapispec-genericerrorresponse-property-desc-httpCode": "קוד המצב של HTTP של תשובת השגיאה.",
 	"rest-openapispec-genericerrorresponse-property-desc-message": "הודעת שגיאה קריאה על־ידי בני אדם, שימושית כאשר אין תרגומי הודעות זמינים",
-	"rest-openapispec-genericerrorresponse-property-desc-messageTranslations": "מפה של קודי שפה להודעות שגיאה קריאות על־ידי בני אדם, עבור לקוחות שיכולים להשתמש בהן."
+	"rest-openapispec-genericerrorresponse-property-desc-messageTranslations": "מפה של קודי שפה להודעות שגיאה קריאות על־ידי בני אדם, עבור לקוחות שיכולים להשתמש בהן.",
+	"rest-openapispec-genericerrorresponse-v2-desc": "תשובת במקרה שגיאה של מודולים שמשתמשים בגרסה 2.0 של תסדיר השגיאה.",
+	"rest-openapispec-genericerrorresponse-restbasecompat-desc": "תשובת במקרה שגיאה בתסדיר תואם RESTBase, מוחזרת כשלבקשה יש כותר \"x-restbase-compat: true\".",
+	"rest-openapispec-genericerrorresponse-property-desc-httpReason": "משפט הסיבה התקני של קוד מצב HTTP, למשל \"לא נמצא\".",
+	"rest-openapispec-genericerrorresponse-property-desc-errorKey": "מפתח ההודעה שמזהה את השגיאה. זמין רק לשגיאות מתורגמות.",
+	"rest-openapispec-genericerrorresponse-property-desc-reqId": "מזהה הבקשה. קיים רק עבור שגיאות שרת; יש לכלול אותו בעת דיווח השגיאה.",
+	"rest-openapispec-genericerrorresponse-property-desc-exception": "פרטים מובנים של החריג שגרם לשגיאה. קיימים רק כאשר הוויקי מוגדר להציג פרטי חריג.",
+	"rest-openapispec-genericerrorresponse-property-desc-errorCode": "קוד קריא על־ידי מכונה שמזהה את השגיאה. קיים רק עבור שגיאות מקומיות.",
+	"rest-openapispec-genericerrorresponse-property-desc-tracing": "מידע אבחוני על הבקשה, שימושי בעת דיווח על השגיאה. מכיל תמיד את \"module\", ויכול להכיל את \"request_id\"‏, \"method\"‏, \"uri\" ו־\"url\". תוכן העצם אינו חלק מחוזה ה־API ועשוי להשתנות בכל עת."
 }

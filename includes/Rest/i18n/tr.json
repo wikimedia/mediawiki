@@ -9,7 +9,8 @@
 			"MuratTheTurkish",
 			"SaldırganSincap",
 			"Slickdaddy",
-			"Stonecy"
+			"Stonecy",
+			"Rumixist"
 		]
 	},
 	"rest-prefix-mismatch": "İstenen yol ($1), REST API temel yolunun ($2) içinde değildi",
@@ -99,6 +100,7 @@
 	"rest-module-default": "Varsayılan Modül",
 	"rest-module-extra-routes-title": "MediaWiki REST API",
 	"rest-module-extra-routes-desc": "Bir modülle ilişkilendirilmemiş REST uç noktaları",
+	"rest-sandbox-server-production": "(Üretim)",
 	"rest-module-specs.v0-title": "Özellikler API'si",
 	"rest-module-specs.v0-desc": "Mevcut tüm modüller için keşif, özellikler ve şemalar sağlayan öz-belgeleme modülü.",
 	"rest-module-content.v1-title": "İçerik API'si",

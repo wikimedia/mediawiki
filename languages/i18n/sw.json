@@ -41,7 +41,8 @@
 			"Yasen igra",
 			"Zaza3939",
 			"לערי ריינהארט",
-			"아라"
+			"아라",
+			"PrinceAzuka134"
 		]
 	},
 	"pagecategories": "{{PLURAL:$1|Jamii}}",
@@ -1452,6 +1453,7 @@
 	"contributions-title": "{{GENDER:$2| Mtumiaji}} michango ya $1",
 	"mycontris": "Michango",
 	"anoncontribs": "Michango",
+	"contributions-edit-count": "Mtumiaji wa {{GENDER:$1|}} mwenye $2 {{PLURAL:$2|hariri|marekebisho}}.",
 	"nocontribs": "Hakuna mabadiliko yaliyopatikana yanayolingana na vigezo hivi.",
 	"uctop": "ya kisasa",
 	"month": "Kutoka mwezi (na zamani zaidi):",

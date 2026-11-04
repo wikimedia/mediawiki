@@ -32,6 +32,7 @@
 	"botpasswords-bad-appid": "O nome de robô \"$1\" não é válido.",
 	"botpasswords-toolong-restrictions": "Existem muitos endereços IP ou intervalos inseridos.",
 	"botpasswords-toolong-grants": "Existem muitas concessões selecionadas.",
+	"botpasswords-too-many": "Você atingiu o limite máximo de $1 {{PLURAL:$1|senha de robô|senhas de robô}}. Elimine algumas das senhas de robô existentes antes de criar novas.",
 	"botpasswords-insert-failed": "Falha ao adicionar o nome de robô \"$1\". Ele já foi adicionado?",
 	"botpasswords-update-failed": "Falha ao atualizar o nome do robô \"$1\". Elo já foi apagado?",
 	"botpasswords-created-title": "Senha de robô criada",

@@ -89,7 +89,7 @@
 	"index-category": "Indexelt lapok",
 	"noindex-category": "Nem indexelt lapok",
 	"broken-file-category": "Hibás fájlhivatkozásokat tartalmazó lapok",
-	"category-header-strokes": "$1 {{PLURAL:$1|vonás|vonás}}",
+	"category-header-strokes": "$1 {{PLURAL:$1|vonás}}",
 	"about": "Névjegy",
 	"article": "Szócikk",
 	"newwindow": "(új ablakban nyílik meg)",

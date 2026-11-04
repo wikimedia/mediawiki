@@ -1808,7 +1808,7 @@
 	"listusers-creationsort": "Sortuj według daty utworzenia",
 	"listusers-desc": "Sortuj w kolejności malejącej",
 	"usereditcount": "$1 {{PLURAL:$1|edycja|edycje|edycji}}",
-	"usercreated": "{{GENDER:$3|Utworzył|Utworzyła|Utworzone}} $1 o $2",
+	"usercreated": "{{GENDER:$3|Zarejestrowany|Zarejestrowana|Zarejestrowano}} $1 o $2",
 	"newpages": "Nowe strony",
 	"newpages-submit": "Pokaż",
 	"newpages-username": "Nazwa użytkownika:",
