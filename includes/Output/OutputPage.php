@@ -880,7 +880,7 @@ class OutputPage extends ContextSource {
 			// URLs to other files and services) and must roll-over in a timely manner (T46570)
 			$modifiedTimes['sepoch'] = wfTimestamp(
 				TS::MW,
-				time() - $config->get( MainConfigNames::CdnMaxAge )
+				MWTimestamp::time() - $config->get( MainConfigNames::CdnMaxAge )
 			);
 		}
 		$this->getHookRunner()->onOutputPageCheckLastModified( $modifiedTimes, $this );
