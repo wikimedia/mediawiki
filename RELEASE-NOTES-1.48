@@ -187,6 +187,14 @@ For notes on 1.47.x and older releases, see HISTORY.
 
 === Deprecations in 1.48 ===
 
+* (T166010) All PHP code in MediaWiki is slowly being moved to be in a class
+  namespace as appropriate, so that we can use PSR-4 auto-loading, which will
+  speed up general code loading of MediaWiki. The old global namespace class
+  names are being left behind as deprecated aliases.
+  In this release of MediaWiki, XXX classes now have a namespace and XXX do not
+  yet (XXX% done, up from 99.5% in MediaWiki 1.47.0). The following have newly
+  been moved:
+  - …
 * Xml::escapeTagsOnly() is unused and has been deprecated.
 * The SpecialWhatLinksHereQuery hook has been deprecated. Use the
   SpecialWhatLinksHereBacklinkQuery hook instead.
