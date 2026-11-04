@@ -360,6 +360,7 @@ $wgAutoloadClasses += [
 	# tests/phpunit/integration/includes
 	'MediaWiki\\Tests\\ExtensionJsonTestBase' => "$testDir/phpunit/integration/includes/ExtensionJsonTestBase.php",
 	'MediaWiki\\Tests\\ExtensionServicesTestBase' => "$testDir/phpunit/integration/includes/ExtensionServicesTestBase.php",
+	'MediaWiki\\Tests\\WrappingExtensionServices' => "$testDir/phpunit/integration/includes/WrappingExtensionServices.php",
 
 	# tests/phpunit/integration/includes/ChangeTags
 	'MediaWiki\\Tests\\ChangeTags\\RestrictedTagTestTrait' => "$testDir/phpunit/includes/ChangeTags/RestrictedTagTestTrait.php",
