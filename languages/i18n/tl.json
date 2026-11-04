@@ -392,8 +392,6 @@
 	"createacct-temp-warning": "Ang mga pagbabago na ginawa mo sa iyong pansamantalang account na <strong>$1</strong> ay hindi maidadala sa iyong permanenteng account.",
 	"noname": "Wala kang tinukoy na valid na pangalan.",
 	"userlogin-authpopup-loggingin-title": "Nagla-login...",
-	"userlogin-authpopup-loggingin-body": "Dapat may lalabas na popup window. Kung hindi mo ito makita, pwede nating subukang buksan muli ito. O di kaya, [$1 mag-login ka na lang kagaya ng dati].",
-	"userlogin-authpopup-loggingin-body-link": "Alternatibong anyo",
 	"userlogin-authpopup-retry": "Subukan muli",
 	"userlogin-authpopup-cancel": "Ikansela",
 	"userlogin-authpopup-closeme": "Kung nakikita mo ang mensaheng ito, maaari mong isara ang window na ito.",

@@ -446,8 +446,6 @@
 	"createacct-temp-warning": "Les modificacions que heu fet amb el vostre compte temporal <strong>$1</strong> no es traslladaran al vostre permanent.",
 	"noname": "No heu especificat un nom vàlid d'usuari.",
 	"userlogin-authpopup-loggingin-title": "S’està iniciant la sessió...",
-	"userlogin-authpopup-loggingin-body": "S'hauria d'haver obert una finestra emergent. Si no la veieu, podem intentar obrir-la de nou. O podeu [$1 iniciar sessió amb la manera tradicional].",
-	"userlogin-authpopup-loggingin-body-link": "Forma alternativa",
 	"userlogin-authpopup-retry": "Torna-ho a provar",
 	"userlogin-authpopup-cancel": "Cancel·la",
 	"userlogin-authpopup-closeme": "Si veieu aquest missatge, podeu tancar la finestra.",

@@ -602,8 +602,6 @@
 	"createacct-temp-warning": "Правки, сделанные вами через временную учётную запись <strong>$1</strong>, не будут перенесены на вашу постоянную учётную запись.",
 	"noname": "Вы не указали допустимого имени участника.",
 	"userlogin-authpopup-loggingin-title": "Вход в систему…",
-	"userlogin-authpopup-loggingin-body": "Должно открыться всплывающее окно. Если вы его не видите, мы можем попытаться открыть его снова. Или вы можете [$1 войти старым способом].",
-	"userlogin-authpopup-loggingin-body-link": "Альтернативная форма",
 	"userlogin-authpopup-retry": "Попробуйте ещё раз",
 	"userlogin-authpopup-cancel": "Отмена",
 	"userlogin-authpopup-closeme": "Если вы видите это сообщение, вы можете закрыть окно.",

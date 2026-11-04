@@ -495,8 +495,6 @@
 	"createacct-temp-warning": "Редагування, які ви зробили зі свого тимчасового облікового запису <strong>$1</strong>, не будуть перенесені на постійний.",
 	"noname": "Ви зазначили неправильне ім'я користувача.",
 	"userlogin-authpopup-loggingin-title": "Входження до системи…",
-	"userlogin-authpopup-loggingin-body": "Мало відкритися спливне віконце. Якщо ви його не бачите, ми можемо спробувати відкрити його знову. Або ж ви можете [$1 увійти старим способом].",
-	"userlogin-authpopup-loggingin-body-link": "Альтернативна форма",
 	"userlogin-authpopup-retry": "Спробувати знову",
 	"userlogin-authpopup-cancel": "Скасувати",
 	"userlogin-authpopup-closeme": "Якщо ви бачите це повідомлення, то можете закрити це вікно.",

@@ -503,8 +503,6 @@
 	"createacct-temp-warning": "Redigeringarna du gjort med ditt tillfälliga konto <strong> $1 </strong> kommer inte att överföras till ditt permanenta.",
 	"noname": "Du har angett ett ogiltigt användarnamn.",
 	"userlogin-authpopup-loggingin-title": "Loggar in…",
-	"userlogin-authpopup-loggingin-body": "Ett popup-fönster borde ha öppnats. Om du inte kan se det kan vi försöka öppna det igen. Eller så kan du [$1 logga på det gamla sättet].",
-	"userlogin-authpopup-loggingin-body-link": "Alternativt formulär",
 	"userlogin-authpopup-retry": "Försök igen",
 	"userlogin-authpopup-cancel": "Avbryt",
 	"userlogin-authpopup-closeme": "Om du ser detta meddelande kan du stänga detta fönster.",

@@ -416,8 +416,6 @@
 	"createacct-temp-warning": "การแก้ไขที่คุณทำกับบัญชีชั่วคราว <strong>$1</strong> จะไม่ถูกส่งต่อไปยังบัญชีถาวรของคุณ",
 	"noname": "คุณไม่ได้ใส่ชื่อผู้ใช้ที่ถูกต้อง",
 	"userlogin-authpopup-loggingin-title": "กำลังเข้าสู่ระบบ...",
-	"userlogin-authpopup-loggingin-body": "หน้าต่างพอปอัปควรจะเปิดขึ้นมาแล้ว หากคุณไม่เห็นหน้าต่างดังกล่าว เราสามารถลองเปิดให้ใหม่อีกครั้ง หรือคุณสามารถ[$1 ลงชื่อเข้าใช้ในรูปแบบเดิม]ก็ได้",
-	"userlogin-authpopup-loggingin-body-link": "รูปแบบอื่น",
 	"userlogin-authpopup-retry": "ลองอีกครั้ง",
 	"userlogin-authpopup-cancel": "ยกเลิก",
 	"userlogin-authpopup-closeme": "หากคุณเห็นข้อความนี้ คุณสามารถปิดหน้าต่างนี้ได้",

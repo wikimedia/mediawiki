@@ -462,8 +462,6 @@
 	"createacct-temp-warning": "Modificările pe care le-ați făcut cu contul dvs. temporar <strong>$1</strong> nu vor fi transferate în contul permanent.",
 	"noname": "Numele de utilizator pe care l-ați introdus nu este valid.",
 	"userlogin-authpopup-loggingin-title": "Autentificare în curs...",
-	"userlogin-authpopup-loggingin-body": "Ar fi trebuit să se deschidă o fereastră pop-up. Dacă nu îl puteți vedea, putem încerca să îl deschidem din nou. Sau puteți [$1 să vă conectați la modă veche].",
-	"userlogin-authpopup-loggingin-body-link": "Formular alternativ",
 	"userlogin-authpopup-retry": "Reîncearcă",
 	"userlogin-authpopup-cancel": "Revocare",
 	"userlogin-authpopup-closeme": "Dacă vedeți acest mesaj, puteți închide această fereastră.",

@@ -407,8 +407,6 @@
 	"createacct-temp-warning": "మీ తాత్కాలిక ఖాతా <strong>$1</strong> తో చేసిన దిద్దుబాట్లు మీ శాశ్వత ఖాతాకు బదిలీ కావు.",
 	"noname": "మీరు సరైన వాడుకరి పేరు ఇవ్వలేదు.",
 	"userlogin-authpopup-loggingin-title": "లాగినవుతున్నారు",
-	"userlogin-authpopup-loggingin-body": "పాపప్ విండో ఒకటి తెరుచుకుని ఉండాలి. మీకది కనబడకపోతే, మళ్ళీ తెరిచే ప్రయత్నం చెయ్యగలము. లేదా మీరు [$1 పాత పద్ధతిలో లాగినవ్వచ్చు].",
-	"userlogin-authpopup-loggingin-body-link": "ప్రత్యామ్నాయ ఫారము",
 	"userlogin-authpopup-retry": "మళ్ళీ ప్రయత్నించండి",
 	"userlogin-authpopup-cancel": "రద్దుచేయి",
 	"userlogin-authpopup-closeme": "ఈ సందేశం మీకు కనబడితే, మీరిక ఈ విండోను మూసెయ్యవచ్చు.",

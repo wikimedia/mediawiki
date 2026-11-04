@@ -420,8 +420,6 @@
 	"createacct-temp-warning": "तपाईले आफ्नो अस्थायी खाता <strong>$1</strong> मा गर्नुभएका सम्पादनहरू तपाईको स्थायी खातामा सारिने छैनन्।",
 	"noname": "तपाईंले सही प्रयोगकर्ता नाम दिनु भएन।",
 	"userlogin-authpopup-loggingin-title": "प्रवेश गर्दै",
-	"userlogin-authpopup-loggingin-body": "एउटा पपअप विन्डो खुल्नुपर्दथ्यो। यदि तपाईले यसलाई देख्नुभएन भने, हामी यसलाई फेरि खोल्ने प्रयास गर्न सक्छौँ। वा तपाई [पुरानो तरिकाले $1 प्रवेश] गर्न सक्नुहुन्छ।",
-	"userlogin-authpopup-loggingin-body-link": "वैकल्पिक रूप",
 	"userlogin-authpopup-retry": "पुन: प्रयास गर्नुहोस्",
 	"userlogin-authpopup-cancel": "रद्द गर्नुहोस्",
 	"userlogin-authpopup-closeme": "यदि तपाइले यो सन्देश देख्नुहुन्छ भने, तपाइँ यो विन्डो बन्द गर्न सक्नुहुन्छ।",

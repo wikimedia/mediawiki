@@ -409,8 +409,6 @@
 	"createacct-temp-warning": "Edicje wëkònóné z timczasowégò kònta <strong> $1 </strong> nie òstóną przeniosłé do głównégò kònta.",
 	"noname": "Na pòzwa brëkòwnika je nieprostô.",
 	"userlogin-authpopup-loggingin-title": "Logòwanié…",
-	"userlogin-authpopup-loggingin-body": "Òkno logòwaniégò miałobë sã òdemknąc. Jeżlë Të gò nie widzysz, spróbùj òdemknąc je jesz rôz. Të mòżesz téż [$1 zalogòwac sã tradicyjną metodą].",
-	"userlogin-authpopup-loggingin-body-link": "Alternatiwny fòrmùlôrz",
 	"userlogin-authpopup-retry": "Spróbùj znowa",
 	"userlogin-authpopup-cancel": "Anuluj",
 	"userlogin-authpopup-closeme": "Jeżlë widzysz nen òdkôz, Të móżesz zamknąc to òkno.",

@@ -401,8 +401,6 @@
 	"createacct-temp-warning": "D'Ännerungen, déi Dir mat Ärem temporäre Kont <strong>$1</strong> gemaach hutt, wäerten net op Äre permanente Kont iwwerdroe ginn.",
 	"noname": "Dir hutt kee gültege Benotzernumm uginn.",
 	"userlogin-authpopup-loggingin-title": "Aloggen...",
-	"userlogin-authpopup-loggingin-body": "Normalerweis sollt eng Popup-Fënster opgaange sinn. Wann Dir se net gesitt, kënne mir probéieren, se nach eng Kéier opzemaachen. Oder Dir kënnt Iech [$1 op déi almoudesch Manéier aloggen].",
-	"userlogin-authpopup-loggingin-body-link": "Alternative Formulaire",
 	"userlogin-authpopup-retry": "Nach eng Kéier probéieren",
 	"userlogin-authpopup-cancel": "Ofbriechen",
 	"userlogin-authpopup-closeme": "Wann Dir dëse Message gesitt, kënnt Dir dës Fënster zoumaachen.",

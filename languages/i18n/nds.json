@@ -366,8 +366,6 @@
 	"createacct-temp-warning": "De Bearbeitungen, de du mit dien Övergangskonto <strong>$1</strong> vörnommen hest, wurrn nich op dien permanent Konto överdragen.",
 	"noname": "Du muttst en Brukernaam angeven.",
 	"userlogin-authpopup-loggingin-title": "Anmellen in …",
-	"userlogin-authpopup-loggingin-body": "En Finster schölen sik apen hebben. Wenn du dat nich sehn kannst, köönt wi versöken, dat wedder apentomaken. Ader du kannst di [$1 op de bitherig Oort anmellen].",
-	"userlogin-authpopup-loggingin-body-link": "Anner Formular",
 	"userlogin-authpopup-retry": "Noch wedder versöken",
 	"userlogin-authpopup-cancel": "Afbreken",
 	"userlogin-authpopup-closeme": "Wenn du düsse Naricht süst, kannst du dit Finster sluten.",

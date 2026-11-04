@@ -416,8 +416,6 @@
 	"createacct-temp-warning": "ယာယီအကောင့် <strong>$1</strong> ဖြင့် သင်တည်းဖြတ်ထားသည်များကို အမြဲတမ်းအကောင့်သို့ ပေါင်းထည့်ပေးမည် မဟုတ်ပါ။",
 	"noname": "တရားဝင် အသုံးပြုသူအမည်ကို မသတ်မှတ်ရသေးပါ။",
 	"userlogin-authpopup-loggingin-title": "လော့ဂ်အင် ဝင်ရောက်နေသည်...",
-	"userlogin-authpopup-loggingin-body": "ပေါ်လာသည့် ဝင်းဒိုး (Popup) တစ်ခု ပွင့်လာရပါမည်။ အကယ်၍ မတွေ့ရပါက ထပ်မံဖွင့်ကြည့်နိုင်သည်။ သို့မဟုတ် [$1 ပုံမှန်နည်းလမ်းအတိုင်း အကောင့်ဝင်ရောက်နိုင်သည်]။",
-	"userlogin-authpopup-loggingin-body-link": "အခြားရွေးချယ်စရာ ပုံစံ",
 	"userlogin-authpopup-retry": "နောက်တစ်ဖန် ကြိုးစားပါ",
 	"userlogin-authpopup-cancel": "မလုပ်တော့ပါ",
 	"userlogin-authpopup-closeme": "ဤစာသားကို တွေ့ရပါက ဤဝင်းဒိုးကို ပိတ်လိုက်နိုင်သည်။",

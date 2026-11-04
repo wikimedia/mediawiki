@@ -353,7 +353,6 @@
 	"createacct-loginerror": "La crea de la conta ia susede, ma tu no ia pote es automata autenticida. Per favore, vade a la paje de [[Special:UserLogin|autentici nonautomata]].",
 	"noname": "Tu no ia spesifa un nom de usor valida.",
 	"userlogin-authpopup-loggingin-title": "Autenticinte…",
-	"userlogin-authpopup-loggingin-body-link": "Forma alternativa",
 	"userlogin-authpopup-retry": "Atenta denova",
 	"userlogin-authpopup-closeme": "Si tu vide esta mesaje, tu pote clui esta fenetra.",
 	"loginsuccesstitle": "Autenticida",

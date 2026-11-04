@@ -565,8 +565,6 @@
 	"createacct-temp-warning": "仮アカウント<strong>$1</strong>で行った編集は永続アカウントには引き継がれません。",
 	"noname": "有効な利用者名が指定されていません。",
 	"userlogin-authpopup-loggingin-title": "ログイン中...",
-	"userlogin-authpopup-loggingin-body": "ポップアップウィンドウが開いたはずです。もし表示されていない場合は、もう一度試せます。あるいは[$1 旧来の方式でログイン]できます。",
-	"userlogin-authpopup-loggingin-body-link": "代替形式",
 	"userlogin-authpopup-retry": "もう一度試す",
 	"userlogin-authpopup-cancel": "キャンセル",
 	"userlogin-authpopup-closeme": "このメッセージが表示された場合、このウィンドウを閉じてください。",

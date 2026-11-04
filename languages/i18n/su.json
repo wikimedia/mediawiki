@@ -359,7 +359,6 @@
 	"createacct-loginerror": "Akun anjeun geu dijieun, ngan anjeun teu bisa langsung asup log sacara otomatis. Pék tuluykeun kana [[Special:UserLogin|asup log manual]].",
 	"noname": "Anjeun teu nuliskeun ngaran pamaké nu sah.",
 	"userlogin-authpopup-loggingin-title": "Keur prosés asup...",
-	"userlogin-authpopup-loggingin-body-link": "Bentuk alternatif",
 	"userlogin-authpopup-retry": "Cobaan deui",
 	"userlogin-authpopup-cancel": "Bolay",
 	"loginsuccesstitle": "Geus asup log",

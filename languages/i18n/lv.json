@@ -378,7 +378,6 @@
 	"createacct-loginerror": "Konts tika veiksmīgi izveidots, bet neizdevās automātiski pieslēgties. Lūdzu, dodies uz [[Special:UserLogin|manuālās pieslēgšanās]] lapu.",
 	"noname": "Tu neesi norādījis derīgu lietotāja vārdu.",
 	"userlogin-authpopup-loggingin-title": "Pieslēdzas…",
-	"userlogin-authpopup-loggingin-body-link": "Alternatīvā forma",
 	"userlogin-authpopup-retry": "Mēģināt vēlreiz",
 	"userlogin-authpopup-cancel": "Atcelt",
 	"loginsuccesstitle": "Pieteikšanās veiksmīga",

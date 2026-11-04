@@ -402,8 +402,6 @@
 	"createacct-temp-warning": "Redaktimet që bëre me llogarinë tënde të përkohshme <strong>$1</strong> nuk do të transferohen në llogarinë tënde të përhershme.",
 	"noname": "Nuk keni dhënë një emër përdoruesi të pranueshëm.",
 	"userlogin-authpopup-loggingin-title": "Duke hyrë...",
-	"userlogin-authpopup-loggingin-body": "Një dritare popup duhet të ishte hapur. Nëse nuk mund ta shohësh, mund të përpiqemi ta hapim përsëri. Ose mund të [$1 hysh sipas mënyrës së vjetër].",
-	"userlogin-authpopup-loggingin-body-link": "Forma alternative",
 	"userlogin-authpopup-retry": "Provo përsëri",
 	"userlogin-authpopup-cancel": "Anulo",
 	"userlogin-authpopup-closeme": "Nëse e sheh këtë mesazh, mund ta mbyllësh këtë dritare.",

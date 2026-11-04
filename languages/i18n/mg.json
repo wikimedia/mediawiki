@@ -367,8 +367,6 @@
 	"createacct-temp-warning": "Tsy hoentina any amin'ny kaontinao maharitra ny fanovana nataonao tamin'ny kaontinao vonjimaika <strong>$1</strong>.",
 	"noname": "Tsy nanome solonanarana mety ianao.",
 	"userlogin-authpopup-loggingin-title": "Miditra...",
-	"userlogin-authpopup-loggingin-body": "Tokony ho nisokatra ny varavarankely popup. Raha tsy hitanao dia afaka manandrana manokatra azy indray izahay. Na azonao atao ny [$1 misoratra anarana araka ny fomba taloha].",
-	"userlogin-authpopup-loggingin-body-link": "Soratra hafa",
 	"userlogin-authpopup-retry": "Andramo indray",
 	"userlogin-authpopup-cancel": "Avela",
 	"userlogin-authpopup-closeme": "Raha hitanao ity hafatra ity dia azonao atao ny manidy ity varavarankely ity.",

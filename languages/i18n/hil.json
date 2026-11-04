@@ -409,8 +409,6 @@
 	"createacct-temp-warning": "Ang mga pagbag-o nga imo ginhimo sa imo temporaryo nga account <strong>$1</strong> indi pag-isaylo sa imo permanente nga account.",
 	"noname": "Wala ka nagbutang sang tood-tood nga gamit-pangalan.",
 	"userlogin-authpopup-loggingin-title": "Pag-log in...",
-	"userlogin-authpopup-loggingin-body": "Ang isa ka popup nga bintana dapat nga nagbukas. Kon indi mo ini makita, mahimo naton tinguhaan nga buksan ini liwat. Ukon mahimo ka [ $1 log sa daan nga paagi].",
-	"userlogin-authpopup-loggingin-body-link": "Alternatibo nga porma",
 	"userlogin-authpopup-retry": "Tilawi liwat",
 	"userlogin-authpopup-cancel": "I-kansel",
 	"userlogin-authpopup-closeme": "Kon makita mo ini nga mensahe, mahimo mo siraduhan ini nga bintana.",

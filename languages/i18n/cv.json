@@ -361,8 +361,6 @@
 	"createacct-temp-warning": "<strong>$1</strong> вӑхӑтлӑ аккаунпа тунӑ тӳрлетӳсем сирӗн яланхи аккаунта куҫмӗҫ.",
 	"noname": "Эсир килĕшӳллĕ хутшăнаканăн ятне кăтартман.",
 	"userlogin-authpopup-loggingin-title": "Системӑна кӗни…",
-	"userlogin-authpopup-loggingin-body": "Сиксе тухакан чӳрече уҫӑлмалла. Енчен те эсир ӑна курмастӑр пулсан эпир ӑна тепӗр хут кӑтартма пултаратпӑр. Е эсир [$1 малтанхи меслетпе] кӗме пултаратӑр.",
-	"userlogin-authpopup-loggingin-body-link": "Альтернативлӑ форма",
 	"userlogin-authpopup-retry": "Тепӗр хут туса пӑхӑр",
 	"userlogin-authpopup-cancel": "Пӑрахӑҫла",
 	"userlogin-authpopup-closeme": "Ку сообщенине куратӑр пулсан эсир чӳречене хупма пултаратӑр.",

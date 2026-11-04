@@ -420,7 +420,6 @@
 	"createacct-temp-warning": "Измене које сте начинили Вашим приверменим налогом <strong> $1 </strong> неће бити пренете на стални налог.",
 	"noname": "Није наведено важеће корисничко име.",
 	"userlogin-authpopup-loggingin-title": "Пријављивање…",
-	"userlogin-authpopup-loggingin-body-link": "Алтернативни образац",
 	"userlogin-authpopup-retry": "Покушај поново",
 	"userlogin-authpopup-cancel": "Откажи",
 	"userlogin-authpopup-closeme": "Ако видите ову поруку, можете затворити овај прозор.",

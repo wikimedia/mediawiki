@@ -522,8 +522,6 @@
 	"createacct-temp-warning": "التعديلات التي تجريها بحسابك المؤقت <strong>$1</strong> لن تُنقل إلى حسابك الدائم.",
 	"noname": "لم تحدد اسم مستخدم صحيح.",
 	"userlogin-authpopup-loggingin-title": "يجري تسجيل دخولك...",
-	"userlogin-authpopup-loggingin-body": "يجب أن تُفتَح نافذة منبثقة. إذا لم ترها يمكننا محاولة فتحها مرة أخرى. أو يمكنك [$1 تسجيل الدخول بالطريقة القديمة].",
-	"userlogin-authpopup-loggingin-body-link": "شكل بديل",
 	"userlogin-authpopup-retry": "حاول مرة أخرى",
 	"userlogin-authpopup-cancel": "إلغاء",
 	"userlogin-authpopup-closeme": "إذا رأيت هذه الرسالة، يمكنك إغلاق هذه النافذة.",

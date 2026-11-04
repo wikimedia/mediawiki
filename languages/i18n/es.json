@@ -671,8 +671,6 @@
 	"createacct-temp-warning": "Las ediciones que realizaste con tu cuenta temporal <strong>$1</strong> no serán trasladadas a tu cuenta permanente.",
 	"noname": "No se ha especificado un nombre de usuario válido.",
 	"userlogin-authpopup-loggingin-title": "Accediendo...",
-	"userlogin-authpopup-loggingin-body": "Debería haberse abierto una ventana emergente. Si no puedes verla, podemos intentar abrirla nuevamente. O puedes [iniciar sesión $1 de la manera antigua].",
-	"userlogin-authpopup-loggingin-body-link": "Texto alternativo",
 	"userlogin-authpopup-retry": "Intentar de nuevo",
 	"userlogin-authpopup-cancel": "Cancelar",
 	"userlogin-authpopup-closeme": "Si ves este mensaje, puedes cerrar esta ventana.",

@@ -465,8 +465,6 @@
 	"createacct-temp-warning": "Az ideiglenes fiókoddal (<strong>$1</strong>) végrehajtott szerkesztések nem kerülnek át a végleges fiókodba.",
 	"noname": "Érvénytelen szerkesztőnevet adtál meg.",
 	"userlogin-authpopup-loggingin-title": "Belépés…",
-	"userlogin-authpopup-loggingin-body": "Meg kellett nyílnia egy felugró ablaknak. Ha nem látod, megpróbálhatod újra, vagy [$1 bejelentkezhetsz a hagyományos módon].",
-	"userlogin-authpopup-loggingin-body-link": "Más módon",
 	"userlogin-authpopup-retry": "Próbáld újra",
 	"userlogin-authpopup-cancel": "Mégse",
 	"userlogin-authpopup-closeme": "Ha ezt az üzenetet látod, bezárhatod ezt az ablakot.",

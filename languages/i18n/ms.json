@@ -436,8 +436,6 @@
 	"createacct-temp-warning": "Suntingan yang anda buat dengan akaun sementara anda iaitu <strong>$1</strong> tidak akan dibawa ke akaun kekal anda.",
 	"noname": "Nama pengguna tidak sah.",
 	"userlogin-authpopup-loggingin-title": "Sedang log masuk...",
-	"userlogin-authpopup-loggingin-body": "Tetingkap kecil sepatutnya dipaparkan. Jika anda tidak melihatnya, kami boleh cuba membukanya kembali. Atau anda boleh [$1 log masuk dengan cara lama].",
-	"userlogin-authpopup-loggingin-body-link": "Bentuk alternatif",
 	"userlogin-authpopup-retry": "Cuba lagi",
 	"userlogin-authpopup-cancel": "Batalkan",
 	"userlogin-authpopup-closeme": "Jika anda melihat mesej ini, anda boleh menutup tetingkap ini.",

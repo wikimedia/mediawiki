@@ -430,7 +430,6 @@
 	"createacct-temp-warning": "Редакциите, които сте направили с временната си сметка <strong>$1</strong>, няма да бъдат прехвърлени към постоянната ви сметка.",
 	"noname": "Не указахте валидно потребителско име.",
 	"userlogin-authpopup-loggingin-title": "Влизане...",
-	"userlogin-authpopup-loggingin-body-link": "Алтернативен формуляр",
 	"userlogin-authpopup-retry": "Опитайте отново",
 	"userlogin-authpopup-cancel": "Отказ",
 	"userlogin-authpopup-closeme": "Ако виждате това съобщение, можете да затворите този прозорец.",

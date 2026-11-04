@@ -393,8 +393,6 @@
 	"createacct-temp-warning": "<strong>$1</strong> деген уақытша тіркелгі атымен жасалған өңдемелеріңіз тұрақты тіркелгіңізге тасымалданбайды.",
 	"noname": "Жарамды қатысушы атын белгілеген жоқсыз.",
 	"userlogin-authpopup-loggingin-title": "Кіріп жатырсыз...",
-	"userlogin-authpopup-loggingin-body": "Қалқыма терезе ашылуы керек. Ашылмаса, қайта ашып көреміз, не болмаса [$1 ескі жолмен] тіркеле аласыз.",
-	"userlogin-authpopup-loggingin-body-link": "Балама мәтін",
 	"userlogin-authpopup-retry": "Қайталау",
 	"userlogin-authpopup-cancel": "Болдырмау",
 	"userlogin-authpopup-closeme": "Мына хатты көріп тұрсаңыз, терезені жаба аласыз.",

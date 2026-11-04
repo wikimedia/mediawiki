@@ -388,7 +388,6 @@
 	"createacct-temp-warning": "Izmene koje ste načinili Vašim privermenim nalogom <strong> $1 </strong> neće biti prenete na stalni nalog.",
 	"noname": "Nije navedeno važeće korisničko ime.",
 	"userlogin-authpopup-loggingin-title": "Prijavljivanje…",
-	"userlogin-authpopup-loggingin-body-link": "Alternativni obrazac",
 	"userlogin-authpopup-retry": "Pokušaj ponovo",
 	"userlogin-authpopup-cancel": "Otkaži",
 	"userlogin-authpopup-closeme": "Ako vidite ovu poruku, možete zatvoriti ovaj prozor.",

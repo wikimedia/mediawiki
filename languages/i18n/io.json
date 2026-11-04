@@ -413,8 +413,6 @@
 	"createacct-temp-warning": "La redakturi quin vu facis per vua tempala konto <strong>$1</strong> ne transportesos a vua permananta konto.",
 	"noname": "Vu ne donis valida uzantonomo.",
 	"userlogin-authpopup-loggingin-title": "Eniranta...",
-	"userlogin-authpopup-loggingin-body": "Fenestro ''popup'' posible apertesis. Se vu ne povas vidar ol, ni probos itere apertar ol. O vu povas [$1 facar ''log in'' per l'anciena metodo].",
-	"userlogin-authpopup-loggingin-body-link": "Alternativa formulario",
 	"userlogin-authpopup-retry": "Probez itere",
 	"userlogin-authpopup-cancel": "Anular",
 	"userlogin-authpopup-closeme": "Se vu povas vidar ca mesajo, vu povas klozar ca fenestro.",

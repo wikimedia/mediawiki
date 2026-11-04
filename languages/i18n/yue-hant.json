@@ -418,8 +418,6 @@
 	"createacct-temp-warning": "你用臨時戶口 <strong>$1</strong> 做嘅修訂唔會被帶落你嘅永久戶口度",
 	"noname": "你未指定一個有效嘅用戶名。",
 	"userlogin-authpopup-loggingin-title": "簽到緊...",
-	"userlogin-authpopup-loggingin-body": "應該開咗個彈出式視窗。如果你睇唔到，我哋可以試下再打開。你亦都可以[$1 用老土嘅方式簽到]。",
-	"userlogin-authpopup-loggingin-body-link": "另類形式",
 	"userlogin-authpopup-retry": "再試多次",
 	"userlogin-authpopup-cancel": "取消",
 	"userlogin-authpopup-closeme": "如果你見到呢個訊息，你可以閂呢個視窗。",

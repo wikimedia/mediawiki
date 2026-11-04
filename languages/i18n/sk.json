@@ -454,8 +454,6 @@
 	"createacct-temp-warning": "Úpravy, ktoré ste vykonali dočasným účtom <strong>$1</strong>, sa neprenesú do vášho trvalého účtu.",
 	"noname": "Nezadali ste platné používateľské meno.",
 	"userlogin-authpopup-loggingin-title": "Prihlasovanie…",
-	"userlogin-authpopup-loggingin-body": "Malo by sa otvoriť vyskakovacie okno. Ak ho nevidíte, môžeme sa ho pokúsiť otvoriť znova. Alebo sa môžete [$1 prihlásiť klasickým spôsobom].",
-	"userlogin-authpopup-loggingin-body-link": "Alternatívny formulár",
 	"userlogin-authpopup-retry": "Skúsiť znova",
 	"userlogin-authpopup-cancel": "Zrušiť",
 	"userlogin-authpopup-closeme": "Ak sa zobrazí táto správa, môžete toto okno zavrieť.",

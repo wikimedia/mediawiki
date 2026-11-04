@@ -431,8 +431,6 @@
 	"createacct-temp-warning": "Ndezigharị ndị ị mere na akaụntụ nwa oge gị <strong>$1</strong> agaghị ebufe na nke gị na-adịgide adịgide.",
 	"noname": "I nyétubọ áhạ buwa di mkpà.",
 	"userlogin-authpopup-loggingin-title": "Ịbanye…",
-	"userlogin-authpopup-loggingin-body": "Window mpụta ga-emepe.  Ọ bụrụ na ịgaghị ahụ ya, anyị nwere ike ịgbalị imepe ya ọzọ.  Ma ọ bụ ị nwere ike [$1 banye n'ụzọ ochie]",
-	"userlogin-authpopup-loggingin-body-link": "Ụdị ọzọ",
 	"userlogin-authpopup-retry": "Gbalịa ọzọ",
 	"userlogin-authpopup-cancel": "Kagbuo",
 	"userlogin-authpopup-closeme": "Ọ bụrụ na ị hụ ozi a, ị nwere ike imechi windo a.",

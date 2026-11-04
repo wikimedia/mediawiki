@@ -393,8 +393,6 @@
 	"createacct-temp-warning": "التعديلات اللي درتها بالحساب المؤقت <strong>$1</strong> ما يروحوش مع حسابك الدائم.",
 	"noname": "ما مدّيتش سميّت` مستعملي مقبولة.",
 	"userlogin-authpopup-loggingin-title": "دخول لحساب...",
-	"userlogin-authpopup-loggingin-body": "لازم تفتح نافذة منبثقة. إذا ما قدرتش تشوفها، نقدروا نحاولو نحلّوها من جديد. ولا تقدر [$1 تدخل بالطريقة العاديه].",
-	"userlogin-authpopup-loggingin-body-link": "شكل بديل",
 	"userlogin-authpopup-retry": "عاود جرب",
 	"userlogin-authpopup-cancel": "بطّل",
 	"loginsuccesstitle": "التوصال راه نجَح.",

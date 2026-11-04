@@ -420,8 +420,6 @@
 	"createacct-temp-warning": "sijelo <strong>$1</strong> li awen ala la, pali sina li tawa ala sijelo awen.",
 	"noname": "sina pana ala e nimi pona.",
 	"userlogin-authpopup-loggingin-title": "mi kama lon sijelo...",
-	"userlogin-authpopup-loggingin-body": "poki lipu sin o open. sina lukin ala e ni la, mi ken alasa sin. any sina ken [$1 lon sijelo kepeken nasin majuna].",
-	"userlogin-authpopup-loggingin-body-link": "lipu pana namako",
 	"userlogin-authpopup-retry": "o alasa sin",
 	"userlogin-authpopup-cancel": "o weka",
 	"userlogin-authpopup-closeme": "sina lukin e ni la sina ken weka e sitelen ni.",

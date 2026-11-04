@@ -363,8 +363,6 @@
 	"createacct-temp-warning": "Maliniŋ shɛŋa a ni niŋ ni a akunti shɛli been yuui  <strong>$1</strong> nyɛla din bɛn pahi a saha kam akunti ni.",
 	"noname": "A bi jɛndi wuhi ŋun su maa kpɛbu yuli",
 	"userlogin-authpopup-loggingin-title": "Kpɛbu…",
-	"userlogin-authpopup-loggingin-body": "Lahabali shɛli nyɛla din to ni di yoogi. Di yi niŋ ka a ku tooi nya li, ti ni tooi moni labi yooi li yaha. Bee a ni tooi [$1 log in the old-fashioned way].",
-	"userlogin-authpopup-loggingin-body-link": "Di ni tooi lahi shɛm yaha",
 	"userlogin-authpopup-retry": "Labi niŋ",
 	"userlogin-authpopup-cancel": "Kpihim",
 	"userlogin-authpopup-closeme": "A yi nya lahabali ŋɔ, a ni tooi kpihim lala yaɣili ŋɔ.",

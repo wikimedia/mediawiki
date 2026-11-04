@@ -400,8 +400,6 @@
 	"createacct-temp-warning": "Laikinojoje paskyroje <strong>$1</strong> atlikti pakeitimai nebus perkelti į jūsų nuolatinę paskyrą.",
 	"noname": "Jūs nesate nurodęs teisingo naudotojo vardo.",
 	"userlogin-authpopup-loggingin-title": "Prisijungiama…",
-	"userlogin-authpopup-loggingin-body": "Turėjo atsidaryti iššokantis langas. Jei jo nematote, galime pabandyti atidaryti dar kartą. Arba galite [$1 prisijungti senamadišku būdu].",
-	"userlogin-authpopup-loggingin-body-link": "Alternatyvi forma",
 	"userlogin-authpopup-retry": "Bandykite iš naujo",
 	"userlogin-authpopup-cancel": "Atšaukti",
 	"userlogin-authpopup-closeme": "Jei matote šį pranešimą, galite uždaryti šį langą.",

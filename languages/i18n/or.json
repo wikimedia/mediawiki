@@ -344,7 +344,6 @@
 	"createacct-loginerror": "ଖାତା ସଫଳ ଭାବରେ ଖୋଲା ଗଲା କିନ୍ତୁ ଆପଣଙ୍କୁ ସ୍ଵତଃ ଲଗ ଇନ କରାଯାଇପାରିଲା ନାହିଁ। ଦୟାକରି [[Special:UserLogin|manual login]] କୁ ଦେଖନ୍ତୁ।",
 	"noname": "ଆପଣ ଗୋଟିଏ ବୈଧ ଇଉଜର ନାମ ଦେଇନାହାନ୍ତି ।",
 	"userlogin-authpopup-loggingin-title": "ଲଗ ଇନ କରୁଛି…",
-	"userlogin-authpopup-loggingin-body-link": "ବିକଳ୍ପ ଫର୍ମ",
 	"userlogin-authpopup-retry": "ଆଉଥରେ ଚେଷ୍ଟାକରନ୍ତୁ",
 	"userlogin-authpopup-cancel": "ନାକଚ",
 	"loginsuccesstitle": "ଠିକଭାବେ ଲଗ-ଇନ ହେଲା",

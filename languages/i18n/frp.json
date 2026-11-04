@@ -368,8 +368,6 @@
 	"createacct-temp-warning": "Los changements que vos éd fêts avouéc voutron comptio temporèro <strong>$1</strong> seront pas reportâs dessus voutron comptio pèrmanent.",
 	"noname": "Vos éd pas spècefiâ un nom d’utilisator valido.",
 	"userlogin-authpopup-loggingin-title": "Branchement en cors...",
-	"userlogin-authpopup-loggingin-body": "Na fenétra sortenta s’arêt diu uvrir. Se vos la vêde pas, nos povens tâchiér moyen de la ruvrir. Ou ben vos vos pouede [$1 branchiér coment dês devant].",
-	"userlogin-authpopup-loggingin-body-link": "Tèxto altèrnatif",
 	"userlogin-authpopup-retry": "Tornar èprovar",
 	"userlogin-authpopup-cancel": "Anular",
 	"userlogin-authpopup-closeme": "Se vos vêde cél mèssâjo, vos pouede cllôre cela fenétra.",

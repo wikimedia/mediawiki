@@ -565,8 +565,6 @@
 	"createacct-temp-warning": "As edições que fez com a sua conta temporária <strong>$1</strong> não serão transferidas para a sua conta permanente.",
 	"noname": "Você não colocou um nome de usuário válido.",
 	"userlogin-authpopup-loggingin-title": "Iniciando sessão…",
-	"userlogin-authpopup-loggingin-body": "Uma janela pop-up deve ter sido aberta. Se você não consegue vê-la, podemos tentar abri-la novamente. Ou você pode [$1 iniciar sessão da maneira antiga].",
-	"userlogin-authpopup-loggingin-body-link": "Forma alternativa",
 	"userlogin-authpopup-retry": "Tente novamente",
 	"userlogin-authpopup-cancel": "Cancelar",
 	"userlogin-authpopup-closeme": "Se você vir esta mensagem, poderá fechar esta janela.",

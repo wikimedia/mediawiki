@@ -420,8 +420,6 @@
 	"createacct-temp-warning": "Urejanja, ki ste jih opravili s svojim začasnim računom <strong>$1</strong>, ne bodo prenesena na vaš stalni račun.",
 	"noname": "Niste vnesli veljavnega uporabniškega imena.",
 	"userlogin-authpopup-loggingin-title": "Prijavljanje ...",
-	"userlogin-authpopup-loggingin-body": "Moralo bi se odpreti pojavno okno. Če ga ne vidite, ga lahko poskusimo znova odpreti. Lahko pa se [$1 prijavite na stari način].",
-	"userlogin-authpopup-loggingin-body-link": "Alternativni obrazec",
 	"userlogin-authpopup-retry": "Poskusi znova",
 	"userlogin-authpopup-cancel": "Prekliči",
 	"userlogin-authpopup-closeme": "Če vidite to sporočilo, lahko to okno zaprete.",

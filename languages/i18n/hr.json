@@ -415,8 +415,6 @@
 	"createacct-temp-warning": "Izmjene koje ste napravili s privremenim računom <strong>$1</strong> neće se prenijeti na Vaš trajni račun.",
 	"noname": "Niste unijeli valjano suradničko ime.",
 	"userlogin-authpopup-loggingin-title": "Prijavljivanje...",
-	"userlogin-authpopup-loggingin-body": "Trebao je biti otvoren skočni prozor. Ako ga ne vidite, možete ga pokušati opet otvoriti. Možete se prijaviti i [$1 uobičajenim načinom prijave].",
-	"userlogin-authpopup-loggingin-body-link": "Zamjenski formular",
 	"userlogin-authpopup-retry": "Pokušaj ponovo",
 	"userlogin-authpopup-cancel": "Otkaži",
 	"userlogin-authpopup-closeme": "Ako vidite ovu poruku, možete zatvoriti ovaj prozor.",

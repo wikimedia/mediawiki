@@ -351,8 +351,6 @@
 	"createacct-temp-warning": "<strong>$1</strong> гэһэн саг зуурын бүридхэлэй бэшэлгээр хэһэн заһабаринуудтнай өөрынтнай саг үргэлжын бүридхэлэй бэшэлгэдэ шэлжүүлэгдэхэгүй.",
 	"noname": "Та хабаадагшын багсаамжалһан нэрэ заагаагуй байнат.",
 	"userlogin-authpopup-loggingin-title": "Нэбтэржэ байна…",
-	"userlogin-authpopup-loggingin-body": "Нэгэ нээгдэһэн сонхо нээгдэхэ ёһотой байгаа. Хаража шадахагүй һаа, дахин нээжэ туршаха аргатайбди. Үгы һаа [$1 хуушан аргаар] орожо болохот.",
-	"userlogin-authpopup-loggingin-body-link": "Нүгөө түхэл",
 	"userlogin-authpopup-retry": "Дахин туршагты",
 	"userlogin-authpopup-cancel": "Болюулха",
 	"userlogin-authpopup-closeme": "Хэрбээ энэ мэдээсэл хараа һаа, энэ сонхо хаажа болоно.",

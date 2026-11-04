@@ -377,8 +377,6 @@
 	"createacct-temp-warning": "<strong>$1</strong> кёзюулю хыйсабыгъызда этген тюзетиулеригиз, дайым хыйсабыгъызгъа кёчерик тюлдю.",
 	"noname": "Терс атны джазгъансыз.",
 	"userlogin-authpopup-loggingin-title": "Системагъа кириу...",
-	"userlogin-authpopup-loggingin-body": "Ачылыучу терезе ачылыргъа керек эди. Кёралмай эсегиз, джаныдан ачыб кёрюгюз. Неда [$1 эски амал бла киригиз].",
-	"userlogin-authpopup-loggingin-body-link": "Альтернатив форма",
 	"userlogin-authpopup-retry": "Энтда сынаб кёр",
 	"userlogin-authpopup-cancel": "Ызына ал",
 	"userlogin-authpopup-closeme": "Бу билдириуню кёре эсегиз, бу терезени джабаргъа боллукъсуз.",

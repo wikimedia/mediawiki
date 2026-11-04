@@ -363,8 +363,6 @@
 	"createacct-temp-warning": "التعديلات التي تسويها بحسابك المؤقت <strong>$1</strong> ما تروح لحسابك الدايم.",
 	"noname": "ما حددت اسم مستخدم صحيح.",
 	"userlogin-authpopup-loggingin-title": "ديسجل دخول...",
-	"userlogin-authpopup-loggingin-body": "المفروض تنفتح نافذه بجهازك. اذا ما شفتها، نكدر نحاول نفتحها مره ثانيه. وهمين تكدر [$1 تسجل دخول بالطريقه القديمه].",
-	"userlogin-authpopup-loggingin-body-link": "شكل بديل",
 	"userlogin-authpopup-retry": "جرب مره ثانيه",
 	"userlogin-authpopup-cancel": "الغي",
 	"userlogin-authpopup-closeme": "اذا شفت هاي الرساله، راح تكدر تطلع من هاي النافذه.",

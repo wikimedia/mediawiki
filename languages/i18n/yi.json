@@ -412,8 +412,6 @@
 	"createacct-temp-warning": "די ענדערונגען וואָס איר האָט געמאַכט מיט אייער צייטווייליקן חשבון <strong>$1</strong> וועלן נישט ווערן איבערגעפירט צו אייער שטענדיקן חשבון.",
 	"noname": "איר האט נישט אַרײַנגעשטעלט קײַן גילטיקן באַניצער נאָמען.",
 	"userlogin-authpopup-loggingin-title": "ארײַנלאגנדיק…",
-	"userlogin-authpopup-loggingin-body": "אַ פּאַפּאַפּ פֿענצטער זאָל זיך האָבן געעפֿנט. אויב איר זעט עס ניט, קענען מיר פּרובירן עס ווידער צו עפֿענען. אדער קענט איר [$1 זיך אַרײַנלאָגירן אויפֿ'ן אַלטמאָדישן אופֿן].",
-	"userlogin-authpopup-loggingin-body-link": "אַלטערנאַטיווע פאָרעם",
 	"userlogin-authpopup-retry": "פּרוּווט ווידער",
 	"userlogin-authpopup-cancel": "אַנולירן",
 	"userlogin-authpopup-closeme": "אויב {{#FORMAL:דו זעסט|איר זעט}} דעם מעסעדזש, {{#FORMAL:קענסטו|קענט איר}} פארמאכן דעם פענסטער.",

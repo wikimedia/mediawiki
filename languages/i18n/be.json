@@ -447,8 +447,6 @@
 	"createacct-temp-warning": "Праўкі, якія вы ўнеслі са свайго часовага ўліковага запісу <strong>$1</strong> не будуць перанесены на ваш пастаянны ўліковы запіс.",
 	"noname": "Вы не вызначылі правільнага імя ўдзельніка.",
 	"userlogin-authpopup-loggingin-title": "Уваход...",
-	"userlogin-authpopup-loggingin-body": "Павінна было адкрыцца усплываючае акно. Калі вы не ўбачылі яго, мы можам паспрабаваць адкрыць яго зноў, альбо вы можаце [$1 увайсці ў сістэму па-старому].",
-	"userlogin-authpopup-loggingin-body-link": "Альтэрнатыўная форма",
 	"userlogin-authpopup-retry": "Паспрабаваць яшчэ",
 	"userlogin-authpopup-cancel": "Скасаваць",
 	"userlogin-authpopup-closeme": "Калі вы бачыце гэты тэкст, акно можна закрыць.",

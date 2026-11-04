@@ -416,8 +416,6 @@
 	"createacct-temp-warning": "E modìfiche efetoæ co-a tò uténsa tenporània <strong>$1</strong> no saiàn trasferîe inte l'uténsa definitîva.",
 	"noname": "O nómme uténte indicòu o no l'é vàlido.",
 	"userlogin-authpopup-loggingin-title": "Coneténdose…",
-	"userlogin-authpopup-loggingin-body": "Dêv'êse conparîo 'n barcón popup. Se no se sciòrte a védila, se peu provâ a arvîla tórna, sedónca se peu [$1 fâ o login a-a vêgia mainêa].",
-	"userlogin-authpopup-loggingin-body-link": "Fórma alternatîva",
 	"userlogin-authpopup-retry": "Prêuvighe ancón",
 	"userlogin-authpopup-cancel": "Anùlla",
 	"userlogin-authpopup-closeme": "Se ti ti véddi quésto mesàggio, ti peu serâ quésto barcón.",

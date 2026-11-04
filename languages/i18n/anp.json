@@ -344,7 +344,6 @@
 	"createacct-error": "खाता निर्माण मँ त्रुटि",
 	"createaccounterror": "खाता नाय बनै ल परलौं: $1",
 	"userlogin-authpopup-loggingin-title": "प्रवेश होय रहलौ छौं",
-	"userlogin-authpopup-loggingin-body-link": "वैकल्पिक रूप",
 	"userlogin-authpopup-retry": "फेनु प्रयास करौ",
 	"userlogin-authpopup-cancel": "रद्द करौ",
 	"loginsuccesstitle": "लॉग्ड-इन",

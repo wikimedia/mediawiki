@@ -359,8 +359,6 @@
 	"createacct-temp-warning": "Vajehtused, miččid sinä tegid sinun keskaigaližel lehtpolel <strong>$1</strong>, ei sa sirtta sinun kaikenaigaižele lehtpolele.",
 	"noname": "Sinä ed ole kirjutanu todesišt kävutajan nimed.",
 	"userlogin-authpopup-loggingin-title": "Tulend sistemha…",
-	"userlogin-authpopup-loggingin-body": "Pidi avaitas hüpke-ikn. Ku et nähkoi sidä, ka voim naprida avaita sidä udes. Vai voit [$1 tulda edeližikš].",
-	"userlogin-authpopup-loggingin-body-link": "Al’ternativine form",
 	"userlogin-authpopup-retry": "Ladi udes",
 	"userlogin-authpopup-cancel": "Heitä",
 	"userlogin-authpopup-closeme": "Ku näget necen vestin, ka voit saubata necen iknan.",

@@ -302,7 +302,6 @@
 	"createaccounterror": "ບໍ່ສາມາດສ້າງບັນຊີໄດ້: $1",
 	"noname": "ທ່ານຍັງບໍ່ໄດ້ລະບຸຊື່ຜູ້ໃຊ້ທີ່ໃຊ້ໄດ້.",
 	"userlogin-authpopup-loggingin-title": "ກຳລັງເຂົ້າສູ່ລະບົບ",
-	"userlogin-authpopup-loggingin-body": "ໜ້າຕ່າງປັອບອັບຄວນຈະເປີດຂຶ້ນ. ຖ້າເຈົ້າບໍ່ເຫັນມັນ, ພວກເຮົາສາມາດລອງເປີດມັນອີກຄັ້ງ. ຫຼືທ່ານສາມາດ [ $1 ເຂົ້າສູ່ລະບົບແບບເກົ່າ].",
 	"userlogin-authpopup-retry": "ລອງ​ອີກ​ຄັ້ງ",
 	"userlogin-authpopup-cancel": "ຍົກເລີກ",
 	"userlogin-authpopup-closeme": "ຖ້າທ່ານເຫັນຂໍ້ຄວາມນີ້, ທ່ານສາມາດປິດໜ້າຕ່າງນີ້ໄດ້.",

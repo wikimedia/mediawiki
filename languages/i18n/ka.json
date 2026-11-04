@@ -369,7 +369,6 @@
 	"createacct-loginerror": "ანგარიში წარმატებით შეიქმნა, თუმცა თქვენ ვერ შეხვალთ სისტემაში ავტომატურად. გთხოვთ გამოიყენოთ [[Special:UserLogin|ეს გვერდი]].",
 	"noname": "თქვენს მიერ მითითებული მომხმარებლის სახელი ქმედითი არ არის.",
 	"userlogin-authpopup-loggingin-title": "შედიხართ სისტემაში...",
-	"userlogin-authpopup-loggingin-body-link": "ალტერნატიული ფორმა",
 	"userlogin-authpopup-retry": "კიდევ სცადეთ",
 	"userlogin-authpopup-cancel": "გაუქმება",
 	"loginsuccesstitle": "სისტემაში შესვლა განხორციელდა",

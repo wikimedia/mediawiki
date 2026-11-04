@@ -365,8 +365,6 @@
 	"createacct-temp-warning": "Votükams, kelis edunol tefü lönaspad nelaidüpik olik: <strong>$1</strong>, no poloveblinons ini lönaspad dadulik ola.",
 	"noname": "No egivol gebananemi lonöföl.",
 	"userlogin-authpopup-loggingin-title": "Nunäd anu jenon…",
-	"userlogin-authpopup-loggingin-body": "Frem esüiköl emuton pubön. If no kanol logön ati, kanobs steifülön ad logädükön oni nogna. U kanol [$1 nunädön oli ön mod vönädik].",
-	"userlogin-authpopup-loggingin-body-link": "Mod votik",
 	"userlogin-authpopup-retry": "Steifülön nogna",
 	"userlogin-authpopup-cancel": "Sädun",
 	"userlogin-authpopup-closeme": "If logol nuni at, dalol säjäfidükön fremi at.",

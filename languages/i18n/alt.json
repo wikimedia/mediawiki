@@ -366,8 +366,6 @@
 	"createacct-temp-warning": "Удурум аккаунт ажыра эткен тÿзедÿлерер, слердиҥ jаантайынгы <strong> $1 </strong> аккаунтарга кöчпöс.",
 	"noname": "Јарагадый туружаачыныҥ адын бичибегенер.",
 	"userlogin-authpopup-loggingin-title": "Системага кириш...",
-	"userlogin-authpopup-loggingin-body": "Чыгып келетен кӧзнӧк кӧрунер керек. Слер оны кӧрбӧй турган болзор, бис оны ойто ачарга умзанып ийерис. Эмезе слер [$1 эски эп-арга ажыра кирип] кӧрӧр.",
-	"userlogin-authpopup-loggingin-body-link": "Альтернативалык форма",
 	"userlogin-authpopup-retry": "Такып кӧрӧр",
 	"userlogin-authpopup-cancel": "Токтодыш",
 	"userlogin-authpopup-closeme": "Слер бу јетирӱни кӧрӱп турган болзор, бу бӱкти јабып салар аргалу.",

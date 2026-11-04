@@ -457,8 +457,6 @@
 	"createacct-temp-warning": "অস্থায়ী অ্যাকাউন্ট <strong>$1</strong> দিয়ে আপনি যে সম্পাদনাগুলি করেছেন তা আপনার স্থায়ী অ্যাকাউন্টে নিয়ে যাওয়া হবে না।",
 	"noname": "আপনি সঠিক ব্যবহারকারী নাম নির্দিষ্ট করেননি।",
 	"userlogin-authpopup-loggingin-title": "প্রবেশ করা হচ্ছে…",
-	"userlogin-authpopup-loggingin-body": "একটি পপ-আপ উইন্ডো খোলার কথা। আপনি যদি এটি দেখতে না পান, তবে আমরা আবার এটি খোলার চেষ্টা করতে পারি। অথবা আপনি [$1 পুরনো পদ্ধতিতে প্রবেশ করতে পারেন]।",
-	"userlogin-authpopup-loggingin-body-link": "বিকল্প ফরম",
 	"userlogin-authpopup-retry": "আবার চেষ্টা করুন",
 	"userlogin-authpopup-cancel": "বাতিল",
 	"userlogin-authpopup-closeme": "আপনি যদি এই বার্তাটি দেখতে পান, তবে আপনি এই উইন্ডোটি বন্ধ করতে পারেন।",

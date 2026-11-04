@@ -386,8 +386,6 @@
 	"createacct-temp-warning": "Pravky, ktore jeste sdělali svojim začasnym kontom <strong>$1</strong> ne budut prěnesene na vaše postojanno konto.",
 	"noname": "Ne jeste ukazali pravilno koristničsko ime.",
 	"userlogin-authpopup-loggingin-title": "Prijavjenje v teku…",
-	"userlogin-authpopup-loggingin-body": "Povinno bylo otvoriti se izskočno okno («pop-up»). Ako vy ne vidite go, možemo poprobovati otvoriti go ponovno. Ili [$1 prijavite se starym sposobom].",
-	"userlogin-authpopup-loggingin-body-link": "Alternativny formular",
 	"userlogin-authpopup-retry": "Poprobujte ponovno",
 	"userlogin-authpopup-cancel": "Anulovati",
 	"userlogin-authpopup-closeme": "Ako vidite tuto soobčenje, možete zatvoriti tuto okno.",

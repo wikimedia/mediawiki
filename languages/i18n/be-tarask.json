@@ -389,8 +389,6 @@
 	"createacct-temp-warning": "Рэдагаваньні, якія Вы зрабілі сваім часовым рахункам <strong>$1</strong>, ня будуць перанесеныя ў Ваш сталы рахунак.",
 	"noname": "Вы пазначылі няслушнае імя ўдзельніка.",
 	"userlogin-authpopup-loggingin-title": "Уваход…",
-	"userlogin-authpopup-loggingin-body": "Мусіла адкрыцца выплыўнае вакно. Калі вы яго ня бачыце, то можам паспрабаваць адкрыць яго зноўку. Альбо можаце [$1 ўвайсьці старым спосабам].",
-	"userlogin-authpopup-loggingin-body-link": "Альтэрнатыўная форма",
 	"userlogin-authpopup-retry": "Паспрабаваць зноў",
 	"userlogin-authpopup-cancel": "Скасаваць",
 	"userlogin-authpopup-closeme": "Калі вы бачыце гэтае паведамленьне, можаце закрыць вакно.",

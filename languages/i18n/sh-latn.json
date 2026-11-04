@@ -389,8 +389,6 @@
 	"createacct-temp-warning": "Izmjene koje ste objavili pomoću privremenog računa <strong>$1</strong> neće biti prenijete na stalni račun.",
 	"noname": "Niste izabrali ispravno korisničko ime.",
 	"userlogin-authpopup-loggingin-title": "Odjavljivanje...",
-	"userlogin-authpopup-loggingin-body": "Trebalo je da se otvori iskačući prozor. Ako ga ne vidite, možemo pokušati da ga ponovo otvorimo. Alternativno, možete se [$1 prijaviti na tradicionalni način].",
-	"userlogin-authpopup-loggingin-body-link": "Alternativni obrazac",
 	"userlogin-authpopup-retry": "Pokušaj ponovo",
 	"userlogin-authpopup-cancel": "Otkaži",
 	"userlogin-authpopup-closeme": "Ako vidite ovu poruku, možete zatvoriti prozor.",

@@ -435,8 +435,6 @@
 	"createacct-temp-warning": "Muudatusi, mille tegid ajutise kontoga <strong>$1</strong>, ei kanta üle püsivale kontole.",
 	"noname": "Sa ei sisestanud kasutajanime lubataval kujul.",
 	"userlogin-authpopup-loggingin-title": "Sisselogimine…",
-	"userlogin-authpopup-loggingin-body": "Hüpikaken oleks pidanud avanema. Kui sa seda ei näe, võime proovida seda uuesti avada. Võid ka [$1 vanaviisi sisse logida].",
-	"userlogin-authpopup-loggingin-body-link": "Alternatiivne vorm",
 	"userlogin-authpopup-retry": "Proovi uuesti",
 	"userlogin-authpopup-cancel": "Loobu",
 	"userlogin-authpopup-closeme": "Kui näed seda sõnumit, siis võid selle akna sulgeda.",

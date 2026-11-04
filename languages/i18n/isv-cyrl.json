@@ -347,8 +347,6 @@
 	"createacct-temp-warning": "Правкы, кторе јесте сдєлали својим врєменным контом <strong>$1</strong> не будут прєнесене на ваше постојанно конто.",
 	"noname": "Не јесте указали правилно користничско име.",
 	"userlogin-authpopup-loggingin-title": "Пријавјење в теку…",
-	"userlogin-authpopup-loggingin-body": "Повинно было отворити се изскочно окно («pop-up»). Ако вы не видите го, можемо попробовати отворити го поновно. Или [$1 пријавите се старым способом].",
-	"userlogin-authpopup-loggingin-body-link": "Алтернативны формулар",
 	"userlogin-authpopup-retry": "Попробујте поновно",
 	"userlogin-authpopup-cancel": "Ануловати",
 	"userlogin-authpopup-closeme": "Ако видите туто сообчење, можете затворити туто окно.",

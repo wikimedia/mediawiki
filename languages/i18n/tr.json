@@ -524,8 +524,6 @@
 	"createacct-temp-warning": "<strong>$1</strong> geçici hesabınızla yaptığınız düzenlemeler kalıcı hesabınıza taşınmaz.",
 	"noname": "Geçerli bir kullanıcı adı girmediniz.",
 	"userlogin-authpopup-loggingin-title": "Oturum açılıyor…",
-	"userlogin-authpopup-loggingin-body": "Bir açılır pencerenin açılması gerekirdi. Eğer göremiyorsanız, tekrar açmayı deneyebiliriz. Ya da [$1 eski yöntemle oturum açabilirsiniz].",
-	"userlogin-authpopup-loggingin-body-link": "Alternatif biçim",
 	"userlogin-authpopup-retry": "Tekrar {{#FORMAL:dene|deneyin}}",
 	"userlogin-authpopup-cancel": "İptal",
 	"userlogin-authpopup-closeme": "Bu iletiyi görürseniz, bu pencereyi kapatabilirsiniz.",

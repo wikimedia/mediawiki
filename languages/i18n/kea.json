@@ -338,8 +338,6 @@
 	"createacct-temp-warning": "Kes idisons ki fasedu ku bu kónta tenpurári <strong>$1</strong> ka ta ser transfiridu pa bu kónta purmanenti.",
 	"noname": "Bu ka dijita un nómi di uzuári bálidu.",
 	"userlogin-authpopup-loggingin-title": "Sa-ta kunetadu...",
-	"userlogin-authpopup-loggingin-body": "Debeda ten sidu abértu un djanéla flutuanti. Si bu ka bizia-l, tenta bri-l otu bes. O bu podi [$1 kuneta suma djetu bédju].",
-	"userlogin-authpopup-loggingin-body-link": "Djetu anternativu",
 	"userlogin-authpopup-retry": "Tenta otu bes",
 	"userlogin-authpopup-cancel": "Kansela",
 	"userlogin-authpopup-closeme": "Si bu ta kunsigi bizia es mensáji, bu podi fitxa es djanéla.",

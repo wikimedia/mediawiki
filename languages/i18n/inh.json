@@ -360,8 +360,6 @@
 	"createacct-temp-warning": "Цхьан юкъа лелае яь йолча хьай аккаунтаца (<strong> $1 </strong>) Ӏа даь хувцамаш хьа массаза йолча аккаунта чу дехьайоахаргьяц.",
 	"noname": "Доакъашхочун мегаргйола цӀи белгалъяьяц Ӏа.",
 	"userlogin-authpopup-loggingin-title": "Системача чувалар...",
-	"userlogin-authpopup-loggingin-body": "Хьалъарадувла кор да хьаделладала дезаш. Нагахьа санна гучадаьннадеце, цхьаькхаза из хьаделла хьажа йиш я тха. Е [$1 хьалха хиннача тайпара чувала] йиш я хьа.",
-	"userlogin-authpopup-loggingin-body-link": "Альтернативни кеп",
 	"userlogin-authpopup-retry": "Цхьаькхаза гӀорта",
 	"userlogin-authpopup-cancel": "Эшац",
 	"userlogin-authpopup-closeme": "Нагахьа санна хьона ер хоам гуш бале, кор дӀакъовла йиш я хьа.",

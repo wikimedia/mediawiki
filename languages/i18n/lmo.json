@@ -370,8 +370,6 @@
 	"createacct-temp-warning": "I cambiament fad con la tua utenza temporanea <strong>$1</strong> i sarann minga trasferide  a la toa utenza definitiva.",
 	"noname": "T'hee minga specificad un nom de utent bon",
 	"userlogin-authpopup-loggingin-title": "Adree a andà dent...",
-	"userlogin-authpopup-loggingin-body": "Ona fenestra de popap la gh'havariss de vesser dervida. Se te la vedet nò, podèm provà a dervìlla de noeuv. opur te podet [$1 andà de a la veggia manera].",
-	"userlogin-authpopup-loggingin-body-link": "Froma alternativa",
 	"userlogin-authpopup-retry": "Proeuvegh ancamò",
 	"userlogin-authpopup-cancel": "Anulla",
 	"userlogin-authpopup-closeme": "Se te vedet quell message chì, te podet sarrà su questa finestra chì.",

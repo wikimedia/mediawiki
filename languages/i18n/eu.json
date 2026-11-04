@@ -420,7 +420,6 @@
 	"createacct-temp-warning": "<strong>$1</strong> behin-behineko kontuarekin egin dituzun aldaketak ez dira zure kontu iraunkorrera eramango.",
 	"noname": "Ez duzu baliozko erabiltzaile izen bat zehaztu.",
 	"userlogin-authpopup-loggingin-title": "Saioa hasten...",
-	"userlogin-authpopup-loggingin-body": "Leiho bat ireki behar zen. Ezin baduzu ikusi, berriro irekitzen saia gaitezke. Edo [$1 sar zaitez antzinako moduan].",
 	"userlogin-authpopup-retry": "Saiatu berriro",
 	"userlogin-authpopup-cancel": "Utzi",
 	"userlogin-authpopup-closeme": "Mezu hau ikusten baduzu, leiho hau itxi dezakezu.",

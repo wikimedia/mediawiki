@@ -350,8 +350,6 @@
 	"createacct-temp-warning": "<strong>$1</strong> убактылуу аккаунтуңуз аркылуу жасалган түзөтүүлөрүңүз туруктуу аккаунтуңузга көчүрүлбөйт.",
 	"noname": "Сиз колдонуучунун анык атын көрсөткөн жоксуз.",
 	"userlogin-authpopup-loggingin-title": "Кирүү...",
-	"userlogin-authpopup-loggingin-body": "Калкыма терезе ачылышы керек болчу. Эгер сиз аны көрө албасаңыз, анда биз аны кайрадан ачууга аракет кылсак болот. Же сиз [$1 эски жол менен кире аласыз].",
-	"userlogin-authpopup-loggingin-body-link": "Альтернативдүү форма",
 	"userlogin-authpopup-retry": "Дагы аракет кылып көрүңүз",
 	"userlogin-authpopup-cancel": "Жокко чыгаруу",
 	"userlogin-authpopup-closeme": "Бул билдирмени көрсөңүз, бул терезени жапсаңыз болот.",

@@ -351,8 +351,6 @@
 	"createacct-temp-warning": "Жеплӓн ӹштӹмӹ <strong>$1</strong> аккаунт гач ӹштӹмӹ тӧрлӓтӹмӓшвлӓ тӹньӹн соэшок ӹштӹмӹ аккаунтышкет ак ванжеп лиэш.",
 	"noname": "Пользовательӹн тӧр лӹмжӹм анжыктыделат.",
 	"userlogin-authpopup-loggingin-title": "Системӹш пырымаш...",
-	"userlogin-authpopup-loggingin-body": "Кайын колтышы окня пачмы лишӓшлык ыльы. Тӹдӹм ат уж гӹнь, мӓ тӹдӹм угӹц пачын анжен кердӹнӓ. Ӓли тӹнь [$1 тошты семӹнь пырен кердӓт].",
-	"userlogin-authpopup-loggingin-body-link": "Альтернативный форма",
 	"userlogin-authpopup-retry": "Угӹц цацен анжы",
 	"userlogin-authpopup-cancel": "Цӓрӓш",
 	"userlogin-authpopup-closeme": "Ти сирмӓшым ужат гӹнь, ти окням питӹрен кердӓт.",

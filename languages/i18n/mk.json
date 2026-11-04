@@ -430,8 +430,6 @@
 	"createacct-temp-warning": "Уредувањата направени со привремена сметка <strong> $1 </strong> нема да се пренесат на трајната.",
 	"noname": "Внесовте погрешно корисничко име.",
 	"userlogin-authpopup-loggingin-title": "Ве најавувам…",
-	"userlogin-authpopup-loggingin-body": "Требаше да се отвори отскочник. Ако не можете да го видите, можеме да пробаме да го отвориме повторно. Или пак можете да се [$1 најавите на стариот начин].",
-	"userlogin-authpopup-loggingin-body-link": "Алтернативен образец",
 	"userlogin-authpopup-retry": "Обиди се пак",
 	"userlogin-authpopup-cancel": "Откажи",
 	"userlogin-authpopup-closeme": "Ако ја гледате поракава можете да го затворите прозорецов.",

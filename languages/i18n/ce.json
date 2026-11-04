@@ -389,8 +389,6 @@
 	"createacct-temp-warning": "Ахьа ханна йолучу <strong>$1</strong> аккаунтаца дина нисдарш, хьан гуттаренна аккаунтан тӀедохура дац.",
 	"noname": "Ахьа декъашхочун цӀе лартӀахь йазйина йац.",
 	"userlogin-authpopup-loggingin-title": "Логин...",
-	"userlogin-authpopup-loggingin-body": "Цхьа хьаладолуш долу кор схьаделла деза. Хьуна иза ца гича, йуха схьайелла хьажа мега тхо. Йа ахьа [$1 ширачу агӀонца авторизаци йан] мегар ду.",
-	"userlogin-authpopup-loggingin-body-link": "Альтернативин форма",
 	"userlogin-authpopup-retry": "Кхин цкъа гӀорта",
 	"userlogin-authpopup-cancel": "Йухайаккха",
 	"userlogin-authpopup-closeme": "ХӀара хаам хьуна гуш белахь, кор дӀакъовла мегар ду.",

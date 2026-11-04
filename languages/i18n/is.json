@@ -421,8 +421,6 @@
 	"createacct-temp-warning": "Breytingar sem þú hefur gert með tímabundna aðganginum þínum <strong>$1</strong> munu ekki færast yfir á varanlega notandaaðganginn þinn.",
 	"noname": "Þú hefur ekki tilgreint gilt notandanafn.",
 	"userlogin-authpopup-loggingin-title": "Skrái inn...",
-	"userlogin-authpopup-loggingin-body": "Sprettigluggi ætti að hafa opnast. Ef þú sérð hann ekki getum við reynt að opna hann aftur. Eða þú getur [$1 skráð þig inn á gamla mátann].",
-	"userlogin-authpopup-loggingin-body-link": "Annað form",
 	"userlogin-authpopup-retry": "Reyna aftur",
 	"userlogin-authpopup-cancel": "Hætta við",
 	"userlogin-authpopup-closeme": "Ef þú sérð þessi skilaboð geturðu lokað þessum glugga.",
