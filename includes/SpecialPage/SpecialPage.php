@@ -7,6 +7,7 @@
 
 namespace MediaWiki\SpecialPage;
 
+use BadMethodCallException;
 use MediaWiki\Auth\AuthManager;
 use MediaWiki\Config\Config;
 use MediaWiki\Context\IContextSource;
@@ -172,6 +173,15 @@ abstract class SpecialPage implements MessageLocalizer {
 	 * @param string $name Name of the special page, as seen in links and URLs
 	 */
 	public function __construct( $name = '' ) {
+		if ( func_num_args() > 1 ) {
+			// Throw an exception if extra parameters were provided, as the special page can otherwise be used without
+			// the required permission if the code in an extension was not updated and still passes $restriction
+			// instead of overriding ::getRestriction().
+			throw new BadMethodCallException(
+				'The constructor parameters $restriction, $listed, $function, $file and $includable of '
+				. __CLASS__ . ' were removed in 1.47.'
+			);
+		}
 		$this->mName = $name;
 	}
 
