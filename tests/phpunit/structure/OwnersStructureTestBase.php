@@ -78,8 +78,7 @@ abstract class OwnersStructureTestBase extends TestCase {
 			} elseif ( self::isMetadataLine( $line ) ) {
 				[ $currentSection, $currentListKey ] = self::processMetadataLine(
 					$line,
-					$currentSection,
-					$currentListKey
+					$currentSection
 				);
 			} elseif ( self::isBulletedListItem( $line ) ) {
 				$currentSection = self::addBulletedItem( $line, $currentSection, $currentListKey );
@@ -130,13 +129,11 @@ abstract class OwnersStructureTestBase extends TestCase {
 	 *
 	 * @param string $line The metadata line to process
 	 * @param array|null $section Current section being built
-	 * @param string|null $currentListKey Current list key being populated
 	 * @return array Tuple of [updated section, updated currentListKey]
 	 */
 	private static function processMetadataLine(
 		string $line,
-		?array $section,
-		?string $currentListKey
+		?array $section
 	): array {
 		[ $label, $value ] = explode( ':', substr( $line, 2 ), 2 );
 		$label = trim( $label );

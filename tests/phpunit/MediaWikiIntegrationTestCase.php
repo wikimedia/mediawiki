@@ -1220,7 +1220,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 			}
 		}
 
-		self::resetLegacyGlobals( $this->localServices );
+		self::resetLegacyGlobals();
 	}
 
 	/**
@@ -1296,7 +1296,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 			$newInstance->redefineService( $name, $callback );
 		}
 
-		self::resetLegacyGlobals( $newInstance );
+		self::resetLegacyGlobals();
 
 		return $newInstance;
 	}
@@ -1428,7 +1428,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 
 		MediaWikiServices::forceGlobalInstance( $newServices );
 
-		self::resetLegacyGlobals( $newServices );
+		self::resetLegacyGlobals();
 
 		return $newServices;
 	}
@@ -1458,12 +1458,12 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 		MediaWikiServices::forceGlobalInstance( self::$originalServices );
 		$currentServices->destroy();
 
-		self::resetLegacyGlobals( self::$originalServices );
+		self::resetLegacyGlobals();
 
 		return true;
 	}
 
-	private static function resetLegacyGlobals( MediaWikiServices $services ) {
+	private static function resetLegacyGlobals() {
 		ParserOptions::clearStaticCache();
 
 		// User objects may hold service references!

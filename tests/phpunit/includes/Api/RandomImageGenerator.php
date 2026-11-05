@@ -124,7 +124,9 @@ class RandomImageGenerator {
 	 * Based on image specification, write a very simple SVG file to disk.
 	 * Ignores the background spec because transparency is cool. :)
 	 *
-	 * @throws Exception
+	 * @param array $spec
+	 * @param string $format @phan-unused-param Used in fixed callback signature
+	 * @param string $filename
 	 */
 	private function writeSvg( array $spec, string $format, string $filename ): void {
 		$svg = new SimpleXmlElement( '<svg/>' );
@@ -144,6 +146,10 @@ class RandomImageGenerator {
 
 	/**
 	 * Based on an image specification, write such an image to disk, using Imagick PHP extension
+	 *
+	 * @param array $spec
+	 * @param string $format
+	 * @param string $filename
 	 */
 	private function writeImageWithApi( array $spec, string $format, string $filename ): void {
 		$image = new Imagick();
@@ -161,6 +167,10 @@ class RandomImageGenerator {
 	 *      -draw 'fill rgb(12,34,56)   polygon 41,39 44,57 50,57 41,39' \
 	 *   -draw 'fill rgb(99,123,231) circle 59,39 56,57' \
 	 *   -draw 'fill rgb(240,12,32)  circle 50,21 50,3'  filename.png
+	 *
+	 * @param array $spec
+	 * @param string $format @phan-unused-param Used in fixed callback signature
+	 * @param string $filename
 	 */
 	private function writeImageWithCommandLine( array $spec, string $format, string $filename ): void {
 		global $wgImageMagickConvertCommand;
