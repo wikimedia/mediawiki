@@ -145,6 +145,9 @@ For notes on 1.47.x and older releases, see HISTORY.
 
 === Action API changes in 1.48 ===
 
+* action=block has a new 'deferred' parameter to place a deferred block, and
+  list=blocks returns a 'deferred' flag for deferred blocks. Deferred blocks
+  are only listed for users with the 'deferredblock' right.
 * …
 
 === Action API internal changes in 1.48 ===

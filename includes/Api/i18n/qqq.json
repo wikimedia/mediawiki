@@ -65,6 +65,7 @@
 	"apihelp-block-param-autoblock": "{{doc-singularthey}}\n{{doc-apihelp-param|block|autoblock}}\n* See also {{msg-mw|ipbenableautoblock}}",
 	"apihelp-block-param-noemail": "{{doc-apihelp-param|block|noemail}}\n\n* See also {{msg-mw|ipbemailban}}",
 	"apihelp-block-param-hidename": "{{doc-apihelp-param|block|hidename}}",
+	"apihelp-block-param-deferred": "{{doc-apihelp-param|block|deferred}}",
 	"apihelp-block-param-allowusertalk": "{{doc-apihelp-param|block|allowusertalk}}\n* See also {{msg-mw|ipb-disableusertalk}}",
 	"apihelp-block-param-reblock": "{{doc-apihelp-param|block|reblock}}",
 	"apihelp-block-param-newblock": "{{doc-apihelp-param|block|newblock}}",

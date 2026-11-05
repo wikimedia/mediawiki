@@ -46,6 +46,7 @@
 	"apihelp-block-param-autoblock": "Automatically block the last used IP address, and any subsequent IP addresses they try to login from.",
 	"apihelp-block-param-noemail": "Prevent user from sending email through the wiki. (Requires the <code>blockemail</code> right).",
 	"apihelp-block-param-hidename": "Hide the username from the block log. (Requires the <code>hideuser</code> right).",
+	"apihelp-block-param-deferred": "Defer the block until the user next attempts an action that the block prevents. Until then, the block is not enforced, and is only logged in the deferred block log (or in the suppression log, if the block is hidden). (Requires the <code>deferredblock</code> right, and <var>[[mw:Special:MyLanguage/Manual:$wgEnableMultiBlocks|$wgEnableMultiBlocks]]</var> must be enabled).",
 	"apihelp-block-param-allowusertalk": "Allow the user to edit their own talk page (depends on <var>[[mw:Special:MyLanguage/Manual:$wgBlockAllowsUTEdit|$wgBlockAllowsUTEdit]]</var>).",
 	"apihelp-block-param-reblock": "If the user is already blocked by a single block, overwrite the existing block. If the user is blocked more than once, this will fail—use the <var>id</var> parameter instead to specify which block to overwrite. Cannot be used together with <var>id</var> or <var>newblock</var>.",
 	"apihelp-block-param-newblock": "Add another block even if the user is already blocked. Cannot be used together with <var>id</var> or <var>reblock</var>.",

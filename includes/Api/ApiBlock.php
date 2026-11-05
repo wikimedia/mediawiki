@@ -87,7 +87,9 @@ class ApiBlock extends ApiBase {
 
 		$additionalBlocksStatuses = [];
 		if ( $params['id'] !== null ) {
-			$block = $this->blockStore->newFromID( $params['id'], true );
+			$block = $this->blockStore->newFromID(
+				$params['id'], true, false, $this->getAuthority()->isAllowed( 'deferredblock' )
+			);
 			if ( !$block ) {
 				$this->dieWithError(
 					[ 'apierror-nosuchblockid', $params['id'] ],
@@ -137,7 +139,9 @@ class ApiBlock extends ApiBase {
 				}
 			} else {
 				$blocks = $this->blockStore->newListFromTarget(
-					$target, null, false, DatabaseBlockStore::AUTO_NONE );
+					$target, null, false, DatabaseBlockStore::AUTO_NONE,
+					$this->getAuthority()->isAllowed( 'deferredblock' )
+				);
 				if ( count( $blocks ) === 0 ) {
 					$status = $this->insertBlock( $target, $params );
 				} elseif ( count( $blocks ) === 1 ) {
@@ -185,6 +189,7 @@ class ApiBlock extends ApiBase {
 		$res['autoblock'] = $params['autoblock'];
 		$res['noemail'] = $params['noemail'];
 		$res['hidename'] = $block->getHideName();
+		$res['deferred'] = $block->isDeferred();
 		$res['allowusertalk'] = $params['allowusertalk'];
 		$res['watchuser'] = $params['watchuser'];
 		if ( $watchlistExpiry ) {
@@ -220,6 +225,7 @@ class ApiBlock extends ApiBase {
 			'isUserTalkEditBlocked' => !$params['allowusertalk'],
 			'isHideUser' => $params['hidename'],
 			'isPartial' => $params['partial'],
+			'isDeferred' => $params['deferred'],
 		];
 	}
 
@@ -340,6 +346,7 @@ class ApiBlock extends ApiBase {
 			'autoblock' => false,
 			'noemail' => false,
 			'hidename' => false,
+			'deferred' => false,
 			'allowusertalk' => false,
 			'reblock' => false,
 			'newblock' => false,
