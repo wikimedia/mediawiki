@@ -32,6 +32,20 @@ class SpecialListUsersTest extends SpecialPageTestBase {
 		$this->assertStringContainsString( '(listusers-submit)', $listUsersForm );
 	}
 
+	public function testDeferredBlockNotShown(): void {
+		$testUser = $this->getTestUser()->getUser();
+		$this->getServiceContainer()->getDatabaseBlockStore()->insertBlockWithParams( [
+			'targetUser' => $testUser,
+			'by' => $this->getTestSysop()->getUser(),
+			'expiry' => 'infinity',
+			'deferred' => true,
+		] );
+
+		[ $html ] = $this->executeSpecialPage();
+		$this->assertStringContainsString( $testUser->getName(), $html );
+		$this->assertStringNotContainsString( '(listusers-blocked', $html );
+	}
+
 	public function testExecuteForNoUsersShown(): void {
 		$testUser = $this->getTestUser()->getUserIdentity();
 

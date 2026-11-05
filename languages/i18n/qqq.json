@@ -2753,6 +2753,7 @@
 	"blocklist-hidden-placeholder": "Used in [[Special:BlockList]]. If the username is hidden because the user is blocked with the hide-user option, this message is displayed in place of the username.",
 	"blocklist-hidden-param": "Used in [[Special:BlockList]]. If this block hides the user, this message is shown in a list item in the block parameters column.",
 	"blocklist-block-hidden": "Used in [[Special:BlockList]]. If the block is hidden, this message is shown in a list item in the block parameters column.",
+	"blocklist-deferred": "Shown in the parameters column on [[Special:BlockList]] for deferred blocks, which are not enforced until the blocked user attempts an action that the block prevents.\n\nSee also:\n* {{msg-mw|ipb-deferred}}",
 	"contribslink": "Short for \"contributions\". Used as display name for a link to user contributions on history pages, [[Special:RecentChanges]], [[Special:Watchlist]], etc.\n{{Identical|Contribution}}",
 	"emaillink": "Used as display name for a link to send an e-mail to a user in the user tool links. Example: \"(Talk | contribs | block | send e-mail)\".\n\n{{Identical|E-mail}}",
 	"autoblocker": "Used in [[Special:Block]].\n* $1 - target username\n* $2 - reason",

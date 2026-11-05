@@ -7,6 +7,7 @@
 
 namespace MediaWiki\Specials\Pager;
 
+use MediaWiki\Block\DatabaseBlockStore;
 use MediaWiki\Block\HideUserUtils;
 use MediaWiki\Context\IContextSource;
 use MediaWiki\HookContainer\HookContainer;
@@ -22,6 +23,7 @@ use MediaWiki\User\UserGroupManager;
 use MediaWiki\User\UserIdentityLookup;
 use MediaWiki\User\UserIdentityValue;
 use Wikimedia\Rdbms\IConnectionProvider;
+use Wikimedia\Rdbms\RawSQLExpression;
 use Wikimedia\Rdbms\Subquery;
 use Wikimedia\Timestamp\ConvertibleTimestamp;
 use Wikimedia\Timestamp\TimestampFormat as TS;
@@ -232,6 +234,7 @@ class ActiveUsersPager extends UsersPager {
 			->where( [
 				'bt_user' => $uids,
 				$dbr->expr( 'bl_expiry', '>=', $dbr->timestamp() ),
+				new RawSQLExpression( $dbr->bitAnd( 'bl_deleted', DatabaseBlockStore::DELETED_DEFERRED ) . ' = 0' ),
 			] )
 			->groupBy( [ 'bt_user' ] )
 			->caller( __METHOD__ )
@@ -243,7 +246,9 @@ class ActiveUsersPager extends UsersPager {
 			->join( 'block', null, 'bl_target=bt_id' )
 			->where( [
 				'bt_user' => $uids,
-				'bl_deleted' => 1,
+				// Exact match: a deferred block that hides the user doesn't hide them
+				// until it materializes
+				'bl_deleted' => DatabaseBlockStore::DELETED_HIDE_USER,
 				$dbr->expr( 'bl_expiry', '>=', $dbr->timestamp() ),
 			] )
 			->groupBy( 'bt_user' )

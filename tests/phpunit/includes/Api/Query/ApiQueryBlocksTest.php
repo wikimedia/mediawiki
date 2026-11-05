@@ -116,6 +116,81 @@ class ApiQueryBlocksTest extends ApiTestCase {
 		$this->assertCount( 2, $data['query']['blocks'] );
 	}
 
+	public function testDeferredBlocksVisibility(): void {
+		$this->getServiceContainer()->getDatabaseBlockStore()
+			->insertBlockWithParams( [
+				'targetUser' => $this->getTestUser()->getUser(),
+				'by' => $this->getTestSysop()->getUser(),
+				'deferred' => true,
+			] );
+		$params = [
+			'action' => 'query',
+			'list' => 'blocks',
+			'bkprop' => 'id|flags',
+		];
+
+		[ $data ] = $this->doApiRequest(
+			$params, null, false, $this->mockRegisteredAuthorityWithoutPermissions( [ 'hideuser', 'deferredblock' ] )
+		);
+		$this->assertCount( 0, $data['query']['blocks'] );
+
+		[ $data ] = $this->doApiRequest(
+			$params, null, false, $this->mockRegisteredAuthorityWithPermissions( [ 'hideuser' ] )
+		);
+		$this->assertCount( 0, $data['query']['blocks'] );
+
+		[ $data ] = $this->doApiRequest(
+			$params, null, false, $this->mockRegisteredAuthorityWithPermissions( [ 'deferredblock' ] )
+		);
+		$this->assertCount( 1, $data['query']['blocks'] );
+		$this->assertTrue( $data['query']['blocks'][0]['deferred'] );
+		$this->assertFalse( $data['query']['blocks'][0]['block-hidden'] );
+	}
+
+	public static function provideHiddenDeferredBlocksVisibility(): array {
+		return [
+			'Deferred block hiding the user, no rights' => [ [ 'hideName' => true ], [], false ],
+			'Deferred block hiding the user, hideuser' => [ [ 'hideName' => true ], [ 'hideuser' ], false ],
+			'Deferred block hiding the user, deferredblock' => [
+				[ 'hideName' => true ], [ 'deferredblock' ], false
+			],
+			'Deferred block hiding the user, both rights' => [
+				[ 'hideName' => true ], [ 'hideuser', 'deferredblock' ], true
+			],
+			'Deferred hidden block, hideuser' => [ [ 'hideBlock' => true ], [ 'hideuser' ], false ],
+			'Deferred hidden block, deferredblock' => [ [ 'hideBlock' => true ], [ 'deferredblock' ], false ],
+			'Deferred hidden block, both rights' => [
+				[ 'hideBlock' => true ], [ 'hideuser', 'deferredblock' ], true
+			],
+		];
+	}
+
+	/** @dataProvider provideHiddenDeferredBlocksVisibility */
+	public function testHiddenDeferredBlocksVisibility(
+		array $blockParams,
+		array $rights,
+		bool $expectVisible
+	): void {
+		$this->getServiceContainer()->getDatabaseBlockStore()
+			->insertBlockWithParams( [
+				'targetUser' => $this->getTestUser()->getUser(),
+				'by' => $this->getTestSysop()->getUser(),
+				'deferred' => true,
+			] + $blockParams );
+
+		[ $data ] = $this->doApiRequest(
+			[ 'action' => 'query', 'list' => 'blocks', 'bkprop' => 'id|flags' ],
+			null,
+			false,
+			$this->mockRegisteredAuthorityWithPermissions( $rights )
+		);
+		$this->assertCount( $expectVisible ? 1 : 0, $data['query']['blocks'] );
+		if ( $expectVisible ) {
+			$this->assertTrue( $data['query']['blocks'][0]['deferred'] );
+			$this->assertTrue( $data['query']['blocks'][0]['block-hidden'] );
+		}
+	}
+
 	public function testExecuteRestrictions() {
 		$badActor = $this->getTestUser()->getUser();
 		$sysop = $this->getTestSysop()->getUser();

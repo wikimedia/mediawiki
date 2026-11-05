@@ -11,6 +11,7 @@ use MediaWiki\Block\BlockActionInfo;
 use MediaWiki\Block\BlockRestrictionStore;
 use MediaWiki\Block\BlockTargetFactory;
 use MediaWiki\Block\BlockTargetWithUserPage;
+use MediaWiki\Block\DatabaseBlockStore;
 use MediaWiki\Block\HideUserUtils;
 use MediaWiki\Block\RangeBlockTarget;
 use MediaWiki\Block\Restriction\ActionRestriction;
@@ -34,6 +35,7 @@ use MediaWiki\Utils\MWTimestamp;
 use stdClass;
 use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\Rdbms\IResultWrapper;
+use Wikimedia\Rdbms\RawSQLExpression;
 use Wikimedia\Timestamp\TimestampFormat as TS;
 
 /**
@@ -120,6 +122,7 @@ class BlockListPager extends TablePager {
 				'blocklist-hidden-param',
 				'blocklist-hidden-placeholder',
 				'blocklist-block-hidden',
+				'blocklist-deferred',
 			];
 
 			foreach ( $keys as $key ) {
@@ -191,10 +194,15 @@ class BlockListPager extends TablePager {
 			case 'params':
 				$properties = [];
 
-				if ( intval( $row->bl_deleted ) === 1 ) {
+				$deleted = (int)$row->bl_deleted;
+				$visibility = $deleted & DatabaseBlockStore::DELETED_VISIBILITY_MASK;
+				if ( $visibility === DatabaseBlockStore::DELETED_HIDE_USER ) {
 					$properties[] = htmlspecialchars( $this->messages['blocklist-hidden-param'] );
-				} elseif ( intval( $row->bl_deleted ) === 2 ) {
+				} elseif ( $visibility === DatabaseBlockStore::DELETED_HIDE_BLOCK ) {
 					$properties[] = htmlspecialchars( $this->messages['blocklist-block-hidden'] );
+				}
+				if ( $deleted & DatabaseBlockStore::DELETED_DEFERRED ) {
+					$properties[] = htmlspecialchars( $this->messages['blocklist-deferred'] );
 				}
 				if ( $row->bl_sitewide ) {
 					$properties[] = htmlspecialchars( $this->messages['blocklist-editing-sitewide'] );
@@ -482,26 +490,45 @@ class BlockListPager extends TablePager {
 		$info['conds'][] = $db->expr( 'bl_expiry', '>', $db->timestamp() );
 
 		# Filter out blocks with the deleted option if the user doesn't
-		# have permission to see hidden users
-		# TODO: consider removing this -- we could just redact them instead.
+		# have permission to see them
+		$performer = $this->getAuthority();
+		$canHideUser = $performer->isAllowed( 'hideuser' );
+		$canSeeDeferred = $performer->isAllowed( 'deferredblock' );
+		$invisibleDeletedBits = 0;
+
+		# TODO: consider changing this -- we could just redact them instead.
 		# The mere fact that an admin has deleted a user does not need to
 		# be private and could be included in block lists and logs for
 		# transparency purposes. Previously, filtering out deleted blocks
 		# was a convenient way to avoid showing the target name.
-		if ( $this->getAuthority()->isAllowed( 'hideuser' ) ) {
+		if ( $canHideUser ) {
 			$info['fields']['hu_deleted'] = $this->hideUserUtils->getExpression(
 				$db,
 				'block_target.bt_user',
 				HideUserUtils::HIDDEN_USERS
 			);
 		} else {
+			$invisibleDeletedBits |= DatabaseBlockStore::DELETED_VISIBILITY_MASK;
+			// Note that the condition below is not equivalent to the above, as this expression will also
+			// hide other blocks that apply to hidden users
 			$info['fields']['hu_deleted'] = 0;
 			$info['conds'][] = $this->hideUserUtils->getExpression(
 				$db,
 				'block_target.bt_user',
 				HideUserUtils::SHOWN_USERS
 			);
-			$info['conds']['bl_deleted'] = 0;
+		}
+
+		if ( !$canSeeDeferred ) {
+			$invisibleDeletedBits |= DatabaseBlockStore::DELETED_DEFERRED;
+		}
+		if ( $invisibleDeletedBits ) {
+			if ( !$canHideUser && !$canSeeDeferred ) {
+				// Optimize for a common case
+				$info['conds']['bl_deleted'] = 0;
+			} else {
+				$info['conds'][] = new RawSQLExpression( $db->bitAnd( 'bl_deleted', $invisibleDeletedBits ) . ' = 0' );
+			}
 		}
 		return $info;
 	}

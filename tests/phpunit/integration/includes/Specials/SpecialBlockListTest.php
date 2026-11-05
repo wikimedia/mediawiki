@@ -3,6 +3,7 @@ namespace MediaWiki\Tests\Integration\Specials;
 
 use MediaWiki\Request\FauxRequest;
 use MediaWiki\Tests\Specials\SpecialPageTestBase;
+use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
 use MediaWiki\Tests\User\TempUser\TempUserTestTrait;
 use MediaWiki\User\UserIdentity;
 use Wikimedia\Parsoid\Utils\DOMCompat;
@@ -13,6 +14,7 @@ use Wikimedia\Parsoid\Utils\DOMUtils;
  * @group Database
  */
 class SpecialBlockListTest extends SpecialPageTestBase {
+	use MockAuthorityTrait;
 	use TempUserTestTrait;
 
 	private const TEST_BLOCKED_IP = '127.0.0.1';
@@ -58,6 +60,38 @@ class SpecialBlockListTest extends SpecialPageTestBase {
 		$this->makeTestBlock(
 			$this->getServiceContainer()->getUserFactory()->newAnonymous( self::TEST_BLOCKED_IP )
 		);
+	}
+
+	public function testDeferredBlockVisibility(): void {
+		$target = $this->getMutableTestUser()->getUser();
+		$hiddenTarget = $this->getMutableTestUser()->getUser();
+		$blockStore = $this->getServiceContainer()->getDatabaseBlockStore();
+
+		$blockStore->insertBlockWithParams( [
+			'targetUser' => $target,
+			'by' => $this->getTestSysop()->getUser(),
+			'expiry' => 'infinity',
+			'deferred' => true,
+		] );
+		$blockStore->insertBlockWithParams( [
+			'targetUser' => $hiddenTarget,
+			'by' => $this->getTestSysop()->getUser(),
+			'expiry' => 'infinity',
+			'deferred' => true,
+			'hideBlock' => true,
+		] );
+
+		[ $html ] = $this->executeSpecialPage(
+			'', null, null, $this->mockRegisteredAuthorityWithoutPermissions( [ 'deferredblock' ] )
+		);
+		$this->assertStringNotContainsString( $target->getName(), $html );
+
+		[ $html ] = $this->executeSpecialPage(
+			'', null, null, $this->mockRegisteredAuthorityWithPermissions( [ 'deferredblock' ] )
+		);
+		$this->assertStringContainsString( $target->getName(), $html );
+		$this->assertStringContainsString( '(blocklist-deferred)', $html );
+		$this->assertStringNotContainsString( $hiddenTarget->getName(), $html );
 	}
 
 	/**
