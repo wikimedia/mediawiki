@@ -296,6 +296,79 @@ class DatabaseBlockStoreTest extends MediaWikiIntegrationTestCase {
 		];
 	}
 
+	/** @dataProvider provideDeferredBlocks */
+	public function testDeferredBlocks( array $blockParams, int $expectedDeletedValue ): void {
+		$target = $this->getTestUser()->getUser();
+		$blockStore = $this->getServiceContainer()->getDatabaseBlockStore();
+		$block = $blockStore->insertBlockWithParams( array_merge( [
+			'targetUser' => $target,
+			'by' => $this->getTestSysop()->getUser(),
+			'expiry' => 'infinity',
+			'deferred' => true,
+		], $blockParams ) );
+		$this->newSelectQueryBuilder()
+			->select( 'bl_deleted' )
+			->from( 'block' )
+			->where( [ 'bl_id' => $block->getId() ] )
+			->caller( __METHOD__ )
+			->assertFieldValue( (string)$expectedDeletedValue );
+
+		// Deferred blocks are excluded by default
+		$this->assertNull( $blockStore->newFromID( $block->getId() ) );
+		$this->assertSame( [], $blockStore->newListFromTarget( $target ) );
+		$this->assertSame( [], $blockStore->newListFromConds( [ 'bl_id' => $block->getId() ] ) );
+
+		$loadedBlock = $blockStore->newFromID( $block->getId(), false, false, true );
+		$this->assertTrue( $loadedBlock->isDeferred() );
+		$this->assertSame( $block->getHideName(), $loadedBlock->getHideName() );
+		$this->assertSame( $block->getHideBlock(), $loadedBlock->getHideBlock() );
+		$this->assertCount(
+			1,
+			$blockStore->newListFromTarget( $target, null, false, DatabaseBlockStore::AUTO_ALL, true )
+		);
+	}
+
+	public static function provideDeferredBlocks(): array {
+		return [
+			'Deferred block' => [
+				'blockParams' => [],
+				'expectedDeletedValue' => 4,
+			],
+			'Deferred block hiding the user' => [
+				'blockParams' => [ 'hideName' => true ],
+				'expectedDeletedValue' => 5,
+			],
+			'Deferred hidden block' => [
+				'blockParams' => [ 'hideBlock' => true ],
+				'expectedDeletedValue' => 6,
+			],
+		];
+	}
+
+	private function insertDeferredAutoblockingBlock(): DatabaseBlock {
+		// The sysop has a recent change, so an autoblocking block on it gets a retroactive autoblock
+		$store = $this->getStore();
+		$store->deleteBlocksMatchingConds( [ 'bt_user' => $this->sysop->getId() ] );
+		$block = $this->getBlock( [
+			'autoblock' => true,
+			'target' => $this->sysop,
+		] );
+		$block->setDeferred( true );
+		$store->insertBlock( $block );
+		return $block;
+	}
+
+	public function testDeferredBlockDoesNotAutoblock(): void {
+		$block = $this->insertDeferredAutoblockingBlock();
+		$store = $this->getStore();
+
+		$this->assertSame(
+			[],
+			$store->newListFromConds( [ 'bl_parent_block_id' => $block->getId() ], false, false, true )
+		);
+		$this->assertFalse( $store->doAutoblock( $block, '127.0.0.2' ) );
+	}
+
 	public function testGetQueryInfo() {
 		// We don't list all of the fields that should be included, because that just
 		// duplicates the function itself. Instead, check the structure and the field
@@ -638,6 +711,23 @@ class DatabaseBlockStoreTest extends MediaWikiIntegrationTestCase {
 				false,
 			],
 		];
+	}
+
+	public function testInsertDeferredBlockNoLogout(): void {
+		$block = $this->getBlock();
+		$block->setDeferred( true );
+		$userFactory = $this->getServiceContainer()->getUserFactory();
+		$targetToken = $userFactory->newFromUserIdentity( $block->getTargetUserIdentity() )->getToken();
+
+		$store = $this->getStore( [
+			'config' => [ MainConfigNames::BlockDisablesLogin => true ],
+		] );
+		$this->assertIsArray( $store->insertBlock( $block ) );
+
+		$this->assertSame(
+			$targetToken,
+			$userFactory->newFromUserIdentity( $block->getTargetUserIdentity() )->getToken()
+		);
 	}
 
 	public function testInsertBlockAutoblock() {

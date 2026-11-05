@@ -53,6 +53,21 @@ class DatabaseBlockStore {
 	public const AUTO_NONE = 'none';
 
 	/**
+	 * Values for the bl_deleted field. The low two bits hold the visibility of the
+	 * block: either 0 (visible), DELETED_HIDE_USER or DELETED_HIDE_BLOCK. These two
+	 * values are mutually exclusive. DELETED_DEFERRED is a flag that can be combined
+	 * with any of the visibility values.
+	 */
+	/** The block hides the target user name (and the block itself) */
+	public const DELETED_HIDE_USER = 1;
+	/** The block is hidden, but the target user name is not */
+	public const DELETED_HIDE_BLOCK = 2;
+	/** Mask to extract the visibility value from bl_deleted */
+	public const DELETED_VISIBILITY_MASK = 3;
+	/** The block is deferred, see DatabaseBlock::isDeferred() */
+	public const DELETED_DEFERRED = 4;
+
+	/**
 	 * @internal For use by ServiceWiring
 	 */
 	public const CONSTRUCTOR_OPTIONS = [
@@ -128,10 +143,11 @@ class DatabaseBlockStore {
 	 * @param int $id ID to search for
 	 * @param bool $fromPrimary Whether to use the DB_PRIMARY database (since 1.44)
 	 * @param bool $includeExpired Whether to include expired blocks (since 1.44)
+	 * @param bool $includeDeferred Whether to include deferred blocks (since 1.48)
 	 * @return DatabaseBlock|null
 	 */
-	public function newFromID( $id, $fromPrimary = false, $includeExpired = false ) {
-		$blocks = $this->newListFromConds( [ 'bl_id' => $id ], $fromPrimary, $includeExpired );
+	public function newFromID( $id, $fromPrimary = false, $includeExpired = false, $includeDeferred = false ) {
+		$blocks = $this->newListFromConds( [ 'bl_id' => $id ], $fromPrimary, $includeExpired, $includeDeferred );
 		return $blocks ? $blocks[0] : null;
 	}
 
@@ -196,13 +212,15 @@ class DatabaseBlockStore {
 	 *     this target. Doesn't make any sense to use TYPE_AUTO here. Leave blank to
 	 *     skip IP lookups.
 	 * @param string $auto One of the self::AUTO_* constants
+	 * @param bool $includeDeferred Whether to include deferred blocks
 	 * @return DatabaseBlock[] Any relevant blocks
 	 */
 	private function newLoad(
 		$specificTarget,
 		$fromPrimary,
 		$vagueTarget = null,
-		$auto = self::AUTO_ALL
+		$auto = self::AUTO_ALL,
+		$includeDeferred = false
 	) {
 		if ( $fromPrimary ) {
 			$db = $this->getPrimaryDB();
@@ -269,6 +287,9 @@ class DatabaseBlockStore {
 
 		// Exclude autoblocks unless AUTO_ALL was requested.
 		$autoConds = $auto === self::AUTO_ALL ? [] : [ 'bt_auto' => 0 ];
+		if ( !$includeDeferred ) {
+			$autoConds[] = $this->getNotDeferredCondition( $db );
+		}
 
 		$blockQuery = $this->getQueryInfo();
 		$res = $db->newSelectQueryBuilder()
@@ -438,8 +459,9 @@ class DatabaseBlockStore {
 			'wiki' => $this->wikiId,
 			'timestamp' => $row->bl_timestamp,
 			'auto' => (bool)$row->bt_auto,
-			'hideName' => (int)$row->bl_deleted === 1,
-			'hideBlock' => (bool)$row->bl_deleted,
+			'hideName' => ( (int)$row->bl_deleted & self::DELETED_VISIBILITY_MASK ) === self::DELETED_HIDE_USER,
+			'hideBlock' => ( (int)$row->bl_deleted & self::DELETED_VISIBILITY_MASK ) !== 0,
+			'deferred' => ( (int)$row->bl_deleted & self::DELETED_DEFERRED ) !== 0,
 			'id' => (int)$row->bl_id,
 			// Blocks with no parent ID should have bl_parent_block_id as null,
 			// don't save that as 0 though, see T282890
@@ -484,6 +506,7 @@ class DatabaseBlockStore {
 	 *   - AUTO_ALL: always load autoblocks
 	 *   - AUTO_SPECIFIED: load only autoblocks specified in the input by ID
 	 *   - AUTO_NONE: do not load autoblocks
+	 * @param bool $includeDeferred Whether to include deferred blocks (since 1.48)
 	 * @return DatabaseBlock|null (null if no relevant block could be found). The target and type
 	 *   of the returned block will refer to the actual block which was found, which might
 	 *   not be the same as the target you gave if you used $vagueTarget!
@@ -492,9 +515,10 @@ class DatabaseBlockStore {
 		$specificTarget,
 		$vagueTarget = null,
 		$fromPrimary = false,
-		$auto = self::AUTO_ALL
+		$auto = self::AUTO_ALL,
+		$includeDeferred = false
 	) {
-		$blocks = $this->newListFromTarget( $specificTarget, $vagueTarget, $fromPrimary, $auto );
+		$blocks = $this->newListFromTarget( $specificTarget, $vagueTarget, $fromPrimary, $auto, $includeDeferred );
 		return $this->chooseMostSpecificBlock( $blocks );
 	}
 
@@ -509,13 +533,15 @@ class DatabaseBlockStore {
 	 *   - AUTO_ALL: always load autoblocks
 	 *   - AUTO_SPECIFIED: load only autoblocks specified in the input by ID
 	 *   - AUTO_NONE: do not load autoblocks
+	 * @param bool $includeDeferred Whether to include deferred blocks (since 1.48)
 	 * @return DatabaseBlock[] Any relevant blocks
 	 */
 	public function newListFromTarget(
 		$specificTarget,
 		$vagueTarget = null,
 		$fromPrimary = false,
-		$auto = self::AUTO_ALL
+		$auto = self::AUTO_ALL,
+		$includeDeferred = false
 	) {
 		if ( !( $specificTarget instanceof BlockTarget ) ) {
 			$specificTarget = $this->blockTargetFactory->newFromLegacyUnion( $specificTarget );
@@ -533,7 +559,7 @@ class DatabaseBlockStore {
 			// We're not going to find anything useful here
 			return [];
 		} else {
-			return $this->newLoad( $specificTarget, $fromPrimary, $vagueTarget, $auto );
+			return $this->newLoad( $specificTarget, $fromPrimary, $vagueTarget, $auto, $includeDeferred );
 		}
 	}
 
@@ -564,9 +590,9 @@ class DatabaseBlockStore {
 		} else {
 			$db = $this->getReplicaDB();
 		}
-		$conds = $db->makeList( $rangeConds, LIST_OR );
+		$conds = [ $db->makeList( $rangeConds, LIST_OR ), $this->getNotDeferredCondition( $db ) ];
 		if ( !$applySoftBlocks ) {
-			$conds = [ $conds, 'bl_anon_only' => 0 ];
+			$conds['bl_anon_only'] = 0;
 		}
 		$blockQuery = $this->getQueryInfo();
 		$rows = $db->newSelectQueryBuilder()
@@ -595,13 +621,22 @@ class DatabaseBlockStore {
 	 *   mapping field names to values.
 	 * @param bool $fromPrimary
 	 * @param bool $includeExpired
+	 * @param bool $includeDeferred Whether to include deferred blocks (since 1.48)
 	 * @return DatabaseBlock[]
 	 */
-	public function newListFromConds( $conds, $fromPrimary = false, $includeExpired = false ) {
+	public function newListFromConds(
+		$conds,
+		$fromPrimary = false,
+		$includeExpired = false,
+		$includeDeferred = false
+	) {
 		$db = $fromPrimary ? $this->getPrimaryDB() : $this->getReplicaDB();
 		$conds = self::mapActorAlias( $conds );
 		if ( !$includeExpired ) {
 			$conds[] = $db->expr( 'bl_expiry', '>=', $db->timestamp() );
+		}
+		if ( !$includeDeferred ) {
+			$conds[] = $this->getNotDeferredCondition( $db );
 		}
 		$res = $db->newSelectQueryBuilder()
 			->queryInfo( $this->getQueryInfo() )
@@ -613,6 +648,13 @@ class DatabaseBlockStore {
 			$blocks[] = $this->newFromRow( $db, $row );
 		}
 		return $blocks;
+	}
+
+	/**
+	 * A helper function to get a query condition that excludes deferred blocks
+	 */
+	private function getNotDeferredCondition( IReadableDatabase $db ): IExpression {
+		return new RawSQLExpression( $db->bitAnd( 'bl_deleted', self::DELETED_DEFERRED ) . ' = 0' );
 	}
 
 	// endregion -- end of database read methods
@@ -896,7 +938,7 @@ class DatabaseBlockStore {
 		if ( $finalTargetCount ) {
 			$autoBlockIds = $this->doRetroactiveAutoblock( $block );
 
-			if ( $this->options->get( MainConfigNames::BlockDisablesLogin ) ) {
+			if ( !$block->isDeferred() && $this->options->get( MainConfigNames::BlockDisablesLogin ) ) {
 				$targetUserIdentity = $block->getTargetUserIdentity();
 				if ( $targetUserIdentity ) {
 					$targetUser = $this->userFactory->newFromUserIdentity( $targetUserIdentity );
@@ -1427,12 +1469,16 @@ class DatabaseBlockStore {
 	 * Given a {@link DatabaseBlock}, return the value for the `bl_deleted` column matching the block settings
 	 */
 	private function getDeletedColumnValue( DatabaseBlock $block ): int {
+		$value = 0;
 		if ( $block->getHideName() ) {
-			return 1;
+			$value = self::DELETED_HIDE_USER;
 		} elseif ( $block->getHideBlock() ) {
-			return 2;
+			$value = self::DELETED_HIDE_BLOCK;
 		}
-		return 0;
+		if ( $block->isDeferred() ) {
+			$value |= self::DELETED_DEFERRED;
+		}
+		return $value;
 	}
 
 	/**
@@ -1444,8 +1490,9 @@ class DatabaseBlockStore {
 	 */
 	private function doRetroactiveAutoblock( DatabaseBlock $block ): array {
 		$autoBlockIds = [];
-		// If autoblock is enabled, autoblock the LAST IP(s) used
-		if ( $block->isAutoblocking() && $block->getType() == AbstractBlock::TYPE_USER ) {
+		// If autoblock is enabled, autoblock the LAST IP(s) used.
+		// Deferred blocks don't autoblock until they materialize, as they aren't enforced before then.
+		if ( $block->isAutoblocking() && $block->getType() == AbstractBlock::TYPE_USER && !$block->isDeferred() ) {
 			$this->logger->debug(
 				'Doing retroactive autoblocks for ' . $block->getTargetName()
 			);
@@ -1524,8 +1571,8 @@ class DatabaseBlockStore {
 	 * @return int|false ID if an autoblock was inserted, false if not.
 	 */
 	public function doAutoblock( DatabaseBlock $parentBlock, $autoblockIP ) {
-		// If autoblocks are disabled, go away.
-		if ( !$parentBlock->isAutoblocking() ) {
+		// If autoblocks are disabled, or the block is not enforced yet, go away.
+		if ( !$parentBlock->isAutoblocking() || $parentBlock->isDeferred() ) {
 			return false;
 		}
 		$parentBlock->assertWiki( $this->wikiId );

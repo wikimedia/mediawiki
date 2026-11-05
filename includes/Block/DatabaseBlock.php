@@ -46,6 +46,8 @@ class DatabaseBlock extends AbstractBlock {
 	/** @var UserIdentity|null */
 	private $blocker;
 
+	private bool $deferred = false;
+
 	/**
 	 * Create a new block with specified option parameters on a user, IP or IP range.
 	 *
@@ -63,6 +65,8 @@ class DatabaseBlock extends AbstractBlock {
 	 *    except those specifically allowed by other block flags
 	 *  - by: (UserIdentity) UserIdentity object of the blocker.
 	 *  - restrictions: (Restriction[]) Array of partial block restrictions
+	 *  - deferred: (bool) The block is deferred: it is not enforced until the target
+	 *    attempts an action it would prevent (since 1.48)
 	 *
 	 * @since 1.26 $options array
 	 */
@@ -81,6 +85,7 @@ class DatabaseBlock extends AbstractBlock {
 			'sitewide'        => true,
 			'by'              => null,
 			'restrictions'    => null,
+			'deferred'        => false,
 		];
 
 		$options += $defaults;
@@ -111,6 +116,7 @@ class DatabaseBlock extends AbstractBlock {
 		$this->isEmailBlocked( (bool)$options['blockEmail'] );
 		$this->isCreateAccountBlocked( (bool)$options['createAccount'] );
 		$this->isUsertalkEditAllowed( (bool)$options['allowUsertalk'] );
+		$this->setDeferred( (bool)$options['deferred'] );
 	}
 
 	/**
@@ -143,6 +149,7 @@ class DatabaseBlock extends AbstractBlock {
 			&& $this->isAutoblocking() == $block->isAutoblocking()
 			&& $this->getHideName() == $block->getHideName()
 			&& $this->getHideBlock() == $block->getHideBlock()
+			&& $this->isDeferred() == $block->isDeferred()
 			&& $this->isEmailBlocked() == $block->isEmailBlocked()
 			&& $this->isUsertalkEditAllowed() == $block->isUsertalkEditAllowed()
 			&& $this->getReasonComment()->text == $block->getReasonComment()->text
@@ -300,6 +307,26 @@ class DatabaseBlock extends AbstractBlock {
 		// initFromRow() we converted 0 to null, in case the object was serialized
 		// and then unserialized, force 0 back to null, see T282890
 		return $this->parentBlockId ?: null;
+	}
+
+	/**
+	 * Get whether the block is deferred. A deferred block is not enforced, and is
+	 * hidden from most lookups, until the target attempts an action that the block
+	 * would prevent. At that point, the block materializes and becomes a normal block.
+	 *
+	 * @since 1.48
+	 */
+	public function isDeferred(): bool {
+		return $this->deferred;
+	}
+
+	/**
+	 * Set whether the block is deferred.
+	 *
+	 * @since 1.48
+	 */
+	public function setDeferred( bool $deferred ): void {
+		$this->deferred = $deferred;
 	}
 
 	/**

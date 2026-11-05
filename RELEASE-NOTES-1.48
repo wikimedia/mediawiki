@@ -82,6 +82,13 @@ For notes on 1.47.x and older releases, see HISTORY.
   one event is emitted per affected entity. Together they provide a modern
   replacement for the ChangeTagsAfterUpdateTags hook. Tags attached to a
   recentchanges row alone are not reported by an event yet.
+* DatabaseBlock has new isDeferred() and setDeferred() methods. Deferred blocks
+  are stored with the DatabaseBlockStore::DELETED_DEFERRED bit set in
+  bl_deleted, which can be combined with the existing hide user and hide block
+  values. DatabaseBlockStore lookups exclude deferred blocks unless the new
+  $includeDeferred parameter is set. Code that queries the block table
+  directly should exclude them, using
+  DatabaseBlockStore::getNotDeferredCondition().
 * …
 
 === External library changes in 1.48 ===
