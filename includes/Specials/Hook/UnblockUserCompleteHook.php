@@ -16,6 +16,8 @@ interface UnblockUserCompleteHook {
 	/**
 	 * This hook is called after an IP address or user has been unblocked.
 	 *
+	 * This hook is not called when a deferred block is removed before it is enforced.
+	 *
 	 * @since 1.35
 	 *
 	 * @param DatabaseBlock $block The Block object that was saved

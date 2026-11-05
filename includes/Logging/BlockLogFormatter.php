@@ -310,6 +310,7 @@ class BlockLogFormatter extends LogFormatter {
 			// For grepping. The following core messages can be used here:
 			// * block-log-flags-angry-autoblock
 			// * block-log-flags-anononly
+			// * block-log-flags-deferred
 			// * block-log-flags-hiddenname
 			// * block-log-flags-noautoblock
 			// * block-log-flags-nocreate

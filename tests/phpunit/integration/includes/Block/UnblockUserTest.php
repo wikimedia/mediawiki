@@ -28,6 +28,7 @@ class UnblockUserTest extends MediaWikiIntegrationTestCase {
 		// Prepare users
 		$this->user = $this->getTestUser()->getUser();
 		$this->overrideConfigValue( MainConfigNames::EnableMultiBlocks, true );
+		$this->setGroupPermissions( 'sysop', 'deferredblock', true );
 
 		// Prepare factory
 		$this->unblockUserFactory = $this->getServiceContainer()->getUnblockUserFactory();
@@ -70,6 +71,105 @@ class UnblockUserTest extends MediaWikiIntegrationTestCase {
 			'test'
 		)->unblock();
 		$this->assertStatusError( 'unblock-hideuser', $status );
+	}
+
+	public static function provideUnblockDeferredBlock(): array {
+		return [
+			'Deferred block' => [ [], 'deferredblock' ],
+			'Hidden deferred block' => [ [ 'hideBlock' => true ], 'suppress' ],
+		];
+	}
+
+	/** @dataProvider provideUnblockDeferredBlock */
+	public function testUnblockDeferredBlock( array $blockParams, string $expectedLogType ): void {
+		$performer = $this->getTestUser( [ 'sysop', 'suppress' ] )->getUser();
+		$block = $this->blockStore->insertBlockWithParams( [
+			'targetUser' => $this->user,
+			'by' => $performer,
+			'deferred' => true,
+		] + $blockParams );
+
+		$status = $this->unblockUserFactory->newUnblockUser(
+			$this->user,
+			$performer,
+			'test'
+		)->unblock();
+		$this->assertStatusGood( $status );
+		$this->assertNull( $this->blockStore->newFromID( $block->getId(), true, false, true ) );
+
+		// Only logged in the private log
+		$this->newSelectQueryBuilder()
+			->select( [ 'log_type', 'log_action' ] )
+			->from( 'logging' )
+			->where( [ 'log_action' => 'unblock' ] )
+			->caller( __METHOD__ )
+			->assertResultSet( [ [ $expectedLogType, 'unblock' ] ] );
+	}
+
+	public function testUnblockDeferredBlockWithoutPermission(): void {
+		$this->blockStore->insertBlockWithParams( [
+			'targetUser' => $this->user,
+			'by' => $this->getTestSysop()->getUser(),
+			'deferred' => true,
+		] );
+		$status = $this->unblockUserFactory->newUnblockUser(
+			$this->user,
+			$this->mockRegisteredAuthorityWithoutPermissions( [ 'deferredblock' ] ),
+			'test'
+		)->unblock();
+		$this->assertStatusError( 'ipb_cant_unblock', $status );
+	}
+
+	public function testRemoveDeferredBlockWithoutPermission(): void {
+		$block = $this->blockStore->insertBlockWithParams( [
+			'targetUser' => $this->user,
+			'by' => $this->getTestSysop()->getUser(),
+			'deferred' => true,
+			'hideName' => true,
+		] );
+		$status = $this->unblockUserFactory->newRemoveBlock(
+			$block,
+			$this->mockRegisteredAuthorityWithoutPermissions( [ 'deferredblock', 'hideuser' ] ),
+			'test'
+		)->unblock();
+		$this->assertStatusError( 'ipb_cant_unblock', $status );
+		$this->assertNotNull( $this->blockStore->newFromID( $block->getId(), true, false, true ) );
+	}
+
+	public static function provideUnblockIgnoresInvisibleDeferredBlock(): array {
+		return [
+			'Deferred block' => [ [], false ],
+			'Hidden deferred block, performer without hideuser' => [ [ 'hideName' => true ], true ],
+		];
+	}
+
+	/** @dataProvider provideUnblockIgnoresInvisibleDeferredBlock */
+	public function testUnblockIgnoresInvisibleDeferredBlock(
+		array $deferredBlockParams,
+		bool $canSeeDeferredBlocks
+	): void {
+		$sysop = $this->getTestSysop()->getUser();
+		$deferredBlock = $this->blockStore->insertBlockWithParams( [
+			'targetUser' => $this->user,
+			'by' => $sysop,
+			'deferred' => true,
+		] + $deferredBlockParams );
+		$block = $this->blockStore->insertBlockWithParams( [
+			'targetUser' => $this->user,
+			'by' => $sysop,
+		] );
+
+		if ( !$canSeeDeferredBlocks ) {
+			$this->setGroupPermissions( 'sysop', 'deferredblock', false );
+		}
+		$status = $this->unblockUserFactory->newUnblockUser(
+			$this->user,
+			$this->getTestUser( [ 'sysop' ] )->getAuthority(),
+			'test'
+		)->unblock();
+		$this->assertStatusGood( $status );
+		$this->assertSame( $block->getId(), $status->getValue()->getId() );
+		$this->assertNotNull( $this->blockStore->newFromID( $deferredBlock->getId(), true, false, true ) );
 	}
 
 	public function testNotBlocked() {

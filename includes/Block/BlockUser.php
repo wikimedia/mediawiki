@@ -64,6 +64,12 @@ class BlockUser {
 	/** @var DatabaseBlock[]|null */
 	private $priorBlocksForTarget;
 
+	/**
+	 * Number of deferred blocks on the target that the performer is not allowed to see.
+	 * Set by getPriorBlocksForTarget().
+	 */
+	private int $invisibleDeferredBlockCount = 0;
+
 	private ServiceOptions $options;
 	private BlockRestrictionStore $blockRestrictionStore;
 	private BlockPermissionChecker $blockPermissionChecker;
@@ -127,6 +133,8 @@ class BlockUser {
 
 	private bool $isHideBlock = false;
 
+	private bool $isDeferred = false;
+
 	/**
 	 * @var bool
 	 *
@@ -178,6 +186,8 @@ class BlockUser {
 	 *                                   needs hideuser)?
 	 *   - isPartial                   : Is this block partial? This is ignored when
 	 *                                   blockRestrictions is not an empty array.
+	 *   - isDeferred                  : Should the block be deferred until the target attempts
+	 *                                   an action it prevents (needs deferredblock)? (since 1.48)
 	 * @param AbstractRestriction[] $blockRestrictions
 	 * @param string[] $tags Tags that should be assigned to the log entry
 	 */
@@ -293,6 +303,10 @@ class BlockUser {
 		if ( isset( $blockOptions['isHideBlock'] ) ) {
 			$this->isHideBlock = $blockOptions['isHideBlock'];
 		}
+
+		if ( isset( $blockOptions['isDeferred'] ) ) {
+			$this->isDeferred = $blockOptions['isDeferred'];
+		}
 	}
 
 	/**
@@ -359,6 +373,7 @@ class BlockUser {
 		$block->isUsertalkEditAllowed( !$this->isUserTalkEditBlocked );
 		$block->setHideName( $this->isHideUser );
 		$block->setHideBlock( $this->isHideBlock );
+		$block->setDeferred( $this->isDeferred );
 
 		$blockId = $block->getId();
 		if ( $blockId === null ) {
@@ -381,15 +396,26 @@ class BlockUser {
 	 * Get prior blocks matching the current target. If we are updating a block
 	 * by ID, this will include blocks for the same target as that ID.
 	 *
+	 * Deferred blocks are included only if the performer can see them.
+	 * Otherwise, the performer must not know about them, so we act as if they
+	 * do not exist.
+	 *
 	 * @return DatabaseBlock[]
 	 */
 	private function getPriorBlocksForTarget() {
 		if ( $this->priorBlocksForTarget === null ) {
-			$this->priorBlocksForTarget = $this->blockStore->newListFromTarget(
+			$blocks = $this->blockStore->newListFromTarget(
 				$this->target, null, true,
 				// If we're blocking an IP, ignore any matching autoblocks (T287798)
-				DatabaseBlockStore::AUTO_SPECIFIED
+				DatabaseBlockStore::AUTO_SPECIFIED,
+				true
 			);
+			$visibleBlocks = array_values( array_filter(
+				$blocks,
+				fn ( DatabaseBlock $block ) => $this->blockPermissionChecker->canSeeBlock( $block )
+			) );
+			$this->invisibleDeferredBlockCount = count( $blocks ) - count( $visibleBlocks );
+			$this->priorBlocksForTarget = $visibleBlocks;
 		}
 		return $this->priorBlocksForTarget;
 	}
@@ -429,6 +455,15 @@ class BlockUser {
 	 *   Status is an instance of a newly placed block.
 	 */
 	public function placeBlock( $conflictMode = self::CONFLICT_FAIL ): Status {
+		if (
+			$this->blockToUpdate !== null &&
+			!$this->blockPermissionChecker->canSeeBlock( $this->blockToUpdate )
+		) {
+			// Act as if the block does not exist
+			$this->logger->debug( 'placeBlock: performer cannot see deferred blockToUpdate' );
+			return Status::newFatal( 'ipb-block-not-found', $this->blockToUpdate->getTargetName() );
+		}
+
 		$priorHideUser = $this->wasTargetHidden();
 		if (
 			$this->blockPermissionChecker
@@ -438,6 +473,17 @@ class BlockUser {
 		) {
 			$this->logger->debug( 'placeBlock: checkBasePermissions failed' );
 			return Status::newFatal( $priorHideUser ? 'cant-see-hidden-user' : 'badaccess-group0' );
+		}
+
+		if ( $this->isDeferred && !$this->performer->isAllowed( 'deferredblock' ) ) {
+			$this->logger->debug( 'placeBlock: deferredblock permission missing' );
+			return Status::newFatal( 'badaccess-group0' );
+		}
+
+		// Users that cannot see a deferred block can add another block on the same target
+		if ( $this->isDeferred && !$this->options->get( MainConfigNames::EnableMultiBlocks ) ) {
+			$this->logger->debug( 'placeBlock: deferred blocks require multiblocks' );
+			return Status::newFatal( 'ipb-deferred-multiblocks-disabled' );
 		}
 
 		$blockCheckResult = $this->blockPermissionChecker->checkBlockPermissions( $this->target );
@@ -609,6 +655,8 @@ class BlockUser {
 			$priorBlock = null;
 			$update = false;
 		} elseif ( !$priorBlocks ) {
+			// The new block is added next to deferred blocks that the performer cannot see
+			$expectedTargetCount = $this->invisibleDeferredBlockCount;
 			$priorBlock = null;
 			$update = false;
 		} else {
@@ -638,8 +686,16 @@ class BlockUser {
 			$block = $this->configureBlock( $priorBlock );
 		}
 
+		if ( $update && $this->isDeferred && !$priorBlock->isDeferred() ) {
+			// The block is already being enforced, and the target may already know about it
+			$this->logger->debug( 'placeBlockInternal: cannot defer a block that is already enforced' );
+			return Status::newFatal( 'ipb-deferred-already-blocked', $block->getTargetName() );
+		}
+
 		if ( $update ) {
-			$logEntry = $this->prepareLogEntry( true );
+			// If a deferred block is updated to not be deferred anymore, this is
+			// the first time it will appear in a non-deferred log.
+			$logEntry = $this->prepareLogEntry( !$priorBlock->isDeferred() || $this->isDeferred );
 			$this->blockStore->updateBlock( $block );
 		} else {
 			$logEntry = $this->prepareLogEntry( false );
@@ -649,8 +705,18 @@ class BlockUser {
 				$this->logger->warning( 'Block could not be inserted. No existing block was found.' );
 				return Status::newFatal( 'ipb-block-not-found', $block->getTargetName() );
 			}
-			if ( $insertStatus['finalTargetCount'] > 1 ) {
-				$logEntry->addParameter( 'finalTargetCount', $insertStatus['finalTargetCount'] );
+			// Do not reveal deferred blocks that the performer cannot see
+			$finalTargetCount = $insertStatus['finalTargetCount'] - $this->invisibleDeferredBlockCount;
+			// Readers of the block log and the suppression log may not see deferred blocks either
+			if ( !$this->isDeferred ) {
+				foreach ( $priorBlocks as $visibleBlock ) {
+					if ( $visibleBlock->isDeferred() ) {
+						$finalTargetCount--;
+					}
+				}
+			}
+			if ( $finalTargetCount > 1 ) {
+				$logEntry->addParameter( 'finalTargetCount', $finalTargetCount );
 			}
 		}
 		// Relate log ID to block ID (T27763)
@@ -658,15 +724,26 @@ class BlockUser {
 		// Also save the ID to log_params, since MW 1.44
 		$logEntry->addParameter( 'blockId', $block->getId() );
 
-		// Set *_deleted fields if requested
-		$hideUserTarget = $this->getHideUserTarget();
-		if ( $hideUserTarget ) {
-			RevisionDeleteUser::suppressUserName( $hideUserTarget->getName(), $hideUserTarget->getId() );
-		}
+		// Deferred blocks don't have any visible effects until they materialize.
+		// DeferredBlockMaterializer takes care of these actions at that point.
+		if ( !$this->isDeferred ) {
+			// Set *_deleted fields if requested
+			$hideUserTarget = $this->getHideUserTarget();
+			if ( $hideUserTarget ) {
+				RevisionDeleteUser::suppressUserName( $hideUserTarget->getName(), $hideUserTarget->getId() );
+			}
 
-		DeferredUpdates::addCallableUpdate( function () use ( $block, $legacyUser, $priorBlock ) {
-			$this->hookRunner->onBlockIpComplete( $block, $legacyUser, $priorBlock );
-		} );
+			// A deferred block was never enforced, so for hooks this is a new block
+			$hookPriorBlock = $priorBlock?->isDeferred() ? null : $priorBlock;
+			DeferredUpdates::addCallableUpdate( function () use ( $block, $legacyUser, $hookPriorBlock ) {
+				$this->hookRunner->onBlockIpComplete( $block, $legacyUser, $hookPriorBlock );
+			} );
+
+			// The block is enforced for the first time
+			if ( $priorBlock?->isDeferred() ) {
+				$this->blockStore->maybeInvalidateTargetSessions( $block );
+			}
+		}
 
 		// DatabaseBlock constructor sanitizes certain block options on insert
 		$this->isEmailBlocked = $block->isEmailBlocked();
@@ -805,7 +882,13 @@ class BlockUser {
 	 * @return ManualLogEntry
 	 */
 	private function prepareLogEntry( bool $isReblock ) {
-		$logType = $this->isHideUser || $this->isHideBlock ? 'suppress' : 'block';
+		if ( $this->isHideUser || $this->isHideBlock ) {
+			$logType = 'suppress';
+		} elseif ( $this->isDeferred ) {
+			$logType = 'deferredblock';
+		} else {
+			$logType = 'block';
+		}
 		$logAction = $isReblock ? 'reblock' : 'block';
 		// FIXME: Shouldn't this use BlockTarget::getLogPage?
 		$title = Title::makeTitle( NS_USER, $this->target->toString() );
@@ -872,6 +955,11 @@ class BlockUser {
 		if ( $this->isHideBlock && !$this->isHideUser ) {
 			// For grepping: message block-log-flags-hiddenblock
 			$flags[] = 'hiddenblock';
+		}
+
+		if ( $this->isDeferred ) {
+			// For grepping: message block-log-flags-deferred
+			$flags[] = 'deferred';
 		}
 
 		return implode( ',', $flags );

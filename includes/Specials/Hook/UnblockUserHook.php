@@ -16,6 +16,10 @@ interface UnblockUserHook {
 	/**
 	 * This hook is called before an IP address or user is unblocked.
 	 *
+	 * Since 1.48, this hook is also called for deferred blocks. A deferred block
+	 * is not enforced until the target attempts an action that the block prevents.
+	 * Use DatabaseBlock::isDeferred() to find these blocks.
+	 *
 	 * @since 1.35
 	 *
 	 * @param DatabaseBlock $block The Block object about to be saved

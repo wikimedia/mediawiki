@@ -97,6 +97,23 @@ class BlockPermissionChecker {
 	}
 
 	/**
+	 * Check if the performer can know that the block exists. A deferred block
+	 * needs the 'deferredblock' right. A hidden deferred block also needs the
+	 * 'hideuser' right.
+	 *
+	 * @since 1.48
+	 * @param DatabaseBlock $block
+	 * @return bool
+	 */
+	public function canSeeBlock( DatabaseBlock $block ): bool {
+		if ( !$block->isDeferred() ) {
+			return true;
+		}
+		return $this->performer->isAllowed( 'deferredblock' ) &&
+			( !$block->getHideBlock() || $this->performer->isAllowed( 'hideuser' ) );
+	}
+
+	/**
 	 * Checks block-related permissions (doesn't check any other permissions)
 	 *
 	 * T17810: Site-wide blocked admins should not be able to block/unblock

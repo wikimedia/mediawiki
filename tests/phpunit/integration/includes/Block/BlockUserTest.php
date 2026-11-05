@@ -31,6 +31,10 @@ class BlockUserTest extends MediaWikiIntegrationTestCase {
 	protected function setUp(): void {
 		parent::setUp();
 
+		// This resets services, so do it before we get any of them
+		$this->setGroupPermissions( 'sysop', 'deferredblock', true );
+		$this->overrideConfigValue( MainConfigNames::EnableMultiBlocks, true );
+
 		// Prepare users
 		$this->target = $this->getTestUser()->getUser();
 		$this->performer = $this->getTestUser( [ 'sysop', 'suppress' ] )->getAuthority();
@@ -162,6 +166,267 @@ class BlockUserTest extends MediaWikiIntegrationTestCase {
 		$this->assertFalse( $block->getHideName() );
 
 		$this->assertBlockLog( 'suppress', 'block', $this->performer->getUser(), $block, [ 'hiddenblock' ] );
+	}
+
+	public function testDeferredBlock(): void {
+		$status = $this->blockUserFactory->newBlockUser(
+			$this->target,
+			$this->performer,
+			'infinity',
+			'test deferred block',
+			[ 'isDeferred' => true ]
+		)->placeBlock();
+		$this->assertStatusGood( $status );
+		/** @var DatabaseBlock $block */
+		$block = $status->getValue();
+		$this->assertTrue( $block->isDeferred() );
+		// The block is not enforced yet
+		$this->assertNull( $this->target->getBlock() );
+
+		$this->assertBlockLog( 'deferredblock', 'block', $this->performer->getUser(), $block, [ 'deferred' ] );
+		$this->assertNoLogEntries( 'block' );
+	}
+
+	public function testDeferredHideUser(): void {
+		$status = $this->blockUserFactory->newBlockUser(
+			$this->target,
+			$this->performer,
+			'infinity',
+			'test deferred hideuser',
+			[ 'isHideUser' => true, 'isDeferred' => true ]
+		)->placeBlock();
+		$this->assertStatusGood( $status );
+		/** @var DatabaseBlock $block */
+		$block = $status->getValue();
+		$this->assertTrue( $block->isDeferred() );
+		$this->assertTrue( $block->getHideName() );
+		// The user must not be hidden until the block materializes
+		$this->assertFalse( $this->getServiceContainer()->getUserFactory()
+			->newFromId( $this->target->getId() )->isHidden() );
+
+		$this->assertBlockLog(
+			'suppress', 'block', $this->performer->getUser(), $block, [ 'hiddenname', 'deferred' ]
+		);
+		$this->assertNoLogEntries( 'deferredblock' );
+		$this->assertNoLogEntries( 'block' );
+	}
+
+	public function testPlaceDeferredBlockWithoutPermission(): void {
+		$blockStatus = $this->blockUserFactory->newBlockUser(
+			$this->target,
+			$this->mockRegisteredAuthorityWithoutPermissions( [ 'deferredblock' ] ),
+			'infinity',
+			'test block',
+			[ 'isDeferred' => true ]
+		)->placeBlock();
+		$this->assertStatusError( 'badaccess-group0', $blockStatus );
+	}
+
+	public function testDeferredBlockRequiresMultiblocks(): void {
+		$this->overrideConfigValue( MainConfigNames::EnableMultiBlocks, false );
+		$status = $this->getServiceContainer()->getBlockUserFactory()->newBlockUser(
+			$this->target,
+			$this->performer,
+			'infinity',
+			'test block',
+			[ 'isDeferred' => true ]
+		)->placeBlock();
+		$this->assertStatusError( 'ipb-deferred-multiblocks-disabled', $status );
+	}
+
+	public static function provideUpdateBlockLogout(): array {
+		return [
+			'Deferred block becomes enforced' => [
+				'wasDeferred' => true,
+				'isDeferred' => false,
+				'expectLogout' => true,
+			],
+			'Deferred block stays deferred' => [
+				'wasDeferred' => true,
+				'isDeferred' => true,
+				'expectLogout' => false,
+			],
+			'Enforced block is updated' => [
+				'wasDeferred' => false,
+				'isDeferred' => false,
+				'expectLogout' => false,
+			],
+		];
+	}
+
+	/** @dataProvider provideUpdateBlockLogout */
+	public function testUpdateBlockLogout( bool $wasDeferred, bool $isDeferred, bool $expectLogout ): void {
+		$this->overrideConfigValue( MainConfigNames::BlockDisablesLogin, true );
+		$block = $this->getServiceContainer()->getDatabaseBlockStore()->insertBlockWithParams( [
+			'targetUser' => $this->target,
+			'by' => $this->performer->getUser(),
+			'expiry' => 'infinity',
+			'deferred' => $wasDeferred,
+		] );
+		$userFactory = $this->getServiceContainer()->getUserFactory();
+		$token = $userFactory->newFromUserIdentity( $this->target )->getToken();
+
+		$status = $this->getServiceContainer()->getBlockUserFactory()->newUpdateBlock(
+			$block,
+			$this->performer,
+			'infinity',
+			'updated block',
+			[ 'isDeferred' => $isDeferred ]
+		)->placeBlock();
+		$this->assertStatusGood( $status );
+
+		$this->assertSame(
+			$expectLogout,
+			$token !== $userFactory->newFromUserIdentity( $this->target )->getToken()
+		);
+	}
+
+	public function testCannotDeferEnforcedBlock(): void {
+		$this->assertStatusGood( $this->blockUserFactory->newBlockUser(
+			$this->target,
+			$this->performer,
+			'infinity',
+			'test block'
+		)->placeBlock() );
+
+		$reblockStatus = $this->blockUserFactory->newBlockUser(
+			$this->target,
+			$this->performer,
+			'infinity',
+			'test block',
+			[ 'isDeferred' => true ]
+		)->placeBlock( BlockUser::CONFLICT_REBLOCK );
+		$this->assertStatusError( 'ipb-deferred-already-blocked', $reblockStatus );
+	}
+
+	public function testReblockDeferredBlockAsEnforced(): void {
+		$this->assertStatusGood( $this->blockUserFactory->newBlockUser(
+			$this->target,
+			$this->performer,
+			'infinity',
+			'test block',
+			[ 'isDeferred' => true ]
+		)->placeBlock() );
+
+		$hookBlock = null;
+		$hookPriorBlock = false;
+		$this->setTemporaryHook(
+			'BlockIpComplete',
+			static function ( $block, $legacyUser, $priorBlock ) use ( &$hookBlock, &$hookPriorBlock ) {
+				$hookBlock = $block;
+				$hookPriorBlock = $priorBlock;
+			}
+		);
+
+		$reblockStatus = $this->blockUserFactory->newBlockUser(
+			$this->target,
+			$this->performer,
+			'infinity',
+			'test block'
+		)->placeBlock( BlockUser::CONFLICT_REBLOCK );
+		$this->assertStatusGood( $reblockStatus );
+		/** @var DatabaseBlock $block */
+		$block = $reblockStatus->getValue();
+		$this->assertFalse( $block->isDeferred() );
+		$this->assertNotNull( $this->target->getBlock() );
+
+		// This is the first time the block is enforced, so hooks and the block log see a new block
+		$this->assertSame( $block->getId(), $hookBlock->getId() );
+		$this->assertNull( $hookPriorBlock );
+		$this->assertBlockLog( 'block', 'block', $this->performer->getUser(), $block );
+	}
+
+	public static function provideBlockWithInvisibleDeferredBlock(): array {
+		return [
+			'Deferred block' => [ [], false ],
+			'Deferred block hiding the user' => [ [ 'hideName' => true ], false ],
+			'Deferred block hiding the user, performer without hideuser' => [ [ 'hideName' => true ], true ],
+			'Hidden deferred block, performer without hideuser' => [ [ 'hideBlock' => true ], true ],
+		];
+	}
+
+	/** @dataProvider provideBlockWithInvisibleDeferredBlock */
+	public function testBlockWithInvisibleDeferredBlock(
+		array $deferredBlockParams,
+		bool $canSeeDeferredBlocks
+	): void {
+		$blockStore = $this->getServiceContainer()->getDatabaseBlockStore();
+		$deferredBlock = $blockStore->insertBlockWithParams( [
+			'targetUser' => $this->target,
+			'by' => $this->performer->getUser(),
+			'expiry' => 'infinity',
+			'deferred' => true,
+		] + $deferredBlockParams );
+
+		// The performer cannot see hidden blocks
+		if ( !$canSeeDeferredBlocks ) {
+			$this->setGroupPermissions( 'sysop', 'deferredblock', false );
+		}
+		$performer = $this->getTestUser( [ 'sysop' ] )->getAuthority();
+		$status = $this->blockUserFactory->newBlockUser(
+			$this->target,
+			$performer,
+			'infinity',
+			'test block'
+		)->placeBlock();
+		$this->assertStatusGood( $status );
+		/** @var DatabaseBlock $block */
+		$block = $status->getValue();
+		$this->assertFalse( $block->isDeferred() );
+		$this->assertNotSame( $deferredBlock->getId(), $block->getId() );
+
+		// The deferred block is kept
+		$this->assertNotNull( $blockStore->newFromID( $deferredBlock->getId(), true, false, true ) );
+		// The log entry does not reveal the deferred block
+		$this->assertBlockLog( 'block', 'block', $performer->getUser(), $block );
+	}
+
+	public function testBlockLogDoesNotRevealVisibleDeferredBlock(): void {
+		$blockStore = $this->getServiceContainer()->getDatabaseBlockStore();
+		$blockStore->insertBlockWithParams( [
+			'targetUser' => $this->target,
+			'by' => $this->performer->getUser(),
+			'expiry' => 'infinity',
+			'deferred' => true,
+		] );
+
+		$status = $this->blockUserFactory->newBlockUser(
+			$this->target,
+			$this->performer,
+			'infinity',
+			'test block'
+		)->placeBlock( BlockUser::CONFLICT_NEW );
+		$this->assertStatusGood( $status );
+		// Readers of the public log cannot see the deferred block
+		$this->assertBlockLog( 'block', 'block', $this->performer->getUser(), $status->getValue() );
+	}
+
+	public function testUpdateInvisibleDeferredBlock(): void {
+		$blockStore = $this->getServiceContainer()->getDatabaseBlockStore();
+		$deferredBlock = $blockStore->insertBlockWithParams( [
+			'targetUser' => $this->target,
+			'by' => $this->performer->getUser(),
+			'expiry' => 'infinity',
+			'deferred' => true,
+		] );
+
+		$status = $this->getServiceContainer()->getBlockUserFactory()->newUpdateBlock(
+			$deferredBlock,
+			$this->mockRegisteredAuthorityWithoutPermissions( [ 'deferredblock' ] ),
+			'infinity',
+			'test block'
+		)->placeBlock();
+		$this->assertStatusError( 'ipb-block-not-found', $status );
+		$this->assertTrue( $blockStore->newFromID( $deferredBlock->getId(), true, false, true )->isDeferred() );
+	}
+
+	private function assertNoLogEntries( string $logType ): void {
+		$this->newSelectQueryBuilder()
+			->select( 'COUNT(*)' )
+			->from( 'logging' )
+			->where( [ 'log_type' => $logType ] )
+			->caller( __METHOD__ )
+			->assertFieldValue( '0' );
 	}
 
 	public function testExistingPage() {

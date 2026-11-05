@@ -169,6 +169,30 @@ class BlockPermissionCheckerTest extends MediaWikiUnitTestCase {
 		);
 	}
 
+	public static function provideCanSeeBlock() {
+		// $rights, $isDeferred, $isHidden, $expect
+		yield 'enforced block' => [ [], false, false, true ];
+		yield 'deferred block, no rights' => [ [ 'hideuser' ], true, false, false ];
+		yield 'deferred block' => [ [ 'deferredblock' ], true, false, true ];
+		yield 'hidden deferred block, no hideuser' => [ [ 'deferredblock' ], true, true, false ];
+		yield 'hidden deferred block' => [ [ 'deferredblock', 'hideuser' ], true, true, true ];
+	}
+
+	/**
+	 * @dataProvider provideCanSeeBlock
+	 */
+	public function testCanSeeBlock( array $rights, bool $isDeferred, bool $isHidden, bool $expect ) {
+		$block = $this->createNoOpMock( DatabaseBlock::class, [ 'isDeferred', 'getHideBlock' ] );
+		$block->method( 'isDeferred' )->willReturn( $isDeferred );
+		$block->method( 'getHideBlock' )->willReturn( $isHidden );
+
+		$checker = $this->getBlockPermissionChecker(
+			true,
+			$this->mockRegisteredAuthorityWithPermissions( $rights )
+		);
+		$this->assertSame( $expect, $checker->canSeeBlock( $block ) );
+	}
+
 	public static function provideCheckEmailPermissions() {
 		// $enableEmail, $rights, $expect
 		yield 'Email not enabled, without permissions' => [ false, [], false ];

@@ -16,6 +16,9 @@ interface BlockIpCompleteHook {
 	/**
 	 * This hook is called after an IP address or user is blocked.
 	 *
+	 * For deferred blocks, this hook is called only after the block is enforced for the first time.
+	 * It's not called when a deferred block is placed or changed, but still in a dormant state.
+	 *
 	 * @since 1.35
 	 *
 	 * @param DatabaseBlock $block the block object that was saved

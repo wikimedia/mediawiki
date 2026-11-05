@@ -937,14 +937,7 @@ class DatabaseBlockStore {
 
 		if ( $finalTargetCount ) {
 			$autoBlockIds = $this->doRetroactiveAutoblock( $block );
-
-			if ( !$block->isDeferred() && $this->options->get( MainConfigNames::BlockDisablesLogin ) ) {
-				$targetUserIdentity = $block->getTargetUserIdentity();
-				if ( $targetUserIdentity ) {
-					$targetUser = $this->userFactory->newFromUserIdentity( $targetUserIdentity );
-					$this->sessionManager->invalidateSessionsForUser( $targetUser );
-				}
-			}
+			$this->maybeInvalidateTargetSessions( $block );
 
 			return [
 				'id' => $block->getId( $this->wikiId ),
@@ -1479,6 +1472,23 @@ class DatabaseBlockStore {
 			$value |= self::DELETED_DEFERRED;
 		}
 		return $value;
+	}
+
+	/**
+	 * If $wgBlockDisablesLogin is enabled, log the target of the block out everywhere.
+	 * If block exists as deferred (not enforced yet), it won't cause log out (yet).
+	 *
+	 * @internal For use by BlockUser, when a deferred block is updated to be enforced
+	 */
+	public function maybeInvalidateTargetSessions( DatabaseBlock $block ): void {
+		if ( $block->isDeferred() || !$this->options->get( MainConfigNames::BlockDisablesLogin ) ) {
+			return;
+		}
+		$targetUserIdentity = $block->getTargetUserIdentity();
+		if ( $targetUserIdentity ) {
+			$targetUser = $this->userFactory->newFromUserIdentity( $targetUserIdentity );
+			$this->sessionManager->invalidateSessionsForUser( $targetUser );
+		}
 	}
 
 	/**

@@ -88,7 +88,11 @@ For notes on 1.47.x and older releases, see HISTORY.
   values. DatabaseBlockStore lookups exclude deferred blocks unless the new
   $includeDeferred parameter is set. Code that queries the block table
   directly should exclude them, using
-  DatabaseBlockStore::getNotDeferredCondition().
+  DatabaseBlockStore::getNotDeferredCondition(). Deferred blocks can be placed
+  only if $wgEnableMultiBlocks is true.
+* The BlockIp and UnblockUser hooks are also called for deferred blocks. Use
+  DatabaseBlock::isDeferred() to find them. The BlockIpComplete and
+  UnblockUserComplete hooks are not called for deferred blocks.
 * …
 
 === External library changes in 1.48 ===

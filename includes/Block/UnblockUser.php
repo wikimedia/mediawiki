@@ -108,6 +108,14 @@ class UnblockUser {
 			return $status;
 		}
 
+		if (
+			$this->block instanceof DatabaseBlock &&
+			!$this->blockPermissionChecker->canSeeBlock( $this->block )
+		) {
+			// Act as if the block does not exist
+			return $status->fatal( 'ipb_cant_unblock', $this->target->toString() );
+		}
+
 		$blockPermissionCheckResult = $this->blockPermissionChecker->checkBlockPermissions( $this->target );
 		if ( $blockPermissionCheckResult !== true ) {
 			return $status->fatal( $blockPermissionCheckResult );
@@ -176,13 +184,16 @@ class UnblockUser {
 			return $status->fatal( 'ipb_cant_unblock', $this->block->getTargetName() );
 		}
 
-		$this->hookRunner->onUnblockUserComplete( $this->block, $legacyUser );
+		// A deferred block never had any visible effects, so there is nothing to undo
+		if ( !$this->block->isDeferred() ) {
+			$this->hookRunner->onUnblockUserComplete( $this->block, $legacyUser );
 
-		// Unset _deleted fields as needed
-		$user = $this->block->getTargetUserIdentity();
-		if ( $this->block->getHideName() && $user ) {
-			$id = $user->getId();
-			RevisionDeleteUser::unsuppressUserName( $user->getName(), $id );
+			// Unset _deleted fields as needed
+			$user = $this->block->getTargetUserIdentity();
+			if ( $this->block->getHideName() && $user ) {
+				$id = $user->getId();
+				RevisionDeleteUser::unsuppressUserName( $user->getName(), $id );
+			}
 		}
 
 		$this->log();
@@ -192,11 +203,18 @@ class UnblockUser {
 	}
 
 	/**
-	 * Log the unblock to Special:Log/block
+	 * Log the unblock to Special:Log/block, or to a private log if the block was deferred
 	 */
 	private function log() {
 		$page = $this->block->getRedactedTarget()->getLogPage();
-		$logEntry = new ManualLogEntry( 'block', 'unblock' );
+		if ( !$this->block->isDeferred() ) {
+			$logType = 'block';
+		} elseif ( $this->block->getHideBlock() ) {
+			$logType = 'suppress';
+		} else {
+			$logType = 'deferredblock';
+		}
+		$logEntry = new ManualLogEntry( $logType, 'unblock' );
 
 		$logEntry->setTarget( $page );
 		$logEntry->setComment( $this->reason );
@@ -214,8 +232,12 @@ class UnblockUser {
 			return $this->blockToRemove;
 		}
 
-		$activeBlocks = $this->blockStore->newListFromTarget(
-			$this->target, null, false, DatabaseBlockStore::AUTO_SPECIFIED );
+		// Ignore deferred blocks that the performer cannot see
+		$activeBlocks = array_values( array_filter(
+			$this->blockStore->newListFromTarget(
+				$this->target, null, false, DatabaseBlockStore::AUTO_SPECIFIED, true ),
+			fn ( DatabaseBlock $block ) => $this->blockPermissionChecker->canSeeBlock( $block )
+		) );
 		if ( !$activeBlocks ) {
 			$status->fatal( 'ipb_cant_unblock', $this->target->toString() );
 			return null;
