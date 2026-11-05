@@ -292,7 +292,7 @@ For notes on 1.46.x and older releases, see HISTORY.
 * Updated psr/log from 1.1.4 to 3.0.2.
 * Updated symfony/polyfill-php84 from 1.36.0 to 1.43.0.
 * Updated symfony/polyfill-php85 from 1.36.0 to 1.43.0.
-* Updated symfony/yaml from 7.4.6 to 7.4.20.
+* Updated symfony/yaml from 7.4.6 to 7.4.23.
 * Updated wikimedia/cldr-plural-rule-parser from 3.0.1 to 3.0.2.
 * Updated wikimedia/codex (Codex PHP) from 0.7.1 to 0.8.0.
 * Updated wikimedia/cssjanus from 2.3.0 to 2.3.1.
