@@ -9349,6 +9349,7 @@ class MainConfigSchema {
 			'blockusers' => [
 				'block' => true,
 				'blockemail' => true,
+				'deferredblock' => true,
 			],
 			'viewdeleted' => [
 				'browsearchive' => true,
@@ -9357,6 +9358,7 @@ class MainConfigSchema {
 			],
 			'viewrestrictedlogs' => [
 				'suppressionlog' => true,
+				'deferredblock' => true,
 			],
 			'delete' => [
 				'edit' => true,
@@ -12302,6 +12304,7 @@ class MainConfigSchema {
 		'default' => [
 			'',
 			'block',
+			'deferredblock',
 			'protect',
 			'rights',
 			'delete',
@@ -12328,7 +12331,10 @@ class MainConfigSchema {
 	 * Format: logtype => permissiontype
 	 */
 	public const LogRestrictions = [
-		'default' => [ 'suppress' => 'suppressionlog', ],
+		'default' => [
+			'suppress' => 'suppressionlog',
+			'deferredblock' => 'deferredblock',
+		],
 		'type' => 'map',
 	];
 
@@ -12457,6 +12463,27 @@ class MainConfigSchema {
 			],
 			'contentmodel/change' => ContentModelLogFormatter::class,
 			'contentmodel/new' => ContentModelLogFormatter::class,
+			'deferredblock/block' => [
+				'class' => BlockLogFormatter::class,
+				'services' => [
+					'TitleParser',
+					'NamespaceInfo',
+				]
+			],
+			'deferredblock/reblock' => [
+				'class' => BlockLogFormatter::class,
+				'services' => [
+					'TitleParser',
+					'NamespaceInfo',
+				]
+			],
+			'deferredblock/unblock' => [
+				'class' => BlockLogFormatter::class,
+				'services' => [
+					'TitleParser',
+					'NamespaceInfo',
+				]
+			],
 			'delete/delete' => DeleteLogFormatter::class,
 			'delete/delete_redir' => DeleteLogFormatter::class,
 			'delete/delete_redir2' => DeleteLogFormatter::class,
@@ -12547,6 +12574,13 @@ class MainConfigSchema {
 				]
 			],
 			'suppress/revision' => DeleteLogFormatter::class,
+			'suppress/unblock' => [
+				'class' => BlockLogFormatter::class,
+				'services' => [
+					'TitleParser',
+					'NamespaceInfo',
+				]
+			],
 			'tag/update' => TagLogFormatter::class,
 			'upload/overwrite' => UploadLogFormatter::class,
 			'upload/revert' => UploadLogFormatter::class,
@@ -12574,6 +12608,11 @@ class MainConfigSchema {
 			'contentmodel' => [
 				'change' => [ 'change' ],
 				'new' => [ 'new' ],
+			],
+			'deferredblock' => [
+				'block' => [ 'block' ],
+				'reblock' => [ 'reblock' ],
+				'unblock' => [ 'unblock' ],
 			],
 			'delete' => [
 				'delete' => [ 'delete' ],
@@ -12618,6 +12657,7 @@ class MainConfigSchema {
 				'delete' => [ 'delete' ],
 				'block' => [ 'block' ],
 				'reblock' => [ 'reblock' ],
+				'unblock' => [ 'unblock' ],
 			],
 			'upload' => [
 				'upload' => [ 'upload' ],

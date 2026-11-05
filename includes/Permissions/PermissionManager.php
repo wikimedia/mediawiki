@@ -129,6 +129,7 @@ class PermissionManager {
 		'createwithcontentmodel',
 		'createpage',
 		'createtalk',
+		'deferredblock',
 		'delete',
 		'delete-redirect',
 		'deletechangetags',

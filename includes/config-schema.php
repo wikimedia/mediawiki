@@ -1779,6 +1779,7 @@ return [
 				'blockusers' => [
 					'block' => true,
 					'blockemail' => true,
+					'deferredblock' => true,
 				],
 				'viewdeleted' => [
 					'browsearchive' => true,
@@ -1787,6 +1788,7 @@ return [
 				],
 				'viewrestrictedlogs' => [
 					'suppressionlog' => true,
+					'deferredblock' => true,
 				],
 				'delete' => [
 					'edit' => true,
@@ -2343,6 +2345,7 @@ return [
 			'LogTypes' => [
 				'',
 				'block',
+				'deferredblock',
 				'protect',
 				'rights',
 				'delete',
@@ -2360,6 +2363,7 @@ return [
 			],
 			'LogRestrictions' => [
 				'suppress' => 'suppressionlog',
+				'deferredblock' => 'deferredblock',
 			],
 			'FilterLogTypes' => [
 				'patrol' => true,
@@ -2418,6 +2422,27 @@ return [
 				],
 				'contentmodel/change' => 'MediaWiki\\Logging\\ContentModelLogFormatter',
 				'contentmodel/new' => 'MediaWiki\\Logging\\ContentModelLogFormatter',
+				'deferredblock/block' => [
+					'class' => 'MediaWiki\\Logging\\BlockLogFormatter',
+					'services' => [
+						'TitleParser',
+						'NamespaceInfo',
+					],
+				],
+				'deferredblock/reblock' => [
+					'class' => 'MediaWiki\\Logging\\BlockLogFormatter',
+					'services' => [
+						'TitleParser',
+						'NamespaceInfo',
+					],
+				],
+				'deferredblock/unblock' => [
+					'class' => 'MediaWiki\\Logging\\BlockLogFormatter',
+					'services' => [
+						'TitleParser',
+						'NamespaceInfo',
+					],
+				],
 				'delete/delete' => 'MediaWiki\\Logging\\DeleteLogFormatter',
 				'delete/delete_redir' => 'MediaWiki\\Logging\\DeleteLogFormatter',
 				'delete/delete_redir2' => 'MediaWiki\\Logging\\DeleteLogFormatter',
@@ -2508,6 +2533,13 @@ return [
 					],
 				],
 				'suppress/revision' => 'MediaWiki\\Logging\\DeleteLogFormatter',
+				'suppress/unblock' => [
+					'class' => 'MediaWiki\\Logging\\BlockLogFormatter',
+					'services' => [
+						'TitleParser',
+						'NamespaceInfo',
+					],
+				],
 				'tag/update' => 'MediaWiki\\Logging\\TagLogFormatter',
 				'upload/overwrite' => 'MediaWiki\\Logging\\UploadLogFormatter',
 				'upload/revert' => 'MediaWiki\\Logging\\UploadLogFormatter',
@@ -2531,6 +2563,17 @@ return [
 					],
 					'new' => [
 						'new',
+					],
+				],
+				'deferredblock' => [
+					'block' => [
+						'block',
+					],
+					'reblock' => [
+						'reblock',
+					],
+					'unblock' => [
+						'unblock',
 					],
 				],
 				'delete' => [
@@ -2633,6 +2676,9 @@ return [
 					],
 					'reblock' => [
 						'reblock',
+					],
+					'unblock' => [
+						'unblock',
 					],
 				],
 				'upload' => [
