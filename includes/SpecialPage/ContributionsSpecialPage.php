@@ -9,6 +9,7 @@
 
 namespace MediaWiki\SpecialPage;
 
+use BadMethodCallException;
 use MediaWiki\Block\Block;
 use MediaWiki\Block\DatabaseBlockStore;
 use MediaWiki\Html\Html;
@@ -89,6 +90,15 @@ abstract class ContributionsSpecialPage extends IncludableSpecialPage {
 		$name,
 	) {
 		parent::__construct( $name );
+		if ( func_num_args() > 11 ) {
+			// Throw an exception if extra parameters were provided, as the special page can otherwise be used without
+			// the required permission if the code in an extension was not updated and still passes $restriction
+			// instead of overriding ::getRestriction().
+			throw new BadMethodCallException(
+				'The constructor parameters $restriction, $listed, $function, $file and $includable of '
+				. __CLASS__ . ' were removed in 1.47.'
+			);
+		}
 	}
 
 	/**
