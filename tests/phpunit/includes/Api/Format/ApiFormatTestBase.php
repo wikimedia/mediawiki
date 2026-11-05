@@ -2,7 +2,6 @@
 
 namespace MediaWiki\Tests\Api\Format;
 
-use BadMethodCallException;
 use Exception;
 use MediaWiki\Api\ApiMain;
 use MediaWiki\Context\RequestContext;
@@ -28,9 +27,7 @@ abstract class ApiFormatTestBase extends MediaWikiIntegrationTestCase {
 	 * Return general data to be encoded for testing
 	 * @return array See self::testGeneralEncoding
 	 */
-	public static function provideGeneralEncoding() {
-		throw new BadMethodCallException( static::class . ' must implement ' . __METHOD__ );
-	}
+	abstract public static function provideGeneralEncoding();
 
 	/**
 	 * Get the formatter output for the given input data

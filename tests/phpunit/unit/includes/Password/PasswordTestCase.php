@@ -44,9 +44,7 @@ abstract class PasswordTestCase extends MediaWikiUnitTestCase {
 	 * parameter (a password) should match.
 	 * @return array
 	 */
-	public static function providePasswordTests() {
-		throw new LogicException( "Not implemented" );
-	}
+	abstract public static function providePasswordTests();
 
 	/**
 	 * @dataProvider providePasswordTests
