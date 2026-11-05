@@ -401,7 +401,7 @@
 	"userlogin-authpopup-loggingin-body-link": "Formulario alternativo",
 	"userlogin-authpopup-retry": "Intentar de novo",
 	"userlogin-authpopup-cancel": "Cancelar",
-	"userlogin-authpopup-closeme": "Se ves esta mensaxe, podes pechar esta ventá.",
+	"userlogin-authpopup-closeme": "Se ves esta mensaxe, podes pechar a xanela.",
 	"loginsuccesstitle": "Accediches ao sistema",
 	"loginsuccess": "<strong>Accediches a {{SITENAME}} como «$1».</strong>",
 	"nosuchuser": "Non existe ningún usuario chamado «$1».\nOs nomes de usuario distinguen entre maiúsculas e minúsculas.\nVerifica ortografía ou [[Special:CreateAccount|crea unha nova conta]].",

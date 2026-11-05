@@ -1658,6 +1658,7 @@
 	"uploadstash-header-thumb": "Кече рәсем",
 	"uploadstash-header-dimensions": "Үлчәмнәре",
 	"uploadstash-pager-submit": "Файллар исемлеген күрсәт",
+	"uploadstash-pager-tryagain": "Төяп җибәрүне бу файлдан башлау",
 	"uploadstash-bad-path": "Юл юк.",
 	"uploadstash-bad-path-invalid": "Юл дөрес түгел.",
 	"uploadstash-bad-path-unknown-type": "Билгесез \"$1\" төре.",
