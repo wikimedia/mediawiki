@@ -127,6 +127,19 @@ module.exports = exports = defineStore( 'block', () => {
 	 */
 	const hideUser = ref( additionalDetails.includes( 'wpHideUser' ) );
 	/**
+	 * Whether to defer the block until the target attempts an action that it prevents.
+	 * Until then, the block is not enforced, and is hidden from the target.
+	 *
+	 * @type {Ref<boolean>}
+	 */
+	const deferred = ref( additionalDetails.includes( 'wpDeferred' ) );
+	/**
+	 * Whether the block being edited was deferred when it was loaded.
+	 *
+	 * @type {Ref<boolean>}
+	 */
+	const loadedBlockDeferred = ref( false );
+	/**
 	 * Whether to watch the target's user page and talk page.
 	 *
 	 * @type {Ref<boolean>}
@@ -254,6 +267,29 @@ module.exports = exports = defineStore( 'block', () => {
 			mw.util.isInfinity( expiry.value );
 	} );
 	/**
+	 * Controls visibility of the 'Defer block' checkbox. True when the user has the
+	 * deferredblock right and multiblocks are enabled (this is passed from PHP).
+	 *
+	 * @type {boolean}
+	 */
+	const deferredVisible = !!mw.config.get( 'blockDeferredVisible' );
+	/**
+	 * Whether the 'Defer block' checkbox is disabled. A block that is already
+	 * in effect cannot be deferred.
+	 *
+	 * @type {ComputedRef<boolean>}
+	 */
+	const deferredDisabled = computed( () => !!blockId.value && !loadedBlockDeferred.value );
+	/**
+	 * Whether to warn that the block being edited will take effect immediately,
+	 * because it will not be deferred anymore.
+	 *
+	 * @type {ComputedRef<boolean>}
+	 */
+	const undeferWarningVisible = computed(
+		() => !!blockId.value && loadedBlockDeferred.value && !deferred.value
+	);
+	/**
 	 * Whether the 'Editing own talk page' checkbox is visible.
 	 */
 	const disableUTEditVisible = computed( () => {
@@ -363,6 +399,8 @@ module.exports = exports = defineStore( 'block', () => {
 		disableUTEdit.value = !blockData.allowusertalk;
 		hardBlock.value = !blockData.anononly;
 		hideUser.value = blockData.hidden;
+		deferred.value = !!blockData.deferred;
+		loadedBlockDeferred.value = !!blockData.deferred;
 		autoBlock.value = blockData.autoblock;
 		// We do not need to set watchUser as its state is never loaded from a block.
 	}
@@ -397,6 +435,8 @@ module.exports = exports = defineStore( 'block', () => {
 		disableUTEdit.value = false;
 		autoBlock.value = true;
 		hideUser.value = false;
+		deferred.value = false;
+		loadedBlockDeferred.value = false;
 		watchUser.value = false;
 		hardBlock.value = false;
 		// Other refs
@@ -414,6 +454,7 @@ module.exports = exports = defineStore( 'block', () => {
 	 */
 	function resetFormInternal() {
 		blockId.value = null;
+		loadedBlockDeferred.value = false;
 		formErrors.value = [];
 		formSubmitted.value = false;
 		formVisible.value = false;
@@ -494,6 +535,10 @@ module.exports = exports = defineStore( 'block', () => {
 			params.hidename = 1;
 		}
 
+		if ( deferredVisible && deferred.value ) {
+			params.deferred = 1;
+		}
+
 		if ( watchUser.value ) {
 			params.watchuser = 1;
 		}
@@ -540,11 +585,12 @@ module.exports = exports = defineStore( 'block', () => {
 	 * by target user to consolidate API requests across multiple BlockLog components.
 	 * The cache is cleared when the target user changes by a watcher in the store.
 	 *
-	 * @param {string} blockLogType Which data to fetch. One of 'recent', 'active', or 'suppress'.
+	 * @param {string} blockLogType Which data to fetch. One of 'recent', 'active', 'suppress'
+	 *   or 'deferredblock'.
 	 * @return {Promise|jQuery.Promise}
 	 */
 	function getBlockLogData( blockLogType ) {
-		if ( blockLogPromise && blockLogType !== 'suppress' ) {
+		if ( blockLogPromise && blockLogType !== 'suppress' && blockLogType !== 'deferredblock' ) {
 			// Serve block log data from cache if available.
 			return blockLogPromise;
 		}
@@ -568,6 +614,11 @@ module.exports = exports = defineStore( 'block', () => {
 			params.leaction = 'suppress/reblock';
 			localPromises.push( pushPromise( api.get( params ) ) );
 			return Promise.all( localPromises );
+		}
+
+		if ( blockLogType === 'deferredblock' ) {
+			params.letype = 'deferredblock';
+			return Promise.all( [ pushPromise( api.get( params ) ) ] );
 		}
 
 		// Cache miss for block log data.
@@ -674,6 +725,10 @@ module.exports = exports = defineStore( 'block', () => {
 		autoBlock,
 		hideUser,
 		hideUserVisible,
+		deferred,
+		deferredVisible,
+		deferredDisabled,
+		undeferWarningVisible,
 		watchUser,
 		hardBlock,
 		confirmationMessage,

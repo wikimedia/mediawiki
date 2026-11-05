@@ -16,6 +16,26 @@
 			{{ $i18n( 'ipbhidename' ) }}
 		</cdx-checkbox>
 		<cdx-checkbox
+			v-if="deferredVisible"
+			v-model="deferred"
+			input-value="wpDeferred"
+			:disabled="deferredDisabled"
+			class="mw-block-deferred"
+		>
+			{{ $i18n( 'ipb-deferred' ) }}
+			<template #description>
+				{{ $i18n( 'ipb-deferred-help' ) }}
+			</template>
+		</cdx-checkbox>
+		<cdx-message
+			v-if="undeferWarningVisible"
+			type="warning"
+			inline
+			class="mw-block-undefer-warning"
+		>
+			{{ $i18n( 'ipb-deferred-undefer-warning' ) }}
+		</cdx-message>
+		<cdx-checkbox
 			v-model="watchUser"
 			input-value="wpWatch"
 		>
@@ -41,29 +61,34 @@
 <script>
 const { computed, defineComponent } = require( 'vue' );
 const { storeToRefs } = require( 'pinia' );
-const { CdxCheckbox, CdxField } = require( '@wikimedia/codex' );
+const { CdxCheckbox, CdxField, CdxMessage } = require( '@wikimedia/codex' );
 const useBlockStore = require( '../stores/block.js' );
 
 /**
  * The 'additional details' (aka 'block options') section contains:
  *  - AutoBlock (if the target is not an IP)
  *  - HideUser (if the user has the hideuser right, and the target is not an IP)
+ *  - Deferred (if the user has the deferredblock right)
  *  - Watch (if the user is logged in)
  *  - HardBlock (if the target is an IP)
  */
 
 module.exports = exports = defineComponent( {
 	name: 'AdditionalDetailsField',
-	components: { CdxCheckbox, CdxField },
+	components: { CdxCheckbox, CdxField, CdxMessage },
 	setup() {
 		const store = useBlockStore();
 		const {
 			autoBlock,
 			hideUser,
 			hideUserVisible,
+			deferred,
+			deferredDisabled,
+			undeferWarningVisible,
 			watchUser,
 			hardBlock
 		} = storeToRefs( store );
+		const deferredVisible = store.deferredVisible;
 		const autoBlockExpiry = mw.config.get( 'blockAutoblockExpiry' ) || '';
 		const autoBlockVisible = computed(
 			() => !mw.util.isIPAddress( store.targetUser, true )
@@ -78,6 +103,10 @@ module.exports = exports = defineComponent( {
 			autoBlockVisible,
 			hideUser,
 			hideUserVisible,
+			deferred,
+			deferredVisible,
+			deferredDisabled,
+			undeferWarningVisible,
 			watchUser,
 			hardBlock,
 			hardBlockVisible
