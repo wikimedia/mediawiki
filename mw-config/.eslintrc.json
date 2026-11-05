@@ -1,5 +1,0 @@
-{
-	"extends": [
-		"../resources/src/.eslintrc.json"
-	]
-}

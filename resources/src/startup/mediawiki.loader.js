@@ -1775,7 +1775,6 @@
 				// [1] https://github.com/nodejs/node/blob/v20.1.0/lib/internal/modules/cjs/loader.js#L554-L560
 				var paths = moduleName.startsWith( '@' ) ?
 					/^(@[^/]+\/[^/]+)\/(.*)$/.exec( moduleName ) :
-					// eslint-disable-next-line no-mixed-spaces-and-tabs
 					        /^([^/]+)\/(.*)$/.exec( moduleName );
 				if ( paths ) {
 					moduleName = paths[ 1 ];
