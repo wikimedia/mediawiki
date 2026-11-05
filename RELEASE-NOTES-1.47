@@ -9,7 +9,7 @@ PHP 8.6 workboard: https://phabricator.wikimedia.org/tag/php_8.6_support/
 
 THIS IS NOT A RELEASE YET
 
-MediaWiki 1.47 is an alpha-quality development branch, and is not recommended
+MediaWiki 1.47 is a pre-release testing branch, and is not recommended
 for use in production.
 
 == Upgrading notes for 1.47 ==
@@ -26,7 +26,6 @@ Some specific notes for MediaWiki 1.47 upgrades are below:
   by 1.47.  Rollback from 1.47 to 1.45 is fully supported.  We recommend
   a two-step upgrade from 1.43 to 1.45.6 and then to 1.47, which will
   preserve rollback-compatibility of ParserCache entries.
-* …
 
 For notes on 1.46.x and older releases, see HISTORY.
 
@@ -42,7 +41,6 @@ For notes on 1.46.x and older releases, see HISTORY.
   This is due to a change in `$wgSVGConverter['rsvg']`; see T125710.
 * 'xx-uca-ckb' collation is no longer supported for $wgCategoryCollation,
   use 'uppercase-ckb' collation instead.
-* …
 
 ==== New configuration ====
 
@@ -90,11 +88,6 @@ For notes on 1.46.x and older releases, see HISTORY.
   may wish to examine $wgUseParsoidLinksUpdate, to ensure the parser options
   used for indexing your content match those used for links updates and
   indexing of wikitext content.
-* …
-
-==== Changed configuration ====
-
-* …
 
 ==== Removed configuration ====
 * $wgThumbnailStepsRatio, a temporary config, has been removed.
@@ -112,7 +105,6 @@ For notes on 1.46.x and older releases, see HISTORY.
   longer read or write to the MediaWiki session store. If you access $_SESSION
   this will call the PHP built-in session handler (e.g. local tmp files).
   It is recommended to turn this off in php.ini to prevent misuse (T434399).
-* …
 
 === New user-facing features in 1.47 ===
 
@@ -154,7 +146,6 @@ For notes on 1.46.x and older releases, see HISTORY.
   'cldsort=timestamp' listing.
 * (T32211) The page move form now detects if someone else moved the page
   between the form being opened and submitted.
-* …
 
 === New features for sysadmins in 1.47 ===
 
@@ -173,7 +164,6 @@ For notes on 1.46.x and older releases, see HISTORY.
   (bagostuff_resident_keys and bagostuff_resident_bytes, plus the per-cluster
   totals bagostuff_resident_cluster_keys and bagostuff_resident_cluster_bytes)
   for tracking growth over time.
-* …
 
 === New developer features in 1.47 ===
 * (T389281) The Language and LocalisationCache classes now support using the
@@ -261,7 +251,6 @@ For notes on 1.46.x and older releases, see HISTORY.
 * (T388663) New Notification types TitleNotification and AgentNotification
   were added for notifications that have only a related page or only an agent,
   complementing WikiNotification, which requires both.
-* …
 
 === External library changes in 1.47 ===
 
@@ -270,13 +259,11 @@ For notes on 1.46.x and older releases, see HISTORY.
 * Added symfony/mailer at 7.4.22.
 * Added symfony/mime at 7.4.22.
 * Added symfony/polyfill-php86 at 1.43.0.
-* …
 
 ===== New development-only external libraries =====
 
 * Added @stoplight/spectral-cli at 6.16.3.
 * Added fig/log-test at 1.2.1.
-* …
 
 ==== Changed external libraries ====
 
@@ -302,7 +289,6 @@ For notes on 1.46.x and older releases, see HISTORY.
 * Updated wikimedia/object-factory from 6.0.0 to 7.0.0.
 * Updated wikimedia/parsoid from 0.23.0 to 0.24.0.
 * Updated wikimedia/shellbox from 4.4.0 to 4.5.2.
-* …
 
 ===== Changed development-only external libraries =====
 
@@ -320,7 +306,6 @@ For notes on 1.46.x and older releases, see HISTORY.
 * Updated seld/jsonlint from 1.11.0 to 1.12.1.
 * Updated stylelint-config-wikimedia from 0.19.2 to 0.19.4.
 * Updated svgo from 3.3.3 to 3.3.5.
-* …
 
 ==== Removed external libraries ====
 
@@ -328,18 +313,15 @@ For notes on 1.46.x and older releases, see HISTORY.
   transitive dependency pear/net_socket), replaced by symfony/mailer and
   symfony/mime.
 * Removed wikimedia/php-session-serializer, no longer used (T431315).
-* …
 
 ===== Removed development-only external libraries =====
 
 * Removed wikimedia/langconv.
-* …
 
 === Bug fixes in 1.47 ===
 
 * (T74768) Fix an issue in 'mediawiki.Upload.js' where 'watchlist' is set to an
   integer instead of an enum, resulting in a badvalue error if set.
-* …
 
 === Action API changes in 1.47 ===
 * php response format has been removed.
@@ -371,21 +353,12 @@ For notes on 1.46.x and older releases, see HISTORY.
   generated server-side from 'comment', 'license', 'copystatus' and 'source',
   overriding the 'text' parameter. Extensions may alter the generated text via
   the UploadForm:getInitialPageText hook, just like Special:Upload POST.
-* …
 
 === Action API internal changes in 1.47 ===
 
 * Added EnumDef::PARAM_INTERNAL_VALUES to mark individual enum parameter values
   as internal/unstable; these appear in action=paraminfo output as
   "internalvalues".
-* …
-
-=== Languages updated in 1.47 ===
-MediaWiki supports over 350 languages. Many localisations are updated regularly.
-Below only new and removed languages are listed, as well as changes to languages
-because of Phabricator reports.
-
-* …
 
 === Breaking changes in 1.47 ===
 
@@ -592,7 +565,6 @@ because of Phabricator reports.
 * ConfigRepository class and MediaWikiServices::getConfigRepository(),
   deprecated since 1.42, have been removed.
 * ApiBase::makeMessage(), deprecated since 1.43, has been removed.
-* …
 
 === Deprecations in 1.47 ===
 
@@ -626,7 +598,6 @@ because of Phabricator reports.
     - FileDependency
     - GlobalDependency
     - MainConfigDependency
-  - …
 * The PatrolLog::record method is deprecated and will trigger
   deprecation warnings. Use PatrolManager::createPatrolLog instead.
 * Title::canUseNoindex() is deprecated with warnings. Please use
@@ -821,7 +792,6 @@ because of Phabricator reports.
   $pageLanguageOverride parameter is deprecated and emits warnings;
   instead use ::setTargetLanguage() on the ParserOptions passed to the
   method.
-* …
 
 === Other changes in 1.47 ===
 
@@ -833,7 +803,6 @@ because of Phabricator reports.
   with 'virtual-' to be recognized as a virtual domain.
 * The REST API endpoints /page/{title}/html and /page/{title}/lint now
   respond with 404 instead of 403 when the requested title is invalid.
-* …
 
 == Compatibility ==
 
