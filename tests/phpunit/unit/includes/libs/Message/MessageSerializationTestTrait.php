@@ -1,5 +1,7 @@
 <?php
 
+// @phan-file-suppress PhanAbstractStaticMethodCallInTrait
+
 namespace Wikimedia\Tests\Message;
 
 use Wikimedia\Tests\JsonSerializationTestTrait;

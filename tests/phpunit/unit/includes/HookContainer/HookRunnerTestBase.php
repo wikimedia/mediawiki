@@ -1,5 +1,7 @@
 <?php
 
+// @phan-file-suppress PhanAbstractStaticMethodCallInStatic
+
 namespace MediaWiki\Tests\HookContainer;
 
 use Generator;

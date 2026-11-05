@@ -1,5 +1,7 @@
 <?php
 
+// @phan-file-suppress PhanAbstractStaticMethodCallInStatic
+
 declare( strict_types = 1 );
 
 namespace MediaWiki\Tests\Unit\Password;

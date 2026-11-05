@@ -3,6 +3,8 @@
  * @license GPL-2.0-or-later
  */
 
+// @phan-file-suppress PhanAbstractStaticMethodCallInStatic
+
 namespace MediaWiki\Tests\Structure;
 
 use Doctrine\SqlFormatter\NullHighlighter;

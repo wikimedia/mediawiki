@@ -4,6 +4,8 @@
 // phpcs:disable MediaWiki.Commenting.FunctionComment.MissingParamTag -- Traits are not excluded
 // phpcs:disable MediaWiki.Commenting.FunctionComment.MissingDocumentationPublic -- Test traits are not excluded
 
+// @phan-file-suppress PhanAbstractStaticMethodCallInTrait
+
 namespace MediaWiki\Tests\Unit\Revision;
 
 use LogicException;

@@ -3,6 +3,8 @@
 // phpcs:disable MediaWiki.Commenting.FunctionComment.ObjectTypeHintParam
 // phpcs:disable MediaWiki.Commenting.FunctionComment.MissingParamTag -- Traits are not excluded
 
+// @phan-file-suppress PhanAbstractStaticMethodCallInTrait
+
 namespace Wikimedia\Tests;
 
 use Generator;
