@@ -87,7 +87,8 @@ class ApiBlockTest extends ApiTestCase {
 	 * Block by username
 	 */
 	public function testNormalBlock() {
-		$this->doBlock();
+		[ $res ] = $this->doBlock();
+		$this->assertFalse( $res['block']['deferred'] );
 	}
 
 	/**
@@ -179,6 +180,33 @@ class ApiBlockTest extends ApiTestCase {
 		$this->expectApiErrorCode( 'permissiondenied' );
 
 		$this->doBlock( [ 'hidename' => '' ], $performer );
+	}
+
+	public function testBlockWithDeferred() {
+		[ $res ] = $this->doApiRequestWithToken( [
+			'action' => 'block',
+			'user' => $this->mUser->getName(),
+			'reason' => 'Some reason',
+			'deferred' => '',
+		], null, new UltimateAuthority( $this->getTestSysop()->getUser() ) );
+
+		$this->assertTrue( $res['block']['deferred'] );
+		$this->assertSame( (string)DatabaseBlockStore::DELETED_DEFERRED, $this->getDb()->newSelectQueryBuilder()
+			->select( 'bl_deleted' )
+			->from( 'block' )
+			->where( [ 'bl_id' => $res['block']['id'] ] )
+			->caller( __METHOD__ )->fetchField() );
+		$this->assertNull( $this->blockStore->newFromID( $res['block']['id'] ) );
+	}
+
+	public function testBlockWithProhibitedDeferred() {
+		$performer = $this->mockUserAuthorityWithoutPermissions(
+			$this->getTestUser()->getUser(),
+			[ 'deferredblock' ]
+		);
+		$this->expectApiErrorCode( 'permissiondenied' );
+
+		$this->doBlock( [ 'deferred' => '' ], $performer );
 	}
 
 	public function testBlockWithEmailBlock() {
