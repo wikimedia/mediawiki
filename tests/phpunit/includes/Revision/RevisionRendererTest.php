@@ -568,8 +568,8 @@ class RevisionRendererTest extends MediaWikiIntegrationTestCase {
 
 		$combinedOutput = $rr->getRevisionParserOutput();
 
-		$splitSlotOutput = new ReflectionMethod( $renderer, 'splitSlotOutput' );
-		$slotOutput = $splitSlotOutput->invoke( $renderer, $rr, $options, $combinedOutput );
+		$splitPreviousOutputIntoSlots = new ReflectionMethod( $renderer, 'splitPreviousOutputIntoSlots' );
+		$slotOutput = $splitPreviousOutputIntoSlots->invoke( $renderer, $rr, $options, $combinedOutput );
 
 		$this->assertCount( 2, $slotOutput );
 		$this->assertArrayHasKey( SlotRecord::MAIN, $slotOutput );

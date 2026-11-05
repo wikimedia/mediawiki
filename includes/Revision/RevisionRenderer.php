@@ -245,7 +245,7 @@ class RevisionRenderer implements LoggerAwareInterface {
 		$slots = $revision->getSlots()->getSlots();
 
 		$withHtml = $hints['generate-html'] ?? true;
-		$previousOutputs = $this->splitSlotOutput( $rrev, $options, $hints['previous-output'] ?? null );
+		$previousOutputs = $this->splitPreviousOutputIntoSlots( $rrev, $options, $hints['previous-output'] ?? null );
 
 		// short circuit if there is only the main slot
 		if ( array_keys( $slots ) === [ SlotRecord::MAIN ] ) {
@@ -370,7 +370,7 @@ class RevisionRenderer implements LoggerAwareInterface {
 	 * @return array<string,?ParserOutput> A mapping from role name to a
 	 *   previous ParserOutput for that slot in the previous parse
 	 */
-	private function splitSlotOutput(
+	private function splitPreviousOutputIntoSlots(
 		RenderedRevision $rrev, ParserOptions $options, ?ParserOutput $previousOutput
 	) {
 		// If there is no previous parse, then there is nothing to split.
