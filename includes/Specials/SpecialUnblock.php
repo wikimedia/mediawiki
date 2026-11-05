@@ -13,6 +13,7 @@ use MediaWiki\Block\BlockTargetWithUserPage;
 use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\Block\DatabaseBlockStore;
 use MediaWiki\Block\UnblockUserFactory;
+use MediaWiki\Html\Html;
 use MediaWiki\HTMLForm\HTMLForm;
 use MediaWiki\Logging\LogEventsList;
 use MediaWiki\MainConfigNames;
@@ -80,7 +81,10 @@ class SpecialUnblock extends SpecialPage {
 			}
 		}
 
-		$this->block = $this->blockStore->newFromTarget( $this->target );
+		$this->block = $this->blockStore->newFromTarget(
+			$this->target, null, false, DatabaseBlockStore::AUTO_ALL,
+			$this->getAuthority()->isAllowed( 'deferredblock' )
+		);
 		if ( $this->target instanceof BlockTargetWithUserPage ) {
 			// Set the 'relevant user' in the skin, so it displays links like Contributions,
 			// User logs, UserRights, etc.
@@ -120,6 +124,14 @@ class SpecialUnblock extends SpecialPage {
 			->setSubmitTextMsg( 'ipusubmit' )
 			->addPreHtml( $this->msg( 'unblockiptext' )->parseAsBlock() );
 
+		if ( $this->block instanceof DatabaseBlock && $this->block->isDeferred() ) {
+			$out->addModuleStyles( 'mediawiki.codex.messagebox.styles' );
+			$form->addPreHtml( Html::noticeBox(
+				$this->msg( 'unblock-deferred-notice' )->parse(),
+				'mw-unblock-deferred'
+			) );
+		}
+
 		if ( $this->target ) {
 			$userPage = $this->target->getLogPage();
 			$targetName = (string)$this->target;
@@ -157,6 +169,29 @@ class SpecialUnblock extends SpecialPage {
 						'conds' => [ 'log_action' => [ 'block', 'reblock', 'unblock' ] ],
 						'msgKey' => [
 							'unblocklog-showsuppresslog',
+							$targetName,
+						],
+						'showIfEmpty' => false
+					],
+					$this->getContext()
+				);
+				if ( $logExtract !== '' ) {
+					$form->addPostHtml( $logExtract );
+				}
+			}
+
+			// Add deferred block entries if allowed
+			if ( $this->getAuthority()->isAllowed( 'deferredblock' ) ) {
+				$logExtract = '';
+				LogEventsList::showLogExtract(
+					$logExtract,
+					'deferredblock',
+					$userPage,
+					'',
+					[
+						'lim' => 10,
+						'msgKey' => [
+							'unblocklog-showdeferredblocklog',
 							$targetName,
 						],
 						'showIfEmpty' => false
