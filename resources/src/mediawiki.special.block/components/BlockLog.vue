@@ -25,7 +25,7 @@
 						:class="blockLogType === 'active' ? { 'cdx-selected-block-row': item.id === blockId } : ''"
 					>
 						<!-- Type -->
-						<td v-if="blockLogType === 'recent' || blockLogType === 'suppress'">
+						<td v-if="blockLogType === 'recent' || blockLogType === 'suppress' || blockLogType === 'deferredblock'">
 							{{ util.getBlockActionMessage( item.action ) }}
 						</td>
 						<!-- Expires -->
@@ -206,7 +206,7 @@
 		</cdx-table>
 		<div v-if="moreBlocks" class="mw-block-log-fulllog">
 			<a
-				:href="mw.util.getUrl( 'Special:Log', { page: 'User:' + targetUser, type: blockLogType === 'suppress' ? 'suppress' : 'block' } )"
+				:href="mw.util.getUrl( 'Special:Log', { page: 'User:' + targetUser, type: fullLogType } )"
 			>
 				{{ $i18n( 'log-fulllog' ).text() }}
 			</a>
@@ -257,10 +257,15 @@ module.exports = exports = defineComponent( {
 		} else if ( props.blockLogType === 'suppress' ) {
 			title = mw.message( 'block-user-suppressed-blocks' ).text();
 			emptyState.value = mw.message( 'block-user-no-suppressed-blocks' ).text();
+		} else if ( props.blockLogType === 'deferredblock' ) {
+			title = mw.message( 'block-user-deferred-blocks' ).text();
+			emptyState.value = mw.message( 'block-user-no-deferred-blocks' ).text();
 		}
+		const fullLogType = [ 'suppress', 'deferredblock' ].includes( props.blockLogType ) ?
+			props.blockLogType : 'block';
 
 		const columns = [];
-		if ( props.blockLogType === 'recent' || props.blockLogType === 'suppress' ) {
+		if ( props.blockLogType === 'recent' || props.blockLogType === 'suppress' || props.blockLogType === 'deferredblock' ) {
 			columns.push(
 				{ id: 'type', label: mw.message( 'blocklist-type-header' ).text() }
 			);
@@ -355,8 +360,8 @@ module.exports = exports = defineComponent( {
 					let newData = [];
 					const data = responses[ 0 ].query;
 
-					if ( props.blockLogType === 'recent' ) {
-						// List of recent block entries.
+					if ( props.blockLogType === 'recent' || props.blockLogType === 'deferredblock' ) {
+						// List of recent block or deferred block entries.
 						newData = logentriesToRows( data.logevents );
 						moreBlocks.value = newData.length >= FETCH_LIMIT;
 
@@ -398,13 +403,17 @@ module.exports = exports = defineComponent( {
 									block.autoblock ? null : 'noautoblock',
 									block.noemail ? 'noemail' : null,
 									block.allowusertalk ? null : 'nousertalk',
-									block.hidden ? 'hiddenname' : null
+									block.hidden ? 'hiddenname' : null,
+									block.deferred ? 'deferred' : null
 								].filter( ( e ) => e !== null ),
 								restrictions: block.restrictions,
 								parsedreason: block.parsedreason
 							} );
 						}
 					}
+
+					// Materialization logs duplicate what's in the block log, so let's not display the same thing twice.
+					newData = newData.filter( ( block ) => block.action !== 'materialize' );
 
 					logEntries.value = newData;
 				} ).catch( ( error ) => {
@@ -420,6 +429,7 @@ module.exports = exports = defineComponent( {
 			mw,
 			util,
 			title,
+			fullLogType,
 			emptyState,
 			columns,
 			cdxIconEdit,

@@ -576,6 +576,48 @@ function mockMwApiGet( additionalMocks = [] ) {
 		},
 		{
 			params: {
+				list: 'logevents',
+				letype: 'deferredblock',
+				letitle: 'User:DeferredBlockedUser'
+			},
+			response: {
+				query: {
+					logevents: [
+						{
+							logid: 1041,
+							ns: 2,
+							title: 'User:DeferredBlockedUser',
+							params: {
+								logid: 1040
+							},
+							type: 'deferredblock',
+							action: 'materialize',
+							user: 'DeferredBlockedUser',
+							timestamp: '2024-11-15T07:30:00Z',
+							comment: ''
+						},
+						{
+							logid: 1039,
+							ns: 2,
+							title: 'User:DeferredBlockedUser',
+							params: {
+								duration: 'infinity',
+								'duration-l10n': 'infinite',
+								flags: [ 'deferred' ],
+								sitewide: true
+							},
+							type: 'deferredblock',
+							action: 'block',
+							user: 'Admin',
+							timestamp: '2024-11-14T07:30:00Z',
+							comment: ''
+						}
+					]
+				}
+			}
+		},
+		{
+			params: {
 				list: 'logevents|blocks',
 				letype: 'block',
 				letitle: 'User:PartiallyBlockedUser'

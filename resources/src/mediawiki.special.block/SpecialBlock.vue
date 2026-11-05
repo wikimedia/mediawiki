@@ -96,6 +96,12 @@
 				block-log-type="suppress"
 				:can-delete-log-entry="canDeleteLogEntry"
 			></block-log>
+			<block-log
+				v-if="blockShowDeferredLog"
+				:key="`${submitCount}-deferred`"
+				block-log-type="deferredblock"
+				:can-delete-log-entry="canDeleteLogEntry"
+			></block-log>
 
 			<div
 				v-if="formVisible"
@@ -221,6 +227,7 @@ module.exports = exports = defineComponent( {
 	setup() {
 		const store = useBlockStore();
 		const blockShowSuppressLog = mw.config.get( 'blockShowSuppressLog' ) || false;
+		const blockShowDeferredLog = mw.config.get( 'blockShowDeferredLog' ) || false;
 		const canDeleteLogEntry = mw.config.get( 'blockCanDeleteLogEntry' ) || false;
 		const {
 			alreadyBlocked,
@@ -542,6 +549,7 @@ module.exports = exports = defineComponent( {
 			formHeaderText,
 			enableMultiblocks,
 			blockShowSuppressLog,
+			blockShowDeferredLog,
 			canDeleteLogEntry,
 			confirmationOpen,
 			removalConfirmationOpen,

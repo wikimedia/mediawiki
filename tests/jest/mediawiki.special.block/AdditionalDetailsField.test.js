@@ -22,4 +22,38 @@ describe( 'AdditionalDetailsField', () => {
 		mw.util.isIPAddress.mockReturnValue( true );
 		expect( wrapper.vm.hardBlockVisible ).toStrictEqual( true );
 	} );
+
+	it( 'should only show the deferred block option if the user can place deferred blocks', () => {
+		mockMwConfigGet( { blockDeferredVisible: false } );
+		let wrapper = shallowMount( AdditionalDetailsField, {
+			global: { plugins: [ createTestingPinia( { stubActions: false } ) ] }
+		} );
+		expect( wrapper.vm.deferredVisible ).toStrictEqual( false );
+
+		mockMwConfigGet( { blockDeferredVisible: true } );
+		wrapper = shallowMount( AdditionalDetailsField, {
+			global: { plugins: [ createTestingPinia( { stubActions: false } ) ] }
+		} );
+		expect( wrapper.vm.deferredVisible ).toStrictEqual( true );
+	} );
+
+	it( 'should disable the deferred block option when editing a block that is in effect', () => {
+		mockMwConfigGet( { blockDeferredVisible: true } );
+		const wrapper = shallowMount( AdditionalDetailsField, {
+			global: { plugins: [ createTestingPinia( { stubActions: false } ) ] }
+		} );
+		const store = useBlockStore();
+		expect( wrapper.vm.deferredDisabled ).toStrictEqual( false );
+
+		store.loadFromData( { id: 1, restrictions: {}, deferred: false } );
+		expect( wrapper.vm.deferredDisabled ).toStrictEqual( true );
+		expect( wrapper.vm.undeferWarningVisible ).toStrictEqual( false );
+
+		store.loadFromData( { id: 2, restrictions: {}, deferred: true } );
+		expect( wrapper.vm.deferredDisabled ).toStrictEqual( false );
+		expect( wrapper.vm.undeferWarningVisible ).toStrictEqual( false );
+
+		store.deferred = false;
+		expect( wrapper.vm.undeferWarningVisible ).toStrictEqual( true );
+	} );
 } );

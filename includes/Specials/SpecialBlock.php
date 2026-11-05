@@ -131,6 +131,7 @@ class SpecialBlock extends FormSpecialPage {
 				$this->target ? $this->getRequest()->getInt( 'id' ) : null;
 			$authority = $this->getAuthority();
 			$this->codexFormData[ 'blockShowSuppressLog' ] = $authority->isAllowed( 'suppressionlog' );
+			$this->codexFormData[ 'blockShowDeferredLog' ] = $authority->isAllowed( 'deferredblock' );
 			$this->codexFormData[ 'blockCanDeleteLogEntry' ] = $authority->isAllowed( 'deletelogentry' );
 			$this->codexFormData[ 'blockCanEditInterface' ] = $authority->isAllowed( 'editinterface' );
 			$this->codexFormData[ 'blockCIDRLimit' ] = $this->getConfig()->get( MainConfigNames::BlockCIDRLimit );
@@ -249,6 +250,10 @@ class SpecialBlock extends FormSpecialPage {
 
 			if ( $request->getBool( 'wpHideUser' ) ) {
 				$blockAdditionalDetailsPreset[] = 'wpHideUser';
+			}
+
+			if ( $request->getBool( 'wpDeferred' ) ) {
+				$blockAdditionalDetailsPreset[] = 'wpDeferred';
 			}
 
 			if ( $request->getBool( 'wpHardBlock' ) ) {
@@ -577,6 +582,14 @@ class SpecialBlock extends FormSpecialPage {
 			];
 
 			$this->codexFormData['blockHideUser'] = true;
+		}
+
+		// Allow some users to defer the block until the target attempts a blocked action
+		if (
+			$this->getAuthority()->isAllowed( 'deferredblock' ) &&
+			$this->getConfig()->get( MainConfigNames::EnableMultiBlocks )
+		) {
+			$this->codexFormData['blockDeferredVisible'] = true;
 		}
 
 		// Watchlist their user page? (Only if user is logged in)

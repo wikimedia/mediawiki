@@ -151,6 +151,65 @@ describe( 'Block API', () => {
 		expect( spy ).toHaveBeenCalledWith( expected );
 	} );
 
+	it( 'should only pass the deferred param if the user can place deferred blocks', () => {
+		mockMwConfigGet( { blockEnableMultiblocks: false, blockDeferredVisible: false } );
+		let store = useBlockStore();
+		const spy = jest.spyOn( mw.Api.prototype, 'postWithEditToken' );
+		store.deferred = true;
+		store.doBlock();
+		expect( spy ).toHaveBeenLastCalledWith( expect.not.objectContaining( { deferred: 1 } ) );
+
+		mockMwConfigGet( { blockEnableMultiblocks: false, blockDeferredVisible: true } );
+		setActivePinia( createPinia() );
+		store = useBlockStore();
+		store.deferred = true;
+		store.doBlock();
+		expect( spy ).toHaveBeenLastCalledWith( expect.objectContaining( { deferred: 1 } ) );
+
+		store.deferred = false;
+		store.doBlock();
+		expect( spy ).toHaveBeenLastCalledWith( expect.not.objectContaining( { deferred: 1 } ) );
+	} );
+
+	it( 'should disable the deferred option only when editing a block that is in effect', () => {
+		mockMwConfigGet( { blockDeferredVisible: true } );
+		const store = useBlockStore();
+		const blockData = { id: 1, restrictions: {}, deferred: false };
+		expect( store.deferredDisabled ).toStrictEqual( false );
+
+		store.loadFromData( blockData );
+		expect( store.deferredDisabled ).toStrictEqual( true );
+
+		store.loadFromData( Object.assign( {}, blockData, { deferred: true } ) );
+		expect( store.deferredDisabled ).toStrictEqual( false );
+
+		store.resetForm();
+		expect( store.deferredDisabled ).toStrictEqual( false );
+	} );
+
+	it( 'should warn only when a deferred block will not be deferred anymore', () => {
+		mockMwConfigGet( { blockDeferredVisible: true } );
+		const store = useBlockStore();
+		const blockData = { id: 1, restrictions: {}, deferred: true };
+		store.deferred = false;
+		expect( store.undeferWarningVisible ).toStrictEqual( false );
+
+		store.loadFromData( blockData );
+		expect( store.deferred ).toStrictEqual( true );
+		expect( store.undeferWarningVisible ).toStrictEqual( false );
+
+		store.deferred = false;
+		expect( store.undeferWarningVisible ).toStrictEqual( true );
+
+		store.loadFromData( Object.assign( {}, blockData, { deferred: false } ) );
+		expect( store.undeferWarningVisible ).toStrictEqual( false );
+
+		store.loadFromData( blockData );
+		store.deferred = false;
+		store.resetForm();
+		expect( store.undeferWarningVisible ).toStrictEqual( false );
+	} );
+
 	it( 'should pass the newblock param and not the reblock param (Multiblocks ON)', () => {
 		mockMwConfigGet( { blockAlreadyBlocked: false, blockEnableMultiblocks: true } );
 		const store = useBlockStore();

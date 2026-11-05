@@ -60,6 +60,13 @@ For notes on 1.47.x and older releases, see HISTORY.
 
 === New user-facing features in 1.48 ===
 
+* Special:Block has a new option to place a deferred block. A deferred block
+  is not enforced, and is not shown to the blocked user or in the public block
+  log, until the user next attempts an action that the block prevents, such as
+  an edit. That action is blocked, and the block then takes effect and is added
+  to the block log. Deferred blocks are logged in a new private log,
+  Special:Log/deferredblock. Placing, viewing and removing deferred blocks
+  requires the new 'deferredblock' right.
 * …
 
 === New features for sysadmins in 1.48 ===

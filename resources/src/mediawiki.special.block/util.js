@@ -16,6 +16,7 @@ const util = {
 		// * block-log-flags-nousertalk
 		// * block-log-flags-angry-autoblock
 		// * block-log-flags-hiddenname
+		// * block-log-flags-deferred
 		return mw.message( 'block-log-flags-' + flag ).text();
 	},
 

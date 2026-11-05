@@ -64,6 +64,19 @@ describe( 'BlockLog', () => {
 		expect( rows ).toHaveLength( 3 );
 	} );
 
+	it( 'should not show materialize entries in the deferred block log', async () => {
+		mockMwConfigGet( { blockTargetUser: 'DeferredBlockedUser' } );
+		const wrapper = mount( BlockLog, {
+			propsData: { blockLogType: 'deferredblock' },
+			global: { plugins: [ createTestingPinia( { stubActions: false } ) ] }
+		} );
+		await flushPromises();
+		expect( wrapper.find( '.mw-block-log__type-deferredblock' ).exists() ).toBeTruthy();
+		const rows = wrapper.findAll( '.cdx-table__table tbody tr' );
+		expect( rows ).toHaveLength( 1 );
+		expect( wrapper.vm.logEntries.map( ( entry ) => entry.action ) ).toStrictEqual( [ 'block' ] );
+	} );
+
 	it( 'should show the active highlighted selected row', async () => {
 		mockMwConfigGet( { blockTargetUser: 'ActiveBlockedUser', blockTargetExists: true, blockId: 1116 } );
 		const wrapper = mount( BlockLog, {
