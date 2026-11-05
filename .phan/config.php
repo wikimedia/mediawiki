@@ -84,7 +84,6 @@ $indirectDeps = [
 	'guzzlehttp/psr7',
 	'okvpn/clock-lts',
 	'pear/net_url2',
-	'pear/pear-core-minimal',
 	'phpunit/phpunit',
 	'psr/http-client',
 	'psr/http-factory',
