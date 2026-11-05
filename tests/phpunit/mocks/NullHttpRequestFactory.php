@@ -43,7 +43,7 @@ class NullHttpRequestFactory extends HttpRequestFactory {
 	 *
 	 * @throws AssertionFailedError always
 	 */
-	public function create( $url, array $options = [], $caller = __METHOD__ ) {
+	public function create( $url, array $options = [], $caller = __METHOD__ ): never {
 		$trace = NullHttpUtil::getFormattedTrace();
 		Assert::fail(
 			"HTTP request blocked: $url by $caller. Use MockHttpTrait.\n$trace"

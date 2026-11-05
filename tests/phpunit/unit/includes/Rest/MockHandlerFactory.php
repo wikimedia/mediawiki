@@ -12,7 +12,7 @@ class MockHandlerFactory {
 
 	public static function throwHandlerFactory(): Handler {
 		return new class extends Handler {
-			public function execute() {
+			public function execute(): never {
 				throw new HttpException( 'Mock error', 555 );
 			}
 		};
@@ -20,7 +20,7 @@ class MockHandlerFactory {
 
 	public static function fatalHandlerFactory(): Handler {
 		return new class extends Handler {
-			public function execute() {
+			public function execute(): never {
 				throw new RuntimeException( 'Fatal mock error', 12345 );
 			}
 		};
@@ -28,7 +28,7 @@ class MockHandlerFactory {
 
 	public static function throwRedirectHandlerFactory(): Handler {
 		return new class extends Handler {
-			public function execute() {
+			public function execute(): never {
 				throw new RedirectException( 301, 'http://example.com' );
 			}
 		};
@@ -36,7 +36,7 @@ class MockHandlerFactory {
 
 	public static function throwWrappedHandlerFactory(): Handler {
 		return new class extends Handler {
-			public function execute() {
+			public function execute(): never {
 				$response = $this->getResponseFactory()->create();
 				$response->setStatus( 200 );
 				throw new ResponseException( $response );

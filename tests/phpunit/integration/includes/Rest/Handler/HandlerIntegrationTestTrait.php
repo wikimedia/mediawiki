@@ -63,7 +63,7 @@ trait HandlerIntegrationTestTrait {
 		TestingAccessWrapper::newFromObject( $router )->errorReporter = new class implements ErrorReporter {
 			public function reportError(
 				Throwable $error, ?Handler $handler, RequestInterface $request
-			) {
+			): never {
 				throw $error;
 			}
 		};

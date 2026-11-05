@@ -83,7 +83,7 @@ trait MockHttpTrait {
 			MainConfigNames::LocalHTTPProxy => false,
 		] );
 
-		$failCallback = static function ( /* discard any arguments */ ) {
+		$failCallback = static function ( /* discard any arguments */ ): never {
 			TestCase::fail( 'method should not be called' );
 		};
 

@@ -309,7 +309,7 @@ abstract class ApiTestCase extends MediaWikiLangTestCase {
 	 * @since 1.45
 	 * @param string $expectedCode
 	 */
-	protected function expectApiErrorCodeFromCallback( string $expectedCode, callable $callback ) {
+	protected function expectApiErrorCodeFromCallback( string $expectedCode, callable $callback ): never {
 		try {
 			$callback();
 		} catch ( ApiUsageException $exception ) {

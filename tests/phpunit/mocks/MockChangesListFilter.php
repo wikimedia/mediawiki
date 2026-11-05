@@ -5,7 +5,7 @@ use MediaWiki\RecentChanges\ChangesListFilter;
 
 class MockChangesListFilter extends ChangesListFilter {
 	/** @inheritDoc */
-	public function displaysOnUnstructuredUi() {
+	public function displaysOnUnstructuredUi(): never {
 		throw new LogicException(
 			'Not implemented: If the test relies on this, put it one of the ' .
 			'subclasses\' tests (e.g. ChangesListBooleanFilterTest) ' .

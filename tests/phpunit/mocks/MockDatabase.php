@@ -72,7 +72,7 @@ class MockDatabase extends Database {
 	}
 
 	/** @inheritDoc */
-	public function indexInfo( $table, $index, $fname = __METHOD__ ) {
+	public function indexInfo( $table, $index, $fname = __METHOD__ ): never {
 		throw new \RuntimeException( 'Not implemented' );
 	}
 
@@ -109,7 +109,7 @@ class MockDatabase extends Database {
 	}
 
 	/** @inheritDoc */
-	public function fieldInfo( $table, $field ) {
+	public function fieldInfo( $table, $field ): never {
 		throw new \RuntimeException( 'Not implemented' );
 	}
 

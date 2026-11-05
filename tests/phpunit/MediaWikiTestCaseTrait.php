@@ -97,7 +97,7 @@ trait MediaWikiTestCaseTrait {
 		$serviceContainer = $this->createMock( ContainerInterface::class );
 		$serviceContainer->method( 'has' )->willReturn( false );
 		$serviceContainer->method( 'get' )->willReturnCallback(
-			static function ( $serviceName ) {
+			static function ( $serviceName ): never {
 				throw new NoSuchServiceException( $serviceName );
 			}
 		);
@@ -435,7 +435,7 @@ trait MediaWikiTestCaseTrait {
 		return $msg;
 	}
 
-	private function failStatus( StatusValue $status, string $reason, string $message = '' ) {
+	private function failStatus( StatusValue $status, string $reason, string $message = '' ): never {
 		$reason = $message === '' ? $reason : "$message\n$reason";
 		$this->fail( "$reason\n$status" );
 	}

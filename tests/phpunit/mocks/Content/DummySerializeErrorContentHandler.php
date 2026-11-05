@@ -5,7 +5,6 @@
 
 namespace MediaWiki\Tests\Mocks\Content;
 
-use MediaWiki\Content\Content;
 use MediaWiki\Content\ContentSerializationException;
 
 /**
@@ -23,10 +22,8 @@ class DummySerializeErrorContentHandler extends DummyContentHandlerForTesting {
 	 *
 	 * @param string $blob
 	 * @param string|null $format
-	 *
-	 * @return Content
 	 */
-	public function unserializeContent( $blob, $format = null ) {
+	public function unserializeContent( $blob, $format = null ): never {
 		throw new ContentSerializationException( 'Could not unserialize content' );
 	}
 
