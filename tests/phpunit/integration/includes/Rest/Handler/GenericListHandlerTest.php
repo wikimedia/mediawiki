@@ -21,6 +21,7 @@ use MediaWiki\Rest\RequestData;
 use MediaWikiIntegrationTestCase;
 use StatusValue;
 use UnexpectedValueException;
+use Wikimedia\Message\MessageValue;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\TestingAccessWrapper;
 
@@ -434,13 +435,14 @@ class GenericListHandlerTest extends MediaWikiIntegrationTestCase {
 			'Scalar shorthand spec should be normalized to array form'
 		);
 
-		$this->assertSame(
-			'apihelp-query+testlist-param-limit',
+		// The help message params name the list module, not "query".
+		$this->assertEquals(
+			new MessageValue( 'apihelp-query+testlist-param-limit', [ '', 'limit', 'testlist', 'query+testlist' ] ),
 			$specs['limit'][ApiBase::PARAM_HELP_MSG],
 			'Help message should be derived from the list module, not from "query"'
 		);
-		$this->assertSame(
-			'apihelp-custom',
+		$this->assertEquals(
+			new MessageValue( 'apihelp-custom', [ '', 'title', 'testlist', 'query+testlist' ] ),
 			$specs['title'][ApiBase::PARAM_HELP_MSG],
 			'Explicit help message should be retained'
 		);

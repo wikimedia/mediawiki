@@ -292,32 +292,44 @@ class GenericActionHandler extends ActionModuleBasedHandler {
 	}
 
 	/**
-	 * Return parameter specs defined by the ApiModule.
-	 * The specs are raw, but they keys may have been adjusted/filtered.
+	 * Return parameter specs defined by the ApiModule and ApiMain.
+	 * Some may have been filtered out, see filterSupportedParams().
 	 *
 	 * @return array[]
 	 */
 	protected function getActionModuleParamSpecs(): array {
 		return $this->filterSupportedParams(
-			$this->getActionModule()->getFinalParams()
-				+ $this->getMainParamSpecs()
+			$this->getModuleParamSpecs( $this->getActionModule() )
+				+ $this->getModuleParamSpecs( $this->getApiMain() )
 		);
 	}
 
 	/**
-	 * The parameter specs of ApiMain, each with a help message, since
-	 * makeParamSettings() would otherwise derive one from the action name.
+	 * The parameter specs of the given module, in array form, each with a
+	 * help message, since makeParamSettings() would otherwise derive one from
+	 * the action name. The message gets the params that
+	 * ApiBase::getFinalParamDescription() adds: the module prefix, which is
+	 * empty since REST parameter names have none, the parameter name, the
+	 * module name and the module path.
 	 *
 	 * @return array[]
 	 */
-	protected function getMainParamSpecs(): array {
+	protected function getModuleParamSpecs( ApiBase $module ): array {
+		$moduleName = $module->getModuleName();
+		$path = $module->getModulePath();
+
 		$specs = [];
-		foreach ( $this->getApiMain()->getFinalParams() as $name => $spec ) {
+		foreach ( $module->getFinalParams() as $name => $spec ) {
 			// Specs may be in scalar shorthand form, just a default value.
 			if ( !is_array( $spec ) ) {
 				$spec = [ ParamValidator::PARAM_DEFAULT => $spec ];
 			}
-			$spec[ApiBase::PARAM_HELP_MSG] ??= "apihelp-main-param-$name";
+			$msg = self::toMessageSpecifier(
+				$spec[ApiBase::PARAM_HELP_MSG] ?? "apihelp-$path-param-$name"
+			);
+			// Copy the message, since MessageValue::params() modifies it.
+			$spec[ApiBase::PARAM_HELP_MSG] = ( new MessageValue( $msg->getKey(), $msg->getParams() ) )
+				->params( '', $name, $moduleName, $path );
 			$specs[$name] = $spec;
 		}
 		return $specs;

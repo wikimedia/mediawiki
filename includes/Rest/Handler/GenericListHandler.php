@@ -6,7 +6,6 @@ use MediaWiki\Api\ApiRestHelper;
 use MediaWiki\Api\ApiRestHelperContext;
 use MediaWiki\Api\ApiRestHybrid;
 use UnexpectedValueException;
-use Wikimedia\ParamValidator\ParamValidator;
 
 /**
  * A REST handler acting as an adapter for an action API list module.
@@ -89,33 +88,19 @@ class GenericListHandler extends GenericActionHandler {
 	 */
 	protected function getActionModuleParamSpecs(): array {
 		return $this->filterSupportedParams(
-			$this->getListParamSpecs() + $this->getMainParamSpecs()
+			$this->getListParamSpecs() + $this->getModuleParamSpecs( $this->getApiMain() )
 		);
 	}
 
 	/**
 	 * The list module's parameter specs. The names have no module prefix,
-	 * see ApiBase::encodeParamName(). Each spec has a help message, since
-	 * GenericActionHandler::makeParamSettings() would otherwise derive one
-	 * from the action name.
+	 * see ApiBase::encodeParamName(). Each spec has a help message derived
+	 * from the list module, not from "query", see getModuleParamSpecs().
 	 *
 	 * @return array[]
 	 */
 	private function getListParamSpecs(): array {
-		$module = $this->getApiListModule();
-		$path = $module->getModulePath();
-
-		$specs = [];
-		foreach ( $module->getFinalParams() as $name => $spec ) {
-			// Specs may be in scalar shorthand form, just a default value.
-			if ( !is_array( $spec ) ) {
-				$spec = [ ParamValidator::PARAM_DEFAULT => $spec ];
-			}
-			$spec[ApiBase::PARAM_HELP_MSG] ??= "apihelp-$path-param-$name";
-			$specs[$name] = $spec;
-		}
-
-		return $specs;
+		return $this->getModuleParamSpecs( $this->getApiListModule() );
 	}
 
 	/**

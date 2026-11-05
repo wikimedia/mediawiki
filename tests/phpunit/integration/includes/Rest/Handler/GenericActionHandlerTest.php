@@ -1044,6 +1044,50 @@ class GenericActionHandlerTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( $expected, $actual );
 	}
 
+	/**
+	 * Help messages get the params that ApiBase::getFinalParamDescription()
+	 * adds, after their own, so that e.g. "$1fromid" reads "fromid".
+	 */
+	public function testGetActionModuleParamSpecs_helpMessageParams() {
+		$helpMsg = new MessageValue( 'apihelp-test-param-to' );
+
+		// A module that requires a token, so ApiBase adds a "token"
+		// parameter whose help message has a param of its own.
+		$module = new class( $this->apiMain, 'test', $helpMsg ) extends ApiBase {
+			public function __construct( ApiMain $main, string $name, private MessageValue $helpMsg ) {
+				parent::__construct( $main, $name );
+			}
+
+			public function execute() {
+			}
+
+			public function needsToken() {
+				return 'csrf';
+			}
+
+			protected function getAllowedParams() {
+				return [ 'to' => [ ApiBase::PARAM_HELP_MSG => $this->helpMsg ] ];
+			}
+		};
+
+		$specs = TestingAccessWrapper::newFromObject( $this->newHandler( [ 'module' => $module ] ) )
+			->getActionModuleParamSpecs();
+
+		$this->assertEquals(
+			new MessageValue( 'api-help-param-token.md', [ 'csrf', '', 'token', 'test', 'test' ] ),
+			$specs['token'][ApiBase::PARAM_HELP_MSG],
+			'The message\'s own params should come first'
+		);
+		// The adapter's ApiMain runs in internal mode, so it is named
+		// "main_int", but its path is still "main".
+		$this->assertEquals(
+			new MessageValue( 'apihelp-main-param-origin', [ '', 'origin', 'main_int', 'main' ] ),
+			$specs['origin'][ApiBase::PARAM_HELP_MSG],
+			'ApiMain parameters should get the params of ApiMain'
+		);
+		$this->assertSame( [], $helpMsg->getParams(), 'The module\'s message should not be modified' );
+	}
+
 	public static function provideDeclaredParamSources() {
 		// A route whose method takes no request body declares its parameters
 		// as query parameters, via getParamSettings()...
