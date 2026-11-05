@@ -217,11 +217,29 @@ class ApiQueryBlocks extends ApiQueryBase {
 			$this->addWhereIf( 'bt_range_end > bt_range_start', isset( $show['range'] ) );
 		}
 
-		if ( !$this->getAuthority()->isAllowed( 'hideuser' ) ) {
-			$this->addWhere( [ 'bl_deleted' => 0 ] );
+		$performer = $this->getAuthority();
+		$canHideUser = $performer->isAllowed( 'hideuser' );
+		$canSeeDeferred = $performer->isAllowed( 'deferredblock' );
+		$invisibleDeletedBits = 0;
+
+		if ( !$canHideUser ) {
+			$invisibleDeletedBits |= DatabaseBlockStore::DELETED_VISIBILITY_MASK;
+			// Note that this is not equivalent to the above, as this expression will also hide other blocks
+			// that apply to hidden users
 			$this->addWhere(
 				$this->hideUserUtils->getExpression( $db, 'block_target.bt_user' )
 			);
+		}
+		if ( !$canSeeDeferred ) {
+			$invisibleDeletedBits |= DatabaseBlockStore::DELETED_DEFERRED;
+		}
+		if ( $invisibleDeletedBits ) {
+			if ( !$canHideUser && !$canSeeDeferred ) {
+				// Optimize for a common case
+				$this->addWhere( [ 'bl_deleted' => 0 ] );
+			} else {
+				$this->addWhere( new RawSQLExpression( $db->bitAnd( 'bl_deleted', $invisibleDeletedBits ) . ' = 0' ) );
+			}
 		}
 
 		// Filter out expired rows
@@ -291,8 +309,10 @@ class ApiQueryBlocks extends ApiQueryBase {
 				$block['nocreate'] = (bool)$row->bl_create_account;
 				$block['autoblock'] = (bool)$row->bl_enable_autoblock;
 				$block['noemail'] = (bool)$row->bl_block_email;
-				$block['hidden'] = intval( $row->bl_deleted ) === 1;
-				$block['block-hidden'] = (bool)$row->bl_deleted;
+				$visibility = (int)$row->bl_deleted & DatabaseBlockStore::DELETED_VISIBILITY_MASK;
+				$block['hidden'] = $visibility === DatabaseBlockStore::DELETED_HIDE_USER;
+				$block['block-hidden'] = $visibility !== 0;
+				$block['deferred'] = ( (int)$row->bl_deleted & DatabaseBlockStore::DELETED_DEFERRED ) !== 0;
 				$block['allowusertalk'] = (bool)$row->bl_allow_usertalk;
 				$block['partial'] = !(bool)$row->bl_sitewide;
 			}

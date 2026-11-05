@@ -11,6 +11,7 @@
 
 namespace MediaWiki\Specials\Pager;
 
+use MediaWiki\Block\DatabaseBlockStore;
 use MediaWiki\Block\HideUserUtils;
 use MediaWiki\Context\IContextSource;
 use MediaWiki\HookContainer\HookContainer;
@@ -38,6 +39,7 @@ use MediaWiki\User\UserIdentityValue;
 use stdClass;
 use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\Rdbms\IExpression;
+use Wikimedia\Rdbms\RawSQLExpression;
 
 /**
  * This class is used to get a list of user. The ones with specials
@@ -221,7 +223,11 @@ class UsersPager extends AlphabeticPager {
 						$dbr->expr( 'bl_expiry', '>=', $dbr->timestamp() ),
 					]
 				],
-				'block' => [ 'JOIN', 'bl_target=bt_id' ]
+				'block' => [ 'JOIN', [
+					'bl_target=bt_id',
+					// Deferred blocks are not in effect yet, and such users must not be marked blocked
+					new RawSQLExpression( $dbr->bitAnd( 'bl_deleted', DatabaseBlockStore::DELETED_DEFERRED ) . ' = 0' ),
+				] ]
 			],
 			'conds' => $conds
 		];
