@@ -517,6 +517,8 @@
 	"createacct-temp-warning": "De bewerkingen die u maakt met uw tijdelijke account <strong>$1</strong> zullen niet worden overgedragen naar uw permanente account.",
 	"noname": "U hebt een onjuiste gebruikersnaam opgegeven.",
 	"userlogin-authpopup-loggingin-title": "Bezig met aanmelden…",
+	"userlogin-authpopup-loggingin-body-popup": "Er moet een pop-upvenster zijn geopend. Als u het niet ziet, kunnen we proberen het opnieuw te openen.",
+	"userlogin-authpopup-fallback": "Inlogformulier in een nieuw venster openen",
 	"userlogin-authpopup-retry": "Opnieuw proberen",
 	"userlogin-authpopup-cancel": "Annuleren",
 	"userlogin-authpopup-closeme": "Als {{#FORMAL:u|je}} dit bericht ziet, {{#FORMAL:kunt u|kun je}} dit venster sluiten.",
