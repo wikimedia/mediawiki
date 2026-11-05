@@ -4,6 +4,7 @@ namespace MediaWiki\Tests\Specials;
 use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\Exception\ReadOnlyError;
 use MediaWiki\MainConfigNames;
+use MediaWiki\Permissions\UltimateAuthority;
 use MediaWiki\Request\FauxRequest;
 use MediaWiki\Specials\SpecialUnblock;
 use MediaWiki\Title\Title;
@@ -168,5 +169,40 @@ class SpecialUnblockTest extends SpecialPageTestBase {
 		$userPage = Title::makeTitle( NS_USER, $target );
 		$this->assertTrue( $this->getServiceContainer()->getWatchlistManager()
 			->isWatched( $performer, $userPage ) );
+	}
+
+	public static function provideDeferredBlock() {
+		return [
+			'With deferredblock right' => [ true ],
+			'Without deferredblock right' => [ false ],
+		];
+	}
+
+	/**
+	 * @dataProvider provideDeferredBlock
+	 */
+	public function testDeferredBlock( bool $canSeeDeferred ) {
+		$this->overrideConfigValue( MainConfigNames::EnableMultiBlocks, true );
+		$this->setGroupPermissions( 'sysop', 'deferredblock', $canSeeDeferred );
+		$target = $this->getTestUser()->getUserIdentity();
+		$this->getServiceContainer()->getBlockUserFactory()->newBlockUser(
+			$target,
+			new UltimateAuthority( $this->getTestUser( [ 'sysop' ] )->getUser() ),
+			'infinity',
+			'Some reason',
+			[ 'isDeferred' => true ]
+		)->placeBlock();
+
+		[ $html, ] = $this->executeSpecialPage(
+			$target->getName(), null, 'qqx', $this->getTestSysop()->getUser()
+		);
+
+		if ( $canSeeDeferred ) {
+			$this->assertStringContainsString( '(unblock-deferred-notice)', $html );
+			$this->assertStringContainsString( '(unblocklog-showdeferredblocklog:', $html );
+		} else {
+			$this->assertStringNotContainsString( 'unblock-deferred-notice', $html );
+			$this->assertStringNotContainsString( 'unblocklog-showdeferredblocklog', $html );
+		}
 	}
 }
