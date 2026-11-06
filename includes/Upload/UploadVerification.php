@@ -145,7 +145,7 @@ class UploadVerification {
 			}
 		}
 
-		$handler = $mime !== null ? MediaHandler::getHandler( $mime ) : null;
+		$handler = MediaHandler::getHandler( $mime );
 		if ( $handler ) {
 			$handlerStatus = $handler->verifyUpload( $path );
 			if ( !$handlerStatus->isOK() ) {
