@@ -47,13 +47,13 @@ abstract class MediaHandler {
 	/**
 	 * Get a MediaHandler for a given MIME type from the instance cache
 	 *
-	 * @param string $type
+	 * @param string|null $mimeType Null is allowed for convenience and always returns false
 	 * @param Language|null $lang
 	 * @return MediaHandler|false
 	 */
-	public static function getHandler( $type, ?Language $lang = null ) {
-		return MediaWikiServices::getInstance()
-			->getMediaHandlerFactory()->getHandler( $type, $lang );
+	public static function getHandler( ?string $mimeType, ?Language $lang = null ) {
+		$factory = MediaWikiServices::getInstance()->getMediaHandlerFactory();
+		return $mimeType ? $factory->getHandler( $mimeType, $lang ) ?? false : false;
 	}
 
 	/**
