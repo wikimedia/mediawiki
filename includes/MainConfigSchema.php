@@ -13068,7 +13068,7 @@ class MainConfigSchema {
 	/**
 	 * The absolute base URL of the local REST API entry point on the test server.
 	 *
-	 * When set (e.g., 'https://test.wikimedia.org/w/rest.php'), the REST Sandbox
+	 * When set (e.g., 'https://test.wikipedia.org/w/rest.php'), the REST Sandbox
 	 * will display this sandbox server as an option for testing calls.
 	 *
 	 * @since 1.47

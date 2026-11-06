@@ -532,7 +532,7 @@ class ModuleSpecHandlerTest extends MediaWikiIntegrationTestCase {
 	public static function provideLocalModuleTestBaseUrlCases() {
 		return [
 			'test local module test base URL configured' => [
-				'https://test.wikimedia.org/w/rest.php',
+				'https://test.wikipedia.org/w/rest.php',
 				2,
 				[
 					0 => [
@@ -540,14 +540,14 @@ class ModuleSpecHandlerTest extends MediaWikiIntegrationTestCase {
 						'description' => '<message key="rest-sandbox-server-production"></message>',
 					],
 					1 => [
-						'url' => 'https://test.wikimedia.org/w/rest.php/mock/v1',
+						'url' => 'https://test.wikipedia.org/w/rest.php/mock/v1',
 						'description' => '<message key="rest-sandbox-server-sandbox"></message>',
 					],
 				],
-				'<message key="rest-sandbox-recommend-test-server"><text>test.wikimedia.org</text></message>',
+				'<message key="rest-sandbox-recommend-test-server"><text>test.wikipedia.org</text></message>',
 			],
 			'test local module test base URL configured with existing description' => [
-				'https://test.wikimedia.org/w/rest.php',
+				'https://test.wikipedia.org/w/rest.php',
 				2,
 				[
 					0 => [
@@ -555,11 +555,11 @@ class ModuleSpecHandlerTest extends MediaWikiIntegrationTestCase {
 						'description' => '<message key="rest-sandbox-server-production"></message>',
 					],
 					1 => [
-						'url' => 'https://test.wikimedia.org/w/rest.php/mock/v1',
+						'url' => 'https://test.wikipedia.org/w/rest.php/mock/v1',
 						'description' => '<message key="rest-sandbox-server-sandbox"></message>',
 					],
 				],
-				'<message key="rest-sandbox-recommend-test-server-with-description"><text>Existing mock description.</text><text>test.wikimedia.org</text></message>',
+				'<message key="rest-sandbox-recommend-test-server-with-description"><text>Existing mock description.</text><text>test.wikipedia.org</text></message>',
 				'SpecTestModuleWithDescription.json'
 			],
 			'no test server' => [
