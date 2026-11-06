@@ -81,6 +81,23 @@ class HTMLFormFieldWithButton extends HTMLFormField {
 		) );
 	}
 
+	/** @inheritDoc */
+	public function getInputCodex( $value, $hasErrors ) {
+		$attr = [
+			'class' => [ 'mw-htmlform-submit', 'cdx-button', $this->mButtonClass ],
+			'id' => $this->mButtonId ?: null,
+			'type' => $this->mButtonType,
+			'name' => $this->mButtonName ?: null,
+			'value' => $this->mButtonValue,
+		] + $this->getAttributes( [ 'disabled', 'tabindex' ] );
+
+		return HTMLButtonField::buildCodexComponent(
+			$this->mButtonFlags,
+			htmlspecialchars( $this->mButtonValue ?? '' ),
+			$attr
+		);
+	}
+
 	/**
 	 * Combines the passed element with a button.
 	 * @param string $element Element to combine the button with.

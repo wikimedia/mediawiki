@@ -28,6 +28,12 @@ class HTMLSelectNamespaceWithButton extends HTMLSelectNamespace {
 	}
 
 	/** @inheritDoc */
+	public function getInputCodex( $value, $hasErrors ) {
+		return parent::getInputCodex( $value, $hasErrors ) . "\u{00A0}" .
+			$this->mClassWithButton->getInputCodex( '', false );
+	}
+
+	/** @inheritDoc */
 	protected function getFieldLayoutOOUI( $inputField, $config ) {
 		$buttonWidget = $this->mClassWithButton->getInputOOUI( '' );
 		return new HTMLFormActionFieldLayout( $inputField, $buttonWidget, $config );
