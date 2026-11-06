@@ -57,7 +57,8 @@ class ApiQueryUserContribs extends ApiQueryBase {
 	private array $params;
 	private bool $multiUserMode;
 	private string $orderBy;
-	private array $parentLens;
+	/** @var array<int,int> */
+	private array $parentSizes;
 
 	/** @var array<string,true> */
 	private array $prop = [];
@@ -301,7 +302,7 @@ class ApiQueryUserContribs extends ApiQueryBase {
 						$revIds[] = (int)$row->rev_parent_id;
 					}
 				}
-				$this->parentLens = $this->revisionStore->getRevisionSizes( $revIds );
+				$this->parentSizes = $this->revisionStore->getRevisionSizes( $revIds );
 			}
 
 			foreach ( $res as $row ) {
@@ -578,8 +579,8 @@ class ApiQueryUserContribs extends ApiQueryBase {
 			&& $row->rev_len !== null
 			&& $row->rev_parent_id !== null
 		) {
-			$parentLen = $this->parentLens[$row->rev_parent_id] ?? 0;
-			$vals['sizediff'] = (int)$row->rev_len - $parentLen;
+			$parentSize = $this->parentSizes[$row->rev_parent_id] ?? 0;
+			$vals['sizediff'] = (int)$row->rev_len - $parentSize;
 		}
 
 		if ( isset( $this->prop['tags'] ) ) {

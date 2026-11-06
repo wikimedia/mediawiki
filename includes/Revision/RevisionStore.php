@@ -2657,27 +2657,26 @@ class RevisionStore implements RevisionFactory, RevisionLookup, LoggerAwareInter
 	 * MCR migration note: this replaced Revision::getParentLengths
 	 *
 	 * @param int[] $revIds
-	 * @return int[] associative array mapping revision IDs from $revIds to the nominal size
+	 * @return array<int,int> Associative array mapping revision IDs from $revIds to the nominal size
 	 *         of the corresponding revision.
 	 */
-	public function getRevisionSizes( array $revIds ) {
-		$dbr = $this->getReplicaConnection();
-		$revLens = [];
+	public function getRevisionSizes( array $revIds ): array {
 		if ( !$revIds ) {
-			return $revLens; // empty
+			return [];
 		}
 
-		$res = $dbr->newSelectQueryBuilder()
+		$res = $this->getReplicaConnection()
+			->newSelectQueryBuilder()
 			->select( [ 'rev_id', 'rev_len' ] )
 			->from( 'revision' )
 			->where( [ 'rev_id' => $revIds ] )
 			->caller( __METHOD__ )->fetchResultSet();
 
+		$sizes = [];
 		foreach ( $res as $row ) {
-			$revLens[$row->rev_id] = intval( $row->rev_len );
+			$sizes[$row->rev_id] = (int)$row->rev_len;
 		}
-
-		return $revLens;
+		return $sizes;
 	}
 
 	/**
