@@ -123,10 +123,8 @@ abstract class ContributionsPager extends RangeChronologicalPager {
 	protected ?Title $currentPage;
 	protected ?RevisionRecord $currentRevRecord;
 
-	/**
-	 * @var array
-	 */
-	private $mParentLens;
+	/** @var array<int,int> */
+	private array $parentSizes;
 
 	/** @var UserIdentity */
 	protected $targetUser;
@@ -534,7 +532,7 @@ abstract class ContributionsPager extends RangeChronologicalPager {
 		# Do a link batch query
 		$this->mResult->seek( 0 );
 		$parentRevIds = [];
-		$this->mParentLens = [];
+		$this->parentSizes = [];
 		$revisions = [];
 		$linkBatch = $this->linkBatchFactory->newLinkBatch();
 		# Give some pointers to make (last) links
@@ -546,7 +544,7 @@ abstract class ContributionsPager extends RangeChronologicalPager {
 			if ( isset( $row->{$this->revisionParentIdField} ) && $row->{$this->revisionParentIdField} ) {
 				$parentRevIds[] = (int)$row->{$this->revisionParentIdField};
 			}
-			$this->mParentLens[(int)$row->{$this->revisionIdField}] = $row->{$this->revisionLengthField};
+			$this->parentSizes[$row->{$this->revisionIdField}] = (int)$row->{$this->revisionLengthField};
 			if ( $this->target !== $row->{$this->userNameField} ) {
 				// If the target does not match the author, batch the author's talk page
 				$linkBatch->add( NS_USER_TALK, $row->{$this->userNameField} );
@@ -557,7 +555,7 @@ abstract class ContributionsPager extends RangeChronologicalPager {
 		// Fetch rev_len/ar_len for revisions not already scanned above
 		// TODO: is it possible to make this fully abstract?
 		if ( $this->isArchive ) {
-			$parentRevIds = array_diff( $parentRevIds, array_keys( $this->mParentLens ) );
+			$parentRevIds = array_diff( $parentRevIds, array_keys( $this->parentSizes ) );
 			if ( $parentRevIds ) {
 				$result = $this->revisionStore
 					->newArchiveSelectQueryBuilder( $this->getDatabase() )
@@ -567,12 +565,12 @@ abstract class ContributionsPager extends RangeChronologicalPager {
 					->caller( __METHOD__ )
 					->fetchResultSet();
 				foreach ( $result as $row ) {
-					$this->mParentLens[(int)$row->{$this->revisionIdField}] = $row->{$this->revisionLengthField};
+					$this->parentSizes[$row->{$this->revisionIdField}] = (int)$row->{$this->revisionLengthField};
 				}
 			}
 		}
-		$this->mParentLens += $this->revisionStore->getRevisionSizes(
-			array_diff( $parentRevIds, array_keys( $this->mParentLens ) )
+		$this->parentSizes += $this->revisionStore->getRevisionSizes(
+			array_diff( $parentRevIds, array_keys( $this->parentSizes ) )
 		);
 		$linkBatch->execute();
 
@@ -900,11 +898,10 @@ abstract class ContributionsPager extends RangeChronologicalPager {
 
 	/**
 	 * Get the byte length of the parent revision of a given row.
-	 * @param stdClass $row
-	 * @return int
 	 */
-	protected function getParentRevisionSize( $row ): int {
-		return $this->mParentLens[$row->{$this->revisionParentIdField}] ?? 0;
+	protected function getParentRevisionSize( stdClass $row ): int {
+		$parentId = $row->{$this->revisionParentIdField};
+		return $parentId ? $this->parentSizes[$parentId] ?? 0 : 0;
 	}
 
 	/**
