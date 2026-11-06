@@ -37,6 +37,7 @@ use MediaWiki\Parser\ParserOptions;
 use MediaWiki\Parser\ParserOutput;
 use MediaWiki\Parser\ParserOutputFlags;
 use MediaWiki\Parser\ParserOutputLinkTypes;
+use MediaWiki\Permissions\Authority;
 use MediaWiki\Permissions\UltimateAuthority;
 use MediaWiki\Registration\ExtensionRegistry;
 use MediaWiki\Revision\MutableRevisionRecord;
@@ -986,7 +987,7 @@ class ParserTestRunner {
 				}
 
 				$this->checkSetupDone( 'staticSetup' );
-				$teardown = $this->addArticles( $testFileInfo->articles );
+				$teardown = $this->addArticles( $testFileInfo->articles, null, $testFileInfo->fileOptions );
 
 				// Run tests
 				foreach ( $testFileInfo->testCases as $test ) {
@@ -3073,20 +3074,39 @@ class ParserTestRunner {
 	 *
 	 * @param ParserTestArticle[] $articles Article info array from TestFileReader
 	 * @param ?ScopedCallback $nextTeardown The next teardown object
+	 * @param array $fileOptions File options from TestFileReader; 'article-groups' sets
+	 *  the user groups of the user that creates the articles
 	 */
 	#[\NoDiscard]
 	public function addArticles(
-		array $articles, ?ScopedCallback $nextTeardown = null
+		array $articles, ?ScopedCallback $nextTeardown = null, array $fileOptions = []
 	): ScopedCallback {
 		$this->checkSetupDone( 'setupDatabase' );
 		$this->checkSetupDone( 'staticSetup' );
 
-		foreach ( $articles as $info ) {
-			$this->addArticle( $info->title, $info->text, $info->filename, $info->lineNumStart );
-		}
-
 		$teardown = [];
 		$services = MediaWikiServices::getInstance();
+
+		$performer = new UltimateAuthority( new UserIdentityValue( 0, User::MAINTENANCE_SCRIPT_USER ) );
+		$groups = (array)( $fileOptions['article-groups'] ?? [] );
+		if ( $groups ) {
+			// Save hooks get only the user, not the UltimateAuthority, so some extensions need real groups
+			$user = User::newSystemUser( User::MAINTENANCE_SCRIPT_USER, [ 'steal' => true ] );
+			$userGroupManager = $services->getUserGroupManager();
+			foreach ( $groups as $group ) {
+				$userGroupManager->addUserToGroup( $user, $group );
+			}
+			$teardown[] = static function () use ( $userGroupManager, $user, $groups ) {
+				foreach ( $groups as $group ) {
+					$userGroupManager->removeUserFromGroup( $user, $group );
+				}
+			};
+			$performer = new UltimateAuthority( $user );
+		}
+
+		foreach ( $articles as $info ) {
+			$this->addArticle( $info->title, $info->text, $info->filename, $info->lineNumStart, $performer );
+		}
 
 		// Wipe WANObjectCache process cache, which is invalidated by article insertion
 		// due to T144706
@@ -3155,8 +3175,9 @@ class ParserTestRunner {
 	 * @param string $text The article text
 	 * @param string $file The input file name
 	 * @param int|string $line The input line number, for reporting errors
+	 * @param Authority $performer
 	 */
-	private function addArticle( $name, $text, $file, $line ) {
+	private function addArticle( $name, $text, $file, $line, Authority $performer ) {
 		$text = self::chomp( $text );
 		$name = self::chomp( $name );
 
@@ -3168,8 +3189,6 @@ class ParserTestRunner {
 		if ( $title === null ) {
 			throw new RuntimeException( "invalid title '$name' at $file:$line\n" );
 		}
-
-		$performer = new UltimateAuthority( new UserIdentityValue( 0, User::MAINTENANCE_SCRIPT_USER ) );
 
 		$page = $services->getWikiPageFactory()->newFromLinkTarget( $title );
 		$page->loadPageData( IDBAccessObject::READ_LATEST );

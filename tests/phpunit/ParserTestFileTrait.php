@@ -116,9 +116,8 @@ trait ParserTestFileTrait {
 		$teardown = $runner->setupDatabase( $teardown );
 		$teardown = $runner->staticSetup( $teardown );
 		$teardown = $runner->setupUploads( $teardown );
-		$teardown = $runner->addArticles(
-			static::getFileInfo()->articles, $teardown
-		);
+		$fileInfo = static::getFileInfo();
+		$teardown = $runner->addArticles( $fileInfo->articles, $teardown, $fileInfo->fileOptions );
 		static::$teardown = $teardown;
 	}
 
