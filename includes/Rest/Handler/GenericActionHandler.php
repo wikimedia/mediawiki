@@ -20,55 +20,10 @@ use Wikimedia\ParamValidator\TypeDef\BinaryBooleanDef;
  * A REST handler acting as an adapter for an action API module.
  *
  * NOTE: This class should only be used for "proper" actions, no query modules.
+ *
+ * @internal
  */
 class GenericActionHandler extends ActionModuleBasedHandler {
-
-	/**
-	 * Names of common action API parameters that should not be supported
-	 * when exposing an endpoint via the REST framework.
-	 */
-	public const SUPPRESSED_ACTION_PARAMS = [
-		// the action is dictated by the endpoint, it cannot be supplied by the client
-		'action',
-
-		// the format and language are dictated by the REST framework
-		'format',
-		'errorformat',
-		'errorlang',
-		'errorsuselocal',
-
-		// This is a client-controlled requestid (not x-request-id!).
-		// The REST response has no room for it.
-		// Could be supported by the REST framework / middleware as a header.
-		'requestid',
-
-		// servedby and curtimestamp have no room in a resources response.
-		// They could be added as tracing data by the ErrorFormatter,
-		// or by the REST framework / middleware as headers.
-		'servedby',
-		'curtimestamp',
-
-		// responselanginfo doesn't have a place in a REST response.
-		'responselanginfo',
-
-		// maxlag should be supported for all REST APIs, or not at all.
-		// We don't expose it until the REST framework supports it.
-		'maxlag',
-
-		// uselang should arguably be a per-endpoint param, since its exact
-		// interpretation and impact depends a lot on what's actually being done.
-		// We don't expose it for now.
-		'uselang',
-
-		// We allow assert and assertuser for now, but ideally they would
-		// be replaced by headers handled by the REST framework / middleware.
-		// Same for smaxage and maxage: we should support them for
-		// all APIs, or not at all.
-		// Same also for origin and crossorigin for CORS support.
-
-		// We allow variant, but it should arguably be a per-endpoint param,
-		// like uselang.
-	];
 
 	/**
 	 * Parameter types of the action API that the REST framework doesn't know,
@@ -292,16 +247,17 @@ class GenericActionHandler extends ActionModuleBasedHandler {
 	}
 
 	/**
-	 * Return parameter specs defined by the ApiModule and ApiMain.
-	 * Some may have been filtered out, see filterSupportedParams().
+	 * Returns the parameters to be exposed via the REST framework.
+	 * The default implementation returns the parameters of the action module
+	 * after running them through filterSupportedParams().
 	 *
 	 * @return array[]
 	 */
 	protected function getActionModuleParamSpecs(): array {
-		return $this->filterSupportedParams(
-			$this->getModuleParamSpecs( $this->getActionModule() )
-				+ $this->getModuleParamSpecs( $this->getApiMain() )
-		);
+		// SEAM: We can add parameters from ApiMain here, but we probably
+		//       don't want to, see T436749.
+		$actionParams = $this->getModuleParamSpecs( $this->getActionModule() );
+		return $this->filterSupportedParams( $actionParams );
 	}
 
 	/**
@@ -336,8 +292,7 @@ class GenericActionHandler extends ActionModuleBasedHandler {
 	}
 
 	/**
-	 * Remove the parameters that do not apply to the REST API: those in
-	 * SUPPRESSED_ACTION_PARAMS, and those the route suppresses.
+	 * Remove the parameters that the route suppresses.
 	 *
 	 * @param array[] $paramSpecs Parameter specs by name
 	 * @return array[]
@@ -347,7 +302,6 @@ class GenericActionHandler extends ActionModuleBasedHandler {
 
 		return array_diff_key(
 			$paramSpecs,
-			array_flip( self::SUPPRESSED_ACTION_PARAMS ),
 			array_flip( $suppressedParams )
 		);
 	}
@@ -361,8 +315,13 @@ class GenericActionHandler extends ActionModuleBasedHandler {
 	 * @return string[]
 	 */
 	protected function getQueryOnlyParams(): array {
-		// See ApiMain::getAllowedParams()
-		return [ 'origin', 'crossorigin' ];
+		// SEAM: This is a placeholder. We will probably need to get this from the
+		// ApiRestHelper, as in getApiRestHelper()->getQueryOnlyParams().
+		//
+		// Candidates from ApiMain::getAllowedParams(), for reference:
+		// origin, crossorigin, maxage, smaxage.
+		// But we currently don't expose any params from ApiMain.
+		return [];
 	}
 
 	/**

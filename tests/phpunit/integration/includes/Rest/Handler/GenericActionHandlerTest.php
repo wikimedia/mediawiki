@@ -69,6 +69,8 @@ class GenericActionHandlerTest extends MediaWikiIntegrationTestCase {
 	 *   - session: Session to initialize with (default null).
 	 *   - adapterConfig: the route's adapter spec, e.g. a 'suppressedParams'
 	 *     list (default []).
+	 *   - queryOnlyParams: names to report from getQueryOnlyParams(), which
+	 *     doesn't report any by default (default []).
 	 */
 	private function newHandler( array $options = [] ): GenericActionHandler {
 		$options += [
@@ -81,6 +83,7 @@ class GenericActionHandlerTest extends MediaWikiIntegrationTestCase {
 			'config' => [],
 			'session' => null,
 			'adapterConfig' => [],
+			'queryOnlyParams' => [],
 		];
 
 		$module = $options['module'] ?? $this->getDummyApiModule(
@@ -94,7 +97,19 @@ class GenericActionHandlerTest extends MediaWikiIntegrationTestCase {
 			$this->apiMain, $module->getModuleName(), 'action', $module
 		);
 
-		$handler = new GenericActionHandler( $module->getModuleName(), $options['adapterConfig'] );
+		$handler = new class(
+			$module->getModuleName(),
+			$options['adapterConfig'],
+			$options['queryOnlyParams']
+		) extends GenericActionHandler {
+			public function __construct( string $actionName, array $adapterConfig, private array $queryOnlyParams ) {
+				parent::__construct( $actionName, $adapterConfig );
+			}
+
+			protected function getQueryOnlyParams(): array {
+				return $this->queryOnlyParams;
+			}
+		};
 		$handler->setApiMain( $this->apiMain );
 
 		if ( $options['init'] ) {
@@ -310,9 +325,8 @@ class GenericActionHandlerTest extends MediaWikiIntegrationTestCase {
 			'queryParams' => [
 				'from' => 'SourceOne',
 				'to' => 'Target',
-				// smaxage is an ApiMain param the adapter deliberately allows
-				// through; requestid is one it suppresses.
-				'smaxage' => 17,
+				// ApiMain params are not exposed, see T436749.
+				'origin' => '*',
 				'requestid' => 'abc',
 			],
 			// Extra body fields are rejected, see testExtraneousBodyFieldsAreRejected().
@@ -333,8 +347,8 @@ class GenericActionHandlerTest extends MediaWikiIntegrationTestCase {
 		$mainParams = $data['MAIN_PARAMETERS'];
 
 		// test filtered parameters
-		$this->assertSame( 17, $mainParams['smaxage'], 'Allowed ApiMain parameter should reach ApiMain' );
-		$this->assertNull( $mainParams['requestid'], 'Suppressed ApiMain parameter should be dropped' );
+		$this->assertNull( $mainParams['origin'], 'ApiMain parameter should be dropped' );
+		$this->assertNull( $mainParams['requestid'], 'ApiMain parameter should be dropped' );
 		$this->assertSame( 'fakeaction', $mainParams['action'] );
 		$this->assertSame( 'json', $mainParams['format'] );
 		$this->assertSame( 'plaintext', $mainParams['errorformat'] );
@@ -473,17 +487,17 @@ class GenericActionHandlerTest extends MediaWikiIntegrationTestCase {
 			'parsedBody' => [
 				'to' => 'YY', // should overrid query param
 				'reason' => 'test', // should be set
-				'smaxage' => '123', // allowed ApiMain param, should be passed through
-				'requestid' => 'abc', // suppressed ApiMain param, should be stripped
-				'format' => 'xml'   // suppressed; ActionModuleBasedHandler forces 'json'
+				'origin' => '*', // ApiMain param, should be stripped
+				'requestid' => 'abc', // ApiMain param, should be stripped
+				'format' => 'xml'   // ApiMain param; ActionModuleBasedHandler forces 'json'
 			],
 		] );
 
 		$params = $handler->getActionModuleParameters();
 
-		$this->assertSame( '123', $params['smaxage'], 'Allowed ApiMain param should be passed through' );
-		$this->assertArrayNotHasKey( 'requestid', $params, 'Suppressed ApiMain param should be stripped' );
-		$this->assertArrayNotHasKey( 'format', $params, 'Suppressed ApiMain param should be stripped' );
+		$this->assertArrayNotHasKey( 'origin', $params, 'ApiMain param should be stripped' );
+		$this->assertArrayNotHasKey( 'requestid', $params, 'ApiMain param should be stripped' );
+		$this->assertArrayNotHasKey( 'format', $params, 'ApiMain param should be stripped' );
 		$this->assertSame( 'test', $params['reason'], 'Body param should be used' );
 		$this->assertSame( 'YY', $params['to'], 'Body param should win over query param' );
 		$this->assertSame( 'X', $params['from'], 'Query param should be used when absent from body' );
@@ -971,11 +985,10 @@ class GenericActionHandlerTest extends MediaWikiIntegrationTestCase {
 
 		// Every param the hybrid module declared in getAllowedParams() must
 		// appear in the OpenAPI spec's request body schema (because it's a POST route).
-		// Only the params that can't move into the body stay in the query.
 		$this->assertSame(
-			[ 'origin', 'crossorigin' ],
+			[],
 			array_column( $spec['parameters'], 'name' ),
-			'Only query-only parameters expected for POST route'
+			'No query parameters expected for POST route'
 		);
 		$paramNames = array_keys( $spec['requestBody']['content']['application/json']['schema']['properties'] );
 		foreach ( array_keys( $module->getFinalParams() ) as $expected ) {
@@ -995,31 +1008,9 @@ class GenericActionHandlerTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * The suppression list is a denylist, so a misspelt or stale entry
-	 * suppresses nothing and the leak only surfaces in a generated OpenAPI
-	 * spec. Check it against the parameters ApiMain actually declares.
-	 */
-	public function testSuppressedActionParamsAreWellFormed() {
-		$suppressed = GenericActionHandler::SUPPRESSED_ACTION_PARAMS;
-
-		$this->assertSame(
-			$suppressed,
-			array_unique( $suppressed ),
-			'Suppression list must not contain duplicates'
-		);
-
-		$this->assertSame(
-			[],
-			array_diff( $suppressed, array_keys( $this->apiMain->getFinalParams() ) ),
-			'Every suppressed name must be a parameter ApiMain actually declares'
-		);
-	}
-
-	/**
-	 * An adapter endpoint exposes the wrapped module's own parameters plus the
-	 * ApiMain parameters that are not suppressed. The exact set is pinned so
-	 * that a newly added ApiMain parameter fails here, forcing a deliberate
-	 * decision about whether it belongs in a REST endpoint.
+	 * An adapter endpoint exposes only the wrapped module's own parameters,
+	 * see T436749. The exact set is pinned so that a parameter added to
+	 * ApiMain, by core or by an extension, is shown not to leak into the endpoint.
 	 */
 	public function testGetActionModuleParamSpecs() {
 		$handler = $this->newHandler( [ 'module' => $this->newHybridModule(), 'init' => true ] );
@@ -1030,11 +1021,6 @@ class GenericActionHandlerTest extends MediaWikiIntegrationTestCase {
 		$expected = [
 			// declared by the fake action module
 			'from', 'fromid', 'to', 'reason', 'movetalk', 'redirect', 'tags',
-			// ApiMain parameters deliberately left available to REST clients.
-			// New parameters need to be added either here or to
-			// GenericActionHandler::SUPPRESSED_ACTION_PARAMS.
-			'smaxage', 'maxage', 'assert', 'assertuser',
-			'origin', 'crossorigin', 'variant',
 		];
 
 		$actual = array_keys( $specs );
@@ -1078,14 +1064,78 @@ class GenericActionHandlerTest extends MediaWikiIntegrationTestCase {
 			$specs['token'][ApiBase::PARAM_HELP_MSG],
 			'The message\'s own params should come first'
 		);
-		// The adapter's ApiMain runs in internal mode, so it is named
-		// "main_int", but its path is still "main".
-		$this->assertEquals(
-			new MessageValue( 'apihelp-main-param-origin', [ '', 'origin', 'main_int', 'main' ] ),
-			$specs['origin'][ApiBase::PARAM_HELP_MSG],
-			'ApiMain parameters should get the params of ApiMain'
-		);
 		$this->assertSame( [], $helpMsg->getParams(), 'The module\'s message should not be modified' );
+	}
+
+	public static function provideSuppressedApiMainParams() {
+		// To be handled by the REST framework instead, probably as headers.
+		yield 'maxlag' => [ 'maxlag', '5' ];
+		yield 'assert' => [ 'assert', 'user' ];
+		yield 'assertuser' => [ 'assertuser', 'Example' ];
+		yield 'errorlang' => [ 'errorlang', 'de' ];
+
+		// The REST framework handles the Origin header, see CorsUtils.
+		yield 'origin' => [ 'origin', '*' ];
+		yield 'crossorigin' => [ 'crossorigin', '1' ];
+
+		// Not expected to be supported in REST.
+		yield 'uselang' => [ 'uselang', 'de' ];
+		yield 'variant' => [ 'variant', 'sr-el' ];
+		yield 'maxage' => [ 'maxage', '60' ];
+		yield 'smaxage' => [ 'smaxage', '60' ];
+		yield 'errorsuselocal' => [ 'errorsuselocal', '1' ];
+	}
+
+	/**
+	 * A suppressed ApiMain parameter must not be advertised in the OpenAPI
+	 * spec, whether the route declares its parameters as query or as body
+	 * parameters.
+	 *
+	 * @dataProvider provideSuppressedApiMainParams
+	 */
+	public function testSuppressedApiMainParamIsNotDeclared( string $name ) {
+		foreach ( [ 'GET', 'POST' ] as $method ) {
+			$handler = $this->newHandler( [
+				'module' => $this->newHybridModule(),
+				'init' => true,
+				'config' => [ 'method' => $method ],
+			] );
+
+			$declared = $handler->getParamSettings() + $handler->getBodyParamSettings();
+
+			$this->assertArrayNotHasKey( $name, $declared, "$method route must not declare '$name'" );
+
+			// The module's own parameters must still be declared, so that an
+			// empty result cannot satisfy the assertion above.
+			$this->assertArrayHasKey( 'from', $declared, "$method route must still declare 'from'" );
+		}
+	}
+
+	/**
+	 * A client that supplies a suppressed ApiMain parameter anyway must not
+	 * get it through to the action API, in the query string or in the body.
+	 *
+	 * @dataProvider provideSuppressedApiMainParams
+	 */
+	public function testSuppressedApiMainParamIsNotForwarded( string $name, string $value ) {
+		$handler = $this->newHandler( [
+			'module' => $this->newHybridModule(),
+			'init' => true,
+			'request' => new RequestData( [
+				'method' => 'POST',
+				'queryParams' => [ $name => $value, 'from' => 'A' ],
+				'parsedBody' => [ $name => $value, 'to' => 'B' ],
+			] ),
+			'config' => [ 'method' => 'POST' ],
+		] );
+
+		$params = TestingAccessWrapper::newFromObject( $handler )->getActionModuleParameters();
+
+		$this->assertArrayNotHasKey( $name, $params );
+
+		// The module's own parameters, from the same request, do get through.
+		$this->assertSame( 'A', $params['from'] );
+		$this->assertSame( 'B', $params['to'] );
 	}
 
 	public static function provideDeclaredParamSources() {
@@ -1175,15 +1225,14 @@ class GenericActionHandlerTest extends MediaWikiIntegrationTestCase {
 			'module' => $this->newHybridModule(),
 			'init' => true,
 			'config' => [ 'method' => $method ],
+			'queryOnlyParams' => [ 'reason' ],
 		] );
 
 		$queryParams = $handler->getParamSettings();
 		$bodyParams = $handler->getBodyParamSettings();
 
-		foreach ( [ 'origin', 'crossorigin' ] as $name ) {
-			$this->assertSame( 'query', $queryParams[$name][Handler::PARAM_SOURCE], $name );
-			$this->assertArrayNotHasKey( $name, $bodyParams, $name );
-		}
+		$this->assertSame( 'query', $queryParams['reason'][Handler::PARAM_SOURCE] );
+		$this->assertArrayNotHasKey( 'reason', $bodyParams );
 
 		// Ordinary module params still follow the route's method, so the
 		// special case doesn't leak into them.
@@ -1192,21 +1241,22 @@ class GenericActionHandlerTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public static function provideNonBodyQueryParamIsForwarded() {
-		yield 'GET' => [ 'GET', [ 'to' => 'B', 'origin' => '*' ], null ];
+		yield 'GET' => [ 'GET', [ 'to' => 'B', 'reason' => 'test' ], null ];
 		// On a POST route, the query-only param is read from the query string
 		// while the module's own params come from the body.
-		yield 'POST' => [ 'POST', [ 'origin' => '*' ], [ 'to' => 'B' ] ];
+		yield 'POST' => [ 'POST', [ 'reason' => 'test' ], [ 'to' => 'B' ] ];
 	}
 
 	/**
-	 * A query-only parameter given in the query string reaches ApiMain, on
-	 * routes with and without a request body.
+	 * A query-only parameter given in the query string reaches the action
+	 * module, on routes with and without a request body.
 	 *
 	 * @dataProvider provideNonBodyQueryParamIsForwarded
 	 */
 	public function testNonBodyQueryParamIsForwarded( string $method, array $query, ?array $body ) {
 		$handler = $this->newHandler( [
 			'module' => $this->newHybridModule( actionName: 'fakeaction' ),
+			'queryOnlyParams' => [ 'reason' ],
 		] );
 		$request = new RequestData( [
 			'method' => $method,
@@ -1215,10 +1265,10 @@ class GenericActionHandlerTest extends MediaWikiIntegrationTestCase {
 		] );
 
 		// For POST, the essential part is implicit: the body check doesn't
-		// reject the request, since 'origin' isn't in the body.
+		// reject the request, since 'reason' isn't in the body.
 		$data = $this->executeHandlerAndGetBodyData( $handler, $request, [ 'method' => $method ] );
 
-		$this->assertSame( '*', $data['MAIN_PARAMETERS']['origin'] );
+		$this->assertSame( 'test', $data['PARAMETERS']['reason'] );
 		$this->assertSame( 'B', $data['PARAMETERS']['to'] );
 	}
 
@@ -1227,8 +1277,8 @@ class GenericActionHandlerTest extends MediaWikiIntegrationTestCase {
 		// The framework sets the format itself, so the client can't.
 		yield 'framework-controlled field' => [ [ 'format' => 'xml' ], [ 'format' ] ];
 		yield 'several fields' => [ [ 'extra' => 1, 'bogus' => 2 ], [ 'extra', 'bogus' ] ];
-		// Declared, but only as a query parameter, see getQueryOnlyParams().
-		yield 'query-only parameter' => [ [ 'origin' => '*' ], [ 'origin' ] ];
+		// An ApiMain parameter, which is not exposed, see T436749.
+		yield 'ApiMain parameter' => [ [ 'origin' => '*' ], [ 'origin' ] ];
 	}
 
 	/**

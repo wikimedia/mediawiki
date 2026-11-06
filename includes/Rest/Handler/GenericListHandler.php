@@ -15,6 +15,8 @@ use UnexpectedValueException;
  *
  * NOTE: This class should only be used for "list" style query actions,
  * not meta queries.
+ *
+ * @internal
  */
 class GenericListHandler extends GenericActionHandler {
 
@@ -81,15 +83,18 @@ class GenericListHandler extends GenericActionHandler {
 	}
 
 	/**
-	 * The list module's parameters, without its prefix, and the parameters
-	 * of ApiMain, without those that don't apply to the REST API.
+	 * Returns the supported parameters of the list module
+	 * after running them through filterSupportedParams().
 	 *
 	 * @return array[]
 	 */
 	protected function getActionModuleParamSpecs(): array {
-		return $this->filterSupportedParams(
-			$this->getListParamSpecs() + $this->getModuleParamSpecs( $this->getApiMain() )
-		);
+		// SEAM: We can add parameters from ApiMain here, but we probably
+		//       don't want to, see T436749.
+
+		// NOTE: Don't call parent::getActionModuleParamSpecs(), that would include
+		//       all parameters defined by ApiQuery, which we don't want.
+		return $this->filterSupportedParams( $this->getListParamSpecs() );
 	}
 
 	/**
