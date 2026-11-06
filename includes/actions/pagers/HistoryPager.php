@@ -65,10 +65,9 @@ class HistoryPager extends ReverseChronologicalPager {
 
 	/** @var bool */
 	protected $preventClickjacking = false;
-	/**
-	 * @var array
-	 */
-	protected $parentLens;
+
+	/** @var array<int,int> */
+	private array $parentSizes;
 
 	/** @var bool Whether to show the tag editing UI */
 	protected $showTagEditUI;
@@ -217,7 +216,7 @@ class HistoryPager extends ReverseChronologicalPager {
 				$title
 			);
 		}
-		$this->parentLens = $this->revisionStore->getRevisionSizes( $revIds );
+		$this->parentSizes = $this->revisionStore->getRevisionSizes( $revIds );
 		$batch->execute();
 
 		# The keys of $this->formattedComments will be the same as the keys of $this->revisions
@@ -457,7 +456,7 @@ class HistoryPager extends ReverseChronologicalPager {
 		# Sometimes rev_len isn't populated
 		if ( $revRecord->getSize() !== null ) {
 			# Size is always public data
-			$prevSize = $this->parentLens[$row->rev_parent_id] ?? 0;
+			$prevSize = $row->rev_parent_id ? $this->parentSizes[$row->rev_parent_id] ?? 0 : 0;
 			$sDiff = ChangesList::showCharacterDifference( $prevSize, $revRecord->getSize() );
 			$fSize = Linker::formatRevisionSize( $revRecord->getSize() );
 			$s .= ' <span class="mw-changeslist-separator"></span> ' . "$fSize $sDiff";
