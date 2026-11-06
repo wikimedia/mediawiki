@@ -169,6 +169,71 @@ class HTMLMultiSelectField extends HTMLFormField implements HTMLNestedFilterable
 		}
 	}
 
+	/**
+	 * @inheritDoc
+	 * @stable to override
+	 */
+	public function getInputCodex( $value, $hasErrors ) {
+		// The 'dropdown' mode needs OOUI, so show the plain checkboxes instead.
+		$value = HTMLFormField::forceToStringRecursive( $value );
+		return $this->formatOptionsCodex( $this->getOptions(), $value, $hasErrors );
+	}
+
+	/**
+	 * @param array $options
+	 * @param string[] $value
+	 * @param bool $hasErrors
+	 * @return string
+	 */
+	private function formatOptionsCodex( array $options, array $value, bool $hasErrors ): string {
+		$html = '';
+
+		$attribs = $this->getAttributes( [ 'disabled', 'tabindex' ] );
+
+		$wrapperClasses = [ 'cdx-checkbox' ];
+		if ( isset( $this->mParams['flatlist'] ) ) {
+			$wrapperClasses[] = 'cdx-checkbox--inline';
+		}
+		if ( $hasErrors ) {
+			$wrapperClasses[] = 'cdx-checkbox--status-error';
+		}
+
+		foreach ( $options as $label => $info ) {
+			if ( is_array( $info ) ) {
+				$html .= Html::rawElement( 'fieldset', [ 'class' => 'cdx-field cdx-field--is-fieldset' ],
+					Html::rawElement( 'legend', [ 'class' => 'cdx-label' ],
+						Html::element( 'span', [ 'class' => 'cdx-label__label__text' ], $label )
+					) .
+					$this->formatOptionsCodex( $info, $value, $hasErrors )
+				);
+				continue;
+			}
+
+			$id = "{$this->mID}-$info";
+			$inputAttribs = $attribs + [
+				'id' => $id,
+				'class' => 'cdx-checkbox__input',
+				'checked' => in_array( $info, $value, true ),
+				'type' => 'checkbox',
+				'value' => $info,
+				'name' => "{$this->mName}[]",
+			];
+			if ( in_array( $info, $this->mParams['disabled-options'], true ) ) {
+				$inputAttribs['disabled'] = true;
+			}
+
+			$html .= Html::rawElement( 'div', [ 'class' => $wrapperClasses ],
+				Html::element( 'input', $inputAttribs ) .
+				"<span class=\"cdx-checkbox__icon\">\u{00A0}</span>" .
+				Html::rawElement( 'label', [ 'for' => $id, 'class' => 'cdx-checkbox__label' ],
+					$this->escapeLabel( $label )
+				)
+			);
+		}
+
+		return $html;
+	}
+
 	/** @inheritDoc */
 	public function getOptionsOOUI() {
 		$optionsOouiSections = [];

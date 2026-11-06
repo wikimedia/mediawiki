@@ -4,6 +4,12 @@
 .mw-htmlform-codex {
 	max-width: @size-4000;
 
+	// Separate option groups from ungrouped Checkboxes in a multiselect.
+	.cdx-field__control > .cdx-checkbox + .cdx-field--is-fieldset,
+	.cdx-field__control > .cdx-field--is-fieldset + .cdx-checkbox {
+		margin-top: @spacing-100;
+	}
+
 	// Next-sibling Checkboxes in a Field control.
 	.cdx-field__control > .mw-htmlform-field-HTMLCheckField + .mw-htmlform-field-HTMLCheckField {
 		margin-top: @spacing-75;
