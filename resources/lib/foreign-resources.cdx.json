@@ -2,7 +2,7 @@
 	"$schema": "http://cyclonedx.org/schema/bom-1.6.schema.json",
 	"bomFormat": "CycloneDX",
 	"specVersion": "1.6",
-	"serialNumber": "urn:uuid:9e307f09-7256-4ef3-8a57-077eb1c9cb6a",
+	"serialNumber": "urn:uuid:6f0e31fe-07fd-465e-804a-9bf8a7b0320b",
 	"version": 1,
 	"components": [
 		{
@@ -106,80 +106,6 @@
 			"externalReferences": [
 				{
 					"url": "https://doc.wikimedia.org/codex/",
-					"type": "website"
-				}
-			]
-		},
-		{
-			"type": "library",
-			"name": "url",
-			"version": "3.111.0-0ece79ce32",
-			"licenses": [
-				{
-					"license": {
-						"id": "MIT"
-					}
-				}
-			],
-			"purl": "pkg:github/mrhenry/polyfill-library@0ece79ce32",
-			"authors": [
-				{
-					"name": "Financial Times"
-				}
-			],
-			"externalReferences": [
-				{
-					"url": "https://github.com/mrhenry/polyfill-library",
-					"type": "website"
-				}
-			]
-		},
-		{
-			"type": "library",
-			"name": "fetch-polyfill",
-			"version": "3.6.2",
-			"licenses": [
-				{
-					"license": {
-						"id": "MIT"
-					}
-				}
-			],
-			"authors": [
-				{
-					"name": "GitHub"
-				},
-				{
-					"name": "Inc."
-				}
-			],
-			"externalReferences": [
-				{
-					"url": "https://github.com/github/fetch#readme",
-					"type": "website"
-				}
-			]
-		},
-		{
-			"type": "library",
-			"name": "intersection-observer",
-			"version": "0.12.0",
-			"licenses": [
-				{
-					"license": {
-						"id": "Apache-2.0"
-					}
-				}
-			],
-			"purl": "pkg:npm/intersection-observer@0.12.0",
-			"authors": [
-				{
-					"name": "Philip Walton"
-				}
-			],
-			"externalReferences": [
-				{
-					"url": "https://github.com/GoogleChromeLabs/intersection-observer",
 					"type": "website"
 				}
 			]
