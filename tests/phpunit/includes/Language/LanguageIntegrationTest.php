@@ -2017,6 +2017,11 @@ class LanguageIntegrationTest extends LanguageClassesTestCase {
 			$lang->embedBidi( 'יהודי (מנוחין)' ),
 			'embedBidi with RTL argument'
 		);
+		$this->assertEquals(
+			$lre . "\u{17000}" . $pdf,
+			$lang->embedBidi( "\u{17000}" ),
+			'embedBidi with LTR argument from Unicode 9.0+ (Tangut)'
+		);
 	}
 
 	/**
