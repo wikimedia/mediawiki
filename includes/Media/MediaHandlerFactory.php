@@ -41,9 +41,14 @@ class MediaHandlerFactory {
 		'image/jpx' => Jpeg2000Handler::class,
 	];
 
-	/** @var array */
+	/** @var array<string,class-string<MediaHandler>> */
 	private $registry;
 
+	/**
+	 * @param LanguageFactory $langFactory
+	 * @param LoggerInterface $logger
+	 * @param array<string,class-string<MediaHandler>> $registry
+	 */
 	public function __construct(
 		private LanguageFactory $langFactory,
 		private LoggerInterface $logger,
@@ -53,49 +58,35 @@ class MediaHandlerFactory {
 	}
 
 	/**
-	 * @param string $type
-	 * @return class-string<MediaHandler>|false
-	 */
-	protected function getHandlerClass( $type ) {
-		return $this->registry[$type] ?? false;
-	}
-
-	/**
-	 * @param string $type mimetype
+	 * @param string $mimeType
 	 * @param Language|string|null $lang Language object or language code
-	 * @return MediaHandler|false
+	 * @return MediaHandler|null
 	 */
 	public function getHandler(
-		$type,
+		string $mimeType,
 		Language|string|null $lang = null
-	) {
-		$class = $this->getHandlerClass( $type );
-		if ( $class !== false ) {
-			/** @var MediaHandler $handler */
-			$handler = new $class;
-			if ( !$handler->isEnabled() ) {
-				$this->logger->debug(
-					'{class} is not enabled.',
-					[ 'class' => $class ]
-				);
-				$handler = false;
-			} else {
-				if ( $lang !== null ) {
-					if ( !$lang instanceof Language ) {
-						$lang = $this->langFactory->getLanguage( $lang );
-					}
-					$handler->setLanguage( $lang );
-				}
-				$handler->emitSubclassDeprecations();
-			}
-		} else {
-			$this->logger->debug(
-				'no handler found for {type}.',
-				[ 'type' => $type ]
-			);
-			$handler = false;
+	): ?MediaHandler {
+		$class = $this->registry[$mimeType] ?? null;
+		if ( !$class ) {
+			$this->logger->debug( 'no handler found for {type}.', [ 'type' => $mimeType ] );
+			return null;
 		}
 
+		/** @var MediaHandler $handler */
+		$handler = new $class();
+		if ( !$handler->isEnabled() ) {
+			$this->logger->debug( '{class} is not enabled.', [ 'class' => $class ] );
+			return null;
+		}
+
+		if ( $lang !== null ) {
+			if ( !( $lang instanceof Language ) ) {
+				$lang = $this->langFactory->getLanguage( $lang );
+			}
+			$handler->setLanguage( $lang );
+		}
+
+		$handler->emitSubclassDeprecations();
 		return $handler;
 	}
 }

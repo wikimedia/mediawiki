@@ -231,7 +231,7 @@ class ThumbnailEntryPointTest extends MediaWikiIntegrationTestCase {
 	public function testNoThumbName() {
 		// Make sure no handler is set, so that File::generateThumbName() returns false
 		$factory = $this->createNoOpMock( MediaHandlerFactory::class, [ 'getHandler' ] );
-		$factory->method( 'getHandler' )->willReturn( false );
+		$factory->method( 'getHandler' )->willReturn( null );
 		$this->setService( 'MediaHandlerFactory', $factory );
 
 		$env = $this->makeEnvironment(

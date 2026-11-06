@@ -74,7 +74,7 @@ class MWFileProps {
 			$info['media_type'] = $this->magic->getMediaType( $path, $info['mime'] );
 
 			# Height, width and metadata
-			$handler = $info['mime'] !== null ? MediaHandler::getHandler( $info['mime'] ) : null;
+			$handler = MediaHandler::getHandler( $info['mime'] );
 			if ( $handler ) {
 				$sizeAndMetadata = $handler->getSizeAndMetadataWithFallback( $fsFile, $path );
 				if ( $sizeAndMetadata ) {
