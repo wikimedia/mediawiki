@@ -808,6 +808,7 @@ because of Phabricator reports.
   instead.
 * The ResourceLoader module mediawiki.skinning.content.parsoid has been
   deprecated. Please remove usages.
+* The web2017-polyfills module has been deprecated and is now a no-op (T443153).
 * Title::estimateRevisionCount() is unused and has been deprecated.
 * Title::getOtherPage(), deprecated since 1.34, now emits deprecation warnings.
 * WikiPage::shouldCheckParserCache() has been deprecated. Use

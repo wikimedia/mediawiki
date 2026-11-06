@@ -178,50 +178,6 @@ codex-icons:
     package/LICENSE:
     package/README.md:
 
-url:
-  license: MIT
-  homepage: https://github.com/mrhenry/polyfill-library
-  authors: Financial Times
-  version: 3.111.0-0ece79ce32
-  purl: pkg:github/mrhenry/polyfill-library@0ece79ce32
-  type: multi-file
-  files:
-    URL.js:
-      src: https://raw.githubusercontent.com/mrhenry/polyfill-library/0ece79ce32/polyfills/URL/polyfill.js
-      integrity: sha384-ZAFKMtnv4166IfCOoSoxGM1b4JQx/njgDOWwnaSQPESHAqvjE0e5gXmYBYyjQEl8
-    URL-toJSON.js:
-      src: https://raw.githubusercontent.com/mrhenry/polyfill-library/0ece79ce32/polyfills/URL/prototype/toJSON/polyfill.js
-      integrity: sha384-Fy884Llzghu/2ag7WG9GtW4BhSprpT9ZdbSKfetBSoD7V6VW1AE5hx1PA0LXVqlC
-    LICENSE.md:
-      src: https://raw.githubusercontent.com/mrhenry/polyfill-library/0ece79ce32/LICENSE.md
-      integrity: sha384-kXXDJ+mVdRawUrEAkIAPr1Lz40TzWjVxllGDCxB9+fHcLXtNsSYrKIvzNgTBF+En
-
-fetch-polyfill:
-  license: MIT
-  homepage: https://github.com/github/fetch#readme
-  authors: GitHub, Inc.
-  version: 3.6.2
-  type: tar
-  src: https://registry.npmjs.com/whatwg-fetch/-/whatwg-fetch-3.6.2.tgz
-  integrity: sha384-MKKGEwKprHZSo8G05laATm+iES1Lbsp/Dy7riDibahMr2TyJS7HClsxKjcGk+3FJ
-  dest:
-    package/dist/fetch.umd.js:
-    package/LICENSE:
-    package/README.md:
-
-intersection-observer:
-  license: Apache-2.0
-  homepage: https://github.com/GoogleChromeLabs/intersection-observer
-  authors: Philip Walton
-  version: 0.12.0
-  purl: pkg:npm/intersection-observer@0.12.0
-  type: tar
-  src: https://registry.npmjs.org/intersection-observer/-/intersection-observer-0.12.0.tgz
-  integrity: sha384-zCaiM7krKokKgwmrn87MtEtBUfsddhfofL0x+6KiGr+nHRa4b/ZdcfkBUSEtuEUw
-  dest:
-    package/intersection-observer.js:
-    package/README.md:
-
 jquery:
   license: MIT
   homepage: https://jquery.com

@@ -166,17 +166,7 @@ return [
 
 	/* Polyfills */
 	'web2017-polyfills' => [
-		'scripts' => [
-			'resources/lib/intersection-observer/intersection-observer.js',
-			'resources/lib/fetch-polyfill/fetch.umd.js',
-			// The URL polyfill depends on the following in addition to the ES6 baseline
-			// https://github.com/Financial-Times/polyfill-library/blob/v3.110.1/polyfills/URL/config.toml#L10
-			// - ES6 Symbol.iterator (no fill needed, used conditionally)
-			'resources/lib/url/URL.js',
-			'resources/lib/url/URL-toJSON.js',
-		],
-		'skipFunction' => 'resources/src/skip-web2017-polyfills.js',
-		'dependencies' => []
+		'deprecated' => '[1.47] No longer needed. See https://phabricator.wikimedia.org/T443153',
 	],
 
 	/* Base modules */
@@ -940,7 +930,6 @@ return [
 		'dependencies' => [
 			'mediawiki.api',
 			'oojs',
-			'web2017-polyfills',
 		],
 	],
 	'mediawiki.helplink' => [
@@ -1312,7 +1301,6 @@ return [
 		],
 		'dependencies' => [
 			'jquery.client',
-			'web2017-polyfills',
 		],
 		'messages' => [ 'brackets', 'word-separator' ],
 	],
@@ -2113,7 +2101,6 @@ return [
 			'quotation-marks',
 		],
 		'dependencies' => [
-			'web2017-polyfills',
 			'jquery.makeCollapsible',
 			'mediawiki.String',
 			'mediawiki.api',
@@ -2235,7 +2222,6 @@ return [
 			'mediawiki.widgets.datetime',
 			'mediawiki.widgets.TitlesMultiselectWidget',
 			'jquery.makeCollapsible',
-			'web2017-polyfills'
 		],
 		'messages' => [
 			'apisandbox-intro',
@@ -2719,7 +2705,6 @@ return [
 		'dependencies' => [
 			'mediawiki.api',
 			'mediawiki.Title',
-			'web2017-polyfills'
 		],
 		'messages' => [
 			'search-interwiki-more-results',

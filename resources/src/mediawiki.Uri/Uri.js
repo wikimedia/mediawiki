@@ -525,9 +525,8 @@
 			 * due to order of query arguments.
 			 * Note also that the fragment is not always roundtripped as-is; some characters will
 			 * become encoded, including the slash character, which can cause problems with e.g.
-			 * mediawiki.router. It is recommended to use the native URL class (via
-			 * web2017-polyfills, which loads a polyfill if needed) in contexts where the fragment
-			 * is important.
+			 * mediawiki.router. It is recommended to use the native URL class in contexts where
+			 * the fragment is important.
 			 *
 			 * @return {string} The URI string
 			 */
