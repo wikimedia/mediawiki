@@ -522,7 +522,7 @@
 	"editundo": "koomeet",
 	"diff-empty": "(Ij mihheen iäruid)",
 	"diff-user-edits": "<span>$1</span> {{PLURAL:$1|hammiittâs|hammiittâs|hammiittâs|hammiittâssâd}}",
-	"diff-multi-sameuser": "({{PLURAL:$1|Ohtâ kooskâst leijee versio|$1 kooskâst leijee versio}} siämmáá {{GENDER:$3|kevttest}} ij čaittuu)",
+	"diff-multi-sameuser": "(Siämmáá {{GENDER:$3|kevttee}} {{PLURAL:$1|1=ohtâ kooskâst leijee versio ij|$1 kooskâst leijee versio iä|$1 kooskâst leijee versiod iä}} čaittuu)",
 	"diff-multi-otherusers": "Siämmáá kevttee ({{PLURAL:$1|ohtâ koskânleijee versio ij|$2 koskânleijee versioh iä}}  čaittuu)",
 	"searchresults": "Uuccâmpuátuseh",
 	"search-filter-title-prefix-reset": "Uusâ puoh siijđoin",

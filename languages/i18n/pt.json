@@ -1071,7 +1071,7 @@
 	"nchanges": "$1 {{PLURAL:$1|alteração|alterações}}",
 	"ntimes": "$1×",
 	"enhancedrc-since-last-visit": "$1 {{PLURAL:$1|desde a última visita}}",
-	"enhancedrc-history": "histórico",
+	"enhancedrc-history": "his",
 	"recentchanges": "Mudanças recentes",
 	"recentchanges-legend": "Opções das mudanças recentes",
 	"recentchanges-summary": "Acompanhe nesta página as mudanças mais recentes da wiki.",

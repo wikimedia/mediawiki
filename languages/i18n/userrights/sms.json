@@ -48,7 +48,7 @@
 	"right-bigdelete": "Jaukkeed seeidaid, koin lie kuʹǩes historia",
 	"right-browsearchive": "Ooccâd jaukkuum seeidaid",
 	"right-undelete": "Maaccted jaukkuum seeid",
-	"right-editprotected": "Muʹtted seeidaid, kook lie suõjjuum tässa \"{{int:restriction-level-sysop}}\"",
+	"right-editprotected": "Muʹtted suõjjuum seeidaid ({{int:restriction-level-sysop}})",
 	"right-editinterface": "Muʹtted ââʹnnemõhttõõzz",
 	"right-editmyoptions": "Jiiʹjjes asetõõzzid muʹtted",
 	"right-pagelang": "Vaajted seeid ǩiõl",

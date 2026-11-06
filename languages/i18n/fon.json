@@ -244,7 +244,7 @@
 	"search-suggest": "Nu élɔ ba wɛ mi ɖé a a cé: $1",
 	"search-interwiki-more": "(susu)",
 	"searchall": "bǐ",
-	"search-showingresults": "{{PLURAL:$4|Sinkɔn <strong>$1</strong> tɔn <strong>$3</strong>|Sinkɔn <strong>$1 – $2</strong> tɔn lɛ <strong>$3</strong>}}",
+	"search-showingresults": "{{PLURAL:$4|1=Sinkɔn <strong>$1</strong> tɔn <strong>$3</strong>|Sinkɔn <strong>$1 – $2</strong> tɔn lɛ <strong>$3</strong>}}",
 	"search-nonefound": "Nu èé ba wɛ mi ɖé ɔ na sin ɖébu a.",
 	"powersearch-toggleall": "Bǐ",
 	"mypreferences": "Nǔjlomɛ Lɛ",

@@ -478,7 +478,7 @@
 	"loginerror": "Galat saat masuk log",
 	"createacct-error": "Pembuatan akun gagal",
 	"createaccounterror": "Tidak dapat membuat akun: $1",
-	"createacct-popup-redirect-notice": "Anda akan dialihkan setelah menciptakan akun...",
+	"createacct-popup-redirect-notice": "Anda akan dialihkan setelah membuat akun...",
 	"createacct-username-policy-popover-title": "Kebijakan nama pengguna",
 	"nocookieslogin": "{{SITENAME}} menggunakan kuki untuk log penggunanya. Kuki pada peramban web Anda dimatikan. Silakan nyalakan dan coba lagi.",
 	"nocookiesfornew": "Akun pengguna tidak dibuat karena kami tidak dapat memastikan sumbernya.\nPastikan Anda telah menyalakan kuki, lalu muat ulang halaman ini dan coba lagi.",
@@ -955,7 +955,7 @@
 	"mergehistory-fail-invalid-dest": "Halaman tujuan tidak valid.",
 	"mergehistory-fail-start-after-end": "Timestamp awal berada setelah timestamp akhir, atau setelah revisi terakhir pada halaman tersebut.",
 	"mergehistory-fail-no-change": "Penggabungan riwayat tidak berhasil menggabungkan revisi apa pun. Mohon periksa kembali parameter halaman dan waktu.",
-	"mergehistory-fail-permission": "Izin [[Wikipedia:Penggabungan dua riwayat|penggabungan dua riwayat]] halaman tidak mencukupi.",
+	"mergehistory-fail-permission": "Izin [[Project:Penggabungan dua riwayat|penggabungan dua riwayat]] halaman tidak mencukupi.",
 	"mergehistory-fail-self-merge": "Halaman asal dan tujuan sama.",
 	"mergehistory-fail-timestamps-overlap": "Revisi asal tumpang tindih atau lebih baru dari revisi tujuan.",
 	"mergehistory-fail-change-current-revision": "Tidak dapat mengubah revisi terkini dari kedua halaman melalui MergeHistory (kecuali saat menggabungkan seluruh halaman sumber ke halaman tujuan).",
@@ -3312,6 +3312,8 @@
 	"tag-mw-server-side-upload-description": "Berkas media yang diunggah melalui skrip pemeliharaan",
 	"tag-mw-ipblock-appeal": "Banding pemblokiran IP",
 	"tag-mw-ipblock-appeal-description": "Pembuatan akun sementara melalui [[{{#special:Mytalk}}]] dari alamat IP yang diblokir dari pembuatan akun",
+	"tag-mw-edited-other-users-js": "Telah menyunting JS pengguna lain",
+	"tag-mw-edited-other-users-js-description": "Suntingan dalam ruang nama pengguna yang mengubah halaman JavaScript milik pengguna lain",
 	"tags-title": "Tanda",
 	"tags-intro": "Halaman ini berisi daftar tanda yang dapat ditandai oleh perangkat lunak terhadap suatu suntingan berikut artinya.",
 	"tags-tag": "Nama tanda",
@@ -4060,5 +4062,7 @@
 	"table-of-contents-show-button-aria-label": "Tampilkan daftar isi",
 	"table-of-contents-hide-button-aria-label": "Sembunyikan daftar isi",
 	"diff-usergroups": "$1 {{PLURAL:$1| grup pengguna}}",
-	"languageselector-no-results": "Tidak ada hasil yang ditemukan."
+	"languageselector-no-results": "Tidak ada hasil yang ditemukan.",
+	"languageselector-invalid-input": "\"$1\" bukanlah bahasa yang sah.",
+	"mypage-disallowed-action": "Untuk alasan keamanan, tindakan \"$1\" tidak dapat digunakan pada halaman Special:MyPage."
 }

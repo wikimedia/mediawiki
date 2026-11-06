@@ -20,7 +20,9 @@
 			"PralineCoffee",
 			"NClara",
 			"Alkmen-Alesia",
-			"Allylly"
+			"Allylly",
+			"Antguy1213",
+			"SleaY"
 		]
 	},
 	"rest-prefix-mismatch": "Le chemin demandé ($1) n’était pas dans le chemin de base de l’API REST ($2)",
@@ -113,7 +115,7 @@
 	"rest-module-specs.v0-title": "Interface de programmation (API) des spécifications",
 	"rest-module-specs.v0-desc": "Module d’auto-documentation fournissant la découverte, les spécifications et les schémas de tous les modules disponibles.",
 	"rest-module-content.v1-title": "Interface de programmation (API) de contenu",
-	"rest-module-content.v1-desc": "Donne accès au contenu et aux métadonnées des pages et des révisions",
+	"rest-module-content.v1-desc": "Donne accès au contenu et aux métadonnées des pages et des versions",
 	"rest-module-site.v1-title": "API du site",
 	"rest-module-site.v1-desc": "Informations concernant le site dans son ensemble, telles que les sitemaps du site",
 	"rest-param-desc-mock-desc": "Description fictive.",
@@ -229,7 +231,7 @@
 	"rest-property-desc-revision-url": "URL vers la version la plus récente de la page",
 	"rest-property-desc-revision-url-older": "Si disponible, URL pour obtenir la version précédente",
 	"rest-property-desc-revision-url-newer": "Si disponible, URL pour obtenir la version suivante",
-	"rest-property-desc-search-excerpt": "Extrait du contenu de la page correspondant à la requête de recherche",
+	"rest-property-desc-search-excerpt": "Pour /search/page, un court échantillon de contenu de page avec des termes de recherche marqués avec ``. Les extraits peuvent se terminer à la mi-sentence. Pour /recherche/titre, le titre de la page dans un format facile à lire<span class=\"searchmatch\">Je suis là. Les extraits peuvent se terminer à la mi-sentence. Pour /recherche/titre, le titre de la page dans un format facile à lire</span>",
 	"rest-property-desc-search-matched-title": "Titre de la page redirigée, si le terme de recherche correspond à une page de redirection, sinon nul",
 	"rest-property-desc-search-anchor": "Section de la page cible, si le terme de recherche correspond à une redirection vers une section spécifique, en format lisible par l'homme",
 	"rest-property-desc-search-description": "Court résumé du sujet de la page ou nul si aucun résumé n’existe.",

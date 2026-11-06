@@ -3700,7 +3700,7 @@
 	"logentry-rights-rights-expiry-changed": "{{GENDER:$2|cambió}} la expiración de $1",
 	"logentry-rights-rights-kept": "{{GENDER:$2|no modificó}} $1",
 	"logentry-rights-rights-legacy": "$1 {{GENDER:$2|modificó}} los grupos a los que pertenece $3",
-	"logentry-rights-autopromote": "$1 cambió automáticamente los grupos a los que {{GENDER:$2|pertenece}}: %7",
+	"logentry-rights-autopromote": "$1 cambió automáticamente a los grupos que {{GENDER:$2|pertenece}}: $7",
 	"logentry-rights-autopromote-granted": "{{GENDER:$2|obtuvo}} $1",
 	"logentry-rights-autopromote-revoked": "{{GENDER:$2|perdió}} $1",
 	"logentry-rights-autopromote-expiry-changed": "{{GENDER:$2|cambió}} la expiración de $1",

@@ -475,7 +475,7 @@
 	"apihelp-protect-param-reason": "（解除）保護的原因。",
 	"apihelp-protect-param-tags": "修改標籤以套用於保護日誌裡的項目。",
 	"apihelp-protect-param-cascade": "啟用連鎖保護（也就是保護包含於此頁面的頁面）。如果所有提供的保護等級不支援連鎖，就將其忽略。",
-	"apihelp-protect-param-watch": "如果被設定，就將被（解除）保護的頁面加至目前使用者的監視列表。",
+	"apihelp-protect-param-watch": "若被設定，就將被（解除）保護的頁面新增至目前使用者的監視清單。",
 	"apihelp-protect-param-watchlist": "使用偏好設定無條件地將頁面加入至或移除自目前使用者的監視清單（略過機器人使用者），或不更改監視。",
 	"apihelp-protect-param-watchlistexpiry": "監視清單期限時間戳記。忽略此參數會維持目前期限不變。",
 	"apihelp-protect-example-protect": "保護一個頁面。",

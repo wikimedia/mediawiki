@@ -80,7 +80,15 @@
 	"rest-unmapped-action-error": "Erro do módulo de operação não mapeado: $1",
 	"rest-unsupported-transform-input": "Entrada não suportada: $1",
 	"rest-bad-etag": "ETag incorreta: $1",
+	"rest-edit-conflict": "Conflito de edição ($1)",
+	"rest-unknown-parsoid-transformation": "Transformação desconhecida.",
+	"rest-target-variant-required": "A variante de destino é obrigatória.",
+	"rest-unsupported-language-conversion": "Conversão de idioma não suportada: $1 para $2",
+	"rest-unknown-content-model": "Modelo de conteúdo desconhecido: $1",
+	"rest-page-bundle-validation-error": "PageBundle não coincide com contentVersion: $1",
 	"rest-module": "Módulo",
+	"rest-module-default": "Módulo padrão",
+	"rest-module-extra-routes-title": "API REST do MediaWiki",
 	"rest-module-content.v1-title": "API de conteúdo",
 	"rest-module-site.v1-title": "API do site"
 }

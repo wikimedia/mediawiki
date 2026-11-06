@@ -793,6 +793,8 @@
 	"protect-title-notallowed": "Čuäʹjet seeid \"$1\" suõjjeemasetõõzzid",
 	"protectcomment": "Mäinn:",
 	"protect-locked-access": "Tuu õõʹnnitobldõõǥǥâst ij leäkku vuõiggâdvuõtt seeid suõjjeemasetõõzzid muʹtted.\nTäʹst lie seidd <strong>$1</strong> ânnʼjõž suejjeemasetõõzz:",
+	"protect-default": "Puk õõʹnni",
+	"protect-level-autoconfirmed": "Tåʹlǩ automaattsânji primmum õõʹnni",
 	"protect-expiry-indefinite": "ââǥǥas",
 	"protect-cantedit": "Ton jiõk vuäǯǯ tän seeid suõjjeemasetõõzzid muʹtted, ǥu tuʹst ij leäkku vuõiggâdvuõtt seeid muʹtted.",
 	"protect-otherreason": "Jeeʹres mäinn leʹbe lââʹssmäinn:",

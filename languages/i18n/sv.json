@@ -3995,5 +3995,6 @@
 	"table-of-contents-hide-button-aria-label": "Dölj innehållsförteckningen",
 	"diff-usergroups": "$1 {{PLURAL:$1|användargrupp|användargrupper}}",
 	"languageselector-no-results": "Inga resultat hittades.",
-	"languageselector-invalid-input": "\"$1\" är inte ett giltigt språk."
+	"languageselector-invalid-input": "\"$1\" är inte ett giltigt språk.",
+	"mypage-disallowed-action": "Av säkerhetsskäl kan åtgärden \"$1\" inte användas på sidan Special:MyPage."
 }
