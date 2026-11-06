@@ -54,7 +54,7 @@ class ApiRestHelperTest extends MediaWikiUnitTestCase {
 	}
 
 	public function testGetResponseBodySchema_malformedFile() {
-		$helper = $this->newHelper( schemaFile: self::DATA_PREFIX . 'malformed.json' );
+		$helper = $this->newHelper( schemaFile: self::DATA_PREFIX . 'malformed.txt' );
 
 		$this->expectException( ModuleConfigurationException::class );
 		$helper->getResponseBodySchema();
