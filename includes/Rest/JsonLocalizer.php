@@ -2,6 +2,7 @@
 
 namespace MediaWiki\Rest;
 
+use Wikimedia\Assert\Assert;
 use Wikimedia\Message\ITextFormatter;
 use Wikimedia\Message\MessageSpecifier;
 use Wikimedia\Message\MessageValue;
@@ -34,7 +35,19 @@ class JsonLocalizer {
 	}
 
 	/**
-	 * Recursively localizes name/value pairs, where the name begins with "x-i18-n-"
+	 * Recursively applies localization to a JSON structure.
+	 *
+	 * Two mechanisms apply:
+	 * - when a key starts with self::LOCALIZATION_PREFIX, its value is
+	 *   interpreted as a localization key; the prefix is stripped from the
+	 *   key and the value is replaced with the localized string.
+	 * - Any values that are MessageSpecifier objects are replaced with
+	 *   a localized string.
+	 *
+	 * For example,
+	 *    'x-i18n-description' => 'mw-rest-my-description-message-key'
+	 * would be localized to something like:
+	 *    'description' => 'My Description'
 	 *
 	 * @param array $json the input json, as a PHP array
 	 *
@@ -45,13 +58,7 @@ class JsonLocalizer {
 	}
 
 	/**
-	 * Recursively localizes name/value pairs. Pairs to be localized are identified by prefix,
-	 * and values must be message keys.
-	 *
-	 * The resulting key has the prefix removed, and a localized value. For example this pair:
-	 *   'x-i18n-description' => 'mw-rest-my-description-message-key'
-	 * Would be localized to something like:
-	 *   'description' => 'My Description'
+	 * Recursively localizes name/value pairs.
 	 *
 	 * @param array $json the input json, as a PHP array
 	 * @param string $i18nPrefix keys beginning with this prefix will be localized
@@ -59,20 +66,24 @@ class JsonLocalizer {
 	 * @return array the adjusted json, or the unchanged json if no adjustments were made
 	 */
 	private function localizeJsonPairs( array $json, string $i18nPrefix ): array {
-		// Use a reference for $value, because it is potentially modified within the loop.
+		// Use a reference for $value, because the loop may modify the value.
+		// NOTE that this also makes unset() work for arbitrary keys.
 		foreach ( $json as $key => &$value ) {
-			if ( is_array( $value ) ) {
-				$value = $this->localizeJsonPairs( $value, $i18nPrefix );
-			} elseif ( str_starts_with( $key, $i18nPrefix ) ) {
-				$newKey = substr( $key, strlen( $i18nPrefix ) );
+			if ( str_starts_with( $key, $i18nPrefix ) ) {
+				Assert::precondition( is_string( $value ), "values of a property starting " .
+					"with $i18nPrefix must be strings representing a message key." );
 
-				// Add the description to the top of the json, for visibility in raw specs
-				$msg = new MessageValue( $value );
-				$pair = [ $newKey => $msg ];
-				$json = $pair + $json;
-				$json[$newKey] = $this->getFormattedMessage( $msg );
+				$newKey = substr( $key, strlen( $i18nPrefix ) );
+				$value = new MessageValue( $value );
 
 				unset( $json[$key] );
+				$json[$newKey] = &$value;
+			}
+
+			if ( $value instanceof MessageSpecifier ) {
+				$value = $this->getFormattedMessage( $value );
+			} elseif ( is_array( $value ) ) {
+				$value = $this->localizeJsonPairs( $value, $i18nPrefix );
 			}
 		}
 		return $json;
@@ -87,12 +98,16 @@ class JsonLocalizer {
 	 * Prior to MediaWiki 1.47, only MessageValue objects were localized, other
 	 * implementations of MessageSpecifier were not supported.
 	 *
+	 * @deprecated since 1.47. Use localizeJson() or getFormattedMessage() instead.
+	 *
 	 * @param array $json the input json, as a PHP array
 	 * @param string $key key name of the field
 	 *
 	 * @return ?string
 	 */
 	public function localizeValue( array $json, string $key ): ?string {
+		wfDeprecated( __METHOD__, '1.47' );
+
 		$value = null;
 
 		if ( array_key_exists( $key, $json ) ) {

@@ -4,6 +4,7 @@ namespace MediaWiki\Tests\Rest;
 
 use MediaWiki\Rest\JsonLocalizer;
 use MediaWikiUnitTestCase;
+use Wikimedia\Message\MessageSpecifier;
 use Wikimedia\Message\MessageValue;
 
 /**
@@ -12,7 +13,7 @@ use Wikimedia\Message\MessageValue;
 class JsonLocalizerTest extends MediaWikiUnitTestCase {
 	use RestTestTrait;
 
-	public static function providelocalizeJsonObjects() {
+	public static function provideLocalizeJsonObjects() {
 		return [
 			'empty object' => [
 				[],
@@ -53,6 +54,109 @@ class JsonLocalizerTest extends MediaWikiUnitTestCase {
 				],
 				[
 					'description' => '<message key="foo"></message>',
+				]
+			],
+			'pair override, unprefixed key first' => [
+				[
+					'description' => 'untranslated',
+					'x-i18n-description' => 'foo',
+				],
+				[
+					'description' => '<message key="foo"></message>',
+				]
+			],
+			'pair override, nested' => [
+				[
+					'properties' => [
+						'my-property-name' => [
+							'x-i18n-description' => 'foo',
+							'description' => 'untranslated',
+						],
+					],
+				],
+				[
+					'properties' => [
+						'my-property-name' => [
+							'description' => '<message key="foo"></message>',
+						],
+					],
+				]
+			],
+			'MessageValue value' => [
+				[
+					'description' => new MessageValue( 'foo' ),
+				],
+				[
+					'description' => '<message key="foo"></message>',
+				]
+			],
+			'MessageSpecifier implementation other than MessageValue' => [
+				[
+					'description' => new class implements MessageSpecifier {
+						public function getKey(): string {
+							return 'foo';
+						}
+
+						public function getParams(): array {
+							return [];
+						}
+					},
+				],
+				[
+					// The dummy formatter only dumps MessageValue instances and returns the
+					// key for any other MessageSpecifier. Either way, it was passed through
+					// the formatter instead of being left in place as an object.
+					'description' => 'foo',
+				]
+			],
+			'nested MessageValue values' => [
+				[
+					'properties' => [
+						'my-property-name' => [
+							'type' => 'integer',
+							'example' => new MessageValue( 'foo' ),
+						],
+					],
+					'required' => [ 'a', 'b' ],
+				],
+				[
+					'properties' => [
+						'my-property-name' => [
+							'type' => 'integer',
+							'example' => '<message key="foo"></message>',
+						],
+					],
+					'required' => [ 'a', 'b' ],
+				]
+			],
+			'MessageValue in a list' => [
+				[
+					'examples' => [ new MessageValue( 'foo' ), 'plain', new MessageValue( 'bar' ) ],
+				],
+				[
+					'examples' => [
+						'<message key="foo"></message>',
+						'plain',
+						'<message key="bar"></message>',
+					],
+				]
+			],
+			'MessageValue with parameters' => [
+				[
+					'description' => new MessageValue( 'foo', [ 'x' ] ),
+				],
+				[
+					'description' => '<message key="foo"><text>x</text></message>',
+				]
+			],
+			'MessageValue next to translatable pair' => [
+				[
+					'x-i18n-title' => 'foo',
+					'description' => new MessageValue( 'bar' ),
+				],
+				[
+					'title' => '<message key="foo"></message>',
+					'description' => '<message key="bar"></message>',
 				]
 			],
 			'nested translatable pair' => [
@@ -107,6 +211,16 @@ class JsonLocalizerTest extends MediaWikiUnitTestCase {
 		$util = new JsonLocalizer( $this->getDummyTextFormatter( true ) );
 		$adjustedObj = $util->localizeJson( $inputObj );
 		$this->assertEquals( $expectedObj, $adjustedObj );
+	}
+
+	public function testLocalizeValueIsDeprecated() {
+		$this->expectDeprecationAndContinue( '/localizeValue/' );
+
+		$util = new JsonLocalizer( $this->getDummyTextFormatter( true ) );
+		$this->assertSame(
+			'<message key="foo"></message>',
+			$util->localizeValue( [ 'description' => new MessageValue( 'foo' ) ], 'description' )
+		);
 	}
 
 	public static function provideGetFormattedMessage() {

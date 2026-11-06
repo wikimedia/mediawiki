@@ -753,6 +753,9 @@ abstract class Handler {
 	 *
 	 * Subclasses may override this to provide additional information.
 	 *
+	 * The return value may contain localization placeholders that need to be
+	 * resolved using JsonLocalizer to produce human-readable values.
+	 *
 	 * @since 1.42
 	 * @stable to override
 	 *
@@ -779,22 +782,7 @@ abstract class Handler {
 				continue;
 			}
 
-			$setting[ Validator::PARAM_DESCRIPTION ] = $this->getJsonLocalizer()->localizeValue(
-				$setting, Validator::PARAM_DESCRIPTION,
-			);
-
-			if (
-				isset( $setting[ Validator::PARAM_EXAMPLE ] ) &&
-				$setting[ Validator::PARAM_EXAMPLE ] instanceof MessageValue
-			) {
-				$setting[ Validator::PARAM_EXAMPLE ] = $this->getJsonLocalizer()->localizeValue(
-					$setting, Validator::PARAM_EXAMPLE,
-				);
-			}
-
-			$param = Validator::getParameterSpec( $name, $setting );
-
-			$parameters[] = $param;
+			$parameters[] = Validator::getParameterSpec( $name, $setting );
 		}
 
 		foreach ( $this->getHeaderParamSettings() as $name => $setting ) {
@@ -804,22 +792,7 @@ abstract class Handler {
 				continue;
 			}
 
-			$setting[ Validator::PARAM_DESCRIPTION ] = $this->getJsonLocalizer()->localizeValue(
-				$setting, Validator::PARAM_DESCRIPTION,
-			);
-
-			if (
-				isset( $setting[ Validator::PARAM_EXAMPLE ] ) &&
-				$setting[ Validator::PARAM_EXAMPLE ] instanceof MessageValue
-			) {
-				$setting[ Validator::PARAM_EXAMPLE ] = $this->getJsonLocalizer()->localizeValue(
-					$setting, Validator::PARAM_EXAMPLE,
-				);
-			}
-
-			$param = Validator::getParameterSpec( $name, $setting );
-
-			$parameters[] = $param;
+			$parameters[] = Validator::getParameterSpec( $name, $setting );
 		}
 
 		$spec = [
@@ -870,7 +843,6 @@ abstract class Handler {
 			$schema = $this->getRequestBodySchema( $type );
 
 			if ( $schema ) {
-				$schema = $this->getJsonLocalizer()->localizeJson( $schema );
 				$mediaTypes[$type] = [ 'schema' => $schema ];
 				$example = $this->getRequestBodyExample( $type );
 				if ( $example ) {
@@ -892,10 +864,7 @@ abstract class Handler {
 
 		$description = $this->getRequestBodyDescription();
 		if ( $description ) {
-			$spec['description'] = $this->getJsonLocalizer()->localizeValue(
-				[ self::OPENAPI_DESCRIPTION_KEY => $description ],
-				self::OPENAPI_DESCRIPTION_KEY
-			);
+			$spec['description'] = $description;
 		}
 
 		return $spec;
@@ -963,10 +932,6 @@ abstract class Handler {
 
 			if ( !array_key_exists( Validator::PARAM_EXAMPLE, $settings ) ) {
 				$example[$name] = self::MISSING_BODY_EXAMPLE;
-			} elseif ( $settings[ Validator::PARAM_EXAMPLE ] instanceof MessageValue ) {
-				$example[$name] = $this->getJsonLocalizer()->localizeValue(
-					$settings, Validator::PARAM_EXAMPLE
-				);
 			} else {
 				$example[$name] = $settings[ Validator::PARAM_EXAMPLE ];
 			}
@@ -1027,19 +992,9 @@ abstract class Handler {
 				continue;
 			}
 
-			if (
-				isset( $settings[ Validator::PARAM_EXAMPLE ] ) &&
-				$settings[ Validator::PARAM_EXAMPLE ] instanceof MessageValue
-			) {
-				$settings[ Validator::PARAM_EXAMPLE ] = $this->getJsonLocalizer()->localizeValue(
-					$settings, Validator::PARAM_EXAMPLE,
-				);
-			}
-
 			$properties[$name] = Validator::getParameterSchema( $settings );
 			$properties[$name][self::OPENAPI_DESCRIPTION_KEY] =
-				$this->getJsonLocalizer()->localizeValue( $settings, Validator::PARAM_DESCRIPTION )
-				?? "$name parameter";
+				$settings[Validator::PARAM_DESCRIPTION] ?? "$name parameter";
 
 			if ( $isRequired ) {
 				$required[] = $name;
@@ -1096,9 +1051,7 @@ abstract class Handler {
 			$settings[ self::OPENAPI_DESCRIPTION_KEY  ] = new MessageValue( $settings[ 'messageKey' ] );
 			// 'messageKey' field no longer required
 			unset( $settings[ 'messageKey' ] );
-			$settings[ self::OPENAPI_DESCRIPTION_KEY ] = $this->getJsonLocalizer()->localizeValue(
-				$settings, self::OPENAPI_DESCRIPTION_KEY,
-			);
+
 			$responseHeaderSettings[ $headerName ] = [
 				self::OPENAPI_DESCRIPTION_KEY => $settings[ self::OPENAPI_DESCRIPTION_KEY ],
 				'schema' => $settings[ 'schema' ]
@@ -1216,7 +1169,6 @@ abstract class Handler {
 		$bodySchema = $this->getResponseBodySchema( $method );
 
 		if ( $bodySchema ) {
-			$bodySchema = $this->getJsonLocalizer()->localizeJson( $bodySchema );
 			$ok['content']['application/json']['schema'] = $bodySchema;
 		}
 

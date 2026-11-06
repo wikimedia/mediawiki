@@ -812,6 +812,9 @@ For notes on 1.46.x and older releases, see HISTORY.
 * (T436997) Passing an int bitmask as the $options parameter to
   ParserOutputAccess::getParserOutput() and ::getCachedParserOutput() is
   deprecated and emits deprecation warnings. Pass an options array instead.
+* JsonLocalizer::localizeValue() is deprecated and emits deprecation warnings.
+  Use JsonLocalizer::localizeJson() or JsonLocalizer::getFormattedMessage()
+  instead.
 * Calling PageConfigFactory::createFromParserOptions() with ParserOptions
   that do not have the 'useParsoid' option set is deprecated and emits
   warnings.

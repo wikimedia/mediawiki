@@ -2149,6 +2149,8 @@ class HandlerTest extends MediaWikiUnitTestCase {
 		$this->initHandlerServices( $handler );
 
 		$spec = $handler->getOpenApiSpec( $method );
+		// Localization happens when the whole OAD is rendered, see ModuleSpecHandler.
+		$spec = $module->getJsonLocalizer()->localizeJson( $spec );
 
 		$assertions( $spec );
 	}
@@ -2297,6 +2299,7 @@ class HandlerTest extends MediaWikiUnitTestCase {
 		$this->initHandlerServices( $handler );
 
 		$spec = $handler->getOpenApiSpec( 'POST' );
+		$spec = $module->getJsonLocalizer()->localizeJson( $spec );
 
 		$schema = $spec['requestBody']['content']['application/json']['schema'];
 		// Properties without an x-i18n-description are left untouched.
@@ -2419,6 +2422,7 @@ class HandlerTest extends MediaWikiUnitTestCase {
 		$this->initHandlerServices( $handler );
 
 		$spec = $handler->getOpenApiSpec( 'POST' );
+		$spec = $module->getJsonLocalizer()->localizeJson( $spec );
 
 		$this->assertArrayHasKey( 'requestBody', $spec );
 		// A composite example is produced only for application/json, and it omits
@@ -2480,6 +2484,44 @@ class HandlerTest extends MediaWikiUnitTestCase {
 
 		$this->assertArrayHasKey( 'requestBody', $spec );
 		$this->assertArrayNotHasKey( 'example', $spec['requestBody']['content']['application/json'] );
+	}
+
+	public function testGetOpenApiSpecIsNotLocalized() {
+		$handler = $this->newHandler( [
+			'getParamSettings',
+			'getSupportedRequestTypes',
+			'getResponseBodySchema',
+			'getResponseHeaderSettings',
+		] );
+		$handler->method( 'getParamSettings' )->willReturn( [
+			'q' => [
+				Handler::PARAM_SOURCE => 'query',
+				ParamValidator::PARAM_TYPE => 'string',
+				Handler::PARAM_DESCRIPTION => new MessageValue( 'rest-param-desc-mock-desc' ),
+				Handler::PARAM_EXAMPLE => new MessageValue( 'rest-param-desc-mock-desc' ),
+			],
+		] );
+		$handler->method( 'getSupportedRequestTypes' )->willReturn( [] );
+		$handler->method( 'getResponseBodySchema' )->willReturn( [
+			'type' => 'object',
+			'x-i18n-description' => 'rest-schema-desc-mock-desc',
+		] );
+		$handler->method( 'getResponseHeaderSettings' )->willReturn( [] );
+
+		$module = $this->newModuleForSpec();
+		$handler->initContext( $module, '/test', [ 'path' => '/test' ], [] );
+		$this->initHandlerServices( $handler );
+
+		$spec = $handler->getOpenApiSpec( 'GET' );
+
+		// The contract: the spec still carries localization placeholders,
+		// and the caller (ModuleSpecHandler) resolves them.
+		$param = $spec['parameters'][0];
+		$this->assertInstanceOf( MessageValue::class, $param['description'] );
+		$this->assertInstanceOf( MessageValue::class, $param['example'] );
+		$schema = $spec['responses'][200]['content']['application/json']['schema'];
+		$this->assertSame( 'rest-schema-desc-mock-desc', $schema['x-i18n-description'] );
+		$this->assertArrayNotHasKey( 'description', $schema );
 	}
 
 	/**

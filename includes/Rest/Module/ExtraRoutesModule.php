@@ -240,8 +240,7 @@ class ExtraRoutesModule extends MatcherBasedModule {
 			];
 		}
 		if ( isset( $route['openApiSpec'] ) ) {
-			$jsonLocalizer = $this->getJsonLocalizer();
-			$info['openApiSpec'] = $jsonLocalizer->localizeJson( $route['openApiSpec'] );
+			$info['openApiSpec'] = $route['openApiSpec'];
 		}
 
 		$info['path'] = $route['path'];

@@ -9,6 +9,7 @@ use MediaWiki\Rest\RequestData;
 use MediaWiki\Rest\RequestInterface;
 use MediaWikiIntegrationTestCase;
 use Wikimedia\Message\MessageValue;
+use Wikimedia\TestingAccessWrapper;
 
 /**
  * @group Database
@@ -83,6 +84,8 @@ class TransformHtmlToWikitextHandlerTest extends MediaWikiIntegrationTestCase {
 		$this->initHandler( $handler, new RequestData( [ 'method' => 'POST' ] ), $config );
 
 		$spec = $handler->getOpenApiSpec( 'POST' );
+		// Localization happens when the whole OAD is rendered, see ModuleSpecHandler.
+		$spec = TestingAccessWrapper::newFromObject( $handler )->getJsonLocalizer()->localizeJson( $spec );
 		$this->assertSame(
 			'<message key="rest-requestbody-desc-transform-html"></message>',
 			$spec['requestBody']['description']
