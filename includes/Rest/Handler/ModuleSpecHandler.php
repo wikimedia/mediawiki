@@ -108,7 +108,7 @@ class ModuleSpecHandler extends SimpleHandler {
 			);
 		}
 
-		$spec = [
+		$oad = [
 			'openapi' => '3.0.0',
 			'info' => $this->getInfoSpec( $module ),
 			'servers' => $this->getServerSpec( $module ),
@@ -119,18 +119,19 @@ class ModuleSpecHandler extends SimpleHandler {
 		];
 
 		// Remove some extra info outside the standard OAD schema
-		unset( $spec['info']['deprecationSettings'] );
-		unset( $spec['info']['oadSpecPath'] );
+		unset( $oad['info']['deprecationSettings'] );
+		unset( $oad['info']['oadSpecPath'] );
 
-		if ( !$spec['externalDocs'] ) {
-			unset( $spec['externalDocs'] );
+		if ( !$oad['externalDocs'] ) {
+			unset( $oad['externalDocs'] );
 		}
 
-		if ( empty( $spec['tags'] ) ) {
-			unset( $spec['tags'] );
+		if ( empty( $oad['tags'] ) ) {
+			unset( $oad['tags'] );
 		}
 
-		return $spec;
+		$oad = $this->getJsonLocalizer()->localizeJson( $oad );
+		return $oad;
 	}
 
 	/**
@@ -161,6 +162,11 @@ class ModuleSpecHandler extends SimpleHandler {
 
 		$sandboxUrl = $this->getLocalModuleSandboxUrl( $module );
 		if ( $sandboxUrl !== null ) {
+			if ( isset( $info['x-i18n-description'] ) && $info['x-i18n-description'] !== '' ) {
+				$info['description'] = $this->getJsonLocalizer()->getFormattedMessage( $info['x-i18n-description'] );
+				unset( $info['x-i18n-description'] );
+			}
+
 			$host = parse_url( $sandboxUrl, PHP_URL_HOST );
 			if ( isset( $info['description'] ) && $info['description'] !== '' ) {
 				$info['description'] = $this->getJsonLocalizer()->getFormattedMessage(
@@ -310,6 +316,7 @@ class ModuleSpecHandler extends SimpleHandler {
 		if ( !isset( $operationSpec['operationId'] ) ) {
 			$baseId = self::generateOperationId(
 				$method,
+				// If we have 'x-i18n-summary' instead, don't use the localized message, just use the path.
 				$operationSpec['summary'] ?? null,
 				$path
 			);
@@ -454,20 +461,20 @@ class ModuleSpecHandler extends SimpleHandler {
 	private function getComponentsSpec( string $moduleName ): array {
 		$components = [];
 
-		// Resolve x-i18n-message references. Use the documented module's response factory
-		// rather than $this->getResponseFactory(), so that the error schema is the one that
+		// Use the documented module's response factory rather
+		// than $this->getResponseFactory(), so that the error schema is the one that
 		// module actually uses. Pass a blank request, not $this->getRequest(): the spec must
 		// not depend on request headers, so error formats selected per request (such as
 		// RESTBase compat via x-restbase-compat) are intentionally not documented.
-		$resolvedComponents = $this->getJsonLocalizer()->localizeJson(
-			$this->getRouter()->getModuleResponseFactoryByName( $moduleName, new RequestData() )
-				->getResponseComponents()
-		);
+		$responseComponents = $this->getRouter()->getModuleResponseFactoryByName(
+			$moduleName,
+			new RequestData()
+		)->getResponseComponents();
 
 		// XXX: also collect reusable components from handler specs (but how to avoid name collisions?).
 		$componentsSources = [
 			[ 'schemas' => Validator::getParameterTypeSchemas() ],
-			$resolvedComponents
+			$responseComponents
 		];
 
 		// 2D merge
@@ -482,12 +489,6 @@ class ModuleSpecHandler extends SimpleHandler {
 		// third-party providers, are emitted as-is. The key is omitted when no provider
 		// declares schemes, to avoid an empty securitySchemes object.
 		$securitySchemes = $this->sessionManager->getAllOpenApiSecuritySchemes();
-		foreach ( $securitySchemes as &$scheme ) {
-			if ( isset( $scheme['description'] ) && $scheme['description'] instanceof MessageValue ) {
-				$scheme['description'] = $this->getJsonLocalizer()->getFormattedMessage( $scheme['description'] );
-			}
-		}
-		unset( $scheme );
 		if ( $securitySchemes ) {
 			$components['securitySchemes'] = $securitySchemes;
 		}

@@ -1,0 +1,39 @@
+{
+	"mwapi": "1.0.0",
+	"moduleId": "mock/v1",
+	"info": {
+		"version": "1.3-test",
+		"x-i18n-title": "rest-test-module-title",
+		"x-i18n-description": "rest-test-module-desc"
+	},
+	"externalDocs": {
+		"description": "Test docs",
+		"url": "https://example.com/docs"
+	},
+	"tags": [
+		{
+			"name": "Foo",
+			"description": "Foo operations"
+		},
+		{
+			"name": "Bar",
+			"description": "Bar operations"
+		}
+	],
+	"paths": {
+		"/foo/bar": {
+			"get": {
+				"handler": {
+					"factory": "MediaWiki\\Tests\\Rest\\Handler\\ModuleSpecHandlerTest::newFooBarHandler"
+				},
+				"x-i18n-summary": "rest-test-op-summary",
+				"x-i18n-description": "rest-test-op-desc"
+			},
+			"post": {
+				"handler": {
+					"factory": "MediaWiki\\Tests\\Rest\\Handler\\ModuleSpecHandlerTest::newFooBarHandler"
+				}
+			}
+		}
+	}
+}

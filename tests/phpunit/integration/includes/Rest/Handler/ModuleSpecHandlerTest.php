@@ -901,4 +901,74 @@ class ModuleSpecHandlerTest extends MediaWikiIntegrationTestCase {
 		};
 	}
 
+	/**
+	 * Localization placeholders in the module definition (x-i18n-*) must be resolved
+	 * when the spec is rendered, including the ones the info section and the sandbox
+	 * recommendation depend on.
+	 *
+	 * @dataProvider provideSandboxUrl
+	 */
+	public function testI18nFieldsInModuleDefinitionAreLocalized( ?string $sandboxBaseUrl ) {
+		$this->overrideConfigValues( [
+			MainConfigNames::RightsText => 'Test License',
+			MainConfigNames::RightsUrl => 'https://example.com/license',
+			MainConfigNames::EmergencyContact => 'test@example.com',
+			MainConfigNames::Sitename => 'TestWiki',
+			MainConfigNames::RestExternalModules => [],
+			MainConfigNames::CanonicalServer => 'https://zh.wikipedia.org',
+			MainConfigNames::RestPath => '/api',
+			MainConfigNames::RestLocalModuleTestBaseUrl => $sandboxBaseUrl,
+		] );
+
+		$request = new RequestData( [ 'pathParams' => [ 'module' => 'mock', 'version' => 'v1' ] ] );
+		$response = $this->executeModuleSpecHandler(
+			$request,
+			__DIR__ . '/SpecTestModuleI18n.json',
+			[ 'mock/v1' => ModuleAvailability::PUBLISHED, '' => ModuleAvailability::PUBLISHED ]
+		);
+		$this->assertSame( 200, $response->getStatusCode() );
+		$data = json_decode( (string)$response->getBody(), true );
+
+		$this->assertStringNotContainsString( 'x-i18n-', json_encode( $data ) );
+		$this->assertSame( '<message key="rest-test-module-title"></message>', $data['info']['title'] );
+
+		$operation = $data['paths']['/foo/bar']['get'];
+		$this->assertSame( '<message key="rest-test-op-summary"></message>', $operation['summary'] );
+		$this->assertSame( '<message key="rest-test-op-desc"></message>', $operation['description'] );
+
+		// The module's own description must survive, with or without the sandbox recommendation.
+		$this->assertStringContainsString( 'rest-test-module-desc', $data['info']['description'] );
+	}
+
+	public static function provideSandboxUrl() {
+		yield 'without sandbox' => [ null ];
+		yield 'with sandbox' => [ 'https://test.wikimedia.org/w/rest.php' ];
+	}
+
+	/**
+	 * Operation IDs must not depend on the user language, so they are not derived
+	 * from a summary that is only available as x-i18n-summary.
+	 */
+	public function testOperationIdIgnoresLocalizedSummary() {
+		$this->overrideConfigValues( [
+			MainConfigNames::RightsText => 'Test License',
+			MainConfigNames::RightsUrl => 'https://example.com/license',
+			MainConfigNames::EmergencyContact => 'test@example.com',
+			MainConfigNames::CanonicalServer => 'https://zh.wikipedia.org',
+			MainConfigNames::RestPath => '/api',
+		] );
+
+		$request = new RequestData( [ 'pathParams' => [ 'module' => 'mock', 'version' => 'v1' ] ] );
+		$response = $this->executeModuleSpecHandler(
+			$request,
+			__DIR__ . '/SpecTestModuleI18n.json',
+			[ 'mock/v1' => ModuleAvailability::PUBLISHED, '' => ModuleAvailability::PUBLISHED ]
+		);
+		$data = json_decode( (string)$response->getBody(), true );
+
+		$operationId = $data['paths']['/foo/bar']['get']['operationId'];
+		$this->assertSame( 'getFooBar', $operationId );
+		$this->assertStringNotContainsString( 'summary', $operationId );
+	}
+
 }

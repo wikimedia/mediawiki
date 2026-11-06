@@ -1,0 +1,93 @@
+{
+	"$schema": "https://www.mediawiki.org/schema/mwapi-1.0",
+	"mwapi": "1.1.0",
+	"moduleId": "test.v1",
+	"info": {
+		"version": "1.0",
+		"x-i18n-title": "rest-test-module-title",
+		"x-i18n-description": "rest-test-module-desc"
+	},
+	"externalDocs": {
+		"description": "Test docs",
+		"url": "https://example.com/docs"
+	},
+	"tags": [
+		{
+			"name": "Foo",
+			"description": "Foo operations"
+		},
+		{
+			"name": "Bar",
+			"description": "Bar operations"
+		}
+	],
+	"paths": {
+		"/ModuleTest/HELLO/{name}": {
+			"get": {
+				"redirect": {
+					"path": "/test.v1/ModuleTest/hello/{name}"
+				}
+			}
+		},
+		"/ModuleTest/hello/{name}": {
+			"get": {
+				"operationId": "getHelloName",
+				"summary": "hello summary",
+				"x-i18n-description": "rest-endpoint-desc-mock-desc",
+				"handler": {
+					"class": "MediaWiki\\Tests\\Rest\\Handler\\HelloHandler",
+					"hello": "hi!"
+				}
+			}
+		},
+		"/ModuleTest/do-action": {
+			"get": {
+				"handler": {
+					"adapter": {
+						"type": "action",
+						"action": "move"
+					}
+				}
+			}
+		},
+		"/ModuleTest/throw": {
+			"get": {
+				"handler": {
+					"factory": "MediaWiki\\Tests\\Rest\\MockHandlerFactory::throwHandlerFactory"
+				}
+			}
+		},
+		"/ModuleTest/fatal": {
+			"get": {
+				"handler": {
+					"factory": "MediaWiki\\Tests\\Rest\\MockHandlerFactory::fatalHandlerFactory"
+				}
+			}
+		},
+		"/ModuleTest/throwRedirect": {
+			"get": {
+				"handler": {
+					"factory": "MediaWiki\\Tests\\Rest\\MockHandlerFactory::throwRedirectHandlerFactory"
+				}
+			}
+		},
+		"/ModuleTest/throwWrapped": {
+			"get": {
+				"handler": {
+					"factory": "MediaWiki\\Tests\\Rest\\MockHandlerFactory::throwWrappedHandlerFactory"
+				}
+			}
+		},
+		"/ModuleTest/deprecated": {
+			"get": {
+				"deprecationSettings": {
+					"since": 1735689600
+				},
+				"handler": {
+					"class": "MediaWiki\\Tests\\Rest\\Handler\\HelloHandler",
+					"hello": "hi!"
+				}
+			}
+		}
+	}
+}

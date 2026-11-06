@@ -449,15 +449,17 @@ class ModuleManager {
 			function () use ( $file ) {
 				// An exception here almost certainly means this is an old-style flat route file.
 				try {
-					$md = SpecBasedModule::loadModuleDefinition( $file, $this->jsonLocalizer );
+					$md = SpecBasedModule::loadModuleDefinition( $file );
+					$info = $this->jsonLocalizer->localizeJson( $md['info'] );
+
 					return [
 						'moduleId' => $md['moduleId'],
-						'title' => $md['info']['title'] ?? null,
-						'version' => $md['info']['version'] ?? null,
-						'description' => $md['info']['description'] ?? null,
-						'deprecationSettings' => $md['info']['deprecationSettings'] ?? null,
-						'groups' => isset( $md['info']['groups'] ) ? (array)$md['info']['groups'] : null,
-						'oadSpecPath' => $md['info']['oadSpecPath'] ?? null
+						'title' => $info['title'] ?? null,
+						'version' => $info['version'] ?? null,
+						'description' => $info['description'] ?? null,
+						'deprecationSettings' => $info['deprecationSettings'] ?? null,
+						'groups' => isset( $info['groups'] ) ? (array)$info['groups'] : null,
+						'oadSpecPath' => $info['oadSpecPath'] ?? null
 					];
 				} catch ( ModuleFormatException ) {
 					return null;

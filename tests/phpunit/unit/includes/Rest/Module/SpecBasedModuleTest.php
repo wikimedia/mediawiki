@@ -42,15 +42,18 @@ class SpecBasedModuleTest extends \MediaWikiUnitTestCase {
 	 * @param RequestInterface $request
 	 * @param string|null $authError
 	 * @param bool $deprecated
+	 * @param string|null $specFileName Module definition file, relative to this directory.
 	 *
 	 * @return SpecBasedModule
 	 */
 	private function createOpenApiModule(
 		RequestInterface $request,
 		$authError = null,
-		$deprecated = false
+		$deprecated = false,
+		?string $specFileName = null
 	) {
-		$specFile = __DIR__ . ( $deprecated ? '/deprecatedModuleTestRoutes.json' : '/moduleTestRoutes.json' );
+		$specFile = __DIR__ . ( $specFileName
+			?? ( $deprecated ? '/deprecatedModuleTestRoutes.json' : '/moduleTestRoutes.json' ) );
 
 		/** @var MockObject|ErrorReporter $mockErrorReporter */
 		$mockErrorReporter = $this->createNoOpMock( ErrorReporter::class, [ 'reportError' ] );
@@ -272,7 +275,22 @@ class SpecBasedModuleTest extends \MediaWikiUnitTestCase {
 		$oas = $handler->getOpenApiSpec( 'GET' );
 
 		$this->assertSame( 'hello summary', $oas['summary'] );
-		$this->assertSame( '<message key="rest-endpoint-desc-mock-desc"></message>', $oas['description'] );
+		// The module does not localize the spec itself, the caller (ModuleSpecHandler)
+		// does. The i18n field from the route definition must survive until then.
+		$localized = $module->getJsonLocalizer()->localizeJson( $oas );
+		$this->assertSame( '<message key="rest-endpoint-desc-mock-desc"></message>', $localized['description'] );
+	}
+
+	public function testModuleDescriptionKeepsLocalizationPlaceholders() {
+		$request = new RequestData( [ 'uri' => new Uri( '/rest/test.v1/ModuleTest/hello/world' ) ] );
+		$module = $this->createOpenApiModule( $request, specFileName: '/moduleI18nInfoRoutes.json' );
+
+		$info = $module->getModuleDescription()['info'];
+
+		// Resolved later by the caller, together with the rest of the spec.
+		$this->assertSame( 'rest-test-module-title', $info['x-i18n-title'] );
+		$this->assertSame( 'rest-test-module-desc', $info['x-i18n-description'] );
+		$this->assertSame( '1.0', $info['version'] );
 	}
 
 	public function testOpenApiExternalDocs() {
@@ -382,9 +400,8 @@ class SpecBasedModuleTest extends \MediaWikiUnitTestCase {
 
 	public function testLoadModuleDefinition() {
 		$specFile = __DIR__ . '/moduleTestRoutes.json';
-		$formatter = $this->getDummyTextFormatter( true );
 
-		$moduleDef = SpecBasedModule::loadModuleDefinition( $specFile, new JsonLocalizer( $formatter ) );
+		$moduleDef = SpecBasedModule::loadModuleDefinition( $specFile );
 
 		$this->assertSame( 'test.v1', $moduleDef['moduleId'] );
 		$this->assertSame( 'test', $moduleDef['info']['title'] );
@@ -393,9 +410,8 @@ class SpecBasedModuleTest extends \MediaWikiUnitTestCase {
 
 	public function testLoadModuleDefinitionWithFlatRoutes() {
 		$specFile = __DIR__ . '/moduleFlatRoutes.json';
-		$formatter = $this->getDummyTextFormatter( true );
 
 		$this->expectException( ModuleFormatException::class );
-		SpecBasedModule::loadModuleDefinition( $specFile, new JsonLocalizer( $formatter ) );
+		SpecBasedModule::loadModuleDefinition( $specFile );
 	}
 }

@@ -94,10 +94,7 @@ class SpecBasedModule extends MatcherBasedModule {
 		}
 
 		$this->routeFileTimestamp = filemtime( $this->definitionFile );
-		$this->moduleDef = static::loadModuleDefinition(
-			$this->definitionFile,
-			$this->getJsonLocalizer()
-		);
+		$this->moduleDef = static::loadModuleDefinition( $this->definitionFile );
 
 		return $this->moduleDef;
 	}
@@ -106,11 +103,10 @@ class SpecBasedModule extends MatcherBasedModule {
 	 * Load the module definition file.
 	 *
 	 * @param string $file The module definition file to load
-	 * @param JsonLocalizer $localizer
 	 *
 	 * @return array
 	 */
-	public static function loadModuleDefinition( string $file, JsonLocalizer $localizer ): array {
+	public static function loadModuleDefinition( string $file ): array {
 		$moduleDef = static::loadJsonFile( $file );
 
 		// This does not guarantee the file is a valid flat route file, just that it appears
@@ -145,7 +141,7 @@ class SpecBasedModule extends MatcherBasedModule {
 			);
 		}
 
-		return $localizer->localizeJson( $moduleDef );
+		return $moduleDef;
 	}
 
 	/**
@@ -206,7 +202,9 @@ class SpecBasedModule extends MatcherBasedModule {
 			'parameters',
 			'responses',
 			'summary',
+			'x-i18n-summary',
 			'description',
+			'x-i18n-description',
 			'tags',
 			'externalDocs',
 			'deprecationSettings',

@@ -211,6 +211,13 @@ For notes on 1.47.x and older releases, see HISTORY.
 * SkinTemplate::injectLegacyMenusIntoPersonalTools and
   BaseTemplate::getPersonalTools have been removed.
   Please see T430856 for migration notes.
+* REST: Handler::getOpenApiSpec (T443807): The return value may now contain
+  localization placeholders that need to be resolved using JsonLocalizer to
+  produce human-readable values. Extensions should generally have no reason to
+  call this method.
+* REST: The operationIds in OpenApi descriptions produced by ModuleSpecHandler
+  (on the specs/v0/module/{name}) are now always based on the path and method,
+  since that is guaranteed to be unique and stable (T444613).
 * The following Skin data template variables have been removed, see T430856
   for migration notes:
 *  - searchaction

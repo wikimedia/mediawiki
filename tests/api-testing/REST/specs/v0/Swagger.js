@@ -80,7 +80,30 @@ describe( 'Self-Documentation', () => {
 				const module = dir[ id ];
 				assert.nestedProperty( module, 'base' );
 				assert.nestedProperty( module, 'spec' );
+
+				assert.nestedProperty( module, 'info' );
+				assert.isString( module.info.title, `title of module "${ id }"` );
+				assert.isAbove( module.info.title.length, 0, `title of module "${ id }"` );
+				if ( 'description' in module.info ) {
+					assert.isString( module.info.description, `description of module "${ id }"` );
+					assert.isAbove( module.info.description.length, 0, `description of module "${ id }"` );
+				}
 			}
+		} );
+
+		it( 'contains localized module titles and descriptions', async () => {
+			const { body: ddoc, text } = await client.get( '/discovery' );
+
+			// Module definitions declare these as x-i18n-* message keys. They must have
+			// been resolved to text by the time they reach the discovery document.
+			assert.notInclude( text, 'x-i18n-' );
+
+			// site/v1 is a core module that has a title and a description.
+			const site = ddoc.modules[ 'site/v1' ];
+			assert.isDefined( site, 'module site/v1' );
+			assert.nestedProperty( site, 'info.title' );
+			assert.nestedProperty( site, 'info.description' );
+			assert.isAbove( site.info.description.length, 0, 'description of module site/v1' );
 		} );
 
 		it( 'contains usable servers', async () => {
