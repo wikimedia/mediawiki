@@ -42,9 +42,8 @@ trait SearchApi {
 	 * a valid option for an array for PARAM_TYPE, so we'll use a fake name
 	 * that can't possibly be a class name and describes what the null behavior
 	 * does
-	 * @var string
 	 */
-	private static $BACKEND_NULL_PARAM = 'database-backed';
+	private const BACKEND_NULL_PARAM = 'database-backed';
 
 	/**
 	 * The set of api parameters that are shared between api calls that
@@ -86,7 +85,7 @@ trait SearchApi {
 
 		$alternatives = $this->searchEngineConfig->getSearchTypes();
 		if ( count( $alternatives ) > 1 ) {
-			$alternatives[0] ??= self::$BACKEND_NULL_PARAM;
+			$alternatives[0] ??= self::BACKEND_NULL_PARAM;
 			$params['backend'] = [
 				ParamValidator::PARAM_DEFAULT => $this->searchEngineConfig->getSearchType(),
 				ParamValidator::PARAM_TYPE => $alternatives,
@@ -172,7 +171,7 @@ trait SearchApi {
 		}
 
 		$type = $params['backend'] ?? null;
-		if ( $type === self::$BACKEND_NULL_PARAM ) {
+		if ( $type === self::BACKEND_NULL_PARAM ) {
 			$type = null;
 		}
 		$searchEngine = $this->searchEngineFactory->create( $type );
