@@ -46,10 +46,9 @@ use Wikimedia\Parsoid\Utils\DOMUtils;
  */
 class ParsoidLanguageConverter extends OutputTransformStage {
 	/**
-	 * @var array<string,true> List of tags inside which content should
-	 * not be converted.
+	 * List of tags inside which content should not be converted.
 	 */
-	private static array $skipTags = [
+	private const array SKIP_TAGS = [
 		'script' => true,
 		'code' => true,
 		'pre' => true,
@@ -291,7 +290,7 @@ class ParsoidLanguageConverter extends OutputTransformStage {
 		// Handle skipped nodes
 		if ( DOMUtils::hasTypeOf( $el, 'mw:Nowiki' ) ) {
 			return $el->nextSibling;
-		} elseif ( self::$skipTags[DOMUtils::nodeName( $el )] ?? false ) {
+		} elseif ( self::SKIP_TAGS[DOMUtils::nodeName( $el )] ?? false ) {
 			// don't convert the contents of this node unless it contains
 			// -{ (this is emergent behavior inherited from the legacy
 			// implementation)

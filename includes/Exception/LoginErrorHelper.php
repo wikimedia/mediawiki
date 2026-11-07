@@ -14,7 +14,7 @@ class LoginErrorHelper {
 	/**
 	 * @var string[]
 	 */
-	private static $validErrorMessages = [
+	private const VALID_ERROR_MESSAGES = [
 		'exception-nologin-text',
 		'exception-nologin-text-for-temp-user',
 		'watchlistanontext',
@@ -48,7 +48,7 @@ class LoginErrorHelper {
 	 */
 	public static function getValidErrorMessages(): array {
 		if ( !static::$validErrorMessagesCache ) {
-			static::$validErrorMessagesCache = self::$validErrorMessages;
+			static::$validErrorMessagesCache = self::VALID_ERROR_MESSAGES;
 			( new HookRunner( MediaWikiServices::getInstance()->getHookContainer() ) )
 				->onLoginFormValidErrorMessages( static::$validErrorMessagesCache );
 		}

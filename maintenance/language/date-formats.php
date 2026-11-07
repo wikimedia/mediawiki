@@ -20,8 +20,7 @@ require_once __DIR__ . '/../Maintenance.php';
  */
 class DateFormats extends Maintenance {
 
-	/** @var string */
-	private $ts = '20010115123456';
+	private const TS = '20010115123456';
 
 	public function __construct() {
 		parent::__construct();
@@ -47,21 +46,21 @@ class DateFormats extends Maintenance {
 				if ( $index > 0 ) {
 					$this->output( ' | ' );
 				}
-				$this->output( $lang->date( $this->ts, false, $pref ) );
+				$this->output( $lang->date( self::TS, false, $pref ) );
 			}
 			$this->output( "\n$code time: " );
 			foreach ( $prefs as $index => $pref ) {
 				if ( $index > 0 ) {
 					$this->output( ' | ' );
 				}
-				$this->output( $lang->time( $this->ts, false, $pref ) );
+				$this->output( $lang->time( self::TS, false, $pref ) );
 			}
 			$this->output( "\n$code both: " );
 			foreach ( $prefs as $index => $pref ) {
 				if ( $index > 0 ) {
 					$this->output( ' | ' );
 				}
-				$this->output( $lang->timeanddate( $this->ts, false, $pref ) );
+				$this->output( $lang->timeanddate( self::TS, false, $pref ) );
 			}
 			$this->output( "\n\n" );
 		}

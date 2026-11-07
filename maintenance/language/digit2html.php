@@ -21,10 +21,10 @@ require_once __DIR__ . '/../Maintenance.php';
 class Digit2Html extends Maintenance {
 
 	/**
-	 * @var string[] A list of unicode numerals is available at:
+	 * A list of unicode numerals is available at:
 	 * https://www.fileformat.info/info/unicode/category/Nd/list.htm
 	 */
-	private $mLangs = [
+	private const LANGS = [
 		'Ar', 'As', 'Bh', 'Bo', 'Dz',
 		'Fa', 'Gu', 'Hi', 'Km', 'Kn',
 		'Ks', 'Lo', 'Ml', 'Mr', 'Ne',
@@ -38,7 +38,7 @@ class Digit2Html extends Maintenance {
 
 	public function execute() {
 		$languageNameUtils = $this->getServiceContainer()->getLanguageNameUtils();
-		foreach ( $this->mLangs as $code ) {
+		foreach ( self::LANGS as $code ) {
 			$filename = $languageNameUtils->getMessagesFileName( $code );
 			$this->output( "Loading language [$code] ..." );
 			unset( $digitTransformTable );

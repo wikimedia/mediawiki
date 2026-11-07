@@ -30,9 +30,9 @@ class PageRedirectHelper {
 	private RequestInterface $request;
 	private LanguageConverterFactory $languageConverterFactory;
 	private bool $followWikiRedirects = false;
-	private string $titleParamName = 'title';
+	private const string TITLE_PARAM_NAME = 'title';
 	private bool $useRelativeRedirects = true;
-	private int $normalizationRedirectMaxAge = 60;
+	private const int NORMALIZATION_REDIRECT_MAX_AGE = 60;
 
 	public function __construct(
 		RedirectStore $redirectStore,
@@ -82,7 +82,7 @@ class PageRedirectHelper {
 			$redirectResponse = $this->responseFactory->createPermanentRedirect( $redirectTargetUrl );
 			$redirectResponse->setHeader(
 				ResponseHeaders::CACHE_CONTROL,
-				"max-age={$this->normalizationRedirectMaxAge}"
+				'max-age=' . self::NORMALIZATION_REDIRECT_MAX_AGE
 			);
 			return $redirectResponse;
 		}
@@ -187,7 +187,7 @@ class PageRedirectHelper {
 			$title = $this->titleFormatter->getPrefixedDBkey( $title );
 		}
 
-		$pathParams = [ $this->titleParamName => $title ] + $this->request->getPathParams();
+		$pathParams = [ self::TITLE_PARAM_NAME => $title ] + $this->request->getPathParams();
 		$queryParams = $this->request->getQueryParams();
 
 		// Limit to one level of redirection, unless more are explicitly allowed. See T389588.

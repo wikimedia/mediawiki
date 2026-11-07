@@ -32,9 +32,8 @@ class LocalisationCacheBulkLoad extends LocalisationCache {
 
 	/**
 	 * Maximum number of languages that may be loaded into $this->data
-	 * @var int
 	 */
-	private $maxLoadedLangs = 10;
+	private const MAX_LOADED_LANGS = 10;
 
 	/**
 	 * @param string $fileName
@@ -106,10 +105,10 @@ class LocalisationCacheBulkLoad extends LocalisationCache {
 	}
 
 	/**
-	 * Unload cached languages until there are less than $this->maxLoadedLangs
+	 * Unload cached languages until there are less than self::MAX_LOADED_LANGS
 	 */
 	protected function trimCache() {
-		while ( count( $this->data ) > $this->maxLoadedLangs && count( $this->mruLangs ) ) {
+		while ( count( $this->data ) > self::MAX_LOADED_LANGS && count( $this->mruLangs ) ) {
 			$code = array_key_first( $this->mruLangs );
 			wfDebug( __METHOD__ . ": unloading $code" );
 			$this->unload( $code );

@@ -76,7 +76,7 @@ class ChangesListQuery implements QueryBackend, JoinDependencyProvider {
 	private bool $forcePartitioning = false;
 	private array $virtualDomainsMapping;
 
-	private array $densityTunables = [
+	private const array DENSITY_TUNABLES = [
 		self::DENSITY_LINKS => 0.1,
 		self::DENSITY_WATCHLIST => 0.1,
 		self::DENSITY_USER => 0.1,
@@ -699,15 +699,15 @@ class ChangesListQuery implements QueryBackend, JoinDependencyProvider {
 	/** @inheritDoc */
 	public function adjustDensity( $density ): self {
 		if ( is_string( $density ) ) {
-			if ( isset( $this->densityTunables[$density] ) ) {
-				$density = $this->densityTunables[$density];
+			if ( isset( self::DENSITY_TUNABLES[$density] ) ) {
+				$density = self::DENSITY_TUNABLES[$density];
 			} else {
 				throw new \InvalidArgumentException( "Unknown density \"$density\"" );
 			}
 		}
 		$this->density *= $density;
 		$this->getChangeTagsFilter()->setDensityThresholdReached(
-			$this->density >= $this->densityTunables[self::DENSITY_CHANGE_TAG_THRESHOLD]
+			$this->density >= self::DENSITY_TUNABLES[self::DENSITY_CHANGE_TAG_THRESHOLD]
 		);
 		return $this;
 	}

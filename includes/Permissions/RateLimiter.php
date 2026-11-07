@@ -53,10 +53,8 @@ class RateLimiter {
 	 *
 	 * @note This is currently hard-coded to contain just the 'read' action.
 	 * It can be made configurable to extended to include more actions if needed.
-	 *
-	 * @var array<string,bool>
 	 */
-	private array $nonLimitableActions = [
+	private const array NON_LIMITABLE_ACTIONS = [
 		'read' => true,
 	];
 
@@ -129,7 +127,7 @@ class RateLimiter {
 	public function isLimitable( $action ) {
 		// Bypass limit checks for actions that are defined to be non-limitable.
 		// This is a performance optimization.
-		if ( $this->nonLimitableActions[$action] ?? false ) {
+		if ( self::NON_LIMITABLE_ACTIONS[$action] ?? false ) {
 			return false;
 		}
 
@@ -149,7 +147,7 @@ class RateLimiter {
 	 * to put a brake on flooding.
 	 *
 	 * @note This method will always return false for any action listed in
-	 *       $this->nonLimitableActions. This allows rate limit checks to
+	 *       self::NON_LIMITABLE_ACTIONS. This allows rate limit checks to
 	 *       be bypassed for certain actions to avoid overhead and improve
 	 *       performance.
 	 *
@@ -164,7 +162,7 @@ class RateLimiter {
 	public function limit( RateLimitSubject $subject, string $action, int $incrBy = 1 ) {
 		// Bypass limit checks for actions that are defined to be non-limitable.
 		// This is a performance optimization.
-		if ( $this->nonLimitableActions[$action] ?? false ) {
+		if ( self::NON_LIMITABLE_ACTIONS[$action] ?? false ) {
 			return false;
 		}
 		$actionMetric = $this->statsFactory->getCounter( 'RateLimiter_limit_actions_total' )

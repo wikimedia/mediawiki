@@ -17,10 +17,8 @@ define( 'MW_AUTOLOAD_TEST_CLASSES', true );
 class ParserFuzzTest extends Maintenance {
 	/** @var ParserTestRunner */
 	private $parserTest;
-	/** @var int */
-	private $maxFuzzTestLength = 300;
-	/** @var int */
-	private $memoryLimit = 100;
+	private const MAX_FUZZ_TEST_LENGTH = 300;
+	private const MEMORY_LIMIT = 100;
 	/** @var int */
 	private $seed;
 
@@ -58,7 +56,7 @@ class ParserFuzzTest extends Maintenance {
 	public function fuzzTest( $filenames ) {
 		$dict = $this->getFuzzInput( $filenames );
 		$dictSize = strlen( $dict );
-		$logMaxLength = log( $this->maxFuzzTestLength );
+		$logMaxLength = log( self::MAX_FUZZ_TEST_LENGTH );
 
 		$teardown = $this->parserTest->staticSetup();
 		$teardown = $this->parserTest->setupDatabase( $teardown );
@@ -72,7 +70,7 @@ class ParserFuzzTest extends Maintenance {
 			'config' => [],
 		], [], '' );
 
-		ini_set( 'memory_limit', $this->memoryLimit * 1048576 * 2 );
+		ini_set( 'memory_limit', self::MEMORY_LIMIT * 1048576 * 2 );
 
 		$numTotal = 0;
 		$numSuccess = 0;
@@ -83,7 +81,7 @@ class ParserFuzzTest extends Maintenance {
 		while ( true ) {
 			// Generate test input
 			mt_srand( ++$this->seed );
-			$totalLength = mt_rand( 1, $this->maxFuzzTestLength );
+			$totalLength = mt_rand( 1, self::MAX_FUZZ_TEST_LENGTH );
 			$input = '';
 
 			while ( strlen( $input ) < $totalLength ) {
@@ -111,7 +109,7 @@ class ParserFuzzTest extends Maintenance {
 			ScopedCallback::consume( $perTestTeardown );
 
 			if ( $numTotal % 100 == 0 ) {
-				$usage = intval( memory_get_usage( true ) / $this->memoryLimit / 1048576 * 100 );
+				$usage = intval( memory_get_usage( true ) / self::MEMORY_LIMIT / 1048576 * 100 );
 				echo "{$this->seed}: $numSuccess/$numTotal (mem: $usage%)\n";
 				if ( $usage >= 100 ) {
 					echo "Out of memory:\n";

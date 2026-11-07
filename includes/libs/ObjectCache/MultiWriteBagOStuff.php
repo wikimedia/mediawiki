@@ -95,8 +95,8 @@ class MultiWriteBagOStuff extends BagOStuff {
 	/** @var int[] List of all backing cache indexes */
 	protected $cacheIndexes = [];
 
-	/** @var int TTL when a key is copied to a higher cache tier */
-	private static $UPGRADE_TTL = 3600;
+	/** TTL when a key is copied to a higher cache tier */
+	private const UPGRADE_TTL = 3600;
 
 	/**
 	 * @stable to call
@@ -194,7 +194,7 @@ class MultiWriteBagOStuff extends BagOStuff {
 				'set',
 				self::ARG0_KEY,
 				self::RES_NONKEY,
-				[ $key, $value, self::$UPGRADE_TTL ]
+				[ $key, $value, self::UPGRADE_TTL ]
 			);
 		}
 

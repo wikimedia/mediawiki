@@ -83,8 +83,7 @@ class RecompressTracked {
 	/** @var SqlBlobStore */
 	private $blobStore;
 
-	/** @var string[] */
-	private static $optionsWithArgs = [
+	private const OPTIONS_WITH_ARGS = [
 		'procs',
 		'child-id',
 		'debug-log',
@@ -92,8 +91,7 @@ class RecompressTracked {
 		'critical-log'
 	];
 
-	/** @var string[] */
-	private static $cmdLineOptionMap = [
+	private const CMD_LINE_OPTION_MAP = [
 		'no-count' => 'noCount',
 		'procs' => 'numProcs',
 		'copy-only' => 'copyOnly',
@@ -105,12 +103,12 @@ class RecompressTracked {
 	];
 
 	public static function getOptionsWithArgs(): array {
-		return self::$optionsWithArgs;
+		return self::OPTIONS_WITH_ARGS;
 	}
 
 	public static function newFromCommandLine( array $args, array $options ): self {
 		$jobOptions = [ 'destClusters' => $args ];
-		foreach ( self::$cmdLineOptionMap as $cmdOption => $classOption ) {
+		foreach ( self::CMD_LINE_OPTION_MAP as $cmdOption => $classOption ) {
 			if ( isset( $options[$cmdOption] ) ) {
 				$jobOptions[$classOption] = $options[$cmdOption];
 			}
@@ -232,12 +230,12 @@ class RecompressTracked {
 		$wiki = WikiMap::getCurrentWikiId();
 
 		$cmd = 'php ' . Shell::escape( __FILE__ );
-		foreach ( self::$cmdLineOptionMap as $cmdOption => $classOption ) {
+		foreach ( self::CMD_LINE_OPTION_MAP as $cmdOption => $classOption ) {
 			if ( $cmdOption == 'child-id' ) {
 				continue;
 			}
 			// @phan-suppress-next-line MediaWikiNoIssetIfDefined
-			if ( in_array( $cmdOption, self::$optionsWithArgs ) && isset( $this->$classOption ) ) {
+			if ( in_array( $cmdOption, self::OPTIONS_WITH_ARGS ) && isset( $this->$classOption ) ) {
 				// @phan-suppress-next-line PhanTypeMismatchArgument False positive
 				$cmd .= " --$cmdOption " . Shell::escape( $this->$classOption );
 			} elseif ( $this->$classOption ) {

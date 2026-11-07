@@ -29,11 +29,11 @@ class SvgHandler extends ImageHandler {
 
 	private const SVG_DEFAULT_RENDER_LANG = 'en';
 
-	/** @var array A list of metadata tags that can be converted
+	/** A list of metadata tags that can be converted
 	 *  to the commonly used exif tags. This allows messages
 	 *  to be reused, and consistent tag names for {{#formatmetadata:..}}
 	 */
-	private static $metaConversion = [
+	private const META_CONVERSION = [
 		'originalwidth' => 'ImageWidth',
 		'originalheight' => 'ImageLength',
 		'description' => 'ImageDescription',
@@ -569,8 +569,8 @@ class SvgHandler extends ImageHandler {
 		$showMeta = false;
 		foreach ( $metadata as $name => $value ) {
 			$tag = strtolower( $name );
-			if ( isset( self::$metaConversion[$tag] ) ) {
-				$tag = strtolower( self::$metaConversion[$tag] );
+			if ( isset( self::META_CONVERSION[$tag] ) ) {
+				$tag = strtolower( self::META_CONVERSION[$tag] );
 			} else {
 				// Do not output other metadata not in list
 				continue;
@@ -682,8 +682,8 @@ class SvgHandler extends ImageHandler {
 				// are measured in px, which is not the case here.
 				continue;
 			}
-			if ( isset( self::$metaConversion[$tag] ) ) {
-				$tag = self::$metaConversion[$tag];
+			if ( isset( self::META_CONVERSION[$tag] ) ) {
+				$tag = self::META_CONVERSION[$tag];
 				$stdMetadata[$tag] = $value;
 			}
 		}

@@ -26,9 +26,8 @@ require_once __DIR__ . '/Maintenance.php';
 class PurgeChangedFiles extends Maintenance {
 	/**
 	 * Mapping from type option to log type and actions.
-	 * @var array
 	 */
-	private static $typeMappings = [
+	private const TYPE_MAPPINGS = [
 		'created' => [
 			'upload' => [ 'upload' ],
 			'import' => [ 'upload', 'interwiki' ],
@@ -59,7 +58,7 @@ class PurgeChangedFiles extends Maintenance {
 		$this->addOption( 'starttime', 'Starting timestamp', true, true );
 		$this->addOption( 'endtime', 'Ending timestamp', true, true );
 		$this->addOption( 'type', 'Comma-separated list of types of changes to send purges for (' .
-			implode( ',', array_keys( self::$typeMappings ) ) . ',all)', false, true );
+			implode( ',', array_keys( self::TYPE_MAPPINGS ) ) . ',all)', false, true );
 		$this->addOption( 'htcp-dest', 'HTCP announcement destination (IP:port)', false, true );
 		$this->addOption( 'dry-run', 'Do not send purge requests' );
 		$this->addOption( 'sleep-per-batch', 'Milliseconds to sleep between batches', false, true );
@@ -88,11 +87,11 @@ class PurgeChangedFiles extends Maintenance {
 		$typeOpt = $this->getOption( 'type', 'all' );
 		if ( $typeOpt === 'all' ) {
 			// Convert 'all' to all registered types
-			$typeOpt = implode( ',', array_keys( self::$typeMappings ) );
+			$typeOpt = implode( ',', array_keys( self::TYPE_MAPPINGS ) );
 		}
 		$typeList = explode( ',', $typeOpt );
 		foreach ( $typeList as $type ) {
-			if ( !isset( self::$typeMappings[$type] ) ) {
+			if ( !isset( self::TYPE_MAPPINGS[$type] ) ) {
 				$this->error( "\nERROR: Unknown type: {$type}\n" );
 				$this->maybeHelp( true );
 			}
@@ -132,7 +131,7 @@ class PurgeChangedFiles extends Maintenance {
 		$repo = $this->getServiceContainer()->getRepoGroup()->getLocalRepo();
 		$dbr = $this->getReplicaDB();
 
-		foreach ( self::$typeMappings[$type] as $logType => $logActions ) {
+		foreach ( self::TYPE_MAPPINGS[$type] as $logType => $logActions ) {
 			$this->verbose( "Scanning for {$logType}/" . implode( ',', $logActions ) . "\n" );
 
 			$res = $dbr->newSelectQueryBuilder()

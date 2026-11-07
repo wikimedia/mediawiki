@@ -27,7 +27,7 @@ use Wikimedia\UUID\GlobalIdGenerator;
  * @see https://www.mediawiki.org/wiki/Foreign_resources
  */
 class ForeignResourceManager {
-	private string $defaultAlgo = 'sha384';
+	private const string DEFAULT_ALGO = 'sha384';
 
 	private bool $hasErrors = false;
 
@@ -293,7 +293,7 @@ class ForeignResourceManager {
 			throw new ForeignResourceNetworkException( "Unexpected HTTP {$req->getStatus()} response from {$src}" );
 		}
 		$data = $req->getContent();
-		$algo = $integrity === null ? $this->defaultAlgo : explode( '-', $integrity )[0];
+		$algo = $integrity === null ? self::DEFAULT_ALGO : explode( '-', $integrity )[0];
 		$actualIntegrity = $algo . '-' . base64_encode( hash( $algo, $data, true ) );
 		if ( $integrity === $actualIntegrity ) {
 			$this->verbose( "... passed integrity check for {$src}\n" );

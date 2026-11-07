@@ -65,8 +65,8 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase implements ApiRestHybrid {
 	/** @var string|null */
 	private $continueStr = null;
 
-	/** @var string[][] output element name, database column field prefix, database table */
-	private $backlinksSettings = [
+	/** output element name, database column field prefix, database table */
+	private const BACKLINKS_SETTINGS = [
 		'backlinks' => [
 			'code' => 'bl',
 			'prefix' => 'pl',
@@ -95,7 +95,7 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase implements ApiRestHybrid {
 		string $moduleName,
 		private readonly LinksMigration $linksMigration,
 	) {
-		$settings = $this->backlinksSettings[$moduleName];
+		$settings = self::BACKLINKS_SETTINGS[$moduleName];
 		$prefix = $settings['prefix'];
 		$code = $settings['code'];
 		$this->resultArr = [];

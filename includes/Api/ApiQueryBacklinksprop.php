@@ -29,8 +29,8 @@ use Wikimedia\ParamValidator\TypeDef\IntegerDef;
  */
 class ApiQueryBacklinksprop extends ApiQueryGeneratorBase {
 
-	/** @var array Data for the various modules implemented by this class */
-	private static $settings = [
+	/** Data for the various modules implemented by this class */
+	private const SETTINGS = [
 		'redirects' => [
 			'code' => 'rd',
 			'prefix' => 'rd',
@@ -78,7 +78,7 @@ class ApiQueryBacklinksprop extends ApiQueryGeneratorBase {
 		string $moduleName,
 		private readonly LinksMigration $linksMigration,
 	) {
-		parent::__construct( $query, $moduleName, self::$settings[$moduleName]['code'] );
+		parent::__construct( $query, $moduleName, self::SETTINGS[$moduleName]['code'] );
 	}
 
 	public function execute() {
@@ -94,7 +94,7 @@ class ApiQueryBacklinksprop extends ApiQueryGeneratorBase {
 	 * @param ApiPageSet|null $resultPageSet
 	 */
 	private function run( ?ApiPageSet $resultPageSet = null ) {
-		$settings = self::$settings[$this->getModuleName()];
+		$settings = self::SETTINGS[$this->getModuleName()];
 
 		$domain = $settings['virtualdomain'] ?? false;
 		$this->setVirtualDomain( $domain );
@@ -349,7 +349,7 @@ class ApiQueryBacklinksprop extends ApiQueryGeneratorBase {
 
 	/** @inheritDoc */
 	public function getAllowedParams() {
-		$settings = self::$settings[$this->getModuleName()];
+		$settings = self::SETTINGS[$this->getModuleName()];
 
 		$ret = [
 			'prop' => [
@@ -418,7 +418,7 @@ class ApiQueryBacklinksprop extends ApiQueryGeneratorBase {
 
 	/** @inheritDoc */
 	protected function getExamplesMessages() {
-		$settings = self::$settings[$this->getModuleName()];
+		$settings = self::SETTINGS[$this->getModuleName()];
 		$name = $this->getModuleName();
 		$path = $this->getModulePath();
 		$title = $settings['exampletitle'] ?? Title::newMainPage()->getPrefixedText();

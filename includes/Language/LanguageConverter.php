@@ -110,8 +110,7 @@ abstract class LanguageConverter implements ILanguageConverter {
 	private $mUserVariant;
 	/** @var string|null */
 	private $mHeaderVariant;
-	/** @var int */
-	private $mMaxDepth = 10;
+	private const MAX_DEPTH = 10;
 	/** @var string|null */
 	private $mVarSeparatorPattern;
 
@@ -968,12 +967,12 @@ abstract class LanguageConverter implements ILanguageConverter {
 			switch ( $token ) {
 				case '-{':
 					// Check max depth
-					if ( $depth >= $this->mMaxDepth ) {
+					if ( $depth >= self::MAX_DEPTH ) {
 						$inner .= '-{';
 						if ( !$warningDone ) {
 							$inner .= '<span class="error">' .
 								wfMessage( 'language-converter-depth-warning' )
-									->numParams( $this->mMaxDepth )->inContentLanguage()->text() .
+									->numParams( self::MAX_DEPTH )->inContentLanguage()->text() .
 								'</span>';
 							$warningDone = true;
 						}

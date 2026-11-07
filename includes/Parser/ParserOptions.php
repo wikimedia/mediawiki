@@ -43,12 +43,12 @@ use Wikimedia\Timestamp\TimestampFormat as TS;
  * How to add an option in core:
  *  1. Add it to one of the arrays in ParserOptions::getDefaults() (see documentation there)
  *  2. If necessary:
- *    a. add an entry to ParserOptions::$initialCacheVaryingOptionsHash: this splits the cache on that option
- *    b. add an entry to ParserOptions::$callbacks: this is used for pseudo-options that shouldn't be considered
+ *    a. add an entry to ParserOptions::INITIAL_CACHE_VARYING_OPTIONS_HASH: this splits the cache on that option
+ *    b. add an entry to ParserOptions::CALLBACKS: this is used for pseudo-options that shouldn't be considered
  *      to compute cacheability
- *    c. add an entry to ParserOptions::$initialLazyOptions: this ensures that the option is only loaded on read.
+ *    c. add an entry to ParserOptions::INITIAL_LAZY_OPTIONS: this ensures that the option is only loaded on read.
  *      The cacheability of these options is also determined by their usage during the parse and their presence
- *      in the $initialCacheVaryingOptionsHash or $callbacks arrays.
+ *      in the self::INITIAL_CACHE_VARYING_OPTIONS_HASH or self::CALLBACKS arrays.
  *    Setting options that are not from (2a) or (2b) will make the parse uncacheable if they are actually used
  *    during the parse in the (current default article parse) setup where option usage is recorded to determine
  *    cacheability (see ::isSafeToCache() below for details.)
@@ -84,9 +84,8 @@ class ParserOptions {
 
 	/**
 	 * Initial lazy-loaded options (before hook)
-	 * @var callable[]
 	 */
-	private static $initialLazyOptions = [
+	private const INITIAL_LAZY_OPTIONS = [
 		'dateformat' => [ self::class, 'initDateFormat' ],
 		'speculativeRevId' => [ self::class, 'initSpeculativeRevId' ],
 		'speculativePageId' => [ self::class, 'initSpeculativePageId' ],
@@ -94,7 +93,7 @@ class ParserOptions {
 
 	/**
 	 * Specify options that are included in the cache key. This array is initially a copy of
-	 * $initialCacheVaryingOptionsHash, and is then modified by the ParserOptionsRegister hook.
+	 * self::INITIAL_CACHE_VARYING_OPTIONS_HASH, and is then modified by the ParserOptionsRegister hook.
 	 * If an option in this array has a value that differs from its defaults, said value is
 	 * added to the cache key and splits the cache accordingly.
 	 * @var array|null
@@ -103,9 +102,8 @@ class ParserOptions {
 
 	/**
 	 * Initial set of $cacheVaryingOptionsHash options (before hook)
-	 * @var array
 	 */
-	private static $initialCacheVaryingOptionsHash = [
+	private const INITIAL_CACHE_VARYING_OPTIONS_HASH = [
 		'dateformat' => true,
 		'userlang' => true,
 		'useParsoid' => true,
@@ -140,9 +138,8 @@ class ParserOptions {
 	/**
 	 * Specify pseudo-options that are actually callbacks.
 	 * These must be ignored when checking for cacheability.
-	 * @var array
 	 */
-	private static $callbacks = [
+	private const CALLBACKS = [
 		'currentRevisionRecordCallback' => true,
 		'templateCallback' => true,
 		'speculativeRevIdCallback' => true,
@@ -1336,8 +1333,8 @@ class ParserOptions {
 				'variant' => null,
 			];
 
-			self::$cacheVaryingOptionsHash = self::$initialCacheVaryingOptionsHash;
-			self::$lazyOptions = self::$initialLazyOptions;
+			self::$cacheVaryingOptionsHash = self::INITIAL_CACHE_VARYING_OPTIONS_HASH;
+			self::$lazyOptions = self::INITIAL_LAZY_OPTIONS;
 
 			$hookRunner = new HookRunner( $services->getHookContainer() );
 			$hookRunner->onParserOptionsRegister(
@@ -1715,7 +1712,7 @@ class ParserOptions {
 
 		$safe = true;
 		foreach ( $usedOptions as $option ) {
-			if ( empty( $inCacheKey[$option] ) && empty( self::$callbacks[$option] ) ) {
+			if ( empty( $inCacheKey[$option] ) && empty( self::CALLBACKS[$option] ) ) {
 				$v = $this->optionToString( $this->options[$option] ?? null );
 				$d = $this->optionToString( $defaults[$option] ?? null );
 				if ( $v !== $d ) {

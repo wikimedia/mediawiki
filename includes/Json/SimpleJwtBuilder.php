@@ -18,7 +18,7 @@ use Lcobucci\JWT\Token\Signature;
  */
 class SimpleJwtBuilder {
 
-	private array $headers = [ 'typ' => 'JWT', 'alg' => null ];
+	private const array HEADERS = [ 'typ' => 'JWT', 'alg' => null ];
 
 	/** @var array<string, mixed> */
 	private array $claims = [];
@@ -34,7 +34,7 @@ class SimpleJwtBuilder {
 	}
 
 	public function getToken( Signer $signer, Key $key ): Plain {
-		$headers = $this->headers;
+		$headers = self::HEADERS;
 		$headers['alg'] = $signer->algorithmId();
 
 		$encodedHeaders = $this->encode( $headers );
