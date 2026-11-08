@@ -4,6 +4,7 @@ declare( strict_types=1 );
 
 namespace MediaWiki\Tests;
 
+use Closure;
 use MediaWiki\Api\ApiMain;
 use MediaWiki\Api\ApiQuery;
 use MediaWiki\Auth\PreAuthenticationProvider;
@@ -18,6 +19,8 @@ use MediaWiki\Request\FauxRequest;
 use MediaWiki\Rest\Handler;
 use MediaWiki\Tests\Api\ApiTestContext;
 use MediaWikiIntegrationTestCase;
+use ReflectionClass;
+use ReflectionFunction;
 use Wikimedia\Http\MultiHttpClient;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\ILoadBalancer;
@@ -41,6 +44,9 @@ use Wikimedia\Rdbms\LBFactory;
  * * No HTTP or database connections are made during initialization.
  *   Opening connections already when an object is created,
  *   not only when it is used, is a potential performance issue.
+ * * The constructor or factory has a parameter for each listed service.
+ *   PHP ignores surplus arguments without an error. But the service
+ *   container still creates each listed service, and nothing uses it.
  * * Optionally: Each specification's list of services is sorted.
  *   Prescribing an automatically testable order frees the developer
  *   from having to think about the most logical order for any services.
@@ -116,6 +122,7 @@ abstract class ExtensionJsonTestBase extends MediaWikiIntegrationTestCase {
 		$objectFactory->createObject( $specification, [
 			'allowClassName' => true,
 		] );
+		$this->assertNoUnusedArguments( $specification );
 		$this->assertTrue( true );
 	}
 
@@ -238,6 +245,7 @@ abstract class ExtensionJsonTestBase extends MediaWikiIntegrationTestCase {
 			'allowClassName' => true,
 			'extraArgs' => [ $contentModelID ],
 		] );
+		$this->assertNoUnusedArguments( $specification, [ $contentModelID ] );
 		$this->assertTrue( true );
 	}
 
@@ -251,10 +259,12 @@ abstract class ExtensionJsonTestBase extends MediaWikiIntegrationTestCase {
 	public function testApiModule( string $moduleName ): void {
 		$specification = self::getExtensionJson()['APIModules'][$moduleName];
 		$objectFactory = MediaWikiServices::getInstance()->getObjectFactory();
+		$extraArgs = [ $this->mockApiMain(), 'modulename' ];
 		$objectFactory->createObject( $specification, [
 			'allowClassName' => true,
-			'extraArgs' => [ $this->mockApiMain(), 'modulename' ],
+			'extraArgs' => $extraArgs,
 		] );
+		$this->assertNoUnusedArguments( $specification, $extraArgs );
 		$this->assertTrue( true );
 	}
 
@@ -268,10 +278,12 @@ abstract class ExtensionJsonTestBase extends MediaWikiIntegrationTestCase {
 	public function testApiQueryModule( string $moduleList, string $moduleName ): void {
 		$specification = self::getExtensionJson()[$moduleList][$moduleName];
 		$objectFactory = MediaWikiServices::getInstance()->getObjectFactory();
+		$extraArgs = [ $this->mockApiQuery(), 'query' ];
 		$objectFactory->createObject( $specification, [
 			'allowClassName' => true,
-			'extraArgs' => [ $this->mockApiQuery(), 'query' ],
+			'extraArgs' => $extraArgs,
 		] );
+		$this->assertNoUnusedArguments( $specification, $extraArgs );
 		$this->assertTrue( true );
 	}
 
@@ -291,6 +303,7 @@ abstract class ExtensionJsonTestBase extends MediaWikiIntegrationTestCase {
 		$objectFactory->createObject( $specification, [
 			'allowClassName' => true,
 		] );
+		$this->assertNoUnusedArguments( $specification );
 		$this->assertTrue( true );
 	}
 
@@ -307,6 +320,7 @@ abstract class ExtensionJsonTestBase extends MediaWikiIntegrationTestCase {
 		$objectFactory->createObject( $specification, [
 			'assertClass' => $providerClass,
 		] );
+		$this->assertNoUnusedArguments( $specification );
 		$this->assertTrue( true );
 	}
 
@@ -331,6 +345,7 @@ abstract class ExtensionJsonTestBase extends MediaWikiIntegrationTestCase {
 		$specification = self::getExtensionJson()['SessionProviders'][$providerName];
 		$objectFactory = MediaWikiServices::getInstance()->getObjectFactory();
 		$objectFactory->createObject( $specification );
+		$this->assertNoUnusedArguments( $specification );
 		$this->assertTrue( true );
 	}
 
@@ -386,6 +401,7 @@ abstract class ExtensionJsonTestBase extends MediaWikiIntegrationTestCase {
 		$objectFactory = MediaWikiServices::getInstance()->getObjectFactory();
 		$domainEventIngress = $objectFactory->createObject( $eventIngressSpecification );
 		$this->assertInstanceOf( DomainEventIngress::class, $domainEventIngress );
+		$this->assertNoUnusedArguments( $eventIngressSpecification );
 	}
 
 	public static function provideDomainEventIngresses() {
@@ -399,6 +415,7 @@ abstract class ExtensionJsonTestBase extends MediaWikiIntegrationTestCase {
 		$objectFactory = MediaWikiServices::getInstance()->getObjectFactory();
 		$restHandler = $objectFactory->createObject( $restRouteSpecification );
 		$this->assertInstanceOf( Handler::class, $restHandler );
+		$this->assertNoUnusedArguments( $restRouteSpecification );
 	}
 
 	public static function provideRestRoutes() {
@@ -481,6 +498,47 @@ abstract class ExtensionJsonTestBase extends MediaWikiIntegrationTestCase {
 		foreach ( self::provideRestRoutes() as $index => $restRoute ) {
 			yield "RestRoutes/$index" => $restRoute;
 		}
+	}
+
+	/**
+	 * Assert that the factory or constructor of an object specification
+	 * has a parameter for each argument that ObjectFactory gives to it.
+	 *
+	 * @param array|string|callable $specification
+	 * @param array $extraArgs The extraArgs that the caller gives to ObjectFactory
+	 */
+	private function assertNoUnusedArguments( $specification, array $extraArgs = [] ): void {
+		if (
+			!is_array( $specification ) ||
+			is_callable( $specification ) ||
+			!empty( $specification['spec_is_arg'] )
+		) {
+			return;
+		}
+
+		if ( isset( $specification['factory'] ) ) {
+			$callee = new ReflectionFunction( Closure::fromCallable( $specification['factory'] ) );
+			$calleeName = is_string( $specification['factory'] ) ? $specification['factory'] . '()' : 'The factory';
+		} else {
+			$callee = ( new ReflectionClass( $specification['class'] ) )->getConstructor();
+			$calleeName = $specification['class'] . '::__construct()';
+		}
+		if ( $callee && $callee->isVariadic() ) {
+			return;
+		}
+
+		// Use the same argument order as ObjectFactory::getObjectFromSpec().
+		$arguments = array_merge(
+			array_map( static fn ( $index ) => "extraArgs[$index]", array_keys( $extraArgs ) ),
+			$specification['services'] ?? [],
+			$specification['optional_services'] ?? [],
+			array_map( static fn ( $index ) => "args[$index]", array_keys( $specification['args'] ?? [] ) )
+		);
+		$parameterCount = $callee ? $callee->getNumberOfParameters() : 0;
+		$this->assertSame( [], array_slice( $arguments, $parameterCount ),
+			"$calleeName has $parameterCount parameter(s), but ObjectFactory gives it " .
+			count( $arguments ) . ' argument(s). Remove the unused services or args from the specification.'
+		);
 	}
 
 	private function disallowDBAccess() {
