@@ -123,7 +123,7 @@ trait ParserTestFileTrait {
 
 	public static function tearDownAfterClass(): void {
 		if ( static::$runner?->getOptions()['updateKnownFailures'] ?? false ) {
-			static::$runner->updateKnownFailures( static::$fileInfo );
+			static::$runner->updateKnownFailures( static::$filename, static::$fileInfo );
 		}
 
 		if ( static::$teardown !== null ) {
