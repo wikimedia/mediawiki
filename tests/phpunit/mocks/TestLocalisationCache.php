@@ -20,7 +20,7 @@ class TestLocalisationCache extends LocalisationCache {
 
 	private const PROPERTY_NAMES = [ 'data', 'sourceLanguage' ];
 
-	/** @var self */
+	/** @var TestingAccessWrapper */
 	private $selfAccess;
 
 	/** @inheritDoc */

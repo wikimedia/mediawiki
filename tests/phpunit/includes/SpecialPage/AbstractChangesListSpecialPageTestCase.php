@@ -8,8 +8,8 @@ use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\Html\FormOptions;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Output\OutputPage;
-use MediaWiki\SpecialPage\ChangesListSpecialPage;
 use MediaWikiIntegrationTestCase;
+use Wikimedia\TestingAccessWrapper;
 
 /**
  * Abstract base class for shared logic when testing ChangesListSpecialPage
@@ -20,7 +20,7 @@ use MediaWikiIntegrationTestCase;
 abstract class AbstractChangesListSpecialPageTestCase extends MediaWikiIntegrationTestCase {
 	// Must be initialized by subclass
 	/**
-	 * @var ChangesListSpecialPage
+	 * @var TestingAccessWrapper
 	 */
 	protected $changesListSpecialPage;
 
@@ -43,7 +43,7 @@ abstract class AbstractChangesListSpecialPageTestCase extends MediaWikiIntegrati
 	}
 
 	/**
-	 * @return ChangesListSpecialPage
+	 * @return TestingAccessWrapper
 	 */
 	abstract protected function getPageAccessWrapper();
 

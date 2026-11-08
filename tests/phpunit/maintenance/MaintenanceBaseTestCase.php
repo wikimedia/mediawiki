@@ -12,7 +12,7 @@ abstract class MaintenanceBaseTestCase extends MediaWikiIntegrationTestCase {
 	/**
 	 * The main Maintenance instance that is used for testing, wrapped and mockable.
 	 *
-	 * @var Maintenance
+	 * @var TestingAccessWrapper
 	 */
 	protected $maintenance;
 
@@ -65,7 +65,7 @@ abstract class MaintenanceBaseTestCase extends MediaWikiIntegrationTestCase {
 	/**
 	 * Called by setUp to initialize $this->maintenance.
 	 *
-	 * @return Maintenance The Maintenance instance to test.
+	 * @return TestingAccessWrapper The Maintenance instance to test.
 	 */
 	protected function createMaintenance() {
 		return $this->createMaintenanceInternal( $this->getMaintenanceClass() );
@@ -75,7 +75,7 @@ abstract class MaintenanceBaseTestCase extends MediaWikiIntegrationTestCase {
 	 * Called by setUp to initialize $this->maintenance.
 	 *
 	 * @param class-string $className
-	 * @return Maintenance The Maintenance instance to test.
+	 * @return TestingAccessWrapper The Maintenance instance to test.
 	 */
 	protected function createMaintenanceInternal( string $className ) {
 		$obj = new $className();
