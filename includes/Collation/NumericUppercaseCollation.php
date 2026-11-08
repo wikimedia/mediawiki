@@ -82,7 +82,7 @@ class NumericUppercaseCollation extends UppercaseCollation {
 			$table = array_filter( $table );
 			$flipped = array_flip( $table );
 			// Some languages seem to also have commas in this table.
-			$flipped = array_filter( $flipped, 'is_numeric' );
+			$flipped = array_filter( $flipped, is_numeric( ... ) );
 			$string = strtr( $string, $flipped );
 		}
 		return $string;

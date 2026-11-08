@@ -3928,7 +3928,7 @@ class OutputPage extends ContextSource {
 	 */
 	protected static function combineWrappedStrings( array $chunks ) {
 		// Filter out empty values
-		$chunks = array_filter( $chunks, 'strlen' );
+		$chunks = array_filter( $chunks, static fn ( $str ) => (string)$str !== '' );
 		return WrappedString::join( "\n", $chunks );
 	}
 

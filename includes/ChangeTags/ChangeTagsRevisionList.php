@@ -29,7 +29,7 @@ class ChangeTagsRevisionList extends ChangeTagsList {
 	 * @return IResultWrapper
 	 */
 	public function doQuery( $db ) {
-		$ids = array_map( 'intval', $this->ids );
+		$ids = array_map( intval( ... ), $this->ids );
 		$queryBuilder = MediaWikiServices::getInstance()->getRevisionStore()->newSelectQueryBuilder( $db )
 			->joinComment()
 			->joinUser()

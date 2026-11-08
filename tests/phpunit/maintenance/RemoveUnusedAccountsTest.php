@@ -50,7 +50,7 @@ class RemoveUnusedAccountsTest extends MaintenanceBaseTestCase {
 			->select( 'user_id' )
 			->from( 'user' )
 			->caller( __METHOD__ )
-			->assertFieldValues( array_map( 'strval', $userIds ) );
+			->assertFieldValues( array_map( strval( ... ), $userIds ) );
 	}
 
 	public function testExecuteWhenAllUsersIgnoredForDryRun() {
@@ -196,7 +196,7 @@ class RemoveUnusedAccountsTest extends MaintenanceBaseTestCase {
 			->select( [ 'actor_id' ] )
 			->from( 'actor' )
 			->caller( __METHOD__ )
-			->assertFieldValues( array_map( 'strval', [ $sysop->getActorId(), $testUser1->getActorId() ] ) );
+			->assertFieldValues( array_map( strval( ... ), [ $sysop->getActorId(), $testUser1->getActorId() ] ) );
 		$this->newSelectQueryBuilder()
 			->select( 'COUNT(*)' )
 			->from( 'user_properties' )

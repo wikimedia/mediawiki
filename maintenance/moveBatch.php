@@ -73,7 +73,7 @@ class MoveBatch extends Maintenance {
 			if ( $line === false ) {
 				break;
 			}
-			$parts = array_map( 'trim', explode( '|', $line ) );
+			$parts = array_map( trim( ... ), explode( '|', $line ) );
 			if ( count( $parts ) !== 2 ) {
 				$this->error( "Error on line $lineNum, no pipe character" );
 				continue;

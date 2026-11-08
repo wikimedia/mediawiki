@@ -75,7 +75,7 @@ class CustomUppercaseCollation extends NumericUppercaseCollation {
 
 		// Sort these arrays so that any trigraphs, digraphs etc. are first
 		// (and they get replaced first in convertToPua()).
-		$lengths = array_map( 'mb_strlen', $this->alphabet );
+		$lengths = array_map( mb_strlen( ... ), $this->alphabet );
 		array_multisort( $lengths, SORT_DESC, $this->firstLetters, $this->alphabet, $this->puaSubset );
 
 		parent::__construct( $languageFactory, $digitTransformLang );

@@ -34,7 +34,7 @@ foreach ( $extRegistry->getAllThings() as $extInfo ) {
 $extTestPaths = array_unique( $extTestPaths );
 
 $extUnitTestPaths = [];
-$extensionsPaths = array_map( 'dirname', array_keys( $extRegistry->getQueue() ) );
+$extensionsPaths = array_map( dirname( ... ), array_keys( $extRegistry->getQueue() ) );
 foreach ( $extensionsPaths as $componentPath ) {
 	$extUnitTestPaths[] = "$componentPath/tests/phpunit/unit";
 }

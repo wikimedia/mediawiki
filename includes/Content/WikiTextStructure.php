@@ -128,7 +128,7 @@ class WikiTextStructure {
 		// Remove comments
 		$lines = preg_replace( '/#.*$/', '', $lines );
 		// Remove extra spaces
-		$lines = array_map( 'trim', $lines );
+		$lines = array_map( trim( ... ), $lines );
 
 		// Remove empty lines
 		return array_filter( $lines );

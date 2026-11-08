@@ -286,7 +286,7 @@ class LogPager extends ReverseChronologicalPager {
 		if ( count( $parts ) != 2 ) {
 			return [];
 		}
-		[ $name, $database ] = array_map( 'trim', $parts );
+		[ $name, $database ] = array_map( trim( ... ), $parts );
 		if ( !str_contains( $database, '*' ) ) {
 			return [];
 		}

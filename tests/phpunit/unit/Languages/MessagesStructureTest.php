@@ -76,7 +76,7 @@ class MessagesStructureTest extends MediaWikiUnitTestCase {
 			$this->assertFalse( $value, 'fallback for en must be false' );
 			return;
 		}
-		$fallbacks = array_map( 'trim', explode( ',', $value ) );
+		$fallbacks = array_map( trim( ... ), explode( ',', $value ) );
 		$this->assertLessThanOrEqual(
 			MessageCache::MAX_REQUEST_LANGUAGES - 2,
 			count( $fallbacks ),

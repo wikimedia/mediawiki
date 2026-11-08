@@ -201,7 +201,7 @@ abstract class Module {
 
 		if ( $initForExecute ) {
 			// Use rawurldecode so a "+" in path params is not interpreted as a space character.
-			$pathParams = array_map( 'rawurldecode', $match['params'] ?? [] );
+			$pathParams = array_map( rawurldecode( ... ), $match['params'] ?? [] );
 			$request->setPathParams( $pathParams );
 
 			$handler->initForExecute( $request, $this->responseFactory );

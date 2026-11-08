@@ -182,7 +182,7 @@ class PageSelectQueryBuilder extends SelectQueryBuilder {
 	 */
 	public function fetchPageIds(): array {
 		$this->field( 'page_id' );
-		return array_map( 'intval', $this->fetchFieldValues() );
+		return array_map( intval( ... ), $this->fetchFieldValues() );
 	}
 
 }

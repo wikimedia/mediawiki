@@ -808,7 +808,7 @@ class NamespaceDupes extends Maintenance {
 			->where( [ 'rev_page' => $id ] )
 			->caller( __METHOD__ )
 			->fetchFieldValues();
-		$updateBatches = array_chunk( array_map( 'intval', $revIds ), $updateRowsPerQuery );
+		$updateBatches = array_chunk( array_map( intval( ... ), $revIds ), $updateRowsPerQuery );
 		foreach ( $updateBatches as $updateBatch ) {
 			$dbw->newUpdateQueryBuilder()
 				->update( 'revision' )

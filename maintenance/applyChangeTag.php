@@ -75,7 +75,7 @@ class ApplyChangeTag extends Maintenance {
 		$isLog = $table === 'logging';
 		$idField = $isLog ? 'log_id' : 'rev_id';
 		$existing = array_map(
-			'intval',
+			intval( ... ),
 			$this->getReplicaDB()->newSelectQueryBuilder()
 				->select( $idField )
 				->from( $table )

@@ -31,7 +31,7 @@ class ListToggleTest extends MediaWikiUnitTestCase {
 
 		$output = $this->createMock( OutputPage::class );
 		$output->method( 'msg' )
-			->willReturnCallback( [ new FakeQqxMessageLocalizer(), 'msg' ] );
+			->willReturnCallback( ( new FakeQqxMessageLocalizer() )->msg( ... ) );
 		$output->expects( $this->once() )
 			->method( 'getLanguage' )
 			->willReturn( $language );

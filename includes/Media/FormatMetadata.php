@@ -849,7 +849,7 @@ class FormatMetadata extends ContextSource {
 			return ""; // paranoia. This should never happen
 		}
 		// Check if $vals contains nested arrays
-		$containsNestedArrays = in_array( true, array_map( 'is_array', $vals ), true );
+		$containsNestedArrays = in_array( true, array_map( is_array( ... ), $vals ), true );
 		if ( $containsNestedArrays ) {
 			wfLogWarning( __METHOD__ . ': Invalid $vals, contains nested arrays: ' . json_encode( $vals ) );
 		}
@@ -1354,7 +1354,7 @@ class FormatMetadata extends ContextSource {
 				$fields[] = $matches[1];
 			}
 		}
-		$fields = array_map( 'strtolower', $fields );
+		$fields = array_map( strtolower( ... ), $fields );
 
 		return $fields;
 	}

@@ -335,7 +335,7 @@ class ApiLogin extends ApiBase {
 		foreach ( $reqs as $k => $v ) {
 			if ( $v ) {
 				$v = is_array( $v ) ? $v : [ $v ];
-				$reqClasses = array_unique( array_map( 'get_class', $v ) );
+				$reqClasses = array_unique( array_map( get_class( ... ), $v ) );
 				sort( $reqClasses );
 				$ret[$k] = implode( ', ', $reqClasses );
 			}

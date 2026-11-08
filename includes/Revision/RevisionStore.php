@@ -1211,7 +1211,7 @@ class RevisionStore implements RevisionFactory, RevisionLookup, LoggerAwareInter
 	 *         Missing or failed revisions have null values.
 	 */
 	public function getRevisionsByIds( array $ids, int $flags = 0, ?PageIdentity $page = null ): array {
-		$ids = array_values( array_unique( array_map( 'intval', $ids ) ) );
+		$ids = array_values( array_unique( array_map( intval( ... ), $ids ) ) );
 		if ( !$ids ) {
 			return [];
 		}
@@ -3232,7 +3232,7 @@ class RevisionStore implements RevisionFactory, RevisionLookup, LoggerAwareInter
 		}
 
 		$values = $queryBuilder->caller( __METHOD__ )->fetchFieldValues();
-		return array_map( 'intval', $values );
+		return array_map( intval( ... ), $values );
 	}
 
 	/**

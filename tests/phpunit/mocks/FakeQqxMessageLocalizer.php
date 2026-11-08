@@ -17,7 +17,7 @@ use Wikimedia\Message\MessageSpecifier;
  * ```php
  * $output = $this->createMock( OutputPage::class );
  * $output->method( 'msg' )
- *     ->willReturnCallback( [ new FakeQqxMessageLocalizer(), 'msg' ] );
+ *     ->willReturnCallback( ( new FakeQqxMessageLocalizer() )->msg( ... ) );
  * ```
  *
  * @since 1.39.4

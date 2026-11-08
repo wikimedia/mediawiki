@@ -122,7 +122,7 @@ class UserOptionsModuleTest extends MediaWikiIntegrationTestCase {
 			$user->method( 'getName' )->willReturn( $name );
 		}
 		$ctx = $this->createStub( Context::class );
-		$ctx->method( 'encodeJson' )->willReturnCallback( 'json_encode' );
+		$ctx->method( 'encodeJson' )->willReturnCallback( json_encode( ... ) );
 		$ctx->method( 'getUserObj' )->willReturn( $user );
 		return $ctx;
 	}

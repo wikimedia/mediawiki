@@ -209,7 +209,7 @@ class RecentChangesUpdateJob extends Job {
 				->where( [
 					'qcc_type' => 'activeusers',
 					'qcc_namespace' => NS_USER,
-					'qcc_title' => array_map( 'strval', array_keys( $names ) ),
+					'qcc_title' => array_map( strval( ... ), array_keys( $names ) ),
 					$dbw->expr( 'qcc_value', '>=', $nowUnix - $days * 86400 ),
 				] )
 				->caller( __METHOD__ )->fetchResultSet();

@@ -65,7 +65,7 @@ class EnConverter extends LanguageConverter {
 			implode(
 				'|',
 				array_map(
-					'preg_quote',
+					preg_quote( ... ),
 					// "Original" texts from the ReplacementArray rules
 					array_keys( $customRules->getArray() )
 				)

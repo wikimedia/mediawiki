@@ -359,7 +359,7 @@ class WebInstaller extends Installer {
 		if ( !( $msg instanceof Message ) ) {
 			$msg = wfMessage(
 				$msg,
-				array_map( 'htmlspecialchars', $params )
+				array_map( htmlspecialchars( ... ), $params )
 			);
 		}
 		$text = $msg->useDatabase( false )->parse();
@@ -622,7 +622,7 @@ class WebInstaller extends Installer {
 	 * @return-taint escaped
 	 */
 	public function getHelpBox( $msg, ...$params ) {
-		$params = array_map( 'htmlspecialchars', $params );
+		$params = array_map( htmlspecialchars( ... ), $params );
 		$text = wfMessage( $msg, $params )->useDatabase( false )->plain();
 		$html = $this->parse( $text, true );
 

@@ -101,7 +101,7 @@ class HTMLSelectLanguageField extends HTMLSelectField {
 		// HTMLForm stores values as strings by default.
 		// For multi-select, convert the string back to an array for the widget.
 		if ( $isMultiple && is_string( $value ) ) {
-			$value = $value === '' ? [] : array_map( 'trim', explode( ',', $value ) );
+			$value = $value === '' ? [] : array_map( trim( ... ), explode( ',', $value ) );
 		}
 
 		$widget = new LanguageSelectWidget( [

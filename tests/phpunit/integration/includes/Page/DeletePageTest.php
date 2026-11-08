@@ -260,8 +260,8 @@ class DeletePageTest extends MediaWikiIntegrationTestCase {
 			->where( [ 'ct_log_id' => $logId ] )
 			->fetchFieldValues();
 		$changeTagDefStore = $this->getServiceContainer()->getChangeTagDefStore();
-		$expectedTags = array_map( [ $changeTagDefStore, 'acquireId' ], $tags );
-		$this->assertArrayEquals( $expectedTags, array_map( 'intval', $actualTags ) );
+		$expectedTags = array_map( $changeTagDefStore->acquireId( ... ), $tags );
+		$this->assertArrayEquals( $expectedTags, array_map( intval( ... ), $actualTags ) );
 	}
 
 	private function setFakeTime( $time ) {

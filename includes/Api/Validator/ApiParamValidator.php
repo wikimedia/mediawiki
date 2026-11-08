@@ -277,7 +277,7 @@ class ApiParamValidator {
 					$this->checkSettingsMessage( "PARAM_HELP_MSG_PER_VALUE[$k]", $v, $ret );
 				}
 			} else {
-				$values = array_map( 'strval', $settings[ParamValidator::PARAM_TYPE] );
+				$values = array_map( strval( ... ), $settings[ParamValidator::PARAM_TYPE] );
 				foreach ( $settings[ApiBase::PARAM_HELP_MSG_PER_VALUE] as $k => $v ) {
 					if ( !in_array( (string)$k, $values, true ) ) {
 						// Or should this be allowed?

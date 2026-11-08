@@ -72,7 +72,7 @@ class UserLinkRendererTest extends MediaWikiLangTestCase {
 		$this->context->method( 'getOutput' )
 			->willReturn( $this->outputPage );
 		$this->context->method( 'msg' )
-			->willReturnCallback( [ $messageLocalizer, 'msg' ] );
+			->willReturnCallback( $messageLocalizer->msg( ... ) );
 
 		$this->tempUserDetailsLookup = $this->createMock( TempUserDetailsLookup::class );
 		$this->userIdentityLookup = $this->createMock( UserIdentityLookup::class );

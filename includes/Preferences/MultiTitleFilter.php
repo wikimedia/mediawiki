@@ -39,7 +39,7 @@ class MultiTitleFilter implements Filter {
 	 * @inheritDoc
 	 */
 	public function filterForForm( $value ) {
-		$ids = array_map( 'intval', preg_split( '/\n/', $value, -1, PREG_SPLIT_NO_EMPTY ) );
+		$ids = array_map( intval( ... ), preg_split( '/\n/', $value, -1, PREG_SPLIT_NO_EMPTY ) );
 		$pageRecords = $this->getPageStore()
 			->newSelectQueryBuilder()
 			->wherePageIds( $ids )

@@ -325,7 +325,7 @@ trait DummyServicesTrait {
 
 		/** @var Language|MockObject $language */
 		$language = $this->createMock( Language::class );
-		$language->method( 'ucfirst' )->willReturnCallback( 'ucfirst' );
+		$language->method( 'ucfirst' )->willReturnCallback( ucfirst( ... ) );
 		$language->method( 'lc' )->willReturnCallback(
 			static function ( $str, $first ) {
 				return $first ? lcfirst( $str ) : strtolower( $str );
@@ -493,7 +493,7 @@ trait DummyServicesTrait {
 		// but since the tests are all in English the plain php `ucfirst` should be enough.
 		$contentLang = $this->createMock( Language::class );
 		$contentLang->method( 'ucfirst' )
-			->willReturnCallback( 'ucfirst' );
+			->willReturnCallback( ucfirst( ... ) );
 		// Incorrect type hint in PHPUnit 9, fixed in PHPUnit 10
 		// @phan-suppress-next-line PhanTypeMismatchArgument
 		$contentLang->method( 'getNsText' )->with( NS_USER )

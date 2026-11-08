@@ -464,7 +464,7 @@ TXT;
 	public static function redactTrace( array $trace ) {
 		return array_map( static function ( $frame ) {
 			if ( isset( $frame['args'] ) ) {
-				$frame['args'] = array_map( 'get_debug_type', $frame['args'] );
+				$frame['args'] = array_map( get_debug_type( ... ), $frame['args'] );
 			}
 			return $frame;
 		}, $trace );

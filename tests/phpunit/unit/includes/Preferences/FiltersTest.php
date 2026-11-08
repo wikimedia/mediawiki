@@ -113,7 +113,7 @@ class FiltersTest extends \MediaWikiUnitTestCase {
 				foreach ( $names as $name ) {
 					$ids[] = $userMapping[$name] ?? null;
 				}
-				return array_filter( $ids, 'is_numeric' );
+				return array_filter( $ids, is_numeric( ... ) );
 			} );
 		$idLookup->method( 'namesFromCentralIds' )
 			->willReturnCallback( static function ( $ids ) use ( $flipped ) {
@@ -121,7 +121,7 @@ class FiltersTest extends \MediaWikiUnitTestCase {
 				foreach ( $ids as $id ) {
 					$names[] = $flipped[$id] ?? null;
 				}
-				return array_filter( $names, 'is_string' );
+				return array_filter( $names, is_string( ... ) );
 			} );
 
 		return new MultiUsernameFilter( $idLookup );

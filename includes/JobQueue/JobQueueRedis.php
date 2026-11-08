@@ -827,7 +827,7 @@ LUA;
 		$parts = [ $keyspace, 'jobqueue', $type, $prop ];
 
 		// Parts are typically ASCII, but encode to escape ":"
-		return implode( ':', array_map( 'rawurlencode', $parts ) );
+		return implode( ':', array_map( rawurlencode( ... ), $parts ) );
 	}
 }
 

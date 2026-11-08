@@ -113,8 +113,8 @@ class CategoryCountUpdateJob extends Job {
 		$id = $this->params['pageId'];
 
 		// Guard against data corruption T301433
-		$added = array_map( 'strval', $added );
-		$deleted = array_map( 'strval', $deleted );
+		$added = array_map( strval( ... ), $added );
+		$deleted = array_map( strval( ... ), $deleted );
 		$type = $this->namespaceInfo->getCategoryLinkType( $this->params['namespace'] );
 
 		$addFields = [ 'cat_pages' => new RawSQLValue( 'cat_pages + 1' ) ];

@@ -1671,7 +1671,7 @@ abstract class Skin extends ContextSource {
 
 				if ( str_contains( $line, '|' ) ) {
 					$line = $messageParser->transform( $line, false, null, $messageTitle );
-					$line = array_map( 'trim', explode( '|', $line, 2 ) );
+					$line = array_map( trim( ... ), explode( '|', $line, 2 ) );
 					if ( count( $line ) !== 2 ) {
 						// Second check, could be hit by people doing
 						// funky stuff with parserfuncs... (T35321)

@@ -139,7 +139,7 @@ class SpecialWatchlistLabels extends UnlistedSpecialPage {
 			// - watchlistlabels-form-submit-new
 			// - watchlistlabels-form-submit-edit
 			->setSubmitTextMsg( "watchlistlabels-form-submit-$msgSuffix" )
-			->setSubmitCallback( [ $this, 'onEditFormSubmit' ] );
+			->setSubmitCallback( $this->onEditFormSubmit( ... ) );
 		$form->show();
 	}
 
@@ -247,7 +247,7 @@ class SpecialWatchlistLabels extends UnlistedSpecialPage {
 			->setCancelTarget( $this->getPageTitle() )
 			->setSubmitTextMsg( 'delete' )
 			->setSubmitDestructive()
-			->setSubmitCallback( [ $this, 'onDeleteFormSubmit' ] )
+			->setSubmitCallback( $this->onDeleteFormSubmit( ... ) )
 			->show();
 	}
 
@@ -283,7 +283,7 @@ class SpecialWatchlistLabels extends UnlistedSpecialPage {
 		if ( !isset( $data[self::PARAM_IDS] ) ) {
 			throw new InvalidArgumentException( 'No name data submitted.' );
 		}
-		$ids = array_map( 'intval', array_filter( explode( ',', $data[self::PARAM_IDS] ) ) );
+		$ids = array_map( intval( ... ), array_filter( explode( ',', $data[self::PARAM_IDS] ) ) );
 		$labels = $this->labelStore->loadAllForUser( $this->getUser() );
 		$deletedLabelNames = [];
 		foreach ( $ids as $id ) {

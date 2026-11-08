@@ -274,7 +274,7 @@ class SearchHighlighter {
 			}
 		}
 
-		// $snippets = array_map( 'htmlspecialchars', $extended );
+		// $snippets = array_map( htmlspecialchars( ... ), $extended );
 		$snippets = $extended;
 		$last = -1;
 		$extract = '';

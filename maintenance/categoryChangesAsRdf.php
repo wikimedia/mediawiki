@@ -636,7 +636,7 @@ SPARQL;
 					->from( 'category' )
 					->leftJoin( 'page', null, [ 'page_title = cat_title', 'page_namespace' => NS_CATEGORY ] )
 					->leftJoin( 'page_props', null, [ 'pp_propname' => 'hiddencat', 'pp_page = page_id' ] )
-					->where( [ 'cat_title' => array_map( 'strval', array_keys( $parentCats ) ) ] )
+					->where( [ 'cat_title' => array_map( strval( ... ), array_keys( $parentCats ) ) ] )
 					->caller( __METHOD__ )->fetchResultSet();
 				foreach ( $parentRows as $row ) {
 					if ( $row->page_id && isset( $this->processed[$row->page_id] ) ) {

@@ -145,7 +145,7 @@ class ResetUserEmail extends Maintenance {
 				continue;
 			}
 
-			[ $userName, $email ] = array_map( 'trim', $parts );
+			[ $userName, $email ] = array_map( trim( ... ), $parts );
 			$processed++;
 
 			$user = $this->resolveUser( $userName );

@@ -1111,7 +1111,7 @@ class LocalisationCache {
 			$coreData['originalFallbackSequence'] = $coreData['fallbackSequence'] = [];
 		} else {
 			if ( $coreData['fallback'] !== null ) {
-				$coreData['fallbackSequence'] = array_map( 'trim', explode( ',', $coreData['fallback'] ) );
+				$coreData['fallbackSequence'] = array_map( trim( ... ), explode( ',', $coreData['fallback'] ) );
 			} else {
 				$coreData['fallbackSequence'] = [];
 			}

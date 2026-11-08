@@ -416,7 +416,7 @@ class BlockManager {
 		if ( $this->options->get( MainConfigNames::ApplyIpBlocksToXff )
 			&& !in_array( $ip, $this->options->get( MainConfigNames::ProxyWhitelist ) )
 		) {
-			$xff = array_map( 'trim', explode( ',', $xff ) );
+			$xff = array_map( trim( ... ), explode( ',', $xff ) );
 			$xff = array_diff( $xff, [ $ip ] );
 			$xffblocks = $this->getBlocksForIPList( $xff, $applySoftBlocks, $fromPrimary );
 
@@ -581,7 +581,7 @@ class BlockManager {
 
 		if ( !is_array( $proxyList ) ) {
 			// Load values from the specified file
-			$proxyList = array_map( 'trim', file( $proxyList ) );
+			$proxyList = array_map( trim( ... ), file( $proxyList ) );
 		}
 
 		$proxyListIPSet = new IPSet( $proxyList );

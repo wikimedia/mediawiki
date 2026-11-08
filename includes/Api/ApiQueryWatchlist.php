@@ -523,7 +523,7 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 		// T416154
 		if ( $this->fld_labels && $this->watchlistLabelsEnabled ) {
 			if ( isset( $row->wlm_label_summary ) && $row->wlm_label_summary ) {
-				$labelIds = array_map( 'intval', explode( ',', $row->wlm_label_summary ) );
+				$labelIds = array_map( intval( ... ), explode( ',', $row->wlm_label_summary ) );
 				$labelArray = [];
 				foreach ( $labelIds as $labelId ) {
 					if ( isset( $this->userWatchlistLabels[$labelId] ) ) {

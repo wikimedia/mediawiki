@@ -64,7 +64,7 @@ class MySQLPrimaryPos implements Stringable, DBPrimaryPos {
 			$this->logPos = [ self::CORD_INDEX => (int)$m[2], self::CORD_EVENT => $m[3] ];
 			$this->style = self::BINARY_LOG;
 		} else {
-			$gtids = array_filter( array_map( 'trim', explode( ',', $position ) ) );
+			$gtids = array_filter( array_map( trim( ... ), explode( ',', $position ) ) );
 			foreach ( $gtids as $gtid ) {
 				$components = self::parseGTID( $gtid );
 				if ( !$components ) {

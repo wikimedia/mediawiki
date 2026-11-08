@@ -29,7 +29,7 @@ class DynamicDefaultValuesTest extends MediaWikiUnitTestCase {
 				'Static' => [ 'default' => 'abcd' ],
 				'Dynamic' => [
 					'dynamicDefault' => [
-						'callback' => 'strtoupper',
+						'callback' => strtoupper( ... ),
 						'use' => [ 'Static' ]
 					]
 				],

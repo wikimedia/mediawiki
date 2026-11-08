@@ -480,7 +480,7 @@ class RightsLogFormatter extends LogFormatter {
 		if ( $group === '' || $group === [ '' ] ) {
 			$group = [];
 		} elseif ( is_string( $group ) ) {
-			$group = array_map( 'trim', explode( ',', $group ) );
+			$group = array_map( trim( ... ), explode( ',', $group ) );
 		}
 		return $group;
 	}

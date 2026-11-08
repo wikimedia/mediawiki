@@ -2132,7 +2132,7 @@ class WikiPage implements Stringable, Page, PageRecord {
 			$existingProtectionIds = $dbw->newSelectQueryBuilder()
 				->select( 'pr_id' )
 				->from( 'page_restrictions' )
-				->where( [ 'pr_page' => $id, 'pr_type' => array_map( 'strval', array_keys( $limit ) ) ] )
+				->where( [ 'pr_page' => $id, 'pr_type' => array_map( strval( ... ), array_keys( $limit ) ) ] )
 				->caller( __METHOD__ )->fetchFieldValues();
 
 			if ( $existingProtectionIds ) {

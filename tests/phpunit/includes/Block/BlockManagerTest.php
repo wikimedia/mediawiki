@@ -1122,7 +1122,7 @@ class BlockManagerTest extends MediaWikiIntegrationTestCase {
 				'by' => $this->getTestSysop()->getUserIdentity()
 			] );
 
-		$list = array_map( 'trim', explode( ',', $xff ) );
+		$list = array_map( trim( ... ), explode( ',', $xff ) );
 		$manager = $this->getBlockManager( [] );
 		$xffblocks = $manager->getBlocksForIPList( $list, true, false );
 		$this->assertCount( $count, $xffblocks, 'Number of blocks for ' . $xff );

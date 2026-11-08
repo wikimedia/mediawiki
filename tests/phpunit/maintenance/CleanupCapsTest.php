@@ -98,9 +98,9 @@ class CleanupCapsTest extends MaintenanceBaseTestCase {
 		$this->overrideConfigValue( MainConfigNames::CapitalLinks, !$capitalLinks );
 
 		if ( $capitalLinks ) {
-			$titlesBeforeCall = array_map( 'lcfirst', $titles );
+			$titlesBeforeCall = array_map( lcfirst( ... ), $titles );
 		} else {
-			$titlesBeforeCall = array_map( 'ucfirst', $titles );
+			$titlesBeforeCall = array_map( ucfirst( ... ), $titles );
 		}
 		foreach ( $titlesBeforeCall as $title ) {
 			$this->getExistingTestPage( Title::newFromText( $title ) );
@@ -147,13 +147,13 @@ class CleanupCapsTest extends MaintenanceBaseTestCase {
 			->assertFieldValue( 3 );
 
 		if ( $capitalLinks ) {
-			$expectedTitles = array_map( 'ucfirst', $titles );
+			$expectedTitles = array_map( ucfirst( ... ), $titles );
 		} else {
 			// When $wgCapitalLinks is false, redirects are left from the old name
 			// as they are still valid titles.
 			$expectedTitles = array_merge(
-				array_map( 'ucfirst', $titles ),
-				array_map( 'lcfirst', $titles )
+				array_map( ucfirst( ... ), $titles ),
+				array_map( lcfirst( ... ), $titles )
 			);
 		}
 		$this->newSelectQueryBuilder()

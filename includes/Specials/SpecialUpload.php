@@ -809,7 +809,7 @@ class SpecialUpload extends SpecialPage {
 		if ( $changeTags === null || $changeTags === '' ) {
 			$changeTags = [];
 		} else {
-			$changeTags = array_filter( array_map( 'trim', explode( ',', $changeTags ) ) );
+			$changeTags = array_filter( array_map( trim( ... ), explode( ',', $changeTags ) ) );
 		}
 		if ( $changeTags ) {
 			$changeTagsStatus = ChangeTags::canAddTagsAccompanyingChange(

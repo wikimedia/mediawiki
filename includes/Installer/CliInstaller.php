@@ -154,7 +154,7 @@ class CliInstaller extends Installer {
 		$this->setVar( '_Skins', $skins );
 
 		if ( $skins ) {
-			$skinNames = array_map( 'strtolower', $skins );
+			$skinNames = array_map( strtolower( ... ), $skins );
 			$this->setVar( 'wgDefaultSkin', $this->getDefaultSkin( $skinNames ) );
 		}
 

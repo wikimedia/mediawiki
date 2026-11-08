@@ -174,7 +174,7 @@ class WebInstallerOptions extends WebInstallerPage {
 		'@phan-var array[] $skins';
 		$skinHtml = $this->getFieldsetStart( 'config-skins' );
 
-		$skinNames = array_map( 'strtolower', array_keys( $skins ) );
+		$skinNames = array_map( strtolower( ... ), array_keys( $skins ) );
 		$chosenSkinName = $this->getVar( 'wgDefaultSkin', $this->parent->getDefaultSkin( $skinNames ) );
 
 		if ( $skins ) {
@@ -455,7 +455,7 @@ class WebInstallerOptions extends WebInstallerPage {
 		$this->parent->setVar( '_Skins', $skins );
 
 		if ( $skins ) {
-			$skinNames = array_map( 'strtolower', $skins );
+			$skinNames = array_map( strtolower( ... ), $skins );
 			$this->parent->setVar( 'wgDefaultSkin', $this->parent->getDefaultSkin( $skinNames ) );
 		}
 
@@ -510,7 +510,7 @@ class WebInstallerOptions extends WebInstallerPage {
 			$retVal = false;
 		}
 		$defaultSkin = $this->getVar( 'wgDefaultSkin' );
-		$skinsToInstallLowercase = array_map( 'strtolower', $skinsToInstall );
+		$skinsToInstallLowercase = array_map( strtolower( ... ), $skinsToInstall );
 		if ( $skinsToInstall && !in_array( $defaultSkin, $skinsToInstallLowercase ) ) {
 			$this->parent->showError( 'config-skins-must-enable-default' );
 			$retVal = false;

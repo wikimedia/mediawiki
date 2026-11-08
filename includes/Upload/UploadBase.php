@@ -1183,7 +1183,7 @@ abstract class UploadBase {
 	 * @return string[]
 	 */
 	public static function checkFileExtensionList( $ext, $list ) {
-		return array_intersect( array_map( 'strtolower', $ext ), $list );
+		return array_intersect( array_map( strtolower( ... ), $ext ), $list );
 	}
 
 	/**

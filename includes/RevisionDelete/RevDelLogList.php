@@ -83,7 +83,7 @@ class RevDelLogList extends RevDelList {
 	 * @return IResultWrapper
 	 */
 	public function doQuery( $db ) {
-		$ids = array_map( 'intval', $this->ids );
+		$ids = array_map( intval( ... ), $this->ids );
 		$queryBuilder = $db->newSelectQueryBuilder()
 			->select( [
 				'log_id',

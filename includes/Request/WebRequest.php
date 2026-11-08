@@ -1158,7 +1158,7 @@ class WebRequest {
 		}
 		$value = $this->headers[$name];
 		if ( $flags & self::GETHEADER_LIST ) {
-			$value = array_map( 'trim', explode( ',', $value ) );
+			$value = array_map( trim( ... ), explode( ',', $value ) );
 		}
 		return $value;
 	}
@@ -1290,7 +1290,7 @@ class WebRequest {
 
 			// XFF is a chain from the alleged client to us, e.g. "X-Forwarded-For: client, proxy1, proxy2"
 			// Loop in reverse to verify the last entry, and then consider the IP before it.
-			$ipchain = array_map( 'trim', explode( ',', $forwardedFor ) );
+			$ipchain = array_map( trim( ... ), explode( ',', $forwardedFor ) );
 			$ipchain = array_reverse( $ipchain );
 			array_unshift( $ipchain, $ip );
 			foreach ( $ipchain as $i => $curIP ) {

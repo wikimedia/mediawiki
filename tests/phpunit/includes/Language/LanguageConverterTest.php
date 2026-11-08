@@ -45,7 +45,7 @@ class LanguageConverterTest extends MediaWikiLangTestCase {
 
 		$this->lang = $this->createNoOpMock( Language::class, [ 'factory', 'getNsText', 'ucfirst' ] );
 		$this->lang->method( 'getNsText' )->with( NS_MEDIAWIKI )->willReturn( 'MediaWiki' );
-		$this->lang->method( 'ucfirst' )->willReturnCallback( 'ucfirst' );
+		$this->lang->method( 'ucfirst' )->willReturnCallback( ucfirst( ... ) );
 		$this->lc = new DummyConverter( $this->lang );
 	}
 

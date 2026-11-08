@@ -143,9 +143,9 @@ class BackfillInterwikiRightsLog extends Maintenance {
 					$legacyParams = $originalEntry->getParameters();
 					if ( count( $legacyParams ) > 1 ) {
 						$oldGroups = $legacyParams[0] === '' ? [] :
-							array_map( 'trim', explode( ',', $legacyParams[0] ) );
+							array_map( trim( ... ), explode( ',', $legacyParams[0] ) );
 						$newGroups = $legacyParams[1] === '' ? [] :
-							array_map( 'trim', explode( ',', $legacyParams[1] ) );
+							array_map( trim( ... ), explode( ',', $legacyParams[1] ) );
 						$params = [
 							'4::oldgroups' => $oldGroups,
 							'5::newgroups' => $newGroups,

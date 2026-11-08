@@ -470,7 +470,7 @@ class RecompressTracked {
 					$this->doPage( intval( $args[0] ) );
 					break;
 				case 'doOrphanList':
-					$this->doOrphanList( array_map( 'intval', $args ) );
+					$this->doOrphanList( array_map( intval( ... ), $args ) );
 					break;
 				case 'quit':
 					return;

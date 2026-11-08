@@ -30,7 +30,7 @@ class ChangeTagsLogList extends ChangeTagsList {
 	 * @return IResultWrapper
 	 */
 	public function doQuery( $db ) {
-		$ids = array_map( 'intval', $this->ids );
+		$ids = array_map( intval( ... ), $this->ids );
 		$queryBuilder = DatabaseLogEntry::newSelectQueryBuilder( $db )
 			->where( [ 'log_id' => $ids ] )
 			->orderBy( [ 'log_timestamp', 'log_id' ], SelectQueryBuilder::SORT_DESC );

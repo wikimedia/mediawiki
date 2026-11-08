@@ -241,7 +241,7 @@ class CleanupBlocks extends Maintenance {
 	 */
 	private function processIdGroups( $rawGroups ) {
 		foreach ( $rawGroups as $blob ) {
-			$group = array_map( 'intval', explode( ',', $blob ) );
+			$group = array_map( intval( ... ), explode( ',', $blob ) );
 			sort( $group );
 			$main = array_shift( $group );
 			$this->mergeGroup( $main, $group );

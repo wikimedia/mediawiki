@@ -58,7 +58,7 @@ class CookieJar {
 	 * @param string $domain Cookie's domain
 	 */
 	public function parseCookieResponseHeader( string $cookie, string $domain ): void {
-		$bit = array_map( 'trim', explode( ';', $cookie ) );
+		$bit = array_map( trim( ... ), explode( ';', $cookie ) );
 
 		$parts = explode( '=', array_shift( $bit ), 2 );
 		$name = $parts[0];

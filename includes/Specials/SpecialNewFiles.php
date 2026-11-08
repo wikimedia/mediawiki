@@ -94,7 +94,7 @@ class SpecialNewFiles extends IncludableSpecialPage {
 		// Avoid unexpected query or query errors to assoc array input, or nested arrays via
 		// URL query params. Keep only string values (T321133).
 		$mediaTypes = $opts->getValue( 'mediatype' );
-		$mediaTypes = array_filter( $mediaTypes, 'is_string' );
+		$mediaTypes = array_filter( $mediaTypes, is_string( ... ) );
 		// Avoid unbounded query size with bogus values. Keep only known types.
 		$mediaTypes = array_values( array_intersect( $this->mediaTypes, $mediaTypes ) );
 		// Optimization: Remove redundant IN() query condition if all types are checked.

@@ -62,7 +62,7 @@ class MultiUsernameFilter implements Filter {
 	 * @return int[]
 	 */
 	public static function splitIds( $str ) {
-		return array_map( 'intval', preg_split( '/\n/', $str, -1, PREG_SPLIT_NO_EMPTY ) );
+		return array_map( intval( ... ), preg_split( '/\n/', $str, -1, PREG_SPLIT_NO_EMPTY ) );
 	}
 
 	/**

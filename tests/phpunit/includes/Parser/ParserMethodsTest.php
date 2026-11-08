@@ -166,7 +166,7 @@ class ParserMethodsTest extends MediaWikiLangTestCase {
 		$parts = $out->getDisplayTitleParts();
 		$this->assertNotNull( $parts );
 		$this->assertSame(
-			$expectedParts, array_map( [ HtmlArmor::class, 'getHtml' ], $parts )
+			$expectedParts, array_map( HtmlArmor::getHtml( ... ), $parts )
 		);
 		// However the split came out, the display title seen by legacy
 		// consumers is still exactly what the user asked for.

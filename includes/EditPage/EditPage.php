@@ -1334,7 +1334,7 @@ class EditPage implements IEditObject {
 		} else {
 			$this->changeTags = array_filter(
 				array_map(
-					'trim',
+					trim( ... ),
 					explode( ',', $changeTags )
 				)
 			);
@@ -1342,7 +1342,7 @@ class EditPage implements IEditObject {
 		if ( $changeTagsAfterPreview !== null && $changeTagsAfterPreview !== '' ) {
 			$this->changeTags = array_merge( $this->changeTags, array_filter(
 				array_map(
-					'trim',
+					trim( ... ),
 					explode( ',', $changeTagsAfterPreview )
 				)
 			) );

@@ -169,7 +169,7 @@ class BlockRestrictionStore {
 
 		// If removing all of the restrictions, then just delete them all.
 		if ( !$restrictions ) {
-			$blockIds = array_map( 'intval', $blockIds );
+			$blockIds = array_map( intval( ... ), $blockIds );
 			return $this->deleteByBlockId( $blockIds );
 		}
 

@@ -356,7 +356,7 @@ class FormOptions implements ArrayAccess {
 
 					if ( $value !== null ) {
 						// Reject nested arrays (T344931)
-						$value = array_filter( $value, 'is_scalar' );
+						$value = array_filter( $value, is_scalar( ... ) );
 					}
 					break;
 				default:

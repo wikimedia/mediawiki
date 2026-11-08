@@ -1371,7 +1371,7 @@ hello
 			->caller( __METHOD__ )
 			->fetchFieldValues();
 
-		$labelIds = array_map( 'intval', $labelIds );
+		$labelIds = array_map( intval( ... ), $labelIds );
 		sort( $labelIds );
 		return $labelIds;
 	}

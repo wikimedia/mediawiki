@@ -339,7 +339,7 @@ class UserMailer {
 				"Email to {to} from {from} with subject {subject} handled by AlternateUserMailer",
 				[
 					'to' => $to[0]->toString(),
-					'allto' => implode( ', ', array_map( 'strval', $to ) ),
+					'allto' => implode( ', ', array_map( strval( ... ), $to ) ),
 					'from' => $from->toString(),
 					'subject' => $subject,
 				]
@@ -351,7 +351,7 @@ class UserMailer {
 		}
 
 		if ( is_array( $smtp ) ) {
-			$recipients = array_map( 'strval', $to );
+			$recipients = array_map( strval( ... ), $to );
 
 			if ( count( $recipients ) !== 1 ) {
 				throw new RuntimeException(
@@ -457,7 +457,7 @@ class UserMailer {
 		LoggerFactory::getInstance( 'usermailer' )->info(
 			"Email sent to {to} from {from} with subject {subject}",
 			self::mailLogContext( $to, $from ) + [
-				'allto' => implode( ', ', array_map( 'strval', $to ) ),
+				'allto' => implode( ', ', array_map( strval( ... ), $to ) ),
 				'subject' => $subject,
 			]
 		);

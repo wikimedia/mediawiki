@@ -148,7 +148,7 @@ class WatchedItemQueryService {
 	) {
 		$queryBuilder->where( [ 'wl_user' => $user->getId() ] );
 		if ( $options['namespaceIds'] ) {
-			$queryBuilder->where( [ 'wl_namespace' => array_map( 'intval', $options['namespaceIds'] ) ] );
+			$queryBuilder->where( [ 'wl_namespace' => array_map( intval( ... ), $options['namespaceIds'] ) ] );
 		}
 		if ( isset( $options['filter'] ) ) {
 			$filter = $options['filter'];

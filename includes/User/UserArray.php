@@ -45,7 +45,7 @@ abstract class UserArray implements Iterator, Countable {
 	 * @return self
 	 */
 	public static function newFromIDs( array $ids ): self {
-		$ids = array_map( 'intval', $ids ); // paranoia
+		$ids = array_map( intval( ... ), $ids ); // paranoia
 		if ( !$ids ) {
 			// Database::select() doesn't like empty arrays
 			return new UserArrayFromResult( new FakeResultWrapper( [] ) );
@@ -69,7 +69,7 @@ abstract class UserArray implements Iterator, Countable {
 	 * @return self
 	 */
 	public static function newFromNames( array $names ): self {
-		$names = array_map( 'strval', $names ); // paranoia
+		$names = array_map( strval( ... ), $names ); // paranoia
 		if ( !$names ) {
 			// Database::select() doesn't like empty arrays
 			return new UserArrayFromResult( new FakeResultWrapper( [] ) );

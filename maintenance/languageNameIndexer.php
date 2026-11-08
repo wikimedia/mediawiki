@@ -190,7 +190,7 @@ class LanguageNameIndexer extends Maintenance {
 		// Sort buckets by index
 		ksort( $buckets );
 		foreach ( $buckets as &$bucketTypes ) {
-			$lengths[] = array_sum( array_map( 'count', $bucketTypes ) );
+			$lengths[] = array_sum( array_map( count( ... ), $bucketTypes ) );
 			// Ensure 'prefix' is before 'infix';
 			krsort( $bucketTypes );
 			// Ensure each bucket has entries sorted

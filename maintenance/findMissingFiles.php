@@ -80,7 +80,7 @@ class FindMissingFiles extends Maintenance {
 			// Find all missing old versions of any of the files in this batch...
 			if ( count( $pathsByName ) ) {
 				$ores = FileSelectQueryBuilder::newForOldFile( $dbr )
-					->where( [ 'oi_name' => array_map( 'strval', array_keys( $pathsByName ) ) ] )
+					->where( [ 'oi_name' => array_map( strval( ... ), array_keys( $pathsByName ) ) ] )
 					->caller( __METHOD__ )->fetchResultSet();
 
 				$checkPaths = [];

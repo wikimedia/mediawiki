@@ -108,7 +108,7 @@ class DeferredUpdatesScope {
 	 * @return int
 	 */
 	public function pendingUpdatesCount() {
-		return array_sum( array_map( 'count', $this->queueByStage ) );
+		return array_sum( array_map( count( ... ), $this->queueByStage ) );
 	}
 
 	/**

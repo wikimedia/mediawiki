@@ -43,7 +43,7 @@ class FauxResponse extends WebResponse {
 			$parts = explode( ' ', $string, 3 );
 			$this->code = intval( $parts[1] );
 		} else {
-			[ $key, $val ] = array_map( 'trim', explode( ":", $string, 2 ) );
+			[ $key, $val ] = array_map( trim( ... ), explode( ":", $string, 2 ) );
 
 			$key = strtoupper( $key );
 

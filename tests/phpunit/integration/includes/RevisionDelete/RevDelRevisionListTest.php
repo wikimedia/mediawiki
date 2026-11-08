@@ -291,13 +291,13 @@ class RevDelRevisionListTest extends MediaWikiIntegrationTestCase {
 			->from( 'log_search' )
 			->where( [ 'ls_field' => 'rev_id', 'ls_log_id' => $actualLogId ] )
 			->caller( __METHOD__ )
-			->assertFieldValues( array_map( 'strval', $expectedRevIds ) );
+			->assertFieldValues( array_map( strval( ... ), $expectedRevIds ) );
 
 		$this->newSelectQueryBuilder()
 			->select( 'ls_value' )
 			->from( 'log_search' )
 			->where( [ 'ls_field' => 'target_author_actor', 'ls_log_id' => $actualLogId ] )
 			->caller( __METHOD__ )
-			->assertFieldValues( array_map( 'strval', $expectedAuthorActors ) );
+			->assertFieldValues( array_map( strval( ... ), $expectedAuthorActors ) );
 	}
 }

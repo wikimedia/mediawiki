@@ -337,7 +337,7 @@ class SpecialEditTags extends UnlistedSpecialPage {
 		if ( $singleRev ) {
 			if ( $existingTags ) {
 				$existingDisplay = $this->getLanguage()->commaList(
-					array_map( 'htmlspecialchars', $existingTags )
+					array_map( htmlspecialchars( ... ), $existingTags )
 				);
 			} else {
 				$existingDisplay = $this->msg( 'tags-edit-existing-tags-none' )->parse();
@@ -364,7 +364,7 @@ class SpecialEditTags extends UnlistedSpecialPage {
 					'type' => 'info',
 					'raw' => true,
 					'default' => $this->getLanguage()->commaList(
-						array_map( 'htmlspecialchars', $softwareTags )
+						array_map( htmlspecialchars( ... ), $softwareTags )
 					),
 					'label-message' => 'tags-edit-existing-tags',
 				];

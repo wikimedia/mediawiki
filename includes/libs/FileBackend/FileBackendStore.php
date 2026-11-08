@@ -1456,7 +1456,7 @@ abstract class FileBackendStore extends FileBackend {
 	final public function clearCache( ?array $paths = null ) {
 		if ( is_array( $paths ) ) {
 			$paths = array_map( FileBackend::normalizeStoragePath( ... ), $paths );
-			$paths = array_filter( $paths, 'strlen' ); // remove nulls
+			$paths = array_filter( $paths ); // remove nulls
 		}
 		if ( $paths === null ) {
 			$this->procFileStatCache->clear();
@@ -1830,7 +1830,7 @@ abstract class FileBackendStore extends FileBackend {
 		}
 
 		// Populate the container process cache for the backend...
-		$this->doPrimeContainerCache( array_filter( $contInfo, 'is_array' ) );
+		$this->doPrimeContainerCache( array_filter( $contInfo, is_array( ... ) ) );
 	}
 
 	/**
@@ -1925,7 +1925,7 @@ abstract class FileBackendStore extends FileBackend {
 		// Note that negatives are not cached by getFileStat()/preloadFileStat().
 		$values = $this->wanStatCache->getMulti( array_keys( $pathNames ) );
 		// Load all of the results into process cache...
-		foreach ( array_filter( $values, 'is_array' ) as $cacheKey => $stat ) {
+		foreach ( array_filter( $values, is_array( ... ) ) as $cacheKey => $stat ) {
 			$path = $pathNames[$cacheKey];
 			// This flag only applies to stat info loaded directly
 			// from a high consistency backend query to the process cache

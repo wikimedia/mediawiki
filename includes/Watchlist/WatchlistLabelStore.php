@@ -99,7 +99,7 @@ class WatchlistLabelStore {
 			->orderBy( 'wll_id' )
 			->caller( __METHOD__ )
 			->fetchFieldValues();
-		$confirmedIds = array_map( 'intval', $confirmedIdValues );
+		$confirmedIds = array_map( intval( ... ), $confirmedIdValues );
 		if ( $confirmedIds !== $ids ) {
 			$dbw->cancelAtomic( __METHOD__ );
 			return false;

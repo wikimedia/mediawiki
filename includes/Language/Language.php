@@ -3821,7 +3821,7 @@ class Language implements Bcp47Code {
 	 */
 	public function truncateForDatabase( $string, $length, $ellipsis = '...', $adjustLength = true ) {
 		return $this->truncateInternal(
-			$string, $length, $ellipsis, $adjustLength, 'strlen', 'mb_strcut'
+			$string, $length, $ellipsis, $adjustLength, strlen( ... ), mb_strcut( ... )
 		);
 	}
 
@@ -3856,7 +3856,7 @@ class Language implements Bcp47Code {
 		// explicit specification of encoding is skipped.
 		// Note: Both multibyte methods are callables invoked in truncateInternal.
 		return $this->truncateInternal(
-			$string, $length, $ellipsis, $adjustLength, 'mb_strlen', 'mb_substr'
+			$string, $length, $ellipsis, $adjustLength, mb_strlen( ... ), mb_substr( ... )
 		);
 	}
 

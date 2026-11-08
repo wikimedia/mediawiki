@@ -144,7 +144,7 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 			# Array input
 			$this->ids = array_keys( $request->getArray( 'ids', [] ) );
 		}
-		// $this->ids = array_map( 'intval', $this->ids );
+		// $this->ids = array_map( intval( ... ), $this->ids );
 		$this->ids = array_unique( array_filter( $this->ids ) );
 
 		$this->typeName = $request->getVal( 'type' ) ?? '';
@@ -319,7 +319,7 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 		$conds['ls_field'] = RevisionDeleter::getRelationType( $this->typeName );
 		// Convert IDs to strings, since ls_value is a text field. This avoids
 		// a fatal error in PostgreSQL: "operator does not exist: text = integer".
-		$conds['ls_value'] = array_map( 'strval', $this->ids );
+		$conds['ls_value'] = array_map( strval( ... ), $this->ids );
 
 		return $conds;
 	}

@@ -67,7 +67,7 @@ class McTest extends Maintenance {
 		}
 
 		// Use longest server string for output alignment
-		$maxSrvLen = max( array_map( 'strlen', $servers ) );
+		$maxSrvLen = max( array_map( strlen( ... ), $servers ) );
 
 		$this->output( "Warming up connections to cache servers..." );
 		/** @var BagOStuff[] $cacheByServer */

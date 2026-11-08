@@ -96,7 +96,7 @@ class RevDelRevisionList extends RevDelList {
 	 * @return IResultWrapper
 	 */
 	public function doQuery( $db ) {
-		$ids = array_map( 'intval', $this->ids );
+		$ids = array_map( intval( ... ), $this->ids );
 		$queryBuilder = $this->revisionStore->newSelectQueryBuilder( $db )
 			->joinComment()
 			->joinUser()

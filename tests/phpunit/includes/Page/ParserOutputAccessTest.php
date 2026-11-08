@@ -260,7 +260,7 @@ class ParserOutputAccessTest extends ParserCacheTestBase {
 
 			$revRenderer->expects( $this->atMost( $maxRenderCalls ) )
 				->method( 'getRenderedRevision' )
-				->willReturnCallback( [ $realRevRenderer, 'getRenderedRevision' ] );
+				->willReturnCallback( $realRevRenderer->getRenderedRevision( ... ) );
 		}
 
 		if ( !$poolCounter && $poolCounterStatus ) {

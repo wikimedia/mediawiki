@@ -1934,7 +1934,7 @@ class WatchedItemStore implements WatchedItemStoreInterface {
 			] )
 			->caller( __METHOD__ )
 			->fetchFieldValues();
-		return array_map( 'intval', $idStrings );
+		return array_map( intval( ... ), $idStrings );
 	}
 
 	/**

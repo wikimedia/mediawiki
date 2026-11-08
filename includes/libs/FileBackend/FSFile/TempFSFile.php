@@ -73,7 +73,7 @@ class TempFSFile extends FSFile {
 	 * @throws RuntimeException if no writable temporary directory can be found
 	 */
 	public static function getUsableTempDirectory() {
-		$tmpDir = array_map( 'getenv', [ 'TMPDIR', 'TMP', 'TEMP' ] );
+		$tmpDir = array_map( getenv( ... ), [ 'TMPDIR', 'TMP', 'TEMP' ] );
 		$tmpDir[] = sys_get_temp_dir();
 		$tmpDir[] = ini_get( 'upload_tmp_dir' );
 		foreach ( $tmpDir as $tmp ) {

@@ -223,7 +223,7 @@ class FileModuleTest extends ResourceLoaderTestCase {
 				'screen.less',
 				'screen-query.css',
 			],
-			array_map( 'basename', $module->getAllStyleFiles() )
+			array_map( basename( ... ), $module->getAllStyleFiles() )
 		);
 	}
 

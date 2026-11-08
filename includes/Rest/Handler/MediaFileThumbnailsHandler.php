@@ -203,7 +203,7 @@ class MediaFileThumbnailsHandler extends SimpleHandler {
 		}
 
 		// Normalize values to ints, remove duplicates and falsy values, and sort
-		$widths = array_values( array_unique( array_filter( array_map( 'intval', $widths ) ) ) );
+		$widths = array_values( array_unique( array_filter( array_map( intval( ... ), $widths ) ) ) );
 		sort( $widths );
 
 		$originalWidth = $file->getWidth();

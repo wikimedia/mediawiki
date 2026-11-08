@@ -89,7 +89,7 @@ class LocalIdLookup extends CentralIdLookup {
 		$queryBuilder
 			->select( [ 'user_id', 'user_name' ] )
 			->from( 'user' )
-			->where( [ 'user_id' => array_map( 'intval', array_keys( $idToName ) ) ] )
+			->where( [ 'user_id' => array_map( intval( ... ), array_keys( $idToName ) ) ] )
 			->recency( $flags );
 
 		if ( $audience && !$audience->isAllowed( 'hideuser' ) ) {
@@ -126,7 +126,7 @@ class LocalIdLookup extends CentralIdLookup {
 		$queryBuilder
 			->select( [ 'user_id', 'user_name' ] )
 			->from( 'user' )
-			->where( [ 'user_name' => array_map( 'strval', array_keys( $nameToId ) ) ] )
+			->where( [ 'user_name' => array_map( strval( ... ), array_keys( $nameToId ) ) ] )
 			->recency( $flags );
 
 		if ( $audience && !$audience->isAllowed( 'hideuser' ) ) {

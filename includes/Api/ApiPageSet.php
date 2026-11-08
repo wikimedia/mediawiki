@@ -929,7 +929,7 @@ class ApiPageSet extends ApiBase {
 			return;
 		}
 
-		$pageids = array_map( 'intval', $pageids ); // paranoia
+		$pageids = array_map( intval( ... ), $pageids ); // paranoia
 		$remaining = array_fill_keys( $pageids, true );
 
 		if ( $filterIds ) {
@@ -1039,7 +1039,7 @@ class ApiPageSet extends ApiBase {
 			return;
 		}
 
-		$revids = array_map( 'intval', $revids ); // paranoia
+		$revids = array_map( intval( ... ), $revids ); // paranoia
 		$db = $this->getDB();
 		$pageids = [];
 		$remaining = array_fill_keys( $revids, true );

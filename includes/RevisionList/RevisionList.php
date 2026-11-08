@@ -26,7 +26,7 @@ class RevisionList extends RevisionListBase {
 			->where( [ 'rev_page' => $this->page->getId() ] )
 			->orderBy( 'rev_id', SelectQueryBuilder::SORT_DESC );
 		if ( $this->ids !== null ) {
-			$queryBuilder->andWhere( [ 'rev_id' => array_map( 'intval', $this->ids ) ] );
+			$queryBuilder->andWhere( [ 'rev_id' => array_map( intval( ... ), $this->ids ) ] );
 		}
 		return $queryBuilder->caller( __METHOD__ )->fetchResultSet();
 	}

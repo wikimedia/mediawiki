@@ -67,7 +67,7 @@ class RevDelArchivedFileList extends RevDelFileList {
 	 * @return IResultWrapper
 	 */
 	public function doQuery( $db ) {
-		$ids = array_map( 'intval', $this->ids );
+		$ids = array_map( intval( ... ), $this->ids );
 
 		$queryBuilder = FileSelectQueryBuilder::newForArchivedFile( $db );
 		$queryBuilder->where( [ 'fa_name' => $this->page->getDBkey(), 'fa_id' => $ids ] )

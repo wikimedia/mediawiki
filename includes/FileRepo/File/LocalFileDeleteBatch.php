@@ -144,7 +144,7 @@ class LocalFileDeleteBatch {
 					->select( [ 'oi_archive_name', 'oi_sha1' ] )
 					->from( 'oldimage' )
 					->where( [
-						'oi_archive_name' => array_map( 'strval', array_keys( $oldRels ) ),
+						'oi_archive_name' => array_map( strval( ... ), array_keys( $oldRels ) ),
 						'oi_name' => $this->file->getName() // performance
 					] )
 					->caller( __METHOD__ )->fetchResultSet();
@@ -157,7 +157,7 @@ class LocalFileDeleteBatch {
 					->from( 'filerevision' )
 					->join( 'file', null, 'fr_file = file_id' )
 					->where( [
-						'fr_archive_name' => array_map( 'strval', array_keys( $oldRels ) ),
+						'fr_archive_name' => array_map( strval( ... ), array_keys( $oldRels ) ),
 						'file_name' => $this->file->getName(), // performance
 						'file_deleted' => 0,
 						'file_latest != fr_id',
@@ -323,7 +323,7 @@ class LocalFileDeleteBatch {
 			$queryBuilder
 				->forUpdate()
 				->where( [ 'oi_name' => $this->file->getName() ] )
-				->andWhere( [ 'oi_archive_name' => array_map( 'strval', array_keys( $oldRels ) ) ] );
+				->andWhere( [ 'oi_archive_name' => array_map( strval( ... ), array_keys( $oldRels ) ) ] );
 			$res = $queryBuilder->caller( __METHOD__ )->fetchResultSet();
 			if ( $res->numRows() ) {
 				$reason = $commentStore->createComment( $dbw, $this->reason );
@@ -379,7 +379,7 @@ class LocalFileDeleteBatch {
 					->deleteFrom( 'oldimage' )
 					->where( [
 						'oi_name' => $this->file->getName(),
-						'oi_archive_name' => array_map( 'strval', array_keys( $oldRels ) )
+						'oi_archive_name' => array_map( strval( ... ), array_keys( $oldRels ) )
 					] )
 					->caller( __METHOD__ )->execute();
 			}
@@ -389,7 +389,7 @@ class LocalFileDeleteBatch {
 					->where( [ 'fr_file' => $this->file->getFileIdFromName() ] );
 				if ( !$deleteCurrent ) {
 					// It's not full page deletion.
-					$delete->andWhere( [ 'fr_archive_name' => array_map( 'strval', array_keys( $oldRels ) ) ] );
+					$delete->andWhere( [ 'fr_archive_name' => array_map( strval( ... ), array_keys( $oldRels ) ) ] );
 				}
 				$delete->caller( __METHOD__ )->execute();
 

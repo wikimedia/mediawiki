@@ -71,7 +71,7 @@ class HTMLMultiSelectField extends HTMLFormField implements HTMLNestedFilterable
 		}
 
 		// Reject nested arrays (T274955)
-		$value = array_filter( $value, 'is_scalar' );
+		$value = array_filter( $value, is_scalar( ... ) );
 
 		if ( isset( $this->mParams['required'] )
 			&& $this->mParams['required'] !== false
@@ -278,7 +278,7 @@ class HTMLMultiSelectField extends HTMLFormField implements HTMLNestedFilterable
 		}
 
 		// Reject nested arrays (T274955)
-		$value = array_filter( $value, 'is_scalar' );
+		$value = array_filter( $value, is_scalar( ... ) );
 
 		$out = [];
 		$optionsSections = $this->getOptionsOOUI();

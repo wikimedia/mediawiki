@@ -224,7 +224,7 @@ class WebResponse {
 		);
 
 		$logDesc = "$func: \"$prefixedName\", \"$value\", \"" .
-			implode( '", "', array_map( 'strval', $setOptions ) ) . '"';
+			implode( '", "', array_map( strval( ... ), $setOptions ) ) . '"';
 		$optionsForDeduplication = [ $func, $prefixedName, $value, $setOptions ];
 
 		if ( $deleting && !isset( self::$setCookies[$key] ) ) { // isset( null ) is false

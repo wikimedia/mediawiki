@@ -188,7 +188,7 @@ class Mcc extends Maintenance {
 			$command = 'fullhelp';
 		}
 		if ( $command === 'fullhelp' ) {
-			$max_cmd_len = max( array_map( 'strlen', array_keys( $commandList ) ) );
+			$max_cmd_len = max( array_map( strlen( ... ), array_keys( $commandList ) ) );
 			foreach ( $commandList as $cmd => $desc ) {
 				$output .= sprintf( "%-{$max_cmd_len}s: %s\n", $cmd, $desc );
 			}

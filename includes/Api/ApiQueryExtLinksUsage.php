@@ -119,7 +119,7 @@ class ApiQueryExtLinksUsage extends ApiQueryGeneratorBase {
 		if ( $params['continue'] !== null ) {
 			$cont = $this->parseContinueParamOrDie( $params['continue'],
 				array_fill( 0, count( $orderBy ), 'string' ) );
-			$conds = array_combine( $orderBy, array_map( 'rawurldecode', $cont ) );
+			$conds = array_combine( $orderBy, array_map( rawurldecode( ... ), $cont ) );
 			$this->addWhere( $db->buildComparison( '>=', $conds ) );
 		}
 
