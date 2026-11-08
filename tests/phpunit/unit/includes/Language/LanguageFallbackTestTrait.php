@@ -31,7 +31,11 @@ trait LanguageFallbackTestTrait {
 		$mockLocCache = $this->createNoOpMock( LocalisationCache::class, [ 'getItem' ] );
 		$mockLocCache->expects( $this->exactly( $expectedGets ) )->method( 'getItem' )
 			->with(
+				// Incorrect type hint in PHPUnit 9, fixed in PHPUnit 10
+				// @phan-suppress-next-line PhanTypeMismatchArgumentProbablyReal
 				$this->anything(),
+				// Incorrect type hint in PHPUnit 9, fixed in PHPUnit 10
+				// @phan-suppress-next-line PhanTypeMismatchArgumentProbablyReal
 				$this->logicalOr(
 					$this->identicalTo( 'fallbackSequence' ),
 					$this->identicalTo( 'originalFallbackSequence' )

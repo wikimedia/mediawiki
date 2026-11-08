@@ -365,6 +365,8 @@ trait FileBackendGroupTestTrait {
 		if ( !$expectedExtensionType && $fsPath ) {
 			$tmpFileFactory->expects( $this->never() )->method( 'newTempFSFile' );
 			$mimeAnalyzer->expects( $this->once() )->method( 'guessMimeType' )
+				// Incorrect type hint in PHPUnit 9, fixed in PHPUnit 10
+				// @phan-suppress-next-line PhanTypeMismatchArgument
 				->with( $fsPath, false )->willReturn( $expectedGuessedMimeType );
 		} elseif ( !$expectedExtensionType && $content !== null && $content !== '' ) {
 			// XXX What should we do about the file creation here? Really we should mock
@@ -373,8 +375,12 @@ trait FileBackendGroupTestTrait {
 			$tmpFile = ( new TempFSFileFactory() )->newTempFSFile( 'mime_', '' );
 
 			$tmpFileFactory->expects( $this->once() )->method( 'newTempFSFile' )
+				// Incorrect type hint in PHPUnit 9, fixed in PHPUnit 10
+				// @phan-suppress-next-line PhanTypeMismatchArgumentProbablyReal
 				->with( 'mime_', '' )->willReturn( $tmpFile );
 			$mimeAnalyzer->expects( $this->once() )->method( 'guessMimeType' )
+				// Incorrect type hint in PHPUnit 9, fixed in PHPUnit 10
+				// @phan-suppress-next-line PhanTypeMismatchArgument
 				->with( $tmpFile->getPath(), false )->willReturn( $expectedGuessedMimeType );
 		} else {
 			$tmpFileFactory->expects( $this->never() )->method( 'newTempFSFile' );

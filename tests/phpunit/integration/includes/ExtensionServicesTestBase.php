@@ -86,6 +86,8 @@ abstract class ExtensionServicesTestBase extends MediaWikiIntegrationTestCase {
 		$services = $this->createMock( ContainerInterface::class );
 		$services->expects( $this->once() )
 			->method( 'get' )
+			// Incorrect type hint in PHPUnit 9, fixed in PHPUnit 10
+			// @phan-suppress-next-line PhanTypeMismatchArgumentProbablyReal
 			->with( $serviceName )
 			->willReturn( $expectedService );
 

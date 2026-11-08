@@ -494,6 +494,8 @@ trait DummyServicesTrait {
 		$contentLang = $this->createMock( Language::class );
 		$contentLang->method( 'ucfirst' )
 			->willReturnCallback( 'ucfirst' );
+		// Incorrect type hint in PHPUnit 9, fixed in PHPUnit 10
+		// @phan-suppress-next-line PhanTypeMismatchArgument
 		$contentLang->method( 'getNsText' )->with( NS_USER )
 			->willReturn( 'User' );
 

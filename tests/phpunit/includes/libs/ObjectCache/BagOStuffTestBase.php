@@ -477,6 +477,8 @@ abstract class BagOStuffTestBase extends MediaWikiIntegrationTestCase {
 		$logger = $this->createMock( Psr\Log\NullLogger::class );
 		$logger->expects( $this->once() )
 			->method( 'warning' )
+			// Incorrect type hint in PHPUnit 9, fixed in PHPUnit 10
+			// @phan-suppress-next-line PhanTypeMismatchArgumentProbablyReal
 			->with( 'Duplicate get(): "{key}" fetched {count} times', [
 				'key' => 'foo',
 				'count' => 2,
