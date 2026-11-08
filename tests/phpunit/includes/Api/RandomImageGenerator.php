@@ -11,9 +11,9 @@ namespace MediaWiki\Tests\Api;
  * @author Neil Kandalgaonkar <neilk@wikimedia.org>
  */
 
-use Exception;
 use Imagick;
 use ImagickPixel;
+use LogicException;
 use MediaWiki\Shell\Shell;
 use SimpleXMLElement;
 use UnexpectedValueException;
@@ -65,8 +65,6 @@ class RandomImageGenerator {
 	 * Figure out how we write images. This is a factor of both format and the local system
 	 *
 	 * @param string $format (a typical extension like 'svg', 'jpg', etc.)
-	 *
-	 * @throws Exception
 	 */
 	private function getImageWriteMethod( string $format ): callable {
 		global $wgUseImageMagick, $wgImageMagickConvertCommand;
@@ -84,7 +82,7 @@ class RandomImageGenerator {
 				return $this->writeImageWithCommandLine( ... );
 			}
 		}
-		throw new Exception( "RandomImageGenerator: could not find a suitable "
+		throw new LogicException( "RandomImageGenerator: could not find a suitable "
 			. "method to write images in '$format' format" );
 	}
 

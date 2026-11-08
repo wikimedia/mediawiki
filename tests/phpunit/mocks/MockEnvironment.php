@@ -2,7 +2,6 @@
 
 namespace MediaWiki\Tests;
 
-use Exception;
 use MediaWiki\Config\HashConfig;
 use MediaWiki\Config\MultiConfig;
 use MediaWiki\Context\RequestContext;
@@ -10,6 +9,7 @@ use MediaWiki\EntryPointEnvironment;
 use MediaWiki\Request\FauxRequest;
 use MediaWiki\Request\FauxResponse;
 use PHPUnit\Framework\Assert;
+use RuntimeException;
 
 /**
  * @internal For testing MediaWikiEntryPoint subclasses.
@@ -111,8 +111,11 @@ class MockEnvironment extends EntryPointEnvironment {
 		return $this->serverInfo[$key] ?? $default;
 	}
 
+	/**
+	 * Always throws to simulate exit
+	 */
 	public function exit( int $code = 0 ): never {
-		throw new Exception( $code );
+		throw new RuntimeException( (string)$code );
 	}
 
 	public function disableModDeflate(): void {

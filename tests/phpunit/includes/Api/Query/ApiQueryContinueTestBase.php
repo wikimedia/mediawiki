@@ -9,8 +9,6 @@
 
 namespace MediaWiki\Tests\Api\Query;
 
-use Exception;
-
 abstract class ApiQueryContinueTestBase extends ApiQueryTestBase {
 
 	/**
@@ -38,7 +36,6 @@ abstract class ApiQueryContinueTestBase extends ApiQueryTestBase {
 	 * @param string $id Unit test id
 	 * @param bool $useContinue True to use smart continue
 	 * @return array Merged results data array
-	 * @throws Exception
 	 */
 	protected function query( $params, $expectedCount, $id, $useContinue = true ) {
 		if ( isset( $params['action'] ) ) {
@@ -64,11 +61,9 @@ abstract class ApiQueryContinueTestBase extends ApiQueryTestBase {
 			if ( $this->mVerbose ) {
 				print "$id (#$count): $reqStr\n";
 			}
-			try {
-				$data = $this->doApiRequest( $request );
-			} catch ( Exception $e ) {
-				throw new Exception( "$id on $count", 0, $e );
-			}
+
+			$data = $this->doApiRequest( $request );
+
 			$data = $data[0];
 			if ( isset( $data['warnings'] ) ) {
 				$warnings = json_encode( $data['warnings'] );

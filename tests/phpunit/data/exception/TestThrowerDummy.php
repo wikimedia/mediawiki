@@ -14,7 +14,7 @@ class TestThrowerDummy {
 	}
 
 	private function getQuux(): never {
-		throw new Exception( 'Quux failed' );
+		throw new RuntimeException( 'Quux failed' );
 	}
 
 	public static function getFile(): string {
