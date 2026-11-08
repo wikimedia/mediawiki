@@ -674,8 +674,11 @@ class SpecialVersionTest extends SpecialPageTestBase {
 		if ( $licenseFileExists ) {
 			$this->assertStringNotContainsString( '(version-license-not-found)', $html );
 			$this->assertStringContainsString( 'Test license 12345', $html );
-		} else {
+		} elseif ( $componentName === 'Test' ) {
 			$this->assertStringContainsString( '(version-license-not-found)', $html );
+		} else {
+			$this->assertStringNotContainsString( '(version-license-not-found)', $html );
+			$this->assertStringContainsString( "(version-ext-not-found: $componentName)", $html );
 		}
 	}
 
@@ -738,8 +741,11 @@ class SpecialVersionTest extends SpecialPageTestBase {
 			} else {
 				$this->assertStringContainsString( "Author1\nAuthor2\nAuthor3", $html );
 			}
-		} else {
+		} elseif ( $componentName === 'Test' ) {
 			$this->assertStringContainsString( '(version-credits-not-found)', $html );
+		} else {
+			$this->assertStringNotContainsString( '(version-credits-not-found)', $html );
+			$this->assertStringContainsString( "(version-ext-not-found: $componentName)", $html );
 		}
 	}
 

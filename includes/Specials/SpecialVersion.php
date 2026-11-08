@@ -105,6 +105,9 @@ class SpecialVersion extends SpecialPage {
 			$extName = 'MediaWiki';
 		}
 
+		// The subpage names software that isn't installed
+		$extNotFound = $extNode === null && $extName !== 'MediaWiki';
+
 		// Now figure out what to do
 		switch ( strtolower( $parts[0] ) ) {
 			case 'credits':
@@ -137,7 +140,11 @@ class SpecialVersion extends SpecialPage {
 				}
 
 				$out->setPageTitleMsg( $this->msg( 'version-credits-title' )->plaintextParams( $extName ) );
-				$out->addWikiTextAsInterface( $wikiText );
+				if ( $extNotFound ) {
+					$out->addHTML( $this->msg( 'version-ext-not-found' )->plaintextParams( $extName )->parseAsBlock() );
+				} else {
+					$out->addWikiTextAsInterface( $wikiText );
+				}
 				break;
 
 			case 'license':
@@ -168,7 +175,9 @@ class SpecialVersion extends SpecialPage {
 						}
 					}
 				}
-				if ( !$licenseFound ) {
+				if ( $extNotFound ) {
+					$out->addHTML( $this->msg( 'version-ext-not-found' )->plaintextParams( $extName )->parseAsBlock() );
+				} elseif ( !$licenseFound ) {
 					$out->addWikiTextAsInterface( '{{int:version-license-not-found}}' );
 				}
 				break;

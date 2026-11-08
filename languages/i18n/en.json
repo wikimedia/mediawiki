@@ -3180,6 +3180,7 @@
 	"version-license-not-found": "No detailed license information was found for this extension.",
 	"version-credits-title": "Credits for $1",
 	"version-credits-not-found": "No detailed credits information was found for this extension.",
+	"version-ext-not-found": "No installed extension or skin named \"$1\" was found. See [[Special:Version]] for the list of installed software.",
 	"version-credits-contributors": "Contributors",
 	"version-credits-translators": "Translators",
 	"version-credits-translators-link": "Translators on translatewiki.net and others",
