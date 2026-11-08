@@ -20,19 +20,6 @@ use RuntimeException;
  */
 abstract class DumpTestCase extends MediaWikiLangTestCase {
 
-	/**
-	 * exception to be rethrown once in sound PHPUnit surrounding
-	 *
-	 * As the current MediaWikiIntegrationTestCase::run is not robust enough to recover
-	 * from thrown exceptions directly, we cannot throw frow within
-	 * self::addDBData, although it would be appropriate. Hence, we catch the
-	 * exception and store it until we are in setUp and may finally rethrow
-	 * the exception without crashing the test suite.
-	 *
-	 * @var \Exception|null
-	 */
-	protected $exceptionFromAddDBData = null;
-
 	/** @var bool|null Whether the 'gzip' utility is available */
 	protected static $hasGzip = null;
 
@@ -191,21 +178,6 @@ abstract class DumpTestCase extends MediaWikiLangTestCase {
 				return $file;
 			}
 		);
-	}
-
-	/**
-	 * Default set up function.
-	 *
-	 * Reports errors from addDBData to PHPUnit
-	 */
-	protected function setUp(): void {
-		parent::setUp();
-
-		// Check if any Exception is stored for rethrowing from addDBData
-		// @see self::exceptionFromAddDBData
-		if ( $this->exceptionFromAddDBData !== null ) {
-			throw $this->exceptionFromAddDBData;
-		}
 	}
 
 	/**

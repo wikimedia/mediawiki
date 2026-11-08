@@ -8,8 +8,6 @@
 
 namespace MediaWiki\Tests\Api\Query;
 
-use Exception;
-
 /**
  * @group API
  * @group Database
@@ -17,8 +15,6 @@ use Exception;
  * @covers \MediaWiki\Api\ApiQuery
  */
 class ApiQueryContinue2Test extends ApiQueryContinueTestBase {
-	/** @var Exception|null */
-	protected $exceptionFromAddDBData;
 
 	/**
 	 * Create a set of pages. These must not change, otherwise the tests might give wrong results.
@@ -26,16 +22,12 @@ class ApiQueryContinue2Test extends ApiQueryContinueTestBase {
 	 * @see MediaWikiIntegrationTestCase::addDBDataOnce()
 	 */
 	public function addDBDataOnce() {
-		try {
-			$this->editPage( 'AQCT73462-A', '**AQCT73462-A**  [[AQCT73462-B]] [[AQCT73462-C]]' );
-			$this->editPage( 'AQCT73462-B', '[[AQCT73462-A]]  **AQCT73462-B** [[AQCT73462-C]]' );
-			$this->editPage( 'AQCT73462-C', '[[AQCT73462-A]]  [[AQCT73462-B]] **AQCT73462-C**' );
-			$this->editPage( 'AQCT73462-A', '**AQCT73462-A**  [[AQCT73462-B]] [[AQCT73462-C]]' );
-			$this->editPage( 'AQCT73462-B', '[[AQCT73462-A]]  **AQCT73462-B** [[AQCT73462-C]]' );
-			$this->editPage( 'AQCT73462-C', '[[AQCT73462-A]]  [[AQCT73462-B]] **AQCT73462-C**' );
-		} catch ( Exception $e ) {
-			$this->exceptionFromAddDBData = $e;
-		}
+		$this->editPage( 'AQCT73462-A', '**AQCT73462-A**  [[AQCT73462-B]] [[AQCT73462-C]]' );
+		$this->editPage( 'AQCT73462-B', '[[AQCT73462-A]]  **AQCT73462-B** [[AQCT73462-C]]' );
+		$this->editPage( 'AQCT73462-C', '[[AQCT73462-A]]  [[AQCT73462-B]] **AQCT73462-C**' );
+		$this->editPage( 'AQCT73462-A', '**AQCT73462-A**  [[AQCT73462-B]] [[AQCT73462-C]]' );
+		$this->editPage( 'AQCT73462-B', '[[AQCT73462-A]]  **AQCT73462-B** [[AQCT73462-C]]' );
+		$this->editPage( 'AQCT73462-C', '[[AQCT73462-A]]  [[AQCT73462-B]] **AQCT73462-C**' );
 	}
 
 	/**

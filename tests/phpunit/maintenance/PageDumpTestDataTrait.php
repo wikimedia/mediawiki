@@ -2,7 +2,6 @@
 
 namespace MediaWiki\Tests\Maintenance;
 
-use Exception;
 use MediaWiki\Content\WikitextContent;
 use MediaWiki\Context\DerivativeContext;
 use MediaWiki\Context\RequestContext;
@@ -65,93 +64,86 @@ trait PageDumpTestDataTrait {
 		// be sure, titles created here using english namespace names
 		$this->setContentLang( 'en' );
 
-		try {
-			$this->namespace = $this->getDefaultWikitextNS();
-			$this->talk_namespace = NS_TALK;
+		$this->namespace = $this->getDefaultWikitextNS();
+		$this->talk_namespace = NS_TALK;
 
-			if ( $this->namespace === $this->talk_namespace ) {
-				// @todo work around this.
-				throw new RuntimeException( "The default wikitext namespace is the talk namespace. "
-					. " We can't currently deal with that." );
-			}
-
-			$wikiPageFactory = $this->getServiceContainer()->getWikiPageFactory();
-			$this->pageTitle1 = Title::makeTitle( $this->namespace, 'BackupDumperTestP1' );
-			$page = $wikiPageFactory->newFromTitle( $this->pageTitle1 );
-			$this->rev1_1 = $this->addMultiSlotRevision(
-				$page,
-				[
-					SlotRecord::MAIN => new WikitextContent( 'BackupDumperTestP1Text1' ),
-					'aux' => new WikitextContent( 'BackupDumperTestP1Text1/aux' ),
-				],
-				"BackupDumperTestP1Summary1"
-			);
-			$this->pageId1 = $page->getId();
-
-			$this->pageTitle2 = Title::makeTitle( $this->namespace, 'BackupDumperTestP2' );
-			$page = $wikiPageFactory->newFromTitle( $this->pageTitle2 );
-			[ , , $this->rev2_1 ] = $this->addRevision( $page,
-				"BackupDumperTestP2Text1", "BackupDumperTestP2Summary1" );
-			[ , , $this->rev2_2 ] = $this->addRevision( $page,
-				"BackupDumperTestP2Text2", "BackupDumperTestP2Summary2" );
-			[ , , $this->rev2_3 ] = $this->addRevision( $page,
-				"BackupDumperTestP2Text3", "BackupDumperTestP2Summary3" );
-			[ , , $this->rev2_4 ] = $this->addRevision( $page,
-				"BackupDumperTestP2Text4 some additional Text  ",
-				"BackupDumperTestP2Summary4 extra " );
-			$this->pageId2 = $page->getId();
-
-			$context = new DerivativeContext( RequestContext::getMain() );
-			$context->setUser( $sysopUser );
-
-			$revDel = RevisionDeleter::createList(
-				'revision',
-				$context,
-				$this->pageTitle2,
-				[ $this->rev2_2->getId() ]
-			);
-			$revDel->setVisibility( [
-				'value' => [ RevisionRecord::DELETED_TEXT => 1 ],
-				'comment' => 'testing!'
-			] );
-
-			// re-load from database, with correct deletion status
-			$this->rev2_2 = $this->getServiceContainer()->getRevisionLookup()->getRevisionById(
-				$this->rev2_2->getId()
-			);
-
-			$this->pageTitle3 = Title::makeTitle( $this->namespace, 'BackupDumperTestP3' );
-			$page = $wikiPageFactory->newFromTitle( $this->pageTitle3 );
-			[ , , $this->rev3_1 ] = $this->addRevision( $page,
-				"BackupDumperTestP3Text1", "BackupDumperTestP2Summary1" );
-			[ , , $this->rev3_2 ] = $this->addRevision( $page,
-				"BackupDumperTestP3Text2", "BackupDumperTestP2Summary2" );
-			$this->pageId3 = $page->getId();
-			$this->getServiceContainer()->getDeletePageFactory()
-				->newDeletePage( $page, $context->getAuthority() )
-				->deleteUnsafe( "Testing" );
-
-			$this->pageTitle4 = Title::makeTitle( $this->talk_namespace, 'BackupDumperTestP1' );
-			$page = $wikiPageFactory->newFromTitle( $this->pageTitle4 );
-			[ , , $this->rev4_1 ] = $this->addRevision( $page,
-				"Talk about BackupDumperTestP1 Text1",
-				"Talk BackupDumperTestP1 Summary1" );
-			$this->pageId4 = $page->getId();
-
-			$this->pageTitle5 = Title::makeTitle( NS_MAIN, 'BackupDumperTestP5' );
-			$page = $wikiPageFactory->newFromTitle( $this->pageTitle5 );
-			[ , , $this->rev5_1 ] = $this->addRevision( $page,
-				"BackupDumperTestP5 Text1",
-				"BackupDumperTestP5 Summary1" );
-			$this->pageId5 = $page->getId();
-
-			$this->rev5_1 = $this->corruptRevisionData( $this->getDb(), $this->rev5_1 );
-		} catch ( Exception $e ) {
-			// We'd love to pass $e directly. However, ... see
-			// documentation of exceptionFromAddDBData in
-			// DumpTestCase
-			$this->exceptionFromAddDBData = $e;
+		if ( $this->namespace === $this->talk_namespace ) {
+			// @todo work around this.
+			throw new RuntimeException( "The default wikitext namespace is the talk namespace. "
+				. " We can't currently deal with that." );
 		}
+
+		$wikiPageFactory = $this->getServiceContainer()->getWikiPageFactory();
+		$this->pageTitle1 = Title::makeTitle( $this->namespace, 'BackupDumperTestP1' );
+		$page = $wikiPageFactory->newFromTitle( $this->pageTitle1 );
+		$this->rev1_1 = $this->addMultiSlotRevision(
+			$page,
+			[
+				SlotRecord::MAIN => new WikitextContent( 'BackupDumperTestP1Text1' ),
+				'aux' => new WikitextContent( 'BackupDumperTestP1Text1/aux' ),
+			],
+			"BackupDumperTestP1Summary1"
+		);
+		$this->pageId1 = $page->getId();
+
+		$this->pageTitle2 = Title::makeTitle( $this->namespace, 'BackupDumperTestP2' );
+		$page = $wikiPageFactory->newFromTitle( $this->pageTitle2 );
+		[ , , $this->rev2_1 ] = $this->addRevision( $page,
+			"BackupDumperTestP2Text1", "BackupDumperTestP2Summary1" );
+		[ , , $this->rev2_2 ] = $this->addRevision( $page,
+			"BackupDumperTestP2Text2", "BackupDumperTestP2Summary2" );
+		[ , , $this->rev2_3 ] = $this->addRevision( $page,
+			"BackupDumperTestP2Text3", "BackupDumperTestP2Summary3" );
+		[ , , $this->rev2_4 ] = $this->addRevision( $page,
+			"BackupDumperTestP2Text4 some additional Text  ",
+			"BackupDumperTestP2Summary4 extra " );
+		$this->pageId2 = $page->getId();
+
+		$context = new DerivativeContext( RequestContext::getMain() );
+		$context->setUser( $sysopUser );
+
+		$revDel = RevisionDeleter::createList(
+			'revision',
+			$context,
+			$this->pageTitle2,
+			[ $this->rev2_2->getId() ]
+		);
+		$revDel->setVisibility( [
+			'value' => [ RevisionRecord::DELETED_TEXT => 1 ],
+			'comment' => 'testing!'
+		] );
+
+		// re-load from database, with correct deletion status
+		$this->rev2_2 = $this->getServiceContainer()->getRevisionLookup()->getRevisionById(
+			$this->rev2_2->getId()
+		);
+
+		$this->pageTitle3 = Title::makeTitle( $this->namespace, 'BackupDumperTestP3' );
+		$page = $wikiPageFactory->newFromTitle( $this->pageTitle3 );
+		[ , , $this->rev3_1 ] = $this->addRevision( $page,
+			"BackupDumperTestP3Text1", "BackupDumperTestP2Summary1" );
+		[ , , $this->rev3_2 ] = $this->addRevision( $page,
+			"BackupDumperTestP3Text2", "BackupDumperTestP2Summary2" );
+		$this->pageId3 = $page->getId();
+		$this->getServiceContainer()->getDeletePageFactory()
+			->newDeletePage( $page, $context->getAuthority() )
+			->deleteUnsafe( "Testing" );
+
+		$this->pageTitle4 = Title::makeTitle( $this->talk_namespace, 'BackupDumperTestP1' );
+		$page = $wikiPageFactory->newFromTitle( $this->pageTitle4 );
+		[ , , $this->rev4_1 ] = $this->addRevision( $page,
+			"Talk about BackupDumperTestP1 Text1",
+			"Talk BackupDumperTestP1 Summary1" );
+		$this->pageId4 = $page->getId();
+
+		$this->pageTitle5 = Title::makeTitle( NS_MAIN, 'BackupDumperTestP5' );
+		$page = $wikiPageFactory->newFromTitle( $this->pageTitle5 );
+		[ , , $this->rev5_1 ] = $this->addRevision( $page,
+			"BackupDumperTestP5 Text1",
+			"BackupDumperTestP5 Summary1" );
+		$this->pageId5 = $page->getId();
+
+		$this->rev5_1 = $this->corruptRevisionData( $this->getDb(), $this->rev5_1 );
 
 		// Since we will restrict dumping by page ranges (to allow
 		// working tests, even if the db gets prepopulated by a base

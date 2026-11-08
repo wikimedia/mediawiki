@@ -3,7 +3,6 @@
 namespace MediaWiki\Tests\Maintenance;
 
 use DumpBackup;
-use Exception;
 use MediaWiki\Export\WikiExporter;
 use MediaWiki\Logging\ManualLogEntry;
 use MediaWiki\MediaWikiServices;
@@ -63,41 +62,34 @@ class BackupDumperLoggerTest extends DumpTestCase {
 	}
 
 	public function addDBData() {
-		try {
-			$user1 = User::newFromName( 'BackupDumperLogUserA' );
+		$user1 = User::newFromName( 'BackupDumperLogUserA' );
+		$this->userId1 = $user1->getId();
+		if ( $this->userId1 === 0 ) {
+			$user1->addToDatabase();
 			$this->userId1 = $user1->getId();
-			if ( $this->userId1 === 0 ) {
-				$user1->addToDatabase();
-				$this->userId1 = $user1->getId();
-			}
-			$this->assertGreaterThan( 0, $this->userId1 );
-
-			$user2 = User::newFromName( 'BackupDumperLogUserB' );
-			$this->userId2 = $user2->getId();
-			if ( $this->userId2 === 0 ) {
-				$user2->addToDatabase();
-				$this->userId2 = $user2->getId();
-			}
-			$this->assertGreaterThan( 0, $this->userId2 );
-
-			$this->logId1 = $this->addLogEntry( 'type', 'subtype',
-				$user1, NS_MAIN, "PageA" );
-			$this->assertGreaterThan( 0, $this->logId1 );
-
-			$this->logId2 = $this->addLogEntry( 'suppression', 'delete',
-				$user2, NS_TALK, "PageB", "SomeComment" );
-			$this->assertGreaterThan( 0, $this->logId2 );
-
-			$this->logId3 = $this->addLogEntry( 'move', 'delete',
-				$user2, NS_MAIN, "PageA", "SomeOtherComment",
-				[ 'key1' => 1, 3 => 'value3' ] );
-			$this->assertGreaterThan( 0, $this->logId3 );
-		} catch ( Exception $e ) {
-			// We'd love to pass $e directly. However, ... see
-			// documentation of exceptionFromAddDBData in
-			// DumpTestCase
-			$this->exceptionFromAddDBData = $e;
 		}
+		$this->assertGreaterThan( 0, $this->userId1 );
+
+		$user2 = User::newFromName( 'BackupDumperLogUserB' );
+		$this->userId2 = $user2->getId();
+		if ( $this->userId2 === 0 ) {
+			$user2->addToDatabase();
+			$this->userId2 = $user2->getId();
+		}
+		$this->assertGreaterThan( 0, $this->userId2 );
+
+		$this->logId1 = $this->addLogEntry( 'type', 'subtype',
+			$user1, NS_MAIN, "PageA" );
+		$this->assertGreaterThan( 0, $this->logId1 );
+
+		$this->logId2 = $this->addLogEntry( 'suppression', 'delete',
+			$user2, NS_TALK, "PageB", "SomeComment" );
+		$this->assertGreaterThan( 0, $this->logId2 );
+
+		$this->logId3 = $this->addLogEntry( 'move', 'delete',
+			$user2, NS_MAIN, "PageA", "SomeOtherComment",
+			[ 'key1' => 1, 3 => 'value3' ] );
+		$this->assertGreaterThan( 0, $this->logId3 );
 	}
 
 	public function testPlain() {

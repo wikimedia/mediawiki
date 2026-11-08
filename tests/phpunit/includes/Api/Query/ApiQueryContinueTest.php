@@ -8,8 +8,6 @@
 
 namespace MediaWiki\Tests\Api\Query;
 
-use Exception;
-
 /**
  * These tests validate the new continue functionality of the api query module by
  * doing multiple requests with varying parameters, merging the results, and checking
@@ -21,8 +19,6 @@ use Exception;
  * @covers \MediaWiki\Api\ApiQuery
  */
 class ApiQueryContinueTest extends ApiQueryContinueTestBase {
-	/** @var Exception|null */
-	protected $exceptionFromAddDBData;
 
 	/**
 	 * Create a set of pages. These must not change, otherwise the tests might give wrong results.
@@ -30,21 +26,17 @@ class ApiQueryContinueTest extends ApiQueryContinueTestBase {
 	 * @see MediaWikiIntegrationTestCase::addDBDataOnce()
 	 */
 	public function addDBDataOnce() {
-		try {
-			$this->editPage( 'Template:AQCT-T1', '**Template:AQCT-T1**' );
-			$this->editPage( 'Template:AQCT-T2', '**Template:AQCT-T2**' );
-			$this->editPage( 'Template:AQCT-T3', '**Template:AQCT-T3**' );
-			$this->editPage( 'Template:AQCT-T4', '**Template:AQCT-T4**' );
-			$this->editPage( 'Template:AQCT-T5', '**Template:AQCT-T5**' );
+		$this->editPage( 'Template:AQCT-T1', '**Template:AQCT-T1**' );
+		$this->editPage( 'Template:AQCT-T2', '**Template:AQCT-T2**' );
+		$this->editPage( 'Template:AQCT-T3', '**Template:AQCT-T3**' );
+		$this->editPage( 'Template:AQCT-T4', '**Template:AQCT-T4**' );
+		$this->editPage( 'Template:AQCT-T5', '**Template:AQCT-T5**' );
 
-			$this->editPage( 'AQCT-1', '**AQCT-1** {{AQCT-T2}} {{AQCT-T3}} {{AQCT-T4}} {{AQCT-T5}}' );
-			$this->editPage( 'AQCT-2', '[[AQCT-1]] **AQCT-2** {{AQCT-T3}} {{AQCT-T4}} {{AQCT-T5}}' );
-			$this->editPage( 'AQCT-3', '[[AQCT-1]] [[AQCT-2]] **AQCT-3** {{AQCT-T4}} {{AQCT-T5}}' );
-			$this->editPage( 'AQCT-4', '[[AQCT-1]] [[AQCT-2]] [[AQCT-3]] **AQCT-4** {{AQCT-T5}}' );
-			$this->editPage( 'AQCT-5', '[[AQCT-1]] [[AQCT-2]] [[AQCT-3]] [[AQCT-4]] **AQCT-5**' );
-		} catch ( Exception $e ) {
-			$this->exceptionFromAddDBData = $e;
-		}
+		$this->editPage( 'AQCT-1', '**AQCT-1** {{AQCT-T2}} {{AQCT-T3}} {{AQCT-T4}} {{AQCT-T5}}' );
+		$this->editPage( 'AQCT-2', '[[AQCT-1]] **AQCT-2** {{AQCT-T3}} {{AQCT-T4}} {{AQCT-T5}}' );
+		$this->editPage( 'AQCT-3', '[[AQCT-1]] [[AQCT-2]] **AQCT-3** {{AQCT-T4}} {{AQCT-T5}}' );
+		$this->editPage( 'AQCT-4', '[[AQCT-1]] [[AQCT-2]] [[AQCT-3]] **AQCT-4** {{AQCT-T5}}' );
+		$this->editPage( 'AQCT-5', '[[AQCT-1]] [[AQCT-2]] [[AQCT-3]] [[AQCT-4]] **AQCT-5**' );
 	}
 
 	/**

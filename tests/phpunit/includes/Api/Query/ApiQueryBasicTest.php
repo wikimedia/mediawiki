@@ -8,7 +8,6 @@
 
 namespace MediaWiki\Tests\Api\Query;
 
-use Exception;
 use MediaWiki\Api\ApiQueryBase;
 use MediaWiki\Api\ApiUsageException;
 use MediaWiki\Language\RawMessage;
@@ -23,8 +22,6 @@ use MediaWiki\Title\Title;
  * @covers \MediaWiki\Api\ApiQuery
  */
 class ApiQueryBasicTest extends ApiQueryTestBase {
-	/** @var Exception|null */
-	protected $exceptionFromAddDBData;
 
 	/**
 	 * Create a set of pages. These must not change, otherwise the tests might give wrong results.
@@ -32,25 +29,21 @@ class ApiQueryBasicTest extends ApiQueryTestBase {
 	 * @see MediaWikiIntegrationTestCase::addDBDataOnce()
 	 */
 	public function addDBDataOnce() {
-		try {
-			if ( Title::makeTitle( NS_MAIN, 'AQBT-All' )->exists() ) {
-				return;
-			}
-
-			// Ordering is important, as it will be returned in the same order as stored in the index
-			$this->editPage( 'AQBT-All', '[[Category:AQBT-Cat]] [[AQBT-Links]] {{AQBT-T}}' );
-			$this->editPage( 'AQBT-Categories', '[[Category:AQBT-Cat]]' );
-			$this->editPage( 'AQBT-Links', '[[AQBT-All]] [[AQBT-Categories]] [[AQBT-Templates]]' );
-			$this->editPage( 'AQBT-Templates', '{{AQBT-T}}' );
-			$this->editPage( 'AQBT-T', 'Content', '', NS_TEMPLATE );
-
-			// Refresh due to the bug with listing transclusions as links if they don't exist
-			$this->editPage( 'AQBT-All', '[[Category:AQBT-Cat]] [[AQBT-Links]] {{AQBT-T}}' );
-			$this->editPage( 'AQBT-Templates', '{{AQBT-T}}' );
-			$this->runJobs();
-		} catch ( Exception $e ) {
-			$this->exceptionFromAddDBData = $e;
+		if ( Title::makeTitle( NS_MAIN, 'AQBT-All' )->exists() ) {
+			return;
 		}
+
+		// Ordering is important, as it will be returned in the same order as stored in the index
+		$this->editPage( 'AQBT-All', '[[Category:AQBT-Cat]] [[AQBT-Links]] {{AQBT-T}}' );
+		$this->editPage( 'AQBT-Categories', '[[Category:AQBT-Cat]]' );
+		$this->editPage( 'AQBT-Links', '[[AQBT-All]] [[AQBT-Categories]] [[AQBT-Templates]]' );
+		$this->editPage( 'AQBT-Templates', '{{AQBT-T}}' );
+		$this->editPage( 'AQBT-T', 'Content', '', NS_TEMPLATE );
+
+		// Refresh due to the bug with listing transclusions as links if they don't exist
+		$this->editPage( 'AQBT-All', '[[Category:AQBT-Cat]] [[AQBT-Links]] {{AQBT-T}}' );
+		$this->editPage( 'AQBT-Templates', '{{AQBT-T}}' );
+		$this->runJobs();
 	}
 
 	private const LINKS = [

@@ -2,7 +2,6 @@
 
 namespace MediaWiki\Tests\Maintenance;
 
-use Exception;
 use FetchText;
 use MediaWiki\Content\ContentHandler;
 use MediaWiki\Page\WikiPage;
@@ -33,15 +32,6 @@ class FetchTextTest extends MediaWikiIntegrationTestCase {
 	protected static $textId4;
 	/** @var int */
 	protected static $textId5;
-
-	/**
-	 * @var Exception|null As the current MediaWikiIntegrationTestCase::run is not
-	 * robust enough to recover from thrown exceptions directly, we cannot
-	 * throw frow within addDBData, although it would be appropriate. Hence,
-	 * we catch the exception and store it until we are in setUp and may
-	 * finally rethrow the exception without crashing the test suite.
-	 */
-	protected static $exceptionFromAddDBDataOnce;
 
 	/**
 	 * @var FetchText The (mocked) FetchText that is to test
@@ -76,51 +66,40 @@ class FetchTextTest extends MediaWikiIntegrationTestCase {
 		$wikitextNamespace = $this->getDefaultWikitextNS();
 		$wikiPageFactory = $this->getServiceContainer()->getWikiPageFactory();
 
-		try {
-			$title = Title::makeTitle( $wikitextNamespace, 'FetchTextTestPage1' );
-			$page = $wikiPageFactory->newFromTitle( $title );
-			self::$textId1 = $this->addRevision(
-				$page,
-				"FetchTextTestPage1Text1",
-				"FetchTextTestPage1Summary1"
-			);
+		$title = Title::makeTitle( $wikitextNamespace, 'FetchTextTestPage1' );
+		$page = $wikiPageFactory->newFromTitle( $title );
+		self::$textId1 = $this->addRevision(
+			$page,
+			"FetchTextTestPage1Text1",
+			"FetchTextTestPage1Summary1"
+		);
 
-			$title = Title::makeTitle( $wikitextNamespace, 'FetchTextTestPage2' );
-			$page = $wikiPageFactory->newFromTitle( $title );
-			self::$textId2 = $this->addRevision(
-				$page,
-				"FetchTextTestPage2Text1",
-				"FetchTextTestPage2Summary1"
-			);
-			self::$textId3 = $this->addRevision(
-				$page,
-				"FetchTextTestPage2Text2",
-				"FetchTextTestPage2Summary2"
-			);
-			self::$textId4 = $this->addRevision(
-				$page,
-				"FetchTextTestPage2Text3",
-				"FetchTextTestPage2Summary3"
-			);
-			self::$textId5 = $this->addRevision(
-				$page,
-				"FetchTextTestPage2Text4 some additional Text  ",
-				"FetchTextTestPage2Summary4 extra "
-			);
-		} catch ( Exception $e ) {
-			// We'd love to pass $e directly. However, ... see
-			// documentation of exceptionFromAddDBDataOnce
-			self::$exceptionFromAddDBDataOnce = $e;
-		}
+		$title = Title::makeTitle( $wikitextNamespace, 'FetchTextTestPage2' );
+		$page = $wikiPageFactory->newFromTitle( $title );
+		self::$textId2 = $this->addRevision(
+			$page,
+			"FetchTextTestPage2Text1",
+			"FetchTextTestPage2Summary1"
+		);
+		self::$textId3 = $this->addRevision(
+			$page,
+			"FetchTextTestPage2Text2",
+			"FetchTextTestPage2Summary2"
+		);
+		self::$textId4 = $this->addRevision(
+			$page,
+			"FetchTextTestPage2Text3",
+			"FetchTextTestPage2Summary3"
+		);
+		self::$textId5 = $this->addRevision(
+			$page,
+			"FetchTextTestPage2Text4 some additional Text  ",
+			"FetchTextTestPage2Summary4 extra "
+		);
 	}
 
 	protected function setUp(): void {
 		parent::setUp();
-
-		// Check if any Exception is stored for rethrowing from addDBData
-		if ( self::$exceptionFromAddDBDataOnce !== null ) {
-			throw self::$exceptionFromAddDBDataOnce;
-		}
 
 		$this->fetchText = new SemiMockedFetchText();
 	}
