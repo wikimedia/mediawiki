@@ -483,7 +483,8 @@ abstract class FileBackend implements LoggerAwareInterface {
 	 *   - b) predicted operation errors occurred and 'force' was not set
 	 *
 	 * @param array[] $ops List of operations to execute in order
-	 * @phan-param array<int,array{ignoreMissingSource?:bool,overwrite?:bool,overwriteSame?:bool,headers?:bool}> $ops
+	 * @phpcs:ignore Generic.Files.LineLength
+	 * @phan-param array<int,array{op:string,src?:string,dst?:string,content?:string,ignoreMissingSource?:bool,overwrite?:bool,overwriteSame?:bool,headers?:array<string,string>}> $ops
 	 * @param array $opts Batch operation options
 	 * @phpcs:ignore Generic.Files.LineLength
 	 * @phan-param array{force?:bool,nonLocking?:bool,parallelize?:bool,bypassReadOnly?:bool,preserveCache?:bool} $opts

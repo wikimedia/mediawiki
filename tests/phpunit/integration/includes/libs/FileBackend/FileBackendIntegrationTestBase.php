@@ -1441,30 +1441,30 @@ abstract class FileBackendIntegrationTestBase extends MediaWikiIntegrationTestCa
 
 		$status = $this->backend->doOperations( [
 			[ 'op' => 'describe', 'src' => $fileA,
-				'headers' => [ 'X-Content-Length' => '91.3' ], 'disposition' => 'inline' ],
-			[ 'op' => 'copy', 'src' => $fileA, 'dst' => $fileC, 'overwrite' => 1 ],
+				'headers' => [ 'X-Content-Length' => '91.3' ] ],
+			[ 'op' => 'copy', 'src' => $fileA, 'dst' => $fileC, 'overwrite' => true ],
 			// Now: A:<A>, B:<B>, C:<A>, D:<empty> (file:<original contents>)
-			[ 'op' => 'copy', 'src' => $fileC, 'dst' => $fileA, 'overwriteSame' => 1 ],
+			[ 'op' => 'copy', 'src' => $fileC, 'dst' => $fileA, 'overwriteSame' => true ],
 			// Now: A:<A>, B:<B>, C:<A>, D:<empty>
-			[ 'op' => 'move', 'src' => $fileC, 'dst' => $fileD, 'overwrite' => 1 ],
+			[ 'op' => 'move', 'src' => $fileC, 'dst' => $fileD, 'overwrite' => true ],
 			// Now: A:<A>, B:<B>, C:<empty>, D:<A>
 			[ 'op' => 'move', 'src' => $fileB, 'dst' => $fileC ],
 			// Now: A:<A>, B:<empty>, C:<B>, D:<A>
-			[ 'op' => 'move', 'src' => $fileD, 'dst' => $fileA, 'overwriteSame' => 1 ],
+			[ 'op' => 'move', 'src' => $fileD, 'dst' => $fileA, 'overwriteSame' => true ],
 			// Now: A:<A>, B:<empty>, C:<B>, D:<empty>
-			[ 'op' => 'move', 'src' => $fileC, 'dst' => $fileA, 'overwrite' => 1 ],
+			[ 'op' => 'move', 'src' => $fileC, 'dst' => $fileA, 'overwrite' => true ],
 			// Now: A:<B>, B:<empty>, C:<empty>, D:<empty>
 			[ 'op' => 'copy', 'src' => $fileA, 'dst' => $fileC ],
 			// Now: A:<B>, B:<empty>, C:<B>, D:<empty>
-			[ 'op' => 'move', 'src' => $fileA, 'dst' => $fileC, 'overwriteSame' => 1 ],
+			[ 'op' => 'move', 'src' => $fileA, 'dst' => $fileC, 'overwriteSame' => true ],
 			// Now: A:<empty>, B:<empty>, C:<B>, D:<empty>
-			[ 'op' => 'copy', 'src' => $fileC, 'dst' => $fileC, 'overwrite' => 1 ],
+			[ 'op' => 'copy', 'src' => $fileC, 'dst' => $fileC, 'overwrite' => true ],
 			// Does nothing
-			[ 'op' => 'copy', 'src' => $fileC, 'dst' => $fileC, 'overwriteSame' => 1 ],
+			[ 'op' => 'copy', 'src' => $fileC, 'dst' => $fileC, 'overwriteSame' => true ],
 			// Does nothing
-			[ 'op' => 'move', 'src' => $fileC, 'dst' => $fileC, 'overwrite' => 1 ],
+			[ 'op' => 'move', 'src' => $fileC, 'dst' => $fileC, 'overwrite' => true ],
 			// Does nothing
-			[ 'op' => 'move', 'src' => $fileC, 'dst' => $fileC, 'overwriteSame' => 1 ],
+			[ 'op' => 'move', 'src' => $fileC, 'dst' => $fileC, 'overwriteSame' => true ],
 			// Does nothing
 			[ 'op' => 'null' ],
 			// Does nothing
@@ -1521,32 +1521,32 @@ abstract class FileBackendIntegrationTestBase extends MediaWikiIntegrationTestCa
 		$this->prepare( [ 'dir' => dirname( $fileD ) ] );
 
 		$status = $this->backend->doOperations( [
-			[ 'op' => 'store', 'src' => $tmpNameA, 'dst' => $fileA, 'overwriteSame' => 1 ],
-			[ 'op' => 'store', 'src' => $tmpNameB, 'dst' => $fileB, 'overwrite' => 1 ],
-			[ 'op' => 'store', 'src' => $tmpNameC, 'dst' => $fileC, 'overwrite' => 1 ],
-			[ 'op' => 'copy', 'src' => $fileA, 'dst' => $fileC, 'overwrite' => 1 ],
+			[ 'op' => 'store', 'src' => $tmpNameA, 'dst' => $fileA, 'overwriteSame' => true ],
+			[ 'op' => 'store', 'src' => $tmpNameB, 'dst' => $fileB, 'overwrite' => true ],
+			[ 'op' => 'store', 'src' => $tmpNameC, 'dst' => $fileC, 'overwrite' => true ],
+			[ 'op' => 'copy', 'src' => $fileA, 'dst' => $fileC, 'overwrite' => true ],
 			// Now: A:<A>, B:<B>, C:<A>, D:<empty> (file:<original contents>)
-			[ 'op' => 'copy', 'src' => $fileC, 'dst' => $fileA, 'overwriteSame' => 1 ],
+			[ 'op' => 'copy', 'src' => $fileC, 'dst' => $fileA, 'overwriteSame' => true ],
 			// Now: A:<A>, B:<B>, C:<A>, D:<empty>
-			[ 'op' => 'move', 'src' => $fileC, 'dst' => $fileD, 'overwrite' => 1 ],
+			[ 'op' => 'move', 'src' => $fileC, 'dst' => $fileD, 'overwrite' => true ],
 			// Now: A:<A>, B:<B>, C:<empty>, D:<A>
 			[ 'op' => 'move', 'src' => $fileB, 'dst' => $fileC ],
 			// Now: A:<A>, B:<empty>, C:<B>, D:<A>
-			[ 'op' => 'move', 'src' => $fileD, 'dst' => $fileA, 'overwriteSame' => 1 ],
+			[ 'op' => 'move', 'src' => $fileD, 'dst' => $fileA, 'overwriteSame' => true ],
 			// Now: A:<A>, B:<empty>, C:<B>, D:<empty>
-			[ 'op' => 'move', 'src' => $fileC, 'dst' => $fileA, 'overwrite' => 1 ],
+			[ 'op' => 'move', 'src' => $fileC, 'dst' => $fileA, 'overwrite' => true ],
 			// Now: A:<B>, B:<empty>, C:<empty>, D:<empty>
 			[ 'op' => 'copy', 'src' => $fileA, 'dst' => $fileC ],
 			// Now: A:<B>, B:<empty>, C:<B>, D:<empty>
-			[ 'op' => 'move', 'src' => $fileA, 'dst' => $fileC, 'overwriteSame' => 1 ],
+			[ 'op' => 'move', 'src' => $fileA, 'dst' => $fileC, 'overwriteSame' => true ],
 			// Now: A:<empty>, B:<empty>, C:<B>, D:<empty>
-			[ 'op' => 'copy', 'src' => $fileC, 'dst' => $fileC, 'overwrite' => 1 ],
+			[ 'op' => 'copy', 'src' => $fileC, 'dst' => $fileC, 'overwrite' => true ],
 			// Does nothing
-			[ 'op' => 'copy', 'src' => $fileC, 'dst' => $fileC, 'overwriteSame' => 1 ],
+			[ 'op' => 'copy', 'src' => $fileC, 'dst' => $fileC, 'overwriteSame' => true ],
 			// Does nothing
-			[ 'op' => 'move', 'src' => $fileC, 'dst' => $fileC, 'overwrite' => 1 ],
+			[ 'op' => 'move', 'src' => $fileC, 'dst' => $fileC, 'overwrite' => true ],
 			// Does nothing
-			[ 'op' => 'move', 'src' => $fileC, 'dst' => $fileC, 'overwriteSame' => 1 ],
+			[ 'op' => 'move', 'src' => $fileC, 'dst' => $fileC, 'overwriteSame' => true ],
 			// Does nothing
 			[ 'op' => 'null' ],
 			// Does nothing
@@ -1595,23 +1595,23 @@ abstract class FileBackendIntegrationTestBase extends MediaWikiIntegrationTestCa
 		$this->create( [ 'dst' => $fileC, 'content' => $fileCContents ] );
 
 		$status = $this->backend->doOperations( [
-			[ 'op' => 'copy', 'src' => $fileA, 'dst' => $fileC, 'overwrite' => 1 ],
+			[ 'op' => 'copy', 'src' => $fileA, 'dst' => $fileC, 'overwrite' => true ],
 			// Now: A:<A>, B:<B>, C:<A>, D:<empty> (file:<original contents>)
-			[ 'op' => 'copy', 'src' => $fileC, 'dst' => $fileA, 'overwriteSame' => 1 ],
+			[ 'op' => 'copy', 'src' => $fileC, 'dst' => $fileA, 'overwriteSame' => true ],
 			// Now: A:<A>, B:<B>, C:<A>, D:<empty>
-			[ 'op' => 'copy', 'src' => $fileB, 'dst' => $fileD, 'overwrite' => 1 ],
+			[ 'op' => 'copy', 'src' => $fileB, 'dst' => $fileD, 'overwrite' => true ],
 			// Now: A:<A>, B:<B>, C:<A>, D:<B>
 			[ 'op' => 'move', 'src' => $fileC, 'dst' => $fileD ],
 			// Now: A:<A>, B:<B>, C:<A>, D:<empty> (failed)
-			[ 'op' => 'move', 'src' => $fileB, 'dst' => $fileC, 'overwriteSame' => 1 ],
+			[ 'op' => 'move', 'src' => $fileB, 'dst' => $fileC, 'overwriteSame' => true ],
 			// Now: A:<A>, B:<B>, C:<A>, D:<empty> (failed)
-			[ 'op' => 'move', 'src' => $fileB, 'dst' => $fileA, 'overwrite' => 1 ],
+			[ 'op' => 'move', 'src' => $fileB, 'dst' => $fileA, 'overwrite' => true ],
 			// Now: A:<B>, B:<empty>, C:<A>, D:<empty>
 			[ 'op' => 'delete', 'src' => $fileD ],
 			// Now: A:<B>, B:<empty>, C:<A>, D:<empty>
 			[ 'op' => 'null' ],
 			// Does nothing
-		], [ 'force' => 1 ] );
+		], [ 'force' => true ] );
 
 		$this->assertStatusWarning( 'backend-fail-alreadyexists', $status );
 		$this->assertStatusWarning( 'backend-fail-notsame', $status );
