@@ -23,10 +23,8 @@ class TrackingParserCache extends ParserCache {
 		string $name,
 		...$args
 	) {
-		parent::__construct(
-			$name,
-			...$args
-		);
+		// @phan-suppress-next-line PhanParamTooFewUnpack
+		parent::__construct( $name, ...$args );
 		$this->wrapper = $wrapper;
 		$this->cacheName = $name;
 	}

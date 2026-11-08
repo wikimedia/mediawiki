@@ -41,6 +41,7 @@ abstract class HTMLFormFieldTestCase extends MediaWikiIntegrationTestCase {
 				fn () => $this->getServiceContainer()->getLanguageFactory()->getLanguage( 'qqx' )
 			);
 		$form->method( 'msg' )
+			// @phan-suppress-next-line PhanParamTooFewUnpack
 			->willReturnCallback( static fn ( ...$args ) => new RawMessage( ...$args ) );
 
 		return new $this->className( $params + [

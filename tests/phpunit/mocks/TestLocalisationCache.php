@@ -25,6 +25,7 @@ class TestLocalisationCache extends LocalisationCache {
 
 	/** @inheritDoc */
 	public function __construct( ...$params ) {
+		// @phan-suppress-next-line PhanParamTooFewUnpack
 		parent::__construct( ...$params );
 
 		// Limit the cache size (entries are approx. 1 MB each) but not too much. Critical for tests

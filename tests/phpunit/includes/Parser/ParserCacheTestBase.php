@@ -50,6 +50,7 @@ abstract class ParserCacheTestBase extends \MediaWikiIntegrationTestCase {
 	}
 
 	protected function createParserCache( ...$args ): ParserCache {
+		// @phan-suppress-next-line PhanParamTooFewUnpack
 		return new ParserCache( ...$args );
 	}
 }
