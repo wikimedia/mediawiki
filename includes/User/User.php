@@ -12,6 +12,7 @@ use BadMethodCallException;
 use InvalidArgumentException;
 use MediaWiki\Auth\AuthenticationRequest;
 use MediaWiki\Auth\AuthManager;
+use MediaWiki\Auth\TemporaryPasswordAuthenticationRequest;
 use MediaWiki\Block\AbstractBlock;
 use MediaWiki\Block\Block;
 use MediaWiki\Block\DatabaseBlock;
@@ -1782,6 +1783,28 @@ class User implements Stringable, Authority, UserIdentity, UserEmailContact {
 	}
 
 	/**
+	 * Invalidate temporary passwords sent by e-mail for this user.
+	 * This should be called after an e-mail address change (T192727).
+	 *
+	 * @since 1.48
+	 */
+	public function invalidateTemporaryPassword(): void {
+		if ( !$this->isRegistered() ) {
+			// Accounts not yet created (e.g. during account creation) have no temporary password
+			return;
+		}
+		$manager = MediaWikiServices::getInstance()->getAuthManager();
+		$reqs = $manager->getAuthenticationRequests( AuthManager::ACTION_REMOVE, $this );
+		$req = AuthenticationRequest::getRequestByClass( $reqs, TemporaryPasswordAuthenticationRequest::class );
+		if ( $req ) {
+			$status = $manager->allowsAuthenticationDataChange( $req );
+			if ( $status->isOK() ) {
+				$manager->changeAuthenticationData( $req );
+			}
+		}
+	}
+
+	/**
 	 * Get the user's current token.
 	 * @param bool $forceCreation Force the generation of a new token if the
 	 *   user doesn't have one (default=true for backwards compatibility).
@@ -2998,6 +3021,8 @@ class User implements Stringable, Authority, UserIdentity, UserEmailContact {
 		$this->mEmailTokenExpires = null;
 		$this->setEmailAuthenticationTimestamp( null );
 		$this->mEmail = '';
+		// Changing the e-mail address invalidates temporary password sent to the previous address (T192727)
+		$this->invalidateTemporaryPassword();
 		$this->getHookRunner()->onInvalidateEmailComplete( $this );
 		return true;
 	}
