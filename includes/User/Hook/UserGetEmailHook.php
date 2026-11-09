@@ -15,6 +15,10 @@ interface UserGetEmailHook {
 	/**
 	 * This hook is called when getting an user email address.
 	 *
+	 * If the email address returned by this hook changes (e.g. the user changes
+	 * their email in some external authentication service), your extension
+	 * should call `$user->invalidateTemporaryPassword()` (T192727).
+	 *
 	 * @since 1.35
 	 *
 	 * @param User $user

@@ -13,6 +13,7 @@ use MediaWiki\Session\Token;
 use MediaWiki\User\BotPassword;
 use MediaWiki\User\User;
 use MediaWiki\Utils\MWRestrictions;
+use StatusValue;
 
 /**
  * @group API
@@ -256,6 +257,8 @@ class ApiLoginTest extends ApiTestCase {
 		);
 		$mockProvider->method( 'getAuthenticationRequests' )
 			->willReturn( [] );
+		$mockProvider->method( 'providerAllowsAuthenticationDataChange' )
+			->willReturn( StatusValue::newGood( 'ignored' ) );
 
 		$this->mergeMwGlobalArrayValue( 'wgAuthManagerConfig', [
 			'secondaryauth' => [ [

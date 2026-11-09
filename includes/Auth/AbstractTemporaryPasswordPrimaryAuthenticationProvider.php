@@ -194,8 +194,8 @@ abstract class AbstractTemporaryPasswordPrimaryAuthenticationProvider
 			return \StatusValue::newGood();
 		}
 
-		$username = $this->userNameUtils->getCanonical(
-			$req->username, UserRigorOptions::RIGOR_USABLE );
+		$username = $req->username !== null ? $this->userNameUtils->getCanonical(
+			$req->username, UserRigorOptions::RIGOR_USABLE ) : false;
 		if ( $username === false ) {
 			return \StatusValue::newGood( 'ignored' );
 		}
