@@ -114,7 +114,7 @@
 	"rest-module-specs.v0-desc": "自文檔模組為所有可用模組提供發現、規格和模式。",
 	"rest-module-content.v1-title": "內容API",
 	"rest-module-content.v1-desc": "提供對頁面和修訂內容和元資料的存取",
-	"rest-module-content.v2-title": "內容API",
+	"rest-module-content.v2-title": "內容API(測試版)",
 	"rest-module-content.v2-desc": "提供對頁面和修訂內容和元資料的存取",
 	"rest-module-site.v1-title": "網站API",
 	"rest-module-site.v1-desc": "關於網站整體的資訊，例如網站地圖",

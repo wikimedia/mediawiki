@@ -3075,6 +3075,8 @@
 	"scarytranscludefailed-httpstatus": "[Truy xuất bản mẫu $1 bị thất bại: HTTP $2]",
 	"scarytranscludetoolong": "[Địa chỉ URL quá dài]",
 	"editedwhiledeleting": "Trang bạn đang xóa đã được sửa đổi. Vui lòng xác nhận lại việc xóa trang này.",
+	"edit-constraint-confirmrecreate-warning": "Thành viên [[User:$1|$1]] ([[User talk:$1|thảo luận]]) đã xóa trang này sau khi bạn bắt đầu sửa đổi với lý do: <em>$2</em>",
+	"edit-constraint-confirmrecreate-noreason-warning": "Thành viên [[User:$1|$1]] ([[User talk:$1|thảo luận]]) đã xóa trang này sau khi bạn bắt đầu sửa đổi.",
 	"unit-pixel": "&#32;điểm ảnh",
 	"confirm-purge-title": "Làm mới trang này",
 	"confirm_purge_button": "Làm mới",

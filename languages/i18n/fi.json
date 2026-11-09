@@ -3056,7 +3056,7 @@
 	"scarytranscludefailed-httpstatus": "[Mallineen hakeminen epäonnistui: $1 HTTP $2]",
 	"scarytranscludetoolong": "[Verkko-osoite on liian pitkä]",
 	"editedwhiledeleting": "Sivua, jota olet poistamassa, on muokattu. Ole hyvä ja vahvista poisto uudelleen.",
-	"edit-constraint-confirmrecreate-warning": "User [[User:$1|$1]] ([[User talk:$1|talk]]) Käyttäjä [[User:$1|$1]] ([[User talk:$1|keskustelu]]) {{GENDER:$1|poisti}} tämän sivun, kun olit aloittanut muokkaamisen, ja poistamisen syy oli seuraava:\n: <em>$2</em>",
+	"edit-constraint-confirmrecreate-warning": "Käyttäjä [[User:$1|$1]] ([[User talk:$1|keskustelu]]) {{GENDER:$1|poisti}} tämän sivun, kun olit aloittanut muokkaamisen. Poiston syy oli seuraava:\n: <em>$2</em>",
 	"edit-constraint-confirmrecreate-noreason-warning": "Käyttäjä [[User:$1|$1]] ([[User talk:$1|keskustelu]]) {{GENDER:$1|poisti}} tämän sivun, kun olit aloittanut muokkaamisen.",
 	"unit-pixel": " px",
 	"confirm-purge-title": "Tyhjennä välimuistista",

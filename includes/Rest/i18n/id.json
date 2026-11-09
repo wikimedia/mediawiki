@@ -2,6 +2,7 @@
 	"@metadata": {
 		"authors": [
 			"Budhiastawa",
+			"Exploraz",
 			"Rachmat04",
 			"Veracious"
 		]
@@ -9,7 +10,7 @@
 	"rest-prefix-mismatch": "Lintasan yang diminta ($1) tidak berada di dalam lintasan utama REST API ($2)",
 	"rest-wrong-method": "Metode yang diminta ($1) bukan {{PLURAL:$3|metode yang diizinkan untuk lintasan tunggal dari metode yang diizinkan pada lintasan ini}} ($2)",
 	"rest-no-match": "Lintasan relatif yang diminta ($1) tidak sesuai dengan penangan yang dikenali",
-	"rest-nonexistent-title": "Judul yang dimaksud ($1) tidak ada",
+	"rest-nonexistent-title": "Halaman yang dimaksud ($1) tidak ada",
 	"rest-nonexistent-title-revision": "Revisi yang ditentukan ($1) tidak tersedia bagi halaman yang ditentukan ($2)",
 	"rest-nonexistent-revision": "Revisi yang dimaksud ($1) tidak ada",
 	"rest-nonexistent-user": "Pengguna yang dimaksud ($1) tidak ada",
@@ -24,5 +25,5 @@
 	"rest-unsupported-profile-conversion": "Kami tidak tahu cara melakukan konversi ini.",
 	"rest-edit-conflict": "Konflik penyuntingan ($1)",
 	"rest-unknown-content-model": "Model konten tidak dikenal: $1",
-	"rest-param-desc-page-content-title": "Judul halaman. Untuk memformat judul, ganti spasi dengan garis bawah, lalu lakukan pengkodean URL pada hasilnya (contoh: Steller%27s_jay). Di REST Sandbox, ganti spasi dengan garis bawah, tetapi jangan lakukan pengkodean URL (contoh: Steller's_jay)."
+	"rest-param-desc-page-content-title": "Judul halaman. Untuk memformat judul, ganti spasi dengan garis bawah, lalu lakukan pengkodean URL pada hasilnya (contoh: Steller%27s_jay). Di bak pasir API, ganti spasi dengan garis bawah, tetapi jangan lakukan pengkodean URL (contoh: Steller's_jay)."
 }

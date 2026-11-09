@@ -4,6 +4,7 @@
 			"Aksel Tinfat",
 			"Amara-Amaziɣ",
 			"Brahim-essaidi",
+			"Daoudsfouli",
 			"Gagnabil",
 			"Hakim1bal",
 			"Lhoussine AIT TAYFST",
@@ -65,6 +66,8 @@
 	"period-am": "ⴼⵡ",
 	"period-pm": "ⵣⵡ",
 	"timezone-local": "ⴰⴷⵖⵔⴰⵏ",
+	"years": "{{PLURAL:$1|$1 ⴰⵙⴳⴳⵯⴰⵙ|$1 ⵉⵙⴳⴳⵯⴰⵙⵏ}}",
+	"months": "{{PLURAL:$1|$1 ⴰⵢⵢⵓⵔ |$1 ⵉⵢⵢⵓⵔⵏ}}",
 	"days": "{{PLURAL:$1|$1 ⵡⴰⵙⵙ|$1 ⵡⵓⵙⵙⴰⵏ}}",
 	"duration-days": "$1 ⵏ {{PLURAL:$1|ⵡⴰⵙⵙ|ⵡⵓⵙⵙⴰⵏ}}",
 	"saturday-at": "ⴰⵙⵉⴹⵢⴰⵙ ⴳ $1"

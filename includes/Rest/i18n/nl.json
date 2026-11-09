@@ -107,7 +107,7 @@
 	"rest-module-specs.v0-desc": "Zelfdocumentatie-module met informatie, specificaties en schema’s voor alle beschikbare modules.",
 	"rest-module-content.v1-title": "Inhouds-API",
 	"rest-module-content.v1-desc": "Biedt toegang tot de inhoud en de metagegevens van pagina’s en versies",
-	"rest-module-content.v2-title": "Inhouds-API",
+	"rest-module-content.v2-title": "Inhouds-API (bèta)",
 	"rest-module-content.v2-desc": "Biedt toegang tot de inhoud en de metagegevens van pagina’s en versies",
 	"rest-module-site.v1-title": "Site-API",
 	"rest-module-site.v1-desc": "Informatie over de site als geheel, zoals sitemaps",
