@@ -212,14 +212,11 @@ class SpecialPrefixIndex extends SpecialAllPages {
 					if ( $this->stripPrefix && $prefixLength !== strlen( $displayed ) ) {
 						$displayed = substr( $displayed, $prefixLength );
 					}
-					$link = ( $title->isRedirect() ? '<div class="allpagesredirect">' : '' ) .
-						$this->getLinkRenderer()->makeKnownLink(
-							$title,
-							$displayed
-						) .
-						( $title->isRedirect() ? '</div>' : '' );
+					$attributes = $title->isRedirect() ? [ 'class' => 'allpagesredirect' ] : [];
 
-					$out .= "<li>$link</li>\n";
+					$out .= Html::rawElement( 'li', $attributes,
+						$this->getLinkRenderer()->makeKnownLink( $title, $displayed )
+					) . "\n";
 					$n++;
 
 				}
