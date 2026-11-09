@@ -282,7 +282,10 @@ class RemexCompatMunger implements TreeHandler {
 		$parentData = $parent->snData;
 		$elementName = $element->htmlName;
 
-		$inline = isset( self::ONLY_INLINE_ELEMENTS[$elementName] );
+		// <math> is phrasing content, also with display="block", which only sets its CSS display.
+		// Its children must not end the p-wrap around it.
+		$inline = isset( self::ONLY_INLINE_ELEMENTS[$elementName] )
+			|| $element->namespace === HTMLData::NS_MATHML;
 		$under = $preposition === TreeBuilder::UNDER;
 
 		if ( isset( self::METADATA_ELEMENTS[$elementName] )

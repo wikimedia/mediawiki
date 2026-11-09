@@ -127,6 +127,18 @@ class RemexDriverTest extends MediaWikiUnitTestCase {
 			"<small><blockquote><p>x</p></blockquote></small>"
 		],
 		[
+			'MathML stays in the paragraph before a block element (T420668)',
+			'foo <math xmlns="http://www.w3.org/1998/Math/MathML"><mi>x</mi></math> <div>bar</div>',
+			'<p>foo <math xmlns="http://www.w3.org/1998/Math/MathML"><mi>x</mi></math> </p><div>bar</div>'
+		],
+		[
+			'Block MathML stays in the paragraph before a block element (T420668)',
+			'foo <math xmlns="http://www.w3.org/1998/Math/MathML" display="block">' .
+				'<mstyle displaystyle="true"><mi>x</mi></mstyle></math> <div>bar</div>',
+			'<p>foo <math xmlns="http://www.w3.org/1998/Math/MathML" display="block">' .
+				'<mstyle displaystyle="true"><mi>x</mi></mstyle></math> </p><div>bar</div>'
+		],
+		[
 			'All bare text should be p-wrapped even when surrounded by block tags',
 			"<small><blockquote>x</blockquote></small>y<div></div>z",
 			"<small><blockquote><p>x</p></blockquote></small><p>y</p><div></div><p>z</p>"
@@ -343,7 +355,7 @@ MathML;
 		return array_merge( self::REMEX_TIDY_TEST_DATA, [ [
 			'<math> should survive tidy',
 			$testMathML,
-			$testMathML,
+			"<p>$testMathML</p>",
 		] ] );
 	}
 
