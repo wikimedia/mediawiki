@@ -2330,6 +2330,7 @@ return [
 			'special.revisionDelete.js',
 			'special.undelete.js',
 			'special.undelete.loadMoreRevisions.js',
+			'special.version.js',
 		],
 		'styles' => [ 'styles.less' ],
 		'dependencies' => [
