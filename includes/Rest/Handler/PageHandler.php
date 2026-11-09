@@ -22,7 +22,6 @@ use Wikimedia\Assert\Assert;
  * - v1/page/{title}            (prop: [ "source" ])
  * - v1/page/{title}/bare       (prop: [])
  * - v1/page/{title}/with_html  (prop: [ "html" ])
- * - content/v2/page/{title}    (prop as a query param)
  *
  * @internal
  */

@@ -81,7 +81,7 @@
 		"redirect_url": {
 			"type": "string",
 			"x-i18n-description": "rest-property-desc-redirect-url",
-			"example": "https://en.wikipedia.org/w/rest.php/content/v2/page/Solar_System"
+			"example": "https://en.wikipedia.org/w/rest.php/v1/page/Solar_System"
 		}
 	}
 }

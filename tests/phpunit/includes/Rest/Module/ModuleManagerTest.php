@@ -228,7 +228,6 @@ class ModuleManagerTest extends MediaWikiIntegrationTestCase {
 		$overrides = [
 			'site/v1' => [ 'availability' => 'hidden' ],
 			'specs/v0' => [ 'availability' => 'disabled' ],
-			'content/v2-beta' => [ 'availability' => 'discoverable' ],
 			'' => [ 'availability' => 'disabled' ],
 		];
 		$this->overrideConfigValue( MainConfigNames::RestModuleOverrides, $overrides );
@@ -238,7 +237,6 @@ class ModuleManagerTest extends MediaWikiIntegrationTestCase {
 
 		$this->assertArrayNotHasKey( 'site.v1', $specs );
 		$this->assertArrayNotHasKey( 'specs.v0', $specs );
-		$this->assertArrayNotHasKey( 'content.v2-beta', $specs );
 		$this->assertArrayNotHasKey( 'mw-extra', $specs );
 	}
 
@@ -603,7 +601,7 @@ class ModuleManagerTest extends MediaWikiIntegrationTestCase {
 		yield from [
 			'public' => [ 'site/v1', AudienceDesignation::PUBLIC ],
 			'internal' => [ 'fragments/v0-internal', AudienceDesignation::INTERNAL ],
-			'beta' => [ 'content/v2-beta', AudienceDesignation::BETA ],
+			'beta' => [ 'thing/v1-beta', AudienceDesignation::BETA ],
 			'flat route' => [ '', AudienceDesignation::NONE ],
 			'external' => [ 'mockExternal/v1', AudienceDesignation::PUBLIC ],
 			'malformed' => [ 'not-a-module-id', null ],
@@ -673,10 +671,6 @@ class ModuleManagerTest extends MediaWikiIntegrationTestCase {
 			'internal audience default' => [
 				'moduleId' => 'fragments/v0-internal',
 				'expected' => [ 'internal' ],
-			],
-			'beta audience default' => [
-				'moduleId' => 'content/v2-beta',
-				'expected' => [ 'beta' ],
 			],
 			'flat route' => [
 				'moduleId' => '',
