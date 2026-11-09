@@ -17,8 +17,11 @@ class ImportExtensionMessages extends Maintenance {
 	private $excludedMsgs;
 	/** @var string */
 	private $outDir;
-	/** @var string[] */
-	private $coreDataCache;
+	/**
+	 * Cache of i18n files content indexed by language code.
+	 * @var array<string,array>
+	 */
+	private array $coreDataCache = [];
 
 	public function __construct() {
 		parent::__construct();
@@ -131,7 +134,12 @@ class ImportExtensionMessages extends Maintenance {
 		$this->setCoreData( $lang, $coreData );
 	}
 
-	/** @return mixed */
+	/**
+	 * Reads the given language json file and returns its as an array.
+	 * The messages are kept in the process cache.
+	 *
+	 * @return array of messages for $lang
+	 */
 	private function getCoreData( string $lang ) {
 		if ( !isset( $this->coreDataCache[$lang] ) ) {
 			$corePath = MW_INSTALL_PATH . "/languages/i18n/$lang.json";
@@ -145,12 +153,13 @@ class ImportExtensionMessages extends Maintenance {
 			}
 			$this->coreDataCache[$lang] = json_decode( $coreJson, true, flags: JSON_THROW_ON_ERROR );
 		}
+		// @phan-suppress-next-line PhanTypeMismatchReturnNullable
 		return $this->coreDataCache[$lang];
 	}
 
 	/**
 	 * @param string $lang
-	 * @param mixed $data
+	 * @param array $data
 	 */
 	private function setCoreData( string $lang, $data ) {
 		if ( !isset( $this->coreDataCache[$lang] ) ) {
