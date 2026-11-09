@@ -3477,6 +3477,7 @@
 	"version-software": "Message shown on [[Special:Version]].\nThis message is followed by the list of installed software (MediaWiki, PHP and MySQL).",
 	"version-software-product": "Shown in [[Special:Version]].\n{{Identical|Product}}",
 	"version-software-version": "{{Identical|Version}}",
+	"version-download-sbom": "Label of the button on [[Special:Version]] that downloads the Software Bill of Materials (SBOM) of the installation in CycloneDX format via the API.",
 	"version-entrypoints": "Header on [[Special:Version]] above a table that lists the URLs of various entry points in this MediaWiki installation. Entry points are the \"places\" where the wiki's content and information can be accessed in various ways, for instance the standard index.php which shows normal pages, histories etc.",
 	"version-entrypoints-header-entrypoint": "Header for the first column in the entry points table on [[Special:Version]].\nSee also {{msg-mw|Version-entrypoints}}",
 	"version-entrypoints-header-url": "Header for the second column in the entry points table on [[Special:Version]].\n{{Identical|URL}}",

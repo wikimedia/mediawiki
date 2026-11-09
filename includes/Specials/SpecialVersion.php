@@ -185,6 +185,29 @@ class SpecialVersion extends SpecialPage {
 			default:
 				$out->addModuleStyles( 'mediawiki.special' );
 
+				// The API only serves the SBOM to named users
+				if ( $this->getUser()->isNamed() ) {
+					$out->addModuleStyles( 'mediawiki.htmlform.codex.styles' );
+					$out->addModules( 'mediawiki.misc-authed-ooui' );
+					$out->setIndicators( [ 'mw-version-sbom' => Html::element(
+						'a',
+						[
+							'id' => 'mw-version-sbom-download',
+							'class' => 'cdx-button cdx-button--fake-button cdx-button--fake-button--enabled',
+							'href' => $this->getConfig()->get( MainConfigNames::ScriptPath ) . '/api.php?' .
+								http_build_query( [
+									'action' => 'query',
+									'meta' => 'siteinfo',
+									'siprop' => 'sbom',
+									'format' => 'json',
+									'formatversion' => '2',
+								] ),
+							'download' => 'sbom.cdx.json',
+						],
+						$this->msg( 'version-download-sbom' )->text()
+					) ] );
+				}
+
 				$out->addHTML( $this->getMediaWikiCredits() );
 
 				// Build the page contents (this also fills in TOCData)

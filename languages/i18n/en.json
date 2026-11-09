@@ -3193,6 +3193,7 @@
 	"version-software": "Installed software",
 	"version-software-product": "Product",
 	"version-software-version": "Version",
+	"version-download-sbom": "Download SBOM",
 	"version-entrypoints": "Entry point URLs",
 	"version-entrypoints-header-entrypoint": "Entry point",
 	"version-entrypoints-header-url": "URL",
