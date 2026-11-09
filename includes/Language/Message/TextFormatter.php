@@ -14,20 +14,22 @@ use Wikimedia\Message\MessageSpecifier;
  * @ingroup Language
  */
 class TextFormatter implements ITextFormatter {
-	private string $langCode;
-	private string $format;
 
 	/**
+	 * @param string $langCode Which language to localize to.
+	 * @param string $format See the Message::FORMAT_XXX constants.
+	 *        The default is FORMAT_TEXT, which will resolve templates
+	 *        and parser functions.
+	 * @param bool $useDatabase Whether to check the database for local
+	 *        message overrides.
+	 *
 	 * @internal For use by ServiceWiring only
-	 * @param string $langCode
-	 * @param string $format
 	 */
 	public function __construct(
-		string $langCode,
-		string $format = Message::FORMAT_TEXT
+		private readonly string $langCode,
+		private readonly string $format = Message::FORMAT_TEXT,
+		private readonly bool $useDatabase = true,
 	) {
-		$this->langCode = $langCode;
-		$this->format = $format;
 	}
 
 	public function getLangCode(): string {
@@ -46,9 +48,10 @@ class TextFormatter implements ITextFormatter {
 		return Message::newFromSpecifier( $spec );
 	}
 
-	public function format( MessageSpecifier $mv ): string {
-		$message = $this->createMessage( $mv );
-		$message->inLanguage( $this->langCode );
-		return $message->toString( $this->format );
+	public function format( MessageSpecifier $message ): string {
+		return $this->createMessage( $message )
+			->inLanguage( $this->langCode )
+			->useDatabase( $this->useDatabase )
+			->toString( $this->format );
 	}
 }

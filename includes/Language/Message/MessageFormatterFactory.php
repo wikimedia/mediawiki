@@ -27,11 +27,13 @@ class MessageFormatterFactory implements IMessageFormatterFactory {
 	/**
 	 * @inheritDoc
 	 */
-	public function getTextFormatter( string $langCode ): ITextFormatter {
-		if ( !isset( $this->textFormatters[$langCode] ) ) {
-			$this->textFormatters[$langCode] = new TextFormatter(
-				$langCode, $this->format );
+	public function getTextFormatter( string $langCode, bool $useDatabase = true ): ITextFormatter {
+		$key = $langCode . ( $useDatabase ? '/db' : '/nodb' );
+
+		if ( !isset( $this->textFormatters[$key] ) ) {
+			$this->textFormatters[$key] = new TextFormatter(
+				$langCode, $this->format, $useDatabase );
 		}
-		return $this->textFormatters[$langCode];
+		return $this->textFormatters[$key];
 	}
 }

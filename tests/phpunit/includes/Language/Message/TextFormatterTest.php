@@ -116,4 +116,53 @@ class TextFormatterTest extends MediaWikiIntegrationTestCase {
 			->plaintextParams( '1', '2' );
 		$this->assertSame( "test 1 2 {{SITENAME}}", $formatter->format( $mv ) );
 	}
+
+	public static function provideUseDatabase() {
+		yield 'database overrides disabled' => [ false ];
+		yield 'database overrides enabled' => [ true ];
+	}
+
+	/**
+	 * @dataProvider provideUseDatabase
+	 */
+	public function testFormatPassesUseDatabaseToMessage( bool $useDatabase ) {
+		$message = $this->getMockBuilder( Message::class )
+			->setConstructorArgs( [ 'test' ] )
+			->onlyMethods( [ 'useDatabase', 'fetchMessage' ] )
+			->getMock();
+		$message->method( 'fetchMessage' )->willReturn( 'test' );
+
+		$message->expects( $this->once() )
+			->method( 'useDatabase' )
+			->with( $useDatabase )
+			->willReturnSelf();
+
+		$formatter = $this->getMockBuilder( TextFormatter::class )
+			->onlyMethods( [ 'createMessage' ] )
+			->setConstructorArgs( [ 'en', Message::FORMAT_TEXT, $useDatabase ] )
+			->getMock();
+		$formatter->method( 'createMessage' )->willReturn( $message );
+
+		$formatter->format( MessageValue::new( 'test' ) );
+	}
+
+	public function testFormatUsesDatabaseByDefault() {
+		$message = $this->getMockBuilder( Message::class )
+			->setConstructorArgs( [ 'test' ] )
+			->onlyMethods( [ 'useDatabase', 'fetchMessage' ] )
+			->getMock();
+		$message->method( 'fetchMessage' )->willReturn( 'test' );
+		$message->expects( $this->once() )
+			->method( 'useDatabase' )
+			->with( true )
+			->willReturnSelf();
+
+		$formatter = $this->getMockBuilder( TextFormatter::class )
+			->onlyMethods( [ 'createMessage' ] )
+			->setConstructorArgs( [ 'en' ] )
+			->getMock();
+		$formatter->method( 'createMessage' )->willReturn( $message );
+
+		$formatter->format( MessageValue::new( 'test' ) );
+	}
 }

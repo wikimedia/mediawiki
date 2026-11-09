@@ -11,6 +11,10 @@ use MediaWiki\Rest\RequestData;
 use MediaWiki\Rest\RequestInterface;
 use MediaWiki\Tests\MockEnvironment;
 use MediaWikiIntegrationTestCase;
+use Wikimedia\Message\IMessageFormatterFactory;
+use Wikimedia\Message\ITextFormatter;
+use Wikimedia\Message\MessageValue;
+use Wikimedia\TestingAccessWrapper;
 
 /**
  * @covers \MediaWiki\Rest\EntryPoint
@@ -110,7 +114,7 @@ class EntryPointTest extends MediaWikiIntegrationTestCase {
 		$this->assertStringContainsString( 'hello', $entryPoint->getCapturedOutput() );
 	}
 
-	public function testGetTextFormatters() {
+	public function testGetTextFormatters_lang_parameter() {
 		$services = $this->getServiceContainer();
 		$env = new MockEnvironment();
 		$context = $env->makeFauxContext();
@@ -138,6 +142,38 @@ class EntryPointTest extends MediaWikiIntegrationTestCase {
 		$formatters = $wrapper->getTextFormatters();
 		$this->assertNotEmpty( $formatters );
 		$this->assertSame( $services->getContentLanguageCode()->toString(), $formatters[0]->getLangCode() );
+	}
+
+	/**
+	 * Assert that EntryPoint constructs TextFormatters that do not check the
+	 * database for local overrides, since that would be slow.
+	 *
+	 * NOTE: The action API allows clients to opt into local overrides with
+	 * erroruselocal. The REST framework could do the same.
+	 */
+	public function testGetTextFormatters_useDatabase() {
+		// A formatter that reports how it was obtained, so we can tell
+		// a database-backed formatter from one that ignores local overrides.
+		$factory = $this->createMock( IMessageFormatterFactory::class );
+		$factory->method( 'getTextFormatter' )->willReturnCallback(
+			function ( string $langCode, bool $useDatabase = true ) {
+				$formatter = $this->createMock( ITextFormatter::class );
+				$formatter->method( 'getLangCode' )->willReturn( $langCode );
+				$formatter->method( 'format' )->willReturn( $useDatabase ? 'db' : 'nodb' );
+				return $formatter;
+			}
+		);
+		$this->setService( 'MessageFormatterFactory', $factory );
+
+		$services = $this->getServiceContainer();
+		$env = new MockEnvironment();
+		$entryPoint = new EntryPoint( new RequestData( [] ), $env->makeFauxContext(), $env, $services );
+		$formatters = TestingAccessWrapper::newFromObject( $entryPoint )->getTextFormatters();
+
+		$this->assertNotEmpty( $formatters );
+		foreach ( $formatters as $formatter ) {
+			$this->assertSame( 'nodb', $formatter->format( MessageValue::new( 'test' ) ) );
+		}
 	}
 
 	public static function mockHandlerCookies() {

@@ -167,7 +167,7 @@ class EntryPoint extends MediaWikiEntryPoint {
 
 		foreach ( $langs as $lang ) {
 			// XXX: we could key on language here
-			$textFormatters[] = $factory->getTextFormatter( $lang );
+			$textFormatters[] = $factory->getTextFormatter( $lang, false );
 		}
 
 		return $textFormatters;
