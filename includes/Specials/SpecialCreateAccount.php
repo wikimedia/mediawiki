@@ -106,7 +106,7 @@ class SpecialCreateAccount extends LoginSignupSpecialPage {
 			$authManager->authorizeCreateAccount( $performer ) :
 			$authManager->definitelyCanCreateAccount( $performer );
 
-		if ( !$status->isGood() ) {
+		if ( $this->mPosted && !$status->isGood() ) {
 			$messages = [];
 			foreach ( $status->getMessages() as $message ) {
 				$messages[] = $message->getKey();
