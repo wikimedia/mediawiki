@@ -866,18 +866,7 @@ class PermissionManager {
 		$page,
 		?WebRequest $request
 	): ?Block {
-		// Unblocking handled in SpecialUnblock
-		if ( $rigor === self::RIGOR_QUICK || in_array( $action, [ 'unblock' ] ) ) {
-			return null;
-		}
-
-		// Optimize for a very common case
-		if ( $action === 'read' && !$this->options->get( MainConfigNames::BlockDisablesLogin ) ) {
-			return null;
-		}
-
-		// Implicit rights aren't blockable (T350117, T350202).
-		if ( in_array( $action, $this->getImplicitRights(), true ) ) {
+		if ( $rigor === self::RIGOR_QUICK || !$this->isBlockableAction( $action ) ) {
 			return null;
 		}
 
@@ -886,7 +875,7 @@ class PermissionManager {
 		$requestIfNotExempt = $isExempt ? null : $request;
 
 		// Create account blocks are implemented separately due to weird IP exemption rules
-		if ( in_array( $action, [ 'createaccount', 'autocreateaccount' ], true ) ) {
+		if ( $this->isCreateAccountAction( $action ) ) {
 			return $this->blockManager->getCreateAccountBlock(
 				$user,
 				$requestIfNotExempt,
@@ -899,6 +888,49 @@ class PermissionManager {
 			return null;
 		}
 		return $this->filterBlockForAction( $block, $action, $user, $page );
+	}
+
+	private function isBlockableAction( string $action ): bool {
+		// Unblocking handled in SpecialUnblock
+		if ( $action === 'unblock' ) {
+			return false;
+		}
+
+		// Optimize for a very common case
+		if ( $action === 'read' && !$this->options->get( MainConfigNames::BlockDisablesLogin ) ) {
+			return false;
+		}
+
+		// Implicit rights aren't blockable (T350117, T350202).
+		return !in_array( $action, $this->getImplicitRights(), true );
+	}
+
+	private function isCreateAccountAction( string $action ): bool {
+		return in_array( $action, [ 'createaccount', 'autocreateaccount' ], true );
+	}
+
+	/**
+	 * Check if the block prevents the user from performing the action.
+	 *
+	 * Unlike getApplicableBlock(), this does not load the blocks of the user. It checks
+	 * only the given block, for example a deferred block that is not enforced yet.
+	 *
+	 * @internal For use by DeferredBlockMaterializer
+	 * @since 1.48
+	 * @param AbstractBlock $block
+	 * @param string $action The action to check
+	 * @param User $user The user that attempts the action
+	 * @param LinkTarget|PageReference|null $page
+	 * @return bool
+	 */
+	public function blockPreventsAction( AbstractBlock $block, string $action, User $user, $page ): bool {
+		if ( !$this->isBlockableAction( $action ) ) {
+			return false;
+		}
+		if ( $this->isCreateAccountAction( $action ) ) {
+			return (bool)$block->appliesToRight( $action );
+		}
+		return $this->filterBlockForAction( $block, $action, $user, $page ) !== null;
 	}
 
 	/**

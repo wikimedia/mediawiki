@@ -3404,7 +3404,8 @@ class User implements Stringable, Authority, UserIdentity, UserEmailContact {
 				$uiContext,
 				$services->getPermissionManager(),
 				$services->getRateLimiter(),
-				$services->getFormatterFactory()->getBlockErrorFormatter( $uiContext )
+				$services->getFormatterFactory()->getBlockErrorFormatter( $uiContext ),
+				$services->getDeferredBlockMaterializer()
 			);
 		}
 

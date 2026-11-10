@@ -957,7 +957,9 @@ return [
 			$services->getHookContainer(),
 			$services->getUserFactory(),
 			LoggerFactory::getInstance( 'BlockManager' ),
-			$services->getReadOnlyMode()
+			$services->getReadOnlyMode(),
+			$services->getPermissionManager(),
+			$services->getBlockManager()
 		);
 	},
 

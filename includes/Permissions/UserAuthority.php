@@ -9,6 +9,7 @@ namespace MediaWiki\Permissions;
 use InvalidArgumentException;
 use MediaWiki\Block\Block;
 use MediaWiki\Block\BlockErrorFormatter;
+use MediaWiki\Block\DeferredBlockMaterializer;
 use MediaWiki\Context\IContextSource;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Page\PageIdentity;
@@ -86,6 +87,7 @@ class UserAuthority implements Authority {
 	private WebRequest $request;
 	private IContextSource $uiContext;
 	private BlockErrorFormatter $blockErrorFormatter;
+	private DeferredBlockMaterializer $deferredBlockMaterializer;
 
 	/**
 	 * @param User $user
@@ -94,6 +96,7 @@ class UserAuthority implements Authority {
 	 * @param PermissionManager $permissionManager
 	 * @param RateLimiter $rateLimiter
 	 * @param BlockErrorFormatter $blockErrorFormatter
+	 * @param DeferredBlockMaterializer $deferredBlockMaterializer
 	 */
 	public function __construct(
 		User $user,
@@ -101,7 +104,8 @@ class UserAuthority implements Authority {
 		IContextSource $uiContext,
 		PermissionManager $permissionManager,
 		RateLimiter $rateLimiter,
-		BlockErrorFormatter $blockErrorFormatter
+		BlockErrorFormatter $blockErrorFormatter,
+		DeferredBlockMaterializer $deferredBlockMaterializer
 	) {
 		$this->actor = $user;
 		$this->request = $request;
@@ -109,6 +113,7 @@ class UserAuthority implements Authority {
 		$this->permissionManager = $permissionManager;
 		$this->rateLimiter = $rateLimiter;
 		$this->blockErrorFormatter = $blockErrorFormatter;
+		$this->deferredBlockMaterializer = $deferredBlockMaterializer;
 		$this->useLimitCache = !defined( 'MW_PHPUNIT_TEST' );
 	}
 
@@ -193,6 +198,7 @@ class UserAuthority implements Authority {
 		?PermissionStatus $status = null
 	): bool {
 		// Any side-effects can be added here.
+		$this->materializeDeferredBlocks( $action );
 
 		$userBlock = $this->getApplicableBlock( PermissionManager::RIGOR_SECURE, $action );
 
@@ -231,6 +237,7 @@ class UserAuthority implements Authority {
 		?PermissionStatus $status = null
 	): bool {
 		// Any side-effects can be added here.
+		$this->materializeDeferredBlocks( $action, $target );
 
 		// Note that we need to use RIGOR_SECURE here to ensure that we do not
 		// miss a user block or page protection due to replication lag.
@@ -437,6 +444,20 @@ class UserAuthority implements Authority {
 
 		// if we remembered "false", return null
 		return $this->userBlock ?: null;
+	}
+
+	/**
+	 * The user attempts the action, so the deferred blocks that prevent it must
+	 * materialize before the block check.
+	 */
+	private function materializeDeferredBlocks( string $action, ?PageIdentity $target = null ): void {
+		if ( $this->deferredBlockMaterializer->materializeForAction(
+			$action,
+			$this->actor,
+			$target
+		) ) {
+			$this->userBlock = null;
+		}
 	}
 
 	private function getApplicableBlock(

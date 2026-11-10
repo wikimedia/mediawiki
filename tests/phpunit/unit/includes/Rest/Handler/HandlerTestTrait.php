@@ -47,7 +47,8 @@ trait HandlerTestTrait {
 			$this->createMock( IContextSource::class ),
 			$services->getPermissionManager(),
 			$services->getRateLimiter(),
-			$this->createMock( BlockErrorFormatter::class )
+			$this->createMock( BlockErrorFormatter::class ),
+			$services->getDeferredBlockMaterializer()
 		);
 	}
 

@@ -7,13 +7,18 @@
 namespace MediaWiki\Block;
 
 use LogicException;
+use MediaWiki\Context\RequestContext;
 use MediaWiki\Deferred\DeferredUpdates;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
+use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Logging\DatabaseLogEntry;
 use MediaWiki\Logging\ManualLogEntry;
+use MediaWiki\Page\PageReference;
+use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\RevisionDelete\RevisionDeleteUser;
 use MediaWiki\Title\Title;
+use MediaWiki\User\User;
 use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserIdentity;
 use Psr\Log\LoggerInterface;
@@ -44,6 +49,8 @@ class DeferredBlockMaterializer {
 		private readonly UserFactory $userFactory,
 		private readonly LoggerInterface $logger,
 		private readonly ReadOnlyMode $readOnlyMode,
+		private readonly PermissionManager $permissionManager,
+		private readonly BlockManager $blockManager,
 	) {
 	}
 
@@ -75,6 +82,39 @@ class DeferredBlockMaterializer {
 			) );
 		}
 		return $this->deferredBlockCache[$cacheKey];
+	}
+
+	/**
+	 * Materialize the deferred blocks that prevent the user from performing the action.
+	 *
+	 * Call this only when the user attempts the action, not when the caller only checks
+	 * whether the action is allowed. Nothing happens if the user is not the user of the
+	 * current session, because other users cannot attempt actions in this request.
+	 *
+	 * @internal For use by UserAuthority
+	 * @param string $action The action that the user attempts
+	 * @param User $user The user that attempts the action
+	 * @param LinkTarget|PageReference|null $page
+	 * @return bool Whether one or more blocks materialized
+	 */
+	public function materializeForAction( string $action, User $user, $page ): bool {
+		$sessionUser = RequestContext::getMain()->getUser();
+		if ( !$sessionUser->isSafeToLoad() || $sessionUser->getName() !== $user->getName() ) {
+			return false;
+		}
+
+		$materialized = false;
+		foreach ( $this->getDeferredBlocks( $user ) as $block ) {
+			if ( $this->permissionManager->blockPreventsAction( $block, $action, $user, $page ) &&
+				$this->materialize( $block )
+			) {
+				$materialized = true;
+			}
+		}
+		if ( $materialized ) {
+			$this->blockManager->clearUserCache( $user );
+		}
+		return $materialized;
 	}
 
 	/**
