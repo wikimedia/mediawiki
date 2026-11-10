@@ -4388,6 +4388,12 @@ $wgRestLocalModuleTestBaseUrl = null;
 $wgRestModuleOverrides = null;
 
 /**
+ * Config variable stub for the RestAudienceOverrides setting, for use by phpdoc and IDEs.
+ * @see MediaWiki\MainConfigSchema::RestAudienceOverrides
+ */
+$wgRestAudienceOverrides = null;
+
+/**
  * Config variable stub for the RestExternalModules setting, for use by phpdoc and IDEs.
  * @see MediaWiki\MainConfigSchema::RestExternalModules
  */

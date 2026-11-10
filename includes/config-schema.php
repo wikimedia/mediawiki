@@ -2756,6 +2756,8 @@ return [
 			'RestLocalModuleTestBaseUrl' => null,
 			'RestModuleOverrides' => [
 			],
+			'RestAudienceOverrides' => [
+			],
 			'RestExternalModules' => [
 			],
 			'RestTermsOfServiceUrl' => null,
@@ -3322,6 +3324,7 @@ return [
 				'null',
 			],
 			'RestModuleOverrides' => 'object',
+			'RestAudienceOverrides' => 'object',
 			'RestExternalModules' => 'object',
 			'RestTermsOfServiceUrl' => [
 				'string',
@@ -3405,6 +3408,7 @@ return [
 			'Profiler' => 'replace',
 			'Hooks' => 'array_merge_recursive',
 			'RestModuleOverrides' => 'array_replace_recursive',
+			'RestAudienceOverrides' => 'array_replace_recursive',
 			'RestExternalModules' => 'array_replace_recursive',
 		],
 		'dynamicDefault' => [
@@ -3806,10 +3810,49 @@ return [
 				'properties' => [
 					'availability' => [
 						'type' => 'string',
+						'enum' => [
+							'disabled',
+							'hidden',
+							'discoverable',
+							'published',
+						],
 					],
 					'groups' => [
 						'type' => 'array',
+						'items' => [
+							'type' => 'string',
+						],
 					],
+				],
+			],
+		],
+		'RestAudienceOverrides' => [
+			'additionalProperties' => [
+				'type' => 'object',
+				'properties' => [
+					'availability' => [
+						'type' => 'string',
+						'enum' => [
+							'disabled',
+							'hidden',
+							'discoverable',
+							'published',
+						],
+					],
+					'groups' => [
+						'type' => 'array',
+						'items' => [
+							'type' => 'string',
+						],
+					],
+				],
+			],
+			'propertyNames' => [
+				'enum' => [
+					'public',
+					'internal',
+					'beta',
+					'',
 				],
 			],
 		],

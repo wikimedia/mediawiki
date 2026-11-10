@@ -18,6 +18,13 @@ enum ModuleAvailability: string {
 	case DISCOVERABLE = 'discoverable'; // callable, listed in /discovery, excluded from the REST Sandbox
 	case PUBLISHED = 'published';       // callable, listed in /discovery and the REST Sandbox
 
+	public const VALUES = [
+		self::DISABLED->value,
+		self::HIDDEN->value,
+		self::DISCOVERABLE->value,
+		self::PUBLISHED->value,
+	];
+
 	/**
 	 * Gets the availability for a given audience designation.
 	 *

@@ -287,6 +287,56 @@ class ModuleManagerTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( $expected, $availability, $msg );
 	}
 
+	public static function provideAudienceOverrideAvailabilityCases() {
+		yield from [
+			'audience override applies' => [
+				'moduleId' => 'fragments/v0-internal',
+				'expected' => ModuleAvailability::DISABLED,
+			],
+			'audience override for the flat route' => [
+				'moduleId' => '',
+				'expected' => ModuleAvailability::HIDDEN,
+			],
+			'invalid audience override disables the module' => [
+				'moduleId' => 'content/v2-beta',
+				'expected' => ModuleAvailability::DISABLED,
+			],
+			'audience override without availability has no effect' => [
+				'moduleId' => 'site/v1',
+				'expected' => ModuleAvailability::PUBLISHED,
+			],
+			'module override wins over audience override' => [
+				'moduleId' => 'mockTwo/v1-internal',
+				'expected' => ModuleAvailability::PUBLISHED,
+				'moduleOverrides' => [ 'mockTwo/v1-internal' => [ 'availability' => 'published' ] ],
+			],
+		];
+	}
+
+	/**
+	 * @dataProvider provideAudienceOverrideAvailabilityCases
+	 */
+	public function testRestAudienceOverridesAvailability(
+		string $moduleId,
+		ModuleAvailability $expected,
+		array $moduleOverrides = []
+	): void {
+		$this->overrideConfigValue( MainConfigNames::RestModuleOverrides, $moduleOverrides );
+		$this->overrideConfigValue( MainConfigNames::RestAudienceOverrides, [
+			AudienceDesignation::INTERNAL->value => [ 'availability' => 'disabled' ],
+			AudienceDesignation::BETA->value => [ 'availability' => 'invalid' ],
+			AudienceDesignation::NONE->value => [ 'availability' => 'hidden' ],
+			// Only groups are overridden, so availability falls back to the default.
+			AudienceDesignation::PUBLIC->value => [ 'groups' => [ 'custom' ] ],
+		] );
+
+		$availability = $this->getModuleManager()->getModuleAvailability( $moduleId );
+
+		// The default message is unhelpful in identifying which test case failed.
+		$msg = "Failure for module id $moduleId and expected availability {$expected->name}";
+		$this->assertSame( $expected, $availability, $msg );
+	}
+
 	public function testGetApiSpecsSortOrder(): void {
 		$conf = $this->getServiceContainer()->getMainConfig();
 		$rem = $conf->get( MainConfigNames::RestExternalModules );
@@ -713,6 +763,54 @@ class ModuleManagerTest extends MediaWikiIntegrationTestCase {
 				'overrides' => [ 'mockWithGroups/v1' => [ 'groups' => [ 'override-group' ] ] ],
 				'extensionModuleFiles' => [ $withGroups ],
 			],
+			'audience override groups win over the audience default' => [
+				'moduleId' => 'content/v2-beta',
+				'expected' => [ 'custom' ],
+				'overrides' => [],
+				'extensionModuleFiles' => [],
+				'externalModules' => null,
+				'audienceOverrides' => [ 'beta' => [ 'groups' => [ 'custom' ] ] ],
+			],
+			'audience override groups win over file-defined groups' => [
+				'moduleId' => 'mockWithGroups/v1',
+				'expected' => [ 'custom' ],
+				'overrides' => [],
+				'extensionModuleFiles' => [ $withGroups ],
+				'externalModules' => null,
+				'audienceOverrides' => [ 'public' => [ 'groups' => [ 'custom' ] ] ],
+			],
+			'audience override for another audience has no effect' => [
+				'moduleId' => 'site/v1',
+				'expected' => [ 'preferred' ],
+				'overrides' => [],
+				'extensionModuleFiles' => [],
+				'externalModules' => null,
+				'audienceOverrides' => [ 'beta' => [ 'groups' => [ 'custom' ] ] ],
+			],
+			'module override wins over audience override groups' => [
+				'moduleId' => 'site/v1',
+				'expected' => [ 'module-group' ],
+				'overrides' => [ 'site/v1' => [ 'groups' => [ 'module-group' ] ] ],
+				'extensionModuleFiles' => [],
+				'externalModules' => null,
+				'audienceOverrides' => [ 'public' => [ 'groups' => [ 'custom' ] ] ],
+			],
+			'audience override groups apply to the flat route' => [
+				'moduleId' => '',
+				'expected' => [ 'custom' ],
+				'overrides' => [],
+				'extensionModuleFiles' => [],
+				'externalModules' => null,
+				'audienceOverrides' => [ '' => [ 'groups' => [ 'custom' ] ] ],
+			],
+			'hidden by audience override has no groups' => [
+				'moduleId' => 'content/v2-beta',
+				'expected' => [],
+				'overrides' => [],
+				'extensionModuleFiles' => [],
+				'externalModules' => null,
+				'audienceOverrides' => [ 'beta' => [ 'availability' => 'hidden', 'groups' => [ 'custom' ] ] ],
+			],
 			'deprecated module' => [
 				'moduleId' => 'mockDeprecated/v1',
 				'expected' => [ 'preferred', 'deprecated' ],
@@ -757,9 +855,11 @@ class ModuleManagerTest extends MediaWikiIntegrationTestCase {
 		array $expected,
 		array $overrides = [],
 		array $extensionModuleFiles = [],
-		?array $externalModules = null
+		?array $externalModules = null,
+		array $audienceOverrides = []
 	): void {
 		$this->overrideConfigValue( MainConfigNames::RestModuleOverrides, $overrides );
+		$this->overrideConfigValue( MainConfigNames::RestAudienceOverrides, $audienceOverrides );
 		if ( $externalModules !== null ) {
 			$this->overrideConfigValue( MainConfigNames::RestExternalModules, $externalModules );
 		}

@@ -4403,6 +4403,12 @@ class MainConfigNames {
 	public const RestModuleOverrides = 'RestModuleOverrides';
 
 	/**
+	 * Name constant for the RestAudienceOverrides setting, for use with Config::get()
+	 * @see MainConfigSchema::RestAudienceOverrides
+	 */
+	public const RestAudienceOverrides = 'RestAudienceOverrides';
+
+	/**
 	 * Name constant for the RestExternalModules setting, for use with Config::get()
 	 * @see MainConfigSchema::RestExternalModules
 	 */

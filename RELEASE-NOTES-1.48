@@ -26,7 +26,10 @@ For notes on 1.47.x and older releases, see HISTORY.
 
 === Configuration changes for system administrators in 1.48 ===
 
-* …
+* New: $wgRestAudienceOverrides allows REST module's availability and groups
+  to be overwritten based on their audience designation (beta, internal, etc).
+  This works just like $wgRestModuleOverrides, but removes the need to specify
+  the overrides for each module separately.
 
 ==== New configuration ====
 

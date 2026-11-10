@@ -23,6 +23,13 @@ enum AudienceDesignation: string {
 	// to be output as an audience string.
 	case NONE = '';
 
+	public const VALUES = [
+		self::PUBLIC->value,
+		self::INTERNAL->value,
+		self::BETA->value,
+		self::NONE->value,
+	];
+
 	/**
 	 * Gets a module's audience designation from its module id.
 	 *
@@ -76,4 +83,5 @@ enum AudienceDesignation: string {
 			self::NONE => [ 'default' ],
 		};
 	}
+
 }

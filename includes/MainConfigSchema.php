@@ -80,6 +80,8 @@ use MediaWiki\RecentChanges\RecentChangesUpdateJob;
 use MediaWiki\RenameUser\Job\RenameUserDerivedJob;
 use MediaWiki\RenameUser\Job\RenameUserTableJob;
 use MediaWiki\Request\WebRequest;
+use MediaWiki\Rest\Module\AudienceDesignation;
+use MediaWiki\Rest\Module\ModuleAvailability;
 use MediaWiki\Session\SessionManager;
 use MediaWiki\Settings\Source\JsonSchemaTrait;
 use MediaWiki\Site\MediaWikiSite;
@@ -13119,28 +13121,64 @@ class MainConfigSchema {
 	];
 
 	/**
-	 * A list of REST modules, by module id, and the desired availability for each.
+	 * Reusable schema for structures that represent a module override.
 	 *
-	 * By default, availability is determined by a module's audience designation (ex. "beta").
-	 * This variable allows assigning a different availability.
+	 * See RestModuleOverrides for possible overrides. That information needs to
+	 * be on a public constant, so it gets reproduced in the JSON schema.
+	 */
+	private const REST_MODULE_OVERRIDE_TYPE = [
+		'type' => 'object',
+		'properties' => [
+			'availability' => [
+				'type' => 'string',
+				'enum' => ModuleAvailability::VALUES,
+			],
+			'groups' => [
+				'type' => 'list',
+				'items' => [ 'type' => 'string' ]
+			],
+		],
+	];
+
+	/**
+	 * Overrides by REST modules.
 	 *
-	 * Each override is an array with an optional "availability" key indicating the desired
-	 * availability, and an optional "groups" key (an array of strings) replacing the module's
-	 * default groups. Hidden and disabled modules have no groups.
+	 * Possible overrides:
+	 * - availability: determines if the module is disabled, hidden,
+	 *   discoverable, or published. See ModuleAvailability.
+	 * - groups: a list of groups (strings) associated with the module in the
+	 *   discovery document.  Well-known groups are preferred, internal, beta,
+	 *   and default (see AudienceDesignation::getDefaultGroups).
 	 *
+	 * By default, availability and groups are determined by a module's
+	 * audience designation.
+	 *
+	 * @see RestAudienceOverrides
 	 * @unstable Introduced in 1.47. We may adjust this as we refine the available overrides.
 	 */
 	public const RestModuleOverrides = [
 		'default' => [],
 		'type' => 'map',
 		'mergeStrategy' => 'array_replace_recursive',
-		'additionalProperties' => [
-			'type' => 'object',
-			'properties' => [
-				'availability' => [ 'type' => 'string' ],
-				'groups' => [ 'type' => 'list' ],
-			],
-		]
+		'additionalProperties' => self::REST_MODULE_OVERRIDE_TYPE,
+	];
+
+	/**
+	 * Overrides by REST audience designation.
+	 *
+	 * See RestModuleOverrides for possible overrides.
+	 *
+	 * Note that per-module overrides take precedence over per-audience overrides.
+	 *
+	 * @see RestModuleOverrides
+	 * @unstable Introduced in 1.48. We may adjust this as we refine the available overrides.
+	 */
+	public const RestAudienceOverrides = [
+		'default' => [],
+		'type' => 'map',
+		'mergeStrategy' => 'array_replace_recursive',
+		'additionalProperties' => self::REST_MODULE_OVERRIDE_TYPE,
+		'propertyNames' => [ 'enum' => AudienceDesignation::VALUES ],
 	];
 
 	/**
