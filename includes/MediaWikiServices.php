@@ -23,6 +23,7 @@ use MediaWiki\Block\BlockUtilsFactory;
 use MediaWiki\Block\CrossWikiBlockTargetFactory;
 use MediaWiki\Block\DatabaseBlockStore;
 use MediaWiki\Block\DatabaseBlockStoreFactory;
+use MediaWiki\Block\DeferredBlockMaterializer;
 use MediaWiki\Block\HideUserUtils;
 use MediaWiki\Block\UnblockUserFactory;
 use MediaWiki\Cache\BacklinkCacheFactory;
@@ -1171,6 +1172,13 @@ class MediaWikiServices extends ServiceContainer {
 	 */
 	public function getDefaultOutputPipelineFactory(): DefaultOutputPipelineFactory {
 		return $this->getService( 'DefaultOutputPipelineFactory' );
+	}
+
+	/**
+	 * @since 1.48
+	 */
+	public function getDeferredBlockMaterializer(): DeferredBlockMaterializer {
+		return $this->getService( 'DeferredBlockMaterializer' );
 	}
 
 	/**
