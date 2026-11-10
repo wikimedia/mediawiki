@@ -3390,6 +3390,7 @@
 	"version-license-not-found": "未找到此扩展相关的详细授权信息。",
 	"version-credits-title": "$1贡献者名单",
 	"version-credits-not-found": "未找到此扩展相关的详细贡献者信息。",
+	"version-ext-not-found": "找不到名为“$1”的已安装扩展或皮肤。请查看[[Special:Version]]以获取已安装软件列表。",
 	"version-credits-contributors": "贡献者",
 	"version-credits-translators": "译者",
 	"version-credits-translators-link": "translatewiki.net和其他网站上的译者",

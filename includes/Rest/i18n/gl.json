@@ -395,5 +395,10 @@
 	"rest-openapispec-genericerrorresponse-property-desc-reqId": "O identificador da solicitude. Só está presente no erros do servidor; indícao ao informares do erro.",
 	"rest-openapispec-genericerrorresponse-property-desc-exception": "Detalles estruturados da excepción que causou o erro. Só están presentes cando o wiki está configurado para mostrar os detalles da excepción.",
 	"rest-openapispec-genericerrorresponse-property-desc-errorCode": "Un código lexible por máquina que identifica o erro. Só está presente nos erros localizados.",
-	"rest-openapispec-genericerrorresponse-property-desc-tracing": "Información de diagnóstico sobre a solicitude, útil ao informar do erro. Sempre contén «module» e pode conter «request_id», «method», «uri» e «url». O contido deste obxecto non forma parte do contrato da API e pode cambiar en calquera momento."
+	"rest-openapispec-genericerrorresponse-property-desc-tracing": "Información de diagnóstico sobre a solicitude, útil ao informar do erro. Sempre contén «module» e pode conter «request_id», «method», «uri» e «url». O contido deste obxecto non forma parte do contrato da API e pode cambiar en calquera momento.",
+	"rest-item-single-value": "O parámetro «$1» identifica un único elemento e non debe conter «|» nin U+001F.",
+	"rest-item-not-found": "O elemento solicitado ($1) non existe.",
+	"rest-item-invalid": "O elemento solicitado ($1) non é válido.",
+	"rest-item-unavailable": "O elemento solicitado ($1) non está dispoñible.",
+	"rest-item-multiple-results": "O extremo atopou máis dun elemento para a solicitude. Trátase dun erro de configuración no servidor."
 }

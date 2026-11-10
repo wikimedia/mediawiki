@@ -3174,6 +3174,7 @@
 	"version-license-not-found": "Ingen detaljert lisensinformasjon ble funnet for denne utvidelsen.",
 	"version-credits-title": "Anerkjennelser for $1",
 	"version-credits-not-found": "Ingen detaljert anerkjennelsesinformasjon ble funnet for denne utvidelsen.",
+	"version-ext-not-found": "Navnet «$1» svarer ikke til noen installerte utvidelser eller drakter. Se [[Special:Version]] for en liste over installert programvare.",
 	"version-credits-contributors": "Bidragsytere",
 	"version-credits-translators": "Oversettere",
 	"version-credits-translators-link": "Oversettere på translatewiki.net og andre",

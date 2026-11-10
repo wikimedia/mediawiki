@@ -699,7 +699,7 @@
 	"cascadeprotectedwarning": "<strong>Upozornenie:</strong> Táto stránka bola zamknutá, takže ju môžu upravovať iba používatelia s [[Special:ListGroupRights|určitými privilégiami]], pretože je použitá na {{PLURAL:$1|nasledovnej stránke|nasledovných stránkach}} s kaskádovým zamknutím:",
 	"titleprotectedwarning": "'''Upozornenie: Táto stránka bola zamknutá, takže ju môžu vytvoriť iba používatelia s [[Special:ListGroupRights|určitými právami]].''' Dolu je pre informáciu posledná položka zo záznamu:",
 	"templatesused": "{{PLURAL:$1|Stránka vložená|Stránky vložené}} do tejto stránky:",
-	"templatesusedpreview": "{{PLURAL:$1|Stránka použitá|Stránky použité|Stránok použitých}} v tomto náhľade:",
+	"templatesusedpreview": "{{PLURAL:$1|Stránka vložená|Stránky vložené}} do tohto náhľadu:",
 	"templatesusedsection": "{{PLURAL:$1|Stránka zahrnutá|Stránky zahrnuté|Stránok zahrnutých}} v tejto sekcii:",
 	"hiddencategories": "Táto stránka patrí do {{PLURAL:$1|1 skrytej kategórie|$1 skrytých kategórií}}:",
 	"edittools": "<!-- Tento text sa zobrazí pod upravovacím a nahrávacím formulárom. -->",

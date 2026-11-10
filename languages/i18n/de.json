@@ -3245,6 +3245,7 @@
 	"version-license-not-found": "Es wurden keine detaillierten Lizenzinformationen zu dieser Erweiterung gefunden.",
 	"version-credits-title": "Danksagungen für $1",
 	"version-credits-not-found": "Es wurden keine detaillierten Danksagungsinformationen für diese Erweiterung gefunden.",
+	"version-ext-not-found": "Es wurde keine installierte Erweiterung oder kein Skin mit dem Namen „$1“ gefunden. Die Liste der installierten Software steht auf [[Special:Version]].",
 	"version-credits-contributors": "Autoren",
 	"version-credits-translators": "Übersetzer",
 	"version-credits-translators-link": "Übersetzer auf translatewiki.net und anderen Plattformen",

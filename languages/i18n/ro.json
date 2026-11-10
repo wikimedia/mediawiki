@@ -621,6 +621,8 @@
 	"edit-constraint-doubleredirect-warning": "Încercați să redirecționați aceasta pagină spre altă redirecționare, creând o redirecționare dublă.\nȚinta redirecționării este acum [[$1]].\n\nVă rugăm să considerați verificarea conținutului acestei redirecționări: $2",
 	"edit-constraint-doubleredirect-loop-warning": "Încercați să creați o redirecționare spre o pagină care redirecționează la rândul ei spre această pagină, creând așadar o buclă nefuncțională de redirecționări. Vă rugăm să reconsiderați ceea ce faceți.",
 	"edit-constraint-invalidredirecttarget-warning": "Încercați să redirecționați această pagină spre o pagină care nu este o țință de redirecționare validă. Vă rugăm să reconsiderați ceea ce faceți.",
+	"edit-constraint-defaulttext-blank-warning": "Creați o pagină goală.",
+	"edit-constraint-defaulttext-default-warning": "Creați această pagină cu conținutul ei implicit.",
 	"missingcommenttext": "Vă rugăm să introduceți un comentariu.",
 	"summary-preview": "Previzualizare descriere:",
 	"autocomment-top": "(sus)",

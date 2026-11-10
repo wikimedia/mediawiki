@@ -3184,6 +3184,7 @@
 	"version-license-not-found": "Pro toto rozšíření nebyly nalezeny podrobnější informace o licenci.",
 	"version-credits-title": "Autoři $1",
 	"version-credits-not-found": "Pro toto rozšíření nebyly nalezeny podrobnější informace o autorech.",
+	"version-ext-not-found": "Nebylo nalezeno žádné rozšíření ani vzhled pojmenované „$1“. Seznam nainstalovaného software najdete na stránce [[Special:Version]].",
 	"version-credits-contributors": "Přispěvatelé",
 	"version-credits-translators": "Překladatelé",
 	"version-credits-translators-link": "Překladatelé na translatewiki.net a jinde",

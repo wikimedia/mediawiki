@@ -61,5 +61,10 @@
 	"rest-openapispec-genericerrorresponse-property-desc-reqId": "Aqoonsiga codsiga. Waxa uu joogaa oo keliya khaladaadka server-ka; ku dar marka aad soo gudbinayso khaladka.",
 	"rest-openapispec-genericerrorresponse-property-desc-exception": "Faahfaahinta habaysan ee ka reebitaanka sababay khaladka. Waxa uu joogaa oo keliya marka wiki-ga loo habeeyay inuu muujiyo faahfaahinta ka reebitaanka.",
 	"rest-openapispec-genericerrorresponse-property-desc-errorCode": "Koodh ay mashiinku akhriyi karo oo tilmaamaya khaladka. Waxa uu joogaa oo keliya khaladaadka la turjumay.",
-	"rest-openapispec-genericerrorresponse-property-desc-tracing": "Macluumaad ogaanshaha oo ku saabsan codsiga, oo waxtar leh marka la soo sheegayo khaladka. Had iyo jeer wuxuu ka kooban yahay \"module\", waxaana laga yaabaa inuu ka koobnaado \"request_id\", \"method\", \"uri\" iyo \"url\". Nuxurka shaygani kama mid aha heshiiska API-ga, wuxuuna isbeddeli karaa wakhti kasta."
+	"rest-openapispec-genericerrorresponse-property-desc-tracing": "Macluumaad ogaanshaha oo ku saabsan codsiga, oo waxtar leh marka la soo sheegayo khaladka. Had iyo jeer wuxuu ka kooban yahay \"module\", waxaana laga yaabaa inuu ka koobnaado \"request_id\", \"method\", \"uri\" iyo \"url\". Nuxurka shaygani kama mid aha heshiiska API-ga, wuxuuna isbeddeli karaa wakhti kasta.",
+	"rest-item-single-value": "Xuduudda \"$1\" waxay aqoonsanaysaa hal shay oo keliya, mana aha inay ka koobnaato \"|\" ama U+001F.",
+	"rest-item-not-found": "Shayga la codsaday ($1) ma jiro.",
+	"rest-item-invalid": "Shayga la codsaday ($1) waa khaldan yahay.",
+	"rest-item-unavailable": "Shayga la codsaday ($1) lama heli karo.",
+	"rest-item-multiple-results": "Barta dhammaadka ayaa codsiga u heshay wax ka badan hal shay. Tani waa khalad ku jira habaynta server-ka."
 }
