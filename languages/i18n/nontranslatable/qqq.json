@@ -181,7 +181,7 @@
 	"lonelypages-summary": "{{doc-specialpagesummary|lonelypages}}",
 	"longpage-hint": "{{notranslate}}\n* $1: Size of the textbox formatted for output, using an appropriate unit ({{msg-mw|size-bytes}}, {{msg-mw|size-kilobytes}}, {{msg-mw|size-megabytes}}, {{msg-mw|size-gigabytes}})\n* $2: Size of the textbox in bytes, not formatnum",
 	"longpages-summary": "{{notranslate}}\nThe summary displayed at the top of [[Special:Longpages]]. [[mw:Manual:Interface/Special pages summary|mw manual]].",
-	"mainpage-title": "{{notranslate}} Display title for the main page for anonymous users.",
+	"mainpage-title": "{{notranslate}} Display title for the main page for anonymous users and temporary accounts.",
 	"mainpage-title-loggedin": "{{notranslate}} Display title for the main page for logged in users. Optional parameters:\n* - $1 username of current user",
 	"mergehistory-redirect-text": "{{ignored}}The text that's added to a redirected page when that redirect is created as part of a history merge.",
 	"mergehistory-warning-redirect-not-created": "Used as warning message in [[Special:MergeHistory]] API.",

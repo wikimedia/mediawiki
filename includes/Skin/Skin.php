@@ -149,7 +149,7 @@ abstract class Skin extends ContextSource {
 			// design their home page differently. This came up in T290480.
 			// The parameter for logged in users is optional and may
 			// or may not be used.
-			$titleMsg = $user->isAnon() ?
+			$titleMsg = !$user->isNamed() ?
 				$this->msg( 'mainpage-title' ) :
 				$this->msg( 'mainpage-title-loggedin', $user->getName() );
 
