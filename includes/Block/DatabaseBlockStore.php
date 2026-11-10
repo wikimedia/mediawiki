@@ -1195,6 +1195,57 @@ class DatabaseBlockStore {
 	}
 
 	/**
+	 * Materialize a deferred block, so that it becomes a normal block that is enforced.
+	 *
+	 * This only updates the block itself and performs the side effects of enforcing it
+	 * (retroactive autoblocks, and logging out the target if $wgBlockDisablesLogin is set).
+	 * It does not log anything; see DeferredBlockMaterializer for that.
+	 *
+	 * @since 1.48
+	 * @param DatabaseBlock $block A deferred block, with the ID set
+	 * @return bool Whether the block was materialized by this call. This is false if the
+	 *   block was not deferred anymore, for example because a concurrent request already
+	 *   materialized it.
+	 */
+	public function materializeDeferredBlock( DatabaseBlock $block ): bool {
+		$block->assertWiki( $this->wikiId );
+		$blockId = $block->getId( $this->wikiId );
+		if ( !$blockId ) {
+			throw new InvalidArgumentException(
+				__METHOD__ . ' requires that a block id be set'
+			);
+		}
+		if ( !$block->isDeferred() ) {
+			return false;
+		}
+
+		$dbw = $this->getPrimaryDB();
+		$timestamp = wfTimestampNow();
+		$dbw->newUpdateQueryBuilder()
+			->update( 'block' )
+			->set( [
+				'bl_deleted' => new RawSQLValue(
+					$dbw->bitAnd( 'bl_deleted', ~self::DELETED_DEFERRED )
+				),
+				'bl_timestamp' => $dbw->timestamp( $timestamp )
+			] )
+			->where( [ 'bl_id' => $blockId ] )
+			->andWhere( new RawSQLExpression(
+				$dbw->bitAnd( 'bl_deleted', self::DELETED_DEFERRED ) . ' != 0'
+			) )
+			->caller( __METHOD__ )->execute();
+		if ( $dbw->affectedRows() !== 1 ) {
+			return false;
+		}
+
+		$block->setDeferred( false );
+		$block->setTimestamp( $timestamp );
+		$this->doRetroactiveAutoblock( $block );
+		$this->maybeInvalidateTargetSessions( $block );
+		return true;
+	}
+
+	/**
 	 * Update a block in the DB with new parameters.
 	 * The ID field needs to be loaded first. The target must stay the same.
 	 *

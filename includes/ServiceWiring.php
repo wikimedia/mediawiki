@@ -47,6 +47,7 @@ use MediaWiki\Block\CrossWikiBlockTargetFactory;
 use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\Block\DatabaseBlockStore;
 use MediaWiki\Block\DatabaseBlockStoreFactory;
+use MediaWiki\Block\DeferredBlockMaterializer;
 use MediaWiki\Block\HideUserUtils;
 use MediaWiki\Block\UnblockUserFactory;
 use MediaWiki\Block\UserBlockCommandFactory;
@@ -946,6 +947,17 @@ return [
 			$services->getMainConfig(),
 			LoggerFactory::getInstance( 'Parser' ),
 			$services->getObjectFactory()
+		);
+	},
+
+	'DeferredBlockMaterializer' => static function ( MediaWikiServices $services ): DeferredBlockMaterializer {
+		return new DeferredBlockMaterializer(
+			$services->getDatabaseBlockStore(),
+			$services->getConnectionProvider(),
+			$services->getHookContainer(),
+			$services->getUserFactory(),
+			LoggerFactory::getInstance( 'BlockManager' ),
+			$services->getReadOnlyMode()
 		);
 	},
 

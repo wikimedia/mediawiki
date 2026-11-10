@@ -95,6 +95,7 @@ For notes on 1.47.x and older releases, see HISTORY.
 * The BlockIp and UnblockUser hooks are also called for deferred blocks. Use
   DatabaseBlock::isDeferred() to find them. The BlockIpComplete and
   UnblockUserComplete hooks are not called for deferred blocks.
+* The new DeferredBlockMaterializer service materializes deferred blocks.
 * …
 
 === External library changes in 1.48 ===

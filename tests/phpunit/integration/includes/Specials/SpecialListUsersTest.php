@@ -7,6 +7,7 @@ use MediaWiki\Tests\Specials\SpecialPageTestBase;
 /**
  * @covers \MediaWiki\Specials\SpecialListUsers
  * @covers \MediaWiki\Specials\Pager\UsersPager
+ * @covers \MediaWiki\Block\DeferredBlockMaterializer
  * @group Database
  */
 class SpecialListUsersTest extends SpecialPageTestBase {
@@ -44,6 +45,12 @@ class SpecialListUsersTest extends SpecialPageTestBase {
 		[ $html ] = $this->executeSpecialPage();
 		$this->assertStringContainsString( $testUser->getName(), $html );
 		$this->assertStringNotContainsString( '(listusers-blocked', $html );
+
+		// Once the block materializes, it is shown
+		$materializer = $this->getServiceContainer()->getDeferredBlockMaterializer();
+		$materializer->materialize( $materializer->getDeferredBlocks( $testUser, null )[0] );
+		[ $html ] = $this->executeSpecialPage();
+		$this->assertStringContainsString( '(listusers-blocked', $html );
 	}
 
 	public function testExecuteForNoUsersShown(): void {

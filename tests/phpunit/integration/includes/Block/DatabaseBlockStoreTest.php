@@ -297,7 +297,7 @@ class DatabaseBlockStoreTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/** @dataProvider provideDeferredBlocks */
-	public function testDeferredBlocks( array $blockParams, int $expectedDeletedValue ): void {
+	public function testDeferredBlocks( array $blockParams, int $expectedDeletedValue, int $materializedValue ): void {
 		$target = $this->getTestUser()->getUser();
 		$blockStore = $this->getServiceContainer()->getDatabaseBlockStore();
 		$block = $blockStore->insertBlockWithParams( array_merge( [
@@ -326,6 +326,22 @@ class DatabaseBlockStoreTest extends MediaWikiIntegrationTestCase {
 			1,
 			$blockStore->newListFromTarget( $target, null, false, DatabaseBlockStore::AUTO_ALL, true )
 		);
+
+		$this->assertTrue( $blockStore->materializeDeferredBlock( $loadedBlock ) );
+		$this->assertFalse( $loadedBlock->isDeferred() );
+		$this->newSelectQueryBuilder()
+			->select( 'bl_deleted' )
+			->from( 'block' )
+			->where( [ 'bl_id' => $block->getId() ] )
+			->assertFieldValue( (string)$materializedValue );
+		$materializedBlock = $blockStore->newFromID( $block->getId() );
+		$this->assertNotNull( $materializedBlock );
+		$this->assertSame( $block->getHideName(), $materializedBlock->getHideName() );
+		$this->assertSame( $block->getHideBlock(), $materializedBlock->getHideBlock() );
+
+		// The original object is still marked as deferred, but the block was already materialized
+		$this->assertTrue( $block->isDeferred() );
+		$this->assertFalse( $blockStore->materializeDeferredBlock( $block ) );
 	}
 
 	public static function provideDeferredBlocks(): array {
@@ -333,14 +349,17 @@ class DatabaseBlockStoreTest extends MediaWikiIntegrationTestCase {
 			'Deferred block' => [
 				'blockParams' => [],
 				'expectedDeletedValue' => 4,
+				'materializedValue' => 0,
 			],
 			'Deferred block hiding the user' => [
 				'blockParams' => [ 'hideName' => true ],
 				'expectedDeletedValue' => 5,
+				'materializedValue' => 1,
 			],
 			'Deferred hidden block' => [
 				'blockParams' => [ 'hideBlock' => true ],
 				'expectedDeletedValue' => 6,
+				'materializedValue' => 2,
 			],
 		];
 	}
@@ -367,6 +386,14 @@ class DatabaseBlockStoreTest extends MediaWikiIntegrationTestCase {
 			$store->newListFromConds( [ 'bl_parent_block_id' => $block->getId() ], false, false, true )
 		);
 		$this->assertFalse( $store->doAutoblock( $block, '127.0.0.2' ) );
+	}
+
+	public function testDeferredBlockAutoblocksOnMaterialization(): void {
+		$block = $this->insertDeferredAutoblockingBlock();
+		$store = $this->getStore();
+
+		$this->assertTrue( $store->materializeDeferredBlock( $block ) );
+		$this->assertCount( 1, $store->newListFromConds( [ 'bl_parent_block_id' => $block->getId() ] ) );
 	}
 
 	public function testGetQueryInfo() {
