@@ -1384,16 +1384,30 @@ class PermissionManager {
 		}
 
 		// Check $wgNamespaceProtection for restricted namespaces
-		if ( $this->isNamespaceProtected( $title->getNamespace(), $user )
+		$nsRights = $this->options->get( MainConfigNames::NamespaceProtection )[$title->getNamespace()] ?? [];
+		if ( $nsRights
 			// Allow admins and oversighters to view deleted content, even if they
 			// cannot restore it. See T362536. Allow (un)watch too (T373758)
 			&& !in_array( $action, [ 'deletedhistory', 'deletedtext', 'viewsuppressed', 'editmywatchlist' ], true )
 		) {
-			$ns = $title->getNamespace() === NS_MAIN ?
-				wfMessage( 'nstab-main' )->text() : $title->getNsText();
-			if ( $title->getNamespace() === NS_MEDIAWIKI ) {
+			$nsStatus = PermissionStatus::newEmpty();
+			$protected = false;
+			foreach ( (array)$nsRights as $right ) {
+				$rightStatus = $this->getUserRightStatus( $user, $right, $rigor, false );
+				// Keep reauthentication results so the user is prompted to reauthenticate (T444228)
+				if ( !$rightStatus->isOK() && $rightStatus->getReauthOperation() === null ) {
+					$protected = true;
+					break;
+				}
+				$nsStatus->merge( $rightStatus );
+			}
+			if ( !$protected ) {
+				$status->merge( $nsStatus );
+			} elseif ( $title->getNamespace() === NS_MEDIAWIKI ) {
 				$status->fatal( 'protectedinterface', $action );
 			} else {
+				$ns = $title->getNamespace() === NS_MAIN ?
+					wfMessage( 'nstab-main' )->text() : $title->getNsText();
 				$status->fatal( 'namespaceprotected', $ns, $action );
 			}
 		}
@@ -1982,21 +1996,6 @@ class PermissionManager {
 			$this->implicitRights = array_diff( $rights, $this->getAllPermissions() );
 		}
 		return $this->implicitRights;
-	}
-
-	/**
-	 * Determine if $user is unable to edit pages in namespace because it has been protected.
-	 *
-	 * @param int $index
-	 * @param UserIdentity $user
-	 * @return bool
-	 */
-	private function isNamespaceProtected( $index, UserIdentity $user ): bool {
-		$namespaceProtection = $this->options->get( MainConfigNames::NamespaceProtection );
-		if ( isset( $namespaceProtection[$index] ) ) {
-			return !$this->userHasAllRights( $user, ...(array)$namespaceProtection[$index] );
-		}
-		return false;
 	}
 
 	/**
