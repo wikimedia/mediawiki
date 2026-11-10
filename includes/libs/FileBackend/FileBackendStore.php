@@ -1925,7 +1925,10 @@ abstract class FileBackendStore extends FileBackend {
 		// Note that negatives are not cached by getFileStat()/preloadFileStat().
 		$values = $this->wanStatCache->getMulti( array_keys( $pathNames ) );
 		// Load all of the results into process cache...
-		foreach ( array_filter( $values, is_array( ... ) ) as $cacheKey => $stat ) {
+		foreach ( $values as $cacheKey => $stat ) {
+			if ( !is_array( $stat ) ) {
+				continue;
+			}
 			$path = $pathNames[$cacheKey];
 			// This flag only applies to stat info loaded directly
 			// from a high consistency backend query to the process cache
