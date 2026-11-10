@@ -22,7 +22,8 @@
 			"Xiaomingyan",
 			"唐吉訶德的侍從",
 			"飞舞回堂前",
-			"아라"
+			"아라",
+			"Nintendofan885"
 		]
 	},
 	"category-file-count": "{{PLURAL:$2|邇隻分類有下背一隻文件。|邇隻分類有$2隻文件，下背列出矣$1隻。}}",
@@ -147,7 +148,7 @@
 	"upload-curl-error6": "無法訪問URL",
 	"upload-curl-error6-text": "無法訪問所提供嘅URL。請再次檢查邇URL係毋係正確，並且網站嘅訪問係毋係正常。",
 	"upload-curl-error28-text": "網站回應時間過長。請檢查邇網站嘅訪問係毋係正常，過一陣再試。汝可能愛在網路訪問有閒時節再試。",
-	"upload_source_url": " （一隻有效、做得公開訪問嘅URL）",
+	"upload_source_url": "（一隻有效、做得公開訪問嘅URL）",
 	"upload_source_file": " （在汝電腦上嘅一隻文件）",
 	"listfiles": "文件列表",
 	"listfiles_user": "用戶",

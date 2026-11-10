@@ -56,7 +56,8 @@
 			"TreeIsLife",
 			"Spider 001757",
 			"Username1233219128",
-			"KormiSK"
+			"KormiSK",
+			"Nintendofan885"
 		]
 	},
 	"sunday": "nedeľa",
@@ -1782,7 +1783,7 @@
 	"nolicense": "Nič nebolo vybrané",
 	"licenses-edit": "Uprav možnosti licencie",
 	"license-nopreview": "(Náhľad nie je dostupný)",
-	"upload_source_url": " (platný, verejne prístupný URL)",
+	"upload_source_url": "(platný, verejne prístupný URL)",
 	"upload_source_file": "(vami vybraný súbor z vášho zariadenia)",
 	"listfiles-delete": "zmazať",
 	"listfiles-summary": "Táto špeciálna stránka zobrazuje všetky nahrané súbory.",

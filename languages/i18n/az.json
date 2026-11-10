@@ -2868,7 +2868,7 @@
 	"import-options-wrong": "Səhv {{PLURAL:$2|seçim|seçimlər}}:\n$1",
 	"import-rootpage-invalid": "Verilmiş kök səhifə yanlış başlıqdır.",
 	"import-rootpage-nosubpage": "Kök səhifənin \"$1\" ad fəzası alt səhifələrə icazə vermir.",
-	"importlogpage": "Çıxarılma gündəliyi",
+	"importlogpage": "İdxal gündəliyi",
 	"importlogpagetext": "Səhifələrin inzibatçılar tərəfindən digər vikilərdən dəyişiklik tarixçəsi ilə birlikdə köçürülməsi",
 	"import-logentry-upload-detail": "$1 {{PLURAL:$1|dəyişiklik}} idxal edildi.",
 	"import-logentry-interwiki-detail": "$2 vikidən $1 {{PLURAL:$1|dəyişiklik}} idxal edildi",

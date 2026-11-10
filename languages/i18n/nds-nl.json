@@ -24,7 +24,8 @@
 			"Ævar Arnfjörð Bjarmason <avarab@gmail.com>",
 			"לערי ריינהארט",
 			"아라",
-			"Sanderpel713"
+			"Sanderpel713",
+			"Nintendofan885"
 		]
 	},
 	"sunday": "sündag",
@@ -1241,7 +1242,7 @@
 	"license-header": "Licensy",
 	"nolicense": "Geen licensy köäsen",
 	"license-nopreview": "(Naokieken is niet meugelik)",
-	"upload_source_url": " (een geldig, publiek toegankelik webadres)",
+	"upload_source_url": "(een geldig, publiek toegankelik webadres)",
 	"upload_source_file": " (n bestaand op de hardeschieve)",
 	"listfiles-summary": "Op disse spesiale zied ku'j alle bestaanden bekieken die lestens op-estuurd bin.",
 	"imgfile": "bestand",

@@ -38,7 +38,8 @@
 			"Xethron",
 			"පසිඳු කාවින්ද",
 			"아라",
-			"Pyn3tv"
+			"Pyn3tv",
+			"Nintendofan885"
 		]
 	},
 	"sunday": "Sondag",
@@ -1377,8 +1378,8 @@
 	"nolicense": "Niks gekies nie",
 	"licenses-edit": "Wysig lisensie-opsies",
 	"license-nopreview": "(Voorskou nie beskikbaar)",
-	"upload_source_url": " ('n geldige, publiek toeganklike URL)",
-	"upload_source_file": " ('n lêer op u rekenaar)",
+	"upload_source_url": "('n geldige, publiek toeganklike URL)",
+	"upload_source_file": "('n lêer op u rekenaar)",
 	"listfiles-delete": "skrap",
 	"listfiles-summary": "Hierdie spesiale bladsy wys al die opgelaaide lêers.\nDie nuutste lêers word heel bo vertoon.\nKliek op die opskrifte om die tabel te hersorteer.",
 	"imgfile": "lêer",

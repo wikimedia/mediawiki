@@ -21,7 +21,8 @@
 			"Willtron",
 			"לערי ריינהארט",
 			"ديفيد",
-			"아라"
+			"아라",
+			"Nintendofan885"
 		]
 	},
 	"sunday": "domingo",
@@ -972,7 +973,7 @@
 	"license-header": "Licenciando",
 	"nolicense": "No s'en ha trigato garra",
 	"license-nopreview": "(Anvista previa no disponible)",
-	"upload_source_url": " (una URL conforme y publicament accesible)",
+	"upload_source_url": "(una URL conforme y publicament accesible)",
 	"upload_source_file": " (un fichero en o suyo ordenador)",
 	"listfiles-summary": "Ista pachina especial amuestra totz os fichers cargatos.\nQuan se filtran por usuario, nomás s'amuestran os fichers en os que ixe usuario cargó a versión mas recient d'o fichero.",
 	"imgfile": "fichero",
