@@ -2,13 +2,17 @@
 
 namespace MediaWiki\Tests\Integration\Block;
 
+use MediaWiki\Block\Block;
 use MediaWiki\Block\BlockUser;
 use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\Block\DeferredBlockMaterializer;
 use MediaWiki\Block\Restriction\PageRestriction;
+use MediaWiki\Context\RequestContext;
 use MediaWiki\Logging\LogEntryBase;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Permissions\PermissionManager;
+use MediaWiki\Permissions\PermissionStatus;
+use MediaWiki\Request\FauxRequest;
 use MediaWiki\Title\Title;
 use MediaWiki\User\User;
 use MediaWikiIntegrationTestCase;
@@ -19,6 +23,8 @@ use Wikimedia\Timestamp\TimestampFormat as TS;
  * @group Blocking
  * @group Database
  * @covers \MediaWiki\Block\DeferredBlockMaterializer
+ * @covers \MediaWiki\Permissions\PermissionManager
+ * @covers \MediaWiki\Permissions\UserAuthority
  */
 class DeferredBlockMaterializerTest extends MediaWikiIntegrationTestCase {
 
@@ -31,6 +37,7 @@ class DeferredBlockMaterializerTest extends MediaWikiIntegrationTestCase {
 		$this->setGroupPermissions( 'sysop', 'deferredblock', true );
 		$this->target = $this->getTestUser()->getUser();
 		$this->sysop = $this->getTestUser( [ 'sysop', 'suppress' ] )->getUser();
+		RequestContext::getMain()->setUser( $this->target );
 	}
 
 	private function placeDeferredBlock(
@@ -50,6 +57,15 @@ class DeferredBlockMaterializerTest extends MediaWikiIntegrationTestCase {
 		)->placeBlock( $conflictMode );
 		$this->assertStatusGood( $status );
 		return $status->getValue();
+	}
+
+	/**
+	 * Attempt to edit the page as the user, and return the block that prevents it
+	 */
+	private function attemptEdit( string $page = 'Test page', ?User $user = null ): ?Block {
+		$status = PermissionStatus::newEmpty();
+		( $user ?? $this->target )->authorizeWrite( 'edit', Title::newFromText( $page ), $status );
+		return $status->getBlock();
 	}
 
 	private function getMaterializer(): DeferredBlockMaterializer {
@@ -186,6 +202,81 @@ class DeferredBlockMaterializerTest extends MediaWikiIntegrationTestCase {
 		$this->assertFalse( $materializer->materialize( $staleCopy ) );
 		$this->assertSame( [], $materializer->getDeferredBlocks( $this->target ) );
 		$this->assertCount( 1, $this->getLogRows( 'block' ) );
+		$this->assertFalse( $this->isDeferred( $block ) );
+	}
+
+	public function testNotMaterializedByPermissionChecks(): void {
+		$block = $this->placeDeferredBlock();
+		$title = Title::newFromText( 'Test page' );
+		$permissionManager = $this->getServiceContainer()->getPermissionManager();
+
+		$this->assertNull( $permissionManager->getApplicableBlock(
+			'edit', $this->target, PermissionManager::RIGOR_SECURE, $title, null
+		) );
+		$this->assertStatusGood( $permissionManager->getPermissionStatus( 'edit', $this->target, $title ) );
+		$this->assertTrue( $this->target->definitelyCan( 'edit', $title ) );
+		$this->assertTrue( $this->target->isDefinitelyAllowed( 'edit' ) );
+		$this->assertTrue( $this->target->authorizeRead( 'edit', $title ) );
+
+		$this->assertTrue( $this->isDeferred( $block ) );
+		$this->assertSame( [], $this->getLogRows( 'block' ) );
+	}
+
+	public function testMaterializedOnAuthorizeWrite(): void {
+		$block = $this->placeDeferredBlock();
+
+		$applicableBlock = $this->attemptEdit();
+		$this->assertNotNull( $applicableBlock );
+		$this->assertSame( $block->getId(), $applicableBlock->getId() );
+		$this->assertFalse( $this->isDeferred( $block ) );
+		$this->assertCount( 1, $this->getLogRows( 'block' ) );
+
+		// Attempting again doesn't log again
+		$this->attemptEdit();
+		$this->assertCount( 1, $this->getLogRows( 'block' ) );
+	}
+
+	public function testMaterializedOnAuthorizeAction(): void {
+		$block = $this->placeDeferredBlock();
+
+		$this->assertFalse( $this->target->authorizeAction( 'upload' ) );
+		$this->assertFalse( $this->isDeferred( $block ) );
+	}
+
+	public function testNotMaterializedForOtherUser(): void {
+		$block = $this->placeDeferredBlock();
+		RequestContext::getMain()->setUser( $this->sysop );
+
+		$this->assertNull( $this->attemptEdit() );
+		$this->assertTrue( $this->isDeferred( $block ) );
+	}
+
+	public static function provideRequestMethods(): array {
+		return [
+			'GET' => [ false ],
+			'POST' => [ true ],
+		];
+	}
+
+	/** @dataProvider provideRequestMethods */
+	public function testMaterializedForRequestMethod( bool $wasPosted ): void {
+		RequestContext::getMain()->setRequest( new FauxRequest( [], $wasPosted ) );
+		$block = $this->placeDeferredBlock();
+
+		$this->assertNotNull( $this->attemptEdit() );
+		$this->assertFalse( $this->isDeferred( $block ) );
+	}
+
+	public function testNotMaterializedForActionItDoesNotBlock(): void {
+		$page = $this->getExistingTestPage( 'Blocked page' );
+		$block = $this->placeDeferredBlock( 'infinity', [ 'isPartial' => true ], [
+			new PageRestriction( 0, $page->getId() )
+		] );
+
+		$this->assertNull( $this->attemptEdit( 'Other page' ) );
+		$this->assertTrue( $this->isDeferred( $block ) );
+
+		$this->assertNotNull( $this->attemptEdit( 'Blocked page' ) );
 		$this->assertFalse( $this->isDeferred( $block ) );
 	}
 }

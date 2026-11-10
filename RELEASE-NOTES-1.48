@@ -96,6 +96,8 @@ For notes on 1.47.x and older releases, see HISTORY.
   DatabaseBlock::isDeferred() to find them. The BlockIpComplete and
   UnblockUserComplete hooks are not called for deferred blocks.
 * The new DeferredBlockMaterializer service materializes deferred blocks.
+  UserAuthority uses it in authorizeWrite() and authorizeAction(), when the
+  user of the session attempts an action that a deferred block prevents.
 * …
 
 === External library changes in 1.48 ===

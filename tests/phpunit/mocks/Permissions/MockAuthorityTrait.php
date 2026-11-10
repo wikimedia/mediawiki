@@ -4,6 +4,7 @@ namespace MediaWiki\Tests\Unit\Permissions;
 
 use MediaWiki\Block\Block;
 use MediaWiki\Block\BlockErrorFormatter;
+use MediaWiki\Block\DeferredBlockMaterializer;
 use MediaWiki\Block\SystemBlock;
 use MediaWiki\Context\IContextSource;
 use MediaWiki\Language\Language;
@@ -513,7 +514,8 @@ trait MockAuthorityTrait {
 			$options['context'] ?? $this->newContext(),
 			$permissionManager,
 			$rateLimiter,
-			$blockErrorFormatter
+			$blockErrorFormatter,
+			$options['deferredBlockMaterializer'] ?? $this->createMock( DeferredBlockMaterializer::class )
 		);
 	}
 }
