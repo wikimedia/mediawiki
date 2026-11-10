@@ -99,7 +99,7 @@ class ApiQueryBlocksTest extends ApiTestCase {
 				'enableAutoblock' => true,
 			] );
 
-		$autoblock = $this->getServiceContainer()->getDatabaseBlockStore()
+		$this->getServiceContainer()->getDatabaseBlockStore()
 			->doAutoblock( $parentBlock, '1.2.3.4' );
 
 		[ $data ] = $this->doApiRequest( [
@@ -114,6 +114,50 @@ class ApiQueryBlocksTest extends ApiTestCase {
 		], null, $this->mockRegisteredAuthorityWithPermissions( [ 'hideuser' ] ) );
 
 		$this->assertCount( 2, $data['query']['blocks'] );
+	}
+
+	public static function provideHiddenUserOtherBlocksVisibility(): array {
+		return [
+			'No rights' => [
+				'rights' => [],
+				'expectedCount' => 0,
+			],
+			'deferredblock' => [
+				'rights' => [ 'deferredblock' ],
+				'expectedCount' => 0,
+			],
+			'hideuser' => [
+				'rights' => [ 'hideuser' ],
+				'expectedCount' => 2,
+			],
+		];
+	}
+
+	/**
+	 * T391343 regression test
+	 * @dataProvider provideHiddenUserOtherBlocksVisibility
+	 */
+	public function testHiddenUserOtherBlocksVisibility( array $rights, int $expectedCount ): void {
+		$user = $this->getTestUser()->getUser();
+		$sysop = $this->getTestSysop()->getUser();
+		$store = $this->getServiceContainer()->getDatabaseBlockStore();
+		$store->insertBlockWithParams( [
+			'targetUser' => $user,
+			'by' => $sysop,
+		] );
+		$store->insertBlockWithParams( [
+			'targetUser' => $user,
+			'by' => $sysop,
+			'hideName' => true,
+		] );
+
+		[ $data ] = $this->doApiRequest(
+			[ 'action' => 'query', 'list' => 'blocks', 'bkprop' => 'id|user' ],
+			null,
+			false,
+			$this->mockRegisteredAuthorityWithPermissions( $rights )
+		);
+		$this->assertCount( $expectedCount, $data['query']['blocks'] );
 	}
 
 	public function testDeferredBlocksVisibility(): void {
