@@ -11,14 +11,17 @@ use MediaWiki\Context\IContextSource;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\Exception\ErrorPageError;
 use MediaWiki\MainConfigNames;
+use MediaWiki\Permissions\SimpleAuthority;
 use MediaWiki\Request\FauxRequest;
 use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Specials\SpecialCreateAccount;
+use MediaWiki\User\UserIdentityValue;
 use TestLogger;
 use Wikimedia\Parsoid\DOM\Document;
 use Wikimedia\Parsoid\DOM\Element;
 use Wikimedia\Parsoid\Utils\DOMCompat;
 use Wikimedia\Parsoid\Utils\DOMUtils;
+use Wikimedia\TestingAccessWrapper;
 
 /**
  * @covers \MediaWiki\Specials\SpecialCreateAccount
@@ -42,19 +45,45 @@ class SpecialCreateAccountTest extends SpecialPageTestBase {
 	}
 
 	public function testCheckPermissions(): void {
+		$testLogger = new TestLogger( true, null, true );
+		$this->setLogger( 'authevents', $testLogger );
+
+		$specialPage = $this->newSpecialPage();
+		$specialPage->getContext()->setAuthority( new SimpleAuthority(
+			UserIdentityValue::newAnonymous( '1.2.3.4' ),
+			[ /* createaccount not allowed */ ]
+		) );
+		// simulate POST to trigger authevents logging
+		TestingAccessWrapper::newFromObject( $specialPage )->mPosted = true;
+		try {
+			$specialPage->checkPermissions();
+		} catch ( ErrorPageError $e ) {
+			$msg = $e->getMessageObject();
+			$this->assertSame( 'permissionserrors', $msg->getKey() );
+			$buffer = $testLogger->getBuffer();
+			$this->assertEquals( 'Account creation attempt', $buffer[0][1] );
+			$this->assertEquals( 'permissionserrors', $buffer[0][2]['status'] );
+			$this->assertArrayHasKey( 'ua', $buffer[0][2] );
+			return;
+		}
+		$this->fail( 'ErrorPageError exception was not thrown' );
+	}
+
+	public function testCheckPermissionsWhenReadOnly(): void {
 		$readOnlyMode = $this->getServiceContainer()->getReadOnlyMode();
 		$readOnlyMode->setReason( 'Test' );
 		$testLogger = new TestLogger( true, null, true );
 		$this->setLogger( 'authevents', $testLogger );
 
 		$specialPage = $this->newSpecialPage();
+		TestingAccessWrapper::newFromObject( $specialPage )->mPosted = false;
 		try {
 			$specialPage->checkPermissions();
-		} catch ( ErrorPageError ) {
-			$buffer = $testLogger->getBuffer();
-			$this->assertEquals( 'Account creation attempt', $buffer[0][1] );
-			$this->assertEquals( 'readonlytext', $buffer[0][2]['status'] );
-			$this->assertArrayHasKey( 'ua', $buffer[0][2] );
+		} catch ( ErrorPageError $e ) {
+			$msg = $e->getMessageObject();
+			$this->assertSame( 'readonlytext', $msg->getKey() );
+			$this->assertSame( [ 'Test' ], $msg->getParams() );
+			$this->assertSame( [], $testLogger->getBuffer() );
 			return;
 		}
 		$this->fail( 'ErrorPageError exception was not thrown' );
@@ -74,11 +103,14 @@ class SpecialCreateAccountTest extends SpecialPageTestBase {
 		$this->setLogger( 'authevents', $testLogger );
 
 		$specialPage = $this->newSpecialPage();
+		TestingAccessWrapper::newFromObject( $specialPage )->mPosted = false;
 		try {
 			$specialPage->checkPermissions();
-		} catch ( ErrorPageError ) {
+		} catch ( ErrorPageError $e ) {
 			$this->assertTrue( $expectError, 'ErrorPageError exception was thrown' );
-			$this->assertEquals( 'blockedtext', $testLogger->getBuffer()[0][2]['status'] );
+			$msg = $e->getMessageObject();
+			$this->assertSame( 'blockedtext', $msg->getKey() );
+			$this->assertSame( [], $testLogger->getBuffer() );
 			return;
 		}
 		$this->assertFalse( $expectError, 'ErrorPageError exception was not thrown' );
