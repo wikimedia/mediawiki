@@ -2,8 +2,8 @@
 
 namespace MediaWiki\Tests\Rest\Module;
 
+use MediaWiki\Rest\Module\ModuleAvailability;
 use MediaWiki\Rest\Module\ModuleInfo;
-use MediaWiki\Rest\Module\ModuleMode;
 use MediaWikiUnitTestCase;
 
 /**
@@ -17,7 +17,7 @@ class ModuleInfoTest extends MediaWikiUnitTestCase {
 	public function testGetters(): void {
 		$info = new ModuleInfo(
 			'test/v1',
-			ModuleMode::PUBLISHED,
+			ModuleAvailability::PUBLISHED,
 			false,
 			'Test Module',
 			'A module description',
@@ -29,7 +29,7 @@ class ModuleInfoTest extends MediaWikiUnitTestCase {
 		);
 
 		$this->assertSame( 'test/v1', $info->getId() );
-		$this->assertSame( ModuleMode::PUBLISHED, $info->getAvailability() );
+		$this->assertSame( ModuleAvailability::PUBLISHED, $info->getAvailability() );
 		$this->assertFalse( $info->isExternal() );
 		$this->assertSame( 'Test Module', $info->getTitle() );
 		$this->assertSame( 'A module description', $info->getDescription() );
@@ -46,7 +46,7 @@ class ModuleInfoTest extends MediaWikiUnitTestCase {
 	public function testGettersNullableDefaults(): void {
 		$info = new ModuleInfo(
 			'minimal/v1',
-			ModuleMode::HIDDEN,
+			ModuleAvailability::HIDDEN,
 			true,
 			null,
 			null,
@@ -56,7 +56,7 @@ class ModuleInfoTest extends MediaWikiUnitTestCase {
 		);
 
 		$this->assertSame( 'minimal/v1', $info->getId() );
-		$this->assertSame( ModuleMode::HIDDEN, $info->getAvailability() );
+		$this->assertSame( ModuleAvailability::HIDDEN, $info->getAvailability() );
 		$this->assertTrue( $info->isExternal() );
 		$this->assertNull( $info->getTitle() );
 		$this->assertNull( $info->getDescription() );
@@ -68,14 +68,14 @@ class ModuleInfoTest extends MediaWikiUnitTestCase {
 	}
 
 	/**
-	 * Test that `getAvailability()` faithfully returns all `ModuleMode` enum cases.
+	 * Test that `getAvailability()` faithfully returns all `ModuleAvailability` enum cases.
 	 *
 	 * @dataProvider provideAvailabilityModes
 	 */
-	public function testGetAvailability( ModuleMode $mode ): void {
+	public function testGetAvailability( ModuleAvailability $availability ): void {
 		$info = new ModuleInfo(
 			'test/v1',
-			$mode,
+			$availability,
 			false,
 			null,
 			null,
@@ -83,15 +83,15 @@ class ModuleInfoTest extends MediaWikiUnitTestCase {
 			null,
 			[]
 		);
-		$this->assertSame( $mode, $info->getAvailability() );
+		$this->assertSame( $availability, $info->getAvailability() );
 	}
 
 	public static function provideAvailabilityModes(): array {
 		return [
-			'published' => [ ModuleMode::PUBLISHED ],
-			'hidden' => [ ModuleMode::HIDDEN ],
-			'disabled' => [ ModuleMode::DISABLED ],
-			'discoverable' => [ ModuleMode::DISCOVERABLE ],
+			'published' => [ ModuleAvailability::PUBLISHED ],
+			'hidden' => [ ModuleAvailability::HIDDEN ],
+			'disabled' => [ ModuleAvailability::DISABLED ],
+			'discoverable' => [ ModuleAvailability::DISCOVERABLE ],
 		];
 	}
 }

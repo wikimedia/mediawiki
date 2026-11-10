@@ -11,7 +11,7 @@ use MediaWiki\Rest\ErrorFormatterV2;
 use MediaWiki\Rest\Handler;
 use MediaWiki\Rest\Handler\ModuleSpecHandler;
 use MediaWiki\Rest\LocalizedHttpException;
-use MediaWiki\Rest\Module\ModuleMode;
+use MediaWiki\Rest\Module\ModuleAvailability;
 use MediaWiki\Rest\Reporter\MWErrorReporter;
 use MediaWiki\Rest\RequestData;
 use MediaWiki\Rest\RequestInterface;
@@ -40,7 +40,7 @@ class ModuleSpecHandlerTest extends MediaWikiIntegrationTestCase {
 		RequestInterface $request,
 		$specFile,
 		ITextFormatter $formatter,
-		$moduleModes = [],
+		$moduleAvailabilities = [],
 	): Router {
 		$services = $this->getServiceContainer();
 
@@ -62,7 +62,7 @@ class ModuleSpecHandlerTest extends MediaWikiIntegrationTestCase {
 		$externalModules = $conf->get( MainConfigNames::RestExternalModules );
 
 		return ( new Router(
-			$this->newMockModuleManager( $specFiles, $moduleModes, [], $externalModules ),
+			$this->newMockModuleManager( $specFiles, $moduleAvailabilities, [], $externalModules ),
 			[],
 			new ServiceOptions( Router::CONSTRUCTOR_OPTIONS, $conf ),
 			$services->getLocalServerObjectCache(),
@@ -120,7 +120,7 @@ class ModuleSpecHandlerTest extends MediaWikiIntegrationTestCase {
 	private function executeModuleSpecHandler(
 		RequestData $request,
 		$specFile,
-		array $moduleModes,
+		array $moduleAvailabilities,
 		array $securitySchemes = []
 	): ResponseInterface {
 		$formatter = new class implements ITextFormatter {
@@ -137,7 +137,7 @@ class ModuleSpecHandlerTest extends MediaWikiIntegrationTestCase {
 			$request,
 			$specFile,
 			$formatter,
-			$moduleModes,
+			$moduleAvailabilities,
 		);
 
 		$module = $this->newModule( [ 'router' => $router, 'formatter' => $formatter ] );
@@ -328,14 +328,14 @@ class ModuleSpecHandlerTest extends MediaWikiIntegrationTestCase {
 
 		$request = new RequestData( $params );
 
-		$moduleModes = [
-			'mock/v1' => ModuleMode::PUBLISHED,
-			'' => ModuleMode::PUBLISHED,
+		$moduleAvailabilities = [
+			'mock/v1' => ModuleAvailability::PUBLISHED,
+			'' => ModuleAvailability::PUBLISHED,
 		];
 		$response = $this->executeModuleSpecHandler(
 			$request,
 			$specFile,
-			$moduleModes
+			$moduleAvailabilities
 		);
 		$this->assertSame( 200, $response->getStatusCode() );
 		$this->assertArrayHasKey( 'Content-Type', $response->getHeaders() );
@@ -383,7 +383,7 @@ class ModuleSpecHandlerTest extends MediaWikiIntegrationTestCase {
 		$response = $this->executeModuleSpecHandler(
 			new RequestData( [ 'pathParams' => [ 'module' => $module, 'version' => 'v1' ], 'headers' => $headers ] ),
 			$specFile,
-			[ "$module/v1" => ModuleMode::PUBLISHED ]
+			[ "$module/v1" => ModuleAvailability::PUBLISHED ]
 		);
 		$data = json_decode( (string)$response->getBody(), true );
 
@@ -408,13 +408,13 @@ class ModuleSpecHandlerTest extends MediaWikiIntegrationTestCase {
 			'pathParams' => [ 'module' => 'mock', 'version' => 'v1' ]
 		] );
 
-		$moduleModes = [
-			'mock/v1' => ModuleMode::PUBLISHED,
+		$moduleAvailabilities = [
+			'mock/v1' => ModuleAvailability::PUBLISHED,
 		];
 		$response = $this->executeModuleSpecHandler(
 			$request,
 			__DIR__ . '/SpecTestModule.json',
-			$moduleModes
+			$moduleAvailabilities
 		);
 		$this->assertSame( 200, $response->getStatusCode() );
 
@@ -438,13 +438,13 @@ class ModuleSpecHandlerTest extends MediaWikiIntegrationTestCase {
 			'pathParams' => [ 'module' => 'mock', 'version' => 'v1' ]
 		] );
 
-		$moduleModes = [
-			'mock/v1' => ModuleMode::PUBLISHED,
+		$moduleAvailabilities = [
+			'mock/v1' => ModuleAvailability::PUBLISHED,
 		];
 		$response = $this->executeModuleSpecHandler(
 			$request,
 			__DIR__ . '/SpecTestModule.json',
-			$moduleModes
+			$moduleAvailabilities
 		);
 		$this->assertSame( 200, $response->getStatusCode() );
 
@@ -489,14 +489,14 @@ class ModuleSpecHandlerTest extends MediaWikiIntegrationTestCase {
 			'pathParams' => [ 'module' => 'mock', 'version' => 'v1' ]
 		] );
 
-		$moduleModes = [
-			'mock/v1' => ModuleMode::PUBLISHED,
-			'' => ModuleMode::PUBLISHED,
+		$moduleAvailabilities = [
+			'mock/v1' => ModuleAvailability::PUBLISHED,
+			'' => ModuleAvailability::PUBLISHED,
 		];
 		$response = $this->executeModuleSpecHandler(
 			$request,
 			__DIR__ . '/' . $specFile,
-			$moduleModes
+			$moduleAvailabilities
 		);
 		$this->assertSame( 200, $response->getStatusCode() );
 		$data = json_decode( (string)$response->getBody(), true );
@@ -589,13 +589,13 @@ class ModuleSpecHandlerTest extends MediaWikiIntegrationTestCase {
 			[ 'pathParams' => [ 'module' => 'mockExternal', 'version' => 'v1' ] ]
 		);
 
-		$moduleModes = [
-			'mockExternal/v1' => ModuleMode::PUBLISHED,
+		$moduleAvailabilities = [
+			'mockExternal/v1' => ModuleAvailability::PUBLISHED,
 		];
 		$response = $this->executeModuleSpecHandler(
 			$request,
 			null,
-			$moduleModes
+			$moduleAvailabilities
 		);
 		$this->assertSame( 301, $response->getStatusCode() );
 		$this->assertArrayHasKey( 'Location', $response->getHeaders() );
@@ -625,8 +625,8 @@ class ModuleSpecHandlerTest extends MediaWikiIntegrationTestCase {
 			[ 'pathParams' => [ 'module' => 'mockExternal', 'version' => 'v1' ] ]
 		);
 
-		$moduleModes = [
-			'mockExternal/v1' => ModuleMode::PUBLISHED,
+		$moduleAvailabilities = [
+			'mockExternal/v1' => ModuleAvailability::PUBLISHED,
 		];
 
 		$this->expectException( LocalizedHttpException::class );
@@ -635,7 +635,7 @@ class ModuleSpecHandlerTest extends MediaWikiIntegrationTestCase {
 		$this->executeModuleSpecHandler(
 			$request,
 			null,
-			$moduleModes
+			$moduleAvailabilities
 		);
 	}
 
@@ -680,7 +680,7 @@ class ModuleSpecHandlerTest extends MediaWikiIntegrationTestCase {
 		$request = new RequestData( $params );
 
 		$overrides = [
-			'mock/v1' => ModuleMode::HIDDEN,
+			'mock/v1' => ModuleAvailability::HIDDEN,
 		];
 
 		$this->expectException( LocalizedHttpException::class );
@@ -701,7 +701,7 @@ class ModuleSpecHandlerTest extends MediaWikiIntegrationTestCase {
 		$this->executeModuleSpecHandler(
 			$request,
 			__DIR__ . '/SpecTestModule.json',
-			[ 'mock/v1' => ModuleMode::DISABLED ]
+			[ 'mock/v1' => ModuleAvailability::DISABLED ]
 		);
 	}
 
@@ -716,7 +716,7 @@ class ModuleSpecHandlerTest extends MediaWikiIntegrationTestCase {
 		$this->executeModuleSpecHandler(
 			$request,
 			__DIR__ . '/SpecTestFlatRoutes.json',
-			[ '' => ModuleMode::DISABLED ]
+			[ '' => ModuleAvailability::DISABLED ]
 		);
 	}
 
@@ -791,7 +791,7 @@ class ModuleSpecHandlerTest extends MediaWikiIntegrationTestCase {
 		$response = $this->executeModuleSpecHandler(
 			$request,
 			__DIR__ . '/SpecTestModule.json',
-			[ 'mock/v1' => ModuleMode::PUBLISHED ],
+			[ 'mock/v1' => ModuleAvailability::PUBLISHED ],
 			self::getTestSecuritySchemes()
 		);
 		$this->assertSame( 200, $response->getStatusCode() );
@@ -835,8 +835,8 @@ class ModuleSpecHandlerTest extends MediaWikiIntegrationTestCase {
 
 	public function testSpecsV0SpecIncludesLangParam(): void {
 		$specFile = MW_INSTALL_PATH . '/includes/Rest/specs.v0.json';
-		$moduleModes = [
-			'specs/v0' => ModuleMode::PUBLISHED,
+		$moduleAvailabilities = [
+			'specs/v0' => ModuleAvailability::PUBLISHED,
 		];
 		$request = new RequestData( [
 			'pathParams' => [ 'module' => 'specs', 'version' => 'v0' ]
@@ -845,7 +845,7 @@ class ModuleSpecHandlerTest extends MediaWikiIntegrationTestCase {
 		$response = $this->executeModuleSpecHandler(
 			$request,
 			$specFile,
-			$moduleModes
+			$moduleAvailabilities
 		);
 		$this->assertSame( 200, $response->getStatusCode() );
 		$data = json_decode( (string)$response->getBody(), true );

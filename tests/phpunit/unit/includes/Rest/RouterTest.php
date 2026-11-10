@@ -11,9 +11,9 @@ use MediaWiki\Rest\ErrorFormatterV1;
 use MediaWiki\Rest\ErrorFormatterV2;
 use MediaWiki\Rest\Handler;
 use MediaWiki\Rest\HttpException;
+use MediaWiki\Rest\Module\ModuleAvailability;
 use MediaWiki\Rest\Module\ModuleInfo;
 use MediaWiki\Rest\Module\ModuleManager;
-use MediaWiki\Rest\Module\ModuleMode;
 use MediaWiki\Rest\PathTemplateMatcher\ModuleConfigurationException;
 use MediaWiki\Rest\RedirectException;
 use MediaWiki\Rest\Reporter\ErrorReporter;
@@ -1129,7 +1129,7 @@ class RouterTest extends MediaWikiUnitTestCase {
 	public function testGetModuleBaseUrlExternalAbsolute(): void {
 		$info = new ModuleInfo(
 			'external/v1',
-			ModuleMode::PUBLISHED,
+			ModuleAvailability::PUBLISHED,
 			true,
 			'External Module',
 			null,
@@ -1150,7 +1150,7 @@ class RouterTest extends MediaWikiUnitTestCase {
 	public function testGetModuleBaseUrlExternalRelative(): void {
 		$info = new ModuleInfo(
 			'external/v1',
-			ModuleMode::PUBLISHED,
+			ModuleAvailability::PUBLISHED,
 			true,
 			'External Module',
 			null,
@@ -1175,7 +1175,7 @@ class RouterTest extends MediaWikiUnitTestCase {
 	public function testGetModuleBaseUrlExternalNull(): void {
 		$info = new ModuleInfo(
 			'external/v1',
-			ModuleMode::PUBLISHED,
+			ModuleAvailability::PUBLISHED,
 			true,
 			'External Module',
 			null,
@@ -1198,7 +1198,7 @@ class RouterTest extends MediaWikiUnitTestCase {
 	public function testGetModuleBaseUrlExternalUnresolvable(): void {
 		$info = new ModuleInfo(
 			'external/v1',
-			ModuleMode::PUBLISHED,
+			ModuleAvailability::PUBLISHED,
 			true,
 			'External Module',
 			null,
@@ -1225,7 +1225,7 @@ class RouterTest extends MediaWikiUnitTestCase {
 	public function testGetModuleBaseUrlLocal(): void {
 		$info = new ModuleInfo(
 			'local/v1',
-			ModuleMode::PUBLISHED,
+			ModuleAvailability::PUBLISHED,
 			false,
 			null,
 			null,
@@ -1247,7 +1247,7 @@ class RouterTest extends MediaWikiUnitTestCase {
 	public function testGetModuleBaseUrlPrefixless(): void {
 		$info = new ModuleInfo(
 			'',
-			ModuleMode::PUBLISHED,
+			ModuleAvailability::PUBLISHED,
 			false,
 			null,
 			null,
@@ -1282,7 +1282,7 @@ class RouterTest extends MediaWikiUnitTestCase {
 	public function testGetModuleSpecUrlExternalAbsolute(): void {
 		$info = new ModuleInfo(
 			'external/v1',
-			ModuleMode::PUBLISHED,
+			ModuleAvailability::PUBLISHED,
 			true,
 			'External Module',
 			null,
@@ -1306,7 +1306,7 @@ class RouterTest extends MediaWikiUnitTestCase {
 	public function testGetModuleSpecUrlExternalRelative(): void {
 		$info = new ModuleInfo(
 			'external/v1',
-			ModuleMode::PUBLISHED,
+			ModuleAvailability::PUBLISHED,
 			true,
 			'External Module',
 			null,
@@ -1331,7 +1331,7 @@ class RouterTest extends MediaWikiUnitTestCase {
 	public function testGetModuleSpecUrlExternalNull(): void {
 		$info = new ModuleInfo(
 			'external/v1',
-			ModuleMode::PUBLISHED,
+			ModuleAvailability::PUBLISHED,
 			true,
 			'External Module',
 			null,
@@ -1354,7 +1354,7 @@ class RouterTest extends MediaWikiUnitTestCase {
 	public function testGetModuleSpecUrlExternalUnresolvable(): void {
 		$info = new ModuleInfo(
 			'external/v1',
-			ModuleMode::PUBLISHED,
+			ModuleAvailability::PUBLISHED,
 			true,
 			'External Module',
 			null,
@@ -1381,7 +1381,7 @@ class RouterTest extends MediaWikiUnitTestCase {
 	public function testGetModuleSpecUrlLocalDefault(): void {
 		$info = new ModuleInfo(
 			'local/v1',
-			ModuleMode::PUBLISHED,
+			ModuleAvailability::PUBLISHED,
 			false,
 			null,
 			null,
@@ -1403,7 +1403,7 @@ class RouterTest extends MediaWikiUnitTestCase {
 	public function testGetModuleSpecUrlPrefixless(): void {
 		$info = new ModuleInfo(
 			'',
-			ModuleMode::PUBLISHED,
+			ModuleAvailability::PUBLISHED,
 			false,
 			null,
 			null,

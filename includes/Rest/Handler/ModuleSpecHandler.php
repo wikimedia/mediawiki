@@ -8,7 +8,7 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\Rest\Handler;
 use MediaWiki\Rest\LocalizedHttpException;
 use MediaWiki\Rest\Module\Module;
-use MediaWiki\Rest\Module\ModuleMode;
+use MediaWiki\Rest\Module\ModuleAvailability;
 use MediaWiki\Rest\RequestData;
 use MediaWiki\Rest\Response;
 use MediaWiki\Rest\SimpleHandler;
@@ -79,8 +79,8 @@ class ModuleSpecHandler extends SimpleHandler {
 		// its endpoints.  This is just a way to hide the spec in cases where it should not be
 		// available.
 		if (
-			$moduleInfo->getAvailability() === ModuleMode::HIDDEN ||
-			$moduleInfo->getAvailability() === ModuleMode::DISABLED
+			$moduleInfo->getAvailability() === ModuleAvailability::HIDDEN ||
+			$moduleInfo->getAvailability() === ModuleAvailability::DISABLED
 		) {
 			throw new LocalizedHttpException(
 				MessageValue::new( 'rest-unavailable-spec' )->params( $moduleName ),

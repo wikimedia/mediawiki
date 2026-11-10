@@ -9,7 +9,7 @@ namespace MediaWiki\Rest\Module;
  */
 class ModuleInfo {
 	private string $id;
-	private ModuleMode $availability;
+	private ModuleAvailability $availability;
 	private bool $isExternal;
 	private ?string $title;
 	private ?string $description;
@@ -21,7 +21,7 @@ class ModuleInfo {
 
 	/**
 	 * @param string $id The module ID (e.g., 'site/v1' or '' for prefix-less)
-	 * @param ModuleMode $availability The module availability
+	 * @param ModuleAvailability $availability The module availability
 	 * @param bool $isExternal Whether the module is external or local
 	 * @param ?string $title The display name of the module
 	 * @param ?string $description The description of the module
@@ -33,7 +33,7 @@ class ModuleInfo {
 	 */
 	public function __construct(
 		string $id,
-		ModuleMode $availability,
+		ModuleAvailability $availability,
 		bool $isExternal,
 		?string $title,
 		?string $description,
@@ -59,7 +59,7 @@ class ModuleInfo {
 		return $this->id;
 	}
 
-	public function getAvailability(): ModuleMode {
+	public function getAvailability(): ModuleAvailability {
 		return $this->availability;
 	}
 

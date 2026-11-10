@@ -7,7 +7,7 @@ use MediaWiki\Config\ServiceOptions;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Rest\BasicAccess\StaticBasicAuthorizer;
 use MediaWiki\Rest\Handler\DiscoveryHandler;
-use MediaWiki\Rest\Module\ModuleMode;
+use MediaWiki\Rest\Module\ModuleAvailability;
 use MediaWiki\Rest\Reporter\MWErrorReporter;
 use MediaWiki\Rest\RequestData;
 use MediaWiki\Rest\RequestInterface;
@@ -56,12 +56,12 @@ class DiscoveryHandlerTest extends MediaWikiIntegrationTestCase {
 		$textFormatters = [ $formatter ];
 		$showExceptionDetails = false;
 
-		$moduleModes = [
-			'SpecTestRoutes/v1' => ModuleMode::PUBLISHED,
-			'SpecTestRoutes/v2' => ModuleMode::HIDDEN,
-			'SpecTestRoutes/v3' => ModuleMode::PUBLISHED,
-			'SpecTestRoutes/v4' => ModuleMode::DISABLED,
-			'mockExternal/v1' => ModuleMode::PUBLISHED,
+		$moduleAvailabilities = [
+			'SpecTestRoutes/v1' => ModuleAvailability::PUBLISHED,
+			'SpecTestRoutes/v2' => ModuleAvailability::HIDDEN,
+			'SpecTestRoutes/v3' => ModuleAvailability::PUBLISHED,
+			'SpecTestRoutes/v4' => ModuleAvailability::DISABLED,
+			'mockExternal/v1' => ModuleAvailability::PUBLISHED,
 		];
 
 		// In production, `ModuleManager` reads `RestExternalModules` directly from
@@ -71,7 +71,7 @@ class DiscoveryHandlerTest extends MediaWikiIntegrationTestCase {
 		return ( new Router(
 			$this->newMockModuleManager(
 				$specFiles,
-				$moduleModes,
+				$moduleAvailabilities,
 				$moduleGroups,
 				$mainConfig->get( MainConfigNames::RestExternalModules )
 			),

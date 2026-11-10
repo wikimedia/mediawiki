@@ -7,9 +7,9 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\Rest\BasicAccess\StaticBasicAuthorizer;
 use MediaWiki\Rest\JsonLocalizer;
 use MediaWiki\Rest\Module\Module;
+use MediaWiki\Rest\Module\ModuleAvailability;
 use MediaWiki\Rest\Module\ModuleInfo;
 use MediaWiki\Rest\Module\ModuleManager;
-use MediaWiki\Rest\Module\ModuleMode;
 use MediaWiki\Rest\Reporter\PHPErrorReporter;
 use MediaWiki\Rest\RequestData;
 use MediaWiki\Rest\Router;
@@ -39,8 +39,8 @@ trait RestTestTrait {
 	 * @since 1.47
 	 *
 	 * @param array $routeFiles route files to return from mocked getRouteFiles() call
-	 * @param array $moduleModes maps module ids to module availabilities for
-	 *   mocked getModuleMode() call
+	 * @param array $moduleAvailabilities maps module ids to module availabilities for
+	 *   mocked getModuleAvailability() call
 	 * @param array $moduleGroups maps module ids to groups for mocked ModuleInfo objects
 	 * @param array $externalModules external module configuration array
 	 *
@@ -48,12 +48,12 @@ trait RestTestTrait {
 	 */
 	private function newMockModuleManager(
 		array $routeFiles,
-		array $moduleModes = [],
+		array $moduleAvailabilities = [],
 		array $moduleGroups = [],
 		array $externalModules = []
 	): ModuleManager {
-		$getModuleMode = static fn ( string $moduleId ) =>
-			$moduleModes[$moduleId] ?? ModuleMode::DISABLED;
+		$getModuleAvailability = static fn ( string $moduleId ) =>
+			$moduleAvailabilities[$moduleId] ?? ModuleAvailability::DISABLED;
 		$getGroups = static fn ( string $moduleId ) =>
 			(array)( $moduleGroups[$moduleId] ?? [] );
 
@@ -63,7 +63,7 @@ trait RestTestTrait {
 			bool $isExternal
 		) => new ModuleInfo(
 			$moduleId,
-			$getModuleMode( $moduleId ),
+			$getModuleAvailability( $moduleId ),
 			$isExternal,
 			$moduleDefinition['info']['title'] ?? $moduleId,
 			$moduleDefinition['info']['description'] ?? null,
@@ -76,7 +76,9 @@ trait RestTestTrait {
 
 		$mock = $this->createMock( ModuleManager::class );
 		$mock->method( 'getRouteFiles' )->willReturn( $routeFiles );
-		$mock->method( 'getModuleMode' )->willReturnCallback( $getModuleMode );
+		$mock->method(
+			'getModuleAvailability'
+		)->willReturnCallback( $getModuleAvailability );
 
 		$mock->method( 'getModuleInfos' )->willReturnCallback(
 			static function () use ( $routeFiles, $externalModules, $createModuleInfo ) {
