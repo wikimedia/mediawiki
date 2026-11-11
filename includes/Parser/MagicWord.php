@@ -262,13 +262,4 @@ class MagicWord {
 	public function isCaseSensitive() {
 		return $this->mCaseSensitive;
 	}
-
-	/**
-	 * @return string
-	 * @deprecated since 1.42 Internal method should not be used
-	 */
-	public function getId() {
-		wfDeprecated( __METHOD__, '1.42' );
-		return $this->mId;
-	}
 }

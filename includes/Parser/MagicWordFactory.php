@@ -185,17 +185,6 @@ class MagicWordFactory {
 	}
 
 	/**
-	 * Get an array of parser substitution modifier IDs
-	 *
-	 * @return string[]
-	 * @deprecated since 1.42, use {@see getSubstArray} instead
-	 */
-	public function getSubstIDs(): array {
-		wfDeprecated( __METHOD__, '1.42' );
-		return [ 'subst', 'safesubst' ];
-	}
-
-	/**
 	 * @internal for use in {@see Parser::braceSubstitution} only
 	 */
 	public function getSubstArray(): MagicWordArray {

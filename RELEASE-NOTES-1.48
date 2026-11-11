@@ -223,6 +223,19 @@ For notes on 1.47.x and older releases, see HISTORY.
 *  - searchaction
 *  - personal_urls
 *  - data-portlets.data-personal
+* The following methods have been removed:
+  - ParserOptions::setThumbSize() (deprecated since 1.47)
+  - ParserOptions::getIsPrintable() and ::setIsPrintable() (deprecated
+    since 1.47)
+  - ParserOptions::setSuppressTOC() (deprecated since 1.42)
+  - MagicWordFactory::getSubstIDs() (deprecated since 1.42), use
+    getSubstArray()
+  - MagicWord::getId() (deprecated since 1.42)
+  - Parser::statelessFetchRevisionRecord() (deprecated since 1.47), use
+    ParserOptions::getCurrentRevisionRecordCallback()
+  - Parser::getExternalLinkRel() (deprecated since 1.47), use
+    LinkRenderer::getExternalLinkRel()
+  - Parser::guessLegacySectionNameFromWikiText() (deprecated since 1.45)
 * …
 
 === Deprecations in 1.48 ===

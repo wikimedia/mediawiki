@@ -367,7 +367,6 @@ class Parser implements MessageLocalizer {
 		MainConfigNames::ArticlePath,
 		MainConfigNames::EnableScaryTranscluding,
 		MainConfigNames::ExtraInterlanguageLinkPrefixes,
-		MainConfigNames::FragmentMode,
 		MainConfigNames::Localtimezone,
 		MainConfigNames::MaxArticleSize,
 		MainConfigNames::MaxSigChars,
@@ -2183,23 +2182,6 @@ class Parser implements MessageLocalizer {
 	}
 
 	/**
-	 * Get the rel attribute for a particular external link.
-	 *
-	 * @since 1.21
-	 * @deprecated since 1.47 use LinkRenderer::getExternalLinkRel()
-	 * @internal
-	 * @param string|false $url Optional URL, to extract the domain from for rel =>
-	 *   nofollow if appropriate
-	 * @param LinkTarget|PageReference|null $title Optional page, for wgNoFollowNsExceptions lookups
-	 * @return string|null Rel attribute for $url
-	 */
-	public static function getExternalLinkRel( $url = false, $title = null ): ?string {
-		wfDeprecated( __METHOD__, '1.47' );
-		return MediaWikiServices::getInstance()->getLinkRenderer()
-			->getExternalLinkRel( $url, $title );
-	}
-
-	/**
 	 * Get an associative array of additional HTML attributes appropriate for a
 	 * particular external link.  This currently may include rel => nofollow
 	 * (depending on configuration, namespace, and the URL's domain) and/or a
@@ -3568,22 +3550,6 @@ class Parser implements MessageLocalizer {
 		}
 
 		return $revisionLookup->getKnownLatestRevision( $page );
-	}
-
-	/**
-	 * @deprecated since 1.47 Use ParserOptions::getCurrentRevisionRecordCallback()
-	 * @since 1.34
-	 * @param LinkTarget $link
-	 * @param Parser|null $parser
-	 * @return RevisionRecord|false False if missing
-	 */
-	public static function statelessFetchRevisionRecord( LinkTarget $link, $parser = null ) {
-		wfDeprecated( __METHOD__, '1.47' );
-		return self::defaultFetchRevisionRecord(
-			MediaWikiServices::getInstance()->getRevisionLookup(),
-			$link,
-			$parser
-		);
 	}
 
 	/**
@@ -6237,18 +6203,6 @@ class Parser implements MessageLocalizer {
 		return '#' . Sanitizer::escapeIdForLink( $sectionName );
 	}
 
-	private function makeLegacyAnchor( string $sectionName ): string {
-		$fragmentMode = $this->svcOptions->get( MainConfigNames::FragmentMode );
-		if ( isset( $fragmentMode[1] ) && $fragmentMode[1] === 'legacy' ) {
-			// ForAttribute() and ForLink() are the same for legacy encoding
-			$id = Sanitizer::escapeIdForAttribute( $sectionName, Sanitizer::ID_FALLBACK );
-		} else {
-			$id = Sanitizer::escapeIdForLink( $sectionName );
-		}
-
-		return "#$id";
-	}
-
 	/**
 	 * Try to guess the section anchor name based on a wikitext fragment
 	 * presumably extracted from a heading, for example "Header" from
@@ -6263,25 +6217,6 @@ class Parser implements MessageLocalizer {
 		$text = $this->stripSectionName( $text );
 		$sectionName = self::getSectionNameFromStrippedText( $text );
 		return self::makeAnchor( $sectionName );
-	}
-
-	/**
-	 * Same as guessSectionNameFromWikiText(), but produces legacy anchors
-	 * instead, if possible. For use in redirects, since various versions
-	 * of Microsoft browsers interpret Location: headers as something other
-	 * than UTF-8, resulting in breakage.
-	 *
-	 * @param string $text The section name
-	 * @return string Anchor (starting with '#')
-	 * @since 1.17
-	 * @deprecated since 1.45
-	 */
-	public function guessLegacySectionNameFromWikiText( $text ): string {
-		wfDeprecated( __METHOD__, '1.45' ); // warnings since 1.45
-		# Strip out wikitext links(they break the anchor)
-		$text = $this->stripSectionName( $text );
-		$sectionName = self::getSectionNameFromStrippedText( $text );
-		return $this->makeLegacyAnchor( $sectionName );
 	}
 
 	/**

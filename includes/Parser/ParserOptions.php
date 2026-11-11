@@ -632,21 +632,6 @@ class ParserOptions {
 	}
 
 	/**
-	 * Thumb size preferred by the user.
-	 *
-	 * This is ignored by the parser.
-	 *
-	 * @param int|null $x New value (null is no change)
-	 * @return int Old value
-	 * @deprecated since 1.47; thumbnail resizing is handled client-side
-	 *  (T417514)
-	 */
-	public function setThumbSize( $x ) {
-		wfDeprecated( __METHOD__, '1.47' );
-		return $this->getThumbSize();
-	}
-
-	/**
 	 * Parsing the page for a "preview" operation?
 	 * @return bool
 	 */
@@ -684,22 +669,6 @@ class ParserOptions {
 			$this->setOption( 'isPreview', true );
 		}
 		return $this->setOptionLegacy( 'isSectionPreview', $x );
-	}
-
-	/**
-	 * @deprecated since 1.47 No longer needed per T259141
-	 * @return bool
-	 */
-	public function getIsPrintable() {
-		wfDeprecated( __METHOD__, '1.47' );
-		return false;
-	}
-
-	/**
-	 * @deprecated since 1.47 No longer needed per T259141
-	 */
-	public function setIsPrintable( $x ) {
-		wfDeprecated( __METHOD__, '1.47' );
 	}
 
 	/**
@@ -873,21 +842,6 @@ class ParserOptions {
 	 */
 	public function getSuppressTOC() {
 		return $this->getOption( 'suppressTOC' );
-	}
-
-	/**
-	 * Suppress generation of the table of contents.
-	 * Used when parsing "code" pages (like JavaScript) as wikitext
-	 * for backlink support and categories, but where we don't want
-	 * other metadata generated (like the table of contents).
-	 * @see T307691
-	 * @since 1.39
-	 * @deprecated since 1.42; just clear the metadata in the final
-	 *  parser output
-	 */
-	public function setSuppressTOC() {
-		wfDeprecated( __METHOD__, '1.42' );
-		$this->setOption( 'suppressTOC', true );
 	}
 
 	/**
