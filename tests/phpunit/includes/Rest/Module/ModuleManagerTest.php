@@ -6,9 +6,9 @@ use MediaWiki\Config\ServiceOptions;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Rest\JsonLocalizer;
 use MediaWiki\Rest\Module\AudienceDesignation;
+use MediaWiki\Rest\Module\ModuleAvailability;
 use MediaWiki\Rest\Module\ModuleInfo;
 use MediaWiki\Rest\Module\ModuleManager;
-use MediaWiki\Rest\Module\ModuleMode;
 use MediaWiki\Tests\Unit\DummyServicesTrait;
 use MediaWikiIntegrationTestCase;
 use Wikimedia\Message\ITextFormatter;
@@ -247,44 +247,44 @@ class ModuleManagerTest extends MediaWikiIntegrationTestCase {
 		$this->assertTrue( $moduleManager->hasApiSpecs() );
 	}
 
-	public static function provideGetModuleModeCases() {
+	public static function provideGetModuleAvailabilityCases() {
 		yield from [
-			[ 'example/v1', ModuleMode::PUBLISHED ],
+			[ 'example/v1', ModuleAvailability::PUBLISHED ],
 
 			// We don't expect people to actually use 'public', but if they do, it should work.
-			[ 'example/v1-public', ModuleMode::PUBLISHED ],
+			[ 'example/v1-public', ModuleAvailability::PUBLISHED ],
 
-			[ 'example/v1-internal', ModuleMode::PUBLISHED ],
+			[ 'example/v1-internal', ModuleAvailability::PUBLISHED ],
 
-			[ 'example/v1-beta', ModuleMode::PUBLISHED ],
+			[ 'example/v1-beta', ModuleAvailability::PUBLISHED ],
 
 			// We don't expect people to actually use 'invalid', but if they do, it should work.
-			[ 'example/v1-invalid', ModuleMode::DISABLED ],
+			[ 'example/v1-invalid', ModuleAvailability::DISABLED ],
 
 			// Completely unrecognized and unsupported audience designation
-			[ 'example/v1-unrecognized', ModuleMode::DISABLED ],
+			[ 'example/v1-unrecognized', ModuleAvailability::DISABLED ],
 
 			// Malformed module id (no version)
-			[ 'malformed', ModuleMode::DISABLED ],
+			[ 'malformed', ModuleAvailability::DISABLED ],
 
 			// Overrides work
-			[ 'mockTwo/v1', ModuleMode::HIDDEN ],
+			[ 'mockTwo/v1', ModuleAvailability::HIDDEN ],
 
-			// Fallback to DISABLED on unrecognized mode works
-			[ 'mockNonexistent/v1', ModuleMode::DISABLED ],
+			// Fallback to DISABLED on unrecognized availability works
+			[ 'mockNonexistent/v1', ModuleAvailability::DISABLED ],
 		];
 	}
 
 	/**
-	 * @dataProvider provideGetModuleModeCases
+	 * @dataProvider provideGetModuleAvailabilityCases
 	 */
-	public function testGetModuleMode( string $moduleId, ModuleMode $expected ): void {
+	public function testGetModuleAvailability( string $moduleId, ModuleAvailability $expected ): void {
 		$moduleManager = $this->getModuleManager();
-		$mode = $moduleManager->getModuleMode( $moduleId );
+		$availability = $moduleManager->getModuleAvailability( $moduleId );
 
 		// The default message is unhelpful in identifying which test case failed.
-		$msg = "Failure for module id $moduleId and expected mode {$mode->name}";
-		$this->assertSame( $expected, $mode, $msg );
+		$msg = "Failure for module id $moduleId and expected availability {$expected->name}";
+		$this->assertSame( $expected, $availability, $msg );
 	}
 
 	public function testGetApiSpecsSortOrder(): void {
@@ -408,7 +408,7 @@ class ModuleManagerTest extends MediaWikiIntegrationTestCase {
 		$this->assertInstanceOf( ModuleInfo::class, $prefixless );
 		$this->assertSame( '', $prefixless->getId() );
 		$this->assertFalse( $prefixless->isExternal() );
-		$this->assertSame( ModuleMode::PUBLISHED, $prefixless->getAvailability() );
+		$this->assertSame( ModuleAvailability::PUBLISHED, $prefixless->getAvailability() );
 		$this->assertSame( 'MediaWiki REST API (routes not in modules)', $prefixless->getTitle() );
 		$this->assertSame(
 			wfMessage( 'rest-module-extra-routes-desc' )->inLanguage( 'en' )->text(),
@@ -428,20 +428,20 @@ class ModuleManagerTest extends MediaWikiIntegrationTestCase {
 			$site->getTitle()
 		);
 		$this->assertSame( '1.0.0', $site->getVersion() );
-		$this->assertSame( ModuleMode::PUBLISHED, $site->getAvailability() );
+		$this->assertSame( ModuleAvailability::PUBLISHED, $site->getAvailability() );
 		$this->assertSame( [ 'site-group' ], $site->getGroups() );
 
 		// Check hidden local module mockTwo/v1.
 		$this->assertArrayHasKey( 'mockTwo/v1', $infos );
 		$mockTwo = $infos['mockTwo/v1'];
 		$this->assertInstanceOf( ModuleInfo::class, $mockTwo );
-		$this->assertSame( ModuleMode::HIDDEN, $mockTwo->getAvailability() );
+		$this->assertSame( ModuleAvailability::HIDDEN, $mockTwo->getAvailability() );
 
 		// Check disabled local module mockThree/v1.
 		$this->assertArrayHasKey( 'mockThree/v1', $infos );
 		$mockThree = $infos['mockThree/v1'];
 		$this->assertInstanceOf( ModuleInfo::class, $mockThree );
-		$this->assertSame( ModuleMode::DISABLED, $mockThree->getAvailability() );
+		$this->assertSame( ModuleAvailability::DISABLED, $mockThree->getAvailability() );
 
 		// Check external module mockExternal/v1.
 		$this->assertArrayHasKey( 'mockExternal/v1', $infos );
@@ -452,7 +452,7 @@ class ModuleManagerTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( 'Mock External Module', $external->getTitle() );
 		$this->assertSame( 'This is a mock external module.', $external->getDescription() );
 		$this->assertSame( '1.0.0', $external->getVersion() );
-		$this->assertSame( ModuleMode::PUBLISHED, $external->getAvailability() );
+		$this->assertSame( ModuleAvailability::PUBLISHED, $external->getAvailability() );
 	}
 
 	/**
@@ -478,7 +478,7 @@ class ModuleManagerTest extends MediaWikiIntegrationTestCase {
 		$infos = $moduleManager->getModuleInfos();
 
 		$this->assertArrayHasKey( '', $infos );
-		$this->assertSame( ModuleMode::DISABLED, $infos['']->getAvailability() );
+		$this->assertSame( ModuleAvailability::DISABLED, $infos['']->getAvailability() );
 	}
 
 	/**
@@ -624,17 +624,17 @@ class ModuleManagerTest extends MediaWikiIntegrationTestCase {
 			'no suffix' => [
 				'moduleId' => 'thing/v1',
 				'expectedAudience' => AudienceDesignation::PUBLIC,
-				'expectedMode' => ModuleMode::PUBLISHED,
+				'expectedMode' => ModuleAvailability::PUBLISHED,
 			],
 			'beta suffix' => [
 				'moduleId' => 'thing/v1-beta',
 				'expectedAudience' => AudienceDesignation::BETA,
-				'expectedMode' => ModuleMode::PUBLISHED,
+				'expectedMode' => ModuleAvailability::PUBLISHED,
 			],
 			'malformed id disables the module' => [
 				'moduleId' => 'restbase',
 				'expectedAudience' => null,
-				'expectedMode' => ModuleMode::DISABLED,
+				'expectedMode' => ModuleAvailability::DISABLED,
 			],
 		];
 	}
@@ -644,12 +644,12 @@ class ModuleManagerTest extends MediaWikiIntegrationTestCase {
 	 *
 	 * @dataProvider provideExternalModuleAudienceCases
 	 * @covers \MediaWiki\Rest\Module\ModuleManager::getModuleAudience
-	 * @covers \MediaWiki\Rest\Module\ModuleManager::getModuleMode
+	 * @covers \MediaWiki\Rest\Module\ModuleManager::getModuleAvailability
 	 */
 	public function testExternalModuleAudience(
 		string $moduleId,
 		?AudienceDesignation $expectedAudience,
-		ModuleMode $expectedMode
+		ModuleAvailability $expectedMode
 	): void {
 		$this->overrideConfigValue( MainConfigNames::RestExternalModules, [
 			$moduleId => [ 'info' => [ 'version' => '1' ], 'spec' => 'https://example.com/a' ],
@@ -657,7 +657,7 @@ class ModuleManagerTest extends MediaWikiIntegrationTestCase {
 		$moduleManager = $this->getModuleManager();
 
 		$this->assertSame( $expectedAudience, $moduleManager->getModuleAudience( $moduleId ) );
-		$this->assertSame( $expectedMode, $moduleManager->getModuleMode( $moduleId ) );
+		$this->assertSame( $expectedMode, $moduleManager->getModuleAvailability( $moduleId ) );
 	}
 
 	public static function provideGetModuleGroupsCases() {

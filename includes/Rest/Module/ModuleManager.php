@@ -106,28 +106,28 @@ class ModuleManager {
 	}
 
 	/**
-	 * Gets the module mode for a given module id.
+	 * Gets the availability for a given module id.
 	 *
 	 * @param string $moduleId The module id
 	 *
-	 * @return ModuleMode
+	 * @return ModuleAvailability
 	 * @since 1.47
 	 */
-	public function getModuleMode( string $moduleId ): ModuleMode {
-		// If an override is attempted, but the mode is unrecognized, disable the module. This
+	public function getModuleAvailability( string $moduleId ): ModuleAvailability {
+		// If an override is attempted, but the availability is unrecognized, disable the module. This
 		// helps guard against undesired module activation/publishing due to configuration typos.
 		if ( isset( $this->restModuleOverrides[$moduleId]['availability'] ) ) {
-			$mm = ModuleMode::tryFrom( $this->restModuleOverrides[$moduleId]['availability'] );
-			$mm ??= ModuleMode::DISABLED;
+			$availability = ModuleAvailability::tryFrom( $this->restModuleOverrides[$moduleId]['availability'] );
+			return $availability ?? ModuleAvailability::DISABLED;
 		}
 
-		return $mm ?? ModuleMode::getModuleMode( $this->getModuleAudience( $moduleId ) );
+		return ModuleAvailability::getModuleAvailability( $this->getModuleAudience( $moduleId ) );
 	}
 
 	/**
 	 * Gets a module's audience designation from its module id, or null if it is malformed or
 	 * unrecognized. Local and external modules follow the same rules. The prefix-less flat route
-	 * module has none (AudienceDesignation::NONE). Unlike the module's mode, its audience
+	 * module has none (AudienceDesignation::NONE). Unlike the module's availability, its audience
 	 * designation cannot be overridden by RestModuleOverrides.
 	 *
 	 * @param string $moduleId The module id
@@ -160,17 +160,17 @@ class ModuleManager {
 	 * defaults. Deprecated modules additionally get the 'deprecated' group.
 	 *
 	 * @param string $moduleId The module id
-	 * @param ModuleMode $availability The module's resolved mode
+	 * @param ModuleAvailability $availability The module's resolved availability
 	 * @param array $moduleDefInfo The module definition info, for local modules
 	 *
 	 * @return string[]
 	 */
 	private function resolveGroups(
 		string $moduleId,
-		ModuleMode $availability,
+		ModuleAvailability $availability,
 		array $moduleDefInfo = []
 	): array {
-		if ( $availability === ModuleMode::DISABLED || $availability === ModuleMode::HIDDEN ) {
+		if ( $availability === ModuleAvailability::DISABLED || $availability === ModuleAvailability::HIDDEN ) {
 			return [];
 		}
 
@@ -245,7 +245,7 @@ class ModuleManager {
 			$moduleDefInfo = $this->getModuleDefinitionInfo( $file );
 			if (
 				$moduleDefInfo &&
-				$this->getModuleMode( $moduleDefInfo['moduleId'] ) === ModuleMode::DISABLED
+				$this->getModuleAvailability( $moduleDefInfo['moduleId'] ) === ModuleAvailability::DISABLED
 			) {
 				$disabledRouteFiles[$key] = $file;
 				unset( $routeFiles[$key] );
@@ -282,7 +282,7 @@ class ModuleManager {
 			}
 
 			$moduleId = $moduleDefInfo['moduleId'];
-			$availability = $this->getModuleMode( $moduleId );
+			$availability = $this->getModuleAvailability( $moduleId );
 			$groups = $this->resolveGroups( $moduleId, $availability, $moduleDefInfo );
 
 			$modules[$moduleId] = new ModuleInfo(
@@ -298,7 +298,7 @@ class ModuleManager {
 		}
 
 		// Add the prefix-less module.
-		$prefixlessModuleAvailability = $this->getModuleMode( '' );
+		$prefixlessModuleAvailability = $this->getModuleAvailability( '' );
 		$modules[''] = new ModuleInfo(
 			'',
 			$prefixlessModuleAvailability,
@@ -312,7 +312,7 @@ class ModuleManager {
 
 		// Gather external modules.
 		foreach ( $this->restExternalModules as $externalModuleId => $externalModuleConfig ) {
-			$availability = $this->getModuleMode( $externalModuleId );
+			$availability = $this->getModuleAvailability( $externalModuleId );
 			$externalModuleConfig = $this->jsonLocalizer->localizeJson( $externalModuleConfig );
 			$groups = $this->resolveGroups( $externalModuleId, $availability );
 
@@ -384,7 +384,7 @@ class ModuleManager {
 		$defaultName = self::CORE_SPECS['mw-extra']['name'];
 
 		foreach ( $this->getModuleInfos() as $info ) {
-			if ( $info->getAvailability() !== ModuleMode::PUBLISHED ) {
+			if ( $info->getAvailability() !== ModuleAvailability::PUBLISHED ) {
 				continue;
 			}
 

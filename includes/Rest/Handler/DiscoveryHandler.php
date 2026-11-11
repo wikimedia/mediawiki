@@ -6,8 +6,8 @@ use MediaWiki\Config\Config;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Rest\Handler;
+use MediaWiki\Rest\Module\ModuleAvailability;
 use MediaWiki\Rest\Module\ModuleInfo;
-use MediaWiki\Rest\Module\ModuleMode;
 
 /**
  * Core REST API endpoint that outputs discovery information, including a
@@ -59,7 +59,7 @@ class DiscoveryHandler extends Handler {
 			$availability = $moduleInfo->getAvailability();
 			// `getModuleInfos()` includes all registered modules.
 			// Exclude `HIDDEN` and `DISABLED` modules from `/discovery`.
-			if ( $availability === ModuleMode::DISABLED || $availability === ModuleMode::HIDDEN ) {
+			if ( $availability === ModuleAvailability::DISABLED || $availability === ModuleAvailability::HIDDEN ) {
 				continue;
 			}
 
