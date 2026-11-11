@@ -1338,7 +1338,7 @@ abstract class Skin extends ContextSource {
 		} else {
 			// Support finding the IP range if its the target
 			$pageTarget = $this->getPageTarget();
-			if ( $pageTarget ) {
+			if ( $pageTarget && str_contains( $pageTarget, '/' ) ) {
 				$CIDRLimit = $this->getConfig()
 					->get( MainConfigNames::BlockCIDRLimit );
 				[ $ip, $range ] = explode( '/', $pageTarget, 2 );
