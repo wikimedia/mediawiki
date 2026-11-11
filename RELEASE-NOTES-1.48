@@ -250,6 +250,9 @@ For notes on 1.47.x and older releases, see HISTORY.
   - Title::hasSourceText() (deprecated since 1.47), use ShadowPageLoader
   - ArchivedRevisionLookup::listRevisions() (deprecated since 1.47), use
     listArchivedRevisions()
+* RecentChange::parseFromRCType() (deprecated since 1.46) has been removed.
+* ChangeTagsStore::modifyDisplayQuery() (deprecated since 1.41) has been
+  removed. Use addTagsToDisplayQuery() instead.
 * …
 
 === Deprecations in 1.48 ===

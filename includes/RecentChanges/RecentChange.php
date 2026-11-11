@@ -238,20 +238,6 @@ class RecentChange implements Taggable {
 	}
 
 	/**
-	 * Parsing RC_* constants to human-readable test
-	 *
-	 * @deprecated since 1.46
-	 * @since 1.24
-	 * @param int $rcType
-	 * @return string
-	 */
-	public static function parseFromRCType( $rcType ) {
-		wfDeprecated( __METHOD__, '1.46' );
-
-		return array_search( $rcType, self::CHANGE_TYPES, true ) ?: "$rcType";
-	}
-
-	/**
 	 * Get an array of all change types
 	 *
 	 * @since 1.26
