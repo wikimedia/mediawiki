@@ -142,7 +142,7 @@ class GrantsLocalization {
 	/**
 	 * Generate wikitext to display a list of grants. It will be in the format:
 	 * ```
-	 * * <grant-group-$group>
+	 * ; <grant-group-$group>
 	 * : <grant-$grant>; <grant-$grant>; ...
 	 * * ...
 	 * ```
@@ -170,7 +170,7 @@ class GrantsLocalization {
 			// grant-group-high-volume, grant-group-customization,
 			// grant-group-administration, grant-group-private-information,
 			// grant-group-other
-			$s .= "*<span class=\"mw-grantgroup\">" .
+			$s .= ";<span class=\"mw-grantgroup\">" .
 				// TODO: replace wfMessage with something that can be injected like TextFormatter
 				wfMessage( "grant-group-$group" )->inLanguage( $lang )->text() . "</span>\n";
 			$s .= ":" . $lang->semicolonList( $grantDescriptionsWithClasses ) . "\n";
