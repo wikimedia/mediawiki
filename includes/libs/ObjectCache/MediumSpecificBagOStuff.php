@@ -998,24 +998,6 @@ abstract class MediumSpecificBagOStuff extends BagOStuff {
 	}
 
 	/**
-	 * @deprecated since 1.43, not used anywhere.
-	 */
-	public function getSegmentationSize() {
-		wfDeprecated( __METHOD__, '1.43' );
-
-		return $this->segmentationSize;
-	}
-
-	/**
-	 * @deprecated since 1.43, not used anywhere.
-	 */
-	public function getSegmentedValueMaxSize() {
-		wfDeprecated( __METHOD__, '1.43' );
-
-		return $this->segmentedValueMaxSize;
-	}
-
-	/**
 	 * Get the serialized form a value, logging a warning if it involves custom classes
 	 *
 	 * @param mixed $value

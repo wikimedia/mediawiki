@@ -9,8 +9,6 @@
 
 namespace Wikimedia\Rdbms;
 
-use InvalidArgumentException;
-
 /**
  * Helper class for DAO classes
  *
@@ -53,26 +51,6 @@ class DBAccessObjectUtils implements IDBAccessObject {
 		}
 
 		return [ $index, $lockingOptions ];
-	}
-
-	/**
-	 * Takes $index from ::getDBOptions() and return proper Database object
-	 *
-	 * @deprecated since 1.42
-	 *
-	 * @param IConnectionProvider $dbProvider
-	 * @param int $index either DB_REPLICA or DB_PRIMARY
-	 * @return IReadableDatabase
-	 */
-	public static function getDBFromIndex( IConnectionProvider $dbProvider, int $index ): IReadableDatabase {
-		wfDeprecated( __METHOD__, '1.42' );
-		if ( $index === DB_PRIMARY ) {
-			return $dbProvider->getPrimaryDatabase();
-		} elseif ( $index === DB_REPLICA ) {
-			return $dbProvider->getReplicaDatabase();
-		} else {
-			throw new InvalidArgumentException( '$index must be either DB_REPLICA or DB_PRIMARY' );
-		}
 	}
 
 	/**
