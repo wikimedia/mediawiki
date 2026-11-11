@@ -371,6 +371,7 @@
 	"nav-login-createaccount": "Prijavi se",
 	"logout": "Odjavi se",
 	"userlogout": "Odjava",
+	"templogout": "Izlaz iz sesije",
 	"notloggedin": "Niste prijavljeni",
 	"userlogin-noaccount": "Nemate suradnički račun?",
 	"userlogin-joinproject": "Pridružite se projektu {{SITENAME}}",

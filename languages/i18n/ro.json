@@ -2325,7 +2325,7 @@
 	"block-create": "Adaugă blocare",
 	"blockip": "Blocare {{GENDER:$1|utilizator|utilizatoare}}",
 	"blockiprange": "Blochează gamă de adrese IP",
-	"blockiptext": "Blocarea este utilizată pentru a preveni vandalismul și alte forme de perturbare a Wikipediei ([[{{MediaWiki:Policy-url}}|citiți mai mult]]). Puteți bloca intervale întregi de adrese IP folosind sintaxa [https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing CIDR]. Cel mai mare interval permis este /$1 pentru IPv4 și /$2 pentru IPv6.",
+	"blockiptext": "Blocarea este utilizată pentru a preveni vandalismul și alte forme de perturbare ([[{{MediaWiki:Policy-url}}|citiți mai mult]]). Puteți bloca intervale întregi de adrese IP folosind sintaxa [https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing CIDR]. Cel mai mare interval permis este /$1 pentru IPv4 și /$2 pentru IPv6.",
 	"block-multiblocks-new-feature": "Există o nouă caracteristică care vă permite să emite blocuri multiple împotriva unui singur cont.",
 	"ipaddressorusername": "Adresă IP, nume de utilizator sau ID blocare:",
 	"ipbreason": "Motiv:",

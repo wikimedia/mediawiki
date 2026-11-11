@@ -2,6 +2,7 @@
 	"@metadata": {
 		"authors": [
 			"Duongvu",
+			"HungKhanh0106",
 			"Minh Nguyen",
 			"Nvdtn19",
 			"Prenn",
@@ -178,7 +179,7 @@
 	"exif-attributionurl": "URL để đặt liên kết đến khi tái sử dụng",
 	"exif-preferredattributionname": "Tên để ghi công khi tái sử dụng",
 	"exif-pngfilecomment": "Chú giải tập tin PNG",
-	"exif-disclaimer": "Phủ nhận",
+	"exif-disclaimer": "Miễn trừ trách nhiệm",
 	"exif-contentwarning": "Cảnh báo về nội dung",
 	"exif-giffilecomment": "Chú giải tập tin GIF",
 	"exif-intellectualgenre": "Kiểu khoản",

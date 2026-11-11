@@ -3401,6 +3401,7 @@
 	"version-license-not-found": "Aucune information détaillée de licence n’a été trouvée pour cette extension.",
 	"version-credits-title": "Attributions pour $1",
 	"version-credits-not-found": "Aucune information détaillée des attributions n’a été trouvée pour cette extension.",
+	"version-ext-not-found": "Aucune extension ou thème nommé « $1 » n'a été trouvé. Consultez [[Special:Version]] pour obtenir la liste des logiciels installés.",
 	"version-credits-contributors": "Contributeurs",
 	"version-credits-translators": "Traducteurs",
 	"version-credits-translators-link": "Traducteurs de translatewiki.net et autres",

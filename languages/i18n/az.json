@@ -3157,6 +3157,7 @@
 	"version-license-not-found": "Bu genişləndirmə üçün ətraflı lisenziya məlumatı tapılmadı.",
 	"version-credits-title": "$1 üçün töhfələr",
 	"version-credits-not-found": "Bu genişləndirmə üçün ətraflı töhfə məlumatı tapılmadı.",
+	"version-ext-not-found": "\"$1\" adlı quraşdırılmış uzantı və ya dizayn tapılmadı. Quraşdırılmış proqram təminatının siyahısı üçün [[Xüsusi:Versiya]] səhifəsinə baxın.",
 	"version-credits-contributors": "Töhfə verənlər",
 	"version-credits-translators": "Tərcüməçilər",
 	"version-credits-translators-link": "translatewiki.net və digər saytlardakı tərcüməçilər",

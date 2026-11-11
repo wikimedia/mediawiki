@@ -3178,6 +3178,7 @@
 	"version-license-not-found": "Не најдов подробни лиценцни информации за овој додаток.",
 	"version-credits-title": "Заслуги за $1",
 	"version-credits-not-found": "Не најдов подробни информации за заслужните за овој додаток.",
+	"version-ext-not-found": "Не најдов воспоставен додаток или руво по име „$1“. Погледајте ја [[Special:Version]] за список на воспоставени програми.",
 	"version-credits-contributors": "Учесници",
 	"version-credits-translators": "Преведувачи",
 	"version-credits-translators-link": "Преведувачи на translatewiki.net и други",

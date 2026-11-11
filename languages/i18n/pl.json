@@ -3246,6 +3246,7 @@
 	"version-license-not-found": "Nie znaleziono szczegółowych informacji licencyjnych dla tego rozszerzenia.",
 	"version-credits-title": "Lista autorów dla $1",
 	"version-credits-not-found": "Dla tego rozszerzenia nie ma szczegółowych informacji o autorach.",
+	"version-ext-not-found": "Nie znaleziono żadnego zainstalowanego rozszerzenia ani skórki o nazwie „$1”. Listę zainstalowanego oprogramowania możesz znaleźć na stronie [[Special:Version|Specjalna:Wersja]].",
 	"version-credits-contributors": "Autorzy",
 	"version-credits-translators": "Tłumacze",
 	"version-credits-translators-link": "Tłumacze na translatewiki.net oraz pozostali",
