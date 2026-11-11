@@ -367,17 +367,6 @@ class Router {
 	}
 
 	/**
-	 * Returns an uninitialized module by full path.
-	 * @deprecated since 1.47, use getModuleForRequest() instead.
-	 */
-	public function getModuleForPath( string $fullPath ): ?Module {
-		wfDeprecated( __METHOD__, '1.47' );
-
-		[ $moduleName, ] = $this->splitPath( $fullPath );
-		return $this->getModule( $moduleName );
-	}
-
-	/**
 	 * Returns a module suitable for handling the given request.
 	 *
 	 * @param RequestInterface $request

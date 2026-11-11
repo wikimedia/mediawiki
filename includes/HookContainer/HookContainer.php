@@ -346,20 +346,6 @@ class HookContainer implements SalvageableService {
 	}
 
 	/**
-	 * Get handler callbacks.
-	 *
-	 * @deprecated since 1.41.
-	 * @internal For use by HookContainerTest. Delete when no longer needed.
-	 * @param string $hook Name of hook
-	 * @return callable[]
-	 */
-	public function getHandlerCallbacks( string $hook ): array {
-		wfDeprecated( __METHOD__, '1.41' );
-		$handlers = $this->getHandlers( $hook );
-		return array_column( $handlers, 'callback' );
-	}
-
-	/**
 	 * Returns the names of all hooks that have at least one handler registered.
 	 * @return string[]
 	 */

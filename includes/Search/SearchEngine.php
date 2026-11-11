@@ -278,17 +278,6 @@ abstract class SearchEngine {
 	}
 
 	/**
-	 * Get near matcher for default SearchEngine.
-	 *
-	 * @return TitleMatcher
-	 * @deprecated since 1.40, MediaWikiServices::getInstance()->getTitleMatcher()
-	 */
-	protected static function defaultNearMatcher() {
-		wfDeprecated( __METHOD__, '1.40' );
-		return MediaWikiServices::getInstance()->getTitleMatcher();
-	}
-
-	/**
 	 * Get chars legal for search
 	 * @param int $type type of search chars (see self::CHARS_ALL
 	 * and self::CHARS_NO_SYNTAX). Defaults to CHARS_ALL

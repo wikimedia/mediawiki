@@ -129,7 +129,6 @@ namespace MediaWiki\Tests\HookContainer {
 				'NoHandlersExist' => [
 					'MWTestHook',
 					null,
-					0,
 					0
 				],
 				'SuccessfulHandlerReturn' => [
@@ -141,7 +140,6 @@ namespace MediaWiki\Tests\HookContainer {
 							'services' => [],
 						],
 					],
-					1,
 					1
 				],
 				'SkipDeprecated' => [
@@ -154,8 +152,7 @@ namespace MediaWiki\Tests\HookContainer {
 						],
 						'deprecated' => true,
 					],
-					1,
-					0
+					1
 				],
 			];
 		}
@@ -291,14 +288,12 @@ namespace MediaWiki\Tests\HookContainer {
 
 		/**
 		 * @covers \MediaWiki\HookContainer\HookContainer::getHandlerDescriptions
-		 * @covers \MediaWiki\HookContainer\HookContainer::getHandlerCallbacks
 		 * @dataProvider provideGetHandlerDescriptions
 		 */
 		public function testGetHandlers(
 			string $hook,
 			?array $handlerToRegister,
-			int $expectedDescriptions,
-			int $expectedCallbacks
+			int $expectedDescriptions
 		) {
 			if ( $handlerToRegister ) {
 				$hooks = [ $hook => [ $handlerToRegister ] ];
@@ -316,18 +311,6 @@ namespace MediaWiki\Tests\HookContainer {
 				$descriptions,
 				'getHandlerDescriptions()'
 			);
-
-			$this->expectDeprecationAndContinue( '/getHandlerCallbacks/' );
-			$callbacks = $hookContainer->getHandlerCallbacks( $hook );
-			$this->assertCount(
-				$expectedCallbacks,
-				$callbacks,
-				'getHandlerCallbacks()'
-			);
-
-			foreach ( $callbacks as $clbk ) {
-				$this->assertIsCallable( $clbk );
-			}
 		}
 
 		public static function provideRunConfigured() {
@@ -406,19 +389,16 @@ namespace MediaWiki\Tests\HookContainer {
 		}
 
 		/**
-		 * @covers \MediaWiki\HookContainer\HookContainer::getHandlerCallbacks
+		 * @covers \MediaWiki\HookContainer\HookContainer::register
+		 * @covers \MediaWiki\HookContainer\HookContainer::run
 		 * @dataProvider provideRegisterAndRunCallback
 		 */
 		public function testRegisterAndRunCallback( $handler, $expectedCount = 2 ) {
 			$hookContainer = $this->newHookContainer( [], [] );
 			$hookContainer->register( 'Increment', $handler );
 
-			$this->expectDeprecationAndContinue( '/getHandlerCallbacks/' );
-
 			$count = 1;
-			foreach ( $hookContainer->getHandlerCallbacks( 'Increment' ) as $callback ) {
-				$callback( $count );
-			}
+			$hookContainer->run( 'Increment', [ &$count ] );
 			$this->assertSame( $expectedCount, $count );
 		}
 
@@ -690,8 +670,7 @@ namespace MediaWiki\Tests\HookContainer {
 			// Negative caching inside HookHandler should not cause them to be returned from getHookNames
 			$container->isRegistered( 'X' );
 
-			$this->expectDeprecationAndContinue( '/getHandlerCallbacks/' );
-			$container->getHandlerCallbacks( 'Y' );
+			$container->getHandlerDescriptions( 'Y' );
 
 			$this->assertArrayEquals( [ 'A', 'B', 'C' ], $container->getHookNames() );
 
@@ -869,7 +848,6 @@ namespace MediaWiki\Tests\HookContainer {
 
 		/**
 		 * @covers \MediaWiki\HookContainer\HookContainer::isRegistered
-		 * @covers \MediaWiki\HookContainer\HookContainer::getHandlerCallbacks
 		 * @covers \MediaWiki\HookContainer\HookContainer::register
 		 * @covers \MediaWiki\HookContainer\HookContainer::clear
 		 */

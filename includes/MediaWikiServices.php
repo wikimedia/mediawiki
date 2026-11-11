@@ -535,24 +535,6 @@ class MediaWikiServices extends ServiceContainer {
 
 	/**
 	 * Disables all storage layer services. After calling this, any attempt to access the
-	 * storage layer will result in an error.
-	 *
-	 * @since 1.28
-	 * @deprecated since 1.40, use disableStorage() instead. Hard deprecated in 1.45.
-	 *
-	 * @warning This is intended for extreme situations, see the documentation of disableStorage() for details.
-	 *
-	 * @see resetGlobalInstance()
-	 * @see resetChildProcessServices()
-	 */
-	public static function disableStorageBackend() {
-		wfDeprecated( __METHOD__, '1.40' );
-		$services = self::getInstance();
-		$services->disableStorage();
-	}
-
-	/**
-	 * Disables all storage layer services. After calling this, any attempt to access the
 	 * storage layer will result in an error. Use resetGlobalInstance() with $mode=reload
 	 * to restore normal operation.
 	 *
