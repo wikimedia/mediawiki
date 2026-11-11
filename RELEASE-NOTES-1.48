@@ -244,6 +244,12 @@ For notes on 1.47.x and older releases, see HISTORY.
   - shouldCheckParserCache() (deprecated since 1.47), use
     ParserOutputAccess::shouldUseCache()
   - doEditUpdates() (deprecated since 1.32)
+* The following methods have been removed:
+  - Title::getDefaultMessageText() (deprecated since 1.47), use
+    ShadowPageLoader
+  - Title::hasSourceText() (deprecated since 1.47), use ShadowPageLoader
+  - ArchivedRevisionLookup::listRevisions() (deprecated since 1.47), use
+    listArchivedRevisions()
 * …
 
 === Deprecations in 1.48 ===

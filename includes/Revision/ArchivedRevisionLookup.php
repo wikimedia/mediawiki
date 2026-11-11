@@ -9,8 +9,6 @@ namespace MediaWiki\Revision;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Permissions\Authority;
-use MediaWiki\Permissions\SimpleAuthority;
-use MediaWiki\User\UserIdentityValue;
 use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\Rdbms\IResultWrapper;
 use Wikimedia\Rdbms\SelectQueryBuilder;
@@ -70,32 +68,6 @@ class ArchivedRevisionLookup {
 			->addTagsToDisplayQuery( $queryBuilder, 'archive', $performer );
 
 		return $queryBuilder->caller( __METHOD__ )->fetchResultSet();
-	}
-
-	/**
-	 * List the revisions of the given page. Returns result wrapper with
-	 * various archive table fields.
-	 *
-	 * @deprecated since 1.47, use listArchivedRevisions() instead, passing an Authority
-	 *
-	 * @param PageIdentity $page
-	 * @param array $extraConds Extra conditions to be added to the query
-	 * @param ?int $limit The limit to be applied to the query, or null for no limit
-	 * @param Authority|null $performer Viewer, for restricted-tag access checks. Null hides all
-	 *   restricted tags.
-	 * @return IResultWrapper
-	 */
-	public function listRevisions(
-		PageIdentity $page,
-		array $extraConds = [],
-		?int $limit = null,
-		?Authority $performer = null
-	): IResultWrapper {
-		wfDeprecated( __METHOD__, '1.47' );
-
-		$viewer = $performer ?? new SimpleAuthority( UserIdentityValue::newAnonymous( '127.0.0.1' ), [] );
-
-		return $this->listArchivedRevisions( $page, $viewer, $extraConds, $limit );
 	}
 
 	/**

@@ -2094,11 +2094,11 @@ class TitleTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testGetDefaultSystemMessage() {
 		$this->hideDeprecated( Title::class . '::getDefaultSystemMessage' );
-		$this->hideDeprecated( Title::class . '::getDefaultMessageText' );
 		$title = Title::makeTitle( NS_MEDIAWIKI, 'Logouttext' );
 
-		$this->assertInstanceOf( Message::class, $title->getDefaultSystemMessage() );
-		$this->assertStringContainsString( 'You are now logged out', $title->getDefaultMessageText() );
+		$message = $title->getDefaultSystemMessage();
+		$this->assertInstanceOf( Message::class, $message );
+		$this->assertStringContainsString( 'You are now logged out', $message->plain() );
 	}
 
 	/**

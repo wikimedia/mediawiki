@@ -3088,52 +3088,8 @@ class Title implements Stringable, LinkTarget, PageIdentity {
 	}
 
 	/**
-	 * Does this page have source text?
+	 * Get the default system message for this MediaWiki namespace page, if any.
 	 *
-	 * @deprecated since 1.47 use ShadowPageLoader
-	 * @return bool
-	 */
-	public function hasSourceText() {
-		wfDeprecated( __METHOD__, '1.47' );
-		if ( $this->exists() ) {
-			return true;
-		}
-
-		if ( $this->mNamespace === NS_MEDIAWIKI ) {
-			$services = MediaWikiServices::getInstance();
-			// If the page doesn't exist but is a known system message, default
-			// message content will be displayed, same for language subpages-
-			// Use always content language to avoid loading hundreds of languages
-			// to get the link color.
-			$contLang = $services->getContentLanguage();
-			[ $name, ] = $services->getMessageCache()->figureMessage(
-				$contLang->lcfirst( $this->getText() )
-			);
-			$message = wfMessage( $name )->inLanguage( $contLang )->useDatabase( false );
-			return $message->exists();
-		}
-
-		return false;
-	}
-
-	/**
-	 * Get the default (plain) message contents for a page that overrides an
-	 * interface message key.
-	 *
-	 * @deprecated since 1.47 use ShadowPageLoader
-	 * @return string|false
-	 */
-	public function getDefaultMessageText() {
-		wfDeprecated( __METHOD__, '1.47' );
-		$message = $this->getDefaultSystemMessage();
-
-		return $message ? $message->plain() : false;
-	}
-
-	/**
-	 * Same as getDefaultMessageText, but returns a Message object.
-	 *
-	 * @see ::getDefaultMessageText
 	 * @deprecated since 1.47 use ShadowPageLoader
 	 *
 	 * @return ?Message
