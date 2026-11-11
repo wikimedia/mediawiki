@@ -314,7 +314,7 @@ class PageEditStash {
 
 		if ( $editInfo->output->getOutputFlag( ParserOutputFlags::VARY_REVISION ) ) {
 			// This can be used for the initial parse, e.g. for filters or doUserEditContent(),
-			// but a second parse will be triggered in doEditUpdates() no matter what
+			// but a second parse will be triggered in DerivedPageDataUpdater no matter what
 			$logger->info(
 				"Cache for key '{key}' has vary-revision; post-insertion parse inevitable.",
 				$logContext

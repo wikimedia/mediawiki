@@ -22,7 +22,6 @@ use MediaWiki\Edit\PreparedEdit;
 use MediaWiki\HookContainer\ProtectedHookAccessorTrait;
 use MediaWiki\JobQueue\Jobs\HTMLCacheUpdateJob;
 use MediaWiki\JobQueue\Jobs\RefreshLinksJob;
-use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\Logging\ManualLogEntry;
 use MediaWiki\MainConfigNames;
@@ -982,20 +981,6 @@ class WikiPage implements Stringable, Page, PageRecord {
 	}
 
 	/**
-	 * Insert or update the redirect table entry for this page to indicate it redirects to $rt
-	 * @deprecated since 1.43; use {@link RedirectStore::updateRedirectTarget()} instead.
-	 * Emits deprecation warnings since 1.47.
-	 * @param LinkTarget $rt Redirect target
-	 * @param int|null $oldLatest Prior page_latest for check and set
-	 * @return bool Success
-	 */
-	public function insertRedirectEntry( LinkTarget $rt, $oldLatest = null ) {
-		wfDeprecated( '1.43', __METHOD__ );
-		return MediaWikiServices::getInstance()->getRedirectStore()
-			->updateRedirectTarget( $this, $rt );
-	}
-
-	/**
 	 * Get the Title object or URL this page redirects to
 	 *
 	 * @return bool|Title|string False, Title of in-wiki target, or string with URL
@@ -1089,23 +1074,6 @@ class WikiPage implements Stringable, Page, PageRecord {
 			->caller( __METHOD__ )
 			->fetchResultSet();
 		return new UserArrayFromResult( $res );
-	}
-
-	/**
-	 * Should the parser cache be used?
-	 *
-	 * @deprecated since 1.47; use ParserOutputAccess::shouldUseCache()
-	 *
-	 * @param ParserOptions $parserOptions ParserOptions to check
-	 * @param int $oldId
-	 * @return bool
-	 */
-	public function shouldCheckParserCache( ParserOptions $parserOptions, $oldId ) {
-		wfDeprecated( __METHOD__, '1.47' );
-		// NOTE: Keep in sync with ParserOutputAccess::shouldUseCache().
-		return $this->exists()
-			&& ( $oldId === null || $oldId === 0 || $oldId === $this->getLatest() )
-			&& $this->getContentHandler()->isParserCacheSupported();
 	}
 
 	/**
@@ -1854,41 +1822,6 @@ class WikiPage implements Stringable, Page, PageRecord {
 		}
 
 		return $updater->getPreparedEdit();
-	}
-
-	/**
-	 * Do standard deferred updates after page edit.
-	 * Update links tables, site stats, search index and message cache.
-	 * Purges pages that include this page if the text was changed here.
-	 * Every 100th edit, prune the recent changes table.
-	 * Does not emit domain events.
-	 *
-	 * @deprecated since 1.32, use DerivedPageDataUpdater::doUpdates instead.
-	 *             Emitting warnings since 1.44
-	 *
-	 * @param RevisionRecord $revisionRecord (Switched from the old Revision class to
-	 *    RevisionRecord since 1.35)
-	 * @param UserIdentity $user User object that did the revision
-	 * @param array $options Array of options, see DerivedPageDataUpdater::prepareUpdate.
-	 */
-	public function doEditUpdates(
-		RevisionRecord $revisionRecord,
-		UserIdentity $user,
-		array $options = []
-	) {
-		wfDeprecated( __METHOD__, '1.32' ); // emitting warnings since 1.44
-
-		$options += [
-			'causeAction' => 'edit-page',
-			'causeAgent' => $user->getName(),
-			'emitEvents' => false // prior page state is unknown, can't emit events
-		];
-
-		$updater = $this->getDerivedDataUpdater( $user, $revisionRecord );
-
-		$updater->prepareUpdate( $revisionRecord, $options );
-
-		$updater->doUpdates();
 	}
 
 	/**

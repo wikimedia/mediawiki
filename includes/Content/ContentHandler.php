@@ -1038,7 +1038,7 @@ abstract class ContentHandler {
 
 	/**
 	 * Returns true for content models that support caching using the
-	 * ParserCache mechanism. See WikiPage::shouldCheckParserCache().
+	 * ParserCache mechanism. See ParserOutputAccess::shouldUseCache().
 	 *
 	 * @stable to override
 	 * @since 1.21

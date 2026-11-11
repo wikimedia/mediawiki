@@ -73,7 +73,7 @@ In both cases, all secondary updates will be triggered automatically.
 
 `DerivedPageDataUpdater` is used by `PageUpdater` when creating new revisions, but can also be used independently when performing meta data updates during undeletion, import, or when puring a page. It's a stepping stone on the way to a more complete refactoring of WikiPage.
 
-**NOTE**: Avoid direct usage of `DerivedPageDataUpdater`. In the future, we want to define interfaces for the different use cases of `DerivedPageDataUpdater`, particularly providing access to post-PST content and `ParserOutput` to callbacks during revision creation, which currently use `WikiPage::prepareContentForEdit`, and allowing updates to be triggered on purge, import, and undeletion, which currently use `WikiPage::doEditUpdates()` and `Content::getSecondaryDataUpdates()`.
+**NOTE**: Avoid direct usage of `DerivedPageDataUpdater`. In the future, we want to define interfaces for the different use cases of `DerivedPageDataUpdater`, particularly providing access to post-PST content and `ParserOutput` to callbacks during revision creation, which currently use `WikiPage::prepareContentForEdit`, and allowing updates to be triggered on purge, import, and undeletion, which currently use `ContentHandler::getSecondaryDataUpdates()`.
 
 The primary reason for `DerivedPageDataUpdater` to be stateful is internal caching of state that avoids the re-generation of `ParserOutput` and re-application of pre-save-transformations (PST).
 

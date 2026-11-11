@@ -235,7 +235,7 @@ class RedirectStore implements RedirectLookup {
 			$namespace = NS_FILE;
 		}
 
-		// mimic behaviour of self::insertRedirectEntry for fragments that didn't
+		// mimic behaviour of self::updateRedirectTarget for fragments that didn't
 		// come from the redirect table
 		$fragment = self::truncateFragment( $fragment );
 

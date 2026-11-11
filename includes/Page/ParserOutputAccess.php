@@ -274,7 +274,6 @@ class ParserOutputAccess implements LoggerAwareInterface {
 			return self::CACHE_NONE;
 		}
 
-		// NOTE: Keep in sync with ParserWikiPage::shouldCheckParserCache().
 		// NOTE: when we allow caching of old revisions in the future,
 		//       we must not allow caching of deleted revisions.
 

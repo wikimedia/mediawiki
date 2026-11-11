@@ -1383,7 +1383,7 @@ class PageUpdater implements PageUpdateCauses {
 			$status->warning( 'edit-no-change' );
 			// Update page_touched as updateRevisionOn() was not called.
 			// Other cache updates are managed in WikiPage::onArticleEdit()
-			// via WikiPage::doEditUpdates().
+			// via ContentHandler::getSecondaryDataUpdates().
 			$this->getTitle()->invalidateCache( $now );
 
 			// Notify the dispatcher of the PageLatestRevisionChangedEvent during the transaction round

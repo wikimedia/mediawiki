@@ -64,8 +64,7 @@ use Wikimedia\Timestamp\TimestampFormat as TS;
  * @todo Define interfaces for the different use cases of DerivedPageDataUpdater, particularly
  * providing access to post-PST content and ParserOutput to callbacks during revision creation,
  * which currently use WikiPage::prepareContentForEdit, and allowing updates to be triggered on
- * purge, import, and undeletion, which currently use WikiPage::doEditUpdates() and
- * Content::getSecondaryDataUpdates().
+ * purge, import, and undeletion, which currently use ContentHandler::getSecondaryDataUpdates().
  *
  * DerivedPageDataUpdater instances are designed to be cached inside a WikiPage instance,
  * and re-used by callback code over the course of an update operation. It's a stepping stone
@@ -1639,8 +1638,8 @@ class DerivedPageDataUpdater implements LoggerAwareInterface, PreparedUpdate {
 		if ( $pageRecordBefore === null && !$this->options['created'] ) {
 			// If the page wasn't just created, we need the state before.
 			// If we are not actually emitting the event, we can ignore the issue.
-			// This is needed to support the deprecated WikiPage::doEditUpdates()
-			// method. Once that is gone, we can remove this conditional.
+			// TODO: This was only intended to support the removed WikiPage::doEditUpdates()
+			// method. Maybe the 'emitEvents' option can be removed now (changed to always true).
 			if ( $this->options['emitEvents'] ) {
 				throw new LogicException( 'Missing page state before update' );
 			}

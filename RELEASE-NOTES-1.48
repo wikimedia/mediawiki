@@ -238,6 +238,12 @@ For notes on 1.47.x and older releases, see HISTORY.
   - Parser::getExternalLinkRel() (deprecated since 1.47), use
     LinkRenderer::getExternalLinkRel()
   - Parser::guessLegacySectionNameFromWikiText() (deprecated since 1.45)
+* The following methods of WikiPage have been removed:
+  - insertRedirectEntry() (deprecated since 1.43), use
+    RedirectStore::updateRedirectTarget()
+  - shouldCheckParserCache() (deprecated since 1.47), use
+    ParserOutputAccess::shouldUseCache()
+  - doEditUpdates() (deprecated since 1.32)
 * …
 
 === Deprecations in 1.48 ===

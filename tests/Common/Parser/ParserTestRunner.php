@@ -3242,7 +3242,7 @@ class ParserTestRunner {
 		// pages. That is unnecessary.
 		$jobQueueGroup = $services->getJobQueueGroup();
 		$jobQueueGroup->get( 'htmlCacheUpdate' )->delete();
-		// WikiPages::doEditUpdates randomly adds RC purges
+		// ChangeTrackingEventIngress triggers RC purges for 10% of edits.
 		$jobQueueGroup->get( 'recentChangesUpdate' )->delete();
 
 		// Update category counts

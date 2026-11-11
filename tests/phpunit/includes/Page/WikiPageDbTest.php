@@ -7,7 +7,6 @@ use MediaWiki\Content\JavaScriptContent;
 use MediaWiki\Content\Renderer\ContentRenderer;
 use MediaWiki\Content\TextContent;
 use MediaWiki\Content\WikitextContent;
-use MediaWiki\Deferred\SiteStatsUpdate;
 use MediaWiki\Edit\PreparedEdit;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
@@ -203,51 +202,6 @@ class WikiPageDbTest extends MediaWikiLangTestCase {
 		$this->assertPreparedEditNotEquals( $edit2, $edit3 );
 
 		// TODO: test with passing revision, then same without revision.
-	}
-
-	public function testDoEditUpdates() {
-		$this->hideDeprecated( WikiPage::class . '::doEditUpdates' );
-		$user = $this->getTestUser()->getUserIdentity();
-
-		// NOTE: if site stats get out of whack and drop below 0,
-		// that causes a DB error during tear-down. So bump the
-		// numbers high enough to not drop below 0.
-		$siteStatsUpdate = SiteStatsUpdate::factory(
-			[ 'edits' => 1000, 'articles' => 1000, 'pages' => 1000 ]
-		);
-		$siteStatsUpdate->doUpdate();
-
-		$page = $this->createPage( __METHOD__, __METHOD__ );
-
-		$comment = CommentStoreComment::newUnsavedComment( __METHOD__ );
-
-		// PST turns [[|foo]] into [[foo]]
-		$content = $this->getServiceContainer()
-			->getContentHandlerFactory()
-			->getContentHandler( CONTENT_MODEL_WIKITEXT )
-			->unserializeContent( __METHOD__ . ' [[|foo]][[bar]]' );
-
-		$revRecord = MutableRevisionRecord::newFromContent( $page->getTitle(), $content )
-			->setUser( $user )
-			->setTimestamp( '20170707040404' )
-			->setPageId( $page->getId() )
-			->setId( 9989 )
-			->setMinorEdit( true )
-			->setComment( $comment );
-
-		$page->doEditUpdates( $revRecord, $user );
-
-		// TODO: test various options; needs temporary hooks
-
-		$res = $this->getDb()->newSelectQueryBuilder()
-			->select( '*' )
-			->from( 'pagelinks' )
-			->where( [ 'pl_from' => $page->getId() ] )
-			->fetchResultSet();
-		$n = $res->numRows();
-		$res->free();
-
-		$this->assertSame( 1, $n, 'pagelinks should contain only one link if PST was not applied' );
 	}
 
 	public function testDoUserEditContent() {
@@ -1253,95 +1207,6 @@ more stuff
 		$this->assertTrue( $page->wasLoadedFrom( IDBAccessObject::READ_LATEST ) );
 		$this->assertTrue( $page->wasLoadedFrom( IDBAccessObject::READ_LOCKING ) );
 		$this->assertTrue( $page->wasLoadedFrom( IDBAccessObject::READ_EXCLUSIVE ) );
-	}
-
-	public static function provideUpdateRedirectOn() {
-		yield [ '#REDIRECT [[Foo]]', true, null, true, true, [] ];
-		yield [ '#REDIRECT [[Foo]]', true, 'Foo', true, true, [ [ NS_MAIN, 'Foo' ] ] ];
-		yield [ 'SomeText', false, null, false, true, [] ];
-		yield [ 'SomeText', false, 'Foo', false, true, [ [ NS_MAIN, 'Foo' ] ] ];
-	}
-
-	/**
-	 * @dataProvider provideUpdateRedirectOn
-	 *
-	 * @param string $initialText
-	 * @param bool $initialRedirectState
-	 * @param string|null $redirectTitle
-	 * @param bool|null $lastRevIsRedirect
-	 * @param bool $expectedSuccess
-	 * @param array $expectedRows
-	 */
-	public function testUpdateRedirectOn(
-		$initialText,
-		$initialRedirectState,
-		$redirectTitle,
-		$lastRevIsRedirect,
-		$expectedSuccess,
-		$expectedRows
-	) {
-		static $pageCounter = 0;
-		$pageCounter++;
-
-		$page = $this->createPage( Title::newFromText( __METHOD__ . $pageCounter ), $initialText );
-		$this->assertSame( $initialRedirectState, $page->isRedirect() );
-
-		$redirectTitle = is_string( $redirectTitle )
-			? Title::newFromText( $redirectTitle )
-			: $redirectTitle;
-
-		$success = $this->getServiceContainer()->getRedirectStore()
-			->updateRedirectTarget( $page, $redirectTitle, $lastRevIsRedirect );
-		$this->assertSame( $expectedSuccess, $success, 'Success assertion' );
-		/**
-		 * updateRedirectTarget explicitly updates the redirect table (and not the page table).
-		 * Most of core checks the page table for redirect status, so we have to be ugly and
-		 * assert a select from the table here.
-		 */
-		$this->assertRedirectTableCountForPageId( $page->getId(), $expectedRows );
-	}
-
-	private function assertRedirectTableCountForPageId( $pageId, $expectedRows ) {
-		$this->newSelectQueryBuilder()
-			->select( [ 'rd_namespace', 'rd_title' ] )
-			->from( 'redirect' )
-			->where( [ 'rd_from' => $pageId ] )
-			->assertResultSet( $expectedRows );
-	}
-
-	public function testInsertRedirectEntry_insertsRedirectEntry() {
-		$page = $this->createPage( Title::newFromText( __METHOD__ ), 'A' );
-		$this->assertRedirectTableCountForPageId( $page->getId(), [] );
-
-		$targetTitle = Title::newFromText( 'SomeTarget#Frag' );
-		$reflectedTitle = TestingAccessWrapper::newFromObject( $targetTitle );
-		$reflectedTitle->mInterwiki = 'eninter';
-		$this->getServiceContainer()->getRedirectStore()
-			->updateRedirectTarget( $page, $targetTitle );
-
-		$this->newSelectQueryBuilder()
-			->select( [ 'rd_from', 'rd_namespace', 'rd_title', 'rd_fragment', 'rd_interwiki' ] )
-			->from( 'redirect' )
-			->where( [ 'rd_from' => $page->getId() ] )
-			->assertResultSet( [ [
-				strval( $page->getId() ),
-				strval( $targetTitle->getNamespace() ),
-				strval( $targetTitle->getDBkey() ),
-				strval( $targetTitle->getFragment() ),
-				strval( $targetTitle->getInterwiki() ),
-			] ] );
-	}
-
-	public function testInsertRedirectEntry_T278367() {
-		$page = $this->createPage( Title::newFromText( __METHOD__ ), 'A' );
-		$this->assertRedirectTableCountForPageId( $page->getId(), [] );
-
-		$targetTitle = Title::newFromText( '#Frag' );
-		$ok = $this->getServiceContainer()->getRedirectStore()
-			->updateRedirectTarget( $page, $targetTitle );
-
-		$this->assertFalse( $ok );
-		$this->assertRedirectTableCountForPageId( $page->getId(), [] );
 	}
 
 	public function testUpdateRevisionOn_existingPage() {
