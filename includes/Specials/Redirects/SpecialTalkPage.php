@@ -8,6 +8,7 @@ namespace MediaWiki\Specials\Redirects;
 
 use MediaWiki\HTMLForm\HTMLForm;
 use MediaWiki\MainConfigNames;
+use MediaWiki\Search\SearchEngineFactory;
 use MediaWiki\SpecialPage\FormSpecialPage;
 use MediaWiki\Status\Status;
 use MediaWiki\Title\MalformedTitleException;
@@ -21,7 +22,10 @@ use MediaWiki\Title\TitleParser;
  */
 class SpecialTalkPage extends FormSpecialPage {
 
-	public function __construct( private readonly TitleParser $titleParser ) {
+	public function __construct(
+		private readonly TitleParser $titleParser,
+		private readonly SearchEngineFactory $searchEngineFactory,
+	) {
 		parent::__construct( 'TalkPage' );
 	}
 
@@ -65,6 +69,11 @@ class SpecialTalkPage extends FormSpecialPage {
 			$this->getConfig()->get( MainConfigNames::ParserCacheExpireTime )
 		);
 		return true;
+	}
+
+	/** @inheritDoc */
+	public function prefixSearchSubpages( $search, $limit, $offset ) {
+		return $this->prefixSearchString( $search, $limit, $offset, $this->searchEngineFactory );
 	}
 
 	/** @inheritDoc */
