@@ -3258,6 +3258,7 @@
 	"version-software": "Installierte Software",
 	"version-software-product": "Software",
 	"version-software-version": "Version",
+	"version-download-sbom": "SBOM herunterladen",
 	"version-entrypoints": "URLs der Einstiegspunkte",
 	"version-entrypoints-header-entrypoint": "Einstiegspunkt",
 	"version-entrypoints-header-url": "URL",

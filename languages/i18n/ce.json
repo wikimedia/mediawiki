@@ -696,7 +696,7 @@
 	"template-equals-category-desc": "АгӀоно чулоцу <code><nowiki>{{=}}</nowiki></code>, амма хӀокху викехь шор ца ло <code>=</code>. и лелор дика ца лору; хин йолу верси MediaWiki кхочуш йийр йу <code><nowiki>{{=}}</nowiki></code> парсекан функци.",
 	"template-equals-warning": "АгӀоно чулоцу <code><nowiki>{{=}}</nowiki></code>, амма хӀокху викехь шор ца ло <code>=</code>. и лелор дика ца лору; хин йолу верси MediaWiki кхочуш йийр йу <code><nowiki>{{=}}</nowiki></code> парсекан функци.",
 	"parser-template-loop-warning": "Карийна кепаш йукъахь хилла шад: [[:$1]]",
-	"template-loop-category": "Шеддаш болу кепаш йолу агӀонаш",
+	"template-loop-category": "Кепашкахь шаддаш долу агӀонаш",
 	"template-loop-category-desc": "Оцу агӀонна чохь кепан шад бац, аьлчи а ша рекурсиван йоьхуш йолу кеп.",
 	"template-loop-warning": "<strong>ДӀахьедар:</strong> ХӀокху агӀоно кхойкху [[:$1]], цо хуьлуьйту кепан чохь цикл (чакхейоцу рекурсиван кхайкхам).",
 	"parser-template-recursion-depth-warning": "Дозанал хьаладаьлла кӀоргенца йух-йуха дина кеп ($1)",

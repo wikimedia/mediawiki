@@ -3197,6 +3197,7 @@
 	"version-software": "Nainstalovaný software",
 	"version-software-product": "Název",
 	"version-software-version": "Verze",
+	"version-download-sbom": "Stáhnout SBOM",
 	"version-entrypoints": "URL vstupních bodů",
 	"version-entrypoints-header-entrypoint": "Vstupní bod",
 	"version-entrypoints-header-url": "URL",

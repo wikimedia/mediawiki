@@ -3181,6 +3181,7 @@
 	"version-software": "Software instalado",
 	"version-software-product": "Produto",
 	"version-software-version": "Versión",
+	"version-download-sbom": "Descargar SBOM",
 	"version-entrypoints": "Enderezos URL dos puntos de entrada",
 	"version-entrypoints-header-entrypoint": "Punto de entrada",
 	"version-entrypoints-header-url": "URL",

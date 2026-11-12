@@ -3259,6 +3259,7 @@
 	"version-software": "Zainstalowane oprogramowanie",
 	"version-software-product": "Nazwa",
 	"version-software-version": "Wersja",
+	"version-download-sbom": "Pobierz SBOM",
 	"version-entrypoints": "Adresy URL punktów wejścia",
 	"version-entrypoints-header-entrypoint": "Punkt wejścia",
 	"version-entrypoints-header-url": "URL",

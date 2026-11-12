@@ -3187,6 +3187,7 @@
 	"version-software": "Installert programvare",
 	"version-software-product": "Produkt",
 	"version-software-version": "Versjon",
+	"version-download-sbom": "Last ned SBOM",
 	"version-entrypoints": "Inngangspunkts-URL-er",
 	"version-entrypoints-header-entrypoint": "Inngangspunkt",
 	"version-entrypoints-header-url": "URL",

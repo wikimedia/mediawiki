@@ -3127,6 +3127,7 @@
 	"version-software": "Software-ka la rakibay",
 	"version-software-product": "Alaab",
 	"version-software-version": "Nooca",
+	"version-download-sbom": "Soo dejiso SBOM",
 	"version-entrypoints": "URL-yada gelitaanka",
 	"version-entrypoints-header-entrypoint": "Barta gelitaanka",
 	"version-entrypoints-header-url": "URL-ka",

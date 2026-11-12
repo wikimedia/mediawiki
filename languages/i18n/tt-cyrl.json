@@ -595,6 +595,7 @@
 	"edit-constraint-resubmittable-deleted-revision-warning": "$1\n\n\"$2\" дигәненә кабат басып, бу кисәтүне үтеп китә аласыз, ләкин бу очракта бетерелгән ревизия контенты бастырылачак.",
 	"edit-constraint-selfredirect-warning": "Сез битне үз үзенә юнәлтмәкче буласыз.\nБәлки сез юнәлтү өчен дөрес һәдәф билгеләмгәнсез яки үзгәртү өчен битне сайлаганда буталгансыз.",
 	"edit-constraint-brokenredirect-warning": "Сез битне булдырылмаган биткә юнәлтмәкче буласыз.\nБәлки сез юнәлтү өчен дөрес һәдәф билгеләмгәнсез.",
+	"edit-constraint-defaulttext-blank-warning": "Сез буш бит булдырасыз",
 	"missingcommenttext": "Зинһар өчен, комментарий языгыз.",
 	"summary-preview": "Төзәтмәләр тасвирламасын карап алу:",
 	"autocomment-top": "(башы)",
