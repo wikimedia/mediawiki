@@ -56,7 +56,6 @@ class MagicWordFactory {
 		'directionmark',
 		'fullpagename',
 		'fullpagenamee',
-		'isbn',
 		'language',
 		'localday',
 		'localday2',
