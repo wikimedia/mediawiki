@@ -46,7 +46,7 @@ module.exports = defineConfig( [
 	globalIgnores( [
 		// Upstream code
 		'resources/lib/',
-		'external-schemas/',
+		'maintenance/external-schemas/',
 		'resources/src/mediawiki.libs.jpegmeta/',
 
 		// Skip functions

@@ -7,18 +7,18 @@ require_once __DIR__ . '/Maintenance.php';
 use MediaWiki\Maintenance\Maintenance;
 
 /**
- * Syncs the local copies in external-schemas/ with the published schemas.
- * The copy of https://example.org/a/b.json is external-schemas/example.org/a/b.json.
+ * Syncs the local copies in maintenance/external-schemas/ with the published schemas.
+ * The copy of https://example.org/a/b.json is maintenance/external-schemas/example.org/a/b.json.
  *
  * @ingroup Maintenance
  */
 class SyncExternalSchemas extends Maintenance {
 
-	private string $dir = MW_INSTALL_PATH . '/external-schemas';
+	private string $dir = MW_INSTALL_PATH . '/maintenance/external-schemas';
 
 	public function __construct() {
 		parent::__construct();
-		$this->addDescription( 'Sync the local copies in external-schemas/ with the published schemas' );
+		$this->addDescription( 'Sync the local copies in maintenance/external-schemas/ with the published schemas' );
 		$this->addOption( 'check', 'Only list the outdated copies, failing if there are any' );
 		$this->addArg( 'url',
 			'https:// URL of a schema to add or update (default: all the local copies)', false, true );

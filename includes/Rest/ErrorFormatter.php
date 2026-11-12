@@ -128,7 +128,7 @@ abstract class ErrorFormatter {
 
 	/**
 	 * Base URL of the error schemas published from the api-platform-schemas repository.
-	 * Tests use the local copies in external-schemas/.
+	 * Tests use the local copies in maintenance/external-schemas/.
 	 */
 	public const SCHEMA_BASE_URL = 'https://schema.wikimedia.org/repositories/mediawiki/api/';
 
