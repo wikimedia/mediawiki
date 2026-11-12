@@ -29,7 +29,8 @@
 			"HyperAnd",
 			"Bayahiu",
 			"Argo Carpathians",
-			"AF1011"
+			"AF1011",
+			"Exploraz"
 		]
 	},
 	"preferences": "Preferensi",
@@ -176,7 +177,7 @@
 	"editfont-monospace": "Tulisan Monospace",
 	"editfont-sansserif": "Tulisan Sans-serif",
 	"editfont-serif": "Tulisan Serif",
-	"tog-minordefault": "Tandai semua suntingan sebagai suntingan kecil secara baku",
+	"tog-minordefault": "Tandai semua suntingan sebagai suntingan kecil secara bawaan",
 	"tog-forceeditsummary": "Ingatkan saya bila kotak ringkasan suntingan masih kosong",
 	"tog-editrecovery": "Nyalakan fitur [[Special:EditRecovery|{{int:editrecovery}}]]",
 	"tog-editrecovery-help": "Anda dapat memberikan umpan balik di [$1 halaman pembicaraan proyek].",

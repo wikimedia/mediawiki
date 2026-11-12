@@ -2337,6 +2337,7 @@
 	"block-removal-reason-placeholder": "Tippt ee Grond an",
 	"block-removal-confirm-yes": "Spär ophiewen",
 	"block-removal-confirm-no": "Ofbriechen",
+	"block-javascript-required": "JavaScript ass néideg, fir de Special:Block-Interface ze benotzen.",
 	"block-removed": "D'Spär gouf ewechgeholl.",
 	"block-view-target": "Weisen",
 	"unblockip": "Benotzer entspären",

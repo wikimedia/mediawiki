@@ -86,7 +86,8 @@
 			"Ttra2607",
 			"SussyRed2000",
 			"Veritas Sapientiae",
-			"Lakejason0"
+			"Lakejason0",
+			"HungKhanh0106"
 		]
 	},
 	"pagecategories": "{{PLURAL:$1|Thể loại}}",
@@ -186,8 +187,8 @@
 	"redirectedfrom": "(Đổi hướng từ $1)",
 	"redirectpagesub": "Trang đổi hướng",
 	"redirectto": "Đổi hướng đến:",
-	"lastmodifiedat": "Trang này được sửa đổi lần cuối vào $1, $2.",
-	"renderedwith-parsoid": "Trang được hiển thị bằng [[mw:Special:MyLanguage/Parsoid|Parsoid]].",
+	"lastmodifiedat": "Trang này sửa đổi lần cuối lúc $2, $1.",
+	"renderedwith-parsoid": "Trang này được trình bày bởi [[mw:Special:MyLanguage/Parsoid|Parsoid]].",
 	"viewcount": "Trang này đã được đọc {{PLURAL:$1|một|$1}} lần.",
 	"protectedpage": "Trang bị khóa",
 	"jumpto": "Bước tới:",
@@ -206,7 +207,7 @@
 	"copyrightpage": "{{ns:project}}:Bản quyền",
 	"currentevents": "Tin tức",
 	"currentevents-url": "Project:Thời sự",
-	"disclaimers": "Lời phủ nhận",
+	"disclaimers": "Miễn trừ trách nhiệm",
 	"disclaimerpage": "Project:Phủ nhận chung",
 	"edithelp": "Trợ giúp sửa đổi",
 	"helppage-top-gethelp": "Trợ giúp",
@@ -2980,7 +2981,7 @@
 	"anonymous": "{{PLURAL:$1|Người dùng}} chưa đăng nhập của {{SITENAME}}",
 	"siteuser": "thành viên $1 của {{SITENAME}}",
 	"anonuser": "người dùng chưa đăng nhập $1 tại {{SITENAME}}",
-	"lastmodifiedatby": "Trang này được $3 sửa đổi lần cuối lúc $2 $1.",
+	"lastmodifiedatby": "Trang này được sửa đổi lần cuối vào lúc $2, $1 bởi $3.",
 	"othercontribs": "Dựa trên các đóng góp của $1.",
 	"others": "những người khác",
 	"siteusers": "{{PLURAL:$2|{{GENDER:$1|người dùng}}|người dùng}} {{SITENAME}} $1",
