@@ -11,7 +11,6 @@ use Wikimedia\UUID\GlobalIdGenerator;
 class GlobalIdGeneratorTest extends PHPUnit\Framework\TestCase {
 
 	use MediaWikiCoversValidator;
-	use MediaWikiTestCaseTrait;
 
 	/** @var GlobalIdGenerator */
 	private $globalIdGenerator;

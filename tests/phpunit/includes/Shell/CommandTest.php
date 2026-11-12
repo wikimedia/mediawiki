@@ -5,7 +5,6 @@ namespace MediaWiki\Tests\Shell;
 use MediaWiki\Shell\Command;
 use MediaWiki\Shell\Shell;
 use MediaWikiCoversValidator;
-use MediaWikiTestCaseTrait;
 use PHPUnit\Framework\TestCase;
 use Shellbox\Shellbox;
 use TestLogger;
@@ -17,7 +16,6 @@ use TestLogger;
 class CommandTest extends TestCase {
 
 	use MediaWikiCoversValidator;
-	use MediaWikiTestCaseTrait;
 
 	private function requirePosix() {
 		if ( wfIsWindows() ) {

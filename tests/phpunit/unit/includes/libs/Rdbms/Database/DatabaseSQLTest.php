@@ -4,7 +4,6 @@ namespace Wikimedia\Tests\Rdbms;
 
 use DatabaseTestHelper;
 use MediaWikiCoversValidator;
-use MediaWikiTestCaseTrait;
 use PHPUnit\Framework\TestCase;
 use RuntimeException;
 use Wikimedia\Rdbms\Database;
@@ -28,7 +27,6 @@ use Wikimedia\TestingAccessWrapper;
 class DatabaseSQLTest extends TestCase {
 
 	use MediaWikiCoversValidator;
-	use MediaWikiTestCaseTrait;
 
 	private DatabaseTestHelper $database;
 	private SQLPlatform $platform;
