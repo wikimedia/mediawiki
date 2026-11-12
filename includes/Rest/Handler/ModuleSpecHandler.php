@@ -273,7 +273,6 @@ class ModuleSpecHandler extends SimpleHandler {
 
 	private function getPathsSpec( Module $module ): array {
 		$specs = [];
-		$usedOpIds = [];
 
 		// XXX: We currently don't support meta-data on OpenAPI path objects
 		//      (summary, description).
@@ -282,7 +281,7 @@ class ModuleSpecHandler extends SimpleHandler {
 			foreach ( $methods as $mth ) {
 				$key = strtolower( $mth );
 				$mth = strtoupper( $mth );
-				$specs[ $path ][ $key ] = $this->getRouteSpec( $module, $path, $mth, $usedOpIds );
+				$specs[ $path ][ $key ] = $this->getRouteSpec( $module, $path, $mth );
 			}
 		}
 
@@ -299,11 +298,9 @@ class ModuleSpecHandler extends SimpleHandler {
 	 * @param Module $module
 	 * @param string $path Route path, e.g. "/v1/page/{title}"
 	 * @param string $method HTTP method (case-insensitive)
-	 * @param array &$usedOpIds Operation IDs already assigned in this spec,
-	 *   updated in-place to include the ID assigned here
 	 * @return array OpenAPI operation object
 	 */
-	private function getRouteSpec( Module $module, string $path, string $method, array &$usedOpIds ): array {
+	private function getRouteSpec( Module $module, string $path, string $method ): array {
 		$request = new RequestData( [ 'method' => $method ] );
 		$handler = $module->getHandlerForPath( $path, $request, false );
 
@@ -312,24 +309,11 @@ class ModuleSpecHandler extends SimpleHandler {
 		$operationSpec['security'] = $this->getOpenApiSecurityRequirements( $handler );
 
 		// If the spec already contains an explicit operationId (e.g. set in the JSON
-		// definition file via $oasKeys), respect it. Otherwise auto-generate one.
+		// definition file via $oasKeys), respect it. Otherwise auto-generate one
+		// from the method and path, see pathToOperationId().
 		if ( !isset( $operationSpec['operationId'] ) ) {
-			$baseId = self::generateOperationId(
-				$method,
-				// If we have 'x-i18n-summary' instead, don't use the localized message, just use the path.
-				$operationSpec['summary'] ?? null,
-				$path
-			);
-			$operationId = $baseId;
-			$counter = 2;
-			while ( in_array( $operationId, $usedOpIds, true ) ) {
-				$operationId = $baseId . $counter;
-				$counter++;
-			}
-			$operationSpec['operationId'] = $operationId;
+			$operationSpec['operationId'] = self::pathToOperationId( $method, $path );
 		}
-
-		$usedOpIds[] = $operationSpec['operationId'];
 
 		return $operationSpec;
 	}
@@ -383,54 +367,19 @@ class ModuleSpecHandler extends SimpleHandler {
 	}
 
 	/**
-	 * Generate an operationId for an operation.
-	 *
-	 * Uses the summary when available (more readable), falls back to the path.
-	 *
-	 * @param string $method HTTP method (case-insensitive; will be normalized to lowercase)
-	 * @param string|null $summary Localized summary, or null/empty if absent
-	 * @param string $path Route path, e.g. "/v1/page/{title}"
-	 * @return string camelCase operationId
-	 */
-	private static function generateOperationId(
-		string $method,
-		?string $summary,
-		string $path
-	): string {
-		if ( $summary !== null && trim( $summary ) !== '' ) {
-			return self::summaryToOperationId( $method, $summary );
-		}
-		return self::pathToOperationId( $method, $path );
-	}
-
-	/**
-	 * Derive an operationId from the HTTP method and operation summary.
-	 *
-	 * Converts the summary to camelCase and prepends the HTTP method in lowercase.
-	 * Example: method=GET, summary="Search pages" → "getSearchPages"
-	 *
-	 * @param string $method HTTP method (case-insensitive)
-	 * @param string $summary The operation summary string
-	 * @return string camelCase operationId
-	 */
-	private static function summaryToOperationId( string $method, string $summary ): string {
-		// Replace any non-alphanumeric character with a space, then split into words.
-		$clean = preg_replace( '/[^a-zA-Z0-9]/', ' ', $summary );
-		$words = preg_split( '/\s+/', trim( $clean ), -1, PREG_SPLIT_NO_EMPTY );
-		$id = strtolower( $method );
-		foreach ( $words as $word ) {
-			$id .= ucfirst( strtolower( $word ) );
-		}
-		return $id;
-	}
-
-	/**
 	 * Derive an operationId from the HTTP method and route path.
-	 * Used as a fallback when no summary is available.
 	 *
 	 * Path parameters ({name}) become "ByName". Hyphens, underscores and other
 	 * non-alphanumeric characters act as word separators.
 	 * Example: method=GET, path="/v1/page/{title}/links" → "getV1PageByTitleLinks"
+	 *
+	 * @note The ID is unique only if the paths of a module differ in more than case,
+	 * separators, non-ASCII characters or the name of a path parameter. For
+	 * example, "/foo-bar" and "/foo/bar" both yield "getFooBar". By convention,
+	 * such combinations of paths should not exist, but we do not protect against
+	 * them here. When the logic for generating the operationId moves somewhere
+	 * reusable, like ModuleManager, we can write a structure test that ensures
+	 * that operationIds are unique per module.
 	 *
 	 * @param string $method HTTP method (case-insensitive)
 	 * @param string $path Route path, e.g. "/v1/page/{title}/links"

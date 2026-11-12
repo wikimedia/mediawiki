@@ -11,6 +11,7 @@ use MediaWiki\Rest\ErrorFormatterV2;
 use MediaWiki\Rest\Handler;
 use MediaWiki\Rest\Handler\ModuleSpecHandler;
 use MediaWiki\Rest\LocalizedHttpException;
+use MediaWiki\Rest\Module\Module;
 use MediaWiki\Rest\Module\ModuleAvailability;
 use MediaWiki\Rest\Reporter\MWErrorReporter;
 use MediaWiki\Rest\RequestData;
@@ -249,7 +250,7 @@ class ModuleSpecHandlerTest extends MediaWikiIntegrationTestCase {
 				'paths' => [
 					'/foo/bar' => [
 						'get' => [
-							'operationId' => 'getFooBarAction',
+							'operationId' => 'getFooBar',
 							'parameters' => [ [ 'name' => 'q', 'in' => 'query' ] ],
 							'responses' => [ 200 => [ 'description' => 'OK' ] ]
 						],
@@ -640,16 +641,32 @@ class ModuleSpecHandlerTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public static function provideGenerateOperationId(): iterable {
-		// ASCII summary
-		yield 'GET + summary' => [ 'GET', 'Search pages', '/v1/page', 'getSearchPages' ];
-		// No summary → falls back to path
-		yield 'GET + no summary' => [ 'GET', null, '/v1/page/{title}', 'getV1PageByTitle' ];
-		// Empty summary → falls back to path
-		yield 'GET + empty summary' => [ 'GET', '', '/v1/page', 'getV1Page' ];
-		// Method case is irrelevant; output is always lowercase-prefixed
-		yield 'lowercase method' => [ 'get', 'Search pages', '/v1/page', 'getSearchPages' ];
-		// Accented characters: non-ASCII letters are stripped; surrounding ASCII letters remain
-		yield 'accented chars in summary' => [ 'GET', 'Récupérer la page', '/v1/page', 'getRCupRerLaPage' ];
+		// Use the path
+		yield 'GET' => [ 'GET', '/v1/page/{title}', [], 'getV1PageByTitle' ];
+
+		// Use the method name
+		yield 'POST' => [ 'POST', '/page', [], 'postPage' ];
+
+		// RPC-style action suffix; the colon acts as a word separator
+		yield 'POST with action suffix' => [ 'POST', '/page:move', [], 'postPageMove' ];
+		yield 'POST with action suffix and parameter' => [
+			'POST', '/page:move/{title}', [], 'postPageMoveByTitle',
+		];
+
+		// NOTE: The operationId used to be based on the summary field if available (T425428).
+		// This should not be the case (T444613), and we need a test to assert that.
+		yield 'GET + summary' => [
+			'GET', '/v1/page',
+			[ 'summary' => 'Search pages' ],
+			'getV1Page',
+		];
+
+		// An explicit operationId takes precedence over the generated one
+		yield 'explicit operationId' => [
+			'GET', '/v1/page',
+			[ 'operationId' => 'customId' ],
+			'customId',
+		];
 	}
 
 	/**
@@ -657,12 +674,21 @@ class ModuleSpecHandlerTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testGenerateOperationId(
 		string $method,
-		?string $summary,
 		string $path,
+		array $operationSpec,
 		string $expected
 	): void {
-		$handler = TestingAccessWrapper::newFromClass( ModuleSpecHandler::class );
-		$this->assertSame( $expected, $handler->generateOperationId( $method, $summary, $path ) );
+		$routeHandler = $this->createMock( Handler::class );
+		$routeHandler->method( 'getOpenApiSpec' )->willReturn( $operationSpec );
+		$routeHandler->method( 'needsWriteAccess' )->willReturn( false );
+
+		$module = $this->createMock( Module::class );
+		$module->method( 'getHandlerForPath' )->willReturn( $routeHandler );
+
+		$handler = TestingAccessWrapper::newFromObject( $this->newHandler() );
+		$oad = $handler->getRouteSpec( $module, $path, $method );
+		$this->assertArrayHasKey( 'operationId', $oad );
+		$this->assertSame( $expected, $oad['operationId'] );
 	}
 
 	public function testHiddenSpec() {
