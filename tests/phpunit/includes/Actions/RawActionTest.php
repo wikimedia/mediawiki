@@ -92,33 +92,33 @@ class RawActionTest extends MediaWikiIntegrationTestCase {
 			200,
 			'public, s-maxage=3600, max-age=300'
 		];
-		yield 'Import JS without ctype (CDN on)' => [
+		yield 'JS page without ctype (CDN on)' => [
 			'/w/index.php?title=MediaWiki:Foo.js&action=raw',
 			[],
 			true,
 			200,
-			'public, s-maxage=3600, max-age=300'
+			'public, s-maxage=5, max-age=5'
 		];
-		yield 'Import JS without ctype (CDN off)' => [
+		yield 'JS page without ctype (CDN off)' => [
 			'/w/index.php?title=MediaWiki:Foo.js&action=raw',
 			[],
 			false,
 			200,
-			'public, s-maxage=3600, max-age=300'
+			'public, s-maxage=5, max-age=5'
 		];
 		yield 'Regular page (CDN on)' => [
 			'/w/index.php?title=Help:RawActionTest&action=raw',
 			[],
 			true,
 			404,
-			'public, s-maxage=3600, max-age=300'
+			'public, s-maxage=5, max-age=5'
 		];
 		yield 'Regular page (CDN off)' => [
 			'/w/index.php?title=Help:RawActionTest&action=raw',
 			[],
 			false,
 			404,
-			'public, s-maxage=3600, max-age=300'
+			'public, s-maxage=5, max-age=5'
 		];
 	}
 
