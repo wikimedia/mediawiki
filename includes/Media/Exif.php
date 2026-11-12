@@ -613,8 +613,9 @@ class Exif {
 	 * @param string $prop Name of property
 	 */
 	private function exifPropToOrd( $prop ) {
-		if ( isset( $this->mFilteredExifData[$prop] ) ) {
-			$this->mFilteredExifData[$prop] = ord( $this->mFilteredExifData[$prop] );
+		$val = $this->mFilteredExifData[$prop] ?? null;
+		if ( is_string( $val ) && strlen( $val ) === 1 ) {
+			$this->mFilteredExifData[$prop] = ord( $val );
 		}
 	}
 
