@@ -5,6 +5,7 @@ namespace MediaWiki\Tests\Integration\Specials\Redirects;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\Output\OutputPage;
 use MediaWiki\Request\FauxRequest;
+use MediaWiki\Search\SearchEngineFactory;
 use MediaWiki\Specials\Redirects\SpecialTalkPage;
 use MediaWiki\Title\Title;
 use MediaWikiIntegrationTestCase;
@@ -30,7 +31,10 @@ class SpecialTalkPageTest extends MediaWikiIntegrationTestCase {
 		$context->setRequest( $request );
 		$context->setTitle( Title::newFromText( 'Special:TalkPage' ) );
 		$context->setLanguage( $services->getLanguageFactory()->getLanguage( 'qqx' ) );
-		$page = new SpecialTalkPage( $services->getTitleParser() );
+		$page = new SpecialTalkPage(
+			$services->getTitleParser(),
+			$this->createNoOpMock( SearchEngineFactory::class ),
+		);
 		$page->setContext( $context );
 
 		$page->execute( $subpage );

@@ -20,6 +20,7 @@ use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Request\ContentSecurityPolicy;
+use MediaWiki\Search\SearchEngineFactory;
 use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleFormatter;
@@ -44,6 +45,7 @@ class SpecialExport extends SpecialPage {
 		private readonly WikiExporterFactory $wikiExporterFactory,
 		private readonly TitleFormatter $titleFormatter,
 		private readonly LinksMigration $linksMigration,
+		private readonly SearchEngineFactory $searchEngineFactory,
 	) {
 		parent::__construct( 'Export' );
 	}
@@ -591,6 +593,11 @@ class SpecialExport extends SpecialPage {
 		}
 
 		return $pageSet;
+	}
+
+	/** @inheritDoc */
+	public function prefixSearchSubpages( $search, $limit, $offset ) {
+		return $this->prefixSearchString( $search, $limit, $offset, $this->searchEngineFactory );
 	}
 
 	/** @inheritDoc */

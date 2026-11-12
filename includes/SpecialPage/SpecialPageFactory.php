@@ -1020,6 +1020,7 @@ class SpecialPageFactory {
 				'WikiExporterFactory',
 				'TitleFormatter',
 				'LinksMigration',
+				'SearchEngineFactory',
 			]
 		],
 		'Import' => [
@@ -1292,6 +1293,7 @@ class SpecialPageFactory {
 			'class' => SpecialTalkPage::class,
 			'services' => [
 				'TitleParser',
+				'SearchEngineFactory',
 			],
 		],
 	];
