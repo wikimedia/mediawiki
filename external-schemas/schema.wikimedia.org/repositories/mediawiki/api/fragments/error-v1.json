@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "error-v1.json",
+  "$id": "https://schema.wikimedia.org/repositories/mediawiki/api/fragments/error-v1.json",
   "title": "MediaWiki REST API error response (v1, legacy)",
   "description": "Default error shape emitted by REST modules that don't opt in to errorSchemaVersion 2.0. Additional properties are allowed since handlers may attach extra data.",
   "type": "object",

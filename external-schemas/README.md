@@ -8,5 +8,6 @@ Only `.json` and `.yaml` files are synced.
 * Check for outdated copies: `php maintenance/run.php syncExternalSchemas --check`
 * Add or update one copy: `php maintenance/run.php syncExternalSchemas <https:// URL>`
 
-When working on a new or changed schema, edit the copy here and publish the schema
-alongside the change.
+Published schemas may be referenced by clients, so do not change them. To change a
+schema, publish it as a new versioned file (e.g. `error-v3.json`), add its copy here
+and reference the new URL. Each schema's `$id` is the absolute URL it is published at.

@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "error-v2-beta.json",
+  "$id": "https://schema.wikimedia.org/repositories/mediawiki/api/fragments/error-v2-beta.json",
   "title": "MediaWiki REST API error response (v2, vNext)",
   "description": "Error response of modules using version 2.0 of the error format (opt-in via errorSchemaVersion \"2.0\"; currently only used by content/v2-beta). Additional properties are allowed since handlers may attach extra data.",
   "type": "object",
