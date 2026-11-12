@@ -41,17 +41,6 @@ use Wikimedia\Timestamp\TimestampFormat as TS;
  */
 class RawAction extends FormlessAction {
 
-	/**
-	 * Let browsers cache unconditionally for 5 minutes.
-	 *
-	 * After 5 minutes, browsers must revalidate the resource and get either a quick
-	 * HTTP 304 response and renew for another 5min, or a fresh HTTP 200 download.
-	 *
-	 * This is designed to match ResourceLoader ($wgResourceLoaderMaxage)
-	 * where changes also propagate within 5 minutes via the unversioned startup module.
-	 */
-	private const CLIENT_CACHE_TTL = 300;
-
 	public function __construct(
 		Article $article,
 		IContextSource $context,
@@ -110,34 +99,42 @@ class RawAction extends FormlessAction {
 		$contentType = $this->getContentType();
 		$title = $this->getTitle();
 
-		// Basic CDN caching for action=raw to reduce server load (T279120)
-		//
-		// including:
-		// * action=raw on CSS/JSON/JS pages with a non-canonical URL,
-		//   such by having a oldid or curid param, or any unknown param noise.
-		// * action=raw for wikitext and pages
-		//   These don't have canonical URLs anyway, and are never purged
-		//   by HTMLCacheUpdater::getUrls
-		//
-		// This is designed to match the CDN maxage for non-canonical pageview URLs,
-		// as set by ActionEntryPoint::performAction.
-		$smaxage = 3600;
 		if (
 			$contentType === 'text/css' ||
 			$contentType === 'application/json' ||
 			$contentType === 'text/javascript'
 		) {
-			// Enable full CDN caching for canonical URLs (T279120).
-			// same as ActionEntryPoint::performAction on pageviews. These are purged on edit.
-			if ( $config->get( MainConfigNames::UseCdn ) ) {
-				$htmlCacheUpdater = MediaWikiServices::getInstance()->getHTMLCacheUpdater();
-				if ( $request->matchURLForCDN( $htmlCacheUpdater->getUrls( $title ) ) ) {
-					$smaxage = $config->get( MainConfigNames::CdnMaxAge );
-				}
-			}
-		}
+			// Browsers may cache CSS/JSON/JS unconditionally for 5 minutes.
+			//
+			// This is designed to match ResourceLoader ($wgResourceLoaderMaxage) and its
+			// 5-minute propagation via the startup module.
+			$maxage = 300;
 
-		$maxage = self::CLIENT_CACHE_TTL;
+			$htmlCacheUpdater = MediaWikiServices::getInstance()->getHTMLCacheUpdater();
+			if (
+				$config->get( MainConfigNames::UseCdn ) &&
+				$request->matchURLForCDN( $htmlCacheUpdater->getUrls( $title ) )
+			) {
+				// Enable full CDN cache for canonical URLs (T279120),
+				// same as ActionEntryPoint::performAction on pageviews. These are purged on edit.
+				$smaxage = $config->get( MainConfigNames::CdnMaxAge );
+			} else {
+				// Basic CDN cache for non-canonical CSS/JSON/JS import to reduce load (T279120)
+				//
+				// CSS/JSON/JS import with oldid or curid param, or other non-canonical.
+				//
+				// This is designed to match the 1h CDN cache for non-canonical pageview URLs,
+				// set by ActionEntryPoint::performAction.
+				$smaxage = 3600;
+			}
+		} else {
+			// Basic CDN cache for non-canonical action=raw wikitext to reduce load (T279120)
+			//
+			// This is designed to match the 5min cache for "current" content without purges
+			// set by MediaWiki\Rest\Handler\Helper\PageContentHelper::MAX_AGE_200.
+			$maxage = 5;
+			$smaxage = 5;
+		}
 
 		// Set standard Vary headers so cache varies on cookies and such (T125283)
 		$response->header( $this->getOutput()->getVaryHeader() );
