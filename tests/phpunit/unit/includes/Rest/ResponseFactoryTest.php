@@ -350,7 +350,7 @@ class ResponseFactoryTest extends MediaWikiUnitTestCase {
 		];
 
 		foreach ( $variants as $variant => $ef ) {
-			$localCopy = str_replace( 'https://', MW_INSTALL_PATH . '/external-schemas/', $ef->getOpenApiSchema()['$ref'] );
+			$localCopy = str_replace( 'https://', MW_INSTALL_PATH . '/maintenance/external-schemas/', $ef->getOpenApiSchema()['$ref'] );
 			$schema = json_decode( file_get_contents( $localCopy ), true );
 			$json = (string)$createResponse( new ResponseFactory( [], $ef ) )->getBody();
 			$this->assertMatchesJsonSchema( $schema, $json, [], $variant );

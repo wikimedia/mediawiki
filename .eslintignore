@@ -1,6 +1,6 @@
 # Upstream code
+/maintenance/external-schemas/
 /resources/lib/
-/external-schemas/
 /resources/src/mediawiki.libs.jpegmeta/
 
 # Skip functions
