@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "error-restbase-compat.json",
+  "$id": "https://schema.wikimedia.org/repositories/mediawiki/api/fragments/error-restbase-compat.json",
   "title": "MediaWiki REST API error response (RESTBase compatibility)",
   "description": "Error response in the RESTBase-compatible format, returned when the request has the header \"x-restbase-compat: true\". Extends the v1 (legacy) shape with fields mirroring RESTBase's own error format.",
   "type": "object",
