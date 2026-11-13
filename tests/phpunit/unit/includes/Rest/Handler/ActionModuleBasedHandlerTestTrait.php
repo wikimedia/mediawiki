@@ -9,16 +9,12 @@ use MediaWiki\Context\RequestContext;
 use MediaWiki\Language\Language;
 use MediaWiki\Request\FauxRequest;
 use MediaWikiTestCaseTrait;
-use PHPUnit\Framework\MockObject\MockBuilder;
 use PHPUnit\Framework\MockObject\MockObject;
 
 /**
  * A trait providing utility functions for testing Handler classes
  * derived from ActionModuleBasedHandler.
- * This trait is intended to be used on subclasses of MediaWikiUnitTestCase
- * or MediaWikiIntegrationTestCase.
  *
- * @method MockBuilder getMockBuilder(string $className)
  * @extends \PHPUnit\Framework\TestCase
  */
 trait ActionModuleBasedHandlerTestTrait {

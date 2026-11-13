@@ -6,7 +6,6 @@ use MediaWiki\MainConfigNames;
 
 /**
  * Helper trait for defining the temporary user configuration settings for tests.
- * This can only be used for test classes that extend MediaWikiIntegrationTestCase.
  *
  * @stable to use
  * @since 1.42

@@ -27,8 +27,6 @@ use Wikimedia\ObjectFactory\ObjectFactory;
 
 /**
  * A trait providing utility functions for testing Handler classes.
- * This trait is intended to be used on subclasses of MediaWikiUnitTestCase
- * or MediaWikiIntegrationTestCase.
  *
  * @stable to use
  * @extends \PHPUnit\Framework\TestCase

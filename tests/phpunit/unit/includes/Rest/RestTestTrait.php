@@ -27,8 +27,6 @@ use Wikimedia\ObjectFactory\ObjectFactory;
 
 /**
  * A trait providing utility function for testing the REST framework.
- * This trait is intended to be used on subclasses of MediaWikiUnitTestCase
- * or MediaWikiIntegrationTestCase.
  *
  * @stable to use
  * @since 1.39

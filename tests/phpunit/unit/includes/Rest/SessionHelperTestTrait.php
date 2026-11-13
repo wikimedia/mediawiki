@@ -9,8 +9,6 @@ use PHPUnit\Framework\MockObject\MockObject;
 
 /**
  * A trait for testing Handler classes.
- * This trait is intended to be used on subclasses of MediaWikiUnitTestCase
- * or MediaWikiIntegrationTestCase.
  *
  * @stable to use
  * @extends \PHPUnit\Framework\TestCase

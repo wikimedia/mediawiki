@@ -4,7 +4,6 @@ namespace MediaWiki\Tests\ChangeTags;
 
 /**
  * Helper trait for restricted (private-prefixed) change tag test setup.
- * For use in classes extending {@link MediaWikiIntegrationTestCase}.
  *
  * @stable to use
  * @since 1.47

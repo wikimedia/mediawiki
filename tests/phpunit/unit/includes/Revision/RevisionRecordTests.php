@@ -25,8 +25,6 @@ use MediaWikiTestCaseTrait;
 
 /**
  * @covers \MediaWiki\Revision\RevisionRecord
- *
- * @note Expects to be used in classes that extend MediaWikiUnitTestCase.
  * @extends \PHPUnit\Framework\TestCase
  */
 trait RevisionRecordTests {
@@ -39,12 +37,6 @@ trait RevisionRecordTests {
 	 * @return RevisionRecord
 	 */
 	abstract protected function newRevision( array $rowOverrides = [] );
-
-	/**
-	 * provided by MediaWikiTestCaseTrait
-	 * @param string $regex
-	 */
-	abstract public function filterDeprecated( $regex );
 
 	public function testGetIdSuccessful() {
 		$revision = $this->newRevision( [ 'wikiId' => 'acmewiki', 'rev_id' => 5 ] );

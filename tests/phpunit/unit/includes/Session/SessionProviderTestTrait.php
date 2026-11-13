@@ -13,9 +13,7 @@ use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
 
 /**
- * A trait providing utility function for testing subclasses of
- * SessionProvider. This trait is intended to be used on
- * subclasses of MediaWikiIntegrationTestCase or MediaWikiUnitTestCase.
+ * A trait providing utility function for testing subclasses of SessionProvider.
  *
  * @stable to use
  * @extends \PHPUnit\Framework\TestCase

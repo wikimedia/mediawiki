@@ -26,15 +26,6 @@ trait MockHttpTrait {
 	use MediaWikiTestCaseTrait;
 
 	/**
-	 * @see MediaWikiIntegrationTestCase::setService()
-	 *
-	 * @param string $name
-	 * @phpcs:ignore MediaWiki.Commenting.FunctionComment.ObjectTypeHintParam
-	 * @param object|callable $service
-	 */
-	abstract protected function setService( string $name, $service );
-
-	/**
 	 * Install a mock HttpRequestFactory in MediaWikiServices, for the duration
 	 * of the current test case.
 	 *

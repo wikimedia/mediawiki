@@ -13,9 +13,7 @@ use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
 
 /**
- * A trait providing utility function for testing subclasses of
- * AbstractAuthenticationProvider. This trait is intended to be used on
- * subclasses of MediaWikiIntegrationTestCase or MediaWikiUnitTestCase.
+ * A trait providing utility function for testing subclasses of AbstractAuthenticationProvider.
  *
  * @stable to use
  * @since 1.39

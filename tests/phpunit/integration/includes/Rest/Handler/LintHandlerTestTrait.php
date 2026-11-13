@@ -9,7 +9,7 @@ use MediaWiki\Rest\ResponseInterface;
 use MediaWikiTestCaseTrait;
 
 /**
- * This trait is used in PageLintLHandlerTest.php & RevisionLintHandlerTest.php to construct requests.
+ * This trait is used in PageLintHandlerTest.php & RevisionLintHandlerTest.php to construct requests.
  *
  * @extends \PHPUnit\Framework\TestCase
  */
