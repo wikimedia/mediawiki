@@ -307,6 +307,9 @@ For notes on 1.47.x and older releases, see HISTORY.
 
 * (T444213) Special:ResetPassword and Special:ResetPass used to redirect to
   Special:ChangePassword. They now redirect to Special:PasswordReset instead.
+* (T443789) REST page routes such as /v1/page/{title} accept a page ID
+  formatted like "#123" (URL-encoded as %23123) instead of a title. Invalid
+  titles now return a 400 error instead of a 404.
 * …
 
 == Compatibility ==

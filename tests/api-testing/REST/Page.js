@@ -110,10 +110,10 @@ describe( 'Page Source', () => {
 			const { status } = await client.get( `${ pathPrefix }/page/${ dummyPageTitle }` );
 			assert.deepEqual( status, 404 );
 		} );
-		it( 'Should return 404 error for invalid titles', async () => {
+		it( 'Should return 400 error for invalid titles', async () => {
 			const badTitle = '::X::';
 			const { status } = await client.get( `${ pathPrefix }/page/${ badTitle }` );
-			assert.deepEqual( status, 404 );
+			assert.deepEqual( status, 400 );
 		} );
 		it( 'Should return 404 error for special pages', async () => {
 			const badTitle = 'Special:Blankpage';

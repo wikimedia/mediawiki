@@ -4,6 +4,7 @@ namespace MediaWiki\Rest\Handler\Helper;
 
 use MediaWiki\MainConfigNames;
 use MediaWiki\Page\ExistingPageRecord;
+use MediaWiki\Page\PageIdentity;
 use MediaWiki\Rest\Handler;
 use MediaWiki\Rest\LocalizedHttpException;
 use MediaWiki\Rest\ResponseInterface;
@@ -36,6 +37,12 @@ class RevisionContentHelper extends PageContentHelper {
 	public function getPage(): ?ExistingPageRecord {
 		$revision = $this->getTargetRevision();
 		return $revision ? $this->pageLookup->getPageByReference( $revision->getPage() ) : null;
+	}
+
+	/** @inheritDoc */
+	public function getPageIdentity(): ?PageIdentity {
+		// There is no title param, the page comes from the revision
+		return $this->getPage();
 	}
 
 	/**

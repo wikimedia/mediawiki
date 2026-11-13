@@ -171,21 +171,40 @@ describe( 'content/v2-beta Page', () => {
 			assert.nestedPropertyVal( body, 'error_code', 'rest-nonexistent-title' );
 		} );
 
-		// NOTE: These two currently FAIL with 403, and so do their v1 counterparts
-		// in REST/Page.js. PageHandler::run() runs checkAccessPermission() before
+		// Invalid titles fail parameter validation, so they get a 400.
+		// NOTE: The special pages test currently FAILS with 403, and so does its v1
+		// counterpart in REST/Page.js. PageHandler::run() runs checkAccessPermission() before
 		// checkHasContent(), so a title that resolves to no page at all is reported
 		// as a permission denial instead of as missing. The assertions below state
 		// the contract that v1 shipped; they are not skipped, because a 404 turning
 		// into a 403 on /v1/page/{title} is a breaking API change.
-		it( 'Should return 404 error for invalid titles', async () => {
+		it( 'Should return 400 error for invalid titles', async () => {
 			const badTitle = '::X::';
 			const { status } = await client.get( `${ pathPrefix }/pages/${ badTitle }` );
-			assert.deepEqual( status, 404 );
+			assert.deepEqual( status, 400 );
 		} );
 
 		it( 'Should return 404 error for special pages', async () => {
 			const badTitle = 'Special:Blankpage';
 			const { status } = await client.get( `${ pathPrefix }/pages/${ badTitle }` );
+			assert.deepEqual( status, 404 );
+		} );
+
+		it( 'Should return the page when addressed by page ID', async () => {
+			const { body: byTitle } = await client.get( `${ pathPrefix }/pages/${ page }` );
+			const { status, body, text } = await client.get(
+				`${ pathPrefix }/pages/%23${ byTitle.id }`,
+				{ prop: 'source' }
+			);
+			// No normalization redirect for pages requested by ID
+			assert.deepEqual( status, 200, text );
+			assert.deepEqual( body.id, byTitle.id );
+			assert.nestedPropertyVal( body, 'title', pageWithSpaces );
+			assert.property( body, 'source' );
+		} );
+
+		it( 'Should return 404 error for an unknown page ID', async () => {
+			const { status } = await client.get( `${ pathPrefix }/pages/%2399999999` );
 			assert.deepEqual( status, 404 );
 		} );
 

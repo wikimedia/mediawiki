@@ -9,6 +9,8 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\Page\ExistingPageRecord;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageLookup;
+use MediaWiki\ParamValidator\TypeDef\TitleDef;
+use MediaWiki\ParamValidator\TypeDef\TitleParam;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Rest\Handler;
 use MediaWiki\Rest\LocalizedHttpException;
@@ -57,7 +59,7 @@ class PageContentHelper {
 	/** @var Authority|null */
 	protected $authority = null;
 
-	/** @var string[] */
+	/** @var array */
 	protected $parameters = null;
 
 	/** @var RevisionRecord|false|null */
@@ -86,42 +88,70 @@ class PageContentHelper {
 
 	/**
 	 * @param Authority $authority
-	 * @param string[] $parameters validated parameters
+	 * @param array $parameters validated parameters
 	 */
 	public function init( Authority $authority, array $parameters ) {
 		$this->authority = $authority;
 		$this->parameters = $parameters;
 	}
 
-	/**
-	 * @return string|null title text or null if unable to retrieve title
-	 */
-	public function getTitleText(): ?string {
-		return $this->parameters['title'] ?? null;
+	private function getTitleParam(): ?TitleParam {
+		$title = $this->parameters['title'] ?? null;
+		// Callers may pass a raw title, e.g. WikimediaCustomizations' DiscordPreviewRestHandler
+		return is_string( $title ) ? new TitleParam( $title, $this->pageLookup->getPageByText( $title ) ) : $title;
 	}
 
+	/**
+	 * @return string|null title text or null if unable to retrieve title. For a page
+	 *   requested by ID ("#123"), this is the title of that page.
+	 */
+	public function getTitleText(): ?string {
+		$titleParam = $this->getTitleParam();
+		if ( $titleParam && $titleParam->getRequestedPageId() !== null ) {
+			$page = $titleParam->getPage();
+			return $page ? $this->titleFormatter->getPrefixedText( $page ) : null;
+		}
+		return $titleParam?->getText();
+	}
+
+	/**
+	 * Title as given in the request, for detecting normalization redirects.
+	 *
+	 * @return string|null null if the page was requested by ID ("#123")
+	 */
+	public function getTitleAsRequested(): ?string {
+		$titleParam = $this->getTitleParam();
+		return $titleParam && $titleParam->getRequestedPageId() === null ? $titleParam->getText() : null;
+	}
+
+	/**
+	 * @return string The title for error messages: as requested if it does not address a page
+	 */
+	private function getTitleTextForMessage(): string {
+		return $this->getTitleText() ?? $this->getTitleParam()?->getText() ?? '';
+	}
+
+	/**
+	 * @return ExistingPageRecord|null The page's PageRecord, or null if the page was not found.
+	 */
 	public function getPage(): ?ExistingPageRecord {
 		if ( $this->pageRecord === false ) {
-			$titleText = $this->getTitleText();
-			if ( $titleText === null ) {
-				return null;
-			}
-			$this->pageRecord = $this->pageLookup->getExistingPageByText( $titleText );
+			$page = $this->getPageIdentity();
+			// PageLookup already returns an ExistingPageRecord for pages that exist
+			$this->pageRecord = $page instanceof ExistingPageRecord ? $page : null;
 		}
 		return $this->pageRecord;
 	}
 
+	/**
+	 * @return PageIdentity|null The page from the title parameter, or null if the title
+	 *   is missing or does not address a page (e.g. invalid title, special page)
+	 */
 	public function getPageIdentity(): ?PageIdentity {
 		if ( $this->pageIdentity === false ) {
-			$this->pageIdentity = $this->getPage();
-		}
-
-		if ( $this->pageIdentity === null ) {
-			$titleText = $this->getTitleText();
-			if ( $titleText === null ) {
-				return null;
-			}
-			$this->pageIdentity = $this->pageLookup->getPageByText( $titleText );
+			$page = $this->getTitleParam()?->getPage();
+			// Prefer the ExistingPageRecord, getPage() relies on it
+			$this->pageIdentity = $page ? ( $this->pageLookup->getPageByReference( $page ) ?? $page ) : null;
 		}
 
 		return $this->pageIdentity;
@@ -157,7 +187,7 @@ class PageContentHelper {
 		$revision = $this->getTargetRevision();
 
 		if ( !$revision ) {
-			$titleText = $this->getTitleText() ?? '';
+			$titleText = $this->getTitleTextForMessage();
 			throw new LocalizedHttpException(
 				MessageValue::new( 'rest-no-revision' )->plaintextParams( $titleText ),
 				404
@@ -323,8 +353,10 @@ class PageContentHelper {
 		return [
 			'title' => [
 				Handler::PARAM_SOURCE => 'path',
-				ParamValidator::PARAM_TYPE => 'string',
+				ParamValidator::PARAM_TYPE => 'title',
 				ParamValidator::PARAM_REQUIRED => true,
+				TitleDef::PARAM_RETURN_OBJECT => TitleDef::TITLE_PARAM_VALUE,
+				TitleDef::PARAM_ALLOW_ID => true,
 				Handler::PARAM_DESCRIPTION => new MessageValue( 'rest-param-desc-page-content-title' ),
 				Handler::PARAM_EXAMPLE => 'Earth',
 			],
@@ -396,7 +428,7 @@ class PageContentHelper {
 	 *         page, 403 if that page may not be read
 	 */
 	public function checkAccessPermission() {
-		$titleText = $this->getTitleText() ?? '';
+		$titleText = $this->getTitleTextForMessage();
 		$page = $this->getPageIdentity();
 
 		// A title that does not address a page at all (an unparseable title, or one
@@ -427,7 +459,7 @@ class PageContentHelper {
 	 * @throws LocalizedHttpException if no content is available
 	 */
 	public function checkHasContent( bool $allowShadowContent = true ) {
-		$titleText = $this->getTitleText() ?? '';
+		$titleText = $this->getTitleTextForMessage();
 
 		$page = $this->getPageIdentity();
 		if ( !$page ) {

@@ -8,6 +8,7 @@ use MediaWiki\Config\ServiceOptions;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Page\ExistingPageRecord;
 use MediaWiki\Page\PageIdentityValue;
+use MediaWiki\ParamValidator\TypeDef\TitleDef;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Rest\Handler\Helper\PageContentHelper;
 use MediaWiki\Rest\HttpException;
@@ -21,6 +22,7 @@ use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
 use MediaWiki\Title\Title;
 use MediaWiki\User\UserIdentityValue;
 use MediaWikiIntegrationTestCase;
+use Wikimedia\ParamValidator\SimpleCallbacks;
 use Wikimedia\TestingAccessWrapper;
 use Wikimedia\Timestamp\TimestampFormat as TS;
 
@@ -62,6 +64,14 @@ class PageContentHelperTest extends MediaWikiIntegrationTestCase {
 			$services->getShadowPageLoader(),
 		);
 
+		if ( isset( $params['title'] ) ) {
+			// The helper gets validated params
+			$titleDef = new TitleDef( new SimpleCallbacks( [] ), $services->getTitleFactory() );
+			$params['title'] = $titleDef->validate(
+				'title', $params['title'], $helper->getParamSettings()['title'], []
+			);
+		}
+
 		$authority = $authority ?: $this->mockRegisteredUltimateAuthority();
 		$helper->init( $authority, $params );
 		return $helper;
@@ -83,6 +93,26 @@ class PageContentHelperTest extends MediaWikiIntegrationTestCase {
 			'Foo',
 			$this->getServiceContainer()->getTitleFormatter()->getPrefixedDBkey( $helper->getPage() )
 		);
+	}
+
+	public function testInitWithRawTitle() {
+		// Some callers pass the title as a string instead of a validated param
+		$page = $this->getExistingTestPage( 'Foo bar' );
+
+		$helper = $this->newHelper();
+		$helper->init( $this->mockRegisteredUltimateAuthority(), [ 'title' => 'Foo_bar' ] );
+		$this->assertSame( 'Foo_bar', $helper->getTitleText() );
+		$this->assertSame( $page->getId(), $helper->getPage()->getId() );
+	}
+
+	public function testGetPageById() {
+		$page = $this->getExistingTestPage( 'Foo bar' );
+
+		$helper = $this->newHelper( [ 'title' => '#' . $page->getId() ] );
+		$this->assertSame( $page->getId(), $helper->getPage()->getId() );
+		$this->assertSame( 'Foo bar', $helper->getTitleText() );
+		// No normalization redirect for pages requested by ID
+		$this->assertNull( $helper->getTitleAsRequested() );
 	}
 
 	public function testGetTargetRevisionAndContent() {
@@ -144,19 +174,18 @@ class PageContentHelperTest extends MediaWikiIntegrationTestCase {
 		}
 	}
 
-	public static function provideBadTitle() {
-		yield [ '_' ];
-		yield [ '::Hello' ];
-		yield [ 'Special:Blankpage' ];
+	// Invalid titles fail validation (TitleDef) before they get here
+	public static function provideNoPage() {
+		yield 'special page' => [ 'Special:Blankpage' ];
+		yield 'unknown page ID' => [ '#99999999' ];
 	}
 
 	/**
-	 * @dataProvider provideBadTitle
+	 * @dataProvider provideNoPage
 	 */
-	public function testBadTitle( $badTitle ) {
-		$helper = $this->newHelper( [ 'title' => $badTitle ] );
+	public function testNoPage( $title ) {
+		$helper = $this->newHelper( [ 'title' => $title ] );
 
-		$this->assertNotNull( $helper->getTitleText() );
 		$this->assertNull( $helper->getPage() );
 
 		$this->assertFalse( $helper->hasContent() );

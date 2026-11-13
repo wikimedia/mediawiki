@@ -104,6 +104,41 @@ class PageHandlerTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( $content->getText(), $data['source'] );
 	}
 
+	public function testExecuteSourceByPageId() {
+		$page = $this->getExistingTestPage( 'SourceByIdTestPage' );
+		$request = new RequestData(
+			[ 'pathParams' => [ 'title' => '#' . $page->getId() ] ]
+		);
+
+		$handler = $this->newHandler();
+		$config = [ 'prop' => [ 'source' ], 'path' => '/pages/{title}' ];
+		$data = $this->executeHandlerAndGetBodyData( $handler, $request, $config );
+
+		// No normalization redirect for pages requested by ID
+		$this->assertResponseData( $page, $data );
+		$this->assertArrayHasKey( 'source', $data );
+	}
+
+	public static function provideUnknownPageId() {
+		yield 'no such page' => [ '#99999999' ];
+		yield 'zero' => [ '#0' ];
+	}
+
+	/**
+	 * @dataProvider provideUnknownPageId
+	 */
+	public function testExecute_unknownPageId( string $title ) {
+		$request = new RequestData( [ 'pathParams' => [ 'title' => $title ] ] );
+
+		$exception = $this->executeHandlerAndGetHttpException(
+			$this->newHandler(),
+			$request,
+			[ 'prop' => [ 'source' ] ]
+		);
+
+		$this->assertSame( 404, $exception->getCode(), $exception->getMessage() );
+	}
+
 	public function testExecuteWithHtml() {
 		$page = $this->getExistingTestPage( 'HtmlEndpointTestPage/with/slashes' );
 		$this->assertStatusGood( $this->editPage( $page, self::WIKITEXT ),
@@ -535,21 +570,20 @@ class PageHandlerTest extends MediaWikiIntegrationTestCase {
 
 	public static function provideUnusableTitle() {
 		// Titles that do not address a wiki page at all, as opposed to addressing
-		// one that does not exist.
-		yield 'unparseable' => [ '::X::' ];
-		yield 'underscore only' => [ '_' ];
-		yield 'special page' => [ 'Special:Blankpage' ];
+		// one that does not exist. Invalid titles fail parameter validation.
+		yield 'unparseable' => [ '::X::', 400 ];
+		yield 'underscore only' => [ '_', 400 ];
+		yield 'special page' => [ 'Special:Blankpage', 404 ];
 	}
 
 	/**
-	 * A title that addresses no page is reported as missing, not as forbidden:
-	 * there is no page for the permission check to deny access to. This is the
-	 * behavior /v1/page/{title} shipped with, see also the equivalent cases in
-	 * tests/api-testing/REST/Page.js.
+	 * A valid title that addresses no page is reported as missing, not as forbidden:
+	 * there is no page for the permission check to deny access to. See also the
+	 * equivalent cases in tests/api-testing/REST/Page.js.
 	 *
 	 * @dataProvider provideUnusableTitle
 	 */
-	public function testExecute_unusableTitle( string $title ) {
+	public function testExecute_unusableTitle( string $title, int $expectedCode ) {
 		$request = new RequestData( [ 'pathParams' => [ 'title' => $title ] ] );
 
 		$exception = $this->executeHandlerAndGetHttpException(
@@ -558,7 +592,7 @@ class PageHandlerTest extends MediaWikiIntegrationTestCase {
 			[ 'prop' => [ 'source' ] ]
 		);
 
-		$this->assertSame( 404, $exception->getCode(), $exception->getMessage() );
+		$this->assertSame( $expectedCode, $exception->getCode(), $exception->getMessage() );
 	}
 
 	private function assertResponseData( WikiPage $page, array $data ): void {

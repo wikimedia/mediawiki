@@ -96,7 +96,7 @@ class PageHTMLHandler extends SimpleHandler {
 		// if ?redirect=no language variant should do nothing and fall into the 404 path
 		$redirectResponse = $redirectHelper->createRedirectResponseIfNeeded(
 			$page,
-			$this->contentHelper->getTitleText()
+			$this->contentHelper->getTitleAsRequested()
 		);
 
 		if ( $redirectResponse !== null ) {
