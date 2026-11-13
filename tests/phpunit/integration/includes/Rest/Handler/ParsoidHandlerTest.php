@@ -19,7 +19,6 @@ use MediaWiki\Parser\Parsoid\PageBundleParserOutputConverter;
 use MediaWiki\Parser\RevisionOutputCache;
 use MediaWiki\Permissions\UltimateAuthority;
 use MediaWiki\Registration\ExtensionRegistry;
-use MediaWiki\Rest\ErrorFormatterV1;
 use MediaWiki\Rest\Handler\Helper\HtmlInputTransformHelper;
 use MediaWiki\Rest\Handler\Helper\ParsoidFormatHelper;
 use MediaWiki\Rest\Handler\ParsoidHandler;
@@ -28,7 +27,6 @@ use MediaWiki\Rest\LocalizedHttpException;
 use MediaWiki\Rest\RequestData;
 use MediaWiki\Rest\RequestInterface;
 use MediaWiki\Rest\Response;
-use MediaWiki\Rest\ResponseFactory;
 use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Revision\RevisionLookup;
 use MediaWiki\Revision\RevisionRecord;
@@ -283,11 +281,7 @@ class ParsoidHandlerTest extends MediaWikiIntegrationTestCase {
 		$router = $this->createRouter( $authority, $request );
 		$config = [];
 
-		$formatter = $this->getDummyTextFormatter( true );
-
-		/** @var ResponseFactory|MockObject $responseFactory */
-		$textFormatters = [ 'qqx' => $formatter ];
-		$responseFactory = new ResponseFactory( $textFormatters, new ErrorFormatterV1( $textFormatters, false ) );
+		$responseFactory = $this->newResponseFactory();
 
 		if ( !$request->hasBody() && $method === 'POST' ) {
 			// Send an empty body if none was provided.

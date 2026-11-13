@@ -18,15 +18,14 @@ use MediaWiki\Parser\ParserOutput;
 use MediaWiki\Parser\Parsoid\HtmlToContentTransform;
 use MediaWiki\Parser\Parsoid\HtmlTransformFactory;
 use MediaWiki\Parser\Parsoid\PageBundleParserOutputConverter;
-use MediaWiki\Rest\ErrorFormatterV1;
 use MediaWiki\Rest\Handler\Helper\HtmlInputTransformHelper;
 use MediaWiki\Rest\Handler\Helper\ParsoidFormatHelper;
 use MediaWiki\Rest\HttpException;
 use MediaWiki\Rest\LocalizedHttpException;
-use MediaWiki\Rest\ResponseFactory;
 use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
+use MediaWiki\Tests\Rest\RestTestTrait;
 use MediaWikiIntegrationTestCase;
 use PHPUnit\Framework\MockObject\MockObject;
 use Wikimedia\Bcp47Code\Bcp47Code;
@@ -44,6 +43,8 @@ use Wikimedia\Stats\StatsFactory;
  * @group Database
  */
 class HtmlInputTransformHelperTest extends MediaWikiIntegrationTestCase {
+	use RestTestTrait;
+
 	private const CACHE_EPOCH = '20001111010101';
 
 	protected function setUp(): void {
@@ -681,8 +682,9 @@ class HtmlInputTransformHelperTest extends MediaWikiIntegrationTestCase {
 	}
 
 	private function createResponse() {
-		$textFormatters = [ new TextFormatter( 'qqx' ) ];
-		$responseFactory = new ResponseFactory( $textFormatters, new ErrorFormatterV1( $textFormatters, false ) );
+		$responseFactory = $this->newResponseFactory( [
+			'textFormatters' => [ new TextFormatter( 'qqx' ) ],
+		] );
 		$response = $responseFactory->create();
 		return $response;
 	}

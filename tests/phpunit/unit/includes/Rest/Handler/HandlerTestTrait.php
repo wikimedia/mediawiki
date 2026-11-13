@@ -8,13 +8,11 @@ use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Permissions\UserAuthority;
 use MediaWiki\Request\FauxRequest;
-use MediaWiki\Rest\ErrorFormatterV1;
 use MediaWiki\Rest\Handler;
 use MediaWiki\Rest\HttpException;
 use MediaWiki\Rest\Module\Module;
 use MediaWiki\Rest\RequestInterface;
 use MediaWiki\Rest\Response;
-use MediaWiki\Rest\ResponseFactory;
 use MediaWiki\Rest\ResponseInterface;
 use MediaWiki\Rest\Router;
 use MediaWiki\Rest\Validator\Validator;
@@ -125,8 +123,7 @@ trait HandlerTestTrait {
 				$request->setParsedBody( [] );
 			}
 
-			$textFormatters = [ 'qqx' => $formatter ];
-			$responseFactory = new ResponseFactory( $textFormatters, new ErrorFormatterV1( $textFormatters, false ) );
+			$responseFactory = $this->newResponseFactory( [ 'textFormatters' => [ $formatter ] ] );
 
 			$handler->initForExecute( $request, $responseFactory );
 		}

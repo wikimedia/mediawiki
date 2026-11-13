@@ -5,7 +5,6 @@ namespace MediaWiki\Tests\Rest\Handler;
 use GuzzleHttp\Psr7\Uri;
 use MediaWiki\ParamValidator\TypeDef\ArrayDef;
 use MediaWiki\Rest\ConditionalHeaderUtil;
-use MediaWiki\Rest\ErrorFormatterV1;
 use MediaWiki\Rest\Handler;
 use MediaWiki\Rest\HttpException;
 use MediaWiki\Rest\JsonLocalizer;
@@ -1240,11 +1239,7 @@ class HandlerTest extends MediaWikiUnitTestCase {
 
 		$this->expectExceptionCode( 400 );
 
-		$textFormatters = [ 'qqx' => $this->getDummyTextFormatter() ];
-		$responseFactory = new ResponseFactory(
-			$textFormatters,
-			new ErrorFormatterV1( $textFormatters, false )
-		);
+		$responseFactory = $this->newResponseFactory();
 
 		$handler->initForExecute( $request, $responseFactory );
 	}

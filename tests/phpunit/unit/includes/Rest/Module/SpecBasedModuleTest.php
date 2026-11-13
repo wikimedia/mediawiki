@@ -5,7 +5,6 @@ namespace MediaWiki\Tests\Rest\Module;
 use GuzzleHttp\Psr7\Uri;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Rest\BasicAccess\StaticBasicAuthorizer;
-use MediaWiki\Rest\ErrorFormatterV1;
 use MediaWiki\Rest\Handler\GenericActionHandler;
 use MediaWiki\Rest\Handler\GenericItemHandler;
 use MediaWiki\Rest\JsonLocalizer;
@@ -14,7 +13,6 @@ use MediaWiki\Rest\Module\SpecBasedModule;
 use MediaWiki\Rest\Reporter\ErrorReporter;
 use MediaWiki\Rest\RequestData;
 use MediaWiki\Rest\RequestInterface;
-use MediaWiki\Rest\ResponseFactory;
 use MediaWiki\Rest\Validator\Validator;
 use MediaWiki\Tests\Rest\RestTestTrait;
 use MediaWiki\Tests\Unit\DummyServicesTrait;
@@ -97,11 +95,10 @@ class SpecBasedModuleTest extends \MediaWikiUnitTestCase {
 			$this->createHookContainer()
 		);
 
-		// TODO: fix ResponseFactory constructor signature
-		$responseFactory = new ResponseFactory(
-			[ 'qqx' => $formatter ],
-			new ErrorFormatterV1( [ 'qqx' => $formatter ], true )
-		);
+		$responseFactory = $this->newResponseFactory( [
+			'textFormatters' => [ $formatter ],
+			'showExceptionDetails' => true,
+		] );
 		$module->initForExecute( $responseFactory );
 		return $module;
 	}

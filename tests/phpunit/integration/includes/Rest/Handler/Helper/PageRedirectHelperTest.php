@@ -6,12 +6,11 @@ use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageIdentityValue;
 use MediaWiki\Page\PageReferenceValue;
 use MediaWiki\Page\RedirectStore;
-use MediaWiki\Rest\ErrorFormatterV1;
 use MediaWiki\Rest\Handler\Helper\PageRedirectHelper;
 use MediaWiki\Rest\RequestData;
 use MediaWiki\Rest\RequestInterface;
-use MediaWiki\Rest\ResponseFactory;
 use MediaWiki\Tests\Rest\Handler\PageHandlerTestTrait;
+use MediaWiki\Tests\Rest\RestTestTrait;
 use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleValue;
 use MediaWikiIntegrationTestCase;
@@ -22,6 +21,7 @@ use MediaWikiIntegrationTestCase;
  */
 class PageRedirectHelperTest extends MediaWikiIntegrationTestCase {
 	use PageHandlerTestTrait;
+	use RestTestTrait;
 
 	private function newRedirectHelper(
 		array|RequestInterface $request = [],
@@ -48,7 +48,7 @@ class PageRedirectHelperTest extends MediaWikiIntegrationTestCase {
 				return null;
 			} );
 
-		$responseFactory = new ResponseFactory( [], new ErrorFormatterV1( [], false ) );
+		$responseFactory = $this->newResponseFactory();
 
 		$router = $this->newRouterForPageHandler( 'https://example.test', '/api' );
 

@@ -5,6 +5,7 @@ namespace MediaWiki\Tests\Rest;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Rest\BasicAccess\StaticBasicAuthorizer;
+use MediaWiki\Rest\ErrorFormatterV1;
 use MediaWiki\Rest\JsonLocalizer;
 use MediaWiki\Rest\Module\Module;
 use MediaWiki\Rest\Module\ModuleAvailability;
@@ -12,6 +13,7 @@ use MediaWiki\Rest\Module\ModuleInfo;
 use MediaWiki\Rest\Module\ModuleManager;
 use MediaWiki\Rest\Reporter\PHPErrorReporter;
 use MediaWiki\Rest\RequestData;
+use MediaWiki\Rest\ResponseFactory;
 use MediaWiki\Rest\Router;
 use MediaWiki\Rest\Validator\Validator;
 use MediaWiki\Tests\Rest\Handler\SessionHelperTestTrait;
@@ -38,6 +40,36 @@ trait RestTestTrait {
 	use SessionHelperTestTrait;
 	use MockAuthorityTrait;
 	use DummyServicesTrait;
+
+	/**
+	 * Creates a ResponseFactory. Tests should use this instead of calling the
+	 * constructor, since the constructor signature is not stable.
+	 *
+	 * @param array $options An array optionally providing:
+	 * - errorFormatter: the ErrorFormatter the ResponseFactory should use.
+	 *   Takes precedence over all other options.
+	 * - textFormatters: An array of ITextFormatter that the ErrorFormatter for
+	 *   the ResponseFactory should use. The keys are irrelevant.
+	 * - showExceptionDetails: Whether the default ErrorFormatter should include
+	 *   exception details. Defaults to false.
+	 *
+	 * @return ResponseFactory
+	 */
+	private function newResponseFactory( array $options = [] ): ResponseFactory {
+		$textFormatters = [];
+		if ( isset( $options['errorFormatter'] ) ) {
+			$errorFormatter = $options['errorFormatter'];
+		} else {
+			$textFormatters = $options['textFormatters'] ?? [ $this->getDummyTextFormatter( true ) ];
+
+			$errorFormatter = new ErrorFormatterV1(
+				$textFormatters,
+				$options['showExceptionDetails'] ?? false
+			);
+		}
+
+		return new ResponseFactory( $textFormatters, $errorFormatter );
+	}
 
 	/**
 	 * @since 1.47

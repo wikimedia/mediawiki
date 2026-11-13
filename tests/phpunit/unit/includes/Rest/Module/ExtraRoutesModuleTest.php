@@ -6,7 +6,6 @@ use GuzzleHttp\Psr7\Uri;
 use MediaWiki\Config\HashConfig;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Rest\BasicAccess\StaticBasicAuthorizer;
-use MediaWiki\Rest\ErrorFormatterV1;
 use MediaWiki\Rest\HttpException;
 use MediaWiki\Rest\JsonLocalizer;
 use MediaWiki\Rest\Module\ExtraRoutesModule;
@@ -14,7 +13,6 @@ use MediaWiki\Rest\Module\Module;
 use MediaWiki\Rest\Reporter\ErrorReporter;
 use MediaWiki\Rest\RequestData;
 use MediaWiki\Rest\RequestInterface;
-use MediaWiki\Rest\ResponseFactory;
 use MediaWiki\Rest\ResponseInterface;
 use MediaWiki\Rest\Validator\Validator;
 use MediaWiki\Tests\Rest\Handler\HelloHandler;
@@ -114,11 +112,10 @@ class ExtraRoutesModuleTest extends \MediaWikiUnitTestCase {
 			$options
 		);
 
-		// TODO: fix ResponseFactory constructor signature
-		$responseFactory = new ResponseFactory(
-			[ 'qqx' => $formatter ],
-			new ErrorFormatterV1( [ 'qqx' => $formatter ], true )
-		);
+		$responseFactory = $this->newResponseFactory( [
+			'textFormatters' => [ $formatter ],
+			'showExceptionDetails' => true,
+		] );
 		$module->initForExecute( $responseFactory );
 		return $module;
 	}
