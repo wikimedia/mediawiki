@@ -112,6 +112,8 @@ For notes on 1.47.x and older releases, see HISTORY.
 * Updated vue and vue-compiler-dom from 3.5.17 to 3.5.43.
 * Updated wikimedia/css-sanitizer from 6.2.1 to 6.2.2.
 * Updated wikimedia/xmp-reader from 0.10.3 to 0.11.0.
+* Updated codex, codex-design-tokens and codex-icons
+  from v2.7.0 to v2.8.0.
 * …
 
 ===== Changed development-only external libraries =====

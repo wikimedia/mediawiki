@@ -1141,14 +1141,25 @@ const _sfc_main$y = defineComponent({
     };
   }
 });
-const _hoisted_1$v = { class: "cdx-card__text" };
+const _hoisted_1$v = {
+  key: 0,
+  class: "cdx-card__text__header-start"
+};
 const _hoisted_2$k = { class: "cdx-card__text__title" };
 const _hoisted_3$d = {
-  key: 0,
-  class: "cdx-card__text__description"
+  key: 1,
+  class: "cdx-card__text__header-end"
 };
 const _hoisted_4$b = {
-  key: 1,
+  key: 2,
+  class: "cdx-card__text__description"
+};
+const _hoisted_5$a = {
+  key: 3,
+  class: "cdx-card__text__footer"
+};
+const _hoisted_6$9 = {
+  key: 4,
   class: "cdx-card__text__supporting-text"
 };
 function _sfc_render$z(_ctx, _cache, $props, $setup, $data, $options) {
@@ -1160,7 +1171,7 @@ function _sfc_render$z(_ctx, _cache, $props, $setup, $data, $options) {
       // eslint-disable max-len
       "cdx-card--is-link": _ctx.isLink,
       // Include dynamic classes in the template so that $slots is reactive.
-      "cdx-card--title-only": !_ctx.$slots.description && !_ctx.$slots["supporting-text"] && _ctx.thumbnailPosition !== "block-start",
+      "cdx-card--title-only": !_ctx.$slots.description && !_ctx.$slots["supporting-text"] && !_ctx.$slots["header-start"] && !_ctx.$slots["header-end"] && !_ctx.$slots.footer && _ctx.thumbnailPosition !== "block-start",
       ["cdx-card--thumbnail-position-".concat(_ctx.thumbnailPosition)]: (_ctx.thumbnail || _ctx.forceThumbnail) && _ctx.thumbnailPosition !== "inline-start",
       ["cdx-card--separation-".concat(_ctx.separation)]: _ctx.separation !== "outline",
       ["cdx-card--thumbnail-size-".concat(_ctx.thumbnailSize)]: (_ctx.thumbnail || _ctx.forceThumbnail) && _ctx.thumbnailSize !== "small" && _ctx.thumbnailPosition !== "block-start"
@@ -1173,22 +1184,40 @@ function _sfc_render$z(_ctx, _cache, $props, $setup, $data, $options) {
         thumbnail: _ctx.thumbnail,
         "placeholder-icon": _ctx.customPlaceholderIcon,
         class: "cdx-card__thumbnail"
-      }, null, 8, ["thumbnail", "placeholder-icon"])) : _ctx.icon ? (openBlock(), createBlock(_component_cdx_icon, {
-        key: 1,
-        icon: _ctx.icon,
-        class: "cdx-card__icon"
-      }, null, 8, ["icon"])) : createCommentVNode("v-if", true),
-      createElementVNode("span", _hoisted_1$v, [
-        createElementVNode("span", _hoisted_2$k, [
-          renderSlot(_ctx.$slots, "title")
-        ]),
-        _ctx.$slots.description ? (openBlock(), createElementBlock("span", _hoisted_3$d, [
-          renderSlot(_ctx.$slots, "description")
-        ])) : createCommentVNode("v-if", true),
-        _ctx.$slots["supporting-text"] ? (openBlock(), createElementBlock("span", _hoisted_4$b, [
-          renderSlot(_ctx.$slots, "supporting-text")
-        ])) : createCommentVNode("v-if", true)
-      ])
+      }, null, 8, ["thumbnail", "placeholder-icon"])) : createCommentVNode("v-if", true),
+      createElementVNode(
+        "span",
+        {
+          class: normalizeClass(["cdx-card__text", { "cdx-card__text--has-header-end": _ctx.$slots["header-end"] }])
+        },
+        [
+          _ctx.$slots["header-start"] ? (openBlock(), createElementBlock("span", _hoisted_1$v, [
+            renderSlot(_ctx.$slots, "header-start")
+          ])) : createCommentVNode("v-if", true),
+          createElementVNode("span", _hoisted_2$k, [
+            _ctx.icon && !_ctx.thumbnail && !_ctx.forceThumbnail ? (openBlock(), createBlock(_component_cdx_icon, {
+              key: 0,
+              icon: _ctx.icon,
+              class: "cdx-card__icon"
+            }, null, 8, ["icon"])) : createCommentVNode("v-if", true),
+            renderSlot(_ctx.$slots, "title")
+          ]),
+          _ctx.$slots["header-end"] ? (openBlock(), createElementBlock("span", _hoisted_3$d, [
+            renderSlot(_ctx.$slots, "header-end")
+          ])) : createCommentVNode("v-if", true),
+          _ctx.$slots.description ? (openBlock(), createElementBlock("span", _hoisted_4$b, [
+            renderSlot(_ctx.$slots, "description")
+          ])) : createCommentVNode("v-if", true),
+          _ctx.$slots.footer ? (openBlock(), createElementBlock("span", _hoisted_5$a, [
+            renderSlot(_ctx.$slots, "footer")
+          ])) : createCommentVNode("v-if", true),
+          _ctx.$slots["supporting-text"] ? (openBlock(), createElementBlock("span", _hoisted_6$9, [
+            renderSlot(_ctx.$slots, "supporting-text")
+          ])) : createCommentVNode("v-if", true)
+        ],
+        2
+        /* CLASS */
+      )
     ]),
     _: 3
     /* FORWARDED */
@@ -3726,6 +3755,7 @@ function _sfc_render$w(_ctx, _cache, $props, $setup, $data, $options) {
     ),
     createVNode(_component_cdx_button, {
       class: "cdx-input-chip__button",
+      type: "button",
       weight: "quiet",
       tabindex: "-1",
       "aria-hidden": "true",
@@ -4410,6 +4440,7 @@ const _sfc_main$s = defineComponent({
       "cdx-menu-item--active": props.active && props.highlighted,
       "cdx-menu-item--highlighted": props.highlighted,
       "cdx-menu-item--destructive": props.action && props.action === "destructive",
+      "cdx-menu-item--progressive": props.action && props.action === "progressive",
       "cdx-menu-item--enabled": !props.disabled,
       "cdx-menu-item--disabled": props.disabled,
       "cdx-menu-item--highlight-query": highlightQuery.value,
@@ -6984,7 +7015,7 @@ const __default__ = defineComponent({
 });
 const __injectCSSVars__ = () => {
   useCssVars((_ctx) => ({
-    "17e0a1f0": _ctx.fixedHeightRem
+    "02b496bf": _ctx.fixedHeightRem
   }));
 };
 const __setup__ = __default__.setup;
@@ -8259,6 +8290,13 @@ const _sfc_main$i = defineComponent({
     CdxMenu
   },
   inheritAttrs: false,
+  // expose is temporarily disabled to work around a Vue / vue-tsc bug, see
+  // https://github.com/vuejs/language-tools/issues/5069
+  /*
+  expose: [
+  	'focus'
+  ],
+  */
   props: {
     /**
      * Value of the current selection.
@@ -8346,7 +8384,15 @@ const _sfc_main$i = defineComponent({
      * If it is possible to add or load more menu items, now would be a good moment
      * so that the user can experience infinite scrolling.
      */
-    "load-more"
+    "load-more",
+    /**
+     * When the menu opens or closes.
+     *
+     * This event is for notification only.
+     *
+     * @property {boolean} expanded Whether the menu is now expanded
+     */
+    "update:expanded"
   ],
   setup(props, { emit, attrs }) {
     const menu = ref();
@@ -8387,6 +8433,9 @@ const _sfc_main$i = defineComponent({
     function onBlur() {
       expanded.value = false;
     }
+    watch(expanded, (newVal) => {
+      emit("update:expanded", newVal);
+    });
     useFloatingMenu(button, menu, {
       useAvailableWidth: true,
       placement: "bottom-start",
@@ -8407,6 +8456,20 @@ const _sfc_main$i = defineComponent({
       rootStyle,
       otherAttrs
     };
+  },
+  // Public methods
+  // These must be in the methods block, not in the setup function, otherwise their documentation
+  // won't be picked up by vue-docgen
+  methods: {
+    /**
+     * Focus the component's toggle button.
+     *
+     * @public
+     */
+    focus() {
+      const button = this.$refs.button;
+      button.$el.focus();
+    }
   }
 });
 const _hoisted_1$f = { class: "cdx-menu-button__menu-wrapper" };
@@ -9317,8 +9380,8 @@ const _sfc_main$g = defineComponent({
         updateViewport();
       }
       await nextTick();
-      if (props.anchor === null) {
-        console.warn('[CdxPopover]: The "anchor" prop must be provided to position the popover in floating mode.');
+      if (props.anchor === null && props.useBottomSheet !== "always") {
+        console.warn("[CdxPopover]: The \"anchor\" prop must be provided to position the popover in floating mode (useBottomSheet !== 'always').");
       }
     });
     onUnmounted(() => {
@@ -12265,8 +12328,27 @@ const _sfc_main$6 = defineComponent({
       }
       const el = toastElement.value;
       const dismissThresholdRatio = 0.35;
+      const slideOutDurationMs = 250;
+      const slideOutFallbackMs = slideOutDurationMs + 100;
       let touchStartX = null;
       let currentDeltaX = 0;
+      let dismissTimer = null;
+      function finishDismissal() {
+        el.removeEventListener("transitionend", onSlideOutTransitionEnd);
+        if (dismissTimer !== null) {
+          clearTimeout(dismissTimer);
+          dismissTimer = null;
+        }
+        onDismiss("user-dismissed");
+      }
+      function onSlideOutTransitionEnd(event) {
+        if (event.target === el) {
+          finishDismissal();
+        }
+      }
+      function isTransitionSuppressed() {
+        return window.getComputedStyle(el).transitionDuration.split(",").every((duration) => parseFloat(duration) === 0);
+      }
       function getBaseTransform() {
         return props.renderInPlace ? "" : "translateX(-50%)";
       }
@@ -12295,24 +12377,30 @@ const _sfc_main$6 = defineComponent({
         const direction = currentDeltaX >= 0 ? 1 : -1;
         const slideOutDistance = el.offsetWidth * 1.2;
         const targetDeltaX = direction * slideOutDistance;
-        el.style.transition = "transform 0.25s ease-out, opacity 0.25s ease-out";
+        el.style.transitionProperty = "transform, opacity";
+        el.style.transitionDuration = "".concat(slideOutDurationMs, "ms");
+        el.style.transitionTimingFunction = "ease-out";
         el.style.opacity = "0";
         if (props.renderInPlace) {
           el.style.transform = "translateX(".concat(targetDeltaX, "px)");
         } else {
           el.style.transform = "translateX(calc(-50% + ".concat(targetDeltaX, "px))");
         }
-        const onTransitionEnd = () => {
-          el.removeEventListener("transitionend", onTransitionEnd);
-          onDismiss("user-dismissed");
-        };
-        el.addEventListener("transitionend", onTransitionEnd);
+        el.addEventListener("transitionend", onSlideOutTransitionEnd);
+        if (isTransitionSuppressed()) {
+          finishDismissal();
+          return;
+        }
+        dismissTimer = setTimeout(finishDismissal, slideOutFallbackMs);
       }
       function setTouching(touching) {
         isTouchingThisToast.value = touching;
         isUserTouchingToastRef.value = touching;
       }
       const onTouchStart = (e) => {
+        if (dismissTimer !== null || dismissed.value) {
+          return;
+        }
         touchStartX = e.touches[0].clientX;
         currentDeltaX = 0;
         el.style.transition = "";
@@ -12355,6 +12443,11 @@ const _sfc_main$6 = defineComponent({
         el.removeEventListener("touchmove", onTouchMove);
         el.removeEventListener("touchend", onTouchEnd);
         el.removeEventListener("touchcancel", onTouchCancel);
+        el.removeEventListener("transitionend", onSlideOutTransitionEnd);
+        if (dismissTimer !== null) {
+          clearTimeout(dismissTimer);
+          dismissTimer = null;
+        }
       };
     }
     async function focusToast() {

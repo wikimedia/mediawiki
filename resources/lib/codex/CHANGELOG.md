@@ -1,3 +1,45 @@
+# 2.8.0 / 2026-11-12
+
+## Features
+- Skeleton: Add initial WIP component (Volker E.)
+
+## Styles
+- ChipInput, styles: Apply `box-sizing: border-box` to the input (Volker E.)
+- Dialog: Zero `padding` only on first and last text blocks in body (Rohit Pal)
+- Message, Popover, styles: Zero `padding` only on certain first & last blocks (Volker E.)
+- Popover: Use sharp bottom corners for the bottom sheet (aminalhazwani)
+- MenuItem: add progressive option to the action prop (bernardwang)
+- Message, InfoChip: Show the status icon for each type in Arabic (punit)
+- Components: Adjust icon alignment in inputs and with menu content (Derek Torsani)
+- styles, Dialog, Popover: Set the base text color (punit)
+
+## Icons
+- icons: Optimize 'suggestedInvestigations' (Thiemo Kreuz)
+- icons: Update 'suggestedInvestigations' icon (Marcin Szwarc)
+- Fix typo in new ellipsis.svg icon (Thiemo Kreuz)
+
+## Code
+- Card: Adjust placement of icon and add new slots (Derek Torsani)
+- InputChip: Set type="button" on the remove button (Akash Kumar)
+- MenuButton: Add public focus() method (Sergio Gimeno)
+- MenuButton: Add `update:expanded` event (Volker E.)
+- Popover: refine anchor prop missing warning (Sergio Gimeno)
+- Toast: Fix swipe dismissal when transitionend never fires (Giulio Bramanti)
+
+## Build
+- build: Use "bundler" module resolution in codex-docs (Daphne Smit)
+- build: Set "types" in the codex-design-tokens tsconfig.json (Daphne Smit)
+- build: Update to Node 26 and rebuild (Volker E.)
+- build: Make the type-check config the primary tsconfig.json file (Daphne Smit)
+- build: Replace Jest with Vitest (Volker E.)
+- tests, Dialog, Popover: Stub scrollIntoView in the unit tests (punit)
+- tests: Cleanup Jest configuration in tsconfig files (Volker E.)
+
+## Documentation
+- docs: Fix heading wrap in Codex Docs title (Volker E.)
+- docs: Load homepage post thumbnails from the docs base path (Sanskar Dubey)
+- docs: Load Breadcrumb demo links from the docs base path (Volker E.)
+
 # 2.7.0 / 2026-09-09
 
 ## Deprecating changes
