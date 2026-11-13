@@ -7,6 +7,9 @@ namespace MediaWiki\Tests\Unit\Settings\Config;
 use MediaWiki\Settings\Config\ConfigBuilder;
 use MediaWiki\Settings\Config\MergeStrategy;
 
+/**
+ * @extends \PHPUnit\Framework\TestCase
+ */
 trait ConfigSinkTestTrait {
 
 	abstract protected function getConfigSink(): ConfigBuilder;

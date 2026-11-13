@@ -7,6 +7,8 @@ use MediaWiki\Language\MessageCache;
 /**
  * Trait for asserting that the localization component is getting notified
  * about changes as expected.
+ *
+ * @extends \PHPUnit\Framework\TestCase
  */
 trait LocalizationUpdateSpyTrait {
 

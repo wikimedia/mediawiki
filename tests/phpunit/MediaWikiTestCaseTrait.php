@@ -18,6 +18,8 @@ use Wikimedia\Timestamp\ConvertibleTimestamp;
 
 /**
  * For code common to both MediaWikiUnitTestCase and MediaWikiIntegrationTestCase.
+ *
+ * @extends \PHPUnit\Framework\TestCase
  */
 trait MediaWikiTestCaseTrait {
 	/** @var int|null */

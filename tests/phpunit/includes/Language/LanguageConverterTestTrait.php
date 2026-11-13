@@ -8,6 +8,9 @@ use MediaWiki\Language\ILanguageConverter;
 use MediaWiki\Language\LanguageConverterFactory;
 use MediaWiki\MainConfigNames;
 
+/**
+ * @extends \PHPUnit\Framework\TestCase
+ */
 trait LanguageConverterTestTrait {
 
 	/** @var string */

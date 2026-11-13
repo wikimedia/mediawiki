@@ -4,6 +4,9 @@ namespace Wikimedia\Tests\Message;
 
 use Wikimedia\Tests\JsonSerializationTestTrait;
 
+/**
+ * @extends \PHPUnit\Framework\TestCase
+ */
 trait MessageSerializationTestTrait {
 	use JsonSerializationTestTrait;
 

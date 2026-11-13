@@ -10,6 +10,7 @@ use ValueError;
 
 /**
  * @internal For LanguageFallbackTest and LanguageFallbackIntegrationTest
+ * @extends \PHPUnit\Framework\TestCase
  */
 trait LanguageFallbackTestTrait {
 	/**

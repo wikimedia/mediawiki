@@ -15,6 +15,7 @@ const SUPPORTED = LanguageNameUtils::SUPPORTED;
 
 /**
  * @internal For LanguageNameUtilsTest and LanguageIntegrationTest.
+ * @extends \PHPUnit\Framework\TestCase
  */
 trait LanguageNameUtilsTestTrait {
 	abstract protected function isSupportedLanguage( string $code ): bool;

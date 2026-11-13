@@ -15,6 +15,8 @@ use Wikimedia\Timestamp\ConvertibleTimestamp;
  *
  * Generally, you'll only need to implement self::getInstance() and
  * data providers methods.
+ *
+ * @extends \PHPUnit\Framework\TestCase
  */
 trait TypeDefTestCaseTrait {
 

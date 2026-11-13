@@ -7,6 +7,9 @@ use MediaWiki\Json\JsonCodec;
 use MediaWiki\MediaWikiServices;
 use Wikimedia\Tests\JsonSerializationTestTrait;
 
+/**
+ * @extends \PHPUnit\Framework\TestCase
+ */
 trait ContentSerializationTestTrait {
 	use JsonSerializationTestTrait;
 

@@ -11,6 +11,7 @@ use MediaWiki\User\UserIdentityValue;
 /**
  * Creates and apply user blocks
  * @stable to use since 1.42
+ * @extends \PHPUnit\Framework\TestCase
  */
 trait MockBlockTrait {
 

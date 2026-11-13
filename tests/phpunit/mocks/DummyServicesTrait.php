@@ -58,6 +58,7 @@ use Wikimedia\Services\NoSuchServiceException;
  *
  * @internal
  * @author DannyS712
+ * @extends \PHPUnit\Framework\TestCase
  */
 trait DummyServicesTrait {
 

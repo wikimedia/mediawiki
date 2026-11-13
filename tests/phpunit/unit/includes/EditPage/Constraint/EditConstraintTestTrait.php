@@ -13,6 +13,7 @@ use MediaWiki\PageEdit\PageEditStatus;
  * Helper for the various constraint test classes
  *
  * @author DannyS712
+ * @extends \PHPUnit\Framework\TestCase
  */
 trait EditConstraintTestTrait {
 

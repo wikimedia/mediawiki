@@ -12,6 +12,8 @@ use Psr\Log\NullLogger;
 /**
  * Allows the construction of a mock {@link LocalisationCache} that has a limited pre-determined list of
  * message keys.
+ *
+ * @extends \PHPUnit\Framework\TestCase
  */
 trait MockLocalisationCacheTrait {
 	use DummyServicesTrait;

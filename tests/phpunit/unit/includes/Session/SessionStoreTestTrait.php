@@ -9,6 +9,8 @@ use MediaWiki\Session\SessionInfo;
 /**
  * Utility for performing various operations on a session store backend during
  * tests like getting, setting, and deleting session data.
+ *
+ * @extends \PHPUnit\Framework\TestCase
  */
 trait SessionStoreTestTrait {
 

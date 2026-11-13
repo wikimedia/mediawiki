@@ -14,6 +14,7 @@ use PHPUnit\Util\Test;
  * running tests during development and pre-merge in CI.
  *
  * @since 1.31
+ * @extends \PHPUnit\Framework\TestCase
  */
 trait MediaWikiCoversValidator {
 

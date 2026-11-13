@@ -8,6 +8,7 @@ namespace MediaWiki\Tests\ChangeTags;
  *
  * @stable to use
  * @since 1.47
+ * @extends \PHPUnit\Framework\TestCase
  */
 trait RestrictedTagTestTrait {
 

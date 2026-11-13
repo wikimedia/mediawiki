@@ -18,6 +18,7 @@ use Psr\Log\NullLogger;
  *
  * @stable to use
  * @since 1.39
+ * @extends \PHPUnit\Framework\TestCase
  */
 trait AuthenticationProviderTestTrait {
 

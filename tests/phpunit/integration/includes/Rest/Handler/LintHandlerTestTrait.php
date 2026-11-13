@@ -14,6 +14,8 @@ use MediaWiki\User\User;
 
 /**
  * This trait is used in PageLintLHandlerTest.php & RevisionLintHandlerTest.php to construct requests.
+ *
+ * @extends \PHPUnit\Framework\TestCase
  */
 trait LintHandlerTestTrait {
 

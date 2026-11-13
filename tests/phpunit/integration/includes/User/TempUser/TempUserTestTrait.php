@@ -10,6 +10,7 @@ use MediaWiki\MainConfigNames;
  *
  * @stable to use
  * @since 1.42
+ * @extends \PHPUnit\Framework\TestCase
  */
 trait TempUserTestTrait {
 

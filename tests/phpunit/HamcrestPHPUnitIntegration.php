@@ -7,6 +7,7 @@
 
 /**
  * @since 1.31
+ * @extends \PHPUnit\Framework\TestCase
  */
 trait HamcrestPHPUnitIntegration {
 

@@ -11,6 +11,8 @@ use ReflectionClass;
 /**
  * To use this trait, use validateSerializationTestData.php to generate test data.
  * Add test classes to ValidateSerializationTestData::CORE_TEST_CLASSES.
+ *
+ * @extends \PHPUnit\Framework\TestCase
  */
 trait SerializationTestTrait {
 

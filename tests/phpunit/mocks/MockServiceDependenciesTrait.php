@@ -8,6 +8,8 @@ use ReflectionParameter;
 /**
  * Helper trait for instantiating MW service object for testing
  * with mocked dependencies.
+ *
+ * @extends \PHPUnit\Framework\TestCase
  */
 trait MockServiceDependenciesTrait {
 

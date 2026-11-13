@@ -40,6 +40,7 @@ use Wikimedia\Stats\StatsFactory;
  * or MediaWikiIntegrationTestCase.
  *
  * @stable to use
+ * @extends \PHPUnit\Framework\TestCase
  */
 trait PageHandlerTestTrait {
 

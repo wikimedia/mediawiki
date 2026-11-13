@@ -29,6 +29,7 @@ use Wikimedia\Message\MessageValue;
 /**
  * Various useful Authority mocks.
  * @stable to use (since 1.37)
+ * @extends \PHPUnit\Framework\TestCase
  */
 trait MockAuthorityTrait {
 

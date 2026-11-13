@@ -5,6 +5,7 @@ namespace MediaWiki\Tests;
  * Trait for asserting callback invocation.
  *
  * @stable to use since 1.45
+ * @extends \PHPUnit\Framework\TestCase
  */
 trait ExpectCallbackTrait {
 

@@ -15,6 +15,7 @@ use JsonSchema\Validator;
  *
  * @stable to use in extensions
  * @since 1.43
+ * @extends \PHPUnit\Framework\TestCase
  */
 trait JsonSchemaAssertionTrait {
 

@@ -7,6 +7,8 @@
  * Test that a factory class correctly forwards all arguments to the class it constructs. This is
  * useful because sometimes a class' constructor will have more arguments added, and it's easy to
  * accidentally have the factory's constructor fall out of sync.
+ *
+ * @extends \PHPUnit\Framework\TestCase
  */
 trait FactoryArgTestTrait {
 	/**

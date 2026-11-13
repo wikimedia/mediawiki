@@ -19,6 +19,7 @@ use Wikimedia\Http\MultiHttpClient;
  *
  * @stable to use in extensions
  * @since 1.36
+ * @extends \PHPUnit\Framework\TestCase
  */
 trait MockHttpTrait {
 	/**

@@ -29,6 +29,7 @@ use Wikimedia\ObjectFactory\ObjectFactory;
  *
  * @stable to use
  * @since 1.39
+ * @extends \PHPUnit\Framework\TestCase
  */
 trait RestTestTrait {
 	use SessionHelperTestTrait;

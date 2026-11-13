@@ -14,6 +14,9 @@ use PHPUnit\Framework\Assert;
 use Wikimedia\FileBackend\FileBackend;
 use Wikimedia\FileBackend\FSFileBackend;
 
+/**
+ * @extends \PHPUnit\Framework\TestCase
+ */
 trait TestRepoTrait {
 
 	private static ?string $mockRepoTraitDir = null;

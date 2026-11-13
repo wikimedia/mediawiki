@@ -13,6 +13,8 @@
  * accessed in tests but actually are used by the class, pass their names as an argument.
  *
  * Currently we support only one ServiceOptions per test class.
+ *
+ * @extends \PHPUnit\Framework\TestCase
  */
 trait TestAllServiceOptionsUsed {
 	/** @var array [ expected keys (as list), keys accessed so far (as dictionary) ] */

@@ -9,6 +9,7 @@ use MediaWiki\Json\JsonCodec;
  * serialization format.
  *
  * @since 1.47
+ * @extends \PHPUnit\Framework\TestCase
  */
 trait JsonSerializationTestTrait {
 	use SerializationTestTrait;

@@ -19,6 +19,8 @@ use Wikimedia\Timestamp\TimestampFormat as TS;
  * Trait for creating a know set of test pages in the database,
  * corresponding to the XML data files in tests/phpunit/data/dumps,
  * to be used used with DumpAsserter::assertDOM().
+ *
+ * @extends \PHPUnit\Framework\TestCase
  */
 trait PageDumpTestDataTrait {
 

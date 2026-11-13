@@ -13,6 +13,7 @@ use Wikimedia\Parsoid\Ext\DOMUtils;
  *
  * @stable to use
  * @since 1.47 (also backported to 1.46.2)
+ * @extends \PHPUnit\Framework\TestCase
  */
 trait HtmlAssertionHelperTrait {
 	/**

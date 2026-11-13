@@ -8,6 +8,8 @@ use MediaWiki\Search\SearchEngineFactory;
 /**
  * Trait for asserting that the search component is getting notified
  * about changes as expected.
+ *
+ * @extends \PHPUnit\Framework\TestCase
  */
 trait SearchUpdateSpyTrait {
 

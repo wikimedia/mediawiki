@@ -10,6 +10,7 @@ use MediaWiki\WikiMap\WikiMap;
  * Ensure WikiMap::getWiki returns a MediaWikiSite for the current wiki, for tests.
  *
  * @since 1.44
+ * @extends \PHPUnit\Framework\TestCase
  */
 trait MockWikiMapTrait {
 

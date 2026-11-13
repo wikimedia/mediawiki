@@ -7,6 +7,8 @@
 
 /**
  * Trait that provides methods to check if group annotations are valid.
+ *
+ * @extends \PHPUnit\Framework\TestCase
  */
 trait MediaWikiGroupValidator {
 

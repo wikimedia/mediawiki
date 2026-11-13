@@ -13,6 +13,8 @@ use PHPUnit\Framework\MockObject\MockObject;
 
 /**
  * A trait providing utility functions for mocking media-related objects.
+ *
+ * @extends \PHPUnit\Framework\TestCase
  */
 trait MediaTestTrait {
 

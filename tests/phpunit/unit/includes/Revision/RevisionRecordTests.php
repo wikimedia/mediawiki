@@ -24,6 +24,7 @@ use MediaWiki\User\UserIdentityValue;
  * @covers \MediaWiki\Revision\RevisionRecord
  *
  * @note Expects to be used in classes that extend MediaWikiUnitTestCase.
+ * @extends \PHPUnit\Framework\TestCase
  */
 trait RevisionRecordTests {
 	use MockAuthorityTrait;

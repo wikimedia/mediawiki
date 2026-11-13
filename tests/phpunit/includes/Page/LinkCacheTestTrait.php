@@ -11,6 +11,7 @@ use MediaWiki\Page\PageReference;
  *
  * @stable to use
  * @since 1.37
+ * @extends \PHPUnit\Framework\TestCase
  */
 trait LinkCacheTestTrait {
 

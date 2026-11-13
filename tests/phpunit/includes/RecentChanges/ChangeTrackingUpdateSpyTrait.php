@@ -12,6 +12,8 @@ use StatusValue;
 /**
  * Trait for asserting that the change tracking component is getting notified
  * about changes as expected.
+ *
+ * @extends \PHPUnit\Framework\TestCase
  */
 trait ChangeTrackingUpdateSpyTrait {
 

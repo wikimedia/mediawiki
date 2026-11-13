@@ -6,6 +6,8 @@ use Wikimedia\FileBackend\FSFile\TempFSFile;
 
 /**
  * Code shared between the unit and integration tests
+ *
+ * @extends \PHPUnit\Framework\TestCase
  */
 trait TempFSFileTestTrait {
 	abstract protected function newFile(): TempFSFile;

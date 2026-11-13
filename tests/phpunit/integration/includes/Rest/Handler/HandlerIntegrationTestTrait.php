@@ -19,6 +19,8 @@ use Wikimedia\TestingAccessWrapper;
 /**
  * Trait for actually integrated REST handler tests, i.e. using real
  * dependencies rather than mocked dependencies where possible.
+ *
+ * @extends \PHPUnit\Framework\TestCase
  */
 trait HandlerIntegrationTestTrait {
 	use RestTestTrait, HandlerTestTrait {

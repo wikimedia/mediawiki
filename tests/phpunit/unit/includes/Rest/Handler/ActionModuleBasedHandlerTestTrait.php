@@ -18,6 +18,7 @@ use PHPUnit\Framework\MockObject\MockObject;
  * or MediaWikiIntegrationTestCase.
  *
  * @method MockBuilder getMockBuilder(string $className)
+ * @extends \PHPUnit\Framework\TestCase
  */
 trait ActionModuleBasedHandlerTestTrait {
 
