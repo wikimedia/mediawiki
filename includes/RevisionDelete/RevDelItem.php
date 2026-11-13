@@ -28,10 +28,8 @@ abstract class RevDelItem extends RevisionItemBase {
 
 	/**
 	 * Get the current deletion bitfield value
-	 *
-	 * @return int
 	 */
-	abstract public function getBits();
+	abstract public function getBits(): int;
 
 	/**
 	 * Set the visibility of the item. This should do any necessary DB queries.

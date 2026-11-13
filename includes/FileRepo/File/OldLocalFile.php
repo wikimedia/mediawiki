@@ -365,9 +365,8 @@ class OldLocalFile extends LocalFile {
 
 	/**
 	 * Returns bitfield value
-	 * @return int
 	 */
-	public function getVisibility() {
+	public function getVisibility(): int {
 		$this->load();
 
 		return (int)$this->deleted;

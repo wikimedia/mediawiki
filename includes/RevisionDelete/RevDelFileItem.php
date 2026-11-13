@@ -91,7 +91,7 @@ class RevDelFileItem extends RevDelItem {
 	}
 
 	/** @inheritDoc */
-	public function getBits() {
+	public function getBits(): int {
 		return $this->file->getVisibility();
 	}
 
