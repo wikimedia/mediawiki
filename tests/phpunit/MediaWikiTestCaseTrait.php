@@ -5,6 +5,7 @@ use MediaWiki\DomainEvent\DomainEventDispatcher;
 use MediaWiki\DomainEvent\EventDispatchEngine;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\StaticHookRegistry;
+use MediaWiki\MediaWikiServices;
 use MediaWiki\Message\Message;
 use MediaWiki\Tests\Unit\FakeQqxMessageLocalizer;
 use PHPUnit\Framework\Constraint\Constraint;
@@ -19,6 +20,8 @@ use Wikimedia\Timestamp\ConvertibleTimestamp;
 /**
  * For code common to both MediaWikiUnitTestCase and MediaWikiIntegrationTestCase.
  *
+ * @method MediaWikiServices getServiceContainer() - Implemented in both classes
+ * @method void setService( string $name, $service ) - Implemented in both classes
  * @extends \PHPUnit\Framework\TestCase
  */
 trait MediaWikiTestCaseTrait {
