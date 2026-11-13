@@ -759,6 +759,6 @@ class Router {
 			]
 		);
 
-		return new ResponseFactory( $this->textFormatters, $errorFormatter );
+		return new ResponseFactory( $errorFormatter );
 	}
 }

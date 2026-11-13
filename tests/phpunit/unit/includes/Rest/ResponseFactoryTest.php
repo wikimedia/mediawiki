@@ -49,7 +49,6 @@ class ResponseFactoryTest extends MediaWikiUnitTestCase {
 		// Supply tracing data so that 5xx errors carry a reqId, mirroring
 		// production where Router::getTracingData() provides the request id.
 		return new ResponseFactory(
-			$textFormatters,
 			new ErrorFormatterV1( $textFormatters, false, [ 'request_id' => 'test-request-id' ] )
 		);
 	}
@@ -288,9 +287,24 @@ class ResponseFactoryTest extends MediaWikiUnitTestCase {
 		$this->assertSame( 'rftest', $ret );
 	}
 
+	public static function provideDeprecatedConstructorArguments(): iterable {
+		yield 'no arguments' => [ [], '/without arguments is deprecated/' ];
+		yield 'array of text formatters' => [ [ [] ], '/array of ITextFormatters is deprecated/' ];
+	}
+
+	/** @dataProvider provideDeprecatedConstructorArguments */
+	public function testDeprecatedConstructorSignatures( array $args, string $deprecation ) {
+		$this->expectDeprecationAndContinue( $deprecation );
+		$rf = new ResponseFactory( ...$args );
+
+		// The legacy signatures must still yield a working error formatter.
+		$response = $rf->createHttpError( 415, [ 'message' => '...' ] );
+		$this->assertSame( 415, $response->getStatusCode() );
+	}
+
 	public function testGetResponseComponentsDescribesTheFormatterInUse() {
 		$errorFormatter = new ErrorFormatterV2( [], false, [] );
-		$components = ( new ResponseFactory( [], $errorFormatter ) )->getResponseComponents();
+		$components = ( new ResponseFactory( $errorFormatter ) )->getResponseComponents();
 
 		$this->assertSame(
 			[ '$ref' => '#/components/schemas/GenericErrorResponseModel' ],
@@ -352,7 +366,7 @@ class ResponseFactoryTest extends MediaWikiUnitTestCase {
 		foreach ( $variants as $variant => $ef ) {
 			$localCopy = str_replace( 'https://', MW_INSTALL_PATH . '/maintenance/external-schemas/', $ef->getOpenApiSchema()['$ref'] );
 			$schema = json_decode( file_get_contents( $localCopy ), true );
-			$json = (string)$createResponse( new ResponseFactory( [], $ef ) )->getBody();
+			$json = (string)$createResponse( new ResponseFactory( $ef ) )->getBody();
 			$this->assertMatchesJsonSchema( $schema, $json, [], $variant );
 			$body = json_decode( $json, true );
 

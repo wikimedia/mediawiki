@@ -54,7 +54,6 @@ trait RestTestTrait {
 	 * @return ResponseFactory
 	 */
 	private function newResponseFactory( array $options = [] ): ResponseFactory {
-		$textFormatters = [];
 		if ( isset( $options['errorFormatter'] ) ) {
 			$errorFormatter = $options['errorFormatter'];
 		} else {
@@ -66,7 +65,7 @@ trait RestTestTrait {
 			);
 		}
 
-		return new ResponseFactory( $textFormatters, $errorFormatter );
+		return new ResponseFactory( $errorFormatter );
 	}
 
 	/**

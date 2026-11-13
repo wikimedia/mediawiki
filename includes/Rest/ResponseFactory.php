@@ -18,18 +18,29 @@ class ResponseFactory {
 	private readonly ErrorFormatter $errorFormatter;
 
 	/**
-	 * @param ITextFormatter[] $textFormatters Only used to build a default ErrorFormatter
-	 *   when $errorFormatter is omitted; ignored otherwise. If there is a relative preference
-	 *   among the input text formatters, the formatters should be ordered from most to least
-	 *   preferred.
-	 * @param ErrorFormatter|null $errorFormatter Defaults to the legacy error shape if omitted,
-	 *   for backwards compatibility with callers constructing ResponseFactory directly.
+	 * @param ErrorFormatter|ITextFormatter[]|null $errorFormatter The ErrorFormatter for building
+	 *        error responses. Should always be given, but for backwards
+	 *        compatibility it is acceptable to pass an array of ITextFormatter
+	 *        objects or nothing. This will however trigger a deprecation warning.
 	 */
 	public function __construct(
-		array $textFormatters,
-		?ErrorFormatter $errorFormatter = null,
+		ErrorFormatter|array|null $errorFormatter = null,
 	) {
-		$this->errorFormatter = $errorFormatter ?? new ErrorFormatterV1( $textFormatters, false );
+		if ( $errorFormatter === null ) {
+			wfDeprecatedMsg( 'Calling new ' . __CLASS__ . ' without arguments is ' .
+				'deprecated, provide an ErrorFormatter. ' .
+				'Tests should use RestTestTrait::newResponseFactory(). ' .
+				'The constructor signature is not stable.', '1.48' );
+			$errorFormatter = new ErrorFormatterV1( [], false );
+		} elseif ( is_array( $errorFormatter ) ) {
+			wfDeprecatedMsg( 'Calling new ' . __CLASS__ . ' with an array of ITextFormatters ' .
+				'is deprecated, provide an ErrorFormatter instead. ' .
+				'Tests should use RestTestTrait::newResponseFactory(). ' .
+				'The constructor signature is not stable.', '1.48' );
+			$errorFormatter = new ErrorFormatterV1( $errorFormatter, false );
+		}
+
+		$this->errorFormatter = $errorFormatter;
 	}
 
 	/**
