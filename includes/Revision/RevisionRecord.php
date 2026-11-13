@@ -477,10 +477,8 @@ abstract class RevisionRecord implements WikiAwareEntity {
 	 * Get the deletion bitfield of the revision
 	 *
 	 * MCR migration note: this replaced Revision::getVisibility
-	 *
-	 * @return int
 	 */
-	public function getVisibility() {
+	public function getVisibility(): int {
 		return (int)$this->mDeleted;
 	}
 

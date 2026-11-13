@@ -2187,9 +2187,8 @@ abstract class File implements MediaHandlerState {
 	 * Return the deletion bitfield
 	 * STUB
 	 * @stable to override
-	 * @return int
 	 */
-	public function getVisibility() {
+	public function getVisibility(): int {
 		return 0;
 	}
 

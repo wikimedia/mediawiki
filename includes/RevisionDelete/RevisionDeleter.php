@@ -268,9 +268,8 @@ class RevisionDeleter {
 	 * @param int $oldfield Current bitfield
 	 *
 	 * @internal
-	 * @return int
 	 */
-	public static function extractBitfield( array $bitPars, $oldfield ) {
+	public static function extractBitfield( array $bitPars, int $oldfield ): int {
 		// Build the actual new rev_deleted bitfield
 		$newBits = $oldfield;
 		foreach ( $bitPars as $const => $val ) {

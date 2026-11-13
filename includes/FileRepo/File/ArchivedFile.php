@@ -314,7 +314,7 @@ class ArchivedFile {
 		$this->user = $services->getUserFactory()
 			->newFromAnyId( $row->fa_user, $row->fa_user_text, $row->fa_actor );
 		$this->timestamp = $row->fa_timestamp;
-		$this->deleted = $row->fa_deleted;
+		$this->deleted = (int)$row->fa_deleted;
 		if ( isset( $row->fa_sha1 ) ) {
 			$this->sha1 = $row->fa_sha1;
 		} else {
@@ -727,9 +727,8 @@ class ArchivedFile {
 
 	/**
 	 * Returns the deletion bitfield
-	 * @return int
 	 */
-	public function getVisibility() {
+	public function getVisibility(): int {
 		$this->load();
 
 		return $this->deleted;

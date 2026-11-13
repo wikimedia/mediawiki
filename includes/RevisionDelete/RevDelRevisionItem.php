@@ -98,7 +98,7 @@ class RevDelRevisionItem extends RevDelItem {
 	}
 
 	/** @inheritDoc */
-	public function getBits() {
+	public function getBits(): int {
 		return $this->getRevisionRecord()->getVisibility();
 	}
 

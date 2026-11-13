@@ -85,7 +85,7 @@ class RevDelLogItem extends RevDelItem {
 	}
 
 	/** @inheritDoc */
-	public function getBits() {
+	public function getBits(): int {
 		return (int)$this->row->log_deleted;
 	}
 

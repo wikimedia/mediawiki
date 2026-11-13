@@ -57,10 +57,8 @@ class RevisionStoreCacheRecord extends RevisionStoreRecord {
 
 	/**
 	 * Overridden to ensure that we return a fresh value and not a cached one.
-	 *
-	 * @return int
 	 */
-	public function getVisibility() {
+	public function getVisibility(): int {
 		if ( $this->mCallback ) {
 			$this->loadFreshRow();
 		}
