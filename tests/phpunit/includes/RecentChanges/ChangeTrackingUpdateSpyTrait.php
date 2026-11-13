@@ -7,18 +7,15 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\RecentChanges\RecentChange;
 use MediaWiki\User\TalkPageNotificationManager;
 use MediaWiki\User\UserEditTracker;
-use MediaWikiTestCaseTrait;
 use StatusValue;
 
 /**
  * Trait for asserting that the change tracking component is getting notified
  * about changes as expected.
  *
- * @extends \PHPUnit\Framework\TestCase
+ * @extends \MediaWikiIntegrationTestCase
  */
 trait ChangeTrackingUpdateSpyTrait {
-
-	use MediaWikiTestCaseTrait;
 
 	/**
 	 * Register expectations about updates that should get triggered.

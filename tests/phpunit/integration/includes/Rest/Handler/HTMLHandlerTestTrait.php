@@ -3,17 +3,12 @@
 namespace MediaWiki\Tests\Rest\Handler;
 
 use Exception;
-use MediaWiki\Block\BlockErrorFormatter;
-use MediaWiki\Context\IContextSource;
 use MediaWiki\Edit\ParsoidOutputStash;
 use MediaWiki\Edit\ParsoidRenderID;
 use MediaWiki\Edit\SimpleParsoidOutputStash;
 use MediaWiki\Page\WikiPage;
 use MediaWiki\Permissions\Authority;
-use MediaWiki\Permissions\UserAuthority;
-use MediaWiki\Request\FauxRequest;
 use MediaWiki\Rest\RequestData;
-use MediaWiki\User\User;
 use MediaWikiTestCaseTrait;
 use Wikimedia\ObjectCache\HashBagOStuff;
 
@@ -26,6 +21,7 @@ use Wikimedia\ObjectCache\HashBagOStuff;
 trait HTMLHandlerTestTrait {
 
 	use MediaWikiTestCaseTrait;
+	use HandlerTestTrait;
 
 	/** @var ParsoidOutputStash|null */
 	private $parsoidOutputStash = null;
@@ -36,19 +32,6 @@ trait HTMLHandlerTestTrait {
 			$this->parsoidOutputStash = new SimpleParsoidOutputStash( $jsonCodec, new HashBagOStuff(), 120 );
 		}
 		return $this->parsoidOutputStash;
-	}
-
-	private function getAuthority(): Authority {
-		$services = $this->getServiceContainer();
-		return new UserAuthority(
-		// We need a newly created user because we want IP and newbie to apply.
-			new User(),
-			new FauxRequest(),
-			$this->createMock( IContextSource::class ),
-			$services->getPermissionManager(),
-			$services->getRateLimiter(),
-			$this->createMock( BlockErrorFormatter::class )
-		);
 	}
 
 	/**

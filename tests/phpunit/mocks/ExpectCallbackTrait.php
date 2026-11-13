@@ -1,17 +1,13 @@
 <?php
 namespace MediaWiki\Tests;
 
-use MediaWikiTestCaseTrait;
-
 /**
  * Trait for asserting callback invocation.
  *
  * @stable to use since 1.45
- * @extends \PHPUnit\Framework\TestCase
+ * @extends \MediaWikiIntegrationTestCase
  */
 trait ExpectCallbackTrait {
-
-	use MediaWikiTestCaseTrait;
 
 	/** @var array<string,int> */
 	private array $expectedCallbackInvocations = [];

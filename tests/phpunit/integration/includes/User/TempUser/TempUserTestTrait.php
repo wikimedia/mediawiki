@@ -3,7 +3,6 @@
 namespace MediaWiki\Tests\User\TempUser;
 
 use MediaWiki\MainConfigNames;
-use MediaWikiTestCaseTrait;
 
 /**
  * Helper trait for defining the temporary user configuration settings for tests.
@@ -11,11 +10,9 @@ use MediaWikiTestCaseTrait;
  *
  * @stable to use
  * @since 1.42
- * @extends \PHPUnit\Framework\TestCase
+ * @extends \MediaWikiIntegrationTestCase
  */
 trait TempUserTestTrait {
-
-	use MediaWikiTestCaseTrait;
 
 	/**
 	 * Array of default configuration to use in tests.
@@ -69,14 +66,4 @@ trait TempUserTestTrait {
 			array_merge( $this->getTempAccountConfigTestDefaults(), $configOverrides )
 		);
 	}
-
-	/**
-	 * Defined to ensure that the class has the overrideConfigValue method that we can use.
-	 *
-	 * @see \MediaWikiIntegrationTestCase::overrideConfigValue
-	 *
-	 * @param string $key
-	 * @param mixed $value
-	 */
-	abstract protected function overrideConfigValue( string $key, $value );
 }

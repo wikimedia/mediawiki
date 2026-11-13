@@ -46,6 +46,7 @@ use Wikimedia\Stats\StatsFactory;
 trait PageHandlerTestTrait {
 
 	use MediaWikiTestCaseTrait;
+	use HTMLHandlerTestTrait;
 
 	private function newRouterForPageHandler( string $baseUrl, string $rootPath = '' ): Router {
 		$router = $this->createNoOpMock( Router::class, [ 'getRoutePath', 'getRouteUrl' ] );

@@ -2,8 +2,12 @@
 
 namespace MediaWiki\Tests\Rest\Handler;
 
+use MediaWiki\Block\BlockErrorFormatter;
+use MediaWiki\Context\IContextSource;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\Permissions\Authority;
+use MediaWiki\Permissions\UserAuthority;
+use MediaWiki\Request\FauxRequest;
 use MediaWiki\Rest\ErrorFormatterV1;
 use MediaWiki\Rest\Handler;
 use MediaWiki\Rest\HttpException;
@@ -17,6 +21,7 @@ use MediaWiki\Rest\Validator\Validator;
 use MediaWiki\Session\Session;
 use MediaWiki\Tests\Rest\RestTestTrait;
 use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
+use MediaWiki\User\User;
 use MediaWikiTestCaseTrait;
 use PHPUnit\Framework\Assert;
 use PHPUnit\Framework\MockObject\MockObject;
@@ -36,6 +41,19 @@ trait HandlerTestTrait {
 	use RestTestTrait;
 	use MockAuthorityTrait;
 	use SessionHelperTestTrait;
+
+	private function getAuthority(): Authority {
+		$services = $this->getServiceContainer();
+		return new UserAuthority(
+			// We need a newly created user because we want IP and newbie to apply.
+			new User(),
+			new FauxRequest(),
+			$this->createMock( IContextSource::class ),
+			$services->getPermissionManager(),
+			$services->getRateLimiter(),
+			$this->createMock( BlockErrorFormatter::class )
+		);
+	}
 
 	/**
 	 * Initializes the Handler, supplying a mock RouteUrlProvider and ResponseFactory.
