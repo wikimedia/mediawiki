@@ -3288,6 +3288,7 @@
 	"version-software": "已安裝的軟體",
 	"version-software-product": "產品",
 	"version-software-version": "版本",
+	"version-download-sbom": "下載軟體物料清單（SBOM）",
 	"version-entrypoints": "入口 URL",
 	"version-entrypoints-header-entrypoint": "入口",
 	"version-entrypoints-header-url": "URL",

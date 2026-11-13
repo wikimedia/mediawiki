@@ -1025,7 +1025,7 @@
 	"revdelete-concurrent-change": "$1$2の項目の変更に失敗しました: あなたが変更しようとしている間に、他の誰かが変更したようです。\n記録を確認してください。",
 	"revdelete-only-restricted": "$1$2の項目の版指定削除に失敗しました: 他の閲覧レベルの選択肢のうちどれかをさらに選択しなければ、管理者から項目を秘匿できません。",
 	"revdelete-reason-dropdown": "*よくある削除理由\n** 著作権侵害\n** 不適切なコメントや個人情報の開示\n** 不適切な利用者名\n** 名誉毀損のおそれ",
-	"revdelete-reason-dropdown-suppress": "*よくある秘匿理由\n**不適切な個人情報",
+	"revdelete-reason-dropdown-suppress": "* よくある秘匿理由\n** 不適切な個人情報",
 	"revdelete-otherreason": "他の、または追加の理由:",
 	"revdelete-reasonotherlist": "その他の理由",
 	"revdelete-edit-reasonlist": "削除理由を編集",

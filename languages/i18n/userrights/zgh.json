@@ -5,6 +5,7 @@
 			"Amara-Amaziɣ",
 			"Aslmad mohamed belarhzali",
 			"Brahim-essaidi",
+			"Daoudsfouli",
 			"Hakim1bal",
 			"Lhoussine AIT TAYFST",
 			"Mdb897",
@@ -12,6 +13,7 @@
 			"ⵕⴰⵊⵉ"
 		]
 	},
+	"userrights": "ⵉⵣⵔⴼⴰⵏ ⵏ ⵓⵏⵙⵙⵎⵔⵙ",
 	"userrights-reason": "ⵜⴰⵎⵏⵜⵉⵍⵜ:",
 	"group-bot": "ⵉⵔⵓⴱⵓⵜⵏ",
 	"group-sysop": "ⵉⵏⵎⵀⴰⵍⵏ",
@@ -129,8 +131,13 @@
 	"action-changetags": "ⵔⵏⵓ ⴷ ⴽⴽⵙ ⵙ ⵓⵏⴰⵎⴽ ⴰⵏⴼⴳⵓⵔⴰⵏ ⵉⵔⵛⵓⵎⵏ ⵙⴳ ⵉⵎⵣⵣⵔⴰⵢⵏ ⵓⴼⵔⵉⴷⵏ ⴷ ⵉⵙⴽⵛⵓⵎⵏ ⵏ ⵜⵎⵙⴽⵜⵉⵜ",
 	"action-deletechangetags": "ⴽⴽⵙ ⵉⵔⵛⵓⵎⵏ ⵙⴳ ⵜⵙⵉⵍⴰ ⵏ ⵉⵙⴼⴽⴰ",
 	"action-purge": "ⵙⵙⵓⴳⵓ ⵜⴰⵙⵏⴰ ⴰⴷ",
+	"listgrouprights": "ⵉⵣⵔⴼⴰⵏ ⵏ ⵜⵔⴰⴱⴱⵓⵜ ⵏ ⵓⵏⵙⵙⵎⵔⵙ",
+	"listgrouprights-group": "ⵜⴰⵔⴰⴱⴱⵓⵜ",
+	"listgrouprights-rights": "ⵉⵣⵔⴼⴰⵏ",
+	"listgrouprights-helppage": "ⵜⵉⵡⵉⵙⵉ:ⵉⵣⵔⴼⴰⵏ ⵏ ⵜⵔⴰⴱⴱⵓⵜ",
 	"listgrouprights-members": "ⵜⴰⵍⴳⴰⵎⵜ ⵏ ⵉⴳⵎⴰⵎⵏ",
 	"listgrouprights-removegroup": "ⵙⵉⵜⵜⵢ {{PLURAL:$2|ⵜⴰⵔⴰⴱⴱⵓⵜ|ⵜⵉⵔⵓⴱⴱⴰ}}: $1",
 	"listgrouprights-addgroup-all": "ⵔⵏⵓ ⵎⴰⵕⵕⴰ ⵜⵉⵔⴰⴱⴱⵓⵜⵉⵏ",
-	"listgrouprights-removegroup-all": "ⴽⴽⵙ ⵎⴰⵕⵕⴰ ⵜⵉⵔⴰⴱⴱⵓⵜⵉⵏ"
+	"listgrouprights-removegroup-all": "ⴽⴽⵙ ⵎⴰⵕⵕⴰ ⵜⵉⵔⴰⴱⴱⵓⵜⵉⵏ",
+	"listgrants-rights": "ⵉⵣⵔⴼⴰⵏ"
 }

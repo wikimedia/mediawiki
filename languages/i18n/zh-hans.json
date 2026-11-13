@@ -3403,6 +3403,7 @@
 	"version-software": "安装的软件",
 	"version-software-product": "产品",
 	"version-software-version": "版本",
+	"version-download-sbom": "下载软件物料清单（SBOM）",
 	"version-entrypoints": "接入点URL",
 	"version-entrypoints-header-entrypoint": "接入点",
 	"version-entrypoints-header-url": "URL",
