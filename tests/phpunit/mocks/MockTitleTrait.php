@@ -14,6 +14,8 @@ use PHPUnit\Framework\MockObject\MockObject;
  */
 trait MockTitleTrait {
 
+	use MediaWikiTestCaseTrait;
+
 	/** @var int */
 	private $pageIdCounter = 0;
 

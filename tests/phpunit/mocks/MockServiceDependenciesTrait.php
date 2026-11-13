@@ -2,6 +2,7 @@
 
 namespace MediaWiki\Tests\Unit;
 
+use MediaWikiTestCaseTrait;
 use ReflectionClass;
 use ReflectionParameter;
 
@@ -12,6 +13,8 @@ use ReflectionParameter;
  * @extends \PHPUnit\Framework\TestCase
  */
 trait MockServiceDependenciesTrait {
+
+	use MediaWikiTestCaseTrait;
 
 	/**
 	 * Construct a new instance of $serviceClass with all constructor arguments

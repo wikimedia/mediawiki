@@ -7,11 +7,14 @@ use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Language\ILanguageConverter;
 use MediaWiki\Language\LanguageConverterFactory;
 use MediaWiki\MainConfigNames;
+use MediaWikiTestCaseTrait;
 
 /**
  * @extends \PHPUnit\Framework\TestCase
  */
 trait LanguageConverterTestTrait {
+
+	use MediaWikiTestCaseTrait;
 
 	/** @var string */
 	private $codeRegex = '/^(?:\w+\\\\)*(.+)ConverterTest$/';

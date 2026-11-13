@@ -8,6 +8,7 @@ use MediaWiki\FileRepo\RepoGroup;
 use MediaWiki\Media\ThumbnailImage;
 use MediaWiki\Page\PageReference;
 use MediaWiki\User\UserIdentityValue;
+use MediaWikiTestCaseTrait;
 use MockTitleTrait;
 use PHPUnit\Framework\MockObject\MockObject;
 
@@ -18,6 +19,7 @@ use PHPUnit\Framework\MockObject\MockObject;
  */
 trait MediaTestTrait {
 
+	use MediaWikiTestCaseTrait;
 	use HandlerTestTrait;
 	use MockTitleTrait;
 

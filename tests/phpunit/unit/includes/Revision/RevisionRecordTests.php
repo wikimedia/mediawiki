@@ -19,6 +19,7 @@ use MediaWiki\Revision\SuppressedDataException;
 use MediaWiki\Tests\Mocks\Content\DummyContentForTesting;
 use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
 use MediaWiki\User\UserIdentityValue;
+use MediaWikiTestCaseTrait;
 
 /**
  * @covers \MediaWiki\Revision\RevisionRecord
@@ -27,6 +28,8 @@ use MediaWiki\User\UserIdentityValue;
  * @extends \PHPUnit\Framework\TestCase
  */
 trait RevisionRecordTests {
+
+	use MediaWikiTestCaseTrait;
 	use MockAuthorityTrait;
 
 	/**

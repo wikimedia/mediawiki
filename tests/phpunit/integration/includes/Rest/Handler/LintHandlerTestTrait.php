@@ -11,6 +11,7 @@ use MediaWiki\Request\FauxRequest;
 use MediaWiki\Rest\RequestData;
 use MediaWiki\Rest\ResponseInterface;
 use MediaWiki\User\User;
+use MediaWikiTestCaseTrait;
 
 /**
  * This trait is used in PageLintLHandlerTest.php & RevisionLintHandlerTest.php to construct requests.
@@ -18,6 +19,8 @@ use MediaWiki\User\User;
  * @extends \PHPUnit\Framework\TestCase
  */
 trait LintHandlerTestTrait {
+
+	use MediaWikiTestCaseTrait;
 
 	private function getAuthority(): Authority {
 		$services = $this->getServiceContainer();

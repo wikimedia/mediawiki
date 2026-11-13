@@ -7,6 +7,7 @@ use MediaWiki\Language\LCStoreDB;
 use MediaWiki\Language\LocalisationCache;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Tests\Unit\DummyServicesTrait;
+use MediaWikiTestCaseTrait;
 use Psr\Log\NullLogger;
 
 /**
@@ -16,6 +17,8 @@ use Psr\Log\NullLogger;
  * @extends \PHPUnit\Framework\TestCase
  */
 trait MockLocalisationCacheTrait {
+
+	use MediaWikiTestCaseTrait;
 	use DummyServicesTrait;
 
 	/**

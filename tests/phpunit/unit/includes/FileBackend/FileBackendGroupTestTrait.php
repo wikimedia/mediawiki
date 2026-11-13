@@ -24,6 +24,9 @@ use Wikimedia\TestingAccessWrapper;
  * @extends \PHPUnit\Framework\TestCase
  */
 trait FileBackendGroupTestTrait {
+
+	use MediaWikiTestCaseTrait;
+
 	/**
 	 * @param array $options Dictionary to use as a source for ServiceOptions before defaults, plus
 	 *   the following options are available to override other arguments:

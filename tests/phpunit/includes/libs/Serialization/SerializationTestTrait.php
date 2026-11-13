@@ -6,6 +6,7 @@
 namespace Wikimedia\Tests;
 
 use Generator;
+use MediaWikiTestCaseTrait;
 use ReflectionClass;
 
 /**
@@ -15,6 +16,8 @@ use ReflectionClass;
  * @extends \PHPUnit\Framework\TestCase
  */
 trait SerializationTestTrait {
+
+	use MediaWikiTestCaseTrait;
 
 	/**
 	 * Data provider for deserialization test.

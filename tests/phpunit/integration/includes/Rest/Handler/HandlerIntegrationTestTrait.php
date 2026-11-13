@@ -13,6 +13,7 @@ use MediaWiki\Rest\RequestData;
 use MediaWiki\Rest\RequestInterface;
 use MediaWiki\Rest\ResponseInterface;
 use MediaWiki\Tests\Rest\RestTestTrait;
+use MediaWikiTestCaseTrait;
 use Throwable;
 use Wikimedia\TestingAccessWrapper;
 
@@ -23,6 +24,8 @@ use Wikimedia\TestingAccessWrapper;
  * @extends \PHPUnit\Framework\TestCase
  */
 trait HandlerIntegrationTestTrait {
+
+	use MediaWikiTestCaseTrait;
 	use RestTestTrait, HandlerTestTrait {
 		RestTestTrait::newRouter insteadof HandlerTestTrait;
 		HandlerTestTrait::newRouter as newMockRouter;

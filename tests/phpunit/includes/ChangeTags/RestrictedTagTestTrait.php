@@ -2,6 +2,8 @@
 
 namespace MediaWiki\Tests\ChangeTags;
 
+use MediaWikiTestCaseTrait;
+
 /**
  * Helper trait for restricted (private-prefixed) change tag test setup.
  * For use in classes extending {@link MediaWikiIntegrationTestCase}.
@@ -11,6 +13,8 @@ namespace MediaWiki\Tests\ChangeTags;
  * @extends \PHPUnit\Framework\TestCase
  */
 trait RestrictedTagTestTrait {
+
+	use MediaWikiTestCaseTrait;
 
 	/**
 	 * Handle the {@link ListRestrictedTagsHook} hook to map the given tags to rights.

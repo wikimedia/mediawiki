@@ -7,6 +7,7 @@ use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\Block\UserBlockTarget;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityValue;
+use MediaWikiTestCaseTrait;
 
 /**
  * Creates and apply user blocks
@@ -14,6 +15,8 @@ use MediaWiki\User\UserIdentityValue;
  * @extends \PHPUnit\Framework\TestCase
  */
 trait MockBlockTrait {
+
+	use MediaWikiTestCaseTrait;
 
 	/**
 	 * @param array $options Options as supported by AbstractBlock and

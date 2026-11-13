@@ -8,6 +8,7 @@ namespace MediaWiki\Tests\Unit\EditPage\Constraint;
 
 use MediaWiki\EditPage\Constraint\EditConstraint;
 use MediaWiki\PageEdit\PageEditStatus;
+use MediaWikiTestCaseTrait;
 
 /**
  * Helper for the various constraint test classes
@@ -16,6 +17,8 @@ use MediaWiki\PageEdit\PageEditStatus;
  * @extends \PHPUnit\Framework\TestCase
  */
 trait EditConstraintTestTrait {
+
+	use MediaWikiTestCaseTrait;
 
 	/**
 	 * Assert that the constraint passes and that the status is good

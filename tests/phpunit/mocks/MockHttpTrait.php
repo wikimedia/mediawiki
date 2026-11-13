@@ -22,6 +22,9 @@ use Wikimedia\Http\MultiHttpClient;
  * @extends \PHPUnit\Framework\TestCase
  */
 trait MockHttpTrait {
+
+	use MediaWikiTestCaseTrait;
+
 	/**
 	 * @see MediaWikiIntegrationTestCase::setService()
 	 *

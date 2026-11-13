@@ -8,6 +8,7 @@ use MediaWiki\Config\Config;
 use MediaWiki\Config\HashConfig;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\User\UserNameUtils;
+use MediaWikiTestCaseTrait;
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
 
@@ -21,6 +22,8 @@ use Psr\Log\NullLogger;
  * @extends \PHPUnit\Framework\TestCase
  */
 trait AuthenticationProviderTestTrait {
+
+	use MediaWikiTestCaseTrait;
 
 	/**
 	 * Calls init() on an AuthenticationProvider.

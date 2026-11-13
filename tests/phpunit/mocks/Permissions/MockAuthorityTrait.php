@@ -22,6 +22,7 @@ use MediaWiki\Request\WebRequest;
 use MediaWiki\User\User;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityValue;
+use MediaWikiTestCaseTrait;
 use PHPUnit\Framework\MockObject\MockObject;
 use StatusValue;
 use Wikimedia\Message\MessageValue;
@@ -32,6 +33,8 @@ use Wikimedia\Message\MessageValue;
  * @extends \PHPUnit\Framework\TestCase
  */
 trait MockAuthorityTrait {
+
+	use MediaWikiTestCaseTrait;
 
 	/**
 	 * Create mock ultimate Authority for anon user.

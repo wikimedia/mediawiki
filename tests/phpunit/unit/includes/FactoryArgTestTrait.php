@@ -11,6 +11,9 @@
  * @extends \PHPUnit\Framework\TestCase
  */
 trait FactoryArgTestTrait {
+
+	use MediaWikiTestCaseTrait;
+
 	/**
 	 * @return string Name of factory class
 	 */

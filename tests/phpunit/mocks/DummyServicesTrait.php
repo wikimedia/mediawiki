@@ -32,6 +32,7 @@ use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserNameUtils;
 use MediaWiki\Watchlist\WatchedItem;
 use MediaWiki\Watchlist\WatchedItemStore;
+use MediaWikiTestCaseTrait;
 use PHPUnit\Framework\MockObject\MockObject;
 use Psr\Container\ContainerInterface;
 use Psr\Log\NullLogger;
@@ -61,6 +62,8 @@ use Wikimedia\Services\NoSuchServiceException;
  * @extends \PHPUnit\Framework\TestCase
  */
 trait DummyServicesTrait {
+
+	use MediaWikiTestCaseTrait;
 
 	/**
 	 * @var array

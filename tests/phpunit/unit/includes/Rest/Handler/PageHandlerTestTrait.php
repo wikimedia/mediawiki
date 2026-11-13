@@ -29,6 +29,7 @@ use MediaWiki\Rest\Handler\RevisionLintHandler;
 use MediaWiki\Rest\RequestInterface;
 use MediaWiki\Rest\ResponseFactory;
 use MediaWiki\Rest\Router;
+use MediaWikiTestCaseTrait;
 use PHPUnit\Framework\MockObject\MockObject;
 use Wikimedia\ObjectCache\WANObjectCache;
 use Wikimedia\Parsoid\Parsoid;
@@ -43,6 +44,8 @@ use Wikimedia\Stats\StatsFactory;
  * @extends \PHPUnit\Framework\TestCase
  */
 trait PageHandlerTestTrait {
+
+	use MediaWikiTestCaseTrait;
 
 	private function newRouterForPageHandler( string $baseUrl, string $rootPath = '' ): Router {
 		$router = $this->createNoOpMock( Router::class, [ 'getRoutePath', 'getRouteUrl' ] );

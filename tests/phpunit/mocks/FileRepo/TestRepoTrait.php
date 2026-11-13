@@ -10,6 +10,7 @@ use MediaWiki\FileRepo\LocalRepo;
 use MediaWiki\FileRepo\RepoGroup;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Title\Title;
+use MediaWikiTestCaseTrait;
 use PHPUnit\Framework\Assert;
 use Wikimedia\FileBackend\FileBackend;
 use Wikimedia\FileBackend\FSFileBackend;
@@ -18,6 +19,8 @@ use Wikimedia\FileBackend\FSFileBackend;
  * @extends \PHPUnit\Framework\TestCase
  */
 trait TestRepoTrait {
+
+	use MediaWikiTestCaseTrait;
 
 	private static ?string $mockRepoTraitDir = null;
 

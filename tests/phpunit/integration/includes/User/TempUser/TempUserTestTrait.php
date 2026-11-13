@@ -3,6 +3,7 @@
 namespace MediaWiki\Tests\User\TempUser;
 
 use MediaWiki\MainConfigNames;
+use MediaWikiTestCaseTrait;
 
 /**
  * Helper trait for defining the temporary user configuration settings for tests.
@@ -13,6 +14,8 @@ use MediaWiki\MainConfigNames;
  * @extends \PHPUnit\Framework\TestCase
  */
 trait TempUserTestTrait {
+
+	use MediaWikiTestCaseTrait;
 
 	/**
 	 * Array of default configuration to use in tests.

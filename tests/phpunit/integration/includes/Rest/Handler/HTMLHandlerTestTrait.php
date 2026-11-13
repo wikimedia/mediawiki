@@ -14,6 +14,7 @@ use MediaWiki\Permissions\UserAuthority;
 use MediaWiki\Request\FauxRequest;
 use MediaWiki\Rest\RequestData;
 use MediaWiki\User\User;
+use MediaWikiTestCaseTrait;
 use Wikimedia\ObjectCache\HashBagOStuff;
 
 /**
@@ -23,6 +24,8 @@ use Wikimedia\ObjectCache\HashBagOStuff;
  * @extends \PHPUnit\Framework\TestCase
  */
 trait HTMLHandlerTestTrait {
+
+	use MediaWikiTestCaseTrait;
 
 	/** @var ParsoidOutputStash|null */
 	private $parsoidOutputStash = null;

@@ -15,6 +15,8 @@ use Wikimedia\ScopedCallback;
  * @extends \PHPUnit\Framework\TestCase
  */
 trait ParserTestFileTrait {
+
+	use MediaWikiTestCaseTrait;
 	use MediaWikiCoversValidator;
 
 	public static ?TestFileReader $fileInfo = null;
