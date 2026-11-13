@@ -78,7 +78,7 @@
 	"right-ipblock-exempt": "إتفادى عمليات منع الأيبي، المنع الأوتوماتيكى ومنع النطاق.",
 	"right-unblockself": "رفع المنع عن نفسهم",
 	"right-protect": "تغيير مستويات الحماية وتعديل الصفحات المحمية",
-	"right-editprotected": "تعديل الصفحات المحمية \"{{int:restriction-level-sysop}}\"",
+	"right-editprotected": "تعديل الصفحات التي حمايتها \"{{int:restriction-level-sysop}}\"",
 	"right-editinterface": "تعديل الواجهة بتاعة اليوزر",
 	"right-editusercss": "تعديل ملفات CSS لليوزرز التانيين",
 	"right-edituserjs": "تعديل ملفات JS لليوزرز التانيين",

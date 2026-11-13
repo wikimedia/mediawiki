@@ -24,7 +24,8 @@
 			"Ævar Arnfjörð Bjarmason <avarab@gmail.com>",
 			"לערי ריינהארט",
 			"아라",
-			"Sanderpel713"
+			"Sanderpel713",
+			"Nintendofan885"
 		]
 	},
 	"pagecategories": "{{PLURAL:$1|Kategory|Kategoryen}}",
@@ -232,7 +233,6 @@
 	"perfcachedts": "Disse gegeavens kommet uut et tüskengehöägen dee vöär et lätst bywarked is up $1. Der {{PLURAL:$4|steyt houguut eyn resultaat|ståt houguut $4 resultaten}} in et tüskengehöägen.",
 	"querypage-no-updates": "Disse syde wördt neet bywarked.\nGegeavens up disse syde wördet neet vervarsd.",
 	"viewsource": "Brontekst bekyken",
-	"skin-action-viewsource": "Bronkode bekyken",
 	"viewsource-title": "Bron bekyken van $1",
 	"actionthrottled": "Handeling teagenholden",
 	"actionthrottledtext": "As måtregel teagen misbruuk, is et antal keyren dat jy disse handeling in een korte tyd uutvoren künnet betöänd. Jy hebbet de limit oaverskreaden. Probeer et oaver een antal minuten weader.",
@@ -1022,7 +1022,7 @@
 	"license-header": "Licensy",
 	"nolicense": "Geen licensy köäsen",
 	"license-nopreview": "(Naokieken is niet meugelik)",
-	"upload_source_url": " (een geldig, publiek toegankelik webadres)",
+	"upload_source_url": "(een geldig, publiek toegankelik webadres)",
 	"upload_source_file": " (n bestaand op de hardeschieve)",
 	"listfiles-summary": "Op disse spesiale zied ku'j alle bestaanden bekieken die lestens op-estuurd bin.",
 	"imgfile": "bestand",

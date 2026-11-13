@@ -45,7 +45,8 @@
 			"Xabier Armendaritz",
 			"Zygimantus",
 			"לערי ריינהארט",
-			"아라"
+			"아라",
+			"Babellini"
 		]
 	},
 	"pagecategories": "{{PLURAL:$1|Kategorija|Kategorijos}}",
@@ -400,6 +401,7 @@
 	"loginerror": "Prisijungimo klaida",
 	"createacct-error": "Paskyros kūrimo klaida",
 	"createaccounterror": "Nepavyko sukurti paskyros: $1",
+	"createacct-username-policy-popover-title": "Naudotojo vardo politika",
 	"nocookieslogin": "{{SITENAME}} naudoja slapukus, kad prijungtų naudotojus. Jūs esate išjungę slapukus. Prašome įjungti juos ir pamėginkite vėl.",
 	"nocookiesfornew": "Naudotojo paskyra nebuvo sukurta, nes mums nepavyko nustatyti jos šaltinio.\nĮsitikinkite, kad įjungti slapukai, perkraukite puslapį ir bandykite dar kartą.",
 	"createacct-loginerror": "Paskyra buvo sėkmingai sukurta, bet nepavyko jūsų automatiškai prijungti. Prašome tęsti [[Special:UserLogin|prisijungiant rankiniu būdu]].",

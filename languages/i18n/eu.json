@@ -381,6 +381,7 @@
 	"userlogin-loggedin-heading": "Hasi saioa beste erabiltzaile kontu batekin",
 	"userlogin-reauth": "Saioa berriro hasi beharko duzu {{GENDER:$1|$1}} zarela baieztatzeko.",
 	"userlogin-createanother": "Beste kontu bat sortu",
+	"createacct-loggedin-heading": "Beste kontu bat sortu",
 	"createacct-emailrequired": "E-posta helbidea",
 	"createacct-emailoptional": "E-posta helbidea (hautazkoa)",
 	"createacct-email-ph": "Sartu zure e-posta helbidea",

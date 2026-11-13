@@ -22,7 +22,8 @@
 			"Timpul",
 			"ToBeFree",
 			"Äberlausitzer",
-			"아라"
+			"아라",
+			"Nintendofan885"
 		]
 	},
 	"pagecategories": "{{PLURAL:$1|Kategorie|Kategorien}}",
@@ -593,7 +594,7 @@
 	"license-header": "Lizenz",
 	"nolicense": "kenne Vurauswoahl",
 	"license-nopreview": "(is ies kenne Vurschau verfiegbar)",
-	"upload_source_url": "  (giltige, effentlich zugängliche URL)",
+	"upload_source_url": "(giltige, effentlich zugängliche URL)",
 	"upload_source_file": "  (anne Datei uff dennem Computer)",
 	"listfiles-summary": "Diese Spezioalseite listet oalle huchgeloadna Dateien uf.",
 	"imgfile": "Datei",
