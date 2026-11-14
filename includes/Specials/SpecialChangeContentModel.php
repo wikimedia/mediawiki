@@ -93,11 +93,12 @@ class SpecialChangeContentModel extends FormSpecialPage {
 	protected function setParameter( $par ) {
 		$par = $this->getRequest()->getVal( 'pagetitle', $par );
 		$title = Title::newFromText( $par );
-		if ( $title ) {
+		if ( $title && $title->canExist() ) {
 			$this->title = $title;
 			$this->par = $title->getPrefixedText();
 		} else {
-			$this->par = '';
+			// Let the title field report pages that can't exist, such as special pages (T444618)
+			$this->par = $title ? $title->getPrefixedText() : '';
 		}
 	}
 
