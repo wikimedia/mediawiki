@@ -29,3 +29,9 @@ indent_size = 2
 # T278066
 [tests/parser/*.txt]
 trim_trailing_whitespace = false
+
+# Keep third-party files the same as upstream, so that
+# manageForeignResources can verify them.
+[resources/lib/**]
+trim_trailing_whitespace = false
+insert_final_newline = false
