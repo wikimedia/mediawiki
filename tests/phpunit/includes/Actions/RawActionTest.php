@@ -18,7 +18,6 @@ class RawActionTest extends MediaWikiIntegrationTestCase {
 	public function fixtureSetUp(): void {
 		ConvertibleTimestamp::setFakeTime( '20110401090000' );
 		$this->editPage( 'MediaWiki:Foo.js', 'console.log("Hello world");' );
-		ConvertibleTimestamp::setFakeTime( '20110402090000' );
 	}
 
 	public static function provideCacheControl() {
@@ -127,6 +126,8 @@ class RawActionTest extends MediaWikiIntegrationTestCase {
 	 * @dataProvider provideCacheControl
 	 */
 	public function testCacheControl( string $url, array $headers, bool $cdn, int $status, string $cc ) {
+		ConvertibleTimestamp::setFakeTime( '20110402090000' );
+
 		$this->overrideConfigValues( [
 			MainConfigNames::ScriptPath => '/w',
 			MainConfigNames::Script => '/w/index.php',

@@ -113,7 +113,6 @@ class ChangesListQueryTest extends \MediaWikiIntegrationTestCase {
 		] );
 		$this->teardownScope = ExtensionRegistry::getInstance()->setAttributeForTest(
 			'RecentChangeSources', [] );
-		ConvertibleTimestamp::setFakeTime( '20250105000000' );
 		$roleRegistry = $this->getServiceContainer()->getSlotRoleRegistry();
 		if ( !$roleRegistry->isDefinedRole( 'aux' ) ) {
 			// Use JSON, not wikitext, since
@@ -121,6 +120,12 @@ class ChangesListQueryTest extends \MediaWikiIntegrationTestCase {
 			// Parsoid wikitext slot per revision.
 			$roleRegistry->defineRoleWithModel( 'aux', CONTENT_MODEL_JSON );
 		}
+	}
+
+	/** @before */
+	protected function fakeTimestampSetUp() {
+		parent::fakeTimestampSetUp();
+		ConvertibleTimestamp::setFakeTime( '20250105000000' );
 	}
 
 	protected function tearDown(): void {
@@ -249,6 +254,8 @@ class ChangesListQueryTest extends \MediaWikiIntegrationTestCase {
 		$label = new WatchlistLabel( $alice, 'test' );
 		$this->getServiceContainer()->getWatchlistLabelStore()->save( $label );
 		$wis->addLabels( $alice, [ $labelPage ], [ $label ] );
+
+		ConvertibleTimestamp::setFakeTime( false );
 	}
 
 	private function edit( $titleText, $user, $flags = 0, $content = null, $slotRole = null ) {

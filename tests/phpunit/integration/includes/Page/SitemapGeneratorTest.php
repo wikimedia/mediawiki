@@ -50,6 +50,7 @@ class SitemapGeneratorTest extends \MediaWikiIntegrationTestCase {
 		$this->editPage( 'User:M', '.' );
 		$this->editPage( 'User:F', '.' );
 		$this->editPage( 'User:N', '.' );
+		ConvertibleTimestamp::setFakeTime( false );
 	}
 
 	private function getSitemapGenerator() {

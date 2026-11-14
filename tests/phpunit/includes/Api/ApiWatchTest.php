@@ -17,13 +17,17 @@ class ApiWatchTest extends ApiTestCase {
 	protected function setUp(): void {
 		parent::setUp();
 
-		// Fake current time to be 2019-06-05T19:50:42Z
-		ConvertibleTimestamp::setFakeTime( 1559764242 );
-
 		$this->overrideConfigValues( [
 			MainConfigNames::WatchlistExpiry => true,
 			MainConfigNames::WatchlistExpiryMaxDuration => '6 months',
 		] );
+	}
+
+	/** @before */
+	protected function fakeTimestampSetUp() {
+		parent::fakeTimestampSetUp();
+		// Fake current time to be 2019-06-05T19:50:42Z
+		ConvertibleTimestamp::setFakeTime( 1559764242 );
 	}
 
 	public function testWatch() {

@@ -55,7 +55,6 @@ class ChangesListSpecialPageTest extends AbstractChangesListSpecialPageTestCase 
 			MainConfigNames::GroupPermissions,
 			[ '*' => [ 'edit' => true ] ]
 		);
-		$this->setFakeTime( '20201231000000' );
 		$this->clearHooks();
 		parent::setUp();
 	}
@@ -65,8 +64,10 @@ class ChangesListSpecialPageTest extends AbstractChangesListSpecialPageTestCase 
 		parent::tearDown();
 	}
 
-	private function setFakeTime( $fakeTime ) {
-		ConvertibleTimestamp::setFakeTime( $fakeTime );
+	/** @before */
+	protected function fakeTimestampSetUp() {
+		parent::fakeTimestampSetUp();
+		ConvertibleTimestamp::setFakeTime( '20201231000000' );
 		$db = $this->getDb();
 		$expectedCutoff = $db->timestamp( ConvertibleTimestamp::time() - 86_400 );
 		$this->cutoffCond = "rc_timestamp >= '$expectedCutoff'";

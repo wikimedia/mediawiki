@@ -30,6 +30,7 @@ class SitemapPageHandlerTest extends MediaWikiIntegrationTestCase {
 	public function addDBDataOnce() {
 		ConvertibleTimestamp::setFakeTime( '2025-01-01T00:00:00' );
 		$this->editPage( 'Page', '.' );
+		ConvertibleTimestamp::setFakeTime( false );
 	}
 
 	public function testGetResponseExample() {

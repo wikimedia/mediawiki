@@ -91,6 +91,8 @@ class ArchivedRevisionLookupTest extends MediaWikiIntegrationTestCase {
 		$timestamp += 10;
 		MWTimestamp::setFakeTime( $timestamp );
 		$this->deletePage( $page, '', $user );
+
+		MWTimestamp::setFakeTime( false );
 	}
 
 	protected function getExpectedArchiveRows() {

@@ -19,11 +19,16 @@ class CacheTimeTest extends MediaWikiIntegrationTestCase {
 	protected function setUp(): void {
 		parent::setUp();
 
-		MWTimestamp::setFakeTime( ParserCacheSerializationTestCases::FAKE_TIME );
 		$this->overrideConfigValue(
 			MainConfigNames::ParserCacheExpireTime,
 			ParserCacheSerializationTestCases::FAKE_CACHE_EXPIRY
 		);
+	}
+
+	/** @before */
+	protected function fakeTimestampSetUp() {
+		parent::fakeTimestampSetUp();
+		MWTimestamp::setFakeTime( ParserCacheSerializationTestCases::FAKE_TIME );
 	}
 
 	public static function getClassToTest(): string {

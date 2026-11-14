@@ -25,8 +25,9 @@ use Wikimedia\Timestamp\TimestampFormat as TS;
  */
 class PingbackTest extends MediaWikiUnitTestCase {
 
-	protected function setUp(): void {
-		parent::setUp();
+	/** @before */
+	protected function fakeTimestampSetUp() {
+		parent::fakeTimestampSetUp();
 		ConvertibleTimestamp::setFakeTime( '20110401090000' );
 	}
 

@@ -401,6 +401,16 @@ trait MediaWikiTestCaseTrait {
 	 * Check that no fake timestamp is set before the tests (e.g. in a test provider).
 	 * They should be only set in the tests and cleared by fakeTimestampTearDown().
 	 *
+	 * This method may cause spurious failures if you use `setFakeTime()` in your own
+	 * before-test method (`setUp()`, `addDBData()` etc., or any method annotated with `@before`),
+	 * since the order in which these methods run is hard to control.
+	 *
+	 * To avoid this problem:
+	 *  - If your test code doesn't need the fake time, use `setFakeTime( false )`
+	 *    to clear it at the end of the before-test method.
+	 *  - If your test code needs the fake time, override *this* method instead of using another
+	 *    before-test method, and call `setFakeTime()` in the override (after calling the parent).
+	 *
 	 * @since 1.43
 	 * @before
 	 */
