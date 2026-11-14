@@ -573,6 +573,13 @@ class ChangesList extends ContextSource {
 	 * @param bool|null $unpatrolled Unused variable, since 1.27.
 	 */
 	public function insertDiffHist( &$s, &$rc, $unpatrolled = null ) {
+		$title = $rc->getTitle();
+		if ( $rc->mAttribs['rc_source'] === RecentChange::SRC_CATEGORIZE ) {
+			// rc_title is the category, but the links are about the page that was
+			// added or removed, which is rc_cur_id (T420216)
+			$title = Title::newFromID( $rc->mAttribs['rc_cur_id'] ) ?? $title;
+		}
+
 		# Diff link
 		if (
 			$rc->mAttribs['rc_source'] === RecentChange::SRC_NEW ||
@@ -589,14 +596,14 @@ class ChangesList extends ContextSource {
 			];
 
 			$diffLink = $this->linkRenderer->makeKnownLink(
-				$rc->getTitle(),
+				$title,
 				new HtmlArmor( $this->message['diff'] ),
 				[ 'class' => 'mw-changeslist-diff' ],
 				$query
 			);
 		}
 		$histLink = $this->linkRenderer->makeKnownLink(
-			$rc->getTitle(),
+			$title,
 			new HtmlArmor( $this->message['hist'] ),
 			[ 'class' => 'mw-changeslist-history' ],
 			[
