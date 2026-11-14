@@ -116,6 +116,20 @@
 			)
 		);
 
+		// The gallery may be laid out while hidden (e.g. inside a collapsed section
+		// in MobileFrontend), which makes the computed size 0 and every imageinfo
+		// request fail. Recompute when the container gets its real size, and show
+		// the current image again if it could not be loaded before.
+		if ( window.ResizeObserver ) {
+			new ResizeObserver( OO.ui.debounce( () => {
+				const hadNoSize = this.imageWidth <= 0;
+				this.setSizeRequirement();
+				if ( hadNoSize && this.imageWidth > 0 ) {
+					this.showCurrentImage();
+				}
+			}, 100 ) ).observe( this.$imgContainer[ 0 ] );
+		}
+
 		// Disable thumbnails' link, instead show the image in the carousel
 		this.$galleryBox.on( 'click', ( e ) => {
 			this.$currentImage = $( e.currentTarget );
