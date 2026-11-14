@@ -707,10 +707,12 @@ class User implements Stringable, Authority, UserIdentity, UserEmailContact {
 
 	/**
 	 * Factory method to fetch whichever user has a given email confirmation code.
+	 *
 	 * This code is generated when an account is created or its e-mail address
 	 * has changed.
 	 *
-	 * If the code is invalid or has expired, returns NULL.
+	 * Returns the user if the code is still valid (not expired)
+	 * or if it has already been used to confirm the email.
 	 *
 	 * @see UserFactory::newFromConfirmationCode
 	 *
