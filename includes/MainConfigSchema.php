@@ -9586,7 +9586,7 @@ class MainConfigSchema {
 	];
 
 	/**
-	 * RSA private key for verifying JWTs, as a PEM string.
+	 * RSA public key for verifying JWTs, as a PEM string.
 	 * Experimental, will probably be replaced by something more flexible.
 	 * @since 1.45
 	 * @see RsaJwtCodec

@@ -67,10 +67,10 @@ class RsaJwtCodec implements JwtCodec {
 
 		$parser = new Parser( new JoseEncoder() );
 		$signingAlgorithm = new Rsa\Sha256();
-		$privateKey = Key\InMemory::plainText( $this->serviceOptions->get( MainConfigNames::JwtPublicKey ) );
+		$publicKey = Key\InMemory::plainText( $this->serviceOptions->get( MainConfigNames::JwtPublicKey ) );
 		$validator = new Validator();
 		$validationConstraints = [
-			new SignedWith( $signingAlgorithm, $privateKey ),
+			new SignedWith( $signingAlgorithm, $publicKey ),
 			new LooseValidAt( ConvertibleTimestamp::getClock() ),
 		];
 
