@@ -435,6 +435,14 @@ class UrlUtils {
 		// parse_url() incorrectly handles schemes case-sensitively. Convert it to lowercase.
 		$bits['scheme'] = strtolower( $bits['scheme'] );
 		$bits['host'] ??= '';
+		if ( $bits['host'] !== '' ) {
+			// Normalize alternative Unicode dot characters (U+3002, U+FF0E, U+FF61) per UTS #46 (T400736)
+			$bits['host'] = strtr( $bits['host'], [
+				"\u{3002}" => '.',
+				"\u{FF0E}" => '.',
+				"\u{FF61}" => '.',
+			] );
+		}
 
 		// most of the protocols are followed by ://, but mailto: and sometimes news: not, check for it
 		if ( in_array( $bits['scheme'] . '://', $this->validProtocols ) ) {
@@ -494,7 +502,11 @@ class UrlUtils {
 		if ( is_array( $bits ) && isset( $bits['host'] ) ) {
 			$host = '.' . $bits['host'];
 			foreach ( $domains as $domain ) {
-				$domain = '.' . $domain;
+				$domain = '.' . strtr( $domain, [
+					"\u{3002}" => '.',
+					"\u{FF0E}" => '.',
+					"\u{FF61}" => '.',
+				] );
 				if ( str_ends_with( $host, $domain ) ) {
 					return true;
 				}
