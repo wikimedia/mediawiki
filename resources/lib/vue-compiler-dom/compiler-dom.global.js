@@ -1,5 +1,5 @@
 /**
-* @vue/compiler-dom v3.5.43
+* @vue/compiler-dom v3.5.45
 * (c) 2018-present Yuxi (Evan) You and Vue contributors
 * @license MIT
 **/
@@ -39,20 +39,16 @@ var VueCompilerDOM = (function (exports) {
     });
   };
   const camelizeRE = /-\w/g;
-  const camelize = cacheStringFunction(
-    (str) => {
-      return str.replace(camelizeRE, (c) => c.slice(1).toUpperCase());
-    }
-  );
-  const capitalize = cacheStringFunction((str) => {
+  const camelize = /* @__PURE__ */ cacheStringFunction((str) => {
+    return str.replace(camelizeRE, (c) => c.slice(1).toUpperCase());
+  });
+  const capitalize = /* @__PURE__ */ cacheStringFunction((str) => {
     return str.charAt(0).toUpperCase() + str.slice(1);
   });
-  const toHandlerKey = cacheStringFunction(
-    (str) => {
-      const s = str ? `on${capitalize(str)}` : ``;
-      return s;
-    }
-  );
+  const toHandlerKey = /* @__PURE__ */ cacheStringFunction((str) => {
+    const s = str ? `on${capitalize(str)}` : ``;
+    return s;
+  });
 
   const PatchFlagNames = {
     [1]: `TEXT`,
@@ -1609,7 +1605,8 @@ var VueCompilerDOM = (function (exports) {
     [42]: `v-model value must be a valid JavaScript member expression.`,
     [43]: `v-model cannot be used on v-for or v-slot scope variables because they are not writable.`,
     [44]: `v-model cannot be used on a prop, because local prop bindings are not writable.
-Use a v-bind binding combined with a v-on listener that emits update:x event instead.`,
+Use a v-bind binding combined with a v-on listener that emits update:x event instead.
+For props declared with defineModel(), assign the returned ref to a variable and use v-model on that variable.`,
     [45]: `v-model cannot be used on a const binding because it is not writable.`,
     [46]: `Error parsing JavaScript expression: `,
     [47]: `<KeepAlive> expects exactly one child component.`,
@@ -2770,7 +2767,11 @@ Use a v-bind binding combined with a v-on listener that emits update:x event ins
     };
   }
   function cloneLoc(loc) {
-    return getLoc(loc.start.offset, loc.end.offset);
+    return {
+      start: extend({}, loc.start),
+      end: extend({}, loc.end),
+      source: loc.source
+    };
   }
   function setLocEnd(loc, end) {
     loc.end = tokenizer.getPos(end);
@@ -4426,7 +4427,7 @@ Use a v-bind binding combined with a v-on listener that emits update:x event ins
               createCompoundExpression([`const _memo = (`, memo.exp, `)`]),
               createCompoundExpression([
                 `if (_cached && _cached.el`,
-                ...keyExp ? [` && _cached.key === `, keyExp] : [],
+                ...keyExp ? [` && _cached.key === (`, keyExp, `)`] : [],
                 ` && ${context.helperString(
                 IS_MEMO_SAME
               )}(_cached, _memo)) return _cached`
@@ -6423,7 +6424,8 @@ Use a v-bind binding combined with a v-on listener that emits update:x event ins
           if (!node.children.length) {
             return;
           }
-          if (hasMultipleChildren(node)) {
+          const multipleChildren = hasMultipleChildren(node);
+          if (multipleChildren) {
             context.onError(
               createDOMCompilerError(
                 63,
@@ -6650,7 +6652,8 @@ Use a v-bind binding combined with a v-on listener that emits update:x event ins
 
   const DOMNodeTransforms = [
     transformStyle,
-    ...[transformTransition, validateHtmlNesting] 
+    transformTransition,
+    ...[validateHtmlNesting] 
   ];
   const DOMDirectiveTransforms = {
     cloak: noopDirectiveTransform,
