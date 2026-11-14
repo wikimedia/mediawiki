@@ -268,10 +268,12 @@ class UserFactory implements UserRigorOptions {
 	}
 
 	/**
-	 * Factory method to fetch the user for a given email confirmation code, replacing User::newFromConfirmationCode
+	 * Factory method to fetch the user for a given email confirmation code.
 	 *
 	 * This code is generated when an account is created or its e-mail address has changed.
-	 * If the code is invalid or has expired, returns null.
+	 *
+	 * Returns the user if the code is still valid (not expired)
+	 * or if it has already been used to confirm the email.
 	 *
 	 * @since 1.35
 	 */
@@ -285,7 +287,11 @@ class UserFactory implements UserRigorOptions {
 			->select( 'user_id' )
 			->from( 'user' )
 			->where( [ 'user_email_token' => md5( $confirmationCode ) ] )
-			->andWhere( $db->expr( 'user_email_token_expires', '>', $db->timestamp() ) )
+			->andWhere(
+				// Accept if not expired, or if the same token was already used to confirm the email
+				$db->expr( 'user_email_token_expires', '>', $db->timestamp() )
+					->or( 'user_email_authenticated', '!=', null )
+			)
 			->recency( $flags )
 			->caller( __METHOD__ )->fetchField();
 

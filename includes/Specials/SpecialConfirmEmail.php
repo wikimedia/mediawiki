@@ -127,16 +127,22 @@ class SpecialConfirmEmail extends UnlistedSpecialPage {
 				$out->addWikiMsg( 'confirmemail_sent' );
 			}
 		} else {
-			// date and time are separate parameters to facilitate localisation.
-			// $time is kept for backward compat reasons.
-			// 'emailauthenticated' is also used in SpecialPreferences.php
-			$lang = $this->getLanguage();
-			$emailAuthenticated = $user->getEmailAuthenticationTimestamp();
-			$time = $lang->userTimeAndDate( $emailAuthenticated, $user );
-			$d = $lang->userDate( $emailAuthenticated, $user );
-			$t = $lang->userTime( $emailAuthenticated, $user );
-			$out->addWikiMsg( 'emailauthenticated', $time, $d, $t );
+			$this->showConfirmedMessage();
 		}
+	}
+
+	private function showConfirmedMessage(): void {
+		$user = $this->getUser();
+		$out = $this->getOutput();
+		// date and time are separate parameters to facilitate localisation.
+		// $time is kept for backward compat reasons.
+		// 'emailauthenticated' is also used in SpecialPreferences.php
+		$lang = $this->getLanguage();
+		$emailAuthenticated = $user->getEmailAuthenticationTimestamp();
+		$time = $lang->userTimeAndDate( $emailAuthenticated, $user );
+		$d = $lang->userDate( $emailAuthenticated, $user );
+		$t = $lang->userTime( $emailAuthenticated, $user );
+		$out->addWikiMsg( 'emailauthenticated', $time, $d, $t );
 	}
 
 	/**
@@ -162,38 +168,54 @@ class SpecialConfirmEmail extends UnlistedSpecialPage {
 	 * @param string $code Confirmation code
 	 */
 	private function attemptConfirm( $code ) {
+		// Enforce permissions, user blocks, and rate limits
+		$this->authorizeAction( 'confirmemail' )->throwErrorPageError();
+
 		$user = $this->userFactory->newFromConfirmationCode(
 			$code,
 			IDBAccessObject::READ_LATEST
 		);
 
-		if ( !is_object( $user ) ) {
+		if ( !$user ) {
+			// Invalid confirmation code
 			if ( User::isWellFormedConfirmationToken( $code ) ) {
-				if ( $this->getUser()->isNamed() && $this->getUser()->isEmailConfirmed() ) {
-					$this->getOutput()->addWikiMsg( 'confirmemail_loggedin' );
-				} else {
-					$this->getOutput()->addWikiMsg( 'confirmemail_invalid' );
-				}
+				$this->getOutput()->addWikiMsg( 'confirmemail_invalid' );
 			} else {
 				$this->getOutput()->addWikiMsg( 'confirmemail_invalid_format' );
 			}
-
 			return;
 		}
 
-		// Enforce permissions, user blocks, and rate limits
-		$this->authorizeAction( 'confirmemail' )->throwErrorPageError();
+		$isCurrentUser = $this->getUser()->isNamed() && $this->getUser()->equals( $user );
 
+		if ( $user->isEmailConfirmed() ) {
+			// Already confirmed using this code
+			if ( $isCurrentUser ) {
+				$this->getOutput()->addWikiMsg( 'confirmemail_alreadydone' );
+				$this->showConfirmedMessage();
+			} else {
+				$this->getOutput()->addWikiMsg( 'confirmemail_alreadydone_other',
+					wfEscapeWikiText( $user->getName() ) );
+			}
+			return;
+		}
+
+		// If we get here, this is a valid code, and we need to mark the email as confirmed
 		$userLatest = $user->getInstanceFromPrimary( IDBAccessObject::READ_EXCLUSIVE )
 			?? throw new LogicException( 'No user' );
 		$userLatest->confirmEmail();
 		$userLatest->saveSettings();
-		$message = $this->getUser()->isNamed() ? 'confirmemail_loggedin' : 'confirmemail_success';
-		$this->getOutput()->addWikiMsg( $message );
 
-		if ( !$this->getUser()->isNamed() ) {
-			$title = SpecialPage::getTitleFor( 'Userlogin' );
-			$this->getOutput()->returnToMain( true, $title );
+		if ( $isCurrentUser ) {
+			$this->getOutput()->addWikiMsg( 'confirmemail_loggedin' );
+		} else {
+			$this->getOutput()->addWikiMsg( 'confirmemail_other',
+				wfEscapeWikiText( $user->getName() ) );
+
+			if ( !$this->getUser()->isNamed() ) {
+				$title = SpecialPage::getTitleFor( 'Userlogin' );
+				$this->getOutput()->returnToMain( true, $title );
+			}
 		}
 	}
 }
