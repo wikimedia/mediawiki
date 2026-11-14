@@ -94,6 +94,20 @@ class OldChangesListTest extends MediaWikiLangTestCase {
 		);
 	}
 
+	public function testRecentChangesLine_CategorizationDiffHistLinks() {
+		$pageId = $this->insertPage( 'Help:Testpage' )['id'];
+		$recentChange = $this->testRecentChangesHelper->makeCategorizationRecentChange(
+			$this->getMutableTestUser()->getUser(), 'Category:Foo', $pageId, 5, 191, '20131103212153'
+		);
+
+		$line = $this->getOldChangesList()->recentChangesLine( $recentChange, false, 1 );
+
+		// The links are about the page added to the category, not the category (T420216)
+		$this->assertStringContainsString( "title=Help:Testpage&amp;curid=$pageId&amp;diff=5&amp;oldid=191", $line );
+		$this->assertStringContainsString( "title=Help:Testpage&amp;curid=$pageId&amp;action=history", $line );
+		$this->assertStringNotContainsString( 'title=Category:Foo&amp;curid', $line );
+	}
+
 	public function testRecentChangesLine_Flags() {
 		$oldChangesList = $this->getOldChangesList();
 		$recentChange = $this->getNewBotEditChange();
