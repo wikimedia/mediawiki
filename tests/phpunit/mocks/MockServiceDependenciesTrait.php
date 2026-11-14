@@ -4,6 +4,7 @@ namespace MediaWiki\Tests\Unit;
 
 use MediaWikiTestCaseTrait;
 use ReflectionClass;
+use ReflectionNamedType;
 use ReflectionParameter;
 
 /**
@@ -49,19 +50,24 @@ trait MockServiceDependenciesTrait {
 	private function getMockValueForParam( ReflectionParameter $param ) {
 		$pos = $param->getPosition();
 		$type = $param->getType();
-		if ( !$type || $type->getName() === 'string' ) {
+
+		if ( $type === null ) {
 			// Optimistically assume a string is okay
 			return "some unlikely string $pos";
 		}
+		// Reject ReflectionUnionType and ReflectionIntersectionType here
+		$this->assertInstanceOf( ReflectionNamedType::class, $type );
+
 		$type = $type->getName();
+		if ( $type === 'string' ) {
+			return "some unlikely string $pos";
+		}
 		if ( $type === 'array' || $type === 'iterable' ) {
 			return [ "some unlikely string $pos" ];
 		}
-
 		if ( class_exists( $type ) || interface_exists( $type ) ) {
 			return $this->createMock( $type );
 		}
-
 		$this->fail( "Unrecognized parameter type $type" );
 	}
 }

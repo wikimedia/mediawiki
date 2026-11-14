@@ -103,7 +103,9 @@ abstract class ExtensionServicesTestBase extends MediaWikiIntegrationTestCase {
 	public function testMethodWithDefaultServiceContainer( ReflectionMethod $method ): void {
 		$methodName = $method->getName();
 		$serviceName = $this->getServiceName( $methodName );
-		$expectedService = $this->createValue( $method->getReturnType() );
+		$returnType = $method->getReturnType();
+		$this->assertNotNull( $returnType );
+		$expectedService = $this->createValue( $returnType );
 		$this->setService( $serviceName, $expectedService );
 
 		if ( static::$wrapsServiceContainer ) {
@@ -120,7 +122,9 @@ abstract class ExtensionServicesTestBase extends MediaWikiIntegrationTestCase {
 	public function testMethodWithCustomServiceContainer( ReflectionMethod $method ): void {
 		$methodName = $method->getName();
 		$serviceName = $this->getServiceName( $methodName );
-		$expectedService = $this->createValue( $method->getReturnType() );
+		$returnType = $method->getReturnType();
+		$this->assertNotNull( $returnType );
+		$expectedService = $this->createValue( $returnType );
 		if ( static::$wrapsServiceContainer ) {
 			// wrap() requires a MediaWikiServices object.
 			// Mock only getService(), because the real get() method calls getService().
@@ -168,7 +172,7 @@ abstract class ExtensionServicesTestBase extends MediaWikiIntegrationTestCase {
 	}
 
 	private function createValue( ReflectionType $type ) {
-		// (in PHP 8.0, account for $type being a ReflectionUnionType here)
+		// Reject ReflectionUnionType and ReflectionIntersectionType here
 		$this->assertInstanceOf( ReflectionNamedType::class, $type );
 		/** @var ReflectionNamedType $type */
 		if ( $type->allowsNull() ) {
