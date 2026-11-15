@@ -635,7 +635,7 @@ class DataAccess extends IDataAccess {
 			$ret # value returned by reference
 		);
 
-		// Cast value to array since the hook returns this as a stdclass
+		// Cast value to array since the hook returns this as a stdClass
 		$tplData = $ret[$title] ?? null;
 		if ( $tplData ) {
 			// Deep convert to associative array

@@ -75,7 +75,7 @@ class HandleTOCMarkersDOM extends ContentDOMTransformStage {
 		}
 	}
 
-	private function generateToc( TocData $tocData, Language $lang, Document $doc, int $maxTocLevel ): Element {
+	private function generateToc( TOCData $tocData, Language $lang, Document $doc, int $maxTocLevel ): Element {
 		$customTitleKey = $tocData->getExtensionData( 'mw:title' );
 		$customId = $tocData->getExtensionData( 'mw:id' );
 		$customClass = $tocData->getExtensionData( 'mw:class' );

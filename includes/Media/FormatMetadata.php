@@ -1006,8 +1006,8 @@ class FormatMetadata extends ContextSource {
 		}
 		// T266707: historically this has used htmlspecialchars to protect
 		// the string contents, but it should probably be changed to use
-		// wfEscapeWikitext() instead -- however, "we still want to auto-link
-		// urls" so wfEscapeWikitext isn't *quite* right...
+		// wfEscapeWikiText() instead -- however, "we still want to auto-link
+		// urls" so wfEscapeWikiText isn't *quite* right...
 		return htmlspecialchars( $val );
 	}
 

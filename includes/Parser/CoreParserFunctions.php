@@ -2115,7 +2115,7 @@ class CoreParserFunctions {
 						# strip markers behind for embedded extension tags.
 						$parser->recursiveTagParseFully( $linkText )
 					);
-					$displayText = new HTMLArmor( $linkText );
+					$displayText = new HtmlArmor( $linkText );
 				}
 				$parser->getOutput()->addInterwikiLink( $target );
 				return [
