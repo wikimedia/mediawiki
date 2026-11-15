@@ -36,7 +36,7 @@ class UnsupportedContentTypeBodyValidator implements BodyValidator {
 	 */
 	public function validateBody( RequestInterface $request ) {
 		throw new LocalizedHttpException(
-			new MessageValue( 'rest-unsupported-content-type', [ $this->contentType ] ),
+			MessageValue::new( 'rest-unsupported-content-type' )->plaintextParams( $this->contentType ),
 			415
 		);
 	}

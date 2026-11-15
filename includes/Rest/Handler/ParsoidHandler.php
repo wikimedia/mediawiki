@@ -194,7 +194,7 @@ abstract class ParsoidHandler extends Handler {
 				return $json;
 			default:
 				throw new LocalizedHttpException(
-					new MessageValue( "rest-unsupported-content-type", [ $contentType ?? '(null)' ] ),
+					MessageValue::new( 'rest-unsupported-content-type' )->plaintextParams( $contentType ?? '(null)' ),
 					415
 				);
 		}

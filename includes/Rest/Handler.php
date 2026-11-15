@@ -932,7 +932,7 @@ abstract class Handler {
 		$supportedTypes = $this->getSupportedRequestTypes();
 		if ( $contentType !== null && !in_array( $contentType, $supportedTypes ) ) {
 			throw new LocalizedHttpException(
-				new MessageValue( 'rest-unsupported-content-type', [ $contentType ] ),
+				MessageValue::new( 'rest-unsupported-content-type' )->plaintextParams( $contentType ),
 				415
 			);
 		}
@@ -975,7 +975,7 @@ abstract class Handler {
 			// no break, else fall through to the error below.
 			default:
 				throw new LocalizedHttpException(
-					new MessageValue( 'rest-unsupported-content-type', [ $contentType ?? '(null)' ] ),
+					MessageValue::new( 'rest-unsupported-content-type' )->plaintextParams( $contentType ?? '(null)' ),
 					415
 				);
 		}

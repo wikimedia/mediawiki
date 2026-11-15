@@ -242,7 +242,7 @@ abstract class Module {
 			// There are allowed methods for this patch, so reply with Method Not Allowed.
 			$response = $this->responseFactory->createLocalizedHttpError( 405,
 				( new MessageValue( 'rest-wrong-method' ) )
-					->textParams( $method )
+					->plaintextParams( $method )
 					->commaListParams( $allowed )
 					->numParams( count( $allowed ) )
 			);
