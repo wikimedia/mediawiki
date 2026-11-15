@@ -5,7 +5,6 @@
  */
 
 use MediaWiki\FileRepo\File\FileSelectQueryBuilder;
-use MediaWiki\MainConfigNames;
 use MediaWiki\Maintenance\Maintenance;
 
 // @codeCoverageIgnoreStart
@@ -34,18 +33,17 @@ class FindMissingFiles extends Maintenance {
 		$mtime1 = $dbr->timestampOrNull( $this->getOption( 'mtimeafter', null ) );
 		$mtime2 = $dbr->timestampOrNull( $this->getOption( 'mtimebefore', null ) );
 
-		$migrationStage = $this->getServiceContainer()->getMainConfig()->get(
-			MainConfigNames::FileSchemaMigrationStage
-		);
-		$nameField = ( $migrationStage & SCHEMA_COMPAT_READ_NEW ) ? 'file_name' : 'img_name';
-
+		// Only the name is needed. Selecting the other fields of the file query
+		// together with GROUP BY is rejected under ONLY_FULL_GROUP_BY.
 		$queryBuilder = FileSelectQueryBuilder::newForFile( $dbr )
-			->groupBy( $nameField )
-			->orderBy( $nameField )
+			->clearFields()
+			->field( 'img_name' )
+			->groupBy( 'img_name' )
+			->orderBy( 'img_name' )
 			->limit( $batchSize );
 
 		if ( $mtime1 || $mtime2 ) {
-			$queryBuilder->join( 'page', null, 'page_title = ' . $nameField );
+			$queryBuilder->join( 'page', null, 'page_title = img_name' );
 			$queryBuilder->andWhere( [ 'page_namespace' => NS_FILE ] );
 
 			$queryBuilder->join( 'logging', null, 'log_page = page_id' );
@@ -60,7 +58,7 @@ class FindMissingFiles extends Maintenance {
 
 		do {
 			$res = ( clone $queryBuilder )
-				->where( $dbr->expr( $nameField, '>', $lastName ) )
+				->where( $dbr->expr( 'img_name', '>', $lastName ) )
 				->caller( __METHOD__ )->fetchResultSet();
 
 			// Check if any of these files are missing...

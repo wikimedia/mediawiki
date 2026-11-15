@@ -225,7 +225,7 @@ class ImageBuilder extends Maintenance {
 	private function fileCallback( \stdClass $row ): bool {
 		// Create a File object from the row
 		// This will also upgrade it
-		$file = $this->getRepo()->newFile( $row->file_name );
+		$file = $this->getRepo()->newFileFromRow( $row );
 
 		return $file->getUpgraded();
 	}
