@@ -64,7 +64,7 @@ class WebResponse {
 			return;
 		}
 
-		\MediaWiki\Request\HeaderCallback::warnIfHeadersSent();
+		HeaderCallback::warnIfHeadersSent();
 		if ( $http_response_code ) {
 			HttpHeader::send( $string, $replace, $http_response_code );
 		} else {
