@@ -2608,7 +2608,7 @@ class LocalFile extends File {
 		}
 
 		// T428296: This is intentionally unlocalised to produce a consistent and short URL
-		$url = WikiMap::getForeignURL( Wikimap::getCurrentWikiId(), "Special:Redirect/page/$pageId" );
+		$url = WikiMap::getForeignURL( WikiMap::getCurrentWikiId(), "Special:Redirect/page/$pageId" );
 		if ( $url === false ) {
 			return null;
 		}

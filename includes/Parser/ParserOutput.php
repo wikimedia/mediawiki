@@ -1854,7 +1854,7 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 		// Can be removed after parser cache contents have expired
 		$old = $this->getExtensionData( 'parsoid-render-id' );
 		if ( $old !== null ) {
-			return ParsoidRenderId::newFromKey( $old )->getUniqueID();
+			return ParsoidRenderID::newFromKey( $old )->getUniqueID();
 		}
 		return $this->getExtensionData( 'core:render-id' );
 	}

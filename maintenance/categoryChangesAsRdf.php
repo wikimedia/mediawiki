@@ -432,7 +432,7 @@ SPARQL;
 
 	/**
 	 * Write category data to RDF.
-	 * @param stdclass $row Database row
+	 * @param stdClass $row Database row
 	 */
 	private function writeCategoryData( $row ) {
 		$this->categoriesRdf->writeCategoryData(

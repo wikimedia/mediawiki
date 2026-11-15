@@ -88,7 +88,7 @@ class CategoryLinksTable extends TitleLinksTable {
 	 * @param ILBFactory $lbFactory
 	 * @param WANObjectCache $WANObjectCache
 	 * @param Config $config
-	 * @param JobqueueGroup $jobQueueGroup
+	 * @param JobQueueGroup $jobQueueGroup
 	 * @param HookContainer $hookContainer
 	 * @param Collation $collation
 	 * @param string $collationName
@@ -102,7 +102,7 @@ class CategoryLinksTable extends TitleLinksTable {
 		ILBFactory $lbFactory,
 		WANObjectCache $WANObjectCache,
 		Config $config,
-		JobqueueGroup $jobQueueGroup,
+		JobQueueGroup $jobQueueGroup,
 		HookContainer $hookContainer,
 		Collation $collation,
 		$collationName,

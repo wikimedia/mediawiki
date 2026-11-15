@@ -198,7 +198,7 @@ class PhpUnitXmlManager {
 	}
 
 	/**
-	 * We don't have access to Mediawiki's HTTPRequestFactory here since we are in a minimal
+	 * We don't have access to Mediawiki's HttpRequestFactory here since we are in a minimal
 	 * bootstrap and Mediawiki Services are not loaded. Use Guzzle to make a simple
 	 * unauthenticated GET for the results cache file. If anything goes wrong, we just continue
 	 * to split / run the tests without cached timing data.
@@ -264,7 +264,7 @@ class PhpUnitXmlManager {
 	}
 
 	/**
-	 * We don't have access to Mediawiki's HTTPRequestFactory here since we are in a minimal
+	 * We don't have access to Mediawiki's HttpRequestFactory here since we are in a minimal
 	 * bootstrap and Mediawiki Services are not loaded. Use Guzzle to make a simple
 	 * unauthenticated POST to the results server, to let it know that new results are available
 	 * for this job.

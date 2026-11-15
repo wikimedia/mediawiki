@@ -119,6 +119,6 @@ class GenerateJwt extends Maintenance {
 }
 
 // @codeCoverageIgnoreStart
-$maintClass = GenerateJWT::class;
+$maintClass = GenerateJwt::class;
 require_once RUN_MAINTENANCE_IF_MAIN;
 // @codeCoverageIgnoreEnd

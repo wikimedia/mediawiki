@@ -128,7 +128,7 @@ class EditWatchlistPagerTest extends MediaWikiUnitTestCase {
 				protected NamespaceInfo $namespaceInfo,
 				protected LinkBatchFactory $linkBatchFactory, protected HookRunner $hookRunner
 			) {
-				// copied from the parent, but without referring to MediawikiServices
+				// copied from the parent, but without referring to MediaWikiServices
 				$this->setContext( $context );
 				$this->mRequest = $this->getRequest();
 				$this->mOffset = $this->mRequest->getText( 'offset' );
