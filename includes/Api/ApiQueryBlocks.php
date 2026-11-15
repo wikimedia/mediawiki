@@ -347,7 +347,7 @@ class ApiQueryBlocks extends ApiQueryBase {
 				case 'page':
 					$value = [ 'id' => $restriction->getValue() ];
 					/** @var PageRestriction $restriction */
-					'@phan-var \MediaWiki\Block\Restriction\PageRestriction $restriction';
+					'@phan-var PageRestriction $restriction';
 					if ( !$restriction->getTitle() ) {
 						continue 2;
 					}

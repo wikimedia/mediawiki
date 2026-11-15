@@ -671,7 +671,7 @@ class MovePage {
 			return $moveAttemptResult;
 		} else {
 			$dummyRevision = $moveAttemptResult->getValue()['nullRevision'];
-			'@phan-var \MediaWiki\Revision\RevisionRecord $dummyRevision';
+			'@phan-var RevisionRecord $dummyRevision';
 		}
 
 		$redirid = $this->oldTitle->getArticleID();

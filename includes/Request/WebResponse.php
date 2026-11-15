@@ -63,7 +63,7 @@ class WebResponse {
 			return;
 		}
 
-		\MediaWiki\Request\HeaderCallback::warnIfHeadersSent();
+		HeaderCallback::warnIfHeadersSent();
 		if ( $http_response_code ) {
 			header( $string, $replace, $http_response_code );
 		} else {

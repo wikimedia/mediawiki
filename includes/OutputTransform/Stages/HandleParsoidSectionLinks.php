@@ -201,7 +201,7 @@ class HandleParsoidSectionLinks extends ContentDOMTransformStage {
 
 		// Reuse existing wrapper if present.
 		$maybeWrapper = $h->parentNode;
-		'@phan-var \Wikimedia\Parsoid\DOM\Element $maybeWrapper';
+		'@phan-var Element $maybeWrapper';
 		if (
 			DOMUtils::nodeName( $maybeWrapper ) === 'div' &&
 			DOMCompat::getClassList( $maybeWrapper )->contains( 'mw-heading' )

@@ -75,7 +75,7 @@ class LanguageLinksHandler extends SimpleHandler {
 			);
 		}
 
-		'@phan-var \MediaWiki\Page\ExistingPageRecord $page';
+		'@phan-var ExistingPageRecord $page';
 		$redirectResponse = $this->getRedirectHelper()->createNormalizationRedirectResponseIfNeeded(
 			$page,
 			$params['title'] ?? null

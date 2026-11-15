@@ -2,8 +2,10 @@
 
 namespace MediaWiki\Search;
 
+use MediaWiki\FileRepo\File\File;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Title\Title;
 use Wikimedia\Rdbms\IDBAccessObject;
@@ -16,12 +18,12 @@ use Wikimedia\Rdbms\IDBAccessObject;
 class RevisionSearchResult extends SearchResult {
 
 	/**
-	 * @var \MediaWiki\Revision\RevisionRecord|null
+	 * @var RevisionRecord|null
 	 */
 	protected $mRevisionRecord = null;
 
 	/**
-	 * @var \MediaWiki\FileRepo\File\File|null
+	 * @var File|null
 	 */
 	protected $mImage = null;
 
