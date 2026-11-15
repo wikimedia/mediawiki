@@ -4,8 +4,36 @@ use MediaWiki\Collation\IcuCollation;
 
 /**
  * @covers \MediaWiki\Collation\IcuCollation
+ * @covers \MediaWiki\Collation\PinyinCollation
  */
 class IcuCollationTest extends MediaWikiLangTestCase {
+
+	/**
+	 * @dataProvider firstLetterForCjkPunctuationProvider
+	 */
+	public function testGetFirstLetterForCjkPunctuation( string $collation, string $input, string $firstLetter ) {
+		$col = $this->getServiceContainer()->getCollationFactory()->makeCollation( $collation );
+		$this->assertSame( $firstLetter, $col->getFirstLetter( $input ) );
+	}
+
+	public static function firstLetterForCjkPunctuationProvider() {
+		foreach ( [
+			'uca-en',
+			'uca-zh@collation=unihan',
+			'uca-zh@collation=zhuyin',
+			'uca-zh@collation=pinyin',
+			'uca-zh@collation=stroke',
+			'pinyin-zh-u-kr-latn-hani',
+		] as $collation ) {
+			foreach ( [
+				'《测试》' => '《',
+				'『测试』' => '『',
+				'（测试）' => '(',
+			] as $input => $firstLetter ) {
+				yield "$collation: $input" => [ $collation, $input, $firstLetter ];
+			}
+		}
+	}
 
 	/**
 	 * @dataProvider numericAttributeProvider
