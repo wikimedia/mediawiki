@@ -202,7 +202,7 @@ class Command extends UnboxedCommand implements Stringable {
 	}
 
 	/**
-	 * Executes command. Afterwards, getExitCode() and getOutput() can be used to access execution
+	 * Executes command. Afterwards, getExitCode(), getStderr() and getStdout() can be used to access execution
 	 * results.
 	 *
 	 * @return UnboxedResult
