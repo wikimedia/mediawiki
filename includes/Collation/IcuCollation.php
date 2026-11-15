@@ -7,6 +7,7 @@
 namespace MediaWiki\Collation;
 
 use Collator;
+use IntlChar;
 use InvalidArgumentException;
 use Locale;
 use MediaWiki\Language\Language;
@@ -349,10 +350,10 @@ class IcuCollation extends Collation {
 
 		$firstChar = mb_substr( $string, 0, 1, 'UTF-8' );
 
-		// If the first character is a CJK character, just return that character.
+		// Show CJK characters as-is, for non-Chinese collations and punctuations
 		if (
-			$this->langCode !== 'zh' &&
-			ord( $firstChar[0] ) > 0x7f && self::isCjk( mb_ord( $firstChar ) )
+			ord( $firstChar[0] ) > 0x7f && self::isCjk( mb_ord( $firstChar ) ) &&
+			( $this->langCode !== 'zh' || IntlChar::ispunct( $firstChar ) )
 		) {
 			return $firstChar;
 		}
