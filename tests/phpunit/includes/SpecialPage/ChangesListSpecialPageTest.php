@@ -49,6 +49,7 @@ class ChangesListSpecialPageTest extends AbstractChangesListSpecialPageTestCase 
 	private ?ScopedCallback $teardownScope = null;
 
 	protected function setUp(): void {
+		parent::setUp();
 		$this->teardownScope = ExtensionRegistry::getInstance()->setAttributeForTest(
 			'RecentChangeSources', [] );
 		$this->overrideConfigValue(
@@ -56,21 +57,16 @@ class ChangesListSpecialPageTest extends AbstractChangesListSpecialPageTestCase 
 			[ '*' => [ 'edit' => true ] ]
 		);
 		$this->clearHooks();
-		parent::setUp();
+
+		ConvertibleTimestamp::setFakeTime( '20201231000000' );
+		$db = $this->getDb();
+		$expectedCutoff = $db->timestamp( ConvertibleTimestamp::time() - 86_400 );
+		$this->cutoffCond = "rc_timestamp >= '$expectedCutoff'";
 	}
 
 	protected function tearDown(): void {
 		ScopedCallback::consume( $this->teardownScope );
 		parent::tearDown();
-	}
-
-	/** @before */
-	protected function fakeTimestampSetUp() {
-		parent::fakeTimestampSetUp();
-		ConvertibleTimestamp::setFakeTime( '20201231000000' );
-		$db = $this->getDb();
-		$expectedCutoff = $db->timestamp( ConvertibleTimestamp::time() - 86_400 );
-		$this->cutoffCond = "rc_timestamp >= '$expectedCutoff'";
 	}
 
 	/**

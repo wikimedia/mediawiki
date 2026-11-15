@@ -15,11 +15,6 @@ use StatusValue;
  */
 class ElevatedSecurityAuthenticationRequestTest extends AuthenticationRequestTestCase {
 
-	public function tearDown(): void {
-		MWTimestamp::setFakeTime( false );
-		parent::tearDown();
-	}
-
 	protected function getInstance( array $args = [] ) {
 		[ $session, $securityLevel ] = $args;
 		return ElevatedSecurityAuthenticationRequest::create( $session, $securityLevel );

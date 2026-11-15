@@ -344,7 +344,6 @@ trait MediaWikiTestCaseTrait {
 	 * Does an associative sort that works for objects.
 	 *
 	 * @since 1.20
-	 *
 	 * @param array &$array
 	 */
 	protected function objectAssociativeSort( array &$array ) {
@@ -364,6 +363,12 @@ trait MediaWikiTestCaseTrait {
 	}
 
 	/**
+	 * Assert that no error_reporting override has leaked.
+	 *
+	 * NOTE: Unlike MWDebug and fake timestamp checks, error_reporting may only be
+	 * overriden with expectPHPError(), and not from `setUp/before`. Therefore we can
+	 * use "postCondition" instead of "after", which runs between the test and "after".
+	 *
 	 * @postCondition
 	 */
 	protected function phpErrorFilterPostConditions() {
@@ -378,8 +383,10 @@ trait MediaWikiTestCaseTrait {
 	}
 
 	/**
-	 * Re-enable any disabled deprecation warnings and allow same deprecations to be thrown
-	 * multiple times in different tests, so the PHPUnit expectDeprecation() works.
+	 * Reset any disabled deprecation warnings
+	 *
+	 * This allows the same deprecations to be thrown multiple times in different tests,
+	 * so the PHPUnit expectDeprecation() works.
 	 *
 	 * @after
 	 */
@@ -389,41 +396,43 @@ trait MediaWikiTestCaseTrait {
 	}
 
 	/**
-	 * Reset any fake timestamps so that they don't mess with any other tests.
-	 *
-	 * @since 1.37 before that, integration tests had it reset in
-	 * MediaWikiIntegrationTestCase::mediaWikiTearDown, and unit tests didn't at all
+	 * Reset any fake timestamps so that they don't leak.
 	 *
 	 * @after
+	 * @since 1.37
 	 */
 	protected function fakeTimestampTearDown() {
 		ConvertibleTimestamp::setFakeTime( null );
 	}
 
 	/**
-	 * Check that no fake timestamp is set before the tests (e.g. in a test provider).
-	 * They should be only set in the tests and cleared by fakeTimestampTearDown().
+	 * Assert that no fake timestamp has leaked.
 	 *
-	 * This method may cause spurious failures if you use `setFakeTime()` in your own
-	 * before-test method (`setUp()`, `addDBData()` etc., or any method annotated with `@before`),
-	 * since the order in which these methods run is hard to control.
+	 * Fake timestamps should only be set during a test, or in a `setUp/before` method directly
+	 * preceeding a test. Fake timestamps are automatically reset by fakeTimestampTearDown()
+	 * after each test.
 	 *
-	 * To avoid this problem:
-	 *  - If your test code doesn't need the fake time, use `setFakeTime( false )`
-	 *    to clear it at the end of the before-test method.
-	 *  - If your test code needs the fake time, override *this* method instead of using another
-	 *    before-test method, and call `setFakeTime()` in the override (after calling the parent).
+	 * If you set fake a timestamp during MediaWikiIntegrationTestCase::addDBDataOnce(), which
+	 * runs during the setUp/before of your first test, then we automatically undo this afterward
+	 * to prevent leaking to the first test (but not other tests).
 	 *
+	 * Avoid setting fake timestamps from data providers or from a `setUpBeforeClass/beforeClass`
+	 * method, because this will by default leak. If you have to, then you must reset it yourself
+	 * within the same method by calling `ConvertibleTimestamp::setFakeTime( null )`.
+	 *
+	 * @beforeClass
 	 * @since 1.43
-	 * @before
 	 */
-	protected function fakeTimestampSetUp() {
-		$realTime = time();
-		$maybeFakeTime = ConvertibleTimestamp::time();
-		if ( abs( $maybeFakeTime - $realTime ) > 1 ) {
-			$this->assertTrue( false, "Someone set a fake timestamp ($maybeFakeTime) " .
-				"and did not clean it up. This will cause confusing test failures." );
+	protected function fakeTimestampSetUpBeforeClass() {
+		$fake = TestingAccessWrapper::newFromClass( ConvertibleTimestamp::class )->fakeTimeCallback;
+		if ( $fake !== null ) {
+			$fakeTs = ConvertibleTimestamp::time();
+			$this->fail( "Someone set a fake timestamp ($fakeTs) and did not clean it up." );
 		}
+	}
+
+	protected function fakeTimestampSetUp() {
+		// TODO (krinkle, 2026-11-16): Remove after updating CheckUser and AbuseFilter calling parent.
 	}
 
 	/**

@@ -17,6 +17,7 @@ class SitemapGeneratorTest extends \MediaWikiIntegrationTestCase {
 	private static $baseId;
 
 	public function setUp(): void {
+		ConvertibleTimestamp::setFakeTime( '2025-01-01T00:00:00Z' );
 		$this->overrideConfigValues( [
 			MainConfigNames::ExtraGenderNamespaces => [
 				NS_USER => [
@@ -50,11 +51,9 @@ class SitemapGeneratorTest extends \MediaWikiIntegrationTestCase {
 		$this->editPage( 'User:M', '.' );
 		$this->editPage( 'User:F', '.' );
 		$this->editPage( 'User:N', '.' );
-		ConvertibleTimestamp::setFakeTime( false );
 	}
 
 	private function getSitemapGenerator() {
-		ConvertibleTimestamp::setFakeTime( '2025-01-01T00:00:00Z' );
 		$services = $this->getServiceContainer();
 		return new SitemapGenerator(
 			$services->getContentLanguage(),

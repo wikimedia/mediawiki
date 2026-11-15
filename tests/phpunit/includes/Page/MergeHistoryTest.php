@@ -86,7 +86,6 @@ class MergeHistoryTest extends MediaWikiIntegrationTestCase {
 		// Pages that will be merged
 		$this->insertPage( 'Merge1' );
 		$this->insertPage( 'Merge2' );
-		MWTimestamp::setFakeTime( false );
 	}
 
 	/**

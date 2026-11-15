@@ -51,6 +51,8 @@ use Wikimedia\Rdbms\ChangedTablesTracker;
 use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\IMaintainableDatabase;
+use Wikimedia\TestingAccessWrapper;
+use Wikimedia\Timestamp\ConvertibleTimestamp;
 
 /**
  * @since 1.18
@@ -717,7 +719,16 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 		if ( self::oncePerClass( $this->db ) ) {
 			$this->setUpSchema( $this->db );
 			ChangedTablesTracker::startTracking();
+			$fakeBefore = TestingAccessWrapper::newFromClass( ConvertibleTimestamp::class )->fakeTimeCallback;
 			$this->addDBDataOnce();
+			// See also MediaWikiTestCaseTrait::fakeTimestampSetUpBeforeClass
+			//
+			// NOTE: We restore instead of reset because addDBDataOnce happens at a weird point,
+			// during the first test setUp. A reset would break a fake in setUp for the first test.
+			$fakeAfter = TestingAccessWrapper::newFromClass( ConvertibleTimestamp::class )->fakeTimeCallback;
+			if ( $fakeBefore !== $fakeAfter ) {
+				ConvertibleTimestamp::setFakeTime( $fakeBefore );
+			}
 			static::$dbDataOnceTables = ChangedTablesTracker::getTables( $this->db->getDomainID() );
 			ChangedTablesTracker::stopTracking();
 		}
