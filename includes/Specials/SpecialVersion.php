@@ -146,9 +146,13 @@ class SpecialVersion extends SpecialPage {
 				$licenseFound = false;
 
 				if ( $extName === 'MediaWiki' ) {
-					$out->addWikiTextAsInterface(
-						file_get_contents( MW_INSTALL_PATH . '/COPYING' )
+					$license = file_get_contents( MW_INSTALL_PATH . '/COPYING' );
+					$license = str_replace(
+						'CREDITS file',
+						'[[Special:Version/Credits|CREDITS file]]',
+						$license
 					);
+					$out->addWikiTextAsInterface( $license );
 					$licenseFound = true;
 				} elseif ( ( $extNode !== null ) && isset( $extNode['path'] ) ) {
 					$files = ExtensionInfo::getLicenseFileNames( dirname( $extNode['path'] ) );
