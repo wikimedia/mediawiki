@@ -92,7 +92,7 @@ class MissingExtensionException extends Exception {
 	 * @return never
 	 */
 	public function render(): never {
-		if ( wfIsCli() ) {
+		if ( wfIsCLI() ) {
 			$this->renderText();
 		} else {
 			$this->renderHtml();
