@@ -161,6 +161,7 @@ class GenerateCollationData extends Maintenance {
 		}
 
 		$goodTertiaryChars = [];
+		$primaryWeights = [];
 
 		// For each character with an entry in allkeys.txt, overwrite the implicit
 		// entry in $this->weights that came from the UCD.
@@ -178,10 +179,6 @@ class GenerateCollationData extends Maintenance {
 			$primary = '';
 			$tertiary = '';
 
-			if ( !isset( $this->weights[$cp] ) ) {
-				// Non-printable, ignore
-				continue;
-			}
 			foreach ( StringUtils::explode( '[', $allWeights ) as $weightStr ) {
 				if ( preg_match_all( '/[*.]([0-9A-F]+)/', $weightStr, $m ) ) {
 					if ( $m[1][0] !== '0000' ) {
@@ -191,6 +188,13 @@ class GenerateCollationData extends Maintenance {
 						$tertiary .= '.' . $m[1][2];
 					}
 				}
+			}
+			// Track all primary weights for the expansion detection
+			$primaryWeights[$primary] = true;
+
+			// Skip characters excluded from header selection by charCallback()
+			if ( !isset( $this->weights[$cp] ) ) {
+				continue;
 			}
 			$this->weights[$cp] = $primary;
 			if ( $tertiary === '.0008'
@@ -226,7 +230,7 @@ class GenerateCollationData extends Maintenance {
 
 		foreach ( $this->groups as $weight => $group ) {
 			if ( preg_match( '/(\.[0-9A-F]*)\./', $weight, $m ) ) {
-				if ( isset( $this->groups[$m[1]] ) ) {
+				if ( isset( $primaryWeights[$m[1]] ) ) {
 					unset( $this->groups[$weight] );
 				}
 			}

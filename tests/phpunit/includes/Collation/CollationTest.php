@@ -106,6 +106,13 @@ class CollationTest extends MediaWikiLangTestCase {
 			[ 'uppercase-ba', 'в', 'В' ],
 			[ 'uppercase-smn', 'đ', 'Đ' ],
 
+			// CJK characters are their own headers outside of zh collations
+			[ 'uca-root', "\u{4E00}", "\u{4E00}" ], // `一`
+			// Kanbun with the same weight as its decomposition U+4E00
+			[ 'uca-root', "\u{3192}", "\u{3192}" ], // `㆒`
+			// Kanbun without decomposition, from the first-letters data since zh collations skip the CJK check
+			[ 'uca-zh@collation=pinyin', "\u{3190}", "\u{3190}" ], // `㆐`
+
 			[ 'uca-zh@collation=unihan', '测试', '⽔' ],
 			[ 'uca-zh@collation=unihan', '瀑布', '⽔' ],
 			[ 'uca-zh@collation=unihan', '安全', '⼧' ],
