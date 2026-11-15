@@ -222,12 +222,15 @@ class ApiQueryAllImages extends ApiQueryGeneratorBase {
 
 			}
 			if ( $params['filterbots'] != 'all' ) {
+				// With file read new, the actor table is inside the subquery
+				// and only reachable through the img_user alias
+				$userIdField = $fileQuery['fields']['img_user'] ?? 'img_user';
 				$this->addTables( 'user_groups' );
 				$this->addJoinConds( [ 'user_groups' => [
 					'LEFT JOIN',
 					[
 						'ug_group' => $this->groupPermissionsLookup->getGroupsWithPermission( 'bot' ),
-						'ug_user = actor_user',
+						"ug_user = $userIdField",
 						$db->expr( 'ug_expiry', '=', null )->or( 'ug_expiry', '>=', $db->timestamp() )
 					]
 				] ] );
