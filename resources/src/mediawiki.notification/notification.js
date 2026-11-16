@@ -559,6 +559,7 @@
 		 *
 		 * @memberof mw.notification
 		 * @type {number}
+		 * @default 3
 		 */
 		autoHideLimit: 3
 	};
