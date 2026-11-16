@@ -469,7 +469,7 @@ class ApiParse extends ApiBase {
 		$context = null;
 		if (
 			$skin || isset( $prop['subtitle'] ) || isset( $prop['headhtml'] ) || isset( $prop['categorieshtml'] ) ||
-			isset( $params['mobileformat'] )
+			( $params['mobileformat'] ?? false )
 		) {
 			// Enabling the skin via 'useskin', 'subtitle', 'headhtml', or 'categorieshtml'
 			// gets OutputPage and Skin involved, which (among others) applies
