@@ -15,6 +15,7 @@
 	"cdx-message-dismiss-button-label": "Tutup",
 	"cdx-popover-close-button-label": "Tutup",
 	"cdx-search-input-search-button-label": "Cari",
+	"cdx-skeleton-label": "Memuatkan",
 	"cdx-table-select-all-label": "Pilih semua baris",
 	"cdx-table-select-row-label": "Pilih baris $1 daripada $2",
 	"cdx-table-sort-caption": "$1 (pengepala lajur dengan butang boleh isih).",

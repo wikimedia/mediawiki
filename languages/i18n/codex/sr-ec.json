@@ -14,6 +14,7 @@
 	"cdx-message-dismiss-button-label": "Затвори",
 	"cdx-popover-close-button-label": "Затвори",
 	"cdx-search-input-search-button-label": "Претрага",
+	"cdx-skeleton-label": "Учитавање",
 	"cdx-table-select-all-label": "Изабери све редове",
 	"cdx-table-select-row-label": "Изаберите ред $1 од $2",
 	"cdx-typeahead-search-search-results-label": "Резултати претраге",

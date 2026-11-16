@@ -3296,6 +3296,7 @@
 	"version-software": "البرنامج المثبت",
 	"version-software-product": "المنتج",
 	"version-software-version": "النسخة",
+	"version-download-sbom": "تحميل SBOM",
 	"version-entrypoints": "نقطة دخول وصلات المواقع",
 	"version-entrypoints-header-entrypoint": "تقطة دخول",
 	"version-entrypoints-header-url": "المسار",

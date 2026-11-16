@@ -20,6 +20,7 @@
 	"cdx-message-dismiss-button-label": "关闭",
 	"cdx-popover-close-button-label": "关闭",
 	"cdx-search-input-search-button-label": "搜索",
+	"cdx-skeleton-label": "加载中",
 	"cdx-table-select-all-label": "选择所有行",
 	"cdx-table-select-row-label": "选择第$1行（共$2行）",
 	"cdx-table-sort-caption": "$1（有按钮的列表头可以排序）。",

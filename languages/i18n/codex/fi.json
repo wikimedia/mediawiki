@@ -14,6 +14,7 @@
 	"cdx-message-dismiss-button-label": "Sulje",
 	"cdx-popover-close-button-label": "Sulje",
 	"cdx-search-input-search-button-label": "Hae",
+	"cdx-skeleton-label": "Ladataan",
 	"cdx-table-select-all-label": "Valitse kaikki rivit",
 	"cdx-table-select-row-label": "Valitse rivi $1 / $2",
 	"cdx-table-sort-caption": "$1 (sarakeotsikot, joissa on painikkeet, ovat lajitettavissa).",

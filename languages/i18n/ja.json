@@ -3332,6 +3332,7 @@
 	"version-software": "インストール済みソフトウェア",
 	"version-software-product": "製品",
 	"version-software-version": "バージョン",
+	"version-download-sbom": "SBOMをダウンロード",
 	"version-entrypoints": "エントリーポイントの URL",
 	"version-entrypoints-header-entrypoint": "エントリーポイント",
 	"version-entrypoints-header-url": "URL",

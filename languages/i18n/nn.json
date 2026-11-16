@@ -2532,6 +2532,8 @@
 	"watchlistedit-normal-title": "Endre overvakingslista",
 	"watchlistedit-normal-check-all": "Marker alle",
 	"watchlistedit-normal-done": "{{PLURAL:$1|Éi side|$1 sider}} vart fjerna frå overvakingslista di:",
+	"watchlistedit-search-label": "Søk med prefiks (skil mellom store og små bokstavar):",
+	"watchlistedit-search-placeholder": "Søk i sider på overvakingslista di",
 	"watchlistedit-raw-title": "Endre på overvakingslista i råformat",
 	"watchlistedit-raw-legend": "Endre på overvakingslista i råformat",
 	"watchlistedit-raw-explain": "Sidene på overvakingslista di er viste nedanfor, og lista kan endrast ved å legge til eller fjerne sider frå lista;\nei side per line.\nNår du er ferdig, klikk «{{int:Watchlistedit-raw-submit}}».\nDu kan òg [[Special:EditWatchlist|nytte standardverktøyet]].",

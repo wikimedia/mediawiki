@@ -14,6 +14,7 @@
 	"cdx-message-dismiss-button-label": "Zapri",
 	"cdx-popover-close-button-label": "Zapri",
 	"cdx-search-input-search-button-label": "Išči",
+	"cdx-skeleton-label": "Nalaganje",
 	"cdx-table-select-all-label": "Izbira vseh vrstic",
 	"cdx-table-select-row-label": "Izbira vrstice $1 od $2",
 	"cdx-table-sort-caption": "$1 (glave stolpcev z gumbi so razvrstljive).",

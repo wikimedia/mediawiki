@@ -14,6 +14,7 @@
 	"cdx-message-dismiss-button-label": "Pechar",
 	"cdx-popover-close-button-label": "Pechar",
 	"cdx-search-input-search-button-label": "Procurar",
+	"cdx-skeleton-label": "Cargando",
 	"cdx-table-select-all-label": "Seleccionar todas as ringleiras",
 	"cdx-table-select-row-label": "Seleccionar a ringleira $1 de $2",
 	"cdx-table-sort-caption": "$1 (as cabeceiras de columna con botóns pódense ordenar).",

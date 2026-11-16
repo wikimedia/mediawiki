@@ -16,6 +16,7 @@
 	"cdx-message-dismiss-button-label": "Fechar",
 	"cdx-popover-close-button-label": "Fechar",
 	"cdx-search-input-search-button-label": "Pesquisar",
+	"cdx-skeleton-label": "Carregando",
 	"cdx-table-select-all-label": "Selecionar todas as linhas",
 	"cdx-table-select-row-label": "Selecione a linha $1 de $2",
 	"cdx-table-sort-caption": "$1 (os cabeçalhos de coluna com botões podem ser classificados).",

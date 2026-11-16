@@ -17,6 +17,7 @@
 	"cdx-message-dismiss-button-label": "أغلق",
 	"cdx-popover-close-button-label": "أغلق",
 	"cdx-search-input-search-button-label": "بحث",
+	"cdx-skeleton-label": "الحملة",
 	"cdx-table-select-all-label": "اختر جميع الصفوف",
 	"cdx-table-select-row-label": "اختر الصف $1 من $2",
 	"cdx-table-sort-caption": "$1 (يمكن فرز رؤوس الأعمدة التي تحتوي على الأزرار).",

@@ -398,5 +398,10 @@
 	"rest-openapispec-genericerrorresponse-property-desc-reqId": "معرّف الطلب. يظهر فقط في حالة أخطاء الخادم؛ قم بتضمينه عند الإبلاغ عن الخطأ.",
 	"rest-openapispec-genericerrorresponse-property-desc-exception": "تفاصيل مُهيكلة عن الاستثناء الذي تسبب في الخطأ. تظهر هذه التفاصيل فقط عندما تكون صفحة الويكي مُهيأة لعرض تفاصيل الاستثناء.",
 	"rest-openapispec-genericerrorresponse-property-desc-errorCode": "رمز قابل للقراءة آلياً يحدد الخطأ. يظهر فقط في حالة الأخطاء الموضعية.",
-	"rest-openapispec-genericerrorresponse-property-desc-tracing": "معلومات تشخيصية حول الطلب، مفيدة عند الإبلاغ عن الخطأ. تحتوي دائمًا على \"module\"، وقد تحتوي على \"request_id\" و\"method\" و\"uri\" و\"url\". محتوى هذا الكائن ليس جزءًا من عقد واجهة برمجة التطبيقات (API) وقد يتغير في أي وقت."
+	"rest-openapispec-genericerrorresponse-property-desc-tracing": "معلومات تشخيصية حول الطلب، مفيدة عند الإبلاغ عن الخطأ. تحتوي دائمًا على \"module\"، وقد تحتوي على \"request_id\" و\"method\" و\"uri\" و\"url\". محتوى هذا الكائن ليس جزءًا من عقد واجهة برمجة التطبيقات (API) وقد يتغير في أي وقت.",
+	"rest-item-single-value": "تعريف المعلم \"$1\" عنصر واحد ولا يجب أن يحتوي على \"|\" أو U+001F.",
+	"rest-item-not-found": "البند المطلوب ($1) لا يوجد.",
+	"rest-item-invalid": "البند المطلوب ($1) غير صالح.",
+	"rest-item-unavailable": "البند المطلوب ($1) غير متوفر.",
+	"rest-item-multiple-results": "وجدت البند النهائي أكثر من عنصر واحد لطلب. هذا خطأ في التكوين على الخادم."
 }

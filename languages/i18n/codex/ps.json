@@ -15,6 +15,7 @@
 	"cdx-message-dismiss-button-label": "تړل",
 	"cdx-popover-close-button-label": "تړل",
 	"cdx-search-input-search-button-label": "پلټل",
+	"cdx-skeleton-label": "بارېږي",
 	"cdx-table-select-all-label": "ټول کتارونه ټاکل",
 	"cdx-table-select-row-label": "له $2 څخه $1 کتار وټاکئ",
 	"cdx-table-sort-caption": "$1 (تڼیو سره د ستنې سرلیکونه د ترتیب وړ دي).",

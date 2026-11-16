@@ -6,6 +6,7 @@
 			"JLTRY",
 			"Mahabarata",
 			"SleaY",
+			"Uriel",
 			"VIGNERON"
 		]
 	},
@@ -19,6 +20,7 @@
 	"cdx-message-dismiss-button-label": "Fermer",
 	"cdx-popover-close-button-label": "Fermer",
 	"cdx-search-input-search-button-label": "Rechercher",
+	"cdx-skeleton-label": "Chargement",
 	"cdx-table-select-all-label": "Sélectionner toutes les lignes",
 	"cdx-table-select-row-label": "Sélectionner la ligne $1 sur $2",
 	"cdx-table-sort-caption": "$1 (les colonnes avec des en-têtes contenant des boutons peuvent être triées).",

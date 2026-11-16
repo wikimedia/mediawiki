@@ -3,6 +3,7 @@
 		"authors": [
 			"Bisang",
 			"Tensama0415",
+			"YeBoy371",
 			"Ykhwong",
 			"解浪"
 		]
@@ -17,6 +18,7 @@
 	"cdx-message-dismiss-button-label": "닫기",
 	"cdx-popover-close-button-label": "닫기",
 	"cdx-search-input-search-button-label": "검색",
+	"cdx-skeleton-label": "불러오는 중",
 	"cdx-table-select-all-label": "모든 줄 선택",
 	"cdx-table-select-row-label": "$2 중 $1 줄 선택",
 	"cdx-table-sort-caption": "$1 (버튼이 있는 열 헤더는 정렬 가능합니다)",

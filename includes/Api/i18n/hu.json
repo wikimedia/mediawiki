@@ -1202,6 +1202,7 @@
 	"api-help-methods-header": "Kérésmetódusok",
 	"api-help-datatypes-header": "Adattípusok",
 	"api-help-datatype-boolean": "A logikai paraméterek a HTML jelölőnégyzeteihez hasonlóan működnek: ha a paraméter meg van adva, az igazat jelent, függetlenül a paraméter értékétől. Hamis értékhez hagyd el a paramétert teljesen.",
+	"api-help-datatype-expiry": "A lejáratértékek lehetnek relatívak (pl. <kbd>5 months</kbd>, <kbd>2 weeks</kbd>) vagy abszolútak (pl. <kbd>2014-09-18T12:34:56Z</kbd>). Ha nem akarsz lejáratot, állítsd őket <kbd>infinite</kbd>-re, <kbd>indefinite</kbd>-re, <kbd>infinity</kbd>re vagy <kbd>never</kbd>re.",
 	"api-help-param-type-limit": "Típus: egész vagy <kbd>max</kbd>",
 	"api-help-param-type-presenceboolean": "Típus: logikai ([[Special:ApiHelp/main#main/datatype/boolean|részletek]])",
 	"api-help-param-type-timestamp": "Típus: {{PLURAL:$1|1=időbélyeg|2=időbélyegek listája}} ([[Special:ApiHelp/main#main/datatype/timestamp|engedélyezett formátumok]])",

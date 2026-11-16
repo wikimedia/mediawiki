@@ -2902,6 +2902,7 @@
 	"metadata-expand": "غځېدلی سپيناو ښودل",
 	"metadata-collapse": "غځېدلی سپيناو پټول",
 	"metadata-fields": "د انځور مېټاډاټا ډگرونه چې لړليک يې په همدې پيغام کې په لاندې توگه راغلی د انځور مخ په ښکارېدنه کې به هغه وخت ورگډ شي کله چې د مېټاډاټا لښتيال غځېږي.\nنور څه به په تلواليزه توگه پټ پاتې وي.\n* make\n* model\n* datetimeoriginal\n* exposuretime\n* fnumber\n* isospeedratings\n* focallength\n* artist\n* copyright\n* imagedescription\n* gpslatitude\n* gpslongitude\n* gpsaltitude\n* dc-rights\n* copyrightowner\n* usageterms\n* webstatement\n* licenseurl\n* attributionurl\n* preferredattributionname\n* credit\n* jpegfilecomment\n* pngfilecomment\n* giffilecomment\n* usercomment\n* citydest\n* citycreated\n* headline\n* source\n* locationdest\n* dc-contributor\n* dc-coverage\n* dc-publisher\n* dc-relation\n* label\n* nickname\n* personinimage\n* disclaimer\n* event\n* objectname\n* digitalsourcetype",
+	"metadata-langitem": "<strong>$2:</strong> $1",
 	"namespacesall": "ټول",
 	"monthsall": "ټول",
 	"confirmemail": "برېښليک‌پته تاييدول",
