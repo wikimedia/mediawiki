@@ -292,7 +292,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 	protected function appendNamespaces( string $property ): bool {
 		$nsProtection = $this->getConfig()->get( MainConfigNames::NamespaceProtection );
 
-		$data = [ ApiResult::META_TYPE => 'assoc' ];
+		$data = [];
 		foreach ( $this->contentLanguage->getFormattedNamespaces() as $ns => $title ) {
 			$data[$ns] = [
 				'id' => (int)$ns,

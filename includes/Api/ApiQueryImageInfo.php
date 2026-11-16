@@ -455,9 +455,8 @@ class ApiQueryImageInfo extends ApiQueryBase {
 			];
 		}
 		$version = $opts['version'];
-		$vals = [
-			ApiResult::META_TYPE => 'assoc',
-		];
+		$vals = [];
+		ApiResult::setArrayType( $vals, 'assoc' );
 
 		// Some information will be unavailable if the file does not exist. T221812
 		$exists = $file->exists();

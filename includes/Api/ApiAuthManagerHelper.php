@@ -287,8 +287,9 @@ class ApiAuthManagerHelper {
 			$describe = $req->describeCredentials();
 			$reqInfo = [
 				'id' => $req->getUniqueId(),
-				'metadata' => $req->getMetadata() + [ ApiResult::META_TYPE => 'assoc' ],
+				'metadata' => $req->getMetadata(),
 			];
+			ApiResult::setArrayType( $reqInfo['metadata'], 'assoc' );
 			switch ( $req->required ) {
 				case AuthenticationRequest::OPTIONAL:
 					$reqInfo['required'] = 'optional';

@@ -93,9 +93,7 @@ class ApiQueryPagesWithProp extends ApiQueryGeneratorBase {
 			}
 
 			if ( $resultPageSet === null ) {
-				$vals = [
-					ApiResult::META_TYPE => 'assoc',
-				];
+				$vals = [];
 				if ( $fld_ids ) {
 					$vals['pageid'] = (int)$row->page_id;
 				}
@@ -106,6 +104,7 @@ class ApiQueryPagesWithProp extends ApiQueryGeneratorBase {
 				if ( $fld_value ) {
 					$vals['value'] = $row->pp_value;
 				}
+				ApiResult::setArrayType( $vals, 'assoc' );
 				$fit = $result->addValue( [ 'query', $this->getModuleName() ], null, $vals );
 				if ( !$fit ) {
 					$this->setContinueEnumParameter( 'continue', $row->page_id );

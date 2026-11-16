@@ -1,6 +1,7 @@
 <?php
 namespace MediaWiki\Tests\Logging;
 
+use MediaWiki\Api\ApiResult;
 use MediaWiki\Cache\GenderCache;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Context\RequestContext;
@@ -208,8 +209,8 @@ abstract class LogFormatterTestCase extends MediaWikiLangTestCase {
 
 	protected static function removeApiMetaData( $val ) {
 		if ( is_array( $val ) ) {
-			unset( $val['_element'] );
-			unset( $val['_type'] );
+			unset( $val[ApiResult::META_INDEXED_TAG_NAME] );
+			unset( $val[ApiResult::META_TYPE] );
 			foreach ( $val as $key => $value ) {
 				$val[$key] = self::removeApiMetaData( $value );
 			}

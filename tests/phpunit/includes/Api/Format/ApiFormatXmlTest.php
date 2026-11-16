@@ -82,7 +82,7 @@ class ApiFormatXmlTest extends ApiFormatTestBase {
 				'<?xml version="1.0"?><api><itn>foo</itn><itn>bar</itn></api>' ],
 
 			// Subelements
-			[ [ 'a' => 1, 's' => 1, '_subelements' => [ 's' ] ],
+			[ [ 'a' => 1, 's' => 1, ApiResult::META_SUBELEMENTS => [ 's' ] ],
 				'<?xml version="1.0"?><api a="1"><s xml:space="preserve">1</s></api>' ],
 
 			// Content and subelement
