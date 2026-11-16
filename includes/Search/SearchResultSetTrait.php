@@ -4,8 +4,6 @@ namespace MediaWiki\Search;
 
 use ArrayIterator;
 
-// @phan-file-suppress PhanUndeclaredMethod
-
 /**
  * Trait useful for SearchResultSet implementations.
  * It holds the functions that are rarely needed to be overridden.
@@ -58,6 +56,10 @@ trait SearchResultSetTrait {
 		return null;
 	}
 
+	/** @return SearchResult[] */
+	abstract public function extractResults();
+
+	/** @return ArrayIterator<SearchResult> */
 	final public function getIterator(): ArrayIterator {
 		return new ArrayIterator( $this->extractResults() );
 	}
