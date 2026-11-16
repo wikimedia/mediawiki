@@ -11,7 +11,7 @@ namespace MediaWiki\Parser;
  * @ingroup Parser
  *
  * @property PPDPart_Hash[] $parts
- * @property int $startPos
+ * @property-read int $startPos
  */
 // phpcs:ignore Squiz.Classes.ValidClassName.NotCamelCaps
 class PPDStackElement_Hash {

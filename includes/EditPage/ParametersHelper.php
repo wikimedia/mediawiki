@@ -13,7 +13,7 @@ use MediaWiki\Title\Title;
  * Helper methods for resolving EditPage parameters that deal with page titles.
  *
  * @internal
- * @property SpecialPageFactory $specialPageFactory
+ * @property-read SpecialPageFactory $specialPageFactory
  */
 trait ParametersHelper {
 

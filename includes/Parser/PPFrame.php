@@ -12,8 +12,8 @@ use MediaWiki\Title\Title;
 /**
  * @ingroup Parser
  *
- * @property int $depth
- * @property PPFrame $parent
+ * @property-read int $depth
+ * @property-read PPFrame $parent
  */
 interface PPFrame {
 	public const NO_ARGS = 1;
