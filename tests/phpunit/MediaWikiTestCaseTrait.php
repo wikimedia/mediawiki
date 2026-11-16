@@ -431,10 +431,6 @@ trait MediaWikiTestCaseTrait {
 		}
 	}
 
-	protected function fakeTimestampSetUp() {
-		// TODO (krinkle, 2026-11-16): Remove after updating CheckUser and AbuseFilter calling parent.
-	}
-
 	/**
 	 * @param string $text
 	 * @param array $params
