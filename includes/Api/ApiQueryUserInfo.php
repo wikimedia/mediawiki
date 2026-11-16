@@ -288,9 +288,8 @@ class ApiQueryUserInfo extends ApiQueryBase {
 	 * @return array
 	 */
 	protected function getRateLimits( bool $applyNoRateLimit ) {
-		$retval = [
-			ApiResult::META_TYPE => 'assoc',
-		];
+		$retval = [];
+		ApiResult::setArrayType( $retval, 'assoc' );
 
 		$user = $this->getUser();
 		if ( $applyNoRateLimit && !$user->isPingLimitable() ) {

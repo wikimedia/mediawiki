@@ -366,9 +366,8 @@ class ApiErrorFormatter {
 		}
 		$data = $msg->getApiData();
 		if ( $data ) {
-			$value['data'] = $msg->getApiData() + [
-				ApiResult::META_TYPE => 'assoc',
-			];
+			ApiResult::setArrayType( $data, 'assoc' );
+			$value['data'] = $data;
 		}
 		return $value;
 	}

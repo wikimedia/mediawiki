@@ -1354,7 +1354,7 @@ class ApiResultTest extends MediaWikiIntegrationTestCase {
 				'two' => 2
 			],
 			'object_sequential_keys' => (object)[ 'a', 'b', 'c' ],
-			'_type' => "should be overwritten in result",
+			ApiResult::META_TYPE => 'should be overwritten in result',
 		];
 		$this->assertSame( [
 			ApiResult::META_TYPE => 'kvp',

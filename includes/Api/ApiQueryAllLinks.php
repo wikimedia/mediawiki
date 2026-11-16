@@ -250,9 +250,7 @@ class ApiQueryAllLinks extends ApiQueryGeneratorBase {
 			}
 
 			if ( $resultPageSet === null ) {
-				$vals = [
-					ApiResult::META_TYPE => 'assoc',
-				];
+				$vals = [];
 				if ( $fld_ids ) {
 					$vals['fromid'] = (int)$row->pl_from;
 				}
@@ -265,6 +263,7 @@ class ApiQueryAllLinks extends ApiQueryGeneratorBase {
 						$vals[$name] = $row->$field;
 					}
 				}
+				ApiResult::setArrayType( $vals, 'assoc' );
 				$fit = $result->addValue( [ 'query', $this->getModuleName() ], null, $vals );
 				if ( !$fit ) {
 					if ( $params['unique'] ) {

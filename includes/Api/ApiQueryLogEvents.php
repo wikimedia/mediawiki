@@ -311,9 +311,8 @@ class ApiQueryLogEvents extends ApiQueryBase {
 
 	private function extractRowInfo( \stdClass $row ): array {
 		$logEntry = DatabaseLogEntry::newFromRow( $row );
-		$vals = [
-			ApiResult::META_TYPE => 'assoc',
-		];
+		$vals = [];
+		ApiResult::setArrayType( $vals, 'assoc' );
 		$anyHidden = false;
 
 		if ( $this->fld_ids ) {
