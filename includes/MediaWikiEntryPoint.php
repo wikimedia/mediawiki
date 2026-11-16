@@ -6,6 +6,7 @@
 
 namespace MediaWiki;
 
+use DateTime;
 use LogicException;
 use MediaWiki\Block\BlockManager;
 use MediaWiki\Config\Config;
@@ -29,6 +30,7 @@ use Psr\Log\LoggerInterface;
 use RuntimeException;
 use Throwable;
 use Wikimedia\Http\HttpStatus;
+use Wikimedia\IPUtils;
 use Wikimedia\Rdbms\ChronologyProtector;
 use Wikimedia\Rdbms\LBFactory;
 use Wikimedia\Rdbms\ReadOnlyMode;
@@ -676,6 +678,28 @@ abstract class MediaWikiEntryPoint {
 		$spanStatus = $isServerError ? SpanInterface::SPAN_STATUS_ERROR : SpanInterface::SPAN_STATUS_UNSET;
 		TracerState::getInstance()->endRootSpan( $spanStatus );
 		$this->mediaWikiServices->getTracer()->shutdown();
+
+		// T445147: post.log
+		if (
+			// POST, PUT, DELETE or any other POST-like methods
+			!in_array( $this->context->getRequest()->getMethod(), [ 'GET', 'HEAD', 'OPTIONS' ] ) &&
+			// Skip internal JobRunner (T129982) and mw-api-int (T288223) requests,
+			// which would make up 80% of the log otherwise.
+			IPUtils::isPublic( $_SERVER['REMOTE_ADDR'] ?? '127.0.0.1' )
+		) {
+			LoggerFactory::getInstance( 'post' )->info(
+				'{reqStart} {entrypoint} {method} {url} {user} {ip}',
+				[
+					'reqStart' => ( new DateTime( '@' . $_SERVER['REQUEST_TIME_FLOAT'] ) )->format( 'Y-m-d\TH:i:s.up' ),
+					'entrypoint' => MW_ENTRY_POINT,
+					'method' => $this->context->getRequest()->getMethod(),
+					'url' => WebRequest::detectServer() . $this->getRequestURL(),
+					// Avoid special chars to ease slicing of udp2log files, like api.log
+					'user' => wfUrlencode( str_replace( ' ', '_', $this->context->getUser()->getName() ) ),
+					'ip' => $this->context->getRequest()->getIP(),
+				]
+			);
+		}
 
 		wfDebug( "Request ended normally" );
 	}
