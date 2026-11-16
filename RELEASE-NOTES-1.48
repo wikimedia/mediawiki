@@ -222,9 +222,9 @@ For notes on 1.47.x and older releases, see HISTORY.
   since that is guaranteed to be unique and stable (T444613).
 * The following Skin data template variables have been removed, see T430856
   for migration notes:
-*  - searchaction
-*  - personal_urls
-*  - data-portlets.data-personal
+  - searchaction
+  - personal_urls
+  - data-portlets.data-personal
 * The following methods have been removed:
   - ParserOptions::setThumbSize() (deprecated since 1.47)
   - ParserOptions::getIsPrintable() and ::setIsPrintable() (deprecated
