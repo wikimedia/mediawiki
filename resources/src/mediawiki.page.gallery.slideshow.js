@@ -392,12 +392,17 @@
 				iiprop: 'url'
 			};
 
+			// Request enough pixels for high-density screens, capped at 2x like
+			// the srcset of regular thumbnails. imageWidth and imageHeight are
+			// in CSS pixels.
+			const pixelRatio = Math.min( window.devicePixelRatio || 1, 2 );
+
 			// Check which dimension we need to request, based on
 			// image and container proportions.
 			if ( this.getDimensionToRequest( $img ) === 'height' ) {
-				params.iiurlheight = this.imageHeight;
+				params.iiurlheight = Math.round( this.imageHeight * pixelRatio );
 			} else {
-				params.iiurlwidth = this.imageWidth;
+				params.iiurlwidth = Math.round( this.imageWidth * pixelRatio );
 			}
 
 			this.imageInfoCache[ imageSrc ] = api.get( params ).then( ( data ) => {
