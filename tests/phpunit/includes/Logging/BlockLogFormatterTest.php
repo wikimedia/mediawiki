@@ -800,4 +800,50 @@ class BlockLogFormatterTest extends LogFormatterTestCase {
 	public function testMultiblocksDatabaseRows( $row, $extra ) {
 		$this->doTestLogFormatter( $row, $extra );
 	}
+
+	public static function provideMaterializeLogDatabaseRows() {
+		$texts = [
+			'deferredblock' => 'Logtestuser triggered a deferred block on themself.'
+				. ' The block is now in effect (log entry 1234).',
+			'suppress' => 'Logtestuser triggered a deferred hidden block on themself.'
+				. ' The block is now in effect (log entry 1234).',
+		];
+		foreach ( $texts as $type => $text ) {
+			yield $type => [
+				[
+					'type' => $type,
+					'action' => 'materialize',
+					'comment' => '',
+					'user' => 0,
+					'user_text' => 'Logtestuser',
+					'namespace' => NS_USER,
+					'title' => 'Logtestuser',
+					'params' => [
+						'5::logid' => 1234,
+						'blockId' => 42,
+					],
+				],
+				[
+					'text' => $text,
+					'api' => [
+						'logid' => 1234,
+						'blockId' => 42,
+					],
+				],
+			];
+		}
+	}
+
+	/**
+	 * @dataProvider provideMaterializeLogDatabaseRows
+	 */
+	public function testMaterializeLogDatabaseRows( $row, $extra ) {
+		$this->setGroupPermissions( [
+			'oversight' => [
+				'deferredblock' => true,
+				'suppressionlog' => true,
+			],
+		] );
+		$this->doTestLogFormatter( $row, $extra, [ 'oversight' ] );
+	}
 }

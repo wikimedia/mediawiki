@@ -149,7 +149,8 @@ class DeferredBlockMaterializer {
 				if ( !$this->blockStore->materializeDeferredBlock( $block ) ) {
 					return false;
 				}
-				$this->log( $block, $blocker, $placementLogEntry );
+				$logId = $this->log( $block, $blocker, $placementLogEntry );
+				$this->logMaterialization( $block, $blockTarget, $logId, $placementLogEntry );
 				if ( $block->getHideName() ) {
 					RevisionDeleteUser::suppressUserName( $blockTarget->getName(), $blockTarget->getId() );
 				}
@@ -197,12 +198,14 @@ class DeferredBlockMaterializer {
 	/**
 	 * Log the materialized block. This is logged as a new block by the original
 	 * blocker, with the same parameters as the placement of the deferred block.
+	 *
+	 * @return int The ID of the log entry
 	 */
 	private function log(
 		DatabaseBlock $block,
 		UserIdentity $blocker,
 		?DatabaseLogEntry $placementLogEntry
-	): void {
+	): int {
 		$expiry = $block->getExpiry();
 		$params = $placementLogEntry ? $placementLogEntry->getParameters() : [
 			'6::flags' => '',
@@ -233,6 +236,35 @@ class DeferredBlockMaterializer {
 		// The block was placed by the blocker, not by the target triggering it
 		$logEntry->setPerformer( $blocker );
 		$logEntry->setParameters( $params );
+		$logEntry->setRelations( [ 'ipb_id' => $block->getId() ] );
+		if ( $placementLogEntry ) {
+			$logEntry->setDeleted( $placementLogEntry->getDeleted() );
+		}
+		$logId = $logEntry->insert();
+		$logEntry->publish( $logId );
+		return $logId;
+	}
+
+	/**
+	 * Log the materialization in the log that has the placement of the deferred block.
+	 * This log entry links to the public log entry of the block.
+	 */
+	private function logMaterialization(
+		DatabaseBlock $block,
+		UserIdentity $performer,
+		int $blockLogId,
+		?DatabaseLogEntry $placementLogEntry
+	): void {
+		$logEntry = new ManualLogEntry(
+			$block->getHideBlock() ? 'suppress' : 'deferredblock',
+			'materialize'
+		);
+		$logEntry->setTarget( Title::makeTitle( NS_USER, $block->getTargetName() ) );
+		$logEntry->setPerformer( $performer );
+		$logEntry->setParameters( [
+			'5::logid' => $blockLogId,
+			'blockId' => $block->getId(),
+		] );
 		$logEntry->setRelations( [ 'ipb_id' => $block->getId() ] );
 		if ( $placementLogEntry ) {
 			$logEntry->setDeleted( $placementLogEntry->getDeleted() );

@@ -12472,6 +12472,13 @@ class MainConfigSchema {
 					'NamespaceInfo',
 				]
 			],
+			'deferredblock/materialize' => [
+				'class' => BlockLogFormatter::class,
+				'services' => [
+					'TitleParser',
+					'NamespaceInfo',
+				]
+			],
 			'deferredblock/reblock' => [
 				'class' => BlockLogFormatter::class,
 				'services' => [
@@ -12568,6 +12575,13 @@ class MainConfigSchema {
 			],
 			'suppress/delete' => DeleteLogFormatter::class,
 			'suppress/event' => DeleteLogFormatter::class,
+			'suppress/materialize' => [
+				'class' => BlockLogFormatter::class,
+				'services' => [
+					'TitleParser',
+					'NamespaceInfo',
+				]
+			],
 			'suppress/reblock' => [
 				'class' => BlockLogFormatter::class,
 				'services' => [
@@ -12615,6 +12629,7 @@ class MainConfigSchema {
 				'block' => [ 'block' ],
 				'reblock' => [ 'reblock' ],
 				'unblock' => [ 'unblock' ],
+				'materialize' => [ 'materialize' ],
 			],
 			'delete' => [
 				'delete' => [ 'delete' ],
@@ -12660,6 +12675,7 @@ class MainConfigSchema {
 				'block' => [ 'block' ],
 				'reblock' => [ 'reblock' ],
 				'unblock' => [ 'unblock' ],
+				'materialize' => [ 'materialize' ],
 			],
 			'upload' => [
 				'upload' => [ 'upload' ],
