@@ -7792,6 +7792,7 @@ config-schema:
             contentmodel/change: MediaWiki\Logging\ContentModelLogFormatter
             contentmodel/new: MediaWiki\Logging\ContentModelLogFormatter
             deferredblock/block: { class: MediaWiki\Logging\BlockLogFormatter, services: [TitleParser, NamespaceInfo] }
+            deferredblock/materialize: { class: MediaWiki\Logging\BlockLogFormatter, services: [TitleParser, NamespaceInfo] }
             deferredblock/reblock: { class: MediaWiki\Logging\BlockLogFormatter, services: [TitleParser, NamespaceInfo] }
             deferredblock/unblock: { class: MediaWiki\Logging\BlockLogFormatter, services: [TitleParser, NamespaceInfo] }
             delete/delete: MediaWiki\Logging\DeleteLogFormatter
@@ -7825,6 +7826,7 @@ config-schema:
             suppress/block: { class: MediaWiki\Logging\BlockLogFormatter, services: [TitleParser, NamespaceInfo] }
             suppress/delete: MediaWiki\Logging\DeleteLogFormatter
             suppress/event: MediaWiki\Logging\DeleteLogFormatter
+            suppress/materialize: { class: MediaWiki\Logging\BlockLogFormatter, services: [TitleParser, NamespaceInfo] }
             suppress/reblock: { class: MediaWiki\Logging\BlockLogFormatter, services: [TitleParser, NamespaceInfo] }
             suppress/revision: MediaWiki\Logging\DeleteLogFormatter
             suppress/unblock: { class: MediaWiki\Logging\BlockLogFormatter, services: [TitleParser, NamespaceInfo] }
@@ -7844,7 +7846,7 @@ config-schema:
         default:
             block: { block: [block], reblock: [reblock], unblock: [unblock] }
             contentmodel: { change: [change], new: [new] }
-            deferredblock: { block: [block], reblock: [reblock], unblock: [unblock] }
+            deferredblock: { block: [block], reblock: [reblock], unblock: [unblock], materialize: [materialize] }
             delete: { delete: [delete], delete_redir: [delete_redir, delete_redir2], restore: [restore], event: [event], revision: [revision] }
             import: { interwiki: [interwiki], upload: [upload] }
             managetags: { create: [create], delete: [delete], activate: [activate], deactivate: [deactivate] }
@@ -7852,7 +7854,7 @@ config-schema:
             newusers: { create: [create, newusers], create2: [create2], autocreate: [autocreate], byemail: [byemail] }
             protect: { protect: [protect], modify: [modify], unprotect: [unprotect], move_prot: [move_prot] }
             rights: { rights: [rights], autopromote: [autopromote] }
-            suppress: { event: [event], revision: [revision], delete: [delete], block: [block], reblock: [reblock], unblock: [unblock] }
+            suppress: { event: [event], revision: [revision], delete: [delete], block: [block], reblock: [reblock], unblock: [unblock], materialize: [materialize] }
             upload: { upload: [upload], overwrite: [overwrite], revert: [revert] }
         type: object
         description: |-

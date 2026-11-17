@@ -169,6 +169,19 @@ class BlockLogFormatter extends LogFormatter {
 
 				$params[6] = Message::rawParam( $this->context->getLanguage()->listToText( $restrictions ) );
 			}
+		} elseif ( $subtype === 'materialize' && isset( $params[4] ) ) {
+			// Link to the log entry of the block that took effect
+			$logId = $this->context->getLanguage()->formatNumNoSeparators( $params[4] );
+			if ( $this->plaintext ) {
+				$params[4] = $logId;
+			} else {
+				$params[4] = Message::rawParam( $this->getLinkRenderer()->makeLink(
+					SpecialPage::getTitleValueFor( 'Log' ),
+					$logId,
+					[],
+					[ 'logid' => $params[4] ]
+				) );
+			}
 		}
 
 		return $params;

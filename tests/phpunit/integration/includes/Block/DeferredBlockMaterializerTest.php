@@ -78,12 +78,16 @@ class DeferredBlockMaterializerTest extends MediaWikiIntegrationTestCase {
 			->isDeferred();
 	}
 
-	private function getLogRows( string $logType ): array {
+	private function getLogRows( string $logType, ?string $logAction = null ): array {
+		$conds = [ 'log_type' => $logType ];
+		if ( $logAction !== null ) {
+			$conds['log_action'] = $logAction;
+		}
 		return iterator_to_array( $this->newSelectQueryBuilder()
 			->select( [ 'log_id', 'log_action', 'log_params', 'actor_name' ] )
 			->from( 'logging' )
 			->join( 'actor', null, 'log_actor = actor_id' )
-			->where( [ 'log_type' => $logType ] )
+			->where( $conds )
 			->orderBy( 'log_id' )
 			->caller( __METHOD__ )
 			->fetchResultSet() );
@@ -124,6 +128,14 @@ class DeferredBlockMaterializerTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( wfTimestamp( TS::ISO_8601, '20260108000000' ), $params['5::duration'] );
 		$this->assertSame( '', $params['6::flags'] );
 		$this->assertSame( $block->getId(), $params['blockId'] );
+
+		$materializeRows = $this->getLogRows( 'deferredblock', 'materialize' );
+		$this->assertCount( 1, $materializeRows );
+		// Logged as done by the target, who triggered the block
+		$this->assertSame( $this->target->getName(), $materializeRows[0]->actor_name );
+		$params = LogEntryBase::extractParams( $materializeRows[0]->log_params );
+		$this->assertSame( (int)$logRows[0]->log_id, $params['5::logid'] );
+		$this->assertSame( $block->getId(), $params['blockId'] );
 	}
 
 	public function testNotMaterializedWhenReadOnly(): void {
@@ -132,6 +144,7 @@ class DeferredBlockMaterializerTest extends MediaWikiIntegrationTestCase {
 
 		$this->assertFalse( $this->getMaterializer()->materialize( $block ) );
 		$this->assertTrue( $this->isDeferred( $block ) );
+		$this->assertSame( [], $this->getLogRows( 'deferredblock', 'materialize' ) );
 	}
 
 	public function testNotMaterializedForIP(): void {
@@ -182,12 +195,18 @@ class DeferredBlockMaterializerTest extends MediaWikiIntegrationTestCase {
 		$this->assertTrue( $userFactory->newFromId( $this->target->getId() )->isHidden() );
 
 		$this->assertSame( [], $this->getLogRows( 'block' ) );
+		$this->assertSame( [], $this->getLogRows( 'deferredblock', 'materialize' ) );
 		$suppressLogRows = $this->getLogRows( 'suppress' );
-		// One entry for the placement and one for the materialization
-		$this->assertCount( 2, $suppressLogRows );
+		// Entries for the placement, the block that took effect and the materialization
+		$this->assertSame(
+			[ 'block', 'block', 'materialize' ],
+			array_map( static fn ( $row ) => $row->log_action, $suppressLogRows )
+		);
 		$params = LogEntryBase::extractParams( $suppressLogRows[1]->log_params );
 		$this->assertSame( 'infinity', $params['5::duration'] );
 		$this->assertSame( 'hiddenname', $params['6::flags'] );
+		$params = LogEntryBase::extractParams( $suppressLogRows[2]->log_params );
+		$this->assertSame( (int)$suppressLogRows[1]->log_id, $params['5::logid'] );
 	}
 
 	public function testMaterializeOnlyOnce(): void {
@@ -202,6 +221,7 @@ class DeferredBlockMaterializerTest extends MediaWikiIntegrationTestCase {
 		$this->assertFalse( $materializer->materialize( $staleCopy ) );
 		$this->assertSame( [], $materializer->getDeferredBlocks( $this->target ) );
 		$this->assertCount( 1, $this->getLogRows( 'block' ) );
+		$this->assertCount( 1, $this->getLogRows( 'deferredblock', 'materialize' ) );
 		$this->assertFalse( $this->isDeferred( $block ) );
 	}
 
@@ -220,6 +240,7 @@ class DeferredBlockMaterializerTest extends MediaWikiIntegrationTestCase {
 
 		$this->assertTrue( $this->isDeferred( $block ) );
 		$this->assertSame( [], $this->getLogRows( 'block' ) );
+		$this->assertSame( [], $this->getLogRows( 'deferredblock', 'materialize' ) );
 	}
 
 	public function testMaterializedOnAuthorizeWrite(): void {
@@ -230,10 +251,14 @@ class DeferredBlockMaterializerTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( $block->getId(), $applicableBlock->getId() );
 		$this->assertFalse( $this->isDeferred( $block ) );
 		$this->assertCount( 1, $this->getLogRows( 'block' ) );
+		$materializeRows = $this->getLogRows( 'deferredblock', 'materialize' );
+		$this->assertCount( 1, $materializeRows );
+		$this->assertSame( $this->target->getName(), $materializeRows[0]->actor_name );
 
 		// Attempting again doesn't log again
 		$this->attemptEdit();
 		$this->assertCount( 1, $this->getLogRows( 'block' ) );
+		$this->assertCount( 1, $this->getLogRows( 'deferredblock', 'materialize' ) );
 	}
 
 	public function testMaterializedOnAuthorizeAction(): void {

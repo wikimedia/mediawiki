@@ -2429,6 +2429,13 @@ return [
 						'NamespaceInfo',
 					],
 				],
+				'deferredblock/materialize' => [
+					'class' => 'MediaWiki\\Logging\\BlockLogFormatter',
+					'services' => [
+						'TitleParser',
+						'NamespaceInfo',
+					],
+				],
 				'deferredblock/reblock' => [
 					'class' => 'MediaWiki\\Logging\\BlockLogFormatter',
 					'services' => [
@@ -2525,6 +2532,13 @@ return [
 				],
 				'suppress/delete' => 'MediaWiki\\Logging\\DeleteLogFormatter',
 				'suppress/event' => 'MediaWiki\\Logging\\DeleteLogFormatter',
+				'suppress/materialize' => [
+					'class' => 'MediaWiki\\Logging\\BlockLogFormatter',
+					'services' => [
+						'TitleParser',
+						'NamespaceInfo',
+					],
+				],
 				'suppress/reblock' => [
 					'class' => 'MediaWiki\\Logging\\BlockLogFormatter',
 					'services' => [
@@ -2574,6 +2588,9 @@ return [
 					],
 					'unblock' => [
 						'unblock',
+					],
+					'materialize' => [
+						'materialize',
 					],
 				],
 				'delete' => [
@@ -2679,6 +2696,9 @@ return [
 					],
 					'unblock' => [
 						'unblock',
+					],
+					'materialize' => [
+						'materialize',
 					],
 				],
 				'upload' => [
