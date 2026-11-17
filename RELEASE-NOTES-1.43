@@ -7,6 +7,34 @@ PHP 8.4 workboard: https://phabricator.wikimedia.org/tag/php_8.4_support/
 PHP 8.5 workboard: https://phabricator.wikimedia.org/tag/php_8.5_support/
 PHP 8.6 workboard: https://phabricator.wikimedia.org/tag/php_8.6_support/
 
+== MediaWiki 1.43.12 ==
+
+THIS IS NOT A RELEASE YET
+
+=== Changes since 1.43.11 ===
+* Localisation updates.
+* (T310433) API: imageinfo should take into account vector scaling.
+* (T426246) ApiUpload: Specify iiprop for nested ApiQueryImageInfo call.
+* (T426246) Media: Remove unused 'quality' param to ThumbnailImage.
+* (T426246) API: Add thumburls property to imageinfo API.
+* (T426246) API: Fix iiprop=thumburls to include fallback for last step.
+* (T426246) API: Apply iiurlparam handler params to imageinfo thumburls.
+* (T120386, T440551) Fix incomplete initialization in SpecialMypage.
+* (T441915) Docker: Update to images for PHP 8.3.35.
+* (T442269) Upgrading justinrainbow/json-schema (5.3.1 => 5.3.4).
+* (T441514) MultiHttpClient: Set the default content-length header as a string.
+* (T442979, T443783) Upgrading symfony/yaml (v5.4.52 => v5.4.56).
+* Language:strongDirRegex: Update for Unicode 18.
+* (T437592) Language: Add fallback to 'en' for invalid language codes.
+* (T56037) FileRepo: Remove extra HTTP request to retreive error message.
+* (T56037) ApiQueryImageInfo: Enable 1-hour CDN caching by default.
+* (T56037) FileRepo: Adopt iiprop=thumburls with CDN caching.
+* Media: Simplify widthStep condition in getSteppedThumbWidth.
+* (T56037) FileRepo: Consolidate metadata and thumburl requests.
+* (T438434) Allow a message key with parameters for descriptionmsg.
+* Command: Update comment referencing UnboxedResult::getOutput().
+* (T400736) UrlUtils: Normalize alternative Unicode dot characters in host.
+
 == MediaWiki 1.43.11 ==
 
 This is a maintenance release of the MediaWiki 1.43 branch.
