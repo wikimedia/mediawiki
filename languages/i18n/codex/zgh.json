@@ -1,0 +1,14 @@
+{
+	"@metadata": {
+		"authors": [
+			"Daoudsfouli"
+		]
+	},
+	"cdx-dialog-close-button-label": "ⵔⴳⵍ",
+	"cdx-message-dismiss-button-label": "ⵔⴳⵍ",
+	"cdx-search-input-search-button-label": "ⵔⵣⵓ",
+	"cdx-table-pager-button-first-page": "ⵜⴰⵙⴰ ⵜⴰⵎⵣⵡⴰⵔⵓⵜ",
+	"cdx-table-pager-button-last-page": "ⵜⴰⵙⴰ ⵜⴰⵎⴳⴳⴰⵔⵓⵜ",
+	"cdx-table-pager-button-next-page": "ⵜⴰⵙⵏⴰ ⴷ ⵢⵓⵙⴰⵏ",
+	"cdx-table-pager-button-prev-page": "ⵜⴰⵙⵏⴰ ⵉⵣⵔⵉⵏ"
+}

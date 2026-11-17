@@ -16,7 +16,8 @@
 			"Некто участник",
 			"ОйЛ",
 			"아라",
-			"Oujon"
+			"Oujon",
+			"Qamen"
 		]
 	},
 	"sunday": "нєдѣлꙗ",
@@ -179,6 +180,8 @@
 	"toc": "каталогъ",
 	"showtoc": "виждь",
 	"hidetoc": "съкрꙑи",
+	"collapsible-collapse": "Ꙁатвори",
+	"collapsible-expand": "Ѿврьꙁи",
 	"confirmable-yes": "да",
 	"confirmable-no": "нѣтъ",
 	"viewdeleted": "$1 видєти хощєши ;",
