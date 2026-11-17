@@ -10,7 +10,7 @@ use MediaWiki\Context\RequestContext;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Request\FauxRequest;
 use MediaWikiIntegrationTestCase;
-use Psr\Log\AbstractLogger;
+use TestLogger;
 
 /**
  * @group API
@@ -37,9 +37,11 @@ class ApiCSPReportTest extends MediaWikiIntegrationTestCase {
 
 		$log = $this->doExecute( $params, $cspReport );
 
+		unset( $log[0][2]['csp-report'] );
 		$this->assertEquals(
 			[
 				[
+					'warning',
 					'[{flags}] Received CSP report: ' .
 						'<{blockedOrigin}> blocked from being loaded on <{documentUri}>:{line}',
 					[
@@ -81,9 +83,10 @@ class ApiCSPReportTest extends MediaWikiIntegrationTestCase {
 		);
 		$log = $this->doExecute( $params, $cspReport );
 
+		$logLevels = array_map( static fn ( array $logLine ) => $logLine[0], $log );
 		$this->assertSame(
-			[],
-			$log,
+			[ 'debug' ],
+			$logLevels,
 			'logged messages'
 		);
 	}
@@ -105,10 +108,11 @@ class ApiCSPReportTest extends MediaWikiIntegrationTestCase {
 		];
 
 		$log = $this->doExecute( $params, $cspReport );
-		$this->assertNotEmpty( $log, 'should have log entry' );
+		$logLevels = array_map( static fn ( array $logLine ) => $logLine[0], $log );
+		$this->assertSame( [ 'warning' ], $logLevels, 'should have log entry' );
 		$this->assertEquals(
 			'chrome-extension://example-extension',
-			$log[0][1]['blockedOrigin'],
+			$log[0][2]['blockedOrigin'],
 			'should show extension ID, not blank'
 		);
 	}
@@ -136,18 +140,12 @@ class ApiCSPReportTest extends MediaWikiIntegrationTestCase {
 
 		$log = $this->doExecute( $params, $cspReport );
 
-		$this->assertSame( [], $log, 'should not log warning when chrome-extension matches false positive pattern' );
+		$logLevels = array_map( static fn ( array $logLine ) => $logLine[0], $log );
+		$this->assertSame( [ 'debug' ], $logLevels, 'should not warn for false positive chrome-extension' );
 	}
 
 	private function doExecute( array $params, array $cspReport ) {
-		$log = [];
-		$logger = $this->createMock( AbstractLogger::class );
-		$logger->method( 'warning' )->willReturnCallback(
-			static function ( $msg, $ctx ) use ( &$log ) {
-				unset( $ctx['csp-report'] );
-				$log[] = [ $msg, $ctx ];
-			}
-		);
+		$logger = new TestLogger( true, null, true );
 		$this->setLogger( 'csp-report-only', $logger );
 
 		$postBody = json_encode( [ 'csp-report' => $cspReport ] );
@@ -178,6 +176,7 @@ class ApiCSPReportTest extends MediaWikiIntegrationTestCase {
 		$api->method( 'getResult' )->willReturn( new ApiResult( false ) );
 
 		$api->execute();
-		return $log;
+
+		return $logger->getBuffer();
 	}
 }
