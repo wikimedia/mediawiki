@@ -14,6 +14,7 @@
 	"cdx-message-dismiss-button-label": "Затвори",
 	"cdx-popover-close-button-label": "Затвори",
 	"cdx-search-input-search-button-label": "Пребарај",
+	"cdx-skeleton-label": "Вчитување",
 	"cdx-table-select-all-label": "Избери ги сите редови",
 	"cdx-table-select-row-label": "Избери ред $1 од $2",
 	"cdx-table-sort-caption": "$1 (заглавијата на столбовите со копчиња се подредливи).",

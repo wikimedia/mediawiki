@@ -2494,6 +2494,7 @@
 	"unblocklog-showlog": "Log sekatan untuk {{GENDER:$1|pengguna}} telah disediakan untuk rujukan:",
 	"unblocklog-showsuppresslog": "Log tekanan untuk {{GENDER:$1|pengguna}} telah disediakan di bawah untuk rujukan:",
 	"blocklogtext": "Ini ialah log bagi tindakan menyekat dan menyahsekat pengguna.\nAlamat-alamat IP yang disekat secara automatik tidak disenaraikan di sini.\nSila lihat juga [[Special:BlockList|senarai sekatan]] untuk senarai larangan dan sekatan yang sedang berkuat kuasa.",
+	"log-name-deferredblock": "Log sekatan tertangguh",
 	"block-log-flags-anononly": "pengguna awanama sahaja",
 	"block-log-flags-nocreate": "pembukaan akaun dimatikan",
 	"block-log-flags-noautoblock": "sekatan automatik dimatikan",

@@ -16,6 +16,7 @@
 	"cdx-message-dismiss-button-label": "Chiudi",
 	"cdx-popover-close-button-label": "Chiudi",
 	"cdx-search-input-search-button-label": "Ricerca",
+	"cdx-skeleton-label": "Caricamento",
 	"cdx-table-select-all-label": "Seleziona tutte le righe",
 	"cdx-table-select-row-label": "Seleziona la riga $1 di $2",
 	"cdx-table-sort-caption": "$1 (le intestazioni delle colonne con pulsanti sono ordinabili).",
