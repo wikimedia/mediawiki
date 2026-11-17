@@ -221,15 +221,15 @@ class ApiWatch extends ApiBase {
 		$title = Title::newFromPageIdentity( $page );
 		$pagesToWatch = [ $page ];
 
-		// Also watch the talk page if this page can have one
+		// Also watch the respective subject/talk page if this page can have one
 		if ( $this->namespaceInfo->canHaveTalkPage( $title ) ) {
-			$talkPageTarget = $this->namespaceInfo->getTalkPage( $title );
+			$associatedPageTarget = $this->namespaceInfo->getAssociatedPage( $title );
 			// Convert LinkTarget to PageReferenceValue for consistency
-			$talkPage = PageReferenceValue::localReference(
-				$talkPageTarget->getNamespace(),
-				$talkPageTarget->getDBkey()
+			$associatedPage = PageReferenceValue::localReference(
+				$associatedPageTarget->getNamespace(),
+				$associatedPageTarget->getDBkey()
 			);
-			$pagesToWatch[] = $talkPage;
+			$pagesToWatch[] = $associatedPage;
 		}
 
 		// Get existing labels to remove
