@@ -7,6 +7,37 @@ PHP 8.6 workboard: https://phabricator.wikimedia.org/tag/php_8.6_support/
 
 == MediaWiki 1.46.2 ==
 
+THIS IS NOT A RELEASE YET
+
+=== Changes since 1.46.1 ===
+* Localisation updates.
+* (T415330) LocalFile: Use same timestamp for freshness condition in upgradeRow.
+* (T426832) Fix UserGroupManager::getUserAutopromoteGroups with interwiki users.
+* (T426832) Fix newFromUserIdentity calls with interwiki users.
+* (T426246) Media: Remove unused 'quality' param to ThumbnailImage.
+* (T426246) API: Add thumburls property to imageinfo API.
+* (T426246) API: Fix iiprop=thumburls to include fallback for last step.
+* (T426246) API: Apply iiurlparam handler params to imageinfo thumburls.
+* (T426246) ApiUpload: Specify iiprop for nested ApiQueryImageInfo call.
+* (T120386, T440551) Fix incomplete initialization in SpecialMypage.
+* (T441915) Docker: Update to images for PHP 8.3.35.
+* (T440518) Replace deprecated __sleep() with __serialize() in
+  non-serializables.
+* (T441514) MultiHttpClient: Set the default content-length header as a string.
+* (T442979, T443783) Upgrading symfony/yaml (v7.4.12 => v7.4.23).
+* (T56037) FileRepo: Remove extra HTTP request to retreive error message.
+* (T56037) ApiQueryImageInfo: Enable 1-hour CDN caching by default.
+* (T56037) FileRepo: Adopt iiprop=thumburls with CDN caching.
+* Media: Simplify widthStep condition in getSteppedThumbWidth.
+* (T56037) FileRepo: Consolidate metadata and thumburl requests.
+* Language:strongDirRegex: Update for Unicode 18.
+* (T437592) Language: Add fallback to 'en' for invalid language codes.
+* (T438434) Allow a message key with parameters for descriptionmsg.
+* Command: Update comment referencing UnboxedResult::getOutput().
+* (T400736) UrlUtils: Normalize alternative Unicode dot characters in host.
+
+== MediaWiki 1.46.2 ==
+
 This is a maintenance release of the MediaWiki 1.46 branch.
 
 === Changes since 1.46.1 ===
