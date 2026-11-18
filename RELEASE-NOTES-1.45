@@ -33,6 +33,7 @@ THIS IS NOT A RELEASE YET
 * (T438434) Allow a message key with parameters for descriptionmsg.
 * Command: Update comment referencing UnboxedResult::getOutput().
 * (T400736) UrlUtils: Normalize alternative Unicode dot characters in host.
+* Bump parsoid to 0.22.5.
 
 == MediaWiki 1.45.6 ==
 
