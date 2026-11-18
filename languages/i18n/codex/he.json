@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"A100Star",
 			"Amire80",
 			"Neriah",
 			"YaronSh"
@@ -16,6 +17,7 @@
 	"cdx-message-dismiss-button-label": "סגירה",
 	"cdx-popover-close-button-label": "סגירה",
 	"cdx-search-input-search-button-label": "חיפוש",
+	"cdx-skeleton-label": "התוכן נטען…",
 	"cdx-table-select-all-label": "בחירת כל השורות",
 	"cdx-table-select-row-label": "בחירת שורה $1 מתוך $2",
 	"cdx-table-sort-caption": "$1 (ניתן למיין עמודות שבכותרות שלהן יש כפתורים).",

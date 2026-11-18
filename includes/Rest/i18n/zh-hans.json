@@ -406,6 +406,8 @@
 	"rest-param-desc-sitemap-index-id": "网页索引从0开始。其余可用的索引可在robots.txt中指定。",
 	"rest-param-desc-sitemap-page-id": "所需文章页面。",
 	"rest-param-desc-sitemap-include-namespace": "站点地图中包含的命名空间ID。若未指定，则使用站点默认的命名空间ID。",
+	"api-help-param-continue.md": "还有更多结果时，请用此功能继续。有关如何继续查询的更多详细信息，请[前往 mediawiki.org 查阅](https://www.mediawiki.org/wiki/Special:MyLanguage/API:Continue)。",
+	"api-help-param-token.md": "令牌“$1”已从[action=query&meta=tokens]({{canonicalurl:Special:ApiHelp/query+tokens}})获得",
 	"rest-responseheader-desc-cachecontrol": "指定浏览器的缓存行为，明确其刷新本地存储资源的频率。",
 	"rest-responseheader-desc-deprecation": "指定浏览器的缓存行为，明确其刷新本地存储资源的频率。",
 	"rest-responseheader-desc-contentlanguage": "通知客户端返回内容的受众所使用的自然语言。",
@@ -425,7 +427,9 @@
 	"rest-openapispec-genericerrorresponse-property-desc-exception": "导致错误的异常的结构化描述。仅当wiki配置为显示异常详细信息时才会显示。",
 	"rest-openapispec-genericerrorresponse-property-desc-errorCode": "用于识别错误的机器可读代码。仅针对本地化错误显示。",
 	"rest-openapispec-genericerrorresponse-property-desc-tracing": "请求的诊断信息，有助于报告错误。始终包含“module”，可能包含“request_id”、“method”、“uri”和“url”。此对象的内容不属于API协议的一部分，可能随时更改。",
+	"rest-item-single-value": "参数“$1”仅标识单个项目，且不得包含“|”或U+001F。",
 	"rest-item-not-found": "请求的项目($1)不存在。",
 	"rest-item-invalid": "请求的项目($1)无效。",
-	"rest-item-unavailable": "请求的项目($1)不可用。"
+	"rest-item-unavailable": "请求的项目($1)不可用。",
+	"rest-item-multiple-results": "该端点发现了多于一个匹配请求的项目。服务器配置错误。"
 }
