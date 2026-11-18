@@ -158,7 +158,7 @@ describe( 'content/v2-beta Page', () => {
 				{ prop: 'bogus' }
 			);
 			assert.deepEqual( status, 400, text );
-			assert.nestedPropertyVal( body, 'errorCode', 'badvalue' );
+			assert.nestedPropertyVal( body, 'error_code', 'badvalue' );
 			assert.nestedPropertyVal( body, 'name', 'prop' );
 		} );
 
@@ -170,9 +170,9 @@ describe( 'content/v2-beta Page', () => {
 			);
 			assert.deepEqual( status, 404 );
 			// This module declares errorSchemaVersion 2.0, so errors are reported
-			// with errorCode/httpCode rather than the v1 type/title/detail shape.
-			assert.containsAllKeys( body, [ 'errorCode', 'message', 'httpCode' ] );
-			assert.nestedPropertyVal( body, 'errorCode', 'rest-nonexistent-title' );
+			// with error_code/http_code rather than the v1 type/title/detail shape.
+			assert.containsAllKeys( body, [ 'error_code', 'message', 'http_code' ] );
+			assert.nestedPropertyVal( body, 'error_code', 'rest-nonexistent-title' );
 		} );
 
 		// NOTE: These two currently FAIL with 403, and so do their v1 counterparts

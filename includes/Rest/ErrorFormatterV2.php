@@ -9,6 +9,16 @@ use Wikimedia\Message\MessageSpecifier;
  */
 class ErrorFormatterV2 extends ErrorFormatter {
 
+	/** Body keys set by the shared formatter and Validator, renamed to snake_case (T444406) */
+	private const SNAKE_CASE_KEYS = [
+		'httpCode' => 'http_code',
+		'errorCode' => 'error_code',
+		'messageTranslations' => 'message_translations',
+		'reqId' => 'request_id',
+		'failureCode' => 'failure_code',
+		'failureData' => 'failure_data',
+	];
+
 	/**
 	 * @param array $textFormatters
 	 * @param bool $showExceptionDetails
@@ -51,7 +61,10 @@ class ErrorFormatterV2 extends ErrorFormatter {
 	}
 
 	public function formatErrorBody( int $statusCode, array $bodyData = [] ): array {
-		$body = parent::formatErrorBody( $statusCode, $bodyData );
+		$body = [];
+		foreach ( parent::formatErrorBody( $statusCode, $bodyData ) as $key => $value ) {
+			$body[self::SNAKE_CASE_KEYS[$key] ?? $key] = $value;
+		}
 
 		// Tracing data is included for all errors (4xx and 5xx) to aid client-side
 		// diagnostics and upstream error reporting.

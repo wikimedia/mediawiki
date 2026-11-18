@@ -361,7 +361,9 @@ class ResponseFactoryTest extends MediaWikiUnitTestCase {
 			$this->assertSame(
 				[],
 				array_values( array_diff(
-					array_keys( $body ), array_keys( $schema['properties'] ), array_keys( self::ERROR_DATA )
+					array_keys( $body ), array_keys( $schema['properties'] ), array_keys( self::ERROR_DATA ),
+					// ErrorFormatterV2 renames them to snake_case
+					[ 'failure_code', 'failure_data' ]
 				) ),
 				"$variant: keys not declared in the schema"
 			);

@@ -127,7 +127,7 @@ describe( 'content/v2-beta Revision', () => {
 				{ prop: 'bogus' }
 			);
 			assert.deepEqual( status, 400, text );
-			assert.nestedPropertyVal( body, 'errorCode', 'badvalue' );
+			assert.nestedPropertyVal( body, 'error_code', 'badvalue' );
 			assert.nestedPropertyVal( body, 'name', 'prop' );
 		} );
 
@@ -137,7 +137,7 @@ describe( 'content/v2-beta Revision', () => {
 				{ prop: 'source' }
 			);
 			assert.strictEqual( status, 404 );
-			assert.containsAllKeys( body, [ 'errorCode', 'message', 'httpCode' ] );
+			assert.containsAllKeys( body, [ 'error_code', 'message', 'http_code' ] );
 		} );
 
 		it( 'Should perform variant conversion for prop=html', async () => {

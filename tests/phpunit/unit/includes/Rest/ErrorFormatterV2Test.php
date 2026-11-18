@@ -87,9 +87,9 @@ class ErrorFormatterV2Test extends MediaWikiUnitTestCase {
 
 		$body = $ef->formatLocalizedHttpException( 404, $exception );
 
-		$this->assertSame( 'rest-test-key', $body['errorCode'] );
+		$this->assertSame( 'rest-test-key', $body['error_code'] );
 		$this->assertSame( 'rest-test-key', $body['message'] );
-		$this->assertArrayHasKey( 'messageTranslations', $body );
+		$this->assertArrayHasKey( 'message_translations', $body );
 	}
 
 	public function testFormatLocalizedHttpExceptionFallsBackToExceptionMessage() {
@@ -106,9 +106,23 @@ class ErrorFormatterV2Test extends MediaWikiUnitTestCase {
 
 		$body = $ef->formatLocalizedHttpError( 404, new MessageValue( 'rest-test-key' ) );
 
-		$this->assertSame( 'rest-test-key', $body['errorCode'] );
+		$this->assertSame( 'rest-test-key', $body['error_code'] );
 		$this->assertSame( 'rest-test-key', $body['message'] );
-		$this->assertArrayHasKey( 'messageTranslations', $body );
+		$this->assertArrayHasKey( 'message_translations', $body );
+	}
+
+	public function testFormatErrorBodyUsesSnakeCaseKeys() {
+		$ef = $this->newFormatter();
+		$exception = new HttpException( 'bad', 400, [ 'failureCode' => 'missingparam', 'failureData' => null ] );
+
+		$body = $ef->formatHttpException( 400, $exception, [ 'reqId' => 'abc' ] );
+
+		$this->assertSame(
+			[ 'failure_code', 'failure_data', 'request_id', 'message', 'http_code', 'tracing' ],
+			array_keys( $body )
+		);
+		$this->assertSame( 400, $body['http_code'] );
+		$this->assertSame( 'abc', $body['request_id'] );
 	}
 
 	public function testFormatHttpExceptionOmitsErrorCode() {
@@ -117,7 +131,7 @@ class ErrorFormatterV2Test extends MediaWikiUnitTestCase {
 
 		$body = $ef->formatHttpException( 403, $exception );
 
-		$this->assertArrayNotHasKey( 'errorCode', $body );
+		$this->assertArrayNotHasKey( 'error_code', $body );
 		$this->assertSame( 'denied', $body['message'] );
 	}
 }

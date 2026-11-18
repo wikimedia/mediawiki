@@ -5,7 +5,7 @@
   "description": "Error response of modules using version 2.0 of the error format (opt-in via errorSchemaVersion \"2.0\"; currently only used by content/v2-beta). Additional properties are allowed since handlers may attach extra data.",
   "type": "object",
   "properties": {
-    "httpCode": {
+    "http_code": {
       "type": "integer",
       "minimum": 400,
       "maximum": 599,
@@ -21,7 +21,7 @@
         "The specified page does not exist"
       ]
     },
-    "messageTranslations": {
+    "message_translations": {
       "type": "object",
       "description": "A map of language codes to human-readable error messages, for clients that can use them.",
       "additionalProperties": {
@@ -33,14 +33,14 @@
         }
       ]
     },
-    "errorCode": {
+    "error_code": {
       "type": "string",
       "description": "A machine-readable code identifying the error. Only present for localized errors.",
       "examples": [
         "rest-nonexistent-title"
       ]
     },
-    "reqId": {
+    "request_id": {
       "type": "string",
       "description": "The ID of the request. Only present for server errors; include it when reporting the error."
     },
@@ -90,7 +90,7 @@
     }
   },
   "required": [
-    "httpCode",
+    "http_code",
     "tracing"
   ],
   "additionalProperties": true
