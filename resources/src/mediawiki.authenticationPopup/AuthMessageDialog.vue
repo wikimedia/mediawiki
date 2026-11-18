@@ -102,8 +102,11 @@ module.exports = defineComponent( {
 
 .mw-auth-message-dialog {
 	.cdx-dialog__footer__actions {
-		// Align the link with the action buttons
+		// Allow wrapping at desktop widths, when buttons are shown horizontally
+		flex-wrap: wrap-reverse;
+
 		a {
+			// Match appearance of action buttons
 			align-self: center;
 			.cdx-mixin-link();
 		}
