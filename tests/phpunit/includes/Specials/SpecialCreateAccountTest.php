@@ -149,7 +149,9 @@ class SpecialCreateAccountTest extends SpecialPageTestBase {
 		$this->assertStringContainsString( 'Some_page', $links[1]->getAttribute( 'href' ) );
 		$this->assertStringContainsString( 'foo=bar', $links[1]->getAttribute( 'href' ) );
 
-		$this->assertStringContainsString( '(createacct-ipblocked-details: ', $html );
+		$details = DOMCompat::querySelector( $doc, '#mw-createaccount-ipblocked-details' );
+		$this->assertNotNull( $details );
+		$this->assertStringContainsString( '(createacct-ipblocked-details: ', $details->textContent );
 		$this->assertStringContainsString( 'blockdetails=1', $html );
 	}
 
@@ -236,10 +238,12 @@ class SpecialCreateAccountTest extends SpecialPageTestBase {
 		);
 		$this->assertCount( 2, $links );
 
+		$this->assertSame( 'mw-createaccount-permerror-login', $links[0]->getAttribute( 'id' ) );
 		$this->assertSame( '(createacct-permerror-login)', $links[0]->textContent );
 		$this->assertStringContainsString( 'Special:UserLogin', $links[0]->getAttribute( 'href' ) );
 		$this->assertStringContainsString( 'cdx-button--action-progressive', $links[0]->getAttribute( 'class' ) );
 
+		$this->assertSame( 'mw-createaccount-permerror-return', $links[1]->getAttribute( 'id' ) );
 		$this->assertSame( '(createacct-permerror-return)', $links[1]->textContent );
 		$this->assertStringNotContainsString( 'cdx-button--action-progressive', $links[1]->getAttribute( 'class' ) );
 
