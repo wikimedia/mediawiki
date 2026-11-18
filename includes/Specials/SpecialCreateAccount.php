@@ -331,7 +331,9 @@ class SpecialCreateAccount extends LoginSignupSpecialPage {
 		$out->addHTML( Html::rawElement( 'div', [ 'class' => 'mw-createaccount-ipblocked' ],
 			$this->msg( 'createacct-ipblocked-text' )->parseAsBlock() .
 			$this->getPermissionErrorActionButtonsHtml() .
-			$this->msg( 'createacct-ipblocked-details' )->params( $detailsUrl )->parseAsBlock()
+			Html::rawElement( 'div', [ 'id' => 'mw-createaccount-ipblocked-details' ],
+				$this->msg( 'createacct-ipblocked-details' )->params( $detailsUrl )->parseAsBlock()
+			)
 		) );
 	}
 
@@ -349,6 +351,7 @@ class SpecialCreateAccount extends LoginSignupSpecialPage {
 
 		$loginButton = Html::element( 'a',
 			[
+				'id' => 'mw-createaccount-permerror-login',
 				'class' => $buttonClasses . ' cdx-button--action-progressive cdx-button--weight-primary',
 				'href' => SpecialPage::getTitleFor( 'Userlogin' )
 					->getLocalURL( $this->getPreservedParams( [ 'reset' => true ] ) ),
@@ -357,6 +360,7 @@ class SpecialCreateAccount extends LoginSignupSpecialPage {
 		);
 		$returnButton = Html::element( 'a',
 			[
+				'id' => 'mw-createaccount-permerror-return',
 				'class' => $buttonClasses,
 				'href' => ( Title::newFromText( $this->mReturnTo ) ?: Title::newMainPage() )
 					->createFragmentTarget( $this->mReturnToAnchor )->getLinkURL( $this->mReturnToQuery ),
