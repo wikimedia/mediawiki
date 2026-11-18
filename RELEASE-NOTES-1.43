@@ -34,6 +34,7 @@ THIS IS NOT A RELEASE YET
 * (T438434) Allow a message key with parameters for descriptionmsg.
 * Command: Update comment referencing UnboxedResult::getOutput().
 * (T400736) UrlUtils: Normalize alternative Unicode dot characters in host.
+* Bump parsoid to 0.20.11.
 
 == MediaWiki 1.43.11 ==
 
@@ -57,7 +58,7 @@ This is a security and maintenance release of the MediaWiki 1.43 branch.
   of suggesting wfLoadSkin.
 * Logger: Update oversize UDP payload truncation for macOS.
 * (T422686) http: Add contact URL to default HttpRequestFactory::getUserAgent.
-* (T413545) Bump parsoid to 0.20.10.
+* (T413545) Bump * (T413545) Bump parsoid to 0.20.10.parsoid to 0.20.10.
 * (T431819, CVE-2026-102967) SECURITY: SpecialUpload: Prevent Open Redirect
   using wpDestUrl.
 * (T431819, CVE-2026-102968) SECURITY: NoLocalSettings: Fixes a potential path
