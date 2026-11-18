@@ -7,7 +7,7 @@
 		]
 	},
 	"apihelp-block-summary": "Колдонуучуну бөгөттөө",
-	"apihelp-block-param-reason": "Бөгөттөө себеби.",
+	"apihelp-block-param-reason": "Бөгөттүн себеби.",
 	"apihelp-block-example-ip-simple": " <kbd>192.0.2.5</kbd> IP дарегин үч күнгө <kbd>First strike</kbd> себеби менен бөгөттөө.",
 	"apihelp-checktoken-param-token": "Текшерүү белгиси.",
 	"apihelp-delete-summary": "Баракты өчүрүү",
@@ -15,6 +15,7 @@
 	"apihelp-edit-summary": "Барактарды түзүү жана түзөтүү.",
 	"apihelp-edit-param-text": "Барактын мазмуну.",
 	"apihelp-edit-param-minor": "Майда түзөтүү.",
+	"apihelp-expandtemplates-param-title": "Барактын аталышы.",
 	"apihelp-login-param-name": "Колдонуучунун аты.",
 	"apihelp-login-example-login": "Кирүү.",
 	"apihelp-userrights-param-user": "Колдонуучу.",

@@ -3885,6 +3885,8 @@
 	"authmanager-realname-label": "वास्तविक नाम",
 	"authmanager-realname-help": "सदस्य का वास्तविक नाम",
 	"authmanager-elevatedsecurity-token-label": "सुरक्षित पुनः प्रमाणीकरण के लिए टोकन।",
+	"authmanager-elevatedsecurity-token-help": "पुनः प्रमाणीकरण को सत्यापित करने के लिए टोकन, अपरिवर्तित लौटाया जाना चाहिए।",
+	"authmanager-elevatedsecurity-missing-token": "पुनः प्रमाणीकरण के लिए उन्नत सुरक्षा टोकन उपलब्ध नहीं है।",
 	"authmanager-provider-password": "पासवर्ड-आधारित प्रमाणीकरण",
 	"authmanager-provider-password-domain": "पासवर्ड- और डोमेन-आधारित प्रमाणीकरण",
 	"authmanager-provider-temporarypassword": "अस्थायी पासवर्ड",

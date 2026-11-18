@@ -43,7 +43,8 @@
 			"Սերգեյ Սաֆարյան",
 			"לערי ריינהארט",
 			"ديفيد",
-			"아라"
+			"아라",
+			"Nintendofan885"
 		]
 	},
 	"pagecategories": "{{PLURAL:$1|Կատեգորիա|Կատեգորիաներ}}",
@@ -893,7 +894,7 @@
 	"license-header": "Արտոնագրում",
 	"nolicense": "Ընտրված չէ",
 	"license-nopreview": "(Նախադիտումը մատչելի չէ)",
-	"upload_source_url": " (գործուն, հանրամատչելի URL-հասցե)",
+	"upload_source_url": "(գործուն, հանրամատչելի URL-հասցե)",
 	"upload_source_file": "(ձեր ընտրած նիշքը ձեր սարքից)",
 	"listfiles-delete": "ջնջել",
 	"imgfile": "նիշք",

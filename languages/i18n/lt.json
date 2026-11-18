@@ -45,7 +45,8 @@
 			"Xabier Armendaritz",
 			"Zygimantus",
 			"לערי ריינהארט",
-			"아라"
+			"아라",
+			"Babellini"
 		]
 	},
 	"pagecategories": "{{PLURAL:$1|Kategorija|Kategorijos}}",
@@ -338,6 +339,7 @@
 	"userlogin-yourname": "Naudotojo vardas",
 	"userlogin-yourname-ph": "Įveskite savo naudotojo vardą",
 	"createacct-another-username-ph": "Įveskite naudotojo vardą",
+	"createacct-username-policy-popover-title": "Naudotojo vardo politika",
 	"userlogin-yourpassword": "Slaptažodis",
 	"userlogin-yourpassword-ph": "Įveskite savo slaptažodį",
 	"createacct-yourpassword-ph": "Įveskite slaptažodį",
