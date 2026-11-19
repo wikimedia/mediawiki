@@ -258,7 +258,7 @@ $1', 'सङ्कुचितचित्र=$1', 'अङ्गुष्ठ=$1'
 	'numberofadmins'            => [ '1', 'प्रबन्धकसङ्ख्या', 'प्रचालकसंख्या', 'NUMBEROFADMINS' ],
 	'numberofarticles'          => [ '1', 'लेखसङ्ख्या', 'लेखस्य‌सङ्ख्या', 'NUMBEROFARTICLES' ],
 	'numberofedits'             => [ '1', 'सम्पादनसङ्ख्या', 'NUMBEROFEDITS' ],
-	'numberoffiles'             => [ '1', 'सञ्चिकासङ्ख्या', 'संचिकानाम्‌‌सङ्ख्या', 'NUMBEROFFILES' ],
+	'numberoffiles'             => [ '1', 'सञ्चिकासङ्ख्या', 'संचिकानाम्‌सङ्ख्या', 'संचिकानाम्‌‌सङ्ख्या', 'NUMBEROFFILES' ],
 	'numberofpages'             => [ '1', 'पृष्ठसङ्ख्या', 'पृष्ठानाम्‌सङ्ख्या', 'NUMBEROFPAGES' ],
 	'numberofusers'             => [ '1', 'सदस्यसङ्ख्या', 'योजकस्यसङ्ख्या', 'NUMBEROFUSERS' ],
 	'pagename'                  => [ '1', 'पृष्ठनाम', 'PAGENAME' ],
