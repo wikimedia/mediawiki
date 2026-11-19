@@ -738,6 +738,7 @@
 	"undo-summary-anon": "Ännerung [[Special:Diff/$1|$1]] vum [[Special:Contributions/$2|$2]] réckgängeg gemaach",
 	"undo-summary-import": "Déi importéiert Versioun [[Special:Diff/$1|$1]] vum Benotzer [[:$2|$3]] zeréckgesat",
 	"undo-summary-import2": "Déi importéiert Versioun [[Special:Diff/$1|$1]] vum Benotzer $2 zeréckgesat",
+	"undo-summary-multiple": "{{PLURAL:$1|Eng Versioun|$1 Versioune}} vu(n) [[Special:Diff/$2|$2]] bis [[Special:Diff/$3|$3]] réckgängeg gemaach",
 	"undo-summary-username-hidden": "Versioun [[Special:Diff/$1|$1]] vun engem verstoppte Benotzer réckgängeg gemaach",
 	"viewpagelogs": "Logbicher fir dës Säit weisen",
 	"viewpagelogs-lowercase": "Logbicher fir dës Säit weisen",

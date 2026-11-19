@@ -4,6 +4,7 @@
 			"Ignatgg",
 			"METROKOP228 UA",
 			"Movses",
+			"Repakr",
 			"Yasen igra",
 			"Ата"
 		]
@@ -18,6 +19,7 @@
 	"cdx-message-dismiss-button-label": "Закрити",
 	"cdx-popover-close-button-label": "Закрити",
 	"cdx-search-input-search-button-label": "Пошук",
+	"cdx-skeleton-label": "Завантаження",
 	"cdx-table-select-all-label": "Вибрати усі рядки",
 	"cdx-table-select-row-label": "Виберіть ряд $1 з $2",
 	"cdx-table-sort-caption": "$1 (заголовки стовпців з кнопками можна сортувати).",

@@ -51,6 +51,7 @@
 	"apihelp-block-param-partial": "Blokira uporabnika na posameznih straneh ali v posameznih imenskih prostorih in ne v vsem spletišču.",
 	"apihelp-block-param-pagerestrictions": "Seznam naslovov, na katerih naj bo uporabniku preprečeno urejanje. Velja samo, kadar je <var>partial</var> nastavljeno na pravilno.",
 	"apihelp-block-param-namespacerestrictions": "Seznam identifikatorjev imenskih prostorov, v katerih naj bo uporabniku preprečeno urejanje. Velja samo, kadar je <var>partial</var> nastavljeno na pravilno.",
+	"apihelp-block-param-createpagenamespacerestrictions": "Seznam ID-jev imenskih prostorov, v katerem naj bo uporabniku preprečeno ustvarjanje strani. Velja samo, kadar je <var>partial</var> nastavljeno na »true«.",
 	"apihelp-block-param-actionrestrictions": "Seznam dejanj, za katera naj bo uporabniku preprečeno urejanje. Velja samo, kadar je <var>partial</var> nastavljeno na pravilno.",
 	"apihelp-block-example-ip-simple": "Blokiranje IP-naslova <kbd>192.0.2.5</kbd> za tri dni z razlogom.",
 	"apihelp-block-example-user-complex": "Blokiranje uporabnika <kbd>Vandal</kbd> za nedoločen čas z razlogom in preprečitev ustvarjanja novih računov in pošiljanja e-pošte.",

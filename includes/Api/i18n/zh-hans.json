@@ -127,6 +127,7 @@
 	"apihelp-block-param-partial": "封禁用户于特定页面或命名空间而不是整个站点。",
 	"apihelp-block-param-pagerestrictions": "阻止用户编辑的标题列表。仅在<var>partial</var>设置为true时适用。",
 	"apihelp-block-param-namespacerestrictions": "阻止用户编辑的命名空间ID列表。仅在<var>partial</var>设置为true时适用。",
+	"apihelp-block-param-createpagenamespacerestrictions": "阻止用户创建页面的命名空间ID列表。仅在<var>partial</var>设置为true时适用。",
 	"apihelp-block-param-actionrestrictions": "阻止用户执行的操作列表。仅在<var>partial</var>设置为true时适用。",
 	"apihelp-block-example-ip-simple": "有原因地将IP地址<kbd>192.0.2.5</kbd>封禁三天。",
 	"apihelp-block-example-user-complex": "有原因地将用户<kbd>Vandal</kbd>永久封禁，并阻止新账户创建和电子邮件发送。",

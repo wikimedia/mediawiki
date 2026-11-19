@@ -477,6 +477,8 @@
 	"createacct-loggedin": "이미 {{GENDER:$1|$1}}님으로 로그인되었습니다.",
 	"createacct-loggedin-continue-as": "{{GENDER:$1|$1}}님으로 계속",
 	"createacct-loggedin-heading": "다른 계정 만들기",
+	"createacct-permerror-login": "다른 계정으로 로그인",
+	"createacct-permerror-return": "계정 없이 계속하기",
 	"createacct-emailrequired": "이메일 주소",
 	"createacct-email-ph": "이메일 주소를 입력하세요",
 	"createacct-another-email-ph": "이메일 주소를 입력하세요",
