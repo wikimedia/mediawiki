@@ -865,8 +865,8 @@ Indent-Pre regression test: Trailing whitespace after sol-transparent content
 [[Category:Bar]]
 !! html/php
 !! html/parsoid
-<link rel="mw:PageProp/Category" href="./Category:Foo" data-parsoid='{"stx":"simple","a":{"href":"./Category:Foo"},"sa":{"href":"Category:Foo"}}'/>   
-<link rel="mw:PageProp/Category" href="./Category:Bar" data-parsoid='{"stx":"simple","a":{"href":"./Category:Bar"},"sa":{"href":"Category:Bar"}}'/>
+<link rel="mw:PageProp/Category" href="./Category:Foo" data-parsoid='{"a":{"href":"./Category:Foo"},"sa":{"href":"Category:Foo"},"stx":"simple"}'/>   
+<link rel="mw:PageProp/Category" href="./Category:Bar" data-parsoid='{"a":{"href":"./Category:Bar"},"sa":{"href":"Category:Bar"},"stx":"simple"}'/>
 !! end
 
 !! test

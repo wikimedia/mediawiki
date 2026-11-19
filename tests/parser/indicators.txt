@@ -86,14 +86,14 @@ paragraphs</indicator>
 </p>
 !! metadata/parsoid
 01=hello world
-02=<a rel="mw:WikiLink" href="./Main_Page" title="Main Page" data-parsoid='{"stx":"simple","a":{"href":"./Main_Page"},"sa":{"href":"Main Page"},"dsr":[66,79,2,2]}'>Main Page</a>
-03=<span typeof="mw:File" data-parsoid='{"optList":[{"ck":"width","ak":"25px"},{"ck":"link","ak":"link="}],"dsr":[113,143,null,null]}'><span data-parsoid="{}"><img resource="./File:Foobar.jpg" src="http://example.com/images/thumb/3/3a/Foobar.jpg/25px-Foobar.jpg" decoding="async" loading="lazy" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/50px-Foobar.jpg 2x" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="3" width="25" class="mw-file-element" data-parsoid='{"a":{"resource":"./File:Foobar.jpg","height":"3","width":"25"},"sa":{"resource":"File:Foobar.jpg"}}'/></span></span>
-04=<span typeof="mw:File" data-parsoid='{"optList":[{"ck":"width","ak":"25px"}],"dsr":[177,201,null,null]}'><a href="./File:Foobar.jpg" class="mw-file-description" data-parsoid="{}"><img resource="./File:Foobar.jpg" src="http://example.com/images/thumb/3/3a/Foobar.jpg/25px-Foobar.jpg" decoding="async" loading="lazy" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/50px-Foobar.jpg 2x" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="3" width="25" class="mw-file-element" data-parsoid='{"a":{"resource":"./File:Foobar.jpg","height":"3","width":"25"},"sa":{"resource":"File:Foobar.jpg"}}'/></a></span>
+02=<a rel="mw:WikiLink" href="./Main_Page" title="Main Page" data-parsoid='{"a":{"href":"./Main_Page"},"dsr":[66,79,2,2],"sa":{"href":"Main Page"},"stx":"simple"}'>Main Page</a>
+03=<span typeof="mw:File" data-parsoid='{"dsr":[113,143,null,null],"optList":[{"ck":"width","ak":"25px"},{"ck":"link","ak":"link="}]}'><span data-parsoid="{}"><img resource="./File:Foobar.jpg" src="http://example.com/images/thumb/3/3a/Foobar.jpg/25px-Foobar.jpg" decoding="async" loading="lazy" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/50px-Foobar.jpg 2x" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="3" width="25" class="mw-file-element" data-parsoid='{"a":{"resource":"./File:Foobar.jpg","height":"3","width":"25"},"sa":{"resource":"File:Foobar.jpg"}}'/></span></span>
+04=<span typeof="mw:File" data-parsoid='{"dsr":[177,201,null,null],"optList":[{"ck":"width","ak":"25px"}]}'><a href="./File:Foobar.jpg" class="mw-file-description" data-parsoid="{}"><img resource="./File:Foobar.jpg" src="http://example.com/images/thumb/3/3a/Foobar.jpg/25px-Foobar.jpg" decoding="async" loading="lazy" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/50px-Foobar.jpg 2x" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="3" width="25" class="mw-file-element" data-parsoid='{"a":{"resource":"./File:Foobar.jpg","height":"3","width":"25"},"sa":{"resource":"File:Foobar.jpg"}}'/></a></span>
 05=<ul data-parsoid='{"dsr":[235,244,0,0]}'><li data-parsoid='{"dsr":[235,239,1,0]}'>foo</li>
 <li data-parsoid='{"dsr":[240,244,1,0]}'>bar</li></ul>
 06=<span typeof="mw:Nowiki" data-parsoid='{"dsr":[278,298,8,9]}'>foo</span>
 07=<pre data-parsoid='{"dsr":[0,345,1,0]}'>Preformatted</pre>
-08=<div data-parsoid='{"stx":"html","autoInsertedEnd":true,"dsr":[379,394,5,0]}'>Broken tag</div>
+08=<div data-parsoid='{"autoInsertedEnd":true,"dsr":[379,394,5,0],"stx":"html"}'>Broken tag</div>
 09=<table class="wikitable" data-parsoid='{"dsr":[428,455,18,2]}'>
 <tbody data-parsoid='{"dsr":[447,453,0,0]}'><tr data-parsoid='{"autoInsertedStart":true,"dsr":[447,452,0,0]}'><td data-parsoid='{"dsr":[447,452,1,0]}'>cell</td></tr>
 </tbody></table>
@@ -275,7 +275,7 @@ showindicators
 x=<span>some stuff</span>
 !! metadata/parsoid
 x=<!-- hello -->
-<span data-parsoid='{"stx":"html","dsr":[35,58,6,7]}'>some stuff</span>
+<span data-parsoid='{"dsr":[35,58,6,7],"stx":"html"}'>some stuff</span>
 <!-- second comment-->
 !! wikitext
 <indicator name="x"><!-- hello -->
@@ -301,7 +301,7 @@ x=<span>some stuff</span>
 </p>
 !! metadata/parsoid
 x=
-<span data-parsoid='{"stx":"html","dsr":[30,53,6,7]}'>some stuff</span>
+<span data-parsoid='{"dsr":[30,53,6,7],"stx":"html"}'>some stuff</span>
 
 !! html/parsoid
 <p class="mw-empty-elt"><span typeof="mw:Nowiki"></span><meta typeof="mw:Extension/indicator" about="#mwt4" data-mw='{"name":"indicator","attrs":{"name":"x"},"body":{"extsrc":"\n&lt;span>some stuff&lt;/span>\n"}}'/><span typeof="mw:Nowiki"></span></p>

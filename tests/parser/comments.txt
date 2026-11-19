@@ -288,7 +288,7 @@ Comment in attribute
 !! html/php
 <div class="123">hi ho</div>
 !! html/parsoid
-<div class="123" data-parsoid='{"stx":"html","a":{"class":"123"},"sa":{"class":"&lt;!-- test -->123"}}'>hi ho</div>
+<div class="123" data-parsoid='{"a":{"class":"123"},"sa":{"class":"&lt;!-- test -->123"},"stx":"html"}'>hi ho</div>
 !! end
 
 ## The test isn't expected to roundtrip but it should serialize to

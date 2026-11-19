@@ -38,7 +38,7 @@ Sanitizer: Closing of open but not closed tags
 <p><s>foo
 </s></p>
 !! html/parsoid
-<p><s data-parsoid='{"stx":"html","autoInsertedEnd":true}'>foo</s></p>
+<p><s data-parsoid='{"autoInsertedEnd":true,"stx":"html"}'>foo</s></p>
 !! end
 
 !! test
@@ -74,7 +74,7 @@ wgFragmentMode=[ "html5", "legacy" ]
 <p><span id="æ:&#95;v">byte</span><a href="#æ:_v">backlink</a>
 </p>
 !! html/parsoid
-<p><span id="æ:_v" data-parsoid='{"stx":"html","a":{"id":"æ:_v"},"sa":{"id":"æ: v"}}'>byte</span><a rel="mw:WikiLink" href="./Main_Page#æ:_v" class="mw-selflink-fragment" data-parsoid='{"stx":"piped","a":{"href":"./Main_Page#æ:_v"},"sa":{"href":"#æ: v"}}'>backlink</a></p>
+<p><span id="æ:_v" data-parsoid='{"a":{"id":"æ:_v"},"sa":{"id":"æ: v"},"stx":"html"}'>byte</span><a rel="mw:WikiLink" href="./Main_Page#æ:_v" class="mw-selflink-fragment" data-parsoid='{"a":{"href":"./Main_Page#æ:_v"},"sa":{"href":"#æ: v"},"stx":"piped"}'>backlink</a></p>
 !! end
 
 !! test
@@ -100,7 +100,7 @@ parsoid=wt2html,html2html
 <p><br /><br id="a&#95;space" />
 </p>
 !! html/parsoid
-<p><br data-parsoid='{"stx":"html","selfClose":true,"a":{"id":null},"sa":{"id":""}}'/><br id="a_space" data-parsoid='{"stx":"html","selfClose":true,"a":{"id":"a_space"},"sa":{"id":"a space"}}'/></p>
+<p><br data-parsoid='{"a":{"id":null},"sa":{"id":""},"selfClose":true,"stx":"html"}'/><br id="a_space" data-parsoid='{"a":{"id":"a_space"},"sa":{"id":"a space"},"selfClose":true,"stx":"html"}'/></p>
 !! end
 
 !! test
@@ -111,7 +111,7 @@ Sanitizer: Validating the contents of the id attribute, empty attribute syntax (
 <p><br />
 </p>
 !! html/parsoid
-<p><br data-parsoid='{"stx":"html","selfClose":true,"a":{"id":null},"sa":{"id":""}}'/></p>
+<p><br data-parsoid='{"a":{"id":null},"sa":{"id":""},"selfClose":true,"stx":"html"}'/></p>
 !! end
 
 # In HTML5, id must be unique amongst all the ids in the element's home subtree.
@@ -148,12 +148,12 @@ Sanitizer: Validating that <meta> and <link> work, but only for Microdata
 </div>
 !! html/parsoid+standalone
 <div itemscope="" data-parsoid='{"stx":"html"}'>
-	<p><meta itemprop="hello" content="world" data-parsoid='{"stx":"html","noClose":true}'/>
+	<p><meta itemprop="hello" content="world" data-parsoid='{"noClose":true,"stx":"html"}'/>
 	&lt;meta http-equiv="refresh" content="5">
-	<meta itemprop="hello" content="5" data-parsoid='{"stx":"html","noClose":true,"a":{"http-equiv":null},"sa":{"http-equiv":"refresh"}}'/>
-	<link itemprop="hello" href="http://example.org" about="#mwt2" typeof="mw:ExpandedAttrs" data-parsoid='{"stx":"html","noClose":true,"a":{"href":"http://example.org"},"sa":{"href":"{{SERVER}}"}}' data-mw='{"attribs":[[{"txt":"href"},{"html":"&lt;a rel=\"nofollow\" class=\"external free\" href=\"http://example.org\" typeof=\"mw:Transclusion mw:ExtLink/URL\" about=\"#mwt1\" data-parsoid=&apos;{\"pi\":[[]]}&apos; data-mw=&apos;{\"parts\":[{\"template\":{\"target\":{\"wt\":\"SERVER\",\"function\":\"server\"},\"params\":{},\"i\":0}}]}&apos;>http://example.org&lt;/a>"}]]}'/>
+	<meta itemprop="hello" content="5" data-parsoid='{"a":{"http-equiv":null},"noClose":true,"sa":{"http-equiv":"refresh"},"stx":"html"}'/>
+	<link itemprop="hello" href="http://example.org" about="#mwt2" typeof="mw:ExpandedAttrs" data-parsoid='{"a":{"href":"http://example.org"},"noClose":true,"sa":{"href":"{{SERVER}}"},"stx":"html"}' data-mw='{"attribs":[[{"txt":"href"},{"html":"&lt;a rel=\"nofollow\" class=\"external free\" href=\"http://example.org\" typeof=\"mw:Transclusion mw:ExtLink/URL\" about=\"#mwt1\" data-parsoid=&apos;{\"pi\":[[]]}&apos; data-mw=&apos;{\"parts\":[{\"template\":{\"target\":{\"wt\":\"SERVER\",\"function\":\"server\"},\"params\":{},\"i\":0}}]}&apos;>http://example.org&lt;/a>"}]]}'/>
 	&lt;link rel="stylesheet" href="{{SERVER}}">
-	<link data-x-rel="stylesheet" itemprop="hello" href="http://example.org" about="#mwt6" typeof="mw:ExpandedAttrs" data-parsoid='{"stx":"html","noClose":true,"a":{"href":"http://example.org"},"sa":{"href":"{{SERVER}}"}}' data-mw='{"attribs":[[{"txt":"href"},{"html":"&lt;a rel=\"nofollow\" class=\"external free\" href=\"http://example.org\" typeof=\"mw:Transclusion mw:ExtLink/URL\" about=\"#mwt5\" data-parsoid=&apos;{\"pi\":[[]]}&apos; data-mw=&apos;{\"parts\":[{\"template\":{\"target\":{\"wt\":\"SERVER\",\"function\":\"server\"},\"params\":{},\"i\":0}}]}&apos;>http://example.org&lt;/a>"}]]}'/></p>
+	<link data-x-rel="stylesheet" itemprop="hello" href="http://example.org" about="#mwt6" typeof="mw:ExpandedAttrs" data-parsoid='{"a":{"href":"http://example.org"},"noClose":true,"sa":{"href":"{{SERVER}}"},"stx":"html"}' data-mw='{"attribs":[[{"txt":"href"},{"html":"&lt;a rel=\"nofollow\" class=\"external free\" href=\"http://example.org\" typeof=\"mw:Transclusion mw:ExtLink/URL\" about=\"#mwt5\" data-parsoid=&apos;{\"pi\":[[]]}&apos; data-mw=&apos;{\"parts\":[{\"template\":{\"target\":{\"wt\":\"SERVER\",\"function\":\"server\"},\"params\":{},\"i\":0}}]}&apos;>http://example.org&lt;/a>"}]]}'/></p>
 </div>
 !! end
 
@@ -226,7 +226,7 @@ T4304: HTML attribute safety (safe template; regression T4309)
 !! html/php
 <div title="This is a test template"></div>
 !! html/parsoid
-<div title="This is a test template" about="#mwt2" typeof="mw:ExpandedAttrs" data-parsoid='{"stx":"html","a":{"title":"This is a test template"},"sa":{"title":"{{test}}"}}' data-mw='{"attribs":[[{"txt":"title"},{"html":"&lt;span about=\"#mwt1\" typeof=\"mw:Transclusion\" data-parsoid=&#39;{\"pi\":[[]]}&#39; data-mw=&#39;{\"parts\":[{\"template\":{\"target\":{\"wt\":\"test\",\"href\":\"./Template:Test\"},\"params\":{},\"i\":0}}]}&#39;>This is a test template&lt;/span>"}]]}'></div>
+<div title="This is a test template" about="#mwt2" typeof="mw:ExpandedAttrs" data-parsoid='{"a":{"title":"This is a test template"},"sa":{"title":"{{test}}"},"stx":"html"}' data-mw='{"attribs":[[{"txt":"title"},{"html":"&lt;span about=\"#mwt1\" typeof=\"mw:Transclusion\" data-parsoid=&#39;{\"pi\":[[]]}&#39; data-mw=&#39;{\"parts\":[{\"template\":{\"target\":{\"wt\":\"test\",\"href\":\"./Template:Test\"},\"params\":{},\"i\":0}}]}&#39;>This is a test template&lt;/span>"}]]}'></div>
 !! end
 
 # Parsoid has enough context to handle this case
@@ -237,7 +237,7 @@ T4304: HTML attribute safety (dangerous template; 2309)
 !! html/php
 <div title=""></div>
 !! html/parsoid
-<div title='" onmouseover="alert(document.cookie)' about="#mwt2" typeof="mw:ExpandedAttrs" data-parsoid='{"stx":"html","a":{"title":"\" onmouseover=\"alert(document.cookie)"},"sa":{"title":"{{dangerous attribute}}"}}' data-mw='{"attribs":[[{"txt":"title"},{"html":"&lt;span about=\"#mwt1\" typeof=\"mw:Transclusion\" data-parsoid=&#39;{\"pi\":[[]]}&#39; data-mw=&#39;{\"parts\":[{\"template\":{\"target\":{\"wt\":\"dangerous attribute\",\"href\":\"./Template:Dangerous_attribute\"},\"params\":{},\"i\":0}}]}&#39;>\" onmouseover=\"alert(document.cookie)&lt;/span>"}]]}'></div>
+<div title='" onmouseover="alert(document.cookie)' about="#mwt2" typeof="mw:ExpandedAttrs" data-parsoid='{"a":{"title":"\" onmouseover=\"alert(document.cookie)"},"sa":{"title":"{{dangerous attribute}}"},"stx":"html"}' data-mw='{"attribs":[[{"txt":"title"},{"html":"&lt;span about=\"#mwt1\" typeof=\"mw:Transclusion\" data-parsoid=&#39;{\"pi\":[[]]}&#39; data-mw=&#39;{\"parts\":[{\"template\":{\"target\":{\"wt\":\"dangerous attribute\",\"href\":\"./Template:Dangerous_attribute\"},\"params\":{},\"i\":0}}]}&#39;>\" onmouseover=\"alert(document.cookie)&lt;/span>"}]]}'></div>
 !! end
 
 !! test
@@ -247,7 +247,7 @@ T4304: HTML attribute safety (dangerous style template; 2309)
 !! html/php
 <div style="/* insecure input */"></div>
 !! html/parsoid
-<div style="/* insecure input */" about="#mwt2" typeof="mw:ExpandedAttrs" data-parsoid='{"stx":"html","a":{"style":"/* insecure input */"},"sa":{"style":"{{dangerous style attribute}}"}}' data-mw='{"attribs":[[{"txt":"style"},{"html":"&lt;span about=\"#mwt1\" typeof=\"mw:Transclusion\" data-parsoid=&#39;{\"pi\":[[]]}&#39; data-mw=&#39;{\"parts\":[{\"template\":{\"target\":{\"wt\":\"dangerous style attribute\",\"href\":\"./Template:Dangerous_style_attribute\"},\"params\":{},\"i\":0}}]}&#39;>border-size: expression(alert(document.cookie))&lt;/span>"}]]}'></div>
+<div style="/* insecure input */" about="#mwt2" typeof="mw:ExpandedAttrs" data-parsoid='{"a":{"style":"/* insecure input */"},"sa":{"style":"{{dangerous style attribute}}"},"stx":"html"}' data-mw='{"attribs":[[{"txt":"style"},{"html":"&lt;span about=\"#mwt1\" typeof=\"mw:Transclusion\" data-parsoid=&#39;{\"pi\":[[]]}&#39; data-mw=&#39;{\"parts\":[{\"template\":{\"target\":{\"wt\":\"dangerous style attribute\",\"href\":\"./Template:Dangerous_style_attribute\"},\"params\":{},\"i\":0}}]}&#39;>border-size: expression(alert(document.cookie))&lt;/span>"}]]}'></div>
 !! end
 
 !! test
@@ -257,7 +257,7 @@ T4304: HTML attribute safety (safe parameter; 2309)
 !! html/php
 <div style="float: right; width: 200px">Magic div</div>
 !! html/parsoid
-<div style="float: right; width: 200px" about="#mwt1" typeof="mw:Transclusion" data-parsoid='{"stx":"html","a":{"style":"float: right; width: 200px"},"sa":{"style":"float: right; {{{1}}}"},"pi":[[{"k":"1"}]]}' data-mw='{"parts":[{"template":{"target":{"wt":"div style","href":"./Template:Div_style"},"params":{"1":{"wt":"width: 200px"}},"i":0}}]}'>Magic div</div>
+<div style="float: right; width: 200px" about="#mwt1" typeof="mw:Transclusion" data-parsoid='{"a":{"style":"float: right; width: 200px"},"pi":[[{"k":"1"}]],"sa":{"style":"float: right; {{{1}}}"},"stx":"html"}' data-mw='{"parts":[{"template":{"target":{"wt":"div style","href":"./Template:Div_style"},"params":{"1":{"wt":"width: 200px"}},"i":0}}]}'>Magic div</div>
 !! end
 
 !! test
@@ -267,7 +267,7 @@ T4304: HTML attribute safety (unsafe parameter; 2309)
 !! html/php
 <div style="/* insecure input */">Magic div</div>
 !! html/parsoid
-<div style="/* insecure input */" about="#mwt1" typeof="mw:Transclusion" data-parsoid='{"stx":"html","a":{"style":"/* insecure input */"},"sa":{"style":"float: right; {{{1}}}"},"pi":[[{"k":"1"}]]}' data-mw='{"parts":[{"template":{"target":{"wt":"div style","href":"./Template:Div_style"},"params":{"1":{"wt":"width: expression(alert(document.cookie))"}},"i":0}}]}'>Magic div</div>
+<div style="/* insecure input */" about="#mwt1" typeof="mw:Transclusion" data-parsoid='{"a":{"style":"/* insecure input */"},"pi":[[{"k":"1"}]],"sa":{"style":"float: right; {{{1}}}"},"stx":"html"}' data-mw='{"parts":[{"template":{"target":{"wt":"div style","href":"./Template:Div_style"},"params":{"1":{"wt":"width: expression(alert(document.cookie))"}},"i":0}}]}'>Magic div</div>
 !! end
 
 !! test
@@ -277,7 +277,7 @@ T4304: HTML attribute safety (unsafe breakout parameter; 2309)
 !! html/php
 <div style="float: right;">&lt;script&gt;alert(document.cookie)&lt;/script&gt;"&gt;Magic div</div>
 !! html/parsoid+integrated
-<div style="float: right; " about="#mwt1" typeof="mw:Transclusion" data-parsoid='{"stx":"html","pi":[[{"k":"1"}]]}' data-mw='{"parts":[{"template":{"target":{"wt":"div style","href":"./Template:Div_style"},"params":{"1":{"wt":"\">&lt;script>alert(document.cookie)&lt;/script>"}},"i":0}}]}'>&lt;script>alert(document.cookie)&lt;/script>">Magic div</div>
+<div style="float: right; " about="#mwt1" typeof="mw:Transclusion" data-parsoid='{"pi":[[{"k":"1"}]],"stx":"html"}' data-mw='{"parts":[{"template":{"target":{"wt":"div style","href":"./Template:Div_style"},"params":{"1":{"wt":"\">&lt;script>alert(document.cookie)&lt;/script>"}},"i":0}}]}'>&lt;script>alert(document.cookie)&lt;/script>">Magic div</div>
 !! end
 
 !! test
@@ -287,7 +287,7 @@ T4304: HTML attribute safety (unsafe breakout parameter 2; 2309)
 !! html/php
 <div style="float: right;">&lt;script&gt;alert(document.cookie)&lt;/script&gt;"&gt;Magic div</div>
 !! html/parsoid+integrated
-<div style="float: right; " about="#mwt1" typeof="mw:Transclusion" data-parsoid='{"stx":"html","pi":[[{"k":"1"}]]}' data-mw='{"parts":[{"template":{"target":{"wt":"div style","href":"./Template:Div_style"},"params":{"1":{"wt":"\" >&lt;script>alert(document.cookie)&lt;/script>"}},"i":0}}]}'>&lt;script>alert(document.cookie)&lt;/script>">Magic div</div>
+<div style="float: right; " about="#mwt1" typeof="mw:Transclusion" data-parsoid='{"pi":[[{"k":"1"}]],"stx":"html"}' data-mw='{"parts":[{"template":{"target":{"wt":"div style","href":"./Template:Div_style"},"params":{"1":{"wt":"\" >&lt;script>alert(document.cookie)&lt;/script>"}},"i":0}}]}'>&lt;script>alert(document.cookie)&lt;/script>">Magic div</div>
 !! end
 
 !! test
@@ -341,7 +341,7 @@ T5244: HTML attribute safety (extension; safe)
 !! html/php
 <div style="background:blue"></div>
 !! html/parsoid
-<div style="background:blue" about="#mwt3" typeof="mw:ExpandedAttrs" data-parsoid='{"stx":"html","a":{"style":"background:blue"},"sa":{"style":"&lt;nowiki>background:blue&lt;/nowiki>"}}' data-mw='{"attribs":[[{"txt":"style"},{"html":"&lt;span typeof=\"mw:Nowiki\">background:blue&lt;/span>"}]]}'></div>
+<div style="background:blue" about="#mwt3" typeof="mw:ExpandedAttrs" data-parsoid='{"a":{"style":"background:blue"},"sa":{"style":"&lt;nowiki>background:blue&lt;/nowiki>"},"stx":"html"}' data-mw='{"attribs":[[{"txt":"style"},{"html":"&lt;span typeof=\"mw:Nowiki\">background:blue&lt;/span>"}]]}'></div>
 !! end
 
 !! test
@@ -351,7 +351,7 @@ T5244: HTML attribute safety (extension; unsafe)
 !! html/php
 <div style="/* insecure input */"></div>
 !! html/parsoid
-<div style="/* insecure input */" about="#mwt3" typeof="mw:ExpandedAttrs" data-parsoid='{"stx":"html","a":{"style":"/* insecure input */"},"sa":{"style":"&lt;nowiki>border-left:expression(alert(document.cookie))&lt;/nowiki>"}}' data-mw='{"attribs":[[{"txt":"style"},{"html":"&lt;span typeof=\"mw:Nowiki\">border-left:expression(alert(document.cookie))&lt;/span>"}]]}'></div>
+<div style="/* insecure input */" about="#mwt3" typeof="mw:ExpandedAttrs" data-parsoid='{"a":{"style":"/* insecure input */"},"sa":{"style":"&lt;nowiki>border-left:expression(alert(document.cookie))&lt;/nowiki>"},"stx":"html"}' data-mw='{"attribs":[[{"txt":"style"},{"html":"&lt;span typeof=\"mw:Nowiki\">border-left:expression(alert(document.cookie))&lt;/span>"}]]}'></div>
 !! end
 
 # More MSIE fun discovered by Tom Gilder
@@ -363,7 +363,7 @@ MSIE CSS safety test: spurious slash
 !! html/php
 <div style="/* insecure input */">evil</div>
 !! html/parsoid
-<div style="/* insecure input */" data-parsoid='{"stx":"html","a":{"style":"/* insecure input */"},"sa":{"style":"background-image:u\\rl(javascript:alert(&#39;boo&#39;))"}}'>evil</div>
+<div style="/* insecure input */" data-parsoid='{"a":{"style":"/* insecure input */"},"sa":{"style":"background-image:u\\rl(javascript:alert(&#39;boo&#39;))"},"stx":"html"}'>evil</div>
 !! end
 
 !! test
@@ -373,7 +373,7 @@ MSIE CSS safety test: hex code
 !! html/php
 <div style="/* insecure input */">evil</div>
 !! html/parsoid
-<div style="/* insecure input */" data-parsoid='{"stx":"html","a":{"style":"/* insecure input */"},"sa":{"style":"background-image:u\\72l(javascript:alert(&#39;boo&#39;))"}}'>evil</div>
+<div style="/* insecure input */" data-parsoid='{"a":{"style":"/* insecure input */"},"sa":{"style":"background-image:u\\72l(javascript:alert(&#39;boo&#39;))"},"stx":"html"}'>evil</div>
 !! end
 
 !! test
@@ -383,7 +383,7 @@ MSIE CSS safety test: comment in url
 !! html/php
 <div style="background-image:u rl(javascript:alert(&#39;boo&#39;))">evil</div>
 !! html/parsoid
-<div style="background-image:u rl(javascript:alert('boo'))" data-parsoid='{"stx":"html","a":{"style":"background-image:u rl(javascript:alert(&#39;boo&#39;))"},"sa":{"style":"background-image:u/**/rl(javascript:alert(&#39;boo&#39;))"}}'>evil</div>
+<div style="background-image:u rl(javascript:alert('boo'))" data-parsoid='{"a":{"style":"background-image:u rl(javascript:alert(&#39;boo&#39;))"},"sa":{"style":"background-image:u/**/rl(javascript:alert(&#39;boo&#39;))"},"stx":"html"}'>evil</div>
 !! end
 
 !! test
@@ -393,7 +393,7 @@ MSIE CSS safety test: comment in expression
 !! html/php
 <div style="background-image:expres sion(alert(&#39;boo4&#39;))">evil4</div>
 !! html/parsoid
-<div style="background-image:expres sion(alert('boo4'))" data-parsoid='{"stx":"html","a":{"style":"background-image:expres sion(alert(&#39;boo4&#39;))"},"sa":{"style":"background-image:expres/**/sion(alert(&#39;boo4&#39;))"}}'>evil4</div>
+<div style="background-image:expres sion(alert('boo4'))" data-parsoid='{"a":{"style":"background-image:expres sion(alert(&#39;boo4&#39;))"},"sa":{"style":"background-image:expres/**/sion(alert(&#39;boo4&#39;))"},"stx":"html"}'>evil4</div>
 !! end
 
 !! test
@@ -403,7 +403,7 @@ CSS safety test (all browsers): vertical tab (T57332 / CVE-2013-4567)
 !! html/php
 <p style="/* invalid control char */">A</p>
 !! html/parsoid
-<p style="/* invalid control char */" data-parsoid='{"stx":"html","a":{"style":"/* invalid control char */"},"sa":{"style":"font-size: 100px; background-image:url\\b(https://www.google.com/images/srpr/logo6w.png)"}}'>A</p>
+<p style="/* invalid control char */" data-parsoid='{"a":{"style":"/* invalid control char */"},"sa":{"style":"font-size: 100px; background-image:url\\b(https://www.google.com/images/srpr/logo6w.png)"},"stx":"html"}'>A</p>
 !! end
 
 !! test
@@ -417,7 +417,7 @@ style="-o-link:attr(title);-o-link-source:current">X</div>
 !! html/php
 <div title="data:text/html,&lt;img src=1 onerror=alert(1)&gt;" style="/* insecure input */">X</div>
 !! html/parsoid
-<div title="data:text/html,&lt;img src=1 onerror=alert(1)>" style="/* insecure input */" data-parsoid='{"stx":"html","a":{"title":"data:text/html,&lt;img src=1 onerror=alert(1)>","style":"/* insecure input */"},"sa":{"title":"&amp;#100;&amp;#97;&amp;#116;&amp;#97;&amp;#58;&amp;#116;&amp;#101;&amp;#120;&amp;#116;&amp;#47;&amp;#104;&amp;#116;&amp;#109;&amp;#108;&amp;#44;&amp;#60;&amp;#105;&amp;#109;&amp;#103;&amp;#32;&amp;#115;&amp;#114;&amp;#99;&amp;#61;&amp;#49;&amp;#32;&amp;#111;&amp;#110;&amp;#101;&amp;#114;&amp;#114;&amp;#111;&amp;#114;&amp;#61;&amp;#97;&amp;#108;&amp;#101;&amp;#114;&amp;#116;&amp;#40;&amp;#49;&amp;#41;&amp;#62;","style":"-o-link:attr(title);-o-link-source:current"}}'>X</div>
+<div title="data:text/html,&lt;img src=1 onerror=alert(1)>" style="/* insecure input */" data-parsoid='{"a":{"title":"data:text/html,&lt;img src=1 onerror=alert(1)>","style":"/* insecure input */"},"sa":{"title":"&amp;#100;&amp;#97;&amp;#116;&amp;#97;&amp;#58;&amp;#116;&amp;#101;&amp;#120;&amp;#116;&amp;#47;&amp;#104;&amp;#116;&amp;#109;&amp;#108;&amp;#44;&amp;#60;&amp;#105;&amp;#109;&amp;#103;&amp;#32;&amp;#115;&amp;#114;&amp;#99;&amp;#61;&amp;#49;&amp;#32;&amp;#111;&amp;#110;&amp;#101;&amp;#114;&amp;#114;&amp;#111;&amp;#114;&amp;#61;&amp;#97;&amp;#108;&amp;#101;&amp;#114;&amp;#116;&amp;#40;&amp;#49;&amp;#41;&amp;#62;","style":"-o-link:attr(title);-o-link-source:current"},"stx":"html"}'>X</div>
 !! end
 
 !! test
@@ -475,7 +475,7 @@ wgFragmentMode=[ "legacy" ]
 </p>
 !! html/parsoid
 <p><span aria-describedby="id1" aria-flowto="id2" aria-hidden="true" aria-label="id3" aria-labelledby="id4" aria-level="3" aria-owns="id5">foo</span>
-<span data-parsoid='{"stx":"html","a":{"aria-bogus":null},"sa":{"aria-bogus":"stripped"}}'>bar</span></p>
+<span data-parsoid='{"a":{"aria-bogus":null},"sa":{"aria-bogus":"stripped"},"stx":"html"}'>bar</span></p>
 !! end
 
 # The next two test different paths in the sanitizer.

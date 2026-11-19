@@ -89,7 +89,7 @@ parsoid=wt2html
 <p>{{<u>}}
 </u></p>
 !! html/parsoid
-<p>{{<u data-parsoid='{"stx":"html","a":{"{{{{[[Sx--":null},"sa":{"{{{{[[Sx--":""},"autoInsertedEnd":true}'>}}</u></p>
+<p>{{<u data-parsoid='{"a":{"{{{{[[Sx--":null},"autoInsertedEnd":true,"sa":{"{{{{[[Sx--":""},"stx":"html"}'>}}</u></p>
 !! end
 
 ## Remex doesn't account for fostered content.
@@ -120,10 +120,10 @@ MOVE YOUR MOUSE CURSOR OVER THIS TEXT
 </tr>
 </tbody></table>
 !! html/parsoid
-<p data-parsoid='{"fostered":true,"autoInsertedEnd":true,"autoInsertedStart":true}'>
+<p data-parsoid='{"autoInsertedEnd":true,"autoInsertedStart":true,"fostered":true}'>
 {{{|
-<u class="|" data-parsoid='{"stx":"html","a":{"{{{{SSSll!!!!!!!VVVV)]]][[Special:*xxxxxxx--":null},"sa":{"{{{{SSSll!!!!!!!VVVV)]]][[Special:*xxxxxxx--":""},"autoInsertedEnd":true}'><meta typeof="mw:Includes/NoInclude" data-parsoid='{"src":"&lt;noinclude>"}'/>}}}} >
-<br style="onmouseover='alert(document.cookie);' " data-parsoid='{"stx":"html","selfClose":true}'/>
+<u class="|" data-parsoid='{"a":{"{{{{SSSll!!!!!!!VVVV)]]][[Special:*xxxxxxx--":null},"autoInsertedEnd":true,"sa":{"{{{{SSSll!!!!!!!VVVV)]]][[Special:*xxxxxxx--":""},"stx":"html"}'><meta typeof="mw:Includes/NoInclude" data-parsoid='{"src":"&lt;noinclude>"}'/>}}}} >
+<br style="onmouseover='alert(document.cookie);' " data-parsoid='{"selfClose":true,"stx":"html"}'/>
 
 MOVE YOUR MOUSE CURSOR OVER THIS TEXT</u></p>
 <table data-parsoid='{"autoInsertedEnd":true}'><tbody><tr data-parsoid='{"autoInsertedStart":true}'><td></td></tr></tbody></table>

@@ -764,7 +764,7 @@ parsoid=wt2html,html2html
 </tbody></table>
 !! html/parsoid
 <table data-parsoid='{"autoInsertedEnd":true}'>
-<tbody><tr data-parsoid='{"autoInsertedStart":true}'><td data-parsoid='{"startTagSrc":"| ","attrSepSrc":"|"}'>[<a rel="mw:ExtLink nofollow" href="ftp://%7Cx" class="external free" data-parsoid='{"stx":"url","a":{"href":"ftp://%7Cx"},"sa":{"href":"ftp://|x"}}'>ftp://|x</a></td><td data-parsoid='{"stx":"row"}'>]" onmouseover="alert(document.cookie)">test</td></tr></tbody></table>
+<tbody><tr data-parsoid='{"autoInsertedStart":true}'><td data-parsoid='{"attrSepSrc":"|","startTagSrc":"| "}'>[<a rel="mw:ExtLink nofollow" href="ftp://%7Cx" class="external free" data-parsoid='{"a":{"href":"ftp://%7Cx"},"sa":{"href":"ftp://|x"},"stx":"url"}'>ftp://|x</a></td><td data-parsoid='{"stx":"row"}'>]" onmouseover="alert(document.cookie)">test</td></tr></tbody></table>
 !! end
 
 !! test
@@ -818,7 +818,7 @@ parsoid=wt2html
 </td></tr></tbody></table>
 !! html/parsoid
 <table>
-<tbody><tr><td>style="color: red !important;" data-contrived="put this here</td><td data-parsoid='{"stx":"row","a":{"\"":null},"sa":{"\"":""}}'>foo</td></tr>
+<tbody><tr><td>style="color: red !important;" data-contrived="put this here</td><td data-parsoid='{"a":{"\"":null},"sa":{"\"":""},"stx":"row"}'>foo</td></tr>
 </tbody></table>
 !! end
 
@@ -1185,13 +1185,13 @@ Build table with {{!}}
 <td style="color:blue;">fourth data
 </td></tr></tbody></table>
 !! html/parsoid
-<table class="wikitable" data-parsoid='{"startTagSrc":"{{{!}}","endTagSrc":"{{!}}}"}'>
+<table class="wikitable" data-parsoid='{"endTagSrc":"{{!}}}","startTagSrc":"{{{!}}"}'>
 <tbody><tr data-parsoid='{"autoInsertedStart":true}'><th>header</th>
 <th>second header</th></tr>
 <tr style="color:red;" data-parsoid='{"startTagSrc":"{{!}}-"}'>
-<td data-parsoid='{"startTagSrc":"{{!}}"}'>data</td><td style="color:red;" data-parsoid='{"attrSepSrc":"{{!}}","stx":"row","startTagSrc":"{{!}}{{!}}"}'>second data</td>
-<td data-parsoid='{"startTagSrc":"{{!}}"}'>data</td><td style="color:green;" data-parsoid='{"attrSepSrc":"{{!}}","stx":"row","startTagSrc":"{{!}}|"}'>third data</td>
-<td data-parsoid='{"startTagSrc":"{{!}}"}'>data</td><td style="color:blue;" data-parsoid='{"attrSepSrc":"{{!}}","stx":"row","startTagSrc":"|{{!}}"}'>fourth data</td></tr>
+<td data-parsoid='{"startTagSrc":"{{!}}"}'>data</td><td style="color:red;" data-parsoid='{"attrSepSrc":"{{!}}","startTagSrc":"{{!}}{{!}}","stx":"row"}'>second data</td>
+<td data-parsoid='{"startTagSrc":"{{!}}"}'>data</td><td style="color:green;" data-parsoid='{"attrSepSrc":"{{!}}","startTagSrc":"{{!}}|","stx":"row"}'>third data</td>
+<td data-parsoid='{"startTagSrc":"{{!}}"}'>data</td><td style="color:blue;" data-parsoid='{"attrSepSrc":"{{!}}","startTagSrc":"|{{!}}","stx":"row"}'>fourth data</td></tr>
 </tbody></table>
 !! end
 
@@ -1321,7 +1321,7 @@ a
 a
 <table></table>
 !! html/parsoid
-<p data-parsoid='{"fostered":true,"autoInsertedEnd":true,"autoInsertedStart":true}'>
+<p data-parsoid='{"autoInsertedEnd":true,"autoInsertedStart":true,"fostered":true}'>
 a</p>
 <table>
 <tbody class="mw-empty-elt"><tr class="mw-empty-elt" data-parsoid='{"startTagSrc":"|-"}'></tr></tbody></table>
@@ -1346,7 +1346,7 @@ parsoid={ "modes": ["wt2html","selser"], "suppressErrors": true }
 
 </table>
 !! html/parsoid
-<ul data-parsoid='{"fostered":true,"autoInsertedEnd":true}'><li>a</li><li>b</li></ul><table>
+<ul data-parsoid='{"autoInsertedEnd":true,"fostered":true}'><li>a</li><li>b</li></ul><table>
 <tbody class="mw-empty-elt"><tr class="mw-empty-elt" data-parsoid='{"startTagSrc":"|-"}'>
 
 </tr></tbody></table>
@@ -1819,7 +1819,7 @@ T319143 - copy-pasting of cells, before
 parsoid={
   "modes": [ "selser" ],
   "changes": [
-    ["td", "before", "<td data-parsoid=\"{}\"><a href=\"./Eau\" rel=\"mw:WikiLink\" title=\"Eau\" data-parsoid='{\"stx\":\"simple\",\"a\":{\"href\":\"./Eau\"},\"sa\":{\"href\":\"Eau\"},\"dsr\":[4,11,2,2]}'>Eau</a></td>"]
+    ["td", "before", "<td data-parsoid=\"{}\"><a href=\"./Eau\" rel=\"mw:WikiLink\" title=\"Eau\" data-parsoid='{\"a\":{\"href\":\"./Eau\"},\"dsr\":[4,11,2,2],\"sa\":{\"href\":\"Eau\"},\"stx\":\"simple\"}'>Eau</a></td>"]
   ]
 }
 !! wikitext
@@ -1839,7 +1839,7 @@ T319143 - copy-pasting of cells, after
 parsoid={
   "modes": [ "selser" ],
   "changes": [
-    ["td", "after", "<td data-parsoid=\"{}\"><a href=\"./Eau\" rel=\"mw:WikiLink\" title=\"Eau\" data-parsoid='{\"stx\":\"simple\",\"a\":{\"href\":\"./Eau\"},\"sa\":{\"href\":\"Eau\"},\"dsr\":[4,11,2,2]}'>Eau</a></td>"]
+    ["td", "after", "<td data-parsoid=\"{}\"><a href=\"./Eau\" rel=\"mw:WikiLink\" title=\"Eau\" data-parsoid='{\"a\":{\"href\":\"./Eau\"},\"dsr\":[4,11,2,2],\"sa\":{\"href\":\"Eau\"},\"stx\":\"simple\"}'>Eau</a></td>"]
   ]
 }
 !! wikitext
@@ -1859,7 +1859,7 @@ T319143 - copy-pasting of cells, before multiple cells
 parsoid={
   "modes": [ "selser" ],
   "changes": [
-    ["td:first-child", "before", "<td data-parsoid='{\"stx\":\"row\"}'><a href=\"./Eau\" rel=\"mw:WikiLink\" title=\"Eau\" data-parsoid='{\"stx\":\"simple\",\"a\":{\"href\":\"./Eau\"},\"sa\":{\"href\":\"Eau\"},\"dsr\":[4,11,2,2]}'>Eau</a></td>"]
+    ["td:first-child", "before", "<td data-parsoid='{\"stx\":\"row\"}'><a href=\"./Eau\" rel=\"mw:WikiLink\" title=\"Eau\" data-parsoid='{\"a\":{\"href\":\"./Eau\"},\"dsr\":[4,11,2,2],\"sa\":{\"href\":\"Eau\"},\"stx\":\"simple\"}'>Eau</a></td>"]
   ]
 }
 !! wikitext
@@ -1879,7 +1879,7 @@ T319143 - copy-pasting of cells, before multiple cells, without "row"
 parsoid={
   "modes": [ "selser" ],
   "changes": [
-    ["td:first-child", "before", "<td data-parsoid='{}'><a href=\"./Eau\" rel=\"mw:WikiLink\" title=\"Eau\" data-parsoid='{\"stx\":\"simple\",\"a\":{\"href\":\"./Eau\"},\"sa\":{\"href\":\"Eau\"},\"dsr\":[4,11,2,2]}'>Eau</a></td>"]
+    ["td:first-child", "before", "<td data-parsoid='{}'><a href=\"./Eau\" rel=\"mw:WikiLink\" title=\"Eau\" data-parsoid='{\"a\":{\"href\":\"./Eau\"},\"dsr\":[4,11,2,2],\"sa\":{\"href\":\"Eau\"},\"stx\":\"simple\"}'>Eau</a></td>"]
   ]
 }
 !! wikitext
@@ -1899,7 +1899,7 @@ T319143 - copy-pasting of cells, between multiple cells
 parsoid={
   "modes": [ "selser" ],
   "changes": [
-    ["td:first-child", "after", "<td data-parsoid='{\"stx\":\"row\"}'><a href=\"./Eau\" rel=\"mw:WikiLink\" title=\"Eau\" data-parsoid='{\"stx\":\"simple\",\"a\":{\"href\":\"./Eau\"},\"sa\":{\"href\":\"Eau\"},\"dsr\":[4,11,2,2]}'>Eau</a></td>"]
+    ["td:first-child", "after", "<td data-parsoid='{\"stx\":\"row\"}'><a href=\"./Eau\" rel=\"mw:WikiLink\" title=\"Eau\" data-parsoid='{\"a\":{\"href\":\"./Eau\"},\"dsr\":[4,11,2,2],\"sa\":{\"href\":\"Eau\"},\"stx\":\"simple\"}'>Eau</a></td>"]
   ]
 }
 !! wikitext
@@ -1918,7 +1918,7 @@ T319143 - copy-pasting of cells, between multiple cells, without "row"
 parsoid={
   "modes": [ "selser" ],
   "changes": [
-    ["td:first-child", "after", "<td data-parsoid='{}'><a href=\"./Eau\" rel=\"mw:WikiLink\" title=\"Eau\" data-parsoid='{\"stx\":\"simple\",\"a\":{\"href\":\"./Eau\"},\"sa\":{\"href\":\"Eau\"},\"dsr\":[4,11,2,2]}'>Eau</a></td>"]
+    ["td:first-child", "after", "<td data-parsoid='{}'><a href=\"./Eau\" rel=\"mw:WikiLink\" title=\"Eau\" data-parsoid='{\"a\":{\"href\":\"./Eau\"},\"dsr\":[4,11,2,2],\"sa\":{\"href\":\"Eau\"},\"stx\":\"simple\"}'>Eau</a></td>"]
   ]
 }
 !! wikitext
@@ -1938,7 +1938,7 @@ T319143 - copy-pasting of cells, after multiple cells
 parsoid={
   "modes": [ "selser" ],
   "changes": [
-    ["td:last-child", "after", "<td data-parsoid='{\"stx\":\"row\"}'><a href=\"./Eau\" rel=\"mw:WikiLink\" title=\"Eau\" data-parsoid='{\"stx\":\"simple\",\"a\":{\"href\":\"./Eau\"},\"sa\":{\"href\":\"Eau\"},\"dsr\":[4,11,2,2]}'>Eau</a></td>"]
+    ["td:last-child", "after", "<td data-parsoid='{\"stx\":\"row\"}'><a href=\"./Eau\" rel=\"mw:WikiLink\" title=\"Eau\" data-parsoid='{\"a\":{\"href\":\"./Eau\"},\"dsr\":[4,11,2,2],\"sa\":{\"href\":\"Eau\"},\"stx\":\"simple\"}'>Eau</a></td>"]
   ]
 }
 !! wikitext
@@ -1957,7 +1957,7 @@ T319143 - copy-pasting of cells, after multiple cells, without "row"
 parsoid={
   "modes": [ "selser" ],
   "changes": [
-    ["td:last-child", "after", "<td data-parsoid='{}'><a href=\"./Eau\" rel=\"mw:WikiLink\" title=\"Eau\" data-parsoid='{\"stx\":\"simple\",\"a\":{\"href\":\"./Eau\"},\"sa\":{\"href\":\"Eau\"},\"dsr\":[4,11,2,2]}'>Eau</a></td>"]
+    ["td:last-child", "after", "<td data-parsoid='{}'><a href=\"./Eau\" rel=\"mw:WikiLink\" title=\"Eau\" data-parsoid='{\"a\":{\"href\":\"./Eau\"},\"dsr\":[4,11,2,2],\"sa\":{\"href\":\"Eau\"},\"stx\":\"simple\"}'>Eau</a></td>"]
   ]
 }
 !! wikitext
@@ -2315,7 +2315,7 @@ Newline constraint after multi-node template
 </td></tr></tbody></table>
 !! html/parsoid
 <table>
-<tbody><tr><td about="#mwt1" typeof="mw:Transclusion" data-parsoid='{"firstWikitextNode":"TD"}' data-mw='{"parts":["| ",{"template":{"target":{"wt":"content and cell","href":"./Template:Content_and_cell"},"params":{},"i":0}}," "]}'>test</td><td about="#mwt1">123</td><td about="#mwt2" typeof="mw:Transclusion" data-parsoid='{"stx":"row","firstWikitextNode":"TD_row"}' data-mw='{"parts":["|| ",{"template":{"target":{"wt":"content and cell","href":"./Template:Content_and_cell"},"params":{},"i":0}}]}'>test</td><td about="#mwt2">123</td></tr>
+<tbody><tr><td about="#mwt1" typeof="mw:Transclusion" data-parsoid='{"firstWikitextNode":"TD"}' data-mw='{"parts":["| ",{"template":{"target":{"wt":"content and cell","href":"./Template:Content_and_cell"},"params":{},"i":0}}," "]}'>test</td><td about="#mwt1">123</td><td about="#mwt2" typeof="mw:Transclusion" data-parsoid='{"firstWikitextNode":"TD_row","stx":"row"}' data-mw='{"parts":["|| ",{"template":{"target":{"wt":"content and cell","href":"./Template:Content_and_cell"},"params":{},"i":0}}]}'>test</td><td about="#mwt2">123</td></tr>
 </tbody></table>
 !! end
 

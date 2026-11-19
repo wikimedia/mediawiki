@@ -33,7 +33,7 @@ Template:1x
 !! wikitext
 #REDIRECT [[Main_Page]]
 !! html/parsoid
-<link rel="mw:PageProp/redirect" href="./Main_Page" data-parsoid='{"src":"#REDIRECT ","a":{"href":"./Main_Page"},"sa":{"href":"Main_Page"}}'/>
+<link rel="mw:PageProp/redirect" href="./Main_Page" data-parsoid='{"a":{"href":"./Main_Page"},"sa":{"href":"Main_Page"},"src":"#REDIRECT "}'/>
 !! end
 
 # Not a valid redirect in PHP (although perhaps it was, once upon a time)
@@ -148,7 +148,7 @@ Redirect to image page (2)
 !! wikitext
 #REDIRECT [[Image:Wiki.png]]
 !! html/parsoid
-<link rel="mw:PageProp/redirect" href="./File:Wiki.png"  data-parsoid='{"src":"#REDIRECT ","a":{"href":"./File:Wiki.png"},"sa":{"href":"Image:Wiki.png"}}'/>
+<link rel="mw:PageProp/redirect" href="./File:Wiki.png"  data-parsoid='{"a":{"href":"./File:Wiki.png"},"sa":{"href":"Image:Wiki.png"},"src":"#REDIRECT "}'/>
 !! end
 
 # html2wt disabled because wts serializes as "#REDIRECT [[:en:File:Wiki.png]]"
@@ -186,7 +186,7 @@ language=is
 !! wikitext
 #TILVÍSUN [[Main Page]]
 !! html/parsoid
-<link rel="mw:PageProp/redirect" href="./Main_Page" data-parsoid='{"src":"#TILVÍSUN ","a":{"href":"./Main_Page"},"sa":{"href":"Main Page"}}'/>
+<link rel="mw:PageProp/redirect" href="./Main_Page" data-parsoid='{"a":{"href":"./Main_Page"},"sa":{"href":"Main Page"},"src":"#TILVÍSUN "}'/>
 !! end
 
 !! test
@@ -198,7 +198,7 @@ some text
 !! html/parsoid
 <p>some text</p>
 
-<ol data-parsoid='{}'><li data-parsoid='{}'>redirect <a rel="mw:WikiLink" href="./Main_Page" title="Main Page" data-parsoid='{"stx":"simple","a":{"href":"./Main_Page"},"sa":{"href":"Main Page"}}'>Main Page</a></li></ol>
+<ol data-parsoid='{}'><li data-parsoid='{}'>redirect <a rel="mw:WikiLink" href="./Main_Page" title="Main Page" data-parsoid='{"a":{"href":"./Main_Page"},"sa":{"href":"Main Page"},"stx":"simple"}'>Main Page</a></li></ol>
 !! end
 
 !! test
@@ -283,7 +283,7 @@ Redirect containing double quotes and spaces
 !! wikitext
 #REDIRECT [[Cool "Gator"]]
 !! html/parsoid
-<link rel="mw:PageProp/redirect" href="./Cool_%22Gator%22" data-parsoid='{"src":"#REDIRECT ","a":{"href":"./Cool_%22Gator%22"},"sa":{"href":"Cool \"Gator\""}}'/>
+<link rel="mw:PageProp/redirect" href="./Cool_%22Gator%22" data-parsoid='{"a":{"href":"./Cool_%22Gator%22"},"sa":{"href":"Cool \"Gator\""},"src":"#REDIRECT "}'/>
 !! end
 
 !! test

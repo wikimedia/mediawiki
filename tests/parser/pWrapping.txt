@@ -326,7 +326,7 @@ Transclusion meta tags shouldn't trip Parsoid's useless p-wrapper stripping code
 {{1x|<span><div>x</div></span>}}
 x
 !! html/parsoid
-<span about="#mwt1" typeof="mw:Transclusion" data-parsoid='{"stx":"html","pi":[[{"k":"1"}]]}' data-mw='{"parts":[{"template":{"target":{"wt":"1x","href":"./Template:1x"},"params":{"1":{"wt":"&lt;span>&lt;div>x&lt;/div>&lt;/span>"}},"i":0}}]}'><div>x</div></span>
+<span about="#mwt1" typeof="mw:Transclusion" data-parsoid='{"pi":[[{"k":"1"}]],"stx":"html"}' data-mw='{"parts":[{"template":{"target":{"wt":"1x","href":"./Template:1x"},"params":{"1":{"wt":"&lt;span>&lt;div>x&lt;/div>&lt;/span>"}},"i":0}}]}'><div>x</div></span>
 <p>x</p>
 !! end
 
@@ -894,8 +894,8 @@ B</strong>
 </strong></p><strong></strong><p><strong>B</strong>
 </p>
 !! html/parsoid
-<div data-parsoid='{"stx":"html"}'></div><p><strong data-parsoid='{"stx":"html","autoInsertedEnd":true}'>A</strong></p>
-<p><strong data-parsoid='{"stx":"html","autoInsertedStart":true}'>B</strong></p>
+<div data-parsoid='{"stx":"html"}'></div><p><strong data-parsoid='{"autoInsertedEnd":true,"stx":"html"}'>A</strong></p>
+<p><strong data-parsoid='{"autoInsertedStart":true,"stx":"html"}'>B</strong></p>
 !! end
 
 # T8200: <blockquote> should behave like <div> with respect to line breaks

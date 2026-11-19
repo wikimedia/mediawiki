@@ -145,7 +145,7 @@ obtained by ''[[Lunar Prospector]]'''s gamma-ray spectrometer
 <p>obtained by <i><a href="/wiki/Lunar_Prospector" title="Lunar Prospector">Lunar Prospector</a>'</i>s gamma-ray spectrometer
 </p>
 !! html/parsoid
-<p>obtained by <i><a rel="mw:WikiLink" href="./Lunar_Prospector" title="Lunar Prospector" data-parsoid='{"stx":"simple","a":{"href":"./Lunar_Prospector"},"sa":{"href":"Lunar Prospector"}}'>Lunar Prospector</a>'</i>s gamma-ray spectrometer</p>
+<p>obtained by <i><a rel="mw:WikiLink" href="./Lunar_Prospector" title="Lunar Prospector" data-parsoid='{"a":{"href":"./Lunar_Prospector"},"sa":{"href":"Lunar Prospector"},"stx":"simple"}'>Lunar Prospector</a>'</i>s gamma-ray spectrometer</p>
 !! end
 
 # this example taken from [[en:Flaming Pie]] (T51926)
@@ -167,7 +167,7 @@ The first monolingual dictionary written in a Romance language was ''Sebastián 
 <p>The first monolingual dictionary written in a Romance language was <i>Sebastián Covarrubias'</i> <i>Tesoro de la lengua castellana o española</i>, published in 1611 in Madrid. In 1612 the first edition of the <i>Vocabolario dell'<a href="/wiki/Accademia_della_Crusca" title="Accademia della Crusca">Accademia della Crusca</a></i>, for Italian, was published. In 1690 in Rotterdam was published, posthumously, the <i>Dictionnaire Universel</i>.
 </p>
 !! html/parsoid
-<p>The first monolingual dictionary written in a Romance language was <i>Sebastián Covarrubias'</i> <i>Tesoro de la lengua castellana o española</i>, published in 1611 in Madrid. In 1612 the first edition of the <i>Vocabolario dell'<a rel="mw:WikiLink" href="./Accademia_della_Crusca" title="Accademia della Crusca" data-parsoid='{"stx":"simple","a":{"href":"./Accademia_della_Crusca"},"sa":{"href":"Accademia della Crusca"}}'>Accademia della Crusca</a></i>, for Italian, was published. In 1690 in Rotterdam was published, posthumously, the <i>Dictionnaire Universel</i>.</p>
+<p>The first monolingual dictionary written in a Romance language was <i>Sebastián Covarrubias'</i> <i>Tesoro de la lengua castellana o española</i>, published in 1611 in Madrid. In 1612 the first edition of the <i>Vocabolario dell'<a rel="mw:WikiLink" href="./Accademia_della_Crusca" title="Accademia della Crusca" data-parsoid='{"a":{"href":"./Accademia_della_Crusca"},"sa":{"href":"Accademia della Crusca"},"stx":"simple"}'>Accademia della Crusca</a></i>, for Italian, was published. In 1690 in Rotterdam was published, posthumously, the <i>Dictionnaire Universel</i>.</p>
 !! end
 
 ###

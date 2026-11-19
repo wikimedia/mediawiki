@@ -287,7 +287,7 @@ Non-wikilinks with html tags in target position
 !! html/php
 <table><tbody><tr><td>[[</td><td><a href="/wiki/Link" title="Link">link</a></td><td>]]</td></tr></tbody></table>
 !! html/parsoid
-<table data-parsoid='{"stx":"html"}'><tbody><tr data-parsoid='{"autoInsertedStart":true,"autoInsertedEnd":true}'><td data-parsoid='{"stx":"html"}'>[[</td><td data-parsoid='{"stx":"html"}'><a rel="mw:WikiLink" href="./Link" title="Link">link</a></td><td data-parsoid='{"stx":"html"}'>]]</td></tr></tbody></table>
+<table data-parsoid='{"stx":"html"}'><tbody><tr data-parsoid='{"autoInsertedEnd":true,"autoInsertedStart":true}'><td data-parsoid='{"stx":"html"}'>[[</td><td data-parsoid='{"stx":"html"}'><a rel="mw:WikiLink" href="./Link" title="Link">link</a></td><td data-parsoid='{"stx":"html"}'>]]</td></tr></tbody></table>
 !! end
 
 !! test
@@ -431,11 +431,11 @@ Character reference normalization in link text (T3938)
 <a href="/wiki/%D7%90%D6%B7" title="אַ">אַ</a>
 </p>
 !! html/parsoid
-<p><a rel="mw:WikiLink" href="./אַ" title="אַ" data-parsoid='{"stx":"simple","a":{"href":"./אַ"},"sa":{"href":"&amp;#xFB2E;"}}'>אַ</a>
-<a rel="mw:WikiLink" href="./אַ" title="אַ" data-parsoid='{"stx":"simple","a":{"href":"./אַ"},"sa":{"href":"&amp;#x5d0;&amp;#x5b7;"}}'>אַ</a>
-<a rel="mw:WikiLink" href="./אַ" title="אַ" data-parsoid='{"stx":"simple","a":{"href":"./אַ"},"sa":{"href":"&amp;#x5d0;ַ"}}'>אַ</a>
-<a rel="mw:WikiLink" href="./אַ" title="אַ" data-parsoid='{"stx":"simple","a":{"href":"./אַ"},"sa":{"href":"א&amp;#x5b7;"}}'>אַ</a>
-<a rel="mw:WikiLink" href="./אַ" title="אַ" data-parsoid='{"stx":"simple","a":{"href":"./אַ"},"sa":{"href":"אַ"}}'>אַ</a></p>
+<p><a rel="mw:WikiLink" href="./אַ" title="אַ" data-parsoid='{"a":{"href":"./אַ"},"sa":{"href":"&amp;#xFB2E;"},"stx":"simple"}'>אַ</a>
+<a rel="mw:WikiLink" href="./אַ" title="אַ" data-parsoid='{"a":{"href":"./אַ"},"sa":{"href":"&amp;#x5d0;&amp;#x5b7;"},"stx":"simple"}'>אַ</a>
+<a rel="mw:WikiLink" href="./אַ" title="אַ" data-parsoid='{"a":{"href":"./אַ"},"sa":{"href":"&amp;#x5d0;ַ"},"stx":"simple"}'>אַ</a>
+<a rel="mw:WikiLink" href="./אַ" title="אַ" data-parsoid='{"a":{"href":"./אַ"},"sa":{"href":"א&amp;#x5b7;"},"stx":"simple"}'>אַ</a>
+<a rel="mw:WikiLink" href="./אַ" title="אַ" data-parsoid='{"a":{"href":"./אַ"},"sa":{"href":"אַ"},"stx":"simple"}'>אַ</a></p>
 !! end
 
 !! test
@@ -446,7 +446,7 @@ Broken link
 <p><a href="/index.php?title=Zigzagzogzagzig&amp;action=edit&amp;redlink=1" class="new" title="Zigzagzogzagzig (page does not exist)">Zigzagzogzagzig</a>
 </p>
 !! html/parsoid
-<p><a rel="mw:WikiLink" href="./Zigzagzogzagzig?action=edit&amp;redlink=1" title="Zigzagzogzagzig" class="new" typeof="mw:LocalizedAttrs" data-parsoid='{"stx":"simple","a":{"href":"./Zigzagzogzagzig"},"sa":{"href":"Zigzagzogzagzig"}}' data-mw-i18n='{"title":{"lang":"x-page","key":"red-link-title","params":["Zigzagzogzagzig"]}}'>Zigzagzogzagzig</a></p>
+<p><a rel="mw:WikiLink" href="./Zigzagzogzagzig?action=edit&amp;redlink=1" title="Zigzagzogzagzig" class="new" typeof="mw:LocalizedAttrs" data-parsoid='{"a":{"href":"./Zigzagzogzagzig"},"sa":{"href":"Zigzagzogzagzig"},"stx":"simple"}' data-mw-i18n='{"title":{"lang":"x-page","key":"red-link-title","params":["Zigzagzogzagzig"]}}'>Zigzagzogzagzig</a></p>
 !! end
 
 # The PHP parser strips the hash fragment for non-existent pages, but
@@ -463,7 +463,7 @@ link=Zigzagzogzagzig
 <p><a href="/index.php?title=Zigzagzogzagzig&amp;action=edit&amp;redlink=1" class="new" title="Zigzagzogzagzig (page does not exist)">Zigzagzogzagzig#zug</a>
 </p>
 !! html/parsoid
-<p><a rel="mw:WikiLink" href="./Zigzagzogzagzig?action=edit&amp;redlink=1#zug" title="Zigzagzogzagzig" class="new" typeof="mw:LocalizedAttrs" data-parsoid='{"stx":"simple","a":{"href":"./Zigzagzogzagzig#zug"},"sa":{"href":"Zigzagzogzagzig#zug"}}' data-mw-i18n='{"title":{"lang":"x-page","key":"red-link-title","params":["Zigzagzogzagzig"]}}'>Zigzagzogzagzig#zug</a></p>
+<p><a rel="mw:WikiLink" href="./Zigzagzogzagzig?action=edit&amp;redlink=1#zug" title="Zigzagzogzagzig" class="new" typeof="mw:LocalizedAttrs" data-parsoid='{"a":{"href":"./Zigzagzogzagzig#zug"},"sa":{"href":"Zigzagzogzagzig#zug"},"stx":"simple"}' data-mw-i18n='{"title":{"lang":"x-page","key":"red-link-title","params":["Zigzagzogzagzig"]}}'>Zigzagzogzagzig#zug</a></p>
 !! end
 
 !! test
@@ -488,7 +488,7 @@ Nonexistent special page link with fragment
 <p><a href="/wiki/Special:ThisNameWillHopefullyNeverBeUsed" class="new" title="Special:ThisNameWillHopefullyNeverBeUsed (page does not exist)">Special:ThisNameWillHopefullyNeverBeUsed#anchor</a>
 </p>
 !! html/parsoid
-<p><a rel="mw:WikiLink" href="./Special:ThisNameWillHopefullyNeverBeUsed?action=edit&amp;redlink=1#anchor" title="Special:ThisNameWillHopefullyNeverBeUsed" class="new" typeof="mw:LocalizedAttrs" data-parsoid='{"stx":"simple","a":{"href":"./Special:ThisNameWillHopefullyNeverBeUsed#anchor"},"sa":{"href":"Special:ThisNameWillHopefullyNeverBeUsed#anchor"}}' data-mw-i18n='{"title":{"lang":"x-page","key":"red-link-title","params":["Special:ThisNameWillHopefullyNeverBeUsed"]}}'>Special:ThisNameWillHopefullyNeverBeUsed#anchor</a></p>
+<p><a rel="mw:WikiLink" href="./Special:ThisNameWillHopefullyNeverBeUsed?action=edit&amp;redlink=1#anchor" title="Special:ThisNameWillHopefullyNeverBeUsed" class="new" typeof="mw:LocalizedAttrs" data-parsoid='{"a":{"href":"./Special:ThisNameWillHopefullyNeverBeUsed#anchor"},"sa":{"href":"Special:ThisNameWillHopefullyNeverBeUsed#anchor"},"stx":"simple"}' data-mw-i18n='{"title":{"lang":"x-page","key":"red-link-title","params":["Special:ThisNameWillHopefullyNeverBeUsed"]}}'>Special:ThisNameWillHopefullyNeverBeUsed#anchor</a></p>
 !! end
 
 !! test
@@ -607,7 +607,7 @@ link=Main_Page
 <p><a href="/wiki/Main_Page#And#Link" title="Main Page">Main Page#And#Link</a>
 </p>
 !! html/parsoid
-<p><a rel="mw:WikiLink" href="./Main_Page#And#Link" title="Main Page" data-parsoid='{"stx":"simple","a":{"href":"./Main_Page#And#Link"},"sa":{"href":"Main Page#And#Link"}}'>Main Page#And#Link</a></p>
+<p><a rel="mw:WikiLink" href="./Main_Page#And#Link" title="Main Page" data-parsoid='{"a":{"href":"./Main_Page#And#Link"},"sa":{"href":"Main Page#And#Link"},"stx":"simple"}'>Main Page#And#Link</a></p>
 !! end
 
 !! test
@@ -618,7 +618,7 @@ Link to namespaces
 <p><a href="/wiki/Talk:Parser_testing" title="Talk:Parser testing">Talk:Parser testing</a>, <a href="/wiki/Meta:Disclaimers" title="Meta:Disclaimers">Meta:Disclaimers</a>
 </p>
 !! html/parsoid
-<p><a rel="mw:WikiLink" href="./Talk:Parser_testing" title="Talk:Parser testing" data-parsoid='{"stx":"simple","a":{"href":"./Talk:Parser_testing"},"sa":{"href":"Talk:Parser testing"}}'>Talk:Parser testing</a>, <a rel="mw:WikiLink" href="./Meta:Disclaimers" title="Meta:Disclaimers" data-parsoid='{"stx":"simple","a":{"href":"./Meta:Disclaimers"},"sa":{"href":"Meta:Disclaimers"}}'>Meta:Disclaimers</a></p>
+<p><a rel="mw:WikiLink" href="./Talk:Parser_testing" title="Talk:Parser testing" data-parsoid='{"a":{"href":"./Talk:Parser_testing"},"sa":{"href":"Talk:Parser testing"},"stx":"simple"}'>Talk:Parser testing</a>, <a rel="mw:WikiLink" href="./Meta:Disclaimers" title="Meta:Disclaimers" data-parsoid='{"a":{"href":"./Meta:Disclaimers"},"sa":{"href":"Meta:Disclaimers"},"stx":"simple"}'>Meta:Disclaimers</a></p>
 !! end
 
 !! test
@@ -629,7 +629,7 @@ Link with space in namespace
 <p><a href="/wiki/User_talk:Foo_bar" title="User talk:Foo bar">User talk:Foo bar</a>
 </p>
 !! html/parsoid
-<p><a rel="mw:WikiLink" href="./User_talk:Foo_bar" title="User talk:Foo bar" data-parsoid='{"stx":"simple","a":{"href":"./User_talk:Foo_bar"},"sa":{"href":"User talk:Foo bar"}}'>User talk:Foo bar</a></p>
+<p><a rel="mw:WikiLink" href="./User_talk:Foo_bar" title="User talk:Foo bar" data-parsoid='{"a":{"href":"./User_talk:Foo_bar"},"sa":{"href":"User talk:Foo bar"},"stx":"simple"}'>User talk:Foo bar</a></p>
 !! end
 
 !! test
@@ -661,7 +661,7 @@ Piped link to namespace
 <p><a href="/wiki/Meta:Disclaimers" title="Meta:Disclaimers">The disclaimers</a>
 </p>
 !! html/parsoid
-<p><a rel="mw:WikiLink" href="./Meta:Disclaimers" title="Meta:Disclaimers" data-parsoid='{"stx":"piped","a":{"href":"./Meta:Disclaimers"},"sa":{"href":"Meta:Disclaimers"}}'>The disclaimers</a></p>
+<p><a rel="mw:WikiLink" href="./Meta:Disclaimers" title="Meta:Disclaimers" data-parsoid='{"a":{"href":"./Meta:Disclaimers"},"sa":{"href":"Meta:Disclaimers"},"stx":"piped"}'>The disclaimers</a></p>
 !! end
 
 !! test
@@ -728,7 +728,7 @@ wgFragmentMode=[ "html5", "legacy" ]
 <p><a href="#&lt;">#&lt;</a><a href="#&gt;">#&gt;</a>
 </p>
 !! html/parsoid
-<p><a rel="mw:WikiLink" href="./Main_Page#&lt;" class="mw-selflink-fragment" data-parsoid='{"stx":"simple","a":{"href":"./Main_Page#&lt;"},"sa":{"href":"%23%3c"}}'>#&lt;</a><a rel="mw:WikiLink" href="./Main_Page#>" class="mw-selflink-fragment" data-parsoid='{"stx":"simple","a":{"href":"./Main_Page#>"},"sa":{"href":"%23%3e"}}'>#></a></p>
+<p><a rel="mw:WikiLink" href="./Main_Page#&lt;" class="mw-selflink-fragment" data-parsoid='{"a":{"href":"./Main_Page#&lt;"},"sa":{"href":"%23%3c"},"stx":"simple"}'>#&lt;</a><a rel="mw:WikiLink" href="./Main_Page#>" class="mw-selflink-fragment" data-parsoid='{"a":{"href":"./Main_Page#>"},"sa":{"href":"%23%3e"},"stx":"simple"}'>#></a></p>
 !! end
 
 ## Example for such a section: == < ==
@@ -820,7 +820,7 @@ Link containing an ampersand
 </p>
 !! html/parsoid
 <p><a rel="mw:WikiLink" href="./Foo_&amp;_bar" title="Foo &amp; bar">Foo &amp; bar</a></p>
-<p><a rel="mw:WikiLink" href="./Foo_&amp;_bar" title="Foo &amp; bar" data-parsoid='{"stx":"simple","a":{"href":"./Foo_&amp;_bar"},"sa":{"href":"Foo &amp;amp; bar"}}'>Foo &amp; bar</a></p>
+<p><a rel="mw:WikiLink" href="./Foo_&amp;_bar" title="Foo &amp; bar" data-parsoid='{"a":{"href":"./Foo_&amp;_bar"},"sa":{"href":"Foo &amp;amp; bar"},"stx":"simple"}'>Foo &amp; bar</a></p>
 <p>[[Foo <span typeof="mw:Entity" data-parsoid='{"src":"&amp;amp;","srcContent":"&amp;"}'>&amp;</span>amp; bar]]</p>
 !! end
 
@@ -846,7 +846,7 @@ Link containing double-single-quotes '' (T6598)
 <p><a href="/wiki/Lista_d%27%27e_paise_d%27%27o_munno" title="Lista d&#39;&#39;e paise d&#39;&#39;o munno">Lista d''e paise d''o munno</a>
 </p>
 !! html/parsoid
-<p><a rel="mw:WikiLink" href="./Lista_d''e_paise_d''o_munno" title="Lista d''e paise d''o munno" data-parsoid='{"stx":"simple","a":{"href":"./Lista_d&apos;&apos;e_paise_d&apos;&apos;o_munno"},"sa":{"href":"Lista d&apos;&apos;e paise d&apos;&apos;o munno"}}'>Lista d''e paise d''o munno</a></p>
+<p><a rel="mw:WikiLink" href="./Lista_d''e_paise_d''o_munno" title="Lista d''e paise d''o munno" data-parsoid='{"a":{"href":"./Lista_d&apos;&apos;e_paise_d&apos;&apos;o_munno"},"sa":{"href":"Lista d&apos;&apos;e paise d&apos;&apos;o munno"},"stx":"simple"}'>Lista d''e paise d''o munno</a></p>
 !! end
 
 !! test
@@ -857,7 +857,7 @@ Link containing double quotes and spaces
 <p><a href="/wiki/Cool_%22Gator%22" title="Cool &quot;Gator&quot;">Cool "Gator"</a>
 </p>
 !! html/parsoid
-<p><a rel="mw:WikiLink" href='./Cool_"Gator"' title='Cool "Gator"' data-parsoid='{"stx":"simple","a":{"href":"./Cool_\"Gator\""},"sa":{"href":"Cool \"Gator\""}}'>Cool "Gator"</a></p>
+<p><a rel="mw:WikiLink" href='./Cool_"Gator"' title='Cool "Gator"' data-parsoid='{"a":{"href":"./Cool_\"Gator\""},"sa":{"href":"Cool \"Gator\""},"stx":"simple"}'>Cool "Gator"</a></p>
 !! end
 
 !! test
@@ -868,7 +868,7 @@ Some [[Link|pretty ''italics'' and stuff]]!
 <p>Some <a href="/wiki/Link" title="Link">pretty <i>italics</i> and stuff</a>!
 </p>
 !! html/parsoid
-<p>Some <a rel="mw:WikiLink" href="./Link" title="Link" data-parsoid='{"stx":"piped","a":{"href":"./Link"},"sa":{"href":"Link"}}'>pretty <i>italics</i> and stuff</a>!</p>
+<p>Some <a rel="mw:WikiLink" href="./Link" title="Link" data-parsoid='{"a":{"href":"./Link"},"sa":{"href":"Link"},"stx":"piped"}'>pretty <i>italics</i> and stuff</a>!</p>
 !! end
 
 !! test
@@ -879,7 +879,7 @@ Link containing double-single-quotes '' in text embedded in italics (T6598 check
 <p><i>Some <a href="/wiki/Link" title="Link">pretty <i>italics</i> and stuff</a>!</i>
 </p>
 !! html/parsoid
-<p><i>Some <a rel="mw:WikiLink" href="./Link" title="Link" data-parsoid='{"stx":"piped","a":{"href":"./Link"},"sa":{"href":"Link"}}'>pretty <i>italics</i> and stuff</a>!</i></p>
+<p><i>Some <a rel="mw:WikiLink" href="./Link" title="Link" data-parsoid='{"a":{"href":"./Link"},"sa":{"href":"Link"},"stx":"piped"}'>pretty <i>italics</i> and stuff</a>!</i></p>
 !! end
 
 ## FIXME: Title part of filename is interpreted in php
@@ -902,11 +902,11 @@ Link with double quotes in title part (literal) and alternate part (interpreted)
 !! html/parsoid
 <p><span class="mw-default-size" typeof="mw:Error mw:File" data-parsoid='{"optList":[]}' data-mw='{"errors":[{"key":"apierror-filedoesnotexist","message":"This image does not exist."}]}'><a href="./Special:Upload?wpDestFile=Denys_Savchenko_%27%27Pentecoste%27%27.jpg" class="new" title="File:Denys Savchenko ''Pentecoste''.jpg"><span class="mw-file-element mw-broken-media" resource="./File:Denys_Savchenko_''Pentecoste''.jpg" data-parsoid='{"a":{"resource":"./File:Denys_Savchenko_&apos;&apos;Pentecoste&apos;&apos;.jpg"},"sa":{"resource":"File:Denys_Savchenko_&apos;&apos;Pentecoste&apos;&apos;.jpg"}}'>File:Denys Savchenko ''Pentecoste''.jpg</span></a></span></p>
 
-<p><a rel="mw:WikiLink" href="./''Pentecoste''" title="''Pentecoste''" data-parsoid='{"stx":"simple","a":{"href":"./&apos;&apos;Pentecoste&apos;&apos;"},"sa":{"href":"&apos;&apos;Pentecoste&apos;&apos;"}}'>''Pentecoste''</a></p>
+<p><a rel="mw:WikiLink" href="./''Pentecoste''" title="''Pentecoste''" data-parsoid='{"a":{"href":"./&apos;&apos;Pentecoste&apos;&apos;"},"sa":{"href":"&apos;&apos;Pentecoste&apos;&apos;"},"stx":"simple"}'>''Pentecoste''</a></p>
 
-<p><a rel="mw:WikiLink" href="./''Pentecoste''" title="''Pentecoste''" data-parsoid='{"stx":"piped","a":{"href":"./&apos;&apos;Pentecoste&apos;&apos;"},"sa":{"href":"&apos;&apos;Pentecoste&apos;&apos;"}}'>Pentecoste</a></p>
+<p><a rel="mw:WikiLink" href="./''Pentecoste''" title="''Pentecoste''" data-parsoid='{"a":{"href":"./&apos;&apos;Pentecoste&apos;&apos;"},"sa":{"href":"&apos;&apos;Pentecoste&apos;&apos;"},"stx":"piped"}'>Pentecoste</a></p>
 
-<p><a rel="mw:WikiLink" href="./''Pentecoste''" title="''Pentecoste''" data-parsoid='{"stx":"piped","a":{"href":"./&apos;&apos;Pentecoste&apos;&apos;"},"sa":{"href":"&apos;&apos;Pentecoste&apos;&apos;"}}'><i>Pentecoste</i></a></p>
+<p><a rel="mw:WikiLink" href="./''Pentecoste''" title="''Pentecoste''" data-parsoid='{"a":{"href":"./&apos;&apos;Pentecoste&apos;&apos;"},"sa":{"href":"&apos;&apos;Pentecoste&apos;&apos;"},"stx":"piped"}'><i>Pentecoste</i></a></p>
 !! end
 
 !! test
@@ -1002,7 +1002,7 @@ parsoid=wt2html
 <p>[<a rel="nofollow" class="external text" href="http://example.com%7C"></a><a href="/wiki/Example" title="Example">Example</a>]
 </p>
 !! html/parsoid
-<p>[<a rel="mw:ExtLink nofollow" href="http://example.com%7C" class="external text" data-parsoid='{"a":{"href":"http://example.com%7C"},"sa":{"href":"http://example.com|"}}'></a><a rel="mw:WikiLink" href="./Example" title="Example" data-parsoid='{"stx":"simple","a":{"href":"./Example"},"sa":{"href":"Example"},"misnested":true}'>Example</a>]</p>
+<p>[<a rel="mw:ExtLink nofollow" href="http://example.com%7C" class="external text" data-parsoid='{"a":{"href":"http://example.com%7C"},"sa":{"href":"http://example.com|"}}'></a><a rel="mw:WikiLink" href="./Example" title="Example" data-parsoid='{"a":{"href":"./Example"},"misnested":true,"sa":{"href":"Example"},"stx":"simple"}'>Example</a>]</p>
 !! end
 
 !! test
@@ -1054,7 +1054,7 @@ title=[[Bug462]]
 <p><a class="mw-selflink selflink">Bu&#103;462</a> <a class="mw-selflink selflink">Bug462</a>
 </p>
 !! html/parsoid
-<p><a rel="mw:WikiLink" href="./Bug462" class="mw-selflink selflink" data-parsoid='{"stx":"simple","a":{"href":"./Bug462"},"sa":{"href":"Bu&amp;#103;462"}}'>Bug462</a> <a rel="mw:WikiLink" href="./Bug462" class="mw-selflink selflink" data-parsoid='{"stx":"simple","a":{"href":"./Bug462"},"sa":{"href":"Bug462"}}'>Bug462</a></p>
+<p><a rel="mw:WikiLink" href="./Bug462" class="mw-selflink selflink" data-parsoid='{"a":{"href":"./Bug462"},"sa":{"href":"Bu&amp;#103;462"},"stx":"simple"}'>Bug462</a> <a rel="mw:WikiLink" href="./Bug462" class="mw-selflink selflink" data-parsoid='{"a":{"href":"./Bug462"},"sa":{"href":"Bug462"},"stx":"simple"}'>Bug462</a></p>
 !! end
 
 !! test
@@ -1067,7 +1067,7 @@ title=[[Main Page]]
 <p><a class="mw-selflink-fragment" href="#section">Main Page#section</a>
 </p>
 !! html/parsoid
-<p><a rel="mw:WikiLink" href="./Main_Page#section" class="mw-selflink-fragment" data-parsoid='{"stx":"simple","a":{"href":"./Main_Page#section"},"sa":{"href":"Main Page#section"}}'>Main Page#section</a></p>
+<p><a rel="mw:WikiLink" href="./Main_Page#section" class="mw-selflink-fragment" data-parsoid='{"a":{"href":"./Main_Page#section"},"sa":{"href":"Main Page#section"},"stx":"simple"}'>Main Page#section</a></p>
 !! end
 
 !! test
@@ -1080,7 +1080,7 @@ title=[[Main Page]]
 <p><a class="mw-selflink-fragment" href="#section_with_spaces">Main Page#section with spaces</a>
 </p>
 !! html/parsoid
-<p><a rel="mw:WikiLink" href="./Main_Page#section_with_spaces" class="mw-selflink-fragment" data-parsoid='{"stx":"simple","a":{"href":"./Main_Page#section_with_spaces"},"sa":{"href":"Main Page#section with spaces"}}'>Main Page#section with spaces</a></p>
+<p><a rel="mw:WikiLink" href="./Main_Page#section_with_spaces" class="mw-selflink-fragment" data-parsoid='{"a":{"href":"./Main_Page#section_with_spaces"},"sa":{"href":"Main Page#section with spaces"},"stx":"simple"}'>Main Page#section with spaces</a></p>
 !! end
 
 !!test
@@ -1093,7 +1093,7 @@ title=[[0]]
 <p><a class="mw-selflink selflink">0</a>
 </p>
 !! html/parsoid
-<p><a rel="mw:WikiLink" href="./0" class="mw-selflink selflink" data-parsoid='{"stx":"simple","a":{"href":"./0"},"sa":{"href":"0"}}'>0</a></p>
+<p><a rel="mw:WikiLink" href="./0" class="mw-selflink selflink" data-parsoid='{"a":{"href":"./0"},"sa":{"href":"0"},"stx":"simple"}'>0</a></p>
 !!end
 
 !!test
@@ -1192,7 +1192,7 @@ language=en
 <p><a href="/index.php?title=Something&amp;action=edit&amp;redlink=1" class="new" title="Something (page does not exist)">Something</a>'nice
 </p>
 !! html/parsoid
-<p><a rel="mw:WikiLink" href="./Something?action=edit&amp;redlink=1" title="Something" class="new" typeof="mw:LocalizedAttrs" data-parsoid='{"stx":"simple","a":{"href":"./Something"},"sa":{"href":"Something"}}' data-mw-i18n='{"title":{"lang":"x-page","key":"red-link-title","params":["Something"]}}'>Something</a>'nice</p>
+<p><a rel="mw:WikiLink" href="./Something?action=edit&amp;redlink=1" title="Something" class="new" typeof="mw:LocalizedAttrs" data-parsoid='{"a":{"href":"./Something"},"sa":{"href":"Something"},"stx":"simple"}' data-mw-i18n='{"title":{"lang":"x-page","key":"red-link-title","params":["Something"]}}'>Something</a>'nice</p>
 !! end
 
 !! test
@@ -1205,7 +1205,7 @@ language=ca
 <p><a href="/index.php?title=Something&amp;action=edit&amp;redlink=1" class="new" title="Something (encara no existeix)">Something'nice</a>
 </p>
 !! html/parsoid
-<p><a rel="mw:WikiLink" href="./Something?action=edit&amp;redlink=1" title="Something" class="new" typeof="mw:LocalizedAttrs" data-parsoid='{"stx":"simple","a":{"href":"./Something"},"sa":{"href":"Something"},"tail":"&apos;nice"}' data-mw-i18n='{"title":{"lang":"x-page","key":"red-link-title","params":["Something"]}}'>Something'nice</a></p>
+<p><a rel="mw:WikiLink" href="./Something?action=edit&amp;redlink=1" title="Something" class="new" typeof="mw:LocalizedAttrs" data-parsoid='{"a":{"href":"./Something"},"sa":{"href":"Something"},"stx":"simple","tail":"&apos;nice"}' data-mw-i18n='{"title":{"lang":"x-page","key":"red-link-title","params":["Something"]}}'>Something'nice</a></p>
 !! end
 
 !! test
@@ -1218,7 +1218,7 @@ language=kaa
 <p><a href="/index.php?title=Something&amp;action=edit&amp;redlink=1" class="new" title="Something (bet ele jaratılmaǵan)">Something'nice</a>
 </p>
 !! html/parsoid
-<p><a rel="mw:WikiLink" href="./Something?action=edit&amp;redlink=1" title="Something" class="new" typeof="mw:LocalizedAttrs" data-parsoid='{"stx":"simple","a":{"href":"./Something"},"sa":{"href":"Something"},"tail":"&apos;nice"}' data-mw-i18n='{"title":{"lang":"x-page","key":"red-link-title","params":["Something"]}}'>Something'nice</a></p>
+<p><a rel="mw:WikiLink" href="./Something?action=edit&amp;redlink=1" title="Something" class="new" typeof="mw:LocalizedAttrs" data-parsoid='{"a":{"href":"./Something"},"sa":{"href":"Something"},"stx":"simple","tail":"&apos;nice"}' data-mw-i18n='{"title":{"lang":"x-page","key":"red-link-title","params":["Something"]}}'>Something'nice</a></p>
 !! end
 
 !! test
@@ -1229,7 +1229,7 @@ Link with multiple ":" in a subpage-supporting namespace (T65636)
 <p><a href="/wiki/User:Foo/Test/63636:Bar" title="User:Foo/Test/63636:Bar">Test</a>
 </p>
 !! html/parsoid
-<p><a rel="mw:WikiLink" href="./User:Foo/Test/63636:Bar" title="User:Foo/Test/63636:Bar" data-parsoid='{"stx":"piped","a":{"href":"./User:Foo/Test/63636:Bar"},"sa":{"href":"User:Foo/Test/63636:Bar"}}'>Test</a></p>
+<p><a rel="mw:WikiLink" href="./User:Foo/Test/63636:Bar" title="User:Foo/Test/63636:Bar" data-parsoid='{"a":{"href":"./User:Foo/Test/63636:Bar"},"sa":{"href":"User:Foo/Test/63636:Bar"},"stx":"piped"}'>Test</a></p>
 !! end
 
 ## Mainly a check for Parsoid
@@ -1258,7 +1258,7 @@ subpage
 <p><a href="/wiki/User:Test/123" title="User:Test/123">/123</a>
 </p>
 !! html/parsoid
-<p><a rel="mw:WikiLink" href="./User:Test/123" title="User:Test/123" data-parsoid='{"stx":"simple","a":{"href":"./User:Test/123"},"sa":{"href":"/123"}}'>/123</a></p>
+<p><a rel="mw:WikiLink" href="./User:Test/123" title="User:Test/123" data-parsoid='{"a":{"href":"./User:Test/123"},"sa":{"href":"/123"},"stx":"simple"}'>/123</a></p>
 !! end
 
 !! test
@@ -1286,7 +1286,7 @@ subpage
 <p><a href="#a">b</a>
 </p>
 !! html/parsoid
-<p><a rel="mw:WikiLink" href="./User:Test/123#a" class="mw-selflink-fragment" data-parsoid='{"stx":"piped","a":{"href":"./User:Test/123#a"},"sa":{"href":"#a"}}'>b</a></p>
+<p><a rel="mw:WikiLink" href="./User:Test/123#a" class="mw-selflink-fragment" data-parsoid='{"a":{"href":"./User:Test/123#a"},"sa":{"href":"#a"},"stx":"piped"}'>b</a></p>
 !! end
 
 !! test
@@ -1299,7 +1299,7 @@ title=[[File:Foobar.jpg]]
 <p><a href="#a">b</a>
 </p>
 !! html/parsoid
-<p><a rel="mw:WikiLink" href="./File:Foobar.jpg#a" class="mw-selflink-fragment" data-parsoid='{"stx":"piped","a":{"href":"./File:Foobar.jpg#a"},"sa":{"href":"#a"}}'>b</a></p>
+<p><a rel="mw:WikiLink" href="./File:Foobar.jpg#a" class="mw-selflink-fragment" data-parsoid='{"a":{"href":"./File:Foobar.jpg#a"},"sa":{"href":"#a"},"stx":"piped"}'>b</a></p>
 !! end
 
 !! test
@@ -1312,7 +1312,7 @@ title=[[Category:Foobar]]
 <p><a href="#a">b</a>
 </p>
 !! html/parsoid
-<p><a rel="mw:WikiLink" href="./Category:Foobar#a" class="mw-selflink-fragment" data-parsoid='{"stx":"piped","a":{"href":"./Category:Foobar#a"},"sa":{"href":"#a"}}'>b</a></p>
+<p><a rel="mw:WikiLink" href="./Category:Foobar#a" class="mw-selflink-fragment" data-parsoid='{"a":{"href":"./Category:Foobar#a"},"sa":{"href":"#a"},"stx":"piped"}'>b</a></p>
 !! end
 
 !! test
@@ -1340,8 +1340,8 @@ Empty title wikilink (legacy parser behavior is wrong, see T19006)
 <a href="/wiki/">x</a>
 </p>
 !! html/parsoid
-<p><a rel="mw:WikiLink" href="./Parser_test#" class="mw-selflink-fragment" data-parsoid='{"stx":"simple","a":{"href":"./Parser_test#"},"sa":{"href":"#"}}'>#</a>
-<a rel="mw:WikiLink" href="./Parser_test#" class="mw-selflink-fragment" data-parsoid='{"stx":"piped","a":{"href":"./Parser_test#"},"sa":{"href":"#"}}'>x</a></p>
+<p><a rel="mw:WikiLink" href="./Parser_test#" class="mw-selflink-fragment" data-parsoid='{"a":{"href":"./Parser_test#"},"sa":{"href":"#"},"stx":"simple"}'>#</a>
+<a rel="mw:WikiLink" href="./Parser_test#" class="mw-selflink-fragment" data-parsoid='{"a":{"href":"./Parser_test#"},"sa":{"href":"#"},"stx":"piped"}'>x</a></p>
 !! end
 
 !! test
@@ -1364,15 +1364,15 @@ Empty title wikilink (legacy parser behavior is wrong, see T19006)
 </p><p><a href="/wiki/Foo" title="Foo">Fool</a>
 </p>
 !! html/parsoid
-<p><a rel="mw:WikiLink" href="./Foo" title="Foo" about="#mwt2" typeof="mw:Transclusion" data-parsoid='{"stx":"simple","a":{"href":"./Foo"},"sa":{"href":"Foo"},"pi":[[{"k":"1"}]],"tail":"l"}' data-mw='{"parts":[{"template":{"target":{"wt":"1x","href":"./Template:1x"},"params":{"1":{"wt":"[[Foo]]"}},"i":0}},"l"]}'>Fool</a></p>
+<p><a rel="mw:WikiLink" href="./Foo" title="Foo" about="#mwt2" typeof="mw:Transclusion" data-parsoid='{"a":{"href":"./Foo"},"pi":[[{"k":"1"}]],"sa":{"href":"Foo"},"stx":"simple","tail":"l"}' data-mw='{"parts":[{"template":{"target":{"wt":"1x","href":"./Template:1x"},"params":{"1":{"wt":"[[Foo]]"}},"i":0}},"l"]}'>Fool</a></p>
 
-<p><a rel="mw:WikiLink" href="./Foo" title="Foo" about="#mwt1" typeof="mw:Transclusion" data-parsoid='{"stx":"simple","a":{"href":"./Foo"},"sa":{"href":"Foo"},"pi":[[{"k":"1"}]],"tail":"l"}' data-mw='{"parts":[{"template":{"target":{"wt":"1x","href":"./Template:1x"},"params":{"1":{"wt":"[[Foo]]l"}},"i":0}}]}'>Fool</a></p>
+<p><a rel="mw:WikiLink" href="./Foo" title="Foo" about="#mwt1" typeof="mw:Transclusion" data-parsoid='{"a":{"href":"./Foo"},"pi":[[{"k":"1"}]],"sa":{"href":"Foo"},"stx":"simple","tail":"l"}' data-mw='{"parts":[{"template":{"target":{"wt":"1x","href":"./Template:1x"},"params":{"1":{"wt":"[[Foo]]l"}},"i":0}}]}'>Fool</a></p>
 
-<p><a rel="mw:WikiLink" href="./Foo" title="Foo" about="#mwt3" typeof="mw:Transclusion" data-parsoid='{"stx":"simple","a":{"href":"./Foo"},"sa":{"href":"Foo"},"pi":[[{"k":"1"}]],"tail":"ls"}' data-mw='{"parts":[{"template":{"target":{"wt":"1x","href":"./Template:1x"},"params":{"1":{"wt":"[[Foo]]l"}},"i":0}},"s"]}'>Fools</a></p>
+<p><a rel="mw:WikiLink" href="./Foo" title="Foo" about="#mwt3" typeof="mw:Transclusion" data-parsoid='{"a":{"href":"./Foo"},"pi":[[{"k":"1"}]],"sa":{"href":"Foo"},"stx":"simple","tail":"ls"}' data-mw='{"parts":[{"template":{"target":{"wt":"1x","href":"./Template:1x"},"params":{"1":{"wt":"[[Foo]]l"}},"i":0}},"s"]}'>Fools</a></p>
 
-<p><a rel="mw:WikiLink" href="./Foo" title="Foo" about="#mwt4" typeof="mw:Transclusion" data-parsoid='{"stx":"simple","a":{"href":"./Foo"},"sa":{"href":"Foo"},"pi":[[{"k":"1"}]]}' data-mw='{"parts":[{"template":{"target":{"wt":"1x","href":"./Template:1x"},"params":{"1":{"wt":"[[Foo]]&lt;span>ls&lt;/span>"}},"i":0}}]}'>Foo</a><span about="#mwt4">ls</span></p>
+<p><a rel="mw:WikiLink" href="./Foo" title="Foo" about="#mwt4" typeof="mw:Transclusion" data-parsoid='{"a":{"href":"./Foo"},"sa":{"href":"Foo"},"pi":[[{"k":"1"}]],"stx":"simple"}' data-mw='{"parts":[{"template":{"target":{"wt":"1x","href":"./Template:1x"},"params":{"1":{"wt":"[[Foo]]&lt;span>ls&lt;/span>"}},"i":0}}]}'>Foo</a><span about="#mwt4">ls</span></p>
 
-<p><a typeof="mw:ExpandedAttrs" about="#mwt6" rel="mw:WikiLink" href="./Foo" title="Foo" data-parsoid='{"stx":"simple","a":{"href":"./Foo"},"sa":{"href":"{{1x|Foo}}"},"tail":"l"}' data-mw='{"attribs":[[{"txt":"href"},{"html":"&lt;span about=\"#mwt5\" typeof=\"mw:Transclusion\" data-parsoid=&apos;{\"pi\":[[{\"k\":\"1\"}]]}&apos; data-mw=&apos;{\"parts\":[{\"template\":{\"target\":{\"wt\":\"1x\",\"href\":\"./Template:1x\"},\"params\":{\"1\":{\"wt\":\"Foo\"}},\"i\":0}}]}&apos;>Foo&lt;/span>"}]]}'>Fool</a></p>
+<p><a typeof="mw:ExpandedAttrs" about="#mwt6" rel="mw:WikiLink" href="./Foo" title="Foo" data-parsoid='{"a":{"href":"./Foo"},"sa":{"href":"{{1x|Foo}}"},"stx":"simple","tail":"l"}' data-mw='{"attribs":[[{"txt":"href"},{"html":"&lt;span about=\"#mwt5\" typeof=\"mw:Transclusion\" data-parsoid=&apos;{\"pi\":[[{\"k\":\"1\"}]]}&apos; data-mw=&apos;{\"parts\":[{\"template\":{\"target\":{\"wt\":\"1x\",\"href\":\"./Template:1x\"},\"params\":{\"1\":{\"wt\":\"Foo\"}},\"i\":0}}]}&apos;>Foo&lt;/span>"}]]}'>Fool</a></p>
 !! end
 
 !! test
@@ -1383,7 +1383,7 @@ Empty title wikilink (legacy parser behavior is wrong, see T19006)
 <p>Some <a href="/wiki/Fool" title="Fool">Fools</a>
 </p>
 !! html/parsoid
-<p><span about="#mwt1" typeof="mw:Transclusion" data-parsoid='{"pi":[[{"k":"1"}]]}' data-mw='{"parts":[{"template":{"target":{"wt":"1x","href":"./Template:1x"},"params":{"1":{"wt":"Some [[Fool]]"}},"i":0}},"s"]}'>Some </span><a rel="mw:WikiLink" href="./Fool" title="Fool" about="#mwt1" data-parsoid='{"stx":"simple","a":{"href":"./Fool"},"sa":{"href":"Fool"},"tail":"s"}'>Fools</a></p>
+<p><span about="#mwt1" typeof="mw:Transclusion" data-parsoid='{"pi":[[{"k":"1"}]]}' data-mw='{"parts":[{"template":{"target":{"wt":"1x","href":"./Template:1x"},"params":{"1":{"wt":"Some [[Fool]]"}},"i":0}},"s"]}'>Some </span><a rel="mw:WikiLink" href="./Fool" title="Fool" about="#mwt1" data-parsoid='{"a":{"href":"./Fool"},"sa":{"href":"Fool"},"stx":"simple","tail":"s"}'>Fools</a></p>
 !! end
 
 !! test
@@ -1411,9 +1411,9 @@ mótmæ{{1x|lenda[[söfnuður|söfnuðir]]}}
 <a href="/wiki/S%C3%B6fnu%C3%B0ur" title="Söfnuður">mótmælendasöfnuðir</a>
 </p>
 !! html/parsoid
-<p>Aðrir <a rel="mw:WikiLink" href="./Söfnuður" title="Söfnuður" data-parsoid='{"stx":"piped","a":{"href":"./Söfnuður"},"sa":{"href":"söfnuður"},"prefix":"mótmælenda"}'>mótmælendasöfnuðir</a> og
-<a rel="mw:WikiLink" href="./Söfnuður" title="Söfnuður" about="#mwt1" typeof="mw:Transclusion" data-parsoid='{"stx":"piped","a":{"href":"./Söfnuður"},"sa":{"href":"söfnuður"},"prefix":"mótmælenda"}' data-mw='{"parts":[{"template":{"target":{"wt":"1x","href":"./Snið:1x"},"params":{"1":{"wt":"mótmælenda[[söfnuður|söfnuðir]]"}},"i":0}}]}'>mótmælendasöfnuðir</a>
-<a rel="mw:WikiLink" href="./Söfnuður" title="Söfnuður" about="#mwt2" typeof="mw:Transclusion" data-parsoid='{"stx":"piped","a":{"href":"./Söfnuður"},"sa":{"href":"söfnuður"},"prefix":"mótmælenda"}' data-mw='{"parts":["mótmæ",{"template":{"target":{"wt":"1x","href":"./Snið:1x"},"params":{"1":{"wt":"lenda[[söfnuður|söfnuðir]]"}},"i":0}}]}'>mótmælendasöfnuðir</a></p>
+<p>Aðrir <a rel="mw:WikiLink" href="./Söfnuður" title="Söfnuður" data-parsoid='{"a":{"href":"./Söfnuður"},"prefix":"mótmælenda","sa":{"href":"söfnuður"},"stx":"piped"}'>mótmælendasöfnuðir</a> og
+<a rel="mw:WikiLink" href="./Söfnuður" title="Söfnuður" about="#mwt1" typeof="mw:Transclusion" data-parsoid='{"a":{"href":"./Söfnuður"},"prefix":"mótmælenda","sa":{"href":"söfnuður"},"stx":"piped"}' data-mw='{"parts":[{"template":{"target":{"wt":"1x","href":"./Snið:1x"},"params":{"1":{"wt":"mótmælenda[[söfnuður|söfnuðir]]"}},"i":0}}]}'>mótmælendasöfnuðir</a>
+<a rel="mw:WikiLink" href="./Söfnuður" title="Söfnuður" about="#mwt2" typeof="mw:Transclusion" data-parsoid='{"a":{"href":"./Söfnuður"},"prefix":"mótmælenda","sa":{"href":"söfnuður"},"stx":"piped"}' data-mw='{"parts":["mótmæ",{"template":{"target":{"wt":"1x","href":"./Snið:1x"},"params":{"1":{"wt":"lenda[[söfnuður|söfnuðir]]"}},"i":0}}]}'>mótmælendasöfnuðir</a></p>
 !! end
 
 !! test
@@ -1517,7 +1517,7 @@ wgFragmentMode=[ "html5", "legacy" ]
 <p><a href="/wiki/Foo#&lt;bar&gt;" title="Foo">Foo#&lt;bar&gt;</a>
 </p>
 !! html/parsoid
-<p><a rel="mw:WikiLink" href="./Foo#&lt;bar>" title="Foo" data-parsoid='{"stx":"simple","a":{"href":"./Foo#&lt;bar>"},"sa":{"href":"Foo#&lt;bar>"}}'>Foo#&lt;bar></a></p>
+<p><a rel="mw:WikiLink" href="./Foo#&lt;bar>" title="Foo" data-parsoid='{"a":{"href":"./Foo#&lt;bar>"},"sa":{"href":"Foo#&lt;bar>"},"stx":"simple"}'>Foo#&lt;bar></a></p>
 !! end
 
 !! test
@@ -1539,7 +1539,7 @@ Wikilink in wikilink
 <p>[[Hi|<a href="/wiki/Ho" title="Ho">Ho</a>]]
 </p>
 !! html/parsoid
-<p>[[Hi|<a rel="mw:WikiLink" href="./Ho" title="Ho" data-parsoid='{"stx":"simple","a":{"href":"./Ho"},"sa":{"href":"Ho"}}'>Ho</a>]]</p>
+<p>[[Hi|<a rel="mw:WikiLink" href="./Ho" title="Ho" data-parsoid='{"a":{"href":"./Ho"},"sa":{"href":"Ho"},"stx":"simple"}'>Ho</a>]]</p>
 !! end
 
 !! test
@@ -1565,7 +1565,7 @@ language=ln
 <p><a href="/index.php?title=WW_II&amp;action=edit&amp;redlink=1" class="new" title="WW II (lonkásá  ezalí tɛ̂)">WW&#160;II</a>
 </p>
 !! html/parsoid
-<p><a rel="mw:WikiLink" href="./WW_II?action=edit&amp;redlink=1" title="WW II" class="new" typeof="mw:LocalizedAttrs" data-parsoid='{"stx":"simple","a":{"href":"./WW_II"},"sa":{"href":"WW&amp;nbsp;II"}}' data-mw-i18n='{"title":{"lang":"x-page","key":"red-link-title","params":["WW II"]}}'>WW II</a></p>
+<p><a rel="mw:WikiLink" href="./WW_II?action=edit&amp;redlink=1" title="WW II" class="new" typeof="mw:LocalizedAttrs" data-parsoid='{"a":{"href":"./WW_II"},"sa":{"href":"WW&amp;nbsp;II"},"stx":"simple"}' data-mw-i18n='{"title":{"lang":"x-page","key":"red-link-title","params":["WW II"]}}'>WW II</a></p>
 !! end
 
 !! test
@@ -1591,8 +1591,8 @@ Wikilinks with : should roundtrip correctly, with and without redlinks
 [[16:30]]
 [[18:30]]
 !! html/parsoid
-<p><a rel="mw:WikiLink" href="./16:30" title="16:30" data-parsoid='{"stx":"simple","a":{"href":"./16:30"},"sa":{"href":"16:30"}}'>16:30</a>
-<a rel="mw:WikiLink" href="./18:30?action=edit&amp;redlink=1" title="18:30" class="new" typeof="mw:LocalizedAttrs" data-parsoid='{"stx":"simple","a":{"href":"./18:30"},"sa":{"href":"18:30"}}' data-mw-i18n='{"title":{"lang":"x-page","key":"red-link-title","params":["18:30"]}}'>18:30</a></p>
+<p><a rel="mw:WikiLink" href="./16:30" title="16:30" data-parsoid='{"a":{"href":"./16:30"},"sa":{"href":"16:30"},"stx":"simple"}'>16:30</a>
+<a rel="mw:WikiLink" href="./18:30?action=edit&amp;redlink=1" title="18:30" class="new" typeof="mw:LocalizedAttrs" data-parsoid='{"a":{"href":"./18:30"},"sa":{"href":"18:30"},"stx":"simple"}' data-mw-i18n='{"title":{"lang":"x-page","key":"red-link-title","params":["18:30"]}}'>18:30</a></p>
 !! end
 
 # html2wt will fail because of title normalization without data-parsoid
@@ -1609,9 +1609,9 @@ parsoid=wt2html,wt2wt
 </p><p><a href="/index.php?title=Constructor:foo&amp;action=edit&amp;redlink=1" class="new" title="Constructor:foo (page does not exist)">constructor:foo</a>
 </p>
 !! html/parsoid
-<p><a rel="mw:WikiLink" href="./Constructor?action=edit&amp;redlink=1" title="Constructor" class="new" typeof="mw:LocalizedAttrs" data-parsoid='{"stx":"simple","a":{"href":"./Constructor"},"sa":{"href":"constructor"}}' data-mw-i18n='{"title":{"lang":"x-page","key":"red-link-title","params":["Constructor"]}}'>constructor</a></p>
+<p><a rel="mw:WikiLink" href="./Constructor?action=edit&amp;redlink=1" title="Constructor" class="new" typeof="mw:LocalizedAttrs" data-parsoid='{"a":{"href":"./Constructor"},"sa":{"href":"constructor"},"stx":"simple"}' data-mw-i18n='{"title":{"lang":"x-page","key":"red-link-title","params":["Constructor"]}}'>constructor</a></p>
 
-<p><a rel="mw:WikiLink" href="./Constructor:foo?action=edit&amp;redlink=1" title="Constructor:foo" class="new" typeof="mw:LocalizedAttrs" data-parsoid='{"stx":"simple","a":{"href":"./Constructor:foo"},"sa":{"href":"constructor:foo"}}' data-mw-i18n='{"title":{"lang":"x-page","key":"red-link-title","params":["Constructor:foo"]}}'>constructor:foo</a></p>
+<p><a rel="mw:WikiLink" href="./Constructor:foo?action=edit&amp;redlink=1" title="Constructor:foo" class="new" typeof="mw:LocalizedAttrs" data-parsoid='{"a":{"href":"./Constructor:foo"},"sa":{"href":"constructor:foo"},"stx":"simple"}' data-mw-i18n='{"title":{"lang":"x-page","key":"red-link-title","params":["Constructor:foo"]}}'>constructor:foo</a></p>
 !! end
 
 !!test
@@ -1655,17 +1655,17 @@ Templates: Links: 3. Generation of part of a link href
 </p><p><a href="/wiki/Foobar" title="Foobar">bar</a>
 </p>
 !! html/parsoid
-<p><a typeof="mw:ExpandedAttrs" about="#mwt2" rel="mw:WikiLink" href="./Foo" title="Foo" data-parsoid='{"stx":"piped","a":{"href":"./Foo"},"sa":{"href":"Fo{{1x|o}}"}}' data-mw='{"attribs":[[{"txt":"href"},{"html":"Fo&lt;span about=\"#mwt1\" typeof=\"mw:Transclusion\" data-parsoid=&apos;{\"pi\":[[{\"k\":\"1\"}]]}&apos; data-mw=&apos;{\"parts\":[{\"template\":{\"target\":{\"wt\":\"1x\",\"href\":\"./Template:1x\"},\"params\":{\"1\":{\"wt\":\"o\"}},\"i\":0}}]}&apos;>o&lt;/span>"}]]}'>bar</a></p>
+<p><a typeof="mw:ExpandedAttrs" about="#mwt2" rel="mw:WikiLink" href="./Foo" title="Foo" data-parsoid='{"a":{"href":"./Foo"},"sa":{"href":"Fo{{1x|o}}"},"stx":"piped"}' data-mw='{"attribs":[[{"txt":"href"},{"html":"Fo&lt;span about=\"#mwt1\" typeof=\"mw:Transclusion\" data-parsoid=&apos;{\"pi\":[[{\"k\":\"1\"}]]}&apos; data-mw=&apos;{\"parts\":[{\"template\":{\"target\":{\"wt\":\"1x\",\"href\":\"./Template:1x\"},\"params\":{\"1\":{\"wt\":\"o\"}},\"i\":0}}]}&apos;>o&lt;/span>"}]]}'>bar</a></p>
 
-<p><a typeof="mw:ExpandedAttrs" about="#mwt4" rel="mw:WikiLink" href="./Foobar" title="Foobar" data-parsoid='{"stx":"simple","a":{"href":"./Foobar"},"sa":{"href":"Foo{{1x|bar}}"}}' data-mw='{"attribs":[[{"txt":"href"},{"html":"Foo&lt;span about=\"#mwt3\" typeof=\"mw:Transclusion\" data-parsoid=&apos;{\"pi\":[[{\"k\":\"1\"}]]}&apos; data-mw=&apos;{\"parts\":[{\"template\":{\"target\":{\"wt\":\"1x\",\"href\":\"./Template:1x\"},\"params\":{\"1\":{\"wt\":\"bar\"}},\"i\":0}}]}&apos;>bar&lt;/span>"}]]}'>Foobar</a></p>
+<p><a typeof="mw:ExpandedAttrs" about="#mwt4" rel="mw:WikiLink" href="./Foobar" title="Foobar" data-parsoid='{"a":{"href":"./Foobar"},"sa":{"href":"Foo{{1x|bar}}"},"stx":"simple"}' data-mw='{"attribs":[[{"txt":"href"},{"html":"Foo&lt;span about=\"#mwt3\" typeof=\"mw:Transclusion\" data-parsoid=&apos;{\"pi\":[[{\"k\":\"1\"}]]}&apos; data-mw=&apos;{\"parts\":[{\"template\":{\"target\":{\"wt\":\"1x\",\"href\":\"./Template:1x\"},\"params\":{\"1\":{\"wt\":\"bar\"}},\"i\":0}}]}&apos;>bar&lt;/span>"}]]}'>Foobar</a></p>
 
-<p><a typeof="mw:ExpandedAttrs" about="#mwt6" rel="mw:WikiLink" href="./Foobarbaz" title="Foobarbaz" data-parsoid='{"stx":"simple","a":{"href":"./Foobarbaz"},"sa":{"href":"Foo{{1x|bar}}baz"}}' data-mw='{"attribs":[[{"txt":"href"},{"html":"Foo&lt;span about=\"#mwt5\" typeof=\"mw:Transclusion\" data-parsoid=&apos;{\"pi\":[[{\"k\":\"1\"}]]}&apos; data-mw=&apos;{\"parts\":[{\"template\":{\"target\":{\"wt\":\"1x\",\"href\":\"./Template:1x\"},\"params\":{\"1\":{\"wt\":\"bar\"}},\"i\":0}}]}&apos;>bar&lt;/span>baz"}]]}'>Foobarbaz</a></p>
+<p><a typeof="mw:ExpandedAttrs" about="#mwt6" rel="mw:WikiLink" href="./Foobarbaz" title="Foobarbaz" data-parsoid='{"a":{"href":"./Foobarbaz"},"sa":{"href":"Foo{{1x|bar}}baz"},"stx":"simple"}' data-mw='{"attribs":[[{"txt":"href"},{"html":"Foo&lt;span about=\"#mwt5\" typeof=\"mw:Transclusion\" data-parsoid=&apos;{\"pi\":[[{\"k\":\"1\"}]]}&apos; data-mw=&apos;{\"parts\":[{\"template\":{\"target\":{\"wt\":\"1x\",\"href\":\"./Template:1x\"},\"params\":{\"1\":{\"wt\":\"bar\"}},\"i\":0}}]}&apos;>bar&lt;/span>baz"}]]}'>Foobarbaz</a></p>
 
-<p><a typeof="mw:ExpandedAttrs" about="#mwt8" rel="mw:WikiLink" href="./Foobar" title="Foobar" data-parsoid='{"stx":"piped","a":{"href":"./Foobar"},"sa":{"href":"Foo{{1x|bar}}"}}' data-mw='{"attribs":[[{"txt":"href"},{"html":"Foo&lt;span about=\"#mwt7\" typeof=\"mw:Transclusion\" data-parsoid=&apos;{\"pi\":[[{\"k\":\"1\"}]]}&apos; data-mw=&apos;{\"parts\":[{\"template\":{\"target\":{\"wt\":\"1x\",\"href\":\"./Template:1x\"},\"params\":{\"1\":{\"wt\":\"bar\"}},\"i\":0}}]}&apos;>bar&lt;/span>"}]]}'>bar</a></p>
+<p><a typeof="mw:ExpandedAttrs" about="#mwt8" rel="mw:WikiLink" href="./Foobar" title="Foobar" data-parsoid='{"a":{"href":"./Foobar"},"sa":{"href":"Foo{{1x|bar}}"},"stx":"piped"}' data-mw='{"attribs":[[{"txt":"href"},{"html":"Foo&lt;span about=\"#mwt7\" typeof=\"mw:Transclusion\" data-parsoid=&apos;{\"pi\":[[{\"k\":\"1\"}]]}&apos; data-mw=&apos;{\"parts\":[{\"template\":{\"target\":{\"wt\":\"1x\",\"href\":\"./Template:1x\"},\"params\":{\"1\":{\"wt\":\"bar\"}},\"i\":0}}]}&apos;>bar&lt;/span>"}]]}'>bar</a></p>
 
-<p><a typeof="mw:ExpandedAttrs" about="#mwt10" rel="mw:WikiLink" href="./Foobar" title="Foobar" data-parsoid='{"stx":"simple","a":{"href":"./Foobar"},"sa":{"href":":Foo{{1x|bar}}"}}' data-mw='{"attribs":[[{"txt":"href"},{"html":":Foo&lt;span about=\"#mwt9\" typeof=\"mw:Transclusion\" data-parsoid=&apos;{\"pi\":[[{\"k\":\"1\"}]]}&apos; data-mw=&apos;{\"parts\":[{\"template\":{\"target\":{\"wt\":\"1x\",\"href\":\"./Template:1x\"},\"params\":{\"1\":{\"wt\":\"bar\"}},\"i\":0}}]}&apos;>bar&lt;/span>"}]]}'>Foobar</a></p>
+<p><a typeof="mw:ExpandedAttrs" about="#mwt10" rel="mw:WikiLink" href="./Foobar" title="Foobar" data-parsoid='{"a":{"href":"./Foobar"},"sa":{"href":":Foo{{1x|bar}}"},"stx":"simple"}' data-mw='{"attribs":[[{"txt":"href"},{"html":":Foo&lt;span about=\"#mwt9\" typeof=\"mw:Transclusion\" data-parsoid=&apos;{\"pi\":[[{\"k\":\"1\"}]]}&apos; data-mw=&apos;{\"parts\":[{\"template\":{\"target\":{\"wt\":\"1x\",\"href\":\"./Template:1x\"},\"params\":{\"1\":{\"wt\":\"bar\"}},\"i\":0}}]}&apos;>bar&lt;/span>"}]]}'>Foobar</a></p>
 
-<p><a typeof="mw:ExpandedAttrs" about="#mwt12" rel="mw:WikiLink" href="./Foobar" title="Foobar" data-parsoid='{"stx":"piped","a":{"href":"./Foobar"},"sa":{"href":":Foo{{1x|bar}}"}}' data-mw='{"attribs":[[{"txt":"href"},{"html":":Foo&lt;span about=\"#mwt11\" typeof=\"mw:Transclusion\" data-parsoid=&apos;{\"pi\":[[{\"k\":\"1\"}]]}&apos; data-mw=&apos;{\"parts\":[{\"template\":{\"target\":{\"wt\":\"1x\",\"href\":\"./Template:1x\"},\"params\":{\"1\":{\"wt\":\"bar\"}},\"i\":0}}]}&apos;>bar&lt;/span>"}]]}'>bar</a></p>
+<p><a typeof="mw:ExpandedAttrs" about="#mwt12" rel="mw:WikiLink" href="./Foobar" title="Foobar" data-parsoid='{"a":{"href":"./Foobar"},"sa":{"href":":Foo{{1x|bar}}"},"stx":"piped"}' data-mw='{"attribs":[[{"txt":"href"},{"html":":Foo&lt;span about=\"#mwt11\" typeof=\"mw:Transclusion\" data-parsoid=&apos;{\"pi\":[[{\"k\":\"1\"}]]}&apos; data-mw=&apos;{\"parts\":[{\"template\":{\"target\":{\"wt\":\"1x\",\"href\":\"./Template:1x\"},\"params\":{\"1\":{\"wt\":\"bar\"}},\"i\":0}}]}&apos;>bar&lt;/span>"}]]}'>bar</a></p>
 !!end
 
 !!test
@@ -1676,7 +1676,7 @@ Templates: Links: 4. Multiple templates generating link href
 <p><a href="/wiki/Foobar" title="Foobar">Foobar</a>
 </p>
 !! html/parsoid
-<p><a typeof="mw:ExpandedAttrs" about="#mwt4" rel="mw:WikiLink" href="./Foobar" title="Foobar" data-parsoid='{"stx":"simple","a":{"href":"./Foobar"},"sa":{"href":"{{1x|F}}{{1x|o}}ob{{1x|ar}}"}}' data-mw='{"attribs":[[{"txt":"href"},{"html":"&lt;span about=\"#mwt1\" typeof=\"mw:Transclusion\" data-parsoid=&apos;{\"pi\":[[{\"k\":\"1\"}]]}&apos; data-mw=&apos;{\"parts\":[{\"template\":{\"target\":{\"wt\":\"1x\",\"href\":\"./Template:1x\"},\"params\":{\"1\":{\"wt\":\"F\"}},\"i\":0}}]}&apos;>F&lt;/span>&lt;span about=\"#mwt2\" typeof=\"mw:Transclusion\" data-parsoid=&apos;{\"pi\":[[{\"k\":\"1\"}]]}&apos; data-mw=&apos;{\"parts\":[{\"template\":{\"target\":{\"wt\":\"1x\",\"href\":\"./Template:1x\"},\"params\":{\"1\":{\"wt\":\"o\"}},\"i\":0}}]}&apos;>o&lt;/span>ob&lt;span about=\"#mwt3\" typeof=\"mw:Transclusion\" data-parsoid=&apos;{\"pi\":[[{\"k\":\"1\"}]]}&apos; data-mw=&apos;{\"parts\":[{\"template\":{\"target\":{\"wt\":\"1x\",\"href\":\"./Template:1x\"},\"params\":{\"1\":{\"wt\":\"ar\"}},\"i\":0}}]}&apos;>ar&lt;/span>"}]]}'>Foobar</a></p>
+<p><a typeof="mw:ExpandedAttrs" about="#mwt4" rel="mw:WikiLink" href="./Foobar" title="Foobar" data-parsoid='{"a":{"href":"./Foobar"},"sa":{"href":"{{1x|F}}{{1x|o}}ob{{1x|ar}}"},"stx":"simple"}' data-mw='{"attribs":[[{"txt":"href"},{"html":"&lt;span about=\"#mwt1\" typeof=\"mw:Transclusion\" data-parsoid=&apos;{\"pi\":[[{\"k\":\"1\"}]]}&apos; data-mw=&apos;{\"parts\":[{\"template\":{\"target\":{\"wt\":\"1x\",\"href\":\"./Template:1x\"},\"params\":{\"1\":{\"wt\":\"F\"}},\"i\":0}}]}&apos;>F&lt;/span>&lt;span about=\"#mwt2\" typeof=\"mw:Transclusion\" data-parsoid=&apos;{\"pi\":[[{\"k\":\"1\"}]]}&apos; data-mw=&apos;{\"parts\":[{\"template\":{\"target\":{\"wt\":\"1x\",\"href\":\"./Template:1x\"},\"params\":{\"1\":{\"wt\":\"o\"}},\"i\":0}}]}&apos;>o&lt;/span>ob&lt;span about=\"#mwt3\" typeof=\"mw:Transclusion\" data-parsoid=&apos;{\"pi\":[[{\"k\":\"1\"}]]}&apos; data-mw=&apos;{\"parts\":[{\"template\":{\"target\":{\"wt\":\"1x\",\"href\":\"./Template:1x\"},\"params\":{\"1\":{\"wt\":\"ar\"}},\"i\":0}}]}&apos;>ar&lt;/span>"}]]}'>Foobar</a></p>
 !!end
 
 !!test
@@ -1857,7 +1857,7 @@ Disabled subpages
 <p><a href="/index.php?title=/subpage&amp;action=edit&amp;redlink=1" class="new" title="/subpage (page does not exist)">/subpage</a>
 </p>
 !! html/parsoid
-<p><a rel="mw:WikiLink" href=".//subpage?action=edit&amp;redlink=1" title="/subpage" class="new" typeof="mw:LocalizedAttrs" data-parsoid='{"stx":"simple","a":{"href":".//subpage"},"sa":{"href":"/subpage"}}' data-mw-i18n='{"title":{"lang":"x-page","key":"red-link-title","params":["/subpage"]}}'>/subpage</a></p>
+<p><a rel="mw:WikiLink" href=".//subpage?action=edit&amp;redlink=1" title="/subpage" class="new" typeof="mw:LocalizedAttrs" data-parsoid='{"a":{"href":".//subpage"},"sa":{"href":"/subpage"},"stx":"simple"}' data-mw-i18n='{"title":{"lang":"x-page","key":"red-link-title","params":["/subpage"]}}'>/subpage</a></p>
 !! end
 
 !! test
@@ -1889,7 +1889,7 @@ subpage title=[[Subpage test]]
 </p>
 !! html/parsoid
 <p><a rel="mw:WikiLink" href=".//child/?action=edit&amp;redlink=1" title="/child/" class="new" typeof="mw:LocalizedAttrs" data-mw-i18n='{"title":{"lang":"x-page","key":"red-link-title","params":["/child/"]}}'>/child/</a>
-<a rel="mw:WikiLink" href="./Subpage_test/child?action=edit&amp;redlink=1" title="Subpage test/child" class="new" typeof="mw:LocalizedAttrs" data-parsoid='{"stx":"simple","a":{"href":"./Subpage_test/child"},"sa":{"href":"/child/"}}' data-mw-i18n='{"title":{"lang":"x-page","key":"red-link-title","params":["Subpage test/child"]}}'>child</a></p>
+<a rel="mw:WikiLink" href="./Subpage_test/child?action=edit&amp;redlink=1" title="Subpage test/child" class="new" typeof="mw:LocalizedAttrs" data-parsoid='{"a":{"href":"./Subpage_test/child"},"sa":{"href":"/child/"},"stx":"simple"}' data-mw-i18n='{"title":{"lang":"x-page","key":"red-link-title","params":["Subpage test/child"]}}'>child</a></p>
 !! end
 
 !! test
@@ -1902,7 +1902,7 @@ subpage title=[[Page]]
 <p><a href="/index.php?title=Page/Subpage&amp;action=edit&amp;redlink=1" class="new" title="Page/Subpage (page does not exist)">Page/Subpage</a>
 </p>
 !! html/parsoid
-<p><a rel="mw:WikiLink" href="./Page/Subpage?action=edit&amp;redlink=1" title="Page/Subpage" about="#mwt1" typeof="mw:Transclusion mw:LocalizedAttrs" class="new" data-parsoid='{"stx":"simple","a":{"href":"./Page/Subpage"},"sa":{"href":"Page/Subpage"},"pi":[[]]}' data-mw='{"parts":[{"template":{"target":{"wt":"/Subpage","href":"./Page/Subpage"},"params":{},"i":0}}]}' data-mw-i18n='{"title":{"lang":"x-page","key":"red-link-title","params":["Page/Subpage"]}}'>Page/Subpage</a></p>
+<p><a rel="mw:WikiLink" href="./Page/Subpage?action=edit&amp;redlink=1" title="Page/Subpage" about="#mwt1" typeof="mw:Transclusion mw:LocalizedAttrs" class="new" data-parsoid='{"a":{"href":"./Page/Subpage"},"sa":{"href":"Page/Subpage"},"pi":[[]],"stx":"simple"}' data-mw='{"parts":[{"template":{"target":{"wt":"/Subpage","href":"./Page/Subpage"},"params":{},"i":0}}]}' data-mw-i18n='{"title":{"lang":"x-page","key":"red-link-title","params":["Page/Subpage"]}}'>Page/Subpage</a></p>
 !! end
 
 !! test
@@ -1987,7 +1987,7 @@ subpage title=[[Subpage test/L1/L2/L3]]
 <p><a href="/wiki/Subpage_test/L1/L2" title="Subpage test/L1/L2">L2</a>
 </p>
 !! html/parsoid
-<p><a rel="mw:WikiLink" href="./Subpage_test/L1/L2" title="Subpage test/L1/L2" data-parsoid='{"stx":"piped","a":{"href":"./Subpage_test/L1/L2"},"sa":{"href":"../"}}'>L2</a></p>
+<p><a rel="mw:WikiLink" href="./Subpage_test/L1/L2" title="Subpage test/L1/L2" data-parsoid='{"a":{"href":"./Subpage_test/L1/L2"},"sa":{"href":"../"},"stx":"piped"}'>L2</a></p>
 !! end
 
 !! test
@@ -2000,7 +2000,7 @@ subpage title=[[Subpage test/L1/L2/L3]]
 <p><a href="/wiki/Subpage_test/L1/L2" title="Subpage test/L1/L2">Subpage test/L1/L2</a>
 </p>
 !! html/parsoid
-<p><a rel="mw:WikiLink" href="./Subpage_test/L1/L2" title="Subpage test/L1/L2" data-parsoid='{"stx":"simple","a":{"href":"./Subpage_test/L1/L2"},"sa":{"href":"../"}}'>Subpage test/L1/L2</a></p>
+<p><a rel="mw:WikiLink" href="./Subpage_test/L1/L2" title="Subpage test/L1/L2" data-parsoid='{"a":{"href":"./Subpage_test/L1/L2"},"sa":{"href":"../"},"stx":"simple"}'>Subpage test/L1/L2</a></p>
 !! end
 
 !! test
@@ -2016,9 +2016,9 @@ subpage title=[[Subpage test/L1/L2/L3]]
 </p><p><a href="/wiki/Subpage_test/L1" title="Subpage test/L1">L1l</a>
 </p>
 !! html/parsoid
-<p><a rel="mw:WikiLink" href="./Subpage_test/L1" title="Subpage test/L1" data-parsoid='{"stx":"piped","a":{"href":"./Subpage_test/L1"},"sa":{"href":"../../"}}'>L1</a>2</p>
+<p><a rel="mw:WikiLink" href="./Subpage_test/L1" title="Subpage test/L1" data-parsoid='{"a":{"href":"./Subpage_test/L1"},"sa":{"href":"../../"},"stx":"piped"}'>L1</a>2</p>
 
-<p><a rel="mw:WikiLink" href="./Subpage_test/L1" title="Subpage test/L1" data-parsoid='{"stx":"piped","a":{"href":"./Subpage_test/L1"},"sa":{"href":"../../"},"tail":"l"}'>L1l</a></p>
+<p><a rel="mw:WikiLink" href="./Subpage_test/L1" title="Subpage test/L1" data-parsoid='{"a":{"href":"./Subpage_test/L1"},"sa":{"href":"../../"},"stx":"piped","tail":"l"}'>L1l</a></p>
 !! end
 
 !! test
@@ -2042,7 +2042,7 @@ subpage title=[[Subpage test/L1/L2/L3]]
 <p><a href="/wiki/Subpage_test/L1" title="Subpage test/L1">Subpage test/L1</a>
 </p>
 !! html/parsoid
-<p><a rel="mw:WikiLink" href="./Subpage_test/L1" title="Subpage test/L1" data-parsoid='{"stx":"simple","a":{"href":"./Subpage_test/L1"},"sa":{"href":"../../////"}}'>Subpage test/L1</a></p>
+<p><a rel="mw:WikiLink" href="./Subpage_test/L1" title="Subpage test/L1" data-parsoid='{"a":{"href":"./Subpage_test/L1"},"sa":{"href":"../../////"},"stx":"simple"}'>Subpage test/L1</a></p>
 !! end
 
 !! test
@@ -2109,7 +2109,7 @@ Main Page{{!}}Something else
 <p><a href="/wiki/Main_Page" title="Main Page">Something else</a>
 </p>
 !! html/parsoid
-<p><a rel="mw:WikiLink" href="./Main_Page" title="Main Page" data-parsoid='{"firstPipeSrc":"{{!}}","stx":"piped"}'>Something else</a></p>
+<p><a rel="mw:WikiLink" href="./Main_Page" title="Main Page" data-parsoid='{"stx":"piped","firstPipeSrc":"{{!}}"}'>Something else</a></p>
 !! end
 
 !! test
@@ -2154,7 +2154,7 @@ parsoid=wt2html
 </p><p>{{ Main Page|Something else }}
 </p>
 !! html/parsoid
-<p><a rel="mw:WikiLink" href="./Template:Main_Page?action=edit&amp;redlink=1" title="Template:Main Page" about="#mwt1" typeof="mw:Transclusion mw:LocalizedAttrs" class="new" data-parsoid='{"stx":"simple","a":{"href":"./Template:Main_Page"},"sa":{"href":"Template:Main_Page"},"pi":[[{"k":"1"}]]}' data-mw='{"parts":[{"template":{"target":{"wt":"Main Page","href":"./Template:Main_Page"},"params":{"1":{"wt":"Something else "}},"i":0}}]}' data-mw-i18n='{"title":{"lang":"x-page","key":"red-link-title","params":["Template:Main Page"]}}'>Template:Main Page</a></p>
+<p><a rel="mw:WikiLink" href="./Template:Main_Page?action=edit&amp;redlink=1" title="Template:Main Page" about="#mwt1" typeof="mw:Transclusion mw:LocalizedAttrs" class="new" data-parsoid='{"a":{"href":"./Template:Main_Page"},"pi":[[{"k":"1"}]],"sa":{"href":"Template:Main_Page"},"stx":"simple"}' data-mw='{"parts":[{"template":{"target":{"wt":"Main Page","href":"./Template:Main_Page"},"params":{"1":{"wt":"Something else "}},"i":0}}]}' data-mw-i18n='{"title":{"lang":"x-page","key":"red-link-title","params":["Template:Main Page"]}}'>Template:Main Page</a></p>
 
 <p>{{ <span about="#mwt5" typeof="mw:Transclusion" data-parsoid='{"pi":[[]]}' data-mw='{"parts":[{"template":{"target":{"wt":"T290526","href":"./Template:T290526"},"params":{},"i":0}}]}'>Main Page|Something else</span> }}</p>
 !! end
@@ -2169,7 +2169,7 @@ title=[[Foo]]
 <p><a href="#_ref">One</a>
 </p>
 !! html/parsoid
-<p><a rel="mw:WikiLink" href="./Foo#_ref" class="mw-selflink-fragment" data-parsoid='{"stx":"piped","a":{"href":"./Foo#_ref"},"sa":{"href":"#_ref"}}'>One</a></p>
+<p><a rel="mw:WikiLink" href="./Foo#_ref" class="mw-selflink-fragment" data-parsoid='{"a":{"href":"./Foo#_ref"},"sa":{"href":"#_ref"},"stx":"piped"}'>One</a></p>
 !! end
 
 !! test
@@ -2186,10 +2186,10 @@ percent-encoding and + signs in internal links (T28410)
 <a href="/index.php?title=3E&amp;action=edit&amp;redlink=1" class="new" title="3E (page does not exist)">3E</a> <a href="/index.php?title=3E%2B&amp;action=edit&amp;redlink=1" class="new" title="3E+ (page does not exist)">3E+</a>
 </p>
 !! html/parsoid
-<p><a rel="mw:WikiLink" href="./User:+%25?action=edit&amp;redlink=1" title="User:+%" class="new" typeof="mw:LocalizedAttrs" data-parsoid='{"stx":"simple","a":{"href":"./User:+%25"},"sa":{"href":"User:+%"}}' data-mw-i18n='{"title":{"lang":"x-page","key":"red-link-title","params":["User:+%"]}}'>User:+%</a> <a rel="mw:WikiLink" href="./Page+title%25?action=edit&amp;redlink=1" title="Page+title%" class="new" typeof="mw:LocalizedAttrs" data-parsoid='{"stx":"simple","a":{"href":"./Page+title%25"},"sa":{"href":"Page+title%"}}' data-mw-i18n='{"title":{"lang":"x-page","key":"red-link-title","params":["Page+title%"]}}'>Page+title%</a>
-<a rel="mw:WikiLink" href="./%25+?action=edit&amp;redlink=1" title="%+" class="new" typeof="mw:LocalizedAttrs" data-parsoid='{"stx":"simple","a":{"href":"./%25+"},"sa":{"href":"%+"}}' data-mw-i18n='{"title":{"lang":"x-page","key":"red-link-title","params":["%+"]}}'>%+</a> <a rel="mw:WikiLink" href="./%25+?action=edit&amp;redlink=1" title="%+" class="new" typeof="mw:LocalizedAttrs" data-parsoid='{"stx":"piped","a":{"href":"./%25+"},"sa":{"href":"%+"}}' data-mw-i18n='{"title":{"lang":"x-page","key":"red-link-title","params":["%+"]}}'>%20</a> <a rel="mw:WikiLink" href="./%25+?action=edit&amp;redlink=1" title="%+" class="new" typeof="mw:LocalizedAttrs" data-parsoid='{"stx":"simple","a":{"href":"./%25+"},"sa":{"href":"%+ "}}' data-mw-i18n='{"title":{"lang":"x-page","key":"red-link-title","params":["%+"]}}'>%+ </a> <a rel="mw:WikiLink" href="./%25+r?action=edit&amp;redlink=1" title="%+r" class="new" typeof="mw:LocalizedAttrs" data-parsoid='{"stx":"simple","a":{"href":"./%25+r"},"sa":{"href":"%+r"}}' data-mw-i18n='{"title":{"lang":"x-page","key":"red-link-title","params":["%+r"]}}'>%+r</a>
-<a rel="mw:WikiLink" href="./%25?action=edit&amp;redlink=1" title="%" class="new" typeof="mw:LocalizedAttrs" data-parsoid='{"stx":"simple","a":{"href":"./%25"},"sa":{"href":"%"}}' data-mw-i18n='{"title":{"lang":"x-page","key":"red-link-title","params":["%"]}}'>%</a> <a rel="mw:WikiLink" href="./+?action=edit&amp;redlink=1" title="+" class="new" typeof="mw:LocalizedAttrs" data-parsoid='{"stx":"simple","a":{"href":"./+"},"sa":{"href":"+"}}' data-mw-i18n='{"title":{"lang":"x-page","key":"red-link-title","params":["+"]}}'>+</a> <span class="mw-default-size" typeof="mw:Error mw:File" data-parsoid='{"optList":[{"ck":"bogus","ak":"foo"},{"ck":"caption","ak":"[[bar]]"}]}' data-mw='{"caption":"&lt;a rel=\"mw:WikiLink\" href=\"./Bar?action=edit&amp;amp;redlink=1\" title=\"Bar\" class=\"new\" typeof=\"mw:LocalizedAttrs\" data-parsoid=&apos;{\"stx\":\"simple\",\"a\":{\"href\":\"./Bar\"},\"sa\":{\"href\":\"bar\"}}&apos; data-mw-i18n=&apos;{\"title\":{\"lang\":\"x-page\",\"key\":\"red-link-title\",\"params\":[\"Bar\"]}}&apos;>bar&lt;/a>","errors":[{"key":"apierror-filedoesnotexist","message":"This image does not exist."}]}'><a href="./Special:Upload?wpDestFile=%25%2Babc9" class="new" title="File:%+abc9" data-parsoid="{}"><span class="mw-file-element mw-broken-media" resource="./File:%25+abc9" data-parsoid='{"a":{"resource":"./File:%25+abc9"},"sa":{"resource":"File:%+abc%39"}}'>bar</span></a></span>
-<a rel="mw:WikiLink" href="./3E?action=edit&amp;redlink=1" title="3E" class="new" typeof="mw:LocalizedAttrs" data-parsoid='{"stx":"simple","a":{"href":"./3E"},"sa":{"href":"%33%45"}}' data-mw-i18n='{"title":{"lang":"x-page","key":"red-link-title","params":["3E"]}}'>3E</a> <a rel="mw:WikiLink" href="./3E+?action=edit&amp;redlink=1" title="3E+" class="new" typeof="mw:LocalizedAttrs" data-parsoid='{"stx":"simple","a":{"href":"./3E+"},"sa":{"href":"%33%45+"}}' data-mw-i18n='{"title":{"lang":"x-page","key":"red-link-title","params":["3E+"]}}'>3E+</a></p>
+<p><a rel="mw:WikiLink" href="./User:+%25?action=edit&amp;redlink=1" title="User:+%" class="new" typeof="mw:LocalizedAttrs" data-parsoid='{"a":{"href":"./User:+%25"},"sa":{"href":"User:+%"},"stx":"simple"}' data-mw-i18n='{"title":{"lang":"x-page","key":"red-link-title","params":["User:+%"]}}'>User:+%</a> <a rel="mw:WikiLink" href="./Page+title%25?action=edit&amp;redlink=1" title="Page+title%" class="new" typeof="mw:LocalizedAttrs" data-parsoid='{"a":{"href":"./Page+title%25"},"sa":{"href":"Page+title%"},"stx":"simple"}' data-mw-i18n='{"title":{"lang":"x-page","key":"red-link-title","params":["Page+title%"]}}'>Page+title%</a>
+<a rel="mw:WikiLink" href="./%25+?action=edit&amp;redlink=1" title="%+" class="new" typeof="mw:LocalizedAttrs" data-parsoid='{"a":{"href":"./%25+"},"sa":{"href":"%+"},"stx":"simple"}' data-mw-i18n='{"title":{"lang":"x-page","key":"red-link-title","params":["%+"]}}'>%+</a> <a rel="mw:WikiLink" href="./%25+?action=edit&amp;redlink=1" title="%+" class="new" typeof="mw:LocalizedAttrs" data-parsoid='{"a":{"href":"./%25+"},"sa":{"href":"%+"},"stx":"piped"}' data-mw-i18n='{"title":{"lang":"x-page","key":"red-link-title","params":["%+"]}}'>%20</a> <a rel="mw:WikiLink" href="./%25+?action=edit&amp;redlink=1" title="%+" class="new" typeof="mw:LocalizedAttrs" data-parsoid='{"a":{"href":"./%25+"},"sa":{"href":"%+ "},"stx":"simple"}' data-mw-i18n='{"title":{"lang":"x-page","key":"red-link-title","params":["%+"]}}'>%+ </a> <a rel="mw:WikiLink" href="./%25+r?action=edit&amp;redlink=1" title="%+r" class="new" typeof="mw:LocalizedAttrs" data-parsoid='{"a":{"href":"./%25+r"},"sa":{"href":"%+r"},"stx":"simple"}' data-mw-i18n='{"title":{"lang":"x-page","key":"red-link-title","params":["%+r"]}}'>%+r</a>
+<a rel="mw:WikiLink" href="./%25?action=edit&amp;redlink=1" title="%" class="new" typeof="mw:LocalizedAttrs" data-parsoid='{"a":{"href":"./%25"},"sa":{"href":"%"},"stx":"simple"}' data-mw-i18n='{"title":{"lang":"x-page","key":"red-link-title","params":["%"]}}'>%</a> <a rel="mw:WikiLink" href="./+?action=edit&amp;redlink=1" title="+" class="new" typeof="mw:LocalizedAttrs" data-parsoid='{"a":{"href":"./+"},"sa":{"href":"+"},"stx":"simple"}' data-mw-i18n='{"title":{"lang":"x-page","key":"red-link-title","params":["+"]}}'>+</a> <span class="mw-default-size" typeof="mw:Error mw:File" data-parsoid='{"optList":[{"ck":"bogus","ak":"foo"},{"ck":"caption","ak":"[[bar]]"}]}' data-mw='{"caption":"&lt;a rel=\"mw:WikiLink\" href=\"./Bar?action=edit&amp;amp;redlink=1\" title=\"Bar\" class=\"new\" typeof=\"mw:LocalizedAttrs\" data-parsoid=&apos;{\"a\":{\"href\":\"./Bar\"},\"sa\":{\"href\":\"bar\"},\"stx\":\"simple\"}&apos; data-mw-i18n=&apos;{\"title\":{\"lang\":\"x-page\",\"key\":\"red-link-title\",\"params\":[\"Bar\"]}}&apos;>bar&lt;/a>","errors":[{"key":"apierror-filedoesnotexist","message":"This image does not exist."}]}'><a href="./Special:Upload?wpDestFile=%25%2Babc9" class="new" title="File:%+abc9" data-parsoid="{}"><span class="mw-file-element mw-broken-media" resource="./File:%25+abc9" data-parsoid='{"a":{"resource":"./File:%25+abc9"},"sa":{"resource":"File:%+abc%39"}}'>bar</span></a></span>
+<a rel="mw:WikiLink" href="./3E?action=edit&amp;redlink=1" title="3E" class="new" typeof="mw:LocalizedAttrs" data-parsoid='{"a":{"href":"./3E"},"sa":{"href":"%33%45"},"stx":"simple"}' data-mw-i18n='{"title":{"lang":"x-page","key":"red-link-title","params":["3E"]}}'>3E</a> <a rel="mw:WikiLink" href="./3E+?action=edit&amp;redlink=1" title="3E+" class="new" typeof="mw:LocalizedAttrs" data-parsoid='{"a":{"href":"./3E+"},"sa":{"href":"%33%45+"},"stx":"simple"}' data-mw-i18n='{"title":{"lang":"x-page","key":"red-link-title","params":["3E+"]}}'>3E+</a></p>
 !! end
 
 ## Parsoid-specific regression test
@@ -2200,7 +2200,7 @@ parsoid=wt2html
 !! wikitext
 [[Test|</span>]]
 !! html/parsoid
-<p><a rel="mw:WikiLink" href="./Test" title="Test" data-parsoid='{"stx":"piped","a":{"href":"./Test"},"sa":{"href":"Test"}}'></a></p>
+<p><a rel="mw:WikiLink" href="./Test" title="Test" data-parsoid='{"a":{"href":"./Test"},"sa":{"href":"Test"},"stx":"piped"}'></a></p>
 !! end
 
 !! test
@@ -2215,7 +2215,7 @@ T72875: Test for brackets in attributes of elements in internal link texts
 </p>
 !! html/parsoid
 <p><a rel="mw:WikiLink" href="./Foo" title="Foo">link <span title="title with [[double brackets]]">span</span></a>
-<a rel="mw:WikiLink" href="./Foo" title="Foo">link <span title="title with [[double brackets]]" data-parsoid='{"stx":"html","a":{"title":"title with [[double brackets]]"},"sa":{"title":"title with &amp;#91;&amp;#91;double brackets&amp;#93;&amp;#93;"}}'>span</span></a></p>
+<a rel="mw:WikiLink" href="./Foo" title="Foo">link <span title="title with [[double brackets]]" data-parsoid='{"a":{"title":"title with [[double brackets]]"},"sa":{"title":"title with &amp;#91;&amp;#91;double brackets&amp;#93;&amp;#93;"},"stx":"html"}'>span</span></a></p>
 !! end
 
 !! test
@@ -2230,7 +2230,7 @@ wgFragmentMode=[ "html5" ]
 <a href="https://gerrit.wikimedia.org/#/q/project:mediawiki/services/parsoid" class="extiw" title="gerrit:">Gerrit</a>
 </p>
 !! html/parsoid
-<p><a rel="mw:WikiLink/Interwiki" href="http://www.usemod.com/cgi-bin/mb.pl?Test#1.2F2" title="meatball:Test" class="extiw" data-parsoid='{"stx":"simple","a":{"href":"http://www.usemod.com/cgi-bin/mb.pl?Test#1.2F2"},"sa":{"href":"meatball:Test#1/2"}}'>meatball:Test#1/2</a>
+<p><a rel="mw:WikiLink/Interwiki" href="http://www.usemod.com/cgi-bin/mb.pl?Test#1.2F2" title="meatball:Test" class="extiw" data-parsoid='{"a":{"href":"http://www.usemod.com/cgi-bin/mb.pl?Test#1.2F2"},"sa":{"href":"meatball:Test#1/2"},"stx":"simple"}'>meatball:Test#1/2</a>
 <a rel="mw:WikiLink/Interwiki" href="https://gerrit.wikimedia.org/#/q/project:mediawiki/services/parsoid" class="extiw">Gerrit</a></p>
 !! end
 
@@ -2244,7 +2244,7 @@ wgFragmentMode=[ "html5" ]
 <p><span id="&#91;foo&#93;"></span><a href="#[foo]">#&#91;foo&#93;</a>
 </p>
 !! html/parsoid
-<p><span id="[foo]" about="#mwt2" typeof="mw:ExpandedAttrs" data-parsoid='{"stx":"html","a":{"id":"[foo]"},"sa":{"id":"{{anchorencode:[foo]}}"}}' data-mw='{"attribs":[[{"txt":"id"},{"html":"&lt;span typeof=\"mw:Transclusion mw:Entity\" about=\"#mwt1\" data-parsoid=&apos;{\"srcContent\":\"[\",\"pi\":[[]]}&apos; data-mw=&apos;{\"parts\":[{\"template\":{\"target\":{\"wt\":\"anchorencode:[foo]\",\"function\":\"anchorencode\"},\"params\":{},\"i\":0}}]}&apos;>[&lt;/span>&lt;span about=\"#mwt1\" data-parsoid=\"{}\">foo&lt;/span>&lt;span typeof=\"mw:Entity\" about=\"#mwt1\" data-parsoid=&apos;{\"src\":\"&amp;amp;#x5D;\",\"srcContent\":\"]\"}&apos;>]&lt;/span>"}]]}'></span><a typeof="mw:ExpandedAttrs" about="#mwt4" rel="mw:WikiLink" href="./Parser_test#[foo]" class="mw-selflink-fragment" data-parsoid='{"stx":"simple","a":{"href":"./Parser_test#[foo]"},"sa":{"href":"#{{anchorencode:[foo]}}"}}' data-mw='{"attribs":[[{"txt":"href"},{"html":"#&lt;span typeof=\"mw:Transclusion mw:Entity\" about=\"#mwt3\" data-parsoid=&apos;{\"srcContent\":\"[\",\"pi\":[[]]}&apos; data-mw=&apos;{\"parts\":[{\"template\":{\"target\":{\"wt\":\"anchorencode:[foo]\",\"function\":\"anchorencode\"},\"params\":{},\"i\":0}}]}&apos;>[&lt;/span>&lt;span about=\"#mwt3\" data-parsoid=\"{}\">foo&lt;/span>&lt;span typeof=\"mw:Entity\" about=\"#mwt3\" data-parsoid=&apos;{\"src\":\"&amp;amp;#x5D;\",\"srcContent\":\"]\"}&apos;>]&lt;/span>"}]]}'>#[foo]</a></p>
+<p><span id="[foo]" about="#mwt2" typeof="mw:ExpandedAttrs" data-parsoid='{"a":{"id":"[foo]"},"sa":{"id":"{{anchorencode:[foo]}}"},"stx":"html"}' data-mw='{"attribs":[[{"txt":"id"},{"html":"&lt;span typeof=\"mw:Transclusion mw:Entity\" about=\"#mwt1\" data-parsoid=&apos;{\"srcContent\":\"[\",\"pi\":[[]]}&apos; data-mw=&apos;{\"parts\":[{\"template\":{\"target\":{\"wt\":\"anchorencode:[foo]\",\"function\":\"anchorencode\"},\"params\":{},\"i\":0}}]}&apos;>[&lt;/span>&lt;span about=\"#mwt1\" data-parsoid=\"{}\">foo&lt;/span>&lt;span typeof=\"mw:Entity\" about=\"#mwt1\" data-parsoid=&apos;{\"src\":\"&amp;amp;#x5D;\",\"srcContent\":\"]\"}&apos;>]&lt;/span>"}]]}'></span><a typeof="mw:ExpandedAttrs" about="#mwt4" rel="mw:WikiLink" href="./Parser_test#[foo]" class="mw-selflink-fragment" data-parsoid='{"a":{"href":"./Parser_test#[foo]"},"sa":{"href":"#{{anchorencode:[foo]}}"},"stx":"simple"}' data-mw='{"attribs":[[{"txt":"href"},{"html":"#&lt;span typeof=\"mw:Transclusion mw:Entity\" about=\"#mwt3\" data-parsoid=&apos;{\"srcContent\":\"[\",\"pi\":[[]]}&apos; data-mw=&apos;{\"parts\":[{\"template\":{\"target\":{\"wt\":\"anchorencode:[foo]\",\"function\":\"anchorencode\"},\"params\":{},\"i\":0}}]}&apos;>[&lt;/span>&lt;span about=\"#mwt3\" data-parsoid=\"{}\">foo&lt;/span>&lt;span typeof=\"mw:Entity\" about=\"#mwt3\" data-parsoid=&apos;{\"src\":\"&amp;amp;#x5D;\",\"srcContent\":\"]\"}&apos;>]&lt;/span>"}]]}'>#[foo]</a></p>
 !! end
 
 !! test
@@ -2282,5 +2282,5 @@ parsoid=wt2html
 !! wikitext
 {{1x|hi}}[http://example.com [[ho]]]
 !! html/parsoid
-<p><span about="#mwt1" typeof="mw:Transclusion" data-parsoid='{"pi":[[{"k":"1"}]]}' data-mw='{"parts":[{"template":{"target":{"wt":"1x","href":"./Template:1x"},"params":{"1":{"wt":"hi"}},"i":0}}]}'>hi</span><a rel="mw:ExtLink nofollow" href="http://example.com" class="external text"></a><a rel="mw:WikiLink" href="./Ho" title="Ho" data-parsoid='{"stx":"simple","a":{"href":"./Ho"},"sa":{"href":"ho"},"misnested":true}'>ho</a></p>
+<p><span about="#mwt1" typeof="mw:Transclusion" data-parsoid='{"pi":[[{"k":"1"}]]}' data-mw='{"parts":[{"template":{"target":{"wt":"1x","href":"./Template:1x"},"params":{"1":{"wt":"hi"}},"i":0}}]}'>hi</span><a rel="mw:ExtLink nofollow" href="http://example.com" class="external text"></a><a rel="mw:WikiLink" href="./Ho" title="Ho" data-parsoid='{"a":{"href":"./Ho"},"sa":{"href":"ho"},"misnested":true,"stx":"simple"}'>ho</a></p>
 !! end

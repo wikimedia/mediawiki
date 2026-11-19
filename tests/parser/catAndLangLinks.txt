@@ -51,7 +51,7 @@ cat=MediaWiki_User's_Guide sort=
 [[Category:MediaWiki User's Guide]]
 !! html/php
 !! html/parsoid
-<link rel="mw:PageProp/Category" href="./Category:MediaWiki_User's_Guide" data-parsoid='{"stx":"simple","a":{"href":"./Category:MediaWiki_User&#39;s_Guide"},"sa":{"href":"Category:MediaWiki User&#39;s Guide"}}'/>
+<link rel="mw:PageProp/Category" href="./Category:MediaWiki_User's_Guide" data-parsoid='{"a":{"href":"./Category:MediaWiki_User&#39;s_Guide"},"sa":{"href":"Category:MediaWiki User&#39;s Guide"},"stx":"simple"}'/>
 !! end
 
 !! test
@@ -64,7 +64,7 @@ cat=Foo sort=
 [[Category:Foo| ]]
 !! html/php
 !! html/parsoid
-<link rel="mw:PageProp/Category" href="./Category:Foo#%20" data-parsoid='{"stx":"simple","a":{"href":"./Category:Foo#%20"},"sa":{"href":"Category:Foo#%20"}}'/>
+<link rel="mw:PageProp/Category" href="./Category:Foo#%20" data-parsoid='{"a":{"href":"./Category:Foo#%20"},"sa":{"href":"Category:Foo#%20"},"stx":"simple"}'/>
 !! end
 
 !! test
@@ -86,7 +86,7 @@ cat=MediaWiki_User's_Guide sort=Foo
 [[Category:MediaWiki User's Guide|Foo]]
 !! html/php
 !! html/parsoid
-<link rel="mw:PageProp/Category" href="./Category:MediaWiki_User's_Guide#Foo" data-parsoid='{"stx":"piped","a":{"href":"./Category:MediaWiki_User&#39;s_Guide"},"sa":{"href":"Category:MediaWiki User&#39;s Guide"}}'/>
+<link rel="mw:PageProp/Category" href="./Category:MediaWiki_User's_Guide#Foo" data-parsoid='{"a":{"href":"./Category:MediaWiki_User&#39;s_Guide"},"sa":{"href":"Category:MediaWiki User&#39;s Guide"},"stx":"piped"}'/>
 !! end
 
 !! test
@@ -99,7 +99,7 @@ cat=MediaWiki_User's_Guide sort=MediaWiki User's Guide
 [[Category:MediaWiki User's Guide|MediaWiki User's Guide]]
 !! html/php
 !! html/parsoid
-<link rel="mw:PageProp/Category" href="./Category:MediaWiki_User's_Guide#MediaWiki%20User's%20Guide" data-parsoid='{"stx":"piped","a":{"href":"./Category:MediaWiki_User&#39;s_Guide"},"sa":{"href":"Category:MediaWiki User&#39;s Guide"}}'/>
+<link rel="mw:PageProp/Category" href="./Category:MediaWiki_User's_Guide#MediaWiki%20User's%20Guide" data-parsoid='{"a":{"href":"./Category:MediaWiki_User&#39;s_Guide"},"sa":{"href":"Category:MediaWiki User&#39;s Guide"},"stx":"piped"}'/>
 !! end
 
 !! test
@@ -112,7 +112,7 @@ cat=MediaWiki_User's_Guide sort=MediaWiki_User's_Guide
 [[Category:MediaWiki User's Guide|MediaWiki_User's_Guide]]
 !! html/php
 !! html/parsoid
-<link rel="mw:PageProp/Category" href="./Category:MediaWiki_User's_Guide#MediaWiki_User's_Guide" data-parsoid='{"stx":"piped","a":{"href":"./Category:MediaWiki_User&#39;s_Guide"},"sa":{"href":"Category:MediaWiki User&#39;s Guide"}}'/>
+<link rel="mw:PageProp/Category" href="./Category:MediaWiki_User's_Guide#MediaWiki_User's_Guide" data-parsoid='{"a":{"href":"./Category:MediaWiki_User&#39;s_Guide"},"sa":{"href":"Category:MediaWiki User&#39;s Guide"},"stx":"piped"}'/>
 !! end
 
 !! test
@@ -497,9 +497,9 @@ parsoid=wt2html
 !! html/parsoid
 <ul><li>a</li></ul>
 
-<span class="mw-empty-elt" about="#mwt1" typeof="mw:Transclusion" data-parsoid='{"autoInsertedStart":true,"autoInsertedEnd":true,"pi":[[{"k":"1"}]]}' data-mw='{"parts":[{"template":{"target":{"wt":"1x","href":"./Template:1x"},"params":{"1":{"wt":"[[Category:Foo]]\n[[Category:Bar]]"}},"i":0}}]}'><link rel="mw:PageProp/Category" href="./Category:Foo"/><link rel="mw:PageProp/Category" href="./Category:Bar"/></span>
-<link rel="mw:PageProp/Category" href="./Category:Baz" data-parsoid='{"stx":"simple","a":{"href":"./Category:Baz"},"sa":{"href":"Category:Baz"}}'/>
-<link rel="mw:PageProp/Language" href="http://es.wikipedia.org/wiki/Baz" data-parsoid='{"stx":"simple","a":{"href":"http://es.wikipedia.org/wiki/Baz"},"sa":{"href":"es:Baz"}}'/>
+<span class="mw-empty-elt" about="#mwt1" typeof="mw:Transclusion" data-parsoid='{"autoInsertedEnd":true,"autoInsertedStart":true,"pi":[[{"k":"1"}]]}' data-mw='{"parts":[{"template":{"target":{"wt":"1x","href":"./Template:1x"},"params":{"1":{"wt":"[[Category:Foo]]\n[[Category:Bar]]"}},"i":0}}]}'><link rel="mw:PageProp/Category" href="./Category:Foo"/><link rel="mw:PageProp/Category" href="./Category:Bar"/></span>
+<link rel="mw:PageProp/Category" href="./Category:Baz" data-parsoid='{"a":{"href":"./Category:Baz"},"sa":{"href":"Category:Baz"},"stx":"simple"}'/>
+<link rel="mw:PageProp/Language" href="http://es.wikipedia.org/wiki/Baz" data-parsoid='{"a":{"href":"http://es.wikipedia.org/wiki/Baz"},"sa":{"href":"es:Baz"},"stx":"simple"}'/>
 !! end
 
 !! test
@@ -597,8 +597,8 @@ Parsoid: Serialize link to category page with colon escape
 <a href="/index.php?title=Category:Foo&amp;action=edit&amp;redlink=1" class="new" title="Category:Foo (page does not exist)">Bar</a>
 </p>
 !! html/parsoid
-<p><a rel="mw:WikiLink" href="./Category:Foo?action=edit&amp;redlink=1" title="Category:Foo" class="new" typeof="mw:LocalizedAttrs" data-parsoid='{"stx":"simple","a":{"href":"./Category:Foo"},"sa":{"href":":Category:Foo"}}' data-mw-i18n='{"title":{"lang":"x-page","key":"red-link-title","params":["Category:Foo"]}}'>Category:Foo</a>
-<a rel="mw:WikiLink" href="./Category:Foo?action=edit&amp;redlink=1" title="Category:Foo" class="new" typeof="mw:LocalizedAttrs" data-parsoid='{"stx":"piped","a":{"href":"./Category:Foo"},"sa":{"href":":Category:Foo"}}' data-mw-i18n='{"title":{"lang":"x-page","key":"red-link-title","params":["Category:Foo"]}}'>Bar</a></p>
+<p><a rel="mw:WikiLink" href="./Category:Foo?action=edit&amp;redlink=1" title="Category:Foo" class="new" typeof="mw:LocalizedAttrs" data-parsoid='{"a":{"href":"./Category:Foo"},"sa":{"href":":Category:Foo"},"stx":"simple"}' data-mw-i18n='{"title":{"lang":"x-page","key":"red-link-title","params":["Category:Foo"]}}'>Category:Foo</a>
+<a rel="mw:WikiLink" href="./Category:Foo?action=edit&amp;redlink=1" title="Category:Foo" class="new" typeof="mw:LocalizedAttrs" data-parsoid='{"a":{"href":"./Category:Foo"},"sa":{"href":":Category:Foo"},"stx":"piped"}' data-mw-i18n='{"title":{"lang":"x-page","key":"red-link-title","params":["Category:Foo"]}}'>Bar</a></p>
 !! end
 
 # We used to, but no longer wt2wt this test since the default serializer

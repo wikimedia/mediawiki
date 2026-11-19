@@ -83,7 +83,7 @@ Definition list with wikilink containing colon
 <dl><dt><a href="/wiki/Help:FAQ" title="Help:FAQ">Help:FAQ</a></dt>
 <dd>The least-read page on Wikipedia</dd></dl>
 !! html/parsoid
-<dl><dt><a rel="mw:WikiLink" href="./Help:FAQ" title="Help:FAQ" data-parsoid='{"stx":"simple","a":{"href":"./Help:FAQ"},"sa":{"href":"Help:FAQ"}}'>Help:FAQ</a></dt><dd data-parsoid='{"stx":"row"}'>The least-read page on Wikipedia</dd></dl>
+<dl><dt><a rel="mw:WikiLink" href="./Help:FAQ" title="Help:FAQ" data-parsoid='{"a":{"href":"./Help:FAQ"},"sa":{"href":"Help:FAQ"},"stx":"simple"}'>Help:FAQ</a></dt><dd data-parsoid='{"stx":"row"}'>The least-read page on Wikipedia</dd></dl>
 !! end
 
 # At Brooke's and JeLuF's insistence... :)
@@ -159,7 +159,7 @@ parsoid=wt2html,html2html
 <dl><dt>onetwo</dt>
 <dd>bad tag fun</dd></dl>
 !! html/parsoid
-<dl><dt>one<meta typeof="mw:Placeholder/StrippedTag" data-parsoid='{"src":"&lt;/b>","name":"b"}'/>two</dt><dd data-parsoid='{"stx":"row"}'>bad tag fun</dd></dl>
+<dl><dt>one<meta typeof="mw:Placeholder/StrippedTag" data-parsoid='{"name":"b","src":"&lt;/b>"}'/>two</dt><dd data-parsoid='{"stx":"row"}'>bad tag fun</dd></dl>
 !! end
 
 !! test
@@ -767,7 +767,7 @@ colons occurring in tags
 <dt><span data-parsoid='{"stx":"html"}'>a:b</span></dt>
 <dt><div data-parsoid='{"stx":"html"}'>a:b</div></dt>
 <dt><div data-parsoid='{"stx":"html","autoInsertedEnd":true}'>a</div></dt>
-<dd>b<meta typeof="mw:Placeholder/StrippedTag" data-parsoid='{"src":"&lt;/div>","name":"div"}'/></dd>
+<dd>b<meta typeof="mw:Placeholder/StrippedTag" data-parsoid='{"name":"div","src":"&lt;/div>"}'/></dd>
 <dt><span about="#mwt1" typeof="mw:Transclusion" data-parsoid='{"pi":[[{"k":"1"}]]}' data-mw='{"parts":[{"template":{"target":{"wt":"1x","href":"./Template:1x"},"params":{"1":{"wt":"a:b"}},"i":0}}]}'>a:b</span></dt>
 <dt><i about="#mwt2" typeof="mw:Transclusion" data-parsoid='{"pi":[[{"k":"1"}]]}' data-mw='{"parts":[{"template":{"target":{"wt":"1x","href":"./Template:1x"},"params":{"1":{"wt":"&#39;&#39;a:b&#39;&#39;"}},"i":0}}]}'>a:b</i>
 <dl><dt><dl><dt><i>a:b</i></dt></dl></dt></dl></dt></dl>
@@ -883,7 +883,7 @@ parsoid=wt2html,wt2wt
 <dd>3</dd></dl>
 !! html/parsoid
 <dl><dt><span class="mw-default-size" typeof="mw:File" data-mw='{"caption":"Test"}'><a href="./File:Foobar.jpg" class="mw-file-description" title="Test"><img alt="Test" resource="./File:Foobar.jpg" src="http://example.com/images/3/3a/Foobar.jpg" decoding="async" loading="lazy" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="220" width="1941" class="mw-file-element"/></a></span></dt><dd data-parsoid='{"stx":"row"}'>123</dd>
-<dt>Test<br data-parsoid='{"stx":"html","noClose":true}'/>12</dt><dd data-parsoid='{"stx":"row"}'>3</dd></dl>
+<dt>Test<br data-parsoid='{"noClose":true,"stx":"html"}'/>12</dt><dd data-parsoid='{"stx":"row"}'>3</dd></dl>
 !! end
 
 !! test

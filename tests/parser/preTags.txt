@@ -179,7 +179,7 @@ Block tag pre
 !! html/php
 <p class="mw-empty-elt"></p><pre>foo</pre><p class="mw-empty-elt"></p>
 !! html/parsoid
-<p class='mw-empty-elt' data-parsoid='{"stx":"html","autoInsertedEnd":true}'></p><pre typeof="mw:Extension/pre" about="#mwt2" data-parsoid='{"stx":"html"}' data-mw='{"name":"pre","attrs":{},"body":{"extsrc":"foo"}}'>foo</pre><p class='mw-empty-elt' data-parsoid='{"autoInsertedStart":true,"stx":"html"}'></p>
+<p class='mw-empty-elt' data-parsoid='{"autoInsertedEnd":true,"stx":"html"}'></p><pre typeof="mw:Extension/pre" about="#mwt2" data-parsoid='{"stx":"html"}' data-mw='{"name":"pre","attrs":{},"body":{"extsrc":"foo"}}'>foo</pre><p class='mw-empty-elt' data-parsoid='{"autoInsertedStart":true,"stx":"html"}'></p>
 !! end
 
 ## Hmm, should Parsoid rt this?
@@ -224,9 +224,9 @@ parsoid=wt2html
 <pre>x</pre>
 &lt;pre <table></table>
 !! html/parsoid
-<pre typeof="mw:Extension/pre mw:Transclusion" about="#mwt2" data-parsoid='{"stx":"html","a":{"&lt;pre":null},"sa":{"&lt;pre":""},"pi":[[{"k":"1"}]]}' data-mw='{"name":"pre","attrs":{"&lt;pre":""},"body":{"extsrc":"x"},"parts":[{"template":{"target":{"wt":"1x","href":"./Template:1x"},"params":{"1":{"wt":"&lt;pre &lt;pre>x&lt;/pre>"}},"i":0}}]}'>x</pre>
+<pre typeof="mw:Extension/pre mw:Transclusion" about="#mwt2" data-parsoid='{"a":{"&lt;pre":null},"pi":[[{"k":"1"}]],"sa":{"&lt;pre":""},"stx":"html"}' data-mw='{"name":"pre","attrs":{"&lt;pre":""},"body":{"extsrc":"x"},"parts":[{"template":{"target":{"wt":"1x","href":"./Template:1x"},"params":{"1":{"wt":"&lt;pre &lt;pre>x&lt;/pre>"}},"i":0}}]}'>x</pre>
 
-<pre data-parsoid='{"stx":"html","src":"&lt;pre &lt;/table>","tagWidths":[13,0],"a":{"&lt;":null,"table":null},"sa":{"&lt;":"","table":""},"fostered":true,"autoInsertedEnd":true}'></pre><table data-parsoid='{"stx":"html","autoInsertedEnd":true}'></table>
+<pre data-parsoid='{"a":{"&lt;":null,"table":null},"autoInsertedEnd":true,"fostered":true,"sa":{"&lt;":"","table":""},"stx":"html","src":"&lt;pre &lt;/table>","tagWidths":[13,0]}'></pre><table data-parsoid='{"autoInsertedEnd":true,"stx":"html"}'></table>
 !! end
 
 ## Similar to the above, but shows the difference between extension and html tags

@@ -323,7 +323,7 @@ ill
 <p><a href="/wiki/Foo" title="Foo">mi:Foo</a>
 </p>
 !! html/parsoid
-<p><a rel="mw:WikiLink" href="./Foo" title="Foo" data-parsoid='{"stx":"simple","a":{"href":"./Foo"},"sa":{"href":"mi:Foo"}}'>mi:Foo</a></p>
+<p><a rel="mw:WikiLink" href="./Foo" title="Foo" data-parsoid='{"a":{"href":"./Foo"},"sa":{"href":"mi:Foo"},"stx":"simple"}'>mi:Foo</a></p>
 !! end
 
 !! test
@@ -373,7 +373,7 @@ ill
 ill=zh:Chinese#fragment
 !! html/php
 !! html/parsoid
-<link rel="mw:PageProp/Language" href="http://zh.wikipedia.org/wiki/Chinese#fragment" data-parsoid='{"stx":"simple","a":{"href":"http://zh.wikipedia.org/wiki/Chinese#fragment"},"sa":{"href":"zh:Chinese#fragment"}}'/>
+<link rel="mw:PageProp/Language" href="http://zh.wikipedia.org/wiki/Chinese#fragment" data-parsoid='{"a":{"href":"http://zh.wikipedia.org/wiki/Chinese#fragment"},"sa":{"href":"zh:Chinese#fragment"},"stx":"simple"}'/>
 !! end
 
 !! test

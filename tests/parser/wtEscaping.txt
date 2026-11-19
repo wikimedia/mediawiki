@@ -887,8 +887,8 @@ parsoid=html2wt
 !! html/parsoid
 <table>
 <tbody><tr><td><a rel="mw:WikiLink" href="./Foo" title="Foo">Foo</a>-bar</td>
-<td data-parsoid='{"startTagSrc":"|","attrSepSrc":"|"}'>+1</td>
-<td data-parsoid='{"startTagSrc":"|","attrSepSrc":"|"}'>-2</td></tr>
+<td data-parsoid='{"attrSepSrc":"|","startTagSrc":"|"}'>+1</td>
+<td data-parsoid='{"attrSepSrc":"|","startTagSrc":"|"}'>-2</td></tr>
 </tbody></table>
 !! wikitext
 {|
@@ -1382,8 +1382,8 @@ language=ar
 <a href="/index.php?title=Pusup%C3%BAsu&amp;action=edit&amp;redlink=1" class="new" title="Pusupúsu (الصفحة غير موجودة)">Pusupúsu</a>&#160;·
 </p>
 !! html/parsoid
-<p><a rel="mw:WikiLink" href="./Likalo?action=edit&amp;redlink=1" title="Likalo" class="new" typeof="mw:LocalizedAttrs" data-parsoid='{"stx":"simple","a":{"href":"./Likalo"},"sa":{"href":"Likalo"}}' data-mw-i18n='{"title":{"lang":"x-page","key":"red-link-title","params":["Likalo"]}}'>Likalo</a><span typeof="mw:Entity" data-parsoid='{"src":"&amp;nbsp;","srcContent":" "}'> </span>·
-<a rel="mw:WikiLink" href="./Pusupúsu?action=edit&amp;redlink=1" title="Pusupúsu" class="new" typeof="mw:LocalizedAttrs" data-parsoid='{"stx":"simple","a":{"href":"./Pusupúsu"},"sa":{"href":"Pusupúsu"}}' data-mw-i18n='{"title":{"lang":"x-page","key":"red-link-title","params":["Pusupúsu"]}}'>Pusupúsu</a><span typeof="mw:Entity" data-parsoid='{"src":"&amp;nbsp;","srcContent":" "}'> </span>·</p>
+<p><a rel="mw:WikiLink" href="./Likalo?action=edit&amp;redlink=1" title="Likalo" class="new" typeof="mw:LocalizedAttrs" data-parsoid='{"a":{"href":"./Likalo"},"sa":{"href":"Likalo"},"stx":"simple"}' data-mw-i18n='{"title":{"lang":"x-page","key":"red-link-title","params":["Likalo"]}}'>Likalo</a><span typeof="mw:Entity" data-parsoid='{"src":"&amp;nbsp;","srcContent":" "}'> </span>·
+<a rel="mw:WikiLink" href="./Pusupúsu?action=edit&amp;redlink=1" title="Pusupúsu" class="new" typeof="mw:LocalizedAttrs" data-parsoid='{"a":{"href":"./Pusupúsu"},"sa":{"href":"Pusupúsu"},"stx":"simple"}' data-mw-i18n='{"title":{"lang":"x-page","key":"red-link-title","params":["Pusupúsu"]}}'>Pusupúsu</a><span typeof="mw:Entity" data-parsoid='{"src":"&amp;nbsp;","srcContent":" "}'> </span>·</p>
 !! end
 
 !! test
@@ -1493,7 +1493,7 @@ parsoid=html2wt
 <a rel="mw:WikiLink" href="Foo" title="Foo">foo</a> x'<i><a href="Bar" rel="mw:WikiLink" title="Bar">bar</a></i>
 '<i>foo</i> <span typeof="mw:Extension/spantag" about="#mwt3" data-mw='{"name":"spantag","attrs":{},"body":{"extsrc":"test"}}'>test</span>
 '<i>foo</i> <div title="name">test</div>
-'<i>foo</i> and <br data-parsoid='{"stx":"html","noClose":true}'/> bar
+'<i>foo</i> and <br data-parsoid='{"noClose":true,"stx":"html"}'/> bar
 !! wikitext
 '''a'' foo ''[[bar]]''
 ''a''' foo ''[[bar]]''
@@ -1779,9 +1779,9 @@ parsoid=html2wt
  <!-- this one's bogus -->
 <pre>__TOO__</pre>
 
-<pre data-parsoid='{}'><meta property="mw:PageProp/toc" data-parsoid='{"src":"__TOC__","magicSrc":"__TOC__"}'/> foo</pre>
+<pre data-parsoid='{}'><meta property="mw:PageProp/toc" data-parsoid='{"magicSrc":"__TOC__","src":"__TOC__"}'/> foo</pre>
 
-<meta property="mw:PageProp/toc" data-parsoid='{"src":"__TOC__","magicSrc":"__TOC__"}'/><pre data-parsoid='{}'>bar</pre>
+<meta property="mw:PageProp/toc" data-parsoid='{"magicSrc":"__TOC__","src":"__TOC__"}'/><pre data-parsoid='{}'>bar</pre>
 !! wikitext
  __TOC__
 
@@ -1801,9 +1801,9 @@ During serialization, normalize output when given a SOL-transparent prefix
 parsoid=html2wt
 !! html/parsoid
 <p> x</p>
-<p><meta property="mw:PageProp/notoc" data-parsoid='{"src":"__NOTOC__","magicSrc":"__NOTOC__"}'/> y</p>
-<p><meta property="mw:PageProp/notoc" data-parsoid='{"src":"__NotoC__","magicSrc":"__NotoC__"}'/> z</p>
-<p><meta property="mw:PageProp/notoc" data-parsoid='{"src":"__notoc__","magicSrc":"__notoc__"}'/> p</p>
+<p><meta property="mw:PageProp/notoc" data-parsoid='{"magicSrc":"__NOTOC__","src":"__NOTOC__"}'/> y</p>
+<p><meta property="mw:PageProp/notoc" data-parsoid='{"magicSrc":"__NotoC__","src":"__NotoC__"}'/> z</p>
+<p><meta property="mw:PageProp/notoc" data-parsoid='{"magicSrc":"__notoc__","src":"__notoc__"}'/> p</p>
 !! wikitext
 x
 

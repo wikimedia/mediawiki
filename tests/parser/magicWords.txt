@@ -1090,10 +1090,10 @@ Case-sensitive magic words, when cased differently, should just be template tran
 <a href="/index.php?title=Template:CurrentHour&amp;action=edit&amp;redlink=1" class="new" title="Template:CurrentHour (page does not exist)">Template:CurrentHour</a>
 </p>
 !! html/parsoid
-<p><a rel="mw:WikiLink" href="./Template:CurrentMonth?action=edit&amp;redlink=1" title="Template:CurrentMonth" about="#mwt1" typeof="mw:Transclusion mw:LocalizedAttrs" class="new" data-parsoid='{"stx":"simple","a":{"href":"./Template:CurrentMonth"},"sa":{"href":"Template:CurrentMonth"},"pi":[[]]}' data-mw='{"parts":[{"template":{"target":{"wt":"CurrentMonth","href":"./Template:CurrentMonth"},"params":{},"i":0}}]}' data-mw-i18n='{"title":{"lang":"x-page","key":"red-link-title","params":["Template:CurrentMonth"]}}'>Template:CurrentMonth</a>
-<a rel="mw:WikiLink" href="./Template:Currentday?action=edit&amp;redlink=1" title="Template:Currentday" about="#mwt2" typeof="mw:Transclusion mw:LocalizedAttrs" class="new" data-parsoid='{"stx":"simple","a":{"href":"./Template:Currentday"},"sa":{"href":"Template:Currentday"},"pi":[[]]}' data-mw='{"parts":[{"template":{"target":{"wt":"currentday","href":"./Template:Currentday"},"params":{},"i":0}}]}' data-mw-i18n='{"title":{"lang":"x-page","key":"red-link-title","params":["Template:Currentday"]}}'>Template:Currentday</a>
-<a rel="mw:WikiLink" href="./Template:CURreNTweEK?action=edit&amp;redlink=1" title="Template:CURreNTweEK" about="#mwt3" typeof="mw:Transclusion mw:LocalizedAttrs" class="new" data-parsoid='{"stx":"simple","a":{"href":"./Template:CURreNTweEK"},"sa":{"href":"Template:CURreNTweEK"},"pi":[[]]}' data-mw='{"parts":[{"template":{"target":{"wt":"cURreNTweEK","href":"./Template:CURreNTweEK"},"params":{},"i":0}}]}' data-mw-i18n='{"title":{"lang":"x-page","key":"red-link-title","params":["Template:CURreNTweEK"]}}'>Template:CURreNTweEK</a>
-<a rel="mw:WikiLink" href="./Template:CurrentHour?action=edit&amp;redlink=1" title="Template:CurrentHour" about="#mwt4" typeof="mw:Transclusion mw:LocalizedAttrs" class="new" data-parsoid='{"stx":"simple","a":{"href":"./Template:CurrentHour"},"sa":{"href":"Template:CurrentHour"},"pi":[[]]}' data-mw='{"parts":[{"template":{"target":{"wt":"currentHour","href":"./Template:CurrentHour"},"params":{},"i":0}}]}' data-mw-i18n='{"title":{"lang":"x-page","key":"red-link-title","params":["Template:CurrentHour"]}}'>Template:CurrentHour</a></p>
+<p><a rel="mw:WikiLink" href="./Template:CurrentMonth?action=edit&amp;redlink=1" title="Template:CurrentMonth" about="#mwt1" typeof="mw:Transclusion mw:LocalizedAttrs" class="new" data-parsoid='{"a":{"href":"./Template:CurrentMonth"},"sa":{"href":"Template:CurrentMonth"},"pi":[[]],"stx":"simple"}' data-mw='{"parts":[{"template":{"target":{"wt":"CurrentMonth","href":"./Template:CurrentMonth"},"params":{},"i":0}}]}' data-mw-i18n='{"title":{"lang":"x-page","key":"red-link-title","params":["Template:CurrentMonth"]}}'>Template:CurrentMonth</a>
+<a rel="mw:WikiLink" href="./Template:Currentday?action=edit&amp;redlink=1" title="Template:Currentday" about="#mwt2" typeof="mw:Transclusion mw:LocalizedAttrs" class="new" data-parsoid='{"a":{"href":"./Template:Currentday"},"sa":{"href":"Template:Currentday"},"pi":[[]],"stx":"simple"}' data-mw='{"parts":[{"template":{"target":{"wt":"currentday","href":"./Template:Currentday"},"params":{},"i":0}}]}' data-mw-i18n='{"title":{"lang":"x-page","key":"red-link-title","params":["Template:Currentday"]}}'>Template:Currentday</a>
+<a rel="mw:WikiLink" href="./Template:CURreNTweEK?action=edit&amp;redlink=1" title="Template:CURreNTweEK" about="#mwt3" typeof="mw:Transclusion mw:LocalizedAttrs" class="new" data-parsoid='{"a":{"href":"./Template:CURreNTweEK"},"sa":{"href":"Template:CURreNTweEK"},"pi":[[]],"stx":"simple"}' data-mw='{"parts":[{"template":{"target":{"wt":"cURreNTweEK","href":"./Template:CURreNTweEK"},"params":{},"i":0}}]}' data-mw-i18n='{"title":{"lang":"x-page","key":"red-link-title","params":["Template:CURreNTweEK"]}}'>Template:CURreNTweEK</a>
+<a rel="mw:WikiLink" href="./Template:CurrentHour?action=edit&amp;redlink=1" title="Template:CurrentHour" about="#mwt4" typeof="mw:Transclusion mw:LocalizedAttrs" class="new" data-parsoid='{"a":{"href":"./Template:CurrentHour"},"sa":{"href":"Template:CurrentHour"},"pi":[[]],"stx":"simple"}' data-mw='{"parts":[{"template":{"target":{"wt":"currentHour","href":"./Template:CurrentHour"},"params":{},"i":0}}]}' data-mw-i18n='{"title":{"lang":"x-page","key":"red-link-title","params":["Template:CurrentHour"]}}'>Template:CurrentHour</a></p>
 !! end
 
 !! test
@@ -1145,7 +1145,7 @@ bar
 </p>
 !! html/parsoid
 <p>foo</p>
-<meta property="mw:PageProp/notoc" data-parsoid='{"src":"__notoc__","magicSrc":"__notoc__"}'/>
+<meta property="mw:PageProp/notoc" data-parsoid='{"magicSrc":"__notoc__","src":"__notoc__"}'/>
 <p>bar</p>
 !! end
 
@@ -1165,7 +1165,7 @@ bar
 </p>
 !! html/parsoid
 <p>foo</p>
-<meta property="mw:PageProp/notoc" data-parsoid='{"src":"__NOtOC__","magicSrc":"__NOtOC__"}'/>
+<meta property="mw:PageProp/notoc" data-parsoid='{"magicSrc":"__NOtOC__","src":"__NOtOC__"}'/>
 <p>bar</p>
 !! end
 
@@ -1221,7 +1221,7 @@ __NOGALLERY__
 property[nogallery]=
 flags=mw-NoGallery
 !! html/parsoid
-<meta property="mw:PageProp/nogallery" data-parsoid='{"src":"__NOGALLERY__","magicSrc":"__NOGALLERY__"}'/>
+<meta property="mw:PageProp/nogallery" data-parsoid='{"magicSrc":"__NOGALLERY__","src":"__NOGALLERY__"}'/>
 !! end
 
 !! test
@@ -1235,7 +1235,7 @@ __HIDDENCAT__
 !! metadata
 property[hiddencat]=
 !! html/parsoid
-<meta property="mw:PageProp/hiddencat" data-parsoid='{"src":"__HIDDENCAT__","magicSrc":"__HIDDENCAT__"}'/>
+<meta property="mw:PageProp/hiddencat" data-parsoid='{"magicSrc":"__HIDDENCAT__","src":"__HIDDENCAT__"}'/>
 !! end
 
 !! test
@@ -1250,7 +1250,7 @@ __HIDDENCAT__
 cat=Hidden_categories sort=
 property[hiddencat]=
 !! html/parsoid
-<meta property="mw:PageProp/hiddencat" data-parsoid='{"src":"__HIDDENCAT__","magicSrc":"__HIDDENCAT__"}'/>
+<meta property="mw:PageProp/hiddencat" data-parsoid='{"magicSrc":"__HIDDENCAT__","src":"__HIDDENCAT__"}'/>
 !! end
 
 !! test
@@ -1268,7 +1268,7 @@ property[newsectionlink]=
 property[nonewsectionlink]=
 flags=mw-HideNewSection, mw-NewSection
 !! html/parsoid
-<section data-mw-section-id="0"><meta property="mw:PageProp/newsectionlink" data-parsoid='{"src":"__NEWSECTIONLINK__","magicSrc":"__NEWSECTIONLINK__"}'/> <meta property="mw:PageProp/nonewsectionlink" data-parsoid='{"src":"__NONEWSECTIONLINK__","magicSrc":"__NONEWSECTIONLINK__"}'/></section>
+<section data-mw-section-id="0"><meta property="mw:PageProp/newsectionlink" data-parsoid='{"magicSrc":"__NEWSECTIONLINK__","src":"__NEWSECTIONLINK__"}'/> <meta property="mw:PageProp/nonewsectionlink" data-parsoid='{"magicSrc":"__NONEWSECTIONLINK__","src":"__NONEWSECTIONLINK__"}'/></section>
 !! end
 
 !! article
