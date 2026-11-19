@@ -59,6 +59,11 @@ class UserMailer {
 
 		$transport = new EsmtpTransport( $host, $port, $tls );
 
+		// Used as the EHLO name. T445187
+		if ( !empty( $smtp['localhost'] ) ) {
+			$transport->setLocalDomain( $smtp['localhost'] );
+		}
+
 		if ( !empty( $smtp['auth'] ) ) {
 			$transport->setUsername( $smtp['username'] ?? '' );
 			$transport->setPassword( $smtp['password'] ?? '' );
