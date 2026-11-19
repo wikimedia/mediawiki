@@ -257,6 +257,8 @@ For notes on 1.47.x and older releases, see HISTORY.
 * BagOStuff::getSegmentationSize() and ::getSegmentedValueMaxSize(),
   deprecated since 1.43, have been removed, including the overrides in
   MediumSpecificBagOStuff.
+* WANObjectCache::adaptiveTTL(), deprecated since 1.47, has been removed.
+  There is no replacement; pass a fixed TTL instead.
 * DBAccessObjectUtils::getDBFromIndex(), deprecated since 1.42, has been
   removed. Use DBAccessObjectUtils::getDBFromRecency() instead.
 * HookContainer::getHandlerCallbacks(), deprecated since 1.41, has been

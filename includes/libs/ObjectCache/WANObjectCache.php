@@ -1050,7 +1050,7 @@ class WANObjectCache implements
 	 *                 ( $now - $oldValue['ctime'] ) <= self::MAX_CACHE_AGE
 	 *             ) {
 	 *                 // Increase time-till-verify by 50% of last time to reduce overhead
-	 *                 $ttv = $cache->adaptiveTTL( $oldAsOf, self::MAX_TTV, self::MIN_TTV, 1.5 );
+	 *                 $ttv = min( max( 1.5 * ( $now - $oldAsOf ), self::MIN_TTV ), self::MAX_TTV );
 	 *                 // Unlike $oldAsOf, "ctime" is the ultimate age of the cached data
 	 *                 return $oldValue;
 	 *             }
@@ -2318,82 +2318,6 @@ class WANObjectCache implements
 	 */
 	public function getQoS( $flag ) {
 		return $this->cache->getQoS( $flag );
-	}
-
-	/**
-	 * Get a TTL that is higher for objects that have not changed recently
-	 *
-	 * This is useful for keys that get explicit purges and DB or purge relay
-	 * lag is a potential concern (especially how it interacts with CDN cache)
-	 *
-	 * Example usage:
-	 * @code
-	 *     // Last-modified time of page
-	 *     $mtime = wfTimestamp( TS::UNIX, $page->getTimestamp() );
-	 *     // Get adjusted TTL. If $mtime is 3600 seconds ago and $minTTL/$factor left at
-	 *     // defaults, then $ttl is 3600 * .2 = 720. If $minTTL was greater than 720, then
-	 *     // $ttl would be $minTTL. If $maxTTL was smaller than 720, $ttl would be $maxTTL.
-	 *     $ttl = $cache->adaptiveTTL( $mtime, $cache::TTL_DAY );
-	 * @endcode
-	 *
-	 * Another use case is when there are no applicable "last modified" fields in the DB,
-	 * and there are too many dependencies for explicit purges to be viable, and the rate of
-	 * change to relevant content is unstable, and it is highly valued to have the cached value
-	 * be as up-to-date as possible.
-	 *
-	 * Example usage:
-	 * @code
-	 *     $query = "<some complex query>";
-	 *     $idListFromComplexQuery = $cache->getWithSetCallback(
-	 *         $cache->makeKey( 'complex-graph-query', $hashOfQuery ),
-	 *         WANObjectCache::TTL_HOUR,
-	 *         function ( $oldValue, &$ttl, array &$setOpts, $oldAsOf ) use ( $query, $cache ) {
-	 *             $gdb = $this->getReplicaGraphDbConnection();
-	 *
-	 *             $newList = iterator_to_array( $gdb->query( $query ) );
-	 *             sort( $newList, SORT_NUMERIC ); // normalize
-	 *
-	 *             $minTTL = WANObjectCache::TTL_HOUR;
-	 *             $maxTTL = WANObjectCache::TTL_WEEK;
-	 *             if ( $oldValue !== false ) {
-	 *                 // Note that $oldAsOf is the last time this callback ran
-	 *                 $ttl = ( $newList === $oldValue )
-	 *                     // No change: cache for 150% of the age of $oldValue
-	 *                     ? $cache->adaptiveTTL( $oldAsOf, $maxTTL, $minTTL, 1.5 )
-	 *                     // Changed: cache for 50% of the age of $oldValue
-	 *                     : $cache->adaptiveTTL( $oldAsOf, $maxTTL, $minTTL, .5 );
-	 *             }
-	 *
-	 *             return $newList;
-	 *        },
-	 *        [
-	 *             // Keep stale values around for doing comparisons for TTL calculations.
-	 *             // High values improve long-tail keys hit-rates, though might waste space.
-	 *             'lockTSE' => WANObjectCache::TTL_WEEK
-	 *        ]
-	 *     );
-	 * @endcode
-	 *
-	 * @deprecated since 1.47 No replacement, usage should be removed
-	 * @param int|float|string|null $mtime UNIX timestamp; null if none
-	 * @param int $maxTTL Maximum TTL (seconds)
-	 * @param int $minTTL Minimum TTL (seconds); Default: 30
-	 * @param float $factor Value in the range (0,1); Default: .2
-	 * @return int Adaptive TTL
-	 * @since 1.28
-	 */
-	public function adaptiveTTL( $mtime, $maxTTL, $minTTL = 30, $factor = 0.2 ) {
-		wfDeprecated( __METHOD__, '1.47' );
-		// handle fractional seconds and string integers
-		$mtime = (int)$mtime;
-		if ( $mtime <= 0 ) {
-			// no last-modified time provided
-			return $minTTL;
-		}
-
-		$age = (int)$this->getCurrentTime() - $mtime;
-
-		return (int)min( $maxTTL, max( $minTTL, $factor * $age ) );
 	}
 
 	/**
