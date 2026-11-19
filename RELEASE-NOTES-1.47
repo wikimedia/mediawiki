@@ -34,7 +34,14 @@ Some specific notes for MediaWiki 1.47 upgrades are below:
   PHP, private properties of such objects are not restored when they are
   unserialized, causing errors such as "Typed property
   ReplacementArray::$data must not be accessed before initialization".
+* Parsoid is the new default parser. You can switch back to the legacy parser
+  by setting $wgUseParsoidParser=false. Some third party extensions might
+  not support Parsoid yet. Extension developers are encouraged to read
+  https://www.mediawiki.org/wiki/Parsoid/So_you_want_your_extension_to_work_with_Parsoid
+  Features like $wgAllowExternalImages, $wgEnableImageWhitelist and
+  $wgAllowExternalImagesFrom are not yet supported with the new parser.
 * …
+
 
 For notes on 1.46.x and older releases, see HISTORY.
 
