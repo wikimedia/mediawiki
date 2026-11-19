@@ -22,6 +22,7 @@ class SpecialPageAliasTest extends MediaWikiIntegrationTestCase {
 		$titleParser = $this->getServiceContainer()->getTitleParser();
 		foreach ( $this->getValidSpecialPageAliases() as [ $languageCode, $specialPageAliases ] ) {
 			foreach ( $specialPageAliases as $specialPage => $aliases ) {
+				$used = [];
 				foreach ( $aliases as $alias ) {
 					$msg = "\$specialPageAliases[$languageCode][$specialPage] → '$alias' ";
 
@@ -32,6 +33,13 @@ class SpecialPageAliasTest extends MediaWikiIntegrationTestCase {
 					$this->assertNotNull( $titleParser->makeTitleValueSafe( NS_SPECIAL, $alias ), $msg .
 						'is not a valid title'
 					);
+
+					if ( isset( $used[$alias] ) ) {
+						$this->assertNull( $used[$alias], $msg .
+							'is already used for ' . $used[$alias]
+						);
+					}
+					$used[$alias] = "\$specialPageAliases[$languageCode][$specialPage]";
 
 					$normalized = Validator::cleanUp( $alias );
 					$this->assertSame( $normalized, $alias, $msg .
