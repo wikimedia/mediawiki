@@ -8,7 +8,8 @@
 			"MJL",
 			"McDutchie",
 			"OchAyeTheNoo",
-			"Omnipaedista"
+			"Omnipaedista",
+			"Monospaced"
 		]
 	},
 	"preferences": "Ma preferences",
@@ -165,7 +166,7 @@
 	"tog-watchrollback": "Eik pages whaur Ah'v performed ae rowback tae ma watchleet",
 	"prefs-tokenwatchlist": "Token",
 	"prefs-watchlist-token": "Watchleet token:",
-	"prefs-searchoptions": "Rake",
+	"prefs-searchoptions": "Sairch",
 	"prefs-advancedsearchoptions": "Advanced opties",
 	"prefs-reset-intro": "Ye can uise this page tae reset yer preeferances til the steid defauts.\nThis canna be ondun.",
 	"restoreprefs": "Restore aw defaut settins (in aw sections)"

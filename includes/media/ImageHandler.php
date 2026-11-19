@@ -113,18 +113,8 @@ abstract class ImageHandler extends MediaHandler {
 			return false;
 		}
 
-		if ( !isset( $params['page'] ) ) {
-			$params['page'] = 1;
-		} else {
-			$params['page'] = (int)$params['page'];
-			if ( $params['page'] > $image->pageCount() ) {
-				$params['page'] = $image->pageCount();
-			}
-
-			if ( $params['page'] < 1 ) {
-				$params['page'] = 1;
-			}
-		}
+		// Between 1 and File::pageCount inclusive, defaulting to 1
+		$params['page'] = max( 1, min( $image->pageCount(), (int)( $params['page'] ?? 1 ) ) );
 
 		$srcWidth = $image->getWidth( $params['page'] );
 		$srcHeight = $image->getHeight( $params['page'] );
@@ -228,10 +218,7 @@ abstract class ImageHandler extends MediaHandler {
 					return $srcWidth;
 				}
 			}
-			if ( $widthStep == $requestWidth ) {
-				return $requestWidth;
-			}
-			if ( $widthStep > $requestWidth ) {
+			if ( $widthStep >= $requestWidth ) {
 				return $widthStep;
 			}
 			$prevStep = $widthStep;

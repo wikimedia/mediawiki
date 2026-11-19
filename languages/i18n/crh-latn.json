@@ -11,7 +11,8 @@
 			"TayfunEt.",
 			"Urhixidur",
 			"Zolgoyo",
-			"아라"
+			"아라",
+			"Nintendofan885"
 		]
 	},
 	"sunday": "Bazar",
@@ -209,7 +210,7 @@
 	"confirmable-no": "Yoq",
 	"thisisdeleted": "$1 körmege ya da keri ketirmege isteysiñizmi?",
 	"viewdeleted": "$1 kösterilsinmi?",
-	"restorelink": "yoq etilgen {{PLURAL:$1|1|$1}} deñiştirmesi",
+	"restorelink": "Yoq etilgen {{PLURAL:$1|1|$1}} deñiştirmesi",
 	"feed-invalid": "Abune kanalınıñ çeşiti yañlıştır.",
 	"feed-unavailable": "Sindikatsiya lentaları qullanılıp olamay.",
 	"site-rss-feed": "$1 RSS lentası",
@@ -933,7 +934,7 @@
 	"license-header": "Litsenziyalama",
 	"nolicense": "Yoq",
 	"license-nopreview": "(Baqıp çıquv irişilmez)",
-	"upload_source_url": " (doğru, püblik tarzda kirmege musaadeli internet adres)",
+	"upload_source_url": "(doğru, püblik tarzda kirmege musaadeli internet adres)",
 	"upload_source_file": " (cihazıñızdan saylanğan faylıñız)",
 	"listfiles-delete": "yoq et",
 	"listfiles-summary": "Bu mahsus saife bütün yüklengen fayllarnı köstere.",

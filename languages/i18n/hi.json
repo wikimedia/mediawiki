@@ -2313,7 +2313,7 @@
 	"watchlist-options": "ध्यानसूची विकल्प",
 	"watching": "ध्यान दे रहे हैं...",
 	"unwatching": "ध्यान हटा रहे हैं...",
-	"enotif_reset": "सभी पृष्ठ देखे हुए दर्शाएँ",
+	"enotif_reset": "सभी पृष्ठ देखे हुए चिह्नित करें",
 	"enotif_impersonal_salutation": "{{SITENAME}} सदस्य",
 	"enotif_subject_deleted": "{{SITENAME}} पृष्ठ $1 को {{GENDER:$2|$2}} ने हटा दिया है",
 	"enotif_subject_created": "{{SITENAME}} पृष्ठ $1 को {{GENDER:$2|$2}} ने बना दिया है",
@@ -4128,7 +4128,7 @@
 	"blockedtext-contact-blocker-admin": "आप अवरोध के बारे में चर्चा करने के लिए $1 या किसी अन्य [[{{MediaWiki:Grouppage-sysop}}|प्रबंधक]] से संपर्क कर सकते हैं।",
 	"blockedtext-block-ip": "आपका वर्तमान IP पता $1 है।",
 	"blockedtext-block-id": "अवरोध ID #$1।",
-	"blockedtext-include-details-queries": "कृपया अपने किसी भी प्रश्न में उपरोक्त सभी विवरण शामिल करें।",
+	"blockedtext-include-details-queries": "कृपया अपनी सभी क्वेरियों में उपरोक्त सभी विवरण शामिल करें।",
 	"renameuser": "सदस्यनाम बदलें",
 	"renameuser-linkoncontribs": "{{GENDER:$1|सदस्य}} का नाम बदलें",
 	"renameuser-linkoncontribs-text": "इस {{GENDER:$1|सदस्य}} का नाम बदलें",
@@ -4162,6 +4162,7 @@
 	"right-renameuser": "सदस्यों का पुनः नामकरण करना",
 	"renameuser-renamed-notice": "इस सदस्य का नाम बदल दिया गया है।\nसंदर्भ के लिए नीचे नाम बदलने का लॉग है।",
 	"log-unknown-action": "[[$1]] पर अज्ञात क्रिया \"$2\" की",
+	"log-unsafe-logentry": "(यह लॉग प्रविष्टि नहीं दिखाई जा सकी क्योंकि इसके पैरामीटरों में असुरक्षित क्रमबद्ध डेटा शामिल है।)",
 	"createacct-benefit-heading-temp-user": "{{SITENAME}} में योगदान करने के लिए धन्यवाद।\nएक खाता बनाकर आप और भी सुविधाओं का लाभ उठा पाएँगे।",
 	"createacct-benefit-subheading-temp-user": "{{SITENAME}} आप जैसे लोगों द्वारा बनाई जाती है। एक खाते के साथ आपके पास एक स्थायी व सुरक्षित पहचान और निम्न जैसी सुविधाओं तक पहुँच होगी:",
 	"benefit-1-description": "ध्यानसूचियाँ जो आपको उन पृष्ठों पर नज़र रखने देंगी जिन में आपकी रुचि हो।",
@@ -4169,5 +4170,6 @@
 	"benefit-3-description": "वरीयताएँ जो आपके अपने अनुभव को अनुकूलित करने देंगी।",
 	"temp-user-unable-to-acquire": "अस्थायी खाते का सदस्यनाम प्राप्त नहीं किया जा सका। कृपया पुनः प्रयास करें।",
 	"table-of-contents-show-button-aria-label": "विषयसूची दिखाएँ",
-	"table-of-contents-hide-button-aria-label": "विषयसूची छिपाएँ"
+	"table-of-contents-hide-button-aria-label": "विषयसूची छिपाएँ",
+	"mypage-disallowed-action": "सुरक्षा के कारणों से \"$1\" क्रिया का उपयोग Special:MyPage पृष्ठ पर नहीं किया जा सकता।"
 }

@@ -21,7 +21,8 @@
 			"Vlad5250",
 			"לערי ריינהארט",
 			"아라",
-			"Juwan"
+			"Juwan",
+			"Nintendofan885"
 		]
 	},
 	"sunday": "Njedźela",
@@ -1543,7 +1544,7 @@
 	"nolicense": "žadyn wuběr",
 	"licenses-edit": "Licencne nastajenja wobdźěłać",
 	"license-nopreview": "(žadyn přehlad k dispoziciji)",
-	"upload_source_url": " (twoja wubrana dataja z płaćiweho, zjawnje přistupneho URL)",
+	"upload_source_url": "(twoja wubrana dataja z płaćiweho, zjawnje přistupneho URL)",
 	"upload_source_file": " (twoja wubrana dataja z twojeho grata)",
 	"listfiles-delete": "zhašeć",
 	"listfiles-summary": "Tuta specialna strona pokazuje wšě nahrate dataje.",
@@ -3034,7 +3035,7 @@
 	"htmlform-selectorother-other": "Druhe",
 	"htmlform-no": "Ně",
 	"htmlform-yes": "Haj",
-	"htmlform-cloner-create": "Wjace přidać",
+	"htmlform-cloner-create": "Dalše dodać",
 	"htmlform-cloner-delete": "Wotstronić",
 	"htmlform-cloner-required": "Znjamjeńša jedna hódnota je trěbna.",
 	"htmlform-time-placeholder": "HH:MM:SS",
@@ -3205,6 +3206,9 @@
 	"mw-widgets-dateinput-placeholder-month": "JJJJ-MM",
 	"mw-widgets-mediasearch-input-placeholder": "Medije pytać",
 	"mw-widgets-categoryselector-add-category-placeholder": "Kategoriju dodać",
+	"mw-widgets-usersmultiselect-placeholder": "Dalše dodać...",
+	"mw-widgets-tagmultiselect-placeholder": "Dalše dodać...",
+	"mw-widgets-titlesmultiselect-placeholder": "Dalše dodać...",
 	"date-range-to": "Hač do datuma:",
 	"randomrootpage": "Připadna korjenjowa strona",
 	"skin-view-create-local": "Lokalny wopis přidać",

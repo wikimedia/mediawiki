@@ -15,6 +15,7 @@
 	},
 	"preferences": "Ismenyifen",
 	"prefsnologintext2": "Ttxilek(m) qqen aken ad snifleḍ ismenyifen inek(m).",
+	"prefsnologintext2-for-temp-user": "Ttxil-k, snulfu-d amiḍan i ubeddel n yismenyifen.",
 	"searchprefs-results": "$1 {{PLURAL:$1|n ugmud|n igmad}}",
 	"saveprefs": "Sekles",
 	"tooltip-preferences-save": "Sekles ismenyifen",

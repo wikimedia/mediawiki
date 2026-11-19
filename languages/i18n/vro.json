@@ -13,7 +13,8 @@
 			"Sulev Iva (Võrok)",
 			"Trixt",
 			"Võrok",
-			"아라"
+			"아라",
+			"Nintendofan885"
 		]
 	},
 	"sunday": "pühäpäiv",
@@ -767,7 +768,7 @@
 	"license-header": "Litsents",
 	"nolicense": "Olõ-i litsentsi valit",
 	"license-nopreview": "(Saa-i kaiaq)",
-	"upload_source_url": " (avalik tüütäv võrgoaadrõs)",
+	"upload_source_url": "(avalik tüütäv võrgoaadrõs)",
 	"upload_source_file": " (teedüstü su puutrin)",
 	"imgfile": "teedüstü",
 	"listfiles": "Pilte nimekiri",

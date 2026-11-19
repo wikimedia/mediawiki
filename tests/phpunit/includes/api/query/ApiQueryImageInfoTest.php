@@ -4,8 +4,11 @@ namespace MediaWiki\Tests\Api\Query;
 
 use File;
 use MediaWiki\Api\ApiQueryImageInfo;
+use MediaWiki\Context\RequestContext;
+use MediaWiki\MainConfigNames;
 use MediaWiki\Request\FauxRequest;
 use MediaWiki\Tests\Api\ApiTestCase;
+use MediaWiki\Tests\FileRepo\TestRepoTrait;
 use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
 use MediaWiki\Tests\User\TempUser\TempUserTestTrait;
 use MediaWiki\User\UserIdentity;
@@ -21,6 +24,9 @@ use MediaWiki\Utils\MWTimestamp;
 class ApiQueryImageInfoTest extends ApiTestCase {
 	use MockAuthorityTrait;
 	use TempUserTestTrait;
+	use TestRepoTrait;
+
+	private const IMAGES_DIR = __DIR__ . '/../../../data/media';
 
 	private const IMAGE_NAME = 'Random-11m.png';
 
@@ -43,8 +49,21 @@ class ApiQueryImageInfoTest extends ApiTestCase {
 	/** @var User */
 	private $tempUser = null;
 
+	protected function setUp(): void {
+		ApiQueryImageInfo::resetTransformCountForUnitTest();
+		parent::setUp();
+	}
+
+	public function tearDown(): void {
+		self::destroyTestRepo();
+		parent::tearDown();
+	}
+
 	public function addDBData() {
 		parent::addDBData();
+
+		$this->initTestRepoGroup();
+
 		$this->testUser = new UserIdentityValue( 12364321, 'Dummy User' );
 
 		$actorId = $this->getServiceContainer()
@@ -154,7 +173,7 @@ class ApiQueryImageInfoTest extends ApiTestCase {
 		$this->assertSame( 'File:' . self::IMAGE_NAME, $info['title'] );
 		$this->assertTrue( $info['missing'] );
 		$this->assertTrue( $info['known'] );
-		$this->assertSame( 'local', $info['imagerepository'] );
+		$this->assertSame( 'test', $info['imagerepository'] );
 		$this->assertFalse( $info['badfile'] );
 		$this->assertIsArray( $info['imageinfo'] );
 		return $info['imageinfo'][0];
@@ -175,6 +194,229 @@ class ApiQueryImageInfoTest extends ApiTestCase {
 		$this->assertSame( $this->testUser->getName(), $image['user'] );
 		$this->assertSame( $this->testUser->getId(), $image['userid'] );
 		$this->assertSame( self::NEW_IMAGE_SIZE, $image['size'] );
+	}
+
+	public static function provideGetImageInfoThumburls() {
+		yield 'default union landscape' => [
+			[
+				MainConfigNames::ThumbnailSteps => null,
+				MainConfigNames::ImageLimits => [
+					[ 32, 24 ],
+					[ 128, 96 ],
+					[ 256, 192 ],
+				],
+				MainConfigNames::ThumbLimits => [
+					30,
+					40,
+					110,
+				],
+				MainConfigNames::ResponsiveImages => true,
+			],
+			// 160x120 landscape (web-safe original)
+			self::IMAGES_DIR . '/landscape-plain.jpg',
+			'Landscape-plain.jpg',
+			[
+				// $wgThumbLimits, default + responsive
+				40 => [ 'width' => 40, 'height' => 30, 'url' => 'http://example.com/w/thumb.php?f=Landscape-plain.jpg&width=40' ],
+				80 => [ 'width' => 80, 'height' => 60, 'url' => 'http://example.com/w/thumb.php?f=Landscape-plain.jpg&width=80' ],
+				// $wgImageLimits
+				32 => [ 'width' => 32, 'height' => 24, 'url' => 'http://example.com/w/thumb.php?f=Landscape-plain.jpg&width=32' ],
+				128 => [ 'width' => 128, 'height' => 96, 'url' => 'http://example.com/w/thumb.php?f=Landscape-plain.jpg&width=128' ],
+				// $wgImageLimits 256x192 satisfied by web-safe original
+				160 => [ 'width' => 160, 'height' => 120, 'url' => 'http://example.com/w/images/b/b0/Landscape-plain.jpg' ],
+			]
+		];
+		yield 'default union portrait' => [
+			[
+				MainConfigNames::ThumbnailSteps => null,
+				MainConfigNames::ImageLimits => [
+					[ 32, 24 ],
+					[ 128, 96 ],
+					[ 256, 192 ],
+				],
+				MainConfigNames::ThumbLimits => [
+					30,
+					40,
+					110,
+				],
+				MainConfigNames::ResponsiveImages => true,
+			],
+			// 120x160 portrait (requires rotation)
+			self::IMAGES_DIR . '/portrait-rotated.jpg',
+			'Portrait-rotated.jpg',
+			[
+				// $wgThumbLimits, default + responsive
+				40 => [ 'width' => 40, 'height' => 53, 'url' => 'http://example.com/w/thumb.php?f=Portrait-rotated.jpg&width=40' ],
+				80 => [ 'width' => 80, 'height' => 107, 'url' => 'http://example.com/w/thumb.php?f=Portrait-rotated.jpg&width=80' ],
+				// $wgImageLimits, fit portrait in 32x24, 128x96
+				18 => [ 'width' => 18, 'height' => 24, 'url' => 'http://example.com/w/thumb.php?f=Portrait-rotated.jpg&width=18' ],
+				72 => [ 'width' => 72, 'height' => 96, 'url' => 'http://example.com/w/thumb.php?f=Portrait-rotated.jpg&width=72' ],
+				// $wgImageLimits 256x192 (144x192) satisfied by transformed original (this JPEG requires rotation)
+				120 => [ 'width' => 120, 'height' => 160, 'url' => 'http://example.com/w/thumb.php?f=Portrait-rotated.jpg&width=144' ],
+			]
+		];
+		yield 'default union svg' => [
+			[
+				MainConfigNames::ThumbnailSteps => null,
+				MainConfigNames::ImageLimits => [
+					[ 32, 24 ],
+					[ 128, 96 ],
+					[ 256, 192 ],
+				],
+				MainConfigNames::ThumbLimits => [
+					30,
+					40,
+					110,
+				],
+				MainConfigNames::ResponsiveImages => true,
+			],
+			self::IMAGES_DIR . '/QA_icon.svg',
+			'QA_icon.svg',
+			[
+				// $wgThumbLimits, default + responsive
+				40 => [ 'width' => 40, 'height' => 40, 'url' => 'http://example.com/w/thumb.php?f=QA_icon.svg&width=40' ],
+				80 => [ 'width' => 80, 'height' => 80, 'url' => 'http://example.com/w/thumb.php?f=QA_icon.svg&width=80' ],
+				// $wgImageLimits
+				24 => [ 'width' => 24, 'height' => 24, 'url' => 'http://example.com/w/thumb.php?f=QA_icon.svg&width=24' ],
+				96 => [ 'width' => 96, 'height' => 96, 'url' => 'http://example.com/w/thumb.php?f=QA_icon.svg&width=96' ],
+				192 => [ 'width' => 192, 'height' => 192, 'url' => 'http://example.com/w/thumb.php?f=QA_icon.svg&width=192' ],
+			]
+		];
+		yield 'steps landscape' => [
+			[
+				MainConfigNames::ThumbnailSteps => [ 20, 40, 120, 250 ],
+			],
+			// 160x120 landscape (web-safe original)
+			self::IMAGES_DIR . '/landscape-plain.jpg',
+			'Landscape-plain.jpg',
+			[
+				20 => [ 'width' => 20, 'height' => 15, 'url' => 'http://example.com/w/thumb.php?f=Landscape-plain.jpg&width=20' ],
+				40 => [ 'width' => 40, 'height' => 30, 'url' => 'http://example.com/w/thumb.php?f=Landscape-plain.jpg&width=40' ],
+				120 => [ 'width' => 120, 'height' => 90, 'url' => 'http://example.com/w/thumb.php?f=Landscape-plain.jpg&width=120' ],
+				// Step 250px satisified by web-safe original
+				160 => [ 'width' => 160, 'height' => 120, 'url' => 'http://example.com/w/images/b/b0/Landscape-plain.jpg' ],
+			]
+		];
+		yield 'steps portrait' => [
+			[
+				MainConfigNames::ThumbnailSteps => [ 20, 40, 120, 250 ],
+			],
+			// 120x160 portrait (requires rotation)
+			self::IMAGES_DIR . '/portrait-rotated.jpg',
+			'Portrait-rotated.jpg',
+			[
+				20 => [ 'width' => 20, 'height' => 27, 'url' => 'http://example.com/w/thumb.php?f=Portrait-rotated.jpg&width=20' ],
+				40 => [ 'width' => 40, 'height' => 53, 'url' => 'http://example.com/w/thumb.php?f=Portrait-rotated.jpg&width=40' ],
+				// Step 120px satisfied by transformed original (this JPEG requires rotation)
+				120 => [ 'width' => 120, 'height' => 160, 'url' => 'http://example.com/w/thumb.php?f=Portrait-rotated.jpg&width=120' ],
+			]
+		];
+		yield 'steps svg' => [
+			[
+				MainConfigNames::ThumbnailSteps => [ 20, 40, 120, 250 ],
+			],
+			self::IMAGES_DIR . '/QA_icon.svg',
+			'QA_icon.svg',
+			[
+				20 => [ 'width' => 20, 'height' => 20, 'url' => 'http://example.com/w/thumb.php?f=QA_icon.svg&width=20' ],
+				40 => [ 'width' => 40, 'height' => 40, 'url' => 'http://example.com/w/thumb.php?f=QA_icon.svg&width=40' ],
+				120 => [ 'width' => 120, 'height' => 120, 'url' => 'http://example.com/w/thumb.php?f=QA_icon.svg&width=120' ],
+				250 => [ 'width' => 250, 'height' => 250, 'url' => 'http://example.com/w/thumb.php?f=QA_icon.svg&width=250' ],
+			]
+		];
+	}
+
+	/**
+	 * @dataProvider provideGetImageInfoThumburls
+	 */
+	public function testGetImageInfoThumburls(
+		array $conf,
+		string $file,
+		string $name,
+		array $expected
+	) {
+		$this->overrideConfigValues( $conf + [
+			MainConfigNames::Server => 'http://example.com',
+			MainConfigNames::SVGNativeRendering => false,
+		] );
+		$this->mergeMwGlobalArrayValue( 'wgDefaultUserOptions', [ 'thumbsize' => 1 ] );
+		RequestContext::getMain()->setUser( $this->getTestUser()->getUser() );
+		$this->importFileToTestRepo( $file, $name );
+
+		[ $result, ] = $this->doApiRequest( [
+			'action' => 'query',
+			'prop' => 'imageinfo',
+			'titles' => "File:$name",
+			'iiprop' => 'thumburls',
+		] );
+
+		$info = $result['query']['pages']['1'];
+		$image = $info['imageinfo'][0];
+		$this->assertEquals( $expected, $image['thumburls'] );
+	}
+
+	public function testGetImageInfoThumburlsWithUrlParam() {
+		$this->overrideConfigValues( [
+			MainConfigNames::ThumbnailSteps => [ 20, 40, 120 ],
+			MainConfigNames::Server => 'http://example.com',
+			MainConfigNames::SVGNativeRendering => false,
+		] );
+		$this->mergeMwGlobalArrayValue( 'wgDefaultUserOptions', [ 'thumbsize' => 1 ] );
+		RequestContext::getMain()->setUser( $this->getTestUser()->getUser() );
+		$this->importFileToTestRepo( self::IMAGES_DIR . '/QA_icon.svg', 'QA_icon.svg' );
+
+		[ $result, ] = $this->doApiRequest( [
+			'action' => 'query',
+			'prop' => 'imageinfo',
+			'titles' => 'File:QA_icon.svg',
+			'iiprop' => 'thumburls',
+			// SVG language must be carried into every suggested URL, not just the
+			// width-specific one.
+			'iiurlparam' => 'langde-40px',
+		] );
+
+		$thumburls = $result['query']['pages']['1']['imageinfo'][0]['thumburls'];
+		$this->assertEquals(
+			[
+				20 => [ 'width' => 20, 'height' => 20, 'url' => 'http://example.com/w/thumb.php?f=QA_icon.svg&width=20&lang=de' ],
+				40 => [ 'width' => 40, 'height' => 40, 'url' => 'http://example.com/w/thumb.php?f=QA_icon.svg&width=40&lang=de' ],
+				120 => [ 'width' => 120, 'height' => 120, 'url' => 'http://example.com/w/thumb.php?f=QA_icon.svg&width=120&lang=de' ],
+			],
+			$thumburls,
+			'thumburl in the requested language'
+		);
+	}
+
+	public function testGetImageInfoThumburlsWithWidthlessUrlParam() {
+		$this->overrideConfigValues( [
+			MainConfigNames::ThumbnailSteps => [ 20, 40, 120 ],
+			MainConfigNames::Server => 'http://example.com',
+			MainConfigNames::SVGNativeRendering => false,
+		] );
+		$this->mergeMwGlobalArrayValue( 'wgDefaultUserOptions', [ 'thumbsize' => 1 ] );
+		RequestContext::getMain()->setUser( $this->getTestUser()->getUser() );
+		$this->importFileToTestRepo( self::IMAGES_DIR . '/QA_icon.svg', 'QA_icon.svg' );
+
+		[ $result, ] = $this->doApiRequest( [
+			'action' => 'query',
+			'prop' => 'imageinfo',
+			'titles' => 'File:QA_icon.svg',
+			'iiprop' => 'thumburls',
+			// SVG language without a trailing "-<n>px" width; the API synthesises
+			// one so the handler can parse it, then discards it per-size.
+			'iiurlparam' => 'langde',
+		] );
+
+		$thumburls = $result['query']['pages']['1']['imageinfo'][0]['thumburls'];
+		$this->assertEquals(
+			[
+				20 => [ 'width' => 20, 'height' => 20, 'url' => 'http://example.com/w/thumb.php?f=QA_icon.svg&width=20&lang=de' ],
+				40 => [ 'width' => 40, 'height' => 40, 'url' => 'http://example.com/w/thumb.php?f=QA_icon.svg&width=40&lang=de' ],
+				120 => [ 'width' => 120, 'height' => 120, 'url' => 'http://example.com/w/thumb.php?f=QA_icon.svg&width=120&lang=de' ],
+			],
+			$thumburls,
+			'thumburl in the requested language despite the width-less urlparam'
+		);
 	}
 
 	public function testGetImageCreatedByTempUser() {

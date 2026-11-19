@@ -30,7 +30,8 @@
 			"לערי ריינהארט",
 			"아라",
 			"SaldırganSincap",
-			"Ar choler"
+			"Ar choler",
+			"Nintendofan885"
 		]
 	},
 	"sunday": "Sul",
@@ -1377,7 +1378,7 @@
 	"rcfilters-filter-editsbyother-label": "Kemmet gant tud all",
 	"rcfilters-filter-editsbyother-description": "An holl gemmoù nemet ar re graet ganeoc'h.",
 	"rcfilters-filtergroup-user-experience-level": "Enrolladenn ha skiant-prenet an implijer",
-	"rcfilters-filter-user-experience-level-registered-label": "Enskrivet",
+	"rcfilters-filter-user-experience-level-registered-label": "Marilhet",
 	"rcfilters-filter-user-experience-level-registered-description": "Aozerien gevreet.",
 	"rcfilters-filter-user-experience-level-unregistered-label": "Dienskriv",
 	"rcfilters-filter-user-experience-level-unregistered-description": "Aozerien n'int ket kevreet.",
@@ -1743,7 +1744,7 @@
 	"nolicense": "Hini ebet diuzet",
 	"licenses-edit": "Aozañ dibarzhioù an aotre-implijout",
 	"license-nopreview": "(Dibosupl rakwelet)",
-	"upload_source_url": " (ar restr ho peus dibabet diwar un URL reizh hag a c'hall bezañ tizhet gant an holl)",
+	"upload_source_url": "(ar restr ho peus dibabet diwar un URL reizh hag a c'hall bezañ tizhet gant an holl)",
 	"upload_source_file": " (ar restr ho peus dibabet en hoc'h ardivink)",
 	"listfiles-delete": "diverkañ",
 	"listfiles-summary": "Diskouez a ra ar bajenn dibar-mañ an holl restroù bet pellgaset.",

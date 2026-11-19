@@ -15,6 +15,7 @@
 	"rest-unsupported-content-type": "Net ënnerstëtzten Inhaltstyp: $1",
 	"rest-permission-denied-anon": "Net zougänglech fir anonym Benotzer",
 	"rest-permission-denied-title": "De Benotzer huet net d'Rechter fir den Titel ($1) ze liesen",
+	"rest-bad-content-model": "Falschen Inhaltsmodell: $1",
 	"rest-cannot-load-file": "De Fichier fir den Titel ''$1'' kann net geluede ginn.",
 	"rest-badtoken": "De CSRF-Token, deen ugi gouf, ass ongülteg.",
 	"rest-badtoken-nosession": "CSRF-Feeler – keng Sitzung.",
@@ -25,5 +26,6 @@
 	"rest-unsupported-profile-version": "Net ënnerstëtzte Profilversioun: $1",
 	"rest-parsoid-unsupported-media": "Net ënnerstëtzte Medientyp",
 	"rest-edit-conflict": "Ännerungskonflikt ($1)",
-	"rest-unknown-parsoid-transformation": "Onbekannt Transformatioun."
+	"rest-unknown-parsoid-transformation": "Onbekannt Transformatioun.",
+	"rest-unknown-content-model": "Onbekannten Inhaltsmodell: $1"
 }

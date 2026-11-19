@@ -28,7 +28,8 @@
 			"Jon Harald Søby",
 			"Zache",
 			"Pppery",
-			"SaldırganSincap"
+			"SaldırganSincap",
+			"Nintendofan885"
 		]
 	},
 	"sunday": "sotnabeaivi",
@@ -794,7 +795,7 @@
 	"revision-info": "Veršuvdna, man {{GENDER:$6|$2}} lea ráhkadan $1$7",
 	"previousrevision": "← boarráset veršuvdna",
 	"nextrevision": "ođđaset veršuvdna →",
-	"currentrevisionlink": "Dálá veršuvdna",
+	"currentrevisionlink": "dálá veršuvdna",
 	"cur": "dálá",
 	"tooltip-cur": "Erohus dálá veršuvdnii",
 	"next": "čuovvovaš",
@@ -1736,7 +1737,7 @@
 	"nolicense": "Ii oktage liseansa leat válljejuvvon",
 	"licenses-edit": "Rievdat liseansaválljejumi",
 	"license-nopreview": "(ovdalgihtii geahččan ii leat vejolaš)",
-	"upload_source_url": " (almmolaš URL-čujuhus)",
+	"upload_source_url": "(almmolaš URL-čujuhus)",
 	"upload_source_file": " (válljejuvvon fiila iežat ovttadagas)",
 	"listfiles-delete": "sihko",
 	"listfiles-summary": "Dát doaibmasiidu čájeha buot vurken fiillaid.",

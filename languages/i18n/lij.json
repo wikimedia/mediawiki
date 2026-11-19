@@ -4053,5 +4053,6 @@
 	"benefit-3-description": "Preferénse che te perméttan de personalizâ a tò espertîxe.",
 	"temp-user-unable-to-acquire": "No l'é stæto poscìbile òtegnî 'n nómme uténte tenporànio. Pe piâxéi, prêuva tórna.",
 	"table-of-contents-show-button-aria-label": "Móstra l'ìndice",
-	"table-of-contents-hide-button-aria-label": "Ascóndi l'ìndice"
+	"table-of-contents-hide-button-aria-label": "Ascóndi l'ìndice",
+	"mypage-disallowed-action": "Pe de raxoìn de seguréssa, l'açión \"$1\" a no se peu fâ inta pàgina Special:MyPage."
 }

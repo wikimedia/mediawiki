@@ -68,7 +68,8 @@
 			"לערי ריינהארט",
 			"נדב ס",
 			"아라",
-			"Tymewalk"
+			"Tymewalk",
+			"Nintendofan885"
 		]
 	},
 	"sunday": "dimanĉo",
@@ -1755,7 +1756,7 @@
 	"nolicense": "Neniu elektita",
 	"licenses-edit": "Modifi opciojn de permesilo",
 	"license-nopreview": "(Antaŭvido ne montrebla)",
-	"upload_source_url": " (via elektita dosiero de valida, publike atingebla URL-o)",
+	"upload_source_url": "(via elektita dosiero de valida, publike atingebla URL-o)",
 	"upload_source_file": "(via elektita dosiero de via aparato)",
 	"listfiles-delete": "forigi",
 	"listfiles-summary": "Ĉi tiu speciala paĝo montras ĉiujn alŝutitajn dosierojn.\nKiam oni filtras ĝin laŭ uzanto, nur la aktuala versio de la dosiero estos montrita.",
@@ -1924,7 +1925,7 @@
 	"wantedtemplates": "Dezirataj ŝablonoj",
 	"mostlinked": "Plej ligitaj paĝoj",
 	"mostlinkedcategories": "Plej ligitaj kategorioj",
-	"mostlinkedtemplates": "Plej transkludataj paĝoj",
+	"mostlinkedtemplates": "Plej transkluzivigataj paĝoj",
 	"mostcategories": "Artikoloj kun la plej multaj kategorioj",
 	"mostimages": "Plej ligitaj bildoj",
 	"mostinterwikis": "Artikoloj kun la plej multaj interlingvaj ligiloj",

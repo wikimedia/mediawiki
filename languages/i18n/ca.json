@@ -86,7 +86,8 @@
 			"Tiputini",
 			"Bsckr",
 			"Jaume9118",
-			"AlbertRA"
+			"AlbertRA",
+			"Nintendofan885"
 		]
 	},
 	"sunday": "diumenge",
@@ -1817,7 +1818,7 @@
 	"nolicense": "No se n'ha seleccionat cap",
 	"licenses-edit": "Modifica les opcions de llicència",
 	"license-nopreview": "(Previsualització no disponible)",
-	"upload_source_url": " (el fitxer que heu seleccionat des d'un URL vàlid i accessible públicament)",
+	"upload_source_url": "(el fitxer que heu seleccionat des d'un URL vàlid i accessible públicament)",
 	"upload_source_file": " (un fitxer triat del vostre dispositiu)",
 	"listfiles-delete": "elimina",
 	"listfiles-summary": "Aquesta pàgina especial mostra tots els fitxers carregats.",

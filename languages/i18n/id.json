@@ -116,7 +116,8 @@
 			"AF1011",
 			"Ronnie",
 			"CalER08",
-			"Iripseudocorus"
+			"Iripseudocorus",
+			"Rafka Aditia"
 		]
 	},
 	"sunday": "Minggu",
@@ -1010,7 +1011,7 @@
 	"mergehistory-fail-invalid-source": "Halaman asal tidak valid.",
 	"mergehistory-fail-invalid-dest": "Halaman tujuan tidak valid.",
 	"mergehistory-fail-no-change": "Penggabungan riwayat tidak berhasil menggabungkan revisi apa pun. Mohon periksa kembali parameter halaman dan waktu.",
-	"mergehistory-fail-permission": "Izin [[Wikipedia:Penggabungan dua riwayat|penggabungan dua riwayat]] halaman tidak mencukupi.",
+	"mergehistory-fail-permission": "Izin [[Project:Penggabungan dua riwayat|penggabungan dua riwayat]] halaman tidak mencukupi.",
 	"mergehistory-fail-self-merge": "Halaman asal dan tujuan sama.",
 	"mergehistory-fail-timestamps-overlap": "Revisi asal tumpang tindih atau lebih baru dari revisi tujuan.",
 	"mergehistory-fail-toobig": "Tidak dapat melakukan penggabungan sebagai lebih dari batas dari $1 {{PLURAL:$1|revisi|revisi}} akan dipindahkan.",
@@ -3321,7 +3322,6 @@
 	"colon-separator": ":&#32;",
 	"ellipsis": "...",
 	"percent": "$1%",
-	"parentheses": "($1)",
 	"brackets": "[$1]",
 	"brackets-start": "[",
 	"brackets-end": "]",
@@ -3572,7 +3572,7 @@
 	"tag-mw-replace-description": "Suntingan yang menghapus lebih dari 90% konten dari sebuah halaman",
 	"tag-mw-rollback": "Pengembalian",
 	"tag-mw-rollback-description": "Suntingan yang membatalkan suntingan sebelumnya menggunakan pranala batalkan",
-	"tag-mw-undo": "Batalkan",
+	"tag-mw-undo": "Pembatalan",
 	"tag-mw-undo-description": "Suntingan yang membatalkan suntingan sebelumnya dengan tombol kembalikan",
 	"tag-mw-manual-revert": "Pengembalian manual",
 	"tag-mw-manual-revert-description": "Suntingan yang secara manual mengembalikan halaman ke keadaannya persis sebelumnya.",
@@ -4307,5 +4307,6 @@
 	"benefit-3-description": "Preferensi yang memungkinkan Anda menyesuaikan pengalaman Anda.",
 	"temp-user-unable-to-acquire": "Tidak dapat memperoleh nama pengguna akun sementara. Silakan coba lagi.",
 	"table-of-contents-show-button-aria-label": "Tampilkan daftar isi",
-	"table-of-contents-hide-button-aria-label": "Sembunyikan daftar isi"
+	"table-of-contents-hide-button-aria-label": "Sembunyikan daftar isi",
+	"mypage-disallowed-action": "Untuk alasan keamanan, tindakan \"$1\" tidak dapat digunakan pada halaman Special:MyPage."
 }

@@ -403,6 +403,7 @@
 	"passwordremindertext": "Yaan máax (u beelil IP $1) tu k'áataj jump'éel túumben\ncontraseña a ti'al {{SITENAME}} ( $4 ). Ts'o'ok u beeta'al jump'éel majan mukult'aan uti'al\n\" $2 \" : \" $3 \". Wa le taan a beetik ka'ache', ku páajtal a wokol yéetel a k'exik a mukult'aan.\nA majan mukult'aane' yaan u xu'ulul ichil {{PLURAL:$5| k'iin| $5 k'iino'ob}}.\n\nWa uláak' máax beetaj le k'áat chi'a', wa ts'o'ok a k'a'ajsik a mukult'aan yéetel ma' a k'áat a k'exe', je'el u páajtal mixba'alkunsik le k'ubent'aana' yéetel a k'abéetkunsik a wúuchben mukult'aan.",
 	"noemailcreate": "K'a'abéet a ts'áaik jump'éel a ma'alob correo electrónico.",
 	"passwordsent": "Ts'o'ok u túuxta'al jump'éel túumben mukult'aan ti' u correo electrónico \" $1 \".\nMuch jel a'al máaxech ken a k'amej.",
+	"blocked-mailpassword": "{{#FORMAL:Tu|Su}} Bejil IP k'ala'an ti'al u k'e'exel. Ti'al ma' u beetaal k'aase', ma' tu páajtal u jel k'áata'al mukult'aan ti' le u bejil IPa'.",
 	"eauthentsent": "Ts'o'ok u túuxta'al jump'éel correo electrónico ti' le bej yáax a'ala'ano'.\nMa'ili' túuxta'ak uláak' correo electrónico ti' le yáax a'ala'ano', much beet tuláakal ba'ax ku tso'olol ti' le k'uben t'aano', ti'al u éejenta'al teech u yuumil.",
 	"throttled-mailpassword": "Ts'o'ok u túuxta'al u k'a'ajsajil mukult'aan ti' {{PLURAL:$1|tu ts'oook hora|tu ts'ookilo'ob $1 horaob}}.\nTi'al ma' u beeta'al k'aase', chéen ku páajtal u túuxta'al u k'a'ajsajil mukult'aan cada {{PLURAL:$1|hora|$1 horaob}}.",
 	"mailerror": "Ma' túxpaj ma'alob le k'ubent'aano': $1",

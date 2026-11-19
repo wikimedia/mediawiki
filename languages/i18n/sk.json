@@ -56,7 +56,8 @@
 			"TreeIsLife",
 			"Spider 001757",
 			"Username1233219128",
-			"KormiSK"
+			"KormiSK",
+			"Nintendofan885"
 		]
 	},
 	"sunday": "nedeľa",
@@ -1782,7 +1783,7 @@
 	"nolicense": "Nič nebolo vybrané",
 	"licenses-edit": "Uprav možnosti licencie",
 	"license-nopreview": "(Náhľad nie je dostupný)",
-	"upload_source_url": " (platný, verejne prístupný URL)",
+	"upload_source_url": "(platný, verejne prístupný URL)",
 	"upload_source_file": "(vami vybraný súbor z vášho zariadenia)",
 	"listfiles-delete": "zmazať",
 	"listfiles-summary": "Táto špeciálna stránka zobrazuje všetky nahrané súbory.",
@@ -3185,7 +3186,6 @@
 	"word-separator": "&#32;",
 	"ellipsis": "...",
 	"percent": "$1 %",
-	"parentheses": "($1)",
 	"parentheses-start": "(",
 	"parentheses-end": ")",
 	"brackets": "[$1]",
@@ -4125,5 +4125,6 @@
 	"benefit-3-description": "Nastavenia, ktorými si prispôsobíte svoje prostredie.",
 	"temp-user-unable-to-acquire": "Nepodarilo sa získať používateľské meno dočasného účtu. Skúste to znova.",
 	"table-of-contents-show-button-aria-label": "Zobraziť obsah",
-	"table-of-contents-hide-button-aria-label": "Skryť obsah"
+	"table-of-contents-hide-button-aria-label": "Skryť obsah",
+	"mypage-disallowed-action": "Z bezpečnostných dôvodov nemožno na stránke Special:MyPage použiť akciu „$1“."
 }

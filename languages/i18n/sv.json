@@ -701,7 +701,7 @@
 	"anoneditwarning": "<strong>Varning:</strong> Du är inte inloggad. Din IP-adress kommer att vara publikt synlig om du gör några redigeringar. Om du <strong>[$1 loggar in]</strong> eller <strong>[$2 skapar ett konto]</strong> kommer dina redigeringar att tillskrivas ditt användarnamn, tillsammans med andra fördelar.",
 	"autocreate-edit-warning": "<strong>Varning:</strong> Du är inte inloggad. När du gör en redigering kommer ett tillfälligt konto skapas åt dig. [[{{MediaWiki:tempuser-helppage}}|Läs mer]]. <strong>[$1 Logga in]</strong> eller <strong>[$2 skapa ett konto]</strong> för att fortsätta få aviseringar efter detta konto upphör att gälla samt för att komma åt andra funktioner.",
 	"anonpreviewwarning": "<em>Du är inte inloggad. Om du publicerar kommer din IP-adress registreras på denna sidas redigeringshistorik.</em>",
-	"autocreate-preview-warning": "<em>Du är inte inloggad. När du gör en redigering kommer ett tillfälliga konto skapas åt dig. [[{{MediaWiki:tempuser-helppage}}|Läs mer]].</em>",
+	"autocreate-preview-warning": "<em>Du är inte inloggad. När du gör en redigering kommer ett tillfälligt konto skapas åt dig. [[{{MediaWiki:tempuser-helppage}}|Läs mer]].</em>",
 	"missingsummary": "<strong>Påminnelse:</strong> Du har inte skrivit någon redigeringskommentar.\nOm du klickar på ”$1” igen kommer din redigering att publiceras utan en sådan.",
 	"selfredirect": "<strong>Varning:</strong> Du omdirigerar denna sida till sig själv.\nDu kanske angav fel mål för din omdirigering, eller redigerar fel sida.\nOm du klickar på ”$1” igen kommer omdirigeringen att skapas trots detta.",
 	"missingcommenttext": "Var god och skriv en kommentar.",
@@ -4141,5 +4141,6 @@
 	"benefit-3-description": "Inställningar som låter dig anpassa din upplevelse.",
 	"temp-user-unable-to-acquire": "Kunde inte skaffa ett användarnamn för det tillfälliga kontot. Var god försök igen.",
 	"table-of-contents-show-button-aria-label": "Visa innehållsförteckningen",
-	"table-of-contents-hide-button-aria-label": "Dölj innehållsförteckningen"
+	"table-of-contents-hide-button-aria-label": "Dölj innehållsförteckningen",
+	"mypage-disallowed-action": "Av säkerhetsskäl kan åtgärden \"$1\" inte användas på sidan Special:MyPage."
 }

@@ -3229,7 +3229,6 @@
 	"colon-separator": ":&#32;",
 	"ellipsis": "...",
 	"percent": "$1&#160;%",
-	"parentheses": "($1)",
 	"brackets": "[$1]",
 	"brackets-start": "[",
 	"brackets-end": "]",
@@ -3374,7 +3373,7 @@
 	"signature-temp": "[[{{#special:Contributions}}/$1|$2]] ([[{{ns:user_talk}}:$1|pogovor]])",
 	"timezone-utc": "UTC",
 	"timezone-local": "Krajevno",
-	"duplicate-defaultsort": "<strong>Opozorilo:</strong> Privzeti razvrstilni ključ »$2« prepiše prejšnji privzeti ključ razvrščanja »$1«.",
+	"duplicate-defaultsort": "<strong>Opozorilo:</strong> Privzeti razvrstilni ključ »$2« preglasi prejšnji privzeti razvrstilni ključ »$1«.",
 	"duplicate-displaytitle": "<strong>Opozorilo:</strong> Prikazni naslov »$2« preglasi prejšnji prikazni naslov »$1«.",
 	"restricted-displaytitle": "<strong>Opozorilo:</strong> Prikazani naslov »$1« smo prezrli, saj ni enak dejanskemu naslovu strani.",
 	"invalid-indicator-name": "<strong>Napaka:</strong> Atribut <code>name</code> indikatorjev stanja strani ne sme biti prazen.",
@@ -4232,5 +4231,6 @@
 	"benefit-3-description": "Nastavitve, ki vam omogočajo prilagajanje vaše izkušnje.",
 	"temp-user-unable-to-acquire": "Ni mogoče pridobiti začasnega uporabniškega imena za račun. Prosimo, poskusite znova.",
 	"table-of-contents-show-button-aria-label": "Prikaži vsebinsko kazalo",
-	"table-of-contents-hide-button-aria-label": "Skrij vsebinsko kazalo"
+	"table-of-contents-hide-button-aria-label": "Skrij vsebinsko kazalo",
+	"mypage-disallowed-action": "Iz varnostnih razlogov dejanja »$1« ni mogoče uporabiti na strani Special:MyPage."
 }

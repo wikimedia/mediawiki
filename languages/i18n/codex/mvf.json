@@ -1,0 +1,29 @@
+{
+	"@metadata": {
+		"authors": [
+			"Anand.orkhon"
+		]
+	},
+	"cdx-chip-input-chip-added": "ᠴᠢᠫ $1 ᠨᠡᠮᠡᠭᠳᠡᠪᠡ᠃",
+	"cdx-chip-input-chip-removed": "ᠴᠢᠫ $1 ᠬᠠᠰᠠᠭᠳᠠᠪᠠ",
+	"cdx-input-chip-aria-description": "Enter ᠳᠠᠷᠤᠵᠤ ᠵᠠᠰᠠᠬᠤ ᠡᠰᠡᠪᠡᠯ Delete ᠳᠠᠷᠤᠵᠤ ᠤᠰᠠᠳᠬᠠᠨ᠎ᠠ ᠤᠤ᠃",
+	"cdx-dialog-close-button-label": "ᠬᠠᠭᠠᠬᠤ",
+	"cdx-label-optional-flag": "(ᠴᠢᠯᠦᠭᠡᠳᠦ ᠰᠤᠩᠭᠤᠯᠲᠠ)",
+	"cdx-message-dismiss-button-label": "ᠬᠠᠭᠠᠬᠤ",
+	"cdx-search-input-search-button-label": "ᠬᠠᠢᠬᠤ",
+	"cdx-table-select-all-label": "ᠪᠦᠬᠦ ᠮᠦᠷ᠎ᠢ ᠰᠣᠩᠭᠤᠬᠤ",
+	"cdx-table-select-row-label": "$2 ᠡᠴᠡ $1 ᠮᠦᠷ᠎ᠢ ᠰᠣᠩᠭᠤᠬᠤ",
+	"cdx-table-sort-caption": "$1（ᠲᠣᠪᠴᠢᠯᠠᠭᠤᠷ ᠪᠦᠬᠦᠢ ᠪᠠᠭᠠᠨ᠎ᠠ᠎ᠨᠤᠭᠤᠳ᠎ᠤᠨ ᠭᠠᠷᠴᠠᠭ᠎ᠤᠳ᠎ᠢ ᠡᠷᠢᠮᠪᠡᠯᠡᠬᠦ ᠪᠣᠯᠤᠮᠵᠢ᠎ᠲᠠᠢ）᠃",
+	"cdx-typeahead-search-search-results-label": "ᠬᠠᠢᠯᠲᠠ᠎ᠶᠢᠨ ᠦᠷ᠎ᠡ ᠳ᠋ᠦᠩ",
+	"cdx-table-pager-button-first-page": "ᠡᠬᠢᠨ᠎ᠦ ᠬᠠᠭᠤᠳᠠᠰᠤ",
+	"cdx-table-pager-button-last-page": "ᠰᠡᠭᠦᠯᠴᠢ᠎ᠶᠢᠨ ᠬᠠᠭᠤᠳᠠᠰᠤ",
+	"cdx-table-pager-button-next-page": "ᠳᠠᠷᠠᠭ᠎ᠠ᠎ᠶᠢᠨ ᠬᠠᠭᠤᠳᠠᠰᠤ",
+	"cdx-table-pager-button-prev-page": "ᠡᠮᠦᠨᠡᠬᠢ ᠬᠠᠭᠤᠳᠠᠰᠤ",
+	"cdx-table-pager-items-per-page-default": "ᠬᠠᠭᠤᠳᠠᠰᠤ᠎ᠳᠠᠬᠢ ᠦᠷ᠎ᠡ ᠳ᠋ᠦᠩ",
+	"cdx-table-pagination-status-message-determinate-long": "$3 ᠡᠴᠡ $1~$2 ᠦᠷ᠎ᠡ ᠳ᠋ᠦᠩ ᠬᠠᠷᠠᠭᠤᠯᠵᠤ ᠪᠠᠢᠨ᠎ᠠ",
+	"cdx-table-pagination-status-message-determinate-short": "$3 ᠡᠴᠡ $1~$2",
+	"cdx-table-pagination-status-message-indeterminate-long": "ᠤᠯᠠᠨ ᠢᠯᠡᠷᠴᠡ ᠡᠴᠡ $1~$2᠎ᠢ ᠬᠠᠷᠠᠭᠤᠯᠵᠤ ᠪᠠᠢᠨ᠎ᠠ",
+	"cdx-table-pagination-status-message-indeterminate-short": "ᠤᠯᠠᠨ ᠢᠯᠡᠷᠴᠡ ᠡᠴᠡ $1~$2",
+	"cdx-table-pagination-status-message-indeterminate-final": "ᠰᠡᠭᠦᠯ᠎ᠦᠨ {{PLURAL:$1|$1 ᠦᠷ᠎ᠡ ᠳ᠋ᠦᠩ}}",
+	"cdx-table-pagination-status-message-pending": "ᠦᠷ᠎ᠡ ᠳ᠋ᠦᠩ᠎ᠢ ᠠᠴᠢᠶᠠᠯᠠᠵᠤ ᠪᠠᠢᠨ᠎ᠠ"
+}

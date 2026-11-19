@@ -391,6 +391,33 @@ class UrlUtilsProviders {
 				'host' => 'example.org',
 			]
 		];
+		yield 'Alternative Unicode dot (U+3002)' => [
+			'https://www.example' . "\u{3002}" . 'org/path',
+			[
+				'scheme' => 'https',
+				'delimiter' => '://',
+				'host' => 'www.example.org',
+				'path' => '/path',
+			]
+		];
+		yield 'Alternative Unicode dot (U+FF0E)' => [
+			'https://www.example' . "\u{FF0E}" . 'org/path',
+			[
+				'scheme' => 'https',
+				'delimiter' => '://',
+				'host' => 'www.example.org',
+				'path' => '/path',
+			]
+		];
+		yield 'Alternative Unicode dot (U+FF61)' => [
+			'https://www.example' . "\u{FF61}" . 'org/path',
+			[
+				'scheme' => 'https',
+				'delimiter' => '://',
+				'host' => 'www.example.org',
+				'path' => '/path',
+			]
+		];
 		yield [
 			'http://id:key@example.org:123/path?foo=bar#baz',
 			[
@@ -597,6 +624,26 @@ class UrlUtilsProviders {
 				"$p//nds-nl.wikipedia.org",
 				[ 'nl.wikipedia.org' ],
 				false,
+			];
+			yield "Alternative Unicode dot (U+3002) in URL, $pDesc URL" => [
+				"$p//www.example\u{3002}com",
+				[ 'example.com' ],
+				true,
+			];
+			yield "Alternative Unicode dot (U+FF0E) in URL, $pDesc URL" => [
+				"$p//www.example\u{FF0E}com",
+				[ 'example.com' ],
+				true,
+			];
+			yield "Alternative Unicode dot (U+FF61) in URL, $pDesc URL" => [
+				"$p//www.example\u{FF61}com",
+				[ 'example.com' ],
+				true,
+			];
+			yield "Alternative Unicode dot in domain list, $pDesc URL" => [
+				"$p//www.example.com",
+				[ "example\u{3002}com" ],
+				true,
 			];
 		}
 	}

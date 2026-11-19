@@ -3,7 +3,8 @@
 		"authors": [
 			"Gion",
 			"Gion-andri",
-			"Kazu89"
+			"Kazu89",
+			"Albinfo"
 		]
 	},
 	"preferences": "Preferenzas",
@@ -42,7 +43,7 @@
 	"prefs-email": "Opziuns dad e-mail",
 	"youremail": "Adressa dad e-mail:",
 	"prefs-setemail": "Definir ina adressa dad e-mail",
-	"prefs-changeemail": "Midar l'adressa dad e-mail",
+	"prefs-changeemail": "Midar u stizzar l'adressa dad e-mail",
 	"prefs-help-email": "L'adressa dad e-mail è opziunala, pussibilitescha dentant da trametter in nov pled-clav en cass da sperdita.",
 	"prefs-help-email-required": "Inditgar in'adressa dad e-mail è obligatoric.",
 	"prefs-help-email-others": "Ti pos era decider che auters ta pon contactar per e-mail entras in link sin tia pagina da discussion.\nTia adressa dad e-mail na vegn betg mussada sche auters utilisaders ta contacteschan.",
@@ -105,6 +106,7 @@
 	"editfont-serif": "Scrittira cun serifas",
 	"tog-minordefault": "Marcar tut las modificaziuns per ordinari sco pitschnas",
 	"tog-forceeditsummary": "Avertir durant memoriar sche la resumaziun manca",
+	"prefs-preview": "Prevista",
 	"tog-previewonfirst": "Adina mussar la prevista suenter l'emprima modificaziun",
 	"tog-previewontop": "Mussar la prevista sur il champ d'endatziun",
 	"tog-uselivepreview": "Utilisar la prevista dinamica (experiment!)",
