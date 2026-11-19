@@ -16,7 +16,8 @@
 			"Некто участник",
 			"ОйЛ",
 			"아라",
-			"Oujon"
+			"Oujon",
+			"Qamen"
 		]
 	},
 	"pagecategories": "{{PLURAL:$1|Катигорїꙗ|Катигорїи}}",
@@ -127,6 +128,8 @@
 	"toc": "каталогъ",
 	"showtoc": "виждь",
 	"hidetoc": "съкрꙑи",
+	"collapsible-collapse": "Ꙁатвори",
+	"collapsible-expand": "Ѿврьꙁи",
 	"confirmable-yes": "да",
 	"confirmable-no": "нѣтъ",
 	"viewdeleted": "$1 видєти хощєши ;",
