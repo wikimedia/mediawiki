@@ -423,7 +423,15 @@ class MultiHttpClient implements LoggerAwareInterface {
 			if ( str_contains( $name, ':' ) ) {
 				throw new InvalidArgumentException( "Header name must not contain colon-space." );
 			}
-			$headers[] = $name . ': ' . trim( $value );
+			// A line break would end the header and start a new one
+			if ( strpbrk( $name, "\r\n" ) !== false ) {
+				throw new InvalidArgumentException( "Header name must not contain CR or LF." );
+			}
+			$value = trim( (string)$value );
+			if ( strpbrk( $value, "\r\n" ) !== false ) {
+				throw new InvalidArgumentException( "Header value for '$name' must not contain CR or LF." );
+			}
+			$headers[] = $name . ': ' . $value;
 		}
 		curl_setopt( $ch, CURLOPT_HTTPHEADER, $headers );
 

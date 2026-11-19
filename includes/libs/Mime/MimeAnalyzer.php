@@ -41,6 +41,9 @@ class MimeAnalyzer implements LoggerAwareInterface {
 	/** Use the full, built-in MIME mapping rather than load from a file */
 	public const USE_INTERNAL = 'internal';
 
+	/** Longest "mimetype" ZIP entry that is read (with room for whitespace) */
+	private const MAX_ZIP_MIMETYPE_LENGTH = 128;
+
 	private const MAGIC_NUMBERS = [
 		// Multimedia...
 		'MThd'             => 'audio/midi',
@@ -841,16 +844,26 @@ class MimeAnalyzer implements LoggerAwareInterface {
 				// the container's MIME type string. Read it directly from the archive
 				// (the handle is still open here) and trust it only for known container
 				// types. Pick the earliest (smallest local header offset) such entry.
+				// The value becomes a Content-Type (also in backend requests), so it must
+				// be one well-formed type with no line breaks or parameters. Entries larger
+				// than any such type are not read, which also bounds the work for archives
+				// with many "mimetype" entries.
+				$isSmallEnough = $entry['compressed_size'] > 0
+					&& $entry['compressed_size'] <= self::MAX_ZIP_MIMETYPE_LENGTH;
 				if ( $entry['name'] === 'mimetype' && $entry['compression'] === 0
+					&& $isSmallEnough
 					&& ( $mimetypeOffset === null
 						|| $entry['local_header_offset'] < $mimetypeOffset )
 				) {
 					$content = self::readZipEntryContent( $handle, $entry );
 					if ( $content !== null ) {
 						$content = trim( $content );
-						if ( $content === 'application/epub+zip'
-							|| str_starts_with( $content, 'application/vnd.oasis.opendocument' )
-						) {
+						$isEpub = $content === 'application/epub+zip';
+						$isOpenDocument = preg_match(
+							'/^application\/vnd\.oasis\.opendocument\.[a-z]+(?:-[a-z]+)*\z/',
+							$content
+						) === 1;
+						if ( $isEpub || $isOpenDocument ) {
 							$mimeFromMimetype = $content;
 							$mimetypeOffset = $entry['local_header_offset'];
 						}

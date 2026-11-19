@@ -4,6 +4,7 @@ namespace Tests\Wikimedia\Http;
 
 use Exception;
 use Generator;
+use InvalidArgumentException;
 use MediaWiki\Http\HttpRequestFactory;
 use MediaWiki\Http\MWHttpRequest;
 use MediaWiki\Status\Status;
@@ -12,6 +13,7 @@ use PHPUnit\Framework\Constraint\IsType;
 use PHPUnit\Framework\MockObject\MockObject;
 use ReflectionClass;
 use ReflectionException;
+use ReflectionMethod;
 use StatusValue;
 use Wikimedia\Http\MultiHttpClient;
 use Wikimedia\Http\TelemetryHeadersInterface;
@@ -606,6 +608,31 @@ class MultiHttpClientTest extends MediaWikiIntegrationTestCase {
 			$this->assertSame( "Response for request $i\n", $req['response']['body'] );
 			$i++;
 		}
+	}
+
+	public static function provideHeadersWithNewline() {
+		yield 'CR LF in a value' => [ [ 'content-type' => "text/plain\r\nX-Injected: 1" ] ];
+		yield 'LF in a value' => [ [ 'content-type' => "text/plain\nX-Injected: 1" ] ];
+		yield 'CR in a value' => [ [ 'content-type' => "text/plain\rX-Injected: 1" ] ];
+		yield 'CR LF in a name' => [ [ "x-a\r\nx-injected" => '1' ] ];
+	}
+
+	/**
+	 * @dataProvider provideHeadersWithNewline
+	 */
+	public function testGetCurlHandleRejectsNewlineInHeader( array $headers ) {
+		$client = new MultiHttpClient( [] );
+		$req = [
+			'method' => 'GET',
+			'url' => 'http://127.0.0.1:9/',
+			'query' => [],
+			'body' => '',
+			'headers' => $headers,
+			'flags' => [],
+		];
+		$method = new ReflectionMethod( $client, 'getCurlHandle' );
+		$this->expectException( InvalidArgumentException::class );
+		$method->invokeArgs( $client, [ &$req, [ 'connTimeout' => 1, 'reqTimeout' => 1 ] ] );
 	}
 
 	/**
