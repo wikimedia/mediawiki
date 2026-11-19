@@ -191,6 +191,51 @@ class MimeAnalyzerTest extends TestCase {
 		);
 	}
 
+	/**
+	 * Build a ZIP with stored entries, each [ name, content ]
+	 */
+	private static function buildStoredZip( array $entries ): string {
+		$local = '';
+		$central = '';
+		foreach ( $entries as [ $name, $content ] ) {
+			$offset = strlen( $local );
+			$crc = crc32( $content );
+			$size = strlen( $content );
+			$local .= pack( 'VvvvvvVVVvv', 0x04034b50, 10, 0, 0, 0, 0, $crc, $size, $size,
+				strlen( $name ), 0 ) . $name . $content;
+			$central .= pack( 'VvvvvvvVVVvvvvvVV', 0x02014b50, 20, 10, 0, 0, 0, 0, $crc, $size,
+				$size, strlen( $name ), 0, 0, 0, 0, 0, $offset ) . $name;
+		}
+		return $local . $central . pack( 'VvvvvVVv', 0x06054b50, 0, 0, count( $entries ),
+			count( $entries ), strlen( $central ), strlen( $local ), 0 );
+	}
+
+	public static function provideZipMimetypeEntry() {
+		yield 'ODF text' => [ 'application/vnd.oasis.opendocument.text', 'application/vnd.oasis.opendocument.text' ];
+		yield 'ODF template' => [ "application/vnd.oasis.opendocument.text-template\n",
+			'application/vnd.oasis.opendocument.text-template' ];
+		yield 'EPUB' => [ 'application/epub+zip', 'application/epub+zip' ];
+		yield 'CRLF header injection' => [
+			"application/vnd.oasis.opendocument.x\r\nX-Object-Manifest: c/p", 'application/zip' ];
+		yield 'second type after comma' => [
+			'application/vnd.oasis.opendocument.text,text/html', 'application/zip' ];
+		yield 'parameter' => [ 'application/vnd.oasis.opendocument.text; x=y', 'application/zip' ];
+		yield 'empty entry' => [ '', 'application/zip' ];
+		yield 'unknown subtype' => [ 'application/vnd.oasis.opendocument.x', 'application/vnd.oasis.opendocument.x' ];
+		yield 'oversized entry' => [
+			'application/vnd.oasis.opendocument.text' . str_repeat( ' ', 1000 ), 'application/zip' ];
+	}
+
+	/**
+	 * @dataProvider provideZipMimetypeEntry
+	 */
+	public function testZipMimetypeEntryMustBeExactType( string $content, string $expected ) {
+		$file = fopen( 'php://memory', 'w+' );
+		fwrite( $file, self::buildStoredZip( [ [ 'mimetype', $content ], [ 'content.xml', '<x/>' ] ] ) );
+		rewind( $file );
+		$this->assertSame( $expected, $this->mimeAnalyzer->detectZipTypeFromFile( $file ) );
+	}
+
 	public static function providePngZipConfusion() {
 		return [
 			[
