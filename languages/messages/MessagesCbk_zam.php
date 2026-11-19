@@ -124,7 +124,6 @@ $specialPageAliases = [
 	'PageLanguage'              => [ 'LenguajePagina' ],
 	'PagesWithProp'             => [ 'PaginaConProp' ],
 	'PasswordPolicies'          => [ 'PoliciaPasswords' ],
-	'PasswordReset'             => [ 'ResetPassword' ],
 	'PermanentLink'             => [ 'LinkPermanente' ],
 	'Preferences'               => [ 'Preferencias' ],
 	'Prefixindex'               => [ 'Indicedeprefijo' ],

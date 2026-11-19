@@ -302,6 +302,8 @@ For notes on 1.47.x and older releases, see HISTORY.
 
 === Other changes in 1.48 ===
 
+* (T444213) Special:ResetPassword and Special:ResetPass used to redirect to
+  Special:ChangePassword. They now redirect to Special:PasswordReset instead.
 * …
 
 == Compatibility ==
