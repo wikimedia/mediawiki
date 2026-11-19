@@ -276,6 +276,7 @@ For notes on 1.47.x and older releases, see HISTORY.
   getModuleForRequest() instead.
 * SearchEngine::defaultNearMatcher(), deprecated since 1.40, has been removed.
   Use MediaWikiServices::getTitleMatcher() instead.
+* The no-op web2017-polyfills module, deprecated since 1.47, has been removed.
 * …
 
 === Deprecations in 1.48 ===

@@ -164,11 +164,6 @@ return [
 		]
 	],
 
-	/* Polyfills */
-	'web2017-polyfills' => [
-		'deprecated' => '[1.47] No longer needed. See https://phabricator.wikimedia.org/T443153',
-	],
-
 	/* Base modules */
 	// These modules' dependencies MUST also be included in StartUpModule::getBaseModules().
 	// These modules' dependencies MUST be dependency-free (having dependencies would cause recursion).
