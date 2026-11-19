@@ -247,4 +247,22 @@ class UserMailerTest extends MediaWikiUnitTestCase {
 			],
 		];
 	}
+
+	public function testGetSmtpTransportUsesLocalhostAsEhloName() {
+		$transport = TestingAccessWrapper::newFromClass( UserMailer::class )
+			->getSmtpTransport( [
+				'host' => 'smtp.example.org',
+				'port' => 25,
+				'localhost' => 'wiki.example.org',
+			] );
+
+		$this->assertSame( 'wiki.example.org', $transport->getLocalDomain() );
+	}
+
+	public function testGetSmtpTransportDefaultsEhloNameWithoutLocalhost() {
+		$transport = TestingAccessWrapper::newFromClass( UserMailer::class )
+			->getSmtpTransport( [ 'host' => 'smtp.example.org' ] );
+
+		$this->assertNotSame( '', $transport->getLocalDomain() );
+	}
 }
