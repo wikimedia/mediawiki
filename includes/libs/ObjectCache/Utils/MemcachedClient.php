@@ -734,7 +734,7 @@ class MemcachedClient {
 	 * @return bool
 	 */
 	private function _connect_sock( &$sock, $host ) {
-		$port = null;
+		$port = -1;
 		$hostAndPort = IPUtils::splitHostAndPort( $host );
 		if ( $hostAndPort ) {
 			$ip = $hostAndPort[0];
