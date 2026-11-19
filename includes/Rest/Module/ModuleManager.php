@@ -112,7 +112,7 @@ class ModuleManager {
 	 * Gets the availability for a given module id.
 	 *
 	 * The availability is looked up in three places, falling back to the
-	 * next if one is not given:
+	 * next if one is not given (or invalid):
 	 * - in the RestModuleOverrides setting, by the module id
 	 * - in the RestAudienceOverrides setting, by the module's audience designation
 	 * - ModuleAvailability::getModuleAvailability for the audience designation
@@ -123,11 +123,13 @@ class ModuleManager {
 	 * @since 1.47
 	 */
 	public function getModuleAvailability( string $moduleId ): ModuleAvailability {
-		// If an override is attempted, but the availability is unrecognized, disable the module. This
-		// helps guard against undesired module activation/publishing due to configuration typos.
 		if ( isset( $this->restModuleOverrides[$moduleId]['availability'] ) ) {
 			$availability = ModuleAvailability::tryFrom( $this->restModuleOverrides[$moduleId]['availability'] );
-			return $availability ?? ModuleAvailability::DISABLED;
+
+			// If the availability override is invalid, ignore it and continue below.
+			if ( $availability ) {
+				return $availability;
+			}
 		}
 
 		$audience = $this->getModuleAudience( $moduleId );
@@ -137,11 +139,10 @@ class ModuleManager {
 				$this->restAudienceOverrides[$audience->value]['availability']
 			);
 
-			// FIXME: decide if we should rather fall through to the default availability
-			// for incorrect values. It makes sense if an invalid mapping has no effect.
-			// But it would be inconsistent with the logic for ModuleOverrides.
-			// Perhaps that should change as well?
-			return $availability ?? ModuleAvailability::DISABLED;
+			// If the availability override is invalid, ignore it and continue below.
+			if ( $availability ) {
+				return $availability;
+			}
 		}
 
 		return ModuleAvailability::getModuleAvailability( $audience );

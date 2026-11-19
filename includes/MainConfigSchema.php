@@ -13151,7 +13151,8 @@ class MainConfigSchema {
 	 *   and default (see AudienceDesignation::getDefaultGroups).
 	 *
 	 * By default, availability and groups are determined by a module's
-	 * audience designation.
+	 * audience designation. Invalid availability values are ignored,
+	 * causing the default to be applied.
 	 *
 	 * @see RestAudienceOverrides
 	 * @unstable Introduced in 1.47. We may adjust this as we refine the available overrides.

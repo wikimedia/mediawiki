@@ -270,8 +270,8 @@ class ModuleManagerTest extends MediaWikiIntegrationTestCase {
 			// Overrides work
 			[ 'mockTwo/v1', ModuleAvailability::HIDDEN ],
 
-			// Fallback to DISABLED on unrecognized availability works
-			[ 'mockNonexistent/v1', ModuleAvailability::DISABLED ],
+			// Fallback to PUBLISHED per ModuleAvailability::getModuleAvailability
+			[ 'mockNonexistent/v1', ModuleAvailability::PUBLISHED ],
 		];
 	}
 
@@ -297,9 +297,9 @@ class ModuleManagerTest extends MediaWikiIntegrationTestCase {
 				'moduleId' => '',
 				'expected' => ModuleAvailability::HIDDEN,
 			],
-			'invalid audience override disables the module' => [
+			'invalid audience override falls back to ModuleAvailability::getModuleAvailability' => [
 				'moduleId' => 'content/v2-beta',
-				'expected' => ModuleAvailability::DISABLED,
+				'expected' => ModuleAvailability::PUBLISHED,
 			],
 			'audience override without availability has no effect' => [
 				'moduleId' => 'site/v1',
@@ -309,6 +309,16 @@ class ModuleManagerTest extends MediaWikiIntegrationTestCase {
 				'moduleId' => 'mockTwo/v1-internal',
 				'expected' => ModuleAvailability::PUBLISHED,
 				'moduleOverrides' => [ 'mockTwo/v1-internal' => [ 'availability' => 'published' ] ],
+			],
+			'invalid module override falls through to the audience override' => [
+				'moduleId' => 'fragments/v0-internal',
+				'expected' => ModuleAvailability::DISABLED,
+				'moduleOverrides' => [ 'fragments/v0-internal' => [ 'availability' => 'gibberish' ] ],
+			],
+			'invalid module and audience overrides fall back to the default' => [
+				'moduleId' => 'content/v2-beta',
+				'expected' => ModuleAvailability::PUBLISHED,
+				'moduleOverrides' => [ 'content/v2-beta' => [ 'availability' => 'gibberish' ] ],
 			],
 		];
 	}
