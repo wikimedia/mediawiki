@@ -11,6 +11,7 @@
 			"NikosLikomitros",
 			"Nikosgranturismogt",
 			"Nikosguard",
+			"PrinceAzuka134",
 			"Stam.nikos",
 			"Tifa93"
 		]
@@ -26,6 +27,7 @@
 	"ooui-dialog-message-accept": "ΟΚ",
 	"ooui-dialog-message-reject": "Ακύρωση",
 	"ooui-dialog-process-error": "Κάτι πήγε στραβά",
+	"ooui-dialog-process-back": "Πίσω",
 	"ooui-dialog-process-dismiss": "Απόρριψη",
 	"ooui-dialog-process-retry": "Δοκιμάστε ξανά",
 	"ooui-dialog-process-continue": "Συνέχεια",

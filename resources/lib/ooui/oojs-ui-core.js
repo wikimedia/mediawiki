@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.54.2
+ * OOUI v0.54.3
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2026 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2026-09-14T17:40:35Z
+ * Date: 2026-11-19T00:44:29Z
  */
 ( function ( OO ) {
 
@@ -2249,7 +2249,9 @@ OO.ui.mixin.TabIndexedElement.prototype.blur = function () {
 };
 
 /**
- * @inheritdoc OO.ui.Widget
+ * Simulate the behavior of clicking on a label (a HTML `<label>` element) bound to this input.
+ *
+ * This focuses the element. See {@link OO.ui.Widget#simulateLabelClick}.
  */
 OO.ui.mixin.TabIndexedElement.prototype.simulateLabelClick = function () {
 	this.focus();
@@ -4261,12 +4263,12 @@ OO.ui.ButtonWidget.prototype.setRel = function ( rel ) {
 // Override method visibility hints from ButtonElement
 /**
  * @method setActive
- * @inheritdoc OO.ui.mixin.ButtonElement
+ * @inheritdoc
  * @memberof OO.ui.ButtonWidget#
  */
 /**
  * @method isActive
- * @inheritdoc OO.ui.mixin.ButtonElement
+ * @inheritdoc
  * @memberof OO.ui.ButtonWidget#
  */
 
@@ -8723,7 +8725,8 @@ OO.ui.MenuSelectWidget.prototype.updateItemVisibility = function () {
 		this.highlightItem( null );
 	}
 
-	this.$element.toggleClass( 'oo-ui-menuSelectWidget-invisible', !anyVisible );
+	// Only matters while open: a closed menu is hidden anyway, and this is recalculated on open
+	this.$element.toggleClass( 'oo-ui-menuSelectWidget-invisible', !anyVisible && this.isVisible() );
 
 	if ( this.highlightOnFilter &&
 		!( this.lastHighlightedItem && this.lastHighlightedItem.isSelectable() ) &&
@@ -12425,9 +12428,13 @@ OO.ui.MultilineTextInputWidget.prototype.updatePosition = function () {
 };
 
 /**
- * @inheritdoc
+ * Handle key press events.
  *
- * Modify to emit 'enter' on Ctrl/Meta+Enter, instead of plain Enter
+ * Emit 'enter' on Ctrl/Meta+Enter, instead of plain Enter.
+ *
+ * @private
+ * @param {jQuery.Event} e Key press event
+ * @fires OO.ui.TextInputWidget#enter If Ctrl/Meta+Enter is pressed
  */
 OO.ui.MultilineTextInputWidget.prototype.onKeyPress = function ( e ) {
 	if ( !this.allowLinebreaks ) {
@@ -12437,7 +12444,8 @@ OO.ui.MultilineTextInputWidget.prototype.onKeyPress = function ( e ) {
 		if ( e.which === OO.ui.Keys.ENTER ) {
 			e.preventDefault();
 		}
-		return OO.ui.TextInputWidget.prototype.onKeyPress.call( this, e );
+		OO.ui.TextInputWidget.prototype.onKeyPress.call( this, e );
+		return;
 	}
 	if (
 		( e.which === OO.ui.Keys.ENTER && ( e.ctrlKey || e.metaKey ) ) ||
@@ -12572,8 +12580,9 @@ OO.ui.MultilineTextInputWidget.prototype.restorePreInfuseState = function ( stat
  * can be entered manually) and a {@link OO.ui.MenuSelectWidget menu of options} (from which
  * a value can be chosen instead). Users can choose options from the combo box in one of two ways:
  *
- * - by typing a value in the text input field. If the value exactly matches the value of a menu
- *   option, that option will appear to be selected.
+ * - by typing a value in the text input field. The menu will only show options starting with the
+ *   typed text, and if the value exactly matches the value of a menu option, that option will
+ *   appear to be selected.
  * - by choosing a value from the menu. The value of the chosen option will then appear in the text
  *   input field.
  *
@@ -12660,6 +12669,8 @@ OO.ui.ComboBoxInputWidget = function OoUiComboBoxInputWidget( config ) {
 	} );
 	this.menu = new OO.ui.MenuSelectWidget( Object.assign(
 		{
+			// Filter options as the user types, like the native <datalist> used in PHP
+			filterFromInput: true,
 			widget: this,
 			input: this,
 			$floatableContainer: this.$element,

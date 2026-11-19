@@ -1,5 +1,29 @@
 # OOUI Release History
 
+## v0.54.3 / 2026-11-18
+### Features
+* ComboBoxInputWidget: Filter menu options from input (Ed Sanders)
+* Toolbar: Implement promotable tools (Ed Sanders)
+
+### Icons
+* icons: Update 'suggestedInvestigations' icon (Marcin Szwarc)
+
+### Styles
+* MessageWidget: Remove outer margins of block elements in the label (dubeysanskar)
+
+### Code
+* build: Remove jsdoc and jsdoc-class-hierarchy dependencies (Novem Linguae)
+* build: Updating handlebars to 4.7.10 ([BOT] libraryupgrader)
+* build: Updating npm dependencies ([BOT] libraryupgrader)
+* build: Updating npm dependencies ([BOT] libraryupgrader)
+* build: Updating probe-image-size to 7.4.0 ([BOT] libraryupgrader)
+* build: Updating stylelint-config-wikimedia to 0.19.4 ([BOT] libraryupgrader)
+* build: Upgrade eslint-config-wikimedia from 0.32.6 to 0.33.1 (Ed Sanders)
+* build: Upgrade stylelint-config-wikimedia from 0.19.4 to 0.20.0 (James D. Forrester)
+* docs: Remove values from @inheritdoc tags (Ed Sanders)
+* Remove IE/Edge from support comments (Ed Sanders)
+* Update SVGO to from 3.3.5 to 4.1.0 (Ed Sanders)
+
 ## v0.54.2 / 2026-09-14
 ### Features
 * ListToolGroup: emit an `expand` event when the more/less toggle is used (David Lynch)

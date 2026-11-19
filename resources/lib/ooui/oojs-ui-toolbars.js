@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.54.2
+ * OOUI v0.54.3
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2026 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2026-09-14T17:40:35Z
+ * Date: 2026-11-19T00:44:29Z
  */
 ( function ( OO ) {
 
@@ -327,6 +327,7 @@ OO.ui.Toolbar = function OoUiToolbar( toolFactory, toolGroupFactory, config ) {
 	this.initialized = false;
 	this.narrow = false;
 	this.narrowThreshold = null;
+	this.promotionMeasurements = null;
 	this.onWindowResizeHandler = this.onWindowResize.bind( this );
 	this.$overlay = ( config.$overlay === true ? OO.ui.getDefaultOverlay() : config.$overlay ) ||
 		this.$element;
@@ -407,7 +408,7 @@ OO.ui.Toolbar.prototype.getToolGroupFactory = function () {
 };
 
 /**
- * @inheritdoc {OO.ui.mixin.GroupElement}
+ * @inheritdoc
  */
 OO.ui.Toolbar.prototype.insertItemElements = function ( item ) {
 	// Mixin method
@@ -446,6 +447,7 @@ OO.ui.Toolbar.prototype.onPointerDown = function ( e ) {
  */
 OO.ui.Toolbar.prototype.onWindowResize = function () {
 	this.setNarrow( this.$bar[ 0 ].clientWidth <= this.getNarrowThreshold() );
+	this.updatePromotedTools();
 };
 
 /**
@@ -486,6 +488,214 @@ OO.ui.Toolbar.prototype.getNarrowThreshold = function () {
 			this.$actions[ 0 ].offsetWidth;
 	}
 	return this.narrowThreshold;
+};
+
+/**
+ * Get the sets of tools that can be promoted out of popup toolgroups, in priority order.
+ *
+ * Sets are ordered by toolgroup, in the order the toolgroups were set up, then by the order
+ * given in each toolgroup's `promoteToBar` config option. The tools in each set are only
+ * promoted together.
+ *
+ * @return {OO.ui.Tool[][]} Sets of promotable tools
+ */
+OO.ui.Toolbar.prototype.getPromotableToolSets = function () {
+	let sets = [];
+	this.items.forEach( ( toolGroup ) => {
+		if ( toolGroup instanceof OO.ui.PopupToolGroup ) {
+			sets = sets.concat( toolGroup.getPromotableToolSets() );
+		}
+	} );
+	return sets;
+};
+
+/**
+ * Get the tools that can be promoted out of popup toolgroups, in priority order.
+ *
+ * See #getPromotableToolSets.
+ *
+ * @return {OO.ui.Tool[]} Promotable tools
+ */
+OO.ui.Toolbar.prototype.getPromotableTools = function () {
+	return [].concat( ...this.getPromotableToolSets() );
+};
+
+/**
+ * Update which tools are promoted out of popup toolgroups, based on the available room.
+ *
+ * This is called automatically when the window is resized.
+ */
+OO.ui.Toolbar.prototype.updatePromotedTools = function () {
+	const sets = this.getPromotableToolSets();
+	if ( !sets.length ) {
+		return;
+	}
+	const count = this.getPromotedToolCount( [].concat( ...sets ) );
+
+	// Promote whole sets, in order, while they fit in the count
+	let promotedTools = [];
+	sets.every( ( set ) => {
+		if ( promotedTools.length + set.length > count ) {
+			return false;
+		}
+		promotedTools = promotedTools.concat( set );
+		return true;
+	} );
+	this.setPromotedTools( promotedTools );
+};
+
+/**
+ * Promote tools out of their popup toolgroups, and demote all others.
+ *
+ * @private
+ * @param {OO.ui.Tool[]} tools Tools to promote
+ */
+OO.ui.Toolbar.prototype.setPromotedTools = function ( tools ) {
+	this.items.forEach( ( toolGroup ) => {
+		if ( toolGroup instanceof OO.ui.PopupToolGroup ) {
+			toolGroup.setPromotedTools(
+				tools.filter( ( tool ) => tool.toolGroup === toolGroup )
+			);
+		}
+	} );
+};
+
+/**
+ * Get the number of tools that should be promoted out of popup toolgroups.
+ *
+ * Tools are promoted from the start of `tools`, one set at a time (see
+ * #getPromotableToolSets).
+ *
+ * By default, this measures the toolbar and the promotable tools, and returns how many fit in
+ * the toolbar without wrapping. No tools are promoted in narrow mode.
+ *
+ * This can be overridden in a subclass e.g. when the toolbar is laid out with flexbox:
+ *
+ *     MobileToolbar.prototype.getPromotedToolCount = function ( tools ) {
+ *         // Room for 8 tools of >=45px each, 5 of which are always shown
+ *         return this.$bar[ 0 ].clientWidth > 360 ? 3 : 0;
+ *     };
+ *
+ * @param {OO.ui.Tool[]} tools Promotable tools, in priority order, see #getPromotableTools
+ * @return {number} Number of tools to promote
+ */
+OO.ui.Toolbar.prototype.getPromotedToolCount = function ( tools ) {
+	if ( this.isNarrow() ) {
+		return 0;
+	}
+	const measurements = this.getPromotionMeasurements( tools ),
+		available = this.$bar[ 0 ].clientWidth - measurements.baseWidth,
+		// Width each group adds to the toolbar, and how, for the tools promoted so far
+		groupStates = new Map(),
+		// Only consider promoting whole sets
+		lastToolsInSets = this.getPromotableToolSets().map( ( set ) => set[ set.length - 1 ] );
+
+	let width = 0,
+		count = 0;
+	for ( let i = 0; i < tools.length; i++ ) {
+		const tool = tools[ i ],
+			toolGroup = tool.toolGroup;
+		let state = groupStates.get( toolGroup );
+		if ( !state ) {
+			state = { count: 0, toolsWidth: 0, firstIndex: null, width: 0 };
+			groupStates.set( toolGroup, state );
+		}
+		state.count++;
+		state.toolsWidth += measurements.toolWidths[ i ];
+		// Track which promoted tool will be displayed first in this group
+		if (
+			state.firstIndex === null ||
+			toolGroup.items.indexOf( tool ) < toolGroup.items.indexOf( tools[ state.firstIndex ] )
+		) {
+			state.firstIndex = i;
+		}
+
+		// The first tool in the promoted tools container doesn't have the margin
+		// that separates adjacent tools
+		let groupWidth = state.toolsWidth - measurements.toolMargins[ state.firstIndex ] +
+			measurements.containerWidths.get( toolGroup );
+		if ( state.count === toolGroup.items.length ) {
+			// All of this group's tools are promoted, so the group will be hidden
+			groupWidth -= measurements.groupWidths.get( toolGroup );
+		}
+		width += groupWidth - state.width;
+		state.width = groupWidth;
+
+		if ( width < available && lastToolsInSets.includes( tool ) ) {
+			count = i + 1;
+		}
+	}
+	return count;
+};
+
+/**
+ * Get the (lazily-computed) widths used to decide how many tools to promote.
+ *
+ * Measurements are recomputed if the list of promotable tools changes. Like the narrow threshold,
+ * they are otherwise not updated if the content of the toolbar changes.
+ *
+ * @private
+ * @param {OO.ui.Tool[]} tools Promotable tools
+ * @return {Object} Measurements: `baseWidth`, the width of the toolbar contents with no tools
+ *  promoted; `toolWidths`, the width of each tool in `tools` when promoted, including margins;
+ *  `toolMargins`, the horizontal margins included in each of `toolWidths`; `containerWidths`,
+ *  a Map of each toolgroup to the width its promoted tools container adds, excluding the tools;
+ *  and `groupWidths`, a Map of each toolgroup to its own width
+ */
+OO.ui.Toolbar.prototype.getPromotionMeasurements = function ( tools ) {
+	const cached = this.promotionMeasurements;
+	if (
+		cached && cached.tools.length === tools.length &&
+		cached.tools.every( ( tool, i ) => tool === tools[ i ] )
+	) {
+		return cached;
+	}
+
+	const promotedTools = [];
+	this.items.forEach( ( toolGroup ) => {
+		if ( toolGroup instanceof OO.ui.PopupToolGroup ) {
+			promotedTools.push( ...toolGroup.getPromotedTools() );
+		}
+	} );
+
+	// Use unrounded widths, as rounding errors add up and can cause the toolbar to wrap
+	const getWidth = ( el ) => el.getBoundingClientRect().width;
+	// Width including horizontal margins
+	const getOuterWidth = ( el ) => {
+		const style = this.getElementWindow().getComputedStyle( el );
+		return getWidth( el ) + parseFloat( style.marginLeft ) + parseFloat( style.marginRight );
+	};
+
+	this.setPromotedTools( [] );
+	const baseWidth = getWidth( this.$group[ 0 ] ) + getWidth( this.$after[ 0 ] ) +
+		getWidth( this.$actions[ 0 ] );
+	const groupWidths = new Map();
+	tools.forEach( ( tool ) => {
+		groupWidths.set( tool.toolGroup, getOuterWidth( tool.toolGroup.$element[ 0 ] ) );
+	} );
+
+	this.setPromotedTools( tools );
+	// Widths include margins, which separate a tool from the one before it
+	const toolWidths = tools.map( ( tool ) => getOuterWidth( tool.$element[ 0 ] ) );
+	const toolMargins = tools.map( ( tool, i ) => toolWidths[ i ] - getWidth( tool.$element[ 0 ] ) );
+	const containerWidths = new Map();
+	groupWidths.forEach( ( width, toolGroup ) => {
+		let containerWidth = getOuterWidth( toolGroup.$promoted[ 0 ] );
+		tools.forEach( ( tool, i ) => {
+			if ( tool.toolGroup === toolGroup ) {
+				containerWidth -= toolWidths[ i ];
+			}
+		} );
+		containerWidths.set( toolGroup, containerWidth );
+	} );
+
+	// Restore the previous state, in case the caller doesn't change it
+	this.setPromotedTools( promotedTools );
+
+	this.promotionMeasurements = {
+		tools, baseWidth, toolWidths, toolMargins, containerWidths, groupWidths
+	};
+	return this.promotionMeasurements;
 };
 
 /**
@@ -550,6 +760,9 @@ OO.ui.Toolbar.prototype.setup = function ( groups ) {
 		} );
 	}
 	this.addItems( items );
+	if ( this.initialized ) {
+		this.updatePromotedTools();
+	}
 };
 
 /**
@@ -714,6 +927,7 @@ OO.ui.Tool = function OoUiTool( toolGroup, config ) {
 	this.toolGroup = toolGroup;
 	this.toolbar = this.toolGroup.getToolbar();
 	this.active = false;
+	this.promoted = false;
 	this.$title = $( '<span>' );
 	this.$accel = $( '<span>' );
 	this.$link = $( '<a>' );
@@ -931,6 +1145,37 @@ OO.ui.Tool.prototype.setActive = function ( state ) {
 };
 
 /**
+ * Check if the tool has been promoted out of its popup toolgroup.
+ *
+ * See the `promoteToBar` config option of {@link OO.ui.PopupToolGroup}.
+ *
+ * @return {boolean} Tool is promoted
+ */
+OO.ui.Tool.prototype.isPromoted = function () {
+	return this.promoted;
+};
+
+/**
+ * Mark the tool as promoted out of its popup toolgroup.
+ *
+ * This is called by the toolgroup, which is responsible for moving the tool's element.
+ * Promoted tools are displayed like tools in a {@link OO.ui.BarToolGroup bar} toolgroup.
+ *
+ * @param {boolean} [promoted=false] Tool is promoted
+ * @chainable
+ * @return {OO.ui.Tool} The tool, for chaining
+ */
+OO.ui.Tool.prototype.setPromoted = function ( promoted ) {
+	promoted = !!promoted;
+	if ( this.promoted !== promoted ) {
+		this.promoted = promoted;
+		this.$element.toggleClass( 'oo-ui-tool-promoted', promoted );
+		this.updateTitle();
+	}
+	return this;
+};
+
+/**
  * Set the tool #title.
  *
  * @param {string|Function} title Title text or a function that returns text
@@ -1015,8 +1260,12 @@ OO.ui.Tool.prototype.onToolbarResize = function () {
  * Update the title.
  */
 OO.ui.Tool.prototype.updateTitle = function () {
-	const titleTooltips = this.toolGroup.constructor.static.titleTooltips,
-		accelTooltips = this.toolGroup.constructor.static.accelTooltips,
+	// Promoted tools are displayed like tools in a BarToolGroup
+	const groupStatic = this.promoted ?
+			OO.ui.BarToolGroup.static :
+			this.toolGroup.constructor.static,
+		titleTooltips = groupStatic.titleTooltips,
+		accelTooltips = groupStatic.accelTooltips,
 		accel = this.toolbar.getToolAccelerator( this.constructor.static.name ),
 		tooltipParts = [],
 		title = this.getTitle();
@@ -1038,7 +1287,7 @@ OO.ui.Tool.prototype.updateTitle = function () {
 };
 
 /**
- * @inheritdoc OO.ui.mixin.IconElement
+ * @inheritdoc
  */
 OO.ui.Tool.prototype.setIcon = function ( icon ) {
 	// Mixin method
@@ -2123,6 +2372,17 @@ OO.ui.LabelToolGroup.prototype.populate = function () {};
  * @param {Object} [config] Configuration options
  * @param {string} [config.header] Text to display at the top of the popup
  * @param {Object} [config.narrowConfig] See static.narrowConfig
+ * @param {Array|string} [config.promoteToBar=[]] Tools to show outside of the popup (before the
+ *  toolgroup) when there is room in the toolbar. Promoted tools are displayed as if they were in
+ *  a {@link OO.ui.BarToolGroup bar} toolgroup. Tools are promoted in the order given, so the first
+ *  tool is promoted first and demoted last. See OO.ui.ToolFactory#extract for the format, and
+ *  OO.ui.Toolbar#getPromotedToolCount for how the available room is calculated.
+ *
+ *  Tools can be grouped in a nested array so that they are only promoted together, e.g.
+ *  `[ [ 'bold', 'italic' ], 'underline' ]` promotes bold and italic when there is room for both,
+ *  then underline. A nested array can use any of the formats supported by
+ *  OO.ui.ToolFactory#extract, e.g. `[ [ { group: 'lists' } ] ]` promotes a whole group of tools
+ *  together, whereas `[ { group: 'lists' } ]` promotes them one at a time.
  */
 OO.ui.PopupToolGroup = function OoUiPopupToolGroup( toolbar, config ) {
 	// Allow passing positional parameters inside the config object
@@ -2136,6 +2396,12 @@ OO.ui.PopupToolGroup = function OoUiPopupToolGroup( toolbar, config ) {
 		indicator: config.indicator === undefined ?
 			( toolbar.position === 'bottom' ? 'up' : 'down' ) : config.indicator
 	}, config );
+
+	// Properties (must be set before parent constructor, which calls #populate)
+	this.promoteToBar = config.promoteToBar || [];
+	this.promotedTools = [];
+	this.$promotedTools = $( '<div>' );
+	this.$promoted = $( '<div>' );
 
 	// Parent constructor
 	OO.ui.PopupToolGroup.super.call( this, toolbar, config );
@@ -2175,6 +2441,14 @@ OO.ui.PopupToolGroup = function OoUiPopupToolGroup( toolbar, config ) {
 		mousedown: this.onHandleMouseKeyDown.bind( this ),
 		mouseup: this.onHandleMouseKeyUp.bind( this )
 	} );
+	this.$promotedTools.on( {
+		mousedown: this.onMouseKeyDown.bind( this ),
+		mouseup: this.onMouseKeyUp.bind( this ),
+		keydown: this.onMouseKeyDown.bind( this ),
+		keyup: this.onMouseKeyUp.bind( this ),
+		mouseover: this.onMouseOverFocus.bind( this ),
+		mouseout: this.onMouseOutBlur.bind( this )
+	} );
 	this.toolbar.connect( this, {
 		resize: 'onToolbarResize'
 	} );
@@ -2194,6 +2468,15 @@ OO.ui.PopupToolGroup = function OoUiPopupToolGroup( toolbar, config ) {
 				.text( config.header )
 			);
 	}
+	// Promoted tools are shown in a separate element, before this one, which is
+	// styled like a BarToolGroup. It is attached when tools are first promoted.
+	this.$promotedTools.addClass( 'oo-ui-toolGroup-tools oo-ui-barToolGroup-tools' );
+	this.$promoted
+		.addClass( [
+			'oo-ui-widget', 'oo-ui-toolGroup', 'oo-ui-barToolGroup',
+			'oo-ui-popupToolGroup-promoted', 'oo-ui-element-hidden'
+		] )
+		.append( this.$promotedTools );
 	this.$element
 		.addClass( 'oo-ui-popupToolGroup' )
 		.prepend( this.$handle );
@@ -2237,6 +2520,154 @@ OO.ui.PopupToolGroup.prototype.setDisabled = function () {
 	if ( this.isDisabled() && this.isElementAttached() ) {
 		this.setActive( false );
 	}
+};
+
+/**
+ * @inheritdoc
+ */
+OO.ui.PopupToolGroup.prototype.onDisable = function ( isDisabled ) {
+	// Parent method
+	OO.ui.PopupToolGroup.super.prototype.onDisable.apply( this, arguments );
+
+	this.$promoted
+		.toggleClass( 'oo-ui-widget-disabled', isDisabled )
+		.toggleClass( 'oo-ui-widget-enabled', !isDisabled );
+	this.$promotedTools
+		.toggleClass( 'oo-ui-toolGroup-disabled-tools', isDisabled )
+		.toggleClass( 'oo-ui-toolGroup-enabled-tools', !isDisabled );
+};
+
+/**
+ * @inheritdoc
+ */
+OO.ui.PopupToolGroup.prototype.populate = function () {
+	const promotedTools = this.promotedTools;
+
+	// Move promoted tools back into the popup, as the parent method positions
+	// tools relative to each other
+	this.setPromotedTools( [] );
+
+	// Parent method
+	OO.ui.PopupToolGroup.super.prototype.populate.apply( this, arguments );
+
+	// Re-promote tools that are still in the group
+	this.setPromotedTools( promotedTools.filter(
+		( tool ) => this.tools[ tool.getName() ] === tool
+	) );
+};
+
+/**
+ * Get the sets of tools that can be promoted out of the popup, in priority order.
+ *
+ * The tools in each set are only promoted together. See the `promoteToBar` config option.
+ *
+ * @return {OO.ui.Tool[][]} Sets of promotable tools
+ */
+OO.ui.PopupToolGroup.prototype.getPromotableToolSets = function () {
+	const toolFactory = this.toolbar.getToolFactory(),
+		collection = Array.isArray( this.promoteToBar ) ? this.promoteToBar : [ this.promoteToBar ],
+		// Each tool can only be in one set
+		used = {},
+		sets = [];
+
+	collection.forEach( ( item ) => {
+		const tools = toolFactory.extract( item, used )
+			.map( ( name ) => this.tools[ name ] )
+			.filter( Boolean );
+		if ( Array.isArray( item ) ) {
+			if ( tools.length ) {
+				sets.push( tools );
+			}
+		} else {
+			// A single item can still select multiple tools (e.g. a group),
+			// but they are promoted one at a time
+			tools.forEach( ( tool ) => sets.push( [ tool ] ) );
+		}
+	} );
+	return sets;
+};
+
+/**
+ * Get the tools that can be promoted out of the popup, in priority order.
+ *
+ * See the `promoteToBar` config option.
+ *
+ * @return {OO.ui.Tool[]} Promotable tools
+ */
+OO.ui.PopupToolGroup.prototype.getPromotableTools = function () {
+	return [].concat( ...this.getPromotableToolSets() );
+};
+
+/**
+ * Get the tools which are currently promoted out of the popup.
+ *
+ * @return {OO.ui.Tool[]} Promoted tools, in display order
+ */
+OO.ui.PopupToolGroup.prototype.getPromotedTools = function () {
+	return this.promotedTools;
+};
+
+/**
+ * Set which tools are promoted out of the popup.
+ *
+ * Promoted tools are shown before the toolgroup, like tools in a {@link OO.ui.BarToolGroup bar}.
+ * They keep the order they have in the popup. If all tools are promoted, the toolgroup is hidden.
+ *
+ * This is usually called by the toolbar, see OO.ui.Toolbar#updatePromotedTools.
+ *
+ * @param {OO.ui.Tool[]} tools Tools to promote, which must be in this group
+ */
+OO.ui.PopupToolGroup.prototype.setPromotedTools = function ( tools ) {
+	const promotedTools = this.items.filter( ( tool ) => tools.includes( tool ) );
+
+	if (
+		promotedTools.length === this.promotedTools.length &&
+		promotedTools.every( ( tool, i ) => tool === this.promotedTools[ i ] )
+	) {
+		return;
+	}
+	this.promotedTools = promotedTools;
+
+	// Rebuild both lists in item order. The popup may contain a header before the
+	// tools, and other elements after them (e.g. ListToolGroup's expand/collapse tool).
+	let $prevInPopup = this.$group.children( '.oo-ui-popupToolGroup-header' );
+	this.items.forEach( ( tool ) => {
+		const promoted = promotedTools.includes( tool );
+		if ( promoted ) {
+			this.$promotedTools.append( tool.$element );
+		} else {
+			if ( $prevInPopup.length ) {
+				$prevInPopup.after( tool.$element );
+			} else {
+				this.$group.prepend( tool.$element );
+			}
+			$prevInPopup = tool.$element;
+		}
+		tool.setPromoted( promoted );
+	} );
+
+	if ( promotedTools.length && this.$promoted[ 0 ].nextSibling !== this.$element[ 0 ] ) {
+		this.$element.before( this.$promoted );
+	}
+	this.$promoted.toggleClass( 'oo-ui-element-hidden', !promotedTools.length );
+
+	const allPromoted = !!this.items.length && promotedTools.length === this.items.length;
+	this.$element
+		.toggleClass( 'oo-ui-popupToolGroup-hasPromotedTools', !!promotedTools.length )
+		.toggleClass( 'oo-ui-popupToolGroup-allToolsPromoted', allPromoted );
+	if ( allPromoted && this.isActive() ) {
+		this.setActive( false );
+	}
+};
+
+/**
+ * @inheritdoc
+ */
+OO.ui.PopupToolGroup.prototype.destroy = function () {
+	// Parent method
+	OO.ui.PopupToolGroup.super.prototype.destroy.apply( this, arguments );
+
+	this.$promoted.remove();
 };
 
 /**
@@ -2660,7 +3091,16 @@ OO.ui.ListToolGroup.prototype.populate = function () {
 	// Keep at the end, even when tools are added
 	this.$group.append( this.getExpandCollapseTool().$element );
 
-	this.getExpandCollapseTool().toggle( this.collapsibleTools.length !== 0 );
+	this.updateCollapsibleState();
+};
+
+/**
+ * @inheritdoc
+ */
+OO.ui.ListToolGroup.prototype.setPromotedTools = function () {
+	// Parent method
+	OO.ui.ListToolGroup.super.prototype.setPromotedTools.apply( this, arguments );
+
 	this.updateCollapsibleState();
 };
 
@@ -2739,9 +3179,13 @@ OO.ui.ListToolGroup.prototype.updateCollapsibleState = function () {
 		.setIcon( icon )
 		.setTitle( OO.ui.msg( this.expanded ? 'ooui-toolgroup-collapse' : 'ooui-toolgroup-expand' ) );
 
-	for ( let i = 0; i < this.collapsibleTools.length; i++ ) {
-		this.collapsibleTools[ i ].toggle( this.expanded );
-	}
+	let hasCollapsibleTools = false;
+	this.collapsibleTools.forEach( ( tool ) => {
+		// Promoted tools are not in the popup, so are always shown
+		tool.toggle( this.expanded || tool.isPromoted() );
+		hasCollapsibleTools = hasCollapsibleTools || !tool.isPromoted();
+	} );
+	this.getExpandCollapseTool().toggle( hasCollapsibleTools );
 
 	// Re-evaluate clipping, because our height has changed
 	this.clip();

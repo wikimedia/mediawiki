@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.54.2
+ * OOUI v0.54.3
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2026 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2026-09-14T17:40:35Z
+ * Date: 2026-11-19T00:44:29Z
  */
 ( function ( OO ) {
 
@@ -80,7 +80,13 @@ OO.initClass( OO.ui.mixin.DraggableElement );
 /* Static Properties */
 
 /**
- * @inheritdoc OO.ui.mixin.ButtonElement
+ * Cancel mouse down events.
+ *
+ * This is `false` so that dragging is possible when the element is also a button.
+ * See {@link OO.ui.mixin.ButtonElement.static.cancelButtonMouseDownEvents}.
+ *
+ * @static
+ * @property {boolean}
  */
 OO.ui.mixin.DraggableElement.static.cancelButtonMouseDownEvents = false;
 
@@ -979,21 +985,21 @@ OO.ui.mixin.LookupElement.prototype.setReadOnly = function ( readOnly ) {
 };
 
 /**
- * @inheritdoc OO.ui.mixin.RequestManager
+ * @inheritdoc
  */
 OO.ui.mixin.LookupElement.prototype.getRequestQuery = function () {
 	return this.getValue();
 };
 
 /**
- * @inheritdoc OO.ui.mixin.RequestManager
+ * @inheritdoc
  */
 OO.ui.mixin.LookupElement.prototype.getRequest = function () {
 	return this.getLookupRequest();
 };
 
 /**
- * @inheritdoc OO.ui.mixin.RequestManager
+ * @inheritdoc
  */
 OO.ui.mixin.LookupElement.prototype.getRequestCacheDataFromResponse = function ( response ) {
 	return this.getLookupCacheDataFromResponse( response );
