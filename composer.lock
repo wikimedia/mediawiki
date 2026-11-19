@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "741693866f1009d13846b5c6f743e8d0",
+    "content-hash": "6674ceb50cca095c0c55bed795741ca2",
     "packages": [
         {
             "name": "addshore/psr-6-mediawiki-bagostuff-adapter",
@@ -967,16 +967,16 @@
         },
         {
             "name": "guzzlehttp/psr7",
-            "version": "2.13.4",
+            "version": "2.13.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/guzzle/psr7.git",
-                "reference": "ad5e3f872690e1151e1171de2963150fc45ea1e3"
+                "reference": "5aa00c5418afbe3f435910af0e98cb03d659c49d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/guzzle/psr7/zipball/ad5e3f872690e1151e1171de2963150fc45ea1e3",
-                "reference": "ad5e3f872690e1151e1171de2963150fc45ea1e3",
+                "url": "https://api.github.com/repos/guzzle/psr7/zipball/5aa00c5418afbe3f435910af0e98cb03d659c49d",
+                "reference": "5aa00c5418afbe3f435910af0e98cb03d659c49d",
                 "shasum": ""
             },
             "require": {
@@ -1066,7 +1066,7 @@
             ],
             "support": {
                 "issues": "https://github.com/guzzle/psr7/issues",
-                "source": "https://github.com/guzzle/psr7/tree/2.13.4"
+                "source": "https://github.com/guzzle/psr7/tree/2.13.5"
             },
             "funding": [
                 {
@@ -1082,20 +1082,20 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-11-17T16:15:51+00:00"
+            "time": "2026-11-19T20:34:53+00:00"
         },
         {
             "name": "justinrainbow/json-schema",
-            "version": "5.3.1",
+            "version": "5.3.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/jsonrainbow/json-schema.git",
-                "reference": "b5a44b6391a3bbb75c9f2b73e1ef03d6045e1e20"
+                "reference": "7df70ffaf31d98726801b4bc099e1fbdbe2e5e54"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/jsonrainbow/json-schema/zipball/b5a44b6391a3bbb75c9f2b73e1ef03d6045e1e20",
-                "reference": "b5a44b6391a3bbb75c9f2b73e1ef03d6045e1e20",
+                "url": "https://api.github.com/repos/jsonrainbow/json-schema/zipball/7df70ffaf31d98726801b4bc099e1fbdbe2e5e54",
+                "reference": "7df70ffaf31d98726801b4bc099e1fbdbe2e5e54",
                 "shasum": ""
             },
             "require": {
@@ -1145,9 +1145,9 @@
             ],
             "support": {
                 "issues": "https://github.com/jsonrainbow/json-schema/issues",
-                "source": "https://github.com/jsonrainbow/json-schema/tree/5.3.1"
+                "source": "https://github.com/jsonrainbow/json-schema/tree/5.3.4"
             },
-            "time": "2025-12-12T08:56:22+00:00"
+            "time": "2026-05-04T18:54:58+00:00"
         },
         {
             "name": "lcobucci/clock",
@@ -3653,16 +3653,16 @@
         },
         {
             "name": "symfony/yaml",
-            "version": "v5.4.52",
+            "version": "v5.4.56",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/yaml.git",
-                "reference": "b0b27055f055f0d314c5c68ed0c10f0bbd90aee0"
+                "reference": "8ff81e554b0d78653a146b35e344e0a022d7e838"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/yaml/zipball/b0b27055f055f0d314c5c68ed0c10f0bbd90aee0",
-                "reference": "b0b27055f055f0d314c5c68ed0c10f0bbd90aee0",
+                "url": "https://api.github.com/repos/symfony/yaml/zipball/8ff81e554b0d78653a146b35e344e0a022d7e838",
+                "reference": "8ff81e554b0d78653a146b35e344e0a022d7e838",
                 "shasum": ""
             },
             "require": {
@@ -3708,7 +3708,7 @@
             "description": "Loads and dumps YAML files",
             "homepage": "https://symfony.com",
             "support": {
-                "source": "https://github.com/symfony/yaml/tree/v5.4.52"
+                "source": "https://github.com/symfony/yaml/tree/v5.4.56"
             },
             "funding": [
                 {
@@ -3728,7 +3728,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-05-15T06:40:16+00:00"
+            "time": "2026-11-03T13:19:21+00:00"
         },
         {
             "name": "twig/twig",
@@ -4874,16 +4874,16 @@
         },
         {
             "name": "wikimedia/parsoid",
-            "version": "v0.20.10",
+            "version": "v0.20.11",
             "source": {
                 "type": "git",
                 "url": "https://github.com/wikimedia/mediawiki-services-parsoid.git",
-                "reference": "e3c8b483a0682c87f7ffec7a2684ecc4ddbf91eb"
+                "reference": "9dd0687bc7472248000b1e5bb4930cce0380629c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/wikimedia/mediawiki-services-parsoid/zipball/e3c8b483a0682c87f7ffec7a2684ecc4ddbf91eb",
-                "reference": "e3c8b483a0682c87f7ffec7a2684ecc4ddbf91eb",
+                "url": "https://api.github.com/repos/wikimedia/mediawiki-services-parsoid/zipball/9dd0687bc7472248000b1e5bb4930cce0380629c",
+                "reference": "9dd0687bc7472248000b1e5bb4930cce0380629c",
                 "shasum": ""
             },
             "require": {
@@ -4951,10 +4951,10 @@
             ],
             "support": {
                 "irc": "irc://irc.libera.chat/mediawiki-parsoid",
-                "source": "https://github.com/wikimedia/mediawiki-services-parsoid/tree/v0.20.10",
+                "source": "https://github.com/wikimedia/mediawiki-services-parsoid/tree/v0.20.11",
                 "wiki": "https://www.mediawiki.org/wiki/Parsoid"
             },
-            "time": "2026-10-01T09:53:39+00:00"
+            "time": "2026-11-07T01:54:04+00:00"
         },
         {
             "name": "wikimedia/php-session-serializer",
