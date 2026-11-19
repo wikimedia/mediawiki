@@ -94,7 +94,7 @@ trait HandlerTestTrait {
 
 		if ( !$module ) {
 			if ( !$router ) {
-				$router = $this->newRouter();
+				$router = $this->newMockRouter();
 			}
 
 			$module = $this->newModule(
@@ -135,7 +135,7 @@ trait HandlerTestTrait {
 	/**
 	 * @return MockObject&Router
 	 */
-	private function newRouter(): Router {
+	private function newMockRouter(): Router {
 		$router = $this->createNoOpMock(
 			Router::class,
 			[

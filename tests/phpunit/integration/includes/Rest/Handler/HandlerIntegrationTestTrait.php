@@ -26,10 +26,8 @@ use Wikimedia\TestingAccessWrapper;
 trait HandlerIntegrationTestTrait {
 
 	use MediaWikiTestCaseTrait;
-	use RestTestTrait, HandlerTestTrait {
-		RestTestTrait::newRouter insteadof HandlerTestTrait;
-		HandlerTestTrait::newRouter as newMockRouter;
-	}
+	use RestTestTrait;
+	use HandlerTestTrait;
 
 	/**
 	 * @param array $requestParams Request parameters as in the RequestData

@@ -59,7 +59,7 @@ class HandlerTest extends MediaWikiUnitTestCase {
 	}
 
 	private function initHandlerPartially( Handler $handler ) {
-		$router = $this->newRouter();
+		$router = $this->newMockRouter();
 		$module = $this->newModule( [ 'router' => $router ] );
 
 		$authority = $this->mockAnonUltimateAuthority();
@@ -89,7 +89,7 @@ class HandlerTest extends MediaWikiUnitTestCase {
 
 	public function testGetRouter() {
 		$handler = $this->newHandler();
-		$router = $this->newRouter();
+		$router = $this->newMockRouter();
 		$this->initHandler( $handler, new RequestData(), [], [], null, null, $router );
 
 		$handler = TestingAccessWrapper::newFromObject( $handler );
@@ -173,7 +173,7 @@ class HandlerTest extends MediaWikiUnitTestCase {
 	 */
 	public function testGetRouteUrl( $path, $pathPrefix, $pathParams, $queryParams, $expected ) {
 		$request = new RequestData();
-		$router = $this->newRouter();
+		$router = $this->newMockRouter();
 		$module = $this->newModule( [ 'router' => $router, 'pathPrefix' => $pathPrefix ] );
 		$handler = $this->newHandler();
 		$this->initHandler( $handler, $request, [ 'path' => $path ], [], null, null, $module );
@@ -183,7 +183,7 @@ class HandlerTest extends MediaWikiUnitTestCase {
 	}
 
 	public function testGetPath() {
-		$router = $this->newRouter();
+		$router = $this->newMockRouter();
 
 		$handler = $this->newHandler();
 		$request = new RequestData();
@@ -219,7 +219,7 @@ class HandlerTest extends MediaWikiUnitTestCase {
 	}
 
 	public function testGetRoutePath() {
-		$router = $this->newRouter();
+		$router = $this->newMockRouter();
 
 		$request = new RequestData();
 		$handler = $this->newHandler();
