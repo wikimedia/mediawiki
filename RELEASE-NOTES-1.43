@@ -9,7 +9,7 @@ PHP 8.6 workboard: https://phabricator.wikimedia.org/tag/php_8.6_support/
 
 == MediaWiki 1.43.12 ==
 
-THIS IS NOT A RELEASE YET
+This is a security and maintenance release of the MediaWiki 1.43 branch.
 
 === Changes since 1.43.11 ===
 * Localisation updates.
@@ -34,7 +34,36 @@ THIS IS NOT A RELEASE YET
 * (T438434) Allow a message key with parameters for descriptionmsg.
 * Command: Update comment referencing UnboxedResult::getOutput().
 * (T400736) UrlUtils: Normalize alternative Unicode dot characters in host.
-* Bump parsoid to 0.20.11.
+* (T440942, CVE-2026-132708) (T440943, CVE-2026-132709) (T440947,
+  CVE-2026-132712) SECURITY: Bump parsoid to 0.20.12.
+* (T444579) Fix ord() failing when decoding binary EXIF fields.
+* (T432180, CVE-2026-132657) SECURITY: Open redirect in MediaWiki core
+  canonical-URL normalisation (`ActionEntryPoint::tryNormaliseRedirect`).
+* (T435113, CVE-2026-132670) SECURITY: Action API `rvdiffto` bypasses
+  cross-page read authorization.
+* (T437940, CVE-2026-132672) SECURITY: MediaWiki: A page full of unclosed `{{`
+  makes the search-snippet highlighter run for tens of seconds per search hit.
+* (T437941, CVE-2026-132673) SECURITY: MediaWiki: Four credential special pages
+  ignore the `editmyprivateinfo` right they declare, so a user forbidden from
+  changing credentials can change them anyway.
+* (T437944, CVE-2026-132674) SECURITY: MediaWiki: A crafted PNG makes upload
+  metadata extraction backtrack quadratically, burning minutes of CPU per file.
+* (T440498, CVE-2026-132693) SECURITY: Special:OATHManage executes
+  state-changing actions when reauth check fails.
+* (T440511, CVE-2026-132696) SECURITY: GET request to Special:OATHManage can
+  create recovery codes for user without 2FA, locking that user out.
+* (T440809, CVE-2026-132706) SECURITY: prop=pageprops does not check read
+  permission, disclosing content-derived page data.
+* (T441029, CVE-2026-132714) SECURITY: action=userrights shows the name of a
+  hidden user to logged-out users via user=#<id>.
+* (T441090, CVE-2026-132719) SECURITY: Form feed in a Lua-chosen attribute name
+  passes Sanitizer and becomes an event handler (stored XSS via mw.svg,
+  #tag:pre, #tag:gallery).
+* (T442478, CVE-2026-132730) SECURITY: Special:UserRights: Trailing spaces in
+  interwiki DB name allows viewing user groups for users on a private wiki.
+* (T445032, CVE-2026-132736) SECURITY: MediaWiki REST API: Content-Type header
+  is expanded as wikitext before the read check, so anyone can read private
+  wikis.
 
 == MediaWiki 1.43.11 ==
 
