@@ -85,6 +85,7 @@ class PoolCounterRedis extends PoolCounter {
 		$this->pool = RedisConnectionPool::singleton( $conf['redisConfig'] );
 
 		$this->keySha1 = sha1( $this->key );
+		$this->session = bin2hex( random_bytes( 16 ) );
 		$met = ini_get( 'max_execution_time' ); // usually 0 in CLI mode
 		$this->lockTTL = $met ? 2 * (int)$met : 3600;
 
