@@ -28,7 +28,7 @@ class ApiHelpParamValueMessage extends Message {
 	 * @see Message::__construct
 	 * @stable to call
 	 *
-	 * @param string $paramValue Parameter value being documented
+	 * @param string $paramValue Parameter value being documented, as wikitext
 	 * @param string $text Message to use.
 	 * @param array $params Parameters for the message.
 	 * @param bool|MessageSpecifier $deprecated Whether the value is deprecated,
@@ -49,7 +49,7 @@ class ApiHelpParamValueMessage extends Message {
 
 	/**
 	 * Fetch the parameter value
-	 * @return string
+	 * @return string Wikitext
 	 */
 	public function getParamValue() {
 		return $this->paramValue;

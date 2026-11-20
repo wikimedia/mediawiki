@@ -1892,10 +1892,12 @@ abstract class ApiBase extends ContextSource {
 	 * needed.
 	 *
 	 * @since 1.25, returns array of Message[] rather than array of string[]
+	 * @since 1.48, accepts $prefix
+	 * @param string|null $prefix Passed to the messages as $1, defaults to getModulePrefix()
 	 * @return array Keys are parameter names, values are arrays of Message objects
 	 */
-	public function getFinalParamDescription() {
-		$prefix = $this->getModulePrefix();
+	public function getFinalParamDescription( ?string $prefix = null ) {
+		$prefix ??= $this->getModulePrefix();
 		$name = $this->getModuleName();
 		$path = $this->getModulePath();
 

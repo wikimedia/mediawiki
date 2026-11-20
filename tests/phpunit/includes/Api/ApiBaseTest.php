@@ -1409,6 +1409,22 @@ class ApiBaseTest extends ApiTestCase {
 		$this->assertSame( 'tp', $descriptions['param'][0]->getParams()[0] );
 	}
 
+	public function testGetFinalParamDescriptionWithPrefix() {
+		$mock = $this->getMockBuilder( MockApi::class )
+			->onlyMethods( [ 'getAllowedParams', 'getModulePrefix' ] )
+			->getMock();
+		$mock->method( 'getAllowedParams' )->willReturn( [
+			'param' => [ ApiBase::PARAM_HELP_MSG_APPEND => [ 'append' ] ],
+		] );
+		$mock->method( 'getModulePrefix' )->willReturn( 'tp' );
+
+		$descriptions = $mock->getFinalParamDescription( '' );
+
+		foreach ( $descriptions['param'] as $msg ) {
+			$this->assertSame( '', $msg->getParams()[0], 'The given prefix replaces the module prefix' );
+		}
+	}
+
 	public static function provideGetFinalParamDescription() {
 		return [
 			'default message' => [

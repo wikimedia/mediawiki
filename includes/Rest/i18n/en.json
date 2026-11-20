@@ -377,6 +377,7 @@
 	"rest-param-desc-sitemap-include-namespace": "Namespace IDs to include in the sitemap. If not specified, uses the site default.",
 	"api-help-param-continue.md": "When more results are available, use this to continue. More detailed information on how to continue queries [can be found on mediawiki.org](https://www.mediawiki.org/wiki/Special:MyLanguage/API:Continue).",
 	"api-help-param-token.md": "A \"$1\" token retrieved from [action=query&meta=tokens]({{canonicalurl:Special:ApiHelp/query+tokens}})",
+	"rest-param-value-list-item.md": "* `$1`: $2",
 	"rest-responseheader-desc-cachecontrol": "Dictates caching behavior for a browser, letting it know how often to refresh locally stored resources.",
 	"rest-responseheader-desc-deprecation": "Dictates caching behavior for a browser, letting it know how often to refresh locally stored resources.",
 	"rest-responseheader-desc-contentlanguage": "Informs the client about the intended audience's natural language(s) for the returned content.",

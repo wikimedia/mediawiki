@@ -88,6 +88,13 @@ class GenericListHandler extends GenericActionHandler {
 	}
 
 	/**
+	 * The list module, not "query".
+	 */
+	protected function getParamModule(): ApiBase {
+		return $this->getApiListModule();
+	}
+
+	/**
 	 * Returns the supported parameters of the list module
 	 * after running them through filterSupportedParams().
 	 *
@@ -109,8 +116,7 @@ class GenericListHandler extends GenericActionHandler {
 
 	/**
 	 * The list module's parameter specs. The names have no module prefix,
-	 * see ApiBase::encodeParamName(). Each spec has a help message derived
-	 * from the list module, not from "query", see getModuleParamSpecs().
+	 * see ApiBase::encodeParamName().
 	 *
 	 * @return array[]
 	 */

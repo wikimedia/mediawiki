@@ -21,7 +21,6 @@ use MediaWiki\Rest\RequestData;
 use MediaWikiIntegrationTestCase;
 use StatusValue;
 use UnexpectedValueException;
-use Wikimedia\Message\MessageValue;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\TestingAccessWrapper;
 
@@ -465,20 +464,30 @@ class GenericListHandlerTest extends MediaWikiIntegrationTestCase {
 			'Scalar shorthand spec should be normalized to array form'
 		);
 
-		// The help message params name the list module, not "query".
-		$this->assertEquals(
-			new MessageValue( 'apihelp-query+testlist-param-limit', [ '', 'limit', 'testlist', 'query+testlist' ] ),
-			$specs['limit'][ApiBase::PARAM_HELP_MSG],
-			'Help message should be derived from the list module, not from "query"'
-		);
-		$this->assertEquals(
-			new MessageValue( 'apihelp-custom', [ '', 'title', 'testlist', 'query+testlist' ] ),
-			$specs['title'][ApiBase::PARAM_HELP_MSG],
-			'Explicit help message should be retained'
-		);
-
 		$this->assertArrayNotHasKey( 'origin', $specs, 'ApiMain param should be excluded' );
 		$this->assertArrayNotHasKey( 'requestid', $specs, 'ApiMain param should be excluded' );
+	}
+
+	public function testGetParamSettings_descriptions() {
+		$handler = $this->newHandler( [
+			'module' => $this->newHybridModule(),
+			'init' => true,
+		] );
+
+		$settings = $handler->getParamSettings();
+
+		// The descriptions name the list module, not "query".
+		$limit = $settings['limit'][GenericActionHandler::PARAM_DESCRIPTION];
+		$this->assertSame(
+			[ 'apihelp-query+testlist-param-limit', 'api-help-param-no-description' ],
+			$limit->getKeysToTry(),
+			'Help message should be derived from the list module, not from "query"'
+		);
+		$this->assertSame( [ '', 'limit', 'testlist', 'query+testlist' ], $limit->getParams() );
+
+		$title = $settings['title'][GenericActionHandler::PARAM_DESCRIPTION];
+		$this->assertSame( 'apihelp-custom', $title->getKey(), 'Explicit help message should be retained' );
+		$this->assertSame( [ '', 'title', 'testlist', 'query+testlist' ], $title->getParams() );
 	}
 
 	public function testUnknownListModule() {

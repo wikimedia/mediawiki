@@ -382,6 +382,7 @@
 	"rest-param-desc-sitemap-include-namespace": "{{Experimental}} REST API parameter description for the namespace filter in sitemap requests",
 	"api-help-param-continue.md": "{{Experimental}} Markdown version of {{msg-mw|api-help-param-continue}}, used in the OpenAPI spec of REST endpoints that expose an action API module",
 	"api-help-param-token.md": "{{Experimental}} Markdown version of {{msg-mw|api-help-param-token}}, used in the OpenAPI spec of REST endpoints that expose an action API module. Parameters:\n* $1: The token type, such as \"csrf\".",
+	"rest-param-value-list-item.md": "{{notranslate}}\nMarkdown list item describing a parameter value, used in the OpenAPI spec of REST endpoints that expose an action API module. Parameters:\n* $1: The value.\n* $2: Its description.",
 	"rest-responseheader-desc-cachecontrol": "Description for the Cache-Control response header",
 	"rest-responseheader-desc-deprecation": "Description of the Deprecation response header",
 	"rest-responseheader-desc-contentlanguage": "Description of the Content-Language response header",

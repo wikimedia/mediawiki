@@ -14,6 +14,7 @@ use MediaWiki\Api\ApiRestHybrid;
 use MediaWiki\Api\ApiUsageException;
 use MediaWiki\Api\IApiMessage;
 use MediaWiki\MainConfigNames;
+use MediaWiki\Message\Message;
 use MediaWiki\Request\FauxResponse;
 use MediaWiki\Rest\Handler;
 use MediaWiki\Rest\Handler\GenericActionHandler;
@@ -26,9 +27,8 @@ use MediaWiki\User\LoggedOutEditToken;
 use MediaWiki\User\User;
 use MediaWikiIntegrationTestCase;
 use StatusValue;
+use Wikimedia\Message\MessageSpecifier;
 use Wikimedia\Message\MessageValue;
-use Wikimedia\Message\ParamType;
-use Wikimedia\Message\ScalarParam;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\TestingAccessWrapper;
 
@@ -633,7 +633,7 @@ class GenericActionHandlerTest extends MediaWikiIntegrationTestCase {
 			$this->assertArrayNotHasKey( ApiBase::PARAM_HELP_MSG, $handlerParamSpec );
 			$this->assertArrayHasKey( Handler::PARAM_DESCRIPTION, $handlerParamSpec );
 			$this->assertInstanceOf(
-				MessageValue::class,
+				MessageSpecifier::class,
 				$handlerParamSpec[ Handler::PARAM_DESCRIPTION ]
 			);
 
@@ -653,26 +653,30 @@ class GenericActionHandlerTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * A handler whose action-module param specs are fixed to $specs, so
-	 * makeParamSettings() can be exercised directly without a real ApiMain.
-	 * The action name is fixed to 'testaction' for a deterministic default
-	 * description message key.
+	 * A handler whose action-module param specs and descriptions are fixed,
+	 * so makeParamSettings() can be exercised directly without a real ApiMain.
 	 */
-	private function newHandlerForParamSpecs( array $specs ): GenericActionHandler {
-		return new class( 'testaction', $specs ) extends GenericActionHandler {
-			public function __construct( string $actionName, private array $specs ) {
+	private function newHandlerForParamSpecs( array $specs, array $descriptions = [] ): GenericActionHandler {
+		return new class( 'testaction', $specs, $descriptions ) extends GenericActionHandler {
+			public function __construct(
+				string $actionName,
+				private array $specs,
+				private array $descriptions
+			) {
 				parent::__construct( $actionName );
 			}
 
 			protected function getActionModuleParamSpecs(): array {
 				return $this->specs;
 			}
+
+			protected function getActionModuleParamDescriptions(): array {
+				return $this->descriptions;
+			}
 		};
 	}
 
 	public static function provideMakeParamSettings() {
-		$defaultDesc = new MessageValue( 'apihelp-testaction-param-myparam' );
-
 		// Scalar-shorthand specs: just a default value, no array. PARAM_TYPE is
 		// derived from the default via gettype(), so falsy values must keep
 		// their real type (false => boolean, 0 => integer, '' / '0' => string)
@@ -680,27 +684,22 @@ class GenericActionHandlerTest extends MediaWikiIntegrationTestCase {
 		yield 'shorthand false' => [
 			false,
 			[ ParamValidator::PARAM_DEFAULT => false, ParamValidator::PARAM_TYPE => 'boolean' ],
-			$defaultDesc,
 		];
 		yield 'shorthand zero (int)' => [
 			0,
 			[ ParamValidator::PARAM_DEFAULT => 0, ParamValidator::PARAM_TYPE => 'integer' ],
-			$defaultDesc,
 		];
 		yield 'shorthand empty string' => [
 			'',
 			[ ParamValidator::PARAM_DEFAULT => '', ParamValidator::PARAM_TYPE => 'string' ],
-			$defaultDesc,
 		];
 		yield 'shorthand string "0"' => [
 			'0',
 			[ ParamValidator::PARAM_DEFAULT => '0', ParamValidator::PARAM_TYPE => 'string' ],
-			$defaultDesc,
 		];
 		yield 'shorthand zero (float)' => [
 			0.0,
 			[ ParamValidator::PARAM_DEFAULT => 0.0, ParamValidator::PARAM_TYPE => 'double' ],
-			$defaultDesc,
 		];
 		// The only falsy shorthand with no scalar type: gettype( null ) is the
 		// string 'NULL', which ParamValidator (and the REST Validator) register
@@ -710,90 +709,42 @@ class GenericActionHandlerTest extends MediaWikiIntegrationTestCase {
 		yield 'shorthand null' => [
 			null,
 			[ ParamValidator::PARAM_DEFAULT => null, ParamValidator::PARAM_TYPE => 'NULL' ],
-			$defaultDesc,
 		];
 		yield 'shorthand true' => [
 			true,
 			[ ParamValidator::PARAM_DEFAULT => true, ParamValidator::PARAM_TYPE => 'boolean' ],
-			$defaultDesc,
 		];
 		yield 'shorthand non-empty string' => [
 			'hello',
 			[ ParamValidator::PARAM_DEFAULT => 'hello', ParamValidator::PARAM_TYPE => 'string' ],
-			$defaultDesc,
 		];
 
 		// Array specs: an explicit PARAM_TYPE is kept as-is...
 		yield 'array with explicit type, no default' => [
 			[ ParamValidator::PARAM_TYPE => 'integer' ],
 			[ ParamValidator::PARAM_TYPE => 'integer' ],
-			$defaultDesc,
 		];
 		// ...otherwise the type is derived from the default (falsy included).
 		yield 'array with default, type derived' => [
 			[ ParamValidator::PARAM_DEFAULT => 7 ],
 			[ ParamValidator::PARAM_DEFAULT => 7, ParamValidator::PARAM_TYPE => 'integer' ],
-			$defaultDesc,
 		];
 		yield 'array with falsy default, type derived' => [
 			[ ParamValidator::PARAM_DEFAULT => false ],
 			[ ParamValidator::PARAM_DEFAULT => false, ParamValidator::PARAM_TYPE => 'boolean' ],
-			$defaultDesc,
 		];
-		// PARAM_HELP_MSG (a bare key) becomes the description; the raw key is dropped.
-		yield 'array with help message key' => [
+		// PARAM_HELP_MSG is dropped, the description comes from
+		// getActionModuleParamDescriptions().
+		yield 'array with help message' => [
 			[ ParamValidator::PARAM_TYPE => 'string', ApiBase::PARAM_HELP_MSG => 'apihelp-move-param-reason' ],
 			[ ParamValidator::PARAM_TYPE => 'string' ],
-			new MessageValue( 'apihelp-move-param-reason' ),
-		];
-		// PARAM_HELP_MSG as [ key, params... ] carries the params into the description.
-		yield 'array with help message key and params' => [
-			[ ParamValidator::PARAM_TYPE => 'string', ApiBase::PARAM_HELP_MSG => [ 'apihelp-move-param-to', 'p1' ] ],
-			[ ParamValidator::PARAM_TYPE => 'string' ],
-			new MessageValue( 'apihelp-move-param-to', [ 'p1' ] ),
-		];
-		// PARAM_HELP_MSG may already be a message object (see ApiBase::PARAM_HELP_MSG);
-		yield 'help message object' => [
-			[ ParamValidator::PARAM_TYPE => 'string', ApiBase::PARAM_HELP_MSG => new MessageValue( 'apihelp-move-param-to' ) ],
-			[ ParamValidator::PARAM_TYPE => 'string' ],
-			new MessageValue( 'apihelp-move-param-to' ),
-		];
-		yield 'help message object with params' => [
-			[
-				ParamValidator::PARAM_TYPE => 'string',
-				ApiBase::PARAM_HELP_MSG => new MessageValue( 'apihelp-move-param-to', [ 'p1', 2 ] )
-			],
-			[ ParamValidator::PARAM_TYPE => 'string' ],
-			new MessageValue( 'apihelp-move-param-to', [ 'p1', 2 ] ),
-		];
-		yield 'help message object with numParams' => [
-			[
-				ParamValidator::PARAM_TYPE => 'string',
-				ApiBase::PARAM_HELP_MSG => ( new MessageValue( 'apihelp-move-param-to' ) )
-					->numParams( 10 )
-			],
-			[ ParamValidator::PARAM_TYPE => 'string' ],
-			new MessageValue( 'apihelp-move-param-to',
-				[ new ScalarParam( ParamType::NUM, 10 ) ] ),
-		];
-		// Help messages with wikitext links are replaced by their Markdown version...
-		yield 'help message with a Markdown version' => [
-			[ ParamValidator::PARAM_TYPE => 'string', ApiBase::PARAM_HELP_MSG => 'api-help-param-continue' ],
-			[ ParamValidator::PARAM_TYPE => 'string' ],
-			new MessageValue( 'api-help-param-continue.md' ),
-		];
-		// ...which keep the params.
-		yield 'help message with a Markdown version and params' => [
-			[ ParamValidator::PARAM_TYPE => 'string', ApiBase::PARAM_HELP_MSG => [ 'api-help-param-token', 'csrf' ] ],
-			[ ParamValidator::PARAM_TYPE => 'string' ],
-			new MessageValue( 'api-help-param-token.md', [ 'csrf' ] ),
 		];
 	}
 
 	/**
 	 * @dataProvider provideMakeParamSettings
 	 */
-	public function testMakeParamSettings( $inputSpec, array $expectedCore, MessageValue $expectedDescription ) {
+	public function testMakeParamSettings( $inputSpec, array $expectedCore ) {
 		$handler = $this->newHandlerForParamSpecs( [ 'myparam' => $inputSpec ] );
 
 		$result = TestingAccessWrapper::newFromObject( $handler )
@@ -805,10 +756,12 @@ class GenericActionHandlerTest extends MediaWikiIntegrationTestCase {
 		// The source is always the one passed in.
 		$this->assertSame( 'query', $spec[Handler::PARAM_SOURCE], 'source' );
 
-		// The help message is turned into a description, and the raw
-		// PARAM_HELP_MSG key is removed.
-		$this->assertArrayNotHasKey( ApiBase::PARAM_HELP_MSG, $spec );
-		$this->assertEquals( $expectedDescription, $spec[Handler::PARAM_DESCRIPTION], 'description' );
+		// Without a description, the fallback of ApiHelp is used.
+		$this->assertEquals(
+			new MessageValue( 'api-help-param-no-description' ),
+			$spec[Handler::PARAM_DESCRIPTION],
+			'description'
+		);
 
 		// Default and derived type. assertSame keeps
 		// falsy defaults distinct (false vs 0 vs '' vs '0' vs null).
@@ -849,6 +802,33 @@ class GenericActionHandlerTest extends MediaWikiIntegrationTestCase {
 		foreach ( $urls[1] as $url ) {
 			$this->assertStringStartsWith( 'https://', $url, 'full URL' );
 		}
+	}
+
+	public function testMakeParamSettings_descriptions() {
+		$one = new Message( 'apihelp-move-param-to' );
+		$handler = $this->newHandlerForParamSpecs(
+			[ 'one' => [], 'two' => [], 'token' => [] ],
+			[
+				'one' => [ $one ],
+				'two' => [ new Message( 'apihelp-move-param-to' ), new Message( 'apihelp-move-param-reason' ) ],
+				'token' => [ new Message( 'api-help-param-token', [ 'csrf' ] ) ],
+			]
+		);
+
+		$result = TestingAccessWrapper::newFromObject( $handler )
+			->makeParamSettings( [ 'one', 'two', 'token' ], 'query' );
+
+		$this->assertSame( $one, $result['one'][Handler::PARAM_DESCRIPTION], 'A single message is used as is' );
+		$this->assertSame(
+			"(apihelp-move-param-to)\n\n(apihelp-move-param-reason)",
+			Message::newFromSpecifier( $result['two'][Handler::PARAM_DESCRIPTION] )->inLanguage( 'qqx' )->plain(),
+			'Several messages are combined, one paragraph each'
+		);
+		$this->assertSame(
+			'(api-help-param-token.md: csrf)',
+			Message::newFromSpecifier( $result['token'][Handler::PARAM_DESCRIPTION] )->inLanguage( 'qqx' )->plain(),
+			'Help messages with wikitext links are replaced by their Markdown version, keeping the params'
+		);
 	}
 
 	public static function provideBooleanParameters() {
@@ -1031,19 +1011,13 @@ class GenericActionHandlerTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * Help messages get the params that ApiBase::getFinalParamDescription()
-	 * adds, after their own, so that e.g. "$1fromid" reads "fromid".
+	 * Descriptions come from ApiBase::getFinalParamDescription(), with an
+	 * empty module prefix, so that e.g. "$1fromid" reads "fromid".
 	 */
-	public function testGetActionModuleParamSpecs_helpMessageParams() {
-		$helpMsg = new MessageValue( 'apihelp-test-param-to' );
-
+	public function testGetParamSettings_descriptions() {
 		// A module that requires a token, so ApiBase adds a "token"
 		// parameter whose help message has a param of its own.
-		$module = new class( $this->apiMain, 'test', $helpMsg ) extends ApiBase {
-			public function __construct( ApiMain $main, string $name, private MessageValue $helpMsg ) {
-				parent::__construct( $main, $name );
-			}
-
+		$module = new class( $this->apiMain, 'test' ) extends ApiBase {
 			public function execute() {
 			}
 
@@ -1052,19 +1026,38 @@ class GenericActionHandlerTest extends MediaWikiIntegrationTestCase {
 			}
 
 			protected function getAllowedParams() {
-				return [ 'to' => [ ApiBase::PARAM_HELP_MSG => $this->helpMsg ] ];
+				return [
+					'to' => [
+						ApiBase::PARAM_HELP_MSG => 'apihelp-test-param-to',
+						ApiBase::PARAM_HELP_MSG_APPEND => [ 'apihelp-test-param-to-append' ],
+					],
+					'mode' => [
+						ParamValidator::PARAM_TYPE => [ 'a', 'b' ],
+						ApiBase::PARAM_HELP_MSG_PER_VALUE => [ 'a' => 'apihelp-test-paramvalue-mode-a' ],
+					],
+				];
 			}
 		};
 
-		$specs = TestingAccessWrapper::newFromObject( $this->newHandler( [ 'module' => $module ] ) )
-			->getActionModuleParamSpecs();
+		$settings = $this->newHandler( [ 'module' => $module, 'init' => true ] )->getParamSettings();
+		$text = static fn ( string $name ) => Message::newFromSpecifier(
+			$settings[$name][Handler::PARAM_DESCRIPTION]
+		)->inLanguage( 'qqx' )->plain();
 
-		$this->assertEquals(
-			new MessageValue( 'api-help-param-token.md', [ 'csrf', '', 'token', 'test', 'test' ] ),
-			$specs['token'][ApiBase::PARAM_HELP_MSG],
-			'The message\'s own params should come first'
+		$this->assertSame( '(api-help-param-token.md: csrf, , token, test, test)', $text( 'token' ) );
+		$this->assertSame(
+			"(apihelp-test-param-to: , to, test, test)\n\n(apihelp-test-param-to-append: , to, test, test)",
+			$text( 'to' ),
+			'Appended messages should be included'
 		);
-		$this->assertSame( [], $helpMsg->getParams(), 'The module\'s message should not be modified' );
+		$this->assertSame(
+			"(apihelp-test-param-mode / api-help-param-no-description: , mode, test, test)\n\n" .
+				"(rest-param-value-list-item.md: a, (apihelp-test-paramvalue-mode-a / api-help-param-no-description: " .
+				", mode, test, test, a))\n\n" .
+				"(rest-param-value-list-item.md: b, (apihelp-test-paramvalue-mode-b / api-help-param-no-description: " .
+				", mode, test, test, b))",
+			$text( 'mode' ),
+			'Values should be listed as Markdown, also those without a message' );
 	}
 
 	public static function provideSuppressedApiMainParams() {
