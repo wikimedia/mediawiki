@@ -418,6 +418,36 @@ class GenericListHandlerTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( 'testlist', $params['list'] );
 	}
 
+	public function testGetActionModuleParameters_listModuleParameterCalledAction() {
+		// logevents has a parameter called "action", which is not the "action"
+		// that selects the action module.
+		$handler = new GenericListHandler( 'logevents' );
+		$handler->setApiMain( $this->apiMain );
+		$this->initHandler( $handler, new RequestData( [
+			'method' => 'GET',
+			'queryParams' => [ 'action' => 'delete/delete', 'limit' => '7' ],
+		] ) );
+
+		$params = TestingAccessWrapper::newFromObject( $handler )->getActionModuleParameters();
+
+		$this->assertSame( 'query', $params['action'] );
+		$this->assertSame( 'delete/delete', $params['leaction'] );
+		$this->assertSame( '7', $params['lelimit'] );
+		$this->assertSame( 'logevents', $params['list'] );
+	}
+
+	public function testGetSupportedQueryParams_listModuleParameterCalledAction() {
+		$handler = new GenericListHandler( 'logevents' );
+		$handler->setApiMain( $this->apiMain );
+		$this->initHandler( $handler, new RequestData( [ 'method' => 'GET' ] ) );
+
+		$names = TestingAccessWrapper::newFromObject( $handler )->getSupportedQueryParams();
+
+		// The parameter of logevents is offered, though ApiMain has one of the same name.
+		$this->assertContains( 'action', $names );
+		$this->assertContains( 'limit', $names );
+	}
+
 	public function testGetActionModuleParamSpecs() {
 		$handler = $this->newHandler( [
 			'module' => $this->newHybridModule(),

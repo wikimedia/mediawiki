@@ -39,12 +39,17 @@ class GenericListHandler extends GenericActionHandler {
 	/**
 	 * @inheritDoc
 	 */
-	protected function getActionModuleParameters() {
-		$params = parent::getActionModuleParameters();
+	protected function getFixedParams(): array {
+		return parent::getFixedParams() + [ 'list' => $this->moduleName ];
+	}
 
-		$mapped = $this->prependListModulePrefix( $params );
-		$mapped['list'] = $this->moduleName;
-		return $mapped;
+	/**
+	 * Gives the parameters of the list module its prefix.
+	 *
+	 * @inheritDoc
+	 */
+	protected function getRequestedModuleParameters(): array {
+		return $this->prependListModulePrefix( parent::getRequestedModuleParameters() );
 	}
 
 	private function prependListModulePrefix( array $values ): array {
@@ -91,6 +96,11 @@ class GenericListHandler extends GenericActionHandler {
 	protected function getActionModuleParamSpecs(): array {
 		// SEAM: We can add parameters from ApiMain here, but we probably
 		//       don't want to, see T436749.
+		//       In REST, the parameters of the list module lose their prefix, so
+		//       they can collide with those of ApiMain (logevents has an "action"
+		//       parameter). Exposing a parameter of ApiMain with a colliding name
+		//       needs an escape hatch: a mapping of names in the adapter config,
+		//       or the list module using another name for its parameter in REST mode.
 
 		// NOTE: Don't call parent::getActionModuleParamSpecs(), that would include
 		//       all parameters defined by ApiQuery, which we don't want.

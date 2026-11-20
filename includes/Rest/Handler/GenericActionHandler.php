@@ -156,6 +156,30 @@ class GenericActionHandler extends ActionModuleBasedHandler {
 	 * @inheritDoc
 	 */
 	protected function getActionModuleParameters() {
+		// NOTE: ActionModuleBasedHandler will set the correct values for format, etc.
+		return array_merge( $this->getRequestedModuleParameters(), $this->getFixedParams() );
+	}
+
+	/**
+	 * Returns the parameters of the action API request that select the module to call.
+	 * They are not taken from the REST request. ActionModuleBasedHandler::execute() adds
+	 * the ones that select the output format.
+	 *
+	 * @return array
+	 */
+	protected function getFixedParams(): array {
+		return [ 'action' => $this->actionName ];
+	}
+
+	/**
+	 * Returns the parameters of the module that the request supplies, by the names the
+	 * action API uses for them, and a token if the module needs one and the session is
+	 * safe against CSRF. Action modules have no prefix, so the names are those of
+	 * getActionModuleParamSpecs().
+	 *
+	 * @return array
+	 */
+	protected function getRequestedModuleParameters(): array {
 		// The action API conflates query params and body params.
 		// Body parameters take precedence.
 		$all = ( $this->getRequest()->getParsedBody() ?? [] )
@@ -180,10 +204,6 @@ class GenericActionHandler extends ActionModuleBasedHandler {
 				$params['token'] = $sessionToken;
 			}
 		}
-
-		// NOTE: ActionModuleBasedHandler will set the correct values for format, etc.
-		// Subclasses may add more things here
-		$params['action'] = $this->actionName;
 
 		return $params;
 	}
@@ -256,6 +276,9 @@ class GenericActionHandler extends ActionModuleBasedHandler {
 	protected function getActionModuleParamSpecs(): array {
 		// SEAM: We can add parameters from ApiMain here, but we probably
 		//       don't want to, see T436749.
+		//       They can't collide with the parameters of an action module, which
+		//       share the names of ApiMain's. List modules can collide, see
+		//       GenericListHandler::getActionModuleParamSpecs().
 		$actionParams = $this->getModuleParamSpecs( $this->getActionModule() );
 		return $this->filterSupportedParams( $actionParams );
 	}
@@ -335,13 +358,6 @@ class GenericActionHandler extends ActionModuleBasedHandler {
 
 		// strip path params
 		$params = array_diff_key( $params, array_flip( $this->getSupportedPathParams() ) );
-
-		// Unset the parameters that are forced in getActionModuleParameters(),
-		// because the client can't specify them.
-		unset( $params['action'] );
-		unset( $params['format'] );
-		unset( $params['formatversion'] );
-		unset( $params['errorformat'] );
 
 		return array_keys( $params );
 	}

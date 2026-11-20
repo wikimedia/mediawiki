@@ -25,7 +25,7 @@ class GenericItemHandler extends GenericListHandler {
 	/**
 	 * @inheritDoc
 	 */
-	protected function getActionModuleParameters() {
+	protected function getRequestedModuleParameters(): array {
 		// The action API splits values on "|", or on "\x1f" if the value starts
 		// with it. A path parameter identifies a single item, so it must not
 		// contain either, even if the module accepts a list.
@@ -44,11 +44,11 @@ class GenericItemHandler extends GenericListHandler {
 			}
 		}
 
-		return parent::getActionModuleParameters();
+		return parent::getRequestedModuleParameters();
 	}
 
 	/**
-	 * Path parameters are declared single-valued, since getActionModuleParameters()
+	 * Path parameters are declared single-valued, since getRequestedModuleParameters()
 	 * rejects multiple values.
 	 *
 	 * @inheritDoc
