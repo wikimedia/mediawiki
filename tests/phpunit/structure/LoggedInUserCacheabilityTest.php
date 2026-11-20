@@ -193,6 +193,8 @@ class LoggedInUserCacheabilityTest extends MediaWikiIntegrationTestCase {
 		unset( $menus['user-page']['userpage'] );
 		unset( $menus['user-menu']['mycontris'] );
 		unset( $menus['user-menu']['mytalk'] );
+		// From UploadsLink extension (T445752)
+		unset( $menus['user-menu']['uploads'] );
 	}
 
 	private static function unsetLoggedInOnlyItems( Skin $skin, array &$menus ): void {
