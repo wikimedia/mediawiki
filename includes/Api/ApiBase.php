@@ -1924,10 +1924,10 @@ abstract class ApiBase extends ContextSource {
 				if ( isset( $settings[SubmoduleDef::PARAM_SUBMODULE_MAP] ) ) {
 					$map = $settings[SubmoduleDef::PARAM_SUBMODULE_MAP];
 				} else {
-					$prefix = $this->isMain() ? '' : ( $this->getModulePath() . '+' );
+					$subModulePrefix = $this->isMain() ? '' : ( $this->getModulePath() . '+' );
 					$map = [];
 					foreach ( $this->getModuleManager()->getNames( $param ) as $submoduleName ) {
-						$map[$submoduleName] = $prefix . $submoduleName;
+						$map[$submoduleName] = $subModulePrefix . $submoduleName;
 					}
 				}
 

@@ -8,6 +8,7 @@ use LogicException;
 use MediaWiki\Api\ApiBase;
 use MediaWiki\Api\ApiHelpParamValueMessage;
 use MediaWiki\Api\ApiMain;
+use MediaWiki\Api\ApiModuleManager;
 use MediaWiki\Api\ApiUsageException;
 use MediaWiki\Api\Validator\SubmoduleDef;
 use MediaWiki\Context\DerivativeContext;
@@ -1385,6 +1386,27 @@ class ApiBaseTest extends ApiTestCase {
 			'b' => [ 'internal' => true, 'deprecated' => false ],
 			'c' => [ 'internal' => false, 'deprecated' => true ],
 		], $flags );
+	}
+
+	public function testGetFinalParamDescriptionKeepsPrefixAfterSubmoduleParam() {
+		$moduleManager = $this->createMock( ApiModuleManager::class );
+		$moduleManager->method( 'getNames' )->willReturn( [] );
+
+		$mock = $this->getMockBuilder( MockApi::class )
+			->onlyMethods( [ 'getAllowedParams', 'getModulePath', 'getModulePrefix', 'getModuleManager' ] )
+			->getMock();
+		$mock->method( 'getAllowedParams' )->willReturn( [
+			'sub' => [ ParamValidator::PARAM_TYPE => 'submodule' ],
+			'param' => [],
+		] );
+		$mock->method( 'getModulePath' )->willReturn( 'test' );
+		$mock->method( 'getModulePrefix' )->willReturn( 'tp' );
+		$mock->method( 'getModuleManager' )->willReturn( $moduleManager );
+
+		$descriptions = $mock->getFinalParamDescription();
+
+		// $1 of the parameter after the submodule one must still be the module prefix
+		$this->assertSame( 'tp', $descriptions['param'][0]->getParams()[0] );
 	}
 
 	public static function provideGetFinalParamDescription() {
