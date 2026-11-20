@@ -40,10 +40,12 @@ use Wikimedia\Timestamp\TimestampFormat as TS;
  * @ingroup RecentChanges
  * @ingroup API
  */
-class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
+class ApiQueryRecentChanges extends ApiQueryGeneratorBase implements ApiRestHybrid {
 
 	/** @var string[] */
 	private $formattedComments = [];
+
+	private ?ApiListRestHelper $restHelper = null;
 
 	public function __construct(
 		ApiQuery $query,
@@ -73,6 +75,11 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 	private bool $fld_loginfo = false;
 	private bool $fld_tags = false;
 	private bool $fld_sha1 = false;
+
+	public function initRestMode( ApiRestHelperContext $context ): ApiRestHelper {
+		$this->restHelper = new ApiListRestHelper( $context, __DIR__ . '/Schema/RecentChange-item.json' );
+		return $this->restHelper;
+	}
 
 	/**
 	 * Sets internal state to include the desired properties in the output.

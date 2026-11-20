@@ -2,14 +2,22 @@
 
 namespace MediaWiki\Tests\Api\Query;
 
+use MediaWiki\Api\ApiListRestHelper;
+use MediaWiki\Api\ApiMain;
+use MediaWiki\Api\ApiQuery;
+use MediaWiki\Api\ApiQueryLogEvents;
+use MediaWiki\Api\ApiRestHelperContext;
+use MediaWiki\Api\ApiUsageException;
 use MediaWiki\Block\BlockUser;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Permissions\UltimateAuthority;
+use MediaWiki\Request\FauxRequest;
 use MediaWiki\Tests\Api\ApiTestCase;
 use MediaWiki\Tests\ChangeTags\RestrictedTagTestTrait;
 use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
 use MediaWiki\Tests\User\TempUser\TempUserTestTrait;
 use MediaWiki\User\UserIdentityValue;
+use Wikimedia\ParamValidator\ParamValidator;
 
 /**
  * @covers \MediaWiki\Api\ApiQueryLogEvents
@@ -192,5 +200,106 @@ class ApiQueryLogEventsTest extends ApiTestCase {
 				'shouldTagFilterFindLogEvent' => true,
 			],
 		];
+	}
+
+	private function newLogEventsModule(): ApiQueryLogEvents {
+		$main = new ApiMain( new FauxRequest( [] ) );
+		/** @var ApiQuery $query */
+		$query = $main->getModuleManager()->getModule( 'query' );
+		return $query->getModuleManager()->getModule( 'logevents' );
+	}
+
+	private function newRestModeLogEventsModule(): ApiQueryLogEvents {
+		$module = $this->newLogEventsModule();
+		$module->initRestMode( new ApiRestHelperContext( [], [] ) );
+		return $module;
+	}
+
+	/**
+	 * Runs list=logevents with the module in REST mode, as the REST framework does.
+	 *
+	 * @param array $params Parameters of the module, with the "le" prefix
+	 * @return array[] The items of the result
+	 */
+	private function executeInRestMode( array $params ): array {
+		$main = new ApiMain( new FauxRequest( [ 'action' => 'query', 'list' => 'logevents' ] + $params ) );
+		/** @var ApiQuery $query */
+		$query = $main->getModuleManager()->getModule( 'query' );
+		// The module manager caches instances, so the query executes this one.
+		$query->getModuleManager()->getModule( 'logevents' )
+			->initRestMode( new ApiRestHelperContext( [], [] ) );
+
+		$main->execute();
+
+		return $main->getResult()->getResultData( [ 'query', 'logevents' ], [ 'Strip' => 'all' ] );
+	}
+
+	/**
+	 * Makes a deletion, which is logged, and returns the ID of its log entry.
+	 */
+	private function makeLogEntryAndGetId( string $title ): int {
+		$page = $this->getExistingTestPage( $title );
+		$this->deletePage( $page, 'deleted for the test' );
+
+		return (int)$this->newSelectQueryBuilder()
+			->select( 'MAX(log_id)' )
+			->from( 'logging' )
+			->fetchField();
+	}
+
+	public function testInitRestMode_returnsListHelperWithLogEventItemSchema() {
+		$helper = $this->newLogEventsModule()->initRestMode( new ApiRestHelperContext( [], [] ) );
+
+		$this->assertInstanceOf( ApiListRestHelper::class, $helper );
+		// The essential assertion: the item schema describes log entries.
+		$this->assertArrayHasKey( 'logid', $helper->getResponseItemSchema()['properties'] );
+	}
+
+	public function testGetAllowedParams_actionMode() {
+		$params = $this->newLogEventsModule()->getFinalParams();
+
+		$this->assertArrayNotHasKey( 'id', $params );
+	}
+
+	public function testGetAllowedParams_restMode() {
+		$params = $this->newRestModeLogEventsModule()->getFinalParams();
+
+		// REST addresses a single log entry by id. The module keeps "ids", which execute()
+		// sets from "id"; the routes suppress it.
+		$this->assertArrayHasKey( 'id', $params );
+		$this->assertArrayNotHasKey( ParamValidator::PARAM_ISMULTI, $params['id'] );
+		$this->assertArrayHasKey( 'ids', $params );
+	}
+
+	public function testExecute_restModeIdFindsTheEntry() {
+		$id = $this->makeLogEntryAndGetId( 'ApiQueryLogEventsRestTestPage1' );
+		$this->makeLogEntryAndGetId( 'ApiQueryLogEventsRestTestPage2' );
+
+		$items = $this->executeInRestMode( [ 'leid' => $id ] );
+
+		$this->assertCount( 1, $items );
+		$this->assertSame( $id, $items[0]['logid'] );
+		$this->assertSame( 'ApiQueryLogEventsRestTestPage1', $items[0]['title'] );
+		$this->assertSame( 'delete', $items[0]['type'] );
+	}
+
+	public function testExecute_restModeIdOfUnknownEntryHasNoItems() {
+		$items = $this->executeInRestMode( [ 'leid' => 2147483000 ] );
+
+		$this->assertSame( [], $items );
+	}
+
+	public function testExtractRequestParams_restModeIdBelowOneIsRejected() {
+		$main = new ApiMain( new FauxRequest(
+			[ 'action' => 'query', 'list' => 'logevents', 'leid' => 0 ]
+		) );
+		/** @var ApiQuery $query */
+		$query = $main->getModuleManager()->getModule( 'query' );
+		$module = $query->getModuleManager()->getModule( 'logevents' );
+		$module->initRestMode( new ApiRestHelperContext( [], [] ) );
+
+		// Raising it to the minimum would name the entry with id 1 instead.
+		$this->expectException( ApiUsageException::class );
+		$module->extractRequestParams();
 	}
 }

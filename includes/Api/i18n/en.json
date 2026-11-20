@@ -1136,6 +1136,7 @@
 	"apihelp-query+logevents-param-title": "Filter entries to those related to a page.",
 	"apihelp-query+logevents-param-namespace": "Filter entries to those in the given namespace.",
 	"apihelp-query+logevents-param-prefix": "Filter entries that start with this prefix.",
+	"apihelp-query+logevents-param-id": "The ID of the log entry to list.",
 	"apihelp-query+logevents-param-tag": "Only list event entries tagged with this tag.",
 	"apihelp-query+logevents-param-limit": "How many total event entries to return.",
 	"apihelp-query+logevents-example-simple": "List recent log events.",

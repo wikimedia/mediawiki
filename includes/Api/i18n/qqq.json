@@ -1083,6 +1083,7 @@
 	"apihelp-query+logevents-param-title": "{{doc-apihelp-param|query+logevents|title}}",
 	"apihelp-query+logevents-param-namespace": "{{doc-apihelp-param|query+logevents|namespace}}",
 	"apihelp-query+logevents-param-prefix": "{{doc-apihelp-param|query+logevents|prefix}}",
+	"apihelp-query+logevents-param-id": "{{doc-apihelp-param|query+logevents|id}}",
 	"apihelp-query+logevents-param-tag": "{{doc-apihelp-param|query+logevents|tag}}",
 	"apihelp-query+logevents-param-limit": "{{doc-apihelp-param|query+logevents|limit}}",
 	"apihelp-query+logevents-example-simple": "{{doc-apihelp-example|query+logevents}}",

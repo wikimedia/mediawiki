@@ -2,8 +2,10 @@
 
 namespace MediaWiki\Tests\Api\Query;
 
+use MediaWiki\Api\ApiListRestHelper;
 use MediaWiki\Api\ApiMain;
 use MediaWiki\Api\ApiQueryRecentChanges;
+use MediaWiki\Api\ApiRestHelperContext;
 use MediaWiki\CommentStore\CommentStoreComment;
 use MediaWiki\Content\JsonContent;
 use MediaWiki\Content\WikitextContent;
@@ -1236,5 +1238,14 @@ class ApiQueryRecentChangesIntegrationTest extends ApiTestCase {
 			->getModule( 'query' )
 			->getModuleManager()
 			->getModule( 'recentchanges' );
+	}
+
+	public function testInitRestMode_returnsListHelperWithRecentChangeItemSchema() {
+		$helper = $this->newRecentChangesQueryModule( $this->getTestSysop()->getAuthority() )
+			->initRestMode( new ApiRestHelperContext( [], [] ) );
+
+		$this->assertInstanceOf( ApiListRestHelper::class, $helper );
+		// The essential assertion: the item schema describes recent changes.
+		$this->assertArrayHasKey( 'rcid', $helper->getResponseItemSchema()['properties'] );
 	}
 }

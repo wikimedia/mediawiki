@@ -1,0 +1,49 @@
+{
+	"type": "object",
+	"properties": {
+		"rcid": { "type": "integer", "description": "Recent change ID. Only present if requested with the ids prop." },
+		"type": { "type": "string", "description": "Kind of change: edit, new, log, categorize or external." },
+		"ns": { "type": "integer", "description": "Namespace of the page. Only present if requested with the title prop." },
+		"title": { "type": "string", "description": "Prefixed title of the page. Only present if requested with the title prop." },
+		"pageid": { "type": "integer", "description": "Page ID. Only present if requested with the ids prop." },
+		"revid": { "type": "integer", "description": "Revision ID, 0 for a change that is not an edit. Only present if requested with the ids prop." },
+		"old_revid": { "type": "integer", "description": "Revision ID of the previous revision, 0 if there is none. Only present if requested with the ids prop." },
+		"user": { "type": "string", "description": "Name of the user who made the change. Only present if requested with the user prop." },
+		"userid": { "type": "integer", "description": "ID of the user who made the change, 0 for an anonymous user. Only present if requested with the userid prop." },
+		"anon": { "type": "boolean", "description": "Present, and true, if the user is anonymous." },
+		"temp": { "type": "boolean", "description": "Present, and true, if the user is a temporary account." },
+		"bot": { "type": "boolean", "description": "Whether the change was made by a bot. Only present if requested with the flags prop." },
+		"new": { "type": "boolean", "description": "Whether the change created a page. Only present if requested with the flags prop." },
+		"minor": { "type": "boolean", "description": "Whether the change is a minor edit. Only present if requested with the flags prop." },
+		"oldlen": { "type": "integer", "description": "Size of the page before the change, in bytes. Only present if requested with the sizes prop." },
+		"newlen": { "type": "integer", "description": "Size of the page after the change, in bytes. Only present if requested with the sizes prop." },
+		"timestamp": {
+			"type": "string",
+			"format": "date-time",
+			"description": "Time of the change, in ISO 8601 format. Only present if requested with the timestamp prop."
+		},
+		"comment": { "type": "string", "description": "Edit summary or log comment. Only present if requested with the comment prop." },
+		"parsedcomment": { "type": "string", "description": "Edit summary or log comment, as HTML. Only present if requested with the parsedcomment prop." },
+		"redirect": { "type": "boolean", "description": "Whether the page is a redirect. Only present if requested with the redirect prop." },
+		"patrolled": { "type": "boolean", "description": "Whether the change is patrolled. Only present if requested with the patrolled prop." },
+		"unpatrolled": { "type": "boolean", "description": "Whether the change is unpatrolled and the user may patrol it. Only present if requested with the patrolled prop." },
+		"autopatrolled": { "type": "boolean", "description": "Whether the change was patrolled automatically. Only present if requested with the patrolled prop." },
+		"logid": { "type": "integer", "description": "ID of the log entry, for a log change. Only present if requested with the loginfo prop." },
+		"logtype": { "type": "string", "description": "Type of the log entry, for a log change. Only present if requested with the loginfo prop." },
+		"logaction": { "type": "string", "description": "Action of the log entry, for a log change. Only present if requested with the loginfo prop." },
+		"logparams": {
+			"description": "Parameters of the log entry, as formatted by the log type, for a log change. Only present if requested with the loginfo prop."
+		},
+		"tags": {
+			"type": "array",
+			"description": "Tags of the change. Only present if requested with the tags prop.",
+			"items": { "type": "string" }
+		},
+		"sha1": { "type": "string", "description": "SHA-1 hash of the content of the revision. Only present if requested with the sha1 prop." },
+		"actionhidden": { "type": "boolean", "description": "Present, and true, if the log action is hidden." },
+		"userhidden": { "type": "boolean", "description": "Present, and true, if the user is hidden." },
+		"commenthidden": { "type": "boolean", "description": "Present, and true, if the comment is hidden." },
+		"sha1hidden": { "type": "boolean", "description": "Present, and true, if the content hash is hidden." },
+		"suppressed": { "type": "boolean", "description": "Present, and true, if hidden parts of the change are suppressed." }
+	}
+}

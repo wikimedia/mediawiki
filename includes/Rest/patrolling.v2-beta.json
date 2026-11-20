@@ -1,0 +1,56 @@
+{
+	"mwapi": "1.2.0",
+	"moduleId": "patrolling/v2-beta",
+	"errorSchemaVersion": "2.0",
+	"info": {
+		"version": "1.0.0",
+		"title": "Patrolling API",
+		"x-i18n-title": "rest-module-patrolling.v2-title",
+		"x-i18n-description": "rest-module-patrolling.v2-desc"
+	},
+	"externalDocs": {
+		"description": "API documentation",
+		"url": "https://www.mediawiki.org/wiki/API:REST_API"
+	},
+	"paths": {
+		"/recentchanges": {
+			"get": {
+				"x-i18n-description": "rest-endpoint-desc-patrolling-get-recentchanges",
+				"handler": {
+					"adapter": {
+						"type": "list",
+						"list": "recentchanges",
+						"suppressedParams": [ "generaterevisions" ]
+					}
+				}
+			}
+		},
+		"/logevents": {
+			"get": {
+				"x-i18n-description": "rest-endpoint-desc-patrolling-get-logevents",
+				"handler": {
+					"adapter": {
+						"type": "list",
+						"list": "logevents",
+						"suppressedParams": [ "id", "ids" ]
+					}
+				}
+			}
+		},
+		"/logevents/{id}": {
+			"get": {
+				"x-i18n-description": "rest-endpoint-desc-patrolling-get-logevents-id",
+				"handler": {
+					"adapter": {
+						"type": "item",
+						"list": "logevents",
+						"suppressedParams": [
+							"type", "action", "start", "end", "dir", "ids", "user", "title", "namespace",
+							"prefix", "tag", "limit", "continue"
+						]
+					}
+				}
+			}
+		}
+	}
+}

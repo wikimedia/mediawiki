@@ -23,6 +23,7 @@ class ModuleManager {
 		'includes/Rest/specs.v0.json',
 		'includes/Rest/fragments.v0-internal.json',
 		'includes/Rest/content.v2-beta.json',
+		'includes/Rest/patrolling.v2-beta.json',
 	];
 
 	/**
@@ -52,6 +53,9 @@ class ModuleManager {
 		],
 		'content.v2-beta' => [
 			'file' => "./includes/Rest/content.v2-beta.json",
+		],
+		'patrolling.v2-beta' => [
+			'file' => "./includes/Rest/patrolling.v2-beta.json",
 		],
 	];
 

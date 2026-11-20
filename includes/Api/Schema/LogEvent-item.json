@@ -1,0 +1,36 @@
+{
+	"type": "object",
+	"properties": {
+		"logid": { "type": "integer", "description": "Log entry ID. Only present if requested with the ids prop." },
+		"ns": { "type": "integer", "description": "Namespace of the target page. Only present if requested with the title prop." },
+		"title": { "type": "string", "description": "Prefixed title of the target page. Only present if requested with the title prop." },
+		"pageid": { "type": "integer", "description": "ID of the page that has the target title now, 0 if there is none. Only present if requested with the ids prop." },
+		"logpage": { "type": "integer", "description": "ID of the target page when the entry was made, 0 if there was none. Only present if requested with the ids prop." },
+		"revid": { "type": "integer", "description": "ID of the revision the entry is about, if there is one. Only present if requested with the ids prop." },
+		"params": {
+			"description": "Parameters of the log entry, as formatted by the log type. Only present if requested with the details prop."
+		},
+		"type": { "type": "string", "description": "Log type. Only present if requested with the type prop." },
+		"action": { "type": "string", "description": "Log action. Only present if requested with the type prop." },
+		"user": { "type": "string", "description": "Name of the user who made the entry. Only present if requested with the user prop." },
+		"userid": { "type": "integer", "description": "ID of the user who made the entry, 0 for an anonymous user. Only present if requested with the userid prop." },
+		"anon": { "type": "boolean", "description": "Present, and true, if the user is anonymous." },
+		"temp": { "type": "boolean", "description": "Present, and true, if the user is a temporary account." },
+		"timestamp": {
+			"type": "string",
+			"format": "date-time",
+			"description": "Time of the entry, in ISO 8601 format. Only present if requested with the timestamp prop."
+		},
+		"comment": { "type": "string", "description": "Log comment. Only present if requested with the comment prop." },
+		"parsedcomment": { "type": "string", "description": "Log comment, as HTML. Only present if requested with the parsedcomment prop." },
+		"tags": {
+			"type": "array",
+			"description": "Tags of the entry. Only present if requested with the tags prop.",
+			"items": { "type": "string" }
+		},
+		"actionhidden": { "type": "boolean", "description": "Present, and true, if the log action is hidden." },
+		"userhidden": { "type": "boolean", "description": "Present, and true, if the user is hidden." },
+		"commenthidden": { "type": "boolean", "description": "Present, and true, if the comment is hidden." },
+		"suppressed": { "type": "boolean", "description": "Present, and true, if hidden parts of the entry are suppressed." }
+	}
+}

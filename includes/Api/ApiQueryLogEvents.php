@@ -33,10 +33,12 @@ use Wikimedia\Timestamp\TimestampFormat as TS;
  *
  * @ingroup API
  */
-class ApiQueryLogEvents extends ApiQueryBase {
+class ApiQueryLogEvents extends ApiQueryBase implements ApiRestHybrid {
 
 	/** @var string[]|null */
 	private $formattedComments;
+
+	private ?ApiListRestHelper $restHelper = null;
 
 	public function __construct(
 		ApiQuery $query,
@@ -62,10 +64,20 @@ class ApiQueryLogEvents extends ApiQueryBase {
 	private bool $fld_details = false;
 	private bool $fld_tags = false;
 
+	public function initRestMode( ApiRestHelperContext $context ): ApiRestHelper {
+		$this->restHelper = new ApiListRestHelper( $context, __DIR__ . '/Schema/LogEvent-item.json' );
+		return $this->restHelper;
+	}
+
 	public function execute() {
 		$params = $this->extractRequestParams();
 		$db = $this->getDB();
 		$this->requireMaxOneParameter( $params, 'title', 'prefix', 'namespace' );
+
+		// In REST mode, "id" identifies a single log entry.
+		if ( $this->restHelper && $params['id'] !== null ) {
+			$params['ids'] = [ $params['id'] ];
+		}
 
 		$prop = array_fill_keys( $params['prop'], true );
 
@@ -514,6 +526,15 @@ class ApiQueryLogEvents extends ApiQueryBase {
 
 		if ( $config->get( MainConfigNames::MiserMode ) ) {
 			$ret['prefix'][ApiBase::PARAM_HELP_MSG] = 'api-help-param-disabled-in-miser-mode';
+		}
+
+		if ( $this->restHelper ) {
+			$ret['id'] = [
+				ParamValidator::PARAM_TYPE => 'integer',
+				IntegerDef::PARAM_MIN => 1,
+				// Without this, a value below the minimum is raised to it, which names another entry.
+				ApiBase::PARAM_RANGE_ENFORCE => true,
+			];
 		}
 
 		return $ret;
