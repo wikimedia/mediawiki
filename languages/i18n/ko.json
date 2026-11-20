@@ -477,6 +477,7 @@
 	"createacct-loggedin": "이미 {{GENDER:$1|$1}}님으로 로그인되었습니다.",
 	"createacct-loggedin-continue-as": "{{GENDER:$1|$1}}님으로 계속",
 	"createacct-loggedin-heading": "다른 계정 만들기",
+	"createacct-ipblocked-text": "이 IP 주소는 {{SITENAME}}에서 계정을 만드는 것이 차단되어 있습니다. {{SITENAME}} 문서를 읽거나 기존 계정에 로그인하는 데에는 영향을 미치지 않습니다.",
 	"createacct-permerror-login": "다른 계정으로 로그인",
 	"createacct-permerror-return": "계정 없이 계속하기",
 	"createacct-emailrequired": "이메일 주소",
