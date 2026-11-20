@@ -282,7 +282,7 @@
 	"title-invalid-magic-tilde": "Tajuk laman yang diminta mengandungi jujukan tilde magik yang tidak sah (<nowiki>~~~</nowiki>).",
 	"title-invalid-too-long": "The requested page title is too long. It must be no longer than $1 {{PLURAL:$1|byte|bytes}} in UTF-8 encoding. The title you entered is $2 {{PLURAL:$2|byte|bytes}}.\n\nTajuk laman yang diminta terlalu panjang. Ia mestilah tidak melebihi $1 bait dalam pengekodan UTF-8. Tajuk yang anda masukkan ialah $2 bait.",
 	"title-invalid-leading-colon": "Tajuk laman yang diminta bermula dengan tanda titik bertindih yang tidak sah.",
-	"perfcached": "Data yang berikut disimpan dalam cache dan mungkin tidak terkemas kini. Semaksimum {{PLURAL:$1|satu hasil|$1 hasil}} terdapat dalam cache.",
+	"perfcached": "Data berikut disimpan dalam cache dan mungkin tidak terkemas kini. Semaksimum {{PLURAL:$1|satu hasil|$1 hasil}} tersedia dalam cache.",
 	"perfcachedts": "Data yang berikut disimpan dalam cache dan kali terakhir dikemaskinikan pada $1. Semaksimum {{PLURAL:$4|satu hasil|$4 hasil}} terdapat dalam cache.",
 	"querypage-no-updates": "Buat masa ini, pengkemaskinian laman ini telah dilumpuhkan.\nData yang ada di sini tidak akan disegarkan semula sekarang.",
 	"querypage-updates-periodical": "Pengemaskinian laman ini dijalankan secara berkala.",

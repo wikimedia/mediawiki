@@ -4042,5 +4042,6 @@
 	"table-of-contents-hide-button-aria-label": "Приховати зміст",
 	"diff-usergroups": "$1 {{PLURAL:$1|група користувача|групи користувача|груп користувача}}",
 	"languageselector-no-results": "Результатів не знайдено.",
-	"languageselector-invalid-input": "«$1» не є дійсною мовою."
+	"languageselector-invalid-input": "«$1» не є дійсною мовою.",
+	"mypage-disallowed-action": "З безпекових міркувань дію «$1» не можна використати на сторінці «Спеціальна:Моя сторінка»."
 }
