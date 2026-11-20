@@ -60,6 +60,7 @@ class UsersPager extends AlphabeticPager {
 	protected bool $temporaryGroupsOnly;
 	protected bool $temporaryAccountsOnly;
 	protected bool $creationSort;
+	protected bool $showHiddenUsers;
 	protected ?bool $including;
 	protected ?string $requestedUser;
 
@@ -103,6 +104,7 @@ class UsersPager extends AlphabeticPager {
 		$this->editsOnly = $request->getBool( 'editsOnly' );
 		$this->temporaryGroupsOnly = $request->getBool( 'temporaryGroupsOnly' );
 		$this->temporaryAccountsOnly = $request->getBool( 'temporaryAccountsOnly' );
+		$this->showHiddenUsers = $request->getBool( 'showHiddenUsers' );
 		$this->creationSort = $request->getBool( 'creationSort' );
 		$this->including = $including;
 		$this->mDefaultDirection = $request->getBool( 'desc' )
@@ -140,7 +142,7 @@ class UsersPager extends AlphabeticPager {
 		$conds = [];
 
 		// Don't show hidden names
-		if ( !$this->canSeeHideuser() ) {
+		if ( !$this->canSeeHideuser() || !$this->showHiddenUsers ) {
 			$conds[] = $this->hideUserUtils->getExpression( $dbr );
 			$deleted = '1=0';
 		} else {
@@ -408,6 +410,19 @@ class UsersPager extends AlphabeticPager {
 					'name' => 'temporaryAccountsOnly',
 					'id' => 'temporaryAccountsOnly',
 					'default' => $this->temporaryAccountsOnly
+				]
+			] );
+		}
+
+		// If user can see hidden usernames, add an option to do so
+		if ( $this->canSeeHideuser() ) {
+			$formDescriptor = array_merge( $formDescriptor, [
+				'showHiddenUsers' => [
+					'type' => 'check',
+					'label' => $this->msg( 'listusers-showhiddenusers' )->text(),
+					'name' => 'showHiddenUsers',
+					'id' => 'showHiddenUsers',
+					'default' => $this->showHiddenUsers
 				]
 			] );
 		}
