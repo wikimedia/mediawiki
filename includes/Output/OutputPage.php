@@ -4851,13 +4851,11 @@ class OutputPage extends ContextSource {
 	 */
 	public static function transformResourcePath( Config $config, $path ) {
 		$localDir = MW_INSTALL_PATH;
-		$remotePathPrefix = $config->get( MainConfigNames::ResourceBasePath );
-		if ( $remotePathPrefix === '' ) {
+		$remotePath = $config->get( MainConfigNames::ResourceBasePath );
+		if ( $remotePath === '' ) {
 			// The configured base path is required to be empty string for
 			// wikis in the domain root
 			$remotePath = '/';
-		} else {
-			$remotePath = $remotePathPrefix;
 		}
 		if ( !str_starts_with( $path, $remotePath ) || str_starts_with( $path, '//' ) ) {
 			// - Path is outside wgResourceBasePath, ignore.
@@ -4871,11 +4869,11 @@ class OutputPage extends ContextSource {
 		$uploadPath = $config->get( MainConfigNames::UploadPath );
 		if ( str_starts_with( $path, $uploadPath ) ) {
 			$localDir = $config->get( MainConfigNames::UploadDirectory );
-			$remotePathPrefix = $remotePath = $uploadPath;
+			$remotePath = $uploadPath;
 		}
 
 		$path = RelPath::getRelativePath( $path, $remotePath );
-		return self::transformFilePath( $remotePathPrefix, $localDir, $path );
+		return self::transformFilePath( $remotePath, $localDir, $path );
 	}
 
 	/**
@@ -4884,15 +4882,16 @@ class OutputPage extends ContextSource {
 	 * Caller is responsible for ensuring the file exists. Emits a PHP warning otherwise.
 	 *
 	 * @since 1.27
-	 * @param string $remotePathPrefix URL path prefix that points to $localPath
-	 * @param string $localPath File directory exposed at $remotePath
-	 * @param string $file Path to target file relative to $localPath
+	 * @param string $remotePath URL path prefix that points to $localDir
+	 * @param string $localDir File directory exposed at $remotePath
+	 * @param string $file Path to target file relative to $localDir
 	 * @return string URL
 	 */
-	public static function transformFilePath( $remotePathPrefix, $localPath, $file ) {
+	public static function transformFilePath( $remotePath, $localDir, $file ) {
 		// This MUST match the equivalent logic in CSSMin::remapOne()
-		$localFile = "$localPath/$file";
-		$url = "$remotePathPrefix/$file";
+		$localFile = "$localDir/$file";
+		// Don't insert another slash (T284391).
+		$url = $remotePath === '/' ? "/$file" : "$remotePath/$file";
 		if ( is_file( $localFile ) ) {
 			$hash = md5_file( $localFile );
 			if ( $hash === false ) {
