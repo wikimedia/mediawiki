@@ -42,9 +42,12 @@ class SpecialFilepath extends RedirectSpecialPage {
 			$redirect = SpecialPage::getSafeTitleFor( 'Redirect', "file/$file" );
 		}
 		if ( $redirect === null ) {
-			// The user input is empty or an invalid title,
-			// redirect to form of Special:Redirect with the invalid value prefilled
-			$this->mAddedRedirectParams['wpvalue'] = $file;
+			// The user input is empty or an invalid title, redirect to the form of Special:Redirect.
+			// Prefill an invalid value, but leave an empty one out of the URL: the form treats
+			// any value in the URL as submitted and would show "This value is required".
+			if ( $file !== '' ) {
+				$this->mAddedRedirectParams['wpvalue'] = $file;
+			}
 			$redirect = SpecialPage::getSafeTitleFor( 'Redirect', 'file' );
 		}
 		// @phan-suppress-next-line PhanTypeMismatchReturnNullable Known to be valid
