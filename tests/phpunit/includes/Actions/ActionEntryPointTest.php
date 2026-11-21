@@ -510,7 +510,6 @@ class ActionEntryPointTest extends MediaWikiIntegrationTestCase {
 			->getPrefixedText( $target );
 
 		$this->editPage( $page, "#REDIRECT [[$link]]\n\nRedirect Footer" );
-		$this->editPage( $target, "Redirect Target" );
 
 		$request = new FauxRequest( [
 			'title' => $page->getTitle()->getPrefixedDBkey(),
@@ -534,7 +533,6 @@ class ActionEntryPointTest extends MediaWikiIntegrationTestCase {
 			->getPrefixedText( $target );
 
 		$this->editPage( $page, "#REDIRECT [[$link]]\n\nRedirect Footer" );
-		$this->editPage( $target, "Redirect Target" );
 
 		$request = new FauxRequest( [
 			'title' => $page->getTitle()->getPrefixedDBkey(),
