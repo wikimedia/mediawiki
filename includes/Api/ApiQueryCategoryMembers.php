@@ -22,9 +22,11 @@ use Wikimedia\Timestamp\TimestampFormat as TS;
  *
  * @ingroup API
  */
-class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
+class ApiQueryCategoryMembers extends ApiQueryGeneratorBase implements ApiRestHybrid {
 
 	private Collation $collation;
+
+	private ?ApiListRestHelper $restHelper = null;
 
 	public function __construct(
 		ApiQuery $query,
@@ -33,6 +35,11 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 	) {
 		parent::__construct( $query, $moduleName, 'cm' );
 		$this->collation = $collationFactory->getCategoryCollation();
+	}
+
+	public function initRestMode( ApiRestHelperContext $context ): ApiRestHelper {
+		$this->restHelper = new ApiListRestHelper( $context, __DIR__ . '/Schema/CategoryMember-item.json' );
+		return $this->restHelper;
 	}
 
 	public function execute() {
@@ -64,6 +71,15 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 	 */
 	private function run( $resultPageSet = null ) {
 		$params = $this->extractRequestParams();
+
+		// In REST mode, "name" is the name of the category, without the namespace.
+		if ( $this->restHelper && $params['name'] !== null ) {
+			$nameTitle = Title::makeTitleSafe( NS_CATEGORY, $params['name'] );
+			if ( !$nameTitle ) {
+				$this->dieWithError( [ 'apierror-invalidtitle', wfEscapeWikiText( $params['name'] ) ] );
+			}
+			$params['title'] = $nameTitle->getPrefixedText();
+		}
 
 		$categoryTitle = $this->getTitleOrPageId( $params )->getTitle();
 		if ( $categoryTitle->getNamespace() !== NS_CATEGORY ) {
@@ -386,6 +402,12 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 		if ( $this->getConfig()->get( MainConfigNames::MiserMode ) ) {
 			$ret['namespace'][ApiBase::PARAM_HELP_MSG_APPEND] = [
 				'api-help-param-limited-in-miser-mode',
+			];
+		}
+
+		if ( $this->restHelper ) {
+			$ret['name'] = [
+				ParamValidator::PARAM_TYPE => 'string',
 			];
 		}
 

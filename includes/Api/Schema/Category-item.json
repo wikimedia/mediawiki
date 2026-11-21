@@ -1,0 +1,15 @@
+{
+	"type": "object",
+	"required": [ "category" ],
+	"properties": {
+		"category": { "type": "string", "description": "Name of the category, without the namespace prefix." },
+		"size": { "type": "integer", "description": "Number of members of the category. Only present if requested with the size prop." },
+		"pages": {
+			"type": "integer",
+			"description": "Number of members that are neither subcategories nor files. Only present if requested with the size prop."
+		},
+		"files": { "type": "integer", "description": "Number of members that are files. Only present if requested with the size prop." },
+		"subcats": { "type": "integer", "description": "Number of members that are subcategories. Only present if requested with the size prop." },
+		"hidden": { "type": "boolean", "description": "Whether the category is hidden. Only present if requested with the hidden prop." }
+	}
+}

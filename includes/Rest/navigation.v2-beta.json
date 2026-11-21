@@ -1,0 +1,55 @@
+{
+	"mwapi": "1.2.0",
+	"moduleId": "navigation/v2-beta",
+	"errorSchemaVersion": "2.0",
+	"info": {
+		"version": "1.0.0",
+		"title": "Navigation API",
+		"x-i18n-title": "rest-module-navigation.v2-title",
+		"x-i18n-description": "rest-module-navigation.v2-desc"
+	},
+	"externalDocs": {
+		"description": "API documentation",
+		"url": "https://www.mediawiki.org/wiki/API:REST_API"
+	},
+	"paths": {
+		"/categories": {
+			"get": {
+				"x-i18n-description": "rest-endpoint-desc-navigation-get-categories",
+				"handler": {
+					"adapter": {
+						"type": "list",
+						"list": "allcategories",
+						"suppressedParams": [ "name" ]
+					}
+				}
+			}
+		},
+		"/categories/{name}": {
+			"get": {
+				"x-i18n-description": "rest-endpoint-desc-navigation-get-categories-name",
+				"handler": {
+					"adapter": {
+						"type": "item",
+						"list": "allcategories",
+						"suppressedParams": [
+							"from", "continue", "to", "prefix", "dir", "min", "max", "limit"
+						]
+					}
+				}
+			}
+		},
+		"/categories/{name}/members": {
+			"get": {
+				"x-i18n-description": "rest-endpoint-desc-navigation-get-categories-name-members",
+				"handler": {
+					"adapter": {
+						"type": "list",
+						"list": "categorymembers",
+						"suppressedParams": [ "title", "pageid", "startsortkey", "endsortkey" ]
+					}
+				}
+			}
+		}
+	}
+}

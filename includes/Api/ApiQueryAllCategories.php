@@ -17,10 +17,17 @@ use Wikimedia\ParamValidator\TypeDef\IntegerDef;
  *
  * @ingroup API
  */
-class ApiQueryAllCategories extends ApiQueryCategoryList {
+class ApiQueryAllCategories extends ApiQueryCategoryList implements ApiRestHybrid {
+
+	private ?ApiListRestHelper $restHelper = null;
 
 	public function __construct( ApiQuery $query, string $moduleName ) {
 		parent::__construct( $query, $moduleName, 'ac' );
+	}
+
+	public function initRestMode( ApiRestHelperContext $context ): ApiRestHelper {
+		$this->restHelper = new ApiListRestHelper( $context, __DIR__ . '/Schema/Category-item.json' );
+		return $this->restHelper;
 	}
 
 	public function execute() {
@@ -44,13 +51,19 @@ class ApiQueryAllCategories extends ApiQueryCategoryList {
 		$db = $this->getDB();
 		$params = $this->extractRequestParams();
 
+		// In REST mode, "name" identifies a single category, as the range from it to itself.
+		if ( $this->restHelper && $params['name'] !== null ) {
+			$params['from'] = $params['name'];
+			$params['to'] = $params['name'];
+		}
+
 		$this->createQuery( $db, $params );
 		$this->executeQuery( $params, $resultPageSet );
 	}
 
 	/** @inheritDoc */
 	public function getAllowedParams() {
-		return [
+		$params = [
 			'from' => null,
 			'continue' => [
 				ApiBase::PARAM_HELP_MSG => 'api-help-param-continue',
@@ -84,6 +97,16 @@ class ApiQueryAllCategories extends ApiQueryCategoryList {
 				ApiBase::PARAM_HELP_MSG_PER_VALUE => [],
 			],
 		];
+
+		if ( $this->restHelper ) {
+			$params['name'] = [
+				ParamValidator::PARAM_TYPE => 'string',
+			];
+			// A category without its size and hidden flag tells nothing but its name.
+			$params['prop'][ParamValidator::PARAM_DEFAULT] = 'size|hidden';
+		}
+
+		return $params;
 	}
 
 	/** @inheritDoc */
