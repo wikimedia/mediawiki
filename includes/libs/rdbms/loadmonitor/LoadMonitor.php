@@ -310,7 +310,7 @@ class LoadMonitor implements ILoadMonitor {
 		if ( !$state ) {
 			return false;
 		}
-		return $this->getCurrentTime() - $state[self::STATE_AS_OF] > self::STATE_TARGET_TTL;
+		return $this->getCurrentTime() - $state[self::STATE_AS_OF] < self::STATE_TARGET_TTL;
 	}
 
 	/**
