@@ -113,8 +113,6 @@ For notes on 1.47.x and older releases, see HISTORY.
 ==== Changed external libraries ====
 
 * Updated composer/semver from 3.5.1 to 3.6.0.
-* Updated justinrainbow/json-schema from 5.3.4 to 6.14.0.
-* Updated guzzlehttp/guzzle from 7.16.1 to 7.16.5.
 * Updated monolog/monolog from 3.12.0 to 3.12.1.
 * Updated vue and vue-compiler-dom from 3.5.17 to 3.5.45.
 * Updated wikimedia/css-sanitizer from 6.2.1 to 6.2.2.
