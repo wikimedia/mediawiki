@@ -4,14 +4,13 @@ namespace MediaWiki\Skin\Components;
 
 use MediaWiki\Config\Config;
 use MediaWiki\HookContainer\ProtectedHookAccessorTrait;
+use MediaWiki\Html\Html;
 use MediaWiki\Language\MessageLocalizer;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Message\Message;
-use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Title\Title;
 use MediaWiki\User\User;
-use Wikimedia\HtmlArmor\HtmlArmor;
 
 class SkinComponentCopyright implements SkinComponent {
 	use ProtectedHookAccessorTrait;
@@ -51,19 +50,20 @@ class SkinComponentCopyright implements SkinComponent {
 
 		if ( $config->get( MainConfigNames::RightsPage ) ) {
 			$title = Title::newFromText( $config->get( MainConfigNames::RightsPage ) );
-			$link = $linkRenderer->makeKnownLink( $title,
-					new HtmlArmor( $config->get( MainConfigNames::RightsText ) ?: $title->getText() )
-				);
+			// Optimization: Avoid DB query on every pageview for copyright link (T347123#12591712).
+			$link = Html::element( 'a', [
+				'href' => $title->getLinkURL()
+			], $config->get( MainConfigNames::RightsText ) ?: $title->getText() );
 		} elseif ( $config->get( MainConfigNames::RightsUrl ) ) {
-			$link = $linkRenderer->makeExternalLink(
-				$config->get( MainConfigNames::RightsUrl ),
-				$config->get( MainConfigNames::RightsText ),
-				$title ?? SpecialPage::getTitleFor( 'Badtitle' )
-			);
+			$link = Html::element( 'a', [
+				'href' => $config->get( MainConfigNames::RightsUrl )
+			], $config->get( MainConfigNames::RightsText ) );
 		} elseif ( $config->get( MainConfigNames::RightsText ) ) {
+			// If $wgRightsPage and $wgRightsUrl are both null. then this is treated as raw HTML.
+			// See \MediaWiki\MainConfigSchema::RightsText
 			$link = $config->get( MainConfigNames::RightsText );
 		} else {
-			# Give up now
+			// Give up now
 			return '';
 		}
 
