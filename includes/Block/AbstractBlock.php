@@ -567,7 +567,7 @@ abstract class AbstractBlock implements Block {
 	/**
 	 * Checks if a block applies to creating pages in a particular namespace.
 	 *
-	 * @since 1.48
+	 * @since 1.47
 	 */
 	public function appliesToCreatePageInNamespace( int $ns ): bool {
 		return $this->appliesToNamespace( $ns );
