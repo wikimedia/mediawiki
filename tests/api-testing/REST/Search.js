@@ -38,7 +38,6 @@ describe( 'Search', () => {
 			const noResultsResponse = { pages: [] };
 			assert.match( headers[ 'content-type' ], /^application\/json/ );
 			assert.deepEqual( noResultsResponse, body );
-			// eslint-disable-next-line no-unused-expressions
 			expect( res ).to.satisfyApiSpec;
 		} );
 		it( 'should return array of pages when there is only a text match', async () => {
@@ -63,7 +62,6 @@ describe( 'Search', () => {
 				assert.notMatch( headers[ 'cache-control' ], /\bmax-age=0*[1-9]\b/ );
 				assert.notMatch( headers[ 'cache-control' ], /\bs-maxage=0*[1-9]\b/ );
 			}
-			// eslint-disable-next-line no-unused-expressions
 			expect( res ).to.satisfyApiSpec;
 
 		} );
@@ -81,7 +79,6 @@ describe( 'Search', () => {
 			assert.nestedPropertyVal( returnPage, 'description', null );
 			assert.nestedPropertyVal( returnPage, 'matched_title', null );
 			assert.nestedPropertyVal( returnPage, 'anchor', null );
-			// eslint-disable-next-line no-unused-expressions
 			expect( res ).to.satisfyApiSpec;
 		} );
 		it( 'should return a single page when there is a title and text match on the same page', async () => {
@@ -98,7 +95,6 @@ describe( 'Search', () => {
 			assert.nestedPropertyVal( returnPage, 'description', null );
 			assert.nestedPropertyVal( returnPage, 'matched_title', null );
 			assert.nestedPropertyVal( returnPage, 'anchor', null );
-			// eslint-disable-next-line no-unused-expressions
 			expect( res ).to.satisfyApiSpec;
 		} );
 		it( 'should return two pages when both pages match', async () => {
@@ -109,7 +105,6 @@ describe( 'Search', () => {
 			const returnedPages = [ body.pages[ 0 ].title, body.pages[ 1 ].title ];
 			const expectedPages = [ pageWithBothTerms, pageWithOneTerm ];
 			assert.equal( expectedPages.sort().join( '|' ), returnedPages.sort().join( '|' ) );
-			// eslint-disable-next-line no-unused-expressions
 			expect( res ).to.satisfyApiSpec;
 		} );
 		it( 'should return only one page when two pages match but limit is 1', async () => {
@@ -117,7 +112,6 @@ describe( 'Search', () => {
 			const { body, headers } = res;
 			assert.match( headers[ 'content-type' ], /^application\/json/ );
 			assert.lengthOf( body.pages, 1 );
-			// eslint-disable-next-line no-unused-expressions
 			expect( res ).to.satisfyApiSpec;
 		} );
 		it( 'should not return results when page with term has been deleted', async () => {
@@ -134,7 +128,6 @@ describe( 'Search', () => {
 			const { body, headers } = res;
 			assert.match( headers[ 'content-type' ], /^application\/json/ );
 			assert.lengthOf( body.pages, 0 );
-			// eslint-disable-next-line no-unused-expressions
 			expect( res ).to.satisfyApiSpec;
 		} );
 		it( 'should ignore duplicate redirect source and target if both pages are a match', async () => {
@@ -154,7 +147,6 @@ describe( 'Search', () => {
 			assert.match( headers[ 'content-type' ], /^application\/json/ );
 			assert.lengthOf( body.pages, 1 );
 			assert.nestedPropertyVal( body.pages[ 0 ], 'title', redirectTargetTitle );
-			// eslint-disable-next-line no-unused-expressions
 			expect( res ).to.satisfyApiSpec;
 		} );
 	} );
@@ -166,7 +158,6 @@ describe( 'Search', () => {
 			const { body, headers } = res;
 			assert.match( headers[ 'content-type' ], /^application\/json/ );
 			assert.lengthOf( body.pages, 0 );
-			// eslint-disable-next-line no-unused-expressions
 			expect( res ).to.satisfyApiSpec;
 		} );
 		it( 'should not return pages when there is only a text match', async () => {
@@ -174,7 +165,6 @@ describe( 'Search', () => {
 			const { body, headers } = res;
 			assert.match( headers[ 'content-type' ], /^application\/json/ );
 			assert.lengthOf( body.pages, 0 );
-			// eslint-disable-next-line no-unused-expressions
 			expect( res ).to.satisfyApiSpec;
 		} );
 		it( 'should return array of pages when there is a title match', async () => {
@@ -196,7 +186,6 @@ describe( 'Search', () => {
 			assert.nestedProperty( headers, 'cache-control' );
 			assert.match( headers[ 'cache-control' ], /\bpublic\b/ );
 			assert.match( headers[ 'cache-control' ], /\bmax-age=[1-9]\d*/ );
-			// eslint-disable-next-line no-unused-expressions
 			expect( res ).to.satisfyApiSpec;
 		} );
 		it( 'should return two pages when both pages match', async () => {
@@ -207,7 +196,6 @@ describe( 'Search', () => {
 			const returnedPages = [ body.pages[ 0 ].title, body.pages[ 1 ].title ];
 			const expectedPages = [ pageWithBothTerms, pageWithOneTerm ];
 			assert.equal( expectedPages.sort().join( '|' ), returnedPages.sort().join( '|' ) );
-			// eslint-disable-next-line no-unused-expressions
 			expect( res ).to.satisfyApiSpec;
 		} );
 		it( 'should return only one page when two pages match but limit is 1', async () => {
@@ -215,7 +203,6 @@ describe( 'Search', () => {
 			const { body, headers } = res;
 			assert.match( headers[ 'content-type' ], /^application\/json/ );
 			assert.lengthOf( body.pages, 1 );
-			// eslint-disable-next-line no-unused-expressions
 			expect( res ).to.satisfyApiSpec;
 		} );
 		it( 'should not return deleted page', async () => {
@@ -232,7 +219,6 @@ describe( 'Search', () => {
 			const { body, headers } = res;
 			assert.match( headers[ 'content-type' ], /^application\/json/ );
 			assert.lengthOf( body.pages, 0 );
-			// eslint-disable-next-line no-unused-expressions
 			expect( res ).to.satisfyApiSpec;
 		} );
 		it( 'should include redirect for page if one exists', async () => {
@@ -254,7 +240,6 @@ describe( 'Search', () => {
 			assert.nestedPropertyVal( body.pages[ 0 ], 'title', redirectTargetTitle );
 			assert.nestedPropertyVal( body.pages[ 0 ], 'matched_title', redirectSourceTitle );
 			assert.nestedPropertyVal( body.pages[ 0 ], 'anchor', null );
-			// eslint-disable-next-line no-unused-expressions
 			expect( res ).to.satisfyApiSpec;
 		} );
 		it( 'should include redirect for page if one exists, with an anchor', async () => {
@@ -277,7 +262,6 @@ describe( 'Search', () => {
 			assert.nestedPropertyVal( body.pages[ 0 ], 'title', redirectTargetTitle );
 			assert.nestedPropertyVal( body.pages[ 0 ], 'matched_title', redirectSourceTitle );
 			assert.nestedPropertyVal( body.pages[ 0 ], 'anchor', anchor );
-			// eslint-disable-next-line no-unused-expressions
 			expect( res ).to.satisfyApiSpec;
 		} );
 	} );

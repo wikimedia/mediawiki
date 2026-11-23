@@ -67,7 +67,6 @@ describe( 'PUT /page/{title}', () => {
 			assert.match( sourceHeader[ 'content-type' ], /^application\/json/ );
 			checkSourceResponse( title, reqBody, sourceBody );
 
-			// eslint-disable-next-line no-unused-expressions
 			expect( res ).to.satisfyApiSpec;
 
 		} );
@@ -88,7 +87,6 @@ describe( 'PUT /page/{title}', () => {
 			const { status: editStatus, body: editBody, header: editHeader } = resEdit;
 			assert.equal( editStatus, 201 );
 			assert.match( editHeader[ 'content-type' ], /^application\/json/ );
-			// eslint-disable-next-line no-unused-expressions
 			expect( resEdit ).to.satisfyApiSpec;
 
 			checkEditResponse( title, reqBody, editBody );
@@ -98,7 +96,6 @@ describe( 'PUT /page/{title}', () => {
 			assert.equal( sourceStatus, 200 );
 			assert.match( sourceHeader[ 'content-type' ], /^application\/json/ );
 			checkSourceResponse( title, reqBody, sourceBody );
-			// eslint-disable-next-line no-unused-expressions
 			expect( resGet ).to.satisfyApiSpec;
 		} );
 
@@ -125,7 +122,6 @@ describe( 'PUT /page/{title}', () => {
 			assert.match( editHeader[ 'content-type' ], /^application\/json/ );
 			checkEditResponse( title, reqBody, editBody );
 			assert.isAbove( editBody.latest.id, firstRev.id );
-			// eslint-disable-next-line no-unused-expressions
 			expect( resEdit ).to.satisfyApiSpec;
 
 			const resGet = await client.get( `${ pathPrefix }/page/${ normalizedTitle }` );
@@ -133,7 +129,6 @@ describe( 'PUT /page/{title}', () => {
 			assert.equal( sourceStatus, 200 );
 			assert.match( sourceHeader[ 'content-type' ], /^application\/json/ );
 			checkSourceResponse( title, reqBody, sourceBody );
-			// eslint-disable-next-line no-unused-expressions
 			expect( resGet ).to.satisfyApiSpec;
 		} );
 
@@ -159,7 +154,6 @@ describe( 'PUT /page/{title}', () => {
 
 			// No revision was created, new ID is the same as the old ID
 			assert.equal( editBody.latest.id, firstRev.newrevid );
-			// eslint-disable-next-line no-unused-expressions
 			expect( resp ).to.satisfyApiSpec;
 		} );
 
@@ -188,7 +182,6 @@ describe( 'PUT /page/{title}', () => {
 			const expectedText = 'FIRST LINE\nlorem ipsum\nSECOND LINE';
 
 			assert.nestedPropertyVal( editBody, 'source', expectedText );
-			// eslint-disable-next-line no-unused-expressions
 			expect( res ).to.satisfyApiSpec;
 		} );
 	} );

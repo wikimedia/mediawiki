@@ -188,6 +188,8 @@ module.exports = defineConfig( [
 		extends: [ wikimedia( 'server', 'mocha' ) ],
 		rules: {
 			camelcase: 'off',
+			// Triggers for Chai assertions like `expect( foo ).to.blahBlah;`
+			'no-unused-expressions': 'off',
 			'mocha/no-setup-in-describe': 'off',
 			'security/detect-non-literal-regexp': 'off'
 		}

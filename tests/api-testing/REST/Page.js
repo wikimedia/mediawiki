@@ -89,7 +89,6 @@ describe( 'Page Source', () => {
 			assert.deepEqual( status, 200, text );
 			assert.match( headers[ 'content-type' ], /^application\/json/ );
 			assert.match( redirect_target, new RegExp( `/page/${ encodeURIComponent( redirectedPageDbKey ) }\\?redirect=no$` ) );
-			// eslint-disable-next-line no-unused-expressions
 			expect( res ).to.satisfyApiSpec;
 		} );
 
@@ -104,7 +103,6 @@ describe( 'Page Source', () => {
 			assert.nestedPropertyVal( body, 'title', pageWithSpaces );
 			assert.nestedPropertyVal( body, 'key', utils.dbkey( page ) );
 			assert.nestedPropertyVal( body, 'source', baseEditText );
-			// eslint-disable-next-line no-unused-expressions
 			expect( res ).to.satisfyApiSpec;
 		} );
 		it( 'Should return 404 error for non-existent page', async () => {
@@ -160,7 +158,6 @@ describe( 'Page Source', () => {
 			assert.deepEqual( status, 200, text );
 			assert.match( headers[ 'content-type' ], /^application\/json/ );
 			assert.match( redirect_target, new RegExp( `/page/${ encodeURIComponent( redirectedPageDbKey ) }/bare\\?redirect=no$` ) );
-			// eslint-disable-next-line no-unused-expressions
 			expect( res ).to.satisfyApiSpec;
 		} );
 
@@ -174,7 +171,6 @@ describe( 'Page Source', () => {
 			assert.nestedPropertyVal( body, 'title', pageWithSpaces );
 			assert.nestedPropertyVal( body, 'key', utils.dbkey( page ) );
 			assert.match( body.html_url, new RegExp( `/page/${ encodeURIComponent( utils.dbkey( page ) ) }/html$` ) );
-			// eslint-disable-next-line no-unused-expressions
 			expect( res ).to.satisfyApiSpec;
 		} );
 		it( 'Should return 404 error for non-existent page, even if a variant exists', async () => {
@@ -271,7 +267,6 @@ describe( 'Page Source', () => {
 			const { status, text, headers } = res;
 			assert.deepEqual( status, 200, text );
 			assert.match( headers[ 'content-type' ], /^text\/html/ );
-			// eslint-disable-next-line no-unused-expressions
 			expect( res ).to.satisfyApiSpec;
 		} );
 
@@ -284,7 +279,6 @@ describe( 'Page Source', () => {
 			const { status, text, headers } = res;
 			assert.deepEqual( status, 200, text );
 			assert.match( headers[ 'content-type' ], /^text\/html/ );
-			// eslint-disable-next-line no-unused-expressions
 			expect( res ).to.satisfyApiSpec;
 		} );
 
@@ -308,7 +302,6 @@ describe( 'Page Source', () => {
 			assert.match( headers[ 'content-type' ], /^text\/html/ );
 			assert.match( text, /<html\b/ );
 			assert.match( text, /Edit \w+<\/b>/ );
-			// eslint-disable-next-line no-unused-expressions
 			expect( res ).to.satisfyApiSpec;
 		} );
 		it( 'Should expose the render ID in the HTTP headers and the document head', async () => {
@@ -334,7 +327,6 @@ describe( 'Page Source', () => {
 				'render ID in <head> must match the X-MediaWiki-Render-ID header'
 			);
 
-			// eslint-disable-next-line no-unused-expressions
 			expect( res ).to.satisfyApiSpec;
 		} );
 		it( 'Should return a 304 on if-modified-since', async () => {
@@ -360,7 +352,6 @@ describe( 'Page Source', () => {
 			assert.match( headers[ 'content-type' ], /^text\/html/ );
 			assert.match( text, /<html\b/ );
 			assert.match( text, /Start a new page/ );
-			// eslint-disable-next-line no-unused-expressions
 			expect( res ).to.satisfyApiSpec;
 		} );
 		it( 'Should return 404 error for non-existent page', async () => {
@@ -457,7 +448,6 @@ describe( 'Page Source', () => {
 			assert.match( redirect_target, new RegExp( `/page/${ encodeURIComponent( redirectedPageDbKey ) }/with_html` ) );
 			assert.deepEqual( status, 200, text );
 			assert.match( headers[ 'content-type' ], /^application\/json/ );
-			// eslint-disable-next-line no-unused-expressions
 			expect( res ).to.satisfyApiSpec;
 		} );
 
@@ -472,7 +462,6 @@ describe( 'Page Source', () => {
 			assert.nestedPropertyVal( body, 'key', utils.dbkey( page ) );
 			assert.match( body.html, /<html\b/ );
 			assert.match( body.html, /Edit \w+<\/b>/ );
-			// eslint-disable-next-line no-unused-expressions
 			expect( res ).to.satisfyApiSpec;
 		} );
 		it( 'Should successfully return page HTML and metadata for a system message', async () => {
@@ -489,7 +478,6 @@ describe( 'Page Source', () => {
 			assert.nestedPropertyVal( body.latest, 'id', 0 );
 			assert.match( body.html, /<html\b/ );
 			assert.match( body.html, /Start a new page/ );
-			// eslint-disable-next-line no-unused-expressions
 			expect( res ).to.satisfyApiSpec;
 		} );
 		it( 'Should return 404 error for non-existent page', async () => {

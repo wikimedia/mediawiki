@@ -49,7 +49,6 @@ describe( 'content/v2-beta Revision', () => {
 			assert.isOk( headers.etag, 'etag' );
 			assert.equal( Date.parse( body.timestamp ), Date.parse( headers[ 'last-modified' ] ) );
 
-			// eslint-disable-next-line no-unused-expressions
 			expect( res ).to.satisfyApiSpec;
 		} );
 
@@ -68,7 +67,6 @@ describe( 'content/v2-beta Revision', () => {
 			assert.isOk( headers.etag, 'etag' );
 			assert.equal( Date.parse( body.timestamp ), Date.parse( headers[ 'last-modified' ] ) );
 
-			// eslint-disable-next-line no-unused-expressions
 			expect( res ).to.satisfyApiSpec;
 		} );
 
@@ -91,7 +89,6 @@ describe( 'content/v2-beta Revision', () => {
 			const revDate = Date.parse( body.timestamp );
 			assert.strictEqual( revDate.valueOf() <= headerDate.valueOf(), true );
 
-			// eslint-disable-next-line no-unused-expressions
 			expect( res ).to.satisfyApiSpec;
 		} );
 
@@ -107,7 +104,6 @@ describe( 'content/v2-beta Revision', () => {
 			assert.match( body.html, /Hello World/ );
 			assert.doesNotHaveAnyKeys( body, [ 'html_url' ] );
 
-			// eslint-disable-next-line no-unused-expressions
 			expect( res ).to.satisfyApiSpec;
 		} );
 

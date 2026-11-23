@@ -134,7 +134,6 @@ describe( 'Page History', () => {
 			assert.equal( status, 200 );
 			assert.match( headers[ 'content-type' ], /^application\/json/ );
 			assert.deepEqual( body, { count: 2, limit: false }, 'Initial edit count of 2 ' );
-			// eslint-disable-next-line no-unused-expressions
 			expect( res ).to.satisfyApiSpec;
 
 			// Hack: If edits are not > 1 sec apart the latest timestamp will not not be detected.
@@ -158,14 +157,12 @@ describe( 'Page History', () => {
 			assert.equal( revHideEdits.status, 200 );
 			assert.match( revHideEdits.headers[ 'content-type' ], /^application\/json/ );
 			assert.deepEqual( revHideEdits.body, { count: 1, limit: false }, 'Edit count of 1 after hiding a revision' );
-			// eslint-disable-next-line no-unused-expressions
 			expect( revHideEdits ).to.satisfyApiSpec;
 
 			const revHideEditors = await client.get( `/v1/page/${ titleToDelete }/history/counts/editors` );
 			assert.equal( revHideEditors.status, 200 );
 			assert.match( revHideEditors.headers[ 'content-type' ], /^application\/json/ );
 			assert.deepEqual( revHideEditors.body, { count: 1, limit: false }, 'Editor count of 1 after hiding a revision' );
-			// eslint-disable-next-line no-unused-expressions
 			expect( revHideEditors ).to.satisfyApiSpec;
 
 			await utils.sleep();
@@ -186,14 +183,12 @@ describe( 'Page History', () => {
 			assert.equal( revShowEdits.status, 200 );
 			assert.match( revShowEdits.headers[ 'content-type' ], /^application\/json/ );
 			assert.deepEqual( revShowEdits.body, { count: 2, limit: false }, 'Edit count of 2 after un-hiding the hidden revision' );
-			// eslint-disable-next-line no-unused-expressions
 			expect( revShowEdits ).to.satisfyApiSpec;
 
 			const revShowEditors = await client.get( `/v1/page/${ titleToDelete }/history/counts/editors` );
 			assert.equal( revShowEditors.status, 200 );
 			assert.match( revShowEditors.headers[ 'content-type' ], /^application\/json/ );
 			assert.deepEqual( revShowEditors.body, { count: 2, limit: false }, 'Editor count of 2 after un-hiding the hidden revision' );
-			// eslint-disable-next-line no-unused-expressions
 			expect( revShowEditors ).to.satisfyApiSpec;
 		} );
 
@@ -205,7 +200,6 @@ describe( 'Page History', () => {
 			const lastTouchedTS = Date.parse( editTwo.newtimestamp );
 			const headerLastModTS = Date.parse( headers[ 'last-modified' ] );
 			assert.isAbove( headerLastModTS, lastTouchedTS );
-			// eslint-disable-next-line no-unused-expressions
 			expect( res ).to.satisfyApiSpec;
 
 		} );
@@ -219,7 +213,6 @@ describe( 'Page History', () => {
 				assert.equal( res.status, 200 );
 				assert.match( res.headers[ 'content-type' ], /^application\/json/ );
 				assert.deepEqual( res.body, { count: 9, limit: false } );
-				// eslint-disable-next-line no-unused-expressions
 				expect( res ).to.satisfyApiSpec;
 			}
 		} );
@@ -249,7 +242,6 @@ describe( 'Page History', () => {
 			assert.strictEqual( res.status, 200 );
 			assert.match( res.headers[ 'content-type' ], /^application\/json/ );
 			assert.deepEqual( res.body, { count: 5, limit: false } );
-			// eslint-disable-next-line no-unused-expressions
 			expect( res ).to.satisfyApiSpec;
 		} );
 
@@ -261,7 +253,6 @@ describe( 'Page History', () => {
 			assert.strictEqual( res.status, 200 );
 			assert.match( res.headers[ 'content-type' ], /^application\/json/ );
 			assert.deepEqual( res.body, { count: 5, limit: false } );
-			// eslint-disable-next-line no-unused-expressions
 			expect( res ).to.satisfyApiSpec;
 		} );
 
@@ -282,7 +273,6 @@ describe( 'Page History', () => {
 			assert.match( res.headers[ 'content-type' ], /^application\/json/ );
 			const expectedCount = autoCreateTempUserEnabled ? 0 : 2;
 			assert.deepEqual( res.body, { count: expectedCount, limit: false } );
-			// eslint-disable-next-line no-unused-expressions
 			expect( res ).to.satisfyApiSpec;
 		} );
 	} );
@@ -295,7 +285,6 @@ describe( 'Page History', () => {
 			assert.match( res.headers[ 'content-type' ], /^application\/json/ );
 			const expectedCount = autoCreateTempUserEnabled ? 2 : 0;
 			assert.deepEqual( res.body, { count: expectedCount, limit: false } );
-			// eslint-disable-next-line no-unused-expressions
 			expect( res ).to.satisfyApiSpec;
 		} );
 	} );
@@ -307,7 +296,6 @@ describe( 'Page History', () => {
 			assert.equal( res.status, 200 );
 			assert.match( res.headers[ 'content-type' ], /^application\/json/ );
 			assert.deepEqual( res.body, { count: 4, limit: false } );
-			// eslint-disable-next-line no-unused-expressions
 			expect( res ).to.satisfyApiSpec;
 		} );
 	} );
@@ -319,7 +307,6 @@ describe( 'Page History', () => {
 			assert.equal( res.status, 200 );
 			assert.match( res.headers[ 'content-type' ], /^application\/json/ );
 			assert.deepEqual( res.body, { count: 3, limit: false } );
-			// eslint-disable-next-line no-unused-expressions
 			expect( res ).to.satisfyApiSpec;
 		} );
 	} );
@@ -341,7 +328,6 @@ describe( 'Page History', () => {
 			assert.match( res.headers[ 'content-type' ], /^application\/json/ );
 			const expectedCount = autoCreateTempUserEnabled ? 5 : 4;
 			assert.deepEqual( res.body, { count: expectedCount, limit: false } );
-			// eslint-disable-next-line no-unused-expressions
 			expect( res ).to.satisfyApiSpec;
 		} );
 
@@ -353,7 +339,6 @@ describe( 'Page History', () => {
 			assert.strictEqual( res.status, 200 );
 			assert.match( res.headers[ 'content-type' ], /^application\/json/ );
 			assert.deepEqual( res.body, { count: 3, limit: false } );
-			// eslint-disable-next-line no-unused-expressions
 			expect( res ).to.satisfyApiSpec;
 		} );
 
@@ -365,7 +350,6 @@ describe( 'Page History', () => {
 			assert.strictEqual( res.status, 200 );
 			assert.match( res.headers[ 'content-type' ], /^application\/json/ );
 			assert.deepEqual( res.body, { count: 3, limit: false } );
-			// eslint-disable-next-line no-unused-expressions
 			expect( res ).to.satisfyApiSpec;
 		} );
 	} );
@@ -380,7 +364,6 @@ describe( 'Page History', () => {
 			res.body.revisions
 				.forEach( ( rev, i ) => assert.deepNestedInclude( rev, edits.all[ i ] ) );
 			assert.include( res.body.latest, `page/${ title }/history` );
-			// eslint-disable-next-line no-unused-expressions
 			expect( res ).to.satisfyApiSpec;
 
 			await assertGetStatus( res.body.latest );
@@ -395,7 +378,6 @@ describe( 'Page History', () => {
 			res.body.revisions
 				.forEach( ( rev, i ) => assert.deepNestedInclude( rev, edits.anon[ i ] ) );
 			assert.include( res.body.latest, `page/${ title }/history?filter=anonymous` );
-			// eslint-disable-next-line no-unused-expressions
 			expect( res ).to.satisfyApiSpec;
 
 			await assertGetStatus( res.body.latest );
@@ -410,7 +392,6 @@ describe( 'Page History', () => {
 			res.body.revisions
 				.forEach( ( rev, i ) => assert.deepNestedInclude( rev, edits.bot[ i ] ) );
 			assert.include( res.body.latest, `page/${ title }/history?filter=bot` );
-			// eslint-disable-next-line no-unused-expressions
 			expect( res ).to.satisfyApiSpec;
 		} );
 
@@ -423,7 +404,6 @@ describe( 'Page History', () => {
 			res.body.revisions
 				.forEach( ( rev, i ) => assert.deepNestedInclude( rev, edits.reverts[ i ] ) );
 			assert.include( res.body.latest, `page/${ title }/history?filter=reverted` );
-			// eslint-disable-next-line no-unused-expressions
 			expect( res ).to.satisfyApiSpec;
 		} );
 
@@ -452,9 +432,7 @@ describe( 'Page History', () => {
 
 			assert.equal( res1a.headers[ 'last-modified' ], res1b.headers[ 'last-modified' ] );
 			assert.equal( res1a.headers.etag, res1b.headers.etag );
-			// eslint-disable-next-line no-unused-expressions
 			expect( res1a ).to.satisfyApiSpec;
-			// eslint-disable-next-line no-unused-expressions
 			expect( res1b ).to.satisfyApiSpec;
 
 			const edit2 = await alice.edit( title2, { text: 'New Content', summary: 'poke page' } );
@@ -465,7 +443,6 @@ describe( 'Page History', () => {
 
 			assert.equal( Date.parse( res2.headers[ 'last-modified' ] ),
 				Date.parse( edit2.newtimestamp ) );
-			// eslint-disable-next-line no-unused-expressions
 			expect( res2 ).to.satisfyApiSpec;
 
 			assert.notEqual( res1a.headers.etag, res2.headers.etag );
@@ -485,7 +462,6 @@ describe( 'Page History', () => {
 				.forEach( ( rev, i ) => assert.deepNestedInclude( rev, expected[ i ] ) );
 			assert.include( res.body.latest, `page/${ title }/history` );
 			assert.include( res.body.older, `page/${ title }/history?older_than=${ expected[ expected.length - 1 ].id }` );
-			// eslint-disable-next-line no-unused-expressions
 			expect( res ).to.satisfyApiSpec;
 		} );
 
@@ -503,7 +479,6 @@ describe( 'Page History', () => {
 			assert.include( res.body.newer, `page/${ title }/history?newer_than=${ expected[ 0 ].id }` );
 
 			await assertGetStatus( res.body.newer );
-			// eslint-disable-next-line no-unused-expressions
 			expect( res ).to.satisfyApiSpec;
 		} );
 
@@ -520,7 +495,6 @@ describe( 'Page History', () => {
 			assert.include( res.body.older, `page/${ title }/history?filter=bot&older_than=${ edits.bot[ 1 ].id }` );
 
 			await assertGetStatus( res.body.older );
-			// eslint-disable-next-line no-unused-expressions
 			expect( res ).to.satisfyApiSpec;
 		} );
 

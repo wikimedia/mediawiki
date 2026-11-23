@@ -26,7 +26,6 @@ describe( 'Page media links', () => {
 			} );
 			const { status } = res;
 			assert.deepEqual( status, 200 );
-			// eslint-disable-next-line no-unused-expressions
 			expect( res ).to.satisfyApiSpec;
 
 		} );

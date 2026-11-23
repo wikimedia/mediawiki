@@ -62,7 +62,6 @@ describe( 'POST /pages:move', () => {
 			assert.equal( sourceGet.status, 307 );
 			assert.match( sourceGet.header.location, new RegExp( utils.dbkey( to ) ) );
 
-			// eslint-disable-next-line no-unused-expressions
 			expect( res ).to.satisfyApiSpec;
 		} );
 
@@ -83,7 +82,6 @@ describe( 'POST /pages:move', () => {
 			assert.equal( res.status, 200 );
 			assert.nestedPropertyVal( res.body, 'to', to );
 
-			// eslint-disable-next-line no-unused-expressions
 			expect( res ).to.satisfyApiSpec;
 		} );
 
@@ -126,7 +124,6 @@ describe( 'POST /pages:move', () => {
 			assert.sameTitle( body.subpages[ 0 ].from, fromSubpage );
 			assert.nestedProperty( body.subpages[ 0 ], 'to' );
 
-			// eslint-disable-next-line no-unused-expressions
 			expect( res ).to.satisfyApiSpec;
 		} );
 
@@ -154,7 +151,6 @@ describe( 'POST /pages:move', () => {
 			const sourceGet = await client.get( `/v1/page/${ utils.dbkey( from ) }/bare` );
 			assert.equal( sourceGet.status, 404 );
 
-			// eslint-disable-next-line no-unused-expressions
 			expect( res ).to.satisfyApiSpec;
 		} );
 	} );
@@ -311,7 +307,6 @@ describe( 'POST /pages:move', () => {
 			assert.equal( sourceGet.status, 307 );
 			assert.match( sourceGet.header.location, new RegExp( utils.dbkey( to ) ) );
 
-			// eslint-disable-next-line no-unused-expressions
 			expect( res ).to.satisfyApiSpec;
 		} );
 

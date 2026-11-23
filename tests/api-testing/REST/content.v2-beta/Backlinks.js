@@ -69,7 +69,6 @@ describe( 'GET /pages/{title}/backlinks', () => {
 		it( 'should return a response that satisfies the OpenAPI spec', async () => {
 			const res = await client.get( backlinksUrl( randomPage ) );
 
-			// eslint-disable-next-line no-unused-expressions
 			expect( res ).to.satisfyApiSpec;
 		} );
 

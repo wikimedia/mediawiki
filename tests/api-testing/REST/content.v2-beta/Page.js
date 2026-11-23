@@ -90,7 +90,6 @@ describe( 'content/v2-beta Page', () => {
 				body.html_url,
 				new RegExp( `${ pathPrefix }/pages/${ encodeURIComponent( utils.dbkey( page ) ) }/html$` )
 			);
-			// eslint-disable-next-line no-unused-expressions
 			expect( res ).to.satisfyApiSpec;
 		} );
 
@@ -107,7 +106,6 @@ describe( 'content/v2-beta Page', () => {
 			assert.nestedPropertyVal( body, 'title', pageWithSpaces );
 			assert.nestedPropertyVal( body, 'key', utils.dbkey( page ) );
 			assert.nestedPropertyVal( body, 'source', baseEditText );
-			// eslint-disable-next-line no-unused-expressions
 			expect( res ).to.satisfyApiSpec;
 		} );
 
@@ -123,7 +121,6 @@ describe( 'content/v2-beta Page', () => {
 			assert.nestedPropertyVal( body, 'title', pageWithSpaces );
 			assert.match( body.html, /<html\b/ );
 			assert.match( body.html, /Edit \w+<\/b>/ );
-			// eslint-disable-next-line no-unused-expressions
 			expect( res ).to.satisfyApiSpec;
 		} );
 
@@ -138,7 +135,6 @@ describe( 'content/v2-beta Page', () => {
 			assert.nestedPropertyVal( body, 'source', baseEditText );
 			assert.match( body.html, /<html\b/ );
 			assert.match( body.html, /Edit \w+<\/b>/ );
-			// eslint-disable-next-line no-unused-expressions
 			expect( res ).to.satisfyApiSpec;
 		} );
 
@@ -294,7 +290,6 @@ describe( 'content/v2-beta Page', () => {
 			assert.deepEqual( pathname.endsWith( `${ pathPrefix }/pages/${ encodeURIComponent( redirectedPageDbKey ) }` ), true, pathname );
 			assert.include( search, 'prop=source' );
 			assert.include( search, 'redirect=no' );
-			// eslint-disable-next-line no-unused-expressions
 			expect( res ).to.satisfyApiSpec;
 		} );
 
@@ -348,7 +343,6 @@ describe( 'content/v2-beta Page', () => {
 			assert.match( headers[ 'content-type' ], /^application\/json/ );
 			assert.match( redirect_target, new RegExp( `/pages/${ encodeURIComponent( redirectedPageDbKey ) }` ) );
 			assert.match( html, /<html\b/ );
-			// eslint-disable-next-line no-unused-expressions
 			expect( res ).to.satisfyApiSpec;
 		} );
 
@@ -372,7 +366,6 @@ describe( 'content/v2-beta Page', () => {
 			assert.match( headers[ 'content-type' ], /^text\/html/ );
 			assert.match( text, /<html\b/ );
 			assert.match( text, /Edit \w+<\/b>/ );
-			// eslint-disable-next-line no-unused-expressions
 			expect( res ).to.satisfyApiSpec;
 		} );
 

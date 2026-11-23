@@ -45,7 +45,6 @@ describe( 'Revision', () => {
 			assert.equal( Date.parse( body.timestamp ), Date.parse( headers[ 'last-modified' ] ) );
 			assert.nestedPropertyVal( body, 'source', 'Hello World' );
 
-			// eslint-disable-next-line no-unused-expressions
 			expect( res ).to.satisfyApiSpec;
 		} );
 
@@ -73,7 +72,6 @@ describe( 'Revision', () => {
 			assert.equal( Date.parse( body.timestamp ), Date.parse( headers[ 'last-modified' ] ) );
 			assert.nestedProperty( body, 'html_url' );
 
-			// eslint-disable-next-line no-unused-expressions
 			expect( res ).to.satisfyApiSpec;
 		} );
 
@@ -137,7 +135,6 @@ describe( 'Revision', () => {
 			const revDate = Date.parse( body.timestamp );
 			assert.strictEqual( revDate.valueOf() <= headerDate.valueOf(), true );
 
-			// eslint-disable-next-line no-unused-expressions
 			expect( res ).to.satisfyApiSpec;
 
 		} );

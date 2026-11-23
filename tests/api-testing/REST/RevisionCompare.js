@@ -42,7 +42,6 @@ describe( 'Revision Compare', () => {
 			assert.nestedPropertyVal( body, 'to.id', revId2 );
 			assert.nestedProperty( body, 'diff' );
 			assert.isArray( body.diff );
-			// eslint-disable-next-line no-unused-expressions
 			expect( response ).to.satisfyApiSpec;
 		} );
 

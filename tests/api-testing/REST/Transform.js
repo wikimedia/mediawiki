@@ -90,12 +90,10 @@ function contentTypeMatcher( expectedMime, expectedSpec, expectedVersion ) {
 }
 
 function validateSpec( response ) {
-	// eslint-disable-next-line no-unused-expressions
 	expect( response ).to.satisfyApiSpec;
 }
 
 function validateDefaultSpec( response ) {
-
 	expect( response.body ).to.satisfySchemaInApiSpec( 'GenericErrorResponseModel' );
 }
 

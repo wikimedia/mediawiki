@@ -73,7 +73,6 @@ describe( 'POST /page', () => {
 			const { status: editStatus, body: editBody, header } = newPage;
 			assert.equal( editStatus, 201 );
 			assert.match( header[ 'content-type' ], /^application\/json/ );
-			// eslint-disable-next-line no-unused-expressions
 			expect( newPage ).to.satisfyApiSpec;
 
 			assert.nestedProperty( header, 'location' );
@@ -95,7 +94,6 @@ describe( 'POST /page', () => {
 			assert.match( sourceHeader[ 'content-type' ], /^application\/json/ );
 			checkSourceResponse( title, reqBody, sourceBody );
 
-			// eslint-disable-next-line no-unused-expressions
 			expect( res ).to.satisfyApiSpec;
 
 		} );
@@ -119,7 +117,6 @@ describe( 'POST /page', () => {
 
 			assert.equal( editStatus, 201 );
 			assert.match( editHeader[ 'content-type' ], /^application\/json/ );
-			// eslint-disable-next-line no-unused-expressions
 			expect( newPage ).to.satisfyApiSpec;
 			checkEditResponse( title, reqBody, editBody );
 
@@ -129,7 +126,6 @@ describe( 'POST /page', () => {
 			assert.match( sourceHeader[ 'content-type' ], /^application\/json/ );
 			checkSourceResponse( title, reqBody, sourceBody );
 
-			// eslint-disable-next-line no-unused-expressions
 			expect( res ).to.satisfyApiSpec;
 
 		} );
