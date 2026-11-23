@@ -603,7 +603,9 @@
 		if ( mw.config.get( 'wgUserVariant' ) ) {
 			params.variant = mw.config.get( 'wgUserVariant' );
 		}
-		if ( section ) {
+		// When the page does not exist yet, the new content is the whole page, and the
+		// compare API cannot replace a section without a 'to' revision (T437325).
+		if ( section && pageExists ) {
 			params[ 'tosection-main' ] = section;
 		}
 		if ( !pageExists ) {
