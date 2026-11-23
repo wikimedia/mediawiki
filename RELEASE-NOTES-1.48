@@ -103,6 +103,11 @@ For notes on 1.47.x and older releases, see HISTORY.
 * The new DeferredBlockMaterializer service materializes deferred blocks.
   UserAuthority uses it in authorizeWrite() and authorizeAction(), when the
   user of the session attempts an action that a deferred block prevents.
+* (T443789) TitleDef has a new PARAM_ALLOW_ID setting, to accept a page ID
+  formatted like "#123" instead of a title. PARAM_RETURN_OBJECT can now be set
+  to TitleDef::TITLE_PARAM_VALUE, to get a TitleParam that has the page next to
+  the title as requested. TitleDef::LINK_TARGET_VALUE replaces true, which is
+  still accepted.
 * …
 
 === External library changes in 1.48 ===

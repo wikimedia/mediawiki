@@ -2575,6 +2575,7 @@ $wgAutoloadLocalClasses = [
 	'MediaWiki\\ParamValidator\\TypeDef\\NamespaceDef' => __DIR__ . '/includes/ParamValidator/TypeDef/NamespaceDef.php',
 	'MediaWiki\\ParamValidator\\TypeDef\\TagsDef' => __DIR__ . '/includes/ParamValidator/TypeDef/TagsDef.php',
 	'MediaWiki\\ParamValidator\\TypeDef\\TitleDef' => __DIR__ . '/includes/ParamValidator/TypeDef/TitleDef.php',
+	'MediaWiki\\ParamValidator\\TypeDef\\TitleParam' => __DIR__ . '/includes/ParamValidator/TypeDef/TitleParam.php',
 	'MediaWiki\\ParamValidator\\TypeDef\\UserDef' => __DIR__ . '/includes/ParamValidator/TypeDef/UserDef.php',
 	'MediaWiki\\Parser\\BlockLevelPass' => __DIR__ . '/includes/Parser/BlockLevelPass.php',
 	'MediaWiki\\Parser\\CacheTime' => __DIR__ . '/includes/Parser/CacheTime.php',
