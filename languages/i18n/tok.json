@@ -1184,7 +1184,6 @@
 	"illegal-filename": "nimi sitelen ni li ken ala.",
 	"unknown-error": "pakala pi sona ala li lon.",
 	"tmp-create-error": "mi ken ala pali e sitelen pi tenpo lili.",
-	"tmp-write-error": "mi alasa pali e sitelen pi tenpo lili la pakala.",
 	"large-file": "suli $1 la sitelen li suli la, ni li ken ike.\nsuli pi sitelen ni li $2.",
 	"largefileserver": "ilo sona li ken ala e sitelen pi suli suli ni.",
 	"emptyfile": "tawa mi la ala li lon sitelen sina.\nken la sina pakala e nimi.\nsina wile ala wile pana e sitelen ni?",

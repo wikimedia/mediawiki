@@ -1024,7 +1024,6 @@
 	"confirmemail_sent": "E-mail pa konfirmashon mandá.",
 	"confirmemail_invalid": "Kódigo di konfirmashon inbálido. \nTa posibel ku e kódigo a kaduká.",
 	"confirmemail_needlogin": "Bo mester $1 pa konfirmá bo e-mail adrès.",
-	"confirmemail_success": "Bo e-mail adrès tabata konfirmá. Bo por outentiká bo mes i gosa di {{SITENAME}}.",
 	"confirmemail_loggedin": "Bo e-mail adrès ta konfirmá.",
 	"confirmemail_subject": "{{SITENAME}}: Konfirmashon di e-mail adrès",
 	"confirmemail_body": "Un hende, probablemente abo, di IP adrès $1, a registrá un kuenta \"$2\" ku e email adrès aki riba {{SITENAME}}.\n\nPa konfirmá ku e kuenta aki en berdat ta di bo i pa aktivá funshon di email riba {{SITENAME}}, habri e link aki den bo browser:\n\n$3\n\nSi bo *no* registrá e kuenta, sigui e link aki pa kanselá e konfirmashon di email adrès:\n\n$5\n\nE kódigo di konfirmashon aki lo kaduká riba $4.",

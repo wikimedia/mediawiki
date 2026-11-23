@@ -1249,7 +1249,6 @@
 	"confirmemail_sendfailed": "Kinnütüskiri jäi saatmalda. Kaeq, kas su annõtun aadrõssin olõ-i keeletüid märke. Postiprogramm saat tagasi: $1",
 	"confirmemail_invalid": "Kõlbmalda kinnütüskuud. Taa või ollaq vanaslännüq.",
 	"confirmemail_needlogin": "Uma e-postiaadrõsi kinnütämises $1.",
-	"confirmemail_success": "Su e-postiaadrõs om no ärq kinnütet. Võit nimega sisse minnäq.",
 	"confirmemail_loggedin": "Su e-postiaadrõs om no ärq kinnütet.",
 	"confirmemail_subject": "{{SITENAME}} e-postiaadrõsi kinnütämine",
 	"confirmemail_body": "Kiäki, arvadaq saq esiq, lõi puutri võrgoaadrõsi $1 päält {{SITENAME}} pruukjanime $2. Ku taa om tõtõstõ suq pruukjanimi, tiiq vallalõ link: $3. Ku taa *olõ-i* suq luud pruukjanimi, sis teku-i midägi. Kinnütüskuud lätt vanas $4.",

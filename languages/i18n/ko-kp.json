@@ -723,7 +723,6 @@
 	"uploadlogpage": "올리적재 일지",
 	"filedesc": "서류의 설명",
 	"unknown-error": "알수 없는 오유가 발생했습니다.",
-	"tmp-write-error": "림시서류를 쓰는데 오유가 발생했습니다.",
 	"upload-file-error": "내부오유",
 	"upload-misc-error": "알수 없는 올리적재 오유",
 	"upload-http-error": "HTTP 오유 발생: $1",

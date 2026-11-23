@@ -1238,7 +1238,6 @@
 	"confirmemail_sendfailed": "Litteras electronicas adfirmationis non potuimus mittere.\nInspice inscriptionem tuam electronicam ut litteras prohibitas invenias.\n\nNuntius reddidit: $1",
 	"confirmemail_invalid": "Codex adfirmationis invalidus. Fortasse id exitum est.",
 	"confirmemail_needlogin": "Necesse est tibi $1 ut inscriptionem tuam electronicam adfirmes.",
-	"confirmemail_success": "Inscriptio electronica confirmata est.\n[[Special:UserLogin|Nomen tuum dare]] et {{grammar:ablative|{{SITENAME}}}} frui licet.",
 	"confirmemail_loggedin": "Inscriptio tua electronica iam adfirmata est.",
 	"confirmemail_subject": "{{SITENAME}} - Adfirmatio inscriptionis electronicae",
 	"confirmemail_body": "Aliquis (haud scimus an tute ipse, ex loco IP $1)\nusori \"$2\" nomen imposuit apud {{grammar:accusative|{{SITENAME}}}} data hac inscriptione electronica.\n\nUt confirmes te ipsum tibi hoc nomen imposuisse utque communicatio electronica tractetur, sicut instituta est apud {{grammar:accusative|{{SITENAME}}}}, hunc nexum aperi in navigatro interretiali:\n\n$3\n\nSi *alius* hoc fecit ac tu, hunc nexum sequere\nad confirmationem inscriptionis electronicae abrogandam:\n\n$5\n\nHaec confirmandi facultas valebit usque ad $4.",

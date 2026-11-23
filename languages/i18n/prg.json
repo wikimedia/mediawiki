@@ -1375,7 +1375,6 @@
 	"confirmemail_sendfailed": "{{SITENAME}} ni mazēi tengīntun ti padrūktinsnas e-mail pēismenin.\nMadli izbandais swajjan e-mail adressin, ana ni turri ēn sen blāndan.\n\nPustis sistēman ast etwārtai wartīwus pawakīsenin: $1",
 	"confirmemail_invalid": "Titikrōmiskan padrūktinsnas kōdan.\nKōdan mazzi būtwei jāu ni aktuālin.",
 	"confirmemail_needlogin": "Tu turri $1 kāi padrūktinlai swajjan e-mail adressin.",
-	"confirmemail_success": "Twajā e-mail adressi pastāi padrūktintan.\nTu mazzi jāu [[Special:UserLogin|enēitwei]] be tuldītun si sen wiki.",
 	"confirmemail_loggedin": "Twajā e-mail adressi pastāi padrūktintan.",
 	"confirmemail_subject": "{{SITENAME}} e-mail adressis",
 	"confirmemail_invalidated": "E-mailas adressis padrūktinsna naikīntan",

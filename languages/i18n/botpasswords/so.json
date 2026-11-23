@@ -12,6 +12,7 @@
 	"botpasswords-createnew": "Abuur furaha sirta ah ee bot-ka cusub",
 	"botpasswords-editexisting": "Wax ka beddel furaha sirta ah ee bot-ka jira",
 	"botpasswords-label-needsreset": "(waa in furaha sirta dib loo dejiyo)",
+	"botpasswords-reset-instructions": "Si aad dib ugu dejiso furaha sirta ah ee bot-ka: guji gelinta ku habboon ee hoose, calaamadee \"$1\", dabadeed guji \"$2\". Wixii macluumaad dheeraad ah, eeg [[mw:Manual:Bot_passwords|dukumentiyada]].",
 	"botpasswords-label-appid": "Magaca bot:",
 	"botpasswords-label-create": "Abuur",
 	"botpasswords-label-update": "Cusboonaysii",

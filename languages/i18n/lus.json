@@ -567,7 +567,6 @@
 	"illegal-filename": "Taksahming phal loh.",
 	"unknown-error": "Dikhlelhna hriat loh a lo thleng.",
 	"tmp-create-error": "Taksa lailâwk a siam theih loh.",
-	"tmp-write-error": "Taksa lailâwk ziah a tlawlh",
 	"large-file": "Taksa rëng rëng $1 aia lian lo tùra duh a ni;\nhe taksa hi $2 lái a ni.",
 	"largefileserver": "Hë taksa hi rawngbawltu phaltir zât aia ritsak a ni.",
 	"windows-nonascii-filename": "Hë wiki hian taksahminga chhinchhiahna bîk tel a pawm thei lo.",

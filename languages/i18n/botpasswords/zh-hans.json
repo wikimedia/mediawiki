@@ -19,6 +19,7 @@
 	"botpasswords-createnew": "创建新的机器人密码",
 	"botpasswords-editexisting": "编辑现有的机器人密码",
 	"botpasswords-label-needsreset": "（密码需要重置）",
+	"botpasswords-reset-instructions": "要重置机器人密码：请点击下方的相应条目，勾选“$1”，然后点击“$2”。更多信息请参阅[[mw:Manual:Bot_passwords|文档]]。",
 	"botpasswords-label-appid": "机器人名称：",
 	"botpasswords-label-create": "创建",
 	"botpasswords-label-update": "更新",

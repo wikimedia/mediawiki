@@ -3,6 +3,7 @@
 		"authors": [
 			"Matma Rex",
 			"Msz2001",
+			"PanWor",
 			"Strebski",
 			"Woytecr"
 		]
@@ -17,6 +18,7 @@
 	"cdx-message-dismiss-button-label": "Zamknij",
 	"cdx-popover-close-button-label": "Zamknij",
 	"cdx-search-input-search-button-label": "Szukaj",
+	"cdx-skeleton-label": "Wczytywanie",
 	"cdx-table-select-all-label": "Zaznacz wszystkie wiersze",
 	"cdx-table-select-row-label": "Wybierz wiersz $1 z $2",
 	"cdx-table-sort-caption": "$1 (nagłówki z przyciskami umożliwiają sortowanie).",

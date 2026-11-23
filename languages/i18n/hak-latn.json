@@ -712,7 +712,6 @@
 	"confirmemail_sendfailed": "Put-nèn fat-sung khok-ngin sin-sit, chhiáng kiám-chhà sin-siông thi-tiám he-feu pâu-hàm fî-fap sṳ-ngièn.\n\nEmail chhòn-sung-yèn fì-yin: $1",
 	"confirmemail_invalid": "Mò-háu ke khok-ngin me̍t-me̍t, ke-me̍t-me̍t khó-nèn yí-kîn ko-khì.",
 	"confirmemail_needlogin": "Ngì sî-yeu $1 yî khok-ngin ngì-ke sin-siông thi-tiám.",
-	"confirmemail_success": "Ngì-ke sin-siông yí-kîn pûn khok-ngin. Ngì hien-ha khó-yî tên-liu̍k pin sṳ́-yung chhṳ́ mióng-chham liáu.",
 	"confirmemail_loggedin": "Ngì-ke sin-siông thi-tiám hien-ha yí-kîn pûn khok-ngin.",
 	"confirmemail_subject": "{{SITENAME}} sin-siông thi-tiám khok-ngin",
 	"confirmemail_body": "Yúng-yû IP thi-tiám $1 ke yung-fu (khó-nèn he ngì) chhai {{SITENAME}} chhóng-chho liáu fu-thèu  \"$2\", pin thì-kâu liáu ngì-ke email sin-siông thi-tiám.\n\nChhiáng khok-ngin liá-ke fu-thèu  he su̍k-yî ngì-ke, pin thùng-sṳ̀ khí-yung chhai {{SITENAME}} sông ke email sin-siông kûng-nèn. Chhiáng chhai hi-khí chûng tá-khôi ha-mien ke lièn-kiet: $3\n\nKó-yèn ngì *mò-yû* thì-chhut liá-ke chhiáng-khiù,  chhiáng put-yeu tiám-kit Chhṳ́ lièn-kiet. Khok-ngin me̍t-me̍t chiông-voi chhai $4 ko-khì.",

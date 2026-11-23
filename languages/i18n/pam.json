@@ -1153,7 +1153,6 @@
 	"confirmemail_sendfailed": "E miparala ing sulat ning kumpirmasiun.\nPakabasan me ing address, pota atin yang letra/kulit a e maliari.\n\nMisubli ya mailer: $1",
 	"confirmemail_invalid": "E ustu ing confirmation code.\nMapaliaring mepasu ne ing code.",
 	"confirmemail_needlogin": "Kailangan mung $1 ba meng akumpirma ing kekang e-mail address.",
-	"confirmemail_success": "Mekumpirma ne ing kekang e-mail address.\nMaliari na kang mag-login at gumamit king wiki.",
 	"confirmemail_loggedin": "Mekumpirma ne ing kekang e-mail address.",
 	"confirmemail_subject": "Pamagkumpirma na king e-mail address ning {{SITENAME}}",
 	"confirmemail_body": "Ating tau, mapaliaring ika, ibat king IP address $1,\ning migrehistrung account a \"$2\" a maki e-mail address a anti kaniti king {{SITENAME}}.\n\nBa mung kumpirmang keka ya pin ing account a ini at paganan mo\nreng gamit a pang e-mal (e-mail features) king {{SITENAME}}, busni me ining suglung king kekang browser:\n\n$3\n\nNung *aliwa* ika ing migrehistru king account, tukian me\ning suglung a ini ba meng iurung ing pamagkumpirma king e-mail address:\n\n$5\n\nMayari/mapasu ya ining confirmation code keng $4.",

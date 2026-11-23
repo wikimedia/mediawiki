@@ -630,7 +630,6 @@
 	"confirmemail_sendfailed": "Naʻe ʻikai lava ʻe ʻave ha tohila fakamoʻoniʻi. Sivi ho tuʻasila ʻoku sai ia.\n\nMailer returned: $1",
 	"confirmemail_invalid": "ʻOku taʻeʻaonga e fakamoʻoniʻi tohila, mahalo pē ʻosi mate ʻa e lea fakapulipuli.",
 	"confirmemail_needlogin": "ʻOku pau te ke $1, koeʻuhi ʻe fakamoʻoniʻi ho tuʻasila tohila.",
-	"confirmemail_success": "Kuo fakamoʻoniʻi ho tuʻasila tohila. ʻOku lava ke ke kau-ki-ai pea huaʻia ʻa e wiki.",
 	"confirmemail_loggedin": "He taimí ni kuo fakamoʻoniʻi ho tuʻasila tohila.",
 	"confirmemail_subject": "Ko e fakamoʻoniʻi ʻo e tuʻasila tohila ʻo e {{SITENAME}}",
 	"confirmemail_body": "Ko e tokotaha, mahalo pē ko koe mei he tuʻasila IP $1, naʻe lēsisita ia ha tohi kau-ki-ai \"$2\" mo e tuʻasila tohilá ni ʻi {{SITENAME}}.\n\nʻE fakamoʻoniʻi ʻa e tohí ni mo e fakamoʻui ʻene tohila ʻi {{SITENAME}}, kapau ʻoku moʻoni ʻene ʻave meiate koe, ʻe fakaava ʻa e fehokotakí ni ʻi hoʻo palausa:\n\n$3\n\nKapau ʻoku ʻikai ko koe, ʻoua ʻe fakaava ia. ʻE mate ʻa e lea fakapulipulí ni he $4.",
