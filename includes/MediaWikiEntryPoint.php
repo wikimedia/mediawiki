@@ -370,8 +370,9 @@ abstract class MediaWikiEntryPoint {
 				$maxAge = $config->get( MainConfigNames::CdnMaxageLagged );
 				$output->lowerCdnMaxage( $maxAge );
 				$request->response()->header( "X-Database-Lagged: true" );
-				wfDebugLog( 'replication',
-					"Lagged DB used; CDN cache TTL limited to $maxAge seconds" );
+				LoggerFactory::getInstance( 'rdbms' )->warning(
+					"Lagged DB used; CDN cache TTL limited to $maxAge seconds"
+				);
 			}
 
 			// Avoid long-term cache pollution due to message cache rebuild timeouts (T133069)
