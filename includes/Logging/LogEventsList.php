@@ -47,7 +47,6 @@ use UnexpectedValueException;
 use Wikimedia\IPUtils;
 use Wikimedia\ObjectCache\MapCacheLRU;
 use Wikimedia\Rdbms\IExpression;
-use Wikimedia\Rdbms\LikeMatch;
 use Wikimedia\Rdbms\LikeValue;
 
 class LogEventsList extends ContextSource {
@@ -1001,13 +1000,13 @@ class LogEventsList extends ContextSource {
 			// log entries for backwards compatibility
 			'log_params',
 			IExpression::NOT_LIKE,
-			new LikeValue( new LikeMatch( '%"blockId"%' ) )
+			new LikeValue( $dbr->anyString(), '"blockId"', $dbr->anyString() )
 		);
 		if ( $blockId !== null ) {
 			$orCondsForBlockId[] = $dbr->expr(
 				'log_params',
 				IExpression::LIKE,
-				new LikeValue( new LikeMatch( "%\"blockId\";i:$blockId;%" ) )
+				new LikeValue( $dbr->anyString(), "\"blockId\";i:$blockId;", $dbr->anyString() )
 			);
 		}
 		$conds = [ $dbr->makeList( $orCondsForBlockId, LIST_OR ) ];

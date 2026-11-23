@@ -156,8 +156,8 @@ TEXT
 			->or( $titleField, IExpression::LIKE, new LikeValue( $percent, "\r", $percent ) )
 			->or( $titleField, IExpression::LIKE, new LikeValue( $percent, "\n", $percent ) )
 			->or( $titleField, IExpression::LIKE, new LikeValue( $percent, "\t", $percent ) )
-			->or( $titleField, IExpression::LIKE, new LikeValue( '_', $percent ) )
-			->or( $titleField, IExpression::LIKE, new LikeValue( $percent, '_' ) );
+			->or( $titleField, IExpression::LIKE, new LikeValue( $dbr->anyChar(), $percent ) )
+			->or( $titleField, IExpression::LIKE, new LikeValue( $percent, $dbr->anyChar() ) );
 		$res = $dbr->newSelectQueryBuilder()
 			->select( [
 				'id' => $idField,

@@ -6,12 +6,26 @@ use InvalidArgumentException;
 use Wikimedia\Rdbms\Database\DbQuoter;
 
 /**
- * Content of like value
+ * Represents the pattern string of an SQL LIKE expression, concatenated from literal strings and
+ * syntax tokens (typically "%" and "_") wrapped in {@link LikeMatch} instances.
  *
  * @newable
  * @since 1.42
  */
 class LikeValue {
+
+	/**
+	 * We use ` instead of \ as the default LIKE escape character, since {@link DbQuoter::addQuotes}
+	 * may escape backslashes, creating problems of double escaping. The ` character has good
+	 * cross-DBMS compatibility, avoiding special operators in MS SQL like ^ and %
+	 */
+	private const string ESCAPE_CHAR = '`';
+	private const array ESCAPE_MAP = [
+		self::ESCAPE_CHAR => self::ESCAPE_CHAR . self::ESCAPE_CHAR,
+		'%'               => self::ESCAPE_CHAR . '%',
+		'_'               => self::ESCAPE_CHAR . '_',
+	];
+
 	/** @var (string|LikeMatch)[] */
 	private array $values = [];
 
@@ -42,28 +56,19 @@ class LikeValue {
 	public function toSql( DbQuoter $dbQuoter ): string {
 		$s = '';
 
-		// We use ` instead of \ as the default LIKE escape character, since addQuotes()
-		// may escape backslashes, creating problems of double escaping. The `
-		// character has good cross-DBMS compatibility, avoiding special operators
-		// in MS SQL like ^ and %
-		$escapeChar = '`';
-
 		foreach ( $this->values as $value ) {
 			if ( $value instanceof LikeMatch ) {
 				$s .= $value->toString();
 			} else {
-				$s .= $this->escapeLikeInternal( $value, $escapeChar );
+				$s .= str_replace(
+					array_keys( self::ESCAPE_MAP ),
+					self::ESCAPE_MAP,
+					$value
+				);
 			}
 		}
 
-		return $dbQuoter->addQuotes( $s ) . ' ESCAPE ' . $dbQuoter->addQuotes( $escapeChar );
+		return $dbQuoter->addQuotes( $s ) . ' ESCAPE ' . $dbQuoter->addQuotes( self::ESCAPE_CHAR );
 	}
 
-	private function escapeLikeInternal( string $s, string $escapeChar = '`' ): string {
-		return str_replace(
-			[ $escapeChar, '%', '_' ],
-			[ "{$escapeChar}{$escapeChar}", "{$escapeChar}%", "{$escapeChar}_" ],
-			$s
-		);
-	}
 }
