@@ -12,6 +12,36 @@ THIS IS NOT A RELEASE YET
 MediaWiki 1.47 is a pre-release testing branch, and is not recommended
 for use in production.
 
+=== Changes since MediaWiki 1.47.0-rc.0 ===
+Security patches and routine maintenance patches have been backported
+from the master branch.
+
+Specific release notes added since rc.0:
+* Updated composer/semver from 3.4.4 to 3.5.2.
+* Updated justinrainbow/json-schema from 5.3.4 to 6.14.0.
+* SamplingStatsdClient, deprecated since 1.43, has been removed.
+* StatsdAwareInterface, deprecated since 1.45, has been removed.
+* MediaWikiServices::getStatsdDataFactory() and
+  StatsFactory::withStatsdDataFactory(), deprecated since 1.45,
+  have been removed.
+* MediaWikiServices::getPerDbNameStatsdDataFactory(), deprecated since 1.44,
+  has been removed. Use StatsFactory with wiki ID from
+  WikiMap::getCurrentWikiId() as label instead.
+* TextSlotDiffRenderer::setStatsdDataFactory(), deprecated since 1.43,
+  has been removed.
+* CacheDependency is not stable to extend anymore, as the list of possible
+  subclasses is needed during unserialization, and no known extension
+  extended it.
+* LCStore::set() and other ways to set data in the localization cache
+  (notably the LocalisationCacheRecache and LocalisationCacheRecache hooks)
+  are restricted to JSON-compatible values plus CacheDependency subclasses.
+  Setting other values never did anything useful, and no known extension
+  did so.
+* The web2017-polyfills module has been deprecated and is now a no-op (T443153).
+* JsonLocalizer::localizeValue() is deprecated and emits deprecation warnings.
+  Use JsonLocalizer::localizeJson() or JsonLocalizer::getFormattedMessage()
+  instead.
+
 == Upgrading notes for 1.47 ==
 Don't forget to always back up your database before upgrading!
 
