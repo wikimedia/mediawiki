@@ -405,8 +405,13 @@ class LoadBalancer implements ILoadBalancerForOwner {
 		] );
 	}
 
-	/** @inheritDoc */
-	public function getReaderIndex( $group = false ) {
+	/**
+	 * @inheritDoc
+	 * @param string|false|string[] $group
+	 * @param int $flags Bitfield of class CONN_* constants of the calling connection request;
+	 *  only CONN_TRX_AUTOCOMMIT is used, to open the probe connection in the matching pool
+	 */
+	public function getReaderIndex( $group = false, int $flags = 0 ) {
 		if ( !$this->serverInfo->hasReplicaServers() ) {
 			// There is only one possible server to use (the primary)
 			return ServerInfo::WRITER_INDEX;
@@ -463,7 +468,7 @@ class LoadBalancer implements ILoadBalancerForOwner {
 		$this->loadMonitor->scaleLoads( $loads );
 
 		// Pick a server, accounting for load weights, lag, and session consistency
-		$i = $this->pickReaderIndex( $loads );
+		$i = $this->pickReaderIndex( $loads, $flags & self::CONN_TRX_AUTOCOMMIT );
 		if ( $i === false ) {
 			// Connection attempts failed
 			return false;
@@ -505,9 +510,10 @@ class LoadBalancer implements ILoadBalancerForOwner {
 	 * This will leave the server connection open within the pool for reuse
 	 *
 	 * @param array<int,int|float> $loads Map of (server index => weight) for a load group
+	 * @param int $poolFlags CONN_TRX_AUTOCOMMIT or 0; selects the pool of the probe connection
 	 * @return int|false Server index to use as the load group reader index; false on failure
 	 */
-	private function pickReaderIndex( array $loads ) {
+	private function pickReaderIndex( array $loads, int $poolFlags = 0 ) {
 		if ( $loads === [] ) {
 			throw new InvalidArgumentException( "Load group array is empty" );
 		}
@@ -549,8 +555,13 @@ class LoadBalancer implements ILoadBalancerForOwner {
 
 			// Get a connection to this server without triggering complementary connections
 			// to other servers (due to things like lag or read-only checks). We want to avoid
-			// the risk of overhead and recursion here.
-			$conn = $this->getServerConnection( $i, self::DOMAIN_ANY, self::CONN_SILENCE_ERRORS );
+			// the risk of overhead and recursion here. Use the pool of the caller, so that
+			// CONN_TRX_AUTOCOMMIT callers reuse this connection instead of opening another one.
+			$conn = $this->getServerConnection(
+				$i,
+				self::DOMAIN_ANY,
+				$poolFlags | self::CONN_SILENCE_ERRORS
+			);
 			if ( !$conn ) {
 				$this->logger->warning( __METHOD__ . ": failed connecting to $serverName" );
 				unset( $currentLoads[$i] ); // avoid this server next iteration
@@ -779,7 +790,7 @@ class LoadBalancer implements ILoadBalancerForOwner {
 		if ( $i === self::DB_PRIMARY ) {
 			$serverIndex = ServerInfo::WRITER_INDEX;
 		} elseif ( $i === self::DB_REPLICA ) {
-			$groupIndex = $this->getReaderIndex( $groups );
+			$groupIndex = $this->getReaderIndex( $groups, $flags );
 			if ( $groupIndex !== false ) {
 				// Group connection succeeded
 				$serverIndex = $groupIndex;
