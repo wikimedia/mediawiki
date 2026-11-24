@@ -132,8 +132,12 @@ class DatabaseMySQL extends Database {
 
 			$set = [];
 			if ( !$this->flagsHolder->getFlag( self::DBO_GAUGE ) ) {
-				// Abstract over any excessive MySQL defaults
-				$set[] = 'group_concat_max_len = 262144';
+				[ $variant ] = $this->getMySqlServerVariant();
+				if ( $variant !== 'MariaDB' ) {
+					// MariaDB default value is 1MB, which is enough
+					// MySQL default value is 1KB, which is too small
+					$set[] = 'group_concat_max_len = 262144';
+				}
 				// Set any custom settings defined by site config
 				// https://dev.mysql.com/doc/refman/5.7/en/innodb-parameters.html
 				foreach ( $this->connectionVariables as $var => $val ) {
