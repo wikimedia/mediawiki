@@ -1696,7 +1696,8 @@ abstract class Skin extends ContextSource {
 	private function getSidebarIcon( string $id ) {
 		switch ( $id ) {
 			case 'mainpage-description':
-				return 'home';
+				// 'home' is reserved for the user's personal Home (T434015)
+				return 'newspaper';
 			case 'randompage':
 				return 'die';
 			case 'recentchanges':
