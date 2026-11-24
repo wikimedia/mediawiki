@@ -127,6 +127,8 @@ For notes on 1.46.x and older releases, see HISTORY.
   longer read or write to the MediaWiki session store. If you access $_SESSION
   this will call the PHP built-in session handler (e.g. local tmp files).
   It is recommended to turn this off in php.ini to prevent misuse (T434399).
+* $wgForcedRawSMaxage has been removed. The caching of canonical action=raw
+  URLs is now controlled by $wgCdnMaxAge.
 * …
 
 === New user-facing features in 1.47 ===
