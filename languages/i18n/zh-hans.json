@@ -1714,6 +1714,8 @@
 	"http-curl-error": "撷取URL时出错：$1",
 	"http-bad-status": "进行HTTP请求时出现问题：$1 $2",
 	"http-internal-error": "HTTP内部错误。",
+	"http-redirect-rejected": "HTTP重定向目标被拒绝：$1",
+	"http-too-many-redirects": "该URL包含过多重定向。",
 	"upload-curl-error6": "无法访问URL",
 	"upload-curl-error6-text": "无法访问提供的URL。请检查该URL是否正确，及其网站是否在线。",
 	"upload-curl-error28": "上传超时",

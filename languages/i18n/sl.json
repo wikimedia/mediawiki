@@ -1489,6 +1489,8 @@
 	"http-curl-error": "Napaka pri pridobivanju URL-ja: $1",
 	"http-bad-status": "Med HTTP-zahtevkom je prišlo do težave: $1 $2",
 	"http-internal-error": "Notranja napaka HTTP.",
+	"http-redirect-rejected": "Cilj preusmeritve HTTP je bil zavrnjen: $1",
+	"http-too-many-redirects": "URL je vseboval preveč preusmeritev.",
 	"upload-curl-error6": "URL-ja ni bilo mogoče doseči",
 	"upload-curl-error6-text": "Navedenega naslova URL ni bilo mogoče doseči.\nProsimo, znova preverite pravilnost URL-ja in delovanje strani.",
 	"upload-curl-error28": "Časovna prekinitev nalaganja",

@@ -1590,6 +1590,8 @@
 	"http-curl-error": "Błąd pobierania z adresu $1",
 	"http-bad-status": "Wystąpił problem z realizacją żądania HTTP $1 $2",
 	"http-internal-error": "Błąd wewnętrzny HTTP.",
+	"http-redirect-rejected": "Cel przekierowania HTTP został odrzucony: $1",
+	"http-too-many-redirects": "Adres URL zawierał zbyt wiele przekierowań.",
 	"upload-curl-error6": "Adres URL jest nieosiągalny",
 	"upload-curl-error6-text": "Podany adres URL jest nieosiągalny. Upewnij się, czy podany adres URL jest prawidłowy i czy dana strona jest dostępna.",
 	"upload-curl-error28": "Upłynął limit czasu odpowiedzi",

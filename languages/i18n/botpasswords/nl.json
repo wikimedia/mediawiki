@@ -17,6 +17,7 @@
 	"botpasswords-createnew": "Een nieuw robotwachtwoord aanmaken",
 	"botpasswords-editexisting": "Een bestaand robotwachtwoord bewerken",
 	"botpasswords-label-needsreset": "(wachtwoord moet opnieuw worden ingesteld)",
+	"botpasswords-reset-instructions": "Om een robotwachtwoord opnieuw in te stellen klikt u op de betreffende optie hieronder, vinkt u “$1” aan en klikt u op “$2”. Bekijk [[mw:Manual:Bot_passwords|de documentatie]] voor meer informatie.",
 	"botpasswords-label-appid": "Naam van robot:",
 	"botpasswords-label-create": "Aanmaken",
 	"botpasswords-label-update": "Bijwerken",

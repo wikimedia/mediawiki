@@ -77,6 +77,7 @@
 	"apihelp-block-param-partial": "Gebruikers voor specifieke pagina’s of naamruimten blokkeren in plaats van de hele site.",
 	"apihelp-block-param-pagerestrictions": "Lijst met titels die de gebruiker niet mag bewerken. Geldt alleen als <var>partial</var> is ingesteld op true.",
 	"apihelp-block-param-namespacerestrictions": "Lijst met naamruimte-ID’s waarin de gebruiker niet mag bewerken. Geldt alleen als <var>partial</var> is ingesteld op true.",
+	"apihelp-block-param-createpagenamespacerestrictions": "Lijst met namespace-ID’s waarin de gebruiker geen pagina’s mag aanmaken. Dit geldt alleen als <var>partial</var> op ‘true’ staat.",
 	"apihelp-block-param-actionrestrictions": "Lijst met handelingen die de gebruiker niet mag verrichten. Geldt alleen als <var>partial</var> is ingesteld op true.",
 	"apihelp-block-example-ip-simple": "IP-adres <kbd>192.0.2.5</kbd> voor drie dagen blokkeren met een reden.",
 	"apihelp-block-example-user-complex": "Gebruiker <kbd>Vandal</kbd> voor onbepaalde tijd blokkeren met een reden, en verhinder het aanmaken van nieuwe accounts en het versturen van e-mail.",

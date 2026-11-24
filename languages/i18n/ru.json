@@ -299,7 +299,7 @@
 	"toolbox": "Инструменты",
 	"cactions": "Ещё",
 	"tool-link-userrights": "Изменить группы {{GENDER:$1|участника|участницы}}",
-	"tool-link-userrights-readonly": "Посмотреть группы {{GENDER:$1|участника|участницы}}",
+	"tool-link-userrights-readonly": "Группы {{GENDER:$1|участника|участницы}}",
 	"tool-link-emailuser": "Написать письмо {{GENDER:$1|участнику|участнице}}",
 	"imagepage": "Просмотреть страницу файла",
 	"mediawikipage": "Показать страницу сообщения",

@@ -1502,6 +1502,8 @@
 	"http-curl-error": "Ocorreu un erro ao acceder ao URL: $1",
 	"http-bad-status": "Houbo un problema durante a solicitude HTTP: $1 $2",
 	"http-internal-error": "Erro interno do HTTP.",
+	"http-redirect-rejected": "Rexeitouse o destino da redirección HTTP: $1",
+	"http-too-many-redirects": "O enderezo URL contiña moitas redireccións.",
 	"upload-curl-error6": "Non se puido acceder ao enderezo URL",
 	"upload-curl-error6-text": "Non se puido acceder ao enderezo URL especificado.\nComproba que ese enderezo URL é correcto e que o sitio está activo.",
 	"upload-curl-error28": "Rematou o tempo de espera da subida",

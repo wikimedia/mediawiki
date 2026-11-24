@@ -1475,6 +1475,8 @@
 	"http-curl-error": "Qalad ku yimid soo dejinta URL-ka: $1",
 	"http-bad-status": "Waxaa dhacay dhibaato intii lagu jiray codsiga HTTP: $1 $2",
 	"http-internal-error": "Qalad gudaha HTTP ah.",
+	"http-redirect-rejected": "Bartilmaameedka dib u jihaynta HTTP waa la diiday: $1",
+	"http-too-many-redirects": "URL-ku wuxuu lahaa dib u jihayn aad u badan.",
 	"upload-curl-error6": "Lama gaari karo URL-ka.",
 	"upload-curl-error6-text": "URL-ka la bixiyay lama gaari karo.  \nFadlan hubi in URL-ku sax yahay iyo in boggu shaqaynayo.",
 	"upload-curl-error28": "Waqtiga woo ka dhamaaday soo gelinta",

@@ -3555,7 +3555,7 @@
 	"logentry-partialblock-block-page": "muokkaamasta {{PLURAL:$1|sivua|sivuja}} $2",
 	"logentry-partialblock-block-ns": "muokkaamasta {{PLURAL:$1|nimiavaruutta|nimiavaruuksia}} $2",
 	"logentry-partialblock-block-action": "suorittamasta {{PLURAL:$1|toimintoa|toimintoja}} $2",
-	"logentry-partialblock-block-createpage-ns": "luomasta sivuja {{PLURAL:$1|nimiavaruudessa|nimiavaruuksissa}} 2",
+	"logentry-partialblock-block-createpage-ns": "luomasta sivuja {{PLURAL:$1|nimiavaruudessa|nimiavaruuksissa}} $2",
 	"logentry-partialblock-block": "$1 {{GENDER:$2|esti}} käyttäjää {{GENDER:$4|$3}} $7. Eston kesto on $5 $6",
 	"logentry-partialblock-block-multi": "$1 {{GENDER:$2|lisäsi}} käyttäjälle {{GENDER:$4|$3}} eston, joka estää $7. Eston kesto on $5 $6",
 	"logentry-partialblock-reblock": "$1 {{GENDER:$2|muutti}} käyttäjän {{GENDER:$4|$3}} eston asetuksia, estäen häntä $7. Eston kesto on $5 $6",
@@ -4070,5 +4070,7 @@
 	"table-of-contents-hide-button-aria-label": "Piilota sisällysluettelo",
 	"diff-usergroups": "$1 {{PLURAL:$1| käyttäjäryhmä|käyttäjäryhmää}}",
 	"languageselector-no-results": "Tuloksia ei löytynyt.",
-	"languageselector-invalid-input": "”$1” ei ole kelvollinen kieli."
+	"languageselector-invalid-input": "”$1” ei ole kelvollinen kieli.",
+	"mypage-disallowed-action": "Turvallisuussyistä toimintoa ”$1” ei voi käyttää toimintosivulla Special:MyPage.",
+	"import-upload-reauth-reupload": "Henkilöllisyytesi on vahvistettu. Valitse tuontitiedosto uudelleen ja lähetä se uudelleen."
 }
