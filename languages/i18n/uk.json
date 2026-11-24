@@ -4253,5 +4253,6 @@
 	"benefit-3-description": "Налаштування, які дозволяють персоналізувати свій досвід.",
 	"temp-user-unable-to-acquire": "Не вдалося отримати тимчасове ім’я облікового запису. Будь ласка спробуйте ще раз.",
 	"table-of-contents-show-button-aria-label": "Показати зміст",
-	"table-of-contents-hide-button-aria-label": "Приховати зміст"
+	"table-of-contents-hide-button-aria-label": "Приховати зміст",
+	"mypage-disallowed-action": "З безпекових міркувань дію «$1» не можна використати на сторінці «Спеціальна:Моя сторінка»."
 }

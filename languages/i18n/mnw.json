@@ -1615,6 +1615,8 @@
 	"metadata-fields": "ကာလမပံက် ပ္ဍဲ metadata table မ္ဂး ပ္ဍဲဂလာန် မေတ်သုက် Image metadata fields ဂမၠိုၚ် မပါလုပ်ဒၟံၚ်မာန်ရ၊၊ အရာတၞဟ်တအ်ဂှ် ပၞုက်လဝ် ဒှ်မာန်ရ၊၊\nလ္ပာ်မသှ်ေဒၟံၚ်တၞဟ်ဂှ်ပၞုက်လဝ်နူကဵုအတိုၚ်ဂှ်ရ။\n* make\n* model\n* datetimeoriginal\n* exposuretime\n* fnumber\n* isospeedratings\n* focallength\n* artist\n* copyright\n* imagedescription\n* gpslatitude\n* gpslongitude\n* gpsaltitude\n* dc-rights\n* copyrightowner\n* usageterms\n* webstatement\n* licenseurl\n* attributionurl\n* preferredattributionname\n* credit\n* jpegfilecomment\n* pngfilecomment\n* giffilecomment\n* usercomment\n* citydest\n* citycreated\n* headline\n* source\n* locationdest\n* dc-contributor\n* dc-coverage\n* dc-publisher\n* dc-relation\n* label\n* nickname\n* personinimage\n* disclaimer\n* event\n* objectname",
 	"namespacesall": "သီုဖအိုတ်",
 	"monthsall": "သီုဖ္အိုတ်",
+	"confirmemail": "သ္ပဒတန် ဌာန်ဒတန်အဳမေလ် မၞး",
+	"confirmemail_sent": "မပလံၚ်လဝ်အဳမေလ်မသ္ပဒတန်တုဲယျ",
 	"confirm_purge_button": "အဝ်ခေ",
 	"confirm-watch-button": "အဝ်ခေ",
 	"confirm-watch-label": "စရၚ်မမၚ်မွဲအခိၚ်ကာလ:",

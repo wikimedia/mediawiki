@@ -399,7 +399,7 @@
 	"userlogin-joinproject": "Izradite račun",
 	"createaccount": "Izrada računa",
 	"userlogin-resetpassword-link": "Zaboravili ste lozinku?",
-	"userlogin-helplink2": "Pomoć pri prijavljivanju",
+	"userlogin-helplink2": "Pomoć pri prijavi",
 	"userlogin-loggedin": "Već ste prijavljeni kao {{GENDER:$1|$1}}.\nKoristite donji obrazac da biste se prijavili kao drugi korisnik.",
 	"userlogin-reauth": "Morate se ponovo prijaviti da biste potvrdili da ste {{GENDER:$1|$1}}.",
 	"userlogin-createanother": "Izradi još jedan račun",
