@@ -2118,7 +2118,7 @@ class AuthManager implements LoggerAwareInterface {
 		$localUserIdentity = $this->userIdentityLookup->getUserIdentityByName( $username );
 		// @codeCoverageIgnoreStart
 		if ( ( !$localUserIdentity || !$localUserIdentity->isRegistered() )
-			&& $this->loadBalancer->getReaderIndex() !== 0
+			&& $this->loadBalancer->hasReplicaServers()
 		) {
 			$localUserIdentity = $this->userIdentityLookup->getUserIdentityByName(
 				$username, IDBAccessObject::READ_LATEST
