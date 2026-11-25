@@ -92,7 +92,8 @@ class ApiUnblock extends ApiBase {
 			$blockToRemove = $this->blockStore->newFromID(
 				$params['id'], true, false, $this->getAuthority()->isAllowed( 'deferredblock' )
 			);
-			if ( !$blockToRemove ) {
+			$permissionChecker = $this->permissionCheckerFactory->newChecker( $this->getAuthority() );
+			if ( !$blockToRemove || !$permissionChecker->canSeeBlock( $blockToRemove ) ) {
 				$this->dieWithError(
 					[ 'apierror-nosuchblockid', $params['id'] ],
 					'nosuchblockid' );

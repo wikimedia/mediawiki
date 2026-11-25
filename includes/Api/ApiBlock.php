@@ -90,7 +90,8 @@ class ApiBlock extends ApiBase {
 			$block = $this->blockStore->newFromID(
 				$params['id'], true, false, $this->getAuthority()->isAllowed( 'deferredblock' )
 			);
-			if ( !$block ) {
+			$permissionChecker = $this->blockPermissionCheckerFactory->newChecker( $this->getAuthority() );
+			if ( !$block || !$permissionChecker->canSeeBlock( $block ) ) {
 				$this->dieWithError(
 					[ 'apierror-nosuchblockid', $params['id'] ],
 					'nosuchblockid' );
@@ -138,10 +139,14 @@ class ApiBlock extends ApiBase {
 					}
 				}
 			} else {
-				$blocks = $this->blockStore->newListFromTarget(
-					$target, null, false, DatabaseBlockStore::AUTO_NONE,
-					$this->getAuthority()->isAllowed( 'deferredblock' )
-				);
+				// Ignore blocks that the performer cannot see
+				$permissionChecker = $this->blockPermissionCheckerFactory->newChecker( $this->getAuthority() );
+				$blocks = array_values( array_filter(
+					$this->blockStore->newListFromTarget(
+						$target, null, false, DatabaseBlockStore::AUTO_NONE, true
+					),
+					static fn ( DatabaseBlock $block ) => $permissionChecker->canSeeBlock( $block )
+				) );
 				if ( count( $blocks ) === 0 ) {
 					$status = $this->insertBlock( $target, $params );
 				} elseif ( count( $blocks ) === 1 ) {

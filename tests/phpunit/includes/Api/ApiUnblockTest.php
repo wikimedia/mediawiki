@@ -5,6 +5,8 @@ namespace MediaWiki\Tests\Api;
 use MediaWiki\Api\ApiUsageException;
 use MediaWiki\Block\DatabaseBlockStore;
 use MediaWiki\MainConfigNames;
+use MediaWiki\Permissions\UltimateAuthority;
+use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
 use MediaWiki\Title\Title;
 use MediaWiki\User\User;
 
@@ -16,6 +18,8 @@ use MediaWiki\User\User;
  * @covers \MediaWiki\Api\ApiUnblock
  */
 class ApiUnblockTest extends ApiTestCase {
+	use MockAuthorityTrait;
+
 	/** @var User */
 	private $blocker;
 
@@ -188,6 +192,38 @@ class ApiUnblockTest extends ApiTestCase {
 	public function testUnblockByBlockId() {
 		$block = $this->insertBlock();
 		$this->doUnblock( [ 'id' => $block->getId() ] );
+	}
+
+	public function testUnblockHiddenDeferredBlockByIdWithoutHideuser(): void {
+		$block = $this->insertBlock( [ 'deferred' => true, 'hideName' => true, 'hideBlock' => true ] );
+		$performer = $this->mockUserAuthorityWithoutPermissions( $this->blocker, [ 'hideuser' ] );
+
+		try {
+			$this->doApiRequestWithToken(
+				[ 'action' => 'unblock', 'id' => $block->getId() ], null, $performer
+				);
+			$this->fail( 'Expected ApiUsageException' );
+		} catch ( ApiUsageException $e ) {
+			$this->assertTrue( $e->getStatusValue()->hasMessage( 'apierror-nosuchblockid' ) );
+			foreach ( $e->getStatusValue()->getMessages() as $msg ) {
+				$this->assertStringNotContainsString(
+					$this->blockee->getName(), wfMessage( $msg )->inLanguage( 'qqx' )->text()
+				);
+			}
+		}
+		$this->assertNotNull( $this->blockStore->newFromID( $block->getId(), false, false, true ) );
+	}
+
+	public function testUnblockHiddenDeferredBlockByIdWithHideuser(): void {
+		$block = $this->insertBlock( [ 'deferred' => true, 'hideName' => true, 'hideBlock' => true ] );
+
+		[ $res ] = $this->doApiRequestWithToken(
+			[ 'action' => 'unblock', 'id' => $block->getId() ], null,
+			new UltimateAuthority( $this->blocker )
+		);
+
+		$this->assertSame( $block->getId(), $res['unblock']['id'] );
+		$this->assertNull( $this->blockStore->newFromID( $block->getId(), false, false, true ) );
 	}
 
 	public function testWatched() {

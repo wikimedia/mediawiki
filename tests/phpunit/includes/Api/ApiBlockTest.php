@@ -209,6 +209,82 @@ class ApiBlockTest extends ApiTestCase {
 		$this->doBlock( [ 'deferred' => '' ], $performer );
 	}
 
+	public function testUpdateHiddenDeferredBlockByIdWithoutHideuser(): void {
+		$block = $this->blockStore->insertBlockWithParams( [
+			'targetUser' => $this->mUser,
+			'by' => $this->getTestSysop()->getUser(),
+			'deferred' => true,
+			'hideName' => true,
+			'hideBlock' => true,
+		] );
+		$performer = $this->mockUserAuthorityWithoutPermissions(
+			$this->getTestSysop()->getUser(), [ 'hideuser' ]
+		);
+
+		try {
+			$this->doApiRequestWithToken( [
+				'action' => 'block',
+				'id' => $block->getId(),
+				'reason' => 'Some reason',
+			], null, $performer );
+			$this->fail( 'Expected ApiUsageException' );
+		} catch ( ApiUsageException $e ) {
+			$this->assertTrue( $e->getStatusValue()->hasMessage( 'apierror-nosuchblockid' ) );
+			foreach ( $e->getStatusValue()->getMessages() as $msg ) {
+				$this->assertStringNotContainsString(
+					$this->mUser->getName(), wfMessage( $msg )->inLanguage( 'qqx' )->text()
+				);
+			}
+		}
+	}
+
+	public static function provideBlockTargetWithHiddenDeferredBlock(): array {
+		return [
+			'Blocking by user name' => [
+				'byUserId' => false,
+				'params' => [],
+			],
+			'Blocking by user ID' => [
+				'byUserId' => true,
+				'params' => [],
+			],
+			'Reblocking by username' => [
+				'byUserId' => false,
+				'params' => [ 'reblock' => '' ],
+			],
+		];
+	}
+
+	/**
+	 * @dataProvider provideBlockTargetWithHiddenDeferredBlock
+	 */
+	public function testBlockTargetWithHiddenDeferredBlockWithoutHideuser( bool $byUserId, array $params ): void {
+		$hiddenBlock = $this->blockStore->insertBlockWithParams( [
+			'targetUser' => $this->mUser,
+			'by' => $this->getTestSysop()->getUser(),
+			'deferred' => true,
+			'hideName' => true,
+			'hideBlock' => true,
+		] );
+		$performer = $this->mockUserAuthorityWithoutPermissions(
+			$this->getTestSysop()->getUser(), [ 'hideuser' ]
+		);
+		if ( $byUserId ) {
+			$params['userid'] = $this->mUser->getId();
+		}
+
+		$res = $this->doBlock( $params, $performer );
+
+		$this->assertNotSame( $hiddenBlock->getId(), $res[0]['block']['id'] );
+		$this->assertFalse( $res[0]['block']['hidename'] );
+		$this->assertFalse( $res[0]['block']['deferred'] );
+
+		$hiddenBlock = $this->blockStore->newFromID( $hiddenBlock->getId(), false, false, true );
+		$this->assertNotNull( $hiddenBlock );
+		$this->assertTrue( $hiddenBlock->isDeferred() );
+		$this->assertTrue( $hiddenBlock->getHideName() );
+	}
+
 	public function testBlockWithEmailBlock() {
 		$this->overrideConfigValues( [
 			MainConfigNames::EnableEmail => true,
