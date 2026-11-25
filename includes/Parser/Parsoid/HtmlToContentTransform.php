@@ -29,7 +29,6 @@ use Wikimedia\Parsoid\Core\HtmlPageBundle;
 use Wikimedia\Parsoid\Core\ResourceLimitExceededException;
 use Wikimedia\Parsoid\Core\SelectiveUpdateData;
 use Wikimedia\Parsoid\DOM\Document;
-use Wikimedia\Parsoid\DOM\Element;
 use Wikimedia\Parsoid\Parsoid;
 use Wikimedia\Parsoid\Utils\DOMUtils;
 use Wikimedia\Stats\StatsFactory;
@@ -47,7 +46,6 @@ class HtmlToContentTransform {
 	private ?Content $originalContent = null;
 	private ?RevisionRecord $originalRevision = null;
 
-	private ?Element $originalBody = null;
 	private ?BasePageBundle $originalPageBundle = null;
 
 	private ?Document $modifiedDoc = null;
@@ -429,11 +427,6 @@ class HtmlToContentTransform {
 			->start();
 		Parsoid::downgrade( $downgrade, $pb, $this->siteConfig );
 		$timer?->stop();
-		// NOTE: Set $this->originalBody to null so getOriginalBody() will re-generate it.
-		// XXX: Parsoid::downgrade operates on the parsed Document, would be nice
-		//      if we could get that instead of getting back HTML which we have to
-		//      parse again!
-		$this->originalBody = null;
 	}
 
 	/**
