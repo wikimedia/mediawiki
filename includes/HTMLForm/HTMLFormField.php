@@ -1414,6 +1414,8 @@ abstract class HTMLFormField implements MessageLocalizer {
 	 */
 	private function lookupOptionsKeys( $options, $needsParse ) {
 		$ret = [];
+		/** @var array<string,string|int> $msgKeys */
+		$msgKeys = [];
 		$langCode = $this->mParent->getLanguageCode()->toBcp47Code();
 		foreach ( $options as $key => $value ) {
 			$msg = $this->msg( $key );
@@ -1421,14 +1423,17 @@ abstract class HTMLFormField implements MessageLocalizer {
 			if ( array_key_exists( $msgAsText, $ret ) ) {
 				LoggerFactory::getInstance( 'translation-problem' )->error(
 					'The option that uses the message key {msg_key_one} has the same translation as ' .
-					'another option in {lang}. This means that {msg_key_one} will not be used as an option.',
+					'{msg_key_two} in {lang}. This means that {msg_key_one} will not be used as an option.',
 					[
 						'msg_key_one' => $key,
+						// @phan-suppress-next-line PhanTypeInvalidDimOffset False positive
+						'msg_key_two' => $msgKeys[$msgAsText],
 						'lang' => $langCode,
 					]
 				);
 				continue;
 			}
+			$msgKeys[$msgAsText] = $key;
 			$ret[$msgAsText] = is_array( $value )
 				? $this->lookupOptionsKeys( $value, $needsParse )
 				: strval( $value );

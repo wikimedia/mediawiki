@@ -665,4 +665,46 @@ class HTMLFormFieldTest extends MediaWikiIntegrationTestCase {
 			'Null' => [ null ]
 		];
 	}
+
+	public function testLookupOptionsKeysDuplicateTranslationLogsOtherKey() {
+		$logger = new \TestLogger( true, null, true );
+		$this->setLogger( 'translation-problem', $logger );
+
+		$parent = $this->getNewForm( [] );
+		$field = new class( [
+			'parent' => $parent,
+			'fieldname' => 'test_field',
+		] ) extends HTMLFormField {
+			public function getInputHTML( $value ) {
+				return '';
+			}
+
+			public function msg( $key, ...$params ) {
+				return new \RawMessage( 'DuplicateLabel' );
+			}
+		};
+
+		$wrapper = TestingAccessWrapper::newFromObject( $field );
+		$options = $wrapper->lookupOptionsKeys( [
+			'msg_key_one' => 'val1',
+			'msg_key_two' => 'val2',
+		], false );
+
+		$this->assertEquals( [ 'DuplicateLabel' => 'val1' ], $options );
+		$this->assertArrayEquals(
+			[
+				[
+					\Psr\Log\LogLevel::ERROR,
+					'The option that uses the message key {msg_key_one} has the same translation as ' .
+					'{msg_key_two} in {lang}. This means that {msg_key_one} will not be used as an option.',
+					[
+						'msg_key_one' => 'msg_key_two',
+						'msg_key_two' => 'msg_key_one',
+						'lang' => 'en',
+					],
+				],
+			],
+			$logger->getBuffer()
+		);
+	}
 }
