@@ -2,6 +2,7 @@
 
 use MediaWiki\Actions\ActionEntryPoint;
 use MediaWiki\Context\RequestContext;
+use MediaWiki\Exception\HttpError;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Tests\MockEnvironment;
 use MediaWiki\Title\Title;
@@ -93,6 +94,27 @@ class RawActionTest extends MediaWikiIntegrationTestCase {
 			200,
 			'public, s-maxage=3600, max-age=300'
 		];
+		yield 'Import JS from non-existing page (CDN on)' => [
+			'/w/index.php?title=MediaWiki:Notfound.js&action=raw&ctype=text/javascript',
+			[],
+			false,
+			200,
+			'public, s-maxage=3600, max-age=300'
+		];
+		yield 'Import JS from unregistered user (CDN on)' => [
+			'/w/index.php?title=User:RawActionTestUnreg/some.js&action=raw&ctype=text/javascript',
+			[],
+			false,
+			403,
+			'public, s-maxage=3600, max-age=300'
+		];
+		yield 'Import JS from unprotected namespace (CDN on)' => [
+			'/w/index.php?title=Help:RawActionTest.js&action=raw&ctype=text/javascript',
+			[],
+			false,
+			403,
+			'public, s-maxage=3600, max-age=300'
+		];
 		yield 'JS page without ctype (CDN on)' => [
 			'/w/index.php?title=MediaWiki:Foo.js&action=raw',
 			[],
@@ -105,6 +127,27 @@ class RawActionTest extends MediaWikiIntegrationTestCase {
 			[],
 			false,
 			200,
+			'public, s-maxage=5, max-age=5'
+		];
+		yield 'JS page non-existing (CDN on)' => [
+			'/w/index.php?title=MediaWiki:Notfound.js&action=raw',
+			[],
+			true,
+			404,
+			'public, s-maxage=5, max-age=5'
+		];
+		yield 'JS page from unregistered user (CDN on)' => [
+			'/w/index.php?title=User:RawActionTestUnreg/some.js&action=raw',
+			[],
+			true,
+			404,
+			'public, s-maxage=5, max-age=5'
+		];
+		yield 'JS page from unprotected namepace (CDN on)' => [
+			'/w/index.php?title=Help:RawActionTest.js&action=raw',
+			[],
+			true,
+			404,
 			'public, s-maxage=5, max-age=5'
 		];
 		yield 'Regular page (CDN on)' => [
@@ -147,11 +190,19 @@ class RawActionTest extends MediaWikiIntegrationTestCase {
 		// via its setCdnMaxAge call.
 		$entryPoint = TestingAccessWrapper::newFromObject( new ActionEntryPoint(
 			$context,
-			new MockEnvironment(),
+			new MockEnvironment( $context->getRequest() ),
 			$this->getServiceContainer()
 		) );
 		$entryPoint->enableOutputCapture();
-		$entryPoint->performRequest();
+		try {
+			$entryPoint->performRequest();
+		} catch ( HttpError $e ) {
+			// Simulate MediaWikiEntryPoint::run catching Throwable, and
+			// MWExceptionHandler::handleException calling HttpError::report.
+			// HttpError::report normally calls header() which we can't test.
+			// We'd see 500 without this, set preliminarily by MediaWikiEntryPoint::run.
+			$context->getRequest()->response()->statusHeader( $e->getStatusCode() );
+		}
 		$entryPoint->getCapturedOutput();
 
 		$this->assertSame(
