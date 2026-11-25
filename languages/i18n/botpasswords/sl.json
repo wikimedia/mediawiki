@@ -13,6 +13,7 @@
 	"botpasswords-createnew": "Ustvari novo geslo bota",
 	"botpasswords-editexisting": "Uredi obstoječe geslo bota",
 	"botpasswords-label-needsreset": "(geslo je treba ponastaviti)",
+	"botpasswords-reset-instructions": "Za ponastavitev gesla bota: kliknite ustrezni vnos spodaj, označite »$1« in kliknite »$2«. Za več informacij glejte [[mw:Manual:Bot_passwords|dokumentacijo]].",
 	"botpasswords-label-appid": "Ime bota:",
 	"botpasswords-label-create": "Ustvari",
 	"botpasswords-label-update": "Posodobi",

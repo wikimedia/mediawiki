@@ -731,7 +731,6 @@
 	"verification-error": "Ti file ne passat per li verification de file.",
 	"unknown-error": "Un errore desconosset ocurret.",
 	"tmp-create-error": "Ne posset crear file temporari.",
-	"tmp-write-error": "Errore por redacter file temporari.",
 	"uploadwarning": "Advertiment de cargament",
 	"uploadwarning-text": "Pleser modificar li descrition de file infra e prova denov.",
 	"savefile": "Conservar file",

@@ -1496,7 +1496,6 @@
 	"confirmemail_sendfailed": "{{SITENAME}} ńy poradźiła wysłać potwjerdzajůncyj wjadůmośći e-brif.\nSprowdź aże we adreśe ńy ma felernyj buchsztaby.\n\nSystym pocztowy zwrůćił kůmůńikat: $1",
 	"confirmemail_invalid": "Felerny kod potwjerdzyńo.\nKod može być předawńůny",
 	"confirmemail_needlogin": "Muśyš $1 coby potwjerdzić adres e-brif.",
-	"confirmemail_success": "Adres e-brif zostou potwjerdzůny.\nMožeš śe zalůgować i kořistać s šeršygo wachlařa fůnkcjůnalnośći wiki.",
 	"confirmemail_loggedin": "Twůj adres e-brif zostou zweryfikowany.",
 	"confirmemail_subject": "{{SITENAME}} - weryfikacyjo adresa e-brif",
 	"confirmemail_body": "Ktoś, uůnčůnc śe s kůmputra uo adreśe IP $1,\nzarejerowoú we {{GRAMMAR:MS.lp|{{SITENAME}}}} kůnto „$2” i podou ńińijšy adres e-mail.\n\nCoby potwjerdźić, aže Ty zarejerowoužeś te kůnto, a tyž coby zauůnčyć\nwšyjstke fůnkcyje kořistajůnce s počty e-brif, uodymkńij w swoij\npřyglůndarce tyn link:\n\n$3\n\nJak to *ńy* Ty zarejerowoueś kůnto, uodymkńij we swoij přyglůndarce link sam nižy, coby anulować potwjerdzyńy adresu e-brif:\n\n$5\n\nKod zawarty w linku straći wažność $4.",

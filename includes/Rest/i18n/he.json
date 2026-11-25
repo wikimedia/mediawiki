@@ -6,7 +6,8 @@
 			"Neriah",
 			"Rotemliss",
 			"YaronSh",
-			"יוסף בן מלמד"
+			"יוסף בן מלמד",
+			"A100Star"
 		]
 	},
 	"rest-prefix-mismatch": "הנתיב המבוקש ($1) לא היה בתוך נתיב הבסיס ($2) של ה־REST API",
@@ -106,8 +107,6 @@
 	"rest-module-specs.v0-desc": "מודול תיעוד עצמי שמספק גילוי, מפרטים וסכֵמות לכל המודולים הזמינים.",
 	"rest-module-content.v1-title": "ממשק API לתוכן",
 	"rest-module-content.v1-desc": "מספק גישה לתוכן ולמטא־נתונים של דפים וגרסאות",
-	"rest-module-content.v2-title": "ה־API של תוכן",
-	"rest-module-content.v2-desc": "מספק גישה לתוכן ולמטא־נתונים של דפים וגרסאות",
 	"rest-module-site.v1-title": "ממשק API של האתר",
 	"rest-module-site.v1-desc": "מידע על האתר בכללותו, כגון מפות אתר",
 	"rest-param-desc-mock-desc": "תיאור־דמה.",
@@ -165,6 +164,7 @@
 	"rest-param-desc-media-links-array": "מערך של מדיה בשימוש בדף",
 	"rest-param-desc-module-spec-module": "פרמטר module של הגדרות מודול",
 	"rest-param-desc-module-spec-version": "פרמטר version של הגדרות מודול",
+	"rest-param-desc-module-spec-lang": "קוד השפה שיש להחזיר בו את מפרט OpenAPI",
 	"rest-param-desc-opensearch-ctype": "פרמטר ctype של תיאור open search",
 	"rest-param-desc-pagehistory-count-title": "כותרת דף. כדי לעצב את הכותרת, יש להחליף רווחים בתווי קו תחתון, ולאחר מכן לבצע פעולת URL-encode על התוצאה (למשל: Steller%27s_jay). בארגז החול של ה־API, יש להחליף רווחים בתווי קו תחתון, אך לא לעשות את פעולת ה־URL-encode (למשל: Steller's_jay).",
 	"rest-param-desc-pagehistory-count-type": "סוג הספירה (anonymous [אלמוניות], bot [בוט], editors [עורכים], edits [עריכות], minor [משניות], reverted [משוחזרות])",
@@ -272,9 +272,6 @@
 	"rest-schema-desc-revision-compare": "השוואת גרסאות",
 	"rest-endpoint-desc-mock-desc": "תיאור־דמה.",
 	"rest-endpoint-desc-post-page": "יוצרת דף.",
-	"rest-endpoint-desc-post-move": "מעבירה את (משנה את השם של) הדף.",
-	"rest-endpoint-desc-post-move-title": "מעבירה את (משנה את השם של) הדף לפי כותרת.",
-	"rest-endpoint-desc-get-page-title-backlinks": "רושמת את הדפים שמקשרים לדף הזה",
 	"rest-endpoint-desc-get-page-title": "מחזירה מידע על דף, כולל מקור הדף, בדרך כלל בקוד ויקי.",
 	"rest-endpoint-desc-put-page-title": "עורכת דף על סמך מזהה הגרסה האחרון של הדף, או יוצרת דף אם לא ניתן מזהה גרסה. אם ישנה התנגשות מיזוג, ה־API מנסה לפתור את ההתנגשות באופן אוטומטי. אם לא ניתן לפתור את התנגשות העריכה, ה־API מחזיר שגיאת 409.",
 	"rest-endpoint-desc-get-page-title-html": "מחזירה את התוכן של דף ב־HTML.",
@@ -384,5 +381,10 @@
 	"rest-openapispec-genericerrorresponse-property-desc-reqId": "מזהה הבקשה. קיים רק עבור שגיאות שרת; יש לכלול אותו בעת דיווח השגיאה.",
 	"rest-openapispec-genericerrorresponse-property-desc-exception": "פרטים מובנים של החריג שגרם לשגיאה. קיימים רק כאשר הוויקי מוגדר להציג פרטי חריג.",
 	"rest-openapispec-genericerrorresponse-property-desc-errorCode": "קוד קריא על־ידי מכונה שמזהה את השגיאה. קיים רק עבור שגיאות מקומיות.",
-	"rest-openapispec-genericerrorresponse-property-desc-tracing": "מידע אבחוני על הבקשה, שימושי בעת דיווח על השגיאה. מכיל תמיד את \"module\", ויכול להכיל את \"request_id\"‏, \"method\"‏, \"uri\" ו־\"url\". תוכן העצם אינו חלק מחוזה ה־API ועשוי להשתנות בכל עת."
+	"rest-openapispec-genericerrorresponse-property-desc-tracing": "מידע אבחוני על הבקשה, שימושי בעת דיווח על השגיאה. מכיל תמיד את \"module\", ויכול להכיל את \"request_id\"‏, \"method\"‏, \"uri\" ו־\"url\". תוכן העצם אינו חלק מחוזה ה־API ועשוי להשתנות בכל עת.",
+	"rest-item-single-value": "הפרמטר \"$1\" מזהה פריט יחיד, ואסור שיכיל את התו \"|\" או את התו U+001F.",
+	"rest-item-not-found": "הפריט המבוקש ($1) אינו קיים.",
+	"rest-item-invalid": "הפריט המבוקש ($1) אינו תקין.",
+	"rest-item-unavailable": "הפריט המבוקש ($1) אינו זמין.",
+	"rest-item-multiple-results": "נקודת הקצה מצאה יותר מפריט אחד עבור הבקשה. זוהי שגיאת תצורה בשרת."
 }

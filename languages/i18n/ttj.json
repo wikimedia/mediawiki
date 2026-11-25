@@ -240,6 +240,7 @@
 	"postedit-confirmation-created": "Orupapura [[Special:Diff/$2|rwahangwa]].",
 	"postedit-confirmation-saved": "[[Special:Diff/$2|Okuhingisa kwawe]] kwahwirwe.",
 	"content-model-wikitext": "wikihandiiko",
+	"content-model-text": "ekihandiiko kwonka",
 	"undo-failure": "Oruhindura tirwakugarukire habw'empindura za hagati ezirwana.",
 	"viewpagelogs": "Rora eby'okwijukya by'orupapura runu",
 	"currentrev-asof": "Oruhindura orukeerererwa kuruga $1",

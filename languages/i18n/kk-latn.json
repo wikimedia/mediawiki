@@ -1101,7 +1101,6 @@
 	"confirmemail_sendfailed": "Quptaw xatı jöneltilmedi.\nJaramsız tañbalar üşin mekenjaýdı tekserip şığıñız.\n\nPoşta jibergiştiñ qaýtarğan mälimeti: $1",
 	"confirmemail_invalid": "Quptaw kodı jaramsız.\nKod merzimi bitken şığar.",
 	"confirmemail_needlogin": "E-poşta mekenjaýıñızdı quptaw üşin $1 kerek.",
-	"confirmemail_success": "E-poşta mekenjaýıñız quptaldı.\nEndi wïkïge kirip jumısqa kiriswge boladı",
 	"confirmemail_loggedin": "E-poşta mekenjaýıñız endi quptaldı.",
 	"confirmemail_subject": "{{SITENAME}} torabınan e-poşta mekenjaýıñızdı quptaw xatı",
 	"confirmemail_body": "Keýbirew, $1 degen IP mekenjaýınan, öziñiz bolwı mümkin,\n{{SITENAME}} jobasında bul E-poşta mekenjaýın qoldanıp «$2» degen tirkelgi jasaptı.\n\nBul tirkelgi naqtı sizge tän ekenin quptaw üşin, jäne {{SITENAME}} jobasınıñ\ne-poşta mümkindikterin belsendirw üşin, mına siltemeni şolğışıñızben aşıñız:\n\n$3\n\nEger bul tirkelgini jasağan öziñiz *emes* bolsa, mına siltemege erip\ne-poşta mekenjaýı quptawın boldırmañız:\n\n$5\n\nQuptaw kodı merzimi bitetin kezi: $4.",

@@ -1358,7 +1358,6 @@
 	"confirmemail_sendfailed": "Nu es posibri envial el email de confirmación. Compreba que la direción esté bien escrita.\n\nEl correu degorvió: $1",
 	"confirmemail_invalid": "Coigu de confirmación envaliu. Es posibri qu'aiga caucau.",
 	"confirmemail_needlogin": "Es mestel $1 pa confirmal la tu direción d'email.",
-	"confirmemail_success": "S'á confirmau la tu direción d'email. Ya pueis entral ena tu cuenta i embailti cola Güiqui.",
 	"confirmemail_loggedin": "S'á confirmau la tu direción d'email.",
 	"confirmemail_subject": "Confirmaeru de direción de correu de {{SITENAME}}",
 	"confirmemail_body": "Yeu!\n\nAlguien, siguramenti tú, á rustriu la cuenta \"$2\" dendi la direción\nIP $1 con esta direción d'email en {{SITENAME}}.\n\nPa confirmal qu'esta cuenta es tuya i atival\nlas caraterísticas del email en {{SITENAME}}, abri esti atihu nel tu escrucaol:\n\n$3\n\nSi nu as siu tú quien á rustriu la cuenta, pursa nel siguienti atihu\npa cancelal la confirmación del email:\n\n$5\n\nEl coigu de confirmación caucará a las $4.",

@@ -19,6 +19,7 @@
 	"botpasswords-createnew": "Stwórz nowe hasło bota",
 	"botpasswords-editexisting": "Edytuj istniejące hasło bota",
 	"botpasswords-label-needsreset": "(hasło wymaga zresetowania)",
+	"botpasswords-reset-instructions": "Aby zresetować hasło bota, kliknij odpowiednią pozycję poniżej, zaznacz opcję „$1” i kliknij „$2”. Więcej informacji znajdziesz w [[mw:Manual:Bot_passwords|dokumentacji]].",
 	"botpasswords-label-appid": "Nazwa bota:",
 	"botpasswords-label-create": "Utwórz",
 	"botpasswords-label-update": "Aktualizuj",

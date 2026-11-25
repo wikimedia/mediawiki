@@ -1664,7 +1664,6 @@
 	"monthsall": "hemû",
 	"confirmemail": "Navnîşana e-nameyê nasbike",
 	"confirmemail_noemail": "Te e-mail-adressê xwe di [[Special:Preferences|tercihên xwe da]] nenivîsandiye.",
-	"confirmemail_success": "E-Mail adrêsa te hate naskirin. Tu niha dikarî xwe qeydbikê û kêfkê.",
 	"confirmemail_loggedin": "Navnîşana te ya e-nameyê hate qebûlkirin.",
 	"confirmemail_body": "Kesek, mihtemelen tu, bi IP adressê $1, xwe li {{SITENAME}} bi vê navnîşana e-nameyê tomar kir (\"$2\") .\n\nEger ev rast qeydkirinê te be û bixwazî bikaranîna e-peyamê aktîv bikî, li {{SITENAME}}, vê lînkê di geroka xwe de veke:\n\n$3\n\nLê eger ev *ne* tu bû, ji bo betalkirina tesdîqkirina navnîşana e-peyamê vê lînkê taqîb bike.\n\n$5\n\nEv tesdîqkirin wê di $4 da demborî be.",
 	"scarytranscludefailed": "[Anîna şablona $1 biserneket]",

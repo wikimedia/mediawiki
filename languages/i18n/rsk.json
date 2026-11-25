@@ -356,8 +356,6 @@
 	"createacct-temp-warning": "Пременки хтори сце направели зоз вашим дочасовим налогом <strong>$1</strong> нє буду пренєшени на ваш стаємни налог.",
 	"noname": "Нє наведли сце важаце хасновательске мено.",
 	"userlogin-authpopup-loggingin-title": "Приявйованє...",
-	"userlogin-authpopup-loggingin-body": "Требало би же би ше отворел падаюци облачок. Кед го нє видзице, можеме пробовац ознова го отвориц. Або ше можеце [$1 приявиц на способ скорейшей верзиї].",
-	"userlogin-authpopup-loggingin-body-link": "Алтернативни формулар",
 	"userlogin-authpopup-retry": "Пробуй ознова",
 	"userlogin-authpopup-cancel": "Одкаж",
 	"userlogin-authpopup-closeme": "Кед же видзице тоту поруку, можеце заврец тот облачок.",

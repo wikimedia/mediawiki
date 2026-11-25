@@ -179,6 +179,7 @@
 	"rest-param-desc-media-links-array": "Tableau des médias utilisés sur la page",
 	"rest-param-desc-module-spec-module": "Module des spécifications du module",
 	"rest-param-desc-module-spec-version": "Version des spécifications du module",
+	"rest-param-desc-module-spec-lang": "Code de langage dans lequel renvoyer la spécification OpenAPI",
 	"rest-param-desc-opensearch-ctype": "Ctype de la description de la recherche ouverte",
 	"rest-param-desc-pagehistory-count-title": "Titre de la page. Pour formater le titre, remplacez les espaces par des tirets bas, puis encodez le résultat en URL (exemple : Steller%27s_jay). Dans l’environnement de test de l’API, remplacez les espaces par des tirets bas, mais n’encodez pas le titre en URL (exemple : Steller%27s_jay).",
 	"rest-param-desc-pagehistory-count-type": "Type de comptage (anonymous, bot, editors, edits, minor, reverted)",

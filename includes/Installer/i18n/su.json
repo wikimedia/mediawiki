@@ -17,6 +17,9 @@
 	"config-restart": "Nya, hirupkeun ulang",
 	"config-profile-fishbowl": "Husus éditor kadaptar",
 	"config-logo-preview-main": "Tepas",
+	"config-install-mainpage": "Nyieun tepas kalawan eusi ti dituna",
+	"config-install-mainpage-exists": "Tepas geus aya, luncat",
+	"config-install-mainpage-failed": "Teu bisa nyieun tepas: $1",
 	"mainpagetext": "<strong>MediaWiki geus réngsé diinstal.</strong>",
 	"mainpagedocfooter": "Mangga tingal ''[https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources documentation on customizing the interface]'' jeung [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents Tungtunan Pamaké] pikeun pitulung maké jeung konfigurasi."
 }

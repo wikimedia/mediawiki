@@ -1246,7 +1246,6 @@
 	"confirmemail_sendfailed": "發送伓正確認郵件，請檢查email地址係否含到伓合字符。\n\n郵件發送人回應: $1",
 	"confirmemail_invalid": "無效嗰確認碼，箇隻代碼過哩期。",
 	"confirmemail_needlogin": "汝要$1去確認汝嗰email地址。",
-	"confirmemail_success": "汝嗰郵箱已得到哩確認。如今汝能登得正入同到使用箇隻網站。",
 	"confirmemail_loggedin": "汝嗰email地址已得到確認。",
 	"confirmemail_subject": "{{SITENAME}}電子郵件地址確認",
 	"confirmemail_body": "IP地址$1嗰用戶（可能係倷）到{{SITENAME}}註冊嘞帳戶\"$2\"，並一同用嘞倷嗰email地址。\n\n請確認箇隻帳戶係歸倷嗰，接到啟動{{SITENAME}}裡頭嗰email功能。請到瀏覽器開到下底嗰連結:\n\n$3\n\n如果箇*伓係*倷，就冇必要打開箇隻連結。確認碼會到$4時間過期。",

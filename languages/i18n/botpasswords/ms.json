@@ -18,6 +18,7 @@
 	"botpasswords-createnew": "Buat kata laluan bot baru",
 	"botpasswords-editexisting": "Ubah kata laluan bot yang sedia ada",
 	"botpasswords-label-needsreset": "(kata laluan perlu ditetapkan semula)",
+	"botpasswords-reset-instructions": "Untuk menetapkan semula kata laluan bot: klik pada masukan berkenaan berikut, tandakan \"$1\" dan klik \"$2\". Untuk maklumat lanjut, lihatlah [[mw:Manual:Bot_passwords|pendokumenan berkenaan]].",
 	"botpasswords-label-appid": "Nama bot:",
 	"botpasswords-label-create": "Cipta",
 	"botpasswords-label-update": "Kemas kini",

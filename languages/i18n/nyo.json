@@ -225,6 +225,7 @@
 	"moveddeleted-notice": "Runu orupapura tiruroho.\nEkiijukya ky'okuragaza, okuronza n'okwirizaayo ky'orupapura kiri haifo habw'okujurra.",
 	"postedit-confirmation-created": "Orupapura [[Special:Diff/$2|rwakahangwa]].",
 	"content-model-wikitext": "wikihandiiko",
+	"content-model-text": "ekihandiiko kwonka",
 	"undo-failure": "Ekifooki tikisoboire kugaruka habw'ebihindura bya hagati ebirwana.",
 	"viewpagelogs": "Rora ebinyakwijukya by'orupapura runu",
 	"currentrev-asof": "Oruhindura orukeerererwa okuruga omu$1",

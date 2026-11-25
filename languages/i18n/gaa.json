@@ -361,8 +361,6 @@
 	"createacct-temp-warning": "Akɛ tsakemɔi ni okɛ o-be kukuoo mli akauntu  <strong>$1</strong> lɛ fee lɛ eyaaa o-daanɔ akauntu lɛ nɔ.",
 	"noname": "Otsɔko nifeelɔgbɛi ni sa",
 	"userlogin-authpopup-loggingin-title": "Oobote akauntu lɛ mli...",
-	"userlogin-authpopup-loggingin-body": "Kulɛ esa akɛ samflɛ ko ni baa lɛ agbele. Kɛji onaaa lɛ, wɔbaanyɛ wɔbɔ mɔdɛŋ ni wɔgbele ekoŋŋ. Aloo obaanyɛ [ $1 log yɛ blema gbɛ nɔ].",
-	"userlogin-authpopup-loggingin-body-link": "Gbɛ kroko",
 	"userlogin-authpopup-retry": "Kaa ekoŋŋ",
 	"userlogin-authpopup-cancel": "Foo mli",
 	"userlogin-authpopup-closeme": "Kɛji ona shɛɛwiemɔ nɛɛ, obaanyɛ ni oŋa plama nɛɛ",

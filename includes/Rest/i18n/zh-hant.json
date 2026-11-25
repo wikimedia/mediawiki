@@ -171,6 +171,7 @@
 	"rest-param-desc-media-links-array": "頁面上使用的媒體陣列",
 	"rest-param-desc-module-spec-module": "模組規格的模組",
 	"rest-param-desc-module-spec-version": "模組規格的版本",
+	"rest-param-desc-module-spec-lang": "用於回傳OpenAPI規格的語言代碼",
 	"rest-param-desc-opensearch-ctype": "開啟搜尋ctype說明",
 	"rest-param-desc-pagehistory-count-title": "頁面標題。格式化時，請先將空格替換為底線，再進行URL編碼（例如：Steller%27s_jay）。在API沙盒中則只需將空格替換為底線，無須進行URL編碼（例如：Steller's_jay）。",
 	"rest-param-desc-pagehistory-count-type": "計數類型（匿名、機器人、編輯者、編輯、小修改、已被還原）",

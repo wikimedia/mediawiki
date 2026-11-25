@@ -1245,7 +1245,6 @@
 	"confirmemail_sendfailed": "{{SITENAME}} n' a nén savou vs evoyî l' emile d' acertinaedje.\nVerifyîz ki l' adresse est bén djusse.\n\nLi programe d' emilaedje a rtourné: $1",
 	"confirmemail_invalid": "Côde d' acertinaedje nén valide. Motoit k' il esteut trop vî.",
 	"confirmemail_needlogin": "I vs fåt $1 po pleur acertiner voste adresse emile.",
-	"confirmemail_success": "Voste adresse emile a stî acertinêye. Vos vs poloz asteure elodjî eyet profiter do wiki.",
 	"confirmemail_loggedin": "Voste adresse emile a stî acertinêye.",
 	"confirmemail_subject": "Acertinaedje di l' adresse emile po {{SITENAME}}",
 	"confirmemail_body": "Ene sakî, probåblumint vos-minme, avou l' adresse IP $1,\na-st ahivé on conte so {{SITENAME}} avou ciste adresse\nemile ci eyet come no d' elodjaedje «$2».\n\nPo-z acertiner ki ç' conte ci est bén da vosse eyet mete\nen alaedje les fonccions d' emilaedje so {{SITENAME}},\nalez drovî avou vosse betchteu waibe li hårdêye ki shût:\n\n$3\n\nSi c' est *nén* vos k' a-st ahivé l' conte, adon shuvoz\nl' hårdêye shuvante po fé rnoncî l' acertinaedje d' emile:\n\n$5\n\nCi côde d' acertinaedje ci va-st espirer po l' $4.",

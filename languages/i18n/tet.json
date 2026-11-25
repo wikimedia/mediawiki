@@ -10,7 +10,8 @@
 			"Raphael Merx",
 			"Reedy",
 			"Robertsky",
-			"아라"
+			"아라",
+			"Sanderpel713"
 		]
 	},
 	"pagecategories": "{{PLURAL:$1|Kategoria|Kategoria}}",
@@ -128,6 +129,7 @@
 	"missingarticle-rev": "(version#: $1)",
 	"missingarticle-diff": "(Dif.: $1, $2)",
 	"viewsource": "Lee testu",
+	"skin-action-viewsource": "Haree fonte",
 	"viewsourcetext": "Ó bele le'e no kopia testu iha pájina ida ne'e:",
 	"namespaceprotected": "Ó la iha priviléjiu ba edita pájina sira iha espasu '''$1'''.",
 	"ns-specialprotected": "La ema ida bele edita pájina espesiál sira.",

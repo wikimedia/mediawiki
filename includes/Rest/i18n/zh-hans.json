@@ -33,7 +33,8 @@
 			"Zhoucantd",
 			"沈澄心",
 			"范",
-			"铁桶"
+			"铁桶",
+			"PacmanD"
 		]
 	},
 	"rest-prefix-mismatch": "请求的路径（$1）不在REST API基本路径（$2）中",
@@ -133,8 +134,6 @@
 	"rest-module-specs.v0-desc": "自文档模块为所有可用模块提供发现、规格和模式。",
 	"rest-module-content.v1-title": "内容API",
 	"rest-module-content.v1-desc": "提供对页面和修订内容的元数据内容的访问",
-	"rest-module-content.v2-title": "内容API",
-	"rest-module-content.v2-desc": "提供对页面和修订内容和元资料的存取",
 	"rest-module-site.v1-title": "站点API",
 	"rest-module-site.v1-desc": "关于网站整体的信息，例如网站地图",
 	"rest-param-desc-mock-desc": "模拟描述。",
@@ -192,6 +191,7 @@
 	"rest-param-desc-media-links-array": "页面上使用的媒体数组",
 	"rest-param-desc-module-spec-module": "模块规范模块",
 	"rest-param-desc-module-spec-version": "模块规范版本",
+	"rest-param-desc-module-spec-lang": "返回OpenAPI规范的语言代码",
 	"rest-param-desc-opensearch-ctype": "打开搜索描述ctype",
 	"rest-param-desc-pagehistory-count-title": "页面标题。要设置标题格式，请将空格替换为下划线，然后对结果进行 URL 编码（例如：Steller%27s_jay）。在 API 沙箱中，请将空格替换为下划线，但不要进行 URL 编码（例如：Steller's_jay）。",
 	"rest-param-desc-pagehistory-count-type": "计数类型（匿名用户、机器人、编者、编辑数、小修改、回退）",
@@ -299,9 +299,6 @@
 	"rest-schema-desc-revision-compare": "修订比较",
 	"rest-endpoint-desc-mock-desc": "模拟描述。",
 	"rest-endpoint-desc-post-page": "创建页面。",
-	"rest-endpoint-desc-post-move": "移动（重命名）页面。",
-	"rest-endpoint-desc-post-move-title": "按标题移动（重命名）页面。",
-	"rest-endpoint-desc-get-page-title-backlinks": "列出链接到该页面的所有页面。",
 	"rest-endpoint-desc-get-page-title": "返回有关页面的信息，包括页面源代码，通常以wikitext形式。",
 	"rest-endpoint-desc-put-page-title": "根据页面的最新修订标识符编辑页面，如果未提供修订标识符，则创建页面。如果存在合并冲突，API会尝试自动解决冲突。如果无法解决编辑冲突，API将返回409错误。",
 	"rest-endpoint-desc-get-page-title-html": "以HTML格式返回页面内容。",
@@ -411,5 +408,10 @@
 	"rest-openapispec-genericerrorresponse-property-desc-reqId": "请求的ID。仅在服务器错误时显示；报告错误时请包含此ID。",
 	"rest-openapispec-genericerrorresponse-property-desc-exception": "导致错误的异常的结构化描述。仅当wiki配置为显示异常详细信息时才会显示。",
 	"rest-openapispec-genericerrorresponse-property-desc-errorCode": "用于识别错误的机器可读代码。仅针对本地化错误显示。",
-	"rest-openapispec-genericerrorresponse-property-desc-tracing": "请求的诊断信息，有助于报告错误。始终包含“module”，可能包含“request_id”、“method”、“uri”和“url”。此对象的内容不属于API协议的一部分，可能随时更改。"
+	"rest-openapispec-genericerrorresponse-property-desc-tracing": "请求的诊断信息，有助于报告错误。始终包含“module”，可能包含“request_id”、“method”、“uri”和“url”。此对象的内容不属于API协议的一部分，可能随时更改。",
+	"rest-item-single-value": "参数“$1”仅标识单个项目，且不得包含“|”或U+001F。",
+	"rest-item-not-found": "请求的项目($1)不存在。",
+	"rest-item-invalid": "请求的项目($1)无效。",
+	"rest-item-unavailable": "请求的项目($1)不可用。",
+	"rest-item-multiple-results": "该端点发现了多于一个匹配请求的项目。服务器配置错误。"
 }

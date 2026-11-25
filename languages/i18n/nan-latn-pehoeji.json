@@ -903,7 +903,6 @@
 	"confirmemail_send": "Kià khak-jīn phoe",
 	"confirmemail_sent": "Khak-jīn phoe kià chhut-khì ah.",
 	"confirmemail_invalid": "Bô-hāu ê khak-jīn pian-bé. Pian-bé khó-lêng í-keng kòe-kî.",
-	"confirmemail_success": "í ê e-mail chū-chí khak-jīn oân-sêng. Lí ē-sái teng-ji̍p, khai-sí hiáng-siū chit ê wiki.",
 	"confirmemail_loggedin": "Lí ê e-mail chū-chí í-keng khak-jīn ū-hāu.",
 	"confirmemail_subject": "{{SITENAME}} e-mail chu-chi khak-jin phoe",
 	"confirmemail_body": "Ū lâng (IP $1, tāi-khài sī lí pún-lâng) tī {{SITENAME}} ēng chit-ê e-mail chū-chí chù-chheh 1 ê kháu-chō \"$2\".\n\nChhiáⁿ khui ē-kha chit-ê liân-kiat, thang khak-jīn chit-ê kháu-chō si̍t-chāi sī lí ê:\n\n$3\n\nNā-chún *m̄-sī* lí, chhiáⁿ mài tòe liân-kiat khì.  Chit tiuⁿ phoe ê khak-jīn-bé ē chū-tōng tī $4 kòe-kî.",

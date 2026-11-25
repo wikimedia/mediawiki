@@ -1650,7 +1650,6 @@
 	"confirmemail_sendfailed": "{{GRAMMAR:Lidw|{{SITENAME}}}} koe jo befêstigingsmail net ferstjoere.\nKontrolearje jo e-mailadres op ûnjildige tekens.\n\nIt mailsysteem joech: $1",
 	"confirmemail_invalid": "Unjildige befêstigingskoade.\nDe koade soe ferrûn wêze kinne.",
 	"confirmemail_needlogin": "Jo moatte $1 om jo e-mailadres befêstigje te kinnen.",
-	"confirmemail_success": "Jo e-mailadres is befêstige.\nJo kinne jo no [[Special:UserLogin|oanmelde]] en de wiki brûke.",
 	"confirmemail_loggedin": "Jo e-mailadres is no befêstige.",
 	"confirmemail_subject": "Befêstiging e-mailadres foar {{GRAMMAR:lidw|{{SITENAME}}}}",
 	"confirmemail_body": "Immen, nei alle gedachten jo, mei it YP-adres $1,\nhat it akkount \"$2\" op {{GRAMMAR:lidw|{{SITENAME}}}} oanmakke mei dit e-mailadres.\n\nOm te befêstigjen dat dat akkount wier jowes is en de e-mailfunksjes\nfan {{GRAMMAR:l|{{SITENAME}}}} beskikber makke wurde kinne, iepenje dan dizze\nferwizing yn jo webblêder:\n\n$3\n\nAt jo it akkount *net* oanmakke hawwe, folgje dan dizze ferwizing\nom it befêstigjen fan it e-mailadres ôf te sizzen:\n\n$5\n\nDe befêstigingskoade ferrint op $4.",

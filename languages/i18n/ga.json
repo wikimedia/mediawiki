@@ -1187,7 +1187,6 @@
 	"confirmemail_sent": "Teachtaireacht deimhnithe seolta chugat.",
 	"confirmemail_sendfailed": "Ní féidir {{SITENAME}} do theachtaireacht deimhnithe a sheoladh.\nFéach an bhfuil carachtair neamh-bhailí ann sa seoladh.\n\nD'fhreagair an clár ríomhphoist: $1",
 	"confirmemail_invalid": "Cód deimhnithe neamh-bhailí. B'fhéidir gur chuaidh an cód as feidhm.",
-	"confirmemail_success": "Deimhníodh do ríomhsheoladh. Is féidir leat logáil isteach anois agus sult a bhaint as an vicí!",
 	"confirmemail_loggedin": "Deimhníodh do sheoladh ríomhphoist.",
 	"confirmemail_subject": "Deimhniú do ríomhsheoladh ar an {{SITENAME}}",
 	"confirmemail_body": "Chláraigh duine éigin (tusa is dócha) an cuntas \"$2\" ar {{SITENAME}}\nagus rinneadh é seo ón seoladh IP $1, ag úsáid an ríomhsheolta seo.\n\nChun deimhniú gur leatsa an cuntas seo, agus chun gnéithe ríomhphoist\na chur i ngníomh ag {{SITENAME}}, oscail an nasc seo i do bhrabhsálaí:\n\n$3\n\n<nowiki>*</nowiki>Mura* tusa a chláraigh an cuntas, lean an nasc seo chun\ndeimhniú an ríomhsheolta a chur ar cheal:\n\n$5\n\nRachaidh an cód deimhnithe seo as feidhm ag $4.",

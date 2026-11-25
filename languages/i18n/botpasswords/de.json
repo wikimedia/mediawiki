@@ -14,6 +14,7 @@
 	"botpasswords-createnew": "Ein neues Botpasswort erstellen",
 	"botpasswords-editexisting": "Ein vorhandenes Botpasswort bearbeiten",
 	"botpasswords-label-needsreset": "(Passwort muss zurückgesetzt werden)",
+	"botpasswords-reset-instructions": "So setzt du das Bot-Passwort zurück: Klicke unten auf den entsprechenden Eintrag, aktiviere „$1“ und klicke auf „$2“. Weitere Informationen findest du in [[mw:Manual:Bot_passwords|der Dokumentation]].",
 	"botpasswords-label-appid": "Name des Bots:",
 	"botpasswords-label-create": "Erstellen",
 	"botpasswords-label-update": "Aktualisieren",

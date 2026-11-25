@@ -12,6 +12,7 @@
 	"botpasswords-createnew": "Направи нова ботовска лозинка",
 	"botpasswords-editexisting": "Измени постоечка ботовска лозинка",
 	"botpasswords-label-needsreset": "(треба нова лозинка)",
+	"botpasswords-reset-instructions": "За ставање нова лозинка на бот: стиснете на релевантната ставка подолу, штиклирајте го „$1“, па стиснете на „$2“. За повеќе информации погледајте ја [[mw:Manual:Bot_passwords|документацијата]].",
 	"botpasswords-label-appid": "Име на ботот:",
 	"botpasswords-label-create": "Создај",
 	"botpasswords-label-update": "Поднови",

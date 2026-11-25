@@ -1130,7 +1130,6 @@
 	"confirmemail_sendfailed": "发送伓正确认邮件，请检查email地址系否含到伓合字符。\n\n邮件发送人回应: $1",
 	"confirmemail_invalid": "无效𠮶确认码，个只代码过嘞期。",
 	"confirmemail_needlogin": "倷要$1去确认倷𠮶email地址。",
-	"confirmemail_success": "倷𠮶邮箱已得到嘞确认。嘎倷能登得正入同到使用个只网站。",
 	"confirmemail_loggedin": "倷𠮶email地址已得到确认。",
 	"confirmemail_subject": "{{SITENAME}}电子邮件地址确认",
 	"confirmemail_body": "IP地址$1𠮶用户（可能系倷）到{{SITENAME}}注册嘞帐户\"$2\"，并一同用嘞倷𠮶email地址。\n\n请确认个只帐户系归倷𠮶，接到启动{{SITENAME}}里头𠮶email功能。请到浏览器开到下底𠮶链接:\n\n$3\n\n如果个*伓系*倷，就冇必要打开个只链接。确认码会到$4时间过期。",

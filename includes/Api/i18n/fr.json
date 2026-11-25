@@ -60,7 +60,8 @@
 			"Yasten",
 			"Zetud",
 			"Allylly",
-			"NClara"
+			"NClara",
+			"Thilp"
 		]
 	},
 	"apihelp-main-param-action": "Action à effectuer. Ce paramètre doit être envoyé comme partie de l'URL de la requête (et non dans le corps du POST) pour en faciliter l'utilisation lors du débogage, l'analyse, ou pour le routage ou le filtrage des requêtes.",
@@ -108,6 +109,7 @@
 	"apihelp-block-param-partial": "Bloquer un utilisateur pour des pages ou des espaces de nom spécifiques plutôt que pour tout un site.",
 	"apihelp-block-param-pagerestrictions": "Liste des titres pour lesquels l’utilisateur est bloqué en modification. Ne s’applique que si <var>partial</var> vaut true .",
 	"apihelp-block-param-namespacerestrictions": "Liste d’identifiants d’espaces de noms sur lesquels l’utilisateur est bloqué en modification. Ne s’applique que si <var>partial</var> vaut true .",
+	"apihelp-block-param-createpagenamespacerestrictions": "Liste d’identifiants d’espaces de noms où empêcher l’utilisateur de créer des pages. Ne s’applique que si <var>partial</var> vaut true.",
 	"apihelp-block-param-actionrestrictions": "Liste des actions pour lesquelles l’utilisateur a été bloqué. Ne s’applique que si <var>partial</var> vaut true.",
 	"apihelp-block-example-ip-simple": "Bloquer l’adresse IP <kbd>192.0.2.5</kbd> pour trois jours avec le motif.",
 	"apihelp-block-example-user-complex": "Bloquer indéfiniment l’utilisateur <kbd>Vandal</kbd> avec le motif indiqué et empêcher la création de nouveau compte et l’envoi de courriel.",

@@ -399,8 +399,6 @@
 	"createacct-temp-warning": "El maga editacion ya hace usando el temporario account <strong>$1</strong> de tuyo el hende guinda na de tuyo permanente account.",
 	"noname": "No hay tu especifica con un nombre de usador valido.",
 	"userlogin-authpopup-loggingin-title": "Ta hace log in…",
-	"userlogin-authpopup-loggingin-body": "Tiene era popup window el abierto. Si no puede tu mira con este, puede kita proba abri con este otra vez. O puede tu [$1 man log in na daan manera].",
-	"userlogin-authpopup-loggingin-body-link": "Forma alternativo",
 	"userlogin-authpopup-retry": "Proba otra vez",
 	"userlogin-authpopup-cancel": "Cancela",
 	"userlogin-authpopup-closeme": "Si ta mira tu con este mensaje, puede tu cerra con este window.",

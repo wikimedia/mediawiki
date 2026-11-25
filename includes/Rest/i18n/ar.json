@@ -106,8 +106,6 @@
 	"rest-module-specs.v0-desc": "وحدة توثيق ذاتية توفر الاكتشاف والمواصفات والمخططات لجميع الوحدات المتاحة.",
 	"rest-module-content.v1-title": "محتوى الصفحة",
 	"rest-module-content.v1-desc": "يوفر إمكانية الوصول إلى المحتوى والبيانات الوصفية للصفحات والمراجعات",
-	"rest-module-content.v2-title": "واجهة برمجة تطبيقات المحتوى",
-	"rest-module-content.v2-desc": "يُتيح الوصول إلى محتوى وبيانات الصفحات والتعديلات.",
 	"rest-module-site.v1-title": "واجهة برمجة تطبيقات الموقع",
 	"rest-module-site.v1-desc": "معلومات حول الموقع ككل، مثل خرائط الموقع",
 	"rest-param-desc-mock-desc": "وصف الوهمي",
@@ -165,6 +163,7 @@
 	"rest-param-desc-media-links-array": "مجموعة الوسائط المستخدمة في الصفحة",
 	"rest-param-desc-module-spec-module": "مواصفات الوحدة الوحدة",
 	"rest-param-desc-module-spec-version": "إصدار مواصفات الوحدة",
+	"rest-param-desc-module-spec-lang": "رمز اللغة الذي سيتم من خلاله إرجاع مواصفات OpenAPI",
 	"rest-param-desc-opensearch-ctype": "افتح وصف البحث ctype",
 	"rest-param-desc-pagehistory-count-title": "عنوان الصفحة. لتنسيق العنوان، استبدل المسافات بشرطات سفلية، ثم قم بترميز عنوان URL للنتيجة (مثال: Steller%27s_jay). في بيئة اختبار واجهة برمجة التطبيقات، استبدل المسافات بشرطات سفلية، ولكن لا تقم بترميز عنوان URL (مثال: Steller's_jay).",
 	"rest-param-desc-pagehistory-count-type": "نوع العد (مجهول، روبوت، محررون، تعديلات، طفيفة، مُعاد)",
@@ -272,9 +271,6 @@
 	"rest-schema-desc-revision-compare": "مقارنة المراجعة",
 	"rest-endpoint-desc-mock-desc": "وصف وهمي.",
 	"rest-endpoint-desc-post-page": "إنشاء صفحة.",
-	"rest-endpoint-desc-post-move": "ينقل (يعيد تسمية) صفحة.",
-	"rest-endpoint-desc-post-move-title": "ينقل (يعيد تسمية) صفحة حسب عنوانها.",
-	"rest-endpoint-desc-get-page-title-backlinks": "يعرض هذا القسم الصفحات التي ترتبط بصفحة معينة.",
 	"rest-endpoint-desc-get-page-title": "يقوم بإرجاع معلومات حول صفحة ما، بما في ذلك مصدر الصفحة، عادةً في wikitext.",
 	"rest-endpoint-desc-put-page-title": "يُحرِّر الصفحة بناءً على مُعرِّف آخر مراجعة لها، أو يُنشئ صفحةً إذا لم يُحدَّد مُعرِّف مراجعة. في حال وجود تعارض في الدمج، تُحاول واجهة برمجة التطبيقات حلَّ التعارض تلقائيًا. إذا تعذَّر حلُّ تعارض التحرير، تُعيد واجهة برمجة التطبيقات خطأ 409.",
 	"rest-endpoint-desc-get-page-title-html": "إرجاع محتوى الصفحة بصيغة HTML.",
@@ -384,5 +380,10 @@
 	"rest-openapispec-genericerrorresponse-property-desc-reqId": "معرّف الطلب. يظهر فقط في حالة أخطاء الخادم؛ قم بتضمينه عند الإبلاغ عن الخطأ.",
 	"rest-openapispec-genericerrorresponse-property-desc-exception": "تفاصيل مُهيكلة عن الاستثناء الذي تسبب في الخطأ. تظهر هذه التفاصيل فقط عندما تكون صفحة الويكي مُهيأة لعرض تفاصيل الاستثناء.",
 	"rest-openapispec-genericerrorresponse-property-desc-errorCode": "رمز قابل للقراءة آلياً يحدد الخطأ. يظهر فقط في حالة الأخطاء الموضعية.",
-	"rest-openapispec-genericerrorresponse-property-desc-tracing": "معلومات تشخيصية حول الطلب، مفيدة عند الإبلاغ عن الخطأ. تحتوي دائمًا على \"module\"، وقد تحتوي على \"request_id\" و\"method\" و\"uri\" و\"url\". محتوى هذا الكائن ليس جزءًا من عقد واجهة برمجة التطبيقات (API) وقد يتغير في أي وقت."
+	"rest-openapispec-genericerrorresponse-property-desc-tracing": "معلومات تشخيصية حول الطلب، مفيدة عند الإبلاغ عن الخطأ. تحتوي دائمًا على \"module\"، وقد تحتوي على \"request_id\" و\"method\" و\"uri\" و\"url\". محتوى هذا الكائن ليس جزءًا من عقد واجهة برمجة التطبيقات (API) وقد يتغير في أي وقت.",
+	"rest-item-single-value": "تعريف المعلم \"$1\" عنصر واحد ولا يجب أن يحتوي على \"|\" أو U+001F.",
+	"rest-item-not-found": "البند المطلوب ($1) لا يوجد.",
+	"rest-item-invalid": "البند المطلوب ($1) غير صالح.",
+	"rest-item-unavailable": "البند المطلوب ($1) غير متوفر.",
+	"rest-item-multiple-results": "وجدت البند النهائي أكثر من عنصر واحد لطلب. هذا خطأ في التكوين على الخادم."
 }

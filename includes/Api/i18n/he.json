@@ -24,7 +24,8 @@
 			"מיכי י-ם",
 			"מקף",
 			"ערן",
-			"שמזן"
+			"שמזן",
+			"A100Star"
 		]
 	},
 	"apihelp-main-param-action": "איזו פעולה לבצע. יש לשלוח את הפרמטר הזה כחלק מכתובת ה־URL של הבקשה (ולא בגוף ה־POST) לצורך נוחות השימוש בניפוי שגיאות, ניתוח נתונים וניתוב או סינון בקשות.",
@@ -72,6 +73,7 @@
 	"apihelp-block-param-partial": "חסימת משתמש מעריכת דפים או מרחבי שם מסוימים ולא מכל האתר.",
 	"apihelp-block-param-pagerestrictions": "רשימת כותרות שהמשתמש ייחסם מעריכתן. חל רק כאשר <var>partial</var> מוגדר ל־true.",
 	"apihelp-block-param-namespacerestrictions": "רשימת מזהי מרחב שם שהמשתמש ייחסם מעריכתם. חל רק כאשר <var>partial</var> מוגדר ל־true.",
+	"apihelp-block-param-createpagenamespacerestrictions": "רשימת מזהי מרחבי השם שיש לחסום בהם את האפשרות של המשתמש ליצור דפים. ההגבלה חלה רק כשהערך של <var>partial</var> הוא true.",
 	"apihelp-block-param-actionrestrictions": "רשימת פעולות שהמשתמש ייחסם מביצוען. חל רק כאשר <var>partial</var> מוגדר ל־true.",
 	"apihelp-block-example-ip-simple": "חסימת כתובת ה־IP‏ <kbd>192.0.2.5</kbd> לשלושה ימים עם סיבה.",
 	"apihelp-block-example-user-complex": "חסימת המשתמש <kbd>Vandal</kbd> ללא הגבלת זמן עם סיבה, ומניעת יצירת חשבונות חדשים ושליחת דוא\"ל.",
@@ -965,7 +967,7 @@
 	"apihelp-query+info-paramvalue-prop-varianttitles": "כותרת התצוגה בכל הגרסאות של שפת התוכן של האתר.",
 	"apihelp-query+info-paramvalue-prop-linkclasses": "נותן מחלקות CSS נוספות (למשל צבעי קישורים) שמשמשים לקישורים לדף הזה אם הם מופיעים בדף ששמו ניתן על־ידי <var>$1linkcontext</var>.",
 	"apihelp-query+info-param-linkcontext": "כותרות ההקשר שישמש בעד קביעת מחלקות CSS נוספות (למשל צבעי קישורים) כש־<var>$1prop</var> מכיל <var>linkclasses</var>.",
-	"apihelp-query+info-param-defaultlinkcaption": "האם להתייחס לקישורים כבעלי כיתוב ברירת מחדל (כיתוב הוא סיומת של קישור יעד ומופיע לפניו קו נטוי, נקודתיים או תחילת מחרוזת). יכולה להיות לכך השפעה על מחלקות הקישורים המוחזרים.",
+	"apihelp-query+info-param-defaultlinkcaption": "האם להתייחס לקישורים כאל בעלי כיתוב ברירת מחדל (כיתוב הוא סיומת של קישור יעד ומופיע לפניו קו נטוי, נקודתיים או תחילת מחרוזת). יכולה להיות לכך השפעה על מחלקות הקישורים המוחזרים.",
 	"apihelp-query+info-param-testactions": "בדיקה האם המשתמש הנוכחי יכול לבצע פעולות מסוימות על הדף.",
 	"apihelp-query+info-param-testactionsdetail": "רמת פירוט של <var>$1testactions</var>. יש להשתמש בפרמטרים <var>errorformat</var> ו־<var>errorlang</var> של [[Special:ApiHelp/main|המודול הראשי]] כדי לשלוט בתסדיר את ההודעות המוחזרות.",
 	"apihelp-query+info-paramvalue-testactionsdetail-boolean": "החזרת ערך בוליאני עבור כל פעולה.",

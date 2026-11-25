@@ -1025,7 +1025,6 @@
 	"confirmemail_send": "Mande un codiç di conferme",
 	"confirmemail_sent": "Messaç di conferme mandât.",
 	"confirmemail_needlogin": "Al covente $1 par confermâ la to direzion di pueste eletroniche.",
-	"confirmemail_success": "La tô direzion di pueste e je stade confermade. Tu puedis cumò jentrâ e gjoldi la wiki.",
 	"confirmemail_loggedin": "La tô direzion di pueste e je stade confermade.",
 	"confirmemail_subject": "{{SITENAME}}: richieste di conferme de direzion di pueste",
 	"scarytranscludedisabled": "[Inclusion dai interwikis no ative]",

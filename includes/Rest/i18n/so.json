@@ -21,6 +21,7 @@
 	"rest-param-desc-compare-to-section-offset": "Meesha bayt-ka ee gudaha wikitext-ka ee uu ka bilaabmo qaybta",
 	"rest-param-desc-media-description-url": "URL-ka bogga sharaxa faylka, oo ay ku jiraan macluumaadka shatiga iyo xog kale oo metadata ah",
 	"rest-param-desc-media-url": "URL-ka lagu soo dejiyo faylka",
+	"rest-param-desc-module-spec-lang": "Koodhka luqadda ee lagu soo celinayo qeexitaanka OpenAPI",
 	"rest-param-desc-diff-type": "Nooca isbeddelka, mid ka mid ah kuwa soo socda:\n<ul>\n<li>`0`: Nuxur isku mid ah oo ku jira labada dib u eegis, oo lagu daray si uu u bixiyo macnaha guud marka la daawanayo isbarbardhigga isbeddellada. API-gu wuxuu soo celiyaa ilaa laba sadar oo macnaha guud ah oo ku wareegsan isbeddel kasta.</li>\n<li>`1`: Sadar ku jira dib u eegista `to` laakiin aan ku jirin dib u eegista `from`.</li>\n<li>`2`: Sadar ku jira dib u eegista `from` laakiin aan ku jirin dib u eegista `to`.</li>\n<li>`3`: Sadar ay ku jiraan qoraallo ku kala duwan labada dib u eegis.</li>\n<li>`4`: Meesha nuxurka la raray uu ku yaal dib u eegista `from`.</li>\n<li>`5`: Meesha nuxurka la raray uu ku yaal dib u eegista `to`. Noocani sidoo kale wuxuu ka koobnaan karaa kala duwanaanshaha heerka erayada ee u dhexeeya labada dib u eegis.</li>\n</ul>",
 	"rest-param-desc-diff-linenumber": "Lambarka sadar ee isbeddelka oo ku salaysan dib u eegista `to`",
 	"rest-param-desc-diff-text": "Qoraalka sadar-ka, oo ay ku jiraan waxyaabaha labada dib-u-eegis ka yimid. Haddii sadar uu ka kooban yahay qoraal kala duwan labada dib-u-eegis, isticmaal highlightRanges si aad u muujiso qoraalka lagu daray iyo kan laga saaray. Haddii sadar uu yahay sadar cusub, API-gu wuxuu soo celinayaa \"\" (xadhig madhan).",
@@ -44,5 +45,10 @@
 	"rest-openapispec-genericerrorresponse-property-desc-reqId": "Aqoonsiga codsiga. Waxa uu joogaa oo keliya khaladaadka server-ka; ku dar marka aad soo gudbinayso khaladka.",
 	"rest-openapispec-genericerrorresponse-property-desc-exception": "Faahfaahinta habaysan ee ka reebitaanka sababay khaladka. Waxa uu joogaa oo keliya marka wiki-ga loo habeeyay inuu muujiyo faahfaahinta ka reebitaanka.",
 	"rest-openapispec-genericerrorresponse-property-desc-errorCode": "Koodh ay mashiinku akhriyi karo oo tilmaamaya khaladka. Waxa uu joogaa oo keliya khaladaadka la turjumay.",
-	"rest-openapispec-genericerrorresponse-property-desc-tracing": "Macluumaad ogaanshaha oo ku saabsan codsiga, oo waxtar leh marka la soo sheegayo khaladka. Had iyo jeer wuxuu ka kooban yahay \"module\", waxaana laga yaabaa inuu ka koobnaado \"request_id\", \"method\", \"uri\" iyo \"url\". Nuxurka shaygani kama mid aha heshiiska API-ga, wuxuuna isbeddeli karaa wakhti kasta."
+	"rest-openapispec-genericerrorresponse-property-desc-tracing": "Macluumaad ogaanshaha oo ku saabsan codsiga, oo waxtar leh marka la soo sheegayo khaladka. Had iyo jeer wuxuu ka kooban yahay \"module\", waxaana laga yaabaa inuu ka koobnaado \"request_id\", \"method\", \"uri\" iyo \"url\". Nuxurka shaygani kama mid aha heshiiska API-ga, wuxuuna isbeddeli karaa wakhti kasta.",
+	"rest-item-single-value": "Xuduudda \"$1\" waxay aqoonsanaysaa hal shay oo keliya, mana aha inay ka koobnaato \"|\" ama U+001F.",
+	"rest-item-not-found": "Shayga la codsaday ($1) ma jiro.",
+	"rest-item-invalid": "Shayga la codsaday ($1) waa khaldan yahay.",
+	"rest-item-unavailable": "Shayga la codsaday ($1) lama heli karo.",
+	"rest-item-multiple-results": "Barta dhammaadka ayaa codsiga u heshay wax ka badan hal shay. Tani waa khalad ku jira habaynta server-ka."
 }

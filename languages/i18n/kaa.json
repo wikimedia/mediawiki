@@ -1749,7 +1749,6 @@
 	"confirmemail_sendfailed": "{{SITENAME}} siziń tastıyıqlaw sorawı jazılǵan xatıńızdı jibere almadı.\nAdresińizde jaramsız tańbalar joq ekenligin anıqlastırıw ushın qayta tekserip shıǵıń.\nServerdiń shıǵarǵan maǵlıwmatı: $1",
 	"confirmemail_invalid": "Tastıyıqlaw kodı nadurıs.\nKodtıń jaramlılıq waqtı pitken bolıwı múmkin.",
 	"confirmemail_needlogin": "E-mail adresin'izdi tastıyıqlaw ushın $1 kerek.",
-	"confirmemail_success": "Siziń elektron pochta adresińiz tastıyıqlandı. \nEndi wikige [[Special:UserLogin|kiriwińiz]] múmkin.",
 	"confirmemail_loggedin": "Siziń elektron pochta adresińiz endi tastıyıqlandı.",
 	"confirmemail_subject": "{{SITENAME}} elektron pochta adresin tastıyıqlaw",
 	"confirmemail_body": "Birew, bálkim ózińiz shıǵar, $1 IP adresinen kirip, {{SITENAME}} saytında usı elektron pochta adresin paydalanıp «$2» degen akkaunt jarattı.\n\nUsı akkaunt shınında da sizge tiyisli ekenligin tastıyıqlaw ushın hám {{SITENAME}} saytınıń elektron pochta múmkinshiliklerinen paydalanıw ushın, tómendegi siltemeni brauzerińizde ashıń:\n\n$3\n\nEger bul akkaunttı siz jaratpaǵan bolsańız, tómendegi siltemege ótip, elektron pochta adresińizdiń tastıyıqlawın óshirseńiz boladı:\n\n$5\n\nBul tastıyıqlaw kodınıń pitetuǵın waqtı: $4.",
