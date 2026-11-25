@@ -58,6 +58,7 @@
 	"apihelp-block-param-autoblock": "Bloquear automaticamente o último enderezo IP utilizado, e calquera outro enderezo desde o que intente conectarse.",
 	"apihelp-block-param-noemail": "Impedir que o usuario envíe correos electrónicos a través do wiki. (Cómpre o permiso <code>blockemail</code>.)",
 	"apihelp-block-param-hidename": "Ocultar o nome de usuario do rexistro de bloqueos. (Cómpre o permiso <code>hideuser</code>.)",
+	"apihelp-block-param-deferred": "Pospoñer o bloqueo ata que o usuario intente de novo unha acción que está impedida polo bloqueo. Ata entón, o bloqueo non se aplica e só se rexistra no rexistro de bloqueos adiados (ou no rexistro de supresións, se o bloqueo está agochado). (Cómpre o permiso <code>deferredblock</code> e debe estar activado <var>[[mw:Special:MyLanguage/Manual:$wgEnableMultiBlocks|$wgEnableMultiBlocks]]</var>).",
 	"apihelp-block-param-allowusertalk": "Permitir que o usuario edite a súa propia páxina de conversa (depende de <var>[[mw:Special:MyLanguage/Manual:$wgBlockAllowsUTEdit|$wgBlockAllowsUTEdit]]</var>).",
 	"apihelp-block-param-reblock": "Se o usuario xa está bloqueado por un só bloqueo, sobrescribir o bloqueo existente. Se o usuario está bloqueado máis dunha vez, isto fallará. Utiliza o parámetro <var>id</var> para especificar o bloqueo que queres sobrescribir. Non pode usarse xunto con <var>id</var> ou <var>newblock</var>.",
 	"apihelp-block-param-newblock": "Engadir outro bloqueo mesmo se o usuario xa está bloqueado. Non pode usarse xunto con <var>id</var> ou <var>reblock</var>.",

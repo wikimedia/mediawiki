@@ -17,7 +17,7 @@
 		]
 	},
 	"userrights": "Szerkesztői jogok",
-	"userrights-lookup-user": "Válasszon ki egy felhasználót",
+	"userrights-lookup-user": "Válassz ki egy felhasználót",
 	"userrights-user-editname": "Add meg a szerkesztő nevét:",
 	"editusergroup": "Szerkesztőcsoportok betöltése",
 	"editinguser": "<strong>[[User:$1|$1]]</strong> felhasználói csoportjainak megváltoztatása $2",

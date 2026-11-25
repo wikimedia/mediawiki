@@ -62,6 +62,7 @@
 	"apihelp-block-param-autoblock": "Zablokuj ostatni adres IP tego użytkownika i automatycznie wszystkie kolejne, z których będzie się logował.",
 	"apihelp-block-param-noemail": "Uniemożliwia użytkownikowi wysyłanie wiadomości e-mail za pośrednictwem interfejsu wiki. (Wymagane uprawnienie <code>blockemail</code>).",
 	"apihelp-block-param-hidename": "Ukryj nazwę użytkownika z rejestru blokad. (Wymagane uprawnienie <code>hideuser</code>)",
+	"apihelp-block-param-deferred": "Odwlecz blokadę, aż użytkownik spróbuje wykonać działanie objęte blokadą. Do tego czasu blokada nie jest egzekwowana i jest zapisywana wyłącznie w rejestrze blokad odwlekanych (lub w rejestrze ukrywania, jeśli blokada jest ukryta). (Wymaga uprawnienia <code>deferredblock</code>, a zmienna <var>[[mw:Special:MyLanguage/Manual:$wgEnableMultiBlocks|$wgEnableMultiBlocks]]</var> musi być włączona).",
 	"apihelp-block-param-allowusertalk": "Pozwala użytkownikowi edytować własną stronę dyskusji (zależy od <var>[[mw:Special:MyLanguage/Manual:$wgBlockAllowsUTEdit|$wgBlockAllowsUTEdit]]</var>).",
 	"apihelp-block-param-reblock": "Jeżeli ten użytkownik jest już zablokowany, nadpisz blokadę.",
 	"apihelp-block-param-watchuser": "Obserwuj stronę użytkownika lub IP oraz ich strony dyskusji.",
