@@ -73,7 +73,6 @@
 	"apihelp-block-param-partial": "חסימת משתמש מעריכת דפים או מרחבי שם מסוימים ולא מכל האתר.",
 	"apihelp-block-param-pagerestrictions": "רשימת כותרות שהמשתמש ייחסם מעריכתן. חל רק כאשר <var>partial</var> מוגדר ל־true.",
 	"apihelp-block-param-namespacerestrictions": "רשימת מזהי מרחב שם שהמשתמש ייחסם מעריכתם. חל רק כאשר <var>partial</var> מוגדר ל־true.",
-	"apihelp-block-param-createpagenamespacerestrictions": "רשימת מזהי מרחבי השם שיש לחסום בהם את האפשרות של המשתמש ליצור דפים. ההגבלה חלה רק כשהערך של <var>partial</var> הוא true.",
 	"apihelp-block-param-actionrestrictions": "רשימת פעולות שהמשתמש ייחסם מביצוען. חל רק כאשר <var>partial</var> מוגדר ל־true.",
 	"apihelp-block-example-ip-simple": "חסימת כתובת ה־IP‏ <kbd>192.0.2.5</kbd> לשלושה ימים עם סיבה.",
 	"apihelp-block-example-user-complex": "חסימת המשתמש <kbd>Vandal</kbd> ללא הגבלת זמן עם סיבה, ומניעת יצירת חשבונות חדשים ושליחת דוא\"ל.",

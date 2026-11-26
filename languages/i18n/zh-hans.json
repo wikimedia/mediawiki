@@ -4214,6 +4214,7 @@
 	"paramvalidator-help-type-title": "类型：页面标题",
 	"paramvalidator-help-type-title-must-exist": "仅接受存在的页面。",
 	"paramvalidator-help-type-title-no-must-exist": "接受不存在的页面。",
+	"paramvalidator-help-type-title-allow-id": "也接受以“#”为前缀的页面ID（例如“#12345”）。",
 	"nonmain-slot-differences-therefore-readonly": "您无法编辑此页面修订上的wikitext，因为自此修订以来，页面上的数据发生了不基于wikitext的更改。[$1 要恢复此修订，请单击此处。]",
 	"config-missing-key": "缺少MediaWiki配置参数”$1“",
 	"config-invalid-key": "无效的MediaWiki配置参数“$1”：$2",

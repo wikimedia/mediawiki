@@ -283,7 +283,7 @@
 	"actionthrottled": "Radnja je usporena",
 	"actionthrottledtext": "Kao mjera protiv zloupotrebe ograničeno je izvođenje ove radnje, tako da se ne može izvršiti previše puta u kratkom periodu. To ograničenje upravo je prekoračeno.\nPokušajte ponovo za nekoliko minuta.",
 	"protectedpagetext": "Ova stranica zaštićena je od uređivanja i drugih radnji.",
-	"viewsourcetext": "Možete pregledati i kopirati izvorni kod ove stranice.",
+	"viewsourcetext": "Možete vidjeti i kopirati izvorni kod ove stranice.",
 	"viewyourtext": "Možete vidjeti i kopirati izvor <strong>vaših izmjena</strong> na ovoj stranici.",
 	"protectedinterface": "Ova stranica sadrži tekst interfejsa za softver na ovoj wiki, pa je zaključana kako bi se spriječile zloupotrebe. Kako bi dodali ili promijenili prijevode za sve wikije, koristite [https://translatewiki.net/ translatewiki.net], projekt lokalizacije MediaWikija.",
 	"editinginterface": "Uređujete stranicu koja pruža <strong>tekst interfejsa</strong>.\nIzmjene ove stranice utiču na izgled interfejsa kod drugih korisnika ovog projekta.",

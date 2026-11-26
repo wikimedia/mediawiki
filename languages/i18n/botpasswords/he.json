@@ -15,7 +15,6 @@
 	"botpasswords-createnew": "יצירת סיסמת בוט חדשה",
 	"botpasswords-editexisting": "עריכת סיסמת בוט קיימת",
 	"botpasswords-label-needsreset": "(הסיסמה דורשת איפוס)",
-	"botpasswords-reset-instructions": "כדי לאפס סיסמת בוט, יש ללחוץ על הרשומה המתאימה להלן, לסמן את התיבה „$1” וללחוץ על „$2”. למידע נוסף, ראו [[mw:Manual:Bot_passwords|את התיעוד]].",
 	"botpasswords-label-appid": "שם הבוט:",
 	"botpasswords-label-create": "יצירה",
 	"botpasswords-label-update": "עדכון",

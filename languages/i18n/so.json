@@ -3931,6 +3931,7 @@
 	"paramvalidator-help-type-title": "Nooc: cinwaan bog",
 	"paramvalidator-help-type-title-must-exist": "Kaliya waxay aqbashaa bogag jira.",
 	"paramvalidator-help-type-title-no-must-exist": "Waxay aqbashaa bogag aan jirin.",
+	"paramvalidator-help-type-title-allow-id": "Sidoo kale oo uu aqbalaa aqoonsiga bogga oo ay ka horreyso \"#\", (tusaale ahaan, \"#12345\").",
 	"nonmain-slot-differences-therefore-readonly": "Ma beddeli kartid wikitext-ka dib-u-eegistan boggan, sababtoo ah waxaa dhacay isbeddello xogta bogga ku saabsan oo aan ku salaysnayn wikitext tan iyo dib u eegistan. [$1 Si aad u soo celiso dib u eegistan halkan guji.]",
 	"config-missing-key": "Halbeegga qaabeynta MediaWiki ee maqan “$1”",
 	"config-invalid-key": "Halbeegga qaabeynta MediaWiki ee aan sax ahayn “$1”: $2",

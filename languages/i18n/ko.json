@@ -513,6 +513,8 @@
 	"createacct-temp-warning": "임시 계정 <strong>$1</strong>으로 수행한 편집은 영구 계정으로 이관되지 않습니다.",
 	"noname": "사용자 계정 이름이 올바르지 않습니다.",
 	"userlogin-authpopup-loggingin-title": "로그인 중…",
+	"userlogin-authpopup-loggingin-body-popup": "팝업 창이 열렸을 것입니다. 보이지 않으면 다시 열어 볼 수 있습니다.",
+	"userlogin-authpopup-fallback": "새 창에서 로그인 양식 열기",
 	"userlogin-authpopup-retry": "다시 시도하기",
 	"userlogin-authpopup-cancel": "취소",
 	"userlogin-authpopup-closeme": "이 메시지가 보인다면 창을 닫아도 됩니다.",
