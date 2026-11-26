@@ -415,11 +415,12 @@ class DataAccess extends IDataAccess {
 		// some useful caches.
 		if ( $clearState ) {
 			$this->ppFrame = $this->parser->getPreprocessor()->newFrame();
-			// If $clearState is true, then we've reset the parser output and
-			// clobbered the watcher on the parser options; restore the old
-			// one.
-			$parserOptions->registerWatcher( $oldWatcher );
 		}
+		// If $clearState is true, then we've reset the parser output and
+		// clobbered the watcher on the parser options; restore the old
+		// one. If not, we have 'null' here anyway, so we want to restore it as well.
+		$parserOptions->registerWatcher( $oldWatcher );
+
 		return $this->parser;
 	}
 
