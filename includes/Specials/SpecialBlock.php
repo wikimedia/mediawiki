@@ -166,7 +166,10 @@ class SpecialBlock extends FormSpecialPage {
 	}
 
 	/**
-	 * We allow certain special cases where user is blocked
+	 * We need to keep the unblock form visible to blocked admins because 1) they need to
+	 * be able to block the admin that blocked them, and/or 2) when $wgUseCodexSpecialBlock
+	 * is used, Special:Block also handles unblocks, and users with the unblockself user
+	 * right need to be able to unblock themselves.
 	 *
 	 * @return bool
 	 */
