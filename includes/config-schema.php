@@ -227,7 +227,7 @@ return [
 			'Exiv2Command' => '/usr/bin/exiv2',
 			'Exiftool' => '/usr/bin/exiftool',
 			'SVGConverters' => [
-				'ImageMagick' => '$path/convert -background "#ffffff00" -thumbnail $widthx$height\\! $input PNG:$output',
+				'ImageMagick' => '$path/convert -background "#ffffff00" $input -thumbnail $widthx$height\\! PNG:$output',
 				'sodipodi' => '$path/sodipodi -z -w $width -f $input -e $output',
 				'inkscape' => '$path/inkscape -z -w $width -f $input -e $output',
 				'batik' => 'java -Djava.awt.headless=true -jar $path/batik-rasterizer.jar -w $width -d $output $input',
