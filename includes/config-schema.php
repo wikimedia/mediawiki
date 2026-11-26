@@ -230,7 +230,7 @@ return [
 			'Exiv2Command' => '/usr/bin/exiv2',
 			'Exiftool' => '/usr/bin/exiftool',
 			'SVGConverters' => [
-				'ImageMagick' => '$path/convert -background "#ffffff00" -thumbnail $widthx$height\\! $input PNG:$output',
+				'ImageMagick' => '$path/convert -background "#ffffff00" $input -thumbnail $widthx$height\\! PNG:$output',
 				'inkscape' => '$path/inkscape -w $width -o $output $input',
 				'batik' => 'java -Djava.awt.headless=true -jar $path/batik-rasterizer.jar -w $width -d $output $input',
 				'rsvg' => '$path/rsvg-convert -w $width -h $height -l $lang -o $output $input',
