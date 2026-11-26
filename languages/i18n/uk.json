@@ -104,7 +104,8 @@
 			"MonX94",
 			"Repakr",
 			"Flomik",
-			"Ouclie"
+			"Ouclie",
+			"Mitte27"
 		]
 	},
 	"pagecategories": "{{PLURAL:$1|1=Категорія|Категорії}}",
@@ -192,7 +193,7 @@
 	"toolbox": "Інструменти",
 	"cactions": "Більше",
 	"tool-link-userrights": "Змінити групи {{GENDER:$1|користувача|користувачки}}",
-	"tool-link-userrights-readonly": "Перегляд груп {{GENDER:$1|користувача|користувачки}}",
+	"tool-link-userrights-readonly": "Групи {{GENDER:$1|користувача|користувачки}}",
 	"tool-link-emailuser": "Лист {{GENDER:$1|користувачеві|користувачці}}",
 	"imagepage": "Переглянути сторінку файлу",
 	"mediawikipage": "Переглянути сторінку повідомлення",
@@ -4160,5 +4161,6 @@
 	"benefit-3-description": "Налаштування, які дозволяють персоналізувати свій досвід.",
 	"temp-user-unable-to-acquire": "Не вдалося отримати тимчасове ім’я облікового запису. Будь ласка спробуйте ще раз.",
 	"table-of-contents-show-button-aria-label": "Показати зміст",
-	"table-of-contents-hide-button-aria-label": "Приховати зміст"
+	"table-of-contents-hide-button-aria-label": "Приховати зміст",
+	"mypage-disallowed-action": "З безпекових міркувань дію «$1» не можна використати на сторінці «Спеціальна:Моя сторінка»."
 }

@@ -4126,5 +4126,6 @@
 	"benefit-3-description": "Asetukset, joiden avulla voit mukauttaa kokemustasi.",
 	"temp-user-unable-to-acquire": "Tilapäisen tunnuksen käyttäjänimen hankkiminen ei onnistunut. Yritä uudelleen.",
 	"table-of-contents-show-button-aria-label": "Näytä sisällysluettelo",
-	"table-of-contents-hide-button-aria-label": "Piilota sisällysluettelo"
+	"table-of-contents-hide-button-aria-label": "Piilota sisällysluettelo",
+	"mypage-disallowed-action": "Turvallisuussyistä toimintoa ”$1” ei voi käyttää toimintosivulla Special:MyPage."
 }

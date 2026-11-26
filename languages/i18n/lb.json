@@ -2905,7 +2905,7 @@
 	"confirm-mcrrestore-title": "Eng Versioun restauréieren",
 	"confirm-mcrundo-title": "Eng Ännerung réckgängeg maachen",
 	"mcrundo-parse-failed": "Déi nei Versioun konnt net geparst ginn: $1",
-	"quotation-marks": "\"$1\"",
+	"quotation-marks": "„$1“",
 	"formatnum-nan": "Keng Zuel",
 	"imgmultipageprev": "← Vireg Säit",
 	"imgmultipagenext": "nächst Säit →",

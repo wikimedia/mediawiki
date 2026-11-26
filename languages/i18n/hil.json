@@ -3994,5 +3994,6 @@
 	"benefit-3-description": "Mga gusto nga nagatugot sa imo nga i-customize ang imo eksperyensya.",
 	"temp-user-unable-to-acquire": "Indi makakuha sang temporaryo nga username sang account. Palihog tilawi liwat.",
 	"table-of-contents-show-button-aria-label": "Ipakita ang listahan sang mga kaundan",
-	"table-of-contents-hide-button-aria-label": "Itago ang listahan sang mga kaundan"
+	"table-of-contents-hide-button-aria-label": "Itago ang listahan sang mga kaundan",
+	"mypage-disallowed-action": "Para sa mga rason sa seguridad, ang aksyon nga \"$1\" indi magamit sa pahina nga Special:MyPage."
 }
