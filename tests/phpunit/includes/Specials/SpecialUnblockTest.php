@@ -1,6 +1,7 @@
 <?php
 namespace MediaWiki\Tests\Specials;
 
+use MediaWiki\Block\BlockUser;
 use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\Exception\ReadOnlyError;
 use MediaWiki\MainConfigNames;
@@ -8,6 +9,7 @@ use MediaWiki\Permissions\UltimateAuthority;
 use MediaWiki\Request\FauxRequest;
 use MediaWiki\Specials\SpecialUnblock;
 use MediaWiki\Title\Title;
+use MediaWiki\User\UserIdentity;
 use Wikimedia\TestingAccessWrapper;
 
 /**
@@ -27,7 +29,8 @@ class SpecialUnblockTest extends SpecialPageTestBase {
 			$services->getDatabaseBlockStore(),
 			$services->getUserNameUtils(),
 			$services->getUserNamePrefixSearch(),
-			$services->getWatchlistManager()
+			$services->getWatchlistManager(),
+			$services->getBlockPermissionCheckerFactory()
 		);
 	}
 
@@ -185,13 +188,7 @@ class SpecialUnblockTest extends SpecialPageTestBase {
 		$this->overrideConfigValue( MainConfigNames::EnableMultiBlocks, true );
 		$this->setGroupPermissions( 'sysop', 'deferredblock', $canSeeDeferred );
 		$target = $this->getTestUser()->getUserIdentity();
-		$this->getServiceContainer()->getBlockUserFactory()->newBlockUser(
-			$target,
-			new UltimateAuthority( $this->getTestUser( [ 'sysop' ] )->getUser() ),
-			'infinity',
-			'Some reason',
-			[ 'isDeferred' => true ]
-		)->placeBlock();
+		$this->placeBlock( $target, [ 'isDeferred' => true ] );
 
 		[ $html, ] = $this->executeSpecialPage(
 			$target->getName(), null, 'qqx', $this->getTestSysop()->getUser()
@@ -204,5 +201,47 @@ class SpecialUnblockTest extends SpecialPageTestBase {
 			$this->assertStringNotContainsString( 'unblock-deferred-notice', $html );
 			$this->assertStringNotContainsString( 'unblocklog-showdeferredblocklog', $html );
 		}
+	}
+
+	public function testHiddenDeferredBlockIsNotShownWithoutHideuser() {
+		$this->overrideConfigValue( MainConfigNames::EnableMultiBlocks, true );
+		$this->setGroupPermissions( 'sysop', 'deferredblock', true );
+		$this->setGroupPermissions( 'sysop', 'hideuser', false );
+		$target = $this->getTestUser()->getUserIdentity();
+		$this->placeBlock( $target, [ 'isDeferred' => true, 'isHideBlock' => true ] );
+
+		[ $html, ] = $this->executeSpecialPage(
+			$target->getName(), null, 'qqx', $this->getTestSysop()->getUser()
+		);
+
+		$this->assertStringNotContainsString( 'unblock-deferred-notice', $html );
+		$this->assertStringNotContainsString( 'mw-input-wpName', $html );
+	}
+
+	public function testVisibleBlockIsShownNextToHiddenDeferredBlock() {
+		$this->overrideConfigValue( MainConfigNames::EnableMultiBlocks, true );
+		$this->setGroupPermissions( 'sysop', 'deferredblock', true );
+		$this->setGroupPermissions( 'sysop', 'hideuser', false );
+		$target = $this->getTestUser()->getUserIdentity();
+		$this->placeBlock( $target, [ 'isDeferred' => true, 'isHideBlock' => true ] );
+		$this->placeBlock( $target, [] );
+
+		[ $html, ] = $this->executeSpecialPage(
+			$target->getName(), null, 'qqx', $this->getTestSysop()->getUser()
+		);
+
+		$this->assertStringNotContainsString( 'unblock-deferred-notice', $html );
+		$this->assertStringContainsString( 'mw-input-wpName', $html );
+	}
+
+	private function placeBlock( UserIdentity $target, array $options ): void {
+		$status = $this->getServiceContainer()->getBlockUserFactory()->newBlockUser(
+			$target,
+			new UltimateAuthority( $this->getTestUser( [ 'sysop' ] )->getUser() ),
+			'infinity',
+			'Some reason',
+			$options
+		)->placeBlock( BlockUser::CONFLICT_NEW );
+		$this->assertStatusGood( $status );
 	}
 }

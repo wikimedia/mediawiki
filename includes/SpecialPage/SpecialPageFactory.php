@@ -528,6 +528,7 @@ class SpecialPageFactory {
 				'UserNameUtils',
 				'UserNamePrefixSearch',
 				'WatchlistManager',
+				'BlockPermissionCheckerFactory',
 			]
 		],
 		'BlockList' => [

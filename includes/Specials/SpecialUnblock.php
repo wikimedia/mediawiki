@@ -7,6 +7,7 @@
 namespace MediaWiki\Specials;
 
 use MediaWiki\Block\Block;
+use MediaWiki\Block\BlockPermissionCheckerFactory;
 use MediaWiki\Block\BlockTarget;
 use MediaWiki\Block\BlockTargetFactory;
 use MediaWiki\Block\BlockTargetWithUserPage;
@@ -45,6 +46,7 @@ class SpecialUnblock extends SpecialPage {
 		private readonly UserNameUtils $userNameUtils,
 		private readonly UserNamePrefixSearch $userNamePrefixSearch,
 		private readonly WatchlistManager $watchlistManager,
+		private readonly BlockPermissionCheckerFactory $blockPermissionCheckerFactory,
 	) {
 		parent::__construct( 'Unblock' );
 	}
@@ -81,10 +83,15 @@ class SpecialUnblock extends SpecialPage {
 			}
 		}
 
-		$this->block = $this->blockStore->newFromTarget(
+		$blocks = $this->blockStore->newListFromTarget(
 			$this->target, null, false, DatabaseBlockStore::AUTO_ALL,
 			$this->getAuthority()->isAllowed( 'deferredblock' )
 		);
+		$permissionChecker = $this->blockPermissionCheckerFactory->newChecker( $this->getAuthority() );
+		$blocks = array_filter( $blocks, static fn ( $block ) => $permissionChecker->canSeeBlock( $block ) );
+		if ( count( $blocks ) > 0 ) {
+			$this->block = array_values( $blocks )[0];
+		}
 		if ( $this->target instanceof BlockTargetWithUserPage ) {
 			// Set the 'relevant user' in the skin, so it displays links like Contributions,
 			// User logs, UserRights, etc.
