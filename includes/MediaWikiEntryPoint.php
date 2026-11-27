@@ -695,8 +695,11 @@ abstract class MediaWikiEntryPoint {
 					'entrypoint' => MW_ENTRY_POINT,
 					'method' => $this->context->getRequest()->getMethod(),
 					'url' => WebRequest::detectServer() . $this->getRequestURL(),
-					// Avoid special chars to ease slicing of udp2log files, like api.log
-					'user' => wfUrlencode( str_replace( ' ', '_', $this->context->getUser()->getName() ) ),
+					'user' => defined( 'MW_NO_SESSION' )
+						// T446405: Invalid username placeholder
+						? '[none]'
+						// Avoid special chars to ease slicing of udp2log files, like api.log
+						: wfUrlencode( str_replace( ' ', '_', $this->context->getUser()->getName() ) ),
 					'ip' => $this->context->getRequest()->getIP(),
 				]
 			);
