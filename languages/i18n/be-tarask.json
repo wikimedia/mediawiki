@@ -1454,7 +1454,7 @@
 	"filepage-nofile-link": "Файл з такой назвай не існуе, але вы можаце [$1 загрузіць яго].",
 	"uploadnewversion-linktext": "Загрузіць новую вэрсію гэтага файла",
 	"shared-repo-from": "з $1",
-	"shared-repo": "агульнага сховішча",
+	"shared-repo": "супольнага сховішча",
 	"shared-repo-name-wikimediacommons": "Вікісховішча",
 	"upload-disallowed-here": "Вы ня можаце перазапісаць гэты файл.",
 	"filerevert": "Вярнуць $1",

@@ -107,7 +107,7 @@
 	"prefs-description-rendering": "Наладзьце тэму, памер і парамэтры чытаньня.",
 	"prefs-skin": "Тэма афармленьня",
 	"skin-preview": "Папярэдні прагляд",
-	"prefs-common-config": "Агульны CSS/JavaScript для ўсіх тэмаў афармленьня:",
+	"prefs-common-config": "Супольны CSS/JavaScript для ўсіх тэмаў афармленьня:",
 	"prefs-custom-css": "Уласны CSS",
 	"prefs-custom-js": "Уласны JavaScript",
 	"prefs-custom-cssjs-safemode": "Карыстальніцкія CSS/JavaScript цяпер недаступныя, бо ўключаны бясьпечны рэжым. Калі ласка, дзеля ўжываньня карыстальніцкіх CSS/JavaScript [[#mw-input-wpforcesafemode|адключыце бясьпечны рэжым]].",

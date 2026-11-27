@@ -2644,7 +2644,7 @@
 	"unlockdbsuccesssub": "Blokada bazy danych została zdjęta",
 	"lockdbsuccesstext": "Baza danych została zablokowana.<br />\nPamiętaj by [[Special:UnlockDB|zdjąć blokadę]] po zakończeniu działań administracyjnych.",
 	"unlockdbsuccesstext": "Baza danych została odblokowana.",
-	"lockfilenotwritable": "Nie można zapisać pliku blokady bazy danych.\nBlokowanie i odblokowywanie bazy danych, wymaga by plik mógł być zapisywany przez web serwer.",
+	"lockfilenotwritable": "Nie można zapisać pliku blokady bazy danych.\nBlokowanie i odblokowywanie bazy danych wymaga, by plik mógł być zapisywany przez serwer WWW.",
 	"databaselocked": "Baza danych jest już zablokowana.",
 	"databasenotlocked": "Baza danych nie jest zablokowana.",
 	"lockedbyandtime": "(przez $1 dnia $2 o $3)",
