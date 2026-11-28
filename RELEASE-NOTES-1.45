@@ -14,6 +14,18 @@ THIS IS NOT A RELEASE YET
 
 === Changes since 1.45.7 ===
 * Localisation updates.
+* (T444964) ApiParse: Fix 'mobileformat' skin mode hack.
+* (T440885) Rdbms: Fix inverted APCU freshness condition in LoadMonitor.
+* (T445764) Upgrade guzzle/guzzlehttp to 7.16.5.
+* (T443805) Fix null array access and cleanup "revision lengths" code.
+* (T437050) MessagesId: Use the default book sources instead of dead links.
+* (T419458) mw.util: Make parseImageUrl() ignore query parameters in all
+  cases.
+* (T376390) mediawiki.util: Improve messageBox method.
+* (T442324) mediawiki.util: Fix parseImageUrl() to support double-dash TMH
+  thumbs.
+* (T428517) User: Use ActorStore on User::load.
+* (T446250) SvgHandler: Put input before -thumbnail in ImageMagick converter.
 
 == MediaWiki 1.45.7 ==
 
